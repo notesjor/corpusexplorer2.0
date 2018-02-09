@@ -1,4 +1,4 @@
-# corpusexplorer2.0
+# CorpusExplorer2.0
 
 Software für Korpuslinguist*innen und Text-/Data-Mining Interessierte. Der CorpusExplorer vereint über 45 interaktiven Auswertungsmöglichkeiten mit einer einfachen Bedienung. Routineaufgaben wie z. B. Textakquise, Taggen oder die grafische Aufbereitung von Ergebnissen werden vollständig automatisiert. Die einfache Handhabung erleichtert den Einsatz in der universitären Lehre und führt zu schnellen sowie gehaltvollen Ergebnissen. Dabei ist der CorpusExplorer offen für viele Standards (XML, CSV, JSON, R, uvm.) und bietet darüber hinaus ein eigenes Software Development Kit (SDK) an, mit dem es möglich ist, alle Funktionen in eigene Programme zu integrieren.
 
