@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="radWizard1.PageHeaderIcon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGIAAABDCAYAAABnVdCdAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAACLFJREFUeF7tnC2TJEUQhs9hUWgUGoWd6SMgEAjUWU7hCFBA7C6xpwjcmYu1+xOQ
+        CASK2J05sZIIzP0EJAIB+WRl9tX2dE9XV1XPx+68ER0zVV1dH/nmV1VPzJMaOFs//fb7m+bvi3Xzn36u
+        Fs/t1glz4PJm8f7568XSii0g4IfVxx/w/ez104+kfKc3DGerxYfnq+YFF31Y9QlTcXm3ePds3fxyvm7e
+        XKya3y9Wy5d2SwER9lXRU767WC8vuUIfJ4vJgpKwWv7E96//+uwdEeiVavi6uTYhX2lDA2XI0HsQF93H
+        oqiz4l6hliprcLf6ds4HqigILnZJl3988h7azYRZjFVvQBfacWU8w+KtuFcg9B/XzVdYvFUF19pZ78Gg
+        pvAgEGuy4iwgDpFAMM7F7eILq94AFmBf70EtfcAqIM3j3ba+qwBt8KDq8aHWoGZNVyxWgz+LFoEwRqyZ
+        OeB51WaNQ8uXwWr7tdvGfmPFe9imLFgRbpo2HjdnsR4VjEwev6ms28B2uxrOb5ff6SLkU8syBgvTmxlQ
+        EnrmKmt5Rr0VW2Ax3aTDgWCRQVcxgjw68ZD+pW3VuBIP5HFgWwyoDYjJTW+Z+5DCsCa1arUSkguC8vLK
+        U+4+0BfKyMWzSpw8g1ysSQviCu2sWI4SQZSCoMlicsffpuEA10qbqYqllibP0vcQcfTZZ3XZULfUMb1d
+        gYWUWN82nz83IAmSrVgHSkaGv1NBiG/VQD8x6LoQpz7XRSmZuZhl3KlE4FKYCIIMQSsEevv+zJqNAp88
+        lKmkAEEomXtwrdUtAo1UP52gmee3zaeWvl33aYNnHnpfgplVD4Ig6AQGUjf9PUTRRu9H6TSKgzKgFFa1
+        UxA7PCFw2aEQqowkBvI5ajHtA+GhpFRV2j5ToSXsLRBSMhmyCHVtNie+2602fkGYK0GY9/Jlav9zA9kF
+        GerxT5uaeyKylQwWoTm9LDrFz2la2xHSGJwMKyZBhN5uqjx11BsRdM5yj/Mvq9o7kCFz76a57sKtuAmY
+        m+JXc305GjzFdcREoE3bcv5jAco4GH8hYsoiEUpOdhM0ZTzXxsXohKUtz6D1WKDdPmrEyrUBTFv9vZj+
+        GCGlQkmxvq7W0J757SsQ1wQyHs2u1A/3ZCoxtjKagJTY0tcGy9BgdwABOReQgJJZcRgp2r4vIkBOwD8U
+        TJp7ChEpbbYhxTVJ/5oaM/G47ZQ9zqEhacPHYlk0AkYIVt0LF4YVJ8HGSToL0v2EpNRkWlalm7mUPU4q
+        UCpdtyQFcvlrUv0VStijLJ7XIp3YO6pEDOobjxQE0qafRfHcpHEi63MF6DuCngrP54Pibb7qZSw2qsyX
+        MSG/xrijcmNCfT55CATMUXY7SE1dHXrsfNv8Js/cBEJk91xoDX4MwXq7wh8Ca8QSmXtp1mZpub7Nw00F
+        C29etHJMyZa68K18Chme8aQsRAVlLuKbdfMP81LByRxLds++Nxn10wNgDSrEQmWQtdjbvPAal/5a94sw
+        1QRloCCEtPcRdMJzQ+bm2pRKAuYf+huPVVNAv6NuIQGsB+Wb4l5TQJ+thTKIZyhTBOGaptrCp5kbLCu5
+        Qlaqf1UNWTc/85xVVQGKxZysWARkxPxq7meCZfTMLw6SqWCCaByd6iU+PsVtxTA39Grq2NuAQqFxVqwC
+        1onSWbEYg0RMDay1EIJp86sE6T+tqhiQOiURSQUeoJZV9BLhprevcx3Rts+/XDf/oslWlY05FaqWVeje
+        Stz3BhE5bqkEcWwCoh2kl6/iGJObLQ2afAUw75JYFr3dlEwsSmEdPoBbRPuAfGqDivCsSyejWU34zZHd
+        DlmK1OWmnHO5JQdzbbOdCXBLHX27SUMExEL8AddOa1IMiKZv1wRMHYF3NaPEQpnzhqZVRC7Rk9bEAuJB
+        gnbW07BUbSohQsbo/YFxLeyEiD7gorrmlKJxaoqd51J38ycietA1dQIrdcGNbf4c0WOAaj9xJnJtfKfO
+        ioMoyU5SrS4XpURku00eRvh0hI8nyFJPh6rhnaORmDg+aU8mo5YVxYcutK1kEh7Ec/N1noVIK1ZHicVF
+        icp1DpnSQfNCCZGrq23xxPrMj/b6/Ei2oBOUicZpbQ4YJ8XqclCrbxQlyLOiwgSLCef8qv0JMaCLPgJL
+        wDxKCe2DrrFSSj/Lfke1XoSZu/jqRHTe8tVA7TnOQkQpdMtvsacWNCaNuMNUtLGu4jH9QRIBWOjY76um
+        ABdC3KmRQalLirK/Gpg7u8uGZ2C4AC7KfNrtLJDllZCBJUAC87KqLPBuBgvAQlmTnjBUdHPVoedOLFyv
+        8L30zZgfq+AGhlLnPqhCiJWWWgJjhowwvDjz9R2kNQyhVuzQ16Yi0CDY7f8Lgta+VYbymIAi5WSSBwe0
+        CK22YhEgQIMkhMgVCTxcsidivJqnzoyTm00eFDBhXIsVq0GtzeKRX3arGkqOag4OEIGPneLfDwW4JJIO
+        Kx4vNGsRa6jlmnYN0nEsYs6zr50gZDt18/ddg8PLmpvLnQOfTQC14lGj1mHhXuD5txWPGkcfK/Cvfa4J
+        kg5tQ8Sc+jIvP2o5xmSjhQdrJ4Of2PCdhVFfevRQC36UgitFefylFiQcdXyIoWS83XDdYeauXZqRCBk1
+        DwunwhXDLdT2DrpZVHIeAgkxMPs+d9T3unZXCMcXm++hKTPfbv2Dx77MH81/EMcXtSAua9af0AxBXeOx
+        b9ZqYSxHR2NzMyw9JNxiaWNjPypwrM2JqhXvgUCqgVOCvGc1YxrsmQ7PcanbG4hBenAobaz4uOGHgt3z
+        KDIp6j1gegDFnQydXblg0fTY9ysxnf2M/zP0g3jXUAuQYRp8jRD1eESE1LebpS0WYsV7wLL6XuhDIqRi
+        LUqmZEtK2ImETSAs3I66EnVBw0IaCu7bjiIgOPQb+o4t5oRMYBF9P+lEyGi8FU+YG1iOBm/dqQctV9cj
+        ru3RbcIOARpb8Ply7YeAJ0/+B1KMHHvVZA0NAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="page_0_check_sampledata.Text" xml:space="preserve">
+    <value>&lt;html&gt;&lt;strong&gt;Beispieldaten verwenden&lt;/strong&gt;&lt;br /&gt;Füllt alle Formularfelder soweit aus, dass Sie den Blog &lt;em&gt;http://notesjor.de&lt;/em&gt; crawlen könnten.&lt;br /&gt;Bitte modifizieren Sie das Ergebnis für einen produktiven WebCrawler.&lt;/html&gt;</value>
+  </data>
+  <data name="radLabel8.Text" xml:space="preserve">
+    <value>Der Startindex ist die Seitennummer der ersten Suchseite. Der Inkrement ist der Wert, um den sich der Seitenzählen bei jeder Seite erhöht. Im Normalfall ist 1 / 1 eine gute Wahl. Mache Suchen beginnen aber auch bei 0 oder haben einen Inkrement von 10 oder 25. Daher entnehmen Sie bitte die korreken Wert der URL.</value>
+  </data>
+  <data name="radLabel9.Text" xml:space="preserve">
+    <value>&lt;html&gt;Verwenden Sie [QUERY] als Platzhalter für die Abfrage und [PAGE] als Platzhalter für die Suchseite.&lt;br /&gt;&lt;strong&gt;Beispiel:&lt;/strong&gt; Anstelle von &lt;em&gt;http://notesjor.de/page/2/?s=CorpusExplorer&lt;/em&gt; fügen Sie &lt;em&gt;http://notesjor.de/page/[PAGE]/?s=[QUERY]&lt;/em&gt; ein.&lt;/html&gt;</value>
+  </data>
+  <data name="radLabel7.Text" xml:space="preserve">
+    <value>&lt;html&gt;Für die seitenspezifische Suche müssen Sie die URL inkl. Parametern kopieren und entsprechend der Vorgabe anpassen.&lt;br/&gt;&lt;em&gt;Tipp:&lt;/em&gt; Führen Sie einmal die Suche im Webbrowser durch, gehen Sie zur zweiten Ergebnisseite und kopieren Sie danach die URL.&lt;/html&gt;</value>
+  </data>
+  <metadata name="radDesktopAlert1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="radDesktopAlert1.ContentText" xml:space="preserve">
+    <value>&lt;html&gt;Die Vorschau umrahmt alle mittels XPath selektierten Elemente mit blauen Punkten.&lt;br /&gt;&lt;strong&gt;Bitte beachten Sie:&lt;/strong&gt; Die Erzeugung der Vorschau benötigt beim ersten Mal&lt;br /&gt;ca. 30 Sekunden, um anzeigebereit zu sein. Folgeaufrufe benötigen ca. 5-15 Sekunden &lt;br /&gt;(bei komplexen XPath-Ausdrücken).&lt;/html&gt;</value>
+  </data>
+</root>

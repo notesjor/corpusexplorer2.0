@@ -1,0 +1,2125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\PostSharp.5.0.43\build\PostSharp.props" Condition="Exists('..\packages\PostSharp.5.0.43\build\PostSharp.props')" />
+  <Import Project="..\packages\CefSharp.WinForms.63.0.0-pre03\build\CefSharp.WinForms.props" Condition="Exists('..\packages\CefSharp.WinForms.63.0.0-pre03\build\CefSharp.WinForms.props')" />
+  <Import Project="..\packages\CefSharp.Common.63.0.0-pre03\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.63.0.0-pre03\build\CefSharp.Common.props')" />
+  <Import Project="..\packages\cef.redist.x86.3.3239.1723\build\cef.redist.x86.props" Condition="Exists('..\packages\cef.redist.x86.3.3239.1723\build\cef.redist.x86.props')" />
+  <Import Project="..\packages\cef.redist.x64.3.3239.1723\build\cef.redist.x64.props" Condition="Exists('..\packages\cef.redist.x64.3.3239.1723\build\cef.redist.x64.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C0D9B9E2-D283-43C7-B121-C2D03F1EB349}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CorpusExplorer.Terminal.WinForm</RootNamespace>
+    <AssemblyName>CorpusExplorer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <CefSharpAnyCpuSupport>true</CefSharpAnyCpuSupport>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>2.2015.09.01</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <PostSharpConstraintVerificationEnabled>False</PostSharpConstraintVerificationEnabled>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <Optimize>false</Optimize>
+    <PostSharpTargetProcessor>x64</PostSharpTargetProcessor>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PostSharpTargetProcessor>x64</PostSharpTargetProcessor>
+    <PostSharpOptimizationMode>OptimizeForSize</PostSharpOptimizationMode>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>corpusexplorer.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <StartupObject>CorpusExplorer.Terminal.WinForm.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>6B3B93EF896E6D1A635B37E8427BC279D1F89E1A</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>mycert.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestTimestampUrl>http://timestamp.globalsign.com/scripts/timestamp.dll</ManifestTimestampUrl>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.6.15\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <HintPath>..\packages\AvalonEdit.5.0.4\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PostSharp">
+      <HintPath>..\packages\PostSharp.Redist.5.0.43\lib\net45\PostSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PostSharp.Compiler.Common">
+      <HintPath>..\packages\PostSharp.Compiler.Common.5.0.43\lib\net45\PostSharp.Compiler.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PostSharp.Compiler.Settings">
+      <HintPath>..\packages\PostSharp.Compiler.Common.5.0.43\lib\net45\PostSharp.Compiler.Settings.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PostSharp.Patterns.Aggregation">
+      <HintPath>..\packages\PostSharp.Patterns.Aggregation.Redist.5.0.43\lib\net45\PostSharp.Patterns.Aggregation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PostSharp.Patterns.Common">
+      <HintPath>..\packages\PostSharp.Patterns.Common.Redist.5.0.43\lib\net45\PostSharp.Patterns.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PostSharp.Patterns.Model">
+      <HintPath>..\packages\PostSharp.Patterns.Model.Redist.5.0.43\lib\net40\PostSharp.Patterns.Model.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PostSharp.Patterns.Threading">
+      <HintPath>..\packages\PostSharp.Patterns.Threading.Redist.5.0.43\lib\net45\PostSharp.Patterns.Threading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Telerik.Documents.SpreadsheetStreaming">
+      <HintPath>..\packages\Telerik.Documents.SpreadsheetStreaming.for.Net40.2018.1.112\lib\net40\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls">
+      <HintPath>..\packages\UI.for.WinForms.Common.2018.1.116\lib\net40\Telerik.WinControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.ChartView">
+      <HintPath>..\packages\UI.for.WinForms.PivotGrid.2018.1.116\lib\net40\Telerik.WinControls.ChartView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.GridView">
+      <HintPath>..\packages\UI.for.WinForms.GridView.2018.1.116\lib\net40\Telerik.WinControls.GridView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.PivotGrid">
+      <HintPath>..\packages\UI.for.WinForms.PivotGrid.2018.1.116\lib\net40\Telerik.WinControls.PivotGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RichTextEditor">
+      <HintPath>..\packages\UI.for.WinForms.RichTextEditor.2018.1.116\lib\net40\Telerik.WinControls.RichTextEditor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Aqua">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Aqua.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Breeze">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Breeze.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Desert">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Desert.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Fluent">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Fluent.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.HighContrastBlack">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.HighContrastBlack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Material">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Material.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.MaterialBlueGrey">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.MaterialBlueGrey.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.MaterialPink">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.MaterialPink.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.MaterialTeal">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.MaterialTeal.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2007Black">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Office2007Black.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2007Silver">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Office2007Silver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2010Black">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Office2010Black.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2010Blue">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Office2010Blue.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2010Silver">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Office2010Silver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2013Dark">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Office2013Dark.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2013Light">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Office2013Light.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetro">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.TelerikMetro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroBlue">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.TelerikMetroBlue.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Dark">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.VisualStudio2012Dark.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Light">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.VisualStudio2012Light.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Windows7">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Windows7.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Windows8">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Windows8.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI">
+      <HintPath>..\packages\UI.for.WinForms.Common.2018.1.116\lib\net40\Telerik.WinControls.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI.Design">
+      <HintPath>..\packages\UI.for.WinForms.Common.2018.1.116\lib\net40\Telerik.WinControls.UI.Design.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>..\packages\Telerik.Windows.Controls.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Controls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data">
+      <HintPath>..\packages\Telerik.Windows.Controls.Data.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Controls.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.DataVisualization">
+      <HintPath>..\packages\Telerik.Windows.Controls.DataVisualization.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Diagrams">
+      <HintPath>..\packages\Telerik.Windows.Controls.Diagrams.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Controls.Diagrams.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Diagrams.Extensions">
+      <HintPath>..\packages\Telerik.Windows.Controls.Diagrams.Extensions.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Controls.Diagrams.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input">
+      <HintPath>..\packages\Telerik.Windows.Controls.Input.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Controls.Input.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation">
+      <HintPath>..\packages\Telerik.Windows.Controls.Navigation.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Controls.Navigation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>..\packages\Telerik.Windows.Data.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Diagrams.Core">
+      <HintPath>..\packages\Telerik.Windows.Diagrams.Core.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Diagrams.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core">
+      <HintPath>..\packages\Telerik.Windows.Documents.Core.for.Net40.2018.1.112\lib\net40\Telerik.Windows.Documents.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Fixed">
+      <HintPath>..\packages\Telerik.Windows.Documents.Fixed.for.Net40.2018.1.112\lib\net40\Telerik.Windows.Documents.Fixed.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet">
+      <HintPath>..\packages\Telerik.Windows.Documents.Spreadsheet.for.Net40.2018.1.112\lib\net40\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml">
+      <HintPath>..\packages\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.for.Net40.2018.1.112\lib\net40\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf">
+      <HintPath>..\packages\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.for.Net40.2018.1.112\lib\net40\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Themes.Windows8Touch">
+      <HintPath>..\packages\Telerik.Windows.Themes.Windows8Touch.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Themes.Windows8Touch.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip">
+      <HintPath>..\packages\Telerik.Windows.Zip.for.Net40.2018.1.112\lib\net40\Telerik.Windows.Zip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikCommon">
+      <HintPath>..\packages\UI.for.WinForms.Common.2018.1.116\lib\net40\TelerikCommon.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikData">
+      <HintPath>..\packages\UI.for.WinForms.GridView.2018.1.116\lib\net40\TelerikData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikExport">
+      <HintPath>..\packages\UI.for.WinForms.Export.2018.1.116\lib\net40\TelerikExport.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="Telerik.Reporting, Version=11.1.17.614, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.WinForms, Version=11.1.17.614, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\WinForm\Abstract\AbstractUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\Abstract\AbstractUserControl.Designer.cs">
+      <DependentUpon>AbstractUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\Addon3rdPartyPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\Addon3rdPartyPanel.Designer.cs">
+      <DependentUpon>Addon3rdPartyPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\BigNumber.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\BigNumber.Designer.cs">
+      <DependentUpon>BigNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\BigNumberRange.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\BigNumberRange.Designer.cs">
+      <DependentUpon>BigNumberRange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\ClearPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\Events\RadMenuInsertTableItem.cs" />
+    <Compile Include="Controls\WinForm\Events\TableSelectionChangedEventArgs.cs" />
+    <Compile Include="Controls\WinForm\GridViewHashSetSummaryItem.cs" />
+    <Compile Include="Controls\WinForm\Header.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\Header.Designer.cs">
+      <DependentUpon>Header.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\HelpPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\HelpPanel.Designer.cs">
+      <DependentUpon>HelpPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\IHDPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\IHDPanel.Designer.cs">
+      <DependentUpon>IHDPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\InfoButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\MapSwitch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\MapSwitch.Designer.cs">
+      <DependentUpon>MapSwitch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\MetadataEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\MetadataEditor.Designer.cs">
+      <DependentUpon>MetadataEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\Metadata\NewMetadataDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\Metadata\NewMetadataDialog.Designer.cs">
+      <DependentUpon>NewMetadataDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\QueryBuilder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\QueryBuilder.Designer.cs">
+      <DependentUpon>QueryBuilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\QuickFix.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\QuickFix.Designer.cs">
+      <DependentUpon>QuickFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\RadButtonWithCheckmark.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\RadButtonWithCheckmark.Designer.cs">
+      <DependentUpon>RadButtonWithCheckmark.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\SearchBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\SearchBar.Designer.cs">
+      <DependentUpon>SearchBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\SnapshotButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\Snapshot\AbstractSnapshotControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\Snapshot\AbstractSnapshotControl.Designer.cs">
+      <DependentUpon>AbstractSnapshotControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\Snapshot\FullCorpusSnapshotControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\Snapshot\FullCorpusSnapshotControl.Designer.cs">
+      <DependentUpon>FullCorpusSnapshotControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\Snapshot\FulltextSnapshotControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\Snapshot\FulltextSnapshotControl.Designer.cs">
+      <DependentUpon>FulltextSnapshotControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\Snapshot\MetadataSnapshotControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\Snapshot\MetadataSnapshotControl.Designer.cs">
+      <DependentUpon>MetadataSnapshotControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\Webbrowser\StaticBrowserHandler.cs" />
+    <Compile Include="Controls\WinForm\Webbrowser\WebGetVisualisation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\Webbrowser\WebGetVisualisation.Designer.cs">
+      <DependentUpon>WebGetVisualisation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\Webbrowser\WebHtml5LaboratoryVisualisation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\Webbrowser\WebHtml5LaboratoryVisualisation.Designer.cs">
+      <DependentUpon>WebHtml5LaboratoryVisualisation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\Webbrowser\WebHtml5Visualisation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\Webbrowser\WebHtml5Visualisation.Designer.cs">
+      <DependentUpon>WebHtml5Visualisation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\Webbrowser\WebRequestVisualisation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\Webbrowser\WebRequestVisualisation.Designer.cs">
+      <DependentUpon>WebRequestVisualisation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\Webbrowser\WebSimpleUrlVisualisation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\Webbrowser\WebSimpleUrlVisualisation.Designer.cs">
+      <DependentUpon>WebSimpleUrlVisualisation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\Webbrowser\WebXpathVisualizer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\Webbrowser\WebXpathVisualizer.Designer.cs">
+      <DependentUpon>WebXpathVisualizer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\WordBag.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\WordBag.Designer.cs">
+      <DependentUpon>WordBag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wpf\CodeEditor\CodeEditor.xaml.cs">
+      <DependentUpon>CodeEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wpf\Diagram\Converter\Abstract\AbstractGraphConverter.cs" />
+    <Compile Include="Controls\Wpf\Diagram\Converter\CsvGraphConverter.cs" />
+    <Compile Include="Controls\Wpf\Diagram\Converter\GexfXmlGraphConverter.cs" />
+    <Compile Include="Controls\Wpf\Diagram\Converter\GraphVizGraphConverter.cs" />
+    <Compile Include="Controls\Wpf\Diagram\WpfDiagram.xaml.cs">
+      <DependentUpon>WpfDiagram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wpf\HeatMap\HeatMapView.cs">
+      <DependentUpon>HeatMapView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wpf\HeatMap\Model\HeatmapGroup.cs" />
+    <Compile Include="Controls\Wpf\HeatMap\Model\HeatmapItem.cs" />
+    <Compile Include="Controls\Wpf\HeatMap\Model\IHeatmapItem.cs" />
+    <Compile Include="Controls\Wpf\Helper\UniversalColorExtension.cs" />
+    <Compile Include="Controls\Wpf\Kwic\KwicView.cs">
+      <DependentUpon>KwicView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wpf\QueryBuilder\QueryBuilderControl.xaml.cs">
+      <DependentUpon>QueryBuilderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wpf\Segements\SegmentView.cs">
+      <DependentUpon>SegmentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wpf\SingleSentence\Model\SentenceViewItem.cs" />
+    <Compile Include="Controls\Wpf\SingleSentence\SentenceView.cs">
+      <DependentUpon>SentenceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wpf\Tagger\SelectedTaggerItemChange.cs" />
+    <Compile Include="Controls\Wpf\Tagger\TaggerItem.cs" />
+    <Compile Include="Controls\Wpf\Tagger\WpfTagger.cs">
+      <DependentUpon>WpfTagger.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Abstract\AbstractDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Abstract\AbstractDialog.Designer.cs">
+      <DependentUpon>AbstractDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Abstract\AbstractError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Abstract\AbstractError.Designer.cs">
+      <DependentUpon>AbstractError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Abstract\AbstractForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Abstract\AbstractForm.Designer.cs">
+      <DependentUpon>AbstractForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CloneDetection\CloneDetectionAlgorithm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CloneDetection\CloneDetectionAlgorithm.Designer.cs">
+      <DependentUpon>CloneDetectionAlgorithm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dashboard\Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dashboard\Dashboard.Designer.cs">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Demo\DemoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Demo\DemoForm.Designer.cs">
+      <DependentUpon>DemoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Error\ErrorConsole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Error\ErrorConsole.Designer.cs">
+      <DependentUpon>ErrorConsole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GridViewFunctions\GridQueryBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GridViewFunctions\GridQueryBuilder.Designer.cs">
+      <DependentUpon>GridQueryBuilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GridViewFunctions\FilterListFunction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GridViewFunctions\FilterListFunction.Designer.cs">
+      <DependentUpon>FilterListFunction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GridViewFunctions\PredefinedFunctions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GridViewFunctions\PredefinedFunctions.Designer.cs">
+      <DependentUpon>PredefinedFunctions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Insight\ApplicationInsight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Insight\ApplicationInsight.Designer.cs">
+      <DependentUpon>ApplicationInsight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Insight\InsightController.cs" />
+    <Compile Include="Forms\Interfaces\IMainForm.cs" />
+    <Compile Include="Forms\LayerSelection\Abstract\AbstractLayerSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LayerSelection\Abstract\AbstractLayerSelection.Designer.cs">
+      <DependentUpon>AbstractLayerSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LayerSelection\LayerSelectionHelper.cs" />
+    <Compile Include="Forms\LayerSelection\_1LayerSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LayerSelection\_1LayerSelection.Designer.cs">
+      <DependentUpon>_1LayerSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LayerSelection\_2LayerSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LayerSelection\_2LayerSelection.Designer.cs">
+      <DependentUpon>_2LayerSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LayerSelection\_3LayerSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LayerSelection\_3LayerSelection.Designer.cs">
+      <DependentUpon>_3LayerSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Map\MapConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Map\MapConfiguration.Designer.cs">
+      <DependentUpon>MapConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PosFilter\PosFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PosFilter\PosFilter.Designer.cs">
+      <DependentUpon>PosFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Scraper\ShowScraperResults.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Scraper\ShowScraperResults.Designer.cs">
+      <DependentUpon>ShowScraperResults.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Simple\Abstract\AbstractMetadata.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Simple\Abstract\AbstractMetadata.Designer.cs">
+      <DependentUpon>AbstractMetadata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Simple\SimpleMetadata.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Simple\SimpleMetadata.Designer.cs">
+      <DependentUpon>SimpleMetadata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Simple\SimpleTextCompare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Simple\SimpleTextCompare.Designer.cs">
+      <DependentUpon>SimpleTextCompare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Simple\SimpleTextInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Simple\SimpleTextInput.Designer.cs">
+      <DependentUpon>SimpleTextInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Simple\SimpleTextView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Simple\SimpleTextView.Designer.cs">
+      <DependentUpon>SimpleTextView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Snapshot\AddMetasplitSnapshot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Snapshot\AddMetasplitSnapshot.Designer.cs">
+      <DependentUpon>AddMetasplitSnapshot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Snapshot\AddRandomSnapshot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Snapshot\AddRandomSnapshot.Designer.cs">
+      <DependentUpon>AddRandomSnapshot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Snapshot\SetTheorySelectSnapshot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Snapshot\SetTheorySelectSnapshot.Designer.cs">
+      <DependentUpon>SetTheorySelectSnapshot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Splash\Forms\ProcessingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Splash\Forms\ProcessingForm.Designer.cs">
+      <DependentUpon>ProcessingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Splash\Forms\WelcomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Splash\Forms\WelcomeForm.designer.cs">
+      <DependentUpon>WelcomeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Splash\Processing.cs" />
+    <Compile Include="Forms\Splash\Welcome.cs" />
+    <Compile Include="Forms\Tagger\AdditionalTagger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tagger\AdditionalTagger.Designer.cs">
+      <DependentUpon>AdditionalTagger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Tagger\SelectTagger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tagger\SelectTagger.Designer.cs">
+      <DependentUpon>SelectTagger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ValidationCorpus\GenerateValidationCorpus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ValidationCorpus\GenerateValidationCorpus.Designer.cs">
+      <DependentUpon>GenerateValidationCorpus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\WebCrawler\WebCrawlerWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WebCrawler\WebCrawlerWizard.Designer.cs">
+      <DependentUpon>WebCrawlerWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\WebCrawler\XpathBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WebCrawler\XpathBrowser.Designer.cs">
+      <DependentUpon>XpathBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\ColorGenerator.cs" />
+    <Compile Include="Helper\DictionaryBindingHelper.cs" />
+    <Compile Include="Helper\DisposingContainer.cs" />
+    <Compile Include="Helper\FilterDescriptorCollectionHelper.cs" />
+    <Compile Include="Helper\PushMessageHelper.cs" />
+    <Compile Include="Helper\RadPageViewHelper.cs" />
+    <Compile Include="Helper\ScreenShotHelper.cs" />
+    <Compile Include="Helper\UiFixHelper.cs" />
+    <Compile Include="Helper\UiFramework\AbstractView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Helper\UiFramework\AbstractView.Designer.cs">
+      <DependentUpon>AbstractView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\UiFramework\GuiModelBuilderProjectRequestDelegate.cs" />
+    <Compile Include="Helper\UiFramework\GuiModuleBuilder.cs" />
+    <Compile Include="Helper\UiFramework\GuiModulePrototype.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Helper\UiFramework\GuiModulePrototype.Designer.cs">
+      <DependentUpon>GuiModulePrototype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\UniversalColorExtension.cs" />
+    <Compile Include="Localizer\GridView\GridViewGermanLocalizer.cs" />
+    <Compile Include="Localizer\PivotGrid\PivotGridViewGermanLocalizer.cs" />
+    <Compile Include="View\AbstractTemplates\AbstractGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\AbstractTemplates\AbstractGridView.Designer.cs">
+      <DependentUpon>AbstractGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AbstractTemplates\AbstractGridViewWithCodeLense.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\AbstractTemplates\AbstractGridViewWithCodeLense.Designer.cs">
+      <DependentUpon>AbstractGridViewWithCodeLense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AbstractTemplates\Model\FilterConditions.cs" />
+    <Compile Include="View\AbstractTemplates\Model\FilterSetting.cs" />
+    <Compile Include="View\Cooccurrence\CompareCooccurrence.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CompareCooccurrence.Designer.cs">
+      <DependentUpon>CompareCooccurrence.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceDiagram.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceDiagramWinForm.Designer.cs">
+      <DependentUpon>CooccurrenceDiagram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceOverlappingGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceOverlappingGrid.Designer.cs">
+      <DependentUpon>CooccurrenceOverlappingGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceGridSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceGridSearch.Designer.cs">
+      <DependentUpon>CooccurrenceGridSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceGridAggregated.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceGridAggregated.Designer.cs">
+      <DependentUpon>CooccurrenceGridAggregated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceDiversityOverTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceDiversityOverTime.Designer.cs">
+      <DependentUpon>CooccurrenceDiversityOverTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceTagPie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceTagPie.Designer.cs">
+      <DependentUpon>CooccurrenceTagPie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceOverTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceOverTime.Designer.cs">
+      <DependentUpon>CooccurrenceOverTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CorpusDistribution\CorpusDistributionOverTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\CorpusDistribution\CorpusDistributionOverTime.Designer.cs">
+      <DependentUpon>CorpusDistributionOverTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CorpusDistribution\CorpusFiniteStateMachine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\CorpusDistribution\CorpusFiniteStateMachine.Designer.cs">
+      <DependentUpon>CorpusFiniteStateMachine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Special\CecScripter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Special\CecScripter.Designer.cs">
+      <DependentUpon>CecScripter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Special\CecScripterGui\Controls\Abstract\AbstractCecScripterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Special\CecScripterGui\Controls\Abstract\AbstractCecScripterControl.Designer.cs">
+      <DependentUpon>AbstractCecScripterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Special\CecScripterGui\Controls\CecScripterInput.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Special\CecScripterGui\Controls\CecScripterInput.Designer.cs">
+      <DependentUpon>CecScripterInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Special\FrequencyMap.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Special\FrequencyMap.Designer.cs">
+      <DependentUpon>FrequencyMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Frequency\NamedEntityGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Frequency\NamedEntityGrid.Designer.cs">
+      <DependentUpon>NamedEntityGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Frequency\KeywordGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Frequency\KeywordGrid.Designer.cs">
+      <DependentUpon>KeywordGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Frequency\CrossFrequencyGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Frequency\CrossFrequencyGrid.Designer.cs">
+      <DependentUpon>CrossFrequencyGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Frequency\LeftRightFrequency.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Frequency\LeftRightFrequency.Designer.cs">
+      <DependentUpon>LeftRightFrequency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Fulltext\FulltextKwicTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Fulltext\FulltextKwicTree.Designer.cs">
+      <DependentUpon>FulltextKwicTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ngram\CompareNGram.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Ngram\CompareNGram.Designer.cs">
+      <DependentUpon>CompareNGram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceDiversity.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceDiversity.Designer.cs">
+      <DependentUpon>CooccurrenceDiversity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceGrid.Designer.cs">
+      <DependentUpon>CooccurrenceGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceWordCloud.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceWordCloud.Designer.cs">
+      <DependentUpon>CooccurrenceWordCloud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CorpusDistribution\CompareCorpusDistribution.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\CorpusDistribution\CompareCorpusDistribution.Designer.cs">
+      <DependentUpon>CompareCorpusDistribution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceMultiwordGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Cooccurrence\CooccurrenceMultiwordGrid.Designer.cs">
+      <DependentUpon>CooccurrenceMultiwordGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ngram\NGramOverTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Ngram\NGramOverTime.Designer.cs">
+      <DependentUpon>NGramOverTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ngram\NGramOverTimeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Ngram\NGramOverTimeView.Designer.cs">
+      <DependentUpon>NGramOverTimeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Sentiment\SentimentGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Sentiment\SentimentGrid.Designer.cs">
+      <DependentUpon>SentimentGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Special\Html5DevLab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Special\Html5DevLab.Designer.cs">
+      <DependentUpon>Html5DevLab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Special\Html5DevLabForms\Html5DevLabHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Special\Html5DevLabForms\Html5DevLabHelp.Designer.cs">
+      <DependentUpon>Html5DevLabHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Special\PaperLinguist.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Special\PaperLinguist.Designer.cs">
+      <DependentUpon>PaperLinguist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Special\PaperLinguistForms\PaperLinguist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Special\PaperLinguistForms\PaperLinguist.Designer.cs">
+      <DependentUpon>PaperLinguist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\StyleMetrics\HyphenPivotGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\StyleMetrics\HyphenPivotGrid.Designer.cs">
+      <DependentUpon>HyphenPivotGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\StyleMetrics\ReadingEasePivotGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\StyleMetrics\ReadingEasePivotGrid.Designer.cs">
+      <DependentUpon>ReadingEasePivotGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\StyleMetrics\VocabularyComplexityPivotGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\StyleMetrics\VocabularyComplexityPivotGrid.Designer.cs">
+      <DependentUpon>VocabularyComplexityPivotGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\StyleMetrics\CharacterNGramGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\StyleMetrics\CharacterNGramGrid.Designer.cs">
+      <DependentUpon>CharacterNGramGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CorpusDistribution\EditMetadata.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\CorpusDistribution\EditMetadata.Designer.cs">
+      <DependentUpon>EditMetadata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CorpusDistribution\CorpusDistributionGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\CorpusDistribution\CorpusDistributionGrid.Designer.cs">
+      <DependentUpon>CorpusDistributionGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CorpusDistribution\CorpusDistributionHeatmap.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\CorpusDistribution\CorpusDistributionHeatmap.Designer.cs">
+      <DependentUpon>CorpusDistributionHeatmap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CorpusDistribution\CorpusDistributionPivotGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\CorpusDistribution\CorpusDistributionPivotGrid.Designer.cs">
+      <DependentUpon>CorpusDistributionPivotGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Disambigution\DisambigutionTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Disambigution\DisambigutionTree.Designer.cs">
+      <DependentUpon>DisambigutionTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Disambigution\DisambigutionProfile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Disambigution\DisambigutionProfile.Designer.cs">
+      <DependentUpon>DisambigutionProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Disambigution\DisambigutionGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Disambigution\DisambigutionGrid.Designer.cs">
+      <DependentUpon>DisambigutionGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditionTools\TextCompare.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\EditionTools\TextCompare.Designer.cs">
+      <DependentUpon>TextCompare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditionTools\TextSimilarity.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\EditionTools\TextSimilarity.Designer.cs">
+      <DependentUpon>TextSimilarity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Frequency\FrequencyGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Frequency\FrequencyGrid.Designer.cs">
+      <DependentUpon>FrequencyGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Frequency\FrequencyPivotGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Frequency\FrequencyPivotGrid.Designer.cs">
+      <DependentUpon>FrequencyPivotGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Frequency\FrequencySegments.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Frequency\FrequencySegments.Designer.cs">
+      <DependentUpon>FrequencySegments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Fulltext\FulltextKwicSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Fulltext\FulltextKwicSearch.Designer.cs">
+      <DependentUpon>FulltextKwicSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Fulltext\PhrasenLaboratory\Model\PhrasesLaboratorySettings.cs" />
+    <Compile Include="View\Ngram\PhrasesLaboratory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Ngram\PhrasesLaboratory.Designer.cs">
+      <DependentUpon>PhrasesLaboratory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Fulltext\FulltextAnnotationSpeedup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Fulltext\FulltextAnnotationSpeedup.Designer.cs">
+      <DependentUpon>FulltextAnnotationSpeedup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Fulltext\FulltextAnnotation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Fulltext\FulltextAnnotation.Designer.cs">
+      <DependentUpon>FulltextAnnotation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ngram\NGramDiagram.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Ngram\NGramDiagram.Designer.cs">
+      <DependentUpon>NGramDiagram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ngram\NGramGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Ngram\NGramGrid.Designer.cs">
+      <DependentUpon>NGramGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ngram\PhrasesGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Ngram\PhrasesGrid.Designer.cs">
+      <DependentUpon>PhrasesGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalAspects.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Special\ChatView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Special\ChatView.Designer.cs">
+      <DependentUpon>ChatView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Frequency\CompareFrequency.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Frequency\CompareFrequency.Designer.cs">
+      <DependentUpon>CompareFrequency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Frequency\FrequencyOverTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Frequency\FrequencyOverTime.Designer.cs">
+      <DependentUpon>FrequencyOverTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Special\TreeTaggerTrainerView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Special\TreeTaggerTrainerView.Designer.cs">
+      <DependentUpon>TreeTaggerTrainerView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Controls\WinForm\Abstract\AbstractUserControl.resx">
+      <DependentUpon>AbstractUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\BigNumber.resx">
+      <DependentUpon>BigNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\BigNumberRange.resx">
+      <DependentUpon>BigNumberRange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\Header.resx">
+      <DependentUpon>Header.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\HelpPanel.resx">
+      <DependentUpon>HelpPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\IHDPanel.resx">
+      <DependentUpon>IHDPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\MapSwitch.resx">
+      <DependentUpon>MapSwitch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\MetadataEditor.resx">
+      <DependentUpon>MetadataEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\Metadata\NewMetadataDialog.resx">
+      <DependentUpon>NewMetadataDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\QueryBuilder.resx">
+      <DependentUpon>QueryBuilder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\QuickFix.resx">
+      <DependentUpon>QuickFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\RadButtonWithCheckmark.resx">
+      <DependentUpon>RadButtonWithCheckmark.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\SearchBar.resx">
+      <DependentUpon>SearchBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\Snapshot\AbstractSnapshotControl.resx">
+      <DependentUpon>AbstractSnapshotControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\Snapshot\FullCorpusSnapshotControl.resx">
+      <DependentUpon>FullCorpusSnapshotControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\Snapshot\FulltextSnapshotControl.resx">
+      <DependentUpon>FulltextSnapshotControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\Snapshot\MetadataSnapshotControl.resx">
+      <DependentUpon>MetadataSnapshotControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\Webbrowser\WebHtml5Visualisation.resx">
+      <DependentUpon>WebHtml5Visualisation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\Webbrowser\WebSimpleUrlVisualisation.resx">
+      <DependentUpon>WebSimpleUrlVisualisation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\WordBag.resx">
+      <DependentUpon>WordBag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Abstract\AbstractDialog.resx">
+      <DependentUpon>AbstractDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Abstract\AbstractError.resx">
+      <DependentUpon>AbstractError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Abstract\AbstractForm.resx">
+      <DependentUpon>AbstractForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CloneDetection\CloneDetectionAlgorithm.resx">
+      <DependentUpon>CloneDetectionAlgorithm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dashboard\Dashboard.resx">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Demo\DemoForm.resx">
+      <DependentUpon>DemoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Error\ErrorConsole.resx">
+      <DependentUpon>ErrorConsole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GridViewFunctions\GridQueryBuilder.resx">
+      <DependentUpon>GridQueryBuilder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GridViewFunctions\FilterListFunction.resx">
+      <DependentUpon>FilterListFunction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GridViewFunctions\PredefinedFunctions.resx">
+      <DependentUpon>PredefinedFunctions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Insight\ApplicationInsight.resx">
+      <DependentUpon>ApplicationInsight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LayerSelection\Abstract\AbstractLayerSelection.resx">
+      <DependentUpon>AbstractLayerSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LayerSelection\_1LayerSelection.resx">
+      <DependentUpon>_1LayerSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LayerSelection\_2LayerSelection.resx">
+      <DependentUpon>_2LayerSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LayerSelection\_3LayerSelection.resx">
+      <DependentUpon>_3LayerSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Map\MapConfiguration.resx">
+      <DependentUpon>MapConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PosFilter\PosFilter.resx">
+      <DependentUpon>PosFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Scraper\ShowScraperResults.resx">
+      <DependentUpon>ShowScraperResults.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Simple\Abstract\AbstractMetadata.resx">
+      <DependentUpon>AbstractMetadata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Simple\SimpleMetadata.resx">
+      <DependentUpon>SimpleMetadata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Simple\SimpleTextCompare.resx">
+      <DependentUpon>SimpleTextCompare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Simple\SimpleTextInput.resx">
+      <DependentUpon>SimpleTextInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Simple\SimpleTextView.resx">
+      <DependentUpon>SimpleTextView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Snapshot\AddMetasplitSnapshot.resx">
+      <DependentUpon>AddMetasplitSnapshot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Snapshot\AddRandomSnapshot.resx">
+      <DependentUpon>AddRandomSnapshot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Snapshot\SetTheorySelectSnapshot.resx">
+      <DependentUpon>SetTheorySelectSnapshot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Splash\Forms\ProcessingForm.resx">
+      <DependentUpon>ProcessingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Splash\Forms\WelcomeForm.resx">
+      <DependentUpon>WelcomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tagger\AdditionalTagger.resx">
+      <DependentUpon>AdditionalTagger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tagger\SelectTagger.resx">
+      <DependentUpon>SelectTagger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ValidationCorpus\GenerateValidationCorpus.resx">
+      <DependentUpon>GenerateValidationCorpus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WebCrawler\WebCrawlerWizard.resx">
+      <DependentUpon>WebCrawlerWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WebCrawler\XpathBrowser.resx">
+      <DependentUpon>XpathBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helper\UiFramework\AbstractView.resx">
+      <DependentUpon>AbstractView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helper\UiFramework\GuiModulePrototype.resx">
+      <DependentUpon>GuiModulePrototype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Licenses.licx" />
+    <EmbeddedResource Include="View\Cooccurrence\CompareCooccurrence.resx">
+      <DependentUpon>CompareCooccurrence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cooccurrence\CooccurrenceDiagram.resx">
+      <DependentUpon>CooccurrenceDiagram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cooccurrence\CooccurrenceOverlappingGrid.resx">
+      <DependentUpon>CooccurrenceOverlappingGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cooccurrence\CooccurrenceGridSearch.resx">
+      <DependentUpon>CooccurrenceGridSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cooccurrence\CooccurrenceGridAggregated.resx">
+      <DependentUpon>CooccurrenceGridAggregated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cooccurrence\CooccurrenceDiversityOverTime.resx">
+      <DependentUpon>CooccurrenceDiversityOverTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cooccurrence\CooccurrenceTagPie.resx">
+      <DependentUpon>CooccurrenceTagPie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cooccurrence\CooccurrenceOverTime.resx">
+      <DependentUpon>CooccurrenceOverTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CorpusDistribution\CorpusDistributionOverTime.resx">
+      <DependentUpon>CorpusDistributionOverTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CorpusDistribution\CorpusFiniteStateMachine.resx">
+      <DependentUpon>CorpusFiniteStateMachine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Special\CecScripter.resx">
+      <DependentUpon>CecScripter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Special\CecScripterGui\Controls\Abstract\AbstractCecScripterControl.resx">
+      <DependentUpon>AbstractCecScripterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Special\CecScripterGui\Controls\CecScripterInput.resx">
+      <DependentUpon>CecScripterInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Special\FrequencyMap.resx">
+      <DependentUpon>FrequencyMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Frequency\NamedEntityGrid.resx">
+      <DependentUpon>NamedEntityGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Frequency\KeywordGrid.resx">
+      <DependentUpon>KeywordGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Frequency\CrossFrequencyGrid.resx">
+      <DependentUpon>CrossFrequencyGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Frequency\LeftRightFrequency.resx">
+      <DependentUpon>LeftRightFrequency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Fulltext\FulltextKwicTree.resx">
+      <DependentUpon>FulltextKwicTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Ngram\CompareNGram.resx">
+      <DependentUpon>CompareNGram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cooccurrence\CooccurrenceDiversity.resx">
+      <DependentUpon>CooccurrenceDiversity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cooccurrence\CooccurrenceGrid.resx">
+      <DependentUpon>CooccurrenceGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cooccurrence\CooccurrenceWordCloud.resx">
+      <DependentUpon>CooccurrenceWordCloud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CorpusDistribution\CompareCorpusDistribution.resx">
+      <DependentUpon>CompareCorpusDistribution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cooccurrence\CooccurrenceMultiwordGrid.resx">
+      <DependentUpon>CooccurrenceMultiwordGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Ngram\NGramOverTime.resx">
+      <DependentUpon>NGramOverTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Ngram\NGramOverTimeView.resx">
+      <DependentUpon>NGramOverTimeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Sentiment\SentimentGrid.resx">
+      <DependentUpon>SentimentGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Special\Html5DevLab.resx">
+      <DependentUpon>Html5DevLab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Special\Html5DevLabForms\Html5DevLabHelp.resx">
+      <DependentUpon>Html5DevLabHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Special\PaperLinguist.resx">
+      <DependentUpon>PaperLinguist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Special\PaperLinguistForms\PaperLinguist.resx">
+      <DependentUpon>PaperLinguist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\StyleMetrics\HyphenPivotGrid.resx">
+      <DependentUpon>HyphenPivotGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\StyleMetrics\ReadingEasePivotGrid.resx">
+      <DependentUpon>ReadingEasePivotGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\StyleMetrics\VocabularyComplexityPivotGrid.resx">
+      <DependentUpon>VocabularyComplexityPivotGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\StyleMetrics\CharacterNGramGrid.resx">
+      <DependentUpon>CharacterNGramGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CorpusDistribution\EditMetadata.resx">
+      <DependentUpon>EditMetadata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CorpusDistribution\CorpusDistributionGrid.resx">
+      <DependentUpon>CorpusDistributionGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CorpusDistribution\CorpusDistributionHeatmap.resx">
+      <DependentUpon>CorpusDistributionHeatmap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CorpusDistribution\CorpusDistributionPivotGrid.resx">
+      <DependentUpon>CorpusDistributionPivotGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Disambigution\DisambigutionTree.resx">
+      <DependentUpon>DisambigutionTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Disambigution\DisambigutionProfile.resx">
+      <DependentUpon>DisambigutionProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Disambigution\DisambigutionGrid.resx">
+      <DependentUpon>DisambigutionGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditionTools\TextCompare.resx">
+      <DependentUpon>TextCompare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditionTools\TextSimilarity.resx">
+      <DependentUpon>TextSimilarity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Frequency\FrequencyGrid.resx">
+      <DependentUpon>FrequencyGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Frequency\FrequencyPivotGrid.resx">
+      <DependentUpon>FrequencyPivotGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Frequency\FrequencySegments.resx">
+      <DependentUpon>FrequencySegments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Fulltext\FulltextKwicSearch.resx">
+      <DependentUpon>FulltextKwicSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Ngram\PhrasesLaboratory.resx">
+      <DependentUpon>PhrasesLaboratory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Fulltext\FulltextAnnotationSpeedup.resx">
+      <DependentUpon>FulltextAnnotationSpeedup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Fulltext\FulltextAnnotation.resx">
+      <DependentUpon>FulltextAnnotation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Ngram\NGramDiagram.resx">
+      <DependentUpon>NGramDiagram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Ngram\NGramGrid.resx">
+      <DependentUpon>NGramGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Ngram\PhrasesGrid.resx">
+      <DependentUpon>PhrasesGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Special\ChatView.resx">
+      <DependentUpon>ChatView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Frequency\CompareFrequency.resx">
+      <DependentUpon>CompareFrequency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Frequency\FrequencyOverTime.resx">
+      <DependentUpon>FrequencyOverTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Special\TreeTaggerTrainerView.resx">
+      <DependentUpon>TreeTaggerTrainerView.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="app.manifest" />
+    <None Include="CorpusExplorer.Terminal.WinForm.psproj" />
+    <None Include="CorpusExplorerNextSnKey.pfx" />
+    <None Include="LicenseAgreements\DevartLinqConnect.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LicenseAgreements\jquery-bbq.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LicenseAgreements\jquery-cookie.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LicenseAgreements\jquery-hashchange.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LicenseAgreements\jquery-hotkeys.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LicenseAgreements\jquery-mousewheel.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LicenseAgreements\jquery-placeholder.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LicenseAgreements\jquery-timeago.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LicenseAgreements\jquery-tipsy.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LicenseAgreements\jquery-validate.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LicenseAgreements\jquery.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LicenseAgreements\PostSharp.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LicenseAgreements\Telerik.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="XDependencies\NTextCat\ntextcat.list">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="WebCrawler.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="XDependencies\Map\global.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Kooperationsprojekte\CorpusExplorer.Terminal.Console\CorpusExplorer.Terminal.Console.csproj">
+      <Project>{77d277fa-cb8f-4619-90e8-4af5be6e9ac3}</Project>
+      <Name>CorpusExplorer.Terminal.Console</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Kooperationsprojekte\TileGridMap\TileGridMapWpf\CorpusExplorer.Sdk.Extern.TileGridMap\CorpusExplorer.Sdk.Extern.TileGridMap.csproj">
+      <Project>{17B37F1B-616C-42AF-AB9A-CA4CB35706A1}</Project>
+      <Name>CorpusExplorer.Sdk.Extern.TileGridMap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj">
+      <Project>{3226C218-0FB3-43A6-A67C-39CBAC704EA3}</Project>
+      <Name>BitCutStudios.CorpusExplorer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Core\CorpusExplorer.Core.csproj">
+      <Project>{029fe5a6-9504-499a-9e0d-05754d44cbb1}</Project>
+      <Name>CorpusExplorer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Port.TreeTaggerTrainer\CorpusExplorer.Port.TreeTaggerTrainer.csproj">
+      <Project>{82730267-BFCC-4DF6-B576-F7958859B541}</Project>
+      <Name>CorpusExplorer.Port.TreeTaggerTrainer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Compatibility\CorpusExplorer.Sdk.Compatibility.csproj">
+      <Project>{21058C32-9567-4842-97D2-C1E6C401FCE2}</Project>
+      <Name>CorpusExplorer.Sdk.Compatibility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Diagnostic\CorpusExplorer.Sdk.Diagnostic.csproj">
+      <Project>{2d491ec8-11c5-4c02-b604-48b8458174e1}</Project>
+      <Name>CorpusExplorer.Sdk.Diagnostic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.EchtzeitEngine.Reporting\CorpusExplorer.Sdk.EchtzeitEngine.Reporting.csproj">
+      <Project>{9fdd0c84-eaa4-4beb-b988-2fca0f90acdf}</Project>
+      <Name>CorpusExplorer.Sdk.EchtzeitEngine.Reporting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.EchtzeitEngine\CorpusExplorer.Sdk.EchtzeitEngine.csproj">
+      <Project>{0f6f54c5-340a-41c9-acc6-aceb11dd0383}</Project>
+      <Name>CorpusExplorer.Sdk.EchtzeitEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Binary\CorpusExplorer.Sdk.Extern.Binary.csproj">
+      <Project>{130da92c-9c08-44bc-b491-340c88056396}</Project>
+      <Name>CorpusExplorer.Sdk.Extern.Binary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Epub\CorpusExplorer.Sdk.Extern.Epub.csproj">
+      <Project>{c126a782-ebef-4940-93cf-5c216d2d26a8}</Project>
+      <Name>CorpusExplorer.Sdk.Extern.Epub</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.iTextSharp\CorpusExplorer.Sdk.Extern.iTextSharp.csproj">
+      <Project>{febb88cf-455b-4896-bab3-32e81dd4182f}</Project>
+      <Name>CorpusExplorer.Sdk.Extern.iTextSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Json\CorpusExplorer.Sdk.Extern.Json.csproj">
+      <Project>{dd54a9b0-80a9-4dd6-83a6-65359086ce18}</Project>
+      <Name>CorpusExplorer.Sdk.Extern.Json</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Plaintext.WET\CorpusExplorer.Sdk.Extern.Plaintext.WET.csproj">
+      <Project>{18ca6313-c83f-4e67-b672-d7d01c81350c}</Project>
+      <Name>CorpusExplorer.Sdk.Extern.Plaintext.WET</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Plaintext\CorpusExplorer.Sdk.Extern.Plaintext.csproj">
+      <Project>{7de57051-2f0e-4964-a341-579db1ec9e7f}</Project>
+      <Name>CorpusExplorer.Sdk.Extern.Plaintext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.SentimentDetection\CorpusExplorer.Sdk.Extern.SentimentDetection.csproj">
+      <Project>{0beedd00-bbfe-455e-872b-668f9e6a787e}</Project>
+      <Name>CorpusExplorer.Sdk.Extern.SentimentDetection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Xml\CorpusExplorer.Sdk.Extern.Xml.csproj">
+      <Project>{6841c8ca-7c40-44c4-b5aa-fbc84fcb7293}</Project>
+      <Name>CorpusExplorer.Sdk.Extern.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Obsolete\CorpusExplorer.Sdk.Obsolete.csproj">
+      <Project>{CDC70E7F-49FE-4577-BD2F-6D29CBCB0038}</Project>
+      <Name>CorpusExplorer.Sdk.Obsolete</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk\CorpusExplorer.Sdk.csproj">
+      <Project>{dc1b5a58-29da-476d-89f8-e73a1db11e52}</Project>
+      <Name>CorpusExplorer.Sdk</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open1.png" />
+    <Content Include="LicenseAgreements\AutoIt.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\DotNetZip.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\epubReader.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\ExcelDataReader.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\HtmlAgilityPack.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\IonicZip.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\iTextSharp.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\log4net.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\Microsoft Public License %28Ms-PL%29.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\Mozilla Public License %28MPL%29 1.1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\MsgReader.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\Newton-King The MIT License %28MIT%29.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\NewtonsoftJson.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\NHunspell.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\NTextCat.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\Progress Telerik Document Processing for .NET - notices.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\Progress Telerik UI for WPF - notices.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\SharpSerializer.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\SharpZipLib.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\SpecFlow.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\Telerik End User License Agreement for DevCraft Complete.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\The Code Project Open License %28CPOL%29 1.02.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\The MIT License %28MIT%29.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\TidyNet-1.0.1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\TreeTagger.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\W3C Software Notice And License.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LicenseAgreements\WiX.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XDependencies\NTextCat\Wiki280.profile.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\place.png" />
+    <None Include="Resources\mail_back-arrow_right.png" />
+    <None Include="Resources\reload_rotate1.png" />
+    <None Include="Resources\reload_rotate.png" />
+    <None Include="Resources\select_table1.png" />
+    <None Include="Resources\select_table.png" />
+    <None Include="Resources\xml_root.png" />
+    <None Include="Resources\print1.png" />
+    <None Include="Resources\tag_green1.png" />
+    <None Include="Resources\test-properties.png" />
+    <EmbeddedResource Include="teamdev.licenses" />
+    <None Include="Resources\module-warn1.png" />
+    <None Include="Resources\resources-error.png" />
+    <None Include="Resources\info.png" />
+    <None Include="Resources\mail.png" />
+    <None Include="Resources\resources.png" />
+    <None Include="Resources\project.png" />
+    <None Include="Resources\save_all.png" />
+    <None Include="Resources\table-key1.png" />
+    <None Include="Resources\table-key.png" />
+    <None Include="Resources\table_split_columns1.png" />
+    <None Include="Resources\table_show_hide1.png" />
+    <None Include="Resources\table_split_columns.png" />
+    <None Include="Resources\table_show_hide.png" />
+    <None Include="Resources\thermometer-user1.png" />
+    <None Include="Resources\thermometer-user.png" />
+    <None Include="Resources\module-warn.png" />
+    <None Include="Resources\table_merge_columns1.png" />
+    <None Include="Resources\table_merge_columns.png" />
+    <None Include="Resources\settheory_awithoutb.png" />
+    <None Include="Resources\settheory_intersection.png" />
+    <None Include="Resources\settheory_difference1.png" />
+    <None Include="Resources\settheory_difference.png" />
+    <None Include="Resources\settheory_join.png" />
+    <None Include="Resources\snipet-internet1.png" />
+    <None Include="Resources\snipet-internet.png" />
+    <None Include="Resources\tools.png" />
+    <None Include="Resources\tree1.png" />
+    <None Include="Resources\tree.png" />
+    <None Include="Resources\network_cloud2.png" />
+    <None Include="Resources\key1.png" />
+    <None Include="Resources\select_invert.png" />
+    <None Include="Resources\select_none.png" />
+    <None Include="Resources\select_all.png" />
+    <None Include="Resources\xml.png" />
+    <None Include="Resources\table_split_rows_arrows1.png" />
+    <None Include="Resources\table_split_rows_arrows.png" />
+    <None Include="Resources\item-edit.png" />
+    <None Include="Resources\item.png" />
+    <None Include="Resources\item-error.png" />
+    <None Include="Resources\worker.png" />
+    <None Include="Resources\save_theme1.png" />
+    <None Include="Resources\Images\view_large_icons1.png" />
+    <None Include="Resources\Images\view_large_icons.png" />
+    <None Include="Resources\internet.png" />
+    <None Include="Resources\shipment1.png" />
+    <None Include="Resources\Images\colors1.png" />
+    <None Include="Resources\Images\colors.png" />
+    <None Include="Resources\notepad_open.png" />
+    <Content Include="corpusexplorer.ico" />
+    <None Include="Resources\shopping1.png" />
+    <None Include="Resources\cloud2.png" />
+    <None Include="Resources\notes_text.png" />
+    <None Include="Resources\Images\table_pivot.png" />
+    <None Include="Resources\Images\table_pivot_1.png" />
+    <None Include="Resources\Images\down_black.png" />
+    <None Include="Resources\Images\down_green.png" />
+    <None Include="Resources\Images\down_red.png" />
+    <None Include="Resources\Images\up_black.png" />
+    <None Include="Resources\Images\up_green.png" />
+    <None Include="Resources\Images\up_red.png" />
+    <None Include="Resources\up_green.png" />
+    <None Include="Resources\down_red.png" />
+    <None Include="Resources\upload.png" />
+    <None Include="Resources\folder_open.png" />
+    <None Include="Resources\document_template.png" />
+    <None Include="Resources\document_acrobat.png" />
+    <None Include="Resources\character_bold.png" />
+    <None Include="Resources\character_italic.png" />
+    <None Include="Resources\character_underline.png" />
+    <None Include="Resources\paragraph_align_center.png" />
+    <None Include="Resources\paragraph_align_justified.png" />
+    <None Include="Resources\paragraph_align_left.png" />
+    <None Include="Resources\paragraph_align_right.png" />
+    <None Include="Resources\undo.png" />
+    <None Include="Resources\redo.png" />
+    <None Include="Resources\image.png" />
+    <None Include="Resources\piece2.png" />
+    <None Include="Resources\relations.png" />
+    <None Include="Resources\save.png" />
+    <None Include="Resources\Images\CorpusExplorer.png" />
+    <None Include="Resources\Images\EarlyBird.png" />
+    <None Include="Resources\Images\OpenBook.png" />
+    <None Include="Resources\tag_green.png" />
+    <None Include="Resources\ok_button.png" />
+    <None Include="Resources\Images\tool_smudge.png" />
+    <None Include="Resources\Images\ok_button.png" />
+    <None Include="Resources\ok_button1.png" />
+    <None Include="Resources\tool_smudge1.png" />
+    <None Include="Resources\image_brightness.png" />
+    <None Include="Resources\action_play.png" />
+    <None Include="Resources\gear.png" />
+    <None Include="Resources\eye.png" />
+    <None Include="Resources\download.png" />
+    <None Include="Resources\shipment.png" />
+    <None Include="Resources\Images\dashes.png" />
+    <None Include="Resources\Images\logo_firewire_1.png" />
+    <None Include="Resources\Images\image_size_width_1.png" />
+    <None Include="Resources\Images\picture_flip_horizontal2_1.png" />
+    <None Include="Resources\Images\tool_ruler_1.png" />
+    <None Include="Resources\sheet_cross_reference.png" />
+    <None Include="Resources\text_box.png" />
+    <None Include="Resources\tag_horizontal.png" />
+    <None Include="Resources\paragraph_undent_left.png" />
+    <None Include="Resources\paragraph_indent_left.png" />
+    <None Include="Resources\tool_pencil.png" />
+    <None Include="Resources\Images\image_size_width.png" />
+    <None Include="Resources\Images\database_access.png" />
+    <None Include="Resources\Images\logo_firewire.png" />
+    <None Include="Resources\Images\dashes_1.png" />
+    <None Include="Resources\Images\character_font_highlight_color.png" />
+    <None Include="Resources\Images\character_font_highlight_color_1.png" />
+    <None Include="Resources\Images\table.png" />
+    <None Include="Resources\Images\table_1.png" />
+    <None Include="Resources\Images\sheet_calculate.png" />
+    <None Include="Resources\Images\sheet_calculate_1.png" />
+    <None Include="Resources\Images\burn2.png" />
+    <None Include="Resources\Images\burn2_1.png" />
+    <None Include="Resources\shopping.png" />
+    <None Include="Resources\refresh.png" />
+    <None Include="Resources\rename1.png" />
+    <None Include="Resources\key.png" />
+    <None Include="Resources\print.png" />
+    <None Include="Resources\magic_wand.png" />
+    <None Include="Resources\slideshow_graph.png" />
+    <None Include="Resources\import_from_text.png" />
+    <None Include="Resources\save_theme.png" />
+    <None Include="Resources\Images\info.png" />
+    <None Include="Resources\Images\table_row_insert.png" />
+    <None Include="Resources\Images\table_column_insert.png" />
+    <None Include="Resources\Images\settings.png" />
+    <None Include="Resources\remove_button.png" />
+    <None Include="Resources\tool_ruler.png" />
+    <None Include="Resources\picture_flip_horizontal2.png" />
+    <None Include="Resources\text_to_column1.png" />
+    <None Include="Resources\sitemap.png" />
+    <None Include="Resources\inspect_document.png" />
+    <None Include="Resources\layers1.png" />
+    <None Include="Resources\review_compare1.png" />
+    <None Include="Resources\piece1.png" />
+    <None Include="Resources\piece.png" />
+    <None Include="Resources\tool_patch.png" />
+    <None Include="Resources\picture_flip_horizontal1.png" />
+    <None Include="Resources\picture_flip_horizontal.png" />
+    <None Include="Resources\text_to_column.png" />
+    <None Include="Resources\stats.png" />
+    <None Include="Resources\review_compare.png" />
+    <None Include="Resources\layers.png" />
+    <None Include="Resources\network_cloud1.png" />
+    <None Include="Resources\network_cloud.png" />
+    <None Include="Resources\rename.png" />
+    <None Include="Resources\internet_green.png" />
+    <None Include="Resources\internet_grey.png" />
+    <None Include="Resources\tool_smudge.png" />
+    <None Include="Resources\tv2.png" />
+    <None Include="Resources\social_rss.png" />
+    <None Include="Resources\social_share.png" />
+    <None Include="Resources\news_rss.png" />
+    <None Include="Resources\cabinet.png" />
+    <None Include="Resources\camera.png" />
+    <None Include="Resources\cabinet1.png" />
+    <None Include="Resources\camera1.png" />
+    <None Include="Resources\chat.png" />
+    <None Include="Resources\group_1.png" />
+    <None Include="Resources\comment.png" />
+    <None Include="Resources\group_11.png" />
+    <None Include="Resources\button_circle_left.png" />
+    <None Include="Resources\button_circle_right.png" />
+    <None Include="Resources\book_open.png" />
+    <None Include="Resources\home.png" />
+    <None Include="Resources\home1.png" />
+    <None Include="Resources\activity_monitor.png" />
+    <None Include="Resources\activity_monitor1.png" />
+    <None Include="Resources\document_text_write.png" />
+    <None Include="Resources\corpus_online.png" />
+    <None Include="Resources\corpus_online1.png" />
+    <None Include="Resources\corpus_local.png" />
+    <None Include="Resources\corpus_extern.png" />
+    <None Include="Resources\history.png" />
+    <None Include="Resources\documents.png" />
+    <None Include="Resources\find.png" />
+    <None Include="Resources\charts_color.png" />
+    <None Include="Resources\history1.png" />
+    <None Include="Resources\documents1.png" />
+    <None Include="Resources\charts_color_3d.png" />
+    <None Include="Resources\execute.png" />
+    <None Include="Resources\form_design.png" />
+    <None Include="Resources\add_button.png" />
+    <None Include="Resources\export_text.png" />
+    <None Include="Resources\clipboard_copy.png" />
+    <None Include="Resources\calculator.png" />
+    <None Include="Resources\gears.png" />
+    <None Include="Resources\chat1.png" />
+    <None Include="Resources\health.png" />
+    <None Include="Resources\corpus_cloud.png" />
+    <None Include="Resources\folder.png" />
+    <None Include="Resources\folder_action_open.png" />
+    <None Include="Resources\folder_action_close.png" />
+    <None Include="Resources\folder_up.png" />
+    <None Include="Resources\close_window.png" />
+    <None Include="Resources\button_on_off_green.png" />
+    <None Include="Resources\add_button1.png" />
+    <None Include="Resources\button_green_record.png" />
+    <None Include="Resources\action_arrow_up.png" />
+    <None Include="Resources\action_arrow_down.png" />
+    <None Include="Resources\button_green_stop.png" />
+    <None Include="Resources\find1.png" />
+    <None Include="Resources\gears1.png" />
+    <None Include="Resources\erase.png" />
+    <None Include="Resources\dll-internet.png" />
+    <None Include="Resources\document.png" />
+    <None Include="Resources\diagram.png" />
+    <None Include="Resources\alpha.png" />
+    <None Include="Resources\diagram1.png" />
+    <None Include="Resources\component.png" />
+    <None Include="Resources\component1.png" />
+    <None Include="Resources\bug-warn.png" />
+    <None Include="Resources\bug-warn1.png" />
+    <None Include="Resources\beta.png" />
+    <None Include="Resources\camera-add.png" />
+    <None Include="Resources\cloud.png" />
+    <None Include="Resources\dashes-update.png" />
+    <None Include="Resources\database_access.png" />
+    <None Include="Resources\database_access1.png" />
+    <None Include="Resources\camera-find.png" />
+    <None Include="Resources\camera-find1.png" />
+    <None Include="Resources\cloud1.png" />
+    <None Include="Resources\filter-list.png" />
+    <None Include="Resources\filter-list1.png" />
+    <None Include="Resources\export_to_database.png" />
+    <None Include="Resources\grid-list.png" />
+    <None Include="Resources\briefcase.png" />
+    <None Include="Resources\group_1-error.png" />
+    <None Include="Resources\chat-error.png" />
+    <None Include="Resources\CorpusExplorer.png" />
+    <None Include="Resources\image-save.png" />
+    <None Include="Resources\export_pdf.png" />
+    <None Include="Resources\html_page-gear.png" />
+    <None Include="Resources\html_page-gear1.png" />
+    <None Include="Resources\book_open-user.png" />
+    <None Include="Resources\addin.png" />
+    <None Include="Resources\addin1.png" />
+    <None Include="Resources\addin-add.png" />
+    <None Include="Resources\chart_column_2d_stacked_100.png" />
+    <None Include="Resources\chart_column_2d_stacked_1001.png" />
+    <None Include="Resources\account_book-info.png" />
+    <None Include="Resources\assembly-erase.png" />
+    <Content Include="Resources\Images\48x48_tab_database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\Wpf\CodeEditor\CodeEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Wpf\Diagram\WpfDiagram.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Wpf\HeatMap\HeatMapView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Wpf\Kwic\KwicView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Wpf\QueryBuilder\QueryBuilderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Wpf\Segements\SegmentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Wpf\SingleSentence\SentenceView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Wpf\Tagger\WpfTagger.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\cef.redist.x64.3.3239.1723\build\cef.redist.x64.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.3239.1723\build\cef.redist.x64.props'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x86.3.3239.1723\build\cef.redist.x86.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.3239.1723\build\cef.redist.x86.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.63.0.0-pre03\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.63.0.0-pre03\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.63.0.0-pre03\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.63.0.0-pre03\build\CefSharp.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.WinForms.63.0.0-pre03\build\CefSharp.WinForms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.63.0.0-pre03\build\CefSharp.WinForms.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.WinForms.63.0.0-pre03\build\CefSharp.WinForms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.63.0.0-pre03\build\CefSharp.WinForms.targets'))" />
+    <Error Condition="!Exists('..\packages\PostSharp.5.0.43\build\PostSharp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PostSharp.5.0.43\build\PostSharp.props'))" />
+    <Error Condition="!Exists('..\packages\PostSharp.5.0.43\build\PostSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PostSharp.5.0.43\build\PostSharp.targets'))" />
+  </Target>
+  <Import Project="..\packages\CefSharp.Common.63.0.0-pre03\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.63.0.0-pre03\build\CefSharp.Common.targets')" />
+  <Import Project="..\packages\CefSharp.WinForms.63.0.0-pre03\build\CefSharp.WinForms.targets" Condition="Exists('..\packages\CefSharp.WinForms.63.0.0-pre03\build\CefSharp.WinForms.targets')" />
+  <Import Project="..\packages\PostSharp.5.0.43\build\PostSharp.targets" Condition="Exists('..\packages\PostSharp.5.0.43\build\PostSharp.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

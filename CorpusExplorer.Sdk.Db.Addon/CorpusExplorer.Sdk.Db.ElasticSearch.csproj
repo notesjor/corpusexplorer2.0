@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4FC1C290-F90E-46CA-A4F0-80CEBE102154}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CorpusExplorer.Sdk.Db.ElasticSearch</RootNamespace>
+    <AssemblyName>CorpusExplorer.Sdk.Db.ElasticSearch</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Elasticsearch.Net, Version=5.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Elasticsearch.Net.5.6.0\lib\net45\Elasticsearch.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Nest, Version=5.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
+      <HintPath>..\packages\NEST.5.6.0\lib\net45\Nest.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="Telerik.WinControls, Version=2018.1.116.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Common.2018.1.116\lib\net40\Telerik.WinControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2018.1.116.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Common.2018.1.116\lib\net40\Telerik.WinControls.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI.Design, Version=2018.1.116.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Common.2018.1.116\lib\net40\Telerik.WinControls.UI.Design.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2018.1.116.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Common.2018.1.116\lib\net40\TelerikCommon.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Elastic\Backend\CorpusBuilderElasticSearchLightweightGui.cs" />
+    <Compile Include="Elastic\Exporter\ExporterElasticSearch.cs" />
+    <Compile Include="Elastic\Exporter\ExporterElasticSearchFulltext.cs" />
+    <Compile Include="Elastic\Exporter\ElasticSearchFulltext\Model\Context\ElasticSearchFulltextContext.cs" />
+    <Compile Include="Elastic\Exporter\ElasticSearchFulltext\Model\Context\ElasticSearchFulltextContextManager.cs" />
+    <Compile Include="Elastic\Exporter\ElasticSearchFulltext\Model\Document.cs" />
+    <Compile Include="Elastic\Exporter\ElasticSearchFulltext\Model\Layer.cs" />
+    <Compile Include="Elastic\Importer\ElasticSearchImporter.cs" />
+    <Compile Include="PluginRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj">
+      <Project>{3226C218-0FB3-43A6-A67C-39CBAC704EA3}</Project>
+      <Name>BitCutStudios.CorpusExplorer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Db.Elastic.Sdk\CorpusExplorer.Sdk.Db.Elastic.Sdk.csproj">
+      <Project>{9AB06F07-0109-4B4F-85CD-1F86A20C1738}</Project>
+      <Name>CorpusExplorer.Sdk.Db.Elastic.Sdk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Db.Elastic\CorpusExplorer.Sdk.Db.Elastic.csproj">
+      <Project>{A4FE73A6-5701-43F7-B0EB-D86142578007}</Project>
+      <Name>CorpusExplorer.Sdk.Db.Elastic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Db.Gui\CorpusExplorer.Sdk.Db.Gui.csproj">
+      <Project>{7AF47740-E660-437C-8654-89160EB99AD4}</Project>
+      <Name>CorpusExplorer.Sdk.Db.Gui</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Diagnostic\CorpusExplorer.Sdk.Diagnostic.csproj">
+      <Project>{2D491EC8-11C5-4C02-B604-48B8458174E1}</Project>
+      <Name>CorpusExplorer.Sdk.Diagnostic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk\CorpusExplorer.Sdk.csproj">
+      <Project>{DC1B5A58-29DA-476D-89F8-E73A1DB11E52}</Project>
+      <Name>CorpusExplorer.Sdk</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="CorpusExplorerNextSnKey.pfx" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

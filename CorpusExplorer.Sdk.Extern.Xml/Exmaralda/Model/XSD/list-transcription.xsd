@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- changes on 11-November-2004 -->
+<!-- added optional ATTRIBUTE bookmark for timeline-items -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="list-transcription">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="head"/>
+        <xs:element ref="list-body"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************ Head (same for all transcriptions ************ -->
+  <xs:element name="head">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="meta-information"/>
+        <xs:element ref="speakertable"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************ -->
+  <xs:element name="meta-information">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="project-name"/>
+        <xs:element ref="transcription-name"/>
+        <xs:element ref="referenced-file"/>
+        <xs:element ref="ud-meta-information"/>
+        <xs:element ref="comment"/>
+        <xs:element ref="transcription-convention"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="project-name" type="xs:string"/>
+  <xs:element name="transcription-name" type="xs:string"/>
+  <xs:element name="referenced-file">
+    <xs:complexType>
+      <xs:attribute name="url" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ud-meta-information">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ud-information"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="comment" type="xs:string"/>
+  <xs:element name="transcription-convention" type="xs:string"/>
+  <xs:element name="ud-information">
+    <xs:complexType mixed="true">
+      <xs:attribute name="attribute-name" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************ -->
+  <!-- ************************************ -->
+  <xs:element name="speakertable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="speaker"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="speaker">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="abbreviation"/>
+        <xs:element ref="sex"/>
+        <xs:element ref="languages-used"/>
+        <xs:element ref="l1"/>
+        <xs:element ref="l2"/>
+        <xs:element ref="ud-speaker-information"/>
+        <xs:element ref="comment"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="abbreviation" type="xs:string"/>
+  <xs:element name="sex">
+    <xs:complexType>
+      <xs:attribute name="value" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="m"/>
+            <xs:enumeration value="f"/>
+            <xs:enumeration value="u"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="languages-used">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="language"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="l1">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="language"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="l2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="language"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="language">
+    <xs:complexType>
+      <xs:attribute name="lang" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ud-speaker-information">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ud-information"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************ -->
+  <xs:element name="list-body">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="common-timeline"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="timeline-fork"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="speaker-contribution"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************ -->
+  <xs:element name="common-timeline">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="tli"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="tli">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:ID"/>
+      <xs:attribute name="time"/>
+      <xs:attribute name="type">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="unsp"/>
+            <xs:enumeration value="user"/>
+            <xs:enumeration value="appl"/>
+            <xs:enumeration value="intp"/>
+            <xs:enumeration value="othr"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="bookmark"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- attribute 'type' added in version 1.1.1. -->
+  <!-- ************************************ -->
+  <!-- a timeline-fork defines timepoints individual to a segmented-tier -->
+  <!-- the start and end attributes refer to points in the common timeline -->
+  <xs:element name="timeline-fork">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="tli"/>
+      </xs:sequence>
+      <xs:attribute name="start" use="required" type="xs:IDREF"/>
+      <xs:attribute name="end" use="required" type="xs:IDREF"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="speaker-contribution">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="main"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="dependent"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="annotation"/>
+      </xs:sequence>
+      <xs:attribute name="speaker" type="xs:IDREF"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="main">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ts"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dependent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ats"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!--
+    an annotation can be
+    	a) a collection of timed annotations
+    other types will follow
+  -->
+  <xs:element name="annotation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ta"/>
+      </xs:sequence>
+      <xs:attribute name="name" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ts">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="ts"/>
+        <xs:element ref="ats"/>
+        <xs:element ref="nts"/>
+      </xs:choice>
+      <xs:attribute name="n" use="required"/>
+      <xs:attribute name="id" type="xs:ID"/>
+      <xs:attribute name="s" use="required" type="xs:IDREF"/>
+      <xs:attribute name="e" use="required" type="xs:IDREF"/>
+      <xs:attribute name="medium">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="aud"/>
+            <xs:enumeration value="vid"/>
+            <xs:enumeration value="img"/>
+            <xs:enumeration value="txt"/>
+            <xs:enumeration value="oth"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="url"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- attribute "n" is the name of this segment, e.g. 'w' for word or 'u' for utterance -->
+  <!-- attribute "id" is a unique identifier -->
+  <!-- attribute "s" is a reference to the timeline specifying the start point of this segment -->
+  <!-- attribute "e" is a reference to the timeline specifying the end point of this segment -->
+  <!-- attribute "medium" specifies the medium of a linked file (if present) -->
+  <!-- attribute "url" specifies the location of a linked file (if present) -->
+  <!--
+    <ats> is an atomic timed segment, i.e. a segment that can
+    a) a be assigned a reasonable start end point from the timeline
+    b) NOT be further decomposed into composed and atomic timed segments and non-timed-segments 
+    because it is atomic, a <ats> will only contain character data
+    an example is the description of a non-phonological event ('sneezes') 
+  -->
+  <xs:element name="ats">
+    <xs:complexType mixed="true">
+      <xs:attribute name="n" use="required"/>
+      <xs:attribute name="id" type="xs:ID"/>
+      <xs:attribute name="s" use="required" type="xs:IDREF"/>
+      <xs:attribute name="e" use="required" type="xs:IDREF"/>
+      <xs:attribute name="medium">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="aud"/>
+            <xs:enumeration value="vid"/>
+            <xs:enumeration value="img"/>
+            <xs:enumeration value="txt"/>
+            <xs:enumeration value="oth"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="url"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- the attributes of a <ats> are identical to the attributes of a <ts> -->
+  <!--
+    <nts> is a non-timed segment, i.e. a segment that cannot be assigned a reasonable start or end point from the timeline
+    an <nts> will always be atomic, so it can only contain character data 
+      an example is punctuation in an utterance
+  -->
+  <xs:element name="nts">
+    <xs:complexType mixed="true">
+      <xs:attribute name="n" use="required"/>
+      <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- the attributes of a <nts> are like the attributes of timed segments minus the start and end attribute and the link specifications -->
+  <!-- <ta> is a timed annotation, i.e. an annotation that is linked to the timeline and not to another timed-or non-timed segment -->
+  <xs:element name="ta">
+    <xs:complexType mixed="true">
+      <xs:attribute name="n"/>
+      <xs:attribute name="id" type="xs:ID"/>
+      <xs:attribute name="s" use="required" type="xs:IDREF"/>
+      <xs:attribute name="e" use="required" type="xs:IDREF"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+<!-- an <ta> need not have a name or an id, just start end end points -->

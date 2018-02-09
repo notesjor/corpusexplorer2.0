@@ -1,0 +1,8 @@
+Telerik End User License Agreement for DevCraft Complete
+
+(Last Updated November 8, 2012)
+
+The TELERIK DevCraft Complete is a suite of products containing RadControls for ASP.NET AJAX, RadControls for WinForms, RadControls for Silverlight, RadControls for WPF, Telerik Reporting, Telerik Open Access ORM, Telerik Extensions for ASP.NET MVC, Telerik JustCode, and RadControls for Windows Phone. 
+
+To read the entire license please visit 
+http://www.telerik.com/purchase/license-agreement/devcraft-complete.aspx

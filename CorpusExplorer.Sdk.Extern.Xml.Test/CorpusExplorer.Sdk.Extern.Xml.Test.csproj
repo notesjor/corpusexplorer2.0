@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BB12B6F2-1BB0-47CC-9C94-DA002E696785}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CorpusExplorer.Sdk.Extern.Xml.Test</RootNamespace>
+    <AssemblyName>CorpusExplorer.Sdk.Extern.Xml.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="DortmunderChatKorpusTest.cs" />
+    <Compile Include="ExmaraldaTest.cs" />
+    <Compile Include="FolkerTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TeiTest.cs" />
+    <Compile Include="TigerTest.cs" />
+    <Compile Include="WikipediaTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="CorpusExplorerNextSnKey.pfx" />
+    <None Include="testdata\Helge_Schneider_Arbeitsamt.exb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="testdata\Helge_Schneider_Arbeitsamt_s.exs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="testdata\syntax_examples.flk">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Wiki\CorpusExplorer.Sdk.Extern.Wiki.csproj">
+      <Project>{EE2A1D34-3E8C-4C05-8740-8E3B41A0D4DC}</Project>
+      <Name>CorpusExplorer.Sdk.Extern.Wiki</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Xml\CorpusExplorer.Sdk.Extern.Xml.csproj">
+      <Project>{6841C8CA-7C40-44C4-B5AA-FBC84FCB7293}</Project>
+      <Name>CorpusExplorer.Sdk.Extern.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk\CorpusExplorer.Sdk.csproj">
+      <Project>{DC1B5A58-29DA-476D-89F8-E73A1DB11E52}</Project>
+      <Name>CorpusExplorer.Sdk</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="testdata\abel_leibmedicus_1699.TEI-P5.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\AnneWill_TEI.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\DortmundCK_test.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\EnglishTranslator_TEI.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\ForumWaffenrecht_TEI.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\HartAberFair_TEI.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\Helge_Schneider_Arbeitsamt_TEI.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\Helge_Schneider_Tropfsteinhoehle_TEI.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\Hubert_Fichte_Interview_TEI.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\Rossau_TEI.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\Rudi_Voeller_Wutausbruch_TEI.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\tiger_sample.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\wiki\1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\wiki\10.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\wiki\100.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\wiki\250.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="testdata\wiki\500.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties IntelliLock_ProjectFile="" IntelliLock_Output="[output_dir]CorpusExplorer.Sdk.Extern.Xml.Test_Locked\CorpusExplorer.Sdk.Extern.Xml.Test.dll" IntelliLock_Settings="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" IntelliLock_Deployment="0" IntelliLock_Enabled="0" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

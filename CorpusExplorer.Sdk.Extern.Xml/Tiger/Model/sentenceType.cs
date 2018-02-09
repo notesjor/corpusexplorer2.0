@@ -1,0 +1,38 @@
+#region
+
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Schema;
+using System.Xml.Serialization;
+
+#endregion
+
+namespace CorpusExplorer.Sdk.Extern.Xml.Tiger.Model
+{
+  /// <remarks />
+  [GeneratedCode("xsd", "4.0.30319.33440")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  public class sentenceType
+  {
+    private graphType graphField;
+    private string idField;
+    private matchType[] matchesField;
+
+    /// <remarks />
+    [XmlElement(Form = XmlSchemaForm.Unqualified)]
+    public graphType graph { get { return graphField; } set { graphField = value; } }
+
+    /// <remarks />
+    [XmlAttribute(DataType = "ID")]
+    public string id { get { return idField; } set { idField = value; } }
+
+    /// <remarks />
+    [XmlArray(Form = XmlSchemaForm.Unqualified)]
+    [XmlArrayItem("match", Form = XmlSchemaForm.Unqualified, IsNullable = false)]
+    public matchType[] matches { get { return matchesField; } set { matchesField = value; } }
+  }
+}
