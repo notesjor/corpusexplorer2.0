@@ -3,5 +3,7 @@
   /// <summary>
   ///   Servcie-Interface
   /// </summary>
-  internal interface IService {}
+  internal interface IService
+  {
+  }
 }

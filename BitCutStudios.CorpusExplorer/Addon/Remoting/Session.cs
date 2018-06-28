@@ -24,17 +24,17 @@ namespace Bcs.Addon.Remoting
       SecurityToken = securityToken;
     }
 
-    /// <summary>
-    ///   Sicherheitstoken
-    /// </summary>
-    internal string SecurityToken { get; private set; }
-
     // ReSharper disable once MemberCanBePrivate.Global
     // ReSharper disable once UnusedAutoPropertyAccessor.Global
     /// <summary>
     ///   Daten die für dieses Session hinterlegt wurden
     /// </summary>
-    public Dictionary<string, object> SessionData { get; private set; }
+    public Dictionary<string, object> SessionData { get; }
+
+    /// <summary>
+    ///   Sicherheitstoken
+    /// </summary>
+    internal string SecurityToken { get; }
 
     /// <summary>
     ///   TimeOut der Session

@@ -36,7 +36,10 @@ namespace Bcs.Addon.Remoting
     /// </summary>
     public abstract string Guid { get; }
 
-    public void Initialize() { Start(); }
+    public void Initialize()
+    {
+      Start();
+    }
 
     public AddonLoadPriority LoadPriority => AddonLoadPriority.Level2System;
 
@@ -73,7 +76,10 @@ namespace Bcs.Addon.Remoting
       _serverRuns = false;
     }
 
-    public void Terminate() { Stop(); }
+    public void Terminate()
+    {
+      Stop();
+    }
 
     private static BinaryServerFormatterSinkProvider GetProvider()
     {
@@ -91,8 +97,8 @@ namespace Bcs.Addon.Remoting
         return sett;
 
       sett["tokenImpersonationLevel"] = EnableImpersonate
-                                          ? TokenImpersonationLevel.Impersonation
-                                          : TokenImpersonationLevel.Identification;
+        ? TokenImpersonationLevel.Impersonation
+        : TokenImpersonationLevel.Identification;
       sett["protectionLevel"] = ProtectionLevel.EncryptAndSign;
 
       return sett;

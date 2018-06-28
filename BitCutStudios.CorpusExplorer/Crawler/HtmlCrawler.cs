@@ -23,22 +23,17 @@ namespace Bcs.Crawler
     /// <summary>
     ///   The atribut marker
     /// </summary>
-    [XmlIgnore]
-    [NonSerialized]
-    private const string AtributMarker = "/@";
+    [XmlIgnore] [NonSerialized] private const string AtributMarker = "/@";
 
     /// <summary>
     ///   The _criticals
     /// </summary>
-    [XmlIgnore]
-    [NonSerialized]
-    private Dictionary<string, string> _criticals;
+    [XmlIgnore] [NonSerialized] private Dictionary<string, string> _criticals;
 
     /// <summary>
     ///   The _multi node separator
     /// </summary>
-    [XmlAttribute("separator")]
-    [NonSerialized]
+    [XmlAttribute("separator")] [NonSerialized]
     private string _multiNodeSeparator = "|";
 
     /// <summary>
@@ -54,7 +49,11 @@ namespace Bcs.Crawler
     /// </summary>
     /// <value>The multi node separator.</value>
     [XmlIgnore]
-    public string MultiNodeSeparator { get { return _multiNodeSeparator; } set { _multiNodeSeparator = value; } }
+    public string MultiNodeSeparator
+    {
+      get => _multiNodeSeparator;
+      set => _multiNodeSeparator = value;
+    }
 
     /// <summary>
     ///   Parameter/Mapping
@@ -83,8 +82,8 @@ namespace Bcs.Crawler
           !Url.StartsWith(UrlLimmit))
         return null;
 
-      if ((Parameters == null) ||
-          (Parameters.Count == 0))
+      if (Parameters == null ||
+          Parameters.Count == 0)
         // ReSharper disable once NotResolvedInText
         throw new ArgumentNullException("Parameters");
 
@@ -133,8 +132,8 @@ namespace Bcs.Crawler
           !Url.StartsWith(UrlLimmit))
         return null;
 
-      if ((Parameters == null) ||
-          (Parameters.Count == 0))
+      if (Parameters == null ||
+          Parameters.Count == 0)
         // ReSharper disable once NotResolvedInText
         throw new ArgumentNullException("Parameters");
 
@@ -142,80 +141,6 @@ namespace Bcs.Crawler
       doc.LoadHtml(html);
 
       return CrawlCall(doc);
-    }
-
-    private Dictionary<string, object>[] CrawlCall(HtmlDocument doc)
-    {
-      // Erezuge Stringbuilder
-      var stbs = new Dictionary<string, StringBuilder>();
-      foreach (var parameter in Parameters.Where(parameter => !stbs.ContainsKey(parameter.Value)))
-        stbs.Add(parameter.Value, new StringBuilder());
-
-      // Befülle Stringbuilder per XPath.InnerText
-      foreach (var parameter in Parameters)
-      {
-        if (stbs[parameter.Value].Length > 0)
-          stbs[parameter.Value].Append(" ");
-
-        var hnode = doc.DocumentNode.SelectNodes(parameter.Key);
-        if ((hnode == null) ||
-            (hnode.Count == 0))
-          continue;
-        var nodes = hnode.ToArray();
-
-        for (var i = 0; i < nodes.Length; i++)
-        {
-          stbs[parameter.Value].Append(
-            parameter.Key.Contains(AtributMarker)
-              ? nodes[i].GetAttributeValue(
-                parameter.Key.Substring(
-                           parameter.Key.IndexOf(
-                                      AtributMarker,
-                                      StringComparison
-                                        .Ordinal) +
-                           AtributMarker.Length),
-                string.Empty)
-              : HtmlCleanup(nodes[i].InnerText));
-
-          // separiert mehrere Nodes
-          if (i < nodes.Length - 1)
-            stbs[parameter.Value].Append(_multiNodeSeparator);
-        }
-      }
-
-      var resItem = StbsToMetadata(stbs);
-      resItem.Add("Url", Url);
-
-      // Baue Ausgabe
-      var res = new[] {resItem};
-
-      return HtmlCleanupChannel(HtmlSplitChannel(res));
-    }
-
-    /// <summary>
-    ///   HTMLs the cleanup.
-    /// </summary>
-    /// <param name="html">The HTML.</param>
-    /// <returns>System.String.</returns>
-    private string HtmlCleanup(string html)
-    {
-      html =
-        html.Replace("\t", " ")
-            .Replace("\r", " ")
-            .Replace("\n", " ")
-            .Replace("&nbsp;", " ")
-            .Replace("  ", " ")
-            .Replace("  ", " ")
-            .Replace("  ", " ")
-            .Replace("  ", " ")
-            .Replace("  ", " ")
-            .Replace("  ", " ")
-            .Replace("  ", " ");
-
-      if (_criticals == null)
-        InitializeCriticals();
-
-      return _criticals.Aggregate(html, (current, c) => current.Replace(c.Key, c.Value));
     }
 
     /// <summary>
@@ -243,6 +168,7 @@ namespace Bcs.Crawler
         foreach (var key in keys)
           r[key] = HtmlCleanup(r[key].ToString());
       }
+
       return res;
     }
 
@@ -254,6 +180,80 @@ namespace Bcs.Crawler
     protected virtual Dictionary<string, object>[] HtmlSplitChannel(Dictionary<string, object>[] res)
     {
       return res;
+    }
+
+    private Dictionary<string, object>[] CrawlCall(HtmlDocument doc)
+    {
+      // Erezuge Stringbuilder
+      var stbs = new Dictionary<string, StringBuilder>();
+      foreach (var parameter in Parameters.Where(parameter => !stbs.ContainsKey(parameter.Value)))
+        stbs.Add(parameter.Value, new StringBuilder());
+
+      // Befülle Stringbuilder per XPath.InnerText
+      foreach (var parameter in Parameters)
+      {
+        if (stbs[parameter.Value].Length > 0)
+          stbs[parameter.Value].Append(" ");
+
+        var hnode = doc.DocumentNode.SelectNodes(parameter.Key);
+        if (hnode == null ||
+            hnode.Count == 0)
+          continue;
+        var nodes = hnode.ToArray();
+
+        for (var i = 0; i < nodes.Length; i++)
+        {
+          stbs[parameter.Value].Append(
+            parameter.Key.Contains(AtributMarker)
+              ? nodes[i].GetAttributeValue(
+                parameter.Key.Substring(
+                  parameter.Key.IndexOf(
+                    AtributMarker,
+                    StringComparison
+                      .Ordinal) +
+                  AtributMarker.Length),
+                string.Empty)
+              : HtmlCleanup(nodes[i].InnerText));
+
+          // separiert mehrere Nodes
+          if (i < nodes.Length - 1)
+            stbs[parameter.Value].Append(_multiNodeSeparator);
+        }
+      }
+
+      var resItem = StbsToMetadata(stbs);
+      resItem.Add("Url", Url);
+
+      // Baue Ausgabe
+      var res = new[] {resItem};
+
+      return HtmlCleanupChannel(HtmlSplitChannel(res));
+    }
+
+    /// <summary>
+    ///   HTMLs the cleanup.
+    /// </summary>
+    /// <param name="html">The HTML.</param>
+    /// <returns>System.String.</returns>
+    private string HtmlCleanup(string html)
+    {
+      html =
+        html.Replace("\t", " ")
+          .Replace("\r", " ")
+          .Replace("\n", " ")
+          .Replace("&nbsp;", " ")
+          .Replace("  ", " ")
+          .Replace("  ", " ")
+          .Replace("  ", " ")
+          .Replace("  ", " ")
+          .Replace("  ", " ")
+          .Replace("  ", " ")
+          .Replace("  ", " ");
+
+      if (_criticals == null)
+        InitializeCriticals();
+
+      return _criticals.Aggregate(html, (current, c) => current.Replace(c.Key, c.Value));
     }
 
     private void InitializeCriticals()

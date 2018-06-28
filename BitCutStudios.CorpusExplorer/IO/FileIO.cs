@@ -27,13 +27,15 @@ namespace Bcs.IO
     public static string[] ReadLines(
       string path,
       Encoding encoding = null,
-      string separator = "\r\n",
+      string[] delimiters = null,
       StringSplitOptions stringSplitOptions = StringSplitOptions.None)
     {
       if (encoding == null)
         encoding = Encoding.UTF8;
+      if (delimiters == null)
+        delimiters = new[] {"\r\n", "\r", "\n"};
 
-      return ReadText(path, encoding).Split(new[] {separator}, stringSplitOptions);
+      return ReadText(path, encoding).Split(delimiters, stringSplitOptions);
     }
 
     public static string ReadText(string path, Encoding encoding = null)

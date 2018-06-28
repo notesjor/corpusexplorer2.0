@@ -3,5 +3,7 @@
   /// <summary>
   ///   ServiceContract
   /// </summary>
-  public interface IServiceContract {}
+  public interface IServiceContract
+  {
+  }
 }

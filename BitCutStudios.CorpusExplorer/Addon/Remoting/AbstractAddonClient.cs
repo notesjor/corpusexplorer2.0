@@ -20,12 +20,6 @@ namespace Bcs.Addon.Remoting
   public abstract class AbstractAddonClient<T> : AbstractAddonService<T>
     where T : class, IRemotingContract
   {
-    /// <summary>
-    ///   Ist Impersonate aktiv? - Nur möglich wenn <see cref="EnableSecurity" /> =
-    ///   <see langword="true" />
-    /// </summary>
-    protected abstract bool EnableImpersonate { get; }
-
     // ReSharper disable once MemberCanBeProtected.Global
     /// <summary>
     ///   Soll die Verbindung gesichert werden (nur wenn vom Server utnerstützt)
@@ -55,8 +49,8 @@ namespace Bcs.Addon.Remoting
 
         var contract = Contract as IRemotingAuthenticationContract;
         SessionKey = contract != null
-                       ? contract.LogIn(Username, Password)
-                       : Contract.LogInAnonymus();
+          ? contract.LogIn(Username, Password)
+          : Contract.LogInAnonymus();
 
         return Contract.IsAlive(SessionKey);
       }
@@ -117,6 +111,56 @@ namespace Bcs.Addon.Remoting
     /// </value>
     public abstract string Username { get; set; }
 
+    /// <summary>
+    ///   Ist Impersonate aktiv? - Nur möglich wenn <see cref="EnableSecurity" /> =
+    ///   <see langword="true" />
+    /// </summary>
+    protected abstract bool EnableImpersonate { get; }
+
+    /// <summary>
+    ///   Initializes this instance.
+    /// </summary>
+    public override void Initialize()
+    {
+      Connect();
+    }
+
+    /// <summary>
+    ///   <para>Contract</para>
+    ///   <para>Starts this instance.</para>
+    /// </summary>
+    public override void Start()
+    {
+      if (!Contract.IsConnected())
+        Initialize();
+
+      if (!string.IsNullOrEmpty(SessionKey) && Contract.IsAlive(SessionKey))
+        return;
+
+      var contract = Contract as IRemotingAuthenticationContract;
+      SessionKey = contract != null
+        ? contract.LogIn(Username, Password)
+        : Contract.LogInAnonymus();
+    }
+
+    /// <summary>
+    ///   Stops this instance.
+    /// </summary>
+    public override void Stop()
+    {
+      if (!string.IsNullOrEmpty(SessionKey))
+        Contract.LogOut(SessionKey);
+    }
+
+    /// <summary>
+    ///   Terminates this instance.
+    /// </summary>
+    public override void Terminate()
+    {
+      Stop();
+      Disconnect();
+    }
+
     private void Connect()
     {
       var channel = ChannelServices.GetChannel(Guid + "_Client");
@@ -131,8 +175,8 @@ namespace Bcs.Addon.Remoting
       if (EnableSecurity)
       {
         channelSettings["tokenImpersonationLevel"] = EnableImpersonate
-                                                       ? TokenImpersonationLevel.Impersonation
-                                                       : TokenImpersonationLevel.Identification;
+          ? TokenImpersonationLevel.Impersonation
+          : TokenImpersonationLevel.Identification;
         channelSettings["protectionLevel"] = ProtectionLevel.EncryptAndSign;
       }
 
@@ -152,47 +196,6 @@ namespace Bcs.Addon.Remoting
       var channel = ChannelServices.GetChannel(Guid);
       if (channel != null)
         ChannelServices.UnregisterChannel(channel);
-    }
-
-    /// <summary>
-    ///   Initializes this instance.
-    /// </summary>
-    public override void Initialize() { Connect(); }
-
-    /// <summary>
-    ///   <para>Contract</para>
-    ///   <para>Starts this instance.</para>
-    /// </summary>
-    public override void Start()
-    {
-      if (!Contract.IsConnected())
-        Initialize();
-
-      if (!string.IsNullOrEmpty(SessionKey) && Contract.IsAlive(SessionKey))
-        return;
-
-      var contract = Contract as IRemotingAuthenticationContract;
-      SessionKey = contract != null
-                     ? contract.LogIn(Username, Password)
-                     : Contract.LogInAnonymus();
-    }
-
-    /// <summary>
-    ///   Stops this instance.
-    /// </summary>
-    public override void Stop()
-    {
-      if (!string.IsNullOrEmpty(SessionKey))
-        Contract.LogOut(SessionKey);
-    }
-
-    /// <summary>
-    ///   Terminates this instance.
-    /// </summary>
-    public override void Terminate()
-    {
-      Stop();
-      Disconnect();
     }
   }
 }

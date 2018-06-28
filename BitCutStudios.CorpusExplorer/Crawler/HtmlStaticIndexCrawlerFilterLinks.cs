@@ -30,17 +30,19 @@ namespace Bcs.Crawler
       IEnumerable<HtmlNode> nodes = doc.DocumentNode.SelectNodes("//a");
       if (nodes == null || !nodes.Any())
         return null;
-      if(FilterFunction != null)
+      if (FilterFunction != null)
         nodes = FilterFunction(nodes);
 
       foreach (var node in nodes)
         try
         {
           var url = node.GetAttributeValue("href", "");
-          if (string.IsNullOrEmpty(url) || (UrlBlockedPrefix.Find(url.StartsWith) != null))
+          if (string.IsNullOrEmpty(url) || UrlBlockedPrefix.Find(url.StartsWith) != null)
             continue;
 
-          Crawler.Url = string.IsNullOrEmpty(UrlResultPrefix) ? url : UrlResultPrefix + (url.StartsWith(".") ? url.Substring(1) : url);
+          Crawler.Url = string.IsNullOrEmpty(UrlResultPrefix)
+            ? url
+            : UrlResultPrefix + (url.StartsWith(".") ? url.Substring(1) : url);
 
           var items = Crawler.Crawl();
           if (items != null)
@@ -105,7 +107,10 @@ namespace Bcs.Crawler
     /// </summary>
     private Dictionary<string, string> _parameters = new Dictionary<string, string>();
 
-    public HtmlStaticIndexCrawlerFilterLinks(FilterNodes filterFunction) { FilterFunction = filterFunction; }
+    public HtmlStaticIndexCrawlerFilterLinks(FilterNodes filterFunction)
+    {
+      FilterFunction = filterFunction;
+    }
 
     #endregion
 

@@ -11,15 +11,6 @@ namespace Bcs.IO
   public static class FileSizeCalculator
   {
     /// <summary>
-    ///   Gibt die Dateigröße zurück.
-    /// </summary>
-    /// <param name="file">Datei</param>
-    /// <returns>
-    ///   Dateigröße
-    /// </returns>
-    private static long GetFileSize(string file) { return new FileInfo(file).Length; }
-
-    /// <summary>
     ///   String der die Größe der Datei lesbar für den Nutzer angiebt
     /// </summary>
     /// <param name="file">Datei</param>
@@ -27,7 +18,22 @@ namespace Bcs.IO
     ///   SizeString
     /// </returns>
     // ReSharper disable once UnusedMember.Global
-    public static string GetSizeString(string file) { return GetSizeString(GetFileSize(file)); }
+    public static string GetSizeString(string file)
+    {
+      return GetSizeString(GetFileSize(file));
+    }
+
+    /// <summary>
+    ///   Gibt die Dateigröße zurück.
+    /// </summary>
+    /// <param name="file">Datei</param>
+    /// <returns>
+    ///   Dateigröße
+    /// </returns>
+    private static long GetFileSize(string file)
+    {
+      return new FileInfo(file).Length;
+    }
 
     /// <summary>
     ///   Wandelt den Long-Wert der die Größe der Datei angiebt in eine für den

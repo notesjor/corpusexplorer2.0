@@ -22,42 +22,37 @@ namespace Bcs.Crawler
     /// <summary>
     ///   The PAGE
     /// </summary>
-    [XmlIgnore]
-    [NonSerialized]
-    private const string Page = "[PAGE]";
+    [XmlIgnore] [NonSerialized] private const string Page = "[PAGE]";
 
     /// <summary>
     ///   The QUERY
     /// </summary>
-    [XmlIgnore]
-    [NonSerialized]
-    private const string Query = "[QUERY]";
+    [XmlIgnore] [NonSerialized] private const string Query = "[QUERY]";
 
     /// <summary>
     ///   The _page increment value
     /// </summary>
-    [XmlAttribute("increment")]
-    private int _pageIncrementValue = -1;
+    [XmlAttribute("increment")] private int _pageIncrementValue = -1;
 
     /// <summary>
     ///   The _page start value
     /// </summary>
-    [XmlAttribute("startIndex")]
-    private int _pageStartValue = -1;
+    [XmlAttribute("startIndex")] private int _pageStartValue = -1;
 
     /// <summary>
     ///   The _parameters
     /// </summary>
-    [XmlArray("parameters")]
-    private Dictionary<string, string> _parameters = new Dictionary<string, string>();
+    [XmlArray("parameters")] private Dictionary<string, string> _parameters = new Dictionary<string, string>();
 
     /// <summary>
     ///   The _url blocked prefix
     /// </summary>
-    [XmlArray("blocks")]
-    private List<string> _urlBlockedPrefix = new List<string>();
+    [XmlArray("blocks")] private List<string> _urlBlockedPrefix = new List<string>();
 
-    public HtmlSearchCrawler() { MaxResults = 0; }
+    public HtmlSearchCrawler()
+    {
+      MaxResults = 0;
+    }
 
     /// <summary>
     ///   Gets or sets the page crawler.
@@ -66,8 +61,7 @@ namespace Bcs.Crawler
     [XmlElement]
     public ICrawler Crawler { get; set; }
 
-    [XmlAttribute("max")]
-    public int MaxResults { get; set; }
+    [XmlAttribute("max")] public int MaxResults { get; set; }
 
     // ReSharper disable once MemberCanBePrivate.Global
 
@@ -77,14 +71,22 @@ namespace Bcs.Crawler
     /// </summary>
     /// <value>The page increment value.</value>
     [XmlIgnore]
-    public int PageIncrementValue { get { return _pageIncrementValue; } set { _pageIncrementValue = value; } }
+    public int PageIncrementValue
+    {
+      get => _pageIncrementValue;
+      set => _pageIncrementValue = value;
+    }
 
     /// <summary>
     ///   Gets or sets the page start value.
     /// </summary>
     /// <value>The page start value.</value>
     [XmlIgnore]
-    public int PageStartValue { get { return _pageStartValue; } set { _pageStartValue = value; } }
+    public int PageStartValue
+    {
+      get => _pageStartValue;
+      set => _pageStartValue = value;
+    }
 
     /// <summary>
     ///   Gets or sets the query.
@@ -113,8 +115,8 @@ namespace Bcs.Crawler
     public List<string> UrlBlockedPrefix
     {
       // ReSharper disable once MemberCanBePrivate.Global
-      get { return _urlBlockedPrefix; }
-      set { _urlBlockedPrefix = value; }
+      get => _urlBlockedPrefix;
+      set => _urlBlockedPrefix = value;
     }
 
     /// <summary>
@@ -146,12 +148,12 @@ namespace Bcs.Crawler
           var doc =
             web.Load(
               Url.Replace(Query, HttpUtility.UrlEncode(query))
-                 .Replace(Page, PageStartValue.ToString(CultureInfo.InvariantCulture)));
+                .Replace(Page, PageStartValue.ToString(CultureInfo.InvariantCulture)));
           PageStartValue += PageIncrementValue;
 
           nodes = doc.DocumentNode.SelectNodes(ResultsXpath);
-          if ((nodes == null) ||
-              (nodes.Count == 0))
+          if (nodes == null ||
+              nodes.Count == 0)
             break;
 
           foreach (var node in nodes)
@@ -159,10 +161,12 @@ namespace Bcs.Crawler
             {
               var url = node.GetAttributeValue("href", "");
               if (string.IsNullOrEmpty(url) ||
-                  (UrlBlockedPrefix.Find(url.StartsWith) != null))
+                  UrlBlockedPrefix.Find(url.StartsWith) != null)
                 continue;
 
-              Crawler.Url = string.IsNullOrEmpty(UrlResultPrefix) ? url : UrlResultPrefix + (url.StartsWith(".") ? url.Substring(1) : url);
+              Crawler.Url = string.IsNullOrEmpty(UrlResultPrefix)
+                ? url
+                : UrlResultPrefix + (url.StartsWith(".") ? url.Substring(1) : url);
 
               var items = Crawler.Crawl();
               if (items != null)
@@ -177,8 +181,7 @@ namespace Bcs.Crawler
               Console.WriteLine(ex.Message);
               Console.WriteLine(ex.StackTrace);
             }
-        }
-        while (nodes.Count > 0);
+        } while (nodes.Count > 0);
       }
 
       return res.ToArray();

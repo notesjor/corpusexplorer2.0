@@ -18,6 +18,7 @@ namespace Bcs.Addon.Remoting
     : MarshalByRefObject, IRemotingAuthenticationContract, IServerContract
   {
     private readonly Dictionary<string, Session> _manager = new Dictionary<string, Session>();
+
     // ReSharper disable once NotAccessedField.Local
     private Timer _timer;
 
@@ -88,10 +89,15 @@ namespace Bcs.Addon.Remoting
       return RemoveSession(sessionKey);
     }
 
-    private static string GetIdentity()
+    /// <summary>
+    ///   Erzeugt eine neue <see cref="Session" />
+    /// </summary>
+    /// <returns>
+    ///   SessionKey
+    /// </returns>
+    public string NewSession()
     {
-      var identity = Thread.CurrentPrincipal.Identity as WindowsIdentity;
-      return (identity != null) && identity.IsAuthenticated ? identity.Name : null;
+      return NewSession(GetIdentity());
     }
 
     /// <summary>
@@ -103,6 +109,22 @@ namespace Bcs.Addon.Remoting
     protected Session GetSession(string sessionKey)
     {
       return GetSession(sessionKey, GetIdentity());
+    }
+
+    /// <summary>
+    ///   Erzeugt eine neue <see cref="Session" />
+    /// </summary>
+    /// <param name="sessionData">Daten die in der Session hinterlegt werden sollen.</param>
+    /// <returns>SessionKey</returns>
+    protected string NewSession(Dictionary<string, object> sessionData)
+    {
+      return NewSession(GetIdentity(), sessionData);
+    }
+
+    private static string GetIdentity()
+    {
+      var identity = Thread.CurrentPrincipal.Identity as WindowsIdentity;
+      return identity != null && identity.IsAuthenticated ? identity.Name : null;
     }
 
     /// <summary>
@@ -125,12 +147,12 @@ namespace Bcs.Addon.Remoting
 
       var res = _manager[sessionKey];
 
-      if ((res.Timeout < DateTime.Now) ||
-          ((res.SecurityToken == null) && (securityToken != null))
+      if (res.Timeout < DateTime.Now ||
+          res.SecurityToken == null && securityToken != null
           ||
-          ((res.SecurityToken != null) && (securityToken == null))
+          res.SecurityToken != null && securityToken == null
           ||
-          ((res.SecurityToken != null) && (securityToken != null) && !res.SecurityToken.Equals(securityToken)))
+          res.SecurityToken != null && securityToken != null && !res.SecurityToken.Equals(securityToken))
       {
         _manager.Remove(sessionKey);
         return null;
@@ -140,27 +162,6 @@ namespace Bcs.Addon.Remoting
       _manager[sessionKey] = res;
 
       return res;
-    }
-
-    /// <summary>
-    ///   Erzeugt eine neue <see cref="Session" />
-    /// </summary>
-    /// <returns>
-    ///   SessionKey
-    /// </returns>
-    public string NewSession()
-    {
-      return NewSession(GetIdentity());
-    }
-
-    /// <summary>
-    ///   Erzeugt eine neue <see cref="Session" />
-    /// </summary>
-    /// <param name="sessionData">Daten die in der Session hinterlegt werden sollen.</param>
-    /// <returns>SessionKey</returns>
-    protected string NewSession(Dictionary<string, object> sessionData)
-    {
-      return NewSession(GetIdentity(), sessionData);
     }
 
     // Internal Methods (3) 
@@ -183,8 +184,7 @@ namespace Bcs.Addon.Remoting
         do
         {
           guid = Guid.NewGuid().ToString("N") + "-" + Guid.NewGuid().ToString("N");
-        }
-        while (
+        } while (
           _manager.ContainsKey(guid));
 
         _manager.Add(guid, session);

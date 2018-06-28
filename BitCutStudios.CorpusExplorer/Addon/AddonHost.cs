@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
 using Bcs.Addon.Interfaces;
 using CorpusExplorer.Sdk.Diagnostic;
@@ -49,20 +48,16 @@ namespace Bcs.Addon
     /// <returns>
     ///   Addon (Im Fehlerfall: null)
     /// </returns>
-    public IAddon GetAddonBy(string guid) { return _addons.Find(x => x.Guid == guid); }
+    public IAddon GetAddonBy(string guid)
+    {
+      return _addons.Find(x => x.Guid == guid);
+    }
 
     /// <summary>
     ///   Dem AddonHost zugeordnetes <see cref="Window" /> (WPF) oder Form
     ///   (WinForm)
     /// </summary>
     public IHostWindow Window { get; }
-
-    private static string GetDirectoryPath(string directory)
-    {
-      return string.IsNullOrEmpty(directory)
-               ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-               : directory;
-    }
 
     /// <summary>
     ///   Sucht in einem Verzeichnis nach Dateien die Addon
@@ -85,7 +80,7 @@ namespace Bcs.Addon
         foreach (var file in files)
           try
           {
-            if(new FileInfo(file).Length < 1)
+            if (new FileInfo(file).Length < 1)
               continue;
 
             var assembly = Assembly.LoadFrom(file);
@@ -96,7 +91,7 @@ namespace Bcs.Addon
               {
                 if (!type.IsPublic ||
                     type.IsAbstract ||
-                    (type.GetInterface("Bcs.Addon.Interfaces.IAddon", true) == null))
+                    type.GetInterface("Bcs.Addon.Interfaces.IAddon", true) == null)
                   continue;
 
                 var temp = Activator.CreateInstance(assembly.GetType(type.ToString())) as IAddon;
@@ -120,6 +115,8 @@ namespace Bcs.Addon
           {
             // Hunspellx64 und Hunspellx86 werfen sonst sinnfreie Fehler
             if (file.Contains("Hunspellx"))
+              continue;
+            if (file.EndsWith("udpipe_csharp.dll"))
               continue;
 
             InMemoryErrorConsole.Log(ex);
@@ -146,21 +143,30 @@ namespace Bcs.Addon
         _addons.Sort((x, y) => (byte) y.LoadPriority - (byte) x.LoadPriority);
 
         var ts = _addons.Select(addon =>
-                                {
-                                  var t = new Task(
-                                    () =>
-                                    {
-                                      addon.Stop();
-                                      addon.Terminate();
-                                      _addons.Remove(addon);
-                                    });
-                                  t.Start();
-                                  return t;
-                                }).ToArray();
+        {
+          var t = new Task(
+            () =>
+            {
+              addon.Stop();
+              addon.Terminate();
+              _addons.Remove(addon);
+            });
+          t.Start();
+          return t;
+        }).ToArray();
         Task.WaitAll(ts);
       }
       // ReSharper disable once EmptyGeneralCatchClause
-      catch {}
+      catch
+      {
+      }
+    }
+
+    private static string GetDirectoryPath(string directory)
+    {
+      return string.IsNullOrEmpty(directory)
+        ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+        : directory;
     }
   }
 }

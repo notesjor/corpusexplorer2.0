@@ -1,4 +1,6 @@
 ﻿namespace Bcs.Addon.Remoting.Interfaces
 {
-  internal interface IServerContract {}
+  internal interface IServerContract
+  {
+  }
 }

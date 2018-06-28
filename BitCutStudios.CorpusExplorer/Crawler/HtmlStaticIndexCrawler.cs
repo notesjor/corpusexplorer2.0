@@ -7,6 +7,15 @@ namespace Bcs.Crawler
 {
   public class HtmlStaticIndexCrawler : ICrawler
   {
+    #region Fields
+
+    /// <summary>
+    ///   The _parameters
+    /// </summary>
+    private Dictionary<string, string> _parameters = new Dictionary<string, string>();
+
+    #endregion
+
     #region Public Methods and Operators
 
     /// <summary>
@@ -23,17 +32,19 @@ namespace Bcs.Crawler
       var doc = web.Load(Url);
 
       var nodes = doc.DocumentNode.SelectNodes(ResultsXpath);
-      if ((nodes == null) || (nodes.Count == 0))
+      if (nodes == null || nodes.Count == 0)
         return null;
 
       foreach (var node in nodes)
         try
         {
           var url = node.GetAttributeValue("href", "");
-          if (string.IsNullOrEmpty(url) || (UrlBlockedPrefix.Find(url.StartsWith) != null))
+          if (string.IsNullOrEmpty(url) || UrlBlockedPrefix.Find(url.StartsWith) != null)
             continue;
 
-          Crawler.Url = string.IsNullOrEmpty(UrlResultPrefix) ? url : UrlResultPrefix + (url.StartsWith(".") ? url.Substring(1) : url);
+          Crawler.Url = string.IsNullOrEmpty(UrlResultPrefix)
+            ? url
+            : UrlResultPrefix + (url.StartsWith(".") ? url.Substring(1) : url);
 
           var items = Crawler.Crawl();
           if (items != null)
@@ -80,8 +91,8 @@ namespace Bcs.Crawler
     private void CheckPrerequisites()
     {
       // ReSharper disable NotResolvedInText
-      if (string.IsNullOrEmpty(Url))        
-        throw new ArgumentNullException("Url");      
+      if (string.IsNullOrEmpty(Url))
+        throw new ArgumentNullException("Url");
 
       if (Crawler == null)
         throw new ArgumentNullException("PageCrawler");
@@ -90,15 +101,6 @@ namespace Bcs.Crawler
         throw new ArgumentNullException("ResultsXpath");
       // ReSharper restore NotResolvedInText
     }
-
-    #endregion
-
-    #region Fields
-
-    /// <summary>
-    ///   The _parameters
-    /// </summary>
-    private Dictionary<string, string> _parameters = new Dictionary<string, string>();
 
     #endregion
 
