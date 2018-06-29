@@ -15,8 +15,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
   public enum phraseType
   {
     /// <remarks />
-    [XmlEnum("intonation-phrase")]
-    intonationphrase,
+    [XmlEnum("intonation-phrase")] intonationphrase,
 
     /// <remarks />
     fragment,

@@ -3,7 +3,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
 using CorpusExplorer.Sdk.Extern.Xml.Tiger.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Tiger.Serializer;
@@ -14,11 +13,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tiger
 {
   public sealed class TigerScraper : AbstractGenericXmlSerializerFormatScraper<corpus>
   {
-    public override string DisplayName { get { return "TiGER-XML (*.xml)"; } }
+    public override string DisplayName => "TiGER-XML (*.xml)";
 
-    protected override AbstractGenericSerializer<corpus> Serializer { get { return new TigerSerializer(); } }
+    protected override AbstractGenericSerializer<corpus> Serializer => new TigerSerializer();
 
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(corpus model)
+    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, corpus model)
     {
       var dic = new Dictionary<string, object>();
 
@@ -36,13 +35,13 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tiger
       foreach (
         var w in
         model.body.OfType<sentenceType>()
-             .SelectMany(
-               s =>
-                 s.graph.terminals.Select(
-                    t =>
-                      (from a in t.AnyAttr where a.Name == "word" select a.Value)
-                        .FirstOrDefault())
-                  .Where(w => !string.IsNullOrEmpty(w))))
+          .SelectMany(
+            s =>
+              s.graph.terminals.Select(
+                  t =>
+                    (from a in t.AnyAttr where a.Name == "word" select a.Value)
+                    .FirstOrDefault())
+                .Where(w => !string.IsNullOrEmpty(w))))
         stb.AppendFormat("{0} ", w.Trim());
       dic.Add("Text", stb.ToString().Trim());
 

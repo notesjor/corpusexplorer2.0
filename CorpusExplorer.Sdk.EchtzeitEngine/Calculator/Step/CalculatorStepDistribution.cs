@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -6,16 +5,14 @@ using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step.Abstract;
 using CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step.Interface;
 using CorpusExplorer.Sdk.EchtzeitEngine.Model;
-using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model;
-using CorpusExplorer.Sdk.ViewModel;
 
 namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
 {
   public class CalculatorStepDistribution : AbstractCalculatorStep, ICalculatorStepHasTopFilter
   {
     public CalculatorStepDistribution()
-    { 
+    {
       Top = 10;
     }
 
@@ -37,6 +34,7 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
           var sub = x.Value.OrderByDescending(y => y.Value[0]).Take(Top);
           dic.Add(x.Key, sub.ToDictionary(y => y.Key, y => y.Value));
         }
+
         tmp = dic;
       }
 
@@ -49,12 +47,8 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
       dt.BeginLoadData();
 
       foreach (var x in tmp)
-      {
-        foreach (var y in x.Value)
-        {
-          dt.Rows.Add(x.Key, y.Key, y.Value[0], y.Value[1], y.Value[2]);
-        }
-      }
+      foreach (var y in x.Value)
+        dt.Rows.Add(x.Key, y.Key, y.Value[0], y.Value[1], y.Value[2]);
 
       dt.EndLoadData();
       output.Set(selection, Method, "", dt);

@@ -19,6 +19,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       radTextBox1.NullText = nullText;
     }
 
-    public string Result { get { return radTextBox1.Text; } }
+    public string Result => radTextBox1.Text;
   }
 }

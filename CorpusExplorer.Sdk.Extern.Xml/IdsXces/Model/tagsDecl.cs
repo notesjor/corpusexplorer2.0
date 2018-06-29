@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlElement("tagUsage")]
-    public tagUsage[] tagUsage { get { return tagUsageField; } set { tagUsageField = value; } }
+    public tagUsage[] tagUsage
+    {
+      get => tagUsageField;
+      set => tagUsageField = value;
+    }
   }
 }

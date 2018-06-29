@@ -23,13 +23,25 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string corresp { get { return correspField; } set { correspField = value; } }
+    public string corresp
+    {
+      get => correspField;
+      set => correspField = value;
+    }
 
     /// <remarks />
-    public persName persName { get { return persNameField; } set { persNameField = value; } }
+    public persName persName
+    {
+      get => persNameField;
+      set => persNameField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string role { get { return roleField; } set { roleField = value; } }
+    public string role
+    {
+      get => roleField;
+      set => roleField = value;
+    }
   }
 }

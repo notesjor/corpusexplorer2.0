@@ -23,8 +23,8 @@ namespace CorpusExplorer.Installer.Sdk.View
                Resources.MainForm_AskAbortInstallationHeader,
                MessageBoxButtons.YesNo,
                MessageBoxIcon.Question) == DialogResult.Yes
-               ? DialogResult.Abort
-               : DialogResult.None;
+        ? DialogResult.Abort
+        : DialogResult.None;
     }
 
     private void btn_abort_Click(object sender, EventArgs e)
@@ -41,7 +41,10 @@ namespace CorpusExplorer.Installer.Sdk.View
       Close();
     }
 
-    private void chk_accept_CheckedChanged(object sender, EventArgs e) { btn_install.Enabled = chk_accept.Checked; }
+    private void chk_accept_CheckedChanged(object sender, EventArgs e)
+    {
+      btn_install.Enabled = chk_accept.Checked;
+    }
 
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
     {

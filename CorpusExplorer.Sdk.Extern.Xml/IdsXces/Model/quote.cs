@@ -21,13 +21,21 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string broken { get { return brokenField; } set { brokenField = value; } }
+    public string broken
+    {
+      get => brokenField;
+      set => brokenField = value;
+    }
 
     /// <remarks />
     [XmlElement("pb", typeof(pb))]
     [XmlElement("ptr", typeof(ptr))]
     [XmlElement("s", typeof(s))]
     [XmlElement("title", typeof(title))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
   }
 }

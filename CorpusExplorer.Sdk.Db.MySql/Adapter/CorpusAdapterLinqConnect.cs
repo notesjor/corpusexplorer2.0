@@ -12,8 +12,8 @@ using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using Devart.Data.Linq;
 using Corpus = CorpusExplorer.Sdk.Db.MySQL.Model.Corpus;
-using Layer = CorpusExplorer.Sdk.Db.MySQL.Model.Layer;
 using DataContext = CorpusExplorer.Sdk.Db.MySQL.Model.DataContext;
+using Layer = CorpusExplorer.Sdk.Db.MySQL.Model.Layer;
 
 namespace CorpusExplorer.Sdk.Db.MySql.Adapter
 {
@@ -22,7 +22,9 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
     private Corpus _corpus;
     private DataContext _db;
 
-    private CorpusAdapterLinqConnect() { }
+    private CorpusAdapterLinqConnect()
+    {
+    }
 
     public override IEnumerable<Concept> Concepts
       => null; // TODO: Konzepte werden von EntityFramework aktuell nicht unterstützt
@@ -39,7 +41,8 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
       => new HashSet<Guid>(from x in _corpus.Documents select x.GUID);
 
     public override IEnumerable<KeyValuePair<Guid, Dictionary<string, object>>> DocumentMetadata
-      => _corpus.Documents.ToDictionary(x => x.GUID, x => x.DocumentMetadataEntries.ToDictionary(y => y.Label, y => ValueSerializer.DeserializeValue(y.Value)));
+      => _corpus.Documents.ToDictionary(x => x.GUID,
+        x => x.DocumentMetadataEntries.ToDictionary(y => y.Label, y => ValueSerializer.DeserializeValue(y.Value)));
 
     public override Guid FirstDocument
       => _corpus.Documents.FirstOrDefault().GUID;
@@ -64,8 +67,6 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
 
     internal int DbIndex => _corpus.ID;
 
-    public override AbstractCorpusBuilder GetCorpusBuilder() => new CorpusBuilderMySql();
-
     public override void AddConcept(Concept concept)
     {
       // TODO: Konzepte werden von LinqConnect aktuell nicht unterstützt
@@ -77,13 +78,19 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
     }
 
     public override bool ContainsDocument(Guid documentGuid)
-      => (from x in _corpus.Documents select x).Any(x => x.GUID == documentGuid);
+    {
+      return (from x in _corpus.Documents select x).Any(x => x.GUID == documentGuid);
+    }
 
     public override bool ContainsLayer(Guid layerGuid)
-      => (from x in _corpus.Layers select x).Any(x => x.GUID == layerGuid);
+    {
+      return (from x in _corpus.Layers select x).Any(x => x.GUID == layerGuid);
+    }
 
     public override bool ContainsLayer(string layerDisplayname)
-      => (from x in _corpus.Layers select x).Any(x => x.Displayname == layerDisplayname);
+    {
+      return (from x in _corpus.Layers select x).Any(x => x.Displayname == layerDisplayname);
+    }
 
     public static CorpusAdapterLinqConnect Create(
       string displayname,
@@ -126,6 +133,7 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
               Value = ValueSerializer.SerializeValue(entry.Value)
             });
       }
+
       context.SubmitChanges(ConflictMode.ContinueOnConflict);
 
       return Create(context, corpus.GUID);
@@ -176,26 +184,39 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
 
     public override IEnumerable<Guid> FindDocumentByMetadata(Dictionary<string, object> example)
     {
-      return (from doc in _corpus.Documents
-              let meta = doc.DocumentMetadataEntries.Where(x => example.ContainsKey(x.Label)).ToArray()
-              where meta.Length == example.Count
-              where meta.All(entry => example.ContainsKey(entry.Label) && example[entry.Label] == entry.Value)
-              select doc.GUID);
+      return from doc in _corpus.Documents
+        let meta = doc.DocumentMetadataEntries.Where(x => example.ContainsKey(x.Label)).ToArray()
+        where meta.Length == example.Count
+        where meta.All(entry => example.ContainsKey(entry.Label) && example[entry.Label] == entry.Value)
+        select doc.GUID;
     }
 
-    public override IEnumerable<KeyValuePair<string, object>> GetCorpusMetadata() => _corpus.CorpusMetadataEntries.ToDictionary(x => x.Label, x => ValueSerializer.DeserializeValue(x.Value));
+    public override AbstractCorpusBuilder GetCorpusBuilder()
+    {
+      return new CorpusBuilderMySql();
+    }
+
+    public override IEnumerable<KeyValuePair<string, object>> GetCorpusMetadata()
+    {
+      return _corpus.CorpusMetadataEntries.ToDictionary(x => x.Label, x => ValueSerializer.DeserializeValue(x.Value));
+    }
 
     public override int GetDocumentLengthInSentences(Guid documentGuid)
-      => (from x in _corpus.Documents where x.GUID == documentGuid select x.CountSentences).FirstOrDefault();
+    {
+      return (from x in _corpus.Documents where x.GUID == documentGuid select x.CountSentences).FirstOrDefault();
+    }
 
     public override int GetDocumentLengthInWords(Guid documentGuid)
-      => (from x in _corpus.Documents where x.GUID == documentGuid select x.CountToken).FirstOrDefault();
+    {
+      return (from x in _corpus.Documents where x.GUID == documentGuid select x.CountToken).FirstOrDefault();
+    }
 
     public override Dictionary<string, object> GetDocumentMetadata(Guid documentGuid)
     {
       try
       {
-        return (from x in _corpus.Documents where x.GUID == documentGuid from y in x.DocumentMetadataEntries select y).ToDictionary(y => y.Label, y => ValueSerializer.DeserializeValue(y.Value));
+        return (from x in _corpus.Documents where x.GUID == documentGuid from y in x.DocumentMetadataEntries select y)
+          .ToDictionary(y => y.Label, y => ValueSerializer.DeserializeValue(y.Value));
       }
       catch
       {
@@ -208,41 +229,56 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
       var res = new Dictionary<string, HashSet<object>>();
 
       foreach (var doc in _corpus.Documents)
-        foreach (var meta in doc.DocumentMetadataEntries)
-          if (res.ContainsKey(meta.Label))
-            res[meta.Label].Add(ValueSerializer.DeserializeValue(meta.Value));
-          else
-            res.Add(meta.Label, new HashSet<object> { ValueSerializer.DeserializeValue(meta.Value) });
+      foreach (var meta in doc.DocumentMetadataEntries)
+        if (res.ContainsKey(meta.Label))
+          res[meta.Label].Add(ValueSerializer.DeserializeValue(meta.Value));
+        else
+          res.Add(meta.Label, new HashSet<object> {ValueSerializer.DeserializeValue(meta.Value)});
 
       return res;
     }
 
     public override IEnumerable<string> GetDocumentMetadataPrototypeOnlyProperties()
-      => new HashSet<string>(from doc in _corpus.Documents
-                             from entry in doc.DocumentMetadataEntries
-                             select entry.Label);
+    {
+      return new HashSet<string>(from doc in _corpus.Documents
+        from entry in doc.DocumentMetadataEntries
+        select entry.Label);
+    }
 
     public override IEnumerable<object> GetDocumentMetadataPrototypeOnlyPropertieValues(string property)
-      => new HashSet<object>(from doc in _corpus.Documents
-                             from entry in doc.DocumentMetadataEntries
-                             where entry.Label == property
-                             select entry.Value);
+    {
+      return new HashSet<object>(from doc in _corpus.Documents
+        from entry in doc.DocumentMetadataEntries
+        where entry.Label == property
+        select entry.Value);
+    }
 
     public override AbstractLayerAdapter GetLayer(Guid layerGuid)
-      =>
-      layerGuid == Guid.Empty
+    {
+      return layerGuid == Guid.Empty
         ? null
         : (from x in _corpus.Layers where x.GUID == layerGuid select LayerAdapterLinqConnect.Create(_db, x))
-          .FirstOrDefault();
+        .FirstOrDefault();
+    }
 
     public override AbstractLayerAdapter GetLayerOfDocument(Guid documentGuid, string layerDisplayname)
-      => (from l in _corpus.Layers where l.Displayname == layerDisplayname from d in l.LayerDocuments where d.Document != null && d.Document.GUID == documentGuid select LayerAdapterLinqConnect.Create(_db, l)).FirstOrDefault();
+    {
+      return (from l in _corpus.Layers
+        where l.Displayname == layerDisplayname
+        from d in l.LayerDocuments
+        where d.Document != null && d.Document.GUID == documentGuid
+        select LayerAdapterLinqConnect.Create(_db, l)).FirstOrDefault();
+    }
 
     public override IEnumerable<AbstractLayerAdapter> GetLayers(string displayname)
-      => from x in _corpus.Layers where x.Displayname == displayname select LayerAdapterLinqConnect.Create(_db, x);
+    {
+      return from x in _corpus.Layers where x.Displayname == displayname select LayerAdapterLinqConnect.Create(_db, x);
+    }
 
     public override IEnumerable<AbstractLayerAdapter> GetLayersOfDocument(Guid documentGuid)
-      => from x in _corpus.Layers where x.GUID == documentGuid select LayerAdapterLinqConnect.Create(_db, x);
+    {
+      return from x in _corpus.Layers where x.GUID == documentGuid select LayerAdapterLinqConnect.Create(_db, x);
+    }
 
     public override IEnumerable<string> GetLayerValues(string layerDisplayname)
     {
@@ -250,32 +286,39 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
 
       var res = new HashSet<string>();
       foreach (var layer in layers)
-        foreach (var x in layer.LayerDictionaryEntries.Select(x => x.Value))
-          res.Add(x);
+      foreach (var x in layer.LayerDictionaryEntries.Select(x => x.Value))
+        res.Add(x);
 
       return res;
     }
 
     public override IEnumerable<string> GetLayerValues(Guid layerGuid)
-      => (from x in _corpus.Layers where x.GUID == layerGuid select x).FirstOrDefault()?.LayerDictionaryEntries.Select(x => x.Value);
+    {
+      return (from x in _corpus.Layers where x.GUID == layerGuid select x).FirstOrDefault()?.LayerDictionaryEntries
+        .Select(x => x.Value);
+    }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, string layerDisplayname)
-      =>
-      GetReadableDocument(
+    {
+      return GetReadableDocument(
         documentGuid,
         (from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID).FirstOrDefault());
+    }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, Guid layerGuid)
-      => GetLayer(layerGuid).GetReadableDocumentByGuid(documentGuid);
+    {
+      return GetLayer(layerGuid).GetReadableDocumentByGuid(documentGuid);
+    }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocumentSnippet(
-        Guid documentGuid,
-        string layerDisplayname,
-        int start,
-        int stop)
-      =>
-      GetLayer((from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID).FirstOrDefault())
+      Guid documentGuid,
+      string layerDisplayname,
+      int start,
+      int stop)
+    {
+      return GetLayer((from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID).FirstOrDefault())
         .GetReadableDocumentByGuid(documentGuid);
+    }
 
     public override Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(
       Guid documentGuid)
@@ -316,12 +359,12 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
     public override void LayerNew(string layerDisplayname)
     {
       _db.Layers.InsertOnSubmit(
-           new Layer
-           {
-             CorpusID = _corpus.ID,
-             Displayname = layerDisplayname,
-             GUID = Guid.NewGuid()
-           });
+        new Layer
+        {
+          CorpusID = _corpus.ID,
+          Displayname = layerDisplayname,
+          GUID = Guid.NewGuid()
+        });
       _db.SubmitChanges();
     }
 
@@ -358,7 +401,10 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
       }
     }
 
-    public override void Save(string path, bool useCompression) { _db.SubmitChanges(); }
+    public override void Save(string path, bool useCompression)
+    {
+      _db.SubmitChanges();
+    }
 
     public override void SetCorpusMetadata(string key, object value)
     {
@@ -384,7 +430,7 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
       string layerValue)
     {
       var layer = GetLayer(layerGuid);
-      return (layer != null)
+      return layer != null
              && layer.SetDocumentLayerValueMaskBySwitch(documentGuid, sentenceIndex, wordIndex, layerValue);
     }
 
@@ -423,6 +469,7 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
         else
           exsits.Value = ValueSerializer.SerializeValue(x.Value);
       }
+
       _db.SubmitChanges();
     }
 
@@ -433,7 +480,8 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
 
       foreach (var document in _corpus.Documents)
       {
-        var exsits = (from y in document.DocumentMetadataEntries where y.Label == metadataKey select y).FirstOrDefault();
+        var exsits = (from y in document.DocumentMetadataEntries where y.Label == metadataKey select y)
+          .FirstOrDefault();
         if (exsits != null)
           _db.DocumentMetadataEntries.InsertOnSubmit(
             new DocumentMetadataEntry
@@ -443,6 +491,7 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
               Value = ValueSerializer.SerializeValue(Activator.CreateInstance(type))
             });
       }
+
       _db.SubmitChanges();
     }
   }

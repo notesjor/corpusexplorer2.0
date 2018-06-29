@@ -22,7 +22,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple.Abstract
     protected AbstractMetadata(Project project) : base(project)
     {
       InitializeComponent();
-      _editor.NewProperty += MetadataEditor1_NewProperty;
       ButtonOkClick += MetadataSingle_ButtonOkClick;
     }
 
@@ -31,13 +30,23 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple.Abstract
       RefreshMetadata(documentMetadata);
     }
 
+    public Dictionary<string, object> DocumentMetadata { get; set; }
+
+    public event EventHandler NewProperty;
+
     protected void RefreshMetadata(Dictionary<string, object> documentMetadata)
     {
-      _editor.Metadata = DocumentMetadata;
+      if (_editor != null)
+        _editor.Metadata = DocumentMetadata;
       DocumentMetadata = documentMetadata;
     }
 
-    public Dictionary<string, object> DocumentMetadata { get; set; }
+    protected void RegisterMetadataEditor(MetadataEditor editor)
+    {
+      _editor = editor;
+      if (_editor != null)
+        _editor.NewProperty += MetadataEditor1_NewProperty;
+    }
 
     private void MetadataEditor1_NewProperty(object sender, EventArgs e)
     {
@@ -45,13 +54,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple.Abstract
         return;
 
       NewProperty(sender, null);
-      _editor.Metadata = DocumentMetadata;
+      if (_editor != null)
+        _editor.Metadata = DocumentMetadata;
     }
 
-    private void MetadataSingle_ButtonOkClick(object sender, EventArgs e) { DocumentMetadata = _editor.Metadata; }
-    
-    public event EventHandler NewProperty;
-
-    protected void RegisterMetadataEditor(MetadataEditor editor) { _editor = editor; }
+    private void MetadataSingle_ButtonOkClick(object sender, EventArgs e)
+    {
+      if (_editor != null)
+        DocumentMetadata = _editor.Metadata;
+    }
   }
 }

@@ -29,7 +29,11 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     /// <summary>
     ///   Gets or sets a value indicating whether quick fix checked.
     /// </summary>
-    public bool QuickFixChecked { get { return radCheckBox1.Checked; } set { radCheckBox1.Checked = value; } }
+    public bool QuickFixChecked
+    {
+      get => radCheckBox1.Checked;
+      set => radCheckBox1.Checked = value;
+    }
 
     /// <summary>
     ///   Gets or sets the quick fix info describtion.
@@ -49,22 +53,48 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     /// <summary>
     ///   Gets or sets a value indicating whether quick fix show fix.
     /// </summary>
-    public bool QuickFixShowFix { get { return btn_fix.Visible; } set { btn_fix.Visible = value; } }
+    public bool QuickFixShowFix
+    {
+      get => btn_fix.Visible;
+      set => btn_fix.Visible = value;
+    }
 
     /// <summary>
     ///   Gets or sets a value indicating whether quick fix show info.
     /// </summary>
-    public bool QuickFixShowInfo { get { return btn_info.Visible; } set { btn_info.Visible = value; } }
+    public bool QuickFixShowInfo
+    {
+      get => btn_info.Visible;
+      set => btn_info.Visible = value;
+    }
 
     /// <summary>
     ///   Gets or sets a value indicating whether quick fix show refresh.
     /// </summary>
-    public bool QuickFixShowRefresh { get { return btn_refresh.Visible; } set { btn_refresh.Visible = value; } }
+    public bool QuickFixShowRefresh
+    {
+      get => btn_refresh.Visible;
+      set => btn_refresh.Visible = value;
+    }
 
     /// <summary>
     ///   Gets or sets the quick fix text.
     /// </summary>
-    public string QuickFixText { get { return radCheckBox1.Text; } set { radCheckBox1.Text = value; } }
+    public string QuickFixText
+    {
+      get => radCheckBox1.Text;
+      set => radCheckBox1.Text = value;
+    }
+
+    /// <summary>
+    ///   The qucik fix refresh.
+    /// </summary>
+    public event EventHandler QucikFixRefresh;
+
+    /// <summary>
+    ///   The quick fix execute.
+    /// </summary>
+    public event EventHandler QuickFixExecute;
 
     /// <summary>
     ///   The btn_fix_ click.
@@ -107,15 +137,5 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     {
       QucikFixRefresh?.Invoke(sender, e);
     }
-
-    /// <summary>
-    ///   The qucik fix refresh.
-    /// </summary>
-    public event EventHandler QucikFixRefresh;
-
-    /// <summary>
-    ///   The quick fix execute.
-    /// </summary>
-    public event EventHandler QuickFixExecute;
   }
 }

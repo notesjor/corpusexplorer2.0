@@ -17,22 +17,26 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
 {
   public partial class DisambigutionTree : AbstractView
   {
-    public DisambigutionTree() { InitializeComponent(); }
+    public DisambigutionTree()
+    {
+      InitializeComponent();
+    }
 
     private void Analyse()
     {
-      var vm = ViewModelGet<DisambiguationViewModel>();
-      vm.LayerQuery = txt_queryA.Text;
+      var vm = GetViewModel<DisambiguationViewModel>();
+      vm.LayerQuery = wordBag1.ResultQueries.First();
+      vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
       vm.Analyse();
 
-      var root = new RadTreeNode(string.Format(Resources.ProfilVon0, txt_queryA.Text));
+      var root = new RadTreeNode(string.Format(Resources.ProfilVon0, wordBag1.ResultQueries.First()));
       RecursivFillNode(root, vm.RootCluster.GetClusters());
 
       radTreeView1.Nodes.Clear();
       radTreeView1.Nodes.Add(root);
     }
 
-    private void btn_start_Click(object sender, EventArgs e)
+    private void wordBag1_ExecuteButtonClicked(object sender, EventArgs e)
     {
       Processing.Invoke(Resources.DisambiguierungLäuft, Analyse);
     }
@@ -43,8 +47,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
         return;
 
       var c = clusters.ToArray();
-      if ((c.Length < 2) ||
-          (c[1] == null))
+      if (c.Length < 2 ||
+          c[1] == null)
         return;
 
       foreach (var cluster in c)

@@ -17,7 +17,10 @@ namespace CorpusExplorer.Sdk.Blocks
     private double _partAPercent;
     private double _partBPercent;
 
-    public RandomSelectionSplitBlock() { PartAPercent = 50; }
+    public RandomSelectionSplitBlock()
+    {
+      PartAPercent = 50;
+    }
 
     public double PartAPercent
     {

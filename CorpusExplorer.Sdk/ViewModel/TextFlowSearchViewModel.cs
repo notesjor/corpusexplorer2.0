@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Blocks.Flow;
@@ -15,13 +16,57 @@ namespace CorpusExplorer.Sdk.ViewModel
     public bool AutoJoin { get; set; } = true;
 
     public FlowNode BranchPost { get; set; }
-
     public FlowNode BranchPre { get; set; }
+
     public bool HighlightCooccurrences { get; set; }
 
     public string LayerDisplayname { get; set; } = "Wort";
     public IEnumerable<string> LayerQueryPhrase { get; set; }
-    public IEnumerable<string> LayerValues => Selection.GetLayerValues(LayerDisplayname);
+    
+    public IEnumerable<string> DiscoveredNodes
+    {
+      get
+      {
+        var res = new HashSet<string>();
+        DiscoverNodes(ref res, BranchPre);
+        DiscoverNodes(ref res, BranchPre);
+        return res;
+      }
+    }
+
+    private void DiscoverNodes(ref HashSet<string> res, FlowNode current)
+    {
+      if(current == null)
+        return;
+      res.Add(current.Content);
+      foreach (var n in current.Children)
+        DiscoverNodes(ref res, n);
+    }
+    
+    public IEnumerable<Tuple<string, int, string>> DiscoveredConnections
+    {
+      get
+      {
+        var res = new List<Tuple<string, int, string>>();
+        DiscoverConnections(ref res, BranchPre, false);
+        DiscoverConnections(ref res, BranchPost, true);
+        return res;
+      }
+    }
+
+    private void DiscoverConnections(ref List<Tuple<string, int, string>> res, FlowNode current, bool forward)
+    {
+      if(current?.Children == null)
+        return;
+
+      foreach (var child in current.Children)
+      {
+        res.Add(forward
+          ? new Tuple<string, int, string>(current.Content, child.Frequency, child.Content)
+          : new Tuple<string, int, string>(child.Content, child.Frequency, current.Content));
+        DiscoverConnections(ref res, child, forward);
+      }
+    }
 
     protected override void ExecuteAnalyse()
     {
@@ -38,24 +83,27 @@ namespace CorpusExplorer.Sdk.ViewModel
       var post = new List<string[]>();
 
       foreach (var c in block.SearchResults)
-      foreach (var d in c.Value)
-      foreach (var s in d.Value)
-      {
-        var sent = Selection.GetReadableDocumentSnippet(d.Key, "Wort", s.Key, s.Key)
-                            .ReduceDocumentToStreamDocument().ToArray();
+        foreach (var d in c.Value)
+          foreach (var s in d.Value)
+          {
+            var sent = Selection.GetReadableDocumentSnippet(d.Key, "Wort", s.Key, s.Key)
+              .ReduceDocumentToStreamDocument().ToArray();
 
-        var tmp = new List<string>();
+            if (sent.Length > 200)
+              continue;
 
-        for (var i = 0; i < s.Value.First(); i++)
-          tmp.Add(sent[i]);
-        pre.Add(tmp.ToArray());
+            var tmp = new List<string>();
 
-        tmp.Clear();
+            for (var i = 0; i < s.Value.First(); i++)
+              tmp.Add(sent[i]);
+            pre.Add(tmp.ToArray());
 
-        for (var i = s.Value.Last() + 1; i < sent.Length; i++)
-          tmp.Add(sent[i]);
-        post.Add(tmp.ToArray());
-      }
+            tmp.Clear();
+
+            for (var i = s.Value.Last() + 1; i < sent.Length; i++)
+              tmp.Add(sent[i]);
+            post.Add(tmp.ToArray());
+          }
 
       if (HighlightCooccurrences)
       {
@@ -68,7 +116,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 
       BranchPre = new FlowNode(phrase);
       foreach (var x in pre)
-        BranchPre.Merge(x.ToList(), FlowNodeDirection.Backward);
+          BranchPre.Merge(x.ToList(), FlowNodeDirection.Backward);
       if (AutoJoin)
         BranchPre.Join(FlowNodeDirection.Backward);
 
@@ -77,6 +125,11 @@ namespace CorpusExplorer.Sdk.ViewModel
         BranchPost.Merge(x.ToList(), FlowNodeDirection.Forward);
       if (AutoJoin)
         BranchPost.Join(FlowNodeDirection.Forward);
+    }
+
+    protected override bool Validate()
+    {
+      return LayerQueryPhrase != null;
     }
 
     private void Highlight(ref List<string[]> list)
@@ -96,7 +149,5 @@ namespace CorpusExplorer.Sdk.ViewModel
       _highlighter = new HashSet<string>(
         from x in LayerQueryPhrase where full.ContainsKey(x) from y in full[x] select y.Key);
     }
-
-    protected override bool Validate() { return LayerQueryPhrase != null; }
   }
 }

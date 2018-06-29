@@ -80,44 +80,6 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
       _restrictedVowels = new[] {'a', 'e', 'i', 'o', 'u', 'ä', 'ö'};
       _longVowels = new[] {"aa", "ee", "ii", "oo", "uu", "ää", "öö"};
     } // End of the constructor
-    // End of the GetSteamWords method
-
-    /// <summary>
-    ///   Calculate indexes for R1 and R2
-    /// </summary>
-    /// <param name="characters">The char array to calculate indexes for</param>
-    /// <returns>An int array with the r1 and r2 index</returns>
-    private int[] CalculateR1R2(char[] characters)
-    {
-      // Create ints
-      var r1 = characters.Length;
-      var r2 = characters.Length;
-
-      // Calculate R1
-      for (var i = 1; i < characters.Length; i++)
-      {
-        if (IsVowel(characters[i]) ||
-            (IsVowel(characters[i - 1]) != true))
-          continue;
-        // Set the r1 index
-        r1 = i + 1;
-        break;
-      }
-
-      // Calculate R2
-      for (var i = r1; i < characters.Length; ++i)
-      {
-        if (IsVowel(characters[i]) ||
-            (IsVowel(characters[i - 1]) != true))
-          continue;
-        // Set the r2 index
-        r2 = i + 1;
-        break;
-      }
-
-      // Return the int array
-      return new[] {r1, r2};
-    } // End of the CalculateR1R2 method
 
     /// <summary>
     ///   Get the steam word from a specific word
@@ -151,7 +113,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
 
         // Delete if in R1 and preceded by n, t or a vowel
         if (strR1.EndsWith(end) &&
-            ((precedingChar == 'n') || (precedingChar == 't') || IsVowel(precedingChar)))
+            (precedingChar == 'n' || precedingChar == 't' || IsVowel(precedingChar)))
         {
           word = word.Remove(word.Length - end.Length);
           continueStep1 = false;
@@ -200,6 +162,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
               word = word.Remove(word.Length - 1);
               word += "i";
             }
+
             break;
           case "an":
             // Delete if preceded by one of:   ta   ssa   sta   lla   lta   na
@@ -277,6 +240,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
                 word = word.Remove(word.Length - end.Length);
                 endingRemovedStep3 = true;
               }
+
               break;
             default:
               switch (end)
@@ -284,8 +248,8 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
                 case "seen":
                   // Get the preceding two letters
                   precedingString = word.Length > end.Length + 1
-                                      ? word.Substring(word.Length - end.Length - 2, 2)
-                                      : "";
+                    ? word.Substring(word.Length - end.Length - 2, 2)
+                    : "";
 
                   // Delete if preceded by LV
                   if (_longVowels.Any(t => precedingString == t))
@@ -293,6 +257,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
                     word = word.Remove(word.Length - end.Length);
                     endingRemovedStep3 = true;
                   }
+
                   break;
                 case "a":
                 case "ä":
@@ -301,13 +266,14 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
                   var before2 = word.Length > 2 ? word[word.Length - 3] : '\0';
 
                   // Delete if preceded by cv
-                  if ((word.Length > 2) &&
-                      (IsVowel(before2) == false) &&
+                  if (word.Length > 2 &&
+                      IsVowel(before2) == false &&
                       IsVowel(before1))
                   {
                     word = word.Remove(word.Length - end.Length);
                     endingRemovedStep3 = true;
                   }
+
                   break;
                 case "tta":
                 case "ttä":
@@ -317,6 +283,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
                     word = word.Remove(word.Length - end.Length);
                     endingRemovedStep3 = true;
                   }
+
                   break;
                 case "ta":
                 case "tä":
@@ -344,7 +311,9 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
 
                   // If preceded by LV or ie, delete the last vowel
                   if (word.EndsWith("ie"))
+                  {
                     word = word.Remove(word.Length - 1);
+                  }
                   else
                   {
                     // Get the preceding two letters
@@ -353,8 +322,10 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
                     if (_longVowels.Any(t => lastTwoLetters == t))
                       word = word.Remove(word.Length - 1);
                   }
+
                   break;
               }
+
               break;
           }
         }
@@ -435,7 +406,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
             if (strR2.EndsWith("imma"))
               word = word.Remove(word.Length - 4);
             else if (strR2.EndsWith("mma") &&
-                     (word.EndsWith("poma") == false))
+                     word.EndsWith("poma") == false)
               word = word.Remove(word.Length - 3);
           }
         }
@@ -457,8 +428,8 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
 
       // b) If R1 ends cX, c a consonant and X one of: a   ä   e   i, delete the last letter
       var c = strR1.Length > 1 ? strR1[strR1.Length - 2] : '\0';
-      if ((c != '\0') &&
-          (IsVowel(c) == false) &&
+      if (c != '\0' &&
+          IsVowel(c) == false &&
           (strR1.EndsWith("a") || strR1.EndsWith("ä") || strR1.EndsWith("e") || strR1.EndsWith("i")))
         word = word.Remove(word.Length - 1);
 
@@ -482,8 +453,8 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
       for (var i = startIndex; i > -1; i--)
       {
         // Try to find a double consonant
-        if ((i <= 0) ||
-            (word[i] != word[i - 1]) ||
+        if (i <= 0 ||
+            word[i] != word[i - 1] ||
             IsVowel(word[i]) ||
             IsVowel(word[i - 1]))
           continue;
@@ -508,5 +479,43 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
       // Return the word
       return word.ToLowerInvariant();
     } // End of the GetSteamWord method
+    // End of the GetSteamWords method
+
+    /// <summary>
+    ///   Calculate indexes for R1 and R2
+    /// </summary>
+    /// <param name="characters">The char array to calculate indexes for</param>
+    /// <returns>An int array with the r1 and r2 index</returns>
+    private int[] CalculateR1R2(char[] characters)
+    {
+      // Create ints
+      var r1 = characters.Length;
+      var r2 = characters.Length;
+
+      // Calculate R1
+      for (var i = 1; i < characters.Length; i++)
+      {
+        if (IsVowel(characters[i]) ||
+            IsVowel(characters[i - 1]) != true)
+          continue;
+        // Set the r1 index
+        r1 = i + 1;
+        break;
+      }
+
+      // Calculate R2
+      for (var i = r1; i < characters.Length; ++i)
+      {
+        if (IsVowel(characters[i]) ||
+            IsVowel(characters[i - 1]) != true)
+          continue;
+        // Set the r2 index
+        r2 = i + 1;
+        break;
+      }
+
+      // Return the int array
+      return new[] {r1, r2};
+    } // End of the CalculateR1R2 method
   } // End of the class
 } // End of the namespace

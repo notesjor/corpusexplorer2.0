@@ -9,15 +9,19 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Corpus.Model
   [Serializable]
   public class EchtzeitCorpus
   {
-    [NonSerialized]
-    private Dictionary<string, object> _metadata;
+    [NonSerialized] private Dictionary<string, object> _metadata;
 
     private KeyValuePair<string, object>[] _metadataSerialized;
 
     public string Displayname { get; set; }
     public Guid Guid { get; set; }
     public List<EchtzeitLayer> Layers { get; set; }
-    public Dictionary<string, object> Metadata { get { return _metadata; } set { _metadata = value; } }
+
+    public Dictionary<string, object> Metadata
+    {
+      get => _metadata;
+      set => _metadata = value;
+    }
 
     [OnDeserialized]
     private void OnDeserialized(StreamingContext context)
@@ -33,13 +37,20 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Corpus.Model
           foreach (var entry in _metadataSerialized.Where(entry => !_metadata.ContainsKey(entry.Key)))
             _metadata.Add(entry.Key, entry.Value);
       }
+
       _metadataSerialized = null;
     }
 
     [OnSerialized]
-    private void OnSerialized(StreamingContext context) { _metadataSerialized = null; }
+    private void OnSerialized(StreamingContext context)
+    {
+      _metadataSerialized = null;
+    }
 
     [OnSerializing]
-    private void OnSerializing(StreamingContext context) { _metadataSerialized = _metadata?.ToArray(); }
+    private void OnSerializing(StreamingContext context)
+    {
+      _metadataSerialized = _metadata?.ToArray();
+    }
   }
 }

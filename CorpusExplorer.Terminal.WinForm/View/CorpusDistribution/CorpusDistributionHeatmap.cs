@@ -1,3 +1,4 @@
+using CorpusExplorer.Terminal.WinForm.Helper;
 using CorpusExplorer.Terminal.WinForm.Properties;
 
 #region
@@ -36,11 +37,16 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       heatMapView1.DataSource = demo;
     }
 
+    private void btn_export_Click(object sender, EventArgs e)
+    {
+      DataTableExporter.Export(_vm.GetDataTable());
+    }
+
     private void combo_group_SelectedIndexChanged(object sender, PositionChangedEventArgs e)
     {
-      if ((combo_groupA.SelectedIndex == -1) ||
-          (combo_groupB.SelectedIndex == -1) ||
-          (combo_groupA.SelectedIndex == combo_groupB.SelectedIndex))
+      if (combo_groupA.SelectedIndex == -1 ||
+          combo_groupB.SelectedIndex == -1 ||
+          combo_groupA.SelectedIndex == combo_groupB.SelectedIndex)
         return;
 
       _vm.CategroyA = combo_groupA.SelectedItem.Text;
@@ -51,7 +57,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
 
     private void ShowViewCall(object sender, EventArgs e)
     {
-      _vm = ViewModelGet<CorpusWeightLimmitedViewModel>();
+      _vm = GetViewModel<CorpusWeightLimmitedViewModel>();
 
       var groupA = Project.CurrentSelection.GetDocumentMetadataPrototypeOnlyProperties().ToList();
       var groupB = Project.CurrentSelection.GetDocumentMetadataPrototypeOnlyProperties().ToList();

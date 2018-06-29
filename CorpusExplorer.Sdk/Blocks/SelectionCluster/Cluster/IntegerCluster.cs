@@ -1,12 +1,17 @@
 using System;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
+using CorpusExplorer.Sdk.Helper;
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {
   public class IntegerCluster : AbstractCluster
   {
     private readonly int _value;
-    public IntegerCluster(int value) { _value = value; }
+
+    public IntegerCluster(int value)
+    {
+      _value = value;
+    }
 
     public override object CentralValue => _value;
 
@@ -16,8 +21,8 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
     {
       try
       {
-        var test = (int) obj;
-        if (_value != test)
+        var val = obj.SafeCastInt();
+        if (_value != val)
           return false;
         Add(documentGuid);
         return true;

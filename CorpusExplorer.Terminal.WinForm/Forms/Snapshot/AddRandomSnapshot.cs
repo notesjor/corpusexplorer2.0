@@ -21,7 +21,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       count_docs.Maximum = selection.CountDocuments;
     }
 
-    public Selection Selection { get; set; }
+    public Selection InvertSelection { get; private set; }
+
+    public Selection Selection { get; private set; }
 
     private void AddRandomSnapshot_ButtonOkClick(object sender, EventArgs e)
     {
@@ -29,18 +31,19 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       block.DocumentCount = (int) count_docs.Value;
       block.Calculate();
       Selection = block.RandomSelection;
+      InvertSelection = block.RandomInvertSelection;
     }
 
     [NamedSynchronizedLock("CountLock")]
     private void count_docs_ValueChanged(object sender, EventArgs e)
     {
-      count_percent.Value = count_docs.Value/count_docs.Maximum*(decimal) 100.0;
+      count_percent.Value = count_docs.Value / count_docs.Maximum * (decimal) 100.0;
     }
 
     [NamedSynchronizedLock("CountLock")]
     private void count_percent_ValueChanged(object sender, EventArgs e)
     {
-      count_docs.Value = (decimal) ((double) count_docs.Maximum/100.0d)*count_percent.Value;
+      count_docs.Value = (decimal) ((double) count_docs.Maximum / 100.0d) * count_percent.Value;
     }
   }
 }

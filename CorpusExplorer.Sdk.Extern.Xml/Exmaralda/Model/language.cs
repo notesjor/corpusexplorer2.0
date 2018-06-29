@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NMTOKEN")]
-    public string lang { get { return langField; } set { langField = value; } }
+    public string lang
+    {
+      get => langField;
+      set => langField = value;
+    }
   }
 }

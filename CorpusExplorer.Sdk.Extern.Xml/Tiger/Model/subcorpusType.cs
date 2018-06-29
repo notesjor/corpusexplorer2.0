@@ -25,15 +25,27 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tiger.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "anyURI")]
-    public string external { get { return externalField; } set { externalField = value; } }
+    public string external
+    {
+      get => externalField;
+      set => externalField = value;
+    }
 
     /// <remarks />
     [XmlElement("s", typeof(sentenceType), Form = XmlSchemaForm.Unqualified)]
     [XmlElement("subcorpus", typeof(subcorpusType), Form = XmlSchemaForm.Unqualified)]
-    public object[] items { get { return itemsField; } set { itemsField = value; } }
+    public object[] items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string name { get { return nameField; } set { nameField = value; } }
+    public string name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
   }
 }

@@ -24,12 +24,24 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
     private revisionDesc revisionDescField;
 
     /// <remarks />
-    public fileDesc fileDesc { get { return fileDescField; } set { fileDescField = value; } }
+    public fileDesc fileDesc
+    {
+      get => fileDescField;
+      set => fileDescField = value;
+    }
 
     /// <remarks />
-    public profileDesc profileDesc { get { return profileDescField; } set { profileDescField = value; } }
+    public profileDesc profileDesc
+    {
+      get => profileDescField;
+      set => profileDescField = value;
+    }
 
     /// <remarks />
-    public revisionDesc revisionDesc { get { return revisionDescField; } set { revisionDescField = value; } }
+    public revisionDesc revisionDesc
+    {
+      get => revisionDescField;
+      set => revisionDescField = value;
+    }
   }
 }

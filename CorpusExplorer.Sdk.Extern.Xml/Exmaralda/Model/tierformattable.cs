@@ -25,18 +25,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement("referenced-file")]
-    public referencedfile[] referencedfile { get { return referencedfileField; } set { referencedfileField = value; } }
+    public referencedfile[] referencedfile
+    {
+      get => referencedfileField;
+      set => referencedfileField = value;
+    }
 
     /// <remarks />
     [XmlElement("tier-format")]
-    public tierformat[] tierformat { get { return tierformatField; } set { tierformatField = value; } }
+    public tierformat[] tierformat
+    {
+      get => tierformatField;
+      set => tierformatField = value;
+    }
 
     /// <remarks />
     [XmlElement("timeline-item-format")]
     public timelineitemformat[] timelineitemformat
     {
-      get { return timelineitemformatField; }
-      set { timelineitemformatField = value; }
+      get => timelineitemformatField;
+      set => timelineitemformatField = value;
     }
   }
 }

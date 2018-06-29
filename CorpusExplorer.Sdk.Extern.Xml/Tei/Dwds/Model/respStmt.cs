@@ -20,9 +20,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model
     private resp respField;
 
     /// <remarks />
-    public orgName orgName { get { return orgNameField; } set { orgNameField = value; } }
+    public orgName orgName
+    {
+      get => orgNameField;
+      set => orgNameField = value;
+    }
 
     /// <remarks />
-    public resp resp { get { return respField; } set { respField = value; } }
+    public resp resp
+    {
+      get => respField;
+      set => respField = value;
+    }
   }
 }

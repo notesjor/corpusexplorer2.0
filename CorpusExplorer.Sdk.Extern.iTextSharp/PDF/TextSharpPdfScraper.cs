@@ -10,6 +10,12 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.PDF
 {
   public class TextSharpPdfScraper : AbstractScraper
   {
+    public enum TextSharpPdfScraperStrategy
+    {
+      Location,
+      Simple
+    }
+
     public override string DisplayName => "iTextSharp";
 
     public TextSharpPdfScraperStrategy Strategy { get; set; } = TextSharpPdfScraperStrategy.Simple;
@@ -17,12 +23,13 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.PDF
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
       using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
+      using (var bs = new BufferedStream(fs))
       {
-        var reader = new PdfReader(fs);
+        var reader = new PdfReader(bs);
         var strategy = Strategy == TextSharpPdfScraperStrategy.Simple
-                         ? (ITextExtractionStrategy)
-                           new SimpleTextExtractionStrategy()
-                         : new LocationTextExtractionStrategy();
+          ? (ITextExtractionStrategy)
+          new SimpleTextExtractionStrategy()
+          : new LocationTextExtractionStrategy();
 
         var output = new StringBuilder();
         for (var i = 1; i <= reader.NumberOfPages; i++)
@@ -31,20 +38,15 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.PDF
           var contentStreamProcessor = new PdfContentStreamProcessor(strategy);
           contentStreamProcessor.ProcessContent(ContentByteUtils.GetContentBytesForPage(reader, i), asDict);
         }
+
         output.AppendLine(strategy.GetResultantText());
 
-        var res = new Dictionary<string, object> { { "Text", output.ToString() }, { "Datei", file } };
+        var res = new Dictionary<string, object> {{"Text", output.ToString()}, {"Datei", file}};
         foreach (var info in reader.Info.Where(info => !res.ContainsKey(info.Key)))
           res.Add(info.Key, info.Value);
 
-        return new[] { res };
+        return new[] {res};
       }
-    }
-
-    public enum TextSharpPdfScraperStrategy
-    {
-      Location,
-      Simple
     }
   }
 }

@@ -12,7 +12,10 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
   [ToolboxItem(true)]
   public partial class WebGetVisualisation : WebRequestVisualisation
   {
-    public WebGetVisualisation() { InitializeComponent(); }
+    public WebGetVisualisation()
+    {
+      InitializeComponent();
+    }
 
     public override void GoToMainpage()
     {

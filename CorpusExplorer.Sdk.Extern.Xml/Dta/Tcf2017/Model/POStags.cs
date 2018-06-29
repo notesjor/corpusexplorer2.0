@@ -1,45 +1,38 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
-{
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.dspin.de/data/textcorpus")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.dspin.de/data/textcorpus", IsNullable = false)]
-  public partial class POStags
-  {
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
 
+namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
+{
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true, Namespace = "http://www.dspin.de/data/textcorpus")]
+  [XmlRoot(Namespace = "http://www.dspin.de/data/textcorpus", IsNullable = false)]
+  public class POStags
+  {
     private tag[] tagField;
 
     private string tagsetField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("tag")]
+    /// <remarks />
+    [XmlElement("tag")]
     public tag[] tag
     {
-      get
-      {
-        return this.tagField;
-      }
-      set
-      {
-        this.tagField = value;
-      }
+      get => tagField;
+      set => tagField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NMTOKEN")]
+    /// <remarks />
+    [XmlAttribute(DataType = "NMTOKEN")]
     public string tagset
     {
-      get
-      {
-        return this.tagsetField;
-      }
-      set
-      {
-        this.tagsetField = value;
-      }
+      get => tagsetField;
+      set => tagsetField = value;
     }
   }
 }

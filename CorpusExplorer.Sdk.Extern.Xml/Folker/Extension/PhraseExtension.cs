@@ -37,6 +37,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Extension
       return phrase.Items.OfType<uncertain>().Select(o => o);
     }
 
-    public static IEnumerable<w> GetAllWs(this phrase phrase) { return phrase.Items.OfType<w>().Select(o => o); }
+    public static IEnumerable<w> GetAllWs(this phrase phrase)
+    {
+      return phrase.Items.OfType<w>().Select(o => o);
+    }
   }
 }

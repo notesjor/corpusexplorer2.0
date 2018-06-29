@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
 using CorpusExplorer.Sdk.Helper;
 using Nest;
@@ -13,11 +11,9 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Model
     private Guid _documentId;
     private Guid _layerId;
 
-    [Text]
-    public string ContentRaw { get; set; }
+    [Object(Ignore = true)] public int[][] Content { get; set; }
 
-    [Object(Ignore = true)]
-    public int[][] Content { get; set; }
+    [Text] public string ContentRaw { get; set; }
 
     public Guid DocumentId
     {
@@ -41,18 +37,18 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Model
       }
     }
 
-    [OnSerializing]
-    private void OnSerializing(StreamingContext context)
-    {
-      if (Content != null)
-        ContentRaw = DocumentSerializerHelper.SerializeToBase64String(Content);
-    }
-
     [OnDeserialized]
     private void OnDeserialized(StreamingContext context)
     {
       if (ContentRaw != null)
         Content = DocumentSerializerHelper.Deserialize(ContentRaw);
+    }
+
+    [OnSerializing]
+    private void OnSerializing(StreamingContext context)
+    {
+      if (Content != null)
+        ContentRaw = DocumentSerializerHelper.SerializeToBase64String(Content);
     }
   }
 }

@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlElement("p")]
-    public p[] p { get { return pField; } set { pField = value; } }
+    public p[] p
+    {
+      get => pField;
+      set => pField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

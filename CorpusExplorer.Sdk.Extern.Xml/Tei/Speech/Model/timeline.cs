@@ -25,14 +25,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string origin { get { return originField; } set { originField = value; } }
+    public string origin
+    {
+      get => originField;
+      set => originField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string unit { get { return unitField; } set { unitField = value; } }
+    public string unit
+    {
+      get => unitField;
+      set => unitField = value;
+    }
 
     /// <remarks />
     [XmlElement("when")]
-    public when[] when { get { return whenField; } set { whenField = value; } }
+    public when[] when
+    {
+      get => whenField;
+      set => whenField = value;
+    }
   }
 }

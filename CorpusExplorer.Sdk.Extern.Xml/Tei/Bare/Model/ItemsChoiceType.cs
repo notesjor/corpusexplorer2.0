@@ -18,12 +18,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Bare.Model
     list,
 
     /// <remarks />
-    [XmlEnum("model.listLike")]
-    modellistLike,
+    [XmlEnum("model.listLike")] modellistLike,
 
     /// <remarks />
-    [XmlEnum("model.pLike")]
-    modelpLike,
+    [XmlEnum("model.pLike")] modelpLike,
 
     /// <remarks />
     p

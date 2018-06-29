@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlElement("category")]
-    public category[] category { get { return categoryField; } set { categoryField = value; } }
+    public category[] category
+    {
+      get => categoryField;
+      set => categoryField = value;
+    }
   }
 }

@@ -24,10 +24,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string baseform { get { return baseformField; } set { baseformField = value; } }
+    public string baseform
+    {
+      get => baseformField;
+      set => baseformField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

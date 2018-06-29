@@ -25,22 +25,30 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Bare.Model
 
     /// <remarks />
     [XmlElement("div")]
-    public frontModeldivLikeDiv Item { get { return itemField; } set { itemField = value; } }
+    public frontModeldivLikeDiv Item
+    {
+      get => itemField;
+      set => itemField = value;
+    }
 
     /// <remarks />
     [XmlElement("head", typeof(head))]
     [XmlElement("model.pLike", typeof(modeldivPart))]
     [XmlElement("p", typeof(modeldivPart))]
     [XmlChoiceIdentifier("ItemsElementName")]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlElement("ItemsElementName")]
     [XmlIgnore]
     public ItemsChoiceType1[] ItemsElementName
     {
-      get { return itemsElementNameField; }
-      set { itemsElementNameField = value; }
+      get => itemsElementNameField;
+      set => itemsElementNameField = value;
     }
   }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
@@ -14,32 +13,22 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
   [Serializable]
   public class FilterQuerySingleLayerExactPhrase : AbstractFilterQuery
   {
-    [XmlAttribute("pattern")]
-    public static readonly string SearchPattern = ".<*>.";
+    [XmlAttribute("pattern")] public static readonly string SearchPattern = ".<*>.";
 
-    [XmlIgnore]
-    private readonly object _getQueriesLock = new object();
+    [XmlIgnore] private readonly object _getQueriesLock = new object();
 
-    [XmlIgnore]
-    private readonly object _getSentenceCallLock = new object();
+    [XmlIgnore] private readonly object _getSentenceCallLock = new object();
 
-    [XmlArray]
-    private IEnumerable<string> _layerQueries;
+    [XmlArray] private IEnumerable<string> _layerQueries;
 
-    [XmlIgnore]
-    private Dictionary<Guid, int[]> _layerQueryCache;
+    [XmlIgnore] private Dictionary<Guid, int[]> _layerQueryCache;
 
-    public FilterQuerySingleLayerExactPhrase() { _layerQueryCache = new Dictionary<Guid, int[]>(); }
+    public FilterQuerySingleLayerExactPhrase()
+    {
+      _layerQueryCache = new Dictionary<Guid, int[]>();
+    }
 
-    /// <summary>
-    ///   End of Index - wird von GetWordIndices verwendet um das Ende des Musters zu bestimmen.
-    /// </summary>
-    /// <value>The eoi.</value>
-    [XmlIgnore]
-    private int Eoi { get; set; }
-
-    [XmlAttribute("layer")]
-    public string LayerDisplayname { get; set; } = "Wort";
+    [XmlAttribute("layer")] public string LayerDisplayname { get; set; } = "Wort";
 
     [XmlIgnore]
     public IEnumerable<string> LayerQueries
@@ -70,6 +59,13 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     }
 
     /// <summary>
+    ///   End of Index - wird von GetWordIndices verwendet um das Ende des Musters zu bestimmen.
+    /// </summary>
+    /// <value>The eoi.</value>
+    [XmlIgnore]
+    private int Eoi { get; set; }
+
+    /// <summary>
     ///   Erstellt ein neues Objekt, das eine Kopie der aktuellen Instanz darstellt.
     /// </summary>
     /// <returns>
@@ -84,45 +80,6 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
         LayerQueries = LayerQueries,
         OrFilterQueries = OrFilterQueries.Select(q => q.Clone() as AbstractFilterQuery)
       };
-    }
-
-    private int[] GetQueries(AbstractCorpusAdapter corpus)
-    {
-      lock (_getQueriesLock)
-      {
-        if (_layerQueryCache.ContainsKey(corpus.CorpusGuid))
-          return _layerQueryCache[corpus.CorpusGuid];
-
-        var layers = corpus.GetLayers(LayerDisplayname);
-        var layer = layers?.FirstOrDefault();
-        if (layer == null)
-          return null;
-
-        var valid = true;
-        var res = new List<int>();
-        foreach (var query in LayerQueries)
-          if (query == SearchPattern)
-          {
-            res.Add(-1);
-          }
-          else
-          {
-            var idx = layer[query];
-            if (idx == -1)
-            {
-              valid = false;
-              break;
-            }
-            res.Add(idx);
-          }
-
-        if (res.Count == 0)
-          valid = false;
-
-        _layerQueryCache.Add(corpus.CorpusGuid, valid ? res.ToArray() : null);
-
-        return valid ? res.ToArray() : null;
-      }
     }
 
     /// <summary>
@@ -142,18 +99,14 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// </returns>
     protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      if (corpus == null ||
-          documentGuid == Guid.Empty)
+      if (corpus == null || documentGuid == Guid.Empty)
         return -1;
       var queries = GetQueries(corpus);
-      if (queries == null ||
-          queries.Length == 0)
+      if (queries == null || queries.Length == 0)
         return -1;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
       var doc = layer?[documentGuid];
-      if (doc == null ||
-          sentence < 0 ||
-          sentence >= doc.Length)
+      if (doc == null || sentence < 0 || sentence >= doc.Length)
         return -1;
 
       var s = doc[sentence];
@@ -199,9 +152,9 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
         if (Configuration.RightToLeftSupport)
         {
-
         }
         else
+        {
           for (var i = 0; i < doc.Length; i++)
           {
             if (doc[i] == null)
@@ -210,6 +163,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
               if (!queries.Where((t, k) => t != -1 && (j + k >= doc[i].Length || doc[i][j + k] != t)).Any())
                 res.Add(i);
           }
+        }
 
         return res;
       }
@@ -226,7 +180,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     ///   GetSentenceIndices() abgefragt werden.
     /// </param>
     /// <returns>Auflistung aller Vorkommen im Satz</returns>
-    protected override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       if (corpus == null ||
           documentGuid == Guid.Empty)
@@ -289,7 +243,6 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
         var sum = queries.Count(q => q > -1);
 
         if (Configuration.RightToLeftSupport)
-        {
           for (var i = s.Length; i > sum; i--)
           {
             var any = false;
@@ -301,10 +254,10 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
               any = true;
               break;
             }
+
             if (!any)
               return true;
           }
-        }
         else
           for (var i = 0; sum + i < s.Length; i++)
             if (!queries.Where((t, j) => i + j >= s.Length || t != -1 && s[i + j] != t).Any())
@@ -312,6 +265,46 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       }
 
       return false;
+    }
+
+    private int[] GetQueries(AbstractCorpusAdapter corpus)
+    {
+      lock (_getQueriesLock)
+      {
+        if (_layerQueryCache.ContainsKey(corpus.CorpusGuid))
+          return _layerQueryCache[corpus.CorpusGuid];
+
+        var layers = corpus.GetLayers(LayerDisplayname);
+        var layer = layers?.FirstOrDefault();
+        if (layer == null)
+          return null;
+
+        var valid = true;
+        var res = new List<int>();
+        foreach (var query in LayerQueries)
+          if (query == SearchPattern)
+          {
+            res.Add(-1);
+          }
+          else
+          {
+            var idx = layer[query];
+            if (idx == -1)
+            {
+              valid = false;
+              break;
+            }
+
+            res.Add(idx);
+          }
+
+        if (res.Count == 0)
+          valid = false;
+
+        _layerQueryCache.Add(corpus.CorpusGuid, valid ? res.ToArray() : null);
+
+        return valid ? res.ToArray() : null;
+      }
     }
   }
 }

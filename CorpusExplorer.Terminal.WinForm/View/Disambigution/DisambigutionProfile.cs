@@ -57,8 +57,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
 
     private void Analyse()
     {
-      var vm = ViewModelGet<DisambiguationViewModel>();
-      vm.LayerQuery = txt_queryA.Text;
+      var vm = GetViewModel<DisambiguationViewModel>();
+      vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
+      vm.LayerQuery = wordBag1.ResultQueries.First();
       vm.Analyse();
 
       for (var i = 0; i < 16; i++)
@@ -76,12 +77,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
 
       SetListView(list_33, vm.RootClusterLabels);
     }
-
-    private void btn_start_Click(object sender, EventArgs e)
-    {
-      Processing.Invoke(Resources.DisambiguierungLäuft, Analyse);
-    }
-
+    
     private void list_CheckedChanged(object sender, ListViewItemEventArgs e)
     {
       var hashset = new HashSet<string>();
@@ -106,8 +102,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
 
       for (var i = 0; i < sortedList.Length; i++)
       {
-        if ((i > 0) &&
-            (i%3 == 0))
+        if (i > 0 &&
+            i % 3 == 0)
           cindex++;
 
         foreach (var item in sortedList[i].Key.Items)
@@ -123,6 +119,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
 
       foreach (var label in items)
         list.Items.Add(new ListViewDataItem(label));
+    }
+
+    private void wordBag1_ExecuteButtonClicked(object sender, EventArgs e)
+    {
+      Processing.Invoke(Resources.DisambiguierungLäuft, Analyse);
     }
   }
 }

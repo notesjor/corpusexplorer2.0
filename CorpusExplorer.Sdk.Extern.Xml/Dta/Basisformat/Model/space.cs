@@ -23,14 +23,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string dim { get { return dimField; } set { dimField = value; } }
+    public string dim
+    {
+      get => dimField;
+      set => dimField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "integer")]
-    public string quantity { get { return quantityField; } set { quantityField = value; } }
+    public string quantity
+    {
+      get => quantityField;
+      set => quantityField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string unit { get { return unitField; } set { unitField = value; } }
+    public string unit
+    {
+      get => unitField;
+      set => unitField = value;
+    }
   }
 }

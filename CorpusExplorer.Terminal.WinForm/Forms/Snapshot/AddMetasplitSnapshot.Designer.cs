@@ -31,6 +31,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
     /// </summary>
     private void InitializeComponent()
     {
+      Telerik.WinControls.UI.RadListDataItem radListDataItem9 = new Telerik.WinControls.UI.RadListDataItem();
+      Telerik.WinControls.UI.RadListDataItem radListDataItem10 = new Telerik.WinControls.UI.RadListDataItem();
+      Telerik.WinControls.UI.RadListDataItem radListDataItem11 = new Telerik.WinControls.UI.RadListDataItem();
+      Telerik.WinControls.UI.RadListDataItem radListDataItem12 = new Telerik.WinControls.UI.RadListDataItem();
       Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
       Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
       Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
@@ -50,6 +54,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
       this.drop_auto = new Telerik.WinControls.UI.RadDropDownList();
       this.clearPanel2 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
+      this.panel_clusterFiller = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
+      this.drop_clusterFiller = new Telerik.WinControls.UI.RadDropDownList();
+      this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.drop_metaKey)).BeginInit();
@@ -67,12 +74,16 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       ((System.ComponentModel.ISupportInitialize)(this.drop_auto)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.clearPanel2)).BeginInit();
       this.clearPanel2.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.panel_clusterFiller)).BeginInit();
+      this.panel_clusterFiller.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.drop_clusterFiller)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
       // 
       // radPanel1
       // 
-      this.radPanel1.Location = new System.Drawing.Point(0, 287);
+      this.radPanel1.Location = new System.Drawing.Point(0, 328);
       this.radPanel1.Size = new System.Drawing.Size(488, 38);
       // 
       // header1
@@ -112,19 +123,19 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       this.radPageView1.Controls.Add(this.page_none);
       this.radPageView1.Controls.Add(this.page_number);
       this.radPageView1.Controls.Add(this.page_datetime);
-      this.radPageView1.Location = new System.Drawing.Point(13, 58);
+      this.radPageView1.Dock = System.Windows.Forms.DockStyle.Top;
+      this.radPageView1.Location = new System.Drawing.Point(0, 65);
       this.radPageView1.Name = "radPageView1";
       this.radPageView1.SelectedPage = this.page_number;
-      this.radPageView1.Size = new System.Drawing.Size(480, 96);
+      this.radPageView1.Size = new System.Drawing.Size(488, 70);
       this.radPageView1.TabIndex = 5;
-      this.radPageView1.Text = "radPageView1";
       // 
       // page_none
       // 
       this.page_none.ItemSize = new System.Drawing.SizeF(55F, 29F);
       this.page_none.Location = new System.Drawing.Point(5, 40);
       this.page_none.Name = "page_none";
-      this.page_none.Size = new System.Drawing.Size(452, 47);
+      this.page_none.Size = new System.Drawing.Size(470, 51);
       this.page_none.Text = "NONE";
       // 
       // page_number
@@ -133,7 +144,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       this.page_number.ItemSize = new System.Drawing.SizeF(98F, 29F);
       this.page_number.Location = new System.Drawing.Point(5, 40);
       this.page_number.Name = "page_number";
-      this.page_number.Size = new System.Drawing.Size(470, 51);
+      this.page_number.Size = new System.Drawing.Size(478, 25);
       this.page_number.Text = "INT/DOUBLE";
       // 
       // clearPanel1
@@ -143,7 +154,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       this.clearPanel1.Dock = System.Windows.Forms.DockStyle.Top;
       this.clearPanel1.Location = new System.Drawing.Point(0, 0);
       this.clearPanel1.Name = "clearPanel1";
-      this.clearPanel1.Size = new System.Drawing.Size(470, 32);
+      this.clearPanel1.Size = new System.Drawing.Size(478, 32);
       this.clearPanel1.TabIndex = 0;
       // 
       // num_cluster
@@ -157,11 +168,16 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
             0});
       this.num_cluster.MinimumSize = new System.Drawing.Size(100, 0);
       this.num_cluster.Name = "num_cluster";
+      this.num_cluster.NullableValue = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
       // 
       // 
       // 
       this.num_cluster.RootElement.MinSize = new System.Drawing.Size(100, 0);
-      this.num_cluster.Size = new System.Drawing.Size(230, 32);
+      this.num_cluster.Size = new System.Drawing.Size(238, 32);
       this.num_cluster.TabIndex = 4;
       this.num_cluster.TabStop = false;
       this.num_cluster.Value = new decimal(new int[] {
@@ -190,7 +206,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       this.page_datetime.ItemSize = new System.Drawing.SizeF(82F, 29F);
       this.page_datetime.Location = new System.Drawing.Point(5, 40);
       this.page_datetime.Name = "page_datetime";
-      this.page_datetime.Size = new System.Drawing.Size(470, 51);
+      this.page_datetime.Size = new System.Drawing.Size(478, 25);
       this.page_datetime.Text = "DATETIME";
       // 
       // drop_dateTime
@@ -199,21 +215,26 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       this.drop_dateTime.Location = new System.Drawing.Point(0, 0);
       this.drop_dateTime.Name = "drop_dateTime";
       this.drop_dateTime.NullText = "Bitte auswählen...";
-      this.drop_dateTime.Size = new System.Drawing.Size(370, 51);
+      this.drop_dateTime.Size = new System.Drawing.Size(378, 25);
       this.drop_dateTime.TabIndex = 0;
       this.drop_dateTime.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.drop_dateTime_SelectedIndexChanged);
       // 
       // spin_dateTimeClusters
       // 
       this.spin_dateTimeClusters.Dock = System.Windows.Forms.DockStyle.Right;
-      this.spin_dateTimeClusters.Location = new System.Drawing.Point(370, 0);
+      this.spin_dateTimeClusters.Location = new System.Drawing.Point(378, 0);
       this.spin_dateTimeClusters.MinimumSize = new System.Drawing.Size(100, 0);
       this.spin_dateTimeClusters.Name = "spin_dateTimeClusters";
+      this.spin_dateTimeClusters.NullableValue = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
       // 
       // 
       // 
       this.spin_dateTimeClusters.RootElement.MinSize = new System.Drawing.Size(100, 0);
-      this.spin_dateTimeClusters.Size = new System.Drawing.Size(100, 51);
+      this.spin_dateTimeClusters.Size = new System.Drawing.Size(100, 25);
       this.spin_dateTimeClusters.TabIndex = 1;
       this.spin_dateTimeClusters.TabStop = false;
       this.spin_dateTimeClusters.Value = new decimal(new int[] {
@@ -226,46 +247,88 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       // radLabel3
       // 
       this.radLabel3.AutoSize = false;
-      this.radLabel3.Location = new System.Drawing.Point(13, 23);
+      this.radLabel3.Dock = System.Windows.Forms.DockStyle.Top;
+      this.radLabel3.Location = new System.Drawing.Point(0, 0);
       this.radLabel3.Name = "radLabel3";
       this.radLabel3.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-      this.radLabel3.Size = new System.Drawing.Size(216, 33);
+      this.radLabel3.Size = new System.Drawing.Size(488, 33);
       this.radLabel3.TabIndex = 3;
       this.radLabel3.Text = "Es handelt sich dabei um eine:";
       // 
       // drop_auto
       // 
-      radListDataItem1.Text = "Text-Metaangabe";
-      radListDataItem2.Text = "Ganzzahl-Metaangabe";
-      radListDataItem3.Text = "Kommazahl.Metaangabe";
-      radListDataItem4.Text = "Datums-Metaangabe";
-      this.drop_auto.Items.Add(radListDataItem1);
-      this.drop_auto.Items.Add(radListDataItem2);
-      this.drop_auto.Items.Add(radListDataItem3);
-      this.drop_auto.Items.Add(radListDataItem4);
-      this.drop_auto.Location = new System.Drawing.Point(229, 20);
+      this.drop_auto.Dock = System.Windows.Forms.DockStyle.Top;
+      radListDataItem9.Text = "Text-Metaangabe";
+      radListDataItem10.Text = "Ganzzahl-Metaangabe";
+      radListDataItem11.Text = "Kommazahl-Metaangabe";
+      radListDataItem12.Text = "Datums-Metaangabe";
+      this.drop_auto.Items.Add(radListDataItem9);
+      this.drop_auto.Items.Add(radListDataItem10);
+      this.drop_auto.Items.Add(radListDataItem11);
+      this.drop_auto.Items.Add(radListDataItem12);
+      this.drop_auto.Location = new System.Drawing.Point(0, 33);
       this.drop_auto.Name = "drop_auto";
       this.drop_auto.NullText = "Bitte auswählen...";
-      this.drop_auto.Size = new System.Drawing.Size(259, 32);
+      this.drop_auto.Size = new System.Drawing.Size(488, 32);
       this.drop_auto.TabIndex = 2;
       this.drop_auto.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.drop_auto_SelectedIndexChanged);
       // 
       // clearPanel2
       // 
+      this.clearPanel2.Controls.Add(this.panel_clusterFiller);
       this.clearPanel2.Controls.Add(this.radPageView1);
-      this.clearPanel2.Controls.Add(this.radLabel3);
       this.clearPanel2.Controls.Add(this.drop_auto);
+      this.clearPanel2.Controls.Add(this.radLabel3);
       this.clearPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
       this.clearPanel2.Location = new System.Drawing.Point(0, 127);
       this.clearPanel2.Name = "clearPanel2";
-      this.clearPanel2.Size = new System.Drawing.Size(488, 160);
+      this.clearPanel2.Size = new System.Drawing.Size(488, 239);
       this.clearPanel2.TabIndex = 5;
+      // 
+      // panel_clusterFiller
+      // 
+      this.panel_clusterFiller.Controls.Add(this.drop_clusterFiller);
+      this.panel_clusterFiller.Controls.Add(this.radLabel4);
+      this.panel_clusterFiller.Dock = System.Windows.Forms.DockStyle.Top;
+      this.panel_clusterFiller.Location = new System.Drawing.Point(0, 135);
+      this.panel_clusterFiller.Name = "panel_clusterFiller";
+      this.panel_clusterFiller.Size = new System.Drawing.Size(488, 74);
+      this.panel_clusterFiller.TabIndex = 6;
+      this.panel_clusterFiller.Visible = false;
+      // 
+      // drop_clusterFiller
+      // 
+      this.drop_clusterFiller.Dock = System.Windows.Forms.DockStyle.Fill;
+      radListDataItem1.Text = "Anhand der Werte (Standard)";
+      radListDataItem2.Text = "Gleiche Anzahl an Dokumenten";
+      radListDataItem3.Text = "Ähnlicher Umfang - Sätze (näherungsweise)";
+      radListDataItem4.Text = "Ähnlicher Umfang - Token (näherungsweise)";
+      this.drop_clusterFiller.Items.Add(radListDataItem1);
+      this.drop_clusterFiller.Items.Add(radListDataItem2);
+      this.drop_clusterFiller.Items.Add(radListDataItem3);
+      this.drop_clusterFiller.Items.Add(radListDataItem4);
+      this.drop_clusterFiller.Location = new System.Drawing.Point(0, 33);
+      this.drop_clusterFiller.Name = "drop_clusterFiller";
+      this.drop_clusterFiller.NullText = "Bitte auswählen...";
+      this.drop_clusterFiller.Size = new System.Drawing.Size(488, 41);
+      this.drop_clusterFiller.TabIndex = 5;
+      // 
+      // radLabel4
+      // 
+      this.radLabel4.AutoSize = false;
+      this.radLabel4.Dock = System.Windows.Forms.DockStyle.Top;
+      this.radLabel4.Location = new System.Drawing.Point(0, 0);
+      this.radLabel4.Name = "radLabel4";
+      this.radLabel4.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+      this.radLabel4.Size = new System.Drawing.Size(488, 33);
+      this.radLabel4.TabIndex = 4;
+      this.radLabel4.Text = "Methode zur Cluster-Befüllung:";
       // 
       // AddMetasplitSnapshot
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(488, 325);
+      this.ClientSize = new System.Drawing.Size(488, 366);
       this.Controls.Add(this.clearPanel2);
       this.Controls.Add(this.drop_metaKey);
       this.Controls.Add(this.radLabel1);
@@ -278,11 +341,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       this.RootElement.ApplyShapeToControl = true;
       this.Text = "Multisplit Schnappschüsse erzeugen";
       this.ButtonOkClick += new System.EventHandler(this.AddRandomSnapshot_ButtonOkClick);
-      this.Controls.SetChildIndex(this.radPanel1, 0);
       this.Controls.SetChildIndex(this.header1, 0);
       this.Controls.SetChildIndex(this.radLabel1, 0);
       this.Controls.SetChildIndex(this.drop_metaKey, 0);
       this.Controls.SetChildIndex(this.clearPanel2, 0);
+      this.Controls.SetChildIndex(this.radPanel1, 0);
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.drop_metaKey)).EndInit();
@@ -303,6 +366,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       ((System.ComponentModel.ISupportInitialize)(this.clearPanel2)).EndInit();
       this.clearPanel2.ResumeLayout(false);
       this.clearPanel2.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.panel_clusterFiller)).EndInit();
+      this.panel_clusterFiller.ResumeLayout(false);
+      this.panel_clusterFiller.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.drop_clusterFiller)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
@@ -326,5 +394,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
     private Telerik.WinControls.UI.RadDropDownList drop_dateTime;
     private Telerik.WinControls.UI.RadSpinEditor spin_dateTimeClusters;
     private ClearPanel clearPanel2;
+    private ClearPanel panel_clusterFiller;
+    private Telerik.WinControls.UI.RadDropDownList drop_clusterFiller;
+    private Telerik.WinControls.UI.RadLabel radLabel4;
   }
 }

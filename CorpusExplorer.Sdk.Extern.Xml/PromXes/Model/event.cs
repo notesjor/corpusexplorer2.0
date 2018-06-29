@@ -20,6 +20,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.PromXes.Model
     /// <remarks />
     [XmlElement("date", typeof(date))]
     [XmlElement("string", typeof(@string))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
   }
 }

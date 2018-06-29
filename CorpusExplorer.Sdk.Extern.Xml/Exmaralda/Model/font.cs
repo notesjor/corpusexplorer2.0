@@ -25,14 +25,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlAttribute]
-    public fontFace face { get { return faceField; } set { faceField = value; } }
+    public fontFace face
+    {
+      get => faceField;
+      set => faceField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string name { get { return nameField; } set { nameField = value; } }
+    public string name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public fontSize size { get { return sizeField; } set { sizeField = value; } }
+    public fontSize size
+    {
+      get => sizeField;
+      set => sizeField = value;
+    }
   }
 }

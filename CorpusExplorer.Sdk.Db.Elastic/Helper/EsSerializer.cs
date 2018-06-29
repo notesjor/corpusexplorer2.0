@@ -9,7 +9,7 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Helper
     {
       var buffer = Convert.FromBase64String(buffer64);
 
-      var header = new int[buffer.Length/4];
+      var header = new int[buffer.Length / 4];
 
       Buffer.BlockCopy(buffer, 0, header, 0, buffer.Length);
       var content = header;
@@ -19,10 +19,11 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Helper
       {
         var length = content[i];
         var dst = new int[length];
-        Buffer.BlockCopy(content, (i + 1)*4, dst, 0, length*4);
+        Buffer.BlockCopy(content, (i + 1) * 4, dst, 0, length * 4);
         res.Add(dst);
         i += length + 1;
       }
+
       return res.ToArray();
     }
 
@@ -39,12 +40,13 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Helper
             list[0] = list[0] - 1;
             continue;
           }
+
           list.Add(x.Length);
           list.AddRange(x);
         }
 
         var arr = list.ToArray();
-        var buffer = new byte[arr.Length*4];
+        var buffer = new byte[arr.Length * 4];
         Buffer.BlockCopy(arr, 0, buffer, 0, buffer.Length);
         return Convert.ToBase64String(buffer);
       }

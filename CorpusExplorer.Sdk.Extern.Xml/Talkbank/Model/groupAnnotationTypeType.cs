@@ -30,12 +30,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     paralinguistics,
 
     /// <remarks />
-    [XmlEnum("standard for dialect")]
-    standardfordialect,
+    [XmlEnum("standard for dialect")] standardfordialect,
 
     /// <remarks />
-    [XmlEnum("standard for child")]
-    standardforchild,
+    [XmlEnum("standard for child")] standardforchild,
 
     /// <remarks />
     [XmlEnum("standard for unclear source")]

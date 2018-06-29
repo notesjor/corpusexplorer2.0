@@ -24,9 +24,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper
         ZipHelper.Uncompress(path, tempPath);
 
         using (var fs = new FileStream(Path.Combine(tempPath, XmlManifestFilename), FileMode.Open, FileAccess.Read))
+        using (var bs = new BufferedStream(fs))
         {
           var xml = new XmlSerializer(typeof(T));
-          res = xml.Deserialize(fs) as T;
+          res = xml.Deserialize(bs) as T;
         }
 
         DeserializePostValidation(res, path);
@@ -53,9 +54,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper
       try
       {
         using (var fs = new FileStream(Path.Combine(tempPath, XmlManifestFilename), FileMode.Create, FileAccess.Write))
+        using (var bs = new BufferedStream(fs))
         {
           var xml = new XmlSerializer(typeof(T));
-          xml.Serialize(fs, obj);
+          xml.Serialize(bs, obj);
         }
 
         SerializePostValidation(obj, path);

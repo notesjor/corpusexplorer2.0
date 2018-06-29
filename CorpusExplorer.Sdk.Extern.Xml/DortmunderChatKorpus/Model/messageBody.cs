@@ -31,19 +31,27 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus.Model
     [XmlElement("nickname", typeof(nickname))]
     [XmlElement("roomname", typeof(string))]
     [XmlChoiceIdentifier("ItemsElementName")]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlElement("ItemsElementName")]
     [XmlIgnore]
     public ItemsChoiceType[] ItemsElementName
     {
-      get { return itemsElementNameField; }
-      set { itemsElementNameField = value; }
+      get => itemsElementNameField;
+      set => itemsElementNameField = value;
     }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

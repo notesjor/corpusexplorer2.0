@@ -3,52 +3,40 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
-using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Abstract;
+using CorpusExplorer.Terminal.WinForm.Forms.SelectLayer;
 using CorpusExplorer.Terminal.WinForm.Properties;
-using Telerik.WinControls.UI;
-using PositionChangedEventArgs = Telerik.WinControls.UI.Data.PositionChangedEventArgs;
 
 namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
 {
   [ToolboxItem(true)]
   public partial class WordBag : AbstractUserControl
   {
-    private Selection _selection;
-
-    public WordBag() { InitializeComponent(); }
-
-    public IEnumerable<string> Queries
+    public WordBag()
     {
-      get
-      {
-        return radAutoCompleteBox1.Text.Replace(" ", "").Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries);
-      }
-      set { radAutoCompleteBox1.Text = string.Join(";", value); }
+      InitializeComponent();
     }
 
-    public string SelectedLayer { get { return cmb_layer.SelectedItem.Text; } }
-
-    public Selection Selection
+    public IEnumerable<string> ResultQueries
     {
-      get { return _selection; }
-      set
-      {
-        _selection = value;
-        if (value == null)
-          return;
-        cmb_layer.DataSource = value.LayerUniqueDisplaynames;
-      }
+      get => cmb_values.ResultQueries;
+      set => cmb_values.ResultQueries = value;
     }
 
-    public void AddToRow1(CommandBarStripElement strip) { commandBarRowElement1.Strips.Add(strip); }
+    public string ResultSelectedLayerDisplayname
+    {
+      get => cmb_values.SelectedLayerDisplayname;
+      set => cmb_values.SelectedLayerDisplayname = value;
+    }
+
+    public event EventHandler ExecuteButtonClicked;
 
     private void btn_go_Click(object sender, EventArgs e)
     {
       try
       {
-        if ((Queries == null) ||
-            !Queries.Any())
+        if (ResultQueries == null ||
+            !ResultQueries.Any())
           throw new ArgumentException();
       }
       catch
@@ -64,15 +52,21 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       ExecuteButtonClicked?.Invoke(sender, e);
     }
 
-    private void cmb_layer_SelectedIndexChanged(object sender, PositionChangedEventArgs e)
+    private void btn_selectLayer_Click(object sender, EventArgs e)
     {
-      if (e.Position == -1)
+      var form = new Select1Layer(new[] { "Wort" });
+      form.ShowDialog();
+
+      if (string.IsNullOrEmpty(form.ResultSelectedLayer1Displayname))
         return;
 
-      radAutoCompleteBox1.Text = null;
-      radAutoCompleteBox1.AutoCompleteDataSource = Selection.GetLayerValues(cmb_layer.SelectedItem.Text);
+      if (ResultSelectedLayerDisplayname == form.ResultSelectedLayer1Displayname)
+        return;
+
+      ResultSelectedLayerDisplayname = form.ResultSelectedLayer1Displayname;
+      SelectedLayerChanged?.Invoke(this, null);
     }
 
-    public event EventHandler ExecuteButtonClicked;
+    public event EventHandler SelectedLayerChanged;
   }
 }

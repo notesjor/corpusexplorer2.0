@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Enumerations;
@@ -19,7 +15,10 @@ namespace CorpusExplorer.Sdk.Db.Gui
       {
         ThemeResolutionService.ApplicationThemeName = "TelerikMetroTouch";
       }
-      catch { }
+      catch
+      {
+      }
+
       InitializeComponent();
     }
 
@@ -36,7 +35,9 @@ namespace CorpusExplorer.Sdk.Db.Gui
         ip.Size = new Size(24, 24);
         ip.ScaleSize = new Size(24, 24);
       }
-      catch { }
+      catch
+      {
+      }
     }
   }
 }

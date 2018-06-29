@@ -17,11 +17,14 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger
     {
       "Deutsch",
       "Englisch",
+      "Dänisch",
+      "Portugiesisch",
       "Niederländisch",
-      "Portugiesisch"
+      "Sami"
     };
 
     private string _languageSelected;
+
     // ReSharper disable once MemberCanBeInternal
     public OpenNlpPerceptonTagger()
     {
@@ -33,13 +36,17 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger
 
     public override string DisplayName => "OpenNLP-Percepton-Tagger";
 
-    public override string InstallationPath { get { return "(NICHT WÄHLBAR - OPTIMIERTE VERSION)"; } set { } }
+    public override string InstallationPath
+    {
+      get => "(NICHT WÄHLBAR - OPTIMIERTE VERSION)";
+      set { }
+    }
 
     public override IEnumerable<string> LanguagesAvailabel => _languages;
 
     public override string LanguageSelected
     {
-      get { return _languageSelected; }
+      get => _languageSelected;
       set
       {
         if (!_languages.Contains(value))
@@ -63,7 +70,8 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger
               StartInfo =
               {
                 FileName = OpenNlpLocator.BatchFile,
-                Arguments = $"POSTagger {OpenNlpLocator.GetPerceptronModel(LanguageSelected)} < {fileInput.Path} > {fileOutput.Path}",
+                Arguments =
+                  $"POSTagger {OpenNlpLocator.GetPerceptronModel(LanguageSelected)} < {fileInput.Path} > {fileOutput.Path}",
                 RedirectStandardOutput = false,
                 CreateNoWindow = true,
                 UseShellExecute = false,
@@ -84,7 +92,10 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger
       }
     }
 
-    protected override bool IsEndOfSentence(string[] data) { return (data.Length > 1) && (data[1] == "$."); }
+    protected override bool IsEndOfSentence(string[] data)
+    {
+      return data.Length > 1 && data[1] == "$.";
+    }
 
     protected override string TextPostTaggerCleanup(string text)
     {

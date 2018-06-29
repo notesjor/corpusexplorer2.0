@@ -32,35 +32,63 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlElement("front", typeof(front))]
-    public object[] front { get { return frontField; } set { frontField = value; } }
+    public object[] front
+    {
+      get => frontField;
+      set => frontField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified,
-       Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string id { get { return idField; } set { idField = value; } }
+      Namespace = "http://www.w3.org/XML/1998/namespace")]
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlElement("body", typeof(body))]
     [XmlElement("lb", typeof(lb))]
     [XmlElement("pb", typeof(pb))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlElement("back", typeof(back))]
     [XmlElement("cb", typeof(cb))]
-    public object Item { get { return itemField; } set { itemField = value; } }
+    public object Item
+    {
+      get => itemField;
+      set => itemField = value;
+    }
 
 
     /// <remarks />
     [XmlAttribute]
-    public string next { get { return nextField; } set { nextField = value; } }
+    public string next
+    {
+      get => nextField;
+      set => nextField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string prev { get { return prevField; } set { prevField = value; } }
+    public string prev
+    {
+      get => prevField;
+      set => prevField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string rendition { get { return renditionField; } set { renditionField = value; } }
+    public string rendition
+    {
+      get => renditionField;
+      set => renditionField = value;
+    }
   }
 }

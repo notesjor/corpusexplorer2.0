@@ -19,6 +19,9 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.CalculationPyramid.Model
       pyra.SetLevelSpread(spread);
     }
 
-    public PyramidLevel<T> GetPyramid() => _root;
+    public PyramidLevel<T> GetPyramid()
+    {
+      return _root;
+    }
   }
 }

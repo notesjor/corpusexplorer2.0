@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "anyURI")]
-    public string path { get { return pathField; } set { pathField = value; } }
+    public string path
+    {
+      get => pathField;
+      set => pathField = value;
+    }
   }
 }

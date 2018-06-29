@@ -35,15 +35,27 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string formSuffix { get { return formSuffixField; } set { formSuffixField = value; } }
+    public string formSuffix
+    {
+      get => formSuffixField;
+      set => formSuffixField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public wordTypeFormType formType { get { return formTypeField; } set { formTypeField = value; } }
+    public wordTypeFormType formType
+    {
+      get => formTypeField;
+      set => formTypeField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool formTypeSpecified { get { return formTypeFieldSpecified; } set { formTypeFieldSpecified = value; } }
+    public bool formTypeSpecified
+    {
+      get => formTypeFieldSpecified;
+      set => formTypeFieldSpecified = value;
+    }
 
     /// <remarks />
     [XmlElement("ca-delimiter", typeof(cadelimiter))]
@@ -59,53 +71,81 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     [XmlElement("shortening", typeof(shorteningType))]
     [XmlElement("underline", typeof(underline))]
     [XmlElement("wk", typeof(wordnetMarkerType))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
-    public langs langs { get { return langsField; } set { langsField = value; } }
+    public langs langs
+    {
+      get => langsField;
+      set => langsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute("separated-prefix")]
-    public bool separatedprefix { get { return separatedprefixField; } set { separatedprefixField = value; } }
+    public bool separatedprefix
+    {
+      get => separatedprefixField;
+      set => separatedprefixField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
     public bool separatedprefixSpecified
     {
-      get { return separatedprefixFieldSpecified; }
-      set { separatedprefixFieldSpecified = value; }
+      get => separatedprefixFieldSpecified;
+      set => separatedprefixFieldSpecified = value;
     }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public wordTypeType type { get { return typeField; } set { typeField = value; } }
+    public wordTypeType type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool typeSpecified { get { return typeFieldSpecified; } set { typeFieldSpecified = value; } }
+    public bool typeSpecified
+    {
+      get => typeFieldSpecified;
+      set => typeFieldSpecified = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
     public wordTypeUntranscribed untranscribed
     {
-      get { return untranscribedField; }
-      set { untranscribedField = value; }
+      get => untranscribedField;
+      set => untranscribedField = value;
     }
 
     /// <remarks />
     [XmlIgnore]
     public bool untranscribedSpecified
     {
-      get { return untranscribedFieldSpecified; }
-      set { untranscribedFieldSpecified = value; }
+      get => untranscribedFieldSpecified;
+      set => untranscribedFieldSpecified = value;
     }
 
     /// <remarks />
     [XmlAttribute("user-special-form")]
-    public string userspecialform { get { return userspecialformField; } set { userspecialformField = value; } }
+    public string userspecialform
+    {
+      get => userspecialformField;
+      set => userspecialformField = value;
+    }
   }
 }

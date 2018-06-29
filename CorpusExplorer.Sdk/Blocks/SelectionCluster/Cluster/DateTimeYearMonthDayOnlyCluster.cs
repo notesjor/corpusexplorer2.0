@@ -8,15 +8,17 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
     private readonly int _valueDay;
     private readonly int _valueMonth;
     private readonly int _valueYear;
+    private readonly DateTime _central;
 
     public DateTimeYearMonthDayOnlyCluster(DateTime value)
     {
       _valueYear = value.Year;
       _valueMonth = value.Month;
       _valueDay = value.Day;
+      _central = value;
     }
 
-    public override object CentralValue => _valueYear;
+    public override object CentralValue => _central;
 
     public override string Displayname => $"{_valueYear:0000}-{_valueMonth:00}-{_valueDay:00}";
 

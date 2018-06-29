@@ -84,12 +84,13 @@
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 44);
+      this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
       this.radCommandBar1.TabIndex = 1;
       // 
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
       // 
@@ -196,13 +197,13 @@
       this.radSplitContainer1.Controls.Add(this.splitPanel1);
       this.radSplitContainer1.Controls.Add(this.splitPanel2);
       this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer1.Location = new System.Drawing.Point(0, 44);
+      this.radSplitContainer1.Location = new System.Drawing.Point(0, 69);
       this.radSplitContainer1.Name = "radSplitContainer1";
       // 
       // 
       // 
       this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer1.Size = new System.Drawing.Size(780, 356);
+      this.radSplitContainer1.Size = new System.Drawing.Size(780, 331);
       this.radSplitContainer1.TabIndex = 2;
       this.radSplitContainer1.TabStop = false;
       // 
@@ -215,7 +216,7 @@
       // 
       // 
       this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel1.Size = new System.Drawing.Size(262, 356);
+      this.splitPanel1.Size = new System.Drawing.Size(262, 331);
       this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.1623711F, 0F);
       this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-126, 0);
       this.splitPanel1.TabIndex = 0;
@@ -234,7 +235,7 @@
       // 
       // 
       this.radSplitContainer2.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer2.Size = new System.Drawing.Size(262, 356);
+      this.radSplitContainer2.Size = new System.Drawing.Size(262, 331);
       this.radSplitContainer2.TabIndex = 0;
       this.radSplitContainer2.TabStop = false;
       // 
@@ -247,7 +248,7 @@
       // 
       // 
       this.splitPanel3.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel3.Size = new System.Drawing.Size(262, 176);
+      this.splitPanel3.Size = new System.Drawing.Size(262, 164);
       this.splitPanel3.TabIndex = 0;
       this.splitPanel3.TabStop = false;
       this.splitPanel3.Text = "splitPanel3";
@@ -261,7 +262,7 @@
       this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
       this.radGroupBox1.Name = "radGroupBox1";
       this.radGroupBox1.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox1.Size = new System.Drawing.Size(262, 176);
+      this.radGroupBox1.Size = new System.Drawing.Size(262, 164);
       this.radGroupBox1.TabIndex = 0;
       this.radGroupBox1.Text = "HTML5-Vorlage";
       // 
@@ -270,7 +271,7 @@
       this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.elementHost1.Location = new System.Drawing.Point(5, 25);
       this.elementHost1.Name = "elementHost1";
-      this.elementHost1.Size = new System.Drawing.Size(252, 146);
+      this.elementHost1.Size = new System.Drawing.Size(252, 134);
       this.elementHost1.TabIndex = 0;
       this.elementHost1.Text = "elementHost1";
       this.elementHost1.Child = null;
@@ -278,13 +279,13 @@
       // splitPanel4
       // 
       this.splitPanel4.Controls.Add(this.radGroupBox2);
-      this.splitPanel4.Location = new System.Drawing.Point(0, 180);
+      this.splitPanel4.Location = new System.Drawing.Point(0, 168);
       this.splitPanel4.Name = "splitPanel4";
       // 
       // 
       // 
       this.splitPanel4.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel4.Size = new System.Drawing.Size(262, 176);
+      this.splitPanel4.Size = new System.Drawing.Size(262, 163);
       this.splitPanel4.TabIndex = 1;
       this.splitPanel4.TabStop = false;
       this.splitPanel4.Text = "splitPanel4";
@@ -298,7 +299,7 @@
       this.radGroupBox2.Location = new System.Drawing.Point(0, 0);
       this.radGroupBox2.Name = "radGroupBox2";
       this.radGroupBox2.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox2.Size = new System.Drawing.Size(262, 176);
+      this.radGroupBox2.Size = new System.Drawing.Size(262, 163);
       this.radGroupBox2.TabIndex = 0;
       this.radGroupBox2.Text = "Ausgabe (HTML)";
       // 
@@ -307,7 +308,7 @@
       this.elementHost2.Dock = System.Windows.Forms.DockStyle.Fill;
       this.elementHost2.Location = new System.Drawing.Point(5, 25);
       this.elementHost2.Name = "elementHost2";
-      this.elementHost2.Size = new System.Drawing.Size(252, 146);
+      this.elementHost2.Size = new System.Drawing.Size(252, 133);
       this.elementHost2.TabIndex = 0;
       this.elementHost2.Text = "elementHost2";
       this.elementHost2.Child = null;
@@ -321,7 +322,7 @@
       // 
       // 
       this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel2.Size = new System.Drawing.Size(514, 356);
+      this.splitPanel2.Size = new System.Drawing.Size(514, 331);
       this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.1623712F, 0F);
       this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(126, 0);
       this.splitPanel2.TabIndex = 1;
@@ -337,7 +338,7 @@
       this.radGroupBox3.Location = new System.Drawing.Point(0, 0);
       this.radGroupBox3.Name = "radGroupBox3";
       this.radGroupBox3.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox3.Size = new System.Drawing.Size(514, 356);
+      this.radGroupBox3.Size = new System.Drawing.Size(514, 331);
       this.radGroupBox3.TabIndex = 0;
       this.radGroupBox3.Text = "Ausgabe (Vorschau)";
       // 
@@ -349,7 +350,7 @@
       this.webHtml5LaboratoryVisualisation1.MainpageUrl = null;
       this.webHtml5LaboratoryVisualisation1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.webHtml5LaboratoryVisualisation1.Name = "webHtml5LaboratoryVisualisation1";
-      this.webHtml5LaboratoryVisualisation1.Size = new System.Drawing.Size(504, 326);
+      this.webHtml5LaboratoryVisualisation1.Size = new System.Drawing.Size(504, 301);
       this.webHtml5LaboratoryVisualisation1.TabIndex = 0;
       // 
       // timer1

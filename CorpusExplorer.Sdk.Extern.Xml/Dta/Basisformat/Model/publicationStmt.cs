@@ -26,21 +26,41 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private pubPlace[] pubPlaceField;
 
     /// <remarks />
-    public availability availability { get { return availabilityField; } set { availabilityField = value; } }
+    public availability availability
+    {
+      get => availabilityField;
+      set => availabilityField = value;
+    }
 
     /// <remarks />
     [XmlElement("publisher")]
-    public publisher[] publisher { get { return publisherField; } set { publisherField = value; } }
+    public publisher[] publisher
+    {
+      get => publisherField;
+      set => publisherField = value;
+    }
 
     /// <remarks />
     [XmlElement("pubPlace")]
-    public pubPlace[] pubPlace { get { return pubPlaceField; } set { pubPlaceField = value; } }
+    public pubPlace[] pubPlace
+    {
+      get => pubPlaceField;
+      set => pubPlaceField = value;
+    }
 
     /// <remarks />
     [XmlElement("date")]
-    public date[] date { get { return dateField; } set { dateField = value; } }
+    public date[] date
+    {
+      get => dateField;
+      set => dateField = value;
+    }
 
     /// <remarks />
-    public idno idno { get { return idnoField; } set { idnoField = value; } }
+    public idno idno
+    {
+      get => idnoField;
+      set => idnoField = value;
+    }
   }
 }

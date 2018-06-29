@@ -25,16 +25,24 @@ namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory
       _items = items.ToList();
     }
 
-    private Constituent() { }
+    private Constituent()
+    {
+    }
 
     public IEnumerable<Constituent> Childs => _items;
 
     public bool IsBase { get; }
     public string Label { get; }
 
-    public void Add(string label, bool isBase) { _items.Add(new Constituent(label, isBase)); }
+    public void Add(string label, bool isBase)
+    {
+      _items.Add(new Constituent(label, isBase));
+    }
 
-    public void Add(Constituent item) { _items.Add(item); }
+    public void Add(Constituent item)
+    {
+      _items.Add(item);
+    }
 
     public Dictionary<string, Dictionary<string, double>> GetChildFrequency()
     {

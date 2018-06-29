@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string assemblage { get { return assemblageField; } set { assemblageField = value; } }
+    public string assemblage
+    {
+      get => assemblageField;
+      set => assemblageField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

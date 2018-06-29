@@ -22,6 +22,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Bare.Model
 
     /// <remarks />
     [XmlElement("fileDesc")]
-    public fileDesc1 fileDesc1 { get { return fileDesc1Field; } set { fileDesc1Field = value; } }
+    public fileDesc1 fileDesc1
+    {
+      get => fileDesc1Field;
+      set => fileDesc1Field = value;
+    }
   }
 }

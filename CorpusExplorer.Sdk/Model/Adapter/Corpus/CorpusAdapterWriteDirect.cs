@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
@@ -22,9 +22,12 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     private List<LayerAdapterWriteDirect> _layers;
     private Dictionary<string, object> _metadata;
 
-    private CorpusAdapterWriteDirect() { }
+    private CorpusAdapterWriteDirect()
+    {
+    }
 
     public override IEnumerable<Concept> Concepts => null; // ToDo: CorpusAdapterWriteDirect unterstützt keine Concepts
+
     public override string CorpusDisplayname
     {
       get => _displayname;
@@ -48,7 +51,11 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       _layers.Select(x => x.Displayname));
 
     public override bool UseCompression => false;
-    public override void AddConcept(Concept concept) { throw new NotImplementedException(); }
+
+    public override void AddConcept(Concept concept)
+    {
+      throw new NotImplementedException();
+    }
 
     public override void AddLayer(AbstractLayerAdapter layer)
     {
@@ -57,9 +64,15 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
         _layers.Add(l);
     }
 
-    public override bool ContainsDocument(Guid documentGuid) { return _documentMetadata.ContainsKey(documentGuid); }
+    public override bool ContainsDocument(Guid documentGuid)
+    {
+      return _documentMetadata.ContainsKey(documentGuid);
+    }
 
-    public override bool ContainsLayer(Guid layerGuid) { return _layers.Any(x => x.Guid == layerGuid); }
+    public override bool ContainsLayer(Guid layerGuid)
+    {
+      return _layers.Any(x => x.Guid == layerGuid);
+    }
 
     public override bool ContainsLayer(string layerDisplayname)
     {
@@ -68,119 +81,32 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
 
     public static CorpusAdapterWriteDirect Create(string path)
     {
-      using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
-      {
-        var buffer = new byte[8];
-        fs.Read(buffer, 0, buffer.Length);
-        var mode = Configuration.Encoding.GetString(buffer);
-
-        if (mode == "SEDITION")
-          return CreateStrategySmart(path, fs);
-
-        fs.Seek(0, SeekOrigin.Begin);
-        return CreateStrategyOld(path, fs);
-      }
+      if (path.EndsWith(".gz"))
+        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
+        using (var gz = new GZipStream(fs, CompressionMode.Decompress))
+        using (var bs = new BufferedStream(gz))
+        {
+          return Create(path, bs);
+        }
+      else
+        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
+        using (var bs = new BufferedStream(fs))
+        {
+          return Create(path, bs);
+        }
     }
 
-    private static CorpusAdapterWriteDirect CreateStrategySmart(string path, FileStream fs)
+    private static CorpusAdapterWriteDirect Create(string path, BufferedStream bs)
     {
-      var res = new CorpusAdapterWriteDirect
-      {
-        _layers = new List<LayerAdapterWriteDirect>(),
-        _displayname = Path.GetFileNameWithoutExtension(path),
-        CorpusPath = path
-      };
+      var buffer = new byte[8];
+      bs.Read(buffer, 0, buffer.Length);
+      var mode = Configuration.Encoding.GetString(buffer);
 
-      var buffer = new byte[16];
-      fs.Read(buffer, 0, buffer.Length);
+      if (mode == "SEDITION")
+        return CreateStrategySmart(path, bs);
 
-      // Corpus GUID
-      res._guid = new Guid(buffer);
-
-      // Corpus Metadata.Length
-      res._metadata = MetaDictionarySerializerHelper.Deserialize(fs);
-
-      // Document Metadata.Length
-      res._documentMetadata = MetaDictionarySerializerHelper.DeserializeContainer(fs);
-
-      // Layer
-      LayerAdapterWriteDirect layer;
-      do
-      {
-        layer = LayerAdapterWriteDirect.Create(fs);
-        if (layer != null)
-          res._layers.Add(layer);
-      }
-      while (layer != null);
-
-      // Metadata Fallback
-      // ReSharper disable once InvertIf
-      if (res._documentMetadata == null)
-      {
-        var guids = new HashSet<Guid>();
-        foreach (var l in res._layers)
-          foreach (var dsel in l.DocumentGuids)
-            guids.Add(dsel);
-
-        res._documentMetadata = guids.ToDictionary(x => x, x => new Dictionary<string, object>());
-      }
-
-      return res;
-    }
-
-    private static CorpusAdapterWriteDirect CreateStrategyOld(string path, FileStream fs)
-    {
-      var res = new CorpusAdapterWriteDirect
-      {
-        _layers = new List<LayerAdapterWriteDirect>(),
-        _displayname = Path.GetFileNameWithoutExtension(path),
-        CorpusPath = path
-      };
-
-      var buffer = new byte[16];
-      fs.Read(buffer, 0, buffer.Length);
-
-      // Corpus GUID
-      res._guid = new Guid(buffer);
-
-      var bf = new BinaryFormatter();
-
-      // Corpus Metadata.Length
-      buffer = new byte[sizeof(long)];
-      fs.Read(buffer, 0, buffer.Length);
-      var length = BitConverter.ToInt64(buffer, 0);
-      // Corpus Metadata
-      buffer = new byte[length];
-      fs.Read(buffer, 0, buffer.Length);
-      if (buffer.Length > 0)
-        using (var ms = new MemoryStream(buffer))
-        {
-          res._metadata = (Dictionary<string, object>)bf.Deserialize(ms);
-        }
-
-      // Document Metadata.Length
-      buffer = new byte[sizeof(long)];
-      fs.Read(buffer, 0, buffer.Length);
-      length = BitConverter.ToInt64(buffer, 0);
-      // Document Metadata
-      buffer = new byte[length];
-      fs.Read(buffer, 0, buffer.Length);
-      if (buffer.Length > 0)
-        using (var ms = new MemoryStream(buffer))
-        {
-          res._documentMetadata = (Dictionary<Guid, Dictionary<string, object>>)bf.Deserialize(ms);
-        }
-
-      // Layer
-      LayerAdapterWriteDirect layer;
-      do
-      {
-        layer = LayerAdapterWriteDirect.Create(fs);
-        if (layer != null)
-          res._layers.Add(layer);
-      }
-      while (layer != null);
-      return res;
+      bs.Seek(0, SeekOrigin.Begin);
+      return CreateStrategyOld(path, bs);
     }
 
     public static CorpusAdapterWriteDirect Create(
@@ -204,9 +130,15 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
              select x.Key;
     }
 
-    public override AbstractCorpusBuilder GetCorpusBuilder() { return new CorpusBuilderWriteDirect(); }
+    public override AbstractCorpusBuilder GetCorpusBuilder()
+    {
+      return new CorpusBuilderWriteDirect();
+    }
 
-    public override IEnumerable<KeyValuePair<string, object>> GetCorpusMetadata() { return _metadata; }
+    public override IEnumerable<KeyValuePair<string, object>> GetCorpusMetadata()
+    {
+      return _metadata;
+    }
 
     public override int GetDocumentLengthInSentences(Guid documentGuid)
     {
@@ -234,6 +166,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
             res.Add(o.Key, new HashSet<object>());
           res[o.Key].Add(o.Value);
         }
+
       return res;
     }
 
@@ -307,9 +240,9 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       Guid documentGuid)
     {
       return _layers.Where(x => x.ContainsDocument(documentGuid))
-                    .ToDictionary(
-                      x => x.Displayname,
-                      x => x.GetReadableDocumentByGuid(documentGuid));
+        .ToDictionary(
+          x => x.Displayname,
+          x => x.GetReadableDocumentByGuid(documentGuid));
     }
 
     public override void LayerCopy(string layerDisplaynameOriginal, string layerDisplaynameCopy)
@@ -327,7 +260,10 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
         _layers.Remove(layer);
     }
 
-    public override void LayerNew(string layerDisplayname) { LayerCopy("Wort", layerDisplayname); }
+    public override void LayerNew(string layerDisplayname)
+    {
+      LayerCopy("Wort", layerDisplayname);
+    }
 
     public override void LayerRename(string layerDisplaynameOld, string layerDisplaynameNew)
     {
@@ -336,7 +272,10 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
         layer.Displayname = layerDisplaynameNew;
     }
 
-    public override bool RemoveConcept(Concept concept) { throw new NotImplementedException(); }
+    public override bool RemoveConcept(Concept concept)
+    {
+      throw new NotImplementedException();
+    }
 
     public override void ResetAllDocumentMetadata(Dictionary<Guid, Dictionary<string, object>> newMetadata)
     {
@@ -348,23 +287,24 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       path = path.ForceFileExtension("cec6");
 
       using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+      using (var bs = new BufferedStream(fs))
       {
         var buffer = Configuration.Encoding.GetBytes("SEDITION");
-        fs.Write(buffer, 0, buffer.Length);
+        bs.Write(buffer, 0, buffer.Length);
 
         // Corpus GUID
         buffer = _guid.ToByteArray();
-        fs.Write(buffer, 0, buffer.Length);
+        bs.Write(buffer, 0, buffer.Length);
 
         // Corpus Metadata
-        MetaDictionarySerializerHelper.Serialize(fs, _metadata);
+        MetaDictionarySerializerHelper.Serialize(bs, _metadata);
 
         // Document Metadata
-        MetaDictionarySerializerHelper.Serialize(fs, _documentMetadata);
+        MetaDictionarySerializerHelper.Serialize(bs, _documentMetadata);
 
         // Layer
         foreach (var layer in _layers)
-          layer.Save(fs);
+          layer.Save(bs);
 
         // Wenn man das Format erweitern wollte, dann muss man folgenden Trenner setzen:
         // buffer = Guid.Empty.ToByteArray();
@@ -416,6 +356,108 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       foreach (var x in _documentMetadata)
         if (!x.Value.ContainsKey(metadataKey))
           x.Value.Add(metadataKey, Activator.CreateInstance(type));
+    }
+
+    private static CorpusAdapterWriteDirect CreateStrategyOld(string path, Stream fs)
+    {
+      var res = new CorpusAdapterWriteDirect
+      {
+        _layers = new List<LayerAdapterWriteDirect>(),
+        _displayname = Path.GetFileNameWithoutExtension(path),
+        CorpusDisplayname = Path.GetFileNameWithoutExtension(path),
+        CorpusPath = path
+      };
+
+      var buffer = new byte[16];
+      fs.Read(buffer, 0, buffer.Length);
+
+      // Corpus GUID
+      res._guid = new Guid(buffer);
+
+      var bf = new BinaryFormatter();
+
+      // Corpus Metadata.Length
+      buffer = new byte[sizeof(long)];
+      fs.Read(buffer, 0, buffer.Length);
+      var length = BitConverter.ToInt64(buffer, 0);
+      // Corpus Metadata
+      buffer = new byte[length];
+      fs.Read(buffer, 0, buffer.Length);
+      if (buffer.Length > 0)
+        using (var ms = new MemoryStream(buffer))
+        {
+          res._metadata = (Dictionary<string, object>)bf.Deserialize(ms);
+        }
+
+      // Document Metadata.Length
+      buffer = new byte[sizeof(long)];
+      fs.Read(buffer, 0, buffer.Length);
+      length = BitConverter.ToInt64(buffer, 0);
+      // Document Metadata
+      buffer = new byte[length];
+      fs.Read(buffer, 0, buffer.Length);
+      if (buffer.Length > 0)
+        using (var ms = new MemoryStream(buffer))
+        {
+          res._documentMetadata = (Dictionary<Guid, Dictionary<string, object>>)bf.Deserialize(ms);
+        }
+
+      // Layer
+      LayerAdapterWriteDirect layer;
+      do
+      {
+        layer = LayerAdapterWriteDirect.Create(fs);
+        if (layer != null)
+          res._layers.Add(layer);
+      } while (layer != null);
+
+      return res;
+    }
+
+    private static CorpusAdapterWriteDirect CreateStrategySmart(string path, Stream fs)
+    {
+      var res = new CorpusAdapterWriteDirect
+      {
+        _layers = new List<LayerAdapterWriteDirect>(),
+        _displayname = Path.GetFileNameWithoutExtension(path),
+        CorpusDisplayname = Path.GetFileNameWithoutExtension(path),
+        CorpusPath = path
+      };
+
+      var buffer = new byte[16];
+      fs.Read(buffer, 0, buffer.Length);
+
+      // Corpus GUID
+      res._guid = new Guid(buffer);
+
+      // Corpus Metadata.Length
+      res._metadata = MetaDictionarySerializerHelper.Deserialize(fs);
+
+      // Document Metadata.Length
+      res._documentMetadata = MetaDictionarySerializerHelper.DeserializeContainer(fs);
+
+      // Layer
+      LayerAdapterWriteDirect layer;
+      do
+      {
+        layer = LayerAdapterWriteDirect.Create(fs);
+        if (layer != null)
+          res._layers.Add(layer);
+      } while (layer != null);
+
+      // Metadata Fallback
+      // ReSharper disable once InvertIf
+      if (res._documentMetadata == null)
+      {
+        var guids = new HashSet<Guid>();
+        foreach (var l in res._layers)
+          foreach (var dsel in l.DocumentGuids)
+            guids.Add(dsel);
+
+        res._documentMetadata = guids.ToDictionary(x => x, x => new Dictionary<string, object>());
+      }
+
+      return res;
     }
   }
 }

@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlElement("wf")]
-    public wf[] wf { get { return wfField; } set { wfField = value; } }
+    public wf[] wf
+    {
+      get => wfField;
+      set => wfField = value;
+    }
   }
 }

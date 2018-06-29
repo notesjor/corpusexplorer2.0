@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     [XmlElement("pb", typeof(pb))]
     [XmlElement("ptr", typeof(ptr))]
     [XmlElement("s", typeof(s))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
   }
 }

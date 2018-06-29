@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement("format")]
-    public format[] format { get { return formatField; } set { formatField = value; } }
+    public format[] format
+    {
+      get => formatField;
+      set => formatField = value;
+    }
   }
 }

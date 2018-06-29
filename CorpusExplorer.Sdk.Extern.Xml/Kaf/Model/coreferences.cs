@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlElement("coref")]
-    public coref[] coref { get { return corefField; } set { corefField = value; } }
+    public coref[] coref
+    {
+      get => corefField;
+      set => corefField = value;
+    }
   }
 }

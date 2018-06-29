@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string tokenIDs { get { return tokenIDsField; } set { tokenIDsField = value; } }
+    public string tokenIDs
+    {
+      get => tokenIDsField;
+      set => tokenIDsField = value;
+    }
   }
 }

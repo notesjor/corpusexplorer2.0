@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Extern.TextSharp.APAEK;
 using CorpusExplorer.Sdk.Extern.TextSharp.PDF;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
@@ -40,16 +40,16 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp
       {
         {
           "Nur Text (*.pdf - via iTextSharp (simple))|*.pdf",
-          new TextSharpPdfScraper{Strategy = TextSharpPdfScraper.TextSharpPdfScraperStrategy.Simple}
+          new TextSharpPdfScraper {Strategy = TextSharpPdfScraper.TextSharpPdfScraperStrategy.Simple}
         },
         {
           "Nur Text (*.pdf - via iTextSharp (location))|*.pdf",
-          new TextSharpPdfScraper{Strategy = TextSharpPdfScraper.TextSharpPdfScraperStrategy.Location}
+          new TextSharpPdfScraper {Strategy = TextSharpPdfScraper.TextSharpPdfScraperStrategy.Location}
         },
         {
           "APAEK-Unterrichtstranskript (*.pdf)|*.pdf",
           new ApaekScraper()
-        },
+        }
       };
 
     /// <summary>

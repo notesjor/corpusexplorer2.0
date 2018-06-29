@@ -7,7 +7,8 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper
 {
   public class ReMapperOutline : AbstractReMapper
   {
-    protected override string ApplyAnnotation(Tuple<AbstractLayerAdapter, int[][]>[] layers, string originalText, Tuple<int, int, int, int>[] annotationPositions)
+    protected override string ApplyAnnotation(Tuple<AbstractLayerAdapter, int[][]>[] layers, string originalText,
+      Tuple<int, int, int, int>[] annotationPositions)
     {
       if (layers.Length == 0 || string.IsNullOrEmpty(originalText))
         return string.Empty;
@@ -23,6 +24,7 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper
 
         stb.AppendLine("\t</annotation>");
       }
+
       stb.AppendLine("</annotations>");
       return stb.ToString();
     }

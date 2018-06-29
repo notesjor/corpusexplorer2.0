@@ -19,7 +19,7 @@ namespace CorpusExplorer.Sdk.Extern.Toxy
         var doc = parser.Parse();
 
         var res = new Dictionary<string, object>();
-        foreach (var x in doc.Root.Attributes.Where(x => !res.ContainsKey(x.Name) && (x.Name != "Text")))
+        foreach (var x in doc.Root.Attributes.Where(x => !res.ContainsKey(x.Name) && x.Name != "Text"))
           res.Add(x.Name, x.Value);
         res.Add("Text", doc.Root.Text);
         return new[] {res};

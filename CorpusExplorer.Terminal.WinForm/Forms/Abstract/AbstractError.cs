@@ -26,8 +26,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
       "Sowas aber auch..."
     };
 
-    protected AbstractError() : this(null) { }
-
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractError" /> class.
     /// </summary>
@@ -37,6 +35,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
 
       var rnd = new Random();
       lbl_funnyHeader.Text = _funny[rnd.Next(0, _funny.Length - 1)];
+    }
+
+    protected AbstractError() : this(null)
+    {
     }
   }
 }

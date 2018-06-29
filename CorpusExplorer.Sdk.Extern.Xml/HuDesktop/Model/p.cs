@@ -18,6 +18,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.HuDesktop.Model
 
     /// <remarks />
     [XmlElement("p")]
-    public p1 p1 { get { return p1Field; } set { p1Field = value; } }
+    public p1 p1
+    {
+      get => p1Field;
+      set => p1Field = value;
+    }
   }
 }

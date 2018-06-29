@@ -1,4 +1,3 @@
-using CorpusExplorer.Terminal.WinForm.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +6,7 @@ using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Terminal.WinForm.Helper;
+using CorpusExplorer.Terminal.WinForm.Properties;
 using Telerik.WinControls.UI.Data;
 
 namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
@@ -16,8 +16,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
   {
     private const string MultiLayer = "Multi-Layer";
     private Guid _guid;
-    private Dictionary<AbstractFilterQuery, string> _queries;
     private List<string> _layers;
+    private Dictionary<AbstractFilterQuery, string> _queries;
 
     public FulltextSnapshotControl(Selection selection, AbstractFilterQuery query)
       : base(selection)
@@ -36,7 +36,6 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
       get
       {
         if (combo_layer.Text == MultiLayer)
-        {
           return new FilterQueryMultiLayerPhrase
           {
             MultiLayerValueSeparator = ":",
@@ -44,27 +43,30 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
               .Select(x => x.Trim()),
             Guid = _guid
           };
-        }
         // ReSharper disable once CanBeReplacedWithTryCastAndCheckForNull
         // ReSharper disable once ConvertIfStatementToSwitchStatement
         if (combo_query.SelectedValue is AbstractFilterQuerySingleLayer)
         {
-          var query = (AbstractFilterQuerySingleLayer)combo_query.SelectedValue;
+          var query = (AbstractFilterQuerySingleLayer) combo_query.SelectedValue;
           query.LayerDisplayname = combo_layer.SelectedItem.Text;
-          query.LayerQueries = txt_values.Text.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim());
+          query.LayerQueries = txt_values.Text.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries)
+            .Select(x => x.Trim());
           query.Guid = _guid;
           return query;
         }
+
         // ReSharper disable once InvertIf
         // ReSharper disable once CanBeReplacedWithTryCastAndCheckForNull
         if (combo_query.SelectedValue is FilterQuerySingleLayerExactPhrase)
         {
-          var query = (FilterQuerySingleLayerExactPhrase)combo_query.SelectedValue;
+          var query = (FilterQuerySingleLayerExactPhrase) combo_query.SelectedValue;
           query.LayerDisplayname = combo_layer.SelectedItem.Text;
-          query.LayerQueries = txt_values.Text.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim());
+          query.LayerQueries = txt_values.Text.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries)
+            .Select(x => x.Trim());
           query.Guid = _guid;
           return query;
         }
+
         return null;
       }
     }
@@ -74,7 +76,10 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
       if (combo_layer.Text == MultiLayer)
       {
         combo_query.Enabled = false;
-        txt_values.AutoCompleteDataSource = (from layer in _layers where layer != MultiLayer from v in Selection.GetLayerValues(layer) select $"{layer}:{v}");
+        txt_values.AutoCompleteDataSource = from layer in _layers
+          where layer != MultiLayer
+          from v in Selection.GetLayerValues(layer)
+          select $"{layer}:{v}";
         combo_query.SelectedIndex = 3;
       }
       else
@@ -86,24 +91,31 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
 
     private void LoadQuery(AbstractFilterQuery query)
     {
-      if (query is AbstractFilterQuerySingleLayer)
+      switch (query)
       {
-        combo_layer.SelectedValue = ((AbstractFilterQuerySingleLayer)query).LayerDisplayname;
+        case AbstractFilterQuerySingleLayer layer:
+          combo_layer.SelectedValue = layer.LayerDisplayname;
 
-        if (query is FilterQuerySingleLayerAnyMatch)
-          combo_query.SelectedValue = query.Inverse ? _queries.ToArray()[4].Key : _queries.ToArray()[0].Key;
-        if (query is FilterQuerySingleLayerAllInOnDocument)
-          combo_query.SelectedValue = _queries.ToArray()[1].Key;
-        if (query is FilterQuerySingleLayerAllInOneSentence)
-          combo_query.SelectedValue = _queries.ToArray()[2].Key;
+          switch (layer)
+          {
+            case FilterQuerySingleLayerAnyMatch _:
+              combo_query.SelectedValue = layer.Inverse ? _queries.ToArray()[4].Key : _queries.ToArray()[0].Key;
+              break;
+            case FilterQuerySingleLayerAllInOnDocument _:
+              combo_query.SelectedValue = _queries.ToArray()[1].Key;
+              break;
+            case FilterQuerySingleLayerAllInOneSentence _:
+              combo_query.SelectedValue = _queries.ToArray()[2].Key;
+              break;
+          }
 
-        txt_values.Text = string.Join(";", ((AbstractFilterQuerySingleLayer)query).LayerQueries) + ";";
-      }
-      else if (query is FilterQuerySingleLayerExactPhrase)
-      {
-        combo_layer.SelectedValue = ((FilterQuerySingleLayerExactPhrase)query).LayerDisplayname;
-        combo_query.SelectedValue = _queries.ToArray()[3].Key;
-        txt_values.Text = string.Join(";", ((FilterQuerySingleLayerExactPhrase)query).LayerQueries) + ";";
+          txt_values.Text = string.Join(";", layer.LayerQueries) + ";";
+          break;
+        case FilterQuerySingleLayerExactPhrase phrase:
+          combo_layer.SelectedValue = phrase.LayerDisplayname;
+          combo_query.SelectedValue = _queries.ToArray()[3].Key;
+          txt_values.Text = string.Join(";", phrase.LayerQueries) + ";";
+          break;
       }
 
       _guid = query.Guid;

@@ -85,11 +85,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
             this.commandBarRowElement1});
       this.drop_selectedtext.Size = new System.Drawing.Size(780, 44);
       this.drop_selectedtext.TabIndex = 1;
-      this.drop_selectedtext.Text = "radCommandBar1";
       // 
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
       this.commandBarRowElement1.Text = "";
@@ -119,7 +119,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       this.drop_selecteddocument.DisplayName = "commandBarDropDownList1";
       this.drop_selecteddocument.DropDownAnimationEnabled = true;
       this.drop_selecteddocument.MaxDropDownItems = 0;
-      this.drop_selecteddocument.MinSize = new System.Drawing.Size(220, 22);
+      this.drop_selecteddocument.MinSize = new System.Drawing.Size(300, 22);
       this.drop_selecteddocument.Name = "drop_selecteddocument";
       this.drop_selecteddocument.Text = "";
       this.drop_selecteddocument.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.drop_selecteddocument_SelectedIndexChanged);
@@ -158,7 +158,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       this.tree.Size = new System.Drawing.Size(275, 279);
       this.tree.SpacingBetweenNodes = -1;
       this.tree.TabIndex = 2;
-      this.tree.Text = "radTreeView1";
       this.tree.TreeIndent = 40;
       this.tree.NodeCheckedChanged += new Telerik.WinControls.UI.TreeNodeCheckedEventHandler(this.tree_NodeCheckedChanged);
       // 
@@ -171,11 +170,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
             this.commandBarRowElement2});
       this.radCommandBar2.Size = new System.Drawing.Size(275, 45);
       this.radCommandBar2.TabIndex = 1;
-      this.radCommandBar2.Text = "radCommandBar2";
       // 
       // commandBarRowElement2
       // 
       this.commandBarRowElement2.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement2.Name = "commandBarRowElement2";
       this.commandBarRowElement2.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement2});
       this.commandBarRowElement2.Text = "";
@@ -226,7 +225,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       this.radSplitContainer1.Size = new System.Drawing.Size(780, 356);
       this.radSplitContainer1.TabIndex = 4;
       this.radSplitContainer1.TabStop = false;
-      this.radSplitContainer1.Text = "radSplitContainer1";
       // 
       // splitPanel1
       // 

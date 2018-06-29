@@ -18,8 +18,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Bare.Model
     head,
 
     /// <remarks />
-    [XmlEnum("model.pLike")]
-    modelpLike,
+    [XmlEnum("model.pLike")] modelpLike,
 
     /// <remarks />
     p

@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model
 
     /// <remarks />
     [XmlElement("text")]
-    public text[] text { get { return textField; } set { textField = value; } }
+    public text[] text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

@@ -12,7 +12,7 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tokenizer
   // ReSharper disable once UnusedMember.Global
   public class OpenNlpUniversalLangaugeTokenizer : AbstractTokenizer
   {
-    public override string DisplayName { get { return "OpenNLP Tokenizer (universal language)"; } }
+    public override string DisplayName => "OpenNLP Tokenizer (universal language)";
 
     // ReSharper disable once MemberCanBePrivate.Global
     // ReSharper disable once UnusedAutoPropertyAccessor.Global

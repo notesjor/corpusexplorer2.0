@@ -1,43 +1,49 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
 namespace CorpusExplorer.Sdk.Extern.Xml.PerseusDigitalLibrary.Greek.Model
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-  public partial class cit
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true)]
+  [XmlRoot(Namespace = "", IsNullable = false)]
+  public class cit
   {
+    private bibl[] biblField;
 
     private quote[] quoteField;
 
-    private bibl[] biblField;
-
     private string tEIformField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("quote")]
+    /// <remarks />
+    [XmlElement("quote")]
     public quote[] quote
     {
-      get { return this.quoteField; }
-      set { this.quoteField = value; }
+      get => quoteField;
+      set => quoteField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("bibl")]
+    /// <remarks />
+    [XmlElement("bibl")]
     public bibl[] bibl
     {
-      get { return this.biblField; }
-      set { this.biblField = value; }
+      get => biblField;
+      set => biblField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string TEIform
     {
-      get { return this.tEIformField; }
-      set { this.tEIformField = value; }
+      get => tEIformField;
+      set => tEIformField = value;
     }
   }
 }

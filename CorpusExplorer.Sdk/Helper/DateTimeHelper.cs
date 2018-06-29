@@ -71,7 +71,8 @@ namespace CorpusExplorer.Sdk.Helper
 
       var dateTime = DateTime.MinValue;
       // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-      CultureInfo.GetCultures(CultureTypes.AllCultures).FirstOrDefault(ci => DateTime.TryParse(dateTimeString, ci, DateTimeStyles.None, out dateTime));
+      CultureInfo.GetCultures(CultureTypes.AllCultures).FirstOrDefault(ci =>
+        DateTime.TryParse(dateTimeString, ci, DateTimeStyles.None, out dateTime));
       return dateTime;
     }
 
@@ -92,5 +93,21 @@ namespace CorpusExplorer.Sdk.Helper
         return DateTime.MinValue;
       }
     }
+
+    /// <summary>
+    /// Berechnet das Quartal eines gegeben Datums
+    /// </summary>
+    /// <param name="dt">Datum</param>
+    /// <returns>Quartal</returns>
+    public static int GetYearQuarter(DateTime dt) 
+      => (dt.Month - 1) / 3 + 1;
+
+    /// <summary>
+    /// Gets the week.
+    /// </summary>
+    /// <param name="dt">The dt.</param>
+    /// <returns>System.Int32.</returns>
+    public static int GetYearWeek(DateTime dt, CalendarWeekRule rule = CalendarWeekRule.FirstDay, DayOfWeek firstWeekday = DayOfWeek.Monday) 
+      => CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(dt, rule, firstWeekday);
   }
 }

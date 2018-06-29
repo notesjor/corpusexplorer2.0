@@ -24,13 +24,25 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
-    public Metadata Metadata { get { return metadataField; } set { metadataField = value; } }
+    public Metadata Metadata
+    {
+      get => metadataField;
+      set => metadataField = value;
+    }
 
     /// <remarks />
     [XmlElement("Signal")]
-    public AGSetTimelineSignal[] Signal { get { return signalField; } set { signalField = value; } }
+    public AGSetTimelineSignal[] Signal
+    {
+      get => signalField;
+      set => signalField = value;
+    }
   }
 }

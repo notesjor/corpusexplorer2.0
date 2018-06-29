@@ -15,7 +15,10 @@ namespace CorpusExplorer.Sdk.Helper
   {
     private readonly Dictionary<string, object> _dictionary = new Dictionary<string, object>();
 
-    public bool Exsists(params string[] path) { return _dictionary.ContainsKey(GetKey(path)); }
+    public bool Exsists(params string[] path)
+    {
+      return _dictionary.ContainsKey(GetKey(path));
+    }
 
     public T Get<T>(T defaultValue, params string[] path)
     {
@@ -23,13 +26,11 @@ namespace CorpusExplorer.Sdk.Helper
 
       if (_dictionary.ContainsKey(key))
         return (T) _dictionary[key];
-      
+
       Set(defaultValue, path);
 
       return defaultValue;
     }
-
-    private static string GetKey(string[] path) { return string.Join("/", path); }
 
     public Type GetSettingType(params string[] path)
     {
@@ -52,6 +53,11 @@ namespace CorpusExplorer.Sdk.Helper
       {
         _dictionary.Add(key, value);
       }
+    }
+
+    private static string GetKey(string[] path)
+    {
+      return string.Join("/", path);
     }
   }
 }

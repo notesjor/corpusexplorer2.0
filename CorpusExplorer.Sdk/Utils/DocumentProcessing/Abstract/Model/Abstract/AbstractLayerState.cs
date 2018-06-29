@@ -55,6 +55,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model.Abstract
         if (!dic.ContainsKey(key))
           dic.Add(key, w);
       }
+
       res.Cache = dic;
 
       return res;

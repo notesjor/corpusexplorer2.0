@@ -1,28 +1,31 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Xml.DigitalPlato.Model
+﻿using System;
+using System.CodeDom.Compiler;
+using System.Xml.Serialization;
+
+namespace CorpusExplorer.Sdk.Extern.Xml.DigitalPlato.Model
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(IncludeInSchema = false)]
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [XmlType(IncludeInSchema = false)]
   public enum ItemsChoiceType1
   {
-
-    /// <remarks/>
+    /// <remarks />
     foreign,
 
-    /// <remarks/>
+    /// <remarks />
     hi,
 
-    /// <remarks/>
+    /// <remarks />
     lb,
 
-    /// <remarks/>
+    /// <remarks />
     note,
 
-    /// <remarks/>
+    /// <remarks />
     speaker,
 
-    /// <remarks/>
-    title,
+    /// <remarks />
+    title
   }
 }

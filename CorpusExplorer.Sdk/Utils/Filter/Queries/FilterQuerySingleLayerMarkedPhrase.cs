@@ -13,35 +13,24 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
   [Serializable]
   public class FilterQuerySingleLayerMarkedPhrase : AbstractFilterQuery
   {
-    [XmlAttribute]
-    public static readonly string SearchPattern = ".<*>.";
+    [XmlAttribute] public static readonly string SearchPattern = ".<*>.";
 
-    [XmlIgnore]
-    private readonly object _getQueriesLock = new object();
+    [XmlIgnore] private readonly object _getQueriesLock = new object();
 
-    [XmlIgnore]
-    private readonly object _getSentenceCallLock = new object();
+    [XmlIgnore] private readonly object _getSentenceCallLock = new object();
 
-    [XmlArray]
-    private string[] _layerQueries;
+    [XmlArray] private string[] _layerQueries;
 
-    [XmlIgnore]
-    private ConcurrentDictionary<string, int[]> _layerQueryCache;
+    [XmlIgnore] private ConcurrentDictionary<string, int[]> _layerQueryCache;
 
-    public FilterQuerySingleLayerMarkedPhrase() { _layerQueryCache = new ConcurrentDictionary<string, int[]>(); }
+    public FilterQuerySingleLayerMarkedPhrase()
+    {
+      _layerQueryCache = new ConcurrentDictionary<string, int[]>();
+    }
 
-    /// <summary>
-    ///   End of Index - wird von GetWordIndices verwendet um das Ende des Musters zu bestimmen.
-    /// </summary>
-    /// <value>The eoi.</value>
-    [XmlIgnore]
-    private int Eoi { get; set; }
+    [XmlAttribute("layer")] public string LayerDisplayname { get; set; }
 
-    [XmlAttribute("layer")]
-    public string LayerDisplayname { get; set; }
-
-    [XmlAttribute("mark")]
-    public string Mark { get; private set; }
+    [XmlAttribute("mark")] public string Mark { get; private set; }
 
     /// <summary>
     ///   Gibt eine automatisch generierte Zusammenfassung des Inhalts/Bedeutung zur�ck.
@@ -58,6 +47,13 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
         return string.Format(Resources.SearchForPhrases, values);
       }
     }
+
+    /// <summary>
+    ///   End of Index - wird von GetWordIndices verwendet um das Ende des Musters zu bestimmen.
+    /// </summary>
+    /// <value>The eoi.</value>
+    [XmlIgnore]
+    private int Eoi { get; set; }
 
     /// <summary>
     ///   Erstellt ein neues Objekt, das eine Kopie der aktuellen Instanz darstellt.
@@ -77,49 +73,16 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       return res;
     }
 
-    private int[] GetQueries(AbstractCorpusAdapter corpus)
+    public void SetLayerQueriesAndMark(IEnumerable<string> layerQueries, string mark)
     {
-      if (_layerQueryCache.ContainsKey(corpus.ToString()))
-        return _layerQueryCache[corpus.ToString()];
+      _layerQueries = layerQueries.ToArray();
+      var hash = new HashSet<string>(_layerQueries);
+      if (!hash.Contains(mark))
+        throw new ArgumentException("mark muss in layerQueries enthalten sein.");
 
-      lock (_getQueriesLock)
-      {
-        var layers = corpus.GetLayers(LayerDisplayname);
-        var layer = layers?.FirstOrDefault();
-        if (layer == null)
-          return null;
-
-        var res = new List<int>();
-        foreach (var query in _layerQueries)
-          if (query == SearchPattern)
-          {
-            res.Add(-1);
-          }
-          else
-          {
-            var idx = layer[query];
-            if (idx == -1)
-              continue;
-            res.Add(idx);
-          }
-
-        if (res.Count == 0)
-          return null;
-
-        // Autooptimize
-        while (res[0] < 0)
-        {
-          if (res.Count < 2)
-            return null;
-          res.RemoveAt(0);
-        }
-        while (res[res.Count - 1] < 0)
-          res.RemoveAt(res[res.Count - 1]);
-
-        _layerQueryCache.TryAdd(corpus.ToString(), res.ToArray());
-
-        return res.ToArray();
-      }
+      Eoi = _layerQueries.Length - 1;
+      _layerQueryCache = new ConcurrentDictionary<string, int[]>();
+      Mark = mark;
     }
 
     /// <summary>
@@ -218,7 +181,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     ///   GetSentenceIndices() abgefragt werden.
     /// </param>
     /// <returns>Auflistung aller Vorkommen im Satz</returns>
-    protected override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       if (corpus == null ||
           documentGuid == Guid.Empty)
@@ -249,18 +212,6 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           res.Add(i);
 
       return res;
-    }
-
-    public void SetLayerQueriesAndMark(IEnumerable<string> layerQueries, string mark)
-    {
-      _layerQueries = layerQueries.ToArray();
-      var hash = new HashSet<string>(_layerQueries);
-      if (!hash.Contains(mark))
-        throw new ArgumentException("mark muss in layerQueries enthalten sein.");
-
-      Eoi = _layerQueries.Length - 1;      
-      _layerQueryCache = new ConcurrentDictionary<string, int[]>();
-      Mark = mark;
     }
 
     /// <summary>
@@ -299,6 +250,52 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       }
 
       return false;
+    }
+
+    private int[] GetQueries(AbstractCorpusAdapter corpus)
+    {
+      if (_layerQueryCache.ContainsKey(corpus.ToString()))
+        return _layerQueryCache[corpus.ToString()];
+
+      lock (_getQueriesLock)
+      {
+        var layers = corpus.GetLayers(LayerDisplayname);
+        var layer = layers?.FirstOrDefault();
+        if (layer == null)
+          return null;
+
+        var res = new List<int>();
+        foreach (var query in _layerQueries)
+          if (query == SearchPattern)
+          {
+            res.Add(-1);
+          }
+          else
+          {
+            var idx = layer[query];
+            if (idx == -1)
+              continue;
+            res.Add(idx);
+          }
+
+        if (res.Count == 0)
+          return null;
+
+        // Autooptimize
+        while (res[0] < 0)
+        {
+          if (res.Count < 2)
+            return null;
+          res.RemoveAt(0);
+        }
+
+        while (res[res.Count - 1] < 0)
+          res.RemoveAt(res[res.Count - 1]);
+
+        _layerQueryCache.TryAdd(corpus.ToString(), res.ToArray());
+
+        return res.ToArray();
+      }
     }
   }
 }

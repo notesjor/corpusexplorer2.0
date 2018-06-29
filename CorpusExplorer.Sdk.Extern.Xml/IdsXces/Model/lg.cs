@@ -22,10 +22,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     /// <remarks />
     [XmlElement("l", typeof(l))]
     [XmlElement("pb", typeof(pb))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string part { get { return partField; } set { partField = value; } }
+    public string part
+    {
+      get => partField;
+      set => partField = value;
+    }
   }
 }

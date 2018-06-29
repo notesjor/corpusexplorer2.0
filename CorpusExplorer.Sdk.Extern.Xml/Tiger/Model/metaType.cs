@@ -27,26 +27,50 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tiger.Model
 
     /// <remarks />
     [XmlElement(Form = XmlSchemaForm.Unqualified)]
-    public string author { get { return authorField; } set { authorField = value; } }
+    public string author
+    {
+      get => authorField;
+      set => authorField = value;
+    }
 
     /// <remarks />
     [XmlElement(Form = XmlSchemaForm.Unqualified)]
-    public string date { get { return dateField; } set { dateField = value; } }
+    public string date
+    {
+      get => dateField;
+      set => dateField = value;
+    }
 
     /// <remarks />
     [XmlElement(Form = XmlSchemaForm.Unqualified)]
-    public string description { get { return descriptionField; } set { descriptionField = value; } }
+    public string description
+    {
+      get => descriptionField;
+      set => descriptionField = value;
+    }
 
     /// <remarks />
     [XmlElement(Form = XmlSchemaForm.Unqualified)]
-    public string format { get { return formatField; } set { formatField = value; } }
+    public string format
+    {
+      get => formatField;
+      set => formatField = value;
+    }
 
     /// <remarks />
     [XmlElement(Form = XmlSchemaForm.Unqualified)]
-    public string history { get { return historyField; } set { historyField = value; } }
+    public string history
+    {
+      get => historyField;
+      set => historyField = value;
+    }
 
     /// <remarks />
     [XmlElement(Form = XmlSchemaForm.Unqualified)]
-    public string name { get { return nameField; } set { nameField = value; } }
+    public string name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
   }
 }

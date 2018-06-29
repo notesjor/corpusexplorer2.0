@@ -22,12 +22,24 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private string kindField;
 
     /// <remarks />
-    public appearance appearance { get { return appearanceField; } set { appearanceField = value; } }
+    public appearance appearance
+    {
+      get => appearanceField;
+      set => appearanceField = value;
+    }
 
     /// <remarks />
-    public string further { get { return furtherField; } set { furtherField = value; } }
+    public string further
+    {
+      get => furtherField;
+      set => furtherField = value;
+    }
 
     /// <remarks />
-    public string kind { get { return kindField; } set { kindField = value; } }
+    public string kind
+    {
+      get => kindField;
+      set => kindField = value;
+    }
   }
 }

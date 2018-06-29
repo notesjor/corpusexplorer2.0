@@ -6,7 +6,7 @@ namespace CorpusExplorer.Sdk.Blocks.VocabularyComplaxity
 {
   public class VocabularyComplexityCarrollsCorrectedTTR : AbstractVocabularyComplexity
   {
-    public override string Displayname => "Carrols Corrected TTR";
+    public override string Displayname => "Carrolls Corrected TTR";
 
     /// <summary>
     ///   The calculate value.

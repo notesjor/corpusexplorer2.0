@@ -24,8 +24,7 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// <summary>
     ///   The _d 2.
     /// </summary>
-    [NonSerialized]
-    private Dictionary<string, int> _d2 = new Dictionary<string, int>();
+    [NonSerialized] private Dictionary<string, int> _d2 = new Dictionary<string, int>();
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="CeDictionary" /> class.
@@ -60,7 +59,19 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// <summary>
     ///   Prevents a default instance of the <see cref="CeDictionary" /> class from being created.
     /// </summary>
-    private CeDictionary() { }
+    private CeDictionary()
+    {
+    }
+
+    /// <summary>
+    ///   Gets the count.
+    /// </summary>
+    public int Count => _d1.Count;
+
+    public IEnumerable<int> Indices
+    {
+      get { return _d1.Select(x => x.Key); }
+    }
 
     /// <summary>
     ///   The this.
@@ -111,16 +122,12 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     }
 
     /// <summary>
-    ///   Gets the count.
-    /// </summary>
-    public int Count => _d1.Count;
-
-    public IEnumerable<int> Indices { get { return _d1.Select(x => x.Key); } }
-
-    /// <summary>
     ///   Gets the values.
     /// </summary>
-    public IEnumerable<string> Values { get { return _d1.Select(x => x.Value); } }
+    public IEnumerable<string> Values
+    {
+      get { return _d1.Select(x => x.Value); }
+    }
 
     /// <summary>
     ///   The get enumerator.
@@ -177,7 +184,10 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
       _d2.Add(value.Key, value.Value);
     }
 
-    public CeDictionary Clone() { return new CeDictionary(_d2.ToArray().ToDictionary(x => x.Key, x => x.Value)); }
+    public CeDictionary Clone()
+    {
+      return new CeDictionary(_d2.ToArray().ToDictionary(x => x.Key, x => x.Value));
+    }
 
     /// <summary>
     ///   The contains.
@@ -231,29 +241,22 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
           _d1.Add(idx, newValue.Key);
           _d2.Add(newValue.Key, idx);
         }
+
         res.Add(newValue.Value, _d2[newValue.Key]);
       }
+
       return res;
     }
 
-    [OnDeserialized]
-    private void OnDeserialized(StreamingContext context)
+    public IEnumerable<KeyValuePair<int, string>> ReciveRawIndexToValue()
     {
-      try
-      {
-        _d2 = _d1.ToDictionary(x => x.Value, x => x.Key);
-      }
-      catch // Fallback
-      {
-        _d2 = new Dictionary<string, int>();
-        foreach (var entry in _d1.Where(entry => !_d2.ContainsKey(entry.Value)))
-          _d2.Add(entry.Value, entry.Key);
-      }
+      return _d1;
     }
 
-    public IEnumerable<KeyValuePair<int, string>> ReciveRawIndexToValue() { return _d1; }
-
-    public IEnumerable<KeyValuePair<string, int>> ReciveRawValueToIndex() { return _d2; }
+    public IEnumerable<KeyValuePair<string, int>> ReciveRawValueToIndex()
+    {
+      return _d2;
+    }
 
     public void RefreshDictionaries()
     {
@@ -291,6 +294,21 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
       _d2.Remove(layerValueOld);
       _d2.Add(layerValueNew, idx);
       _d1[idx] = layerValueNew;
+    }
+
+    [OnDeserialized]
+    private void OnDeserialized(StreamingContext context)
+    {
+      try
+      {
+        _d2 = _d1.ToDictionary(x => x.Value, x => x.Key);
+      }
+      catch // Fallback
+      {
+        _d2 = new Dictionary<string, int>();
+        foreach (var entry in _d1.Where(entry => !_d2.ContainsKey(entry.Value)))
+          _d2.Add(entry.Value, entry.Key);
+      }
     }
   }
 }

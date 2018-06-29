@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Sentenizer.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Sentenizer
@@ -25,6 +21,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Sentenizer
         doc.Add(sen.ToArray());
         sen.Clear();
       }
+
       return doc.ToArray();
     }
   }

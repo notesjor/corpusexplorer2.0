@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step.Abstract;
@@ -29,13 +28,14 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
 
       if (Top > 0)
         tmp = (from x in tmp
-               from y in x.Value
-               from z in y.Value
-               orderby z.Value
-               descending
-               select x).Take(Top);
+          from y in x.Value
+          from z in y.Value
+          orderby z.Value
+            descending
+          select x).Take(Top);
 
-      output.Set(selection, Method, "", tmp.ToDataTable(block.Layer1Displayname, block.Layer2Displayname, block.Layer3Displayname, "Frequency"));
+      output.Set(selection, Method, "",
+        tmp.ToDataTable(block.Layer1Displayname, block.Layer2Displayname, block.Layer3Displayname, "Frequency"));
     }
   }
 }

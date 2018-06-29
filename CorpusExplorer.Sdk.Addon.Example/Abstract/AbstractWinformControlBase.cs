@@ -8,6 +8,9 @@ namespace CorpusExplorer.Sdk.Addon.Example.Abstract
 {
   public partial class AbstractWinformControlBase : UserControl
   {
-    public AbstractWinformControlBase() { InitializeComponent(); }
+    public AbstractWinformControlBase()
+    {
+      InitializeComponent();
+    }
   }
 }

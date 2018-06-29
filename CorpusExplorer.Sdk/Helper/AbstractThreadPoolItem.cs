@@ -14,14 +14,17 @@ namespace CorpusExplorer.Sdk.Helper
   {
     private readonly ManualResetEvent _dontEvent;
 
-    protected AbstractThreadPoolItem(ManualResetEvent doneEvent) { _dontEvent = doneEvent; }
-
-    protected abstract void Calculate(T context);
+    protected AbstractThreadPoolItem(ManualResetEvent doneEvent)
+    {
+      _dontEvent = doneEvent;
+    }
 
     public void ThreadPoolCallback(object threadContext)
     {
       Calculate((T) threadContext);
       _dontEvent.Set();
     }
+
+    protected abstract void Calculate(T context);
   }
 }

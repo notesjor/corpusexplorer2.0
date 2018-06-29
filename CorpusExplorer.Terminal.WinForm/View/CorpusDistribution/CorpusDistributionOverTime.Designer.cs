@@ -39,14 +39,17 @@
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.commandBarLabel2 = new Telerik.WinControls.UI.CommandBarLabel();
       this.commandBarTextBox1 = new Telerik.WinControls.UI.CommandBarTextBox();
-      this.commandBarSeparator2 = new Telerik.WinControls.UI.CommandBarSeparator();
+      this.commandBarRowElement2 = new Telerik.WinControls.UI.CommandBarRowElement();
+      this.commandBarStripElement2 = new Telerik.WinControls.UI.CommandBarStripElement();
       this.commandBarLabel3 = new Telerik.WinControls.UI.CommandBarLabel();
       this.commandBarDropDownList2 = new Telerik.WinControls.UI.CommandBarDropDownList();
-      this.chart_view = new Telerik.WinControls.UI.RadChartView();
-      this.drop_select = new Telerik.WinControls.UI.RadCheckedDropDownList();
       this.commandBarSeparator3 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.commandBarLabel4 = new Telerik.WinControls.UI.CommandBarLabel();
       this.commandBarDropDownList3 = new Telerik.WinControls.UI.CommandBarDropDownList();
+      this.chart_view = new Telerik.WinControls.UI.RadChartView();
+      this.drop_select = new Telerik.WinControls.UI.RadCheckedDropDownList();
+      this.commandBarSeparator2 = new Telerik.WinControls.UI.CommandBarSeparator();
+      this.btn_export = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.chart_view)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.drop_select)).BeginInit();
@@ -58,14 +61,15 @@
       this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
-            this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(1037, 69);
+            this.commandBarRowElement1,
+            this.commandBarRowElement2});
+      this.radCommandBar1.Size = new System.Drawing.Size(1037, 110);
       this.radCommandBar1.TabIndex = 0;
-      this.radCommandBar1.Text = "radCommandBar1";
       // 
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
       // 
@@ -77,13 +81,7 @@
             this.commandBarDropDownList1,
             this.commandBarSeparator1,
             this.commandBarLabel2,
-            this.commandBarTextBox1,
-            this.commandBarSeparator2,
-            this.commandBarLabel3,
-            this.commandBarDropDownList2,
-            this.commandBarSeparator3,
-            this.commandBarLabel4,
-            this.commandBarDropDownList3});
+            this.commandBarTextBox1});
       this.commandBarStripElement1.Name = "commandBarStripElement1";
       // 
       // commandBarLabel1
@@ -120,11 +118,25 @@
       this.commandBarTextBox1.Name = "commandBarTextBox1";
       this.commandBarTextBox1.Text = "25";
       // 
-      // commandBarSeparator2
+      // commandBarRowElement2
       // 
-      this.commandBarSeparator2.DisplayName = "commandBarSeparator2";
-      this.commandBarSeparator2.Name = "commandBarSeparator2";
-      this.commandBarSeparator2.VisibleInOverflowMenu = false;
+      this.commandBarRowElement2.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement2.Name = "commandBarRowElement2";
+      this.commandBarRowElement2.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
+            this.commandBarStripElement2});
+      // 
+      // commandBarStripElement2
+      // 
+      this.commandBarStripElement2.DisplayName = "commandBarStripElement2";
+      this.commandBarStripElement2.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
+            this.commandBarLabel3,
+            this.commandBarDropDownList2,
+            this.commandBarSeparator3,
+            this.commandBarLabel4,
+            this.commandBarDropDownList3,
+            this.commandBarSeparator2,
+            this.btn_export});
+      this.commandBarStripElement2.Name = "commandBarStripElement2";
       // 
       // commandBarLabel3
       // 
@@ -143,47 +155,10 @@
       this.commandBarDropDownList2.Text = "";
       this.commandBarDropDownList2.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.commandBarDropDownList2_SelectedIndexChanged);
       // 
-      // chart_view
-      // 
-      this.chart_view.AreaDesign = cartesianArea1;
-      categoricalAxis1.IsPrimary = true;
-      categoricalAxis1.LabelRotationAngle = 300D;
-      categoricalAxis1.Title = "";
-      linearAxis1.AxisType = Telerik.Charting.AxisType.Second;
-      linearAxis1.IsPrimary = true;
-      linearAxis1.LabelRotationAngle = 300D;
-      linearAxis1.TickOrigin = null;
-      linearAxis1.Title = "";
-      this.chart_view.Axes.AddRange(new Telerik.WinControls.UI.Axis[] {
-            categoricalAxis1,
-            linearAxis1});
-      this.chart_view.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.chart_view.Location = new System.Drawing.Point(0, 101);
-      this.chart_view.Name = "chart_view";
-      this.chart_view.ShowGrid = false;
-      this.chart_view.ShowLegend = true;
-      this.chart_view.ShowPanZoom = true;
-      this.chart_view.ShowToolTip = true;
-      this.chart_view.ShowTrackBall = true;
-      this.chart_view.Size = new System.Drawing.Size(1037, 299);
-      this.chart_view.TabIndex = 0;
-      this.chart_view.Text = "radChartView1";
-      // 
-      // drop_select
-      // 
-      this.drop_select.Dock = System.Windows.Forms.DockStyle.Top;
-      this.drop_select.Location = new System.Drawing.Point(0, 69);
-      this.drop_select.Name = "drop_select";
-      this.drop_select.NullText = "Kategoriewerte hier auswählen...";
-      this.drop_select.Size = new System.Drawing.Size(1037, 32);
-      this.drop_select.TabIndex = 0;
-      this.drop_select.ItemCheckedChanged += new Telerik.WinControls.UI.RadCheckedListDataItemEventHandler(this.drop_select_ItemCheckedChanged);
-      // 
       // commandBarSeparator3
       // 
       this.commandBarSeparator3.DisplayName = "commandBarSeparator3";
       this.commandBarSeparator3.Name = "commandBarSeparator3";
-      this.commandBarSeparator3.Text = "";
       this.commandBarSeparator3.VisibleInOverflowMenu = false;
       // 
       // commandBarLabel4
@@ -200,6 +175,56 @@
       this.commandBarDropDownList3.MinSize = new System.Drawing.Size(150, 22);
       this.commandBarDropDownList3.Name = "commandBarDropDownList3";
       this.commandBarDropDownList3.Text = "";
+      // 
+      // chart_view
+      // 
+      this.chart_view.AreaDesign = cartesianArea1;
+      categoricalAxis1.IsPrimary = true;
+      categoricalAxis1.LabelRotationAngle = 300D;
+      categoricalAxis1.Title = "";
+      linearAxis1.AxisType = Telerik.Charting.AxisType.Second;
+      linearAxis1.IsPrimary = true;
+      linearAxis1.LabelRotationAngle = 300D;
+      linearAxis1.TickOrigin = null;
+      linearAxis1.Title = "";
+      this.chart_view.Axes.AddRange(new Telerik.WinControls.UI.Axis[] {
+            categoricalAxis1,
+            linearAxis1});
+      this.chart_view.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.chart_view.Location = new System.Drawing.Point(0, 142);
+      this.chart_view.Name = "chart_view";
+      this.chart_view.ShowGrid = false;
+      this.chart_view.ShowLegend = true;
+      this.chart_view.ShowPanZoom = true;
+      this.chart_view.ShowToolTip = true;
+      this.chart_view.ShowTrackBall = true;
+      this.chart_view.Size = new System.Drawing.Size(1037, 258);
+      this.chart_view.TabIndex = 0;
+      // 
+      // drop_select
+      // 
+      this.drop_select.Dock = System.Windows.Forms.DockStyle.Top;
+      this.drop_select.Location = new System.Drawing.Point(0, 110);
+      this.drop_select.Name = "drop_select";
+      this.drop_select.NullText = "Kategoriewerte hier auswählen...";
+      this.drop_select.Size = new System.Drawing.Size(1037, 32);
+      this.drop_select.TabIndex = 0;
+      this.drop_select.ItemCheckedChanged += new Telerik.WinControls.UI.RadCheckedListDataItemEventHandler(this.drop_select_ItemCheckedChanged);
+      // 
+      // commandBarSeparator2
+      // 
+      this.commandBarSeparator2.DisplayName = "commandBarSeparator2";
+      this.commandBarSeparator2.Name = "commandBarSeparator2";
+      this.commandBarSeparator2.Text = "";
+      this.commandBarSeparator2.VisibleInOverflowMenu = false;
+      // 
+      // btn_export
+      // 
+      this.btn_export.DisplayName = "commandBarButton1";
+      this.btn_export.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
+      this.btn_export.Name = "btn_export";
+      this.btn_export.Text = "Daten exportieren...";
+      this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
       // 
       // CorpusDistributionOverTime
       // 
@@ -230,11 +255,14 @@
     private Telerik.WinControls.UI.CommandBarLabel commandBarLabel2;
     private Telerik.WinControls.UI.CommandBarTextBox commandBarTextBox1;
     private Telerik.WinControls.UI.RadCheckedDropDownList drop_select;
-    private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator2;
     private Telerik.WinControls.UI.CommandBarLabel commandBarLabel3;
     private Telerik.WinControls.UI.CommandBarDropDownList commandBarDropDownList2;
     private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator3;
     private Telerik.WinControls.UI.CommandBarLabel commandBarLabel4;
     private Telerik.WinControls.UI.CommandBarDropDownList commandBarDropDownList3;
+    private Telerik.WinControls.UI.CommandBarRowElement commandBarRowElement2;
+    private Telerik.WinControls.UI.CommandBarStripElement commandBarStripElement2;
+    private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator2;
+    private Telerik.WinControls.UI.CommandBarButton btn_export;
   }
 }

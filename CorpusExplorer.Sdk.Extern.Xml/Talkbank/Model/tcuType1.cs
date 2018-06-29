@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlElement("u")]
-    public speakerUtteranceType[] u { get { return uField; } set { uField = value; } }
+    public speakerUtteranceType[] u
+    {
+      get => uField;
+      set => uField = value;
+    }
   }
 }

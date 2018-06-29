@@ -17,5 +17,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Bare.Model
   [DesignerCategory("code")]
   [XmlType(AnonymousType = true, Namespace = "http://www.tei-c.org/ns/1.0")]
   [XmlRoot("author", Namespace = "http://www.tei-c.org/ns/1.0", IsNullable = false)]
-  public class titleStmtModelrespLikeAuthor : macrophraseSeq {}
+  public class titleStmtModelrespLikeAuthor : macrophraseSeq
+  {
+  }
 }

@@ -25,13 +25,25 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus.Model
 
     /// <remarks />
     [XmlArrayItem("creator", IsNullable = false)]
-    public creator[] creatorList { get { return creatorListField; } set { creatorListField = value; } }
+    public creator[] creatorList
+    {
+      get => creatorListField;
+      set => creatorListField = value;
+    }
 
     /// <remarks />
-    public record record { get { return recordField; } set { recordField = value; } }
+    public record record
+    {
+      get => recordField;
+      set => recordField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("revision", IsNullable = false)]
-    public revision[] revisionHistory { get { return revisionHistoryField; } set { revisionHistoryField = value; } }
+    public revision[] revisionHistory
+    {
+      get => revisionHistoryField;
+      set => revisionHistoryField = value;
+    }
   }
 }

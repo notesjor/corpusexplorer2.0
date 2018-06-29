@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Bcs.IO;
 
 namespace CorpusExplorer.Sdk.Db.Gui
 {
   public class DbSettingsReader
   {
-    internal DbSettingsReader(){}
-    
     public DbSettingsReader(string path)
     {
       var lines = FileIO.ReadLines(path);
@@ -25,15 +19,18 @@ namespace CorpusExplorer.Sdk.Db.Gui
       Password = lines[4];
     }
 
-    public string Password { get; set; }
-
-    public string Username { get; set; }
+    internal DbSettingsReader()
+    {
+    }
 
     public string DbName { get; set; }
 
+    public string Host { get; set; }
+
+    public string Password { get; set; }
+
     public int Port { get; set; }
 
-    public string Host { get; set; }
+    public string Username { get; set; }
   }
 }
-

@@ -27,35 +27,51 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     private udinformation[] udmetainformationField;
 
     /// <remarks />
-    public string comment { get { return commentField; } set { commentField = value; } }
+    public string comment
+    {
+      get => commentField;
+      set => commentField = value;
+    }
 
     /// <remarks />
     [XmlElement("project-name")]
-    public string projectname { get { return projectnameField; } set { projectnameField = value; } }
+    public string projectname
+    {
+      get => projectnameField;
+      set => projectnameField = value;
+    }
 
     /// <remarks />
     [XmlElement("referenced-file")]
-    public referencedfile referencedfile { get { return referencedfileField; } set { referencedfileField = value; } }
+    public referencedfile referencedfile
+    {
+      get => referencedfileField;
+      set => referencedfileField = value;
+    }
 
     /// <remarks />
     [XmlElement("transcription-convention")]
     public string transcriptionconvention
     {
-      get { return transcriptionconventionField; }
-      set { transcriptionconventionField = value; }
+      get => transcriptionconventionField;
+      set => transcriptionconventionField = value;
     }
 
     /// <remarks />
     [XmlElement("transcription-name")]
-    public string transcriptionname { get { return transcriptionnameField; } set { transcriptionnameField = value; } }
+    public string transcriptionname
+    {
+      get => transcriptionnameField;
+      set => transcriptionnameField = value;
+    }
 
     /// <remarks />
     [XmlArray("ud-meta-information")]
     [XmlArrayItem("ud-information", IsNullable = false)]
     public udinformation[] udmetainformation
     {
-      get { return udmetainformationField; }
-      set { udmetainformationField = value; }
+      get => udmetainformationField;
+      set => udmetainformationField = value;
     }
   }
 }

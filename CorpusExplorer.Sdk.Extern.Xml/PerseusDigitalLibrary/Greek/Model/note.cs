@@ -1,22 +1,23 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
 namespace CorpusExplorer.Sdk.Extern.Xml.PerseusDigitalLibrary.Greek.Model
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-  public partial class note
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true)]
+  [XmlRoot(Namespace = "", IsNullable = false)]
+  public class note
   {
+    private string anchoredField;
 
     private object[] itemsField;
-
-    private string[] textField;
-
-    private string tEIformField;
-
-    private string anchoredField;
 
     private string nField;
 
@@ -24,72 +25,76 @@ namespace CorpusExplorer.Sdk.Extern.Xml.PerseusDigitalLibrary.Greek.Model
 
     private string respField;
 
+    private string tEIformField;
+
+    private string[] textField;
+
     private string typeField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("bibl", typeof(bibl))]
-    [System.Xml.Serialization.XmlElementAttribute("foreign", typeof(foreign))]
-    [System.Xml.Serialization.XmlElementAttribute("p", typeof(p))]
-    public object[] Items
-    {
-      get { return this.itemsField; }
-      set { this.itemsField = value; }
-    }
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string[] Text
-    {
-      get { return this.textField; }
-      set { this.textField = value; }
-    }
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
-    public string TEIform
-    {
-      get { return this.tEIformField; }
-      set { this.tEIformField = value; }
-    }
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string anchored
     {
-      get { return this.anchoredField; }
-      set { this.anchoredField = value; }
+      get => anchoredField;
+      set => anchoredField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    /// <remarks />
+    [XmlElement("bibl", typeof(bibl))]
+    [XmlElement("foreign", typeof(foreign))]
+    [XmlElement("p", typeof(p))]
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
+
+    /// <remarks />
+    [XmlAttribute]
     public string n
     {
-      get { return this.nField; }
-      set { this.nField = value; }
+      get => nField;
+      set => nField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string place
     {
-      get { return this.placeField; }
-      set { this.placeField = value; }
+      get => placeField;
+      set => placeField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    /// <remarks />
+    [XmlAttribute]
     public string resp
     {
-      get { return this.respField; }
-      set { this.respField = value; }
+      get => respField;
+      set => respField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
+    public string TEIform
+    {
+      get => tEIformField;
+      set => tEIformField = value;
+    }
+
+    /// <remarks />
+    [XmlText]
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
+
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string type
     {
-      get { return this.typeField; }
-      set { this.typeField = value; }
+      get => typeField;
+      set => typeField = value;
     }
   }
 }

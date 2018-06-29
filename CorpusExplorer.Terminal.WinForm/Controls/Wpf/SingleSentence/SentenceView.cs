@@ -16,9 +16,23 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.SingleSentence
   /// </summary>
   public partial class SentenceView
   {
-    public SentenceView() { InitializeComponent(); }
+    public SentenceView()
+    {
+      InitializeComponent();
+    }
 
-    public void ClearItems() { radTreeView.Items.Clear(); }
+    public void ClearItems()
+    {
+      radTreeView.Items.Clear();
+    }
+
+    public void SetItems(IEnumerable<SentenceViewItem> items)
+    {
+      ClearItems();
+
+      foreach (var nitem in items.Select(GenerateItemRekursiv))
+        radTreeView.Items.Add(nitem);
+    }
 
     private RadTreeViewItem GenerateItemRekursiv(SentenceViewItem item)
     {
@@ -37,14 +51,6 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.SingleSentence
         nitem.Items.Add(GenerateItemRekursiv(subitem));
 
       return nitem;
-    }
-
-    public void SetItems(IEnumerable<SentenceViewItem> items)
-    {
-      ClearItems();
-
-      foreach (var nitem in items.Select(GenerateItemRekursiv))
-        radTreeView.Items.Add(nitem);
     }
   }
 }

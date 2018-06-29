@@ -6,7 +6,11 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
   public class StringCluster : AbstractCluster
   {
     private readonly string _value;
-    public StringCluster(string value) { _value = value ?? ""; }
+
+    public StringCluster(string value)
+    {
+      _value = value ?? "";
+    }
 
     public override object CentralValue => _value;
 

@@ -26,12 +26,20 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string corresp { get { return correspField; } set { correspField = value; } }
+    public string corresp
+    {
+      get => correspField;
+      set => correspField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified,
-       Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string id { get { return idField; } set { idField = value; } }
+      Namespace = "http://www.w3.org/XML/1998/namespace")]
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlElement("abbr", typeof(abbr))]
@@ -41,10 +49,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("orig", typeof(orig))]
     [XmlElement("reg", typeof(reg))]
     [XmlElement("sic", typeof(sic))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

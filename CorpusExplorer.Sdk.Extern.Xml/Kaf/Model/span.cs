@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlElement("target")]
-    public target[] target { get { return targetField; } set { targetField = value; } }
+    public target[] target
+    {
+      get => targetField;
+      set => targetField = value;
+    }
   }
 }

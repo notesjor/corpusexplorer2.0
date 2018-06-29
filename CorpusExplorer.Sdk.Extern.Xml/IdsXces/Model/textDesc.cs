@@ -26,18 +26,38 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private string textTypeRefField;
 
     /// <remarks />
-    public string column { get { return columnField; } set { columnField = value; } }
+    public string column
+    {
+      get => columnField;
+      set => columnField = value;
+    }
 
     /// <remarks />
-    public string textDomain { get { return textDomainField; } set { textDomainField = value; } }
+    public string textDomain
+    {
+      get => textDomainField;
+      set => textDomainField = value;
+    }
 
     /// <remarks />
-    public string textType { get { return textTypeField; } set { textTypeField = value; } }
+    public string textType
+    {
+      get => textTypeField;
+      set => textTypeField = value;
+    }
 
     /// <remarks />
-    public string textTypeArt { get { return textTypeArtField; } set { textTypeArtField = value; } }
+    public string textTypeArt
+    {
+      get => textTypeArtField;
+      set => textTypeArtField = value;
+    }
 
     /// <remarks />
-    public string textTypeRef { get { return textTypeRefField; } set { textTypeRefField = value; } }
+    public string textTypeRef
+    {
+      get => textTypeRefField;
+      set => textTypeRefField = value;
+    }
   }
 }

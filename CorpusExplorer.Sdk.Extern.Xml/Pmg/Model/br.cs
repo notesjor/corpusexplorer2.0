@@ -13,5 +13,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Pmg.Model
   [DesignerCategory("code")]
   [XmlType(AnonymousType = true)]
   [XmlRoot(Namespace = "", IsNullable = false)]
-  public class br {}
+  public class br
+  {
+  }
 }

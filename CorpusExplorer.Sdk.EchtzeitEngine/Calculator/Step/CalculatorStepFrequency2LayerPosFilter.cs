@@ -9,7 +9,8 @@ using CorpusExplorer.Sdk.Model;
 
 namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
 {
-  public class CalculatorStepFrequency2LayerPosFilter : AbstractCalculatorStep, ICalculatorStepHasTopFilter, ICalculatorStepHasPosFilter
+  public class CalculatorStepFrequency2LayerPosFilter : AbstractCalculatorStep, ICalculatorStepHasTopFilter,
+    ICalculatorStepHasPosFilter
   {
     public CalculatorStepFrequency2LayerPosFilter()
     {
@@ -17,6 +18,9 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
     }
 
     public override string Method => "Frequency1LayerPosTags";
+    public IEnumerable<string> PosTags { get; set; }
+
+    public int Top { get; set; }
 
     public override void Calculate(Selection selection, ref UniversalStorage output)
     {
@@ -26,24 +30,19 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
       var tmp = block.Frequency;
 
       if (Top > 0)
-      {
         tmp = PosTags.Where(pos => tmp.ContainsKey(pos))
-                     .ToDictionary(
-                       pos => pos,
-                       pos =>
-                         (from x in tmp[pos]
-                          orderby x.Value descending
-                          select x)
-                         .Take(Top)
-                         .ToDictionary(
-                           x => x.Key,
-                           x => x.Value));
-      }
+          .ToDictionary(
+            pos => pos,
+            pos =>
+              (from x in tmp[pos]
+                orderby x.Value descending
+                select x)
+              .Take(Top)
+              .ToDictionary(
+                x => x.Key,
+                x => x.Value));
 
       output.Set(selection, Method, "", tmp.ToDataTable(block.Layer1Displayname, "Frequency"));
     }
-
-    public int Top { get; set; }
-    public IEnumerable<string> PosTags { get; set; }
   }
 }

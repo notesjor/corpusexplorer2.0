@@ -24,54 +24,44 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     e,
 
     /// <remarks />
-    [XmlEnum("broken for coding")]
-    brokenforcoding,
+    [XmlEnum("broken for coding")] brokenforcoding,
 
     /// <remarks />
-    [XmlEnum("trail off")]
-    trailoff,
+    [XmlEnum("trail off")] trailoff,
 
     /// <remarks />
-    [XmlEnum("trail off question")]
-    trailoffquestion,
+    [XmlEnum("trail off question")] trailoffquestion,
 
     /// <remarks />
-    [XmlEnum("question exclamation")]
-    questionexclamation,
+    [XmlEnum("question exclamation")] questionexclamation,
 
     /// <remarks />
     interruption,
 
     /// <remarks />
-    [XmlEnum("interruption question")]
-    interruptionquestion,
+    [XmlEnum("interruption question")] interruptionquestion,
 
     /// <remarks />
-    [XmlEnum("self interruption")]
-    selfinterruption,
+    [XmlEnum("self interruption")] selfinterruption,
 
     /// <remarks />
     [XmlEnum("self interruption question")]
     selfinterruptionquestion,
 
     /// <remarks />
-    [XmlEnum("quotation next line")]
-    quotationnextline,
+    [XmlEnum("quotation next line")] quotationnextline,
 
     /// <remarks />
-    [XmlEnum("quotation precedes")]
-    quotationprecedes,
+    [XmlEnum("quotation precedes")] quotationprecedes,
 
     /// <remarks />
-    [XmlEnum("missing CA terminator")]
-    missingCAterminator,
+    [XmlEnum("missing CA terminator")] missingCAterminator,
 
     /// <remarks />
     [XmlEnum("technical break TCU continuation")]
     technicalbreakTCUcontinuation,
 
     /// <remarks />
-    [XmlEnum("no break TCU continuation")]
-    nobreakTCUcontinuation
+    [XmlEnum("no break TCU continuation")] nobreakTCUcontinuation
   }
 }

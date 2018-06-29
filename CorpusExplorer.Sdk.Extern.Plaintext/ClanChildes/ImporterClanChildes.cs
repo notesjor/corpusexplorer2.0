@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes.Model;
@@ -22,165 +21,15 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
     private string _filename;
     private string _path;
 
-    public ImporterClanChildes() { Errors = new List<ClanChildesError>(); }
+    public ImporterClanChildes()
+    {
+      Errors = new List<ClanChildesError>();
+    }
 
     public List<ClanChildesError> Errors { get; }
 
-    protected override IEnumerable<string> LayerNames => new[] { "Wort", "Lemma", "Lemma-Info", "POS", "POS-Info", "POS-Person", "@-Kategorie" };
-
-    private IEnumerable<string> BuildFixes(string[] words, int i, out int pre, out int post)
-    {
-      // Einfaches Wort ersetzen
-      if (words[i] == "[:")
-      {
-        pre = i - 1;
-        var res = GetBracesContent(words, ref i);
-        post = i + 1;
-        return res;
-      }
-
-      var scorpus = 0;
-
-      // Scorpusgrenze
-      if ((words[i] == "<") ||
-          words[i].StartsWith("<"))
-      {
-        scorpus = i - 1;
-
-        for (; i < words.Length; i++)
-          if (words[i].EndsWith(">") ||
-              (words[i] == ">"))
-            break;
-      }
-
-      pre = scorpus;
-      i++;
-
-      // Lösche da Ausdruck wiederholt wird
-      switch (words[i])
-      {
-        case "[/]":
-        case "[//]":
-          post = i + 1;
-          return new string[0];
-        case "[:":
-          i = i + 1;
-          var res = GetBracesContent(words, ref i);
-          post = i + 1;
-          return res;
-        default:
-          // Debug.WriteLine("[: -> " + words[i]);
-          post = i;
-          return new string[0];
-      }
-    }
-
-    private static string CleanTextLine(string text)
-    {
-      text = text.Replace("\r", " ").Replace("\n", " ").Replace("(.)", " ").Replace("(..)", " ");
-
-      while (text.Contains("  "))
-        text = text.Replace("  ", " ");
-      while (text.Contains("\t\t"))
-        text = text.Replace("\t\t", "\t");
-      text = text.Trim();
-      return text;
-    }
-
-    private int[] Convert(string layerName, string[] arr, bool[] isValid, ref bool hasError)
-    {
-      var res = new int[isValid.Length];
-      var j = 0;
-
-      try
-      {
-        for (var i = 0; i < isValid.Length; i++)
-          if (isValid[i])
-          {
-            var key = arr[j];
-            res[i] = ConvertToLayer(layerName, key);
-            j++;
-          }
-          else
-            res[i] = -1;
-      }
-      catch (IndexOutOfRangeException)
-      {
-        for (var i = 0; i < res.Length; i++)
-          res[i] = -1;
-
-        hasError = true;
-      }
-
-      return res;
-    }
-
-    private int[] Convert(string layerName, string[] arr)
-    {
-      var res = new int[arr.Length];
-
-      for (var i = 0; i < arr.Length; i++)
-        res[i] = ConvertToLayer(layerName, arr[i]);
-
-      return res;
-    }
-
-    private Dictionary<string, object> GenerateDictionary(
-      string speaker,
-      string comment,
-      string but,
-      string action,
-      string sentenceEnd,
-      string parallelSpeech,
-      string inSentenceComment,
-      string original,
-      string speakerError,
-      ref ClanChildesRule[] rules)
-    {
-      var res = _documentMetadataPrototyp.ToDictionary(entry => entry.Key, entry => entry.Value);
-      var cnt = _counter++;
-      res.Add("Sprecher", speaker);
-      res.Add("Kommentar", comment);
-      res.Add("Kommentar (im Satz)", inSentenceComment);
-      res.Add("Satz ID", cnt);
-      res.Add("Äußerungsmodus", but); // but -> nach Basic Utterance Terminator
-      res.Add("Handlung", action);
-      res.Add("Satzende", sentenceEnd);
-      res.Add("Gleichzeitigkeit", parallelSpeech);
-      res.Add("Original", original);
-      res.Add("Titel", $"{_filename.Replace(".mor", "").Replace(".longtr", "").Replace(".cex", "")} - {cnt:00000}");
-      res.Add("Fehler", speakerError);
-
-      if (rules == null)
-        return res;
-
-      foreach (var r in from r in rules
-                        where cnt >= r.SentenceIndexStart
-                        where cnt <= r.SentenceIndexEnd
-                        where !res.ContainsKey(r.MetaLabel)
-                        select r)
-        res.Add(r.MetaLabel, r.MetaValue);
-
-      return res;
-    }
-
-    private static IEnumerable<string> GetBracesContent(string[] words, ref int i)
-    {
-      var res = new List<string>();
-
-      i++;
-      for (; i < words.Length; i++)
-      {
-        if (words[i].EndsWith("]"))
-        {
-          res.Add(words[i].Replace("]", ""));
-          break;
-        }
-        res.Add(words[i]);
-      }
-
-      return res;
-    }
+    protected override IEnumerable<string> LayerNames => new[]
+      {"Wort", "Lemma", "Lemma-Info", "POS", "POS-Info", "POS-Person", "@-Kategorie"};
 
     protected override ClanChildesImportData ImportStep_1_ReadFile(string path)
     {
@@ -190,17 +39,17 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
 
       text =
         text.Replace("[+ imi]", "")
-            .Replace("[+imi]", "")
-            .Replace("[+ cit]", "")
-            .Replace("[+cit]", "")
-            .Replace("[+ pds]", "")
-            .Replace("[+pds]", "")
-            .Replace("[+ ads]", "")
-            .Replace("[+ads]", "");
+          .Replace("[+imi]", "")
+          .Replace("[+ cit]", "")
+          .Replace("[+cit]", "")
+          .Replace("[+ pds]", "")
+          .Replace("[+pds]", "")
+          .Replace("[+ ads]", "")
+          .Replace("[+ads]", "");
 
       return new ClanChildesImportData
       {
-        Text = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries),
+        Text = text.Split(new[] {"\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries),
         Rules = File.Exists(path + ".cecclanr") ? Serializer.Deserialize<ClanChildesRule[]>(path + ".cecclanr") : null
       };
     }
@@ -254,7 +103,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
     {
       var rules = data.Rules;
 
-      var sentenceMarks = new HashSet<string> { ".", "!", "?", ",", ";", "+", "#" };
+      var sentenceMarks = new HashSet<string> {".", "!", "?", ",", ";", "+", "#"};
 
       Guid dguid;
       string comment, speaker, mod, action, sentenceEnd, parallelSpeech, inSentenceComment, original, speakerError;
@@ -338,7 +187,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
             out layerLemmaInfo,
             out layerCategory);
 
-          var split = CleanTextLine(line).Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
+          var split = CleanTextLine(line).Split(new[] {"\t"}, StringSplitOptions.RemoveEmptyEntries);
 
           speaker = split[0].Replace("*", "").Replace(":", "");
           original = split[1]; // Orignal ohne Modifikationen
@@ -367,12 +216,12 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
           continue;
         }
 
-        var splits = line.Split(new[] { ":" }, StringSplitOptions.RemoveEmptyEntries);
+        var splits = line.Split(new[] {":"}, StringSplitOptions.RemoveEmptyEntries);
         mod = splits[0].Replace("%", "");
         var lineAnnotation = line.Replace("%" + mod + ":", "").Trim();
         var lineNumberAnnoation = i;
 
-        var mor = line.Replace("%" + mod + ":", "").Trim().Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+        var mor = line.Replace("%" + mod + ":", "").Trim().Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
         var lem = new List<string>();
         var lemI = new List<string>();
         var pos = new List<string>();
@@ -383,11 +232,10 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
         string pV = null;
 
         for (var mIndex = 0; mIndex < mor.Length; mIndex++)
-        {
           try
           {
             // PV-Einschub
-            if ((pVIndex > -1) && (((pVIndex == mor.Length) && (mIndex + 1 == mor.Length)) || (pVIndex == mIndex)))
+            if (pVIndex > -1 && (pVIndex == mor.Length && mIndex + 1 == mor.Length || pVIndex == mIndex))
             {
               lem.Add(pV);
               lemI.Add("");
@@ -400,19 +248,22 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
                 else
                   posI.Insert(pVIndex, "");
               }
-              catch { }
+              catch
+              {
+              }
+
               pVIndex = -1;
             }
 
             var m = mor[mIndex];
-            var split = m.Split(new[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
+            var split = m.Split(new[] {"|"}, StringSplitOptions.RemoveEmptyEntries);
 
             // POS-Tag Extraktion
             var p = split[0];
             // Wenn POS-Tag folgenden Format entspricht, dann spalte die POS-Info ab: INFO#POS
             if (p.Contains("#"))
             {
-              var pS = p.Split(new[] { "#" }, StringSplitOptions.RemoveEmptyEntries);
+              var pS = p.Split(new[] {"#"}, StringSplitOptions.RemoveEmptyEntries);
               if (pS.Length == 2)
               {
                 p = pS[1];
@@ -432,7 +283,9 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
                     }
 
                   if (!found)
+                  {
                     pVIndex = -1;
+                  }
                   else
                   {
                     if (pVIndex == mIndex)
@@ -444,6 +297,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
                       posP.Add("");
                       pVIndex = -1;
                     }
+
                     if (pVIndex < mIndex)
                     {
                       // Nachträgliches Einfügen
@@ -454,6 +308,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
                       posP.Insert(pVIndex, "");
                       pVIndex = -1;
                     }
+
                     // Wenn das Partikelverb erst später kommt, wird es erst dann eingeschoben (siehe oben: PV-Einschub)
                   }
                 }
@@ -484,7 +339,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
               posP.Add(p.Substring(idx + 1));
             }
             else
-            // Wenn Normalform ODER normiert, dann speichere das POS-Tag
+              // Wenn Normalform ODER normiert, dann speichere das POS-Tag
             {
               pos.Add(p);
               posP.Add("");
@@ -495,7 +350,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
             // Wenn Lemma-Tag folgenden Format entspricht, dann spalte die Lemma-Info ab: LEMMA-INFO
             if (l.Contains("-"))
             {
-              var lS = l.Split(new[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
+              var lS = l.Split(new[] {"-"}, StringSplitOptions.RemoveEmptyEntries);
               lem.Add(lS.Length == 2 ? lS[0] : l);
               lemI.Add(lS.Length == 2 ? lS[1] : "");
             }
@@ -505,8 +360,9 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
               lemI.Add("");
             }
           }
-          catch { }
-        }
+          catch
+          {
+          }
 
         var hasError = false;
 
@@ -550,6 +406,163 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
           ref rules);
     }
 
+    private IEnumerable<string> BuildFixes(string[] words, int i, out int pre, out int post)
+    {
+      // Einfaches Wort ersetzen
+      if (words[i] == "[:")
+      {
+        pre = i - 1;
+        var res = GetBracesContent(words, ref i);
+        post = i + 1;
+        return res;
+      }
+
+      var scorpus = 0;
+
+      // Scorpusgrenze
+      if (words[i] == "<" ||
+          words[i].StartsWith("<"))
+      {
+        scorpus = i - 1;
+
+        for (; i < words.Length; i++)
+          if (words[i].EndsWith(">") ||
+              words[i] == ">")
+            break;
+      }
+
+      pre = scorpus;
+      i++;
+
+      // Lösche da Ausdruck wiederholt wird
+      switch (words[i])
+      {
+        case "[/]":
+        case "[//]":
+          post = i + 1;
+          return new string[0];
+        case "[:":
+          i = i + 1;
+          var res = GetBracesContent(words, ref i);
+          post = i + 1;
+          return res;
+        default:
+          // Debug.WriteLine("[: -> " + words[i]);
+          post = i;
+          return new string[0];
+      }
+    }
+
+    private static string CleanTextLine(string text)
+    {
+      text = text.Replace("\r", " ").Replace("\n", " ").Replace("(.)", " ").Replace("(..)", " ");
+
+      while (text.Contains("  "))
+        text = text.Replace("  ", " ");
+      while (text.Contains("\t\t"))
+        text = text.Replace("\t\t", "\t");
+      text = text.Trim();
+      return text;
+    }
+
+    private int[] Convert(string layerName, string[] arr, bool[] isValid, ref bool hasError)
+    {
+      var res = new int[isValid.Length];
+      var j = 0;
+
+      try
+      {
+        for (var i = 0; i < isValid.Length; i++)
+          if (isValid[i])
+          {
+            var key = arr[j];
+            res[i] = ConvertToLayer(layerName, key);
+            j++;
+          }
+          else
+          {
+            res[i] = -1;
+          }
+      }
+      catch (IndexOutOfRangeException)
+      {
+        for (var i = 0; i < res.Length; i++)
+          res[i] = -1;
+
+        hasError = true;
+      }
+
+      return res;
+    }
+
+    private int[] Convert(string layerName, string[] arr)
+    {
+      var res = new int[arr.Length];
+
+      for (var i = 0; i < arr.Length; i++)
+        res[i] = ConvertToLayer(layerName, arr[i]);
+
+      return res;
+    }
+
+    private Dictionary<string, object> GenerateDictionary(
+      string speaker,
+      string comment,
+      string but,
+      string action,
+      string sentenceEnd,
+      string parallelSpeech,
+      string inSentenceComment,
+      string original,
+      string speakerError,
+      ref ClanChildesRule[] rules)
+    {
+      var res = _documentMetadataPrototyp.ToDictionary(entry => entry.Key, entry => entry.Value);
+      var cnt = _counter++;
+      res.Add("Sprecher", speaker);
+      res.Add("Kommentar", comment);
+      res.Add("Kommentar (im Satz)", inSentenceComment);
+      res.Add("Satz ID", cnt);
+      res.Add("Äußerungsmodus", but); // but -> nach Basic Utterance Terminator
+      res.Add("Handlung", action);
+      res.Add("Satzende", sentenceEnd);
+      res.Add("Gleichzeitigkeit", parallelSpeech);
+      res.Add("Original", original);
+      res.Add("Titel", $"{_filename.Replace(".mor", "").Replace(".longtr", "").Replace(".cex", "")} - {cnt:00000}");
+      res.Add("Fehler", speakerError);
+
+      if (rules == null)
+        return res;
+
+      foreach (var r in from r in rules
+        where cnt >= r.SentenceIndexStart
+        where cnt <= r.SentenceIndexEnd
+        where !res.ContainsKey(r.MetaLabel)
+        select r)
+        res.Add(r.MetaLabel, r.MetaValue);
+
+      return res;
+    }
+
+    private static IEnumerable<string> GetBracesContent(string[] words, ref int i)
+    {
+      var res = new List<string>();
+
+      i++;
+      for (; i < words.Length; i++)
+      {
+        if (words[i].EndsWith("]"))
+        {
+          res.Add(words[i].Replace("]", ""));
+          break;
+        }
+
+        res.Add(words[i]);
+      }
+
+      return res;
+    }
+
     // ReSharper disable once RedundantAssignment
     private string[] ProcessText(
       string text,
@@ -564,7 +577,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
     {
       text = CleanTextLine(text);
 
-      var words = text.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+      var words = text.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
       var res = new List<string>();
       var isValid = new List<bool>();
       var category = new List<string>();
@@ -587,9 +600,9 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
 
         // Level 1 - Bei derartigen Änderungen muss ALLES zurückgesetzt werden
 
-        if ((word == "<") ||
+        if (word == "<" ||
             word.StartsWith("<") ||
-            (word == "[:"))
+            word == "[:")
         {
           WordsPatch(i, ref words);
 
@@ -603,7 +616,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
 
         // Level 2 - Einzelbereichskorrekturen
 
-        if ((i == 0) &&
+        if (i == 0 &&
             word.StartsWith("+"))
         {
           parallelSpeech = string.IsNullOrEmpty(parallelSpeech) ? word : parallelSpeech + " & " + word;
@@ -612,8 +625,8 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
           continue;
         }
 
-        if ((word == "[?]") ||
-            (word == "[*]") ||
+        if (word == "[?]" ||
+            word == "[*]" ||
             word.StartsWith("&") ||
             word.StartsWith("#"))
         {
@@ -644,7 +657,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
 
         if (word.Contains("@"))
         {
-          var parts = word.Split(new[] { "@" }, StringSplitOptions.RemoveEmptyEntries);
+          var parts = word.Split(new[] {"@"}, StringSplitOptions.RemoveEmptyEntries);
           if (parts.Length == 2)
           {
             word = parts[0];
@@ -652,14 +665,13 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
           }
         }
         else
+        {
           category.Add("");
+        }
 
         // Level 4 - Satzende
 
-        if (i == words.Length - 1)
-        {
-          sentenceEnd = word;          
-        }
+        if (i == words.Length - 1) sentenceEnd = word;
 
         // Level 5 - Hinzufügen
 
@@ -738,13 +750,13 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
       if (layerWord == null)
         return;
 
-      AddDocumet("Wort", dguid, new[] { layerWord });
-      AddDocumet("Lemma", dguid, new[] { layerLemma });
-      AddDocumet("Lemma-Info", dguid, new[] { layerLemmaInfo });
-      AddDocumet("POS", dguid, new[] { layerPos });
-      AddDocumet("POS-Info", dguid, new[] { layerPosInfo });
-      AddDocumet("POS-Person", dguid, new[] { layerPosPerson });
-      AddDocumet("@-Kategorie", dguid, new[] { layerCategory });
+      AddDocumet("Wort", dguid, new[] {layerWord});
+      AddDocumet("Lemma", dguid, new[] {layerLemma});
+      AddDocumet("Lemma-Info", dguid, new[] {layerLemmaInfo});
+      AddDocumet("POS", dguid, new[] {layerPos});
+      AddDocumet("POS-Info", dguid, new[] {layerPosInfo});
+      AddDocumet("POS-Person", dguid, new[] {layerPosPerson});
+      AddDocumet("@-Kategorie", dguid, new[] {layerCategory});
       AddDocumentMetadata(
         dguid,
         GenerateDictionary(

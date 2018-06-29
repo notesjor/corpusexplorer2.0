@@ -18,6 +18,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private keyTerm keyTermField;
 
     /// <remarks />
-    public keyTerm keyTerm { get { return keyTermField; } set { keyTermField = value; } }
+    public keyTerm keyTerm
+    {
+      get => keyTermField;
+      set => keyTermField = value;
+    }
   }
 }

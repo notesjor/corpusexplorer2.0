@@ -27,7 +27,10 @@ namespace CorpusExplorer.Sdk.Blocks.Disambiguation
     public IDisambiguationCluster ClusterA { get; set; }
     public IDisambiguationCluster ClusterB { get; set; }
 
-    public IEnumerable<IDisambiguationCluster> GetClusters() { return new[] {ClusterA, ClusterB}; }
+    public IEnumerable<IDisambiguationCluster> GetClusters()
+    {
+      return new[] {ClusterA, ClusterB};
+    }
 
     public string Label => string.Join(", ", LabelItems);
 
@@ -66,7 +69,10 @@ namespace CorpusExplorer.Sdk.Blocks.Disambiguation
         Value = value;
       }
 
-      public IEnumerable<IDisambiguationCluster> GetClusters() { return null; }
+      public IEnumerable<IDisambiguationCluster> GetClusters()
+      {
+        return null;
+      }
 
       public string Label { get; }
 

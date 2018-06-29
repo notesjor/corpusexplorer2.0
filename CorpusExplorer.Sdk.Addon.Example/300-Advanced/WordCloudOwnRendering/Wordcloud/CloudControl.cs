@@ -1,14 +1,14 @@
 ﻿#region
 
-using CorpusExplorer.Sdk.Addon.Example.Helper;
-using CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layout;
-using CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Model;
-using CorpusExplorer.Sdk.Helper;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using CorpusExplorer.Sdk.Addon.Example.Helper;
+using CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layout;
+using CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Model;
+using CorpusExplorer.Sdk.Helper;
 
 #endregion
 
@@ -45,7 +45,7 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud
 
     public override Color BackColor
     {
-      get { return m_BackColor; }
+      get => m_BackColor;
       set
       {
         if (m_BackColor == value)
@@ -57,7 +57,7 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud
 
     public IEnumerable<WordCloudItem> Items
     {
-      get { return m_Words; }
+      get => m_Words;
       set
       {
         m_Words = value;
@@ -83,7 +83,7 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud
 
     public LayoutType LayoutType
     {
-      get { return m_LayoutType; }
+      get => m_LayoutType;
       set
       {
         if (value == m_LayoutType)
@@ -97,7 +97,7 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud
 
     public int MaxFontSize
     {
-      get { return m_MaxFontSize; }
+      get => m_MaxFontSize;
       set
       {
         m_MaxFontSize = value;
@@ -108,7 +108,7 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud
 
     public int MinFontSize
     {
-      get { return m_MinFontSize; }
+      get => m_MinFontSize;
       set
       {
         m_MinFontSize = value;
@@ -119,7 +119,7 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud
 
     public Color[] Palette
     {
-      get { return m_Palette; }
+      get => m_Palette;
       set
       {
         m_Palette = value;
@@ -128,30 +128,22 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud
       }
     }
 
-    private void BuildLayout()
-    {
-      if (m_Words == null)
-        return;
-
-      using (var graphics = CreateGraphics())
-      {
-        IGraphicEngine graphicEngine = new GdiGraphicEngine(
-          graphics,
-          Font.FontFamily,
-          FontStyle.Regular,
-          m_Palette,
-          MinFontSize,
-          MaxFontSize,
-          m_MinWordWeight,
-          m_MaxWordWeight);
-        m_Layout = LayoutFactory.CrateLayout(m_LayoutType, Size);
-        m_Layout.Arrange(m_Words, graphicEngine);
-      }
-    }
-
     public IEnumerable<LayoutItem> GetItemsInArea(RectangleF area)
     {
       return m_Layout == null ? new LayoutItem[] { } : m_Layout.GetWordsInArea(area);
+    }
+
+    public bool TryGetItemAtLocation(Point location, out LayoutItem foundItem)
+    {
+      foundItem = null;
+      var itemsInArea = GetItemsInArea(new RectangleF(location, new SizeF(0, 0)));
+      foreach (var item in itemsInArea)
+      {
+        foundItem = item;
+        return true;
+      }
+
+      return false;
     }
 
     protected override void OnMouseMove(MouseEventArgs e)
@@ -166,13 +158,16 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud
           var newRectangleToInvalidate = RectangleGrow(nextItemUnderMouse.Rectangle, 6);
           Invalidate(newRectangleToInvalidate);
         }
+
         if (m_ItemUderMouse != null)
         {
           var prevRectangleToInvalidate = RectangleGrow(m_ItemUderMouse.Rectangle, 6);
           Invalidate(prevRectangleToInvalidate);
         }
+
         m_ItemUderMouse = nextItemUnderMouse;
       }
+
       base.OnMouseMove(e);
     }
 
@@ -214,25 +209,34 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud
       base.OnResize(eventargs);
     }
 
+    private void BuildLayout()
+    {
+      if (m_Words == null)
+        return;
+
+      using (var graphics = CreateGraphics())
+      {
+        IGraphicEngine graphicEngine = new GdiGraphicEngine(
+          graphics,
+          Font.FontFamily,
+          FontStyle.Regular,
+          m_Palette,
+          MinFontSize,
+          MaxFontSize,
+          m_MinWordWeight,
+          m_MaxWordWeight);
+        m_Layout = LayoutFactory.CrateLayout(m_LayoutType, Size);
+        m_Layout.Arrange(m_Words, graphicEngine);
+      }
+    }
+
     private static Rectangle RectangleGrow(RectangleF original, int growByPixels)
     {
       return new Rectangle(
-        (int)(original.X - growByPixels),
-        (int)(original.Y - growByPixels),
-        (int)(original.Width + growByPixels + 1),
-        (int)(original.Height + growByPixels + 1));
-    }
-
-    public bool TryGetItemAtLocation(Point location, out LayoutItem foundItem)
-    {
-      foundItem = null;
-      var itemsInArea = GetItemsInArea(new RectangleF(location, new SizeF(0, 0)));
-      foreach (var item in itemsInArea)
-      {
-        foundItem = item;
-        return true;
-      }
-      return false;
+        (int) (original.X - growByPixels),
+        (int) (original.Y - growByPixels),
+        (int) (original.Width + growByPixels + 1),
+        (int) (original.Height + growByPixels + 1));
     }
   }
 }

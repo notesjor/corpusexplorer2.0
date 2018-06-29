@@ -16,7 +16,10 @@ namespace CorpusExplorer.Sdk.Aspect.Model
     private static readonly IList<CachedObject<T>> Cache = new List<CachedObject<T>>();
     private readonly TimeSpan _cacheLife;
 
-    public StaticMemoryCache(TimeSpan cacheLife) { _cacheLife = cacheLife; }
+    public StaticMemoryCache(TimeSpan cacheLife)
+    {
+      _cacheLife = cacheLife;
+    }
 
     public T this[string key]
     {

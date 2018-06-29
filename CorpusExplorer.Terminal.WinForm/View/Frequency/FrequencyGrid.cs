@@ -1,13 +1,15 @@
 #region
 
-using CorpusExplorer.Sdk.Utils.Filter.Queries;
-using CorpusExplorer.Sdk.ViewModel;
-using CorpusExplorer.Terminal.WinForm.Forms.Splash;
-using CorpusExplorer.Terminal.WinForm.Properties;
-using CorpusExplorer.Terminal.WinForm.View.AbstractTemplates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CorpusExplorer.Sdk.Utils.Filter.Queries;
+using CorpusExplorer.Sdk.ViewModel;
+using CorpusExplorer.Terminal.WinForm.Forms.SelectLayer;
+using CorpusExplorer.Terminal.WinForm.Forms.Splash;
+using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
+using CorpusExplorer.Terminal.WinForm.Properties;
+using CorpusExplorer.Terminal.WinForm.View.AbstractTemplates;
 using Telerik.WinControls.UI;
 
 #endregion
@@ -17,7 +19,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
   /// <summary>
   ///   The grid visualisation.
   /// </summary>
-  public partial class FrequencyGrid : AbstractGridViewWithCodeLense
+  public partial class FrequencyGrid : AbstractGridViewWithTextLense
   {
     private FrequencyViewModel _vm;
 
@@ -31,11 +33,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       ShowView += ShowViewCall;
     }
 
-    private void Analyse()
+    private void Analyse(string[] layerDisplaynames = null)
     {
-      _vm = ViewModelGet<FrequencyViewModel>();
+      _vm = GetViewModel<FrequencyViewModel>();
       if (_vm == null)
         return;
+      if (layerDisplaynames != null)
+        _vm.LayerDisplaynames = layerDisplaynames;
 
       _vm.Analyse();
 
@@ -48,7 +52,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
         {
           Inverse = false,
           LayerDisplayname = "Wort",
-          LayerQueries = new[] { x[Resources.ZeichenketteWortform].ToString() }
+          LayerQueries = new[] {x[Resources.ZeichenketteWortform].ToString()}
         });
 
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
@@ -82,9 +86,15 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       ExportFunction();
     }
 
-    private void btn_filter_Click(object sender, EventArgs e) { FilterListFunction("Wort"); }
+    private void btn_filter_Click(object sender, EventArgs e)
+    {
+      FilterListFunction("Wort");
+    }
 
-    private void btn_filterEditor_Click(object sender, EventArgs e) { QueryBuilderFunction(Resources.Frequency); }
+    private void btn_filterEditor_Click(object sender, EventArgs e)
+    {
+      QueryBuilderFunction(Resources.Frequency);
+    }
 
     /// <summary>
     ///   The btn_function_ click.
@@ -98,6 +108,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
     private void btn_function_Click(object sender, EventArgs e)
     {
       PredefinedFunctions(_vm, Resources.Frequency);
+    }
+
+    private void btn_layers_Click(object sender, EventArgs e)
+    {
+      var form = new Select3Layer(_vm.LayerDisplaynames);
+      form.ShowDialog();
+      Analyse(form.ResultSelectedLayerDisplaynames);
     }
 
     /// <summary>
@@ -120,33 +137,33 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 
       CreateSelection(
         radGridView1.SelectedRows.Select(
-                      row => new FilterQueryMultiLayer
-                      {
-                        Inverse = false,
-                        MultilayerValues = new Dictionary<string, string>
-                        {
-                          {
-                            map[0],
-                            row.Cells[map[0]].Value
-                               .ToString()
-                          },
-                          {
-                            map[1],
-                            row.Cells[map[1]].Value
-                               .ToString()
-                          },
-                          {
-                            map[2],
-                            row.Cells[map[2]].Value
-                               .ToString()
-                          }
-                        }
-                      }));
+          row => new FilterQueryMultiLayer
+          {
+            Inverse = false,
+            MultilayerValues = new Dictionary<string, string>
+            {
+              {
+                map[0],
+                row.Cells[map[0]].Value
+                  .ToString()
+              },
+              {
+                map[1],
+                row.Cells[map[1]].Value
+                  .ToString()
+              },
+              {
+                map[2],
+                row.Cells[map[2]].Value
+                  .ToString()
+              }
+            }
+          }));
     }
 
     private void ShowViewCall(object sender, EventArgs e)
     {
-      Processing.Invoke(Resources.AnalysiereUndStelleRelationenHer, Analyse);
+      Processing.Invoke(Resources.AnalysiereUndStelleRelationenHer, () => Analyse());
     }
   }
 }

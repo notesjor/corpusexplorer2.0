@@ -16,14 +16,10 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public IEnumerable<KeyValuePair<Guid, string>> Documents => Selection.DocumentGuidsAndDisplaynames;
 
-    public PhraseGrammar Grammar { get => _block.Grammar; set => _block.Grammar = value; }
-
-    protected override void ExecuteAnalyse()
+    public PhraseGrammar Grammar
     {
-      _block = Selection.CreateBlock<PhrasesLaboratoryBlock>();
-      _block.Grammar = new PhraseGrammar();
-      _block.Grammar.Rules.Add(int.MaxValue, new List<AbstractGrammarRule> {new JoinAllGrammarRule("ROOT")});
-      _block.Calculate();
+      get => _block.Grammar;
+      set => _block.Grammar = value;
     }
 
     public DataTable GetPhrasesFrequencyTable()
@@ -60,7 +56,10 @@ namespace CorpusExplorer.Sdk.ViewModel
       return res.ToList();
     }
 
-    public int GetSentenceMax(Guid documentGuid) { return Selection.GetDocumentLengthInSentences(documentGuid); }
+    public int GetSentenceMax(Guid documentGuid)
+    {
+      return Selection.GetDocumentLengthInSentences(documentGuid);
+    }
 
     public IEnumerable<Constituent> GetSpecificSentence(Guid documentGuid, int sentenceIndex)
     {
@@ -71,6 +70,17 @@ namespace CorpusExplorer.Sdk.ViewModel
       return _block.GetParsedConstituent(documentGuid, sentenceIndex);
     }
 
-    protected override bool Validate() { return true; }
+    protected override void ExecuteAnalyse()
+    {
+      _block = Selection.CreateBlock<PhrasesLaboratoryBlock>();
+      _block.Grammar = new PhraseGrammar();
+      _block.Grammar.Rules.Add(int.MaxValue, new List<AbstractGrammarRule> {new JoinAllGrammarRule("ROOT")});
+      _block.Calculate();
+    }
+
+    protected override bool Validate()
+    {
+      return true;
+    }
   }
 }

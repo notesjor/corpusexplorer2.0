@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string duration { get { return durationField; } set { durationField = value; } }
+    public string duration
+    {
+      get => durationField;
+      set => durationField = value;
+    }
   }
 }

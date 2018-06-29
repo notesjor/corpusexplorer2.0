@@ -26,22 +26,42 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string end { get { return endField; } set { endField = value; } }
+    public string end
+    {
+      get => endField;
+      set => endField = value;
+    }
 
     /// <remarks />
     [XmlElement("Feature")]
-    public AGSetAGAnnotationFeature[] Feature { get { return featureField; } set { featureField = value; } }
+    public AGSetAGAnnotationFeature[] Feature
+    {
+      get => featureField;
+      set => featureField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string start { get { return startField; } set { startField = value; } }
+    public string start
+    {
+      get => startField;
+      set => startField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NMTOKEN")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

@@ -32,28 +32,33 @@
       this.ihdPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
       this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
       this.page_FREQU = new Telerik.WinControls.UI.RadPageViewPage();
+      this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
       this.ihdPanel2 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
       this.page_CFREQ = new Telerik.WinControls.UI.RadPageViewPage();
-      this.page_COOCC = new Telerik.WinControls.UI.RadPageViewPage();
-      this.page_METAD = new Telerik.WinControls.UI.RadPageViewPage();
-      this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
       this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
       this.ihdPanel3 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
+      this.page_COOCC = new Telerik.WinControls.UI.RadPageViewPage();
       this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
       this.ihdPanel4 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
+      this.page_METAD = new Telerik.WinControls.UI.RadPageViewPage();
       this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
       this.ihdPanel5 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
+      this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
+      this.ihdPanel6 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
+      this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
       this.radPageView1.SuspendLayout();
       this.page_FREQU.SuspendLayout();
-      this.page_CFREQ.SuspendLayout();
-      this.page_COOCC.SuspendLayout();
-      this.page_METAD.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+      this.page_CFREQ.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+      this.page_COOCC.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+      this.page_METAD.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+      this.radPageViewPage1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
       // 
@@ -84,13 +89,13 @@
       this.radPageView1.Controls.Add(this.page_CFREQ);
       this.radPageView1.Controls.Add(this.page_COOCC);
       this.radPageView1.Controls.Add(this.page_METAD);
+      this.radPageView1.Controls.Add(this.radPageViewPage1);
       this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.radPageView1.Location = new System.Drawing.Point(0, 87);
       this.radPageView1.Name = "radPageView1";
       this.radPageView1.SelectedPage = this.page_FREQU;
       this.radPageView1.Size = new System.Drawing.Size(480, 305);
       this.radPageView1.TabIndex = 2;
-      this.radPageView1.Text = "radPageView1";
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
       // 
       // page_FREQU
@@ -102,6 +107,18 @@
       this.page_FREQU.Name = "page_FREQU";
       this.page_FREQU.Size = new System.Drawing.Size(470, 265);
       this.page_FREQU.Text = "#FREQU";
+      // 
+      // radLabel1
+      // 
+      this.radLabel1.AutoSize = false;
+      this.radLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.radLabel1.Location = new System.Drawing.Point(0, 75);
+      this.radLabel1.Name = "radLabel1";
+      this.radLabel1.Size = new System.Drawing.Size(470, 190);
+      this.radLabel1.TabIndex = 1;
+      this.radLabel1.Text = "<html><p><strong>Beispiel:</strong></p><p>[<br />  {<br />  \"POS\": \"NN\",<br />  \"" +
+    "Lemma\": \"Berg\",<br />  \"Wort\": \"Berge\",<br />  \"Frequenz\": 20.0<br />  },</p></h" +
+    "tml>";
       // 
       // ihdPanel2
       // 
@@ -125,40 +142,8 @@
       this.page_CFREQ.ItemSize = new System.Drawing.SizeF(67F, 29F);
       this.page_CFREQ.Location = new System.Drawing.Point(5, 35);
       this.page_CFREQ.Name = "page_CFREQ";
-      this.page_CFREQ.Size = new System.Drawing.Size(470, 242);
+      this.page_CFREQ.Size = new System.Drawing.Size(470, 265);
       this.page_CFREQ.Text = "#CFREQ";
-      // 
-      // page_COOCC
-      // 
-      this.page_COOCC.Controls.Add(this.radLabel3);
-      this.page_COOCC.Controls.Add(this.ihdPanel4);
-      this.page_COOCC.ItemSize = new System.Drawing.SizeF(73F, 29F);
-      this.page_COOCC.Location = new System.Drawing.Point(5, 35);
-      this.page_COOCC.Name = "page_COOCC";
-      this.page_COOCC.Size = new System.Drawing.Size(470, 242);
-      this.page_COOCC.Text = "#COOCC";
-      // 
-      // page_METAD
-      // 
-      this.page_METAD.Controls.Add(this.radLabel4);
-      this.page_METAD.Controls.Add(this.ihdPanel5);
-      this.page_METAD.ItemSize = new System.Drawing.SizeF(72F, 29F);
-      this.page_METAD.Location = new System.Drawing.Point(5, 35);
-      this.page_METAD.Name = "page_METAD";
-      this.page_METAD.Size = new System.Drawing.Size(470, 265);
-      this.page_METAD.Text = "#METAD";
-      // 
-      // radLabel1
-      // 
-      this.radLabel1.AutoSize = false;
-      this.radLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radLabel1.Location = new System.Drawing.Point(0, 75);
-      this.radLabel1.Name = "radLabel1";
-      this.radLabel1.Size = new System.Drawing.Size(470, 190);
-      this.radLabel1.TabIndex = 1;
-      this.radLabel1.Text = "<html><p><strong>Beispiel:</strong></p><p>[<br />  {<br />  \"POS\": \"NN\",<br />  \"" +
-    "Lemma\": \"Berg\",<br />  \"Wort\": \"Berge\",<br />  \"Frequenz\": 20.0<br />  },</p></h" +
-    "tml>";
       // 
       // radLabel2
       // 
@@ -166,7 +151,7 @@
       this.radLabel2.Dock = System.Windows.Forms.DockStyle.Fill;
       this.radLabel2.Location = new System.Drawing.Point(0, 75);
       this.radLabel2.Name = "radLabel2";
-      this.radLabel2.Size = new System.Drawing.Size(470, 167);
+      this.radLabel2.Size = new System.Drawing.Size(470, 190);
       this.radLabel2.TabIndex = 3;
       this.radLabel2.Text = "<html><p><strong>Beispiel:</strong></p><p>[<br />  {<br />  \"Wort\": \"Frauenquote\"" +
     ",<br />  \"Partner\": \"Prozent\",<br />  \"Frequenz\": 40.0<br />  },</p></html>";
@@ -185,6 +170,16 @@
       this.ihdPanel3.Name = "ihdPanel3";
       this.ihdPanel3.Size = new System.Drawing.Size(470, 75);
       this.ihdPanel3.TabIndex = 2;
+      // 
+      // page_COOCC
+      // 
+      this.page_COOCC.Controls.Add(this.radLabel3);
+      this.page_COOCC.Controls.Add(this.ihdPanel4);
+      this.page_COOCC.ItemSize = new System.Drawing.SizeF(73F, 29F);
+      this.page_COOCC.Location = new System.Drawing.Point(5, 35);
+      this.page_COOCC.Name = "page_COOCC";
+      this.page_COOCC.Size = new System.Drawing.Size(470, 242);
+      this.page_COOCC.Text = "#COOCC";
       // 
       // radLabel3
       // 
@@ -211,6 +206,16 @@
       this.ihdPanel4.Size = new System.Drawing.Size(470, 75);
       this.ihdPanel4.TabIndex = 4;
       // 
+      // page_METAD
+      // 
+      this.page_METAD.Controls.Add(this.radLabel4);
+      this.page_METAD.Controls.Add(this.ihdPanel5);
+      this.page_METAD.ItemSize = new System.Drawing.SizeF(72F, 29F);
+      this.page_METAD.Location = new System.Drawing.Point(5, 35);
+      this.page_METAD.Name = "page_METAD";
+      this.page_METAD.Size = new System.Drawing.Size(470, 265);
+      this.page_METAD.Text = "#METAD";
+      // 
       // radLabel4
       // 
       this.radLabel4.AutoSize = false;
@@ -236,6 +241,43 @@
       this.ihdPanel5.Size = new System.Drawing.Size(470, 82);
       this.ihdPanel5.TabIndex = 4;
       // 
+      // radPageViewPage1
+      // 
+      this.radPageViewPage1.Controls.Add(this.radLabel5);
+      this.radPageViewPage1.Controls.Add(this.ihdPanel6);
+      this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(88F, 29F);
+      this.radPageViewPage1.Location = new System.Drawing.Point(5, 35);
+      this.radPageViewPage1.Name = "radPageViewPage1";
+      this.radPageViewPage1.Size = new System.Drawing.Size(470, 265);
+      this.radPageViewPage1.Text = "ERWEITERT";
+      // 
+      // ihdPanel6
+      // 
+      this.ihdPanel6.BackColor = System.Drawing.Color.White;
+      this.ihdPanel6.Dock = System.Windows.Forms.DockStyle.Top;
+      this.ihdPanel6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.ihdPanel6.IHDDeescribtion = "Wenn Sie Analysen realisieren möchten, die über die vier Grundfunktionalitäten hi" +
+    "nausgehen, dann nutzen Sie die erweiterte Skriptfunktionalität.";
+      this.ihdPanel6.IHDHeader = "Erweiterte Skriptfunktionalität";
+      this.ihdPanel6.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.script;
+      this.ihdPanel6.Location = new System.Drawing.Point(0, 0);
+      this.ihdPanel6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.ihdPanel6.Name = "ihdPanel6";
+      this.ihdPanel6.Size = new System.Drawing.Size(470, 94);
+      this.ihdPanel6.TabIndex = 1;
+      // 
+      // radLabel5
+      // 
+      this.radLabel5.AutoSize = false;
+      this.radLabel5.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 10F);
+      this.radLabel5.Location = new System.Drawing.Point(0, 94);
+      this.radLabel5.Name = "radLabel5";
+      this.radLabel5.Size = new System.Drawing.Size(470, 171);
+      this.radLabel5.TabIndex = 2;
+      this.radLabel5.Text = resources.GetString("radLabel5.Text");
+      this.radLabel5.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+      // 
       // Html5DevLabHelp
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -257,13 +299,15 @@
       ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).EndInit();
       this.radPageView1.ResumeLayout(false);
       this.page_FREQU.ResumeLayout(false);
-      this.page_CFREQ.ResumeLayout(false);
-      this.page_COOCC.ResumeLayout(false);
-      this.page_METAD.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+      this.page_CFREQ.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+      this.page_COOCC.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+      this.page_METAD.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+      this.radPageViewPage1.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
       this.ResumeLayout(false);
 
@@ -285,5 +329,8 @@
     private Controls.WinForm.IHDPanel ihdPanel4;
     private Telerik.WinControls.UI.RadLabel radLabel4;
     private Controls.WinForm.IHDPanel ihdPanel5;
+    private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
+    private Controls.WinForm.IHDPanel ihdPanel6;
+    private Telerik.WinControls.UI.RadLabel radLabel5;
   }
 }

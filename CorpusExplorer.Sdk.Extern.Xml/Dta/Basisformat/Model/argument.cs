@@ -27,12 +27,20 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private string prevField;
 
     /// <remarks />
-    public head head { get { return headField; } set { headField = value; } }
+    public head head
+    {
+      get => headField;
+      set => headField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified,
-       Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string id { get { return idField; } set { idField = value; } }
+      Namespace = "http://www.w3.org/XML/1998/namespace")]
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlElement("bibl", typeof(bibl))]
@@ -40,14 +48,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("lb", typeof(lb))]
     [XmlElement("list", typeof(list))]
     [XmlElement("p", typeof(p))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string next { get { return nextField; } set { nextField = value; } }
+    public string next
+    {
+      get => nextField;
+      set => nextField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string prev { get { return prevField; } set { prevField = value; } }
+    public string prev
+    {
+      get => prevField;
+      set => prevField = value;
+    }
   }
 }

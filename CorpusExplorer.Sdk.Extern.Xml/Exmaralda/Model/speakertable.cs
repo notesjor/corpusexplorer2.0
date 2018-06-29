@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement("speaker")]
-    public speaker[] speaker { get { return speakerField; } set { speakerField = value; } }
+    public speaker[] speaker
+    {
+      get => speakerField;
+      set => speakerField = value;
+    }
   }
 }

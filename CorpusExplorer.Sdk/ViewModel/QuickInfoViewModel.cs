@@ -1,8 +1,6 @@
 ﻿#region
 
 using System.Linq;
-using CorpusExplorer.Sdk.Blocks;
-using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
 
 #endregion
@@ -24,9 +22,12 @@ namespace CorpusExplorer.Sdk.ViewModel
       CounterCorpora = Selection.CountCorpora;
       CounterDocuments = Selection.CountDocuments;
       CounterLayers = Selection.LayerGuids.Count();
-      CounterTokens = Selection.CountToken;      
+      CounterTokens = Selection.CountToken;
     }
 
-    protected override bool Validate() { return true; }
+    protected override bool Validate()
+    {
+      return true;
+    }
   }
 }

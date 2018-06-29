@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CorpusExplorer.Core.DocumentProcessing.Tokenizer;
 using CorpusExplorer.Sdk.Diagnostic;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Extension;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model;
@@ -16,13 +16,15 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
 {
   public abstract class AbstractTaggerOneWordPerLine : AbstractTagger
   {
-    protected ConcurrentQueue<Dictionary<string, object>[]> InternQueue =
-      new ConcurrentQueue<Dictionary<string, object>[]>();
-
     private readonly Dictionary<string, AbstractLayerState> _layers =
       new Dictionary<string, AbstractLayerState>();
 
     private readonly object _parseDocumentLock = new object();
+
+    protected ConcurrentQueue<Dictionary<string, object>[]> InternQueue =
+      new ConcurrentQueue<Dictionary<string, object>[]>();
+
+    public AbstractTokenizer Tokenizer { get; set; }
 
     /// <summary>
     ///   Überschreitet der Tagger diese Länge, dann wird die Runde abgeschlossen.
@@ -38,22 +40,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
 
     protected virtual string TaggerFileSeparator => "\r\n<ENDOFCORPUSEXPLORERFILE>\r\n";
 
-    protected virtual string[] TaggerValueSeparator => new[] {"\t"};
-
-    public AbstractTokenizer Tokenizer { get; set; }
-
-    protected LayerRangeState AddRangeLayer(string displayname)
-    {
-      var res = new LayerRangeState(displayname);
-      _layers.Add(displayname, res);
-      return res;
-    }
-
-    protected void AddValueLayer(string displayname, int valueIndex, int minimumLength = 1)
-    {
-      var res = new LayerValueState(displayname, valueIndex) {MinimumDataLength = minimumLength};
-      _layers.Add(displayname, res);
-    }
+    protected virtual string[] TaggerValueSeparator => new[] { "\t" };
 
     public override void Execute()
     {
@@ -69,6 +56,19 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
           meta,
           new Dictionary<string, object>(),
           null));
+    }
+
+    protected LayerRangeState AddRangeLayer(string displayname)
+    {
+      var res = new LayerRangeState(displayname);
+      _layers.Add(displayname, res);
+      return res;
+    }
+
+    protected void AddValueLayer(string displayname, int valueIndex, int minimumLength = 1)
+    {
+      var res = new LayerValueState(displayname, valueIndex) { MinimumDataLength = minimumLength };
+      _layers.Add(displayname, res);
     }
 
     protected abstract string ExecuteTagger(string text);
@@ -91,7 +91,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
       string text;
       if (Tokenizer == null)
       {
-        text = (new HighSpeedSpaceTokenizer()).Execute(TextPreTokenizerCleanup(stb.ToString()));
+        text = new HighSpeedSpaceTokenizer().Execute(TextPreTokenizerCleanup(stb.ToString()));
       }
       else
       {
@@ -140,16 +140,19 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
     }
 
     // ReSharper disable once VirtualMemberNeverOverridden.Global
-    protected virtual void Initialize() { }
+    protected virtual void Initialize()
+    {
+    }
+
     protected abstract bool IsEndOfSentence(string[] data);
 
-    private void ParseDocument(string[] keys, Guid guid, ref string text)
+    protected virtual void ParseDocument(string[] keys, Guid guid, ref string text)
     {
       var sentences = keys.ToDictionary(x => x, x => new List<int>());
       var document = keys.ToDictionary(x => x, x => new List<int[]>());
       var values = keys.ToDictionary(x => x, x => 0);
 
-      var lines = text.Split(new[] {"\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries);
+      var lines = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
       foreach (var line in lines)
       {
         var entries = line.Split(TaggerValueSeparator, StringSplitOptions.RemoveEmptyEntries);
@@ -185,12 +188,35 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
       }
     }
 
+    protected virtual string TextPostTaggerCleanup(string text)
+    {
+      return text;
+    }
+
+    protected virtual string TextPostTokenizerPreTaggerCleanup(string text)
+    {
+      return text.Replace("<\r\nENDOFCORPUSEXPLORERFILE\r\n>", TaggerFileSeparator).Replace("\r\n\r\n", "\r\n");
+    }
+
+    // ReSharper disable once VirtualMemberNeverOverridden.Global
+    protected virtual string TextPreMergerCleanup(string text, ref Dictionary<string, object> doc)
+    {
+      return text;
+    }
+
+    // ReSharper disable once VirtualMemberNeverOverridden.Global
+    protected virtual string TextPreTokenizerCleanup(string text)
+    {
+      return text;
+    }
+
     private Dictionary<Guid, Dictionary<string, object>> ParseMetadata()
     {
       var meta = new ConcurrentDictionary<Guid, Dictionary<string, object>>();
 
       Parallel.ForEach(
         Input,
+        Configuration.ParallelOptions,
         sdm =>
         {
           var dic = sdm.GetMetaDictionary().ToDictionary(entry => entry.Key, entry => entry.Value);
@@ -204,6 +230,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
 
     private void StartTaggingProcess()
     {
+      // Gibt die Layer (Namen) in der korrekten Reihenfolge vor.
+      var layerKeys = _layers.Select(x => x.Key).ToArray();
       // act definiert wieviele Tokens maximal pro Turn gewählt werden.
       var act = TaggerContentLengthMax;
 
@@ -211,10 +239,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
       {
         // Überprüfe den Überlauf von act - ggf. setze die Grenzen neu
         act = act < TaggerContentLengthMin
-                ? TaggerContentLengthMin
-                : act > TaggerContentLengthMax
-                  ? TaggerContentLengthMax
-                  : act;
+          ? TaggerContentLengthMin
+          : act > TaggerContentLengthMax
+            ? TaggerContentLengthMax
+            : act;
 
         GetDocumentClusters(act);
 
@@ -224,6 +252,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
           Parallel.For(
             0,
             count,
+            Configuration.ParallelOptions,
             i =>
             {
               Dictionary<string, object>[] turn;
@@ -232,25 +261,23 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
 
               // TreeTagger
               var text = TextPostTaggerCleanup(ExecuteTagger(GenerateText(ref turn)));
-              var tmp = text.Split(new[] {TaggerFileSeparator}, StringSplitOptions.RemoveEmptyEntries);
+              var tmp = text.Split(new[] { TaggerFileSeparator }, StringSplitOptions.RemoveEmptyEntries);
               // mkpt - maximal korrekt geparste texte
               var correct = text.EndsWith(TaggerFileSeparator) ? tmp.Length : tmp.Length - 1;
 
               if (turn.Length == 1 && correct == 0)
                 correct = 1;
 
-              // Vor der Parallelisierung
-              var keys = _layers.Select(x => x.Key).ToArray();
               var @lock = new object();
-
               Parallel.For(
                 0,
                 correct,
+                Configuration.ParallelOptions,
                 j =>
                 {
                   try
                   {
-                    ParseDocument(keys, turn[j].Get("GUID", Guid.NewGuid()), ref tmp[j]);
+                    ParseDocument(layerKeys, turn[j].Get("GUID", Guid.NewGuid()), ref tmp[j]);
                     lock (@lock)
                     {
                       tmp[j] = null; // wichtig zu Error-Erkennung
@@ -272,6 +299,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
                 act *= 2;
                 return;
               }
+
               act /= 3;
 
               // Wenn Tagger total versagt, breche das Dokument ab.
@@ -291,18 +319,5 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
         }
       }
     }
-
-    protected virtual string TextPostTaggerCleanup(string text) { return text; }
-
-    protected virtual string TextPostTokenizerPreTaggerCleanup(string text)
-    {
-      return text.Replace("<\r\nENDOFCORPUSEXPLORERFILE\r\n>", TaggerFileSeparator).Replace("\r\n\r\n", "\r\n");
-    }
-
-    // ReSharper disable once VirtualMemberNeverOverridden.Global
-    protected virtual string TextPreTokenizerCleanup(string text) { return text; }
-    
-    // ReSharper disable once VirtualMemberNeverOverridden.Global
-    protected virtual string TextPreMergerCleanup(string text, ref Dictionary<string, object> doc) { return text; }
   }
 }

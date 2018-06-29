@@ -18,6 +18,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private note noteField;
 
     /// <remarks />
-    public note note { get { return noteField; } set { noteField = value; } }
+    public note note
+    {
+      get => noteField;
+      set => noteField = value;
+    }
   }
 }

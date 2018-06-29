@@ -157,8 +157,8 @@ namespace CorpusExplorer.Sdk.Helper
     public string CleanHtmlCode(string text)
     {
       return string.IsNullOrEmpty(text)
-               ? string.Empty
-               : _criticals.Aggregate(text, (current, x) => current.Replace(x.Key, x.Value));
+        ? string.Empty
+        : _criticals.Aggregate(text, (current, x) => current.Replace(x.Key, x.Value));
     }
 
     /// <summary>
@@ -177,24 +177,24 @@ namespace CorpusExplorer.Sdk.Helper
       html = _criticals.Aggregate(html, (current, c) => current.Replace(c.Value, c.Key));
       html =
         html.Replace("[#x201e]", "&quot;")
-            .Replace(",,", "\"")
-            .Replace('„', '"')
-            .Replace('“', '"')
-            .Replace('«', '"')
-            .Replace('»', '"')
-            .Replace("&quot;", "\"")
-            .Replace("&nbsp;", " ")
-            .Replace("<SPAN CLASS=\"c7\">", " ")
-            .Replace("<SPAN CLASS=\"c11\">", " ")
-            .Replace("</SPAN>", " ")
-            .Replace("</P>", " ")
-            .Replace("<SPAN CLASS=\"c10\">", " ")
-            .Replace("<SPAN CLASS=\"c2\">", " ")
-            .Replace("<BR>", " ")
-            .Replace("  ", " ")
-            .Replace("  ", " ")
-            .Replace("  ", " ")
-            .Replace("&amp", "&");
+          .Replace(",,", "\"")
+          .Replace('„', '"')
+          .Replace('“', '"')
+          .Replace('«', '"')
+          .Replace('»', '"')
+          .Replace("&quot;", "\"")
+          .Replace("&nbsp;", " ")
+          .Replace("<SPAN CLASS=\"c7\">", " ")
+          .Replace("<SPAN CLASS=\"c11\">", " ")
+          .Replace("</SPAN>", " ")
+          .Replace("</P>", " ")
+          .Replace("<SPAN CLASS=\"c10\">", " ")
+          .Replace("<SPAN CLASS=\"c2\">", " ")
+          .Replace("<BR>", " ")
+          .Replace("  ", " ")
+          .Replace("  ", " ")
+          .Replace("  ", " ")
+          .Replace("&amp", "&");
 
       return html;
     }

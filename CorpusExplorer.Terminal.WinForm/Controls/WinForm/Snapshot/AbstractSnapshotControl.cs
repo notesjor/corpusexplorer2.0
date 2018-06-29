@@ -16,17 +16,22 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
   [ToolboxItem(false)]
   public partial class AbstractSnapshotControl : UserControl
   {
-    protected AbstractSnapshotControl() { Initialize(); }
-
     public AbstractSnapshotControl(Selection selection)
     {
       Selection = selection;
       Initialize();
     }
 
-    public virtual AbstractFilterQuery Query { get { return null; } }
+    protected AbstractSnapshotControl()
+    {
+      Initialize();
+    }
+
+    public virtual AbstractFilterQuery Query => null;
 
     protected Selection Selection { get; set; }
+
+    public event EventHandler QueryRemove;
 
     private void btn_remove_Click(object sender, EventArgs e)
     {
@@ -46,7 +51,5 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
       InitializeComponent();
       Font = new Font("Segoe UI", 11);
     }
-
-    public event EventHandler QueryRemove;
   }
 }

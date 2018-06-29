@@ -12,7 +12,24 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
   {
     private Model.Layer _layer;
 
-    private LayerAdapterSingleFile() { }
+    private LayerAdapterSingleFile()
+    {
+    }
+
+    /// <summary>
+    ///   Anzahl der enthaltenen Dokumente
+    /// </summary>
+    public override int CountDocuments => _layer.CountDocuments;
+
+    /// <summary>
+    ///   Anzahl der enthaltenen Werte
+    /// </summary>
+    public override int CountValues => _layer.CountValues;
+
+    /// <summary>
+    ///   Auflistung aller Dokument-GUIDs
+    /// </summary>
+    public override IEnumerable<Guid> DocumentGuids => _layer.DocumentGuids;
 
     /// <summary>
     ///   Gibt die entsprechende Wertbeschreibung zurück
@@ -45,22 +62,11 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
     /// <returns>
     ///   Rohdaten (Indexbasiert)
     /// </returns>
-    public override int[][] this[Guid guid] { get => _layer[guid]; set => _layer[guid] = value; }
-
-    /// <summary>
-    ///   Anzahl der enthaltenen Dokumente
-    /// </summary>
-    public override int CountDocuments => _layer.CountDocuments;
-
-    /// <summary>
-    ///   Anzahl der enthaltenen Werte
-    /// </summary>
-    public override int CountValues => _layer.CountValues;
-
-    /// <summary>
-    ///   Auflistung aller Dokument-GUIDs
-    /// </summary>
-    public override IEnumerable<Guid> DocumentGuids => _layer.DocumentGuids;
+    public override int[][] this[Guid guid]
+    {
+      get => _layer[guid];
+      set => _layer[guid] = value;
+    }
 
     /// <summary>
     ///   Auflistung aller Werte des Layers
@@ -70,7 +76,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
     /// <summary>
     ///   Enthält der Layer informationen zum gesuchten Dokument
     /// </summary>
-    /// <param name="guid">GUID des Dokuments
+    /// <param name="guid">
+    ///   GUID des Dokuments
     /// </param>
     /// <returns>
     ///   Ja/Nein?
@@ -112,7 +119,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
       Dictionary<string, object> layerMetadata,
       string layerDisplayname)
     {
-      return Create(new Model.Layer(documents, dictionary, layerMetadata) { Displayname = layerDisplayname });
+      return Create(new Model.Layer(documents, dictionary, layerMetadata) {Displayname = layerDisplayname});
     }
 
     public static LayerAdapterSingleFile Create(
@@ -121,13 +128,13 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
       Dictionary<string, object> layerMetadata,
       string layerDisplayname)
     {
-      return Create(new Model.Layer(documents, dictionary, layerMetadata) { Displayname = layerDisplayname });
+      return Create(new Model.Layer(documents, dictionary, layerMetadata) {Displayname = layerDisplayname});
     }
 
     public static LayerAdapterSingleFile Create(AbstractLayerState layerState)
     {
       return Create(
-        new Model.Layer(layerState.Documents, layerState.Cache, null) { Displayname = layerState.Displayname });
+        new Model.Layer(layerState.Documents, layerState.Cache, null) {Displayname = layerState.Displayname});
     }
 
     public override Dictionary<Guid, int[][]> GetDocumentDictionary()
@@ -139,6 +146,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
           continue;
         dictionary.Add(pair.Key, pair.Value);
       }
+
       return dictionary;
     }
 
@@ -184,12 +192,20 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
       return _layer.GetReadableDocumentSnippetByGuid(documentGuid, start, stop);
     }
 
-    protected override CeDictionary GetValueDictionary() { return _layer.GetValueDictionary(); }
+    public Model.Layer ReciveRawLayer()
+    {
+      return _layer;
+    }
 
-    public Model.Layer ReciveRawLayer() { return _layer; }
-    public override Dictionary<string, int> ReciveRawLayerDictionary() { return _layer.ReciveRawLayerDictionary(); }
+    public override Dictionary<string, int> ReciveRawLayerDictionary()
+    {
+      return _layer.ReciveRawLayerDictionary();
+    }
 
-    public override void RefreshDictionaries() { _layer.RefreshDictionaries(); }
+    public override void RefreshDictionaries()
+    {
+      _layer.RefreshDictionaries();
+    }
 
     public override bool SetDocumentLayerValueMaskBySwitch(
       Guid documentGuid,
@@ -214,7 +230,10 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
       return _layer.SetQuickStreamDocumentAnnotation(documentGuid, streamDocument);
     }
 
-    public override Concept ToConcept(IEnumerable<string> ignoreValues = null) { return _layer.ToConcept(); }
+    public override Concept ToConcept(IEnumerable<string> ignoreValues = null)
+    {
+      return _layer.ToConcept();
+    }
 
     /// <summary>
     ///   Fügt dem Layer einen neuen Wert hinzu
@@ -252,6 +271,14 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
       _layer.ValueRemove(removeValue);
     }
 
-    protected override IEnumerable<string> ValuesByRegex(string regEx) { return _layer.ValuesByRegex(regEx); }
+    protected override CeDictionary GetValueDictionary()
+    {
+      return _layer.GetValueDictionary();
+    }
+
+    protected override IEnumerable<string> ValuesByRegex(string regEx)
+    {
+      return _layer.ValuesByRegex(regEx);
+    }
   }
 }

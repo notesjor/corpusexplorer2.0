@@ -18,30 +18,24 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     stressing,
 
     /// <remarks />
-    [XmlEnum("contrastive stressing")]
-    contrastivestressing,
+    [XmlEnum("contrastive stressing")] contrastivestressing,
 
     /// <remarks />
-    [XmlEnum("best guess")]
-    bestguess,
+    [XmlEnum("best guess")] bestguess,
 
     /// <remarks />
     retracing,
 
     /// <remarks />
-    [XmlEnum("retracing with correction")]
-    retracingwithcorrection,
+    [XmlEnum("retracing with correction")] retracingwithcorrection,
 
     /// <remarks />
-    [XmlEnum("retracing reformulation")]
-    retracingreformulation,
+    [XmlEnum("retracing reformulation")] retracingreformulation,
 
     /// <remarks />
-    [XmlEnum("retracing unclear")]
-    retracingunclear,
+    [XmlEnum("retracing unclear")] retracingunclear,
 
     /// <remarks />
-    [XmlEnum("false start")]
-    falsestart
+    [XmlEnum("false start")] falsestart
   }
 }

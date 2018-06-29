@@ -12,7 +12,10 @@ namespace CorpusExplorer.Sdk.ViewModel
   {
     private DataTable _dataTable;
 
-    public CooccurrenceCompareViewModel() { LayerDisplayname = "Wort"; }
+    public CooccurrenceCompareViewModel()
+    {
+      LayerDisplayname = "Wort";
+    }
 
     public string LayerDisplayname { get; set; }
 

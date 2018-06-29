@@ -3,6 +3,8 @@
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Extern.Xml.AnnotationPro;
+using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Drucksachen;
+using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle;
 using CorpusExplorer.Sdk.Extern.Xml.Dewac;
 using CorpusExplorer.Sdk.Extern.Xml.DigitalPlato;
 using CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus;
@@ -10,14 +12,15 @@ using CorpusExplorer.Sdk.Extern.Xml.Dpxc;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf;
 using CorpusExplorer.Sdk.Extern.Xml.Exmaralda;
 using CorpusExplorer.Sdk.Extern.Xml.Folker;
+using CorpusExplorer.Sdk.Extern.Xml.LexisNexis;
 using CorpusExplorer.Sdk.Extern.Xml.PostgreSqlDump;
 using CorpusExplorer.Sdk.Extern.Xml.PureXml;
 using CorpusExplorer.Sdk.Extern.Xml.PurlOrg;
 using CorpusExplorer.Sdk.Extern.Xml.SlashA;
 using CorpusExplorer.Sdk.Extern.Xml.Tiger;
 using CorpusExplorer.Sdk.Extern.Xml.Weblicht;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
@@ -112,8 +115,20 @@ namespace CorpusExplorer.Sdk.Extern.Xml
           new DigitalPlatoScraper()
         },
         {
+          "Bundestag OpenAccess Plenarprotokolle (*.xml)|*.xml",
+          new BundestagPlenarprotokolleScraper()
+        },
+        {
+          "Bundestag OpenAccess Drucksachen (*.xml)|*.xml",
+          new BundestagDrucksachenScraper()
+        },
+        {
           "Nur Text (*.xml)|*.xml",
           new PureXmlTextScraper()
+        },
+        {
+          "nexis.com - Zeitungsartikel (*.html)|*.html",
+          new NexisComScraper()
         }
       };
 

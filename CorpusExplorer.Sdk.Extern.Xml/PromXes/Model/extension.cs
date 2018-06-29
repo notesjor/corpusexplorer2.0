@@ -23,14 +23,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.PromXes.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string name { get { return nameField; } set { nameField = value; } }
+    public string name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string prefix { get { return prefixField; } set { prefixField = value; } }
+    public string prefix
+    {
+      get => prefixField;
+      set => prefixField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "anyURI")]
-    public string uri { get { return uriField; } set { uriField = value; } }
+    public string uri
+    {
+      get => uriField;
+      set => uriField = value;
+    }
   }
 }

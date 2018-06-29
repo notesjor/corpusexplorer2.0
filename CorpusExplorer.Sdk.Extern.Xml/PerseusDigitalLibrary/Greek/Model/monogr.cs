@@ -1,63 +1,69 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
 namespace CorpusExplorer.Sdk.Extern.Xml.PerseusDigitalLibrary.Greek.Model
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-  public partial class monogr
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true)]
+  [XmlRoot(Namespace = "", IsNullable = false)]
+  public class monogr
   {
-
-    private object[] itemsField;
-
-    private object itemField;
+    private biblScope biblScopeField;
 
     private imprint imprintField;
 
-    private biblScope biblScopeField;
+    private object itemField;
+
+    private object[] itemsField;
 
     private string tEIformField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("author", typeof(author))]
-    [System.Xml.Serialization.XmlElementAttribute("title", typeof(title))]
-    public object[] Items
-    {
-      get { return this.itemsField; }
-      set { this.itemsField = value; }
-    }
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("editor", typeof(editor))]
-    [System.Xml.Serialization.XmlElementAttribute("respStmt", typeof(respStmt))]
-    public object Item
-    {
-      get { return this.itemField; }
-      set { this.itemField = value; }
-    }
-
-    /// <remarks/>
-    public imprint imprint
-    {
-      get { return this.imprintField; }
-      set { this.imprintField = value; }
-    }
-
-    /// <remarks/>
+    /// <remarks />
     public biblScope biblScope
     {
-      get { return this.biblScopeField; }
-      set { this.biblScopeField = value; }
+      get => biblScopeField;
+      set => biblScopeField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    public imprint imprint
+    {
+      get => imprintField;
+      set => imprintField = value;
+    }
+
+    /// <remarks />
+    [XmlElement("author", typeof(author))]
+    [XmlElement("title", typeof(title))]
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
+
+    /// <remarks />
+    [XmlElement("editor", typeof(editor))]
+    [XmlElement("respStmt", typeof(respStmt))]
+    public object Item
+    {
+      get => itemField;
+      set => itemField = value;
+    }
+
+
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string TEIform
     {
-      get { return this.tEIformField; }
-      set { this.tEIformField = value; }
+      get => tEIformField;
+      set => tEIformField = value;
     }
   }
 }

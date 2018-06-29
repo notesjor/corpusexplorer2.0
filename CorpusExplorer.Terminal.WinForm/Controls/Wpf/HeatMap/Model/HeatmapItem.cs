@@ -14,7 +14,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.HeatMap.Model
       Size = size;
     }
 
-    public List<IHeatmapItem> Children { get { return null; } }
+    public List<IHeatmapItem> Children => null;
 
     public string Name { get; }
     public long Size { get; }

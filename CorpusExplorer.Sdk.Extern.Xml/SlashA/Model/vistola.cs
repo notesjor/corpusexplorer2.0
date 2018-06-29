@@ -26,18 +26,38 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA.Model
     private postmark postmarkField;
 
     /// <remarks />
-    public correspondence correspondence { get { return correspondenceField; } set { correspondenceField = value; } }
+    public correspondence correspondence
+    {
+      get => correspondenceField;
+      set => correspondenceField = value;
+    }
 
     /// <remarks />
-    public dates dates { get { return datesField; } set { datesField = value; } }
+    public dates dates
+    {
+      get => datesField;
+      set => datesField = value;
+    }
 
     /// <remarks />
-    public editor editor { get { return editorField; } set { editorField = value; } }
+    public editor editor
+    {
+      get => editorField;
+      set => editorField = value;
+    }
 
     /// <remarks />
-    public number number { get { return numberField; } set { numberField = value; } }
+    public number number
+    {
+      get => numberField;
+      set => numberField = value;
+    }
 
     /// <remarks />
-    public postmark postmark { get { return postmarkField; } set { postmarkField = value; } }
+    public postmark postmark
+    {
+      get => postmarkField;
+      set => postmarkField = value;
+    }
   }
 }

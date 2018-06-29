@@ -22,7 +22,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private string renditionField;
 
     /// <remarks />
-    public fw fw { get { return fwField; } set { fwField = value; } }
+    public fw fw
+    {
+      get => fwField;
+      set => fwField = value;
+    }
 
     /// <remarks />
     [XmlElement("figure", typeof(figure))]
@@ -30,10 +34,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("milestone", typeof(milestone))]
     [XmlElement("space", typeof(space))]
     [XmlElement("titlePart", typeof(titlePart))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string rendition { get { return renditionField; } set { renditionField = value; } }
+    public string rendition
+    {
+      get => renditionField;
+      set => renditionField = value;
+    }
   }
 }

@@ -24,10 +24,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
 
     /// <remarks />
     [XmlElement("time")]
-    public time[] Items { get { return itemsField; } set { itemsField = value; } }
+    public time[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

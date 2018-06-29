@@ -18,6 +18,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private edition editionField;
 
     /// <remarks />
-    public edition edition { get { return editionField; } set { editionField = value; } }
+    public edition edition
+    {
+      get => editionField;
+      set => editionField = value;
+    }
   }
 }

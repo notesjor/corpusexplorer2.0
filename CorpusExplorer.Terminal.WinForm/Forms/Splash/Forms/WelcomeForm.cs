@@ -31,6 +31,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Splash.Forms
       };
     }
 
-    public string Message { set { radLabel1.Text = value; } }
+    public string Message
+    {
+      set => radLabel1.Text = value;
+    }
   }
 }

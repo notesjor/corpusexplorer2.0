@@ -58,7 +58,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
     private void InitMultiCooccurrences()
     {
-      _multi = Selection.CreateBlock<CooccurrenceOverlappingBlock>();      
+      _multi = Selection.CreateBlock<CooccurrenceOverlappingBlock>();
       _multi.LayerDisplayname = LayerDisplayname;
     }
 

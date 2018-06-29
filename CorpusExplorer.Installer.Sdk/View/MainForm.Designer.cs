@@ -61,7 +61,7 @@ namespace CorpusExplorer.Installer.Sdk.View
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(199, 15);
       this.label2.TabIndex = 2;
-      this.label2.Text = Resources.Slogan;
+      this.label2.Text = "Korpuslinguistik war nie so einfach...";
       // 
       // label3
       // 
@@ -71,7 +71,7 @@ namespace CorpusExplorer.Installer.Sdk.View
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(245, 20);
       this.label3.TabIndex = 3;
-      this.label3.Text = Resources.LicenceInformation;
+      this.label3.Text = "Hinweis zu den Lizenzbedingungen:";
       // 
       // txt_licence
       // 
@@ -93,7 +93,7 @@ namespace CorpusExplorer.Installer.Sdk.View
       this.chk_accept.Name = "chk_accept";
       this.chk_accept.Size = new System.Drawing.Size(298, 24);
       this.chk_accept.TabIndex = 5;
-      this.chk_accept.Text = Resources.YesIAcceptTheLicence;
+      this.chk_accept.Text = global::CorpusExplorer.Installer.Sdk.Properties.Resources.YesIAcceptTheLicence;
       this.chk_accept.UseVisualStyleBackColor = true;
       this.chk_accept.CheckedChanged += new System.EventHandler(this.chk_accept_CheckedChanged);
       // 
@@ -113,7 +113,7 @@ namespace CorpusExplorer.Installer.Sdk.View
       this.btn_install.Name = "btn_install";
       this.btn_install.Size = new System.Drawing.Size(153, 40);
       this.btn_install.TabIndex = 7;
-      this.btn_install.Text = Resources.Install;
+      this.btn_install.Text = global::CorpusExplorer.Installer.Sdk.Properties.Resources.Install;
       this.btn_install.UseVisualStyleBackColor = true;
       this.btn_install.Click += new System.EventHandler(this.btn_install_Click);
       // 
@@ -123,7 +123,7 @@ namespace CorpusExplorer.Installer.Sdk.View
       this.btn_abort.Name = "btn_abort";
       this.btn_abort.Size = new System.Drawing.Size(100, 29);
       this.btn_abort.TabIndex = 8;
-      this.btn_abort.Text = Resources.Abort;
+      this.btn_abort.Text = global::CorpusExplorer.Installer.Sdk.Properties.Resources.Abort;
       this.btn_abort.UseVisualStyleBackColor = true;
       this.btn_abort.Click += new System.EventHandler(this.btn_abort_Click);
       // 
@@ -154,7 +154,7 @@ namespace CorpusExplorer.Installer.Sdk.View
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "MainForm";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-      this.Text = Resources.CorpusExplorerInstallation;
+      this.Text = "CorpusExplorer - Installation";
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       this.ResumeLayout(false);

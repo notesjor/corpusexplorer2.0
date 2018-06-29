@@ -22,7 +22,10 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Reporting.Forms
       {
         ThemeResolutionService.ApplicationThemeName = "TelerikMetroTouch";
       }
-      catch {}
+      catch
+      {
+      }
+
       InitializeComponent();
 
       SuspendLayout();
@@ -64,7 +67,7 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Reporting.Forms
     {
       var ti = e.Node.Tag as ReportTreeItem;
       if (ti == null) return;
-      ti.Report.DataSource = new ObjectDataSource { DataSource = ti.DataSource };
+      ti.Report.DataSource = new ObjectDataSource {DataSource = ti.DataSource};
 
       var irs = new InstanceReportSource {ReportDocument = ti.Report};
 
@@ -84,7 +87,7 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Reporting.Forms
       }
       else
       {
-        rti.Report.DataSource = new ObjectDataSource { DataSource = rti.DataSource };
+        rti.Report.DataSource = new ObjectDataSource {DataSource = rti.DataSource};
         var irs = new InstanceReportSource {ReportDocument = rti.Report};
         var result = processor.RenderReport(format, irs, new Hashtable());
 
@@ -100,6 +103,7 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Reporting.Forms
           fs.Write(result.DocumentBytes, 0, result.DocumentBytes.Length);
         }
       }
+
       foreach (var item in rti.SubItems)
         RecursiveReportRendering(processor, format, path, item);
     }

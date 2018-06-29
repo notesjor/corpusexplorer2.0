@@ -18,8 +18,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     unintelligible,
 
     /// <remarks />
-    [XmlEnum("unintelligible-with-pho")]
-    unintelligiblewithpho,
+    [XmlEnum("unintelligible-with-pho")] unintelligiblewithpho,
 
     /// <remarks />
     untranscribed

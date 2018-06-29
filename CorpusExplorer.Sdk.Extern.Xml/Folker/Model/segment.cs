@@ -25,14 +25,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
 
     /// <remarks />
     [XmlAttribute("end-reference", DataType = "IDREF")]
-    public string endreference { get { return endreferenceField; } set { endreferenceField = value; } }
+    public string endreference
+    {
+      get => endreferenceField;
+      set => endreferenceField = value;
+    }
 
     /// <remarks />
     [XmlAttribute("start-reference", DataType = "IDREF")]
-    public string startreference { get { return startreferenceField; } set { startreferenceField = value; } }
+    public string startreference
+    {
+      get => startreferenceField;
+      set => startreferenceField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string Value { get { return valueField; } set { valueField = value; } }
+    public string Value
+    {
+      get => valueField;
+      set => valueField = value;
+    }
   }
 }

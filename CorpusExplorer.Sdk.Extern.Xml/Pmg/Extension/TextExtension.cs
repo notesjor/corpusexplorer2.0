@@ -17,6 +17,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Pmg.Extension
         foreach (var t in inline.Text)
           stb.AppendLine(t);
       }
+
       return stb.ToString();
     }
   }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
@@ -10,16 +9,18 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.Conll
 {
   public class ImporterConll : AbstractImporterSimple3Steps<string[]>
   {
-    internal static string[] _layerNames = new[] { "ID", "Wort", "Lemma", "UPOS", "POS", "FEATS", "HEAD", "DEPREL", "DEPS", "MISC" };
+    internal static string[] _layerNames =
+      {"ID", "Wort", "Lemma", "UPOS", "POS", "FEATS", "HEAD", "DEPREL", "DEPS", "MISC"};
+
     protected override IEnumerable<string> LayerNames => _layerNames;
 
     protected override string[] ImportStep_1_ReadFile(string path)
     {
       return File.ReadAllLines(path, Configuration.Encoding);
     }
-    
+
     protected override void ImportStep_2_ImportMetadata(Guid documentGuid, ref string[] data)
-    {      
+    {
       AddCorpusMetadata("IMPORT_FROM", "CoNLL");
       AddDocumentMetadata(documentGuid, new Dictionary<string, object>());
     }
@@ -42,10 +43,11 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.Conll
               docs[s.Key].Add(s.Value.ToArray());
               s.Value.Clear();
             }
+
           continue;
         }
 
-        var items = line.Split(new[] { "\t", " " }, StringSplitOptions.RemoveEmptyEntries);
+        var items = line.Split(new[] {"\t", " "}, StringSplitOptions.RemoveEmptyEntries);
         if (items.Length != _layerNames.Length)
           continue;
 
@@ -54,14 +56,14 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.Conll
       }
 
       if (sent[_layerNames[0]].Count > 0)
-      foreach (var s in sent)
-      {
-        docs[s.Key].Add(s.Value.ToArray());
-        s.Value.Clear();
-      }
+        foreach (var s in sent)
+        {
+          docs[s.Key].Add(s.Value.ToArray());
+          s.Value.Clear();
+        }
 
       foreach (var doc in docs)
-        AddDocumet(doc.Key, documentGuid, doc.Value.ToArray());      
+        AddDocumet(doc.Key, documentGuid, doc.Value.ToArray());
     }
   }
 }

@@ -24,14 +24,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tiger.Model
 
     /// <remarks />
     [XmlAttribute]
-    public featureTypeDomain domain { get { return domainField; } set { domainField = value; } }
+    public featureTypeDomain domain
+    {
+      get => domainField;
+      set => domainField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string name { get { return nameField; } set { nameField = value; } }
+    public string name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
 
     /// <remarks />
     [XmlElement("value", Form = XmlSchemaForm.Unqualified)]
-    public featurevalueType[] value { get { return valueField; } set { valueField = value; } }
+    public featurevalueType[] value
+    {
+      get => valueField;
+      set => valueField = value;
+    }
   }
 }

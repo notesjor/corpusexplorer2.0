@@ -25,14 +25,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.PromXes.Model
     [XmlElement("float", typeof(@float))]
     [XmlElement("int", typeof(@int))]
     [XmlElement("string", typeof(@string))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string key { get { return keyField; } set { keyField = value; } }
+    public string key
+    {
+      get => keyField;
+      set => keyField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string value { get { return valueField; } set { valueField = value; } }
+    public string value
+    {
+      get => valueField;
+      set => valueField = value;
+    }
   }
 }

@@ -20,14 +20,12 @@ namespace CorpusExplorer.Sdk.Model
   [Serializable]
   public class Corpus : CeObject
   {
-    [OptionalField]
-    private List<Concept> _concepts = new List<Concept>();
+    [OptionalField] private List<Concept> _concepts = new List<Concept>();
 
     /// <summary>
     ///   The _document metadata.
     /// </summary>
-    [NonSerialized]
-    private Dictionary<Guid, Dictionary<string, object>> _documentMetadata =
+    [NonSerialized] private Dictionary<Guid, Dictionary<string, object>> _documentMetadata =
       new Dictionary<Guid, Dictionary<string, object>>();
 
     private KeyValuePair<Guid, KeyValuePair<string, object>[]>[] _documentMetadataSerialized;
@@ -35,8 +33,7 @@ namespace CorpusExplorer.Sdk.Model
     /// <summary>
     ///   The _layers.
     /// </summary>
-    [NonSerialized]
-    private Dictionary<Guid, AbstractLayerAdapter> _layers =
+    [NonSerialized] private Dictionary<Guid, AbstractLayerAdapter> _layers =
       new Dictionary<Guid, AbstractLayerAdapter>();
 
     private KeyValuePair<Guid, Layer>[] _layersSerialized;
@@ -94,7 +91,10 @@ namespace CorpusExplorer.Sdk.Model
       }
     }
 
-    public void AddConcept(Concept concept) { _concepts.Add(concept); }
+    public void AddConcept(Concept concept)
+    {
+      _concepts.Add(concept);
+    }
 
     /// <summary>
     ///   The add layer.
@@ -144,21 +144,6 @@ namespace CorpusExplorer.Sdk.Model
       return _layers.Any(layer => layer.Key == layerGuid);
     }
 
-    internal static Corpus Create(
-      Dictionary<Guid, Dictionary<string, object>> documentMetadata,
-      Dictionary<string, object> corpusMetadata,
-      List<Concept> concepts)
-    {
-      var res = new Corpus
-      {
-        Metadata = corpusMetadata,
-        _concepts = concepts == null ? new List<Concept>() : new List<Concept>(concepts),
-        _documentMetadata = documentMetadata
-      };
-
-      return res;
-    }
-
     /// <summary>
     ///   The find document by metadata.
     /// </summary>
@@ -192,6 +177,7 @@ namespace CorpusExplorer.Sdk.Model
             all = false;
             break;
           }
+
           if (all)
             res.Add(dsel.Key);
         }
@@ -199,6 +185,7 @@ namespace CorpusExplorer.Sdk.Model
         {
           InMemoryErrorConsole.Log(ex);
         }
+
       return res;
     }
 
@@ -226,8 +213,8 @@ namespace CorpusExplorer.Sdk.Model
       var meta = GetDocumentMetadata(guid);
       object value;
       return meta != null && meta.TryGetValue(Resources.Title, out value)
-               ? value.ToString()
-               : string.Format(Resources.NoTitle, guid.ToString(Resources.N));
+        ? value.ToString()
+        : string.Format(Resources.NoTitle, guid.ToString(Resources.N));
     }
 
     public IEnumerable<IEnumerable<bool>> GetDocumentLayerValueMask(
@@ -248,8 +235,8 @@ namespace CorpusExplorer.Sdk.Model
       string layerValue)
     {
       return _layers.ContainsKey(layerGuid)
-               ? _layers[layerGuid].GetDocumentLayervalueMask(documentGuid, layerValue)
-               : null;
+        ? _layers[layerGuid].GetDocumentLayervalueMask(documentGuid, layerValue)
+        : null;
     }
 
     /// <summary>
@@ -418,7 +405,7 @@ namespace CorpusExplorer.Sdk.Model
     public IEnumerable<KeyValuePair<Guid, string>> GetLayerGuidAndDisplaynamesOfDocument(Guid documentGuid)
     {
       return Layers.Where(layer => layer.ContainsDocument(documentGuid))
-                   .ToDictionary(layer => layer.Guid, layer => layer.Displayname);
+        .ToDictionary(layer => layer.Guid, layer => layer.Displayname);
     }
 
     /// <summary>
@@ -436,14 +423,14 @@ namespace CorpusExplorer.Sdk.Model
     public AbstractLayerAdapter GetLayerOfDocument(Guid documentGuid, string layerDisplayname)
     {
       return (from layer in _layers
-              where
-              layer.Value
-                   .Displayname ==
-              layerDisplayname &&
-              layer.Value
-                   .ContainsDocument
-                   (documentGuid)
-              select layer.Value)
+          where
+            layer.Value
+              .Displayname ==
+            layerDisplayname &&
+            layer.Value
+              .ContainsDocument
+                (documentGuid)
+          select layer.Value)
         .FirstOrDefault();
     }
 
@@ -517,7 +504,7 @@ namespace CorpusExplorer.Sdk.Model
       return (from layer in _layers where layer.Value.Displayname == layerDisplayname select layer.Value)
         .FirstOrDefault()?
         .GetReadableDocumentByGuid
-        (documentGuid);
+          (documentGuid);
     }
 
     public IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, Guid layerGuid)
@@ -569,9 +556,9 @@ namespace CorpusExplorer.Sdk.Model
     public Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(Guid documentGuid)
     {
       return _layers.Where(layer => layer.Value.ContainsDocument(documentGuid))
-                    .ToDictionary(
-                      layer => layer.Value.Displayname,
-                      layer => layer.Value.GetReadableDocumentByGuid(documentGuid));
+        .ToDictionary(
+          layer => layer.Value.Displayname,
+          layer => layer.Value.GetReadableDocumentByGuid(documentGuid));
     }
 
     /// <summary>
@@ -682,93 +669,10 @@ namespace CorpusExplorer.Sdk.Model
         l.Value.ValueChange(layerValueOld, layerValueNew);
     }
 
-    [OnDeserialized]
-    private void OnDeserialized(StreamingContext context)
+    public bool RemoveConcept(Concept concept)
     {
-      OnDeserializedLayers();
-
-      OnDeserializedMetadata();
-
-      GC.Collect();
-      GC.WaitForPendingFinalizers();
+      return _concepts.Remove(concept);
     }
-
-    private void OnDeserializedLayers()
-    {
-      try
-      {
-        _layers =
-          _layersSerialized?.ToDictionary(
-            x => x.Key,
-            x => (AbstractLayerAdapter) LayerAdapterSingleFile.Create(x.Value)) ??
-          new Dictionary<Guid, AbstractLayerAdapter>();
-      }
-      catch // Fallback
-      {
-        _layers = new Dictionary<Guid, AbstractLayerAdapter>();
-        if (_layersSerialized != null)
-          foreach (var entry in _layersSerialized.Where(entry => !_layers.ContainsKey(entry.Key)))
-            _layers.Add(entry.Key, LayerAdapterSingleFile.Create(entry.Value));
-      }
-      _layersSerialized = null;
-    }
-
-    private void OnDeserializedMetadata()
-    {
-      try
-      {
-        _documentMetadata = _documentMetadataSerialized?.ToDictionary(
-                              x => x.Key,
-                              x =>
-                                x.Value.ToDictionary(y => y.Key, y => y.Value))
-                            ?? new Dictionary<Guid, Dictionary<string, object>>();
-      }
-      catch
-      {
-        _documentMetadata = new Dictionary<Guid, Dictionary<string, object>>();
-
-        if (_documentMetadataSerialized != null)
-          foreach (var entry in _documentMetadataSerialized)
-          {
-            if (_documentMetadata.ContainsKey(entry.Key))
-              continue;
-
-            var dic = new Dictionary<string, object>();
-            foreach (var value in entry.Value.Where(value => !dic.ContainsKey(value.Key)))
-              dic.Add(value.Key, value.Value);
-            _documentMetadata.Add(entry.Key, dic);
-          }
-      }
-
-      _documentMetadataSerialized = null;
-    }
-
-    [OnSerialized]
-    private void OnSerialized(StreamingContext context)
-    {
-      _layersSerialized = null;
-      _documentMetadataSerialized = null;
-
-      GC.Collect();
-      GC.WaitForPendingFinalizers();
-    }
-
-    [OnSerializing]
-    private void OnSerializing(StreamingContext context)
-    {
-      var temp = from layer in _layers
-                 where layer.Value is LayerAdapterSingleFile
-                 select ((LayerAdapterSingleFile) layer.Value).ReciveRawLayer();
-
-      _layersSerialized = temp.Select(x => new KeyValuePair<Guid, Layer>(x.Guid, x)).ToArray();
-      _documentMetadataSerialized =
-        _documentMetadata?.Select(
-                           meta =>
-                             new KeyValuePair<Guid, KeyValuePair<string, object>[]>(meta.Key, meta.Value.ToArray()))
-                         .ToArray();
-    }
-
-    public bool RemoveConcept(Concept concept) { return _concepts.Remove(concept); }
 
     /// <summary>
     ///   The reset all document metadata.
@@ -880,6 +784,108 @@ namespace CorpusExplorer.Sdk.Model
 
       foreach (var doc in _documentMetadata.Where(doc => !doc.Value.ContainsKey(metadataKey)))
         doc.Value.Add(metadataKey, type == typeof(string) ? "" : Activator.CreateInstance(type));
+    }
+
+    internal static Corpus Create(
+      Dictionary<Guid, Dictionary<string, object>> documentMetadata,
+      Dictionary<string, object> corpusMetadata,
+      List<Concept> concepts)
+    {
+      var res = new Corpus
+      {
+        Metadata = corpusMetadata,
+        _concepts = concepts == null ? new List<Concept>() : new List<Concept>(concepts),
+        _documentMetadata = documentMetadata
+      };
+
+      return res;
+    }
+
+    [OnDeserialized]
+    private void OnDeserialized(StreamingContext context)
+    {
+      OnDeserializedLayers();
+
+      OnDeserializedMetadata();
+
+      GC.Collect();
+      GC.WaitForPendingFinalizers();
+    }
+
+    private void OnDeserializedLayers()
+    {
+      try
+      {
+        _layers =
+          _layersSerialized?.ToDictionary(
+            x => x.Key,
+            x => (AbstractLayerAdapter) LayerAdapterSingleFile.Create(x.Value)) ??
+          new Dictionary<Guid, AbstractLayerAdapter>();
+      }
+      catch // Fallback
+      {
+        _layers = new Dictionary<Guid, AbstractLayerAdapter>();
+        if (_layersSerialized != null)
+          foreach (var entry in _layersSerialized.Where(entry => !_layers.ContainsKey(entry.Key)))
+            _layers.Add(entry.Key, LayerAdapterSingleFile.Create(entry.Value));
+      }
+
+      _layersSerialized = null;
+    }
+
+    private void OnDeserializedMetadata()
+    {
+      try
+      {
+        _documentMetadata = _documentMetadataSerialized?.ToDictionary(
+                              x => x.Key,
+                              x =>
+                                x.Value.ToDictionary(y => y.Key, y => y.Value))
+                            ?? new Dictionary<Guid, Dictionary<string, object>>();
+      }
+      catch
+      {
+        _documentMetadata = new Dictionary<Guid, Dictionary<string, object>>();
+
+        if (_documentMetadataSerialized != null)
+          foreach (var entry in _documentMetadataSerialized)
+          {
+            if (_documentMetadata.ContainsKey(entry.Key))
+              continue;
+
+            var dic = new Dictionary<string, object>();
+            foreach (var value in entry.Value.Where(value => !dic.ContainsKey(value.Key)))
+              dic.Add(value.Key, value.Value);
+            _documentMetadata.Add(entry.Key, dic);
+          }
+      }
+
+      _documentMetadataSerialized = null;
+    }
+
+    [OnSerialized]
+    private void OnSerialized(StreamingContext context)
+    {
+      _layersSerialized = null;
+      _documentMetadataSerialized = null;
+
+      GC.Collect();
+      GC.WaitForPendingFinalizers();
+    }
+
+    [OnSerializing]
+    private void OnSerializing(StreamingContext context)
+    {
+      var temp = from layer in _layers
+        where layer.Value is LayerAdapterSingleFile
+        select ((LayerAdapterSingleFile) layer.Value).ReciveRawLayer();
+
+      _layersSerialized = temp.Select(x => new KeyValuePair<Guid, Layer>(x.Guid, x)).ToArray();
+      _documentMetadataSerialized =
+        _documentMetadata?.Select(
+            meta =>
+              new KeyValuePair<Guid, KeyValuePair<string, object>[]>(meta.Key, meta.Value.ToArray()))
+          .ToArray();
     }
   }
 }

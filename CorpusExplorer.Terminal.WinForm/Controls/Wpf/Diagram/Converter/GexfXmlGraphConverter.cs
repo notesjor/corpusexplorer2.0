@@ -47,6 +47,9 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter
       return stb.ToString();
     }
 
-    private string Filter(object content) { return content.ToString().Replace("\"", "''").Replace("&", "&amp;"); }
+    private string Filter(object content)
+    {
+      return content.ToString().Replace("\"", "''").Replace("&", "&amp;");
+    }
   }
 }

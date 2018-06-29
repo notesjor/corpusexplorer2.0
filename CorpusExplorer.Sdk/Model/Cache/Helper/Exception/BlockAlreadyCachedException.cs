@@ -3,5 +3,7 @@
 namespace CorpusExplorer.Sdk.Model.Cache.Helper.Exception
 {
   [Serializable]
-  public class BlockAlreadyCachedException : System.Exception { }
+  public class BlockAlreadyCachedException : System.Exception
+  {
+  }
 }

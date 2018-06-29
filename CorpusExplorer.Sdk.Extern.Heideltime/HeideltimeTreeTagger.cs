@@ -1,21 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using Bcs.IO;
-using CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger.Abstract;
-using CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger.Parameter;
-using CorpusExplorer.Core.DocumentProcessing.Tokenizer;
-using CorpusExplorer.Sdk.Diagnostic;
-using CorpusExplorer.Sdk.Ecosystem.Model;
-using CorpusExplorer.Sdk.Helper;
-using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model.Abstract;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer.Abstract;
-
-namespace CorpusExplorer.Sdk.Extern.Heideltime
+﻿namespace CorpusExplorer.Sdk.Extern.Heideltime
 {
   /*
   public class HeideltimeTreeTagger : AbstractTaggerOneWordPerLine

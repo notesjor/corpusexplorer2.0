@@ -20,6 +20,9 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Model
     ///   ist gleich <paramref name="other" />.  Größer als 0 (null)  Dieses Objekt ist größer als <paramref name="other" />.
     /// </returns>
     /// <param name="other">Ein Objekt, das mit diesem Objekt verglichen werden soll.</param>
-    public int CompareTo(WordCloudItem other) { return string.Compare(Label, other.Label, StringComparison.Ordinal); }
+    public int CompareTo(WordCloudItem other)
+    {
+      return string.Compare(Label, other.Label, StringComparison.Ordinal);
+    }
   }
 }

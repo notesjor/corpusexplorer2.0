@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlElement("event")]
-    public @event[] @event { get { return eventField; } set { eventField = value; } }
+    public @event[] @event
+    {
+      get => eventField;
+      set => eventField = value;
+    }
   }
 }

@@ -1,7 +1,8 @@
 ﻿#region
 
 using System.Collections.Generic;
-using CorpusExplorer.Core.DocumentProcessing.Importer.CorpusExplorerV6;
+using CorpusExplorer.Core.DocumentProcessing.Exporter;
+using CorpusExplorer.Core.DocumentProcessing.Exporter.Tlv;
 using CorpusExplorer.Core.DocumentProcessing.Importer.TlvXml;
 using CorpusExplorer.Core.DocumentProcessing.Scraper.Docx;
 using CorpusExplorer.Core.DocumentProcessing.Scraper.Html;
@@ -11,14 +12,15 @@ using CorpusExplorer.Core.DocumentProcessing.Scraper.Txt;
 using CorpusExplorer.Core.DocumentProcessing.Tagger.RawText;
 using CorpusExplorer.Core.DocumentProcessing.Tagger.TnTTagger;
 using CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger;
-using CorpusExplorer.Core.Exporter;
-using CorpusExplorer.Core.Exporter.Tlv;
+using CorpusExplorer.Core.DocumentProcessing.Tagger.UDPipe;
 using CorpusExplorer.Sdk.Addon;
-using CorpusExplorer.Sdk.Model.Export;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.CorpusExplorerV6;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
 
@@ -51,12 +53,12 @@ namespace CorpusExplorer.Core
         {"JSON-Export (*.json)|*.json", new ExporterJson()},
         {"XML-Export (*.xml)|*.xml", new ExporterXml()},
         {"TLV-XML-Export (*.xml)|*.xml", new ExporterTlv()},
-        {"CEC6-Export (*.cec6)|*.cec6", new ExporterCec6()},
+        {"CorpusExplorer v6 (*.cec6)|*.cec6", new ExporterCec6()},
         {"Plaintext-Export (*.txt)|*.txt", new ExporterPlaintext()},
         {"Plaintext-Export [Nur Wort-Layer] (*.txt)|*.txt", new ExporterPlaintextPure()},
         {"CSV-Export [Nur Metadatan] (*.csv)|*.csv", new ExporterCsvMetadataOnly()},
         {"CSV-Export [Metadaten + Wort-Layer] (*.csv)|*.csv", new ExporterCsv()},
-        {"Abfragen-Export [Nur für Schnappschüsse] (*.ceusd)|*.ceusd", new ExporterQuery()},
+        {"Abfragen-Export [Nur für Schnappschüsse] (*.ceusd)|*.ceusd", new ExporterQuery()}
       };
 
     /// <summary>
@@ -67,6 +69,7 @@ namespace CorpusExplorer.Core
       new Dictionary<string, AbstractImporter>
       {
         {"CorpusExplorer v6 (*.cec6)|*.cec6", new ImporterCec6()},
+        {"CorpusExplorer v6 [STREAM] (*.cec6)|*.cec6", new ImporterCec6Stream()},
         {"TLV-XML (*.xml)|*.xml", new ImporterTlv()}
       };
 
@@ -79,11 +82,10 @@ namespace CorpusExplorer.Core
       {
         {"Plain-TXT (*.txt)|*.txt", new TxtScraper()},
         {"COSMAS-TXT (*.rtf)|*.rtf", new CosmasScraper()},
-        {"LexisNexis-HTML (*.html)|*.html", new LexisNexisScraper()},
         {"Nur Text (*.docx; *.doc)|*.docx;*.doc", new SimpleDocxDocumentScraper()},
         {"Nur Text (*.rtf)|*.rtf", new SimpleRtfDocumentScraper()},
         {"Nur Text (*.html)|*.htm;*.html", new SimpleHtmlDocumentScraper()},
-        {"Nur Text (*.pdf)|*.pdf",new SimplePdfDocumentScraper()}
+        {"Nur Text (*.pdf)|*.pdf", new SimplePdfDocumentScraper()}
       };
 
     /// <summary>
@@ -96,7 +98,8 @@ namespace CorpusExplorer.Core
         new SimpleTreeTagger(),
         new TnTTagger(),
         new RawTextTagger(),
-        new OwnTreeTagger()
+        new OwnTreeTagger(),
+        new UdPipeExeTagger()
       };
 
     /// <summary>

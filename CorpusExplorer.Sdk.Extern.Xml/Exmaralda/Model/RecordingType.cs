@@ -30,47 +30,79 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     private bool recordingDurationFieldSpecified;
 
     /// <remarks />
-    public AvailabilityType Availablilty { get { return availabliltyField; } set { availabliltyField = value; } }
+    public AvailabilityType Availablilty
+    {
+      get => availabliltyField;
+      set => availabliltyField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("Key", IsNullable = false)]
-    public KeyType[] Description { get { return descriptionField; } set { descriptionField = value; } }
+    public KeyType[] Description
+    {
+      get => descriptionField;
+      set => descriptionField = value;
+    }
 
     /// <remarks />
     [XmlElement("File")]
-    public FileType[] File { get { return fileField; } set { fileField = value; } }
+    public FileType[] File
+    {
+      get => fileField;
+      set => fileField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified, DataType = "ID")]
-    public string Id { get { return idField; } set { idField = value; } }
+    public string Id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlElement("Media")]
-    public MediaType[] Media { get { return mediaField; } set { mediaField = value; } }
+    public MediaType[] Media
+    {
+      get => mediaField;
+      set => mediaField = value;
+    }
 
     /// <remarks />
-    public string Name { get { return nameField; } set { nameField = value; } }
+    public string Name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
 
     /// <remarks />
-    public DateTime RecordingDateTime { get { return recordingDateTimeField; } set { recordingDateTimeField = value; } }
+    public DateTime RecordingDateTime
+    {
+      get => recordingDateTimeField;
+      set => recordingDateTimeField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
     public bool RecordingDateTimeSpecified
     {
-      get { return recordingDateTimeFieldSpecified; }
-      set { recordingDateTimeFieldSpecified = value; }
+      get => recordingDateTimeFieldSpecified;
+      set => recordingDateTimeFieldSpecified = value;
     }
 
     /// <remarks />
-    public long RecordingDuration { get { return recordingDurationField; } set { recordingDurationField = value; } }
+    public long RecordingDuration
+    {
+      get => recordingDurationField;
+      set => recordingDurationField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
     public bool RecordingDurationSpecified
     {
-      get { return recordingDurationFieldSpecified; }
-      set { recordingDurationFieldSpecified = value; }
+      get => recordingDurationFieldSpecified;
+      set => recordingDurationFieldSpecified = value;
     }
   }
 }

@@ -25,14 +25,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlAttribute("attribute-name")]
-    public string attributename { get { return attributenameField; } set { attributenameField = value; } }
+    public string attributename
+    {
+      get => attributenameField;
+      set => attributenameField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
 
     /// <remarks />
     [XmlElement("ud-attribute")]
-    public udattribute[] udattribute { get { return udattributeField; } set { udattributeField = value; } }
+    public udattribute[] udattribute
+    {
+      get => udattributeField;
+      set => udattributeField = value;
+    }
   }
 }

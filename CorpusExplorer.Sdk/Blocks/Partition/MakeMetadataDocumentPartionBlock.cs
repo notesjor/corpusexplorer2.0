@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.Partition.Delegates;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 
 namespace CorpusExplorer.Sdk.Blocks.Partition
 {
@@ -37,14 +38,17 @@ namespace CorpusExplorer.Sdk.Blocks.Partition
 
       Parallel.ForEach(
         metas,
+        Configuration.ParallelOptions,
         meta =>
         {
           lock (@lock)
           {
             OutputPartition.Add(meta.Key, new Dictionary<string, Guid[]>());
           }
+
           Parallel.ForEach(
             meta.Value,
+            Configuration.ParallelOptions,
             obj =>
             {
               Guid[] guids;

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Diagnostic;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer.Abstract;
 
 #endregion
@@ -2587,7 +2588,11 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tokenizer
 
     public override string DisplayName => "HighSpeed German-Tokenizer";
 
-    public override string Language { get { return "Deutsch"; } set { } }
+    public override string Language
+    {
+      get => "Deutsch";
+      set { }
+    }
 
     public override string Execute(string input)
     {
@@ -2598,8 +2603,7 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tokenizer
       {
         length = input.Length;
         input = input.Replace("  ", " ");
-      }
-      while (length != input.Length);
+      } while (length != input.Length);
 
       return input.Replace("< ENDOFCORPUSEXPLORERFILE >", "<ENDOFCORPUSEXPLORERFILE>").Trim().Replace(" ", "\r\n");
     }
@@ -2616,6 +2620,7 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tokenizer
       {
         InMemoryErrorConsole.Log(ex);
       }
+
       try
       {
         input = _conv2.Aggregate(input, (current, pair) => current.Replace(pair.Key, pair.Value));
@@ -2624,6 +2629,7 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tokenizer
       {
         InMemoryErrorConsole.Log(ex);
       }
+
       try
       {
         input = _conv3.Aggregate(input, (current, pair) => current.Replace(pair.Key, pair.Value));
@@ -2632,6 +2638,7 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tokenizer
       {
         InMemoryErrorConsole.Log(ex);
       }
+
       try
       {
         input = _conv4.Aggregate(input, (current, pair) => current.Replace(pair.Key, pair.Value));
@@ -2640,6 +2647,7 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tokenizer
       {
         InMemoryErrorConsole.Log(ex);
       }
+
       try
       {
         input = _conv5.Aggregate(input, (current, pair) => current.Replace(pair.Key, pair.Value));
@@ -2648,6 +2656,7 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tokenizer
       {
         InMemoryErrorConsole.Log(ex);
       }
+
       return input.ToString();
     }
 
@@ -2658,6 +2667,7 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tokenizer
       Parallel.For(
         0,
         slots.Length,
+        Configuration.ParallelOptions,
         i =>
         {
           var pos = i * _max;

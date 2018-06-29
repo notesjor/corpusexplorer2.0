@@ -23,14 +23,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string cid { get { return cidField; } set { cidField = value; } }
+    public string cid
+    {
+      get => cidField;
+      set => cidField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string lemma { get { return lemmaField; } set { lemmaField = value; } }
+    public string lemma
+    {
+      get => lemmaField;
+      set => lemmaField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("span", typeof(span), IsNullable = false)]
-    public span[][] references { get { return referencesField; } set { referencesField = value; } }
+    public span[][] references
+    {
+      get => referencesField;
+      set => referencesField = value;
+    }
   }
 }

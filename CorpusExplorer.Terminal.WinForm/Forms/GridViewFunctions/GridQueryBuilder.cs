@@ -42,7 +42,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.GridViewFunctions
       queryBuilderControl1.Step_2_Load(FilterDescriptorCollectionHelper.LoadColumnFilters(model));
     }
 
-    private void btn_new_Click(object sender, EventArgs e) { queryBuilderControl1.Step_1_Initialize(_defintion); }
+    private void btn_new_Click(object sender, EventArgs e)
+    {
+      queryBuilderControl1.Step_1_Initialize(_defintion);
+    }
 
     private void btn_save_Click(object sender, EventArgs e)
     {

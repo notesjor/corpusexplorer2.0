@@ -17,7 +17,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Splash.Forms
       };
     }
 
-    public string Message { set { radLabel1.Text = value ?? Resources.GutDingWillWeileHaben; } }
+    public string Message
+    {
+      set => radLabel1.Text = value ?? Resources.GutDingWillWeileHaben;
+    }
 
     private void timer1_Tick(object sender, EventArgs e)
     {

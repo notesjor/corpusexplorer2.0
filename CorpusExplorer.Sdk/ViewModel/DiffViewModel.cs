@@ -23,9 +23,15 @@ namespace CorpusExplorer.Sdk.ViewModel
       LayerDisplayname = "Wort";
     }
 
-    public int ChangesInsert { get { return DiffDeltas.Sum(x => x.InsertedB); } }
+    public int ChangesInsert
+    {
+      get { return DiffDeltas.Sum(x => x.InsertedB); }
+    }
 
-    public int ChangesRemove { get { return DiffDeltas.Sum(x => x.DeletedA); } }
+    public int ChangesRemove
+    {
+      get { return DiffDeltas.Sum(x => x.DeletedA); }
+    }
 
     [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays")]
     public DiffDelta[] DiffDeltas { get; set; }
@@ -36,7 +42,47 @@ namespace CorpusExplorer.Sdk.ViewModel
     public IEnumerable<KeyValuePair<Guid, string>> DocumentGuidsAndDisplaynames => Selection
       .DocumentGuidsAndDisplaynames;
 
-    public int EditDistance { get { return DiffDeltas.Sum(x => x.EditDistance); } }
+    public int EditDistance
+    {
+      get { return DiffDeltas.Sum(x => x.EditDistance); }
+    }
+
+    public IEnumerable<KeyValuePair<string, int>> MergeOutput
+    {
+      get
+      {
+        if (DiffDeltas == null || DiffDeltas.Length == 0)
+          return null;
+
+        var res = new List<KeyValuePair<string, int>>();
+        var idx = 0;
+
+        foreach (var delta in DiffDeltas)
+        {
+          if (delta.StartA > idx)
+          {
+            res.Add(new KeyValuePair<string, int>(IntArrayToStringArray(_docA.CutArray(idx, delta.StartA), false), 0));
+            idx = delta.StartA + 1;
+          }
+
+          if (delta.DeletedA > 0)
+          {
+            res.Add(new KeyValuePair<string, int>(
+              IntArrayToStringArray(_docA.CutArray(delta.StartA, delta.StartA + delta.DeletedA), false), -1));
+            idx = delta.StartA + delta.DeletedA;
+          }
+
+          if (delta.InsertedB > 0)
+            res.Add(new KeyValuePair<string, int>(
+              IntArrayToStringArray(_docB.CutArray(delta.StartB, delta.StartB + delta.InsertedB), true), 1));
+        }
+
+        if (idx < _docA.Length)
+          res.Add(new KeyValuePair<string, int>(IntArrayToStringArray(_docA.CutArray(idx, _docA.Length), false), 0));
+
+        return res;
+      }
+    }
 
     public string HtmlOutput
     {
@@ -62,6 +108,7 @@ namespace CorpusExplorer.Sdk.ViewModel
               IntArrayToStringArray(_docA.CutArray(idx, delta.StartA), false));
             idx = delta.StartA + 1;
           }
+
           if (delta.DeletedA > 0)
           {
             stb.AppendFormat(
@@ -69,49 +116,19 @@ namespace CorpusExplorer.Sdk.ViewModel
               IntArrayToStringArray(_docA.CutArray(delta.StartA, delta.StartA + delta.DeletedA), false));
             idx = delta.StartA + delta.DeletedA + 1;
           }
+
           if (delta.InsertedB > 0)
             stb.AppendFormat(
               "<div class=\"label label-success\" style=\"float:left\">{0}</div>",
               IntArrayToStringArray(_docB.CutArray(delta.StartB, delta.StartB + delta.InsertedB), true));
         }
+
         if (idx < _docA.Length)
           stb.AppendFormat(
             "<div class=\"label label-default\" style=\"float:left\">{0}</div>",
             IntArrayToStringArray(_docA.CutArray(idx, _docA.Length), false));
 
         return stb.ToString();
-      }
-    }
-    
-    public IEnumerable<KeyValuePair<string, int>> MergeOutput
-    {
-      get
-      {
-        if (DiffDeltas == null || DiffDeltas.Length == 0)
-            return null;
-
-        var res = new List<KeyValuePair<string, int>>();
-        var idx = 0;
-
-        foreach (var delta in DiffDeltas)
-        {
-          if (delta.StartA > idx)
-          {
-            res.Add(new KeyValuePair<string, int>(IntArrayToStringArray(_docA.CutArray(idx, delta.StartA), false), 0));
-            idx = delta.StartA + 1;
-          }
-          if (delta.DeletedA > 0)
-          {
-            res.Add(new KeyValuePair<string, int>(IntArrayToStringArray(_docA.CutArray(delta.StartA, delta.StartA + delta.DeletedA), false), -1));
-            idx = delta.StartA + delta.DeletedA;
-          }
-          if (delta.InsertedB > 0)
-            res.Add(new KeyValuePair<string, int>(IntArrayToStringArray(_docB.CutArray(delta.StartB, delta.StartB + delta.InsertedB), true), 1));
-        }
-        if (idx < _docA.Length)
-          res.Add(new KeyValuePair<string, int>(IntArrayToStringArray(_docA.CutArray(idx, _docA.Length), false), 0));
-          
-        return res;
       }
     }
 
@@ -133,6 +150,11 @@ namespace CorpusExplorer.Sdk.ViewModel
       DiffDeltas = Diff.DiffInt(_docA, _docB);
     }
 
+    protected override bool Validate()
+    {
+      return DocumentAGuid != Guid.Empty && DocumentBGuid != Guid.Empty;
+    }
+
     private string IntArrayToStringArray(IEnumerable<int> array, bool useB)
     {
       if (DocumentAGuid == Guid.Empty ||
@@ -141,8 +163,8 @@ namespace CorpusExplorer.Sdk.ViewModel
         return null;
 
       var layer = useB
-                    ? Selection.GetLayerOfDocument(DocumentBGuid, LayerDisplayname)
-                    : Selection.GetLayerOfDocument(DocumentAGuid, LayerDisplayname);
+        ? Selection.GetLayerOfDocument(DocumentBGuid, LayerDisplayname)
+        : Selection.GetLayerOfDocument(DocumentAGuid, LayerDisplayname);
 
       return layer == null ? null : array.ConvertToText(layer);
     }
@@ -151,10 +173,8 @@ namespace CorpusExplorer.Sdk.ViewModel
     {
       return
         Selection.GetDocument(guid, LayerDisplayname)?
-                 .ReduceToSingleDimension()
-                 .ToArray();
+          .ReduceToSingleDimension()
+          .ToArray();
     }
-
-    protected override bool Validate() { return DocumentAGuid != Guid.Empty && DocumentBGuid != Guid.Empty; }
   }
 }

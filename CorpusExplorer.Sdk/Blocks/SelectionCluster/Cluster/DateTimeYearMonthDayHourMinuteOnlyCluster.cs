@@ -10,6 +10,7 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
     private readonly int _valueMinute;
     private readonly int _valueMonth;
     private readonly int _valueYear;
+    private readonly DateTime _central;
 
     public DateTimeYearMonthDayHourMinuteOnlyCluster(DateTime value)
     {
@@ -18,9 +19,10 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
       _valueDay = value.Day;
       _valueHour = value.Hour;
       _valueMinute = value.Minute;
+      _central = value;
     }
 
-    public override object CentralValue => _valueYear;
+    public override object CentralValue => _central;
 
     public override string Displayname
       => _valueYear + "-" + _valueMonth + "-" + _valueDay + "_" + _valueHour + ":" + _valueMinute;

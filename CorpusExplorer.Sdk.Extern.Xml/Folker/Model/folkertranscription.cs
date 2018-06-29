@@ -27,20 +27,40 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
 
     /// <remarks />
     [XmlElement("contribution")]
-    public contribution[] contribution { get { return contributionField; } set { contributionField = value; } }
+    public contribution[] contribution
+    {
+      get => contributionField;
+      set => contributionField = value;
+    }
 
     /// <remarks />
-    public object head { get { return headField; } set { headField = value; } }
+    public object head
+    {
+      get => headField;
+      set => headField = value;
+    }
 
     /// <remarks />
-    public recording recording { get { return recordingField; } set { recordingField = value; } }
+    public recording recording
+    {
+      get => recordingField;
+      set => recordingField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("speaker", IsNullable = false)]
-    public speaker[] speakers { get { return speakersField; } set { speakersField = value; } }
+    public speaker[] speakers
+    {
+      get => speakersField;
+      set => speakersField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("timepoint", IsNullable = false)]
-    public timepoint[] timeline { get { return timelineField; } set { timelineField = value; } }
+    public timepoint[] timeline
+    {
+      get => timelineField;
+      set => timelineField = value;
+    }
   }
 }

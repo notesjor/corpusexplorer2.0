@@ -25,13 +25,25 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement("char")]
-    public string[] @char { get { return charField; } set { charField = value; } }
+    public string[] @char
+    {
+      get => charField;
+      set => charField = value;
+    }
 
     /// <remarks />
-    public string comment { get { return commentField; } set { commentField = value; } }
+    public string comment
+    {
+      get => commentField;
+      set => commentField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
   }
 }

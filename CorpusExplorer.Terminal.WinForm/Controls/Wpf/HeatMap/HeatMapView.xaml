@@ -3,7 +3,8 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  
+  xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+  xmlns:colorizer="clr-namespace:CorpusExplorer.Terminal.WinForm.Controls.Wpf.Colorizer"
   x:Class="CorpusExplorer.Terminal.WinForm.Controls.Wpf.HeatMap.HeatMapView"
   mc:Ignorable="d"
   d:DesignHeight="300" d:DesignWidth="300">
@@ -26,48 +27,16 @@
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition />
-      <RowDefinition Height="15px" />
+      <RowDefinition Height="45px" />
     </Grid.RowDefinitions>
 
     <telerik:RadTreeMap Name="treeMap1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
       <telerik:RadTreeMap.TypeDefinitions>
-        <telerik:TypeDefinition TargetTypeName="HeatmapGroup" ValuePath="Size" ChildrenPath="Children" LabelPath="Name">
-          <telerik:TypeDefinition.Mappings>
-            <telerik:ValueGradientColorizer RangeMinimum="0" RangeMaximum="10000" x:Name="Colorizer1">
-              <GradientStop Offset="0" Color="#FF0066FF" />
-              <GradientStop Offset="0.25" Color="#FF00EECC" />
-              <GradientStop Offset="0.5" Color="#FF55FF00" />
-              <GradientStop Offset="0.75" Color="#FFFFCC00" />
-              <GradientStop Offset="1" Color="#FFFF3300" />
-            </telerik:ValueGradientColorizer>
-          </telerik:TypeDefinition.Mappings>
-        </telerik:TypeDefinition>
-        <telerik:TypeDefinition TargetTypeName="HeatmapItem" ValuePath="Size" LabelPath="Name">
-          <telerik:TypeDefinition.Mappings>
-            <telerik:ValueGradientColorizer RangeMinimum="0" RangeMaximum="10000" x:Name="Colorizer2">
-              <GradientStop Offset="0" Color="#FF0066FF" />
-              <GradientStop Offset="0.25" Color="#FF00EECC" />
-              <GradientStop Offset="0.5" Color="#FF55FF00" />
-              <GradientStop Offset="0.75" Color="#FFFFCC00" />
-              <GradientStop Offset="1" Color="#FFFF3300" />
-            </telerik:ValueGradientColorizer>
-          </telerik:TypeDefinition.Mappings>
-        </telerik:TypeDefinition>
+        <telerik:TypeDefinition TargetTypeName="HeatmapGroup" ValuePath="Size" ChildrenPath="Children" LabelPath="Name" x:Name="ColorGroup"/>
+        <telerik:TypeDefinition TargetTypeName="HeatmapItem" ValuePath="Size" LabelPath="Name" x:Name="ColorItem"/>
       </telerik:RadTreeMap.TypeDefinitions>
     </telerik:RadTreeMap>
 
-    <Rectangle Grid.Row="1" Margin="10px 5px 10px 5px">
-      <Rectangle.Fill>
-        <LinearGradientBrush>
-          <GradientStop Color="#F00" Offset="0.0"/>
-          <GradientStop Color="#F70" Offset="0.17"/>
-          <GradientStop Color="#FF0" Offset="0.33"/>
-          <GradientStop Color="#0F0" Offset="0.5"/>
-          <GradientStop Color="#0FF" Offset="0.67"/>
-          <GradientStop Color="#00F" Offset="0.83"/>
-          <GradientStop Color="#F0F" Offset="1.0"/>
-        </LinearGradientBrush>
-      </Rectangle.Fill>
-    </Rectangle>
+    <colorizer:Colorizer Grid.Row="1" x:Name="colors" ColorsChanged="Colors_OnColorsChanged"/>
   </Grid>
 </UserControl>

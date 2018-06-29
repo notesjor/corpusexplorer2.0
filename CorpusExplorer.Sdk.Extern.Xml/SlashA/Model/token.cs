@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string ID { get { return idField; } set { idField = value; } }
+    public string ID
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

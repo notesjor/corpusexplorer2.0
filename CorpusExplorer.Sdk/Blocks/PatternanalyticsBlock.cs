@@ -105,6 +105,7 @@ namespace CorpusExplorer.Sdk.Blocks
             done = true;
             break;
           }
+
           if (!done)
             list.Add(layer1[doc1[i][j]]);
         }
@@ -127,7 +128,9 @@ namespace CorpusExplorer.Sdk.Blocks
     ///   Wird nach der Berechnung aufgerufen (nach CalculateCall)
     ///   und dient der Bereinigung von Daten
     /// </summary>
-    protected override void CalculateCleanup() { }
+    protected override void CalculateCleanup()
+    {
+    }
 
     /// <summary>
     ///   Wird nach der Bereinigung aufgerufen (nach CalculateCall + CalculateCleanup)

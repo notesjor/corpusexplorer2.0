@@ -13,7 +13,10 @@ namespace CorpusExplorer.Sdk.ViewModel
 {
   public class CooccurrencePolarisationViewModel : AbstractViewModel, IUseSpecificLayer, IProvideDataTable
   {
-    public CooccurrencePolarisationViewModel() { LayerDisplayname = "Wort"; }
+    public CooccurrencePolarisationViewModel()
+    {
+      LayerDisplayname = "Wort";
+    }
 
     public Dictionary<string, double> CollocatesPolarisation { get; set; }
     public string LayerValueA { get; set; }
@@ -58,7 +61,8 @@ namespace CorpusExplorer.Sdk.ViewModel
     protected override bool Validate()
     {
       return !string.IsNullOrEmpty(LayerDisplayname) && !string.IsNullOrEmpty(LayerValueA)
-             && !string.IsNullOrEmpty(LayerValueB) && LayerValueA != LayerValueB;
+                                                     && !string.IsNullOrEmpty(LayerValueB) &&
+                                                     LayerValueA != LayerValueB;
     }
   }
 }

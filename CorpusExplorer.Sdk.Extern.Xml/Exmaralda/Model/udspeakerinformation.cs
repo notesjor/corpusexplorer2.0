@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement("ud-information")]
-    public udinformation[] udinformation { get { return udinformationField; } set { udinformationField = value; } }
+    public udinformation[] udinformation
+    {
+      get => udinformationField;
+      set => udinformationField = value;
+    }
   }
 }

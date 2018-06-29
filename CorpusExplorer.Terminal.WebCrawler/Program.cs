@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Diagnostic;
@@ -27,7 +26,7 @@ namespace CorpusExplorer.Terminal.WebCrawler
 
       var appPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
       if (!File.Exists("queries.txt"))
-        File.WriteAllLines("queries.txt", new[] { "CorpusExplorer" });
+        File.WriteAllLines("queries.txt", new[] {"CorpusExplorer"});
 
       var files = Directory.GetFiles(appPath, "*.cml");
       if (files.Length > 0)
@@ -128,25 +127,26 @@ namespace CorpusExplorer.Terminal.WebCrawler
     private static void StartCrawlingProcess()
     {
       Parallel.ForEach(_crawlers,
-                       crawler =>
-                       {
-                         try
-                         {
-                           crawler.Queries = _queries.Where(x => !string.IsNullOrWhiteSpace(x));
-                           crawler.Execute();
+        Configuration.ParallelOptions,
+        crawler =>
+        {
+          try
+          {
+            crawler.Queries = _queries.Where(x => !string.IsNullOrWhiteSpace(x));
+            crawler.Execute();
 
-                           if (crawler.Output.Count <= 0)
-                             return;
-                           var arr = crawler.Output.ToArray();
-                           Serializer.Serialize(arr.ToArray(),
-                                                Path.Combine(_outputPath, $"{crawler.DisplayName}.sdd"),
-                                                false);
-                         }
-                         catch (Exception ex)
-                         {
-                           InMemoryErrorConsole.Log(ex);
-                         }
-                       });
+            if (crawler.Output.Count <= 0)
+              return;
+            var arr = crawler.Output.ToArray();
+            Serializer.Serialize(arr.ToArray(),
+              Path.Combine(_outputPath, $"{crawler.DisplayName}.sdd"),
+              false);
+          }
+          catch (Exception ex)
+          {
+            InMemoryErrorConsole.Log(ex);
+          }
+        });
     }
 
     private static void WriteLine()

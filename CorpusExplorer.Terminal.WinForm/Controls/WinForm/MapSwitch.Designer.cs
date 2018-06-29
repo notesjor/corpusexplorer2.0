@@ -30,9 +30,10 @@
     {
       this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
       this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
-      this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
       this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+      this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
       this.elementHost2 = new System.Windows.Forms.Integration.ElementHost();
+      this.elementHost3 = new System.Windows.Forms.Integration.ElementHost();
       ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
       this.radPageView1.SuspendLayout();
       this.radPageViewPage1.SuspendLayout();
@@ -47,9 +48,8 @@
       this.radPageView1.Location = new System.Drawing.Point(0, 0);
       this.radPageView1.Name = "radPageView1";
       this.radPageView1.SelectedPage = this.radPageViewPage1;
-      this.radPageView1.Size = new System.Drawing.Size(681, 388);
+      this.radPageView1.Size = new System.Drawing.Size(681, 343);
       this.radPageView1.TabIndex = 0;
-      this.radPageView1.Text = "radPageView1";
       // 
       // radPageViewPage1
       // 
@@ -57,8 +57,18 @@
       this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(141F, 29F);
       this.radPageViewPage1.Location = new System.Drawing.Point(5, 40);
       this.radPageViewPage1.Name = "radPageViewPage1";
-      this.radPageViewPage1.Size = new System.Drawing.Size(671, 343);
+      this.radPageViewPage1.Size = new System.Drawing.Size(671, 298);
       this.radPageViewPage1.Text = "radPageViewPage1";
+      // 
+      // elementHost1
+      // 
+      this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.elementHost1.Location = new System.Drawing.Point(0, 0);
+      this.elementHost1.Name = "elementHost1";
+      this.elementHost1.Size = new System.Drawing.Size(671, 298);
+      this.elementHost1.TabIndex = 0;
+      this.elementHost1.Text = "elementHost1";
+      this.elementHost1.Child = null;
       // 
       // radPageViewPage2
       // 
@@ -68,16 +78,6 @@
       this.radPageViewPage2.Name = "radPageViewPage2";
       this.radPageViewPage2.Size = new System.Drawing.Size(671, 343);
       this.radPageViewPage2.Text = "radPageViewPage2";
-      // 
-      // elementHost1
-      // 
-      this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.elementHost1.Location = new System.Drawing.Point(0, 0);
-      this.elementHost1.Name = "elementHost1";
-      this.elementHost1.Size = new System.Drawing.Size(671, 343);
-      this.elementHost1.TabIndex = 0;
-      this.elementHost1.Text = "elementHost1";
-      this.elementHost1.Child = null;
       // 
       // elementHost2
       // 
@@ -89,11 +89,22 @@
       this.elementHost2.Text = "elementHost2";
       this.elementHost2.Child = null;
       // 
+      // elementHost3
+      // 
+      this.elementHost3.Dock = System.Windows.Forms.DockStyle.Bottom;
+      this.elementHost3.Location = new System.Drawing.Point(0, 343);
+      this.elementHost3.Name = "elementHost3";
+      this.elementHost3.Size = new System.Drawing.Size(681, 45);
+      this.elementHost3.TabIndex = 1;
+      this.elementHost3.Text = "elementHost3";
+      this.elementHost3.Child = null;
+      // 
       // MapSwitch
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.radPageView1);
+      this.Controls.Add(this.elementHost3);
       this.Name = "MapSwitch";
       ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).EndInit();
       this.radPageView1.ResumeLayout(false);
@@ -110,5 +121,6 @@
     private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
     private System.Windows.Forms.Integration.ElementHost elementHost1;
     private System.Windows.Forms.Integration.ElementHost elementHost2;
+    private System.Windows.Forms.Integration.ElementHost elementHost3;
   }
 }

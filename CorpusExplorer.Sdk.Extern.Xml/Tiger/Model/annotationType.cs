@@ -25,15 +25,27 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tiger.Model
     /// <remarks />
     [XmlArray(Form = XmlSchemaForm.Unqualified)]
     [XmlArrayItem("value", Form = XmlSchemaForm.Unqualified, IsNullable = false)]
-    public featurevalueType[] edgelabel { get { return edgelabelField; } set { edgelabelField = value; } }
+    public featurevalueType[] edgelabel
+    {
+      get => edgelabelField;
+      set => edgelabelField = value;
+    }
 
     /// <remarks />
     [XmlElement("feature", Form = XmlSchemaForm.Unqualified)]
-    public featureType[] feature { get { return featureField; } set { featureField = value; } }
+    public featureType[] feature
+    {
+      get => featureField;
+      set => featureField = value;
+    }
 
     /// <remarks />
     [XmlArray(Form = XmlSchemaForm.Unqualified)]
     [XmlArrayItem("value", Form = XmlSchemaForm.Unqualified, IsNullable = false)]
-    public featurevalueType[] secedgelabel { get { return secedgelabelField; } set { secedgelabelField = value; } }
+    public featurevalueType[] secedgelabel
+    {
+      get => secedgelabelField;
+      set => secedgelabelField = value;
+    }
   }
 }

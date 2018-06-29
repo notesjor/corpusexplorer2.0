@@ -6,19 +6,6 @@
                               mc:Ignorable="d"
                               d:DesignHeight="300" d:DesignWidth="300">
   <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition />
-      <RowDefinition Height="15px" />
-    </Grid.RowDefinitions>
-
     <WrapPanel x:Name="wrapPanel" Grid.Row="0" />
-    <Rectangle Grid.Row="1" Margin="10px 5px 10px 5px">
-      <Rectangle.Fill>
-        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-          <GradientStop Offset="1" Color="#FF000000" />
-          <GradientStop Offset="0" Color="#FF00FF00" />
-        </LinearGradientBrush>
-      </Rectangle.Fill>
-    </Rectangle>
   </Grid>
 </UserControl>

@@ -11,67 +11,16 @@ namespace CorpusExplorer.Sdk.ViewModel
 {
   public class FrequencyTimelineAggregatedAnalyticViewModel : AbstractViewModel
   {
-    public FrequencyTimelineAggregatedAnalyticViewModel()
-    {
-      DateClusters = 100;
-      DateClusterAuto = true;
-    }
-
-    public bool DateClusterAuto { get; set; }
+    public bool AutoDetectDateClusterMinMax { get; set; } = true;
     public DateTime DateClusterMax { get; set; }
     public DateTime DateClusterMin { get; set; }
-    public int DateClusters { get; set; }
+    public int DateClusters { get; set; } = 100;
     public Dictionary<DateTime, IEnumerable<Guid>> DateTimeRangeDocuments { get; set; }
     public Dictionary<DateTime, Dictionary<string, double>> DateTimeRanges { get; set; }
 
     public IEnumerable<string> DocumentMetadata => Selection.GetDocumentMetadataPrototypeOnlyProperties();
 
     public string MetadataKey { get; set; }
-
-    private void Aggregate(ref Dictionary<string, double> memory, ref Dictionary<string, double> v)
-    {
-      if (memory == null)
-        memory = new Dictionary<string, double>();
-
-      var keys = v.Keys.ToArray();
-      foreach (var x in keys)
-        if (memory.ContainsKey(x))
-        {
-          v[x] += memory[x];
-          memory[x] = v[x];
-        }
-        else
-        {
-          memory.Add(x, v[x]);
-        }
-    }
-
-    protected override void ExecuteAnalyse()
-    {
-      var blockGroup = Selection.CreateBlock<SelectionClusterBlock>();
-      blockGroup.ClusterGenerator = new SelectionClusterGeneratorByDateTimeRange().Configure(
-        DateClusters,
-        DateClusterMin,
-        DateClusterMax);
-      blockGroup.MetadataKey = MetadataKey;
-      blockGroup.Calculate();
-
-      DateTimeRangeDocuments = blockGroup.Cluster.ToDictionary(x => (DateTime) x.CentralValue, x => x.DocumentGuids);
-
-      var blockCalc =
-        Selection
-          .CreateBlock<MakeAggregatedPartionBlock<DateTime, Dictionary<string, double>, Frequency1LayerBlock>>();
-      blockCalc.InputPartition = DateTimeRangeDocuments;
-      blockCalc.MappingDelegate = block =>
-      {
-        block.Calculate();
-        return block.FrequencyRelative;
-      };
-      blockCalc.AggregationDelegate = Aggregate;
-      blockCalc.Calculate();
-
-      DateTimeRanges = blockCalc.OutputPartition;
-    }
 
     public IEnumerable<Guid> GetDocuments(DateTime date)
     {
@@ -106,6 +55,57 @@ namespace CorpusExplorer.Sdk.ViewModel
       return Selection.GetReadableDocument(documentGuid, layerDisplayname).ConvertToText();
     }
 
-    protected override bool Validate() { return !string.IsNullOrEmpty(MetadataKey); }
+    protected override void ExecuteAnalyse()
+    {
+      var blockGroup = Selection.CreateBlock<SelectionClusterBlock>();
+      blockGroup.ClusterGenerator = new SelectionClusterGeneratorDateTimeRange
+      {
+        Ranges = DateClusters,
+        Min = DateClusterMin,
+        Max = DateClusterMax,
+        AutoDetectMinMax = AutoDetectDateClusterMinMax
+      };
+      blockGroup.MetadataKey = MetadataKey;
+      blockGroup.Calculate();
+
+      DateTimeRangeDocuments = blockGroup.Cluster.ToDictionary(x => (DateTime) x.CentralValue, x => x.DocumentGuids);
+
+      var blockCalc =
+        Selection
+          .CreateBlock<MakeAggregatedPartionBlock<DateTime, Dictionary<string, double>, Frequency1LayerBlock>>();
+      blockCalc.InputPartition = DateTimeRangeDocuments;
+      blockCalc.MappingDelegate = block =>
+      {
+        block.Calculate();
+        return block.FrequencyRelative;
+      };
+      blockCalc.AggregationDelegate = Aggregate;
+      blockCalc.Calculate();
+
+      DateTimeRanges = blockCalc.OutputPartition;
+    }
+
+    protected override bool Validate()
+    {
+      return !string.IsNullOrEmpty(MetadataKey);
+    }
+
+    private void Aggregate(ref Dictionary<string, double> memory, ref Dictionary<string, double> v)
+    {
+      if (memory == null)
+        memory = new Dictionary<string, double>();
+
+      var keys = v.Keys.ToArray();
+      foreach (var x in keys)
+        if (memory.ContainsKey(x))
+        {
+          v[x] += memory[x];
+          memory[x] = v[x];
+        }
+        else
+        {
+          memory.Add(x, v[x]);
+        }
+    }
   }
 }

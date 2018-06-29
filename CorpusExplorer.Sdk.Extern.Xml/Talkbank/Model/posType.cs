@@ -23,10 +23,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     private string[] sField;
 
     /// <remarks />
-    public string c { get { return cField; } set { cField = value; } }
+    public string c
+    {
+      get => cField;
+      set => cField = value;
+    }
 
     /// <remarks />
     [XmlElement("s")]
-    public string[] s { get { return sField; } set { sField = value; } }
+    public string[] s
+    {
+      get => sField;
+      set => sField = value;
+    }
   }
 }

@@ -21,7 +21,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     @long,
 
     /// <remarks />
-    [XmlEnum("very long")]
-    verylong
+    [XmlEnum("very long")] verylong
   }
 }

@@ -22,15 +22,27 @@ namespace CorpusExplorer.Sdk.Extern.Xml.PromXes.Model
     private @string[] stringField;
 
     /// <remarks />
-    public date date { get { return dateField; } set { dateField = value; } }
+    public date date
+    {
+      get => dateField;
+      set => dateField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("date", typeof(date), IsNullable = false)]
     [XmlArrayItem("string", typeof(@string), IsNullable = false)]
-    public object[][] @event { get { return eventField; } set { eventField = value; } }
+    public object[][] @event
+    {
+      get => eventField;
+      set => eventField = value;
+    }
 
     /// <remarks />
     [XmlElement("string")]
-    public @string[] @string { get { return stringField; } set { stringField = value; } }
+    public @string[] @string
+    {
+      get => stringField;
+      set => stringField = value;
+    }
   }
 }

@@ -25,18 +25,34 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string offset { get { return offsetField; } set { offsetField = value; } }
+    public string offset
+    {
+      get => offsetField;
+      set => offsetField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREFS")]
-    public string signals { get { return signalsField; } set { signalsField = value; } }
+    public string signals
+    {
+      get => signalsField;
+      set => signalsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string unit { get { return unitField; } set { unitField = value; } }
+    public string unit
+    {
+      get => unitField;
+      set => unitField = value;
+    }
   }
 }

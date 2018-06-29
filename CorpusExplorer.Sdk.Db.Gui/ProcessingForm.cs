@@ -14,7 +14,10 @@ namespace CorpusExplorer.Sdk.Db.Gui
       };
     }
 
-    public string Message { set { radLabel1.Text = value ?? "Kommuniziere mit Datenbank"; } }
+    public string Message
+    {
+      set => radLabel1.Text = value ?? "Kommuniziere mit Datenbank";
+    }
 
     private void timer1_Tick(object sender, EventArgs e)
     {

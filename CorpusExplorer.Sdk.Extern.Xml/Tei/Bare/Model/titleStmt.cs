@@ -24,10 +24,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Bare.Model
 
     /// <remarks />
     [XmlElement("author")]
-    public titleStmtModelrespLikeAuthor[] Items { get { return itemsField; } set { itemsField = value; } }
+    public titleStmtModelrespLikeAuthor[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlElement("title")]
-    public modelphrase[] title { get { return titleField; } set { titleField = value; } }
+    public modelphrase[] title
+    {
+      get => titleField;
+      set => titleField = value;
+    }
   }
 }

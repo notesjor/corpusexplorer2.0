@@ -1,69 +1,74 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
 namespace CorpusExplorer.Sdk.Extern.Xml.PerseusDigitalLibrary.Greek.Model
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-  public partial class q
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true)]
+  [XmlRoot(Namespace = "", IsNullable = false)]
+  public class q
   {
+    private string directField;
 
     private object[] itemsField;
 
-    private string[] textField;
+    private string rendField;
 
     private string tEIformField;
 
-    private string directField;
+    private string[] textField;
 
-    private string rendField;
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("del", typeof(del))]
-    [System.Xml.Serialization.XmlElementAttribute("lb", typeof(lb))]
-    [System.Xml.Serialization.XmlElementAttribute("milestone", typeof(milestone))]
-    [System.Xml.Serialization.XmlElementAttribute("pb", typeof(pb))]
-    [System.Xml.Serialization.XmlElementAttribute("q", typeof(q))]
-    [System.Xml.Serialization.XmlElementAttribute("quote", typeof(quote))]
-    [System.Xml.Serialization.XmlElementAttribute("term", typeof(term))]
-    public object[] Items
-    {
-      get { return this.itemsField; }
-      set { this.itemsField = value; }
-    }
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string[] Text
-    {
-      get { return this.textField; }
-      set { this.textField = value; }
-    }
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
-    public string TEIform
-    {
-      get { return this.tEIformField; }
-      set { this.tEIformField = value; }
-    }
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string direct
     {
-      get { return this.directField; }
-      set { this.directField = value; }
+      get => directField;
+      set => directField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlElement("del", typeof(del))]
+    [XmlElement("lb", typeof(lb))]
+    [XmlElement("milestone", typeof(milestone))]
+    [XmlElement("pb", typeof(pb))]
+    [XmlElement("q", typeof(q))]
+    [XmlElement("quote", typeof(quote))]
+    [XmlElement("term", typeof(term))]
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
+
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string rend
     {
-      get { return this.rendField; }
-      set { this.rendField = value; }
+      get => rendField;
+      set => rendField = value;
+    }
+
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
+    public string TEIform
+    {
+      get => tEIformField;
+      set => tEIformField = value;
+    }
+
+    /// <remarks />
+    [XmlText]
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
     }
   }
 }

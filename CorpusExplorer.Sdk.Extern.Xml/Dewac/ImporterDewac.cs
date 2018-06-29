@@ -14,6 +14,50 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dewac
     /// <value>The layer names.</value>
     protected override IEnumerable<string> LayerNames { get; } = new[] {"Wort", "Lemma", "POS"};
 
+    protected override void ExecuteCall(string path)
+    {
+      var buffer = new byte[4096];
+      var text = "";
+      var cnt = 0;
+
+      using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+      using (var bs = new BufferedStream(fs))
+      {
+        while (true)
+        {
+          var length = bs.Read(buffer, 0, buffer.Length);
+          if (length < 1)
+            break;
+
+          text += Encoding.Default.GetString(buffer, 0, length);
+
+          while (text.IndexOf("</text>") > -1)
+          {
+            var idStart = text.IndexOf("id=", StringComparison.Ordinal) + 4;
+            var idEnd = text.IndexOf("\"", idStart + 1, StringComparison.Ordinal);
+            var textStart = text.IndexOf(">", idEnd + 1, StringComparison.Ordinal) + 1;
+            var textEnd = text.IndexOf("</text>", textStart, StringComparison.Ordinal);
+
+            BuildDocument(
+              text.Substring(idStart, idEnd - idStart).Replace("\"", "").Trim(),
+              text.Substring(textStart, textEnd - textStart)
+                .Replace("<s>", "")
+                .Trim()
+                .Split(new[] {"</s>"}, StringSplitOptions.RemoveEmptyEntries));
+
+            text = text.Substring(textEnd + 7).TrimStart();
+            cnt++;
+
+            if (cnt % 1000 == 0)
+            {
+              GC.Collect();
+              GC.WaitForPendingFinalizers();
+            }
+          }
+        }
+      }
+    }
+
     private void BuildDocument(string id, IEnumerable<string> sentences)
     {
       var guid = Guid.NewGuid();
@@ -53,49 +97,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dewac
       AddDocumet("Wort", guid, wDoc.ToArray());
       AddDocumet("POS", guid, pDoc.ToArray());
       AddDocumet("Lemma", guid, lDoc.ToArray());
-    }
-
-    protected override void ExecuteCall(string path)
-    {
-      var buffer = new byte[4096];
-      var text = "";
-      var cnt = 0;
-
-      using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-      {
-        while (true)
-        {
-          var length = fs.Read(buffer, 0, buffer.Length);
-          if (length < 1)
-            break;
-
-          text += Encoding.Default.GetString(buffer, 0, length);
-
-          while (text.IndexOf("</text>") > -1)
-          {
-            var idStart = text.IndexOf("id=", StringComparison.Ordinal) + 4;
-            var idEnd = text.IndexOf("\"", idStart + 1, StringComparison.Ordinal);
-            var textStart = text.IndexOf(">", idEnd + 1, StringComparison.Ordinal) + 1;
-            var textEnd = text.IndexOf("</text>", textStart, StringComparison.Ordinal);
-
-            BuildDocument(
-              text.Substring(idStart, idEnd - idStart).Replace("\"", "").Trim(),
-              text.Substring(textStart, textEnd - textStart)
-                  .Replace("<s>", "")
-                  .Trim()
-                  .Split(new[] {"</s>"}, StringSplitOptions.RemoveEmptyEntries));
-
-            text = text.Substring(textEnd + 7).TrimStart();
-            cnt++;
-
-            if (cnt % 1000 == 0)
-            {
-              GC.Collect();
-              GC.WaitForPendingFinalizers();
-            }
-          }
-        }
-      }
     }
   }
 }

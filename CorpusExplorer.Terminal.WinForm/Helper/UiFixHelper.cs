@@ -2,10 +2,15 @@
 
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
+using Color = System.Drawing.Color;
 
 #endregion
 
@@ -38,7 +43,25 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       }
     }
 
-    public static void AddFix(RadDropDownList control) { control.PopupOpened += PopupOpened; }
+    public static void AddFix(RadDropDownList control)
+    {
+      control.PopupOpened += PopupOpened;
+    }
+
+    public static ImageSource ConvertToImageSource(this Bitmap bitmap)
+    {
+      var res = new BitmapImage();
+      using (var ms = new MemoryStream())
+      {
+        bitmap.Save(ms, ImageFormat.Png);
+
+        res.BeginInit();
+        res.StreamSource = new MemoryStream(ms.ToArray());
+        res.EndInit();
+      }
+
+      return res;
+    }
 
     private static void PopupOpened(object sender, EventArgs e)
     {
@@ -57,7 +80,8 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
         if (item.GetTextSize(tParams).Width > widest)
           widest = item.GetTextSize(tParams).ToSize().Width;
       }
-      control.Popup.MinimumSize = new Size(widest, control.Items.Count*16 + 2);
+
+      control.Popup.MinimumSize = new Size(widest, control.Items.Count * 16 + 2);
     }
   }
 }

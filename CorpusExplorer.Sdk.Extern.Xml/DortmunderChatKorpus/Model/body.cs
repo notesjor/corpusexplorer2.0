@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus.Model
 
     /// <remarks />
     [XmlElement("message")]
-    public message[] message { get { return messageField; } set { messageField = value; } }
+    public message[] message
+    {
+      get => messageField;
+      set => messageField = value;
+    }
   }
 }

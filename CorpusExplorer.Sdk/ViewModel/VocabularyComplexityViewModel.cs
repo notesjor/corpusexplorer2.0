@@ -89,6 +89,9 @@ namespace CorpusExplorer.Sdk.ViewModel
         }
     }
 
-    protected override bool Validate() { return true; }
+    protected override bool Validate()
+    {
+      return true;
+    }
   }
 }

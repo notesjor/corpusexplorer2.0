@@ -13,7 +13,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Crawler
   [Serializable]
   public class SimpleWebCrawler : AbstractCrawler
   {
-    public SimpleWebCrawler() { Url = null; }
+    public SimpleWebCrawler()
+    {
+      Url = null;
+    }
 
     public override string DisplayName => "Einfacher Download";
 
@@ -26,6 +29,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Crawler
       {
         stb.Append(wc.DownloadString(Url));
       }
+
       Output.Enqueue(new Dictionary<string, object> {{"Text", stb.ToString()}});
     }
   }

@@ -235,7 +235,7 @@
     <value>Zufallsauswahl (Split-B): {0}%</value>
   </data>
   <data name="SelectionRandomDescribtion" xml:space="preserve">
-    <value>Zufällige Auswahl von {0} ({1}%) Dokumenten</value>
+    <value>Zufällige Auswahl von {0} Dokumenten ({1}%)</value>
   </data>
   <data name="SelectionRandimSplitA" xml:space="preserve">
     <value>Zufallsauswahl (Split-A): {0}%</value>
@@ -428,5 +428,8 @@
   </data>
   <data name="Index" xml:space="preserve">
     <value>Index</value>
+  </data>
+  <data name="Frequency_Relativ" xml:space="preserve">
+    <value>Frequenz (relativ)</value>
   </data>
 </root>

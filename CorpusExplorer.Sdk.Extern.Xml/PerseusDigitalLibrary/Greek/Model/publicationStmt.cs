@@ -1,50 +1,55 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
 namespace CorpusExplorer.Sdk.Extern.Xml.PerseusDigitalLibrary.Greek.Model
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-  public partial class publicationStmt
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true)]
+  [XmlRoot(Namespace = "", IsNullable = false)]
+  public class publicationStmt
   {
+    private authority authorityField;
 
     private publisher publisherField;
 
     private pubPlace pubPlaceField;
 
-    private authority authorityField;
-
     private string tEIformField;
 
-    /// <remarks/>
-    public publisher publisher
-    {
-      get { return this.publisherField; }
-      set { this.publisherField = value; }
-    }
-
-    /// <remarks/>
-    public pubPlace pubPlace
-    {
-      get { return this.pubPlaceField; }
-      set { this.pubPlaceField = value; }
-    }
-
-    /// <remarks/>
+    /// <remarks />
     public authority authority
     {
-      get { return this.authorityField; }
-      set { this.authorityField = value; }
+      get => authorityField;
+      set => authorityField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    public publisher publisher
+    {
+      get => publisherField;
+      set => publisherField = value;
+    }
+
+    /// <remarks />
+    public pubPlace pubPlace
+    {
+      get => pubPlaceField;
+      set => pubPlaceField = value;
+    }
+
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string TEIform
     {
-      get { return this.tEIformField; }
-      set { this.tEIformField = value; }
+      get => tEIformField;
+      set => tEIformField = value;
     }
   }
 }

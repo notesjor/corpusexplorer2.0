@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using PostSharp.Patterns.Threading;
 
 #endregion
@@ -19,11 +20,14 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Kwic
   {
     private IEnumerable<KeyValuePair<string[], int>> _dataSource;
 
-    public KwicView() { InitializeComponent(); }
+    public KwicView()
+    {
+      InitializeComponent();
+    }
 
     public IEnumerable<KeyValuePair<string[], int>> DataSource
     {
-      get { return _dataSource; }
+      get => _dataSource;
       set
       {
         _dataSource = value;
@@ -38,8 +42,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Kwic
       ClearGrid();
 
       // Ermittle Lauflängen
-      var maxIndex = DataSource.Select(pair => pair.Value).Concat(new[] { 0 }).Max();
-      var maxSuffix = DataSource.Select(pair => pair.Key.Length - maxIndex + 1).Concat(new[] { 0 }).Max();
+      var maxIndex = DataSource.Select(pair => pair.Value).Concat(new[] {0}).Max();
+      var maxSuffix = DataSource.Select(pair => pair.Key.Length - maxIndex + 1).Concat(new[] {0}).Max();
       var maxSum = maxIndex + maxSuffix + 1;
 
       // Defniere Grid
@@ -51,6 +55,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Kwic
       Parallel.For(
         0,
         array.Length,
+        Configuration.ParallelOptions,
         i =>
         {
           var sentence = array[i];
@@ -71,45 +76,51 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Kwic
         });
     }
 
-    [Dispatched]
     private void ClearGrid()
     {
-      grid.Children.Clear();
-      grid.ColumnDefinitions.Clear();
-      grid.RowDefinitions.Clear();
+      Dispatcher.Invoke(() =>
+      {
+        grid.Children.Clear();
+        grid.ColumnDefinitions.Clear();
+        grid.RowDefinitions.Clear();
+      });
     }
 
-    [Dispatched]
     private void DefineGrid(int maxSum)
     {
-      for (var i = 0; i < maxSum; i++)
-        grid.ColumnDefinitions.Add(new ColumnDefinition {Width = GridLength.Auto});
-      for (var i = 0; i < DataSource.Count(); i++)
-        grid.RowDefinitions.Add(new RowDefinition());
+      Dispatcher.Invoke(() =>
+      {
+        for (var i = 0; i < maxSum; i++)
+          grid.ColumnDefinitions.Add(new ColumnDefinition {Width = GridLength.Auto});
+        for (var i = 0; i < DataSource.Count(); i++)
+          grid.RowDefinitions.Add(new RowDefinition());
+      });
     }
 
-    [Dispatched]
     private void NewTextBlock(string text, Color color, int i, int j)
     {
-      //FIX
-      // ReSharper disable once LoopVariableIsNeverChangedInsideLoop
-      while (j >= grid.ColumnDefinitions.Count)
-        grid.ColumnDefinitions.Add(new ColumnDefinition {Width = GridLength.Auto});
-
-      var tb = new TextBlock
+      Dispatcher.Invoke(() =>
       {
-        Text = text + " ",
-        Foreground = new SolidColorBrush(color),
-        VerticalAlignment = VerticalAlignment.Top,
-        HorizontalAlignment = HorizontalAlignment.Center
-      };
-      Grid.SetRow(tb, i);
-      Grid.SetColumn(tb, j);
+        //FIX
+        // ReSharper disable once LoopVariableIsNeverChangedInsideLoop
+        while (j >= grid.ColumnDefinitions.Count)
+          grid.ColumnDefinitions.Add(new ColumnDefinition {Width = GridLength.Auto});
 
-      if (grid.ColumnDefinitions[j].MinWidth < tb.Width)
-        grid.ColumnDefinitions[j].MinWidth = tb.Width + 5;
+        var tb = new TextBlock
+        {
+          Text = text + " ",
+          Foreground = new SolidColorBrush(color),
+          VerticalAlignment = VerticalAlignment.Top,
+          HorizontalAlignment = HorizontalAlignment.Center
+        };
+        Grid.SetRow(tb, i);
+        Grid.SetColumn(tb, j);
 
-      grid.Children.Add(tb);
+        if (grid.ColumnDefinitions[j].MinWidth < tb.Width)
+          grid.ColumnDefinitions[j].MinWidth = tb.Width + 5;
+
+        grid.Children.Add(tb);
+      });
     }
   }
 }

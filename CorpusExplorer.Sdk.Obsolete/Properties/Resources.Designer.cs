@@ -61,6 +61,15 @@ namespace CorpusExplorer.Sdk.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die ZIP-Datei (*.zip)|*.zip ähnelt.
+        /// </summary>
+        internal static string FileExtension_ZIP {
+            get {
+                return ResourceManager.GetString("FileExtension_ZIP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die N ähnelt.
         /// </summary>
         internal static string N {

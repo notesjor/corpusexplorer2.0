@@ -9,7 +9,10 @@ namespace CorpusExplorer.Sdk.Addon.Example.CorpusMeasures
 {
   public partial class DisplayValues : AbstractWinformControlBase
   {
-    public DisplayValues() { InitializeComponent(); }
+    public DisplayValues()
+    {
+      InitializeComponent();
+    }
 
     public void Refresh(IHydra iHydra)
     {

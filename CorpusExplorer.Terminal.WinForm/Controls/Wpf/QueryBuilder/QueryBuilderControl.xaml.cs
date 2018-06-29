@@ -35,7 +35,30 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.QueryBuilder
         {FilterOperator.StartsWith, Telerik.Windows.Data.FilterOperator.StartsWith}
       };
 
-    public QueryBuilderControl() { InitializeComponent(); }
+    public QueryBuilderControl()
+    {
+      InitializeComponent();
+    }
+
+    public void Step_1_Initialize(Dictionary<string, Type> settings)
+    {
+      filter1.FilterDescriptors.Clear();
+      filter1.ItemPropertyDefinitions.Clear();
+      foreach (var setting in settings)
+        filter1.ItemPropertyDefinitions.Add(new ItemPropertyDefinition(setting.Key, setting.Value));
+    }
+
+    public void Step_2_Load(FilterDescriptorCollection collection)
+    {
+      filter1.FilterDescriptors.Clear();
+      foreach (var f in collection)
+        filter1.FilterDescriptors.Add(ConvertRecursive(f));
+    }
+
+    public FilterDescriptorCollection Step_3_Save()
+    {
+      return new FilterDescriptorCollection {ConvertRecursive(filter1.ViewModel.CompositeFilter)};
+    }
 
     private FilterOperator ConvertOperator(Telerik.Windows.Data.FilterOperator? @operator)
     {
@@ -81,8 +104,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.QueryBuilder
 
     private FilterDescriptor ConvertRecursive(FilterViewModel f)
     {
-      if ((f.CompositeFilter != null) &&
-          (f.CompositeFilter.Filters.Count > 0))
+      if (f.CompositeFilter != null &&
+          f.CompositeFilter.Filters.Count > 0)
         return ConvertRecursive(f.CompositeFilter);
       if (f.SimpleFilter != null)
         return new FilterDescriptor(
@@ -94,8 +117,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.QueryBuilder
 
     private FilterDescriptor ConvertRecursive(IFilterDescriptor f)
     {
-      var fca = f as Telerik.Windows.Data.FilterDescriptor;
-      if (fca != null)
+      if (f is Telerik.Windows.Data.FilterDescriptor fca)
         return new FilterDescriptor(fca.Member, ConvertOperator(fca.Operator), fca.Value);
 
       var fcb = f as Telerik.Windows.Data.CompositeFilterDescriptor;
@@ -113,26 +135,6 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.QueryBuilder
         res.FilterDescriptors.Add(ConvertRecursive(x));
 
       return null;
-    }
-
-    public void Step_1_Initialize(Dictionary<string, Type> settings)
-    {
-      filter1.FilterDescriptors.Clear();
-      filter1.ItemPropertyDefinitions.Clear();
-      foreach (var setting in settings)
-        filter1.ItemPropertyDefinitions.Add(new ItemPropertyDefinition(setting.Key, setting.Value));
-    }
-
-    public void Step_2_Load(FilterDescriptorCollection collection)
-    {
-      filter1.FilterDescriptors.Clear();
-      foreach (var f in collection)
-        filter1.FilterDescriptors.Add(ConvertRecursive(f));
-    }
-
-    public FilterDescriptorCollection Step_3_Save()
-    {
-      return new FilterDescriptorCollection {ConvertRecursive(filter1.ViewModel.CompositeFilter)};
     }
   }
 }

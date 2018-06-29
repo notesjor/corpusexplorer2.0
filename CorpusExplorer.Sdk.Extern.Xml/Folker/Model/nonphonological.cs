@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string description { get { return descriptionField; } set { descriptionField = value; } }
+    public string description
+    {
+      get => descriptionField;
+      set => descriptionField = value;
+    }
   }
 }

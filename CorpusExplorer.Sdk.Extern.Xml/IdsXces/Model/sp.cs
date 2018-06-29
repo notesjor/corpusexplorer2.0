@@ -26,16 +26,32 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     /// <remarks />
     [XmlElement("p", typeof(p))]
     [XmlElement("poem", typeof(poem))]
-    public object Item { get { return itemField; } set { itemField = value; } }
+    public object Item
+    {
+      get => itemField;
+      set => itemField = value;
+    }
 
     /// <remarks />
-    public string speaker { get { return speakerField; } set { speakerField = value; } }
+    public string speaker
+    {
+      get => speakerField;
+      set => speakerField = value;
+    }
 
     /// <remarks />
-    public stage stage { get { return stageField; } set { stageField = value; } }
+    public stage stage
+    {
+      get => stageField;
+      set => stageField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string who { get { return whoField; } set { whoField = value; } }
+    public string who
+    {
+      get => whoField;
+      set => whoField = value;
+    }
   }
 }

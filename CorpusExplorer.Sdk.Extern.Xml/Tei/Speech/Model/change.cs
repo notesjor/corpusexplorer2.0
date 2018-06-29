@@ -24,10 +24,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public DateTime when { get { return whenField; } set { whenField = value; } }
+    public DateTime when
+    {
+      get => whenField;
+      set => whenField = value;
+    }
   }
 }

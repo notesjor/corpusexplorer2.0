@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="radLabel1.Text" xml:space="preserve">
-    <value>&lt;html&gt;Damit der CorpusExplorer in Zukunft noch besser wird, ist es notwendig, Fehler&lt;br /&gt;aufzuspüren und Funktionen zu optimieren. Darum ist Ihre Mithilfe so wichtig. &lt;br /&gt;Wenn Sie es zulassen, wird der CorpusExplorer zu diesem Zweck anonyme&lt;br /&gt;Nutzungsdaten erheben. Datenschutz hat dabei oberste Priorität. &lt;br /&gt;&lt;em&gt;Was&lt;/em&gt; und &lt;em&gt;wie&lt;/em&gt; ermittelt wird, &lt;a href="https://notes.jan-oliver-ruediger.de/software/corpusexplorer-overview/telemetrie/"&gt;können Sie hier nachlesen&lt;/a&gt;.&lt;/html&gt;</value>
+    <value>&lt;html&gt;Damit der CorpusExplorer in Zukunft noch besser wird, ist es notwendig,&lt;br/&gt;Fehler aufzuspüren und Funktionen zu optimieren. Darum ist Ihre Mithilfe&lt;br/&gt;so wichtig. Datenschutz und Wahlfreiheit haben hierbei oberste Priorität.&lt;br/&gt;Wenn Sie auf "Zulassen" klicken, akzeptieren Sie die &lt;a href="http://bitcutstudios.com/products/CorpusExplorer/datenschutz.html"&gt;Datenschutzerklärung&lt;/a&gt;&lt;br/&gt;und erlauben eine anonyme Erhebung/Auswertung von Programmfehlern&lt;br/&gt;und GUI-Interaktionen. Wenn Sie auf "Ablehnen" klicken, werden keinerlei&lt;br/&gt;Daten erhoben/übermittelt. Egal wie Sie sich entscheiden, der CorpusExplorer&lt;br/&gt;wird seinen Dienst verrichten.&lt;/html&gt;</value>
   </data>
 </root>

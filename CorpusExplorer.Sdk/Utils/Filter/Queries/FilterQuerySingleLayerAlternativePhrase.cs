@@ -13,26 +13,18 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
   [Serializable]
   public class FilterQuerySingleLayerAlternativePhrase : AbstractFilterQuery
   {
-    [XmlIgnore]
-    private readonly object _getQueriesLock = new object();
+    [XmlIgnore] private readonly object _getQueriesLock = new object();
 
-    [XmlArray]
-    private IEnumerable<IEnumerable<string>> _layerQueries;
+    [XmlArray] private IEnumerable<IEnumerable<string>> _layerQueries;
 
-    [XmlIgnore]
-    private Dictionary<Guid, HashSet<int>[]> _layerQueryCache;
+    [XmlIgnore] private Dictionary<Guid, HashSet<int>[]> _layerQueryCache;
 
-    public FilterQuerySingleLayerAlternativePhrase() { _layerQueryCache = new Dictionary<Guid, HashSet<int>[]>(); }
+    public FilterQuerySingleLayerAlternativePhrase()
+    {
+      _layerQueryCache = new Dictionary<Guid, HashSet<int>[]>();
+    }
 
-    /// <summary>
-    ///   End of Index - wird von GetWordIndices verwendet um das Ende des Musters zu bestimmen.
-    /// </summary>
-    /// <value>The eoi.</value>
-    [XmlIgnore]
-    private int Eoi { get; set; }
-
-    [XmlAttribute("layer")]
-    public string LayerDisplayname { get; set; } = "Wort";
+    [XmlAttribute("layer")] public string LayerDisplayname { get; set; } = "Wort";
 
     [XmlIgnore]
     public IEnumerable<IEnumerable<string>> LayerQueries
@@ -63,6 +55,13 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     }
 
     /// <summary>
+    ///   End of Index - wird von GetWordIndices verwendet um das Ende des Musters zu bestimmen.
+    /// </summary>
+    /// <value>The eoi.</value>
+    [XmlIgnore]
+    private int Eoi { get; set; }
+
+    /// <summary>
     ///   Erstellt ein neues Objekt, das eine Kopie der aktuellen Instanz darstellt.
     /// </summary>
     /// <returns>
@@ -77,47 +76,6 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
         LayerQueries = LayerQueries,
         OrFilterQueries = OrFilterQueries.Select(q => q.Clone() as AbstractFilterQuery)
       };
-    }
-
-    private HashSet<int>[] GetQueries(AbstractCorpusAdapter corpus)
-    {
-      lock (_getQueriesLock)
-      {
-        if (_layerQueryCache.ContainsKey(corpus.CorpusGuid))
-          return _layerQueryCache[corpus.CorpusGuid];
-
-        var layers = corpus.GetLayers(LayerDisplayname);
-        var layer = layers?.FirstOrDefault();
-        if (layer == null)
-          return null;
-
-        var valid = true;
-        var res = new List<HashSet<int>>();
-        foreach (var query in LayerQueries)
-        {
-          var position = new HashSet<int>();
-          foreach (var x in query)
-          {
-            var idx = layer[x];
-            if (idx == -1)
-            {
-              valid = false;
-              break;
-            }
-            position.Add(idx);
-          }
-          if (!valid)
-            break;
-          res.Add(position);
-        }
-
-        if (res.Count == 0)
-          valid = false;
-
-        _layerQueryCache.Add(corpus.CorpusGuid, valid ? res.ToArray() : null);
-
-        return valid ? res.ToArray() : null;
-      }
     }
 
     /// <summary>
@@ -154,12 +112,14 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       var s = doc[sentence];
       if (Configuration.RightToLeftSupport)
       {
-        if (s.TakeWhile((t1, w) => w - queries.Length >= 0).Where((t1, w) => !queries.Where((t, q) => !queries[queries.Length - 1 - q].Contains(s[w - q])).Any()).Any())
+        if (s.TakeWhile((t1, w) => w - queries.Length >= 0).Where((t1, w) =>
+          !queries.Where((t, q) => !queries[queries.Length - 1 - q].Contains(s[w - q])).Any()).Any())
           return sentence;
       }
       else
       {
-        if (s.TakeWhile((t1, w) => w + queries.Length < s.Length).Where((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any())
+        if (s.TakeWhile((t1, w) => w + queries.Length < s.Length)
+          .Where((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any())
           return sentence;
       }
 
@@ -195,23 +155,21 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       var res = new List<int>();
 
       if (Configuration.RightToLeftSupport)
-      {
         for (var sentence = 0; sentence < doc.Length; sentence++)
         {
           var s = doc[sentence];
-          if (s.TakeWhile((t1, w) => w - queries.Length >= 0).Where((t1, w) => !queries.Where((t, q) => !queries[queries.Length - 1 - q].Contains(s[w - q])).Any()).Any())
+          if (s.TakeWhile((t1, w) => w - queries.Length >= 0).Where((t1, w) =>
+            !queries.Where((t, q) => !queries[queries.Length - 1 - q].Contains(s[w - q])).Any()).Any())
             res.Add(sentence);
         }
-      }
       else
-      {
         for (var sentence = 0; sentence < doc.Length; sentence++)
         {
           var s = doc[sentence];
-          if (s.TakeWhile((t1, w) => w + queries.Length < s.Length).Where((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any())
+          if (s.TakeWhile((t1, w) => w + queries.Length < s.Length)
+            .Where((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any())
             res.Add(sentence);
         }
-      }
 
       return res;
     }
@@ -227,7 +185,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     ///   GetSentenceIndices() abgefragt werden.
     /// </param>
     /// <returns>Auflistung aller Vorkommen im Satz</returns>
-    protected override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       if (corpus == null ||
           documentGuid == Guid.Empty)
@@ -247,12 +205,14 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       var s = doc[sentence];
       if (Configuration.RightToLeftSupport)
       {
-        if (s.TakeWhile((t1, w) => w - queries.Length >= 0).Where((t1, w) => !queries.Where((t, q) => !queries[queries.Length - 1 - q].Contains(s[w - q])).Any()).Any())
+        if (s.TakeWhile((t1, w) => w - queries.Length >= 0).Where((t1, w) =>
+          !queries.Where((t, q) => !queries[queries.Length - 1 - q].Contains(s[w - q])).Any()).Any())
           res.Add(sentence);
       }
       else
       {
-        if (s.TakeWhile((t1, w) => w + queries.Length < s.Length).Where((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any())
+        if (s.TakeWhile((t1, w) => w + queries.Length < s.Length)
+          .Where((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any())
           res.Add(sentence);
       }
 
@@ -285,9 +245,55 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       if (doc == null)
         return false;
 
-      return Configuration.RightToLeftSupport ?
-        doc.Any(s => s.TakeWhile((t1, w) => w - queries.Length >= 0).Where((t1, w) => !queries.Where((t, q) => !queries[queries.Length - 1 - q].Contains(s[w - q])).Any()).Any()) :
-        doc.Any(s => s.TakeWhile((t1, w) => w + queries.Length < s.Length).Select((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any(any => any));
+      return Configuration.RightToLeftSupport
+        ? doc.Any(s => s.TakeWhile((t1, w) => w - queries.Length >= 0).Where((t1, w) =>
+          !queries.Where((t, q) => !queries[queries.Length - 1 - q].Contains(s[w - q])).Any()).Any())
+        : doc.Any(s =>
+          s.TakeWhile((t1, w) => w + queries.Length < s.Length)
+            .Select((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any(any => any));
+    }
+
+    private HashSet<int>[] GetQueries(AbstractCorpusAdapter corpus)
+    {
+      lock (_getQueriesLock)
+      {
+        if (_layerQueryCache.ContainsKey(corpus.CorpusGuid))
+          return _layerQueryCache[corpus.CorpusGuid];
+
+        var layers = corpus.GetLayers(LayerDisplayname);
+        var layer = layers?.FirstOrDefault();
+        if (layer == null)
+          return null;
+
+        var valid = true;
+        var res = new List<HashSet<int>>();
+        foreach (var query in LayerQueries)
+        {
+          var position = new HashSet<int>();
+          foreach (var x in query)
+          {
+            var idx = layer[x];
+            if (idx == -1)
+            {
+              valid = false;
+              break;
+            }
+
+            position.Add(idx);
+          }
+
+          if (!valid)
+            break;
+          res.Add(position);
+        }
+
+        if (res.Count == 0)
+          valid = false;
+
+        _layerQueryCache.Add(corpus.CorpusGuid, valid ? res.ToArray() : null);
+
+        return valid ? res.ToArray() : null;
+      }
     }
   }
 }

@@ -1,13 +1,15 @@
 ﻿#region
 
-using CorpusExplorer.Sdk.Utils.Filter.Queries;
-using CorpusExplorer.Sdk.ViewModel;
-using CorpusExplorer.Terminal.WinForm.Forms.Splash;
-using CorpusExplorer.Terminal.WinForm.Properties;
-using CorpusExplorer.Terminal.WinForm.View.AbstractTemplates;
 using System;
 using System.Data;
 using System.Linq;
+using CorpusExplorer.Sdk.Utils.Filter.Queries;
+using CorpusExplorer.Sdk.ViewModel;
+using CorpusExplorer.Terminal.WinForm.Forms.SelectLayer;
+using CorpusExplorer.Terminal.WinForm.Forms.Splash;
+using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
+using CorpusExplorer.Terminal.WinForm.Properties;
+using CorpusExplorer.Terminal.WinForm.View.AbstractTemplates;
 using Telerik.WinControls.UI;
 
 #endregion
@@ -17,7 +19,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
   /// <summary>
   ///   The grid visualisation.
   /// </summary>
-  public partial class NGramGrid : AbstractGridViewWithCodeLense
+  public partial class NGramGrid : AbstractGridViewWithTextLense
   {
     private NgramViewModel _vm;
 
@@ -34,28 +36,28 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
 
     private void Analyse()
     {
-      _vm = ViewModelGet<NgramViewModel>();
+      _vm = GetViewModel<NgramViewModel>();
       _vm.NGramSize = int.Parse(txt_size.Text);
       _vm.NGramPatternSize = int.Parse(txt_pattern.Text);
-      _vm.LayerDisplayname = combo_layer.SelectedItem.Text;
-      _vm.Analyse();
+      if (SelectedLayerDisplaynames != null)
+        _vm.LayerDisplayname = SelectedLayerDisplaynames[0];
+      if (!_vm.Analyse())
+        return;
       BindData();
 
-      // Die folgenden beiden Einstellungen sind notwendig, da eine Layerauswahl stattfindet.
-      LayerDisplayname = combo_layer.SelectedItem.Text;
       UseParentCellForHighlighting = Resources.NGramm;
 
       AddSummaryRow();
       AddChildTemplate(
-        delegate (DataRowView x)
+        delegate(DataRowView x)
         {
           var queries = x[Resources.NGramm].ToString()
-                                           .Replace(
-                                             _vm.NGramPattern,
-                                             FilterQuerySingleLayerExactPhrase.SearchPattern)
-                                           .Split(
-                                             new[] { " " },
-                                             StringSplitOptions.RemoveEmptyEntries);
+            .Replace(
+              _vm.NGramPattern,
+              FilterQuerySingleLayerExactPhrase.SearchPattern)
+            .Split(
+              new[] {" "},
+              StringSplitOptions.RemoveEmptyEntries);
           return new FilterQuerySingleLayerExactPhrase
           {
             Inverse = false,
@@ -104,9 +106,15 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       Processing.Invoke(Resources.ErstelleUndZähleNGramme, Analyse);
     }
 
-    private void btn_filtereditor_Click(object sender, EventArgs e) { QueryBuilderFunction(Resources.NGramm); }
+    private void btn_filtereditor_Click(object sender, EventArgs e)
+    {
+      QueryBuilderFunction(Resources.NGramm);
+    }
 
-    private void btn_filterlist_Click(object sender, EventArgs e) { FilterListFunction(Resources.NGram); }
+    private void btn_filterlist_Click(object sender, EventArgs e)
+    {
+      FilterListFunction(Resources.NGram);
+    }
 
     /// <summary>
     ///   The btn_function_ click.
@@ -140,27 +148,34 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     {
       CreateSelection(
         radGridView1.SelectedRows.Select(
-                      row => new FilterQuerySingleLayerExactPhrase
-                      {
-                        Inverse = false,
-                        LayerDisplayname = _vm.LayerDisplayname,
-                        LayerQueries =
-                          row.Cells[Resources.NGramm].Value.ToString()
-                             .Replace(
-                               _vm.NGramPattern,
-                               FilterQuerySingleLayerExactPhrase
-                                 .SearchPattern)
-                             .Split(
-                               new[] { " " },
-                               StringSplitOptions
-                                 .RemoveEmptyEntries)
-                      }));
+          row => new FilterQuerySingleLayerExactPhrase
+          {
+            Inverse = false,
+            LayerDisplayname = _vm.LayerDisplayname,
+            LayerQueries =
+              row.Cells[Resources.NGramm].Value.ToString()
+                .Replace(
+                  _vm.NGramPattern,
+                  FilterQuerySingleLayerExactPhrase
+                    .SearchPattern)
+                .Split(
+                  new[] {" "},
+                  StringSplitOptions
+                    .RemoveEmptyEntries)
+          }));
     }
 
     private void GridNGramVisualisation_ShowVisualisation(object sender, EventArgs e)
     {
-      _vm = ViewModelGet<NgramViewModel>();
-      combo_layer.DataSource = _vm.LayerDisplaynames;
+      _vm = GetViewModel<NgramViewModel>();
+    }
+
+    private void btn_layer_Click(object sender, EventArgs e)
+    {
+      var form = new Select1Layer(SelectedLayerDisplaynames);
+      form.ShowDialog();
+      SelectedLayerDisplaynames = form.ResultSelectedLayerDisplaynames;
+      Analyse();
     }
   }
 }

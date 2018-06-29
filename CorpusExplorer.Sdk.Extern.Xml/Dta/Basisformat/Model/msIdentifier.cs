@@ -23,12 +23,24 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlElement(DataType = "NCName")]
-    public string country { get { return countryField; } set { countryField = value; } }
+    public string country
+    {
+      get => countryField;
+      set => countryField = value;
+    }
 
     /// <remarks />
-    public idno idno { get { return idnoField; } set { idnoField = value; } }
+    public idno idno
+    {
+      get => idnoField;
+      set => idnoField = value;
+    }
 
     /// <remarks />
-    public string repository { get { return repositoryField; } set { repositoryField = value; } }
+    public string repository
+    {
+      get => repositoryField;
+      set => repositoryField = value;
+    }
   }
 }

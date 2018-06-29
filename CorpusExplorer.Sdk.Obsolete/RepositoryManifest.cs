@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using CorpusExplorer.Core.DocumentProcessing.Importer.CorpusExplorerV5;
 using CorpusExplorer.Core.Exporter;
 using CorpusExplorer.Sdk.Addon;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
@@ -25,7 +25,7 @@ namespace CorpusExplorer.Core
       new Dictionary<string, AbstractCorpusBuilder>
       {
         // Wichtig: Sollte der Key "CorpusExplorer v5" geändert werden, muss dieser auch in CorpusExplorer.Terminal.WinForm.Forms.Tagger.SelectTagger.cs geändert werden.
-        {"CorpusExplorer v5", new CorpusBuilderSingleFile()},
+        {"CorpusExplorer v5", new CorpusBuilderSingleFile()}
       };
 
     /// <summary>
@@ -34,7 +34,7 @@ namespace CorpusExplorer.Core
     public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters =>
       new Dictionary<string, AbstractExporter>
       {
-        {"CEC5-Export (*.cec5)|*.cec5", new ExporterCec5()},
+        {"CorpusExplorer v5 (*.cec5)|*.cec5", new ExporterCec5()}
       };
 
     /// <summary>
@@ -44,7 +44,7 @@ namespace CorpusExplorer.Core
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter =>
       new Dictionary<string, AbstractImporter>
       {
-        {"CorpusExplorer v5 (*.cec5)|*.cec5", new ImporterCec5()},
+        {"CorpusExplorer v5 (*.cec5)|*.cec5", new ImporterCec5()}
       };
 
     /// <summary>

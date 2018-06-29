@@ -1,13 +1,18 @@
 using System;
 using System.Globalization;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
+using CorpusExplorer.Sdk.Helper;
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {
   public class DoubleCluster : AbstractCluster
   {
     private readonly double _value;
-    public DoubleCluster(double value) { _value = value; }
+
+    public DoubleCluster(double value)
+    {
+      _value = value;
+    }
 
     public override object CentralValue => _value;
 
@@ -17,8 +22,8 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
     {
       try
       {
-        var test = (double) obj;
-        if (Math.Abs(_value - test) > 0)
+        var val = obj.SafeCastDouble();
+        if (Math.Abs(_value - val) > 0)
           return false;
         Add(documentGuid);
         return true;

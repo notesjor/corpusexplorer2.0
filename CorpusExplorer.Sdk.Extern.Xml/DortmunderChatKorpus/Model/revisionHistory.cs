@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus.Model
 
     /// <remarks />
     [XmlElement("revision")]
-    public revision[] revision { get { return revisionField; } set { revisionField = value; } }
+    public revision[] revision
+    {
+      get => revisionField;
+      set => revisionField = value;
+    }
   }
 }

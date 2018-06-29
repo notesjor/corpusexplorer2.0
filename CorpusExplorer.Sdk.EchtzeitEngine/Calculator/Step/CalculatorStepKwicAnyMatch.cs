@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
 using CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step.Abstract;
 using CorpusExplorer.Sdk.EchtzeitEngine.Model;
 using CorpusExplorer.Sdk.Model;
-using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 
 namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
@@ -11,11 +8,10 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
   public class CalculatorStepKwicAnyMatch : AbstractCalculatorStepKwic
   {
     public override string Method => "KwicAnyMatch";
-    
+
     public override void Calculate(Selection selection, ref UniversalStorage output)
     {
       foreach (var query in Queries)
-      {
         output.Set(
           selection,
           Method,
@@ -27,7 +23,6 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
               LayerDisplayname = "Wort",
               LayerQueries = new[] {query}
             }));
-      }
     }
   }
 }

@@ -22,17 +22,25 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
     private @public publicField;
 
     /// <remarks />
-    public fileDesc fileDesc { get { return fileDescField; } set { fileDescField = value; } }
+    public fileDesc fileDesc
+    {
+      get => fileDescField;
+      set => fileDescField = value;
+    }
 
     /// <remarks />
     [XmlElement("linguisticProcessors")]
     public linguisticProcessors[] linguisticProcessors
     {
-      get { return linguisticProcessorsField; }
-      set { linguisticProcessorsField = value; }
+      get => linguisticProcessorsField;
+      set => linguisticProcessorsField = value;
     }
 
     /// <remarks />
-    public @public @public { get { return publicField; } set { publicField = value; } }
+    public @public @public
+    {
+      get => publicField;
+      set => publicField = value;
+    }
   }
 }

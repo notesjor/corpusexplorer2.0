@@ -26,18 +26,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     /// <remarks />
     [XmlArray("common-timeline")]
     [XmlArrayItem("tli", IsNullable = false)]
-    public tli[] commontimeline { get { return commontimelineField; } set { commontimelineField = value; } }
+    public tli[] commontimeline
+    {
+      get => commontimelineField;
+      set => commontimelineField = value;
+    }
 
     /// <remarks />
     [XmlElement("speaker-contribution")]
     public speakercontribution[] speakercontribution
     {
-      get { return speakercontributionField; }
-      set { speakercontributionField = value; }
+      get => speakercontributionField;
+      set => speakercontributionField = value;
     }
 
     /// <remarks />
     [XmlElement("timeline-fork")]
-    public timelinefork[] timelinefork { get { return timelineforkField; } set { timelineforkField = value; } }
+    public timelinefork[] timelinefork
+    {
+      get => timelineforkField;
+      set => timelineforkField = value;
+    }
   }
 }

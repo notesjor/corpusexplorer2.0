@@ -67,8 +67,8 @@ namespace CorpusExplorer.Sdk.Blocks
     {
       var meta = Selection.DocumentMetadata;
       return from pair in meta
-             where pair.Value.ContainsKey(metaName) && pair.Value[metaName].ToString() == metaValue
-             select pair.Key;
+        where pair.Value.ContainsKey(metaName) && pair.Value[metaName].ToString() == metaValue
+        select pair.Key;
     }
 
     public Dictionary<Guid, double> RequestDocumentSimilarity(Guid documentGuid)
@@ -125,8 +125,8 @@ namespace CorpusExplorer.Sdk.Blocks
       foreach (
         var entry in
         guids.Where(guid => _documents.ContainsKey(guid))
-             .Select(guid => _documents[guid])
-             .SelectMany(entries => entries))
+          .Select(guid => _documents[guid])
+          .SelectMany(entries => entries))
         if (res.ContainsKey(entry.Key))
         {
           res[entry.Key] += entry.Value;

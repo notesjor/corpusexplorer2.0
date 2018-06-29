@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model
 
     /// <remarks />
     [XmlElement(DataType = "NCName")]
-    public string surname { get { return surnameField; } set { surnameField = value; } }
+    public string surname
+    {
+      get => surnameField;
+      set => surnameField = value;
+    }
 
     /// <remarks />
     [XmlElement(DataType = "NCName")]
-    public string forename { get { return forenameField; } set { forenameField = value; } }
+    public string forename
+    {
+      get => forenameField;
+      set => forenameField = value;
+    }
   }
 }

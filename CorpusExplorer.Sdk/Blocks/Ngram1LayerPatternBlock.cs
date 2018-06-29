@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Ecosystem.Model;
-using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 
@@ -16,6 +15,7 @@ namespace CorpusExplorer.Sdk.Blocks
     public Dictionary<string, int> NGramFrequency { get; private set; }
     public string NGramPattern { get; set; } = "###";
     public int NGramPatternSize { get; set; } = 1;
+    public Dictionary<string, string[]> NGramRaw { get; private set; }
 
     public int NGramSize { get; set; } = 5;
 
@@ -26,14 +26,16 @@ namespace CorpusExplorer.Sdk.Blocks
       int[][] doc)
     {
       var dic = new Dictionary<string, int>();
-      var stream = layer.ConvertToReadableDocument(doc).ReduceDocumentToStreamDocument().ToArray();
-      var ngram = new string[NGramSize];
+      var raw = new Dictionary<string, string[]>();
+      var sentences = layer.ConvertToReadableDocument(doc).Select(x => x.ToArray()).ToArray();
 
       if (Configuration.RightToLeftSupport)
+        for (var s = sentences.Length - 1; s > -1; s--)
         for (var i = NGramSize; i > NGramSize; i--)
         {
+          var ngram = new string[NGramSize];
           for (var j = 0; j < NGramSize; j++)
-            ngram[j] = stream[i + j];
+            ngram[j] = sentences[s][i + j];
 
           var queue = new Queue<string[]>();
           queue.Enqueue(ngram);
@@ -43,47 +45,70 @@ namespace CorpusExplorer.Sdk.Blocks
           {
             var key = string.Join(" ", gen);
             if (dic.ContainsKey(key))
+            {
               dic[key]++;
+            }
             else
+            {
               dic.Add(key, 1);
+              raw.Add(key, gen);
+            }
           }
         }
       else
-        for (var i = 0; i < stream.Length - NGramSize; i++)
-        {
-          for (var j = 0; j < NGramSize; j++)
-            ngram[j] = stream[i + j];
-
-          var queue = new Queue<string[]>();
-          queue.Enqueue(ngram);
-          var gens = Mutate(queue, 0);
-
-          foreach (var gen in gens)
+        foreach (var sentence in sentences)
+          for (var i = 0; i < sentence.Length - NGramSize; i++)
           {
-            var key = string.Join(" ", gen);
-            if (dic.ContainsKey(key))
-              dic[key]++;
-            else
-              dic.Add(key, 1);
+            var ngram = new string[NGramSize];
+            for (var j = 0; j < NGramSize; j++)
+              ngram[j] = sentence[i + j];
+
+            var queue = new Queue<string[]>();
+            queue.Enqueue(ngram);
+            var gens = Mutate(queue, 0);
+
+            foreach (var gen in gens)
+            {
+              var key = string.Join(" ", gen);
+              if (dic.ContainsKey(key))
+              {
+                dic[key]++;
+              }
+              else
+              {
+                dic.Add(key, 1);
+                raw.Add(key, gen);
+              }
+            }
           }
-        }
 
       lock (_lock)
       {
         foreach (var x in dic)
           if (NGramFrequency.ContainsKey(x.Key))
+          {
             NGramFrequency[x.Key]++;
+          }
           else
+          {
             NGramFrequency.Add(x.Key, x.Value);
+            NGramRaw.Add(x.Key, raw[x.Key]);
+          }
       }
     }
 
-    protected override void CalculateCleanup() { }
-    protected override void CalculateFinalize() { }
+    protected override void CalculateCleanup()
+    {
+    }
+
+    protected override void CalculateFinalize()
+    {
+    }
 
     protected override void CalculateInitProperties()
     {
       NGramFrequency = new Dictionary<string, int>();
+      NGramRaw = new Dictionary<string, string[]>();
 
       if (NGramSize < 2)
         NGramSize = 2;
@@ -108,7 +133,7 @@ namespace CorpusExplorer.Sdk.Blocks
             if (x[i] == NGramPattern)
               continue;
 
-            var ngen = (string[])x.Clone();
+            var ngen = (string[]) x.Clone();
             ngen[i] = NGramPattern;
             res.Enqueue(ngen);
           }

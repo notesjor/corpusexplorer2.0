@@ -25,17 +25,33 @@ namespace CorpusExplorer.Sdk.Extern.Xml.PromXes.Model
 
     /// <remarks />
     [XmlElement("int")]
-    public @int int1 { get { return int1Field; } set { int1Field = value; } }
+    public @int int1
+    {
+      get => int1Field;
+      set => int1Field = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string key { get { return keyField; } set { keyField = value; } }
+    public string key
+    {
+      get => keyField;
+      set => keyField = value;
+    }
 
     /// <remarks />
-    public @string @string { get { return stringField; } set { stringField = value; } }
+    public @string @string
+    {
+      get => stringField;
+      set => stringField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "integer")]
-    public string value { get { return valueField; } set { valueField = value; } }
+    public string value
+    {
+      get => valueField;
+      set => valueField = value;
+    }
   }
 }

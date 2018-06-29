@@ -22,13 +22,25 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private monogr monogrField;
 
     /// <remarks />
-    public analytic analytic { get { return analyticField; } set { analyticField = value; } }
+    public analytic analytic
+    {
+      get => analyticField;
+      set => analyticField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string Default { get { return defaultField; } set { defaultField = value; } }
+    public string Default
+    {
+      get => defaultField;
+      set => defaultField = value;
+    }
 
     /// <remarks />
-    public monogr monogr { get { return monogrField; } set { monogrField = value; } }
+    public monogr monogr
+    {
+      get => monogrField;
+      set => monogrField = value;
+    }
   }
 }

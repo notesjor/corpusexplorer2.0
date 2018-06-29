@@ -18,6 +18,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private persName persNameField;
 
     /// <remarks />
-    public persName persName { get { return persNameField; } set { persNameField = value; } }
+    public persName persName
+    {
+      get => persNameField;
+      set => persNameField = value;
+    }
   }
 }

@@ -20,10 +20,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.HuDesktop.Model
     private string typeField;
 
     /// <remarks />
-    public fileDesc fileDesc { get { return fileDescField; } set { fileDescField = value; } }
+    public fileDesc fileDesc
+    {
+      get => fileDescField;
+      set => fileDescField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

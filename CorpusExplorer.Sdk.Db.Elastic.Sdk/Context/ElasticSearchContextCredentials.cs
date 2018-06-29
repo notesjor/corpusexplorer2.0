@@ -2,7 +2,9 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Sdk.Context
 {
   public class ElasticSearchContextCredentials
   {
-    public ElasticSearchContextCredentials() { }
+    public ElasticSearchContextCredentials()
+    {
+    }
 
     public ElasticSearchContextCredentials(string username, string password)
     {

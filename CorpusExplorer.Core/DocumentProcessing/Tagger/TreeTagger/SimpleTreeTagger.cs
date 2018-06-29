@@ -1,14 +1,12 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using System.Text;
 using Bcs.IO;
 using CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger.Abstract;
 using CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger.Parameter;
 using CorpusExplorer.Core.DocumentProcessing.Tokenizer;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer.Abstract;
 
 namespace CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger
@@ -32,7 +30,9 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger
       set
       {
         base.LanguageSelected = value;
-        Tokenizer = value == "Deutsch" ? (AbstractTokenizer) new HighSpeedGermanTokenizer() : new HighSpeedSpaceTokenizer();
+        Tokenizer = value == "Deutsch"
+          ? (AbstractTokenizer) new HighSpeedGermanTokenizer()
+          : new HighSpeedSpaceTokenizer();
       }
     }
 
@@ -47,15 +47,16 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger
           var process = new Process
           {
             StartInfo =
-              {
-                FileName = Path.Combine(TreeTaggerLocator.TreeTaggerRootDirectory, @"bin\tree-tagger.exe"),
-                Arguments = $"-quiet -token -lemma -sgml -no-unknown \"{TreeTaggerLocator.ParFile(LanguageSelected)}\" \"{fileInput.Path}\"",
-                CreateNoWindow = true,
-                UseShellExecute = false,
-                StandardOutputEncoding = Configuration.Encoding,
-                RedirectStandardOutput = true,
-                WindowStyle = ProcessWindowStyle.Hidden
-              }
+            {
+              FileName = Path.Combine(TreeTaggerLocator.TreeTaggerRootDirectory, @"bin\tree-tagger.exe"),
+              Arguments =
+                $"-quiet -token -lemma -sgml -no-unknown \"{TreeTaggerLocator.ParFile(LanguageSelected)}\" \"{fileInput.Path}\"",
+              CreateNoWindow = true,
+              UseShellExecute = false,
+              StandardOutputEncoding = Configuration.Encoding,
+              RedirectStandardOutput = true,
+              WindowStyle = ProcessWindowStyle.Hidden
+            }
           };
           process.Start();
 

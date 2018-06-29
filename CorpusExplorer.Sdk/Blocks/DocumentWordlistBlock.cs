@@ -9,7 +9,11 @@ namespace CorpusExplorer.Sdk.Blocks
   public class DocumentWordlistBlock : AbstractSimple1LayerBlock
   {
     private readonly object _lock = new object();
-    public DocumentWordlistBlock() { LayerDisplayname = "Wort"; }
+
+    public DocumentWordlistBlock()
+    {
+      LayerDisplayname = "Wort";
+    }
 
     public Dictionary<Guid, HashSet<string>> Wordlist { get; set; }
 
@@ -31,10 +35,17 @@ namespace CorpusExplorer.Sdk.Blocks
       }
     }
 
-    protected override void CalculateCleanup() { }
+    protected override void CalculateCleanup()
+    {
+    }
 
-    protected override void CalculateFinalize() { }
+    protected override void CalculateFinalize()
+    {
+    }
 
-    protected override void CalculateInitProperties() { Wordlist = new Dictionary<Guid, HashSet<string>>(); }
+    protected override void CalculateInitProperties()
+    {
+      Wordlist = new Dictionary<Guid, HashSet<string>>();
+    }
   }
 }

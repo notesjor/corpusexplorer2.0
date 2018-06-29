@@ -26,20 +26,40 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private quote quoteField;
 
     /// <remarks />
-    public head head { get { return headField; } set { headField = value; } }
+    public head head
+    {
+      get => headField;
+      set => headField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlElement("p")]
-    public p[] p { get { return pField; } set { pField = value; } }
+    public p[] p
+    {
+      get => pField;
+      set => pField = value;
+    }
 
     /// <remarks />
-    public pb pb { get { return pbField; } set { pbField = value; } }
+    public pb pb
+    {
+      get => pbField;
+      set => pbField = value;
+    }
 
     /// <remarks />
-    public quote quote { get { return quoteField; } set { quoteField = value; } }
+    public quote quote
+    {
+      get => quoteField;
+      set => quoteField = value;
+    }
   }
 }

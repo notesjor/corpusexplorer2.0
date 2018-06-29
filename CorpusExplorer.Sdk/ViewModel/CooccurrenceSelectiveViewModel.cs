@@ -15,15 +15,28 @@ namespace CorpusExplorer.Sdk.ViewModel
     : AbstractViewModel,
       IProvideDataTable
   {
-    public CooccurrenceSelectiveViewModel() { LayerDisplayname = "Wort"; }
+    public CooccurrenceSelectiveViewModel()
+    {
+      LayerDisplayname = "Wort";
+    }
 
     /// <summary>
     ///   Gets or sets the frequency dictionary.
     /// </summary>
     public Dictionary<string, double> FrequencyDictionary { get; set; }
 
-    public IEnumerable<string> AvailableLayerDisplaynames => Selection.LayerUniqueDisplaynames;
-    public IEnumerable<string> AvailableLayerValues => Selection.GetLayerValues(LayerDisplayname);
+    public Dictionary<string, double[]> FrequencySignificanceDictionary
+    {
+      get
+      {
+        var res = new Dictionary<string, double[]>();
+        foreach (var x in SignificanceDictionary)
+          if (FrequencyDictionary.ContainsKey(x.Key))
+            res.Add(x.Key, new[] {FrequencyDictionary[x.Key], x.Value});
+
+        return res;
+      }
+    }
 
     public string LayerDisplayname { get; set; }
     public string[] LayerQueries { get; set; }
@@ -49,7 +62,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       dt.EndLoadData();
       return dt;
     }
-    
+
     protected override void ExecuteAnalyse()
     {
       var block = Selection.CreateBlock<CooccurrenceSelectiveBlock>();
@@ -61,6 +74,9 @@ namespace CorpusExplorer.Sdk.ViewModel
       SignificanceDictionary = block.CooccurrenceSignificance;
     }
 
-    protected override bool Validate() { return !string.IsNullOrEmpty(LayerDisplayname) && LayerQueries != null && LayerQueries.Any(); }
+    protected override bool Validate()
+    {
+      return !string.IsNullOrEmpty(LayerDisplayname) && LayerQueries != null && LayerQueries.Any();
+    }
   }
 }

@@ -27,23 +27,43 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlAttribute]
-    public itlineBreaktype breaktype { get { return breaktypeField; } set { breaktypeField = value; } }
+    public itlineBreaktype breaktype
+    {
+      get => breaktypeField;
+      set => breaktypeField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string formatref { get { return formatrefField; } set { formatrefField = value; } }
+    public string formatref
+    {
+      get => formatrefField;
+      set => formatrefField = value;
+    }
 
     /// <remarks />
     [XmlElement("it-chunk")]
-    public itchunk[] itchunk { get { return itchunkField; } set { itchunkField = value; } }
+    public itchunk[] itchunk
+    {
+      get => itchunkField;
+      set => itchunkField = value;
+    }
 
     /// <remarks />
     [XmlElement("it-label")]
-    public itlabel itlabel { get { return itlabelField; } set { itlabelField = value; } }
+    public itlabel itlabel
+    {
+      get => itlabelField;
+      set => itlabelField = value;
+    }
 
     /// <remarks />
     [XmlArray("ud-information")]
     [XmlArrayItem("ud-attribute", IsNullable = false)]
-    public udattribute[] udinformation { get { return udinformationField; } set { udinformationField = value; } }
+    public udattribute[] udinformation
+    {
+      get => udinformationField;
+      set => udinformationField = value;
+    }
   }
 }

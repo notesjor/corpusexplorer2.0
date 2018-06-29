@@ -3,6 +3,7 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model;
 
 #endregion
@@ -18,14 +19,15 @@ namespace CorpusExplorer.Port.TreeTaggerTrainer.Model
 
       Parallel.ForEach(
         selection.DocumentGuids,
+        Configuration.ParallelOptions,
         tguid =>
         {
           var text = new StringBuilder();
           var wl = selection.GetLayerOfDocument(tguid, "Wort");
           var tl = selection.GetLayerOfDocument(tguid, layerDisplayname);
 
-          if ((wl == null) ||
-              (tl == null))
+          if (wl == null ||
+              tl == null)
             return;
 
           string[][] wdoc, tdoc;

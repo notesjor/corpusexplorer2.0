@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using CorpusExplorer.Sdk.Extern.Xml.Weblicht.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Weblicht.Serializer;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
 using CorpusExplorer.Sdk.Model.Interface;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 
 #endregion
 
@@ -41,7 +41,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
         {
           xml.Serialize(GetDSpin(hydra, guid, i++), Path.Combine(path, guid + ".xml"));
         }
-        catch {}
+        catch
+        {
+        }
     }
 
     private DSpin GetDSpin(IHydra hydra, Guid guid, int i)
@@ -86,6 +88,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
             text.Append(" ");
           text.Append(docW[j][k]);
         }
+
         sents.Add(new TextCorpusSentence {tokenIDs = sent.ToString().Trim(), ID = "s" + j});
       }
 

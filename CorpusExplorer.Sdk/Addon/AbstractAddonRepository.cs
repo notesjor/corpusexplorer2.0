@@ -3,8 +3,8 @@
 using System.Collections.Generic;
 using Bcs.Addon;
 using Bcs.Addon.Interfaces;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
@@ -31,7 +31,9 @@ namespace CorpusExplorer.Sdk.Addon
     /// <summary>
     ///   Funktion die beim Laden des Addons in den Speicher aufgerufen wird
     /// </summary>
-    public void Initialize() { }
+    public void Initialize()
+    {
+    }
 
     /// <summary>
     ///   (Ent-)Lade Priorität des Plugins (Normal: Level2System)
@@ -41,17 +43,23 @@ namespace CorpusExplorer.Sdk.Addon
     /// <summary>
     ///   Funktion die zum Ausführen des Addons aufgerufen wird
     /// </summary>
-    public void Start() { }
+    public void Start()
+    {
+    }
 
     /// <summary>
     ///   Funktion die zum Unterbrechen der Ausführung des Addons aufgerufen wird
     /// </summary>
-    public void Stop() { }
+    public void Stop()
+    {
+    }
 
     /// <summary>
     ///   Funktion die beim Entfernen des Addons aus dem Speicher aufgerufen wird
     /// </summary>
-    public void Terminate() { }
+    public void Terminate()
+    {
+    }
 
     /// <summary>
     ///   Zusätzlich Tagger (für nachträgliches Processing)

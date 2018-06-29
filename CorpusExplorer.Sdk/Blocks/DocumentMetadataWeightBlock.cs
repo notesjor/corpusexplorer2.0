@@ -18,14 +18,12 @@ namespace CorpusExplorer.Sdk.Blocks
   [Serializable]
   public class DocumentMetadataWeightBlock : AbstractSimple1LayerBlock
   {
-    [NonSerialized]
-    private object _lockDocument;
+    [NonSerialized] private object _lockDocument;
 
     /// <summary>
     ///   The _lock document metasize
     /// </summary>
-    [NonSerialized]
-    private object _lockMetadata;
+    [NonSerialized] private object _lockMetadata;
 
     private Dictionary<Guid, double> _token;
     private Dictionary<Guid, int> _types;
@@ -37,99 +35,6 @@ namespace CorpusExplorer.Sdk.Blocks
     public Dictionary<Guid, int[]> DocumentSize { get; set; }
 
     public Dictionary<string, Dictionary<string, HashSet<Guid>>> MetaDataDictionary { get; set; }
-
-    /// <summary>
-    ///   Führt die Berechnung aus
-    /// </summary>
-    /// <param name="corpus">
-    ///   Korpus
-    /// </param>
-    /// <param name="layer">
-    ///   Layer
-    /// </param>
-    /// <param name="dsel">
-    ///   Dokument GUID
-    /// </param>
-    /// <param name="doc">
-    ///   Dokument
-    /// </param>
-    protected override void CalculateCall(
-      AbstractCorpusAdapter corpus,
-      AbstractLayerAdapter layer,
-      Guid dsel,
-      int[][] doc)
-    {
-      var metas = corpus.GetDocumentMetadata(dsel);
-      if (metas == null)
-        return;
-
-      lock (_lockDocument)
-      {
-        DocumentSize.Add(dsel, new[] {(int) _token[dsel], _types[dsel]});
-      }
-
-      lock (_lockMetadata)
-      {
-        foreach (var meta in metas)
-          try
-          {
-            if (meta.Value == null ||
-                string.IsNullOrEmpty(meta.Key))
-              continue;
-
-            var key = (meta.Value as DateTime?)?.ToString("yyyy-MM-dd HH:mm:ss") ?? meta.Value.ToString();
-
-            if (MetaDataDictionary.ContainsKey(meta.Key))
-              if (MetaDataDictionary[meta.Key].ContainsKey(key))
-                MetaDataDictionary[meta.Key][key].Add(dsel);
-              else
-                MetaDataDictionary[meta.Key].Add(key, new HashSet<Guid> {dsel});
-            else
-              MetaDataDictionary.Add(
-                meta.Key,
-                new Dictionary<string, HashSet<Guid>> {{key, new HashSet<Guid> {dsel}}});
-          }
-          catch
-          {
-            // ignore
-          }
-      }
-    }
-
-    /// <summary>
-    ///   Wird nach der Berechnung aufgerufen (nach CalculateCall)
-    ///   und dient der Bereinigung von Daten
-    /// </summary>
-    protected override void CalculateCleanup()
-    {
-      _token.Clear();
-      _types.Clear();
-    }
-
-    /// <summary>
-    ///   Wird nach der Bereinigung aufgerufen (nach CalculateCall + CalculateCleanup)
-    ///   und dient dem zusammenfassen der bereinigen Ergebnisse
-    /// </summary>
-    protected override void CalculateFinalize() { }
-
-    /// <summary>
-    ///   Wird vor der Berechnung aufgerufen (vor CalculateCall)
-    /// </summary>
-    protected override void CalculateInitProperties()
-    {
-      MetaDataDictionary = new Dictionary<string, Dictionary<string, HashSet<Guid>>>();
-      _lockMetadata = new object();
-
-      DocumentSize = new Dictionary<Guid, int[]>();
-      _lockDocument = new object();
-
-      var dfdBlock = Selection.CreateBlock<DocumentFrequencyDictionaryBlock>();
-      dfdBlock.LayerDisplayname = LayerDisplayname;
-      dfdBlock.Calculate();
-
-      _token = dfdBlock.DocumentSizeInToken;
-      _types = dfdBlock.DocumentDictionaries.ToDictionary(x => x.Key, x => x.Value.Count);
-    }
 
     /// <summary>
     ///   Gibt ein aggergiertes Dictionary zurück das alle Metawerte enthält.
@@ -253,8 +158,10 @@ namespace CorpusExplorer.Sdk.Blocks
           sumA[1] += DocumentSize[guid][1];
           sumA[2]++;
         }
+
         res.Add(x.Key, sumA);
       }
+
       return res;
     }
 
@@ -283,12 +190,109 @@ namespace CorpusExplorer.Sdk.Blocks
             yArr[1] += val[1];
             yArr[2]++;
           }
+
           xDic.Add(y.Key, yArr);
         }
+
         res.Add(x.Key, xDic);
       }
 
       return res;
+    }
+
+    /// <summary>
+    ///   Führt die Berechnung aus
+    /// </summary>
+    /// <param name="corpus">
+    ///   Korpus
+    /// </param>
+    /// <param name="layer">
+    ///   Layer
+    /// </param>
+    /// <param name="dsel">
+    ///   Dokument GUID
+    /// </param>
+    /// <param name="doc">
+    ///   Dokument
+    /// </param>
+    protected override void CalculateCall(
+      AbstractCorpusAdapter corpus,
+      AbstractLayerAdapter layer,
+      Guid dsel,
+      int[][] doc)
+    {
+      var metas = corpus.GetDocumentMetadata(dsel);
+      if (metas == null)
+        return;
+
+      lock (_lockDocument)
+      {
+        DocumentSize.Add(dsel, new[] {(int) _token[dsel], _types[dsel]});
+      }
+
+      lock (_lockMetadata)
+      {
+        foreach (var meta in metas)
+          try
+          {
+            if (meta.Value == null ||
+                string.IsNullOrEmpty(meta.Key))
+              continue;
+
+            var key = (meta.Value as DateTime?)?.ToString("yyyy-MM-dd HH:mm:ss") ?? meta.Value.ToString();
+
+            if (MetaDataDictionary.ContainsKey(meta.Key))
+              if (MetaDataDictionary[meta.Key].ContainsKey(key))
+                MetaDataDictionary[meta.Key][key].Add(dsel);
+              else
+                MetaDataDictionary[meta.Key].Add(key, new HashSet<Guid> {dsel});
+            else
+              MetaDataDictionary.Add(
+                meta.Key,
+                new Dictionary<string, HashSet<Guid>> {{key, new HashSet<Guid> {dsel}}});
+          }
+          catch
+          {
+            // ignore
+          }
+      }
+    }
+
+    /// <summary>
+    ///   Wird nach der Berechnung aufgerufen (nach CalculateCall)
+    ///   und dient der Bereinigung von Daten
+    /// </summary>
+    protected override void CalculateCleanup()
+    {
+      _token.Clear();
+      _types.Clear();
+    }
+
+    /// <summary>
+    ///   Wird nach der Bereinigung aufgerufen (nach CalculateCall + CalculateCleanup)
+    ///   und dient dem zusammenfassen der bereinigen Ergebnisse
+    /// </summary>
+    protected override void CalculateFinalize()
+    {
+    }
+
+    /// <summary>
+    ///   Wird vor der Berechnung aufgerufen (vor CalculateCall)
+    /// </summary>
+    protected override void CalculateInitProperties()
+    {
+      MetaDataDictionary = new Dictionary<string, Dictionary<string, HashSet<Guid>>>();
+      _lockMetadata = new object();
+
+      DocumentSize = new Dictionary<Guid, int[]>();
+      _lockDocument = new object();
+
+      var dfdBlock = Selection.CreateBlock<DocumentFrequencyDictionaryBlock>();
+      dfdBlock.LayerDisplayname = LayerDisplayname;
+      dfdBlock.Calculate();
+
+      _token = dfdBlock.DocumentSizeInToken;
+      _types = dfdBlock.DocumentDictionaries.ToDictionary(x => x.Key, x => x.Value.Count);
     }
   }
 }

@@ -13,7 +13,10 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
   [Serializable]
   public class CeTranscriptEntry
   {
-    public CeTranscriptEntry() { Metadata = new Dictionary<string, object>(); }
+    public CeTranscriptEntry()
+    {
+      Metadata = new Dictionary<string, object>();
+    }
 
     /// <summary>
     ///   Gets or sets the data.

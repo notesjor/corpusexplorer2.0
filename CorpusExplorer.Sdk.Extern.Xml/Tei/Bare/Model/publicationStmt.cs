@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Bare.Model
 
     /// <remarks />
     [XmlElement("p")]
-    public modeldivPart[] Items { get { return itemsField; } set { itemsField = value; } }
+    public modeldivPart[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
   }
 }

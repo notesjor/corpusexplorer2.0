@@ -1,43 +1,48 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Xml.PostgreSqlDump.Model
-{
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-  public partial class column
-  {
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
 
+namespace CorpusExplorer.Sdk.Extern.Xml.PostgreSqlDump.Model
+{
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true)]
+  [XmlRoot(Namespace = "", IsNullable = false)]
+  public class column
+  {
     private string nameField;
 
     private string typeField;
 
     private string valueField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string name
     {
-      get { return this.nameField; }
-      set { this.nameField = value; }
+      get => nameField;
+      set => nameField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string type
     {
-      get { return this.typeField; }
-      set { this.typeField = value; }
+      get => typeField;
+      set => typeField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute(DataType = "anyURI")]
+    /// <remarks />
+    [XmlText(DataType = "anyURI")]
     public string Value
     {
-      get { return this.valueField; }
-      set { this.valueField = value; }
+      get => valueField;
+      set => valueField = value;
     }
   }
 }

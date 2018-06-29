@@ -16,17 +16,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
   /// </summary>
   public partial class AbstractForm : RadForm
   {
-    protected AbstractForm() : this(null)
-    {
-      try
-      {
-        ThemeResolutionService.ApplicationThemeName = "TelerikMetroTouch";
-      }
-      catch {}
-      RadControl.EnableDpiScaling = true;
-      InitializeComponent();
-    }
-
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractForm" /> class.
     /// </summary>
@@ -36,7 +25,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
       {
         ThemeResolutionService.ApplicationThemeName = "TelerikMetroTouch";
       }
-      catch {}
+      catch
+      {
+        // ignore
+      }
+
       Project = project;
 
       InitializeComponent();
@@ -45,7 +38,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
       {
         try
         {
-          var tp = FormElement.TitleBar.TitlePrimitive;          
+          var tp = FormElement.TitleBar.TitlePrimitive;
           tp.Font = new Font("Segoe UI", 12);
           tp.Margin = new Padding(0, 5, 0, 0);
 
@@ -54,8 +47,26 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
           ip.Size = new Size(24, 24);
           ip.ScaleSize = new Size(24, 24);
         }
-        catch {}
+        catch
+        {
+          // ignore
+        }
       };
+    }
+
+    protected AbstractForm() : this(null)
+    {
+      try
+      {
+        ThemeResolutionService.ApplicationThemeName = "TelerikMetroTouch";
+      }
+      catch
+      {
+        // ignore
+      }
+
+      RadControl.EnableDpiScaling = true;
+      InitializeComponent();
     }
 
     public Project Project { get; set; }

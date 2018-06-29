@@ -24,15 +24,31 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private textDesc textDescField;
 
     /// <remarks />
-    public creation creation { get { return creationField; } set { creationField = value; } }
+    public creation creation
+    {
+      get => creationField;
+      set => creationField = value;
+    }
 
     /// <remarks />
-    public langUsage langUsage { get { return langUsageField; } set { langUsageField = value; } }
+    public langUsage langUsage
+    {
+      get => langUsageField;
+      set => langUsageField = value;
+    }
 
     /// <remarks />
-    public textClass textClass { get { return textClassField; } set { textClassField = value; } }
+    public textClass textClass
+    {
+      get => textClassField;
+      set => textClassField = value;
+    }
 
     /// <remarks />
-    public textDesc textDesc { get { return textDescField; } set { textDescField = value; } }
+    public textDesc textDesc
+    {
+      get => textDescField;
+      set => textDescField = value;
+    }
   }
 }

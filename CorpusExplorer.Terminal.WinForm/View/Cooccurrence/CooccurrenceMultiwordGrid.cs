@@ -1,12 +1,14 @@
 ﻿#region
 
-using CorpusExplorer.Sdk.Utils.Filter.Queries;
-using CorpusExplorer.Sdk.ViewModel;
-using CorpusExplorer.Terminal.WinForm.Forms.Splash;
-using CorpusExplorer.Terminal.WinForm.Properties;
-using CorpusExplorer.Terminal.WinForm.View.AbstractTemplates;
 using System;
 using System.Linq;
+using CorpusExplorer.Sdk.Utils.Filter.Queries;
+using CorpusExplorer.Sdk.ViewModel;
+using CorpusExplorer.Terminal.WinForm.Forms.SelectLayer;
+using CorpusExplorer.Terminal.WinForm.Forms.Splash;
+using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
+using CorpusExplorer.Terminal.WinForm.Properties;
+using CorpusExplorer.Terminal.WinForm.View.AbstractTemplates;
 using Telerik.WinControls.UI;
 
 #endregion
@@ -16,7 +18,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
   /// <summary>
   ///   The grid visualisation.
   /// </summary>
-  public partial class CooccurrenceMultiwordGrid : AbstractGridViewWithCodeLense
+  public partial class CooccurrenceMultiwordGrid : AbstractGridViewWithTextLense
   {
     private NGramHighlightCooccurrencesViewModel _vm;
 
@@ -34,7 +36,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     private void Analyse()
     {
       _vm.NGramSize = int.Parse(txt_size.Text);
-      _vm.Analyse();
+      if (SelectedLayerDisplaynames != null)
+        _vm.LayerDisplayname = SelectedLayerDisplaynames[0];
+      if (!_vm.Analyse())
+        return;
       BindData();
     }
 
@@ -84,7 +89,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       QueryBuilderFunction(Resources.Kookkurrenz + "_" + Resources.Mehrwort);
     }
 
-    private void btn_filterlist_Click(object sender, EventArgs e) { FilterListFunction(Resources.Query); }
+    private void btn_filterlist_Click(object sender, EventArgs e)
+    {
+      FilterListFunction(Resources.Query);
+    }
 
     /// <summary>
     ///   The btn_function_ click.
@@ -118,22 +126,30 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     {
       CreateSelection(
         radGridView1.SelectedRows.Select(
-                      row => new FilterQuerySingleLayerExactPhrase
-                      {
-                        Inverse = false,
-                        LayerDisplayname = _vm.LayerDisplayname,
-                        LayerQueries =
-                          row.Cells["Query"].Value.ToString()
-                             .Split(
-                               new[] { " " },
-                               StringSplitOptions
-                                 .RemoveEmptyEntries)
-                      }));
+          row => new FilterQuerySingleLayerExactPhrase
+          {
+            Inverse = false,
+            LayerDisplayname = _vm.LayerDisplayname,
+            LayerQueries =
+              row.Cells["Query"].Value.ToString()
+                .Split(
+                  new[] {" "},
+                  StringSplitOptions
+                    .RemoveEmptyEntries)
+          }));
     }
 
     private void GridNGramVisualisation_ShowVisualisation(object sender, EventArgs e)
     {
-      _vm = ViewModelGet<NGramHighlightCooccurrencesViewModel>();
+      _vm = GetViewModel<NGramHighlightCooccurrencesViewModel>();
+    }
+
+    private void btn_layer_Click(object sender, EventArgs e)
+    {
+      var form = new Select1Layer(SelectedLayerDisplaynames);
+      form.ShowDialog();
+      SelectedLayerDisplaynames = form.ResultSelectedLayerDisplaynames;
+      Analyse();
     }
   }
 }

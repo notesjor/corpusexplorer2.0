@@ -10,10 +10,14 @@ namespace CorpusExplorer.Sdk.Blocks
   [Serializable]
   public class InverseDocumentVectorBlock : AbstractSimple1LayerBlock
   {
+    private readonly object _lockInverseDocumentVector = new object();
     private Dictionary<string, double> _idf;
 
-    private readonly object _lockInverseDocumentVector = new object();
-    public InverseDocumentVectorBlock() { LayerDisplayname = "Wort"; }
+    public InverseDocumentVectorBlock()
+    {
+      LayerDisplayname = "Wort";
+    }
+
     public Dictionary<Guid, Dictionary<string, double>> InverseDocumentVector { get; private set; }
     public double MinimumInversDocumentFrequency { get; set; } = 0.003d;
 
@@ -41,9 +45,9 @@ namespace CorpusExplorer.Sdk.Blocks
 
       var idv =
         dic.Where(x => _idf.ContainsKey(x.Key))
-           .ToDictionary(x => x.Key, x => x.Value / count * _idf[x.Key])
-           .Where(x => x.Value > MinimumInversDocumentFrequency)
-           .ToDictionary(x => x.Key, x => x.Value);
+          .ToDictionary(x => x.Key, x => x.Value / count * _idf[x.Key])
+          .Where(x => x.Value > MinimumInversDocumentFrequency)
+          .ToDictionary(x => x.Key, x => x.Value);
 
       lock (_lockInverseDocumentVector)
       {
@@ -51,8 +55,13 @@ namespace CorpusExplorer.Sdk.Blocks
       }
     }
 
-    protected override void CalculateCleanup() { }
-    protected override void CalculateFinalize() { }
+    protected override void CalculateCleanup()
+    {
+    }
+
+    protected override void CalculateFinalize()
+    {
+    }
 
     protected override void CalculateInitProperties()
     {
@@ -60,6 +69,7 @@ namespace CorpusExplorer.Sdk.Blocks
       fBlock.LayerDisplayname = LayerDisplayname;
       fBlock.Calculate();
       _idf = fBlock.InverseDocumentTermFrequency;
+      InverseDocumentVector = new Dictionary<Guid, Dictionary<string, double>>();
     }
   }
 }

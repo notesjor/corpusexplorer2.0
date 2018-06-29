@@ -53,6 +53,8 @@ namespace CorpusExplorer.Sdk.ViewModel
       set => _nGramPatternSize = value >= _nGramSize ? _nGramSize - 1 : value;
     }
 
+    public Dictionary<string, string[]> NGramRaw { get; set; }
+
     /// <summary>
     ///   Gets or sets the n gram size.
     /// </summary>
@@ -88,6 +90,14 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public string LayerDisplayname { get; set; }
 
+    public IEnumerable<KeyValuePair<string[], int>> TakeTopNGrams(int max)
+    {
+      return NGramFrequency
+        .OrderByDescending(x => x.Value)
+        .Take(max)
+        .Select(x => new KeyValuePair<string[], int>(NGramRaw[x.Key], x.Value));
+    }
+
     protected override void ExecuteAnalyse()
     {
       if (NGramPatternSize > 0)
@@ -100,6 +110,7 @@ namespace CorpusExplorer.Sdk.ViewModel
         block.Calculate();
 
         NGramFrequency = block.NGramFrequency;
+        NGramRaw = block.NGramRaw;
       }
       else
       {
@@ -109,18 +120,14 @@ namespace CorpusExplorer.Sdk.ViewModel
         block.Calculate();
 
         NGramFrequency = block.NGramFrequency;
+        NGramRaw = block.NGramRaw;
       }
-    }
-
-    public IEnumerable<KeyValuePair<string, int>> TakeNGramFrequency(int max)
-    {
-      return NGramFrequency.OrderByDescending(x => x.Value).Take(max);
     }
 
     protected override bool Validate()
     {
       return NGramSize > -1 && !string.IsNullOrEmpty(NGramPattern)
-             && !string.IsNullOrEmpty(LayerDisplayname);
+                            && !string.IsNullOrEmpty(LayerDisplayname);
     }
   }
 }

@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
 
     /// <remarks />
     [XmlElement("person")]
-    public person[] person { get { return personField; } set { personField = value; } }
+    public person[] person
+    {
+      get => personField;
+      set => personField = value;
+    }
   }
 }

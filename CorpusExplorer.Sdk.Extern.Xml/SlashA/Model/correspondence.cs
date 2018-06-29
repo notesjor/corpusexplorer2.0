@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string from { get { return fromField; } set { fromField = value; } }
+    public string from
+    {
+      get => fromField;
+      set => fromField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string to { get { return toField; } set { toField = value; } }
+    public string to
+    {
+      get => toField;
+      set => toField = value;
+    }
   }
 }

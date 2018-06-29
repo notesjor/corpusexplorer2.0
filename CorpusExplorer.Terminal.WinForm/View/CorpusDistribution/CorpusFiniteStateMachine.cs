@@ -35,7 +35,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
 
       ShowView += (sender, args) =>
       {
-        _vm = ViewModelGet<CorpusFiniteStateMachineViewModel>();
+        _vm = GetViewModel<CorpusFiniteStateMachineViewModel>();
         _index = _vm.AvailableMetadata.ToList();
 
         drop_category1.DataSource = _vm.AvailableMetadata.ToArray();
@@ -50,46 +50,25 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
 
     private void AnalyseAggregated()
     {
-      _vm = ViewModelGet<CorpusFiniteStateMachineViewModel>();
+      _vm = GetViewModel<CorpusFiniteStateMachineViewModel>();
       _vm.MetadataKeyTimestamp = _index[drop_sort.SelectedIndex];
       _vm.MetadataKeyEntity = _index[drop_category1.SelectedIndex];
       _vm.MetadataKeyLevel = _index[drop_category2.SelectedIndex];
       _vm.Analyse();
 
       simpleDiagram1.CallNew();
-      simpleDiagram1.CallAddNodes(new HashSet<string>(_vm.Entities), new UniversalColor(150, 255, 180));
-      simpleDiagram1.CallAddNodes(new HashSet<string>(_vm.Levels), new UniversalColor(150, 180, 255));
+      simpleDiagram1.CallAddNodes(new HashSet<string>(_vm.Entities));
+      simpleDiagram1.CallColorizeNodes(_vm.Entities, new UniversalColor(150, 255, 180));
+      simpleDiagram1.CallAddNodes(new HashSet<string>(_vm.Levels));
+      simpleDiagram1.CallColorizeNodes(_vm.Levels, new UniversalColor(150, 180, 255));
 
+      var cons = new List<Tuple<string, string, double>>();
       foreach (var connection in _vm.ConnectionsAggregated)
-        foreach (var dest in connection.Value)
-          simpleDiagram1.PlotConnection(connection.Key, dest, false);
-    }
+      foreach (var dest in connection.Value)
+        cons.Add(new Tuple<string, string, double>(connection.Key, dest, 1));
 
-    private void AnalyseSimple()
-    {
-      _vm = ViewModelGet<CorpusFiniteStateMachineViewModel>();
-      _vm.MetadataKeyTimestamp = _index[drop_sort.SelectedIndex];
-      _vm.MetadataKeyEntity = _index[drop_category1.SelectedIndex];
-      _vm.MetadataKeyLevel = _index[drop_category2.SelectedIndex];
-      _vm.Analyse();
-
-      simpleDiagram1.CallNew();
-      foreach (var connection in _vm.ConnectionsFlow)
-        simpleDiagram1.CallPlotFlow(connection, false, false);
-    }
-
-    private void btn_analyse_aggregated_Click(object sender, EventArgs e)
-    {
-      Processing.Invoke(
-        Resources.CorpusFiniteStateMachine_btn_analyse_aggregated_Click_Erstelle_den_Strukturbaum,
-        AnalyseAggregated);
-    }
-
-    private void btn_execute_Click(object sender, EventArgs e)
-    {
-      Processing.Invoke(
-        Resources.CorpusFiniteStateMachine_btn_analyse_aggregated_Click_Erstelle_den_Strukturbaum,
-        AnalyseSimple);
+      simpleDiagram1.CallAddConnections(cons);
+      simpleDiagram1.CallLayoutAsTree();
     }
 
     private void btn_export_csv_Click(object sender, EventArgs e)
@@ -107,9 +86,15 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       Export(new GraphVizGraphConverter(), Resources.GraphVizDokumentGvGv);
     }
 
-    private void btn_layout_network_Click(object sender, EventArgs e) { simpleDiagram1.CallLayoutAsSugiyama(); }
+    private void btn_layout_network_Click(object sender, EventArgs e)
+    {
+      simpleDiagram1.CallLayoutAsSugiyama();
+    }
 
-    private void btn_layout_tree_Click(object sender, EventArgs e) { simpleDiagram1.CallLayoutAsTree(); }
+    private void btn_layout_tree_Click(object sender, EventArgs e)
+    {
+      simpleDiagram1.CallLayoutAsTree();
+    }
 
     private void btn_save_Click(object sender, EventArgs e)
     {
@@ -120,12 +105,19 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       simpleDiagram1.CallSave(sfd.FileName);
     }
 
+    private void btn_start_Click(object sender, EventArgs e)
+    {
+      Processing.Invoke(
+        Resources.CorpusFiniteStateMachine_btn_analyse_aggregated_Click_Erstelle_den_Strukturbaum,
+        AnalyseAggregated);
+    }
+
     private void Export(AbstractGraphConverter type, string filter)
     {
       var sfd = new SaveFileDialog {Filter = filter, CheckPathExists = true};
       if (sfd.ShowDialog() != DialogResult.OK)
         return;
-      FileIO.Write(sfd.FileName, simpleDiagram1.Export(type), Configuration.Encoding);
+      FileIO.Write(sfd.FileName, simpleDiagram1.CallExport(type), Configuration.Encoding);
     }
   }
 }

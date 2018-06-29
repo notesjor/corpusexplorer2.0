@@ -28,6 +28,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
       Parallel.ForEach(
         doc,
+        Configuration.ParallelOptions,
         sent =>
         {
           var set = new HashSet<string>();
@@ -55,9 +56,17 @@ namespace CorpusExplorer.Sdk.Blocks
       }
     }
 
-    protected override void CalculateCleanup() { }
-    protected override void CalculateFinalize() { }
+    protected override void CalculateCleanup()
+    {
+    }
 
-    protected override void CalculateInitProperties() { Sentences = new Dictionary<string, HashSet<Guid>>(); }
+    protected override void CalculateFinalize()
+    {
+    }
+
+    protected override void CalculateInitProperties()
+    {
+      Sentences = new Dictionary<string, HashSet<Guid>>();
+    }
   }
 }

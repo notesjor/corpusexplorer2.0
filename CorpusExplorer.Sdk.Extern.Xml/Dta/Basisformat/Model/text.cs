@@ -27,16 +27,28 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private string nField;
 
     /// <remarks />
-    public cb cb { get { return cbField; } set { cbField = value; } }
+    public cb cb
+    {
+      get => cbField;
+      set => cbField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("text", IsNullable = false)]
-    public text[] group { get { return groupField; } set { groupField = value; } }
+    public text[] group
+    {
+      get => groupField;
+      set => groupField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified,
-       Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string id { get { return idField; } set { idField = value; } }
+      Namespace = "http://www.w3.org/XML/1998/namespace")]
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlElement("back", typeof(back))]
@@ -49,10 +61,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("pb", typeof(pb))]
     [XmlElement("space", typeof(space))]
     [XmlElement("text", typeof(text))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "integer")]
-    public string n { get { return nField; } set { nField = value; } }
+    public string n
+    {
+      get => nField;
+      set => nField = value;
+    }
   }
 }

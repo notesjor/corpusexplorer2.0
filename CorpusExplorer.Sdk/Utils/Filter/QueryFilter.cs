@@ -5,6 +5,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 
@@ -29,6 +30,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
 
       Parallel.ForEach(
         selection,
+        Configuration.ParallelOptions,
         csel =>
         {
           var corpus = selection.GetCorpus(csel.Key);
@@ -39,6 +41,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
 
           Parallel.ForEach(
             csel.Value,
+            Configuration.ParallelOptions,
             dsel =>
             {
               var check = true;
@@ -78,6 +81,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
 
       Parallel.ForEach(
         selection,
+        Configuration.ParallelOptions,
         csel =>
         {
           var corpus = selection.GetCorpus(csel.Key);
@@ -88,6 +92,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
 
           Parallel.ForEach(
             csel.Value,
+            Configuration.ParallelOptions,
             dsel =>
             {
               var check = true;
@@ -130,6 +135,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
 
       Parallel.ForEach(
         selection,
+        Configuration.ParallelOptions,
         csel =>
         {
           var corpus = selection.GetCorpus(csel.Key);
@@ -140,6 +146,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
 
           Parallel.ForEach(
             csel.Value,
+            Configuration.ParallelOptions,
             dsel =>
             {
               var check = true;

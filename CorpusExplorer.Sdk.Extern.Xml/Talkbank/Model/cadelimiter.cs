@@ -24,10 +24,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute]
-    public cadelimitertype label { get { return labelField; } set { labelField = value; } }
+    public cadelimitertype label
+    {
+      get => labelField;
+      set => labelField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public beginEndType type { get { return typeField; } set { typeField = value; } }
+    public beginEndType type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

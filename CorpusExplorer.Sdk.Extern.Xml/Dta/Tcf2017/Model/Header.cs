@@ -1,88 +1,63 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
-{
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.clarin.eu/cmd/1")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.clarin.eu/cmd/1", IsNullable = false)]
-  public partial class Header
-  {
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
 
-    private string mdCreatorField;
+namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
+{
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true, Namespace = "http://www.clarin.eu/cmd/1")]
+  [XmlRoot(Namespace = "http://www.clarin.eu/cmd/1", IsNullable = false)]
+  public class Header
+  {
+    private string mdCollectionDisplayNameField;
 
     private string mdCreationDateField;
 
-    private string mdSelfLinkField;
+    private string mdCreatorField;
 
     private string mdProfileField;
 
-    private string mdCollectionDisplayNameField;
+    private string mdSelfLinkField;
 
-    /// <remarks/>
-    public string MdCreator
-    {
-      get
-      {
-        return this.mdCreatorField;
-      }
-      set
-      {
-        this.mdCreatorField = value;
-      }
-    }
-
-    /// <remarks/>
-    public string MdCreationDate
-    {
-      get
-      {
-        return this.mdCreationDateField;
-      }
-      set
-      {
-        this.mdCreationDateField = value;
-      }
-    }
-
-    /// <remarks/>
-    public string MdSelfLink
-    {
-      get
-      {
-        return this.mdSelfLinkField;
-      }
-      set
-      {
-        this.mdSelfLinkField = value;
-      }
-    }
-
-    /// <remarks/>
-    public string MdProfile
-    {
-      get
-      {
-        return this.mdProfileField;
-      }
-      set
-      {
-        this.mdProfileField = value;
-      }
-    }
-
-    /// <remarks/>
+    /// <remarks />
     public string MdCollectionDisplayName
     {
-      get
-      {
-        return this.mdCollectionDisplayNameField;
-      }
-      set
-      {
-        this.mdCollectionDisplayNameField = value;
-      }
+      get => mdCollectionDisplayNameField;
+      set => mdCollectionDisplayNameField = value;
+    }
+
+    /// <remarks />
+    public string MdCreationDate
+    {
+      get => mdCreationDateField;
+      set => mdCreationDateField = value;
+    }
+
+    /// <remarks />
+    public string MdCreator
+    {
+      get => mdCreatorField;
+      set => mdCreatorField = value;
+    }
+
+    /// <remarks />
+    public string MdProfile
+    {
+      get => mdProfileField;
+      set => mdProfileField = value;
+    }
+
+    /// <remarks />
+    public string MdSelfLink
+    {
+      get => mdSelfLinkField;
+      set => mdSelfLinkField = value;
     }
   }
 }

@@ -22,14 +22,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private @ref[] refField;
 
     /// <remarks />
-    public date date { get { return dateField; } set { dateField = value; } }
+    public date date
+    {
+      get => dateField;
+      set => dateField = value;
+    }
 
     /// <remarks />
     [XmlElement("note")]
-    public note[] note { get { return noteField; } set { noteField = value; } }
+    public note[] note
+    {
+      get => noteField;
+      set => noteField = value;
+    }
 
     /// <remarks />
     [XmlElement("ref")]
-    public @ref[] @ref { get { return refField; } set { refField = value; } }
+    public @ref[] @ref
+    {
+      get => refField;
+      set => refField = value;
+    }
   }
 }

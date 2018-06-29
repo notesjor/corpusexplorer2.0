@@ -82,13 +82,13 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(652, 44);
+      this.radCommandBar1.Size = new System.Drawing.Size(652, 69);
       this.radCommandBar1.TabIndex = 2;
-      this.radCommandBar1.Text = "radCommandBar1";
       // 
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
       // 
@@ -142,9 +142,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
       // 
       // commandBarHostItem1
       // 
-      this.commandBarHostItem1.DisplayName = "commandBarHostItem1";
       this.commandBarHostItem1.Name = "commandBarHostItem1";
-      this.commandBarHostItem1.Text = "commandBarHostItem1";
+      this.commandBarHostItem1.Text = "";
       // 
       // commandBarLabel1
       // 
@@ -159,10 +158,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
       this.radGroupBox1.Controls.Add(this.metadataEditor1);
       this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Right;
       this.radGroupBox1.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Metadaten;
-      this.radGroupBox1.Location = new System.Drawing.Point(429, 99);
+      this.radGroupBox1.Location = new System.Drawing.Point(429, 124);
       this.radGroupBox1.Name = "radGroupBox1";
       this.radGroupBox1.Padding = new System.Windows.Forms.Padding(10, 25, 10, 10);
-      this.radGroupBox1.Size = new System.Drawing.Size(223, 289);
+      this.radGroupBox1.Size = new System.Drawing.Size(223, 264);
       this.radGroupBox1.TabIndex = 3;
       this.radGroupBox1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Metadaten;
       // 
@@ -173,8 +172,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
       this.metadataEditor1.Font = new System.Drawing.Font("Segoe UI", 11F);
       this.metadataEditor1.Location = new System.Drawing.Point(10, 25);
       this.metadataEditor1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.metadataEditor1.Metadata = null;
       this.metadataEditor1.Name = "metadataEditor1";
-      this.metadataEditor1.Size = new System.Drawing.Size(203, 254);
+      this.metadataEditor1.Size = new System.Drawing.Size(203, 229);
       this.metadataEditor1.TabIndex = 0;
       // 
       // radGroupBox2
@@ -183,10 +183,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
       this.radGroupBox2.Controls.Add(this.txt_text);
       this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
       this.radGroupBox2.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Text;
-      this.radGroupBox2.Location = new System.Drawing.Point(0, 99);
+      this.radGroupBox2.Location = new System.Drawing.Point(0, 124);
       this.radGroupBox2.Name = "radGroupBox2";
       this.radGroupBox2.Padding = new System.Windows.Forms.Padding(10, 25, 10, 10);
-      this.radGroupBox2.Size = new System.Drawing.Size(429, 289);
+      this.radGroupBox2.Size = new System.Drawing.Size(429, 264);
       this.radGroupBox2.TabIndex = 4;
       this.radGroupBox2.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Text;
       // 
@@ -199,7 +199,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
       this.txt_text.Multiline = true;
       this.txt_text.Name = "txt_text";
       this.txt_text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-      this.txt_text.Size = new System.Drawing.Size(409, 254);
+      this.txt_text.Size = new System.Drawing.Size(409, 229);
       this.txt_text.TabIndex = 0;
       // 
       // ShowScraperResults

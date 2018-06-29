@@ -123,4 +123,7 @@
   <data name="radLabel4.Text" xml:space="preserve">
     <value>&lt;html&gt;&lt;p&gt;&lt;strong&gt;Beispiel:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;[&lt;br /&gt;  {&lt;br /&gt;    "Kategorie": "Titel",&lt;br /&gt;    "Metadaten": "Frauenquote auch auf EU-Ebene Thema",&lt;br /&gt;    "Token": 93,&lt;br /&gt;    "Types": 71,&lt;br /&gt;    "Dokumente": 1&lt;br /&gt;  },&lt;/p&gt;&lt;/html&gt;</value>
   </data>
+  <data name="radLabel5.Text" xml:space="preserve">
+    <value>&lt;html&gt;Sie können jeden TASK der CorpusExplorerConsole (CEC) nutzen, um Abfragen für die Visualisierung zu bauen. Fügen Sie einfach folgende Sequenz in den HTML-Quellcode ein:&lt;br /&gt; &lt;br /&gt;/*CEC [TASK]*/&lt;br /&gt; &lt;br /&gt;Ersetzen Sie dabei [TASK] durch einen gültigen CEC-Befehl. Bsp.:&lt;br /&gt; &lt;br /&gt;/*CEC import#ImporterCec6#"C:\corpus.cec6" how-many-tokens */&lt;/html&gt;</value>
+  </data>
 </root>

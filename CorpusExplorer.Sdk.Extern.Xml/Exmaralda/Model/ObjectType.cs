@@ -24,17 +24,33 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     private string nameField;
 
     /// <remarks />
-    public AvailabilityType Availability { get { return availabilityField; } set { availabilityField = value; } }
+    public AvailabilityType Availability
+    {
+      get => availabilityField;
+      set => availabilityField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("Key", IsNullable = false)]
-    public KeyType[] Description { get { return descriptionField; } set { descriptionField = value; } }
+    public KeyType[] Description
+    {
+      get => descriptionField;
+      set => descriptionField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified, DataType = "ID")]
-    public string Id { get { return idField; } set { idField = value; } }
+    public string Id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
-    public string Name { get { return nameField; } set { nameField = value; } }
+    public string Name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
   }
 }

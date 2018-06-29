@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.HuDesktop.Model
 
     /// <remarks />
     [XmlElement("idno")]
-    public idno[] idno { get { return idnoField; } set { idnoField = value; } }
+    public idno[] idno
+    {
+      get => idnoField;
+      set => idnoField = value;
+    }
   }
 }

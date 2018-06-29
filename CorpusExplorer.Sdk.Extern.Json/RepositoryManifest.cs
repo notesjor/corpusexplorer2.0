@@ -2,11 +2,11 @@
 
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
-using CorpusExplorer.Sdk.Extern.Json.TwitterStream;
 using CorpusExplorer.Sdk.Extern.Json.TwitterStatus;
+using CorpusExplorer.Sdk.Extern.Json.TwitterStream;
 using CorpusExplorer.Sdk.Extern.Json.YourTwapperKeeper;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;

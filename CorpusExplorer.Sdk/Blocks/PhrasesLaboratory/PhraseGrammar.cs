@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.PhrasesLaboratory.GrammarRule.Abstract;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 
 namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory
@@ -10,7 +11,10 @@ namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory
   [Serializable]
   public class PhraseGrammar
   {
-    public PhraseGrammar() { Rules = new Dictionary<int, List<AbstractGrammarRule>>(); }
+    public PhraseGrammar()
+    {
+      Rules = new Dictionary<int, List<AbstractGrammarRule>>();
+    }
 
     public Dictionary<int, List<AbstractGrammarRule>> Rules { get; set; }
 
@@ -30,7 +34,8 @@ namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory
     // ReSharper disable once ReturnTypeCanBeEnumerable.Global
     public Constituent[][] ParseDocument(Constituent[][] terminals)
     {
-      Parallel.For(0, terminals.Length, i => { terminals[i] = ParseSentence(terminals[i].ToList()).ToArray(); });
+      Parallel.For(0, terminals.Length, Configuration.ParallelOptions,
+        i => { terminals[i] = ParseSentence(terminals[i].ToList()).ToArray(); });
 
       return terminals;
     }
@@ -62,12 +67,10 @@ namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory
                 foreach (var x in arr)
                   sentence.Remove(x);
               }
-            }
-            while (rule.IsRecursive &&
-                   sentence.Count != ruleCount);
+            } while (rule.IsRecursive &&
+                     sentence.Count != ruleCount);
           }
-        }
-        while (sentence.Count != levelCount);
+        } while (sentence.Count != levelCount);
       }
 
       return sentence;

@@ -24,6 +24,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
     /// <remarks />
     [XmlElement("div", typeof(div))]
     [XmlElement("incident", typeof(incident))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
   }
 }

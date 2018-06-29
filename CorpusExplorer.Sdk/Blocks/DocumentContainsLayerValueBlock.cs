@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 
 namespace CorpusExplorer.Sdk.Blocks
 {
@@ -11,7 +12,10 @@ namespace CorpusExplorer.Sdk.Blocks
   {
     private readonly object _lock = new object();
 
-    public DocumentContainsLayerValueBlock() { LayerDisplayname = "Wort"; }
+    public DocumentContainsLayerValueBlock()
+    {
+      LayerDisplayname = "Wort";
+    }
 
     public string LayerDisplayname { get; set; }
 
@@ -26,6 +30,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
       Parallel.ForEach(
         Selection,
+        Configuration.ParallelOptions,
         csel =>
         {
           var corpus = Selection.GetCorpus(csel.Key);
@@ -42,6 +47,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
           Parallel.ForEach(
             csel.Value,
+            Configuration.ParallelOptions,
             dsel =>
             {
               var doc = layer[dsel];

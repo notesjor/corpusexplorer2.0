@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Model;
 
 namespace CorpusExplorer.Sdk.EchtzeitEngine.Model
@@ -12,13 +10,110 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model
   [Serializable]
   public class UniversalStorage
   {
-    [NonSerialized]
-    private Dictionary<Selection, Dictionary<string, Dictionary<string, DataTable>>> _data =
+    [NonSerialized] private Dictionary<Selection, Dictionary<string, Dictionary<string, DataTable>>> _data =
       new Dictionary<Selection, Dictionary<string, Dictionary<string, DataTable>>>();
 
-    private object _dataLock = new object();
+    private readonly object _dataLock = new object();
 
     private Tuple<Selection, string, string, DataTable>[] _dataSerialized;
+
+    public IEnumerable<Selection> AllSelections
+    {
+      get
+      {
+        lock (_dataLock)
+        {
+          return _data.Keys;
+        }
+      }
+    }
+
+    public IEnumerable<string> AllMethods()
+    {
+      lock (_dataLock)
+      {
+        return new HashSet<string>(_data.SelectMany(x => x.Value.Keys));
+      }
+    }
+
+    public IEnumerable<string> AllMethodsIn(Selection selection)
+    {
+      lock (_dataLock)
+      {
+        return _data.ContainsKey(selection) ? _data[selection].Keys : null;
+      }
+    }
+
+    public IEnumerable<string> AllModifications()
+    {
+      lock (_dataLock)
+      {
+        return new HashSet<string>(from x in _data from y in x.Value from z in y.Value.Keys select z);
+      }
+    }
+
+    public IEnumerable<string> AllModificationsIn(Selection selection)
+    {
+      lock (_dataLock)
+      {
+        return _data.ContainsKey(selection)
+          ? new HashSet<string>(_data[selection].SelectMany(y => y.Value.Keys))
+          : null;
+      }
+    }
+
+    public IEnumerable<string> AllModificationsIn(Selection selection, string method)
+    {
+      lock (_dataLock)
+      {
+        return _data.ContainsKey(selection)
+          ? (_data[selection].ContainsKey(method)
+            ? _data[selection][method].Keys
+            : null)
+          : null;
+      }
+    }
+
+    public bool Contains(Selection selection, string method, string modification)
+    {
+      lock (_dataLock)
+      {
+        return _data.ContainsKey(selection) && _data[selection].ContainsKey(method) &&
+               _data[selection][method].ContainsKey(modification);
+      }
+    }
+
+    public bool Contains(Selection selection, string method)
+    {
+      lock (_dataLock)
+      {
+        return _data.ContainsKey(selection) && _data[selection].ContainsKey(method);
+      }
+    }
+
+    public DataTable Get(Selection selection, string method, string modification)
+    {
+      lock (_dataLock)
+      {
+        return _data.ContainsKey(selection)
+          ? (_data[selection].ContainsKey(method)
+            ? (_data[selection][method].ContainsKey(modification)
+              ? _data[selection][method][modification]
+              : null)
+            : null)
+          : null;
+      }
+    }
+
+    [OnSerializing]
+    public void OnSerializing(StreamingContext context)
+    {
+      _dataSerialized =
+        (from x in _data
+          from y in x.Value
+          from z in y.Value
+          select new Tuple<Selection, string, string, DataTable>(x.Key, y.Key, z.Key, z.Value)).ToArray();
+    }
 
     public void Set(Selection selection, string method, string modification, DataTable dataTable)
     {
@@ -36,88 +131,6 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model
         else
           _data[selection][method][modification] = dataTable;
       }
-    }
-
-    public bool Contains(Selection selection, string method, string modification)
-    {
-      lock (_dataLock)
-        return _data.ContainsKey(selection) && _data[selection].ContainsKey(method) && _data[selection][method].ContainsKey(modification);
-    }
-
-    public bool Contains(Selection selection, string method)
-    {
-      lock (_dataLock)
-        return _data.ContainsKey(selection) && _data[selection].ContainsKey(method);
-    }
-
-    public DataTable Get(Selection selection, string method, string modification)
-    {
-      lock (_dataLock)
-        return _data.ContainsKey(selection)
-               ? (_data[selection].ContainsKey(method)
-                    ? (_data[selection][method].ContainsKey(modification)
-                         ? _data[selection][method][modification]
-                         : null)
-                    : null)
-               : null;
-    }
-
-    public IEnumerable<Selection> AllSelections
-    {
-      get
-      {
-        lock (_dataLock)
-          return _data.Keys;
-      }
-    }
-
-    public IEnumerable<string> AllMethods()
-    {
-      lock (_dataLock)
-        return new HashSet<string>(_data.SelectMany(x => x.Value.Keys));
-    }
-
-    public IEnumerable<string> AllModifications()
-    {
-      lock (_dataLock)
-        return new HashSet<string>(from x in _data from y in x.Value from z in y.Value.Keys select z);
-    }
-
-    public IEnumerable<string> AllMethodsIn(Selection selection)
-    {
-      lock (_dataLock)
-        return _data.ContainsKey(selection) ? _data[selection].Keys : null;
-    }
-
-    public IEnumerable<string> AllModificationsIn(Selection selection)
-    {
-      lock (_dataLock)
-        return _data.ContainsKey(selection) ? new HashSet<string>(_data[selection].SelectMany(y => y.Value.Keys)) : null;
-    }
-
-    public IEnumerable<string> AllModificationsIn(Selection selection, string method)
-    {
-      lock (_dataLock)
-        return _data.ContainsKey(selection)
-               ? (_data[selection].ContainsKey(method)
-                    ? _data[selection][method].Keys
-                    : null)
-               : null;
-    }
-
-    [OnSerializing]
-    public void OnSerializing(StreamingContext context)
-    {
-      _dataSerialized = (from x in _data from y in x.Value from z in y.Value select new Tuple<Selection, string, string, DataTable>(x.Key, y.Key, z.Key, z.Value)).ToArray();
-    }
-
-    [OnSerialized]
-    private void OnSerialized(StreamingContext context)
-    {
-      _dataSerialized = new Tuple<Selection, string, string, DataTable>[0];
-      _dataSerialized = null;
-      GC.Collect();
-      GC.WaitForPendingFinalizers();
     }
 
     [OnDeserialized]
@@ -140,6 +153,15 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model
       }
 
       OnSerialized(context);
+    }
+
+    [OnSerialized]
+    private void OnSerialized(StreamingContext context)
+    {
+      _dataSerialized = new Tuple<Selection, string, string, DataTable>[0];
+      _dataSerialized = null;
+      GC.Collect();
+      GC.WaitForPendingFinalizers();
     }
   }
 }

@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus.Model
 
     /// <remarks />
     [XmlElement("creator")]
-    public creator[] creator { get { return creatorField; } set { creatorField = value; } }
+    public creator[] creator
+    {
+      get => creatorField;
+      set => creatorField = value;
+    }
   }
 }

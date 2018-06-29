@@ -25,8 +25,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
     [XmlAttribute("timepoint-reference", DataType = "IDREF")]
     public string timepointreference
     {
-      get { return timepointreferenceField; }
-      set { timepointreferenceField = value; }
+      get => timepointreferenceField;
+      set => timepointreferenceField = value;
     }
   }
 }

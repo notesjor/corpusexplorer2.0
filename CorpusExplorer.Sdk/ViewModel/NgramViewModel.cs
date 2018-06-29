@@ -65,6 +65,21 @@ namespace CorpusExplorer.Sdk.ViewModel
       return res;
     }
 
+    public DataTable GetDataTable(int minimalFrequency)
+    {
+      var res = new DataTable();
+      res.Columns.Add(Resources.NGram, typeof(string));
+      res.Columns.Add(Resources.Frequency, typeof(int));
+
+      res.BeginLoadData();
+      foreach (var pair in NGramFrequency)
+        if (pair.Value > minimalFrequency)
+          res.Rows.Add(pair.Key, pair.Value);
+      res.EndLoadData();
+
+      return res;
+    }
+
     public IEnumerable<string> LayerDisplaynames => Selection.LayerUniqueDisplaynames;
 
     public string LayerDisplayname { get; set; }
@@ -96,7 +111,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     protected override bool Validate()
     {
       return !string.IsNullOrEmpty(NGramPattern) && !string.IsNullOrEmpty(LayerDisplayname)
-             && NGramPatternSize < NGramSize && NGramSize > 0;
+                                                 && NGramPatternSize < NGramSize && NGramSize > 0;
     }
   }
 }

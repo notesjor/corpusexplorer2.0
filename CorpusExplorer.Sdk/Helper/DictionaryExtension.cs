@@ -243,19 +243,6 @@ namespace CorpusExplorer.Sdk.Helper
     }
 
     /// <summary>
-    ///   Baut eine Standardtabelle die von ALLEN ConvertToDataTable-Extensions genutzt wird.
-    ///   Entweder als Basis für die Ausgabetabelle, oder aber als Default Return Value
-    /// </summary>
-    /// <returns></returns>
-    private static DataTable CreateDataTable()
-    {
-      var res = new DataTable();
-      res.Columns.Add("Key", typeof(string));
-      res.Columns.Add("Value", typeof(double));
-      return res;
-    }
-
-    /// <summary>
     ///   Drilldown a 3Level-Dictionary
     /// </summary>
     /// <returns>
@@ -265,9 +252,9 @@ namespace CorpusExplorer.Sdk.Helper
       this Dictionary<string, Dictionary<string, Dictionary<string, double>>> dictionary)
     {
       return dictionary == null
-               ? CreateDataTable()
-               : dictionary.ToDictionary(p1 => p1.Key, p1 => p1.Value.SelectMany(p2 => p2.Value).Sum(p3 => p3.Value))
-                           .ConvertToDataTableNormalized();
+        ? CreateDataTable()
+        : dictionary.ToDictionary(p1 => p1.Key, p1 => p1.Value.SelectMany(p2 => p2.Value).Sum(p3 => p3.Value))
+          .ConvertToDataTableNormalized();
     }
 
     /// <summary>
@@ -279,9 +266,9 @@ namespace CorpusExplorer.Sdk.Helper
     public static DataTable DrilldownToDataTable(this Dictionary<string, Dictionary<string, double>> dictionary)
     {
       return dictionary == null
-               ? CreateDataTable()
-               : dictionary.ToDictionary(p1 => p1.Key, p1 => p1.Value.Sum(p2 => p2.Value))
-                           .ConvertToDataTableNormalized();
+        ? CreateDataTable()
+        : dictionary.ToDictionary(p1 => p1.Key, p1 => p1.Value.Sum(p2 => p2.Value))
+          .ConvertToDataTableNormalized();
     }
 
     /// <summary>
@@ -299,9 +286,9 @@ namespace CorpusExplorer.Sdk.Helper
       string key)
     {
       return dictionary == null || !dictionary.ContainsKey(key)
-               ? CreateDataTable()
-               : dictionary[key].ToDictionary(pair => pair.Key, pair => pair.Value.Sum(p2 => p2.Value))
-                                .ConvertToDataTableNormalized();
+        ? CreateDataTable()
+        : dictionary[key].ToDictionary(pair => pair.Key, pair => pair.Value.Sum(p2 => p2.Value))
+          .ConvertToDataTableNormalized();
     }
 
     /// <summary>
@@ -319,8 +306,8 @@ namespace CorpusExplorer.Sdk.Helper
       string key)
     {
       return dictionary == null || !dictionary.ContainsKey(key)
-               ? CreateDataTable()
-               : dictionary[key].ConvertToDataTableNormalized();
+        ? CreateDataTable()
+        : dictionary[key].ConvertToDataTableNormalized();
     }
 
     /// <summary>
@@ -342,8 +329,8 @@ namespace CorpusExplorer.Sdk.Helper
       string key2)
     {
       return dictionary == null || !dictionary.ContainsKey(key1) || !dictionary.ContainsKey(key2)
-               ? CreateDataTable()
-               : dictionary[key1][key2].ConvertToDataTableNormalized();
+        ? CreateDataTable()
+        : dictionary[key1][key2].ConvertToDataTableNormalized();
     }
 
     /// <summary>
@@ -748,6 +735,7 @@ namespace CorpusExplorer.Sdk.Helper
               !double.IsNaN(val))
             values.Add(e2.Key, val);
         }
+
         if (values.Count > 0)
           res.Add(e1.Key, values);
       }
@@ -784,6 +772,7 @@ namespace CorpusExplorer.Sdk.Helper
               !double.IsNaN(val))
             values.Add(e2.Key, val);
         }
+
         if (values.Count > 0)
           res.Add(e1.Key, values);
       }
@@ -823,13 +812,28 @@ namespace CorpusExplorer.Sdk.Helper
                 !double.IsNaN(value))
               dic2.Add(e3.Key, value);
           }
+
           if (dic2.Count > 0)
             dic1.Add(e2.Key, dic2);
         }
+
         if (dic1.Count > 0)
           res.Add(e1.Key, dic1);
       }
 
+      return res;
+    }
+
+    /// <summary>
+    ///   Baut eine Standardtabelle die von ALLEN ConvertToDataTable-Extensions genutzt wird.
+    ///   Entweder als Basis für die Ausgabetabelle, oder aber als Default Return Value
+    /// </summary>
+    /// <returns></returns>
+    private static DataTable CreateDataTable()
+    {
+      var res = new DataTable();
+      res.Columns.Add("Key", typeof(string));
+      res.Columns.Add("Value", typeof(double));
       return res;
     }
   }

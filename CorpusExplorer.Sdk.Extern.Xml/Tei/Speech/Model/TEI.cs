@@ -23,9 +23,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
     private text textField;
 
     /// <remarks />
-    public teiHeader teiHeader { get { return teiHeaderField; } set { teiHeaderField = value; } }
+    public teiHeader teiHeader
+    {
+      get => teiHeaderField;
+      set => teiHeaderField = value;
+    }
 
     /// <remarks />
-    public text text { get { return textField; } set { textField = value; } }
+    public text text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

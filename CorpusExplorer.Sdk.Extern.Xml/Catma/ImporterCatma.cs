@@ -2,20 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
-using Bcs.IO;
+using CorpusExplorer.Core.DocumentProcessing.Exporter.Tlv;
+using CorpusExplorer.Core.DocumentProcessing.Exporter.Tlv.Model;
 using CorpusExplorer.Core.DocumentProcessing.Importer.TlvXml;
-using CorpusExplorer.Core.Exporter.Tlv;
-using CorpusExplorer.Core.Exporter.Tlv.Model;
 using CorpusExplorer.Sdk.Ecosystem.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
 using CorpusExplorer.Sdk.Extern.Xml.Catma.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Catma.Parser;
 using CorpusExplorer.Sdk.Extern.Xml.Catma.Parser.Abstract;
-using CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model;
-using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
@@ -27,13 +21,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Catma
     {
       var xml = new XmlDocument();
       using (var fs = new FileStream(importFilePath, FileMode.Open, FileAccess.Read))
-        xml.Load(fs);
+      using (var bs = new BufferedStream(fs))
+      {
+        xml.Load(bs);
+      }
+
       var model = xml.DocumentElement;
 
       // METADATEN
       var meta = new Dictionary<string, object>
       {
-        {"Titel",  model.GetFirstSubNodeRecursive("title")?.InnerText},
+        {"Titel", model.GetFirstSubNodeRecursive("title")?.InnerText},
         {"Autor", model.GetFirstSubNodeRecursive("author")?.InnerText},
         {"Sprache", model.GetFirstSubNodeRecursive("language")?.GetAttribute("ident")}
       };
@@ -54,9 +52,12 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Catma
 
       foreach (var layer in layerDef)
       {
-        var sub = from x in layer.GetSubNodes("fsDecl") where x.HasAttribute("xml:id") && colors.ContainsKey(x.GetAttribute("xml:id")) select x;
+        var sub = from x in layer.GetSubNodes("fsDecl")
+          where x.HasAttribute("xml:id") && colors.ContainsKey(x.GetAttribute("xml:id"))
+          select x;
         foreach (var s in sub)
-          values.Add($"#{colors[s.GetAttribute("xml:id")]}", new KeyValuePair<string, string>(layer.GetAttribute("n"), s.GetFirstSubNode("fsDescr").InnerText));
+          values.Add($"#{colors[s.GetAttribute("xml:id")]}",
+            new KeyValuePair<string, string>(layer.GetAttribute("n"), s.GetFirstSubNode("fsDescr").InnerText));
       }
 
       // Annotationen anwenden
@@ -70,17 +71,19 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Catma
         if (!string.IsNullOrEmpty(fileName))
           break;
       }
+
       if (string.IsNullOrEmpty(fileName))
         return null;
 
-      var builder = new TlvBuilder(File.ReadAllText(Path.Combine(Path.GetDirectoryName(importFilePath), fileName), Configuration.Encoding))
+      var builder = new TlvBuilder(File.ReadAllText(Path.Combine(Path.GetDirectoryName(importFilePath), fileName),
+        Configuration.Encoding))
       {
         Metadata = meta
       };
 
       foreach (var seg in segs)
       {
-        var split = seg.GetAttribute("ana").Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+        var split = seg.GetAttribute("ana").Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
         var ptr = seg.GetFirstSubNode("ptr");
         if (ptr == null)
           continue;
@@ -100,6 +103,16 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Catma
       return tlv.ExecuteInline(builder.GetXmlOutput());
     }
 
+    private Tuple<string, int, int> GetAnnotationPosition(ref AbstractCatmaRangeParser parser, XmlNode ptr)
+    {
+      if (ptr == null)
+        return null;
+      if (parser == null)
+        parser = CatmaRangeParserFactory.Create(ptr.GetAttribute("target"));
+
+      return parser.Parse(ptr.GetAttribute("target"));
+    }
+
     private static List<XmlNode> RemoveClonesByAttribute(IEnumerable<XmlNode> nodes, string attributeName)
     {
       var fss = nodes.ToList();
@@ -112,27 +125,16 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Catma
         else
           clones.Add(type, 1);
       }
+
       foreach (var x in clones)
       {
         if (x.Value == 1)
           continue;
         var cloneNodes = fss.Where(y => y.GetAttribute(attributeName) == x.Key).ToArray();
-        foreach (var n in cloneNodes)
-        {
-          fss.Remove(n);
-        }
+        foreach (var n in cloneNodes) fss.Remove(n);
       }
+
       return fss;
-    }
-
-    private Tuple<string, int, int> GetAnnotationPosition(ref AbstractCatmaRangeParser parser, XmlNode ptr)
-    {
-      if (ptr == null)
-        return null;
-      if (parser == null)
-        parser = CatmaRangeParserFactory.Create(ptr.GetAttribute("target"));
-
-      return parser.Parse(ptr.GetAttribute("target"));
     }
   }
 }

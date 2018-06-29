@@ -24,15 +24,27 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tiger.Model
 
     /// <remarks />
     [XmlElement(Form = XmlSchemaForm.Unqualified)]
-    public graphType graph { get { return graphField; } set { graphField = value; } }
+    public graphType graph
+    {
+      get => graphField;
+      set => graphField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlArray(Form = XmlSchemaForm.Unqualified)]
     [XmlArrayItem("match", Form = XmlSchemaForm.Unqualified, IsNullable = false)]
-    public matchType[] matches { get { return matchesField; } set { matchesField = value; } }
+    public matchType[] matches
+    {
+      get => matchesField;
+      set => matchesField = value;
+    }
   }
 }

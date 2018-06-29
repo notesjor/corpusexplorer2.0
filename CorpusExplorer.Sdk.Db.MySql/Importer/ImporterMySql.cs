@@ -16,6 +16,9 @@ namespace CorpusExplorer.Sdk.Db.MySql.Importer
     }
 
     private string CreateConnectionString(DbSettingsReader setting)
-      => $"user id={setting.Username};password={setting.Password};host={setting.Host};port={setting.Port};database={setting.DbName};persist security info=True";
+    {
+      return
+        $"user id={setting.Username};password={setting.Password};host={setting.Host};port={setting.Port};database={setting.DbName};persist security info=True";
+    }
   }
 }

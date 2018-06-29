@@ -10,7 +10,12 @@ namespace CorpusExplorer.Sdk.Blocks
   public class DocumentTermFrequencyBlock : AbstractSimple1LayerBlock
   {
     private readonly object _lockDocumentTermFrequency = new object();
-    public DocumentTermFrequencyBlock() { LayerDisplayname = "Wort"; }
+
+    public DocumentTermFrequencyBlock()
+    {
+      LayerDisplayname = "Wort";
+    }
+
     public Dictionary<string, int> DocumentTermFrequency { get; set; }
 
     protected override void CalculateCall(
@@ -31,9 +36,17 @@ namespace CorpusExplorer.Sdk.Blocks
       }
     }
 
-    protected override void CalculateCleanup() { }
-    protected override void CalculateFinalize() { }
+    protected override void CalculateCleanup()
+    {
+    }
 
-    protected override void CalculateInitProperties() { DocumentTermFrequency = new Dictionary<string, int>(); }
+    protected override void CalculateFinalize()
+    {
+    }
+
+    protected override void CalculateInitProperties()
+    {
+      DocumentTermFrequency = new Dictionary<string, int>();
+    }
   }
 }

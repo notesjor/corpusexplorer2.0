@@ -26,23 +26,43 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private object itemField;
 
     /// <remarks />
-    public byline byline { get { return bylineField; } set { bylineField = value; } }
+    public byline byline
+    {
+      get => bylineField;
+      set => bylineField = value;
+    }
 
     /// <remarks />
     [XmlElement("docImprint")]
-    public string[] docImprint { get { return docImprintField; } set { docImprintField = value; } }
+    public string[] docImprint
+    {
+      get => docImprintField;
+      set => docImprintField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("titlePart", IsNullable = false)]
-    public titlePart[] docTitle { get { return docTitleField; } set { docTitleField = value; } }
+    public titlePart[] docTitle
+    {
+      get => docTitleField;
+      set => docTitleField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlElement("docEdition", typeof(string))]
     [XmlElement("epigraph", typeof(epigraph))]
-    public object Item { get { return itemField; } set { itemField = value; } }
+    public object Item
+    {
+      get => itemField;
+      set => itemField = value;
+    }
   }
 }

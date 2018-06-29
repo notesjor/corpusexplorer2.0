@@ -1,10 +1,10 @@
-﻿using CorpusExplorer.Sdk.Extern.Xml.Dpxc.Model;
-using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Windows.Forms;
+using CorpusExplorer.Sdk.Extern.Xml.Dpxc.Model;
+using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
 
 namespace CorpusExplorer.Terminal.WinForm.Forms.ValidationCorpus
 {
@@ -18,7 +18,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.ValidationCorpus
     private string _labelB;
     private string _labelC;
 
-    public GenerateValidationCorpus() { InitializeComponent(); }
+    public GenerateValidationCorpus()
+    {
+      InitializeComponent();
+    }
 
     private void btn_generate_Click(object sender, EventArgs e)
     {
@@ -41,36 +44,52 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.ValidationCorpus
 
       var docs = new List<Dictionary<string, object>>();
       for (var i = 0; i < _AB; i++)
-        docs.Add(new Dictionary<string, object> { { "Text", CrazyGenerator1(i, textAB1, textAB2) } });
+        docs.Add(new Dictionary<string, object> {{"Text", CrazyGenerator1(i, textAB1, textAB2)}});
       for (var i = 0; i < _A; i++)
-        docs.Add(new Dictionary<string, object> { { "Text", CrazyGenerator1(i, textAC1, textAC2) } });
+        docs.Add(new Dictionary<string, object> {{"Text", CrazyGenerator1(i, textAC1, textAC2)}});
       for (var i = 0; i < _B; i++)
-        docs.Add(new Dictionary<string, object> { { "Text", CrazyGenerator1(i, textBC1, textBC2) } });
+        docs.Add(new Dictionary<string, object> {{"Text", CrazyGenerator1(i, textBC1, textBC2)}});
       for (var i = 0; i < _C; i++)
-        docs.Add(new Dictionary<string, object> { { "Text", textCC } });
+        docs.Add(new Dictionary<string, object> {{"Text", textCC}});
 
       var dpxc = new DocPlusCorpus(docs);
 
-      var sfd = new SaveFileDialog { Filter = "DocPlusXmlCorpus (*.dpxc)|*.dpxc" };
+      var sfd = new SaveFileDialog {Filter = "DocPlusXmlCorpus (*.dpxc)|*.dpxc"};
       if (sfd.ShowDialog() != DialogResult.OK)
         return;
 
       using (var fs = new FileStream(sfd.FileName, FileMode.Create, FileAccess.Write))
+      using (var bs = new BufferedStream(fs))
       {
         var bf = new NetDataContractSerializer();
-        bf.Serialize(fs, dpxc);
+        bf.Serialize(bs, dpxc);
       }
     }
 
-    private void cnt_AB_ValueChanged(object sender, EventArgs e) { _AB = cnt_AB.Value; }
+    private void cnt_AB_ValueChanged(object sender, EventArgs e)
+    {
+      _AB = cnt_AB.Value;
+    }
 
-    private void cnt_AnotB_ValueChanged(object sender, EventArgs e) { _A = cnt_AnotB.Value; }
+    private void cnt_AnotB_ValueChanged(object sender, EventArgs e)
+    {
+      _A = cnt_AnotB.Value;
+    }
 
-    private void cnt_notAB_ValueChanged(object sender, EventArgs e) { _B = cnt_notAB.Value; }
+    private void cnt_notAB_ValueChanged(object sender, EventArgs e)
+    {
+      _B = cnt_notAB.Value;
+    }
 
-    private void cnt_notAnotB_ValueChanged(object sender, EventArgs e) { _C = cnt_notAnotB.Value; }
+    private void cnt_notAnotB_ValueChanged(object sender, EventArgs e)
+    {
+      _C = cnt_notAnotB.Value;
+    }
 
-    private string CrazyGenerator1(int i, string variant1, string variant2) { return i % 2 == 0 ? variant1 : variant2; }
+    private string CrazyGenerator1(int i, string variant1, string variant2)
+    {
+      return i % 2 == 0 ? variant1 : variant2;
+    }
 
     private void txt_a_TextChanged(object sender, EventArgs e)
     {
@@ -86,6 +105,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.ValidationCorpus
       lbl_isNotB.Text = $"nicht {_labelB}";
     }
 
-    private void txt_c_TextChanged(object sender, EventArgs e) { _labelC = txt_c.Text; }
+    private void txt_c_TextChanged(object sender, EventArgs e)
+    {
+      _labelC = txt_c.Text;
+    }
   }
 }

@@ -23,10 +23,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     private string whoField;
 
     /// <remarks />
-    public wordType w { get { return wField; } set { wField = value; } }
+    public wordType w
+    {
+      get => wField;
+      set => wField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string who { get { return whoField; } set { whoField = value; } }
+    public string who
+    {
+      get => whoField;
+      set => whoField = value;
+    }
   }
 }

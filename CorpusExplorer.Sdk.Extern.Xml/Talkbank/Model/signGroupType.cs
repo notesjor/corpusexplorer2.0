@@ -38,10 +38,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     [XmlElement("tagMarker", typeof(tagMarkerType))]
     [XmlElement("underline", typeof(underline))]
     [XmlElement("w", typeof(wordType))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlElement("sw")]
-    public sw[] sw { get { return swField; } set { swField = value; } }
+    public sw[] sw
+    {
+      get => swField;
+      set => swField = value;
+    }
   }
 }

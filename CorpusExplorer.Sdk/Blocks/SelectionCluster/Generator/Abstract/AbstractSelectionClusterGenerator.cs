@@ -10,14 +10,11 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract
   {
     public string MetadataKey { get; set; }
 
-    public AbstractCluster[] AutoGenerate(Selection selection)
-    {
-      return AutoGenerate(
-        selection.DocumentMetadata.AsParallel()
-                 .Where(x => x.Value.ContainsKey(MetadataKey))
-                 .ToDictionary(x => x.Key, x => x.Value[MetadataKey]));
-    }
+    public abstract AbstractCluster[] AutoGenerate(Selection selection);
 
-    protected abstract AbstractCluster[] AutoGenerate(Dictionary<Guid, object> metadataDictionary);
+    protected internal virtual KeyValuePair<Guid, Dictionary<string, object>>[] GetDocumentGuids(Selection selection)
+    {
+      return selection.DocumentMetadata.ToArray();
+    }
   }
 }

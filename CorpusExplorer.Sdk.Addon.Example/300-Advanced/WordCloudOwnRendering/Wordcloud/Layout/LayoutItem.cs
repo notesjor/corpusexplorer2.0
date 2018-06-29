@@ -18,6 +18,9 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
     public RectangleF Rectangle { get; }
     public WordCloudItem Word { get; }
 
-    public LayoutItem Clone() { return new LayoutItem(Rectangle, Word); }
+    public LayoutItem Clone()
+    {
+      return new LayoutItem(Rectangle, Word);
+    }
   }
 }

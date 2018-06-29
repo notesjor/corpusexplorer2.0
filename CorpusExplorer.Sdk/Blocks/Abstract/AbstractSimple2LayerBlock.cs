@@ -1,11 +1,11 @@
 ﻿using System.Linq;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Model.Cache.Helper.Exception;
 
 #region
 
-using CorpusExplorer.Sdk.Helper;
 using System;
 using System.Threading.Tasks;
 
@@ -54,6 +54,7 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
 
       Parallel.ForEach(
         Selection,
+        Configuration.ParallelOptions,
         csel =>
         {
           var corpus = Selection.GetCorpus(csel.Key);
@@ -68,6 +69,7 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
 
           Parallel.ForEach(
             csel.Value,
+            Configuration.ParallelOptions,
             dsel =>
             {
               if (!layer1.ContainsDocument(dsel) || !layer2.ContainsDocument(dsel))
@@ -76,9 +78,14 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
               var doc1 = layer1[dsel];
               var doc2 = layer2[dsel];
 
+              // Überprüfung 
               if (doc1 == null ||
-                  doc2 == null ||
-                  doc1.DocumentSize() != doc2.DocumentSize())
+                  doc2 == null)
+                return;
+
+              // Alle Dokumente müssen die gleiche Länge haben (Stichprobe)
+              if (doc1.Length != doc2.Length || doc1.Length < 1 || doc1[0].Length != doc2[0].Length ||
+                  doc2[doc2.Length - 1].Length != doc1[doc1.Length - 1].Length)
                 return;
 
               CalculateCall(corpus, dsel, layer1, doc1, layer2, doc2);

@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "anyURI")]
-    public string scheme { get { return schemeField; } set { schemeField = value; } }
+    public string scheme
+    {
+      get => schemeField;
+      set => schemeField = value;
+    }
 
     /// <remarks />
     [XmlText(DataType = "anyURI")]
-    public string Value { get { return valueField; } set { valueField = value; } }
+    public string Value
+    {
+      get => valueField;
+      set => valueField = value;
+    }
   }
 }

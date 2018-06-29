@@ -13,5 +13,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
   [DesignerCategory("code")]
   [XmlType(AnonymousType = true)]
   [XmlRoot(Namespace = "", IsNullable = false)]
-  public class keyTerm {}
+  public class keyTerm
+  {
+  }
 }

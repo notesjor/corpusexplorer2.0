@@ -13,9 +13,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dpxc
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
       using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
+      using (var bs = new BufferedStream(fs))
       {
         var bf = new NetDataContractSerializer();
-        var corpus = bf.Deserialize(fs) as DocPlusCorpus;
+        var corpus = bf.Deserialize(bs) as DocPlusCorpus;
         return corpus?.Documents;
       }
     }

@@ -28,8 +28,7 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// <summary>
     ///   The _metadata.
     /// </summary>
-    [NonSerialized]
-    private Dictionary<string, object> _metadata;
+    [NonSerialized] private Dictionary<string, object> _metadata;
 
     private KeyValuePair<string, object>[] _metadataSerialized;
 
@@ -58,7 +57,11 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// <summary>
     ///   Gets or sets the metadata.
     /// </summary>
-    public Dictionary<string, object> Metadata { get => _metadata; set => _metadata = value; }
+    public Dictionary<string, object> Metadata
+    {
+      get => _metadata;
+      set => _metadata = value;
+    }
 
     /// <summary>
     ///   Gets or sets the sync timestamp.
@@ -100,6 +103,17 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
       return _guid.GetHashCode();
     }
 
+    /// <summary>
+    ///   Gibt eine Zeichenfolge zurück, die das aktuelle Objekt darstellt.
+    /// </summary>
+    /// <returns>
+    ///   Eine Zeichenfolge, die das aktuelle Objekt darstellt.
+    /// </returns>
+    public override string ToString()
+    {
+      return $"CEOID:{GetType().FullName}:{Guid.ToString("N")}:{Displayname}";
+    }
+
     [OnDeserialized]
     private void OnDeserialized(StreamingContext context)
     {
@@ -114,6 +128,7 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
           foreach (var entry in _metadataSerialized.Where(entry => !_metadata.ContainsKey(entry.Key)))
             _metadata.Add(entry.Key, entry.Value);
       }
+
       _metadataSerialized = null;
     }
 
@@ -127,17 +142,6 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     private void OnSerializing(StreamingContext context)
     {
       _metadataSerialized = _metadata?.ToArray();
-    }
-
-    /// <summary>
-    ///   Gibt eine Zeichenfolge zurück, die das aktuelle Objekt darstellt.
-    /// </summary>
-    /// <returns>
-    ///   Eine Zeichenfolge, die das aktuelle Objekt darstellt.
-    /// </returns>
-    public override string ToString()
-    {
-      return $"CEOID:{GetType().FullName}:{Guid.ToString("N")}:{Displayname}";
     }
   }
 }

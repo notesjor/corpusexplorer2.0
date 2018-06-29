@@ -25,7 +25,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string corresp { get { return correspField; } set { correspField = value; } }
+    public string corresp
+    {
+      get => correspField;
+      set => correspField = value;
+    }
 
     /// <remarks />
     [XmlElement("castList", typeof(castList))]
@@ -41,14 +45,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("pb", typeof(pb))]
     [XmlElement("sp", typeof(sp))]
     [XmlElement("supplied", typeof(supplied))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string rendition { get { return renditionField; } set { renditionField = value; } }
+    public string rendition
+    {
+      get => renditionField;
+      set => renditionField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

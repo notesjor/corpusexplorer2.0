@@ -25,12 +25,24 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlAttribute]
-    public outputOO oo { get { return ooField; } set { ooField = value; } }
+    public outputOO oo
+    {
+      get => ooField;
+      set => ooField = value;
+    }
 
     /// <remarks />
-    public string prefix { get { return prefixField; } set { prefixField = value; } }
+    public string prefix
+    {
+      get => prefixField;
+      set => prefixField = value;
+    }
 
     /// <remarks />
-    public string suffix { get { return suffixField; } set { suffixField = value; } }
+    public string suffix
+    {
+      get => suffixField;
+      set => suffixField = value;
+    }
   }
 }

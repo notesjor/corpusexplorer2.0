@@ -32,14 +32,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("persName", typeof(persName))]
     [XmlElement("placeName", typeof(placeName))]
     [XmlElement("salute", typeof(salute))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string rendition { get { return renditionField; } set { renditionField = value; } }
+    public string rendition
+    {
+      get => renditionField;
+      set => renditionField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

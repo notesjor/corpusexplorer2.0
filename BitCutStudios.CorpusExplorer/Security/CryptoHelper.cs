@@ -47,19 +47,6 @@ namespace Bcs.Security
     }
 
     /// <summary>
-    ///   Deccode with RSA
-    /// </summary>
-    /// <param name="prov">RSA-Provider</param>
-    /// <param name="data">Input Data</param>
-    /// <returns>
-    ///   Output Data
-    /// </returns>
-    internal static byte[] DecodeRsa(RSACryptoServiceProvider prov, byte[] data)
-    {
-      return prov.Decrypt(data, false);
-    }
-
-    /// <summary>
     ///   Liest von einem Stream, verschlüsselt dessen Daten und gibt diese als
     ///   MemoryStream zurück
     /// </summary>
@@ -229,6 +216,19 @@ namespace Bcs.Security
     public static bool VerifyData(RSACryptoServiceProvider prov, string data, string hash)
     {
       return VerifyData(prov, Encoding.UTF8.GetBytes(data), Convert.FromBase64String(hash));
+    }
+
+    /// <summary>
+    ///   Deccode with RSA
+    /// </summary>
+    /// <param name="prov">RSA-Provider</param>
+    /// <param name="data">Input Data</param>
+    /// <returns>
+    ///   Output Data
+    /// </returns>
+    internal static byte[] DecodeRsa(RSACryptoServiceProvider prov, byte[] data)
+    {
+      return prov.Decrypt(data, false);
     }
   }
 }

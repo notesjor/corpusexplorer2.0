@@ -23,9 +23,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus.Model
     private nickname nicknameField;
 
     /// <remarks />
-    public string mode { get { return modeField; } set { modeField = value; } }
+    public string mode
+    {
+      get => modeField;
+      set => modeField = value;
+    }
 
     /// <remarks />
-    public nickname nickname { get { return nicknameField; } set { nicknameField = value; } }
+    public nickname nickname
+    {
+      get => nicknameField;
+      set => nicknameField = value;
+    }
   }
 }

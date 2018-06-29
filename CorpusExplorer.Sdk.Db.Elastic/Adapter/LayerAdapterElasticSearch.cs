@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Db.Elastic.Model;
 using CorpusExplorer.Sdk.Db.Elastic.Model.Context;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
@@ -20,23 +21,8 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
     private Layer _layer;
     private CeDictionary _values;
 
-    private LayerAdapterElasticSearch() { }
-
-    public override string this[int index]
-      => _values[index];
-
-    public override int this[string index]
-      => _values[index];
-
-    public override int[][] this[Guid guid]
+    private LayerAdapterElasticSearch()
     {
-      get { return _db.GetLayerDocument(guid, _layer.LayerId).Content; }
-      set
-      {
-        var doc = _db.GetLayerDocument(guid, _layer.LayerId);
-        doc.Content = value;
-        _db.Update(doc);
-      }
     }
 
     public override int CountDocuments
@@ -48,10 +34,30 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
     public override IEnumerable<Guid> DocumentGuids
       => from x in _layer.LayerDocuments select x;
 
+    public override string this[int index]
+      => _values[index];
+
+    public override int this[string index]
+      => _values[index];
+
+    public override int[][] this[Guid guid]
+    {
+      get => _db.GetLayerDocument(guid, _layer.LayerId).Content;
+      set
+      {
+        var doc = _db.GetLayerDocument(guid, _layer.LayerId);
+        doc.Content = value;
+        _db.Update(doc);
+      }
+    }
+
     public override IEnumerable<string> Values
       => _values.Values;
 
-    public override bool ContainsDocument(Guid guid) => _layer.LayerDocuments.Any(x => x == guid);
+    public override bool ContainsDocument(Guid guid)
+    {
+      return _layer.LayerDocuments.Any(x => x == guid);
+    }
 
     public override AbstractLayerAdapter Copy()
     {
@@ -164,7 +170,6 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
       {
         var doc = context.GetDocument(d.Key);
         if (doc == null)
-        {
           context.Add(new Document
           {
             CorpusId = corpusSet.CorpusId,
@@ -173,7 +178,6 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
             SentenceCount = d.Value.Length,
             TokenCount = d.Value.SelectMany(s => s).Count()
           });
-        }
 
         context.Add(
           new LayerDocument
@@ -203,7 +207,9 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
     }
 
     public override Dictionary<Guid, int[][]> GetDocumentDictionary()
-      => _layer.LayerDocuments.ToDictionary(x => x, x => _db.GetLayerDocument(x, _layer.LayerId).Content);
+    {
+      return _layer.LayerDocuments.ToDictionary(x => x, x => _db.GetLayerDocument(x, _layer.LayerId).Content);
+    }
 
     public override IEnumerable<IEnumerable<bool>> GetDocumentLayervalueMask(Guid documentGuid, string layerValue)
     {
@@ -242,12 +248,14 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
       return res;
     }
 
-    protected override CeDictionary GetValueDictionary() => _layer.Dictionary;
-
     public override Dictionary<string, int> ReciveRawLayerDictionary()
-      => _values.ReciveRawValueToIndex().ToDictionary(x => x.Key, x => x.Value);
+    {
+      return _values.ReciveRawValueToIndex().ToDictionary(x => x.Key, x => x.Value);
+    }
 
-    public override void RefreshDictionaries() { }
+    public override void RefreshDictionaries()
+    {
+    }
 
     public override bool SetDocumentLayerValueMaskBySwitch(
       Guid documentGuid,
@@ -316,6 +324,7 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
 
             cnt++;
           }
+
           ndoc.Add(nsent.ToArray());
         }
 
@@ -356,6 +365,11 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
       _layer.Dictionary = _values;
     }
 
+    protected override CeDictionary GetValueDictionary()
+    {
+      return _layer.Dictionary;
+    }
+
     protected override IEnumerable<string> ValuesByRegex(string regEx)
     {
       var res = new HashSet<string>();
@@ -364,6 +378,7 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
       var regex = new Regex(regEx);
       Parallel.ForEach(
         _values,
+        Configuration.ParallelOptions,
         x =>
         {
           if (regex.IsMatch(x.Value))

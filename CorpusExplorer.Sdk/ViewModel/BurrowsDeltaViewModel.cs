@@ -18,14 +18,6 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public int MFWCount { get; set; } = 2000;
 
-    protected override void ExecuteAnalyse()
-    {
-      _block = Selection.CreateBlock<BurrowsDeltaBlock>();
-      _block.MFWCount = MFWCount;
-      _block.MetadataKey = MetadataKey;
-      _block.Calculate();
-    }
-
     public KeyValuePair<string, double> GetBestMatchingAuthor(Selection selectionToCompare)
     {
       var tmp = _block.Compare(selectionToCompare).CompareResults;
@@ -38,8 +30,8 @@ namespace CorpusExplorer.Sdk.ViewModel
     public Dictionary<string, double> GetMatchingAuthors(Selection selectionToCompare, double threshold)
     {
       return _block.Compare(selectionToCompare)
-                   .CompareResults.Where(x => x.Value > threshold)
-                   .ToDictionary(x => x.Key, x => x.Value);
+        .CompareResults.Where(x => x.Value > threshold)
+        .ToDictionary(x => x.Key, x => x.Value);
     }
 
     public Dictionary<string, double> GetProfile(Selection selectionToCompare)
@@ -47,6 +39,17 @@ namespace CorpusExplorer.Sdk.ViewModel
       return _block.Compare(selectionToCompare).CompareProfile;
     }
 
-    protected override bool Validate() { return !string.IsNullOrEmpty(MetadataKey); }
+    protected override void ExecuteAnalyse()
+    {
+      _block = Selection.CreateBlock<BurrowsDeltaBlock>();
+      _block.MFWCount = MFWCount;
+      _block.MetadataKey = MetadataKey;
+      _block.Calculate();
+    }
+
+    protected override bool Validate()
+    {
+      return !string.IsNullOrEmpty(MetadataKey);
+    }
   }
 }

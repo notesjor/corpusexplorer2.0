@@ -23,14 +23,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.HuDesktop.Model
     private s[] sField;
 
     /// <remarks />
-    public body body { get { return bodyField; } set { bodyField = value; } }
+    public body body
+    {
+      get => bodyField;
+      set => bodyField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified, Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlElement("s")]
-    public s[] s { get { return sField; } set { sField = value; } }
+    public s[] s
+    {
+      get => sField;
+      set => sField = value;
+    }
   }
 }

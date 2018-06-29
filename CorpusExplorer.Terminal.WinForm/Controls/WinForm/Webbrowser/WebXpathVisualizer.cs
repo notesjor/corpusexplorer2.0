@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bcs.IO;
 using CefSharp;
@@ -16,18 +9,21 @@ using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using HtmlAgilityPack;
+using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
 namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
 {
   public partial class WebXpathVisualizer : UserControl
   {
-    private HtmlAgilityPack.HtmlDocument _documentOriginal;
-    private HtmlAgilityPack.HtmlDocument _documentWork;
     private ChromiumWebBrowser _browser;
+    private HtmlDocument _documentOriginal;
+    private HtmlDocument _documentWork;
+    private readonly TemporaryFile _file;
+
+    private bool _lock;
+    private DateTime _lockTimestamp = DateTime.Now;
     private string _url;
     private string _xPath;
-    private BoundObject _data;
-    private TemporaryFile _file;
 
     public WebXpathVisualizer()
     {
@@ -37,10 +33,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
       Disposed += WebXpathVisualizer_Disposed;
     }
 
-    private void WebXpathVisualizer_Disposed(object sender, EventArgs e)
-    {
-      _file.Dispose();
-    }
+    public HtmlNodeCollection SelectedNodesByXPath { get; set; }
 
     public string Url
     {
@@ -48,10 +41,12 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
       set
       {
         _url = value;
-        _documentOriginal = new HtmlAgilityPack.HtmlDocument();
+        _documentOriginal = new HtmlDocument();
 
-        using (var wc = new WebClient { Encoding = Configuration.Encoding })
+        using (var wc = new WebClient {Encoding = Configuration.Encoding})
+        {
           _documentOriginal.LoadHtml(wc.DownloadString(_url));
+        }
 
         // Bereinige
         var links = _documentOriginal.DocumentNode.SelectNodes("//a");
@@ -69,7 +64,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
           if (t.Name == "script")
             continue;
           // Setze Bridge
-          t.SetAttributeValue("onclick", $"ce.call('{ t.XPath.Replace("/", "-") }')");
+          t.SetAttributeValue("onclick", $"ce.call('{t.XPath.Replace("/", "-")}')");
         }
 
         FileIO.Write(_file.Path, _documentOriginal.DocumentNode.OuterHtml);
@@ -84,9 +79,6 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
         }
       }
     }
-
-    private bool _lock;
-    private DateTime _lockTimestamp = DateTime.Now;
 
     public string XPath
     {
@@ -107,17 +99,14 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
             return;
 
           // Klone
-          _documentWork = new HtmlAgilityPack.HtmlDocument();
+          _documentWork = new HtmlDocument();
           _documentWork.LoadHtml(_documentOriginal.DocumentNode.OuterHtml);
 
           SelectedNodesByXPath = _documentWork.DocumentNode.SelectNodes(_xPath);
           if (SelectedNodesByXPath == null)
             return;
 
-          foreach (var node in SelectedNodesByXPath)
-          {
-            node.SetAttributeValue("style", "border:5px dotted #0000ff;");
-          }
+          foreach (var node in SelectedNodesByXPath) node.SetAttributeValue("style", "border:5px dotted #0000ff;");
 
           FileIO.Write(_file.Path, _documentWork.DocumentNode.OuterHtml);
 
@@ -144,8 +133,6 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
       }
     }
 
-    public HtmlNodeCollection SelectedNodesByXPath { get; set; }
-
     public event EventHandler XPathChanged;
 
     private void InitializeBrowser()
@@ -153,7 +140,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
       if (_browser != null)
         return;
 
-      BoundObject.XPathChanged += (s, e) => XPath = (string)s;
+      BoundObject.XPathChanged += (s, e) => XPath = (string) s;
 
       _browser = StaticBrowserHandler.Get(Size);
       // _browser.LoadingStateChanged += _browser_LoadingStateChanged;
@@ -169,19 +156,24 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
       Controls.Add(_browser);
       ResumeLayout(false);
     }
-    
+
+    private void WebXpathVisualizer_Disposed(object sender, EventArgs e)
+    {
+      _file.Dispose();
+    }
+
     public class BoundObject
     {
-      public static event EventHandler XPathChanged;
-
       //We expect an exception here, so tell VS to ignore
       [DebuggerHidden]
       public void Call(string xpath)
       {
         if (string.IsNullOrEmpty(xpath))
           return;
-        XPathChanged(xpath.Replace("-", "/"), null);
+        XPathChanged?.Invoke(xpath.Replace("-", "/"), null);
       }
+
+      public static event EventHandler XPathChanged;
     }
   }
 }

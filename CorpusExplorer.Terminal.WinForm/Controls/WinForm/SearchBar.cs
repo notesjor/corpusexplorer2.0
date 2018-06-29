@@ -11,11 +11,22 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
   [ToolboxItem(true)]
   public partial class SearchBar : AbstractUserControl
   {
-    public SearchBar() { InitializeComponent(); }
+    public SearchBar()
+    {
+      InitializeComponent();
+    }
 
-    public string InputText { get { return radTextBox1.Text; } set { radTextBox1.Text = value; } }
+    public string InputText
+    {
+      get => radTextBox1.Text;
+      set => radTextBox1.Text = value;
+    }
 
-    public string NullText { get { return radTextBox1.NullText; } set { radTextBox1.NullText = value; } }
+    public string NullText
+    {
+      get => radTextBox1.NullText;
+      set => radTextBox1.NullText = value;
+    }
 
     public event EventHandler ClickSearchButton;
 

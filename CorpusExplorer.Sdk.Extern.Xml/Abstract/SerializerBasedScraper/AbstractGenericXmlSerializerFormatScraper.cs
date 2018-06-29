@@ -14,9 +14,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper
 
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
-      return ScrapDocuments(Serializer.Deserialize(file));
+      return ScrapDocuments(file, Serializer.Deserialize(file));
     }
 
-    protected abstract IEnumerable<Dictionary<string, object>> ScrapDocuments(T model);
+    protected abstract IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, T model);
   }
 }

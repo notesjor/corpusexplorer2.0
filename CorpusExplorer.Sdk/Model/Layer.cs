@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.CorpusExplorer;
 
@@ -28,8 +29,7 @@ namespace CorpusExplorer.Sdk.Model
     /// <summary>
     ///   The _documents.
     /// </summary>
-    [NonSerialized]
-    private Dictionary<Guid, int[][]> _documents = new Dictionary<Guid, int[][]>();
+    [NonSerialized] private Dictionary<Guid, int[][]> _documents = new Dictionary<Guid, int[][]>();
 
     private KeyValuePair<Guid, int[][]>[] _documentsSerialized;
 
@@ -81,7 +81,24 @@ namespace CorpusExplorer.Sdk.Model
     /// <summary>
     ///   Prevents a default instance of the <see cref="Layer" /> class from being created.
     /// </summary>
-    private Layer() { }
+    private Layer()
+    {
+    }
+
+    /// <summary>
+    ///   Anzahl der enthaltenen Dokumente
+    /// </summary>
+    public int CountDocuments => _documents.Count;
+
+    /// <summary>
+    ///   Anzahl der enthaltenen Werte
+    /// </summary>
+    public int CountValues => _dictionary.Count;
+
+    /// <summary>
+    ///   Auflistung aller Dokument-GUIDs
+    /// </summary>
+    public IEnumerable<Guid> DocumentGuids => _documents.Keys;
 
     /// <summary>
     ///   Gibt die entsprechende Wertbeschreibung zurück
@@ -139,21 +156,6 @@ namespace CorpusExplorer.Sdk.Model
         }
       }
     }
-
-    /// <summary>
-    ///   Anzahl der enthaltenen Dokumente
-    /// </summary>
-    public int CountDocuments => _documents.Count;
-
-    /// <summary>
-    ///   Anzahl der enthaltenen Werte
-    /// </summary>
-    public int CountValues => _dictionary.Count;
-
-    /// <summary>
-    ///   Auflistung aller Dokument-GUIDs
-    /// </summary>
-    public IEnumerable<Guid> DocumentGuids => _documents.Keys;
 
     /// <summary>
     ///   Auflistung aller Werte des Layers
@@ -214,6 +216,7 @@ namespace CorpusExplorer.Sdk.Model
         {
           // ignore
         }
+
       var ndic = new Dictionary<string, int>();
       foreach (var entry in _dictionary)
         try
@@ -310,40 +313,9 @@ namespace CorpusExplorer.Sdk.Model
       return res;
     }
 
-    public CeDictionary GetValueDictionary() { return _dictionary; }
-
-    [OnDeserialized]
-    private void OnDeserialized(StreamingContext context)
+    public CeDictionary GetValueDictionary()
     {
-      try
-      {
-        _documents = _documentsSerialized?.ToDictionary(x => x.Key, x => x.Value) ?? new Dictionary<Guid, int[][]>();
-      }
-      catch // Fallback
-      {
-        _documents = new Dictionary<Guid, int[][]>();
-
-        if (_documentsSerialized != null)
-          foreach (var entry in _documentsSerialized.Where(entry => !_documents.ContainsKey(entry.Key)))
-            _documents.Add(entry.Key, entry.Value);
-      }
-      _documentsSerialized = null;
-      GC.Collect();
-      GC.WaitForPendingFinalizers();
-    }
-
-    [OnSerialized]
-    private void OnSerialized(StreamingContext context)
-    {
-      _documentsSerialized = null;
-      GC.Collect();
-      GC.WaitForPendingFinalizers();
-    }
-
-    [OnSerializing]
-    private void OnSerializing(StreamingContext context)
-    {
-      _documentsSerialized = _documents?.ToArray();
+      return _dictionary;
     }
 
     public Dictionary<string, int> ReciveRawLayerDictionary()
@@ -351,7 +323,10 @@ namespace CorpusExplorer.Sdk.Model
       return _dictionary.ReciveRawValueToIndex().ToDictionary(x => x.Key, x => x.Value);
     }
 
-    public void RefreshDictionaries() { _dictionary.RefreshDictionaries(); }
+    public void RefreshDictionaries()
+    {
+      _dictionary.RefreshDictionaries();
+    }
 
     public bool SetDocumentLayerValueMaskBySwitch(Guid documentGuid, int sentenceIndex, int wordIndex, string value)
     {
@@ -417,6 +392,7 @@ namespace CorpusExplorer.Sdk.Model
 
             cnt++;
           }
+
           ndoc.Add(nsent.ToArray());
         }
 
@@ -441,6 +417,7 @@ namespace CorpusExplorer.Sdk.Model
 
       Parallel.ForEach(
         DocumentGuids,
+        Configuration.ParallelOptions,
         dsel =>
         {
           var doc = this[dsel];
@@ -470,6 +447,7 @@ namespace CorpusExplorer.Sdk.Model
               word = j;
             }
           }
+
           // Fire-and-forget
           ToConcept_WriteValue(
             open,
@@ -482,24 +460,6 @@ namespace CorpusExplorer.Sdk.Model
             doc[doc.Length - 1].Length - 1);
         });
       return res;
-    }
-
-    private void ToConcept_WriteValue(
-      int open,
-      object @lock,
-      ref Concept res,
-      Guid dsel,
-      int sent,
-      int word,
-      int i,
-      int j)
-    {
-      if (open == -1)
-        return;
-      lock (@lock)
-      {
-        res.AddMark(dsel, sent, word, i, j, this[open]);
-      }
     }
 
     /// <summary>
@@ -554,6 +514,7 @@ namespace CorpusExplorer.Sdk.Model
 
       Parallel.ForEach(
         this,
+        Configuration.ParallelOptions,
         doc =>
         {
           foreach (var s in doc.Value)
@@ -582,6 +543,7 @@ namespace CorpusExplorer.Sdk.Model
       var regex = new Regex(regEx);
       Parallel.ForEach(
         _dictionary,
+        Configuration.ParallelOptions,
         x =>
         {
           if (regex.IsMatch(x.Value))
@@ -606,6 +568,59 @@ namespace CorpusExplorer.Sdk.Model
     public IEnumerable<int> ValuesToIndices(IEnumerable<string> values)
     {
       return values.Select(value => this[value]).Where(value => value > -1);
+    }
+
+    [OnDeserialized]
+    private void OnDeserialized(StreamingContext context)
+    {
+      try
+      {
+        _documents = _documentsSerialized?.ToDictionary(x => x.Key, x => x.Value) ?? new Dictionary<Guid, int[][]>();
+      }
+      catch // Fallback
+      {
+        _documents = new Dictionary<Guid, int[][]>();
+
+        if (_documentsSerialized != null)
+          foreach (var entry in _documentsSerialized.Where(entry => !_documents.ContainsKey(entry.Key)))
+            _documents.Add(entry.Key, entry.Value);
+      }
+
+      _documentsSerialized = null;
+      GC.Collect();
+      GC.WaitForPendingFinalizers();
+    }
+
+    [OnSerialized]
+    private void OnSerialized(StreamingContext context)
+    {
+      _documentsSerialized = null;
+      GC.Collect();
+      GC.WaitForPendingFinalizers();
+    }
+
+    [OnSerializing]
+    private void OnSerializing(StreamingContext context)
+    {
+      _documentsSerialized = _documents?.ToArray();
+    }
+
+    private void ToConcept_WriteValue(
+      int open,
+      object @lock,
+      ref Concept res,
+      Guid dsel,
+      int sent,
+      int word,
+      int i,
+      int j)
+    {
+      if (open == -1)
+        return;
+      lock (@lock)
+      {
+        res.AddMark(dsel, sent, word, i, j, this[open]);
+      }
     }
   }
 }

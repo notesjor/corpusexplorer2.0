@@ -29,30 +29,58 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string end { get { return endField; } set { endField = value; } }
+    public string end
+    {
+      get => endField;
+      set => endField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public eventMedium medium { get { return mediumField; } set { mediumField = value; } }
+    public eventMedium medium
+    {
+      get => mediumField;
+      set => mediumField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool mediumSpecified { get { return mediumFieldSpecified; } set { mediumFieldSpecified = value; } }
+    public bool mediumSpecified
+    {
+      get => mediumFieldSpecified;
+      set => mediumFieldSpecified = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string start { get { return startField; } set { startField = value; } }
+    public string start
+    {
+      get => startField;
+      set => startField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
 
     /// <remarks />
     [XmlElement("ud-information")]
-    public udinformation[] udinformation { get { return udinformationField; } set { udinformationField = value; } }
+    public udinformation[] udinformation
+    {
+      get => udinformationField;
+      set => udinformationField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string url { get { return urlField; } set { urlField = value; } }
+    public string url
+    {
+      get => urlField;
+      set => urlField = value;
+    }
   }
 }

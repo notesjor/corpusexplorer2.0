@@ -4,12 +4,9 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Forms;
-using CefSharp;
 using CorpusExplorer.Sdk.Diagnostic;
-using CorpusExplorer.Sdk.Ecosystem;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Terminal.WinForm.Forms.Dashboard;
 using CorpusExplorer.Terminal.WinForm.Forms.Error;
@@ -33,7 +30,7 @@ namespace CorpusExplorer.Terminal.WinForm
         var form = new ErrorConsole();
         form.ShowDialog();
       }
-      
+
       InMemoryErrorConsole.Clear();
     }
 
@@ -50,7 +47,7 @@ namespace CorpusExplorer.Terminal.WinForm
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
       Application.ThreadException += Application_ThreadException;
-      
+
       try
       {
         if (InsightController.AskForPermission)
@@ -63,9 +60,9 @@ namespace CorpusExplorer.Terminal.WinForm
       {
         // ignore
       }
-      
+
       Welcome.SplashShow();
-      
+
       try
       {
         Application.Run(new Dashboard(args));
@@ -89,14 +86,14 @@ namespace CorpusExplorer.Terminal.WinForm
         // ignore
       }
     }
-    
+
     // Will attempt to load missing assembly from either x86 or x64 subdir
     private static Assembly Resolver(object sender, ResolveEventArgs args)
     {
-      if (!args.Name.StartsWith("CefSharp")) 
+      if (!args.Name.StartsWith("CefSharp"))
         return null;
 
-      var assemblyName = args.Name.Split(new[] { ',' }, 2)[0] + ".dll";
+      var assemblyName = args.Name.Split(new[] {','}, 2)[0] + ".dll";
       var archSpecificPath = Path.Combine(Configuration.AppPath,
         Environment.Is64BitProcess ? "x64" : "x86",
         assemblyName);

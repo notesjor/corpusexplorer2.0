@@ -15,7 +15,7 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
     {
       Surface = new RectangleF(new PointF(0, 0), size);
       QuadTree = new QuadTree<LayoutItem>(Surface);
-      Center = new PointF(Surface.X + size.Width/2, Surface.Y + size.Height/2);
+      Center = new PointF(Surface.X + size.Width / 2, Surface.Y + size.Height / 2);
     }
 
     protected PointF Center { get; set; }
@@ -38,16 +38,22 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
       }
     }
 
-    public IEnumerable<LayoutItem> GetWordsInArea(RectangleF area) { return QuadTree.Query(area); }
+    public IEnumerable<LayoutItem> GetWordsInArea(RectangleF area)
+    {
+      return QuadTree.Query(area);
+    }
+
+    public abstract bool TryFindFreeRectangle(SizeF size, out RectangleF foundRectangle);
+
+    protected bool IsInsideSurface(RectangleF targetRectangle)
+    {
+      return IsInside(Surface, targetRectangle);
+    }
 
     private static bool IsInside(RectangleF outer, RectangleF inner)
     {
-      return (inner.X >= outer.X) && (inner.Y >= outer.Y) && (inner.Bottom <= outer.Bottom)
-             && (inner.Right <= outer.Right);
+      return inner.X >= outer.X && inner.Y >= outer.Y && inner.Bottom <= outer.Bottom
+             && inner.Right <= outer.Right;
     }
-
-    protected bool IsInsideSurface(RectangleF targetRectangle) { return IsInside(Surface, targetRectangle); }
-
-    public abstract bool TryFindFreeRectangle(SizeF size, out RectangleF foundRectangle);
   }
 }

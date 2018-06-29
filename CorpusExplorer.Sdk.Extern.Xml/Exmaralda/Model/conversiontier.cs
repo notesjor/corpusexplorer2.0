@@ -27,22 +27,42 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string category { get { return categoryField; } set { categoryField = value; } }
+    public string category
+    {
+      get => categoryField;
+      set => categoryField = value;
+    }
 
     /// <remarks />
     [XmlAttribute("display-name")]
-    public string displayname { get { return displaynameField; } set { displaynameField = value; } }
+    public string displayname
+    {
+      get => displaynameField;
+      set => displaynameField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string name { get { return nameField; } set { nameField = value; } }
+    public string name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
 
     /// <remarks />
     [XmlAttribute("segmented-tier-id", DataType = "IDREF")]
-    public string segmentedtierid { get { return segmentedtieridField; } set { segmentedtieridField = value; } }
+    public string segmentedtierid
+    {
+      get => segmentedtieridField;
+      set => segmentedtieridField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public conversiontierType type { get { return typeField; } set { typeField = value; } }
+    public conversiontierType type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

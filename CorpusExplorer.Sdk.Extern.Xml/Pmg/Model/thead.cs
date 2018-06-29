@@ -20,6 +20,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Pmg.Model
     /// <remarks />
     [XmlArrayItem("td", typeof(td), IsNullable = false)]
     [XmlArrayItem("th", typeof(th), IsNullable = false)]
-    public Flow[][] tr { get { return trField; } set { trField = value; } }
+    public Flow[][] tr
+    {
+      get => trField;
+      set => trField = value;
+    }
   }
 }

@@ -11,7 +11,10 @@ namespace CorpusExplorer.Sdk.Blocks.GroupDocuments
 
     protected override Type Type => typeof(DateTime);
 
-    public override object Add(object obj, ulong span) { return ((DateTime) obj).Add(new TimeSpan((int) span)); }
+    public override object Add(object obj, ulong span)
+    {
+      return ((DateTime) obj).Add(new TimeSpan((int) span));
+    }
 
     public override double Difference(object objA, object objB)
     {

@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string Default { get { return defaultField; } set { defaultField = value; } }
+    public string Default
+    {
+      get => defaultField;
+      set => defaultField = value;
+    }
 
     /// <remarks />
     [XmlElement("h.keywords")]
-    public hkeywords hkeywords { get { return hkeywordsField; } set { hkeywordsField = value; } }
+    public hkeywords hkeywords
+    {
+      get => hkeywordsField;
+      set => hkeywordsField = value;
+    }
   }
 }

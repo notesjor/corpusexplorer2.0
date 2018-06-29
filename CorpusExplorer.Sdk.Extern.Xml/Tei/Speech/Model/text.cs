@@ -25,9 +25,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
     /// <remarks />
     [XmlArrayItem("div", typeof(div), IsNullable = false)]
     [XmlArrayItem("incident", typeof(incident), IsNullable = false)]
-    public object[] body { get { return bodyField; } set { bodyField = value; } }
+    public object[] body
+    {
+      get => bodyField;
+      set => bodyField = value;
+    }
 
     /// <remarks />
-    public timeline timeline { get { return timelineField; } set { timelineField = value; } }
+    public timeline timeline
+    {
+      get => timelineField;
+      set => timelineField = value;
+    }
   }
 }

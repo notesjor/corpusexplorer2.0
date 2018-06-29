@@ -38,6 +38,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -50,11 +51,15 @@
     <Compile Include="Tagger\Abstract\AbstractSentimentTagger.cs" />
     <Compile Include="Tagger\SentimentLevelTagger.cs" />
     <Compile Include="Tagger\SentimentValueTagger.cs" />
+    <Compile Include="ViewModel\SentimentDetectionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="CorpusExplorerNextSnKey.pfx" />
     <None Include="mycert.pfx" />
+    <None Include="XDependencies\SentimentDetection\PredefinedModels\iggsa_ALL.sdm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="XDependencies\SentimentDetection\PredefinedModels\iggsa_mlsa.sdm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

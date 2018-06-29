@@ -21,6 +21,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     [XmlElement("dateline", typeof(dateline))]
     [XmlElement("salute", typeof(salute))]
     [XmlElement("signed", typeof(signed))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
   }
 }

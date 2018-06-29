@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using CorpusExplorer.Sdk.ViewModel;
+using CorpusExplorer.Terminal.WinForm.Helper;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Properties;
 using Telerik.Charting;
@@ -32,13 +33,16 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
 
     public double MaximalValue { get; set; }
 
-    private void btn_go_Click(object sender, EventArgs e)
+    private void btn_export_Click(object sender, EventArgs e)
+    {
+      DataTableExporter.Export(_vm.GetDataTable());
+    }
+
+    private void Analyse()
     {
       var meta = commandBarDropDownList1.SelectedItem.Value as string;
-      var queries = radAutoCompleteBox1.Items.Select(item => item.Text).ToArray();
 
-      var clusters = 0;
-      if (!int.TryParse(commandBarTextBox1.Text, out clusters))
+      if (!int.TryParse(commandBarTextBox1.Text, out var clusters))
         clusters = 0;
       Clusters = clusters;
 
@@ -46,7 +50,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       {
         _last = meta;
         _vm.DateTimeProperty = meta;
-        _vm.LayerQueries = queries;
+        _vm.LayerQueries = wordBag1.ResultQueries;
         _vm.Analyse();
       }
 
@@ -59,7 +63,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       chart_view.Controllers.Add(_selection);
 
       MaximalValue = 0.0d; // wird durch die folgende Zeile ermittelt
-      foreach (var query in queries)
+      foreach (var query in wordBag1.ResultQueries)
         chart_view.Series.Add(BuildSeries(query));
 
       foreach (var x in chart_view.Axes.OfType<LinearAxis>())
@@ -98,10 +102,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
 
     private void FrequencyOverTimeView_ShowView(object sender, EventArgs e)
     {
-      _vm = ViewModelGet<FrequencyOverTimeViewModel>();
-
-      radAutoCompleteBox1.AutoCompleteDataSource = Project.CurrentSelection.GetLayerValues(Resources.Wort);
+      _vm = GetViewModel<FrequencyOverTimeViewModel>();
       commandBarDropDownList1.DataSource = _vm.DocumentMetadata;
+    }
+
+    private void wordBag1_ExecuteButtonClicked(object sender, EventArgs e)
+    {
+      Analyse();
     }
   }
 }

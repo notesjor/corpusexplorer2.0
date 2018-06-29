@@ -23,10 +23,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     private listbody listbodyField;
 
     /// <remarks />
-    public head head { get { return headField; } set { headField = value; } }
+    public head head
+    {
+      get => headField;
+      set => headField = value;
+    }
 
     /// <remarks />
     [XmlElement("list-body")]
-    public listbody listbody { get { return listbodyField; } set { listbodyField = value; } }
+    public listbody listbody
+    {
+      get => listbodyField;
+      set => listbodyField = value;
+    }
   }
 }

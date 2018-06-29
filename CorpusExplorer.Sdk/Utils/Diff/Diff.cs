@@ -12,6 +12,30 @@ namespace CorpusExplorer.Sdk.Utils.Diff
   public class Diff
   {
     /// <summary>
+    ///   Find the difference in 2 arrays of integers.
+    /// </summary>
+    /// <param name="arrayA">A-version of the numbers (usualy the old one)</param>
+    /// <param name="arrayB">B-version of the numbers (usualy the new one)</param>
+    /// <returns>Returns a array of Items that describe the differences.</returns>
+    public static DiffDelta[] DiffInt(int[] arrayA, int[] arrayB)
+    {
+      // The A-Version of the data (original data) to be compared.
+      var dataA = new DiffData(arrayA);
+
+      // The B-Version of the data (modified data) to be compared.
+      var dataB = new DiffData(arrayB);
+
+      var max = dataA.Length + dataB.Length + 1;
+      // vector for the (0,0) to (x,y) search
+      var downVector = new int[2 * max + 2];
+      // vector for the (u,v) to (N,M) search
+      var upVector = new int[2 * max + 2];
+
+      Lcs(dataA, 0, dataA.Length, dataB, 0, dataB.Length, downVector, upVector);
+      return CreateDiffs(dataA, dataB);
+    }
+
+    /// <summary>
     ///   Scan the tables of which lines are inserted and deleted,
     ///   producing an edit script in forward order.
     /// </summary>
@@ -63,30 +87,6 @@ namespace CorpusExplorer.Sdk.Utils.Diff
       a.CopyTo(result);
 
       return result;
-    }
-
-    /// <summary>
-    ///   Find the difference in 2 arrays of integers.
-    /// </summary>
-    /// <param name="arrayA">A-version of the numbers (usualy the old one)</param>
-    /// <param name="arrayB">B-version of the numbers (usualy the new one)</param>
-    /// <returns>Returns a array of Items that describe the differences.</returns>
-    public static DiffDelta[] DiffInt(int[] arrayA, int[] arrayB)
-    {
-      // The A-Version of the data (original data) to be compared.
-      var dataA = new DiffData(arrayA);
-
-      // The B-Version of the data (modified data) to be compared.
-      var dataB = new DiffData(arrayB);
-
-      var max = dataA.Length + dataB.Length + 1;
-      // vector for the (0,0) to (x,y) search
-      var downVector = new int[2 * max + 2];
-      // vector for the (u,v) to (N,M) search
-      var upVector = new int[2 * max + 2];
-
-      Lcs(dataA, 0, dataA.Length, dataB, 0, dataB.Length, downVector, upVector);
-      return CreateDiffs(dataA, dataB);
     }
 
     /// <summary>
@@ -214,6 +214,7 @@ namespace CorpusExplorer.Sdk.Utils.Diff
                 downVector[downOffset + k + 1] >= x)
               x = downVector[downOffset + k + 1]; // down
           }
+
           var y = x - k;
 
           // find the end of the furthest reaching forward D-path in diagonal k.
@@ -224,6 +225,7 @@ namespace CorpusExplorer.Sdk.Utils.Diff
             x++;
             y++;
           }
+
           downVector[downOffset + k] = x;
 
           // overlap ?
@@ -257,6 +259,7 @@ namespace CorpusExplorer.Sdk.Utils.Diff
                 upVector[upOffset + k - 1] < x)
               x = upVector[upOffset + k - 1]; // up
           } // if
+
           var y = x - k;
 
           while (x > lowerA &&
@@ -266,6 +269,7 @@ namespace CorpusExplorer.Sdk.Utils.Diff
             x--;
             y--; // diagonal
           }
+
           upVector[upOffset + k] = x;
 
           // overlap ?

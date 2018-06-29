@@ -14,8 +14,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
   [Serializable]
   public class FilterQueryMetaExactMatchCaseSensitive : AbstractFilterQueryMeta
   {
-    [XmlArray]
-    private HashSet<string> _values;
+    [XmlArray] private HashSet<string> _values;
 
     /// <summary>
     ///   Gibt eine automatisch generierte Zusammenfassung des Inhalts/Bedeutung zurück.
@@ -49,6 +48,9 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       _values = new HashSet<string>(metaObjects.Select(x => x?.ToString() ?? ""));
     }
 
-    protected override bool ValidateCallCall(string value) { return _values.Contains(value); }
+    protected override bool ValidateCallCall(string value)
+    {
+      return _values.Contains(value);
+    }
   }
 }

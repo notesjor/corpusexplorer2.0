@@ -27,22 +27,42 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute]
-    public decimal end { get { return endField; } set { endField = value; } }
+    public decimal end
+    {
+      get => endField;
+      set => endField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public bool skip { get { return skipField; } set { skipField = value; } }
+    public bool skip
+    {
+      get => skipField;
+      set => skipField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool skipSpecified { get { return skipFieldSpecified; } set { skipFieldSpecified = value; } }
+    public bool skipSpecified
+    {
+      get => skipFieldSpecified;
+      set => skipFieldSpecified = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public decimal start { get { return startField; } set { startField = value; } }
+    public decimal start
+    {
+      get => startField;
+      set => startField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public mediaUnitType unit { get { return unitField; } set { unitField = value; } }
+    public mediaUnitType unit
+    {
+      get => unitField;
+      set => unitField = value;
+    }
   }
 }

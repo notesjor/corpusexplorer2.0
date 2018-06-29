@@ -17,5 +17,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
   [DesignerCategory("code")]
   [XmlType(AnonymousType = true, Namespace = "http://tempuri.org/interlinear-text")]
   [XmlRoot("page-break", Namespace = "http://tempuri.org/interlinear-text", IsNullable = false)]
-  public class pagebreak {}
+  public class pagebreak
+  {
+  }
 }

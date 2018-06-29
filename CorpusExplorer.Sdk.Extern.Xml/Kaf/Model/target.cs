@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string head { get { return headField; } set { headField = value; } }
+    public string head
+    {
+      get => headField;
+      set => headField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
   }
 }

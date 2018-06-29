@@ -23,13 +23,25 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
-    public p p { get { return pField; } set { pField = value; } }
+    public p p
+    {
+      get => pField;
+      set => pField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

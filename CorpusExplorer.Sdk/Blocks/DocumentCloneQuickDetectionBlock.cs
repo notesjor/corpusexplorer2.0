@@ -13,7 +13,10 @@ namespace CorpusExplorer.Sdk.Blocks
 
     public HashSet<Guid> DetectedClones { get; private set; }
 
-    public IEnumerable<Guid> IndividualDocuments { get { return _hashs.Select(x => x.Value); } }
+    public IEnumerable<Guid> IndividualDocuments
+    {
+      get { return _hashs.Select(x => x.Value); }
+    }
 
     /// <summary>
     ///   Funktion die aufgerufen wird, wenn eine Berechnung durchgeführt werden soll.

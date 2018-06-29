@@ -12,12 +12,15 @@ namespace CorpusExplorer.Sdk.Blocks
   [Serializable]
   public class FrequencyLeftRightBlock : AbstractSimple1LayerBlock
   {
+    [NonSerialized] private readonly BlockCacheHelper _cache = new BlockCacheHelper();
+
     private readonly object _lockLeft = new object();
     private readonly object _lockRight = new object();
-    [NonSerialized]
-    private readonly BlockCacheHelper _cache = new BlockCacheHelper();
 
-    public FrequencyLeftRightBlock() { MinimumFrequency = 10; }
+    public FrequencyLeftRightBlock()
+    {
+      MinimumFrequency = 10;
+    }
 
     public Dictionary<string, Dictionary<string, int>> FrequencyLeft { get; set; }
     public Dictionary<string, Dictionary<string, int>> FrequencyRight { get; set; }
@@ -118,7 +121,9 @@ namespace CorpusExplorer.Sdk.Blocks
     ///   Wird nach der Bereinigung aufgerufen (nach CalculateCall + CalculateCleanup)
     ///   und dient dem zusammenfassen der bereinigen Ergebnisse
     /// </summary>
-    protected override void CalculateFinalize() { }
+    protected override void CalculateFinalize()
+    {
+    }
 
     /// <summary>
     ///   Wird vor der Berechnung aufgerufen (vor CalculateCall)

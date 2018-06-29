@@ -30,34 +30,66 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement("annotation")]
-    public annotation[] annotation { get { return annotationField; } set { annotationField = value; } }
+    public annotation[] annotation
+    {
+      get => annotationField;
+      set => annotationField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string category { get { return categoryField; } set { categoryField = value; } }
+    public string category
+    {
+      get => categoryField;
+      set => categoryField = value;
+    }
 
     /// <remarks />
     [XmlAttribute("display-name")]
-    public string displayname { get { return displaynameField; } set { displaynameField = value; } }
+    public string displayname
+    {
+      get => displaynameField;
+      set => displaynameField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlElement("segmentation")]
-    public segmentation[] segmentation { get { return segmentationField; } set { segmentationField = value; } }
+    public segmentation[] segmentation
+    {
+      get => segmentationField;
+      set => segmentationField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string speaker { get { return speakerField; } set { speakerField = value; } }
+    public string speaker
+    {
+      get => speakerField;
+      set => speakerField = value;
+    }
 
     /// <remarks />
     [XmlElement("timeline-fork")]
-    public timelinefork[] timelinefork { get { return timelineforkField; } set { timelineforkField = value; } }
+    public timelinefork[] timelinefork
+    {
+      get => timelineforkField;
+      set => timelineforkField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public segmentedtierType type { get { return typeField; } set { typeField = value; } }
+    public segmentedtierType type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

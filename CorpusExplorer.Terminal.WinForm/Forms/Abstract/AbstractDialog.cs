@@ -15,19 +15,38 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
   /// </summary>
   public partial class AbstractDialog : AbstractForm
   {
-    protected AbstractDialog() : this(null) { }
-
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractDialog" /> class.
     /// </summary>
-    public AbstractDialog(Project project) : base(project) { InitializeComponent(); }
+    public AbstractDialog(Project project) : base(project)
+    {
+      InitializeComponent();
+    }
+
+    protected AbstractDialog() : this(null)
+    {
+    }
 
     /// <summary>
     ///   Gets or sets a value indicating whether display abort.
     /// </summary>
-    public bool DisplayAbort { get { return btn_abort.Visible; } set { btn_abort.Visible = value; } }
+    public bool DisplayAbort
+    {
+      get => btn_abort.Visible;
+      set => btn_abort.Visible = value;
+    }
 
     public string Error { get; set; }
+
+    /// <summary>
+    ///   The button abort click.
+    /// </summary>
+    public event EventHandler ButtonAbortClick;
+
+    /// <summary>
+    ///   The button ok click.
+    /// </summary>
+    public event EventHandler ButtonOkClick;
 
     /// <summary>
     ///   The btn_abort_ click.
@@ -56,6 +75,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
     /// </param>
     private void btn_ok_Click(object sender, EventArgs e)
     {
+      OnOkClick();
+
       if (!string.IsNullOrEmpty(Error))
       {
         MessageBox.Show(
@@ -67,19 +88,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
       }
 
       DialogResult = DialogResult.OK;
-      OnOkClick();
       Close();
     }
-
-    /// <summary>
-    ///   The button abort click.
-    /// </summary>
-    public event EventHandler ButtonAbortClick;
-
-    /// <summary>
-    ///   The button ok click.
-    /// </summary>
-    public event EventHandler ButtonOkClick;
 
     /// <summary>
     ///   The on abort click.

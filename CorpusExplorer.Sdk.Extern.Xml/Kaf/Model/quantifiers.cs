@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlElement("quantifier")]
-    public quantifier[] quantifier { get { return quantifierField; } set { quantifierField = value; } }
+    public quantifier[] quantifier
+    {
+      get => quantifierField;
+      set => quantifierField = value;
+    }
   }
 }

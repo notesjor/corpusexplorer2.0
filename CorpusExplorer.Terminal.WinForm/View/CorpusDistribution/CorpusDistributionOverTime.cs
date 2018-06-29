@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using CorpusExplorer.Sdk.ViewModel;
+using CorpusExplorer.Terminal.WinForm.Helper;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Properties;
 using Telerik.Charting;
@@ -39,6 +40,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
 
     public double MaximalValue { get; set; }
 
+    private void btn_export_Click(object sender, EventArgs e)
+    {
+      DataTableExporter.Export(_vm.GetDataTable());
+    }
+
     private LineSeries BuildSeries(string query)
     {
       var res = new LineSeries {LegendTitle = query};
@@ -48,8 +54,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       foreach (var point in points)
       {
         var value = point.Value.ContainsKey(query)
-                      ? point.Value[query][(int) commandBarDropDownList3.SelectedItem.Value]
-                      : 0;
+          ? point.Value[query][(int) commandBarDropDownList3.SelectedItem.Value]
+          : 0;
         if (value > MaximalValue)
           MaximalValue = value;
 
@@ -63,8 +69,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     {
       var meta = commandBarDropDownList1.SelectedItem.Value as string;
 
-      var clusters = 0;
-      if (!int.TryParse(commandBarTextBox1.Text, out clusters))
+      if (!int.TryParse(commandBarTextBox1.Text, out var clusters))
         clusters = 0;
       Clusters = clusters;
 
@@ -110,7 +115,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
 
     private void FrequencyOverTimeView_ShowView(object sender, EventArgs e)
     {
-      _vm = ViewModelGet<CorpusWeightLimmitedOverTimeViewModel>();
+      _vm = GetViewModel<CorpusWeightLimmitedOverTimeViewModel>();
 
       commandBarDropDownList1.DataSource = _vm.DocumentMetadata;
       commandBarDropDownList2.DataSource = _vm.DocumentMetadata;

@@ -23,13 +23,25 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string Default { get { return defaultField; } set { defaultField = value; } }
+    public string Default
+    {
+      get => defaultField;
+      set => defaultField = value;
+    }
 
     /// <remarks />
-    public pagination pagination { get { return paginationField; } set { paginationField = value; } }
+    public pagination pagination
+    {
+      get => paginationField;
+      set => paginationField = value;
+    }
 
     /// <remarks />
     [XmlElement("transduction")]
-    public transduction[] transduction { get { return transductionField; } set { transductionField = value; } }
+    public transduction[] transduction
+    {
+      get => transductionField;
+      set => transductionField = value;
+    }
   }
 }

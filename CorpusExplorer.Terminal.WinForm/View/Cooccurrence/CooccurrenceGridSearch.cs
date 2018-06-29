@@ -1,22 +1,15 @@
 ﻿#region
 
-using CorpusExplorer.Sdk.Utils.Filter.Queries;
-using CorpusExplorer.Sdk.ViewModel;
-using CorpusExplorer.Sdk.ViewModel.Interfaces;
-using CorpusExplorer.Terminal.WinForm.Forms.PosFilter;
-using CorpusExplorer.Terminal.WinForm.Forms.Splash;
-using CorpusExplorer.Terminal.WinForm.Properties;
-using CorpusExplorer.Terminal.WinForm.View.AbstractTemplates;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Windows.Forms;
-using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
-using CorpusExplorer.Terminal.WinForm.Forms.Simple;
-using Telerik.WinControls;
-using Telerik.WinControls.Data;
+using CorpusExplorer.Sdk.Utils.Filter.Queries;
+using CorpusExplorer.Sdk.ViewModel;
+using CorpusExplorer.Terminal.WinForm.Forms.Splash;
+using CorpusExplorer.Terminal.WinForm.Properties;
+using CorpusExplorer.Terminal.WinForm.View.AbstractTemplates;
 using Telerik.WinControls.UI;
 
 #endregion
@@ -26,7 +19,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
   /// <summary>
   ///   The grid visualisation.
   /// </summary>
-  public partial class CooccurrenceGridSearch : AbstractGridViewWithCodeLense
+  public partial class CooccurrenceGridSearch : AbstractGridViewWithTextLense
   {
     private CooccurrenceSelectiveViewModel _vm;
 
@@ -34,46 +27,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     {
       InitializeComponent();
       InitializeGrid(radGridView1);
-      ShowView += ShowViewCall;
-    }
-
-    private void Analyse()
-    {
-      _vm = ViewModelGet<CooccurrenceSelectiveViewModel>();
-      _vm.Analyse();
-      txt_query.AutoCompleteDataSource = _vm.AvailableLayerValues;
-    }
-
-    private void btn_search_Click(object sender, EventArgs e)
-    {
-      Processing.Invoke(
-        "Berechne Kookkurrenzen...",
-        () =>
-        {
-          _vm.LayerQueries = txt_query.Text.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries);
-          _vm.Analyse();
-          
-          radGridView1.DataSource = _vm.GetDataTable();
-          radGridView1.ResetBindings();
-          radGridView1.BestFitColumns(BestFitColumnMode.HeaderCells);
-          radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
-
-          AddSummaryRow();
-          AddChildTemplate(CreateChildTemplate);
-        });
-    }
-
-    private AbstractFilterQuery CreateChildTemplate(DataRowView row)
-    {
-      var queries = txt_query.Items.Select(x => x.Text).ToList();
-      queries.Add(row[Resources.Kookkurrenz].ToString());
-
-      return new FilterQuerySingleLayerAllInOneSentence
-      {
-        Inverse = false,
-        LayerDisplayname = "Wort",
-        LayerQueries = queries
-      };
+      ShowView += (s, e) => _vm = GetViewModel<CooccurrenceSelectiveViewModel>();
     }
 
     /// <summary>
@@ -104,7 +58,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       ExportFunction();
     }
 
-    private void btn_filtereditor_Click(object sender, EventArgs e) { QueryBuilderFunction(Resources.Kookkurrenz); }
+    private void btn_filtereditor_Click(object sender, EventArgs e)
+    {
+      QueryBuilderFunction(Resources.Kookkurrenz);
+    }
 
     private void btn_filterlist_Click(object sender, EventArgs e)
     {
@@ -143,22 +100,51 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     {
       CreateSelection(
         radGridView1.SelectedRows.Select(
-                      row => new FilterQuerySingleLayerAllInOneSentence
-                      {
-                        LayerDisplayname = "Wort",
-                        Inverse = false,
-                        LayerQueries =
-                          new[]
-                          {
-                            txt_query.Text,
-                            row.Cells[Resources.Kookkurrenz].Value.ToString()
-                          }
-                      }));
+          row =>
+          {
+            var queries = new List<string> {row.Cells[Resources.Kookkurrenz].Value.ToString()};
+            queries.AddRange(wordBag1.ResultQueries);
+
+            return new FilterQuerySingleLayerFirstAndAnyOtherMatch
+            {
+              LayerDisplayname = "Wort",
+              Inverse = false,
+              LayerQueries = queries
+            };
+          }));
     }
 
-    private void ShowViewCall(object sender, EventArgs e)
+    private AbstractFilterQuery CreateChildTemplate(DataRowView row)
     {
-      Processing.Invoke(Resources.ZählungLäuft, Analyse);
+      var queries = new List<string> {row[Resources.Kookkurrenz].ToString()};
+      queries.AddRange(wordBag1.ResultQueries);
+
+      return new FilterQuerySingleLayerFirstAndAnyOtherMatch
+      {
+        Inverse = false,
+        LayerDisplayname = "Wort",
+        LayerQueries = queries
+      };
+    }
+    
+    private void wordBag1_ExecuteButtonClicked(object sender, EventArgs e)
+    {
+      Processing.Invoke(
+        "Berechne Kookkurrenzen...",
+        () =>
+        {
+          _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
+          _vm.LayerQueries = wordBag1.ResultQueries.ToArray();
+          _vm.Analyse();
+
+          radGridView1.DataSource = _vm.GetDataTable();
+          radGridView1.ResetBindings();
+          radGridView1.BestFitColumns(BestFitColumnMode.HeaderCells);
+          radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+
+          AddSummaryRow();
+          AddChildTemplate(CreateChildTemplate);
+        });
     }
   }
 }

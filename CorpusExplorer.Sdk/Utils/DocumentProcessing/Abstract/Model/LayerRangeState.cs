@@ -20,9 +20,15 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model
       _ranges.Add(new TaggerLayerRangeStateItem(start, value, end));
     }
 
-    public override bool AllowAnnotation(string[] data) { return data.Length != 1; }
+    public override bool AllowAnnotation(string[] data)
+    {
+      return data.Length != 1;
+    }
 
-    public override bool AllowValueChange(string[] data) { return data.Length == 1; }
+    public override bool AllowValueChange(string[] data)
+    {
+      return data.Length == 1;
+    }
 
     public override int RequestIndex(string[] data, int lastIndex)
     {
@@ -33,6 +39,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model
         if (range.LocateEnd(data[0]))
           return RequestIndex(" ");
       }
+
       return lastIndex;
     }
 

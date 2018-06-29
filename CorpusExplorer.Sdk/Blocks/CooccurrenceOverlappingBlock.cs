@@ -47,6 +47,7 @@ namespace CorpusExplorer.Sdk.Blocks
       var cflock = new object();
       Parallel.ForEach(
         filter,
+        Configuration.ParallelOptions,
         csel =>
         {
           var corpus = Selection.GetCorpus(csel.Key);
@@ -56,6 +57,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
           Parallel.ForEach(
             csel.Value,
+            Configuration.ParallelOptions,
             dsel =>
             {
               var doc = layer[dsel.Key];
@@ -83,7 +85,7 @@ namespace CorpusExplorer.Sdk.Blocks
         });
 
       CooccurrenceSignificance = new Dictionary<string, double>();
-      var signi = Configuration.Significance.PreCalculationSetup(matches, sentences);
+      var signi = Configuration.GetSignificance(matches, sentences);
       foreach (var x in CooccurrenceFrequency)
         try
         {

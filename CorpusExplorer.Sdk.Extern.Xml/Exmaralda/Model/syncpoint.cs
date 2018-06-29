@@ -26,18 +26,34 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string formatref { get { return formatrefField; } set { formatrefField = value; } }
+    public string formatref
+    {
+      get => formatrefField;
+      set => formatrefField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string offset { get { return offsetField; } set { offsetField = value; } }
+    public string offset
+    {
+      get => offsetField;
+      set => offsetField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string Value { get { return valueField; } set { valueField = value; } }
+    public string Value
+    {
+      get => valueField;
+      set => valueField = value;
+    }
   }
 }

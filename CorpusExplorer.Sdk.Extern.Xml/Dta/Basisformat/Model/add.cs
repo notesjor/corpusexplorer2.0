@@ -25,7 +25,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string hand { get { return handField; } set { handField = value; } }
+    public string hand
+    {
+      get => handField;
+      set => handField = value;
+    }
 
     /// <remarks />
     [XmlElement("add", typeof(add))]
@@ -40,14 +44,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("subst", typeof(subst))]
     [XmlElement("supplied", typeof(supplied))]
     [XmlElement("unclear", typeof(unclear))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string place { get { return placeField; } set { placeField = value; } }
+    public string place
+    {
+      get => placeField;
+      set => placeField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

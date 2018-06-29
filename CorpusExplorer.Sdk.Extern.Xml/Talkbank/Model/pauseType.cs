@@ -25,18 +25,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute]
-    public decimal length { get { return lengthField; } set { lengthField = value; } }
+    public decimal length
+    {
+      get => lengthField;
+      set => lengthField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool lengthSpecified { get { return lengthFieldSpecified; } set { lengthFieldSpecified = value; } }
+    public bool lengthSpecified
+    {
+      get => lengthFieldSpecified;
+      set => lengthFieldSpecified = value;
+    }
 
     /// <remarks />
     [XmlAttribute("symbolic-length")]
     public pauseSymbolicLengthType symboliclength
     {
-      get { return symboliclengthField; }
-      set { symboliclengthField = value; }
+      get => symboliclengthField;
+      set => symboliclengthField = value;
     }
   }
 }

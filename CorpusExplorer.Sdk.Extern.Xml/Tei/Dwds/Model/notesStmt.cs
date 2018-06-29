@@ -18,6 +18,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model
     private relatedItem relatedItemField;
 
     /// <remarks />
-    public relatedItem relatedItem { get { return relatedItemField; } set { relatedItemField = value; } }
+    public relatedItem relatedItem
+    {
+      get => relatedItemField;
+      set => relatedItemField = value;
+    }
   }
 }

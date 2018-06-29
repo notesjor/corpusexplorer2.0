@@ -17,5 +17,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
   [DesignerCategory("code")]
   [XmlType(AnonymousType = true)]
   [XmlRoot("input-other", Namespace = "", IsNullable = false)]
-  public class inputother {}
+  public class inputother
+  {
+  }
 }

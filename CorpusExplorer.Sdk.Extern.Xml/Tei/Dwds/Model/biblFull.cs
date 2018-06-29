@@ -24,19 +24,31 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model
     private titleStmt titleStmtField;
 
     /// <remarks />
-    public notesStmt notesStmt { get { return notesStmtField; } set { notesStmtField = value; } }
+    public notesStmt notesStmt
+    {
+      get => notesStmtField;
+      set => notesStmtField = value;
+    }
 
     /// <remarks />
     public publicationStmt publicationStmt
     {
-      get { return publicationStmtField; }
-      set { publicationStmtField = value; }
+      get => publicationStmtField;
+      set => publicationStmtField = value;
     }
 
     /// <remarks />
-    public seriesStmt seriesStmt { get { return seriesStmtField; } set { seriesStmtField = value; } }
+    public seriesStmt seriesStmt
+    {
+      get => seriesStmtField;
+      set => seriesStmtField = value;
+    }
 
     /// <remarks />
-    public titleStmt titleStmt { get { return titleStmtField; } set { titleStmtField = value; } }
+    public titleStmt titleStmt
+    {
+      get => titleStmtField;
+      set => titleStmtField = value;
+    }
   }
 }

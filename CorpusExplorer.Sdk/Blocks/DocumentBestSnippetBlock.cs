@@ -23,31 +23,6 @@ namespace CorpusExplorer.Sdk.Blocks
     public IEnumerable<string> LayerQueries { get; set; }
     public Dictionary<Guid, int[]> ResultDocumentSentenceRank { get; set; }
 
-    protected override void CalculateCall(
-      AbstractCorpusAdapter corpus,
-      AbstractLayerAdapter layer,
-      Guid dsel,
-      int[][] doc)
-    {
-      var values = GetLayerHash(layer);
-
-      var sentences = doc.Select(s => s.Count(w => values.Contains(w))).ToArray();
-
-      lock (_resultLock)
-      {
-        ResultDocumentSentenceRank.Add(dsel, sentences);
-      }
-    }
-
-    protected override void CalculateCleanup() { _layerCache.Clear(); }
-    protected override void CalculateFinalize() { }
-
-    protected override void CalculateInitProperties()
-    {
-      _layerCache = new Dictionary<Guid, HashSet<int>>();
-      ResultDocumentSentenceRank = new Dictionary<Guid, int[]>();
-    }
-
     public Dictionary<Guid, int> GetBestDocument()
     {
       return ResultDocumentSentenceRank.AsParallel().ToDictionary(doc => doc.Key, doc => doc.Value.Sum());
@@ -64,12 +39,13 @@ namespace CorpusExplorer.Sdk.Blocks
         res.Add(
           doc.Key,
           Selection.GetReadableDocumentSnippet(
-                     doc.Key,
-                     LayerDisplayname,
-                     sid,
-                     sid + numberOfSenteces)
-                   .ReduceDocumentToText());
+              doc.Key,
+              LayerDisplayname,
+              sid,
+              sid + numberOfSenteces)
+            .ReduceDocumentToText());
       }
+
       return res;
     }
 
@@ -85,6 +61,37 @@ namespace CorpusExplorer.Sdk.Blocks
       }
 
       return res;
+    }
+
+    protected override void CalculateCall(
+      AbstractCorpusAdapter corpus,
+      AbstractLayerAdapter layer,
+      Guid dsel,
+      int[][] doc)
+    {
+      var values = GetLayerHash(layer);
+
+      var sentences = doc.Select(s => s.Count(w => values.Contains(w))).ToArray();
+
+      lock (_resultLock)
+      {
+        ResultDocumentSentenceRank.Add(dsel, sentences);
+      }
+    }
+
+    protected override void CalculateCleanup()
+    {
+      _layerCache.Clear();
+    }
+
+    protected override void CalculateFinalize()
+    {
+    }
+
+    protected override void CalculateInitProperties()
+    {
+      _layerCache = new Dictionary<Guid, HashSet<int>>();
+      ResultDocumentSentenceRank = new Dictionary<Guid, int[]>();
     }
 
     /// <summary>
@@ -111,6 +118,7 @@ namespace CorpusExplorer.Sdk.Blocks
             break;
           sum += sents[i + j];
         }
+
         if (sum > max)
         {
           max = sum;

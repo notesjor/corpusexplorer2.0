@@ -27,22 +27,42 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string rend { get { return rendField; } set { rendField = value; } }
+    public string rend
+    {
+      get => rendField;
+      set => rendField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string target { get { return targetField; } set { targetField = value; } }
+    public string target
+    {
+      get => targetField;
+      set => targetField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string targOrder { get { return targOrderField; } set { targOrderField = value; } }
+    public string targOrder
+    {
+      get => targOrderField;
+      set => targOrderField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string targType { get { return targTypeField; } set { targTypeField = value; } }
+    public string targType
+    {
+      get => targTypeField;
+      set => targTypeField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

@@ -18,9 +18,40 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStream
 {
   public class TwitterScraper : AbstractGenericJsonFormatScraper<StreamMessage>
   {
-    protected override AbstractGenericDataReader<StreamMessage> DataReader { get { return new TwitterDataReader(); } }
+    public override string DisplayName
+    {
+      get { return "Twitter JSON Scraper"; }
+    }
 
-    public override string DisplayName { get { return "Twitter JSON Scraper"; } }
+    protected override AbstractGenericDataReader<StreamMessage> DataReader
+    {
+      get { return new TwitterDataReader(); }
+    }
+
+    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(IEnumerable<StreamMessage> model)
+    {
+      if (model == null)
+        return null;
+
+      var res = new List<Dictionary<string, object>>();
+
+      foreach (var message in model)
+      {
+        var act = message;
+
+        // Rekursives Durchlaufen des RetweetStatus
+        while (act != null)
+        {
+          var scrap = StreamMessageToScrapDocument(act);
+          if (scrap == null)
+            break;
+          res.Add(scrap);
+          act = act.RetweetedStatus;
+        }
+      }
+
+      return res;
+    }
 
     private IEnumerable<Dictionary<string, object>> PostProcessingMerge(
       Dictionary<ulong, List<Dictionary<string, object>>> dic)
@@ -50,34 +81,9 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStream
       return res;
     }
 
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(IEnumerable<StreamMessage> model)
-    {
-      if (model == null)
-        return null;
-
-      var res = new List<Dictionary<string, object>>();
-
-      foreach (var message in model)
-      {
-        var act = message;
-
-        // Rekursives Durchlaufen des RetweetStatus
-        while (act != null)
-        {
-          var scrap = StreamMessageToScrapDocument(act);
-          if (scrap == null)
-            break;
-          res.Add(scrap);
-          act = act.RetweetedStatus;
-        }
-      }
-
-      return res;
-    }
-
     // ReSharper disable FunctionComplexityOverflow
     private Dictionary<string, object> StreamMessageToScrapDocument(StreamMessage message)
-    // ReSharper restore FunctionComplexityOverflow
+      // ReSharper restore FunctionComplexityOverflow
     {
       try
       {
@@ -145,7 +151,8 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStream
               "Medien-URL (|-separiert)",
               message.Entities == null || message.Entities.Media == null
                 ? ""
-                : string.Join("|", message.Entities.Media.Select(media => media.ExpandedUrl))
+                : string.Join("|",
+                  message.Entities.Media.Select(m => string.IsNullOrEmpty(m.MediaUrl) ? m.MediaUrlHttps : m.MediaUrl))
             },
             {
               "Externe-URL (|-separiert)",

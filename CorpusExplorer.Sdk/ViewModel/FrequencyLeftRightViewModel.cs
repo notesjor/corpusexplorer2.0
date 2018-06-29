@@ -44,16 +44,21 @@ namespace CorpusExplorer.Sdk.ViewModel
       return res;
     }
 
+    public string LayerDisplayname { get; set; } = "Wort";
+
     protected override void ExecuteAnalyse()
     {
       var block = Selection.CreateBlock<FrequencyLeftRightBlock>();
-      block.LayerDisplayname = "Wort";
+      block.LayerDisplayname = LayerDisplayname;
       block.Calculate();
 
       FrequencyLeft = block.FrequencyLeft;
       FrequencyRight = block.FrequencyRight;
     }
 
-    protected override bool Validate() { return true; }
+    protected override bool Validate()
+    {
+      return true;
+    }
   }
 }

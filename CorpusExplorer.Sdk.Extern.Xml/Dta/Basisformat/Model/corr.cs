@@ -44,22 +44,42 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("supplied", typeof(supplied))]
     [XmlElement("table", typeof(table))]
     [XmlElement("unclear", typeof(unclear))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string resp { get { return respField; } set { respField = value; } }
+    public string resp
+    {
+      get => respField;
+      set => respField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string source { get { return sourceField; } set { sourceField = value; } }
+    public string source
+    {
+      get => sourceField;
+      set => sourceField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

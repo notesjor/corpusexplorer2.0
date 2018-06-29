@@ -226,7 +226,11 @@ namespace CorpusExplorer.Sdk.Helper
     ///   Die Eigenschaft wird festgelegt, und die
     ///   <see cref="T:System.Collections.Generic.IList`1" /> ist schreibgeschützt.
     /// </exception>
-    public T this[int index] { get => _list[index]; set => _list[index] = value; }
+    public T this[int index]
+    {
+      get => _list[index];
+      set => _list[index] = value;
+    }
 
     /// <summary>
     ///   Removes the <see cref="T:System.Collections.Generic.IList`1" /> item at the specified index.

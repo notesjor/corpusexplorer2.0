@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Extern.TextSharp.PDF;
 using CorpusExplorer.Sdk.Helper;
@@ -13,27 +13,28 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.APAEK
   public class ApaekScraper : AbstractScraper
   {
     public override string DisplayName => "APAEK";
+
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
-      var scraper = new TextSharpPdfScraper { Strategy = TextSharpPdfScraper.TextSharpPdfScraperStrategy.Simple };
+      var scraper = new TextSharpPdfScraper {Strategy = TextSharpPdfScraper.TextSharpPdfScraperStrategy.Simple};
       scraper.Input.Enqueue(file);
       scraper.Execute();
       var pdf = scraper.Output.FirstOrDefault();
       if (pdf == null)
         return null;
 
-      var lines = ((string)pdf["Text"]).Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+      var lines = ((string) pdf["Text"]).Split(new[] {"\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries);
 
       // META
-      var meta = new Dictionary<string, object>();
+      var meta = new Dictionary<string, object> {{"Dateiname", Path.GetFileName(file)}};
       string fach = "",
-             stundenthema = "",
-             datum = "",
-             schulform = "",
-             teilnehmer = "",
-             projektkontext = "",
-             transkribiertVon = "",
-             korrigiertDurch = "";
+        stundenthema = "",
+        datum = "",
+        schulform = "",
+        teilnehmer = "",
+        projektkontext = "",
+        transkribiertVon = "",
+        korrigiertDurch = "";
 
       var i = 0;
       for (; i < lines.Length; i++)
@@ -52,8 +53,10 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.APAEK
             i++;
             stundenthema += $" {lines[i]}";
           }
+
           continue;
         }
+
         if (line.StartsWith("Datum der Aufnahme:"))
           datum = line.Replace("Datum der Aufnahme:", "").Trim();
         if (line.StartsWith("Schulform:"))
@@ -69,6 +72,7 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.APAEK
 
         if (line.StartsWith("Datum der Korrektur:"))
         {
+          meta.Add("Datei", Path.GetFileName(file));
           meta.Add("Fach", fach);
           meta.Add("Stundenthema", stundenthema);
           meta.Add("Datum (Original)", datum);
@@ -82,17 +86,16 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.APAEK
           break;
         }
       }
+
       i++;
 
       // Parse Text
       var res = new List<Dictionary<string, object>>();
       var speaker = "";
       var stb = new StringBuilder();
-      bool b1 = false, b2 = false;
       var id = 0;
 
       for (; i < lines.Length; i++)
-      {
         try
         {
           if (string.IsNullOrWhiteSpace(lines[i]) ||
@@ -100,35 +103,35 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.APAEK
               lines[i].StartsWith("URL des Datensatzes"))
             continue;
 
-          // Substring(0, lines[i].LastIndexOf(" ")) - entfernt nachgestellte Zeilennummern
           // Entferne: - = < > [ ]
-          var idx = lines[i].Trim().LastIndexOf(" ");
-          if (idx < 1)
-            continue;
           var line = lines[i]
-            .Substring(0, idx)
             .Replace("-", "")
             .Replace("–", "")
             .Replace("=", "")
-            .Replace("<", "")
-            .Replace(">", "")
-            .Replace("[", "")
-            .Replace("]", "")
+            .Replace("<", "[")
+            .Replace(">", "]")
+            //.Replace("[", "")
+            //.Replace("]", "")
             .Trim();
-          if ((line.StartsWith("L") || line.StartsWith("S")) &&
-              line.Length > 5 &&
-              (line[2] == ':' || line[3] == ':' || line[4] == ':'))
+          if (line.Length > 2 &&
+              (line[0] == 'L' || line[0] == 'S' || line[0] == 'K') &&
+              line.Substring(1, 7 > line.Length ? line.Length - 1 : 7).Contains(':'))
           {
             // Abschluss
             if (speaker != "")
               NewEntry(ref meta, speaker, stb.ToString(), ref res, ref id);
 
             // Neu erstellen
-            speaker = line.Substring(0, 5).Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)[0]
-                          .Replace(":", "")
-                          .Trim();
+            speaker = line.Substring(0, 8).Split(new[] {":"}, StringSplitOptions.RemoveEmptyEntries)[0]
+              .Trim();
             stb = new StringBuilder();
             stb.AppendLine(line.Replace($"{speaker}:", "").Trim());
+
+            if (speaker.Length < 2) continue;
+
+            // Speaker - Korrektur Geschlecht
+            var g = speaker[1].ToString().ToLower()[0]; // gender
+            speaker = $"{speaker[0]}{g}{(speaker.Length > 2 ? speaker.Substring(2) : "")}";
           }
           else
           {
@@ -139,7 +142,7 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.APAEK
         {
           InMemoryErrorConsole.Log(ex);
         }
-      }
+
       NewEntry(ref meta, speaker, stb.ToString(), ref res, ref id);
 
       return res;
@@ -155,6 +158,7 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.APAEK
           break;
         content = content.Substring(0, start) + content.Substring(stop + 1);
       }
+
       while (content.Contains("("))
       {
         var start = content.IndexOf("(");
@@ -163,10 +167,12 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.APAEK
           break;
         content = content.Substring(0, start) + content.Substring(stop + 1);
       }
+
       return content.Replace("  ", " ").Replace("...", ".").Replace("…", ".").Replace("„", "\"").Replace("“", "\"");
     }
 
-    private void NewEntry(ref Dictionary<string, object> meta, string speaker, string content, ref List<Dictionary<string, object>> res, ref int id)
+    private void NewEntry(ref Dictionary<string, object> meta, string speaker, string content,
+      ref List<Dictionary<string, object>> res, ref int id)
     {
       var text = Clean(content);
       if (string.IsNullOrWhiteSpace(text))

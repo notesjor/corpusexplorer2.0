@@ -20,10 +20,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private classCode[] textClassField;
 
     /// <remarks />
-    public langUsage langUsage { get { return langUsageField; } set { langUsageField = value; } }
+    public langUsage langUsage
+    {
+      get => langUsageField;
+      set => langUsageField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("classCode", IsNullable = false)]
-    public classCode[] textClass { get { return textClassField; } set { textClassField = value; } }
+    public classCode[] textClass
+    {
+      get => textClassField;
+      set => textClassField = value;
+    }
   }
 }

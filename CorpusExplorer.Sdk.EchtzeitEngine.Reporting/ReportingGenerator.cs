@@ -13,7 +13,8 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Reporting
     {
       var mtitle = new SectionReport();
       mtitle.ReportParameters["Section"].Value = "Analysebericht";
-      mtitle.ReportParameters["SectionInfo"].Value = $"Erstellt am: {DateTime.Now:dd.MM.yyyy}\nCorpusExplorer v2.0 (www.corpusexplorer.de)";
+      mtitle.ReportParameters["SectionInfo"].Value =
+        $"Erstellt am: {DateTime.Now:dd.MM.yyyy}\nCorpusExplorer v2.0 (www.corpusexplorer.de)";
       var master = new ReportTreeItem("Analysebericht", mtitle, null);
 
       foreach (var selection in universalStorage.AllSelections)
@@ -24,9 +25,9 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Reporting
         var resS = new ReportTreeItem(selection.Displayname, title, null);
         master.SubItems.Add(resS);
 
-        var factor = (float)(from DataRow x in universalStorage.Get(selection, "CorpusBaseInfo", "").Rows
-                             where x["Metric"].ToString() == "Factor"
-                             select (double)x["Value"]).FirstOrDefault();
+        var factor = (float) (from DataRow x in universalStorage.Get(selection, "CorpusBaseInfo", "").Rows
+          where x["Metric"].ToString() == "Factor"
+          select (double) x["Value"]).FirstOrDefault();
 
         if (universalStorage.Contains(selection, "CorpusDistribution", ""))
           resS.SubItems.Add(
@@ -55,12 +56,14 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Reporting
           {
             var qk = new QueryKwicResults();
             qk.ReportParameters["Query"].Value = mod;
-            resSS.SubItems.Add(new ReportTreeItem(mod, qk, universalStorage.Get(selection, "KwicTopFrequencyPosFilter", mod)));
+            resSS.SubItems.Add(new ReportTreeItem(mod, qk,
+              universalStorage.Get(selection, "KwicTopFrequencyPosFilter", mod)));
           }
         }
 
         if (universalStorage.Contains(selection, "Cooccurreces", ""))
-          resS.SubItems.Add(new ReportTreeItem("Kookkurrenzen", new CorpusCooccurrences(), universalStorage.Get(selection, "Cooccurreces", "")));
+          resS.SubItems.Add(new ReportTreeItem("Kookkurrenzen", new CorpusCooccurrences(),
+            universalStorage.Get(selection, "Cooccurreces", "")));
 
         if (universalStorage.Contains(selection, "KwicAnyMatch"))
         {
@@ -90,7 +93,8 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Reporting
           {
             var qk = new QueryCooccurrences();
             qk.ReportParameters["Query"].Value = mod;
-            resSS.SubItems.Add(new ReportTreeItem(mod, qk, universalStorage.Get(selection, "SelectiveCooccurreces", mod)));
+            resSS.SubItems.Add(new ReportTreeItem(mod, qk,
+              universalStorage.Get(selection, "SelectiveCooccurreces", mod)));
           }
         }
 
@@ -106,7 +110,8 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Reporting
           {
             var qk = new QueryKwicResults();
             qk.ReportParameters["Query"].Value = mod;
-            resSS.SubItems.Add(new ReportTreeItem(mod, qk, universalStorage.Get(selection, "KwicSelectiveCooccurreces", mod)));
+            resSS.SubItems.Add(new ReportTreeItem(mod, qk,
+              universalStorage.Get(selection, "KwicSelectiveCooccurreces", mod)));
           }
         }
       }

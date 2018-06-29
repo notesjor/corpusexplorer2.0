@@ -13,14 +13,25 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Layer
   {
     internal EchtzeitLayer _layer;
 
-    private LayerAdapterEchtzeitEngine() { }
+    private LayerAdapterEchtzeitEngine()
+    {
+    }
+
+    public override int CountDocuments => 1;
+    public override int CountValues => _layer.Dictionary.Count;
+
+    public override IEnumerable<Guid> DocumentGuids
+    {
+      get { yield return _layer.Guid; }
+    }
+
     public override string this[int index] => _layer.Dictionary[index];
 
     public override int this[string index] => _layer.Dictionary[index];
 
     public override int[][] this[Guid guid]
     {
-      get { return guid == _layer.DocumentGuid ? _layer.Document : null; }
+      get => guid == _layer.DocumentGuid ? _layer.Document : null;
       set
       {
         if (guid == _layer.DocumentGuid)
@@ -28,36 +39,47 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Layer
       }
     }
 
-    public override int CountDocuments => 1;
-    public override int CountValues => _layer.Dictionary.Count;
-    public override IEnumerable<Guid> DocumentGuids { get { yield return _layer.Guid; } }
-
     public override IEnumerable<string> Values => _layer.Dictionary.Values;
-    public override bool ContainsDocument(Guid guid) => guid == _layer.DocumentGuid;
 
-    public override AbstractLayerAdapter Copy() => new LayerAdapterEchtzeitEngine
+    public override bool ContainsDocument(Guid guid)
     {
-      _layer = new EchtzeitLayer
+      return guid == _layer.DocumentGuid;
+    }
+
+    public override AbstractLayerAdapter Copy()
+    {
+      return new LayerAdapterEchtzeitEngine
       {
-        Guid = Guid.NewGuid(),
-        DocumentGuid = _layer.DocumentGuid,
-        Document = (int[][]) _layer.Document.Clone(),
-        Displayname = _layer.Displayname,
-        Dictionary = _layer.Dictionary.Clone()
-      }
-    };
+        _layer = new EchtzeitLayer
+        {
+          Guid = Guid.NewGuid(),
+          DocumentGuid = _layer.DocumentGuid,
+          Document = (int[][]) _layer.Document.Clone(),
+          Displayname = _layer.Displayname,
+          Dictionary = _layer.Dictionary.Clone()
+        }
+      };
+    }
 
-    public override AbstractLayerAdapter Copy(Guid documentGuid) => _layer.DocumentGuid == documentGuid ? Copy() : null;
-
-    public static LayerAdapterEchtzeitEngine Create(EchtzeitLayer echtzeitLayer) => new LayerAdapterEchtzeitEngine
+    public override AbstractLayerAdapter Copy(Guid documentGuid)
     {
-      _layer = echtzeitLayer,
-      Displayname = echtzeitLayer.Displayname,
-      _guid = echtzeitLayer.Guid
-    };
+      return _layer.DocumentGuid == documentGuid ? Copy() : null;
+    }
+
+    public static LayerAdapterEchtzeitEngine Create(EchtzeitLayer echtzeitLayer)
+    {
+      return new LayerAdapterEchtzeitEngine
+      {
+        _layer = echtzeitLayer,
+        Displayname = echtzeitLayer.Displayname,
+        _guid = echtzeitLayer.Guid
+      };
+    }
 
     public override Dictionary<Guid, int[][]> GetDocumentDictionary()
-      => new Dictionary<Guid, int[][]> {{_layer.DocumentGuid, _layer.Document}};
+    {
+      return new Dictionary<Guid, int[][]> {{_layer.DocumentGuid, _layer.Document}};
+    }
 
     public override IEnumerable<IEnumerable<bool>> GetDocumentLayervalueMask(Guid documentGuid, string layerValue)
     {
@@ -70,10 +92,11 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Layer
     }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocumentByGuid(Guid documentGuid)
-      =>
-      documentGuid != _layer.DocumentGuid
+    {
+      return documentGuid != _layer.DocumentGuid
         ? null
         : (from s in _layer.Document where s != null select s.Select(w => this[w]));
+    }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocumentSnippetByGuid(
       Guid documentGuid,
@@ -94,12 +117,15 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Layer
       return res;
     }
 
-    protected override CeDictionary GetValueDictionary() => _layer.Dictionary;
-
     public override Dictionary<string, int> ReciveRawLayerDictionary()
-      => _layer.Dictionary.ReciveRawValueToIndex().ToDictionary(x => x.Key, x => x.Value);
+    {
+      return _layer.Dictionary.ReciveRawValueToIndex().ToDictionary(x => x.Key, x => x.Value);
+    }
 
-    public override void RefreshDictionaries() => _layer.Dictionary.RefreshDictionaries();
+    public override void RefreshDictionaries()
+    {
+      _layer.Dictionary.RefreshDictionaries();
+    }
 
     public override bool SetDocumentLayerValueMaskBySwitch(
       Guid documentGuid,
@@ -136,7 +162,7 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Layer
     {
       var stream = streamDocument.ToArray();
 
-      if ((documentGuid != _layer.DocumentGuid) || (stream.Length != _layer.Document.Sum(s => s.Length)))
+      if (documentGuid != _layer.DocumentGuid || stream.Length != _layer.Document.Sum(s => s.Length))
         return false;
 
       var idx = 0;
@@ -152,11 +178,20 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Layer
       return true;
     }
 
-    public override Concept ToConcept(IEnumerable<string> ignoreValues = null) => null;
-    public override void ValueAdd(string value) => _layer.Dictionary.Add(value);
-    
+    public override Concept ToConcept(IEnumerable<string> ignoreValues = null)
+    {
+      return null;
+    }
+
+    public override void ValueAdd(string value)
+    {
+      _layer.Dictionary.Add(value);
+    }
+
     public override void ValueChange(string oldValue, string newValue)
-      => _layer.Dictionary.RenameValue(oldValue, newValue);
+    {
+      _layer.Dictionary.RenameValue(oldValue, newValue);
+    }
 
     public override void ValueRemove(string removeValue)
     {
@@ -167,6 +202,11 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Layer
         for (var j = 0; j < d.Length; j++)
           if (idx == d[j])
             d[j] = -1;
+    }
+
+    protected override CeDictionary GetValueDictionary()
+    {
+      return _layer.Dictionary;
     }
 
     protected override IEnumerable<string> ValuesByRegex(string regEx)

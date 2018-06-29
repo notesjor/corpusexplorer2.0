@@ -1,6 +1,9 @@
 using System;
 using System.Linq;
 using CorpusExplorer.Sdk.ViewModel;
+using CorpusExplorer.Terminal.WinForm.Forms.SelectLayer;
+using CorpusExplorer.Terminal.WinForm.Forms.Splash;
+using CorpusExplorer.Terminal.WinForm.Helper;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Properties;
 using Telerik.Charting;
@@ -31,27 +34,37 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
 
     public double MaximalValue { get; set; }
 
+    private void btn_export_Click(object sender, EventArgs e)
+    {
+      DataTableExporter.Export(_vm.GetDataTable());
+    }
+
     private void btn_go_Click(object sender, EventArgs e)
     {
-      var meta = commandBarDropDownList1.SelectedItem.Value as string;
-      var queries = radAutoCompleteBox1.Items.Select(item => item.Text).ToArray();
+      Processing.Invoke("Ermittle Kookkurrenzen für die Auswahlbox", () =>
+      {
+        var meta = commandBarDropDownList1.SelectedItem.Value as string;
+        var queries = radAutoCompleteBox1.Items.Select(item => item.Text).ToArray();
 
-      var clusters = 0;
-      if (!int.TryParse(commandBarTextBox1.Text, out clusters))
-        clusters = 0;
-      Clusters = clusters;
+        if (!int.TryParse(commandBarTextBox1.Text, out var clusters))
+          clusters = 0;
+        Clusters = clusters;
 
-      _vm.DateTimeProperty = meta;
-      _vm.LayerQueries = queries;
-      _vm.Analyse();
+        ResetChart();
 
-      ResetChart();
+        _vm.DateTimeProperty = meta;
+        _vm.LayerQueries = queries;
+        if (SelectedLayerDisplaynames != null)
+          _vm.LayerDisplayname = SelectedLayerDisplaynames[0];
+        if (!_vm.Analyse())
+          return;        
 
-      drop_select.Items.Clear();
+        drop_select.Items.Clear();
 
-      foreach (var x in _vm.DateTimeValues)
+        foreach (var x in _vm.DateTimeValues)
         foreach (var y in x.Value)
           drop_select.Items.Add(y.Key, false);
+      });
     }
 
     private LineSeries BuildSeries(string query)
@@ -102,7 +115,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
 
     private void FrequencyOverTimeView_ShowView(object sender, EventArgs e)
     {
-      _vm = ViewModelGet<CooccurrencesOverTimeViewModel>();
+      _vm = GetViewModel<CooccurrencesOverTimeViewModel>();
 
       radAutoCompleteBox1.AutoCompleteDataSource = Project.CurrentSelection.GetLayerValues(Resources.Wort);
       commandBarDropDownList1.DataSource = _vm.DocumentMetadata;
@@ -121,6 +134,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       _zoom.PanZoomMode = ChartPanZoomMode.Horizontal;
       chart_view.Controllers.Add(_zoom);
       chart_view.Controllers.Add(_selection);
+    }
+
+    private void btn_layer_Click(object sender, EventArgs e)
+    {
+      var form = new Select1Layer(SelectedLayerDisplaynames);
+      form.ShowDialog();
+      SelectedLayerDisplaynames = form.ResultSelectedLayerDisplaynames;
     }
   }
 }

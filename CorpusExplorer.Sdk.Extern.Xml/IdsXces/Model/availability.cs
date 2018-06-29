@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string region { get { return regionField; } set { regionField = value; } }
+    public string region
+    {
+      get => regionField;
+      set => regionField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string status { get { return statusField; } set { statusField = value; } }
+    public string status
+    {
+      get => statusField;
+      set => statusField = value;
+    }
   }
 }

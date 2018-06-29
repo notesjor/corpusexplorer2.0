@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute]
-    public caelementtype type { get { return typeField; } set { typeField = value; } }
+    public caelementtype type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

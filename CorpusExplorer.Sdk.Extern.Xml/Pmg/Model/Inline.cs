@@ -20,10 +20,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Pmg.Model
 
     /// <remarks />
     [XmlElement("inline")]
-    public object[] inline { get { return inlineField; } set { inlineField = value; } }
+    public object[] inline
+    {
+      get => inlineField;
+      set => inlineField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

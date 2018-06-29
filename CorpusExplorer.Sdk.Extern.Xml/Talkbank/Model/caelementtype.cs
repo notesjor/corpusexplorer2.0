@@ -21,27 +21,21 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     inhalation,
 
     /// <remarks />
-    [XmlEnum("laugh in word")]
-    laughinword,
+    [XmlEnum("laugh in word")] laughinword,
 
     /// <remarks />
-    [XmlEnum("pitch down")]
-    pitchdown,
+    [XmlEnum("pitch down")] pitchdown,
 
     /// <remarks />
-    [XmlEnum("pitch reset")]
-    pitchreset,
+    [XmlEnum("pitch reset")] pitchreset,
 
     /// <remarks />
-    [XmlEnum("pitch up")]
-    pitchup,
+    [XmlEnum("pitch up")] pitchup,
 
     /// <remarks />
-    [XmlEnum("primary stress")]
-    primarystress,
+    [XmlEnum("primary stress")] primarystress,
 
     /// <remarks />
-    [XmlEnum("secondary stress")]
-    secondarystress
+    [XmlEnum("secondary stress")] secondarystress
   }
 }

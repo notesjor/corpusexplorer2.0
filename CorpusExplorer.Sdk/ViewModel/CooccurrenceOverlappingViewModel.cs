@@ -52,6 +52,9 @@ namespace CorpusExplorer.Sdk.ViewModel
       CooccurrenceSignificance = _block.CooccurrenceSignificance;
     }
 
-    protected override bool Validate() { return !string.IsNullOrEmpty(LayerDisplayname) && LayerQueries != null; }
+    protected override bool Validate()
+    {
+      return !string.IsNullOrEmpty(LayerDisplayname) && LayerQueries != null;
+    }
   }
 }

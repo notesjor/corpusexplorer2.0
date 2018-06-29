@@ -26,13 +26,25 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified, Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
-    public persName persName { get { return persNameField; } set { persNameField = value; } }
+    public persName persName
+    {
+      get => persNameField;
+      set => persNameField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "integer")]
-    public string sex { get { return sexField; } set { sexField = value; } }
+    public string sex
+    {
+      get => sexField;
+      set => sexField = value;
+    }
   }
 }

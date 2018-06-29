@@ -5,7 +5,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Ecosystem.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
 using CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Serializer;
@@ -21,6 +20,34 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds
     public override string DisplayName => "SimpleBlog TEI-XML";
 
     protected override AbstractGenericSerializer<TEI> Serializer => new DwdsTeiSerializer();
+
+    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, TEI model)
+    {
+      return new[]
+      {
+        new Dictionary<string, object>
+        {
+          {"Publisher", Reduce(model?.teiHeader?.fileDesc?.sourceDesc?.biblFull?.publicationStmt?.publisher?.Text)},
+          {"URL", model?.teiHeader?.fileDesc?.sourceDesc?.biblFull?.publicationStmt?.idno?.Value},
+          {"Datum", model?.teiHeader?.fileDesc?.sourceDesc?.biblFull?.publicationStmt?.date?.Value},
+          {"Titel", Reduce(model?.teiHeader?.fileDesc?.sourceDesc?.biblFull?.seriesStmt?.title.Text)},
+          {
+            "Kategorie", Reduce(
+              (from x in model?.teiHeader?.fileDesc?.sourceDesc?.biblFull?.seriesStmt?.biblScope
+                where x.unit == "categories"
+                select x.Text).FirstOrDefault())
+          },
+          {
+            "TAGs",
+            Reduce(
+              (from x in model?.teiHeader?.fileDesc?.sourceDesc?.biblFull?.seriesStmt?.biblScope
+                where x.unit == "tags"
+                select x.Text).FirstOrDefault())
+          },
+          {"Text", GetText(model)}
+        }
+      };
+    }
 
     private object GetText(TEI model)
     {
@@ -41,8 +68,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds
 
       var res =
         doc.DocumentNode.ChildNodes["TEI"].ChildNodes["group"].InnerText.Replace("\r\n", " ")
-           .Replace("\r", " ")
-           .Replace("\n", " ");
+          .Replace("\r", " ")
+          .Replace("\n", " ");
 
       return _r1.Replace(res, " ").Trim();
     }
@@ -55,34 +82,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds
       foreach (var line in lines)
         stb.AppendLine(line);
       return stb.ToString();
-    }
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(TEI model)
-    {
-      return new[]
-      {
-        new Dictionary<string, object>
-        {
-          {"Publisher", Reduce(model?.teiHeader?.fileDesc?.sourceDesc?.biblFull?.publicationStmt?.publisher?.Text)},
-          {"URL", model?.teiHeader?.fileDesc?.sourceDesc?.biblFull?.publicationStmt?.idno?.Value},
-          {"Datum", model?.teiHeader?.fileDesc?.sourceDesc?.biblFull?.publicationStmt?.date?.Value},
-          {"Titel", Reduce(model?.teiHeader?.fileDesc?.sourceDesc?.biblFull?.seriesStmt?.title.Text)},
-          {
-            "Kategorie", Reduce(
-              (from x in model?.teiHeader?.fileDesc?.sourceDesc?.biblFull?.seriesStmt?.biblScope
-               where x.unit == "categories"
-               select x.Text).FirstOrDefault())
-          },
-          {
-            "TAGs",
-            Reduce(
-              (from x in model?.teiHeader?.fileDesc?.sourceDesc?.biblFull?.seriesStmt?.biblScope
-               where x.unit == "tags"
-               select x.Text).FirstOrDefault())
-          },
-          {"Text", GetText(model)}
-        }
-      };
     }
   }
 }

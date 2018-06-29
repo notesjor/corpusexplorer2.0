@@ -1,29 +1,28 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
-{
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.dspin.de/data/textcorpus")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.dspin.de/data/textcorpus", IsNullable = false)]
-  public partial class lemmas
-  {
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
 
+namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
+{
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true, Namespace = "http://www.dspin.de/data/textcorpus")]
+  [XmlRoot(Namespace = "http://www.dspin.de/data/textcorpus", IsNullable = false)]
+  public class lemmas
+  {
     private lemma[] lemmaField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("lemma")]
+    /// <remarks />
+    [XmlElement("lemma")]
     public lemma[] lemma
     {
-      get
-      {
-        return this.lemmaField;
-      }
-      set
-      {
-        this.lemmaField = value;
-      }
+      get => lemmaField;
+      set => lemmaField = value;
     }
   }
 }

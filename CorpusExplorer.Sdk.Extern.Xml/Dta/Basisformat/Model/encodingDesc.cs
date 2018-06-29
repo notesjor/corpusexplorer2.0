@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlArrayItem("p", IsNullable = false)]
-    public p[] editorialDecl { get { return editorialDeclField; } set { editorialDeclField = value; } }
+    public p[] editorialDecl
+    {
+      get => editorialDeclField;
+      set => editorialDeclField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("rendition", IsNullable = false)]
-    public rendition[] tagsDecl { get { return tagsDeclField; } set { tagsDeclField = value; } }
+    public rendition[] tagsDecl
+    {
+      get => tagsDeclField;
+      set => tagsDeclField = value;
+    }
   }
 }

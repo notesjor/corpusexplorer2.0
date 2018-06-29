@@ -22,17 +22,29 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private string rendField;
 
     /// <remarks />
-    public head head { get { return headField; } set { headField = value; } }
+    public head head
+    {
+      get => headField;
+      set => headField = value;
+    }
 
     /// <remarks />
     [XmlElement("item", typeof(item))]
     [XmlElement("label", typeof(string))]
     [XmlElement("pb", typeof(pb))]
     [XmlElement("ptr", typeof(ptr))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string rend { get { return rendField; } set { rendField = value; } }
+    public string rend
+    {
+      get => rendField;
+      set => rendField = value;
+    }
   }
 }

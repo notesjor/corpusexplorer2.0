@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlElement("span")]
-    public span[] span { get { return spanField; } set { spanField = value; } }
+    public span[] span
+    {
+      get => spanField;
+      set => spanField = value;
+    }
   }
 }

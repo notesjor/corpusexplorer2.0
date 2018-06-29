@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
+using CorpusExplorer.Sdk.Utils.DataTableWriter;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
 
 namespace CorpusExplorer.Sdk.ViewModel
@@ -13,7 +17,67 @@ namespace CorpusExplorer.Sdk.ViewModel
     private string[] _columns;
     public DataTable DataTable { get; set; }
 
-    public void AddMetaEntry(string metaName, Type metaType) { Selection.SetNewDocumentMetadata(metaName, metaType); }
+    public void AddMetaEntry(string metaName, Type metaType)
+    {
+      Selection.SetNewDocumentMetadata(metaName, metaType);
+    }
+
+    public void Export(string path)
+    {
+      using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+      {
+        var tableWriter = new TsvTableWriter {OutputStream = fs};
+        tableWriter.WriteTable(DataTable);
+      }
+    }
+
+    public void Import(string path)
+    {
+      var scraper = new TsvScraper();
+      scraper.Input.Enqueue(path);
+      scraper.Execute();
+
+      if (scraper.Output == null)
+        return;
+
+      var test = new HashSet<Guid>(Selection.DocumentGuids);
+      foreach (var x in scraper.Output)
+        try
+        {
+          if (!x.ContainsKey("GUID") || !(x["GUID"] is Guid))
+            continue;
+
+          var guid = (Guid) x["GUID"];
+          if (guid == Guid.Empty || !test.Contains(guid))
+            continue;
+
+          var meta = x;
+          meta.Remove("GUID");
+          Selection.SetDocumentMetadata(guid, meta);
+        }
+        catch
+        {
+          // ignore
+        }
+    }
+
+    public void Replace(string query, string replacement)
+    {
+      foreach (DataRow row in DataTable.Rows)
+      foreach (var column in _columns.Where(column => row[column].ToString() == query))
+        row[column] = replacement;
+    }
+
+    public void Save()
+    {
+      if (DataTable == null)
+        return;
+
+      foreach (DataRow row in DataTable.Rows)
+        Selection.SetDocumentMetadata(
+          Guid.Parse(row["GUID"].ToString()),
+          _columns.ToDictionary(c => c, c => row[c]));
+    }
 
     protected override void ExecuteAnalyse()
     {
@@ -41,41 +105,15 @@ namespace CorpusExplorer.Sdk.ViewModel
 
         DataTable.Rows.Add(cells.ToArray());
       }
+
       DataTable.EndLoadData();
 
       DataTable.Columns["GUID"].ReadOnly = true;
     }
 
-    public void Replace(string query, string replacement)
+    protected override bool Validate()
     {
-      foreach (DataRow row in DataTable.Rows)
-      foreach (var column in _columns.Where(column => row[column].ToString() == query))
-        row[column] = replacement;
-    }
-
-    public void Save()
-    {
-      if (DataTable == null)
-        return;
-
-      foreach (DataRow row in DataTable.Rows)
-        Selection.SetDocumentMetadata(
-          Guid.Parse(row["GUID"].ToString()),
-          _columns.ToDictionary(c => c, c => row[c]));
-    }
-
-    protected override bool Validate() { return true; }
-
-    public void Export(string path)
-    {
-      FileIO.Write(path, DataTable.ToCsv(), Configuration.Encoding);
-    }
-
-    public void Import(string path)
-    {
-      var lines = FileIO.ReadLines(path, Configuration.Encoding);
-      var columns = lines[0].Split(new[] {"\t"}, StringSplitOptions.RemoveEmptyEntries);
-      
+      return true;
     }
   }
 }

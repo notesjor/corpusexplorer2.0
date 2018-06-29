@@ -29,36 +29,40 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     [XmlAttribute("absolute-time-format")]
     public timelineitemformatAbsolutetimeformat absolutetimeformat
     {
-      get { return absolutetimeformatField; }
-      set { absolutetimeformatField = value; }
+      get => absolutetimeformatField;
+      set => absolutetimeformatField = value;
     }
 
     /// <remarks />
     [XmlIgnore]
     public bool absolutetimeformatSpecified
     {
-      get { return absolutetimeformatFieldSpecified; }
-      set { absolutetimeformatFieldSpecified = value; }
+      get => absolutetimeformatFieldSpecified;
+      set => absolutetimeformatFieldSpecified = value;
     }
 
     /// <remarks />
     [XmlAttribute("miliseconds-digits")]
-    public string milisecondsdigits { get { return milisecondsdigitsField; } set { milisecondsdigitsField = value; } }
+    public string milisecondsdigits
+    {
+      get => milisecondsdigitsField;
+      set => milisecondsdigitsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute("show-every-nth-absolute")]
     public string showeverynthabsolute
     {
-      get { return showeverynthabsoluteField; }
-      set { showeverynthabsoluteField = value; }
+      get => showeverynthabsoluteField;
+      set => showeverynthabsoluteField = value;
     }
 
     /// <remarks />
     [XmlAttribute("show-every-nth-numbering")]
     public string showeverynthnumbering
     {
-      get { return showeverynthnumberingField; }
-      set { showeverynthnumberingField = value; }
+      get => showeverynthnumberingField;
+      set => showeverynthnumberingField = value;
     }
   }
 }

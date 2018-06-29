@@ -8,44 +8,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Gutenberg
   public class GutenbergScraper : AbstractScraper
   {
     private readonly object _lock = new object();
-    public override string DisplayName { get { return "Gutenberg DVD - SimpleScraper"; } }
-
-    private static Dictionary<string, object> BuildHead(HtmlNode head)
-    {
-      var res = new Dictionary<string, object>();
-
-      foreach (var node in head.ChildNodes)
-        switch (node.Name)
-        {
-          case "title":
-            res.Add("Titel", node.InnerText);
-            break;
-          case "meta":
-            var attrN = node.Attributes.FirstOrDefault(a => a.Name == "name");
-            var attrC = node.Attributes.FirstOrDefault(a => a.Name == "content");
-
-            if ((attrN == null) ||
-                (attrC == null) ||
-                res.ContainsKey(attrN.Value))
-              continue;
-
-            if ((attrN.Value == "year") ||
-                (attrN.Value == "firstpub"))
-            {
-              int year;
-              var stry = attrC.Value;
-              if (int.TryParse(stry, out year))
-                res.Add(attrN.Value, year);
-              else
-                res.Add(attrN.Value, stry);
-            }
-            else
-              res.Add(attrN.Value, attrC.Value);
-            break;
-        }
-
-      return res;
-    }
+    public override string DisplayName => "Gutenberg DVD - SimpleScraper";
 
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
@@ -66,6 +29,46 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Gutenberg
 
         return new[] {dic};
       }
+    }
+
+    private static Dictionary<string, object> BuildHead(HtmlNode head)
+    {
+      var res = new Dictionary<string, object>();
+
+      foreach (var node in head.ChildNodes)
+        switch (node.Name)
+        {
+          case "title":
+            res.Add("Titel", node.InnerText);
+            break;
+          case "meta":
+            var attrN = node.Attributes.FirstOrDefault(a => a.Name == "name");
+            var attrC = node.Attributes.FirstOrDefault(a => a.Name == "content");
+
+            if (attrN == null ||
+                attrC == null ||
+                res.ContainsKey(attrN.Value))
+              continue;
+
+            if (attrN.Value == "year" ||
+                attrN.Value == "firstpub")
+            {
+              int year;
+              var stry = attrC.Value;
+              if (int.TryParse(stry, out year))
+                res.Add(attrN.Value, year);
+              else
+                res.Add(attrN.Value, stry);
+            }
+            else
+            {
+              res.Add(attrN.Value, attrC.Value);
+            }
+
+            break;
+        }
+
+      return res;
     }
   }
 }

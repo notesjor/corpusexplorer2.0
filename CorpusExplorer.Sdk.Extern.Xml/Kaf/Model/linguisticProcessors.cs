@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string layer { get { return layerField; } set { layerField = value; } }
+    public string layer
+    {
+      get => layerField;
+      set => layerField = value;
+    }
 
     /// <remarks />
     [XmlElement("lp")]
-    public lp[] lp { get { return lpField; } set { lpField = value; } }
+    public lp[] lp
+    {
+      get => lpField;
+      set => lpField = value;
+    }
   }
 }

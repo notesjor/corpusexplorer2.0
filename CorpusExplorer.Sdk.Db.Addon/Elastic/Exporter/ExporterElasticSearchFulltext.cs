@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter.ElasticSearchFulltext.Model;
 using CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter.ElasticSearchFulltext.Model.Context;
-using CorpusExplorer.Sdk.Db.Elastic.Model.Context;
 using CorpusExplorer.Sdk.Db.Elastic.Sdk.Context;
 using CorpusExplorer.Sdk.Db.Gui;
 using CorpusExplorer.Sdk.Helper;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
 using CorpusExplorer.Sdk.Model.Interface;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 
 namespace CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter
 {
@@ -20,8 +15,8 @@ namespace CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter
     {
       FormHelper.Show("ElasticSearch",
         "http://localhost",
-        9200,        
-        ((h, p, db, usr, psw) =>
+        9200,
+        (h, p, db, usr, psw) =>
         {
           ElasticSearchFulltextContextManager
             .Initialize(
@@ -32,7 +27,7 @@ namespace CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter
                 : new
                   ElasticSearchContextCredentials(usr, psw));
           return ElasticSearchFulltextContextManager.GetContext() != null;
-        }),
+        },
         "CorpusExplorer >>> ElasticSearch (Kein CE-Reimport möglich)|*.elastic");
 
       var context = ElasticSearchFulltextContextManager.GetContext();
@@ -40,23 +35,23 @@ namespace CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter
       {
         var meta = hydra.GetDocumentMetadata(dsel);
         context.Add(new Document
-                    {
-                      DocumentGuid = dsel,
-                      SentenceCount = hydra.GetDocumentLengthInSentences(dsel),
-                      TokenCount = hydra.GetDocumentLengthInWords(dsel),
-                      Metadata = meta,
-                      Displayname = meta != null && meta.ContainsKey("Titel")
-                                      ? meta["Titel"].ToString()
-                                      : dsel.ToString(),
-                      Layers = hydra.GetReadableMultilayerDocument(dsel)
-                                    .Select(
-                                            x => new Layer
-                                                 {
-                                                   Displayname = x.Key,
-                                                   Content = x.Value.ReduceDocumentToText()
-                                                 })
-                                    .ToList()
-                    });
+        {
+          DocumentGuid = dsel,
+          SentenceCount = hydra.GetDocumentLengthInSentences(dsel),
+          TokenCount = hydra.GetDocumentLengthInWords(dsel),
+          Metadata = meta,
+          Displayname = meta != null && meta.ContainsKey("Titel")
+            ? meta["Titel"].ToString()
+            : dsel.ToString(),
+          Layers = hydra.GetReadableMultilayerDocument(dsel)
+            .Select(
+              x => new Layer
+              {
+                Displayname = x.Key,
+                Content = x.Value.ReduceDocumentToText()
+              })
+            .ToList()
+        });
       }
     }
   }

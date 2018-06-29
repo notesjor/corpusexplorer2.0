@@ -215,70 +215,6 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
     } // End of the constructor
 
     /// <summary>
-    ///   Calculate the R1, R2 and RV part for a word
-    /// </summary>
-    /// <param name="characters">The char array to calculate indexes for</param>
-    /// <returns>An int array with the r1, r2 and rV index</returns>
-    private int[] CalculateR1R2Rv(char[] characters)
-    {
-      // Create ints
-      var r1 = characters.Length;
-      var r2 = characters.Length;
-      var rV = characters.Length;
-
-      // Calculate RV
-      // If the second letter is a consonant, RV is the region after the next following vowel, or if the first two letters are vowels, 
-      // RV is the region after the next consonant, and otherwise (consonant-vowel case) RV is the region after the third letter. 
-      // But RV is the end of the word if these positions cannot be found.
-      if (characters.Length > 3)
-        if (IsVowel(characters[1]) == false)
-          for (var i = 2; i < characters.Length; i++)
-          {
-            if (!IsVowel(characters[i]))
-              continue;
-            rV = i + 1;
-            break;
-          }
-        else if (IsVowel(characters[0]) &&
-                 IsVowel(characters[1]))
-          for (var i = 2; i < characters.Length; i++)
-          {
-            if (IsVowel(characters[i]))
-              continue;
-            rV = i + 1;
-            break;
-          }
-        else if ((IsVowel(characters[0]) == false) &&
-                 IsVowel(characters[1]))
-          rV = 3;
-
-      // Calculate R1
-      for (var i = 1; i < characters.Length; i++)
-      {
-        if (IsVowel(characters[i]) ||
-            !IsVowel(characters[i - 1]))
-          continue;
-        // Set the r1 index
-        r1 = i + 1;
-        break;
-      }
-
-      // Calculate R2
-      for (var i = r1; i < characters.Length; ++i)
-      {
-        if (IsVowel(characters[i]) ||
-            !IsVowel(characters[i - 1]))
-          continue;
-        // Set the r2 index
-        r2 = i + 1;
-        break;
-      }
-
-      // Return the int array
-      return new[] {r1, r2, rV};
-    } // End of the CalculateR1R2RV method
-
-    /// <summary>
     ///   Get the steam word from a specific word
     /// </summary>
     /// <param name="word">The word to strip</param>
@@ -294,26 +230,30 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
 
       // Replace all acute accents by grave accents
       for (var i = 0; i < chars.Length; i++)
-        for (var j = 0; j < _acuteAccents.Length; j++)
-          if (chars[i] == _acuteAccents[j])
-            chars[i] = _graveAccents[j];
+      for (var j = 0; j < _acuteAccents.Length; j++)
+        if (chars[i] == _acuteAccents[j])
+          chars[i] = _graveAccents[j];
 
       // Put u after q, and u, i between vowels into upper case
       var charCount = chars.Length - 1;
       for (var i = 1; i < chars.Length; i++)
         if (i == charCount)
         {
-          if ((chars[i] == 'u') &&
-              (chars[i - 1] == 'q'))
+          if (chars[i] == 'u' &&
+              chars[i - 1] == 'q')
             chars[i] = 'U';
         }
-        else if ((chars[i] == 'u') &&
-                 ((IsVowel(chars[i - 1]) && IsVowel(chars[i + 1])) || (chars[i - 1] == 'q')))
+        else if (chars[i] == 'u' &&
+                 (IsVowel(chars[i - 1]) && IsVowel(chars[i + 1]) || chars[i - 1] == 'q'))
+        {
           chars[i] = 'U';
-        else if ((chars[i] == 'i') &&
+        }
+        else if (chars[i] == 'i' &&
                  IsVowel(chars[i - 1]) &&
                  IsVowel(chars[i + 1]))
+        {
           chars[i] = 'I';
+        }
 
       // Get indexes for R1, R2 and RV
       var partIndexR = CalculateR1R2Rv(chars);
@@ -375,6 +315,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
               if (strR2.EndsWith("ic" + end))
                 word = word.Remove(word.Length - 2);
             }
+
             break;
           case "logia":
           case "logie":
@@ -385,6 +326,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
               word += "log";
               endingRemovedStep1 = true;
             }
+
             break;
           case "uzione":
           case "uzioni":
@@ -397,6 +339,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
               word += "u";
               endingRemovedStep1 = true;
             }
+
             break;
           case "enza":
           case "enze":
@@ -407,6 +350,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
               word += "ente";
               endingRemovedStep1 = true;
             }
+
             break;
           case "amento":
           case "amenti":
@@ -418,6 +362,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
               word = word.Remove(word.Length - end.Length);
               endingRemovedStep1 = true;
             }
+
             break;
           case "amente":
             // Delete if in R1
@@ -438,8 +383,11 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
                   word = word.Remove(word.Length - 2);
               }
               else if (strR2.EndsWith("abil" + end))
+              {
                 word = word.Remove(word.Length - 2);
+              }
             }
+
             break;
           case "ità":
             // Delete if in R2
@@ -455,6 +403,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
                        strR2.EndsWith("iv" + end))
                 word = word.Remove(word.Length - 2);
             }
+
             break;
           case "ivo":
           case "ivi":
@@ -475,6 +424,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
                   word = word.Remove(word.Length - 2);
               }
             }
+
             break;
           default:
             if (strR2.EndsWith(end))
@@ -482,6 +432,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
               word = word.Remove(word.Length - end.Length);
               endingRemovedStep1 = true;
             }
+
             break;
         }
 
@@ -531,5 +482,69 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
       // Return the word
       return word.ToLowerInvariant();
     } // End of the GetSteamWord method
+
+    /// <summary>
+    ///   Calculate the R1, R2 and RV part for a word
+    /// </summary>
+    /// <param name="characters">The char array to calculate indexes for</param>
+    /// <returns>An int array with the r1, r2 and rV index</returns>
+    private int[] CalculateR1R2Rv(char[] characters)
+    {
+      // Create ints
+      var r1 = characters.Length;
+      var r2 = characters.Length;
+      var rV = characters.Length;
+
+      // Calculate RV
+      // If the second letter is a consonant, RV is the region after the next following vowel, or if the first two letters are vowels, 
+      // RV is the region after the next consonant, and otherwise (consonant-vowel case) RV is the region after the third letter. 
+      // But RV is the end of the word if these positions cannot be found.
+      if (characters.Length > 3)
+        if (IsVowel(characters[1]) == false)
+          for (var i = 2; i < characters.Length; i++)
+          {
+            if (!IsVowel(characters[i]))
+              continue;
+            rV = i + 1;
+            break;
+          }
+        else if (IsVowel(characters[0]) &&
+                 IsVowel(characters[1]))
+          for (var i = 2; i < characters.Length; i++)
+          {
+            if (IsVowel(characters[i]))
+              continue;
+            rV = i + 1;
+            break;
+          }
+        else if (IsVowel(characters[0]) == false &&
+                 IsVowel(characters[1]))
+          rV = 3;
+
+      // Calculate R1
+      for (var i = 1; i < characters.Length; i++)
+      {
+        if (IsVowel(characters[i]) ||
+            !IsVowel(characters[i - 1]))
+          continue;
+        // Set the r1 index
+        r1 = i + 1;
+        break;
+      }
+
+      // Calculate R2
+      for (var i = r1; i < characters.Length; ++i)
+      {
+        if (IsVowel(characters[i]) ||
+            !IsVowel(characters[i - 1]))
+          continue;
+        // Set the r2 index
+        r2 = i + 1;
+        break;
+      }
+
+      // Return the int array
+      return new[] {r1, r2, rV};
+    } // End of the CalculateR1R2RV method
   } // End of the class
 } // End of the namespace

@@ -24,10 +24,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute]
-    public wordnetMarkerTypeType type { get { return typeField; } set { typeField = value; } }
+    public wordnetMarkerTypeType type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool typeSpecified { get { return typeFieldSpecified; } set { typeFieldSpecified = value; } }
+    public bool typeSpecified
+    {
+      get => typeFieldSpecified;
+      set => typeFieldSpecified = value;
+    }
   }
 }

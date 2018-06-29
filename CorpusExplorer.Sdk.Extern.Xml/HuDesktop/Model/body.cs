@@ -22,10 +22,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.HuDesktop.Model
 
     /// <remarks />
     [XmlElement("c")]
-    public c[] c { get { return cField; } set { cField = value; } }
+    public c[] c
+    {
+      get => cField;
+      set => cField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified, Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
   }
 }

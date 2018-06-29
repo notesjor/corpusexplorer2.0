@@ -45,7 +45,7 @@ namespace Bcs.Security
       string include = "",
       string exclude = "")
     {
-      if ((length == 0) ||
+      if (length == 0 ||
           !(numbers || lowerCases || upperCases || specials))
         return "";
 

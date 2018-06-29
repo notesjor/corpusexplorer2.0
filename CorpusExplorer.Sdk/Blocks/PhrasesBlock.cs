@@ -68,8 +68,10 @@ namespace CorpusExplorer.Sdk.Blocks
                 res.Add(key, 1);
               list = null;
             }
+
             continue;
           }
+
           if (list == null)
             list = new List<string>();
           if (doc1[i][j] != idx)
@@ -85,6 +87,7 @@ namespace CorpusExplorer.Sdk.Blocks
               list = new List<string>();
             }
           }
+
           list.Add(layer2[doc2[i][j]]);
         }
 
@@ -97,6 +100,7 @@ namespace CorpusExplorer.Sdk.Blocks
           else
             res.Add(key, 1);
         }
+
         list = null;
       }
 
@@ -114,13 +118,17 @@ namespace CorpusExplorer.Sdk.Blocks
     ///   Wird nach der Berechnung aufgerufen (nach CalculateCall)
     ///   und dient der Bereinigung von Daten
     /// </summary>
-    protected override void CalculateCleanup() { }
+    protected override void CalculateCleanup()
+    {
+    }
 
     /// <summary>
     ///   Wird nach der Bereinigung aufgerufen (nach CalculateCall + CalculateCleanup)
     ///   und dient dem zusammenfassen der bereinigen Ergebnisse
     /// </summary>
-    protected override void CalculateFinalize() { }
+    protected override void CalculateFinalize()
+    {
+    }
 
     /// <summary>
     ///   Wird vor der Berechnung aufgerufen (vor CalculateCall)

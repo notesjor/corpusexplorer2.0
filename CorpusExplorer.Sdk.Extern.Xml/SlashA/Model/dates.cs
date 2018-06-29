@@ -18,6 +18,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA.Model
     private date dateField;
 
     /// <remarks />
-    public date date { get { return dateField; } set { dateField = value; } }
+    public date date
+    {
+      get => dateField;
+      set => dateField = value;
+    }
   }
 }

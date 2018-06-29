@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using CorpusExplorer.Sdk.Extern.Xml.SlashA.Model;
 using CorpusExplorer.Sdk.Extern.Xml.SlashA.Serializer;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
 using CorpusExplorer.Sdk.Model.Interface;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 
 #endregion
 
@@ -41,26 +41,28 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA
         {
           xml.Serialize(GetDSpin(hydra, guid, i++), Path.Combine(path, guid + ".xml"));
         }
-        catch {}
+        catch
+        {
+        }
     }
 
     private DSpin GetDSpin(IHydra hydra, Guid guid, int i)
     {
       var meta = hydra.GetDocumentMetadata(guid);
 
-      var from = (meta != null) && meta.ContainsKey(MetanameAuthor)
-                   ? meta[MetanameAuthor].ToString()
-                   : UnknownPropertyValue;
-      var datum = (meta != null) && meta.ContainsKey(MetanameDate)
-                    ? meta[MetanameDate] is DateTime
-                        ? ((DateTime) meta[MetanameDate]).ToString("yyyy-MM-dd")
-                        : meta[MetanameDate].ToString()
-                    : UnknownDateValue;
-      var to = (meta != null) && meta.ContainsKey(MetanamePublishingLocation)
-                 ? meta[MetanamePublishingLocation].ToString()
-                 : (meta != null) && meta.ContainsKey(MetanameReciver)
-                   ? meta[MetanameReciver].ToString()
-                   : UnknownPropertyValue;
+      var from = meta != null && meta.ContainsKey(MetanameAuthor)
+        ? meta[MetanameAuthor].ToString()
+        : UnknownPropertyValue;
+      var datum = meta != null && meta.ContainsKey(MetanameDate)
+        ? meta[MetanameDate] is DateTime
+          ? ((DateTime) meta[MetanameDate]).ToString("yyyy-MM-dd")
+          : meta[MetanameDate].ToString()
+        : UnknownDateValue;
+      var to = meta != null && meta.ContainsKey(MetanamePublishingLocation)
+        ? meta[MetanamePublishingLocation].ToString()
+        : meta != null && meta.ContainsKey(MetanameReciver)
+          ? meta[MetanameReciver].ToString()
+          : UnknownPropertyValue;
 
       var docW = hydra.GetReadableDocument(guid, LayernameWord).Select(x => x.ToArray()).ToArray();
       var docL = hydra.GetReadableDocument(guid, LayernameLemma).Select(x => x.ToArray()).ToArray();
@@ -87,6 +89,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA
             text.Append(" ");
           text.Append(docW[j][k]);
         }
+
         sents.Add(new sentence {tokenIDs = sent.ToString().Trim()});
       }
 

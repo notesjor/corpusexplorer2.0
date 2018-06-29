@@ -37,6 +37,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       this.btn_calc = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_filter = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_filterEditor = new Telerik.WinControls.UI.CommandBarButton();
+      this.btn_layers = new Telerik.WinControls.UI.CommandBarButton();
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_csvExport = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_print = new Telerik.WinControls.UI.CommandBarButton();
@@ -57,11 +58,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
             this.commandBarRowElement1});
       this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
       this.radCommandBar1.TabIndex = 0;
-      this.radCommandBar1.Text = "radCommandBar1";
       // 
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
       // 
@@ -73,6 +74,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
             this.btn_calc,
             this.btn_filter,
             this.btn_filterEditor,
+            this.btn_layers,
             this.commandBarSeparator1,
             this.btn_csvExport,
             this.btn_print,
@@ -115,6 +117,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       this.btn_filterEditor.Name = "btn_filterEditor";
       this.btn_filterEditor.Text = "Filtereditor";
       this.btn_filterEditor.Click += new System.EventHandler(this.btn_filterEditor_Click);
+      // 
+      // btn_layers
+      // 
+      this.btn_layers.DisplayName = "commandBarButton1";
+      this.btn_layers.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers;
+      this.btn_layers.Name = "btn_layers";
+      this.btn_layers.Text = "Layer auswählen";
+      this.btn_layers.Click += new System.EventHandler(this.btn_layers_Click);
       // 
       // commandBarSeparator1
       // 
@@ -177,7 +187,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       this.radGridView1.Name = "radGridView1";
       this.radGridView1.Size = new System.Drawing.Size(780, 331);
       this.radGridView1.TabIndex = 1;
-      this.radGridView1.Text = "radGridView1";
       // 
       // FrequencyGrid
       // 
@@ -209,5 +218,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
     private Telerik.WinControls.UI.CommandBarButton btn_snapshot_create;
     private Telerik.WinControls.UI.CommandBarButton btn_filter;
     private Telerik.WinControls.UI.CommandBarButton btn_filterEditor;
+    private Telerik.WinControls.UI.CommandBarButton btn_layers;
   }
 }

@@ -15,7 +15,10 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET.Forms
       {
         ThemeResolutionService.ApplicationThemeName = "TelerikMetroTouch";
       }
-      catch { }
+      catch
+      {
+      }
+
       InitializeComponent();
     }
 
@@ -32,7 +35,9 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET.Forms
         ip.Size = new Size(24, 24);
         ip.ScaleSize = new Size(24, 24);
       }
-      catch { }
+      catch
+      {
+      }
     }
   }
 }

@@ -9,9 +9,10 @@ namespace CorpusExplorer.Core.DocumentProcessing.Scraper.Pdf
 {
   public class SimplePdfDocumentScraper : AbstractScraper
   {
-    private object _lock = new object();
+    private readonly object _lock = new object();
 
     public override string DisplayName => "PDF";
+
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
       lock (_lock)
@@ -19,9 +20,10 @@ namespace CorpusExplorer.Core.DocumentProcessing.Scraper.Pdf
         RadFixedDocument doc;
 
         using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
+        using (var bs = new BufferedStream(fs))
         {
           var importer = new PdfFormatProvider();
-          doc = importer.Import(fs);
+          doc = importer.Import(bs);
         }
 
         if (doc == null)
@@ -32,7 +34,7 @@ namespace CorpusExplorer.Core.DocumentProcessing.Scraper.Pdf
         {
           new Dictionary<string, object>
           {
-            {"Text", exporter.Export(doc, new TextFormatProviderSettings("\r\n","\r\n"))},
+            {"Text", exporter.Export(doc, new TextFormatProviderSettings("\r\n", "\r\n"))},
             {"Pfad", file},
             {"Dateiname", Path.GetFileNameWithoutExtension(file)}
           }

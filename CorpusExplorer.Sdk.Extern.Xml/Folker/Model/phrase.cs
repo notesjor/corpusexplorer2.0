@@ -28,16 +28,16 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
     [XmlAttribute("boundary-intonation")]
     public phraseBoundaryintonation boundaryintonation
     {
-      get { return boundaryintonationField; }
-      set { boundaryintonationField = value; }
+      get => boundaryintonationField;
+      set => boundaryintonationField = value;
     }
 
     /// <remarks />
     [XmlIgnore]
     public bool boundaryintonationSpecified
     {
-      get { return boundaryintonationFieldSpecified; }
-      set { boundaryintonationFieldSpecified = value; }
+      get => boundaryintonationFieldSpecified;
+      set => boundaryintonationFieldSpecified = value;
     }
 
     /// <remarks />
@@ -47,10 +47,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
     [XmlElement("time", typeof(time))]
     [XmlElement("uncertain", typeof(uncertain))]
     [XmlElement("w", typeof(w))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public phraseType type { get { return typeField; } set { typeField = value; } }
+    public phraseType type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

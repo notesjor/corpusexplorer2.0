@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using CorpusExplorer.Sdk.Helper;
 using Nest;
 
 namespace CorpusExplorer.Sdk.Db.Elastic.Model
@@ -13,10 +11,8 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Model
     public string Displayname { get; set; }
     public HashSet<Guid> Documents { get; set; }
 
-    [Nested]
-    public Dictionary<Guid, string> Layers { get; set; }
+    [Nested] public Dictionary<Guid, string> Layers { get; set; }
 
-    [Nested]
-    public Dictionary<string, object> Metadata { get; set; }    
+    [Nested] public Dictionary<string, object> Metadata { get; set; }
   }
 }

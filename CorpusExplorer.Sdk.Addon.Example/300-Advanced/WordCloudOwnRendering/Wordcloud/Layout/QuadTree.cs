@@ -28,9 +28,12 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
       m_Root = new QuadTreeNode<T>(rectangle);
     }
 
-    public int Count { get { return m_Root.Count; } }
+    public int Count => m_Root.Count;
 
-    public void ForEach(QuadTreeAction action) { m_Root.ForEach(action); }
+    public void ForEach(QuadTreeAction action)
+    {
+      m_Root.ForEach(action);
+    }
 
     public bool HasContent(RectangleF area)
     {
@@ -38,8 +41,14 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
       return result;
     }
 
-    public void Insert(T item) { m_Root.Insert(item); }
+    public void Insert(T item)
+    {
+      m_Root.Insert(item);
+    }
 
-    public IEnumerable<T> Query(RectangleF area) { return m_Root.Query(area); }
+    public IEnumerable<T> Query(RectangleF area)
+    {
+      return m_Root.Query(area);
+    }
   }
 }

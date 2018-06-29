@@ -6,7 +6,11 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
   public class DateTimeCluster : AbstractCluster
   {
     private readonly DateTime _value;
-    public DateTimeCluster(DateTime value) { _value = value; }
+
+    public DateTimeCluster(DateTime value)
+    {
+      _value = value;
+    }
 
     public override object CentralValue => _value;
 

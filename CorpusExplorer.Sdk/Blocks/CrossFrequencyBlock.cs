@@ -23,16 +23,14 @@ namespace CorpusExplorer.Sdk.Blocks
   [Serializable]
   public class CrossFrequencyBlock : AbstractSimple1LayerBlock, IUseMemoryOverflowProtection
   {
-    [NonSerialized]
-    private readonly BlockCacheHelper _cache = new BlockCacheHelper();
+    [NonSerialized] private readonly BlockCacheHelper _cache = new BlockCacheHelper();
 
     private Dictionary<string, Dictionary<string, double>> _cooccurrencesFrequency;
 
     /// <summary>
     ///   The _lock collocates frequency
     /// </summary>
-    [NonSerialized]
-    private object _resultLock;
+    [NonSerialized] private object _resultLock;
 
     /// <summary>
     ///   Wort/Kollokator/Frequenz-Wörterbuch
@@ -113,7 +111,9 @@ namespace CorpusExplorer.Sdk.Blocks
     ///   Wird nach der Bereinigung aufgerufen (nach CalculateCall + CalculateCleanup)
     ///   und dient dem zusammenfassen der bereinigen Ergebnisse
     /// </summary>
-    protected override void CalculateFinalize() { }
+    protected override void CalculateFinalize()
+    {
+    }
 
     /// <summary>
     ///   Wird vor der Berechnung aufgerufen (vor CalculateCall)

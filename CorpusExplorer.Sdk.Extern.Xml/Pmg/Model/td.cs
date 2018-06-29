@@ -31,20 +31,34 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Pmg.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string abbr { get { return abbrField; } set { abbrField = value; } }
+    public string abbr
+    {
+      get => abbrField;
+      set => abbrField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    [DefaultValue("1")]
-    public string colspan { get { return colspanField; } set { colspanField = value; } }
+    [DefaultValue("1")] public string colspan
+    {
+      get => colspanField;
+      set => colspanField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREFS")]
-    public string headers { get { return headersField; } set { headersField = value; } }
+    public string headers
+    {
+      get => headersField;
+      set => headersField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    [DefaultValue("1")]
-    public string rowspan { get { return rowspanField; } set { rowspanField = value; } }
+    [DefaultValue("1")] public string rowspan
+    {
+      get => rowspanField;
+      set => rowspanField = value;
+    }
   }
 }

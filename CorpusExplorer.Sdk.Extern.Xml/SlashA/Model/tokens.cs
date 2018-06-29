@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA.Model
 
     /// <remarks />
     [XmlElement("token")]
-    public token[] token { get { return tokenField; } set { tokenField = value; } }
+    public token[] token
+    {
+      get => tokenField;
+      set => tokenField = value;
+    }
   }
 }

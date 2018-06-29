@@ -26,18 +26,34 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute]
-    public int head { get { return headField; } set { headField = value; } }
+    public int head
+    {
+      get => headField;
+      set => headField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public int index { get { return indexField; } set { indexField = value; } }
+    public int index
+    {
+      get => indexField;
+      set => indexField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string relation { get { return relationField; } set { relationField = value; } }
+    public string relation
+    {
+      get => relationField;
+      set => relationField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

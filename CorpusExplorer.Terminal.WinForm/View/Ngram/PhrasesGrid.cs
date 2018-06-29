@@ -1,14 +1,14 @@
 ﻿#region
 
+using System;
+using System.Data;
+using System.Drawing;
+using System.Linq;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.Properties;
 using CorpusExplorer.Terminal.WinForm.View.AbstractTemplates;
-using System;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using Telerik.WinControls.UI;
 using PositionChangedEventArgs = Telerik.WinControls.UI.Data.PositionChangedEventArgs;
 
@@ -19,13 +19,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
   /// <summary>
   ///   The grid visualisation.
   /// </summary>
-  public partial class PhrasesGrid : AbstractGridViewWithCodeLense
+  public partial class PhrasesGrid : AbstractGridViewWithTextLense
   {
     private GridViewTemplate _childTemplate;
     private Phrases2ViewModel _vm;
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="AbstractView" /> class.
+    ///   Initializes a new instance
     /// </summary>
     public PhrasesGrid()
     {
@@ -36,7 +36,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
 
     private void Analyse()
     {
-      //_vm = ViewModelGet<Phrases2ViewModel>(false);
+      //_vm = GetViewModel<Phrases2ViewModel>(false);
       if (drop_group.SelectedIndex != -1)
         _vm.Layer1Displayname = drop_group.SelectedValue.ToString();
       if (drop_values.SelectedIndex != -1)
@@ -80,7 +80,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       ExportFunction();
     }
 
-    private void btn_filtereditor_Click(object sender, EventArgs e) { QueryBuilderFunction(Resources.Phrasen); }
+    private void btn_filtereditor_Click(object sender, EventArgs e)
+    {
+      QueryBuilderFunction(Resources.Phrasen);
+    }
 
     private void btn_filterlist_Click(object sender, EventArgs e)
     {
@@ -119,17 +122,17 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     {
       CreateSelection(
         radGridView1.SelectedRows.Select(
-                      row => new FilterQuerySingleLayerExactPhrase
-                      {
-                        Inverse = false,
-                        LayerDisplayname = _vm.Layer2Displayname,
-                        LayerQueries =
-                          row.Cells[Resources.Muster].Value.ToString()
-                             .Split(
-                               new[] { " " },
-                               StringSplitOptions
-                                 .RemoveEmptyEntries)
-                      }));
+          row => new FilterQuerySingleLayerExactPhrase
+          {
+            Inverse = false,
+            LayerDisplayname = _vm.Layer2Displayname,
+            LayerQueries =
+              row.Cells[Resources.Muster].Value.ToString()
+                .Split(
+                  new[] {" "},
+                  StringSplitOptions
+                    .RemoveEmptyEntries)
+          }));
     }
 
     private GridViewTemplate CreateChildTemplate()
@@ -145,17 +148,19 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
         //EnableSorting = true, HorizontalScrollState = ScrollState.AlwaysShow
       };
 
-      var txtpre = new GridViewTextBoxColumn(Resources.Pre) { TextAlignment = ContentAlignment.MiddleRight };
-      var txtcontent = new GridViewTextBoxColumn(Resources.Match) { TextAlignment = ContentAlignment.MiddleCenter };
-      var txtpost = new GridViewTextBoxColumn(Resources.Post) { TextAlignment = ContentAlignment.MiddleLeft };
-      var txtcount = new GridViewTextBoxColumn(Resources.Frequency) { TextAlignment = ContentAlignment.MiddleCenter};
+      var txtpre = new GridViewTextBoxColumn(Resources.Pre) {TextAlignment = ContentAlignment.MiddleRight};
+      var txtcontent = new GridViewTextBoxColumn(Resources.Match) {TextAlignment = ContentAlignment.MiddleCenter};
+      var txtpost = new GridViewTextBoxColumn(Resources.Post) {TextAlignment = ContentAlignment.MiddleLeft};
+      var txtcount = new GridViewTextBoxColumn(Resources.Frequency) {TextAlignment = ContentAlignment.MiddleCenter};
 
       template.Columns.AddRange(txtpre, txtcontent, txtpost, txtcount);
 
       return template;
     }
 
-    private void drop_group_Click(object sender, EventArgs e) { }
+    private void drop_group_Click(object sender, EventArgs e)
+    {
+    }
 
     private void drop_group_SelectedIndexChanged(object sender, PositionChangedEventArgs e)
     {
@@ -163,7 +168,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
         Processing.Invoke(Resources.ZählungLäuft, Analyse);
     }
 
-    private void drop_values_Click(object sender, EventArgs e) { }
+    private void drop_values_Click(object sender, EventArgs e)
+    {
+    }
 
     private void drop_values_SelectedIndexChanged(object sender, PositionChangedEventArgs e)
     {
@@ -177,14 +184,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       if (parent == null)
         return;
 
-      var vm = new TextLiveSearchViewModel { Selection = Project.CurrentSelection };
+      var vm = new TextLiveSearchViewModel {Selection = Project.CurrentSelection};
       vm.AddQuery(
         new FilterQuerySingleLayerExactPhrase
         {
           Inverse = false,
           LayerDisplayname = drop_values.SelectedValue.ToString(),
           LayerQueries =
-            parent[Resources.Muster].ToString().Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries)
+            parent[Resources.Muster].ToString().Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)
         });
       vm.Analyse();
 
@@ -201,7 +208,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
 
     private void ShowViewCall(object sender, EventArgs e)
     {
-      _vm = ViewModelGet<Phrases2ViewModel>();
+      _vm = GetViewModel<Phrases2ViewModel>();
       drop_group.DataSource = _vm.Layer;
       drop_values.DataSource = _vm.Layer;
 

@@ -26,15 +26,19 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Pmg.Model
     [XmlElement("table", typeof(block))]
     [XmlElement("table-fix", typeof(tablefix))]
     [XmlChoiceIdentifier("ItemsElementName")]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlElement("ItemsElementName")]
     [XmlIgnore]
     public ItemsChoiceType[] ItemsElementName
     {
-      get { return itemsElementNameField; }
-      set { itemsElementNameField = value; }
+      get => itemsElementNameField;
+      set => itemsElementNameField = value;
     }
   }
 }

@@ -47,7 +47,11 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tokenizer
 
     public override string DisplayName => "HighSpeed German-Tokenizer (Wikipedia-Edition)";
 
-    public override string Language { get { return "Deutsch"; } set { } }
+    public override string Language
+    {
+      get => "Deutsch";
+      set { }
+    }
 
     public override string Execute(string input)
     {
@@ -86,6 +90,7 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tokenizer
               res.RemoveAt(res.Count - 1);
             }
           }
+
         res.Add(line);
       }
 

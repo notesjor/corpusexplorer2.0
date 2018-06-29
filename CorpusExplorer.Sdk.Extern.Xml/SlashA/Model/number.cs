@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "integer")]
-    public string letter { get { return letterField; } set { letterField = value; } }
+    public string letter
+    {
+      get => letterField;
+      set => letterField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string volume { get { return volumeField; } set { volumeField = value; } }
+    public string volume
+    {
+      get => volumeField;
+      set => volumeField = value;
+    }
   }
 }

@@ -12,15 +12,9 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
     private float m_LineHeight;
 
     public TypewriterLayout(SizeF size)
-      : base(size) { m_Carret = new PointF(size.Width, 0); }
-
-    private bool HorizontalOverflow(RectangleF rectangle) { return rectangle.Right > Surface.Right; }
-
-    private RectangleF LineFeed(RectangleF rectangle)
+      : base(size)
     {
-      var result = new RectangleF(new PointF(0, m_Carret.Y + m_LineHeight), rectangle.Size);
-      m_LineHeight = rectangle.Height;
-      return result;
+      m_Carret = new PointF(size.Width, 0);
     }
 
     public override bool TryFindFreeRectangle(SizeF size, out RectangleF foundRectangle)
@@ -32,9 +26,22 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
         if (!IsInsideSurface(foundRectangle))
           return false;
       }
+
       m_Carret = new PointF(foundRectangle.Right, foundRectangle.Y);
 
       return true;
+    }
+
+    private bool HorizontalOverflow(RectangleF rectangle)
+    {
+      return rectangle.Right > Surface.Right;
+    }
+
+    private RectangleF LineFeed(RectangleF rectangle)
+    {
+      var result = new RectangleF(new PointF(0, m_Carret.Y + m_LineHeight), rectangle.Size);
+      m_LineHeight = rectangle.Height;
+      return result;
     }
   }
 }

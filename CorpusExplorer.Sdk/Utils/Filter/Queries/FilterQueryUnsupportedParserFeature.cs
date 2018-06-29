@@ -7,6 +7,8 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 {
   public class FilterQueryUnsupportedParserFeature : AbstractFilterQueryMeta
   {
+    public override string Verbal => "Funktion wird vom Query-Parser nicht unterstützt.";
+
     public override object Clone()
     {
       return new FilterQueryUnsupportedParserFeature
@@ -15,11 +17,10 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
         Inverse = Inverse,
         MetaLabel = MetaLabel,
         MetaValues = MetaValues,
-        OrFilterQueries = (from x in OrFilterQueries select (AbstractFilterQuery)x.Clone())
+        OrFilterQueries = from x in OrFilterQueries select (AbstractFilterQuery) x.Clone()
       };
     }
 
-    public override string Verbal => "Funktion wird vom Query-Parser nicht unterstützt.";
     protected override void TransformMetaValues(IEnumerable<object> metaValues)
     {
     }

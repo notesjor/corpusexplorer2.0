@@ -26,18 +26,34 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tiger.Model
 
     /// <remarks />
     [XmlAnyAttribute]
-    public XmlAttribute[] AnyAttr { get { return anyAttrField; } set { anyAttrField = value; } }
+    public XmlAttribute[] AnyAttr
+    {
+      get => anyAttrField;
+      set => anyAttrField = value;
+    }
 
     /// <remarks />
     [XmlElement("edge", Form = XmlSchemaForm.Unqualified)]
-    public edgeType[] edge { get { return edgeField; } set { edgeField = value; } }
+    public edgeType[] edge
+    {
+      get => edgeField;
+      set => edgeField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlElement("secedge", Form = XmlSchemaForm.Unqualified)]
-    public secedgeType[] secedge { get { return secedgeField; } set { secedgeField = value; } }
+    public secedgeType[] secedge
+    {
+      get => secedgeField;
+      set => secedgeField = value;
+    }
   }
 }

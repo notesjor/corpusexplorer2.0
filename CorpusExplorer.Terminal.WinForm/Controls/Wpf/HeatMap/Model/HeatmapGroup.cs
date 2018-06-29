@@ -18,6 +18,9 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.HeatMap.Model
     public List<IHeatmapItem> Children { get; }
     public string Name { get; }
 
-    public long Size { get { return Children.Sum(child => child.Size); } }
+    public long Size
+    {
+      get { return Children.Sum(child => child.Size); }
+    }
   }
 }

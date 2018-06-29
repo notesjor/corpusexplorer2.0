@@ -1,50 +1,55 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
 namespace CorpusExplorer.Sdk.Extern.Xml.PerseusDigitalLibrary.Greek.Model
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-  public partial class change
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true)]
+  [XmlRoot(Namespace = "", IsNullable = false)]
+  public class change
   {
-
     private date dateField;
-
-    private respStmt respStmtField;
 
     private item itemField;
 
+    private respStmt respStmtField;
+
     private string tEIformField;
 
-    /// <remarks/>
+    /// <remarks />
     public date date
     {
-      get { return this.dateField; }
-      set { this.dateField = value; }
+      get => dateField;
+      set => dateField = value;
     }
 
-    /// <remarks/>
-    public respStmt respStmt
-    {
-      get { return this.respStmtField; }
-      set { this.respStmtField = value; }
-    }
-
-    /// <remarks/>
+    /// <remarks />
     public item item
     {
-      get { return this.itemField; }
-      set { this.itemField = value; }
+      get => itemField;
+      set => itemField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    public respStmt respStmt
+    {
+      get => respStmtField;
+      set => respStmtField = value;
+    }
+
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string TEIform
     {
-      get { return this.tEIformField; }
-      set { this.tEIformField = value; }
+      get => tEIformField;
+      set => tEIformField = value;
     }
   }
 }

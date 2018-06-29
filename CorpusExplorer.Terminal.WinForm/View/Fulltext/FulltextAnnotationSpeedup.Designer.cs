@@ -70,11 +70,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
             this.commandBarRowElement2});
       this.radCommandBar1.Size = new System.Drawing.Size(757, 110);
       this.radCommandBar1.TabIndex = 0;
-      this.radCommandBar1.Text = "radCommandBar1";
       // 
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
       // 
@@ -99,7 +99,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       this.drop_selecteddocument.DisplayName = "commandBarDropDownList1";
       this.drop_selecteddocument.DropDownAnimationEnabled = true;
       this.drop_selecteddocument.MaxDropDownItems = 0;
-      this.drop_selecteddocument.MinSize = new System.Drawing.Size(220, 22);
+      this.drop_selecteddocument.MinSize = new System.Drawing.Size(300, 22);
       this.drop_selecteddocument.Name = "drop_selecteddocument";
       this.drop_selecteddocument.Text = "";
       this.drop_selecteddocument.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.drop_selecteddocument_SelectedIndexChanged);
@@ -124,6 +124,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // commandBarRowElement2
       // 
       this.commandBarRowElement2.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement2.Name = "commandBarRowElement2";
       this.commandBarRowElement2.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement2});
       // 
@@ -245,7 +246,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       this.radGridView1.ShowGroupPanel = false;
       this.radGridView1.Size = new System.Drawing.Size(757, 77);
       this.radGridView1.TabIndex = 2;
-      this.radGridView1.Text = "radGridView1";
       this.radGridView1.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridView1_CellValueChanged);
       // 
       // FulltextAnnotationSpeedup

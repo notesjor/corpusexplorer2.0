@@ -42,16 +42,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.commandBarSeparator2 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_snapshot_create = new Telerik.WinControls.UI.CommandBarButton();
       this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-      this.clearPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
-      this.txt_query = new Telerik.WinControls.UI.RadAutoCompleteBox();
-      this.btn_search = new Telerik.WinControls.UI.RadButton();
+      this.wordBag1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WordBag();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel1)).BeginInit();
-      this.clearPanel1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.txt_query)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.btn_search)).BeginInit();
       this.SuspendLayout();
       // 
       // radCommandBar1
@@ -63,11 +57,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
             this.commandBarRowElement1});
       this.radCommandBar1.Size = new System.Drawing.Size(780, 44);
       this.radCommandBar1.TabIndex = 0;
-      this.radCommandBar1.Text = "radCommandBar1";
       // 
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
       // 
@@ -180,7 +174,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // radGridView1
       // 
       this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGridView1.Location = new System.Drawing.Point(0, 76);
+      this.radGridView1.Location = new System.Drawing.Point(0, 80);
       // 
       // 
       // 
@@ -191,55 +185,34 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.radGridView1.MasterTemplate.MultiSelect = true;
       this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
-      this.radGridView1.Size = new System.Drawing.Size(780, 324);
+      this.radGridView1.Size = new System.Drawing.Size(780, 320);
       this.radGridView1.TabIndex = 1;
-      this.radGridView1.Text = "radGridView1";
       // 
-      // clearPanel1
+      // wordBag1
       // 
-      this.clearPanel1.Controls.Add(this.txt_query);
-      this.clearPanel1.Controls.Add(this.btn_search);
-      this.clearPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.clearPanel1.Location = new System.Drawing.Point(0, 44);
-      this.clearPanel1.Name = "clearPanel1";
-      this.clearPanel1.Size = new System.Drawing.Size(780, 32);
-      this.clearPanel1.TabIndex = 3;
-      // 
-      // txt_query
-      // 
-      this.txt_query.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.txt_query.Location = new System.Drawing.Point(0, 0);
-      this.txt_query.Name = "txt_query";
-      this.txt_query.NullText = "Geben Sie eine(n) Begriff/Phrase ein, um nach passenden Kookkurrenzen zu suchen.." +
-    ".";
-      this.txt_query.Size = new System.Drawing.Size(748, 32);
-      this.txt_query.TabIndex = 1;
-      // 
-      // btn_search
-      // 
-      this.btn_search.Dock = System.Windows.Forms.DockStyle.Right;
-      this.btn_search.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
-      this.btn_search.Location = new System.Drawing.Point(748, 0);
-      this.btn_search.Name = "btn_search";
-      this.btn_search.Size = new System.Drawing.Size(32, 32);
-      this.btn_search.TabIndex = 0;
-      this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
+      this.wordBag1.BackColor = System.Drawing.Color.White;
+      this.wordBag1.Dock = System.Windows.Forms.DockStyle.Top;
+      this.wordBag1.Font = new System.Drawing.Font("Segoe UI", 11F);
+      this.wordBag1.Location = new System.Drawing.Point(0, 44);
+      this.wordBag1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+      this.wordBag1.Name = "wordBag1";
+      this.wordBag1.ResultQueries = new string[0];
+      this.wordBag1.ResultSelectedLayerDisplayname = null;
+      this.wordBag1.Size = new System.Drawing.Size(780, 36);
+      this.wordBag1.TabIndex = 2;
+      this.wordBag1.ExecuteButtonClicked += new System.EventHandler(this.wordBag1_ExecuteButtonClicked);
       // 
       // CooccurrenceGridSearch
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.radGridView1);
-      this.Controls.Add(this.clearPanel1);
+      this.Controls.Add(this.wordBag1);
       this.Controls.Add(this.radCommandBar1);
       this.Name = "CooccurrenceGridSearch";
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel1)).EndInit();
-      this.clearPanel1.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.txt_query)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.btn_search)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -260,8 +233,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     private Telerik.WinControls.UI.CommandBarButton btn_snapshot_create;
     private Telerik.WinControls.UI.CommandBarButton btn_filterlist;
     private Telerik.WinControls.UI.CommandBarButton btn_filtereditor;
-    private Controls.WinForm.ClearPanel clearPanel1;
-    private Telerik.WinControls.UI.RadButton btn_search;
-    private Telerik.WinControls.UI.RadAutoCompleteBox txt_query;
+    private Controls.WinForm.WordBag wordBag1;
   }
 }

@@ -25,10 +25,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
 
     /// <remarks />
     [XmlElement(Form = XmlSchemaForm.Unqualified)]
-    public string name { get { return nameField; } set { nameField = value; } }
+    public string name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
 
     /// <remarks />
     [XmlAttribute("speaker-id", DataType = "ID")]
-    public string speakerid { get { return speakeridField; } set { speakeridField = value; } }
+    public string speakerid
+    {
+      get => speakeridField;
+      set => speakeridField = value;
+    }
   }
 }

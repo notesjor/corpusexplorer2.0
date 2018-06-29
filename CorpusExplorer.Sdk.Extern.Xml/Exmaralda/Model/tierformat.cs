@@ -37,72 +37,104 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     [XmlAttribute("alignment-name")]
     public tierformatAlignmentname alignmentname
     {
-      get { return alignmentnameField; }
-      set { alignmentnameField = value; }
+      get => alignmentnameField;
+      set => alignmentnameField = value;
     }
 
     /// <remarks />
     [XmlIgnore]
     public bool alignmentnameSpecified
     {
-      get { return alignmentnameFieldSpecified; }
-      set { alignmentnameFieldSpecified = value; }
+      get => alignmentnameFieldSpecified;
+      set => alignmentnameFieldSpecified = value;
     }
 
     /// <remarks />
     [XmlAttribute("bgcolor-name")]
-    public tierformatBgcolorname bgcolorname { get { return bgcolornameField; } set { bgcolornameField = value; } }
+    public tierformatBgcolorname bgcolorname
+    {
+      get => bgcolornameField;
+      set => bgcolornameField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
     public bool bgcolornameSpecified
     {
-      get { return bgcolornameFieldSpecified; }
-      set { bgcolornameFieldSpecified = value; }
+      get => bgcolornameFieldSpecified;
+      set => bgcolornameFieldSpecified = value;
     }
 
     /// <remarks />
     [XmlElement("property")]
-    public property[] property { get { return propertyField; } set { propertyField = value; } }
+    public property[] property
+    {
+      get => propertyField;
+      set => propertyField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public tierformatSize size { get { return sizeField; } set { sizeField = value; } }
+    public tierformatSize size
+    {
+      get => sizeField;
+      set => sizeField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool sizeSpecified { get { return sizeFieldSpecified; } set { sizeFieldSpecified = value; } }
+    public bool sizeSpecified
+    {
+      get => sizeFieldSpecified;
+      set => sizeFieldSpecified = value;
+    }
 
     /// <remarks />
     [XmlAttribute("style-name")]
-    public tierformatStylename stylename { get { return stylenameField; } set { stylenameField = value; } }
+    public tierformatStylename stylename
+    {
+      get => stylenameField;
+      set => stylenameField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool stylenameSpecified { get { return stylenameFieldSpecified; } set { stylenameFieldSpecified = value; } }
+    public bool stylenameSpecified
+    {
+      get => stylenameFieldSpecified;
+      set => stylenameFieldSpecified = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
 
     /// <remarks />
     [XmlAttribute("textcolor-name")]
     public tierformatTextcolorname textcolorname
     {
-      get { return textcolornameField; }
-      set { textcolornameField = value; }
+      get => textcolornameField;
+      set => textcolornameField = value;
     }
 
     /// <remarks />
     [XmlIgnore]
     public bool textcolornameSpecified
     {
-      get { return textcolornameFieldSpecified; }
-      set { textcolornameFieldSpecified = value; }
+      get => textcolornameFieldSpecified;
+      set => textcolornameFieldSpecified = value;
     }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string tierref { get { return tierrefField; } set { tierrefField = value; } }
+    public string tierref
+    {
+      get => tierrefField;
+      set => tierrefField = value;
+    }
   }
 }

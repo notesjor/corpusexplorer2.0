@@ -25,7 +25,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string broken { get { return brokenField; } set { brokenField = value; } }
+    public string broken
+    {
+      get => brokenField;
+      set => brokenField = value;
+    }
 
     /// <remarks />
     [XmlElement("distinct", typeof(distinct))]
@@ -41,14 +45,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     [XmlElement("ref", typeof(@ref))]
     [XmlElement("stage", typeof(stage))]
     [XmlElement("title", typeof(title))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

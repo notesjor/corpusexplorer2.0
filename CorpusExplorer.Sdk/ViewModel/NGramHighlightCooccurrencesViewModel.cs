@@ -102,6 +102,9 @@ namespace CorpusExplorer.Sdk.ViewModel
       WeightedNgrams = block.WeightedNgrams;
     }
 
-    protected override bool Validate() { return true; }
+    protected override bool Validate()
+    {
+      return true;
+    }
   }
 }

@@ -25,14 +25,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement("conversion-info")]
-    public conversioninfo conversioninfo { get { return conversioninfoField; } set { conversioninfoField = value; } }
+    public conversioninfo conversioninfo
+    {
+      get => conversioninfoField;
+      set => conversioninfoField = value;
+    }
 
     /// <remarks />
     [XmlElement("head")]
-    public head head { get { return headField; } set { headField = value; } }
+    public head head
+    {
+      get => headField;
+      set => headField = value;
+    }
 
     /// <remarks />
     [XmlElement("segmented-body")]
-    public segmentedbody segmentedbody { get { return segmentedbodyField; } set { segmentedbodyField = value; } }
+    public segmentedbody segmentedbody
+    {
+      get => segmentedbodyField;
+      set => segmentedbodyField = value;
+    }
   }
 }

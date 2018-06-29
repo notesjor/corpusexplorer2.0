@@ -29,30 +29,62 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement(DataType = "anyURI")]
-    public string URL { get { return uRLField; } set { uRLField = value; } }
+    public string URL
+    {
+      get => uRLField;
+      set => uRLField = value;
+    }
 
     /// <remarks />
     [XmlElement(DataType = "anyURI")]
-    public string absPath { get { return absPathField; } set { absPathField = value; } }
+    public string absPath
+    {
+      get => absPathField;
+      set => absPathField = value;
+    }
 
     /// <remarks />
-    public AvailabilityType Availability { get { return availabilityField; } set { availabilityField = value; } }
+    public AvailabilityType Availability
+    {
+      get => availabilityField;
+      set => availabilityField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("Key", IsNullable = false)]
-    public KeyType[] Description { get { return descriptionField; } set { descriptionField = value; } }
+    public KeyType[] Description
+    {
+      get => descriptionField;
+      set => descriptionField = value;
+    }
 
     /// <remarks />
-    public string filename { get { return filenameField; } set { filenameField = value; } }
+    public string filename
+    {
+      get => filenameField;
+      set => filenameField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified, DataType = "ID")]
-    public string Id { get { return idField; } set { idField = value; } }
+    public string Id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
-    public string mimetype { get { return mimetypeField; } set { mimetypeField = value; } }
+    public string mimetype
+    {
+      get => mimetypeField;
+      set => mimetypeField = value;
+    }
 
     /// <remarks />
-    public string relPath { get { return relPathField; } set { relPathField = value; } }
+    public string relPath
+    {
+      get => relPathField;
+      set => relPathField = value;
+    }
   }
 }

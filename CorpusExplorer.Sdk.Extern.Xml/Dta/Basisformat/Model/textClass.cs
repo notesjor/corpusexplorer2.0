@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlElement("classCode")]
-    public classCode[] classCode { get { return classCodeField; } set { classCodeField = value; } }
+    public classCode[] classCode
+    {
+      get => classCodeField;
+      set => classCodeField = value;
+    }
   }
 }

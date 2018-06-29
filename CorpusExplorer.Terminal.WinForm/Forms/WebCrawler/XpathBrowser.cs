@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser;
 using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
-using PostSharp.Patterns.Threading;
 
 namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
 {
   public partial class XpathBrowser : AbstractForm
   {
-    private WebXpathVisualizer _xpath;
+    private readonly WebXpathVisualizer _xpath;
+
+    private bool _xpathChanged = true;
 
     public XpathBrowser()
     {
@@ -32,7 +27,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
 
     private void _xpath_XPathChanged(object sender, EventArgs e)
     {
-      radTextBox5.Invoke((MethodInvoker)delegate { radTextBox5.Text = _xpath.XPath; });
+      radTextBox5.Invoke((MethodInvoker) delegate { radTextBox5.Text = _xpath.XPath; });
     }
 
     private void radButton1_Click(object sender, EventArgs e)
@@ -44,8 +39,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
     {
       _xpath.XPath = radTextBox5.Text;
     }
-
-    private bool _xpathChanged = true;
 
     private void radTextBox5_TextChanged(object sender, EventArgs e)
     {

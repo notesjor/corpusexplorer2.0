@@ -28,7 +28,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private HashSet<string> _oldHash;
     private AnnotationViewModel _vm;
 
-    public FulltextAnnotationSpeedup() { InitializeComponent(); }
+    public FulltextAnnotationSpeedup()
+    {
+      InitializeComponent();
+    }
 
     private void btn_addLayer_Click(object sender, EventArgs e)
     {
@@ -89,10 +92,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
     private void btn_save_Click(object sender, EventArgs e)
     {
-      if ((drop_layerAnnotate.SelectedIndex == -1) ||
-          (drop_layerView.SelectedIndex == -1) ||
-          (drop_selecteddocument.SelectedIndex == -1) ||
-          (_dt == null))
+      if (drop_layerAnnotate.SelectedIndex == -1 ||
+          drop_layerView.SelectedIndex == -1 ||
+          drop_selecteddocument.SelectedIndex == -1 ||
+          _dt == null)
         return;
 
       var newValues = new HashSet<string>();
@@ -121,12 +124,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
         {
           _vm.QuickAnnotation(
             (
-            Guid
+              Guid
             )
             drop_selecteddocument
               .SelectedValue,
             (
-            Guid
+              Guid
             )
             drop_layerAnnotate
               .SelectedValue,
@@ -145,11 +148,20 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
         _vm.DocumentMetadata = form.DocumentMetadata;
     }
 
-    private void drop_layerAnnotate_SelectedIndexChanged(object sender, PositionChangedEventArgs e) { RefreshAll(); }
+    private void drop_layerAnnotate_SelectedIndexChanged(object sender, PositionChangedEventArgs e)
+    {
+      RefreshAll();
+    }
 
-    private void drop_layerView_SelectedIndexChanged(object sender, PositionChangedEventArgs e) { RefreshAll(); }
+    private void drop_layerView_SelectedIndexChanged(object sender, PositionChangedEventArgs e)
+    {
+      RefreshAll();
+    }
 
-    private void drop_selecteddocument_SelectedIndexChanged(object sender, PositionChangedEventArgs e) { RefreshAll(); }
+    private void drop_selecteddocument_SelectedIndexChanged(object sender, PositionChangedEventArgs e)
+    {
+      RefreshAll();
+    }
 
     private void radGridView1_CellValueChanged(object sender, GridViewCellEventArgs e)
     {
@@ -157,17 +169,17 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
         return;
 
       e.Row.Cells[Resources.Änderungen].Value = e.Value.ToString() == _oldAnnotation[e.RowIndex]
-                                                  ? Resources.item
-                                                  : _oldHash.Contains(e.Value.ToString())
-                                                    ? Resources.item_edit
-                                                    : Resources.item_error;
+        ? Resources.item
+        : _oldHash.Contains(e.Value.ToString())
+          ? Resources.item_edit
+          : Resources.item_error;
     }
 
     private void RefreshAll()
     {
-      if ((drop_layerAnnotate.SelectedIndex == -1) ||
-          (drop_layerView.SelectedIndex == -1) ||
-          (drop_selecteddocument.SelectedIndex == -1))
+      if (drop_layerAnnotate.SelectedIndex == -1 ||
+          drop_layerView.SelectedIndex == -1 ||
+          drop_selecteddocument.SelectedIndex == -1)
         return;
 
       var multi = _vm.GetDocumentMultilayer((Guid) drop_selecteddocument.SelectedValue);
@@ -209,11 +221,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
     }
 
-    private void SpeedTaggerVisualisation_Load(object sender, EventArgs e) { }
+    private void SpeedTaggerVisualisation_Load(object sender, EventArgs e)
+    {
+    }
 
     private void SpeedTaggerVisualisation_ShowVisualisation(object sender, EventArgs e)
     {
-      _vm = ViewModelGet<AnnotationViewModel>();
+      _vm = GetViewModel<AnnotationViewModel>();
       _vm.Analyse();
       DictionaryBindingHelper.BindDictionary(_vm.Documents, drop_selecteddocument);
       DictionaryBindingHelper.BindDictionary(_vm.Layers, drop_layerView);

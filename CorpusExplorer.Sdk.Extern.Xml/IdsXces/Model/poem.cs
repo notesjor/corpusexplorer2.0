@@ -20,10 +20,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private lg[] lgField;
 
     /// <remarks />
-    public head head { get { return headField; } set { headField = value; } }
+    public head head
+    {
+      get => headField;
+      set => headField = value;
+    }
 
     /// <remarks />
     [XmlElement("lg")]
-    public lg[] lg { get { return lgField; } set { lgField = value; } }
+    public lg[] lg
+    {
+      get => lgField;
+      set => lgField = value;
+    }
   }
 }

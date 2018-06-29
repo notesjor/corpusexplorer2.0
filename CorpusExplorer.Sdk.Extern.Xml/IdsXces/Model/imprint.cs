@@ -23,12 +23,24 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlElement("pubDate")]
-    public pubDate[] pubDate { get { return pubDateField; } set { pubDateField = value; } }
+    public pubDate[] pubDate
+    {
+      get => pubDateField;
+      set => pubDateField = value;
+    }
 
     /// <remarks />
-    public string publisher { get { return publisherField; } set { publisherField = value; } }
+    public string publisher
+    {
+      get => publisherField;
+      set => publisherField = value;
+    }
 
     /// <remarks />
-    public string pubPlace { get { return pubPlaceField; } set { pubPlaceField = value; } }
+    public string pubPlace
+    {
+      get => pubPlaceField;
+      set => pubPlaceField = value;
+    }
   }
 }

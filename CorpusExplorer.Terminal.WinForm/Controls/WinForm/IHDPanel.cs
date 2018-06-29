@@ -27,16 +27,28 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     /// <summary>
     ///   Gets or sets the ihd deescribtion.
     /// </summary>
-    public string IHDDeescribtion { get { return radLabel2.Text; } set { radLabel2.Text = value; } }
+    public string IHDDeescribtion
+    {
+      get => radLabel2.Text;
+      set => radLabel2.Text = value;
+    }
 
     /// <summary>
     ///   Gets or sets the ihd header.
     /// </summary>
-    public string IHDHeader { get { return radLabel1.Text; } set { radLabel1.Text = value; } }
+    public string IHDHeader
+    {
+      get => radLabel1.Text;
+      set => radLabel1.Text = value;
+    }
 
     /// <summary>
     ///   Gets or sets the ihd image.
     /// </summary>
-    public Image IHDImage { get { return pictureBox1.Image; } set { pictureBox1.Image = value; } }
+    public Image IHDImage
+    {
+      get => pictureBox1.Image;
+      set => pictureBox1.Image = value;
+    }
   }
 }

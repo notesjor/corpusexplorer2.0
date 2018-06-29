@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step.Abstract;
@@ -11,7 +10,8 @@ using CorpusExplorer.Sdk.Model;
 
 namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
 {
-  public class CalculatorStepFrequency3LayerPosFilter : AbstractCalculatorStep, ICalculatorStepHasTopFilter, ICalculatorStepHasPosFilter
+  public class CalculatorStepFrequency3LayerPosFilter : AbstractCalculatorStep, ICalculatorStepHasTopFilter,
+    ICalculatorStepHasPosFilter
   {
     public CalculatorStepFrequency3LayerPosFilter()
     {
@@ -20,6 +20,8 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
     }
 
     public override string Method => "Frequency3LayerPosFilter";
+
+    public IEnumerable<string> PosTags { get; set; }
 
     public int Top { get; set; }
 
@@ -37,21 +39,19 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
           if (!tmp.ContainsKey(pos))
             continue;
 
-          var temp = (from x in tmp[pos] from y in x.Value orderby y.Value descending select new Tuple<string, string, double>(x.Key, y.Key, y.Value)).Take(Top);
+          var temp = (from x in tmp[pos]
+            from y in x.Value
+            orderby y.Value descending
+            select new Tuple<string, string, double>(x.Key, y.Key, y.Value)).Take(Top);
           var tdic = new Dictionary<string, Dictionary<string, double>>();
           foreach (var x in temp)
-          {
             if (tdic.ContainsKey(x.Item1))
-            {
               tdic[x.Item1].Add(x.Item2, x.Item3);
-            }
             else
-            {
               tdic.Add(x.Item1, new Dictionary<string, double> {{x.Item2, x.Item3}});
-            }
-          }
           dic.Add(pos, tdic);
         }
+
         tmp = dic;
       }
 
@@ -65,7 +65,5 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
           block.Layer3Displayname,
           "Frequency"));
     }
-
-    public IEnumerable<string> PosTags { get; set; }
   }
 }

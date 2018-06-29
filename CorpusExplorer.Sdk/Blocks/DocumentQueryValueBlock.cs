@@ -16,9 +16,22 @@ namespace CorpusExplorer.Sdk.Blocks
   {
     private readonly object _lock = new object();
 
-    public DocumentQueryValueBlock() { LayerDisplayname = "Wort"; }
+    public DocumentQueryValueBlock()
+    {
+      LayerDisplayname = "Wort";
+    }
 
     public Dictionary<Guid, HashSet<string>> DocumentValueDictionary { get; set; }
+
+    /// <summary>
+    ///   Gibt alle Dokumente zurück die deisen Wert enhalten
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public IEnumerable<Guid> GetDocumentsByValue(string value)
+    {
+      return from v in DocumentValueDictionary where v.Value.Contains(value) select v.Key;
+    }
 
     /// <summary>
     ///   Führt die Berechnung aus
@@ -54,13 +67,17 @@ namespace CorpusExplorer.Sdk.Blocks
     ///   Wird nach der Berechnung aufgerufen (nach CalculateCall)
     ///   und dient der Bereinigung von Daten
     /// </summary>
-    protected override void CalculateCleanup() { }
+    protected override void CalculateCleanup()
+    {
+    }
 
     /// <summary>
     ///   Wird nach der Bereinigung aufgerufen (nach CalculateCall + CalculateCleanup)
     ///   und dient dem zusammenfassen der bereinigen Ergebnisse
     /// </summary>
-    protected override void CalculateFinalize() { }
+    protected override void CalculateFinalize()
+    {
+    }
 
     /// <summary>
     ///   Wird vor der Berechnung aufgerufen (vor CalculateCall)
@@ -68,16 +85,6 @@ namespace CorpusExplorer.Sdk.Blocks
     protected override void CalculateInitProperties()
     {
       DocumentValueDictionary = new Dictionary<Guid, HashSet<string>>();
-    }
-
-    /// <summary>
-    ///   Gibt alle Dokumente zurück die deisen Wert enhalten
-    /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
-    public IEnumerable<Guid> GetDocumentsByValue(string value)
-    {
-      return from v in DocumentValueDictionary where v.Value.Contains(value) select v.Key;
     }
   }
 }

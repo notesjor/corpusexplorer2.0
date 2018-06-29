@@ -1,11 +1,13 @@
 #region
 
+using System;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
+using CorpusExplorer.Terminal.WinForm.Forms.SelectLayer;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
+using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Properties;
 using CorpusExplorer.Terminal.WinForm.View.AbstractTemplates;
-using System;
 using Telerik.WinControls.UI;
 
 #endregion
@@ -15,7 +17,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
   /// <summary>
   ///   The grid visualisation.
   /// </summary>
-  public partial class LeftRightFrequency : AbstractGridViewWithCodeLense
+  public partial class LeftRightFrequency : AbstractGridViewWithTextLense
   {
     private FrequencyLeftRightViewModel _vm;
 
@@ -31,11 +33,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 
     private void Analyse()
     {
-      _vm = ViewModelGet<FrequencyLeftRightViewModel>();
+      _vm = GetViewModel<FrequencyLeftRightViewModel>();
       if (_vm == null)
         return;
 
-      _vm.Analyse();
+      if (SelectedLayerDisplaynames != null)
+        _vm.LayerDisplayname = SelectedLayerDisplaynames[0];
+      if (!_vm.Analyse())
+        return;
 
       radGridView1.DataSource = _vm.GetDataTable();
       radGridView1.ResetBindings();
@@ -46,7 +51,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
         {
           Inverse = false,
           LayerDisplayname = "Wort",
-          LayerQueries = new[] { x[Resources.ZeichenketteWortform].ToString() }
+          LayerQueries = new[] {x[Resources.ZeichenketteWortform].ToString()}
         });
 
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
@@ -80,7 +85,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       ExportFunction();
     }
 
-    private void btn_filter_Click(object sender, EventArgs e) { FilterListFunction("Wort"); }
+    private void btn_filter_Click(object sender, EventArgs e)
+    {
+      FilterListFunction("Wort");
+    }
 
     private void btn_filtereditor_Click(object sender, EventArgs e)
     {
@@ -148,6 +156,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
     private void ShowViewCall(object sender, EventArgs e)
     {
       Processing.Invoke(Resources.AnalysiereUndStelleRelationenHer, Analyse);
+    }
+
+    private void btn_layer_Click(object sender, EventArgs e)
+    {
+      var form = new Select1Layer(SelectedLayerDisplaynames);
+      form.ShowDialog();
+      SelectedLayerDisplaynames = form.ResultSelectedLayerDisplaynames;
+      Analyse();
     }
   }
 }

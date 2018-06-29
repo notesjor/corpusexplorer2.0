@@ -26,20 +26,40 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private string typeField;
 
     /// <remarks />
-    public dateline dateline { get { return datelineField; } set { datelineField = value; } }
+    public dateline dateline
+    {
+      get => datelineField;
+      set => datelineField = value;
+    }
 
     /// <remarks />
-    public ptr ptr { get { return ptrField; } set { ptrField = value; } }
+    public ptr ptr
+    {
+      get => ptrField;
+      set => ptrField = value;
+    }
 
     /// <remarks />
     [XmlElement("s")]
-    public s[] s { get { return sField; } set { sField = value; } }
+    public s[] s
+    {
+      get => sField;
+      set => sField = value;
+    }
 
     /// <remarks />
-    public salute salute { get { return saluteField; } set { saluteField = value; } }
+    public salute salute
+    {
+      get => saluteField;
+      set => saluteField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

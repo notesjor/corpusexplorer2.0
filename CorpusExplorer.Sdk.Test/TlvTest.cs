@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CorpusExplorer.Core.DocumentProcessing.Exporter.Tlv;
 using CorpusExplorer.Core.DocumentProcessing.Importer.TlvXml;
-using CorpusExplorer.Core.Exporter.Tlv;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

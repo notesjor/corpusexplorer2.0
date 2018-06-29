@@ -20,9 +20,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml.AnnotationPro.Model
 
     /// <remarks />
     [XmlElement(DataType = "NCName")]
-    public string Key { get { return keyField; } set { keyField = value; } }
+    public string Key
+    {
+      get => keyField;
+      set => keyField = value;
+    }
 
     /// <remarks />
-    public string Value { get { return valueField; } set { valueField = value; } }
+    public string Value
+    {
+      get => valueField;
+      set => valueField = value;
+    }
   }
 }

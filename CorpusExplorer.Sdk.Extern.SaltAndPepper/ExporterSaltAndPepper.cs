@@ -4,13 +4,31 @@ using System.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Extern.Plaintext.Conll;
 using CorpusExplorer.Sdk.Helper;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
 using CorpusExplorer.Sdk.Model.Interface;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
 {
   public class ExporterSaltAndPepper : AbstractExporter
   {
+    public enum PepperOutputModule
+    {
+      None,
+      Conll,
+      Annis,
+      Dot,
+      GraphAnno,
+      Mmax2,
+      Paula,
+      PennTreebank,
+      RelAnnis,
+      SaltInfo,
+      SaltXml,
+      Tcf,
+      Text,
+      TreeTagger
+    }
+
     public PepperOutputModule Module { get; set; } = PepperOutputModule.None;
 
     public override void Export(IHydra hydra, string path)
@@ -27,11 +45,12 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
       path = Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path));
       if (!Directory.Exists(path))
         Directory.CreateDirectory(path);
-      
+
       using (var scriptTemp = new TemporaryFile(Configuration.TempPath))
       using (var inputTemp = new TemporaryDirectory())
       {
-        var script = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><?xml-model href=\"https://korpling.german.hu-berlin.de/saltnpepper/pepper/schema/10/pepper.rnc\" type=\"application/relax-ng-compact-syntax\"?><pepper-job version=\"1.0\"><importer name=\"FORMAT_NAME\" path=\"SOURCE_PATH\"/><manipulator name=\"MANIPULATOR_NAME\"/><exporter name=\"EXPORTER_NAME\" path=\"TARGET_PATH\"/></pepper-job>";
+        var script =
+          "<?xml version=\"1.0\" encoding=\"UTF-8\"?><?xml-model href=\"https://korpling.german.hu-berlin.de/saltnpepper/pepper/schema/10/pepper.rnc\" type=\"application/relax-ng-compact-syntax\"?><pepper-job version=\"1.0\"><importer name=\"FORMAT_NAME\" path=\"SOURCE_PATH\"/><manipulator name=\"MANIPULATOR_NAME\"/><exporter name=\"EXPORTER_NAME\" path=\"TARGET_PATH\"/></pepper-job>";
 
         var vars = new Dictionary<string, string>
         {
@@ -64,7 +83,7 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
 
         var exporter = new ExporterConll();
         exporter.Export(hydra, inputTemp.Path);
-        
+
         var pepper = new Process
         {
           StartInfo =
@@ -98,25 +117,6 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
       exporter.Export(hydra, path);
     }
 
-
-    public enum PepperOutputModule
-    {
-      None,
-      Conll,
-      Annis,
-      Dot,
-      GraphAnno,
-      Mmax2,
-      Paula,
-      PennTreebank,
-      RelAnnis,
-      SaltInfo,
-      SaltXml,
-      Tcf,
-      Text,
-      TreeTagger
-    }
-    
     private string GetFormatName()
     {
       switch (Module)

@@ -15,10 +15,13 @@ namespace CorpusExplorer.Sdk.Blocks
   [Serializable]
   public class TextLiveSearchBlock : AbstractBlock
   {
-    [NonSerialized]
-    private IEnumerable<AbstractFilterQuery> _layerQueries;
+    [NonSerialized] private IEnumerable<AbstractFilterQuery> _layerQueries;
 
-    public IEnumerable<AbstractFilterQuery> LayerQueries { get => _layerQueries; set => _layerQueries = value; }
+    public IEnumerable<AbstractFilterQuery> LayerQueries
+    {
+      get => _layerQueries;
+      set => _layerQueries = value;
+    }
 
     public Selection ResultSelection { get; set; }
     public Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>> SearchResults { get; set; }

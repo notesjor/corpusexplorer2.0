@@ -20,9 +20,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
   [Serializable]
   public class FilterQueryMultiLayer : AbstractFilterQuery
   {
-    [XmlIgnore]
-    [NonSerialized]
-    private Dictionary<string, string> _multilayerValues;
+    [XmlIgnore] [NonSerialized] private Dictionary<string, string> _multilayerValues;
 
     private KeyValuePair<string, string>[] _multilayerValuesSerialized;
 
@@ -38,7 +36,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     ///   Gets or sets the multilayer values.
     /// </summary>
     [XmlIgnore]
-    public Dictionary<string, string> MultilayerValues { get => _multilayerValues; set => _multilayerValues = value; }
+    public Dictionary<string, string> MultilayerValues
+    {
+      get => _multilayerValues;
+      set => _multilayerValues = value;
+    }
 
     /// <summary>
     ///   Gibt eine automatisch generierte Zusammenfassung des Inhalts/Bedeutung zurück.
@@ -68,6 +70,85 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
         MultilayerValues = MultilayerValues,
         OrFilterQueries = OrFilterQueries.Select(q => q.Clone() as AbstractFilterQuery)
       };
+    }
+
+    /// <summary>
+    ///   The get sentences index.
+    /// </summary>
+    /// <param name="corpus">
+    ///   The corpus.
+    /// </param>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <param name="sentence">
+    ///   The sentence.
+    /// </param>
+    /// <returns>
+    ///   The <see cref="int" />.
+    /// </returns>
+    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    {
+      var res = SentenceIndexCall(corpus, documentGuid, sentence);
+      return res?.FirstOrDefault() ?? -1;
+    }
+
+    /// <summary>
+    ///   The get sentences.
+    /// </summary>
+    /// <param name="corpus">
+    ///   The corpus.
+    /// </param>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <returns>
+    ///   Sentence indices.
+    /// </returns>
+    protected override IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid)
+    {
+      var search = GetDictionary(corpus);
+      return search == null ? null : ExploreSentences(documentGuid, search).Select(x => x.Key);
+    }
+
+    /// <summary>
+    ///   Gibt alle Wort-Index Übereinstimmungen zurück die das Query oder desseb OrQuery in gewählten Korpus - Dokument - Satz
+    ///   hat.
+    /// </summary>
+    /// <param name="corpus">Korpus der das Dokument enthält.</param>
+    /// <param name="documentGuid">GUID des Dokuments</param>
+    /// <param name="sentence">
+    ///   ID des Satzes der die FUnstelle enthalten soll. Alle validen Sätze können zuvor mit
+    ///   GetSentenceIndices() abgefragt werden.
+    /// </param>
+    /// <returns>Auflistung aller Vorkommen im Satz</returns>
+    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    {
+      return SentenceIndexCall(corpus, documentGuid, sentence);
+    }
+
+    /// <summary>
+    ///   The validate call.
+    /// </summary>
+    /// <param name="corpus">
+    ///   The corpus.
+    /// </param>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <returns>
+    ///   The <see cref="bool" />.
+    /// </returns>
+    protected override bool ValidateCall(AbstractCorpusAdapter corpus, Guid documentGuid)
+    {
+      var search = GetDictionary(corpus);
+      if (search == null || search.Count == 0)
+        return false;
+      var exploreSentence = ExploreSentences(documentGuid, search);
+      if (exploreSentence == null ||
+          !exploreSentence.Any())
+        return false;
+      return ExploreSentences(documentGuid, search).SelectMany(x => x.Value).Any();
     }
 
     /// <summary>
@@ -180,61 +261,6 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       return res;
     }
 
-    /// <summary>
-    ///   The get sentences index.
-    /// </summary>
-    /// <param name="corpus">
-    ///   The corpus.
-    /// </param>
-    /// <param name="documentGuid">
-    ///   The document guid.
-    /// </param>
-    /// <param name="sentence">
-    ///   The sentence.
-    /// </param>
-    /// <returns>
-    ///   The <see cref="int" />.
-    /// </returns>
-    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
-    {
-      var res = SentenceIndexCall(corpus, documentGuid, sentence);
-      return res?.FirstOrDefault() ?? -1;
-    }
-
-    /// <summary>
-    ///   The get sentences.
-    /// </summary>
-    /// <param name="corpus">
-    ///   The corpus.
-    /// </param>
-    /// <param name="documentGuid">
-    ///   The document guid.
-    /// </param>
-    /// <returns>
-    ///   Sentence indices.
-    /// </returns>
-    protected override IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid)
-    {
-      var search = GetDictionary(corpus);
-      return search == null ? null : ExploreSentences(documentGuid, search).Select(x => x.Key);
-    }
-
-    /// <summary>
-    ///   Gibt alle Wort-Index Übereinstimmungen zurück die das Query oder desseb OrQuery in gewählten Korpus - Dokument - Satz
-    ///   hat.
-    /// </summary>
-    /// <param name="corpus">Korpus der das Dokument enthält.</param>
-    /// <param name="documentGuid">GUID des Dokuments</param>
-    /// <param name="sentence">
-    ///   ID des Satzes der die FUnstelle enthalten soll. Alle validen Sätze können zuvor mit
-    ///   GetSentenceIndices() abgefragt werden.
-    /// </param>
-    /// <returns>Auflistung aller Vorkommen im Satz</returns>
-    protected override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
-    {
-      return SentenceIndexCall(corpus, documentGuid, sentence);
-    }
-
     [OnDeserialized]
     private void OnDeserialized(StreamingContext context)
     {
@@ -310,30 +336,6 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       }
 
       return test;
-    }
-
-    /// <summary>
-    ///   The validate call.
-    /// </summary>
-    /// <param name="corpus">
-    ///   The corpus.
-    /// </param>
-    /// <param name="documentGuid">
-    ///   The document guid.
-    /// </param>
-    /// <returns>
-    ///   The <see cref="bool" />.
-    /// </returns>
-    protected override bool ValidateCall(AbstractCorpusAdapter corpus, Guid documentGuid)
-    {
-      var search = GetDictionary(corpus);
-      if (search == null || search.Count == 0)
-        return false;
-      var exploreSentence = ExploreSentences(documentGuid, search);
-      if (exploreSentence == null ||
-          !exploreSentence.Any())
-        return false;
-      return ExploreSentences(documentGuid, search).SelectMany(x => x.Value).Any();
     }
   }
 }

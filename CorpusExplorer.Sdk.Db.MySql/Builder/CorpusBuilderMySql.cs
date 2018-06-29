@@ -15,13 +15,13 @@ namespace CorpusExplorer.Sdk.Db.MySql.Builder
   public class CorpusBuilderMySql : AbstractCorpusBuilder
   {
     public string CorpusDisplayname { get; set; } = "MySQL";
-    
-    public string SaveSettingsPath {get;set;}
+
+    public string SaveSettingsPath { get; set; }
 
     protected override AbstractCorpusAdapter CreateCorpus(
-        Dictionary<Guid, Dictionary<string, object>> documentMetadata,
-        Dictionary<string, object> corpusMetadata,
-        List<Concept> concepts)
+      Dictionary<Guid, Dictionary<string, object>> documentMetadata,
+      Dictionary<string, object> corpusMetadata,
+      List<Concept> concepts)
     {
       var setting = FormHelper.Show("MySQL",
         "localhost",
@@ -35,22 +35,28 @@ namespace CorpusExplorer.Sdk.Db.MySql.Builder
         },
         "CorpusExplorer <-> MySQL (*.mysql)|*.mysql",
         SaveSettingsPath);
-      
+
       LinqConnectConfiguration.ConnectionString = CreateConnectionString(setting);
-      
+
       return CorpusAdapterLinqConnect.Create(CorpusDisplayname, documentMetadata, corpusMetadata, concepts);
     }
 
-    private string CreateConnectionString(DbSettingsReader setting)
-      => $"user id={setting.Username};password={setting.Password};host={setting.Host};port={setting.Port};database={setting.DbName};persist security info=True";
-
-    private string CreateConnectionString(string host, int port, string dbName, string user, string password) 
-      => $"user id={user};password={password};host={host};port={port};database={dbName};persist security info=True";
-
     protected override AbstractLayerAdapter CreateLayer(
-        AbstractCorpusAdapter corpus,
-        AbstractLayerState layer)
-      =>
-      LayerAdapterLinqConnect.Create(corpus, layer);
+      AbstractCorpusAdapter corpus,
+      AbstractLayerState layer)
+    {
+      return LayerAdapterLinqConnect.Create(corpus, layer);
+    }
+
+    private string CreateConnectionString(DbSettingsReader setting)
+    {
+      return
+        $"user id={setting.Username};password={setting.Password};host={setting.Host};port={setting.Port};database={setting.DbName};persist security info=True";
+    }
+
+    private string CreateConnectionString(string host, int port, string dbName, string user, string password)
+    {
+      return $"user id={user};password={password};host={host};port={port};database={dbName};persist security info=True";
+    }
   }
 }

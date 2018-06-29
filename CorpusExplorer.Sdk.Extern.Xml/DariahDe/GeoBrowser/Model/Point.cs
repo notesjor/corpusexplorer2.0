@@ -18,6 +18,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DariahDe.GeoBrowser.Model
     private string coordinatesField;
 
     /// <remarks />
-    public string coordinates { get { return coordinatesField; } set { coordinatesField = value; } }
+    public string coordinates
+    {
+      get => coordinatesField;
+      set => coordinatesField = value;
+    }
   }
 }

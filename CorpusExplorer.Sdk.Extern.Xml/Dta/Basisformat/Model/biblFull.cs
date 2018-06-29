@@ -28,26 +28,46 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private titleStmt titleStmtField;
 
     /// <remarks />
-    public editionStmt editionStmt { get { return editionStmtField; } set { editionStmtField = value; } }
+    public editionStmt editionStmt
+    {
+      get => editionStmtField;
+      set => editionStmtField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("measure", IsNullable = false)]
-    public measure[] extent { get { return extentField; } set { extentField = value; } }
+    public measure[] extent
+    {
+      get => extentField;
+      set => extentField = value;
+    }
 
     /// <remarks />
-    public notesStmt notesStmt { get { return notesStmtField; } set { notesStmtField = value; } }
+    public notesStmt notesStmt
+    {
+      get => notesStmtField;
+      set => notesStmtField = value;
+    }
 
     /// <remarks />
     public publicationStmt publicationStmt
     {
-      get { return publicationStmtField; }
-      set { publicationStmtField = value; }
+      get => publicationStmtField;
+      set => publicationStmtField = value;
     }
 
     /// <remarks />
-    public seriesStmt seriesStmt { get { return seriesStmtField; } set { seriesStmtField = value; } }
+    public seriesStmt seriesStmt
+    {
+      get => seriesStmtField;
+      set => seriesStmtField = value;
+    }
 
     /// <remarks />
-    public titleStmt titleStmt { get { return titleStmtField; } set { titleStmtField = value; } }
+    public titleStmt titleStmt
+    {
+      get => titleStmtField;
+      set => titleStmtField = value;
+    }
   }
 }

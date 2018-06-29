@@ -17,14 +17,14 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.Europarl
       var res = new List<Dictionary<string, object>>();
       var raw =
         File.ReadAllText(file)
-            .Replace("<P>", " ")
-            .Replace("\r\n", " ")
-            .Replace("\t", " ")
-            .Replace("\r", " ")
-            .Replace("\n", " ")
-            .Replace("  ", " ")
-            .Replace("  ", " ")
-            .Replace("  ", " ");
+          .Replace("<P>", " ")
+          .Replace("\r\n", " ")
+          .Replace("\t", " ")
+          .Replace("\r", " ")
+          .Replace("\n", " ")
+          .Replace("  ", " ")
+          .Replace("  ", " ")
+          .Replace("  ", " ");
 
       var labelChapter = "<CHAPTER";
       var labelSpeaker = "<SPEAKER";
@@ -41,11 +41,11 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.Europarl
 
       var indexChapter = raw.IndexOf(labelChapter);
       var indexSpeaker = raw.IndexOf(labelSpeaker);
-      var isChapter = (indexChapter != -1) && (indexChapter < indexSpeaker);
+      var isChapter = indexChapter != -1 && indexChapter < indexSpeaker;
       var index = isChapter ? indexChapter : indexSpeaker;
 
-      while ((indexChapter > -1) ||
-             (indexSpeaker > -1))
+      while (indexChapter > -1 ||
+             indexSpeaker > -1)
       {
         var end = -1;
         var speakerId = 0;
@@ -54,10 +54,10 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.Europarl
           end = raw.IndexOf(labelClose, index);
           var info =
             raw.Substring(index, end - index)
-               .Replace(labelChapter, string.Empty)
-               .Replace(labelId, string.Empty)
-               .Replace(labelClose, string.Empty)
-               .Replace(" ", string.Empty);
+              .Replace(labelChapter, string.Empty)
+              .Replace(labelId, string.Empty)
+              .Replace(labelClose, string.Empty)
+              .Replace(" ", string.Empty);
           if (!int.TryParse(info, out chapter))
             chapter = 0;
 
@@ -70,9 +70,9 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.Europarl
           end = raw.IndexOf(labelClose, index);
           var info =
             raw.Substring(index, end - index)
-               .Replace(labelSpeaker, string.Empty)
-               .Replace(labelClose, string.Empty)
-               .Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
+              .Replace(labelSpeaker, string.Empty)
+              .Replace(labelClose, string.Empty)
+              .Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
 
           speakerName = string.Empty;
           speakerId = 0;
@@ -92,6 +92,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.Europarl
               eon = !x.EndsWith("\"");
               continue;
             }
+
             if (eon)
             {
               speakerName += " " + x.Replace("\"", string.Empty);
@@ -102,7 +103,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.Europarl
 
         indexChapter = raw.IndexOf(labelChapter, index + 1);
         indexSpeaker = raw.IndexOf(labelSpeaker, index + 1);
-        isChapter = (indexChapter != -1) && (indexChapter < indexSpeaker);
+        isChapter = indexChapter != -1 && indexChapter < indexSpeaker;
         index = isChapter ? indexChapter : indexSpeaker;
 
         var text = index > -1 ? raw.Substring(end + 1, index - (end + 1)) : raw.Substring(end + 1);

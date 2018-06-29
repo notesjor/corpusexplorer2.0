@@ -15,26 +15,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf
     /// <value>The layer names.</value>
     protected override IEnumerable<string> LayerNames => new[] {"Wort", "Lemma", "POS", "NER", "Orthografie"};
 
-    private void BuildLayerDocument(
-      string layerDisplayname,
-      Guid documentGuid,
-      ref string[][] token,
-      Dictionary<string, string> dictionary)
-    {
-      var doc =
-        token.Select(s => s.Select(t => dictionary.ContainsKey(t) ? dictionary[t] : string.Empty).ToArray()).ToArray();
-      AddDocumet(layerDisplayname, documentGuid, ConvertToLayer(layerDisplayname, doc));
-    }
-
-    private string[][] GetSentenceStructure(DSpin dspin)
-    {
-      return
-        dspin.TextCorpus.sentences.Select(
-               sentence =>
-                   sentence.tokenIDs.Split(new[] {" ", "\t", "\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries))
-             .ToArray();
-    }
-
     /// <summary>
     ///   Erster Importschritt - ließt die Datei ein und gibt (ein) entsprechend(es) Objekt(e) zurück.
     /// </summary>
@@ -55,10 +35,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf
     protected override void ImportStep_2_ImportMetadata(Guid documentGuid, ref DSpin data)
     {
       var res = new Dictionary<string, object>();
-      
+
       var cmd = data?.MetaData?.source?.CMD;
 
-      if(cmd != null)
+      if (cmd != null)
         res.Add("URL", SafeGetMetadata(() => cmd.Header.MdSelfLink));
 
       var tei = cmd?.Components?.teiHeader;
@@ -85,7 +65,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf
           "Autor",
           string.IsNullOrEmpty(author?.surname)
             ? author?.forename
-            : string.IsNullOrEmpty(author?.forename) ? author?.surname : $"{author.surname}, {author.forename}");
+            : string.IsNullOrEmpty(author?.forename)
+              ? author?.surname
+              : $"{author.surname}, {author.forename}");
       }
 
       var bibl = head?.sourceDesc?.biblFull;
@@ -124,7 +106,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf
         var lemma = data.TextCorpus.lemmas.ToDictionary(l => l.tokenIDs, l => l.Value);
         BuildLayerDocument("Lemma", documentGuid, ref token, lemma);
       }
-      catch {}
+      catch
+      {
+      }
 
       // POS (nur vorhanden, wenn POS-Tagger)
       try
@@ -132,7 +116,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf
         var pos = data.TextCorpus.POStags.tag.ToDictionary(p => p.tokenIDs, p => p.Value);
         BuildLayerDocument("POS", documentGuid, ref token, pos);
       }
-      catch {}
+      catch
+      {
+      }
 
       // Orthografie (nur vorhanden, wenn Orthografie)
       try
@@ -140,7 +126,29 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf
         var ortho = data.TextCorpus.orthography.ToDictionary(p => p.tokenIDs, p => p.Value);
         BuildLayerDocument("Orthografie", documentGuid, ref token, ortho);
       }
-      catch {}
+      catch
+      {
+      }
+    }
+
+    private void BuildLayerDocument(
+      string layerDisplayname,
+      Guid documentGuid,
+      ref string[][] token,
+      Dictionary<string, string> dictionary)
+    {
+      var doc =
+        token.Select(s => s.Select(t => dictionary.ContainsKey(t) ? dictionary[t] : string.Empty).ToArray()).ToArray();
+      AddDocumet(layerDisplayname, documentGuid, ConvertToLayer(layerDisplayname, doc));
+    }
+
+    private string[][] GetSentenceStructure(DSpin dspin)
+    {
+      return
+        dspin.TextCorpus.sentences.Select(
+            sentence =>
+              sentence.tokenIDs.Split(new[] {" ", "\t", "\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries))
+          .ToArray();
     }
 
     private string SafeGetMetadata(Func<string> func)

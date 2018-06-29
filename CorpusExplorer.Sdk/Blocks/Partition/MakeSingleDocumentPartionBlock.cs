@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.Partition.Delegates;
 using CorpusExplorer.Sdk.Diagnostic;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 
 namespace CorpusExplorer.Sdk.Blocks.Partition
 {
@@ -31,6 +32,7 @@ namespace CorpusExplorer.Sdk.Blocks.Partition
 
       Parallel.ForEach(
         Selection.DocumentGuids,
+        Configuration.ParallelOptions,
         part =>
         {
           try

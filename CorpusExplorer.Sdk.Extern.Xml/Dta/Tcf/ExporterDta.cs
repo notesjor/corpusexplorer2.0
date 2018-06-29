@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf.Serializer;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
 using CorpusExplorer.Sdk.Model.Interface;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 
 #endregion
 
@@ -41,21 +41,23 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf
         {
           xml.Serialize(GetDSpin(hydra, guid, i++), Path.Combine(path, guid + ".tcf.xml"));
         }
-        catch {}
+        catch
+        {
+        }
     }
 
     private DSpin GetDSpin(IHydra hydra, Guid guid, int i)
     {
       var meta = hydra.GetDocumentMetadata(guid);
 
-      var from = (meta != null) && meta.ContainsKey(MetanameAuthor)
-                   ? meta[MetanameAuthor].ToString()
-                   : UnknownPropertyValue;
-      var datum = (meta != null) && meta.ContainsKey(MetanameDate)
-                    ? meta[MetanameDate] is DateTime
-                        ? ((DateTime) meta[MetanameDate]).ToString("yyyy-MM-dd")
-                        : meta[MetanameDate].ToString()
-                    : UnknownDateValue;
+      var from = meta != null && meta.ContainsKey(MetanameAuthor)
+        ? meta[MetanameAuthor].ToString()
+        : UnknownPropertyValue;
+      var datum = meta != null && meta.ContainsKey(MetanameDate)
+        ? meta[MetanameDate] is DateTime
+          ? ((DateTime) meta[MetanameDate]).ToString("yyyy-MM-dd")
+          : meta[MetanameDate].ToString()
+        : UnknownDateValue;
 
       var docW = hydra.GetReadableDocument(guid, LayernameWord).Select(x => x.ToArray()).ToArray();
       // Die folgenden Layer sind optional
@@ -91,6 +93,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf
             text.Append(" ");
           text.Append(docW[j][k]);
         }
+
         sents.Add(new TextCorpusSentence {tokenIDs = sent.ToString().Trim(), ID = "s" + j});
       }
 

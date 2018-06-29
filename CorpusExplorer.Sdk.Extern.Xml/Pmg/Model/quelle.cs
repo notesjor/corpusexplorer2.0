@@ -36,39 +36,79 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Pmg.Model
     private string seitestartField;
 
     /// <remarks />
-    public string datum { get { return datumField; } set { datumField = value; } }
+    public string datum
+    {
+      get => datumField;
+      set => datumField = value;
+    }
 
     /// <remarks />
     [XmlElement("quelle-id")]
-    public string quelleid { get { return quelleidField; } set { quelleidField = value; } }
+    public string quelleid
+    {
+      get => quelleidField;
+      set => quelleidField = value;
+    }
 
     /// <remarks />
     [XmlElement("seite-start")]
-    public string seitestart { get { return seitestartField; } set { seitestartField = value; } }
+    public string seitestart
+    {
+      get => seitestartField;
+      set => seitestartField = value;
+    }
 
     /// <remarks />
     [XmlElement("seite-ende")]
-    public string seiteende { get { return seiteendeField; } set { seiteendeField = value; } }
+    public string seiteende
+    {
+      get => seiteendeField;
+      set => seiteendeField = value;
+    }
 
     /// <remarks />
     [XmlElement("freigabe-datum")]
-    public string freigabedatum { get { return freigabedatumField; } set { freigabedatumField = value; } }
+    public string freigabedatum
+    {
+      get => freigabedatumField;
+      set => freigabedatumField = value;
+    }
 
     /// <remarks />
     [XmlElement("freigabe-uhrzeit")]
-    public string freigabeuhrzeit { get { return freigabeuhrzeitField; } set { freigabeuhrzeitField = value; } }
+    public string freigabeuhrzeit
+    {
+      get => freigabeuhrzeitField;
+      set => freigabeuhrzeitField = value;
+    }
 
     /// <remarks />
-    public string jahrgang { get { return jahrgangField; } set { jahrgangField = value; } }
+    public string jahrgang
+    {
+      get => jahrgangField;
+      set => jahrgangField = value;
+    }
 
     /// <remarks />
     [XmlElement("lieferant-id")]
-    public string lieferantid { get { return lieferantidField; } set { lieferantidField = value; } }
+    public string lieferantid
+    {
+      get => lieferantidField;
+      set => lieferantidField = value;
+    }
 
     /// <remarks />
-    public string name { get { return nameField; } set { nameField = value; } }
+    public string name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
 
     /// <remarks />
-    public string nummer { get { return nummerField; } set { nummerField = value; } }
+    public string nummer
+    {
+      get => nummerField;
+      set => nummerField = value;
+    }
   }
 }

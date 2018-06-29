@@ -29,11 +29,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     /// </summary>
     private void InitializeComponent()
     {
-      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
       this.btn_save = new Telerik.WinControls.UI.CommandBarButton();
+      this.commandBarSeparator3 = new Telerik.WinControls.UI.CommandBarSeparator();
+      this.btn_export = new Telerik.WinControls.UI.CommandBarButton();
+      this.btn_import = new Telerik.WinControls.UI.CommandBarButton();
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.commandBarLabel1 = new Telerik.WinControls.UI.CommandBarLabel();
       this.txt_search = new Telerik.WinControls.UI.CommandBarTextBox();
@@ -43,9 +46,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       this.commandBarSeparator2 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_meta_add = new Telerik.WinControls.UI.CommandBarButton();
       this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-      this.commandBarSeparator3 = new Telerik.WinControls.UI.CommandBarSeparator();
-      this.btn_export = new Telerik.WinControls.UI.CommandBarButton();
-      this.btn_import = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
@@ -60,11 +60,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
             this.commandBarRowElement1});
       this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
       this.radCommandBar1.TabIndex = 0;
-      this.radCommandBar1.Text = "radCommandBar1";
       // 
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
       // 
@@ -97,6 +97,28 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       this.btn_save.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.ÄnderungenSpeichern;
       this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
       // 
+      // commandBarSeparator3
+      // 
+      this.commandBarSeparator3.DisplayName = "commandBarSeparator3";
+      this.commandBarSeparator3.Name = "commandBarSeparator3";
+      this.commandBarSeparator3.VisibleInOverflowMenu = false;
+      // 
+      // btn_export
+      // 
+      this.btn_export.DisplayName = "commandBarButton1";
+      this.btn_export.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.folder_action_open;
+      this.btn_export.Name = "btn_export";
+      this.btn_export.Text = "Exportieren";
+      this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
+      // 
+      // btn_import
+      // 
+      this.btn_import.DisplayName = "comandBarButton2";
+      this.btn_import.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.folder_action_close;
+      this.btn_import.Name = "btn_import";
+      this.btn_import.Text = "Importieren";
+      this.btn_import.Click += new System.EventHandler(this.btn_import_Click);
+      // 
       // commandBarSeparator1
       // 
       this.commandBarSeparator1.AccessibleDescription = "commandBarSeparator1";
@@ -122,7 +144,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       // 
       this.commandBarLabel2.DisplayName = "commandBarLabel2";
       this.commandBarLabel2.Name = "commandBarLabel2";
-      this.commandBarLabel2.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.UndErsetzeMit;
+      this.commandBarLabel2.Text = "Ersetze:";
       // 
       // txt_replace
       // 
@@ -134,7 +156,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       // btn_doReplace
       // 
       this.btn_doReplace.DisplayName = "commandBarButton1";
-      this.btn_doReplace.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
+      this.btn_doReplace.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.replace;
       this.btn_doReplace.Name = "btn_doReplace";
       this.btn_doReplace.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.SuchenUndErsetzenAusführen;
       this.btn_doReplace.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.SuchenUndErsetzenAusführen;
@@ -164,34 +186,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       // 
       // 
       this.radGridView1.MasterTemplate.AllowAddNewRow = false;
-      this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition2;
+      this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
       this.radGridView1.Size = new System.Drawing.Size(780, 331);
       this.radGridView1.TabIndex = 1;
-      this.radGridView1.Text = "radGridView1";
-      // 
-      // commandBarSeparator3
-      // 
-      this.commandBarSeparator3.DisplayName = "commandBarSeparator3";
-      this.commandBarSeparator3.Name = "commandBarSeparator3";
-      this.commandBarSeparator3.Text = "";
-      this.commandBarSeparator3.VisibleInOverflowMenu = false;
-      // 
-      // btn_export
-      // 
-      this.btn_export.DisplayName = "commandBarButton1";
-      this.btn_export.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.folder_action_open;
-      this.btn_export.Name = "btn_export";
-      this.btn_export.Text = "Exportieren";
-      this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
-      // 
-      // btn_import
-      // 
-      this.btn_import.DisplayName = "comandBarButton2";
-      this.btn_import.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.folder_action_close;
-      this.btn_import.Name = "btn_import";
-      this.btn_import.Text = "Importieren";
-      this.btn_import.Click += new System.EventHandler(this.btn_import_Click);
       // 
       // EditMetadata
       // 

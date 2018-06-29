@@ -21,9 +21,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlArrayItem("handNote", IsNullable = false)]
-    public handNote[] handDesc { get { return handDescField; } set { handDescField = value; } }
+    public handNote[] handDesc
+    {
+      get => handDescField;
+      set => handDescField = value;
+    }
 
     /// <remarks />
-    public typeDesc typeDesc { get { return typeDescField; } set { typeDescField = value; } }
+    public typeDesc typeDesc
+    {
+      get => typeDescField;
+      set => typeDescField = value;
+    }
   }
 }

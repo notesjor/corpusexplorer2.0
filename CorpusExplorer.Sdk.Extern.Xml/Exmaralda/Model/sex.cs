@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlAttribute]
-    public sexValue value { get { return valueField; } set { valueField = value; } }
+    public sexValue value
+    {
+      get => valueField;
+      set => valueField = value;
+    }
   }
 }

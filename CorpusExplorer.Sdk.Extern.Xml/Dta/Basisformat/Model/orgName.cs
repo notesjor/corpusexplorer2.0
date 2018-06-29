@@ -30,28 +30,52 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified,
-       Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string id { get { return idField; } set { idField = value; } }
+      Namespace = "http://www.w3.org/XML/1998/namespace")]
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified,
-       Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string lang { get { return langField; } set { langField = value; } }
+      Namespace = "http://www.w3.org/XML/1998/namespace")]
+    public string lang
+    {
+      get => langField;
+      set => langField = value;
+    }
 
     /// <remarks />
     [XmlElement("lb")]
-    public lb[] lb { get { return lbField; } set { lbField = value; } }
+    public lb[] lb
+    {
+      get => lbField;
+      set => lbField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "anyURI")]
-    public string @ref { get { return refField; } set { refField = value; } }
+    public string @ref
+    {
+      get => refField;
+      set => refField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string role { get { return roleField; } set { roleField = value; } }
+    public string role
+    {
+      get => roleField;
+      set => roleField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

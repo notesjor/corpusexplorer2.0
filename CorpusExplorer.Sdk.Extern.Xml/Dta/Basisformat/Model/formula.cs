@@ -25,18 +25,34 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlElement("hi")]
-    public hi[] hi { get { return hiField; } set { hiField = value; } }
+    public hi[] hi
+    {
+      get => hiField;
+      set => hiField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string notation { get { return notationField; } set { notationField = value; } }
+    public string notation
+    {
+      get => notationField;
+      set => notationField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string rendition { get { return renditionField; } set { renditionField = value; } }
+    public string rendition
+    {
+      get => renditionField;
+      set => renditionField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

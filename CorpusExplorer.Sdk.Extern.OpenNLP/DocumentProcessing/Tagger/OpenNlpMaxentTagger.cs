@@ -18,10 +18,12 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger
       "Deutsch",
       "Englisch",
       "Niederländisch",
-      "Portugiesisch"
+      "Portugiesisch",
+      "Sami"
     };
 
     private string _languageSelected;
+
     // ReSharper disable once MemberCanBeInternal
     public OpenNlpMaxentTagger()
     {
@@ -33,13 +35,17 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger
 
     public override string DisplayName => "OpenNLP-Maxent-Tagger";
 
-    public override string InstallationPath { get { return "(NICHT WÄHLBAR - OPTIMIERTE VERSION)"; } set { } }
+    public override string InstallationPath
+    {
+      get => "(NICHT WÄHLBAR - OPTIMIERTE VERSION)";
+      set { }
+    }
 
     public override IEnumerable<string> LanguagesAvailabel => _languages;
 
     public override string LanguageSelected
     {
-      get { return _languageSelected; }
+      get => _languageSelected;
       set
       {
         if (!_languages.Contains(value))
@@ -88,12 +94,12 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger
     protected override
       bool IsEndOfSentence(string[] data)
     {
-      return (data.Length > 1) && (data[1] == "$.");
+      return data.Length > 1 && data[1] == "$.";
     }
 
     protected override string TextPostTaggerCleanup(string text)
     {
       return base.TextPostTaggerCleanup(text.Replace("<ENDOFCORPUSEXPLORERFILE>_NE", "<ENDOFCORPUSEXPLORERFILE>"));
-    }
+    }    
   }
 }

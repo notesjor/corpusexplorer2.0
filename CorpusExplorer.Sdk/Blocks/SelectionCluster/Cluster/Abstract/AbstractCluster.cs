@@ -14,8 +14,11 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract
 
     public IEnumerable<Guid> DocumentGuids => _documentGuids;
 
-    protected void Add(Guid documentGuid) { _documentGuids.Add(documentGuid); }
-
     public abstract bool Add(Guid documentGuid, object obj);
+
+    protected void Add(Guid documentGuid)
+    {
+      _documentGuids.Add(documentGuid);
+    }
   }
 }

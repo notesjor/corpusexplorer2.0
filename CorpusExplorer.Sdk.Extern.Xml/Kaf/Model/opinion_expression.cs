@@ -29,34 +29,50 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string polarity { get { return polarityField; } set { polarityField = value; } }
+    public string polarity
+    {
+      get => polarityField;
+      set => polarityField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
     public string sentiment_product_feature
     {
-      get { return sentiment_product_featureField; }
-      set { sentiment_product_featureField = value; }
+      get => sentiment_product_featureField;
+      set => sentiment_product_featureField = value;
     }
 
     /// <remarks />
     [XmlAttribute]
     public string sentiment_semantic_type
     {
-      get { return sentiment_semantic_typeField; }
-      set { sentiment_semantic_typeField = value; }
+      get => sentiment_semantic_typeField;
+      set => sentiment_semantic_typeField = value;
     }
 
     /// <remarks />
     [XmlElement("span")]
-    public span[] span { get { return spanField; } set { spanField = value; } }
+    public span[] span
+    {
+      get => spanField;
+      set => spanField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string strength { get { return strengthField; } set { strengthField = value; } }
+    public string strength
+    {
+      get => strengthField;
+      set => strengthField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string subjectivity { get { return subjectivityField; } set { subjectivityField = value; } }
+    public string subjectivity
+    {
+      get => subjectivityField;
+      set => subjectivityField = value;
+    }
   }
 }

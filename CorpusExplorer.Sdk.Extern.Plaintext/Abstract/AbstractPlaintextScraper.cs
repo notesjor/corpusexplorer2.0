@@ -6,5 +6,7 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Plaintext.Abstract
 {
-  public abstract class AbstractPlaintextScraper : AbstractScraper {}
+  public abstract class AbstractPlaintextScraper : AbstractScraper
+  {
+  }
 }

@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlElement("cell")]
-    public cell[] cell { get { return cellField; } set { cellField = value; } }
+    public cell[] cell
+    {
+      get => cellField;
+      set => cellField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string role { get { return roleField; } set { roleField = value; } }
+    public string role
+    {
+      get => roleField;
+      set => roleField = value;
+    }
   }
 }

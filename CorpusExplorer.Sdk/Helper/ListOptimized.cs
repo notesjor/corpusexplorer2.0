@@ -30,7 +30,9 @@ namespace CorpusExplorer.Sdk.Helper
     /// <summary>
     ///   Initializes a new instance of the <see cref="ListOptimized{T}" /> class.
     /// </summary>
-    public ListOptimized() { }
+    public ListOptimized()
+    {
+    }
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="ListOptimized{T}" /> class.
@@ -211,7 +213,11 @@ namespace CorpusExplorer.Sdk.Helper
     /// <returns>
     ///   The <see cref="T" />.
     /// </returns>
-    public T this[int index] { get => _list[index]; set => _list[index] = value; }
+    public T this[int index]
+    {
+      get => _list[index];
+      set => _list[index] = value;
+    }
 
     /// <summary>
     ///   The remove at.

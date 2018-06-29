@@ -8,18 +8,14 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer.FileSystem
   [Serializable]
   public class FileSystemCorpusRoot
   {
-    [NonSerialized]
-    private Dictionary<string, object> _corpusMetadata = new Dictionary<string, object>();
+    [NonSerialized] private Dictionary<string, object> _corpusMetadata = new Dictionary<string, object>();
 
     private KeyValuePair<string, object>[] _corpusMetadataSerialized;
 
-    [NonSerialized]
-    private Dictionary<Guid, Tuple<int, int, Dictionary<string, object>>> _documentMetadata =
+    [NonSerialized] private Dictionary<Guid, Tuple<int, int, Dictionary<string, object>>> _documentMetadata =
       new Dictionary<Guid, Tuple<int, int, Dictionary<string, object>>>();
 
     private KeyValuePair<Guid, Tuple<int, int, KeyValuePair<string, object>[]>>[] _documentMetadataSerialized;
-
-    private FileSystemCorpusRoot() { }
 
     public FileSystemCorpusRoot(
       Dictionary<string, object> corpusMetadata,
@@ -31,7 +27,15 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer.FileSystem
       _documentMetadata = documentMetadata ?? new Dictionary<Guid, Tuple<int, int, Dictionary<string, object>>>();
     }
 
-    public Dictionary<string, object> CorpusMetadata { get => _corpusMetadata; set => _corpusMetadata = value; }
+    private FileSystemCorpusRoot()
+    {
+    }
+
+    public Dictionary<string, object> CorpusMetadata
+    {
+      get => _corpusMetadata;
+      set => _corpusMetadata = value;
+    }
 
     public Dictionary<Guid, Tuple<int, int, Dictionary<string, object>>> DocumentMetadata
     {

@@ -15,26 +15,6 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
   public abstract class AbstractFilterQueryCompleteDocumentIndexing : AbstractFilterQuery
   {
     /// <summary>
-    ///   The get sentences index.
-    /// </summary>
-    /// <param name="corpus">
-    ///   The corpus.
-    /// </param>
-    /// <param name="documentGuid">
-    ///   The document guid.
-    /// </param>
-    /// <param name="sentence">
-    ///   The sentence.
-    /// </param>
-    /// <returns>
-    ///   The <see cref="int" />.
-    /// </returns>
-    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
-    {
-      return ValidateCall(corpus, documentGuid) ? 0 : -1;
-    }
-
-    /// <summary>
     ///   The get sentences.
     /// </summary>
     /// <param name="corpus">
@@ -71,6 +51,26 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     }
 
     /// <summary>
+    ///   The get sentences index.
+    /// </summary>
+    /// <param name="corpus">
+    ///   The corpus.
+    /// </param>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <param name="sentence">
+    ///   The sentence.
+    /// </param>
+    /// <returns>
+    ///   The <see cref="int" />.
+    /// </returns>
+    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    {
+      return ValidateCall(corpus, documentGuid) ? 0 : -1;
+    }
+
+    /// <summary>
     ///   The get sentences.
     /// </summary>
     /// <param name="corpus">
@@ -98,7 +98,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     ///   GetSentenceIndices() abgefragt werden.
     /// </param>
     /// <returns>Auflistung aller Vorkommen im Satz</returns>
-    protected override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       return ValidateCall(corpus, documentGuid) ? new[] {0} : null;
     }

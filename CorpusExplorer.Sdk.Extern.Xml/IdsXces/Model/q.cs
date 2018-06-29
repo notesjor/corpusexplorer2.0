@@ -33,15 +33,27 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string broken { get { return brokenField; } set { brokenField = value; } }
+    public string broken
+    {
+      get => brokenField;
+      set => brokenField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string direct { get { return directField; } set { directField = value; } }
+    public string direct
+    {
+      get => directField;
+      set => directField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlElement("distinct", typeof(distinct))]
@@ -52,22 +64,42 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     [XmlElement("orig", typeof(orig))]
     [XmlElement("pb", typeof(pb))]
     [XmlElement("ptr", typeof(ptr))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string next { get { return nextField; } set { nextField = value; } }
+    public string next
+    {
+      get => nextField;
+      set => nextField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string prev { get { return prevField; } set { prevField = value; } }
+    public string prev
+    {
+      get => prevField;
+      set => prevField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

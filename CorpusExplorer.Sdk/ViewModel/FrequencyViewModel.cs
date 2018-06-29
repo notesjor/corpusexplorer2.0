@@ -39,7 +39,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     protected override void ExecuteAnalyse()
     {
-      var layers = LayerDisplaynames.Where(x => Selection.ContainsLayer(x)).ToArray();
+      var layers = new HashSet<string>(LayerDisplaynames).Where(x => Selection.ContainsLayer(x)).ToArray();
 
       switch (layers.Length)
       {
@@ -68,9 +68,13 @@ namespace CorpusExplorer.Sdk.ViewModel
           };
           break;
       }
+
       _vm.Analyse();
     }
 
-    protected override bool Validate() { return true; }
+    protected override bool Validate()
+    {
+      return true;
+    }
   }
 }

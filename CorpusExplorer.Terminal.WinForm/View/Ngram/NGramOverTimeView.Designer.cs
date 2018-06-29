@@ -28,24 +28,26 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NGramOverTimeView));
       Telerik.WinControls.UI.CartesianArea cartesianArea1 = new Telerik.WinControls.UI.CartesianArea();
       Telerik.WinControls.UI.CategoricalAxis categoricalAxis1 = new Telerik.WinControls.UI.CategoricalAxis();
       Telerik.WinControls.UI.LinearAxis linearAxis1 = new Telerik.WinControls.UI.LinearAxis();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement2 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement3 = new Telerik.WinControls.UI.CommandBarStripElement();
+      this.commandBarLabel4 = new Telerik.WinControls.UI.CommandBarLabel();
+      this.commandBarDropDownList1 = new Telerik.WinControls.UI.CommandBarDropDownList();
       this.commandBarLabel2 = new Telerik.WinControls.UI.CommandBarLabel();
       this.txt_size = new Telerik.WinControls.UI.CommandBarTextBox();
-      this.commandBarLabel1 = new Telerik.WinControls.UI.CommandBarLabel();
-      this.combo_layer = new Telerik.WinControls.UI.CommandBarDropDownList();
       this.btn_run = new Telerik.WinControls.UI.CommandBarButton();
+      this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
+      this.btn_export = new Telerik.WinControls.UI.CommandBarButton();
       this.radListView1 = new Telerik.WinControls.UI.RadListView();
       this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
       this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
       this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
       this.chart_view = new Telerik.WinControls.UI.RadChartView();
-      this.commandBarLabel4 = new Telerik.WinControls.UI.CommandBarLabel();
-      this.commandBarDropDownList1 = new Telerik.WinControls.UI.CommandBarDropDownList();
+      this.btn_layer = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radListView1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
@@ -66,11 +68,11 @@
             this.commandBarRowElement2});
       this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
       this.radCommandBar1.TabIndex = 0;
-      this.radCommandBar1.Text = "radCommandBar1";
       // 
       // commandBarRowElement2
       // 
       this.commandBarRowElement2.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement2.Name = "commandBarRowElement2";
       this.commandBarRowElement2.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement3});
       // 
@@ -78,20 +80,37 @@
       // 
       this.commandBarStripElement3.DisplayName = "commandBarStripElement3";
       this.commandBarStripElement3.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
+            this.btn_layer,
             this.commandBarLabel4,
             this.commandBarDropDownList1,
             this.commandBarLabel2,
             this.txt_size,
-            this.commandBarLabel1,
-            this.combo_layer,
-            this.btn_run});
+            this.btn_run,
+            this.commandBarSeparator1,
+            this.btn_export});
       this.commandBarStripElement3.Name = "commandBarStripElement3";
+      // 
+      // commandBarLabel4
+      // 
+      this.commandBarLabel4.DisplayName = "commandBarLabel4";
+      this.commandBarLabel4.Name = "commandBarLabel4";
+      this.commandBarLabel4.Text = "Datums-ID:";
+      // 
+      // commandBarDropDownList1
+      // 
+      this.commandBarDropDownList1.DisplayName = "commandBarDropDownList1";
+      this.commandBarDropDownList1.DropDownAnimationEnabled = true;
+      this.commandBarDropDownList1.MaxDropDownItems = 0;
+      this.commandBarDropDownList1.MinSize = new System.Drawing.Size(200, 22);
+      this.commandBarDropDownList1.Name = "commandBarDropDownList1";
+      this.commandBarDropDownList1.NullText = "Bitte auswählen...";
+      this.commandBarDropDownList1.Text = "";
       // 
       // commandBarLabel2
       // 
       this.commandBarLabel2.DisplayName = "commandBarLabel2";
       this.commandBarLabel2.Name = "commandBarLabel2";
-      this.commandBarLabel2.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.NGramGröße;
+      this.commandBarLabel2.Text = "NGram-Größe:";
       // 
       // txt_size
       // 
@@ -101,32 +120,30 @@
       this.txt_size.Name = "txt_size";
       this.txt_size.Text = "5";
       // 
-      // commandBarLabel1
-      // 
-      this.commandBarLabel1.DisplayName = "commandBarLabel1";
-      this.commandBarLabel1.Name = "commandBarLabel1";
-      this.commandBarLabel1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.LayerDP;
-      // 
-      // combo_layer
-      // 
-      this.combo_layer.DisplayName = "commandBarDropDownList1";
-      this.combo_layer.DropDownAnimationEnabled = true;
-      this.combo_layer.MaxDropDownItems = 0;
-      this.combo_layer.MinSize = new System.Drawing.Size(200, 22);
-      this.combo_layer.Name = "combo_layer";
-      this.combo_layer.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.BitteAuswählen;
-      this.combo_layer.Text = "";
-      // 
       // btn_run
       // 
       this.btn_run.AccessibleDescription = "commandBarButton1";
       this.btn_run.AccessibleName = "commandBarButton1";
       this.btn_run.DisplayName = "commandBarButton1";
-      this.btn_run.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
+      this.btn_run.Image = ((System.Drawing.Image)(resources.GetObject("btn_run.Image")));
       this.btn_run.Name = "btn_run";
-      this.btn_run.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.AnalyseAusführen;
-      this.btn_run.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.AnalyseAusführen;
+      this.btn_run.Text = "Analyse ausführen";
+      this.btn_run.ToolTipText = "Analyse ausführen";
       this.btn_run.Click += new System.EventHandler(this.btn_execute_Click);
+      // 
+      // commandBarSeparator1
+      // 
+      this.commandBarSeparator1.DisplayName = "commandBarSeparator1";
+      this.commandBarSeparator1.Name = "commandBarSeparator1";
+      this.commandBarSeparator1.VisibleInOverflowMenu = false;
+      // 
+      // btn_export
+      // 
+      this.btn_export.DisplayName = "commandBarButton1";
+      this.btn_export.Image = ((System.Drawing.Image)(resources.GetObject("btn_export.Image")));
+      this.btn_export.Name = "btn_export";
+      this.btn_export.Text = "Exportieren";
+      this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
       // 
       // radListView1
       // 
@@ -137,7 +154,6 @@
       this.radListView1.Name = "radListView1";
       this.radListView1.Size = new System.Drawing.Size(241, 331);
       this.radListView1.TabIndex = 1;
-      this.radListView1.Text = "radListView1";
       // 
       // radSplitContainer1
       // 
@@ -153,7 +169,6 @@
       this.radSplitContainer1.Size = new System.Drawing.Size(780, 331);
       this.radSplitContainer1.TabIndex = 2;
       this.radSplitContainer1.TabStop = false;
-      this.radSplitContainer1.Text = "radSplitContainer1";
       // 
       // splitPanel1
       // 
@@ -211,23 +226,14 @@
       this.chart_view.ShowTrackBall = true;
       this.chart_view.Size = new System.Drawing.Size(535, 331);
       this.chart_view.TabIndex = 1;
-      this.chart_view.Text = "radChartView1";
       // 
-      // commandBarLabel4
+      // btn_layer
       // 
-      this.commandBarLabel4.DisplayName = "commandBarLabel4";
-      this.commandBarLabel4.Name = "commandBarLabel4";
-      this.commandBarLabel4.Text = "Datums-ID:";
-      // 
-      // commandBarDropDownList1
-      // 
-      this.commandBarDropDownList1.DisplayName = "commandBarDropDownList1";
-      this.commandBarDropDownList1.DropDownAnimationEnabled = true;
-      this.commandBarDropDownList1.MaxDropDownItems = 0;
-      this.commandBarDropDownList1.MinSize = new System.Drawing.Size(200, 22);
-      this.commandBarDropDownList1.Name = "commandBarDropDownList1";
-      this.commandBarDropDownList1.NullText = "Bitte auswählen...";
-      this.commandBarDropDownList1.Text = "";
+      this.btn_layer.DisplayName = "commandBarButton1";
+      this.btn_layer.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers;
+      this.btn_layer.Name = "btn_layer";
+      this.btn_layer.Text = "Layer auswählen";
+      this.btn_layer.Click += new System.EventHandler(this.btn_layer_Click);
       // 
       // NGramOverTimeView
       // 
@@ -259,8 +265,6 @@
     private Telerik.WinControls.UI.CommandBarLabel commandBarLabel2;
     private Telerik.WinControls.UI.CommandBarTextBox txt_size;
     private Telerik.WinControls.UI.CommandBarButton btn_run;
-    private Telerik.WinControls.UI.CommandBarLabel commandBarLabel1;
-    private Telerik.WinControls.UI.CommandBarDropDownList combo_layer;
     private Telerik.WinControls.UI.RadListView radListView1;
     private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
     private Telerik.WinControls.UI.SplitPanel splitPanel1;
@@ -268,5 +272,8 @@
     private Telerik.WinControls.UI.RadChartView chart_view;
     private Telerik.WinControls.UI.CommandBarLabel commandBarLabel4;
     private Telerik.WinControls.UI.CommandBarDropDownList commandBarDropDownList1;
+    private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator1;
+    private Telerik.WinControls.UI.CommandBarButton btn_export;
+    private Telerik.WinControls.UI.CommandBarButton btn_layer;
   }
 }

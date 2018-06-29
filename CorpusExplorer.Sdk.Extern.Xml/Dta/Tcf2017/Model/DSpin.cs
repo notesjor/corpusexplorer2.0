@@ -1,63 +1,47 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
 {
-
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.dspin.de/data")]
-  [System.Xml.Serialization.XmlRootAttribute("D-Spin", Namespace = "http://www.dspin.de/data", IsNullable = false)]
-  public partial class DSpin
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true, Namespace = "http://www.dspin.de/data")]
+  [XmlRoot("D-Spin", Namespace = "http://www.dspin.de/data", IsNullable = false)]
+  public class DSpin
   {
-
     private source metaDataField;
 
     private TextCorpus textCorpusField;
 
     private string versionField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute(Namespace = "http://www.dspin.de/data/metadata")]
+    /// <remarks />
+    [XmlElement(Namespace = "http://www.dspin.de/data/metadata")]
     public source MetaData
     {
-      get
-      {
-        return this.metaDataField;
-      }
-      set
-      {
-        this.metaDataField = value;
-      }
+      get => metaDataField;
+      set => metaDataField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute(Namespace = "http://www.dspin.de/data/textcorpus")]
+    /// <remarks />
+    [XmlElement(Namespace = "http://www.dspin.de/data/textcorpus")]
     public TextCorpus TextCorpus
     {
-      get
-      {
-        return this.textCorpusField;
-      }
-      set
-      {
-        this.textCorpusField = value;
-      }
+      get => textCorpusField;
+      set => textCorpusField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    /// <remarks />
+    [XmlAttribute]
     public string version
     {
-      get
-      {
-        return this.versionField;
-      }
-      set
-      {
-        this.versionField = value;
-      }
+      get => versionField;
+      set => versionField = value;
     }
   }
 }

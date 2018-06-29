@@ -17,5 +17,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
   [DesignerCategory("code")]
   [XmlType(AnonymousType = true)]
   [XmlRoot("input-end", Namespace = "", IsNullable = false)]
-  public class inputend {}
+  public class inputend
+  {
+  }
 }

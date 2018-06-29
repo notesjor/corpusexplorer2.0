@@ -6,6 +6,7 @@ using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Helper;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model;
 
 namespace CorpusExplorer.Sdk.Blocks
@@ -33,29 +34,34 @@ namespace CorpusExplorer.Sdk.Blocks
     /// </summary>
     public override void Calculate()
     {
-      if (ClusterGenerator != null)
+      if (ClusterGenerator == null)
+        return;
+
+      ClusterGenerator.MetadataKey = MetadataKey;
+      Cluster = ClusterGenerator.AutoGenerate(Selection);
+      var meta = ClusterGenerator.GetDocumentGuids(Selection);
+
+      Parallel.ForEach(meta, Configuration.ParallelOptions, x =>
       {
-        ClusterGenerator.MetadataKey = MetadataKey;
-        Cluster = ClusterGenerator.AutoGenerate(Selection);
-      }
-
-      var meta = Selection.DocumentMetadata.ToArray();
-
-      Parallel.ForEach(
-        meta,
-        x =>
+        try
         {
-          if (!x.Value.ContainsKey(MetadataKey))
-            return;
-
           // Sollte am besten NICHT parallel ausgeführt werden!
+          // Da ansonsten die Reihenfolge nicht gewährlesitet werden kann.
           // ReSharper disable once LoopCanBeConvertedToQuery
           foreach (var c in Cluster)
-            if (c.Add(x.Key, x.Value[MetadataKey]))
+            if (c.Add(x.Key, x.Value == null || !x.Value.ContainsKey(MetadataKey) ? null : x.Value[MetadataKey]))
               return;
-        });
+        }
+        catch
+        {
+          // ignore
+        }
+      });
     }
 
-    public IEnumerable<Selection> GetSelectionClusters() { return Cluster.ToSelection(Selection); }
+    public IEnumerable<Selection> GetSelectionClusters()
+    {
+      return Cluster.ToSelection(Selection);
+    }
   }
 }

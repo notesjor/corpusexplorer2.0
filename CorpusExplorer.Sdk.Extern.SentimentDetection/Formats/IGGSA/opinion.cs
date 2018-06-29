@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.SentimentDetection.Formats.IGGSA
 
     /// <remarks />
     [XmlAttribute]
-    public double polarity { get { return polarityField; } set { polarityField = value; } }
+    public double polarity
+    {
+      get => polarityField;
+      set => polarityField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string source { get { return sourceField; } set { sourceField = value; } }
+    public string source
+    {
+      get => sourceField;
+      set => sourceField = value;
+    }
   }
 }

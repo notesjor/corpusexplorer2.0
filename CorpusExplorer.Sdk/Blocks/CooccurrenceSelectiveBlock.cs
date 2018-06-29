@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Blocks.Abstract;
@@ -14,11 +13,13 @@ namespace CorpusExplorer.Sdk.Blocks
   [Serializable]
   public class CooccurrenceSelectiveBlock : AbstractBlock
   {
-    [XmlElement]
-    public string LayerDisplayname { get; set; } = "Wort";
+    public Dictionary<string, double> CooccurrenceFrequency { get; set; }
 
-    [XmlArray]
-    public string[] LayerQueries { get; set; }
+    public Dictionary<string, double> CooccurrenceSignificance { get; set; }
+
+    [XmlElement] public string LayerDisplayname { get; set; } = "Wort";
+
+    [XmlArray] public string[] LayerQueries { get; set; }
 
     public override void Calculate()
     {
@@ -31,7 +32,7 @@ namespace CorpusExplorer.Sdk.Blocks
           LayerQueries = LayerQueries
         }
       });
-      
+
       var blockA = selection.CreateBlock<Frequency1LayerOnlyMatchSentenceOneOccurrenceBlock>();
       blockA.LayerDisplayname = LayerDisplayname;
       blockA.Calculate();
@@ -48,13 +49,13 @@ namespace CorpusExplorer.Sdk.Blocks
 
       // Signifikanz
 
-      var sign = Configuration.Significance.PreCalculationSetup(a, n);
+      var sign = Configuration.GetSignificance(a, n);
 
       var ignore = new HashSet<string>(LayerQueries);
       var dictionary = new Dictionary<string, double>();
       foreach (var k in CooccurrenceFrequency)
       {
-        if(ignore.Contains(k.Key))
+        if (ignore.Contains(k.Key))
           continue;
         try
         {
@@ -63,33 +64,27 @@ namespace CorpusExplorer.Sdk.Blocks
             continue;
           dictionary.Add(k.Key, sig);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
           Console.WriteLine(ex);
         }
       }
+
       CooccurrenceSignificance = dictionary;
     }
-
-    public Dictionary<string, double> CooccurrenceFrequency { get; set; }
-
-    public Dictionary<string, double> CooccurrenceSignificance { get; set; }
 
     [XmlRoot]
     [Serializable]
     public class Frequency1LayerOnlyMatchSentenceBlock : AbstractBlock
     {
-      [XmlElement]
-      public string LayerDisplayname { get; set; } = "Wort";
+      private readonly object _lockFrequency = new object();
+      private readonly object _lockSum = new object();
 
-      [XmlIgnore]
-      public Dictionary<string, double> Frequency { get; set; } = new Dictionary<string, double>();
+      [XmlIgnore] public Dictionary<string, double> Frequency { get; set; } = new Dictionary<string, double>();
 
-      [XmlIgnore]
-      public int SentenceCount { get; set; } = 0;
+      [XmlElement] public string LayerDisplayname { get; set; } = "Wort";
 
-      private object _lockFrequency = new object();
-      private object _lockSum = new object();
+      [XmlIgnore] public int SentenceCount { get; set; }
 
       public override void Calculate()
       {
@@ -99,21 +94,24 @@ namespace CorpusExplorer.Sdk.Blocks
         Frequency = new Dictionary<string, double>();
         SentenceCount = 0;
 
-        Parallel.ForEach(Selection, csel =>
+        Parallel.ForEach(Selection, Configuration.ParallelOptions, csel =>
         {
           var corpus = Selection.GetCorpus(csel.Key);
           var layer = corpus?.GetLayers(LayerDisplayname).FirstOrDefault();
           if (layer == null)
             return;
 
-          Parallel.ForEach(csel.Value, dsel =>
+          Parallel.ForEach(csel.Value, Configuration.ParallelOptions, dsel =>
           {
             var doc = layer[dsel];
             if (doc == null)
               return;
             var sentences = new HashSet<int>(Selection.Queries.SelectMany(q => q.GetSentenceIndices(corpus, dsel)));
             lock (_lockSum)
+            {
               SentenceCount += sentences.Count;
+            }
+
             var freq = new Dictionary<string, double>();
             foreach (var sentence in sentences)
             {
@@ -129,11 +127,13 @@ namespace CorpusExplorer.Sdk.Blocks
             }
 
             lock (_lockFrequency)
+            {
               foreach (var x in freq)
                 if (Frequency.ContainsKey(x.Key))
                   Frequency[x.Key] += x.Value;
                 else
                   Frequency.Add(x.Key, x.Value);
+            }
           });
         });
       }
@@ -143,17 +143,14 @@ namespace CorpusExplorer.Sdk.Blocks
     [Serializable]
     public class Frequency1LayerOnlyMatchSentenceOneOccurrenceBlock : AbstractBlock
     {
-      [XmlElement]
-      public string LayerDisplayname { get; set; } = "Wort";
+      private readonly object _lockFrequency = new object();
+      private readonly object _lockSum = new object();
 
-      [XmlIgnore]
-      public Dictionary<string, double> Frequency { get; set; } = new Dictionary<string, double>();
+      [XmlIgnore] public Dictionary<string, double> Frequency { get; set; } = new Dictionary<string, double>();
 
-      [XmlIgnore]
-      public int SentenceCount { get; set; } = 0;
+      [XmlElement] public string LayerDisplayname { get; set; } = "Wort";
 
-      private object _lockFrequency = new object();
-      private object _lockSum = new object();
+      [XmlIgnore] public int SentenceCount { get; set; }
 
       public override void Calculate()
       {
@@ -163,21 +160,23 @@ namespace CorpusExplorer.Sdk.Blocks
         Frequency = new Dictionary<string, double>();
         SentenceCount = 0;
 
-        foreach(var csel in Selection)
+        foreach (var csel in Selection)
         {
           var corpus = Selection.GetCorpus(csel.Key);
           var layer = corpus?.GetLayers(LayerDisplayname).FirstOrDefault();
           if (layer == null)
             return;
 
-          foreach(var dsel in csel.Value)
+          foreach (var dsel in csel.Value)
           {
             var doc = layer[dsel];
             if (doc == null)
               return;
             var sentences = new HashSet<int>(Selection.Queries.SelectMany(q => q.GetSentenceIndices(corpus, dsel)));
             lock (_lockSum)
+            {
               SentenceCount += sentences.Count;
+            }
 
             var freq = new Dictionary<string, double>();
             foreach (var sentence in sentences)
@@ -199,11 +198,13 @@ namespace CorpusExplorer.Sdk.Blocks
             }
 
             lock (_lockFrequency)
+            {
               foreach (var x in freq)
                 if (Frequency.ContainsKey(x.Key))
                   Frequency[x.Key] += x.Value;
                 else
                   Frequency.Add(x.Key, x.Value);
+            }
           }
         }
       }

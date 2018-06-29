@@ -33,34 +33,66 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string length { get { return lengthField; } set { lengthField = value; } }
+    public string length
+    {
+      get => lengthField;
+      set => lengthField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string offset { get { return offsetField; } set { offsetField = value; } }
+    public string offset
+    {
+      get => offsetField;
+      set => offsetField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string page { get { return pageField; } set { pageField = value; } }
+    public string page
+    {
+      get => pageField;
+      set => pageField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string para { get { return paraField; } set { paraField = value; } }
+    public string para
+    {
+      get => paraField;
+      set => paraField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string sent { get { return sentField; } set { sentField = value; } }
+    public string sent
+    {
+      get => sentField;
+      set => sentField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string wid { get { return widField; } set { widField = value; } }
+    public string wid
+    {
+      get => widField;
+      set => widField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string xpath { get { return xpathField; } set { xpathField = value; } }
+    public string xpath
+    {
+      get => xpathField;
+      set => xpathField = value;
+    }
   }
 }

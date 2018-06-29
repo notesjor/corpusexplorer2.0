@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
 
     /// <remarks />
     [XmlArrayItem("recording", IsNullable = false)]
-    public recording[] recordingStmt { get { return recordingStmtField; } set { recordingStmtField = value; } }
+    public recording[] recordingStmt
+    {
+      get => recordingStmtField;
+      set => recordingStmtField = value;
+    }
   }
 }

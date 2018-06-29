@@ -24,15 +24,31 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA.Model
     private written writtenField;
 
     /// <remarks />
-    public calculated calculated { get { return calculatedField; } set { calculatedField = value; } }
+    public calculated calculated
+    {
+      get => calculatedField;
+      set => calculatedField = value;
+    }
 
     /// <remarks />
-    public rough rough { get { return roughField; } set { roughField = value; } }
+    public rough rough
+    {
+      get => roughField;
+      set => roughField = value;
+    }
 
     /// <remarks />
-    public window window { get { return windowField; } set { windowField = value; } }
+    public window window
+    {
+      get => windowField;
+      set => windowField = value;
+    }
 
     /// <remarks />
-    public written written { get { return writtenField; } set { writtenField = value; } }
+    public written written
+    {
+      get => writtenField;
+      set => writtenField = value;
+    }
   }
 }

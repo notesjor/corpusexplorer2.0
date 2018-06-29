@@ -7,6 +7,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
       return text.Replace(" ", "\r\n").Replace("_", "\t");
     }
 
-    protected override string TextPostTokenizerPreTaggerCleanup(string text) { return text.Replace("_", "-"); }
+    protected override string TextPostTokenizerPreTaggerCleanup(string text)
+    {
+      return text.Replace("_", "-");
+    }
   }
 }

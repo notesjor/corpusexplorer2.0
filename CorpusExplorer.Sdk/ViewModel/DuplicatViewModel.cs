@@ -45,6 +45,9 @@ namespace CorpusExplorer.Sdk.ViewModel
       SentenceFrequency = block.SentenceFrequency;
     }
 
-    protected override bool Validate() { return !string.IsNullOrEmpty(LayerDisplayname) && FrequencyMinimum > -1; }
+    protected override bool Validate()
+    {
+      return !string.IsNullOrEmpty(LayerDisplayname) && FrequencyMinimum > -1;
+    }
   }
 }

@@ -27,10 +27,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     [XmlElement("multiple", typeof(string), DataType = "language")]
     [XmlElement("single", typeof(string), DataType = "language")]
     [XmlChoiceIdentifier("ItemElementName")]
-    public string Item { get { return itemField; } set { itemField = value; } }
+    public string Item
+    {
+      get => itemField;
+      set => itemField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public ItemChoiceType ItemElementName { get { return itemElementNameField; } set { itemElementNameField = value; } }
+    public ItemChoiceType ItemElementName
+    {
+      get => itemElementNameField;
+      set => itemElementNameField = value;
+    }
   }
 }

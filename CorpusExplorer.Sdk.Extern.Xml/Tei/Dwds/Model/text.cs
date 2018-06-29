@@ -22,14 +22,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model
     private string typeField;
 
     /// <remarks />
-    public body body { get { return bodyField; } set { bodyField = value; } }
+    public body body
+    {
+      get => bodyField;
+      set => bodyField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string rendition { get { return renditionField; } set { renditionField = value; } }
+    public string rendition
+    {
+      get => renditionField;
+      set => renditionField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string url { get { return urlField; } set { urlField = value; } }
+    public string url
+    {
+      get => urlField;
+      set => urlField = value;
+    }
   }
 }

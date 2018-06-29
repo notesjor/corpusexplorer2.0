@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.Linq;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
@@ -16,7 +17,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
   /// <summary>
   ///   The grid visualisation.
   /// </summary>
-  public partial class DisambigutionGrid : AbstractGridViewWithCodeLense
+  public partial class DisambigutionGrid : AbstractGridViewWithTextLense
   {
     private DisambiguationViewModel _vm;
 
@@ -31,10 +32,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
 
     private void Analyse()
     {
-      _vm = ViewModelGet<DisambiguationViewModel>();
-      _vm.LayerQuery = txt_queryA.Text;
+      _vm = GetViewModel<DisambiguationViewModel>();
+      _vm.LayerQuery = wordBag1.ResultQueries.First();
+      _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
       _vm.Analyse();
-      _vm.DataTableLevel = (int) num_level.Value;
+      _vm.DataTableLevel = int.Parse(txt_level.Text);
 
       radGridView1.DataSource = _vm.GetDataTable();
       radGridView1.ResetBindings();
@@ -47,7 +49,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
         {
           Inverse = false,
           LayerDisplayname = "Wort",
-          LayerQueries = new[] {txt_queryA.Text, x[Resources.Bezeichnung].ToString()}
+          LayerQueries = new[] {wordBag1.ResultSelectedLayerDisplayname, x[Resources.Bezeichnung].ToString()}
         });
     }
 
@@ -60,7 +62,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
     /// <param name="e">
     ///   The e.
     /// </param>
-    private void btn_calc_Click(object sender, EventArgs e) { CalculatorFunction(); }
+    private void btn_calc_Click(object sender, EventArgs e)
+    {
+      CalculatorFunction();
+    }
 
     /// <summary>
     ///   The btn_csv export_ click.
@@ -71,11 +76,20 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
     /// <param name="e">
     ///   The e.
     /// </param>
-    private void btn_csvExport_Click(object sender, EventArgs e) { ExportFunction(); }
+    private void btn_csvExport_Click(object sender, EventArgs e)
+    {
+      ExportFunction();
+    }
 
-    private void btn_filtereditor_Click(object sender, EventArgs e) { QueryBuilderFunction(Resources.Disambiguierung); }
+    private void btn_filtereditor_Click(object sender, EventArgs e)
+    {
+      QueryBuilderFunction(Resources.Disambiguierung);
+    }
 
-    private void btn_filterlist_Click(object sender, EventArgs e) { FilterListFunction(Resources.Label); }
+    private void btn_filterlist_Click(object sender, EventArgs e)
+    {
+      FilterListFunction(Resources.Label);
+    }
 
     /// <summary>
     ///   The btn_function_ click.
@@ -86,7 +100,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
     /// <param name="e">
     ///   The e.
     /// </param>
-    private void btn_function_Click(object sender, EventArgs e) { PredefinedFunctions(_vm, Resources.Wert); }
+    private void btn_function_Click(object sender, EventArgs e)
+    {
+      PredefinedFunctions(_vm, Resources.Wert);
+    }
 
     /// <summary>
     ///   The btn_print_ click.
@@ -97,8 +114,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
     /// <param name="e">
     ///   The e.
     /// </param>
-    private void btn_print_Click(object sender, EventArgs e) { radGridView1.PrintPreview(); }
+    private void btn_print_Click(object sender, EventArgs e)
+    {
+      radGridView1.PrintPreview();
+    }
 
-    private void btn_start_Click(object sender, EventArgs e) { Processing.Invoke(Resources.ZählungLäuft, Analyse); }
+    private void wordBag1_ExecuteButtonClicked(object sender, EventArgs e)
+    {
+      Processing.Invoke(Resources.ZählungLäuft, Analyse);
+    }
   }
 }

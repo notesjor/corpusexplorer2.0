@@ -25,7 +25,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlArrayItem("col", IsNullable = false)]
-    public alignmentColumn[] align { get { return alignField; } set { alignField = value; } }
+    public alignmentColumn[] align
+    {
+      get => alignField;
+      set => alignField = value;
+    }
 
     /// <remarks />
     [XmlElement("e", typeof(eventType))]
@@ -43,11 +47,19 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     [XmlElement("tagMarker", typeof(tagMarkerType))]
     [XmlElement("underline", typeof(underline))]
     [XmlElement("w", typeof(wordType))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlElement("actual", typeof(actualPhoType))]
     [XmlElement("model", typeof(modelPhoType))]
-    public phoType[] Items1 { get { return items1Field; } set { items1Field = value; } }
+    public phoType[] Items1
+    {
+      get => items1Field;
+      set => items1Field = value;
+    }
   }
 }

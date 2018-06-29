@@ -3,8 +3,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
+using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Utils.DataTableWriter;
 using Newtonsoft.Json.Linq;
 
 #endregion
@@ -40,21 +43,31 @@ namespace CorpusExplorer.Sdk.Helper
     public static DataTable OnlyTheBiggestRows(this DataTable dataTable, string sortColumnname, int rowLimmit)
     {
       return dataTable.Rows.Count < rowLimmit
-               ? dataTable
-               : dataTable.Rows.Cast<DataRow>()
-                          .OrderByDescending(r => r[sortColumnname])
-                          .Take(rowLimmit)
-                          .CopyToDataTable();
+        ? dataTable
+        : dataTable.Rows.Cast<DataRow>()
+          .OrderByDescending(r => r[sortColumnname])
+          .Take(rowLimmit)
+          .CopyToDataTable();
     }
 
-    public static string ToCsv(this DataTable dt, string separator = "\t")
+    public static string ToTsv(this DataTable dt)
     {
-      var stb = new StringBuilder();
-      stb.AppendLine(string.Join(separator, dt.Columns.Cast<DataColumn>().Select(column => column.ColumnName)));
+      using (var ms = new MemoryStream())
+      {
+        var tableWriter = new TsvTableWriter {OutputStream = ms};
+        tableWriter.WriteTable(dt);
+        return Configuration.Encoding.GetString(ms.GetBuffer());
+      }
+    }
 
-      foreach (DataRow row in dt.Rows)
-        stb.AppendLine(string.Join(separator, row.ItemArray.Select(field => field.ToString())));
-      return stb.ToString();
+    public static string ToCsv(this DataTable dt)
+    {
+      using (var ms = new MemoryStream())
+      {
+        var tableWriter = new CsvTableWriter {OutputStream = ms};
+        tableWriter.WriteTable(dt);
+        return Configuration.Encoding.GetString(ms.GetBuffer());
+      }
     }
 
     public static string ToHtml5(this DataTable dt)
@@ -80,6 +93,7 @@ namespace CorpusExplorer.Sdk.Helper
           row.Add(col.ColumnName.Trim(), JToken.FromObject(dr[col]));
         result.Add(row);
       }
+
       return result.ToString();
     }
 

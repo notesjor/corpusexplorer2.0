@@ -1,23 +1,20 @@
 ﻿#region
 
+using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Forms;
+using Bcs.IO;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
-using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
-using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Kwic;
-using CorpusExplorer.Terminal.WinForm.Forms.Simple;
+using CorpusExplorer.Terminal.WinForm.Controls.WinForm;
+using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter;
+using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter.Abstract;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Properties;
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CorpusExplorer.Sdk.Blocks.Flow;
-using Telerik.WinControls.Enumerations;
-using Telerik.WinControls.UI;
-using PositionChangedEventArgs = Telerik.WinControls.UI.Data.PositionChangedEventArgs;
+using MessageBox = System.Windows.MessageBox;
 
 #endregion
 
@@ -30,32 +27,43 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     public FulltextKwicTree()
     {
       InitializeComponent();
-      ShowView += OnShowView;
-    }
-
-    private void OnShowView(object sender, EventArgs eventArgs)
-    {
-      _vm = ViewModelGet<TextFlowSearchViewModel>();
-      txt_query.AutoCompleteDataSource = _vm.LayerValues;
+      ShowView += OnShowView;      
     }
 
     private void Analyse(bool highlight)
     {
-      if ((txt_query.Items == null) ||
-          (txt_query.Items.Count == 0))
-        return;
-
       Processing.Invoke(
         Resources.SucheFundstellen,
         () =>
         {
-          _vm.LayerQueryPhrase = txt_query.Text.Split(new[] {" ", ";"}, StringSplitOptions.RemoveEmptyEntries);
+          _vm.LayerQueryPhrase = wordBag1.ResultQueries;
+          _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
           _vm.HighlightCooccurrences = highlight;
-          _vm.Analyse();          
+          _vm.Analyse();
 
           wpfDiagram1.CallNew();
           BuildTree();
         });
+    }
+
+    private void btn_export_gexf_Click(object sender, EventArgs e)
+    {
+      Export(new GexfXmlGraphConverter(), Resources.GEXFXMLDokumentGexfGexf);
+    }
+
+    private void btn_export_graphviz_Click(object sender, EventArgs e)
+    {
+      Export(new GraphVizGraphConverter(), Resources.GraphVizDokumentGvGv);
+    }
+
+    private void btn_start_cooccurrence_Click(object sender, EventArgs e)
+    {
+      Analyse(true);
+    }
+
+    private void wordBag1_ExecuteButtonClicked(object sender, EventArgs e)
+    {
+      Analyse(false);
     }
 
     private void BuildTree()
@@ -64,37 +72,70 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
         () =>
         {
           elementHost1.SuspendLayout();
-          BuildTree(_vm.BranchPost, BuildTree(_vm.BranchPre, Guid.Empty, true, true), false, false);
-          wpfDiagram1.CallLayoutAsHorizontalTree();
+
+          wpfDiagram1.CallNew();
+          var pre = _vm.BranchPre.RecursiveNodes().ToArray();
+          wpfDiagram1.CallAddNodes(pre);
+          wpfDiagram1.CallColorizeNodes(pre, new UniversalColor(180, 200, 255));
+
+          var post = _vm.BranchPost.RecursiveNodes().ToArray();
+          wpfDiagram1.CallAddNodes(post);
+          wpfDiagram1.CallColorizeNodes(post, new UniversalColor(180, 200, 255));
+
+          wpfDiagram1.CallColorizeNodes(new[] { string.Join(" ", _vm.LayerQueryPhrase) }, new UniversalColor(180, 255, 200));
+
+          wpfDiagram1.CallAddConnections(_vm.BranchPre.RecursiveConnections(false));
+          wpfDiagram1.CallAddConnections(_vm.BranchPost.RecursiveConnections(true));
+
+          wpfDiagram1.CallConnectionRendering();
+
+          wpfDiagram1.CallLayoutAsTree();
           elementHost1.ResumeLayout(false);
-        });      
+        });
     }
 
-    private Guid BuildTree(FlowNode node, Guid parentNodeGuid, bool forward, bool first)
+    private void commandBarButton1_Click(object sender, EventArgs e)
     {
-      var current = wpfDiagram1.CallAddNode(node.Content, first ? new UniversalColor(150, 255, 180) : null);
-      if(parentNodeGuid != Guid.Empty)
-        if (forward)
-          wpfDiagram1.CallAddConnection(current, parentNodeGuid, true);
-        else
-          wpfDiagram1.CallAddConnection(parentNodeGuid, current, true);
+      if (
+        MessageBox.Show(
+          Resources.MöchtenSieWirklichDasDiagrammLöschenUndNeuBeginnen,
+          Resources.NeuStarten,
+          MessageBoxButton.YesNo,
+          MessageBoxImage.Question) != MessageBoxResult.Yes)
+        return;
 
-      foreach (var child in node.Children)
-      {
-        BuildTree(child, current, forward, false);
-      }
-
-      return current;
+      wpfDiagram1.CallNew();
     }
 
-    private void btn_start_cooccurrence_Click(object sender, EventArgs e)
+    private void commandBarButton2_Click(object sender, EventArgs e)
     {
-      Analyse(true);
+      var sfd = new SaveFileDialog { Filter = Resources.FileExtension_CEDG, CheckPathExists = true };
+      if (sfd.ShowDialog() != DialogResult.OK)
+        return;
+
+      wpfDiagram1.CallSave(sfd.FileName);
     }
 
-    private void btn_start_normal_Click(object sender, EventArgs e)
+    private void commandBarButton3_Click(object sender, EventArgs e)
     {
-      Analyse(false);
+      var ofd = new OpenFileDialog { Filter = Resources.FileExtension_CEDG, CheckFileExists = true };
+      if (ofd.ShowDialog() != DialogResult.OK)
+        return;
+
+      wpfDiagram1.CallLoad(ofd.FileName);
+    }
+
+    private void Export(AbstractGraphConverter type, string filter)
+    {
+      var sfd = new SaveFileDialog { Filter = filter, CheckPathExists = true };
+      if (sfd.ShowDialog() != DialogResult.OK)
+        return;
+      FileIO.Write(sfd.FileName, wpfDiagram1.CallExport(type), Configuration.Encoding);
+    }
+
+    private void OnShowView(object sender, EventArgs eventArgs)
+    {
+      _vm = GetViewModel<TextFlowSearchViewModel>();
     }
   }
 }

@@ -31,27 +31,55 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string lang { get { return langField; } set { langField = value; } }
+    public string lang
+    {
+      get => langField;
+      set => langField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("lemma", IsNullable = false)]
-    public lemma[] lemmas { get { return lemmasField; } set { lemmasField = value; } }
+    public lemma[] lemmas
+    {
+      get => lemmasField;
+      set => lemmasField = value;
+    }
 
     /// <remarks />
-    public namedEntities namedEntities { get { return namedEntitiesField; } set { namedEntitiesField = value; } }
+    public namedEntities namedEntities
+    {
+      get => namedEntitiesField;
+      set => namedEntitiesField = value;
+    }
 
     /// <remarks />
-    public POStags POStags { get { return pOStagsField; } set { pOStagsField = value; } }
+    public POStags POStags
+    {
+      get => pOStagsField;
+      set => pOStagsField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("sentence", IsNullable = false)]
-    public sentence[] sentences { get { return sentencesField; } set { sentencesField = value; } }
+    public sentence[] sentences
+    {
+      get => sentencesField;
+      set => sentencesField = value;
+    }
 
     /// <remarks />
-    public string text { get { return textField; } set { textField = value; } }
+    public string text
+    {
+      get => textField;
+      set => textField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("token", IsNullable = false)]
-    public token[] tokens { get { return tokensField; } set { tokensField = value; } }
+    public token[] tokens
+    {
+      get => tokensField;
+      set => tokensField = value;
+    }
   }
 }

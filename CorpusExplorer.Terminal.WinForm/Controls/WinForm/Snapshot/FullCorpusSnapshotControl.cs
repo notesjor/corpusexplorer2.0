@@ -43,7 +43,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
 
     private void LoadQuery(FilterQueryCorpusComplete query)
     {
-      if ((query.SelectedCorpora == null) ||
+      if (query.SelectedCorpora == null ||
           !query.SelectedCorpora.Any())
         return;
 

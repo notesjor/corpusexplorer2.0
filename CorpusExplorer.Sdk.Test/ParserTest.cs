@@ -10,6 +10,7 @@ using CorpusExplorer.Core.DocumentProcessing.Tagger.RawText;
 using CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger;
 using CorpusExplorer.Sdk.Ecosystem;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Extern.Xml.LexisNexis;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -36,7 +37,7 @@ namespace CorpusExplorer.Sdk.Test
     [TestMethod]
     public void ParserCompareTest()
     {
-      var ln = new LexisNexisScraper();
+      var ln = new NexisComScraper();
       ln.Input.Enqueue(
         "C:/Projekte/Magisterarbeit/CorpusExplorerNext/CorpusExplorer/CorpusExplorer.Sdk.Test/EXAMPLE/LexisNexisDEMO.HTML");
       ln.Execute();

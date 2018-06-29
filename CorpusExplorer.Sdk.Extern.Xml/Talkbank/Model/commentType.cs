@@ -27,18 +27,34 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     /// <remarks />
     [XmlElement("media", typeof(mediaType))]
     [XmlElement("mediaPic", typeof(mediaPicType))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public commentTypeType type { get { return typeField; } set { typeField = value; } }
+    public commentTypeType type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool typeSpecified { get { return typeFieldSpecified; } set { typeFieldSpecified = value; } }
+    public bool typeSpecified
+    {
+      get => typeFieldSpecified;
+      set => typeFieldSpecified = value;
+    }
   }
 }

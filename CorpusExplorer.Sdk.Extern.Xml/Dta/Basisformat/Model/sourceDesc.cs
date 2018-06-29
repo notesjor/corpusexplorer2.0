@@ -22,12 +22,24 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private msDesc msDescField;
 
     /// <remarks />
-    public bibl bibl { get { return biblField; } set { biblField = value; } }
+    public bibl bibl
+    {
+      get => biblField;
+      set => biblField = value;
+    }
 
     /// <remarks />
-    public biblFull biblFull { get { return biblFullField; } set { biblFullField = value; } }
+    public biblFull biblFull
+    {
+      get => biblFullField;
+      set => biblFullField = value;
+    }
 
     /// <remarks />
-    public msDesc msDesc { get { return msDescField; } set { msDescField = value; } }
+    public msDesc msDesc
+    {
+      get => msDescField;
+      set => msDescField = value;
+    }
   }
 }

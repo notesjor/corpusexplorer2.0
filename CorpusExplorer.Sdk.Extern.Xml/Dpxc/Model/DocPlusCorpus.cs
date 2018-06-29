@@ -9,7 +9,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dpxc.Model
   [Serializable]
   public class DocPlusCorpus
   {
-    public DocPlusCorpus() { }
+    public DocPlusCorpus()
+    {
+    }
 
     public DocPlusCorpus(IEnumerable<Dictionary<string, object>> docs)
     {
@@ -25,7 +27,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dpxc.Model
           hash.Add(
             (type == typeof(double) ? "~" : type == typeof(int) ? "#" : type == typeof(DateTime) ? "?" : "") + x.Key);
         }
-        catch {}
+        catch
+        {
+        }
 
       Metadata = hash.ToArray();
     }

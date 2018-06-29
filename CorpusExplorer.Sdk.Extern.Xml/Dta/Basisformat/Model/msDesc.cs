@@ -20,9 +20,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private physDesc physDescField;
 
     /// <remarks />
-    public msIdentifier msIdentifier { get { return msIdentifierField; } set { msIdentifierField = value; } }
+    public msIdentifier msIdentifier
+    {
+      get => msIdentifierField;
+      set => msIdentifierField = value;
+    }
 
     /// <remarks />
-    public physDesc physDesc { get { return physDescField; } set { physDescField = value; } }
+    public physDesc physDesc
+    {
+      get => physDescField;
+      set => physDescField = value;
+    }
   }
 }

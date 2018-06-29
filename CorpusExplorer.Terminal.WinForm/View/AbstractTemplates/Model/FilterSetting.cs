@@ -9,16 +9,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates.Model
   [Serializable]
   public class FilterSetting
   {
-    [XmlArray("conditions")]
-    public List<FilterConditions> Conditions { get; set; }
+    [XmlArray("conditions")] public List<FilterConditions> Conditions { get; set; }
 
-    [XmlAttribute("invert")]
-    public bool InvertFilter { get; set; }
+    [XmlAttribute("invert")] public bool InvertFilter { get; set; }
 
-    [XmlAttribute("logical")]
-    public FilterLogicalOperator LogicalOperator { get; set; }
+    [XmlAttribute("logical")] public FilterLogicalOperator LogicalOperator { get; set; }
 
-    [XmlAttribute("name")]
-    public string PropertyName { get; set; }
+    [XmlAttribute("name")] public string PropertyName { get; set; }
   }
 }

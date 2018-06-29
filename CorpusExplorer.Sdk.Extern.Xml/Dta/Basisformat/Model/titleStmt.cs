@@ -25,18 +25,34 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlElement("title")]
-    public title[] title { get { return titleField; } set { titleField = value; } }
+    public title[] title
+    {
+      get => titleField;
+      set => titleField = value;
+    }
 
     /// <remarks />
     [XmlElement("author")]
-    public author[] author { get { return authorField; } set { authorField = value; } }
+    public author[] author
+    {
+      get => authorField;
+      set => authorField = value;
+    }
 
     /// <remarks />
     [XmlElement("editor")]
-    public editor[] editor { get { return editorField; } set { editorField = value; } }
+    public editor[] editor
+    {
+      get => editorField;
+      set => editorField = value;
+    }
 
     /// <remarks />
     [XmlElement("respStmt")]
-    public respStmt[] respStmt { get { return respStmtField; } set { respStmtField = value; } }
+    public respStmt[] respStmt
+    {
+      get => respStmtField;
+      set => respStmtField = value;
+    }
   }
 }

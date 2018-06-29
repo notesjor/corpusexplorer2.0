@@ -83,36 +83,6 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
       _endingsStep2 = new[] {"gd", "dt", "gt", "kt"};
       _endingsStep3 = new[] {"elig", "els", "lig", "ig"};
     } // End of the constructor
-    // End of the GetSteamWords method
-
-    /// <summary>
-    ///   Calculate the R1 part for a word
-    /// </summary>
-    /// <param name="characters">An array of characters</param>
-    /// <returns>An int with the r1 index</returns>
-    private int CalculateR1(char[] characters)
-    {
-      // Create the int array to return
-      var r1 = characters.Length;
-
-      // Calculate R1
-      for (var i = 1; i < characters.Length; i++)
-      {
-        if (IsVowel(characters[i]) ||
-            !IsVowel(characters[i - 1]))
-          continue;
-        // Set the r1 index
-        r1 = i + 1;
-        break;
-      }
-
-      // Adjust R1
-      if (r1 < 3)
-        r1 = 3;
-
-      // Return the int array
-      return r1;
-    } // End of the calculateR1R2 method
 
     /// <summary>
     ///   Get the steam word from a specific word
@@ -143,7 +113,9 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
         part2 = word.Substring(firstNonVowel);
       }
       else
+      {
         part1 = word;
+      }
 
       // **********************************************
       // Step 1
@@ -204,21 +176,52 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
         // Delete the last letter in part2
         part2 = part2.Remove(part2.Length - 1);
       }
+
       // **********************************************
       // Step 4
       // **********************************************
       // If the word ends with double consonant in R1, remove one of the consonants.
       word = part1 + part2;
-      if ((word.Length > 1) &&
-          (part2.Length > 0) &&
-          (word[word.Length - 2] == word[word.Length - 1])
+      if (word.Length > 1 &&
+          part2.Length > 0 &&
+          word[word.Length - 2] == word[word.Length - 1]
           &&
-          (IsVowel(part2[part2.Length - 1]) == false))
+          IsVowel(part2[part2.Length - 1]) == false)
         part2 = part2.Remove(part2.Length - 1);
       // **********************************************
 
       // Return the stripped word
       return part1 + part2;
     } // End of the GetSteamWord method
+    // End of the GetSteamWords method
+
+    /// <summary>
+    ///   Calculate the R1 part for a word
+    /// </summary>
+    /// <param name="characters">An array of characters</param>
+    /// <returns>An int with the r1 index</returns>
+    private int CalculateR1(char[] characters)
+    {
+      // Create the int array to return
+      var r1 = characters.Length;
+
+      // Calculate R1
+      for (var i = 1; i < characters.Length; i++)
+      {
+        if (IsVowel(characters[i]) ||
+            !IsVowel(characters[i - 1]))
+          continue;
+        // Set the r1 index
+        r1 = i + 1;
+        break;
+      }
+
+      // Adjust R1
+      if (r1 < 3)
+        r1 = 3;
+
+      // Return the int array
+      return r1;
+    } // End of the calculateR1R2 method
   } // End of the class
 } // End of the namespace

@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlElement("chunk")]
-    public chunk[] chunk { get { return chunkField; } set { chunkField = value; } }
+    public chunk[] chunk
+    {
+      get => chunkField;
+      set => chunkField = value;
+    }
   }
 }

@@ -13,8 +13,8 @@ namespace CorpusExplorer.Installer.VirtualHost
     private static void Main()
     {
       var desktop = Directory.Exists("C:/Users/Public/Desktop")
-                      ? "C:/Users/Public/Desktop"
-                      : "C:/Users/Public/Public Desktop";
+        ? "C:/Users/Public/Desktop"
+        : "C:/Users/Public/Public Desktop";
       var workdir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "CorpusExplorer");
 
       Console.Write($"CorpusExplorer v2.x Install/Update - {workdir}...");
@@ -36,6 +36,7 @@ namespace CorpusExplorer.Installer.VirtualHost
           Console.WriteLine(error.Value.Message);
           Console.WriteLine(error.Value.StackTrace);
         }
+
         InMemoryErrorConsole.Save("error.log");
         Console.WriteLine("All errors stored in 'error.log'");
         Console.WriteLine("Press ENTER to close this script");

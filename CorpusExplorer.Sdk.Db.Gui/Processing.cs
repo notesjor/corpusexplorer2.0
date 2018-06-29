@@ -17,7 +17,7 @@ namespace CorpusExplorer.Sdk.Db.Gui
       SplashShow(message);
 
       try
-      {        
+      {
         action();
       }
       catch (Exception ex)
@@ -30,7 +30,6 @@ namespace CorpusExplorer.Sdk.Db.Gui
 
     public static void SplashClose()
     {
-      InMemoryErrorConsole.ActionStop();
       Show = false;
     }
 
@@ -38,23 +37,26 @@ namespace CorpusExplorer.Sdk.Db.Gui
     {
       Show = true;
 
-      if ((_thread == null) || (_thread.Status != TaskStatus.Running))
+      if (_thread == null || _thread.Status != TaskStatus.Running)
       {
         Message = message;
         _thread = Task.Factory.StartNew(
-            () =>
+          () =>
+          {
+            try
             {
-              try
-              {
-                var splashForm = new ProcessingForm();
-                InMemoryErrorConsole.ActionStart(message);
-                splashForm.ShowDialog();
-              }
-              catch {}
-            });
+              var splashForm = new ProcessingForm();
+              splashForm.ShowDialog();
+            }
+            catch
+            {
+            }
+          });
       }
       else
-        Message = message;           
+      {
+        Message = message;
+      }
     }
   }
 }

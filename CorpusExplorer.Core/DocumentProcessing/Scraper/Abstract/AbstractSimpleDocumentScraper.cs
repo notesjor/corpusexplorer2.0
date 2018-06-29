@@ -27,6 +27,7 @@ namespace CorpusExplorer.Core.DocumentProcessing.Scraper.Abstract
         RadFlowDocument doc;
 
         using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
+        using (var bs = new BufferedStream(fs))
         {
           var reader = Activator.CreateInstance(typeof(T)) as T;
 
@@ -36,7 +37,7 @@ namespace CorpusExplorer.Core.DocumentProcessing.Scraper.Abstract
           if (reader == null)
             return null;
 
-          doc = reader.Import(fs);
+          doc = reader.Import(bs);
         }
 
         if (doc == null)
@@ -51,6 +52,7 @@ namespace CorpusExplorer.Core.DocumentProcessing.Scraper.Abstract
           ms.Read(buffer, 0, buffer.Length);
           text = Configuration.Encoding.GetString(buffer);
         }
+
         return new[]
         {
           new Dictionary<string, object>

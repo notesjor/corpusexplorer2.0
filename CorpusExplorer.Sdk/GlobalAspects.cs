@@ -1,5 +1,4 @@
-﻿
-#if !DEBUG
+﻿#if !DEBUG
 using CorpusExplorer.Sdk.Aspect;
 using PostSharp.Extensibility;
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -16,7 +15,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
 {
   public partial class SimpleTextView : AbstractMetadata
   {
-    private QuickInfoTextResult[] _docs;
+    private readonly QuickInfoTextResult[] _docs;
     private int _index;
     private int _lastIndex = -1;
 
@@ -28,6 +27,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       Index = 0;
       RefreshMetadata(_docs[Index].DocumentMetadata);
     }
+
+    public IEnumerable<QuickInfoTextResult> Documents => _docs;
 
     public int Index
     {
@@ -44,30 +45,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       }
     }
 
-    public IEnumerable<QuickInfoTextResult> Documents => _docs;
-
-    private void RefreshData()
+    private void btn_clipboard_Click(object sender, EventArgs e)
     {
-      if (_lastIndex > -1)
-        _docs[_lastIndex].DocumentMetadata = DocumentMetadata;
-
-      lbl_index.Text = $"{Index + 1} / {_docs.Length}";
-      wpfTagger1.Text = _docs[Index].Text;
-
-      var palette = UniversalColor.Palette;
-      var idx = 0;
-
-      foreach (var s in _docs[Index].HighlightedSentences)
-      {
-        wpfTagger1.SetItemColor(s, palette[idx++].ToWpfColor(), string.Empty);
-      }
-
-      RefreshMetadata(_docs[Index].DocumentMetadata);
+      Clipboard.SetText(_docs[Index].Text.ConvertToPlainText());
     }
-
-    private void btn_prev_Click(object sender, EventArgs e) { Index--; }
-
-    private void btn_next_Click(object sender, EventArgs e) { Index++; }
 
     private void btn_export_Click(object sender, EventArgs e)
     {
@@ -86,9 +67,31 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       Processing.Invoke(Resources.GutDingWillWeileHaben, () => exporter.Export(sub, sfd.FileName));
     }
 
-    private void btn_clipboard_Click(object sender, EventArgs e)
+    private void btn_next_Click(object sender, EventArgs e)
     {
-      Clipboard.SetText(_docs[Index].Text.ConvertToPlainText());
+      Index++;
+    }
+
+    private void btn_prev_Click(object sender, EventArgs e)
+    {
+      Index--;
+    }
+
+    private void RefreshData()
+    {
+      if (_lastIndex > -1)
+        _docs[_lastIndex].DocumentMetadata = DocumentMetadata;
+
+      lbl_index.Text = $"{Index + 1} / {_docs.Length}";
+      wpfTagger1.Text = _docs[Index].Text;
+
+      var palette = UniversalColor.Palette;
+      var idx = 0;
+
+      foreach (var s in _docs[Index].HighlightedSentences)
+        wpfTagger1.SetItemColor(s, palette[idx++].ToWpfColor(), string.Empty);
+
+      RefreshMetadata(_docs[Index].DocumentMetadata);
     }
   }
 }

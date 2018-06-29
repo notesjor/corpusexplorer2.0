@@ -16,11 +16,14 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
   [Serializable]
   public class FilterQuerySingleLayerAllInSpanSentences : AbstractFilterQuerySingleLayer
   {
-    [XmlAttribute("span")]
-    private int _sentenceSpan;
+    [XmlAttribute("span")] private int _sentenceSpan;
 
     [XmlIgnore]
-    public int SentenceSpan { get => _sentenceSpan; set => _sentenceSpan = value; }
+    public int SentenceSpan
+    {
+      get => _sentenceSpan;
+      set => _sentenceSpan = value;
+    }
 
     /// <summary>
     ///   Gibt eine automatisch generierte Zusammenfassung des Inhalts/Bedeutung zur�ck.
@@ -119,6 +122,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
           marker = i;
         }
+
       return false;
     }
   }

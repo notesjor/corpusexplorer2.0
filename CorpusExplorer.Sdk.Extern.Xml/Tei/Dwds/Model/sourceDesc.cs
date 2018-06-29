@@ -18,6 +18,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model
     private biblFull biblFullField;
 
     /// <remarks />
-    public biblFull biblFull { get { return biblFullField; } set { biblFullField = value; } }
+    public biblFull biblFull
+    {
+      get => biblFullField;
+      set => biblFullField = value;
+    }
   }
 }

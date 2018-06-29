@@ -22,13 +22,25 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private title titleField;
 
     /// <remarks />
-    public string author { get { return authorField; } set { authorField = value; } }
+    public string author
+    {
+      get => authorField;
+      set => authorField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string Default { get { return defaultField; } set { defaultField = value; } }
+    public string Default
+    {
+      get => defaultField;
+      set => defaultField = value;
+    }
 
     /// <remarks />
-    public title title { get { return titleField; } set { titleField = value; } }
+    public title title
+    {
+      get => titleField;
+      set => titleField = value;
+    }
   }
 }

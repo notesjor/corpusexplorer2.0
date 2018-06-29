@@ -26,22 +26,42 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private decimal versionField;
 
     /// <remarks />
-    public idsHeader idsHeader { get { return idsHeaderField; } set { idsHeaderField = value; } }
+    public idsHeader idsHeader
+    {
+      get => idsHeaderField;
+      set => idsHeaderField = value;
+    }
 
     /// <remarks />
     [XmlElement("idsText")]
-    public idsText[] idsText { get { return idsTextField; } set { idsTextField = value; } }
+    public idsText[] idsText
+    {
+      get => idsTextField;
+      set => idsTextField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string TEIform { get { return tEIformField; } set { tEIformField = value; } }
+    public string TEIform
+    {
+      get => tEIformField;
+      set => tEIformField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public decimal version { get { return versionField; } set { versionField = value; } }
+    public decimal version
+    {
+      get => versionField;
+      set => versionField = value;
+    }
   }
 }

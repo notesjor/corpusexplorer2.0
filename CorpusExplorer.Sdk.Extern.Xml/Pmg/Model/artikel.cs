@@ -20,9 +20,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Pmg.Model
     private metadaten metadatenField;
 
     /// <remarks />
-    public inhalt inhalt { get { return inhaltField; } set { inhaltField = value; } }
+    public inhalt inhalt
+    {
+      get => inhaltField;
+      set => inhaltField = value;
+    }
 
     /// <remarks />
-    public metadaten metadaten { get { return metadatenField; } set { metadatenField = value; } }
+    public metadaten metadaten
+    {
+      get => metadatenField;
+      set => metadatenField = value;
+    }
   }
 }

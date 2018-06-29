@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Model.Cache.Helper.Exception;
@@ -48,6 +49,7 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
 
       Parallel.ForEach(
         Selection,
+        Configuration.ParallelOptions,
         csel =>
         {
           var corpus = Selection.GetCorpus(csel.Key);
@@ -58,6 +60,7 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
 
           Parallel.ForEach(
             csel.Value,
+            Configuration.ParallelOptions,
             dsel =>
             {
               if (!layer.ContainsDocument(dsel))

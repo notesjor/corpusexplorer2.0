@@ -24,14 +24,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement("Description")]
-    public DescriptionType[] Items { get { return itemsField; } set { itemsField = value; } }
+    public DescriptionType[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified, DataType = "IDREF")]
-    public string target { get { return targetField; } set { targetField = value; } }
+    public string target
+    {
+      get => targetField;
+      set => targetField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified)]
-    public string Type { get { return typeField; } set { typeField = value; } }
+    public string Type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

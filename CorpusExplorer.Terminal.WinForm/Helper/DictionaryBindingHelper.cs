@@ -10,8 +10,13 @@ using Telerik.WinControls.UI;
 
 namespace CorpusExplorer.Terminal.WinForm.Helper
 {
-  public class DictionaryBindingHelper
+  public static class DictionaryBindingHelper
   {
+    public static void BindDictionary<T>(IEnumerable<T> dictionary, RadDropDownList radDropDownList)
+    {
+      BindDictionary(dictionary.ToDictionary(x => x, x => x), radDropDownList);
+    }
+
     public static void BindDictionary<T, K>(IEnumerable<KeyValuePair<T, K>> dictionary, RadDropDownList radDropDownList)
     {
       BindDictionary(dictionary.ToDictionary(x => x.Key, x => x.Value), radDropDownList);

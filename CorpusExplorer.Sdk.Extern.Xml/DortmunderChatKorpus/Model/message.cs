@@ -30,34 +30,66 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string color { get { return colorField; } set { colorField = value; } }
+    public string color
+    {
+      get => colorField;
+      set => colorField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string creator { get { return creatorField; } set { creatorField = value; } }
+    public string creator
+    {
+      get => creatorField;
+      set => creatorField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NMTOKEN")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlElement(Order = 2)]
-    public messageBody messageBody { get { return messageBodyField; } set { messageBodyField = value; } }
+    public messageBody messageBody
+    {
+      get => messageBodyField;
+      set => messageBodyField = value;
+    }
 
     /// <remarks />
     [XmlElement(Order = 1)]
-    public messageHead messageHead { get { return messageHeadField; } set { messageHeadField = value; } }
+    public messageHead messageHead
+    {
+      get => messageHeadField;
+      set => messageHeadField = value;
+    }
 
     /// <remarks />
     [XmlElement(Order = 0)]
-    public string timestamp { get { return timestampField; } set { timestampField = value; } }
+    public string timestamp
+    {
+      get => timestampField;
+      set => timestampField = value;
+    }
 
     /// <remarks />
     [XmlElement("timestamp", Order = 3)]
-    public string timestamp1 { get { return timestamp1Field; } set { timestamp1Field = value; } }
+    public string timestamp1
+    {
+      get => timestamp1Field;
+      set => timestamp1Field = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public messageType type { get { return typeField; } set { typeField = value; } }
+    public messageType type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

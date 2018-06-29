@@ -25,8 +25,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     [XmlElement("basic-transcription-conversion-info")]
     public basictranscriptionconversioninfo basictranscriptionconversioninfo
     {
-      get { return basictranscriptionconversioninfoField; }
-      set { basictranscriptionconversioninfoField = value; }
+      get => basictranscriptionconversioninfoField;
+      set => basictranscriptionconversioninfoField = value;
     }
   }
 }

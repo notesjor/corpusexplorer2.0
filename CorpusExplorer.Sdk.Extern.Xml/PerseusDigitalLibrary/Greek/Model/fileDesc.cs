@@ -1,68 +1,73 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
 namespace CorpusExplorer.Sdk.Extern.Xml.PerseusDigitalLibrary.Greek.Model
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-  public partial class fileDesc
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true)]
+  [XmlRoot(Namespace = "", IsNullable = false)]
+  public class fileDesc
   {
-
-    private titleStmt titleStmtField;
-
     private extent extentField;
 
-    private publicationStmt publicationStmtField;
-
     private notesStmt notesStmtField;
+
+    private publicationStmt publicationStmtField;
 
     private sourceDesc sourceDescField;
 
     private string tEIformField;
 
-    /// <remarks/>
-    public titleStmt titleStmt
-    {
-      get { return this.titleStmtField; }
-      set { this.titleStmtField = value; }
-    }
+    private titleStmt titleStmtField;
 
-    /// <remarks/>
+    /// <remarks />
     public extent extent
     {
-      get { return this.extentField; }
-      set { this.extentField = value; }
+      get => extentField;
+      set => extentField = value;
     }
 
-    /// <remarks/>
-    public publicationStmt publicationStmt
-    {
-      get { return this.publicationStmtField; }
-      set { this.publicationStmtField = value; }
-    }
-
-    /// <remarks/>
+    /// <remarks />
     public notesStmt notesStmt
     {
-      get { return this.notesStmtField; }
-      set { this.notesStmtField = value; }
+      get => notesStmtField;
+      set => notesStmtField = value;
     }
 
-    /// <remarks/>
+    /// <remarks />
+    public publicationStmt publicationStmt
+    {
+      get => publicationStmtField;
+      set => publicationStmtField = value;
+    }
+
+    /// <remarks />
     public sourceDesc sourceDesc
     {
-      get { return this.sourceDescField; }
-      set { this.sourceDescField = value; }
+      get => sourceDescField;
+      set => sourceDescField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string TEIform
     {
-      get { return this.tEIformField; }
-      set { this.tEIformField = value; }
+      get => tEIformField;
+      set => tEIformField = value;
+    }
+
+    /// <remarks />
+    public titleStmt titleStmt
+    {
+      get => titleStmtField;
+      set => titleStmtField = value;
     }
   }
 }

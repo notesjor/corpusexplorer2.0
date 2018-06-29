@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CorpusExplorer.Sdk.EchtzeitEngine.Model;
-using CorpusExplorer.Sdk.Helper;
+﻿using CorpusExplorer.Sdk.EchtzeitEngine.Model;
 using CorpusExplorer.Sdk.Model;
 
 namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step.Abstract

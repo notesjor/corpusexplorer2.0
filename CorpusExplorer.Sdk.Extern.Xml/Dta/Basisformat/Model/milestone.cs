@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string rendition { get { return renditionField; } set { renditionField = value; } }
+    public string rendition
+    {
+      get => renditionField;
+      set => renditionField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string unit { get { return unitField; } set { unitField = value; } }
+    public string unit
+    {
+      get => unitField;
+      set => unitField = value;
+    }
   }
 }

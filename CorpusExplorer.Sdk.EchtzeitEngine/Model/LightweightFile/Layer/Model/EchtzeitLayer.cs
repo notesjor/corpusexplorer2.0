@@ -14,8 +14,9 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Layer.Model
     public Guid DocumentGuid { get; set; }
     public Guid Guid { get; set; }
 
-    public static EchtzeitLayer Create(AbstractLayerState layer) =>
-      new EchtzeitLayer
+    public static EchtzeitLayer Create(AbstractLayerState layer)
+    {
+      return new EchtzeitLayer
       {
         Guid = Guid.NewGuid(),
         Dictionary = new CeDictionary(layer.Cache),
@@ -23,5 +24,6 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Layer.Model
         DocumentGuid = layer.Documents.FirstOrDefault().Key,
         Document = layer.Documents.FirstOrDefault().Value
       };
+    }
   }
 }

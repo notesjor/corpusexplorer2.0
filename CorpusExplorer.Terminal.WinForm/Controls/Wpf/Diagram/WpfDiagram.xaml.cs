@@ -1,18 +1,18 @@
-﻿using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter.Abstract;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using CorpusExplorer.Sdk.Helper;
+using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter.Abstract;
+using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Model;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Helper;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Diagrams;
 using Telerik.Windows.Diagrams.Core;
-using Orientation = System.Windows.Controls.Orientation;
+using Orientation = Telerik.Windows.Diagrams.Core.Orientation;
 
 namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
 {
@@ -21,285 +21,32 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
   /// </summary>
   public partial class WpfDiagram : UserControl
   {
-    [NonSerialized]
-    private readonly Dictionary<Guid, IConnection> _connections = new Dictionary<Guid, IConnection>();
+    private readonly Dictionary<string, Dictionary<string, Tuple<double, RadDiagramConnection>>> _connections =
+      new Dictionary<string, Dictionary<string, Tuple<double, RadDiagramConnection>>>();
 
-    [NonSerialized]
-    private readonly Dictionary<Guid, IShape> _nodes = new Dictionary<Guid, IShape>();
-
-    [NonSerialized]
-    private readonly Dictionary<string, Guid> _dic = new Dictionary<string, Guid>();
+    private readonly Dictionary<string, RadDiagramShape> _nodes = new Dictionary<string, RadDiagramShape>();
 
     public WpfDiagram()
     {
-      StyleManager.ApplicationTheme = new Windows8TouchTheme();
       InitializeComponent();
     }
 
-    private Guid AddConnection(Guid nodeSource, Guid nodeTarget, bool addArrow)
-    {
-      return AddConnection(_nodes[nodeSource], _nodes[nodeTarget], addArrow);
-    }
-
-    private Guid AddConnection(IShape startShape, IShape endShape, bool addArrow)
-    {
-      var res = Guid.NewGuid();
-      var con = diagram.AddConnection(startShape, endShape);
-      if (addArrow)
-      {
-        con.TargetCapSize = new Size(10, 10);
-        con.TargetCapType = CapType.Arrow1;
-      }
-
-      _connections.Add(res, con);      
-      return res;
-    }
-
-    private Guid AddConnection(IConnection connection)
-    {
-      var res = Guid.NewGuid();
-      _connections.Add(res, connection);
-      diagram.AddConnection(connection);
-      return res;
-    }
-
-    public Dictionary<string, Guid> CallAddNodes(HashSet<string> nodes, UniversalColor color = null)
-    {
-      if (color == null)
-        color = new UniversalColor(30, 80, 255);
-
-      return nodes.ToDictionary(node => node, node => CallAddNode(node, color));
-    }
-
-    public Guid CallAddNode(string node, UniversalColor color = null)
-    {
-      if (_dic.ContainsKey(node))
-        return _dic[node];
-
-      if (color == null)
-        color = new UniversalColor(30, 80, 255);
-
-      var shape = new RadDiagramShape
-      {
-        Width = 180,
-        Height = 100,
-        Position = new Point { X = 100, Y = 100 },
-        Content = MakeComplexNodeContent(node),
-        Geometry = ShapeFactory.GetShapeGeometry(CommonShapeType.RectangleShape),
-        Background = new SolidColorBrush(color.ToWpfColor())
-      };
-
-      diagram.AddShape(shape);
-
-      var res = Guid.NewGuid();
-      _nodes.Add(res, shape);
-      _dic.Add(node, res);
-
-      return res;
-    }
-
-    private object MakeComplexNodeContent(string node)
-    {
-      var stack = new WrapPanel
-      {
-        HorizontalAlignment = HorizontalAlignment.Stretch,
-        VerticalAlignment = VerticalAlignment.Stretch,
-        Orientation = Orientation.Horizontal
-      };
-      var split = node.Split(new[]{" "}, StringSplitOptions.RemoveEmptyEntries);
-      foreach (var s in split)
-      {
-        var highlight = s.StartsWith("<strong>");
-        stack.Children.Add( new TextBlock
-        {
-          FontWeight = highlight ? FontWeights.ExtraBold : FontWeights.Normal,
-          Text = highlight ? s.Replace("<strong>", "").Replace("</strong>", "") : s,
-          Margin = new Thickness(0, 0, 3, 4)
-        });
-      }
-      return stack;
-    }
-
-    public void CallAdd(IEnumerable<Tuple<string, double, string>> nodesAndEdges, UniversalColor color = null, bool addArrow = false)
-    {
-      foreach (var entry in nodesAndEdges)
-      {
-        var con = _connections[AddConnection(CallAddNode(entry.Item1, color), CallAddNode(entry.Item3), addArrow)];
-        con.Content = new TextBlock
-        {
-          Text = entry.Item2 > 0 ? Math.Round(entry.Item2, 3).ToString(CultureInfo.CurrentCulture) : "",
-          Foreground = new SolidColorBrush { Color = Colors.Black }
-        };
-      }
-    }
-
-    public void CallBuildAggregatedChain(IEnumerable<KeyValuePair<string, int>> ngrams)
-    {
-      CallBuildAggregatedChain(ngrams.Select(ngram => new KeyValuePair<string[], int>(ngram.Key.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries), ngram.Value)));
-    }
-
-    public void CallBuildAggregatedChain(IEnumerable<KeyValuePair<string[], int>> ngrams)
-    {
-      CallNew();
-      var hash = new Dictionary<string, RadDiagramShape>();
-
-      const double stroke = 11.0d;
-      var dec = (stroke - 1.0d) / ngrams.Count();
-      var act = stroke;
-
-      foreach (var ngram in ngrams)
-      {
-        for (var i = 0; i < ngram.Key.Length; i++)
-        {
-          RadDiagramShape shape;
-          if (hash.ContainsKey(ngram.Key[i]))
-            shape = hash[ngram.Key[i]];
-          else
-          {
-            shape = new RadDiagramShape
-            {
-              Width = 180,
-              Height = 100,
-              Content = ngram.Key[i],
-              Foreground = new SolidColorBrush(Colors.Black),
-              FontSize = 16,
-              Geometry = ShapeFactory.GetShapeGeometry(CommonShapeType.RectangleShape),
-              Background = new LinearGradientBrush()
-            };
-
-            var color = i == 0
-                          ? Color.FromRgb(150, 255, 180)
-                          : i + 1 == ngram.Key.Length
-                            ? Color.FromRgb(255, 150, 150)
-                            : Color.FromRgb(150, 180, 255);
-
-            ((LinearGradientBrush)shape.Background).GradientStops.Add(new GradientStop(color, 0));
-            ((LinearGradientBrush)shape.Background).GradientStops.Add(new GradientStop(color, 0.5));
-            ((LinearGradientBrush)shape.Background).GradientStops.Add(new GradientStop(color, 1));
-
-            diagram.AddShape(shape);
-            hash.Add(ngram.Key[i], shape);
-          }
-
-          if (i == 0)
-            ((LinearGradientBrush)shape.Background).GradientStops[0] = new GradientStop(
-              Color.FromRgb(150, 255, 180),
-              0);
-          else if (i + 1 == ngram.Key.Length)
-            ((LinearGradientBrush)shape.Background).GradientStops[2] = new GradientStop(
-              Color.FromRgb(255, 150, 150),
-              1);
-          else
-            ((LinearGradientBrush)shape.Background).GradientStops[1] = new GradientStop(
-              Color.FromRgb(150, 180, 255),
-              0.5);
-
-          if (i > 0)
-            AddConnection(
-              new RadDiagramConnection
-              {
-                Source = hash[ngram.Key[i - 1]],
-                Target = shape,
-                Content =
-                  new TextBlock
-                  {
-                    Text = ngram.Value.ToString(),
-                    Foreground = new SolidColorBrush { Color = Colors.Black },
-                    Background = new SolidColorBrush(Colors.White)
-                  },
-                StrokeThickness = act,
-                TargetCapType = CapType.Arrow1Filled
-              });
-        }
-
-        act -= dec;
-      }
-
-      diagram.Layout();
-    }
-
-    public void CallBuildChain(IEnumerable<KeyValuePair<string, int>> ngrams)
-    {
-      CallBuildChain(ngrams.Select(ngram => new KeyValuePair<string[], int>(ngram.Key.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries), ngram.Value)));
-    }
-
-    public void CallBuildChain(IEnumerable<KeyValuePair<string[], int>> ngrams)
-    {
-      CallNew();
-      var levels = new Dictionary<int, Dictionary<string, IShape>>();
-
-      const double stroke = 11.0d;
-      var dec = (stroke - 1.0d) / ngrams.Count();
-      var act = stroke;
-
-      foreach (var ngram in ngrams)
-      {
-        for (var i = 0; i < ngram.Key.Length; i++)
-        {
-          if (!levels.ContainsKey(i))
-            levels.Add(i, new Dictionary<string, IShape>());
-
-          IShape shape;
-          if (levels[i].ContainsKey(ngram.Key[i]))
-            shape = levels[i][ngram.Key[i]];
-          else
-          {
-            shape = new RadDiagramShape
-            {
-              Width = 180,
-              Height = 100,
-              Content = ngram.Key[i],
-              Foreground = new SolidColorBrush(Colors.Black),
-              FontSize = 16,
-              Geometry = ShapeFactory.GetShapeGeometry(CommonShapeType.RectangleShape),
-              Background =
-                i == 0
-                  ? new SolidColorBrush(Color.FromRgb(150, 255, 180))
-                  : i + 1 == ngram.Key.Length
-                    ? new SolidColorBrush(Color.FromRgb(255, 150, 150))
-                    : new SolidColorBrush(Color.FromRgb(150, 180, 255))
-            };
-            diagram.AddShape(shape);
-            levels[i].Add(ngram.Key[i], shape);
-          }
-
-          if (i > 0)
-            AddConnection(
-              new RadDiagramConnection
-              {
-                Source = levels[i - 1][ngram.Key[i - 1]],
-                Target = shape,
-                Content =
-                  new TextBlock
-                  {
-                    Text = ngram.Value.ToString(),
-                    Foreground = new SolidColorBrush { Color = Colors.Black },
-                    Background = new SolidColorBrush(Colors.White)
-                  },
-                StrokeThickness = act,
-                TargetCapType = CapType.Arrow1Filled
-              });
-        }
-
-        act -= dec;
-      }
-
-      diagram.Layout();
-    }
+    #region LAYOUT
 
     public void CallLayoutAsSugiyama()
     {
-      /*
-      var settings = new SugiyamaSettings
+      diagram.Layout(LayoutType.Sugiyama, new SugiyamaSettings
       {
         HorizontalDistance = 50,
         VerticalDistance = 50,
         Orientation = Orientation.Horizontal,
         TotalMargin = new Size(20, 20),
         ShapeMargin = new Size(10, 10)
-      };
-      diagram.Layout(LayoutType.Sugiyama, settings);
-      */
+      });
+    }
+
+    public void CallLayoutAsTreeRadial()
+    {
       diagram.Layout(
         LayoutType.Tree,
         new TreeLayoutSettings
@@ -320,7 +67,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
         });
     }
 
-    public void CallLayoutAsHorizontalTree()
+    public void CallLayoutAsTreeHorizontal()
     {
       diagram.Layout(
         LayoutType.Tree,
@@ -333,74 +80,252 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
         });
     }
 
-    public void CallLoad(string fileName) { diagram.Load(File.ReadAllText(fileName)); }
+    #endregion
+
+    #region NEW / LOAD / SAVE / EXPORT
+
+    public void CallLoad(string fileName)
+    {
+      CallNew();
+      diagram.Load(File.ReadAllText(fileName));
+    }
 
     public void CallNew()
     {
       diagram.Clear();
       _nodes.Clear();
-      _dic.Clear();
       _connections.Clear();
     }
-    
-    public void CallPlotFlow(List<string> connection, bool markEnd, bool addArrow)
+
+    public void CallClearConnections()
     {
-      var current = diagram.AddShape(
-        new RadDiagramShape
+      _connections.Clear();
+      foreach (var con in _connections.SelectMany(x => x.Value).Select(x => x.Value.Item2))
+        diagram.RemoveConnection(con);
+    }
+
+    public void CallSave(string fileName)
+    {
+      File.WriteAllText(fileName, diagram.Save());
+    }
+
+    public string CallExport(AbstractGraphConverter converter)
+    {
+      return converter.Convert(_nodes.Values, _connections.Values.SelectMany(x => x).Select(x => x.Value.Item2));
+    }
+
+    #endregion
+
+    #region BASIC
+
+    public void CallAddNodes(IEnumerable<string> nodes, bool renderComplexNodeContent = false,
+      UniversalColor color = null, Shape shape = Shape.Rectangle)
+    {
+      if (color == null)
+        color = new UniversalColor(30, 80, 255);
+
+      var input = new HashSet<string>(nodes);
+
+      var newItems = new List<RadDiagramShape>();
+      foreach (var node in input)
+      {
+        if (_nodes.ContainsKey(node))
+          continue;
+
+        var content = renderComplexNodeContent ? RenderComplexNodeContent(node) : node;
+        var item = new RadDiagramShape
         {
           Width = 180,
           Height = 100,
-          Position = new Point { X = 100, Y = 100 },
-          Content = connection.FirstOrDefault(),
-          Geometry = ShapeFactory.GetShapeGeometry(CommonShapeType.EllipseShape),
-          Background = new SolidColorBrush(Color.FromRgb(150, 255, 180))
-        });
-
-      for (var i = 1; i < connection.Count - 1; i++)
-      {
-        var temp = diagram.AddShape(
-          new RadDiagramShape
-          {
-            Width = 180,
-            Height = 100,
-            Position = new Point { X = 100, Y = 100 },
-            Content = connection[i],
-            Geometry = ShapeFactory.GetShapeGeometry(CommonShapeType.RectangleShape),
-            Background = new SolidColorBrush(Color.FromRgb(150, 180, 255))
-          });
-        AddConnection(current, temp, addArrow);
-        current = temp;
+          Position = new Point {X = 100, Y = 100},
+          Content = content,
+          Foreground = new SolidColorBrush(Colors.Black),
+          Geometry = ShapeFactory.GetShapeGeometry(shape == Shape.Rectangle
+            ? CommonShapeType.RectangleShape
+            : CommonShapeType.EllipseShape),
+          Background = new SolidColorBrush(color.ToWpfColor())
+        };
+        newItems.Add(item);
+        _nodes.Add(node, item);
       }
 
-      if (connection.Count == 1)
-        return;
+      foreach (var item in newItems)
+        diagram.AddShape(item);
+    }
 
-      var temp2 = diagram.AddShape(
-        new RadDiagramShape
+    public void CallAddConnections(IEnumerable<Tuple<string, string, double>> connections, bool drawArrow = true,
+      CallAddConnectionsConflictDelegate func = null)
+    {
+      if (func == null)
+        func = PredefinedCallAddConnectionsConflictDelegates.Sum;
+
+      var newConnections = new List<RadDiagramConnection>();
+      foreach (var connection in connections)
+      {
+        if (string.IsNullOrEmpty(connection.Item1) || string.IsNullOrEmpty(connection.Item2))
+          continue;
+
+        if (!_connections.ContainsKey(connection.Item1))
+          _connections.Add(connection.Item1, new Dictionary<string, Tuple<double, RadDiagramConnection>>());
+
+        if (_connections[connection.Item1].ContainsKey(connection.Item2))
         {
-          Width = 180,
-          Height = 100,
-          Position = new Point { X = 100, Y = 100 },
-          Content = connection.Last(),
-          Geometry =
-            ShapeFactory.GetShapeGeometry(markEnd ? CommonShapeType.EllipseShape : CommonShapeType.RectangleShape),
-          Background = new SolidColorBrush(markEnd ? Color.FromRgb(255, 150, 150) : Color.FromRgb(150, 180, 255))
+          var merge = func(_connections[connection.Item1][connection.Item2].Item1, connection.Item3);
+          var con = CreateConnection(connection.Item1, connection.Item2, merge, drawArrow);
+          if (con != null)
+            _connections[connection.Item1][connection.Item2] = new Tuple<double, RadDiagramConnection>(merge, con);
+        }
+        else
+        {
+          var con = CreateConnection(connection.Item1, connection.Item2, connection.Item3, drawArrow);
+          if (con == null)
+            continue;
+          newConnections.Add(con);
+          _connections[connection.Item1]
+            .Add(connection.Item2, new Tuple<double, RadDiagramConnection>(connection.Item3, con));
+        }
+      }
+
+      foreach (var c in newConnections)
+        diagram.AddConnection(c);
+    }
+
+    public void CallColorizeNode(string node, UniversalColor color1, UniversalColor color2 = null,
+      UniversalColor color3 = null)
+    {
+      if (_nodes.ContainsKey(node))
+        _nodes[node].Background = GetColorizeBrush(color1, color2, color3);
+    }
+
+    private static Brush GetColorizeBrush(UniversalColor color1, UniversalColor color2, UniversalColor color3)
+    {
+      // Farben ggf. durchreichen
+      if (color2 == null && color3 != null)
+      {
+        color2 = color3;
+        color3 = null;
+      }
+
+      if (color1 == null && color2 != null)
+      {
+        color1 = color2;
+        color2 = null;
+      }
+
+      // Baue Brush
+      Brush brush;
+      if (color2 == null)
+      {
+        brush = new SolidColorBrush(color1.ToWpfColor());
+      }
+      else
+      {
+        brush = new LinearGradientBrush();
+        if (color3 == null)
+        {
+          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(color1.ToWpfColor(), 0));
+          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(color2.ToWpfColor(), 1));
+        }
+        else
+        {
+          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(color1.ToWpfColor(), 0));
+          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(color2.ToWpfColor(), 0.5));
+          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(color3.ToWpfColor(), 1));
+        }
+      }
+
+      return brush;
+    }
+
+    public void CallColorizeNodes(IEnumerable<string> nodes, UniversalColor color1, UniversalColor color2 = null,
+      UniversalColor color3 = null)
+    {
+      var brush = GetColorizeBrush(color1, color2, color3);
+
+      // Setze Brush für alle Nodes
+      foreach (var node in nodes)
+        if (_nodes.ContainsKey(node))
+          _nodes[node].Background = brush;
+    }
+
+    public void CallConnectionRendering(double minSize = 1, double maxSize = 20)
+    {
+      var max = _connections.AsParallel().SelectMany(x => x.Value).Max(x => x.Value.Item1);
+      foreach (var x in _connections)
+      foreach (var y in x.Value)
+      {
+        var thickness = y.Value.Item1 / max * maxSize;
+        if (thickness < minSize)
+          thickness = minSize;
+        y.Value.Item2.StrokeThickness = thickness;
+      }
+    }
+
+    #endregion
+
+    #region SPECIAL / RENDERING
+
+    private object RenderComplexNodeContent(string node)
+    {
+      var stack = new WrapPanel
+      {
+        HorizontalAlignment = HorizontalAlignment.Stretch,
+        VerticalAlignment = VerticalAlignment.Stretch,
+        Orientation = System.Windows.Controls.Orientation.Horizontal
+      };
+      var split = node.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
+      foreach (var s in split)
+      {
+        var highlight = s.StartsWith("<strong>");
+        stack.Children.Add(new TextBlock
+        {
+          FontWeight = highlight ? FontWeights.ExtraBold : FontWeights.Normal,
+          Text = highlight ? s.Replace("<strong>", "").Replace("</strong>", "") : s,
+          Margin = new Thickness(0, 0, 3, 4)
         });
-      AddConnection(current, temp2, addArrow);
+      }
+
+      return stack;
     }
 
-    public void CallSave(string fileName) { File.WriteAllText(fileName, diagram.Save()); }
-
-    public string Export(AbstractGraphConverter converter) { return converter.Convert(_nodes.Values, _connections.Values); }
-
-    public void PlotConnection(string source, string destination, bool addArrow)
+    private RadDiagramConnection CreateConnection(string source, string target, double value, bool drawArrow)
     {
-      AddConnection(_nodes[_dic[source]], _nodes[_dic[destination]], addArrow);
+      return !_nodes.ContainsKey(source) || !_nodes.ContainsKey(target)
+        ? null
+        : new RadDiagramConnection
+        {
+          Source = _nodes[source],
+          Target = _nodes[target],
+          StrokeThickness = 1,
+          TargetCapType = drawArrow ? CapType.Arrow1Filled : CapType.None,
+          Content = new TextBlock
+          {
+            Text = $"{source} > {value} > {target}",
+            Background = new SolidColorBrush(Colors.White)
+          },
+          Tag = value
+        };
     }
 
-    public void CallAddConnection(Guid sourceNodeGuid, Guid targetNodeGuid, bool addArrow)
+    #endregion
+
+    #region ANALYTICS
+
+    public IEnumerable<KeyValuePair<string, double>> CallGetChildNodes(string node)
     {
-      AddConnection(_nodes[sourceNodeGuid], _nodes[targetNodeGuid], addArrow);
+      return _connections.ContainsKey(node)
+        ? null
+        : _connections[node].Select(x => new KeyValuePair<string, double>(x.Key, x.Value.Item1));
     }
+
+    public IEnumerable<KeyValuePair<string, double>> CallGetParentNodes(string node)
+    {
+      return _connections.AsParallel().Where(x => x.Value.ContainsKey(node))
+        .Select(x => new KeyValuePair<string, double>(x.Key, x.Value[node].Item1));
+    }
+
+    public IEnumerable<string> CallNodes => _nodes.Keys;
+
+    #endregion
   }
 }

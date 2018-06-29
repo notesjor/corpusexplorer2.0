@@ -1,15 +1,20 @@
 ﻿#region
 
 using System;
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Forms;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter.Abstract;
+using CorpusExplorer.Terminal.WinForm.Forms.SelectLayer;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Properties;
+using MessageBox = System.Windows.MessageBox;
 
 #endregion
 
@@ -31,37 +36,72 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
 
       ShowView += (sender, args) =>
       {
-        _vm = ViewModelGet<NgramChainViewModel>();
-        combo_layer.DataSource = _vm.LayerDisplaynames;
+        _vm = GetViewModel<NgramChainViewModel>();
       };
     }
 
-    private void AnalyseAggregated()
+    private void Analyse()
     {
       _vm.NGramSize = int.Parse(txt_size.Text);
       _vm.NGramPatternSize = int.Parse(txt_pattern.Text);
-      _vm.LayerDisplayname = combo_layer.SelectedItem.Text;
-      _vm.Analyse();
-      simpleDiagram1.CallBuildAggregatedChain(_vm.TakeNGramFrequency(int.Parse(txt_max.Text)));
-    }
+      if (SelectedLayerDisplaynames != null)
+        _vm.LayerDisplayname = SelectedLayerDisplaynames[0];
+      if (!_vm.Analyse())
+        return;
+      var temp = _vm.TakeTopNGrams(int.Parse(txt_max.Text));
+      var nodes = new Dictionary<string, NodeInfo>();
+      var conns = new Dictionary<string, Dictionary<string, int>>();
 
-    private void AnalyseSimple()
-    {
-      _vm.NGramSize = int.Parse(txt_size.Text);
-      _vm.NGramPatternSize = int.Parse(txt_pattern.Text);
-      _vm.LayerDisplayname = combo_layer.SelectedItem.Text;
-      _vm.Analyse();
-      simpleDiagram1.CallBuildChain(_vm.TakeNGramFrequency(int.Parse(txt_max.Text)));
-    }
+      foreach (var x in temp)
+        for (var i = 0; i < x.Key.Length; i++)
+        {
+          // Stelle sicher, dass Knoten exsistiert
+          if (!nodes.ContainsKey(x.Key[i]))
+            nodes.Add(x.Key[i], new NodeInfo());
 
-    private void btn_analyse_aggregated_Click(object sender, EventArgs e)
-    {
-      Processing.Invoke(Resources.ErstelleUndZähleNGramme, AnalyseAggregated);
-    }
+          // Baue Knoten-Info
+          var ni = nodes[x.Key[i]];
+          if (i == 0)
+            ni.Start = true;
+          else if (i + 1 == x.Key.Length)
+            ni.End = true;
+          else
+            ni.Between = true;
+          nodes[x.Key[i]] = ni;
 
-    private void btn_execute_Click(object sender, EventArgs e)
-    {
-      Processing.Invoke(Resources.ErstelleUndZähleNGramme, AnalyseSimple);
+          // Wenn nicht letzter Knoten...
+          if (i + 1 == x.Key.Length)
+            continue;
+
+          // ... dann baue Verbindung
+          if (conns.ContainsKey(x.Key[i]))
+          {
+            if (conns[x.Key[i]].ContainsKey(x.Key[i + 1]))
+              conns[x.Key[i]][x.Key[i + 1]] += x.Value;
+            else
+              conns[x.Key[i]].Add(x.Key[i + 1], x.Value);
+          }
+          else
+          {
+            conns.Add(x.Key[i], new Dictionary<string, int> {{x.Key[i + 1], x.Value}});
+          }
+        }
+
+      simpleDiagram1.CallNew();
+      simpleDiagram1.CallAddNodes(nodes.Keys);
+      foreach (var n in nodes)
+        simpleDiagram1.CallColorizeNode(n.Key,
+          n.Value.Start ? new UniversalColor(150, 255, 180) : null,
+          n.Value.Between ? new UniversalColor(150, 180, 255) : null,
+          n.Value.End ? new UniversalColor(255, 150, 150) : null);
+
+      var cs = new List<Tuple<string, string, double>>();
+      foreach (var c in conns)
+      foreach (var d in c.Value)
+        cs.Add(new Tuple<string, string, double>(c.Key, d.Key, d.Value));
+      simpleDiagram1.CallAddConnections(cs);
+      simpleDiagram1.CallConnectionRendering();
+      simpleDiagram1.CallLayoutAsTree();
     }
 
     private void btn_export_gexf_Click(object sender, EventArgs e)
@@ -74,9 +114,15 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       Export(new GraphVizGraphConverter(), Resources.GraphVizDokumentGvGv);
     }
 
-    private void btn_layout_network_Click(object sender, EventArgs e) { simpleDiagram1.CallLayoutAsSugiyama(); }
+    private void btn_layout_network_Click(object sender, EventArgs e)
+    {
+      simpleDiagram1.CallLayoutAsSugiyama();
+    }
 
-    private void btn_layout_tree_Click(object sender, EventArgs e) { simpleDiagram1.CallLayoutAsTree(); }
+    private void btn_layout_tree_Click(object sender, EventArgs e)
+    {
+      simpleDiagram1.CallLayoutAsTree();
+    }
 
     private void btn_save_Click(object sender, EventArgs e)
     {
@@ -87,12 +133,54 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       simpleDiagram1.CallSave(sfd.FileName);
     }
 
+    private void commandBarButton1_Click(object sender, EventArgs e)
+    {
+      Processing.Invoke(Resources.ErstelleUndZähleNGramme, Analyse);
+    }
+
+    private void commandBarButton2_Click(object sender, EventArgs e)
+    {
+      if (
+        MessageBox.Show(
+          Resources.MöchtenSieWirklichDasDiagrammLöschenUndNeuBeginnen,
+          Resources.NeuStarten,
+          MessageBoxButton.YesNo,
+          MessageBoxImage.Question) != MessageBoxResult.Yes)
+        return;
+
+      simpleDiagram1.CallNew();
+    }
+
+    private void commandBarButton4_Click(object sender, EventArgs e)
+    {
+      var ofd = new OpenFileDialog {Filter = Resources.FileExtension_CEDG, CheckFileExists = true};
+      if (ofd.ShowDialog() != DialogResult.OK)
+        return;
+
+      simpleDiagram1.CallLoad(ofd.FileName);
+    }
+
     private void Export(AbstractGraphConverter type, string filter)
     {
       var sfd = new SaveFileDialog {Filter = filter, CheckPathExists = true};
       if (sfd.ShowDialog() != DialogResult.OK)
         return;
-      FileIO.Write(sfd.FileName, simpleDiagram1.Export(type), Configuration.Encoding);
+      FileIO.Write(sfd.FileName, simpleDiagram1.CallExport(type), Configuration.Encoding);
+    }
+
+    private struct NodeInfo
+    {
+      public bool Start;
+      public bool Between;
+      public bool End;
+    }
+
+    private void btn_layer_Click(object sender, EventArgs e)
+    {
+      var form = new Select1Layer(SelectedLayerDisplaynames);
+      form.ShowDialog();
+      SelectedLayerDisplaynames = form.ResultSelectedLayerDisplaynames;
+      Analyse();
     }
   }
 }

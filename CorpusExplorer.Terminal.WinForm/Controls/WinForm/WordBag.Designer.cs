@@ -31,105 +31,69 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     {
       this.components = new System.ComponentModel.Container();
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-      this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
-      this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
-      this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
-      this.commandBarLabel1 = new Telerik.WinControls.UI.CommandBarLabel();
-      this.cmb_layer = new Telerik.WinControls.UI.CommandBarDropDownList();
-      this.radAutoCompleteBox1 = new Telerik.WinControls.UI.RadAutoCompleteBox();
       this.btn_go = new Telerik.WinControls.UI.RadButton();
-      ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.radAutoCompleteBox1)).BeginInit();
+      this.btn_selectLayer = new Telerik.WinControls.UI.RadButton();
+      this.cmb_values = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.SelectLayerValues.SelectLayerValuesControl();
       ((System.ComponentModel.ISupportInitialize)(this.btn_go)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_selectLayer)).BeginInit();
       this.SuspendLayout();
-      // 
-      // radCommandBar1
-      // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
-      this.radCommandBar1.Name = "radCommandBar1";
-      this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
-            this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(413, 69);
-      this.radCommandBar1.TabIndex = 6;
-      this.radCommandBar1.Text = "radCommandBar1";
-      // 
-      // commandBarRowElement1
-      // 
-      this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
-      this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
-            this.commandBarStripElement1});
-      // 
-      // commandBarStripElement1
-      // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
-      this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
-            this.commandBarLabel1,
-            this.cmb_layer});
-      this.commandBarStripElement1.Name = "commandBarStripElement1";
-      // 
-      // commandBarLabel1
-      // 
-      this.commandBarLabel1.DisplayName = "commandBarLabel1";
-      this.commandBarLabel1.Name = "commandBarLabel1";
-      this.commandBarLabel1.Text = "Layer:";
-      // 
-      // cmb_layer
-      // 
-      this.cmb_layer.DisplayName = "cmb_layer";
-      this.cmb_layer.DropDownAnimationEnabled = true;
-      this.cmb_layer.MaxDropDownItems = 0;
-      this.cmb_layer.MinSize = new System.Drawing.Size(205, 22);
-      this.cmb_layer.Name = "cmb_layer";
-      this.cmb_layer.NullText = "Bitte auswählen...";
-      this.cmb_layer.Text = "";
-      this.cmb_layer.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.cmb_layer_SelectedIndexChanged);
-      // 
-      // radAutoCompleteBox1
-      // 
-      this.radAutoCompleteBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radAutoCompleteBox1.Location = new System.Drawing.Point(0, 69);
-      this.radAutoCompleteBox1.Name = "radAutoCompleteBox1";
-      this.radAutoCompleteBox1.Size = new System.Drawing.Size(375, 13);
-      this.radAutoCompleteBox1.TabIndex = 8;
       // 
       // btn_go
       // 
       this.btn_go.Dock = System.Windows.Forms.DockStyle.Right;
       this.btn_go.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
       this.btn_go.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      this.btn_go.Location = new System.Drawing.Point(375, 69);
+      this.btn_go.Location = new System.Drawing.Point(377, 0);
       this.btn_go.Name = "btn_go";
-      this.btn_go.Size = new System.Drawing.Size(38, 13);
+      this.btn_go.Size = new System.Drawing.Size(36, 36);
       this.btn_go.TabIndex = 7;
+      this.toolTip1.SetToolTip(this.btn_go, "Aktualisieren");
       this.btn_go.Click += new System.EventHandler(this.btn_go_Click);
+      // 
+      // btn_selectLayer
+      // 
+      this.btn_selectLayer.Dock = System.Windows.Forms.DockStyle.Left;
+      this.btn_selectLayer.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers;
+      this.btn_selectLayer.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+      this.btn_selectLayer.Location = new System.Drawing.Point(0, 0);
+      this.btn_selectLayer.Name = "btn_selectLayer";
+      this.btn_selectLayer.Size = new System.Drawing.Size(36, 36);
+      this.btn_selectLayer.TabIndex = 8;
+      this.toolTip1.SetToolTip(this.btn_selectLayer, "Layer ändern");
+      this.btn_selectLayer.Click += new System.EventHandler(this.btn_selectLayer_Click);
+      // 
+      // cmb_values
+      // 
+      this.cmb_values.BackColor = System.Drawing.Color.White;
+      this.cmb_values.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.cmb_values.Font = new System.Drawing.Font("Segoe UI", 11F);
+      this.cmb_values.Location = new System.Drawing.Point(36, 0);
+      this.cmb_values.Margin = new System.Windows.Forms.Padding(5, 8, 5, 6);
+      this.cmb_values.Name = "cmb_values";
+      this.cmb_values.SelectedLayerDisplayname = null;
+      this.cmb_values.Size = new System.Drawing.Size(341, 36);
+      this.cmb_values.TabIndex = 9;
+      this.toolTip1.SetToolTip(this.cmb_values, "Geben Sie hier die gewünschten Wert(e)/Abfrage(n) ein.");
       // 
       // WordBag
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.Controls.Add(this.radAutoCompleteBox1);
+      this.Controls.Add(this.cmb_values);
+      this.Controls.Add(this.btn_selectLayer);
       this.Controls.Add(this.btn_go);
-      this.Controls.Add(this.radCommandBar1);
-      this.MinimumSize = new System.Drawing.Size(413, 82);
       this.Name = "WordBag";
-      this.Size = new System.Drawing.Size(413, 82);
-      ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.radAutoCompleteBox1)).EndInit();
+      this.Size = new System.Drawing.Size(413, 36);
       ((System.ComponentModel.ISupportInitialize)(this.btn_go)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_selectLayer)).EndInit();
       this.ResumeLayout(false);
-      this.PerformLayout();
 
     }
 
     #endregion
     private System.Windows.Forms.ToolTip toolTip1;
-    private Telerik.WinControls.UI.RadCommandBar radCommandBar1;
-    private Telerik.WinControls.UI.CommandBarRowElement commandBarRowElement1;
-    private Telerik.WinControls.UI.CommandBarStripElement commandBarStripElement1;
-    private Telerik.WinControls.UI.CommandBarLabel commandBarLabel1;
-    private Telerik.WinControls.UI.CommandBarDropDownList cmb_layer;
-    private Telerik.WinControls.UI.RadAutoCompleteBox radAutoCompleteBox1;
     private Telerik.WinControls.UI.RadButton btn_go;
+    private Telerik.WinControls.UI.RadButton btn_selectLayer;
+    private SelectLayerValues.SelectLayerValuesControl cmb_values;
   }
 }

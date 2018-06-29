@@ -15,26 +15,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
     /// <value>The layer names.</value>
     protected override IEnumerable<string> LayerNames => new[] {"Wort", "Lemma", "POS", "NER", "Orthografie"};
 
-    private void BuildLayerDocument(
-      string layerDisplayname,
-      Guid documentGuid,
-      ref string[][] token,
-      Dictionary<string, string> dictionary)
-    {
-      var doc =
-        token.Select(s => s.Select(t => dictionary.ContainsKey(t) ? dictionary[t] : string.Empty).ToArray()).ToArray();
-      AddDocumet(layerDisplayname, documentGuid, ConvertToLayer(layerDisplayname, doc));
-    }
-
-    private string[][] GetSentenceStructure(DSpin dspin)
-    {
-      return
-        dspin.TextCorpus.sentences.Select(
-               sentence =>
-                   sentence.tokenIDs.Split(new[] {" ", "\t", "\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries))
-             .ToArray();
-    }
-
     /// <summary>
     ///   Erster Importschritt - ließt die Datei ein und gibt (ein) entsprechend(es) Objekt(e) zurück.
     /// </summary>
@@ -81,7 +61,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
         var lemma = data.TextCorpus.lemmas.ToDictionary(l => l.tokenIDs, l => l.Value);
         BuildLayerDocument("Lemma", documentGuid, ref token, lemma);
       }
-      catch {}
+      catch
+      {
+      }
 
       // POS (nur vorhanden, wenn POS-Tagger)
       try
@@ -89,7 +71,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
         var pos = data.TextCorpus.POStags.tag.ToDictionary(p => p.tokenIDs, p => p.Value);
         BuildLayerDocument("POS", documentGuid, ref token, pos);
       }
-      catch {}
+      catch
+      {
+      }
 
       // Orthografie (nur vorhanden, wenn Orthografie)
       try
@@ -97,7 +81,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
         var ortho = data.TextCorpus.orthography.ToDictionary(p => p.tokenIDs, p => p.Value);
         BuildLayerDocument("Orthografie", documentGuid, ref token, ortho);
       }
-      catch {}
+      catch
+      {
+      }
 
       // NER (Nur vorhanden, wen NER eingesetzt)
       try
@@ -118,7 +104,29 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
 
         BuildLayerDocument("NER", documentGuid, ref token, ner);
       }
-      catch {}
+      catch
+      {
+      }
+    }
+
+    private void BuildLayerDocument(
+      string layerDisplayname,
+      Guid documentGuid,
+      ref string[][] token,
+      Dictionary<string, string> dictionary)
+    {
+      var doc =
+        token.Select(s => s.Select(t => dictionary.ContainsKey(t) ? dictionary[t] : string.Empty).ToArray()).ToArray();
+      AddDocumet(layerDisplayname, documentGuid, ConvertToLayer(layerDisplayname, doc));
+    }
+
+    private string[][] GetSentenceStructure(DSpin dspin)
+    {
+      return
+        dspin.TextCorpus.sentences.Select(
+            sentence =>
+              sentence.tokenIDs.Split(new[] {" ", "\t", "\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries))
+          .ToArray();
     }
   }
 }

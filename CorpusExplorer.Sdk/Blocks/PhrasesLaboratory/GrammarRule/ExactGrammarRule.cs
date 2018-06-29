@@ -12,12 +12,14 @@ namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory.GrammarRule
     private bool _isRecursiv;
     private string[] _matches;
 
-    private ExactGrammarRule() { }
-
     public ExactGrammarRule(string label, string body)
     {
       Label = label;
       Body = body;
+    }
+
+    private ExactGrammarRule()
+    {
     }
 
     public string Body
@@ -49,8 +51,10 @@ namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory.GrammarRule
           match = false;
           break;
         }
+
         items.Add(constituents[index + i]);
       }
+
       return match ? items : null;
     }
   }

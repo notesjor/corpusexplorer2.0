@@ -7,9 +7,14 @@ namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory.GrammarRule
   [Serializable]
   public class JoinAllGrammarRule : AbstractGrammarRule
   {
-    private JoinAllGrammarRule() { }
+    public JoinAllGrammarRule(string label)
+    {
+      Label = label;
+    }
 
-    public JoinAllGrammarRule(string label) { Label = label; }
+    private JoinAllGrammarRule()
+    {
+    }
 
     public override bool IsRecursive => false;
 

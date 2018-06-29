@@ -25,12 +25,24 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Bare.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string schemaLocation { get { return schemaLocationField; } set { schemaLocationField = value; } }
+    public string schemaLocation
+    {
+      get => schemaLocationField;
+      set => schemaLocationField = value;
+    }
 
     /// <remarks />
-    public teiHeader teiHeader { get { return teiHeaderField; } set { teiHeaderField = value; } }
+    public teiHeader teiHeader
+    {
+      get => teiHeaderField;
+      set => teiHeaderField = value;
+    }
 
     /// <remarks />
-    public text text { get { return textField; } set { textField = value; } }
+    public text text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

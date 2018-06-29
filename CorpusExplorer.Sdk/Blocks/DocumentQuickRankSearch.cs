@@ -62,8 +62,14 @@ namespace CorpusExplorer.Sdk.Blocks
       }
     }
 
-    protected override void CalculateCleanup() { _layerCache.Clear(); }
-    protected override void CalculateFinalize() { }
+    protected override void CalculateCleanup()
+    {
+      _layerCache.Clear();
+    }
+
+    protected override void CalculateFinalize()
+    {
+    }
 
     protected override void CalculateInitProperties()
     {

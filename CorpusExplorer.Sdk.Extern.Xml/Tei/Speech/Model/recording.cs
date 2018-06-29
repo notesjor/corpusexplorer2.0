@@ -24,10 +24,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "anyURI")]
-    public string url { get { return urlField; } set { urlField = value; } }
+    public string url
+    {
+      get => urlField;
+      set => urlField = value;
+    }
   }
 }

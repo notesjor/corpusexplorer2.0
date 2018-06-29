@@ -29,7 +29,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
 
     /// <remarks />
     [XmlAttribute("end-reference", DataType = "IDREF")]
-    public string endreference { get { return endreferenceField; } set { endreferenceField = value; } }
+    public string endreference
+    {
+      get => endreferenceField;
+      set => endreferenceField = value;
+    }
 
     /// <remarks />
     [XmlElement("breathe", typeof(breathe))]
@@ -41,26 +45,42 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
     [XmlElement("uncertain", typeof(uncertain))]
     [XmlElement("unparsed", typeof(contributionUnparsed), Form = XmlSchemaForm.Unqualified)]
     [XmlElement("w", typeof(w))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute("parse-level")]
-    public int parselevel { get { return parselevelField; } set { parselevelField = value; } }
+    public int parselevel
+    {
+      get => parselevelField;
+      set => parselevelField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
     public bool parselevelSpecified
     {
-      get { return parselevelFieldSpecified; }
-      set { parselevelFieldSpecified = value; }
+      get => parselevelFieldSpecified;
+      set => parselevelFieldSpecified = value;
     }
 
     /// <remarks />
     [XmlAttribute("speaker-reference", DataType = "IDREF")]
-    public string speakerreference { get { return speakerreferenceField; } set { speakerreferenceField = value; } }
+    public string speakerreference
+    {
+      get => speakerreferenceField;
+      set => speakerreferenceField = value;
+    }
 
     /// <remarks />
     [XmlAttribute("start-reference", DataType = "IDREF")]
-    public string startreference { get { return startreferenceField; } set { startreferenceField = value; } }
+    public string startreference
+    {
+      get => startreferenceField;
+      set => startreferenceField = value;
+    }
   }
 }

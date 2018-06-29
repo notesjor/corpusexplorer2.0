@@ -32,7 +32,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlElement("linker")]
-    public linkerType[] linker { get { return linkerField; } set { linkerField = value; } }
+    public linkerType[] linker
+    {
+      get => linkerField;
+      set => linkerField = value;
+    }
 
     /// <remarks />
     [XmlElement("blob", typeof(blob))]
@@ -53,37 +57,69 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     [XmlElement("tagMarker", typeof(tagMarkerType))]
     [XmlElement("underline", typeof(underline))]
     [XmlElement("w", typeof(wordType))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlElement("postcode")]
-    public postcodeType[] postcode { get { return postcodeField; } set { postcodeField = value; } }
+    public postcodeType[] postcode
+    {
+      get => postcodeField;
+      set => postcodeField = value;
+    }
 
     /// <remarks />
     [XmlElement("a", typeof(annotationType))]
     [XmlElement("error", typeof(string))]
     [XmlElement("k", typeof(markers))]
     [XmlElement("r", typeof(repetitionType))]
-    public object[] Items1 { get { return items1Field; } set { items1Field = value; } }
+    public object[] Items1
+    {
+      get => items1Field;
+      set => items1Field = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified, Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string lang { get { return langField; } set { langField = value; } }
+    public string lang
+    {
+      get => langField;
+      set => langField = value;
+    }
 
 
     /// <remarks />
-    public mediaType media { get { return mediaField; } set { mediaField = value; } }
+    public mediaType media
+    {
+      get => mediaField;
+      set => mediaField = value;
+    }
 
 
     /// <remarks />
-    public terminatorType t { get { return tField; } set { tField = value; } }
+    public terminatorType t
+    {
+      get => tField;
+      set => tField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string uID { get { return uIDField; } set { uIDField = value; } }
+    public string uID
+    {
+      get => uIDField;
+      set => uIDField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string who { get { return whoField; } set { whoField = value; } }
+    public string who
+    {
+      get => whoField;
+      set => whoField = value;
+    }
   }
 }

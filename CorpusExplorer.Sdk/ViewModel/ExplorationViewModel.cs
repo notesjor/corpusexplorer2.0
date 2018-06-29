@@ -20,22 +20,14 @@ namespace CorpusExplorer.Sdk.ViewModel
       GetLimit = 100;
     }
 
-    // public Dictionary<string, Dictionary<string, double>> CooccurrencesFrequency { get; set; }
-
-    private Dictionary<string, Dictionary<string, double>> CollocatesSignificance { get; set; }
-
     public IEnumerable<string> DocumentMetadataProperties { get; set; }
     public int GetLimit { get; set; }
     public double SignificanceMinimum { get; set; }
+    public string LayerDisplayname { get; set; } = "Wort";
 
-    protected override void ExecuteAnalyse()
-    {
-      var block1 = Selection.CreateBlock<CooccurrenceBlock>();
-      block1.Calculate();
+    // public Dictionary<string, Dictionary<string, double>> CooccurrencesFrequency { get; set; }
 
-      CollocatesSignificance = block1.CooccurrenceSignificance.CompleteDictionaryToFullDictionary();
-      DocumentMetadataProperties = Selection.GetDocumentMetadataPrototypeOnlyProperties();
-    }
+    private Dictionary<string, Dictionary<string, double>> CollocatesSignificance { get; set; }
 
     public IEnumerable<KeyValuePair<string, double>> GetCollocates(string query)
     {
@@ -43,8 +35,8 @@ namespace CorpusExplorer.Sdk.ViewModel
         return new Dictionary<string, double>();
 
       return CollocatesSignificance[query].Where(x => x.Value > SignificanceMinimum)
-                                          .OrderByDescending(x => x.Value)
-                                          .Take(GetLimit);
+        .OrderByDescending(x => x.Value)
+        .Take(GetLimit);
     }
 
     public IEnumerable<string> GetFulltext(string query, int sentenceSpanPre = 0, int sentenceSpanPost = 0)
@@ -54,7 +46,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       {
         new FilterQuerySingleLayerAllInSpanSentences
         {
-          LayerDisplayname = "Wort",
+          LayerDisplayname = LayerDisplayname,
           LayerQueries = new[] {query}
         }
       };
@@ -98,7 +90,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       {
         new FilterQuerySingleLayerAllInSpanSentences
         {
-          LayerDisplayname = "Wort",
+          LayerDisplayname = LayerDisplayname,
           LayerQueries = new[] {query}
         }
       };
@@ -109,19 +101,33 @@ namespace CorpusExplorer.Sdk.ViewModel
 
       var res = new Dictionary<string, int>();
       foreach (var key in from c in block.SearchResults
-                          let corpus = Selection.GetCorpus(c.Key)
-                          where corpus != null
-                          from doc in c.Value
-                          select corpus.GetDocumentMetadata(doc.Key)
-                          into meta
-                          where meta != null && meta.ContainsKey(metaLabel)
-                          select GetMetadata_GetKey(metaLabel, meta))
+        let corpus = Selection.GetCorpus(c.Key)
+        where corpus != null
+        from doc in c.Value
+        select corpus.GetDocumentMetadata(doc.Key)
+        into meta
+        where meta != null && meta.ContainsKey(metaLabel)
+        select GetMetadata_GetKey(metaLabel, meta))
         if (res.ContainsKey(key))
           res[key]++;
         else
           res.Add(key, 1);
 
       return res.OrderByDescending(x => x.Value).Take(GetLimit).Select(x => x.Key);
+    }
+
+    protected override void ExecuteAnalyse()
+    {
+      var block1 = Selection.CreateBlock<CooccurrenceBlock>();
+      block1.Calculate();
+
+      CollocatesSignificance = block1.CooccurrenceSignificance.CompleteDictionaryToFullDictionary();
+      DocumentMetadataProperties = Selection.GetDocumentMetadataPrototypeOnlyProperties();
+    }
+
+    protected override bool Validate()
+    {
+      return true;
     }
 
     private static string GetMetadata_GetKey(string metaLabel, Dictionary<string, object> meta)
@@ -141,9 +147,8 @@ namespace CorpusExplorer.Sdk.ViewModel
       {
         // ignore
       }
+
       return key;
     }
-
-    protected override bool Validate() { return true; }
   }
 }

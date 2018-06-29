@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "integer")]
-    public string length { get { return lengthField; } set { lengthField = value; } }
+    public string length
+    {
+      get => lengthField;
+      set => lengthField = value;
+    }
   }
 }

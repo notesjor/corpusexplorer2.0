@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using CorpusExplorer.Terminal.WinForm.Helper;
+using Telerik.Windows.Controls.TreeMap;
 
 namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Segements
 {
@@ -13,8 +15,30 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Segements
   public partial class SegmentView
   {
     private readonly List<Rectangle> _rectangles = new List<Rectangle>();
+    private Colorizer.Colorizer _colorizer;
+    private ValueGradientColorizer _brush;
 
-    public SegmentView() { InitializeComponent(); }
+    public SegmentView()
+    {
+      InitializeComponent();
+    }
+
+    public void SetSegements(double[] segements)
+    {
+      SetSegementMax(segements.Length);
+
+      var max = segements.Max();
+
+      for (var i = 0; i < segements.Length; i++)
+      {
+        _rectangles[i].ToolTip = Math.Round(segements[i], 5);
+        var val = segements[i] / max;
+        var v = val > 1 ? 1 : val < 0 ? 0 : val;
+
+        _rectangles[i].Fill = new SolidColorBrush(ColorGradientPickHelper.GetColor(_brush, v));
+        _rectangles[i].Tag = v;
+      }
+    }
 
     private void SetSegementMax(int max)
     {
@@ -37,20 +61,21 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Segements
       }
     }
 
-    public void SetSegements(double[] segements)
+    public void SetColorizer(Colorizer.Colorizer colorizer)
     {
-      SetSegementMax(segements.Length);
+      _colorizer = colorizer;
+      _brush = _colorizer.GetValueGradientColorizer(0, 1);
+      Recolor();
+    }
 
-      var max = segements.Max();
+    private void Recolor()
+    {
+      if (_rectangles == null)
+        return;
 
-      for (var i = 0; i < segements.Length; i++)
-      {
-        _rectangles[i].ToolTip = Math.Round(segements[i], 5);
-        var val = segements[i]/max*255;
-        var v = val > 255 ? (byte) 255 : val < 0 ? (byte) 0 : (byte) val;
-
-        _rectangles[i].Fill = new SolidColorBrush(Color.FromRgb(0, v, 0));
-      }
+      foreach(var r in _rectangles)
+        if(r.Tag != null && r.Tag is double v)
+          r.Fill = new SolidColorBrush(ColorGradientPickHelper.GetColor(_brush, v));
     }
   }
 }

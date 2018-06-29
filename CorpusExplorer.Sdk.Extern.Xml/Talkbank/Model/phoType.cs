@@ -26,6 +26,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     [XmlArrayItem("ph", typeof(constituentType), IsNullable = false)]
     [XmlArrayItem("ss", typeof(ss), IsNullable = false)]
     [XmlArrayItem("wk", typeof(wordnetMarkerType), IsNullable = false)]
-    public object[][] pw { get { return pwField; } set { pwField = value; } }
+    public object[][] pw
+    {
+      get => pwField;
+      set => pwField = value;
+    }
   }
 }

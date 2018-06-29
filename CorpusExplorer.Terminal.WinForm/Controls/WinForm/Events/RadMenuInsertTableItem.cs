@@ -21,7 +21,9 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Events
     private StackLayoutElement _stackLayout;
     private UniformGrid _uniformGrid;
 
-    protected override Type ThemeEffectiveType { get { return typeof(RadMenuItem); } }
+    protected override Type ThemeEffectiveType => typeof(RadMenuItem);
+
+    public event EventHandler<TableSelectionChangedEventArgs> SelectionChanged;
 
     protected override SizeF ArrangeOverride(SizeF finalSize)
     {
@@ -79,7 +81,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Events
       };
       _stackLayout.Children.Add(_uniformGrid);
 
-      for (var i = 1; i <= rowsCount*columnsCount; i++)
+      for (var i = 1; i <= rowsCount * columnsCount; i++)
       {
         var box = new LightVisualElement
         {
@@ -101,13 +103,6 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Events
       base.InitializeFields();
       ShouldHandleMouseInput = true;
     }
-
-    private void OnBoxMouseDown(object sender, MouseEventArgs e)
-    {
-      OnSelectionChanged(new TableSelectionChangedEventArgs(_currentColumnIndex, _currentRowIndex));
-    }
-
-    private void OnBoxMouseMove(object sender, MouseEventArgs e) { SelectBoxes(e.Location); }
 
     protected override void OnMouseDown(MouseEventArgs e)
     {
@@ -147,6 +142,16 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Events
       ResetVisuals();
     }
 
+    private void OnBoxMouseDown(object sender, MouseEventArgs e)
+    {
+      OnSelectionChanged(new TableSelectionChangedEventArgs(_currentColumnIndex, _currentRowIndex));
+    }
+
+    private void OnBoxMouseMove(object sender, MouseEventArgs e)
+    {
+      SelectBoxes(e.Location);
+    }
+
     private void ResetVisuals()
     {
       _header.Text = HeaderText;
@@ -170,8 +175,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Events
           continue;
         RectangleF elementBounds = element.ControlBoundingRectangle;
 
-        if ((elementBounds.X <= location.X) &&
-            (elementBounds.Y <= location.Y))
+        if (elementBounds.X <= location.X &&
+            elementBounds.Y <= location.Y)
         {
           var columnIndex = UniformGrid.GetColumnIndex(element);
           var rowIndex = UniformGrid.GetRowIndex(element);
@@ -191,13 +196,11 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Events
 
       var text = HeaderText;
 
-      if ((_currentColumnIndex >= 0) &&
-          (_currentRowIndex >= 0))
+      if (_currentColumnIndex >= 0 &&
+          _currentRowIndex >= 0)
         text = $"{_currentColumnIndex + 1}x{_currentRowIndex + 1}";
 
       _header.Text = text;
     }
-
-    public event EventHandler<TableSelectionChangedEventArgs> SelectionChanged;
   }
 }

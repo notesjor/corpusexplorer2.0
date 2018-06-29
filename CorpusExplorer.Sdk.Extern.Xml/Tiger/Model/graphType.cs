@@ -23,25 +23,43 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tiger.Model
     private string rootField;
     private tType[] terminalsField;
 
-    public graphType() { discontinuousField = false; }
+    public graphType()
+    {
+      discontinuousField = false;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    [DefaultValue(false)]
-    public bool discontinuous { get { return discontinuousField; } set { discontinuousField = value; } }
+    [DefaultValue(false)] public bool discontinuous
+    {
+      get => discontinuousField;
+      set => discontinuousField = value;
+    }
 
     /// <remarks />
     [XmlArray(Form = XmlSchemaForm.Unqualified)]
     [XmlArrayItem("nt", Form = XmlSchemaForm.Unqualified, IsNullable = false)]
-    public ntType[] nonterminals { get { return nonterminalsField; } set { nonterminalsField = value; } }
+    public ntType[] nonterminals
+    {
+      get => nonterminalsField;
+      set => nonterminalsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string root { get { return rootField; } set { rootField = value; } }
+    public string root
+    {
+      get => rootField;
+      set => rootField = value;
+    }
 
     /// <remarks />
     [XmlArray(Form = XmlSchemaForm.Unqualified)]
     [XmlArrayItem("t", Form = XmlSchemaForm.Unqualified, IsNullable = false)]
-    public tType[] terminals { get { return terminalsField; } set { terminalsField = value; } }
+    public tType[] terminals
+    {
+      get => terminalsField;
+      set => terminalsField = value;
+    }
   }
 }

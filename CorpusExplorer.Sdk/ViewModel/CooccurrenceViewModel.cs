@@ -20,7 +20,10 @@ namespace CorpusExplorer.Sdk.ViewModel
     : AbstractViewModel,
       IProvideDataTable
   {
-    public CooccurrenceViewModel() { LayerDisplayname = "Wort"; }
+    public CooccurrenceViewModel()
+    {
+      LayerDisplayname = "Wort";
+    }
 
     public HashSet<string> Filter { get; set; }
 
@@ -29,10 +32,9 @@ namespace CorpusExplorer.Sdk.ViewModel
     /// </summary>
     public Dictionary<string, Dictionary<string, double>> FrequencyDictionary { get; set; }
 
-    public IEnumerable<string> LayerDisplaynames => Selection.LayerUniqueDisplaynames;
-    public IEnumerable<string> LayerValues => Selection.GetLayerValues(LayerDisplayname);
-
     public string LayerDisplayname { get; set; }
+
+    public IEnumerable<string> LayerDisplaynames => Selection.LayerUniqueDisplaynames;
 
     /// <summary>
     ///   Gets or sets the significance dictionary.
@@ -45,74 +47,6 @@ namespace CorpusExplorer.Sdk.ViewModel
     public DataTable GetDataTable()
     {
       return FilterDataTable(SignificanceDictionary, FrequencyDictionary);
-    }
-
-    private DataTable BuildDataTable(
-      Dictionary<string, Dictionary<string, double>> sdf,
-      Dictionary<string, Dictionary<string, double>> fdf)
-    {
-      var res = new DataTable();
-      res.Columns.Add(Resources.StringLabel, typeof(string));
-      res.Columns.Add(Resources.Cooccurrence, typeof(string));
-      res.Columns.Add(Resources.Frequency, typeof(double));
-      res.Columns.Add(Resources.Significance, typeof(double));
-
-      if (sdf == null || fdf == null)
-        return res;
-
-      res.BeginLoadData();
-      foreach (var sd in sdf)
-      {
-        if (!fdf.ContainsKey(sd.Key))
-          continue;
-
-        foreach (var se in sd.Value.Where(se => fdf[sd.Key].ContainsKey(se.Key)))
-          res.Rows.Add(sd.Key, se.Key, fdf[sd.Key][se.Key], se.Value);
-      }
-      res.EndLoadData();
-
-      return res;
-    }
-
-    protected override void ExecuteAnalyse()
-    {
-      var block = Selection.CreateBlock<CooccurrenceBlock>();
-      block.LayerDisplayname = LayerDisplayname;
-      block.Calculate();
-
-      FrequencyDictionary = block.CooccurrenceFrequency;
-      SignificanceDictionary = block.CooccurrenceSignificance;
-    }
-
-    private DataTable FilterDataTable(
-      Dictionary<string, Dictionary<string, double>> sdf,
-      Dictionary<string, Dictionary<string, double>> fdf)
-    {
-      // Wenn kein Filter gesetzt - gebe Ergebnis direkt zurück.
-      if (Filter == null)
-        return BuildDataTable(sdf, fdf);
-
-      // Baue Filterfunktion - Es reicht wenn sdf gefiltert wird
-      var nsdf = new Dictionary<string, Dictionary<string, double>>();
-      foreach (var x in sdf)
-        // Kopiere alles wenn Key0 in Filter enthalten.
-        if (Filter.Contains(x.Key))
-          nsdf.Add(x.Key, x.Value);
-        // Kopiere nur das notwendigste, wenn Key1 in Filter enthalten.
-        else
-          foreach (var y in x.Value)
-          {
-            if (!Filter.Contains(y.Key))
-              continue;
-
-            if (nsdf.ContainsKey(x.Key))
-              nsdf[x.Key].Add(y.Key, y.Value);
-            else
-              nsdf.Add(x.Key, new Dictionary<string, double> {{y.Key, y.Value}});
-          }
-
-      // Erzeuge DataTable
-      return BuildDataTable(nsdf, fdf);
     }
 
     public DataTable GetFullDataTable()
@@ -147,8 +81,10 @@ namespace CorpusExplorer.Sdk.ViewModel
               res[x.Key][0] = FrequencyDictionary[query][x.Key];
               res[x.Key][1] = x.Value;
             }
+
             continue;
           }
+
           res.Add(x.Key, new[] {FrequencyDictionary[query][x.Key], x.Value});
         }
       }
@@ -180,6 +116,78 @@ namespace CorpusExplorer.Sdk.ViewModel
       return dt;
     }
 
-    protected override bool Validate() { return !string.IsNullOrEmpty(LayerDisplayname); }
+    protected override void ExecuteAnalyse()
+    {
+      var block = Selection.CreateBlock<CooccurrenceBlock>();
+      block.LayerDisplayname = LayerDisplayname;
+      block.Calculate();
+
+      FrequencyDictionary = block.CooccurrenceFrequency;
+      SignificanceDictionary = block.CooccurrenceSignificance;
+    }
+
+    protected override bool Validate()
+    {
+      return !string.IsNullOrEmpty(LayerDisplayname);
+    }
+
+    private DataTable BuildDataTable(
+      Dictionary<string, Dictionary<string, double>> sdf,
+      Dictionary<string, Dictionary<string, double>> fdf)
+    {
+      var res = new DataTable();
+      res.Columns.Add(Resources.StringLabel, typeof(string));
+      res.Columns.Add(Resources.Cooccurrence, typeof(string));
+      res.Columns.Add(Resources.Frequency, typeof(double));
+      res.Columns.Add(Resources.Significance, typeof(double));
+
+      if (sdf == null || fdf == null)
+        return res;
+
+      res.BeginLoadData();
+      foreach (var sd in sdf)
+      {
+        if (!fdf.ContainsKey(sd.Key))
+          continue;
+
+        foreach (var se in sd.Value.Where(se => fdf[sd.Key].ContainsKey(se.Key)))
+          res.Rows.Add(sd.Key, se.Key, fdf[sd.Key][se.Key], se.Value);
+      }
+
+      res.EndLoadData();
+
+      return res;
+    }
+
+    private DataTable FilterDataTable(
+      Dictionary<string, Dictionary<string, double>> sdf,
+      Dictionary<string, Dictionary<string, double>> fdf)
+    {
+      // Wenn kein Filter gesetzt - gebe Ergebnis direkt zurück.
+      if (Filter == null)
+        return BuildDataTable(sdf, fdf);
+
+      // Baue Filterfunktion - Es reicht wenn sdf gefiltert wird
+      var nsdf = new Dictionary<string, Dictionary<string, double>>();
+      foreach (var x in sdf)
+        // Kopiere alles wenn Key0 in Filter enthalten.
+        if (Filter.Contains(x.Key))
+          nsdf.Add(x.Key, x.Value);
+        // Kopiere nur das notwendigste, wenn Key1 in Filter enthalten.
+        else
+          foreach (var y in x.Value)
+          {
+            if (!Filter.Contains(y.Key))
+              continue;
+
+            if (nsdf.ContainsKey(x.Key))
+              nsdf[x.Key].Add(y.Key, y.Value);
+            else
+              nsdf.Add(x.Key, new Dictionary<string, double> {{y.Key, y.Value}});
+          }
+
+      // Erzeuge DataTable
+      return BuildDataTable(nsdf, fdf);
+    }
   }
 }

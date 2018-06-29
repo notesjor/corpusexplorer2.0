@@ -50,6 +50,9 @@ namespace CorpusExplorer.Sdk.ViewModel
       _wordFrequency = block2.Frequency;
     }
 
-    protected override bool Validate() { return true; }
+    protected override bool Validate()
+    {
+      return true;
+    }
   }
 }

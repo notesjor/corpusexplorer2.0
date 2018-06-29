@@ -21,6 +21,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("add", typeof(add))]
     [XmlElement("del", typeof(del))]
     [XmlElement("lb", typeof(lb))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
   }
 }

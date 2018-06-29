@@ -21,9 +21,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlElement("div")]
-    public div[] div { get { return divField; } set { divField = value; } }
+    public div[] div
+    {
+      get => divField;
+      set => divField = value;
+    }
 
     /// <remarks />
-    public titlePage titlePage { get { return titlePageField; } set { titlePageField = value; } }
+    public titlePage titlePage
+    {
+      get => titlePageField;
+      set => titlePageField = value;
+    }
   }
 }

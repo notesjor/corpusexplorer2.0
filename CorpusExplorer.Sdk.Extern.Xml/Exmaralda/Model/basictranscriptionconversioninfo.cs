@@ -24,15 +24,19 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement("conversion-tier")]
-    public conversiontier[] conversiontier { get { return conversiontierField; } set { conversiontierField = value; } }
+    public conversiontier[] conversiontier
+    {
+      get => conversiontierField;
+      set => conversiontierField = value;
+    }
 
     /// <remarks />
     [XmlArray("conversion-timeline")]
     [XmlArrayItem("conversion-tli", IsNullable = false)]
     public conversiontli[] conversiontimeline
     {
-      get { return conversiontimelineField; }
-      set { conversiontimelineField = value; }
+      get => conversiontimelineField;
+      set => conversiontimelineField = value;
     }
   }
 }

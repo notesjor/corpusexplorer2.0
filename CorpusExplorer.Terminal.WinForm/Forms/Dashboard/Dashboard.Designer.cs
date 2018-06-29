@@ -406,7 +406,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // 
       this.pages_main.RootElement.MinSize = new System.Drawing.Size(576, 445);
-      this.pages_main.SelectedPage = this.page_corpus;
+      this.pages_main.SelectedPage = this.page_welcome;
       this.pages_main.Size = new System.Drawing.Size(832, 525);
       this.pages_main.TabIndex = 0;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll;
@@ -584,7 +584,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // page_corpus_start
       // 
       this.page_corpus_start.Controls.Add(this.radScrollablePanel3);
-      this.page_corpus_start.ItemSize = new System.Drawing.SizeF(97F, 29F);
       this.page_corpus_start.Location = new System.Drawing.Point(5, 40);
       this.page_corpus_start.Name = "page_corpus_start";
       this.page_corpus_start.Size = new System.Drawing.Size(822, 445);
@@ -784,7 +783,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       this.page_corpus_online.Controls.Add(this.radSplitContainer1);
       this.page_corpus_online.Controls.Add(this.header5);
-      this.page_corpus_online.ItemSize = new System.Drawing.SizeF(97F, 29F);
       this.page_corpus_online.Location = new System.Drawing.Point(5, 40);
       this.page_corpus_online.Name = "page_corpus_online";
       this.page_corpus_online.Size = new System.Drawing.Size(822, 445);
@@ -2002,6 +2000,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
       // 

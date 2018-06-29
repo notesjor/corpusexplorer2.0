@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlElement("relation")]
-    public relation[] relation { get { return relationField; } set { relationField = value; } }
+    public relation[] relation
+    {
+      get => relationField;
+      set => relationField = value;
+    }
   }
 }

@@ -34,9 +34,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("pb", typeof(pb))]
     [XmlElement("space", typeof(space))]
     [XmlElement("trailer", typeof(trailer))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
-    public titlePage titlePage { get { return titlePageField; } set { titlePageField = value; } }
+    public titlePage titlePage
+    {
+      get => titlePageField;
+      set => titlePageField = value;
+    }
   }
 }

@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Extension;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 
@@ -21,6 +22,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup.Abstract
         Parallel.For(
           0,
           count,
+          Configuration.ParallelOptions,
           i =>
           {
             Dictionary<string, object> doc;
@@ -38,17 +40,16 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup.Abstract
                 if (key.StartsWith("!"))
                   continue;
 
-                var text = doc.Get(key, "");
+                var text = doc.Get(key, string.Empty);
 
                 // Nur Bereingung von Text zulassen, DateTime und andere Typen müssen via Scraper definiert/berinigt werden.
-                if (text.GetType() != typeof(string) ||
-                    string.IsNullOrEmpty(text))
+                if (text.GetType() != typeof(string) || string.IsNullOrWhiteSpace(text))
                   continue;
 
                 text = Execute(text);
 
                 // Schütze vor fehlerhafte Bereinigung - nehme im Fehlerfall den Orignaltext
-                if (string.IsNullOrEmpty(text))
+                if (string.IsNullOrWhiteSpace(text))
                   continue;
 
                 doc[key] = text;

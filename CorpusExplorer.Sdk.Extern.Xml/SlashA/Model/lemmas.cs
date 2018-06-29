@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA.Model
 
     /// <remarks />
     [XmlElement("lemma")]
-    public lemma[] lemma { get { return lemmaField; } set { lemmaField = value; } }
+    public lemma[] lemma
+    {
+      get => lemmaField;
+      set => lemmaField = value;
+    }
   }
 }

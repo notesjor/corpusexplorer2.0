@@ -3,18 +3,13 @@ using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {
-  public class DateTimeRangeCluster : AbstractCluster
+  public class DateTimeRangeCluster : AbstractRangeCluster<DateTime>
   {
-    private readonly DateTime _valueEnd;
-    private readonly DateTime _valueStart;
-
-    public DateTimeRangeCluster(DateTime valueStart, DateTime valueEnd)
+    public DateTimeRangeCluster(DateTime valueStart, DateTime valueEnd) : base(valueStart, valueEnd)
     {
-      _valueStart = valueStart;
-      _valueEnd = valueEnd;
     }
 
-    public override object CentralValue => _valueStart.Add(_valueEnd - _valueStart);
+    public override object CentralValue => _valueStart.Add(new TimeSpan((_valueEnd - _valueStart).Ticks / 2));
 
     public override string Displayname
       => $"{_valueStart:yyyy-MM-dd HH:mm:ss} > {_valueEnd:yyyy-MM-dd HH:mm:ss}";

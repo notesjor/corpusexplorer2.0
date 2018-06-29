@@ -5,8 +5,6 @@ namespace CorpusExplorer.Sdk.Helper
   [Serializable]
   public sealed class UniversalColor
   {
-    private UniversalColor() { }
-
     public UniversalColor(byte r, byte g, byte b)
     {
       R = r;
@@ -19,6 +17,10 @@ namespace CorpusExplorer.Sdk.Helper
       R = grey;
       G = grey;
       B = grey;
+    }
+
+    private UniversalColor()
+    {
     }
 
     public byte B { get; set; }

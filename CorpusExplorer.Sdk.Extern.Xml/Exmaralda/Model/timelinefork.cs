@@ -25,14 +25,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string end { get { return endField; } set { endField = value; } }
+    public string end
+    {
+      get => endField;
+      set => endField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string start { get { return startField; } set { startField = value; } }
+    public string start
+    {
+      get => startField;
+      set => startField = value;
+    }
 
     /// <remarks />
     [XmlElement("tli")]
-    public tli[] tli { get { return tliField; } set { tliField = value; } }
+    public tli[] tli
+    {
+      get => tliField;
+      set => tliField = value;
+    }
   }
 }

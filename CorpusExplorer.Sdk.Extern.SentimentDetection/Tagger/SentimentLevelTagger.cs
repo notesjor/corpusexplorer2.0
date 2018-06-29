@@ -10,6 +10,14 @@ namespace CorpusExplorer.Sdk.Extern.SentimentDetection.Tagger
   public class SentimentLevelTagger : AbstractSentimentTagger
   {
     public override string DisplayName => "Sentiment-Triple-Tagger";
+    public string HighLevelLabel { get; set; } = "Positiv";
+    public double HighLevelValue { get; set; } = 0.6;
+    public string LowLevelLabel { get; set; } = "Negativ";
+    public double LowLevelValue { get; set; } = -0.6;
+
+    protected override void Cleanup()
+    {
+    }
 
     protected override IEnumerable<AbstractLayerState> ExecuteCall(ref AbstractCorpusAdapter corpus)
     {
@@ -25,16 +33,16 @@ namespace CorpusExplorer.Sdk.Extern.SentimentDetection.Tagger
           var rdoc = layer.GetReadableDocumentByGuid(dsel);
           var ndoc =
             rdoc.Select(
-                  s =>
-                    s.Select(
-                      w => dim.Value.ContainsKey(w)
-                             ? (dim.Value[w] < LowLevelValue
-                                  ? LowLevelLabel
-                                  : dim.Value[w] > HighLevelValue
-                                    ? HighLevelLabel
-                                    : string.Empty)
-                             : string.Empty).ToArray())
-                .ToArray();
+                s =>
+                  s.Select(
+                    w => dim.Value.ContainsKey(w)
+                      ? (dim.Value[w] < LowLevelValue
+                        ? LowLevelLabel
+                        : dim.Value[w] > HighLevelValue
+                          ? HighLevelLabel
+                          : string.Empty)
+                      : string.Empty).ToArray())
+              .ToArray();
           nlayer.AddCompleteDocument(dsel, ndoc);
         }
 
@@ -44,11 +52,8 @@ namespace CorpusExplorer.Sdk.Extern.SentimentDetection.Tagger
       return res;
     }
 
-    protected override void Cleanup() { }
-    protected override void Initialize() { }
-    public double LowLevelValue { get; set; } = -0.6;
-    public double HighLevelValue { get; set; } = 0.6;
-    public string LowLevelLabel { get; set; } = "Negativ";
-    public string HighLevelLabel { get; set; } = "Positiv";
+    protected override void Initialize()
+    {
+    }
   }
 }

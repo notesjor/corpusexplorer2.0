@@ -46,10 +46,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
     ///   Eine Auflistung von <see cref="T:System.ComponentModel.IComponent" />-Objekten, die alle Komponenten in
     ///   <see cref="T:System.ComponentModel.IContainer" /> darstellt.
     /// </returns>
-    public ComponentCollection Components
-    {
-      get { return new ComponentCollection(_container.OfType<IComponent>().ToArray()); }
-    }
+    public ComponentCollection Components => new ComponentCollection(_container.OfType<IComponent>().ToArray());
 
     /// <summary>
     ///   Entfernt eine Komponente aus <see cref="T:System.ComponentModel.IContainer" />.
@@ -98,6 +95,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
         func(obj);
         entry.Dispose();
       }
+
       _container.Clear();
     }
   }

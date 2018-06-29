@@ -27,15 +27,13 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     Exceptions,
 
     /// <remarks />
-    [XmlEnum("Interaction Type")]
-    InteractionType,
+    [XmlEnum("Interaction Type")] InteractionType,
 
     /// <remarks />
     Number,
 
     /// <remarks />
-    [XmlEnum("Recording Quality")]
-    RecordingQuality,
+    [XmlEnum("Recording Quality")] RecordingQuality,
 
     /// <remarks />
     Transcription,
@@ -50,34 +48,28 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     Generic,
 
     /// <remarks />
-    [XmlEnum("New Language")]
-    NewLanguage,
+    [XmlEnum("New Language")] NewLanguage,
 
     /// <remarks />
     Location,
 
     /// <remarks />
-    [XmlEnum("New Episode")]
-    NewEpisode,
+    [XmlEnum("New Episode")] NewEpisode,
 
     /// <remarks />
-    [XmlEnum("Room Layout")]
-    RoomLayout,
+    [XmlEnum("Room Layout")] RoomLayout,
 
     /// <remarks />
     Situation,
 
     /// <remarks />
-    [XmlEnum("Tape Location")]
-    TapeLocation,
+    [XmlEnum("Tape Location")] TapeLocation,
 
     /// <remarks />
-    [XmlEnum("Time Duration")]
-    TimeDuration,
+    [XmlEnum("Time Duration")] TimeDuration,
 
     /// <remarks />
-    [XmlEnum("Time Start")]
-    TimeStart,
+    [XmlEnum("Time Start")] TimeStart,
 
     /// <remarks />
     Transcriber,

@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Pmg.Model
 
     /// <remarks />
     [XmlElement("tr-fix")]
-    public Flow[] trfix { get { return trfixField; } set { trfixField = value; } }
+    public Flow[] trfix
+    {
+      get => trfixField;
+      set => trfixField = value;
+    }
   }
 }

@@ -43,9 +43,15 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       RefreshCounter();
     }
 
-    private void btn_del_lexica_Click(object sender, EventArgs e) { _model.ClearAllLexicons(); }
+    private void btn_del_lexica_Click(object sender, EventArgs e)
+    {
+      _model.ClearAllLexicons();
+    }
 
-    private void btn_del_traindata_Click(object sender, EventArgs e) { _model.ClearAllTraindata(); }
+    private void btn_del_traindata_Click(object sender, EventArgs e)
+    {
+      _model.ClearAllTraindata();
+    }
 
     private void btn_gen_lexica_Click(object sender, EventArgs e)
     {
@@ -89,7 +95,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       _model.ParOutputPath = sfd.FileName;
     }
 
-    private void btn_start_Click(object sender, EventArgs e) { _model.StartTraining(); }
+    private void btn_start_Click(object sender, EventArgs e)
+    {
+      _model.StartTraining();
+    }
 
     private void combo_layer_SelectedIndexChanged(object sender, EventArgs e)
     {

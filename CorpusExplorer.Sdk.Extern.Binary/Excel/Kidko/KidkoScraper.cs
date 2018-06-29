@@ -12,9 +12,8 @@ namespace CorpusExplorer.Sdk.Extern.Binary.Excel.Kidko
 {
   public sealed class KidkoScraper : AbstractGenericBinaryFormatScraper<KidkoItem>
   {
-    protected override AbstractGenericDataReader<KidkoItem> DataReader { get { return new ExcelKidkoDataReader(); } }
-
-    public override string DisplayName { get { return "KiDKo/E"; } }
+    public override string DisplayName => "KiDKo/E";
+    protected override AbstractGenericDataReader<KidkoItem> DataReader => new ExcelKidkoDataReader();
 
     protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(IEnumerable<KidkoItem> model)
     {

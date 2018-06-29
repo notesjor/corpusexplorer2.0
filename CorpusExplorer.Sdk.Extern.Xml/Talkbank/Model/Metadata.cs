@@ -39,15 +39,19 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     [XmlElement("title", typeof(DCelementType))]
     [XmlElement("type", typeof(DCelementType))]
     [XmlChoiceIdentifier("ItemsElementName")]
-    public DCelementType[] Items { get { return itemsField; } set { itemsField = value; } }
+    public DCelementType[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlElement("ItemsElementName")]
     [XmlIgnore]
     public ItemsChoiceType[] ItemsElementName
     {
-      get { return itemsElementNameField; }
-      set { itemsElementNameField = value; }
+      get => itemsElementNameField;
+      set => itemsElementNameField = value;
     }
   }
 }

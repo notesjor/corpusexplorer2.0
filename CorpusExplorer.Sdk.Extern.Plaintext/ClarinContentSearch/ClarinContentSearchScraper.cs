@@ -7,7 +7,10 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClarinContentSearch
 {
   public class ClarinContentSearchScraper : AbstractPlaintextScraper
   {
-    public ClarinContentSearchScraper() { Separator = ";"; }
+    public ClarinContentSearchScraper()
+    {
+      Separator = ";";
+    }
 
     public override string DisplayName => "CLARIN Content Search";
 
@@ -29,10 +32,10 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClarinContentSearch
             {
               "Text",
               string.Join(" ", Get(ref cells, 0), Get(ref cells, 1), Get(ref cells, 2))
-                    .Replace("\"\"", "\"")
-                    .Replace("---", "-")
-                    .Replace("[...]", "")
-                    .Trim()
+                .Replace("\"\"", "\"")
+                .Replace("---", "-")
+                .Replace("[...]", "")
+                .Trim()
             },
             {"PID", Get(ref cells, 3)},
             {"REF", Get(ref cells, 4)}

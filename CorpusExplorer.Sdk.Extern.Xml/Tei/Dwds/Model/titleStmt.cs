@@ -22,12 +22,24 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model
     private title titleField;
 
     /// <remarks />
-    public editor editor { get { return editorField; } set { editorField = value; } }
+    public editor editor
+    {
+      get => editorField;
+      set => editorField = value;
+    }
 
     /// <remarks />
-    public respStmt respStmt { get { return respStmtField; } set { respStmtField = value; } }
+    public respStmt respStmt
+    {
+      get => respStmtField;
+      set => respStmtField = value;
+    }
 
     /// <remarks />
-    public title title { get { return titleField; } set { titleField = value; } }
+    public title title
+    {
+      get => titleField;
+      set => titleField = value;
+    }
   }
 }

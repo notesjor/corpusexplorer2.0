@@ -28,12 +28,24 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     [XmlElement("input-char-set", typeof(inputcharset))]
     [XmlElement("input-end", typeof(inputend))]
     [XmlElement("input-other", typeof(inputother))]
-    public object Item { get { return itemField; } set { itemField = value; } }
+    public object Item
+    {
+      get => itemField;
+      set => itemField = value;
+    }
 
     /// <remarks />
-    public output output { get { return outputField; } set { outputField = value; } }
+    public output output
+    {
+      get => outputField;
+      set => outputField = value;
+    }
 
     /// <remarks />
-    public target target { get { return targetField; } set { targetField = value; } }
+    public target target
+    {
+      get => targetField;
+      set => targetField = value;
+    }
   }
 }

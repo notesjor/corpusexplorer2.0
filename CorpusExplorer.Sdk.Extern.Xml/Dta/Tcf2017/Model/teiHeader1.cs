@@ -1,58 +1,46 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
+namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1381926654438")]
-  [System.Xml.Serialization.XmlRootAttribute("teiHeader", Namespace = "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1381926654438", IsNullable = false)]
-  public partial class teiHeader1
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true, Namespace = "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1381926654438")]
+  [XmlRoot("teiHeader", Namespace = "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1381926654438",
+    IsNullable = false)]
+  public class teiHeader1
   {
+    private editorialDecl encodingDescField;
 
     private fileDesc fileDescField;
 
-    private editorialDecl encodingDescField;
-
     private profileDesc profileDescField;
 
-    /// <remarks/>
-    public fileDesc fileDesc
-    {
-      get
-      {
-        return this.fileDescField;
-      }
-      set
-      {
-        this.fileDescField = value;
-      }
-    }
-
-    /// <remarks/>
+    /// <remarks />
     public editorialDecl encodingDesc
     {
-      get
-      {
-        return this.encodingDescField;
-      }
-      set
-      {
-        this.encodingDescField = value;
-      }
+      get => encodingDescField;
+      set => encodingDescField = value;
     }
 
-    /// <remarks/>
+    /// <remarks />
+    public fileDesc fileDesc
+    {
+      get => fileDescField;
+      set => fileDescField = value;
+    }
+
+    /// <remarks />
     public profileDesc profileDesc
     {
-      get
-      {
-        return this.profileDescField;
-      }
-      set
-      {
-        this.profileDescField = value;
-      }
+      get => profileDescField;
+      set => profileDescField = value;
     }
   }
 }

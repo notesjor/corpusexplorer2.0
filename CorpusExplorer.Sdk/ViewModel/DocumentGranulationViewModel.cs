@@ -69,6 +69,9 @@ namespace CorpusExplorer.Sdk.ViewModel
       SentenceFrequencySum = block2.FrequencySum;
     }
 
-    protected override bool Validate() { return Queries != null && Queries.Count() != 0; }
+    protected override bool Validate()
+    {
+      return Queries != null && Queries.Count() != 0;
+    }
   }
 }

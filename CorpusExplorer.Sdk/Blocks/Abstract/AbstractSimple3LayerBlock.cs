@@ -3,7 +3,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using CorpusExplorer.Sdk.Helper;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Model.Cache.Helper.Exception;
@@ -59,6 +59,7 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
 
       Parallel.ForEach(
         Selection,
+        Configuration.ParallelOptions,
         csel =>
         {
           var corpus = Selection.GetCorpus(csel.Key);
@@ -77,6 +78,7 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
 
           Parallel.ForEach(
             csel.Value,
+            Configuration.ParallelOptions,
             dsel =>
             {
               if (!layer1.ContainsDocument(dsel) || !layer2.ContainsDocument(dsel) || !layer3.ContainsDocument(dsel))
@@ -90,10 +92,9 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
                   doc3 == null)
                 return;
 
-              // Alle Dokumente müssen die gleiche Länge haben
-              var len2 = doc2.DocumentSize();
-              if (doc1.DocumentSize() != len2 ||
-                  len2 != doc3.DocumentSize())
+              // Alle Dokumente müssen die gleiche Länge haben (Stichprobe)
+              if (doc1.Length != doc2.Length || doc2.Length != doc3.Length || doc1.Length < 1 ||
+                  doc1[0].Length != doc2[0].Length || doc2[doc2.Length - 1].Length != doc3[doc3.Length - 1].Length)
                 return;
 
               try

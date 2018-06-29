@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string publicId { get { return publicIdField; } set { publicIdField = value; } }
+    public string publicId
+    {
+      get => publicIdField;
+      set => publicIdField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string uri { get { return uriField; } set { uriField = value; } }
+    public string uri
+    {
+      get => uriField;
+      set => uriField = value;
+    }
   }
 }

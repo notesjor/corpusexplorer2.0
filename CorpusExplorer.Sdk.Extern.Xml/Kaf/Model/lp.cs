@@ -23,14 +23,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string name { get { return nameField; } set { nameField = value; } }
+    public string name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string timestamp { get { return timestampField; } set { timestampField = value; } }
+    public string timestamp
+    {
+      get => timestampField;
+      set => timestampField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string version { get { return versionField; } set { versionField = value; } }
+    public string version
+    {
+      get => versionField;
+      set => versionField = value;
+    }
   }
 }

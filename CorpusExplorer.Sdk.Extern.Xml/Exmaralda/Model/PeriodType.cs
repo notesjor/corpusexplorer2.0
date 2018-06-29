@@ -25,36 +25,48 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     private bool periodStartFieldSpecified;
 
     /// <remarks />
-    public long PeriodDuration { get { return periodDurationField; } set { periodDurationField = value; } }
+    public long PeriodDuration
+    {
+      get => periodDurationField;
+      set => periodDurationField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
     public bool PeriodDurationSpecified
     {
-      get { return periodDurationFieldSpecified; }
-      set { periodDurationFieldSpecified = value; }
+      get => periodDurationFieldSpecified;
+      set => periodDurationFieldSpecified = value;
     }
 
     /// <remarks />
-    public bool PeriodExact { get { return periodExactField; } set { periodExactField = value; } }
+    public bool PeriodExact
+    {
+      get => periodExactField;
+      set => periodExactField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
     public bool PeriodExactSpecified
     {
-      get { return periodExactFieldSpecified; }
-      set { periodExactFieldSpecified = value; }
+      get => periodExactFieldSpecified;
+      set => periodExactFieldSpecified = value;
     }
 
     /// <remarks />
-    public DateTime PeriodStart { get { return periodStartField; } set { periodStartField = value; } }
+    public DateTime PeriodStart
+    {
+      get => periodStartField;
+      set => periodStartField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
     public bool PeriodStartSpecified
     {
-      get { return periodStartFieldSpecified; }
-      set { periodStartFieldSpecified = value; }
+      get => periodStartFieldSpecified;
+      set => periodStartFieldSpecified = value;
     }
   }
 }

@@ -19,6 +19,8 @@ namespace CorpusExplorer.Sdk.Blocks
       IUseHydraSentenceOptimization,
       IProvideAggregatedDataItems
   {
+    [NonSerialized] private readonly BlockCacheHelper _cache = new BlockCacheHelper();
+
     /// <summary>
     ///   The _lock 1.
     /// </summary>
@@ -28,9 +30,6 @@ namespace CorpusExplorer.Sdk.Blocks
     ///   The _lock 2.
     /// </summary>
     private readonly object _lock2 = new object();
-
-    [NonSerialized]
-    private readonly BlockCacheHelper _cache = new BlockCacheHelper();
 
     public Frequency2LayerBlock()
     {
@@ -161,7 +160,9 @@ namespace CorpusExplorer.Sdk.Blocks
     ///   Wird nach der Bereinigung aufgerufen (nach CalculateCall + CalculateCleanup)
     ///   und dient dem zusammenfassen der bereinigen Ergebnisse
     /// </summary>
-    protected override void CalculateFinalize() { }
+    protected override void CalculateFinalize()
+    {
+    }
 
     /// <summary>
     ///   Wird vor der Berechnung aufgerufen (vor CalculateCall)

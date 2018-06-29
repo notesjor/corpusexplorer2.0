@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlElement("p")]
-    public p[] p { get { return pField; } set { pField = value; } }
+    public p[] p
+    {
+      get => pField;
+      set => pField = value;
+    }
   }
 }

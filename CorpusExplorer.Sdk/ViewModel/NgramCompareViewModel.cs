@@ -70,6 +70,11 @@ namespace CorpusExplorer.Sdk.ViewModel
         blockB.NGramFrequency.GetNormalizedDictionary());
     }
 
+    protected override bool Validate()
+    {
+      return NGramSize > -1;
+    }
+
     private void GenerateDataTable(Dictionary<string, double> a, Dictionary<string, double> b)
     {
       _dataTable.BeginLoadData();
@@ -109,7 +114,5 @@ namespace CorpusExplorer.Sdk.ViewModel
         return block.NGramFrequency.ToDictionary(x => x.Key, x => (double) x.Value);
       }
     }
-
-    protected override bool Validate() { return NGramSize > -1; }
   }
 }

@@ -76,7 +76,9 @@ namespace CorpusExplorer.Sdk.Compatibility
           try
           {
             if (map.ContainsKey(pair.Key))
+            {
               ndocs.Add(map[pair.Key], pair.Value);
+            }
             else
             {
               var guid = Guid.NewGuid();
@@ -85,7 +87,9 @@ namespace CorpusExplorer.Sdk.Compatibility
               nmeta.Add(guid, new Dictionary<string, object>());
             }
           }
-          catch {}
+          catch
+          {
+          }
 
         nlayers.Add(new LayerValueState(layerOld.LayerName, nlayers.Count) {Cache = ndic, Documents = ndocs});
       }

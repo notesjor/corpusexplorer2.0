@@ -126,6 +126,12 @@ namespace CorpusExplorer.Sdk.ViewModel
       GenerateDataTable(dicA.GetNormalizedDictionary(), dicB.GetNormalizedDictionary());
     }
 
+    protected override bool Validate()
+    {
+      return !string.IsNullOrEmpty(LayerDisplayname) && !string.IsNullOrEmpty(LayerQuery) &&
+             !double.IsNaN(MinimumSignificance) && !double.IsInfinity(MinimumSignificance) && SimilarityIndex != null;
+    }
+
     private void GenerateDataTable(Dictionary<string, double> a, Dictionary<string, double> b)
     {
       _dataTable.BeginLoadData();
@@ -145,12 +151,6 @@ namespace CorpusExplorer.Sdk.ViewModel
         _dataTable.Rows.Add(x.Key, 0.0d, x.Value, x.Value);
 
       _dataTable.EndLoadData();
-    }
-
-    protected override bool Validate()
-    {
-      return !string.IsNullOrEmpty(LayerDisplayname) && !string.IsNullOrEmpty(LayerQuery) &&
-             !double.IsNaN(MinimumSignificance) && !double.IsInfinity(MinimumSignificance) && SimilarityIndex != null;
     }
   }
 }

@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.HuDesktop.Model
 
     /// <remarks />
     [XmlAttribute]
-    public bool @default { get { return defaultField; } set { defaultField = value; } }
+    public bool @default
+    {
+      get => defaultField;
+      set => defaultField = value;
+    }
   }
 }

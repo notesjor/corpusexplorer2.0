@@ -546,7 +546,7 @@ namespace CorpusExplorer.Sdk.Model.Interface
     /// <param name="layerDisplaynameOld">Alter Displayname</param>
     /// <param name="layerDisplaynameNew">Neuer Displayname</param>
     void LayerRename(string layerDisplaynameOld, string layerDisplaynameNew);
-    
+
     /// <summary>
     ///   The reset all document metadata.
     /// </summary>

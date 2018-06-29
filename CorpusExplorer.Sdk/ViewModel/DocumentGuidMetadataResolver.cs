@@ -13,19 +13,24 @@ namespace CorpusExplorer.Sdk.ViewModel
   [Serializable]
   public class DocumentGuidMetadataResolver : AbstractViewModel
   {
-    public DocumentGuidMetadataResolver() { SelectedProperty = Resources.Title; }
+    public DocumentGuidMetadataResolver()
+    {
+      SelectedProperty = Resources.Title;
+    }
 
     public IEnumerable<string> AvailabelProperties => Selection.GetDocumentMetadataPrototypeOnlyProperties();
 
     public string SelectedProperty { get; set; }
-
-    protected override void ExecuteAnalyse() { }
 
     public string ResolveMetadata(Guid documentGuid)
     {
       var meta = Selection.GetDocumentMetadata(documentGuid);
 
       return meta.ContainsKey(SelectedProperty) ? meta[SelectedProperty].ToString() : documentGuid.ToString();
+    }
+
+    protected override void ExecuteAnalyse()
+    {
     }
 
     protected override bool Validate()

@@ -18,15 +18,19 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
     private Selection _selection;
 
     /// <summary>
-    ///   Gets or sets the project.
-    /// </summary>
-    protected Project Project { get; set; }
-
-    /// <summary>
     ///   Auswahl mit dem der Block arbeitet
     /// </summary>
     // ReSharper disable once MemberCanBeProtected.Global
-    protected internal Selection Selection { get => _selection; set => _selection = value; }
+    protected internal Selection Selection
+    {
+      get => _selection;
+      set => _selection = value;
+    }
+
+    /// <summary>
+    ///   Gets or sets the project.
+    /// </summary>
+    protected Project Project { get; set; }
 
     /// <summary>
     ///   Funktion die aufgerufen wird, wenn eine Berechnung durchgeführt werden soll.

@@ -27,22 +27,42 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string bookmark { get { return bookmarkField; } set { bookmarkField = value; } }
+    public string bookmark
+    {
+      get => bookmarkField;
+      set => bookmarkField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string time { get { return timeField; } set { timeField = value; } }
+    public string time
+    {
+      get => timeField;
+      set => timeField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public tliType type { get { return typeField; } set { typeField = value; } }
+    public tliType type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool typeSpecified { get { return typeFieldSpecified; } set { typeFieldSpecified = value; } }
+    public bool typeSpecified
+    {
+      get => typeFieldSpecified;
+      set => typeFieldSpecified = value;
+    }
   }
 }

@@ -30,7 +30,11 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tagger.TnTTagger
 
     public override string DisplayName => "TnT-Tagger";
 
-    public override string InstallationPath { get { return "(NICHT WÄHLBAR - OPTIMIERTE VERSION)"; } set { } }
+    public override string InstallationPath
+    {
+      get => "(NICHT WÄHLBAR - OPTIMIERTE VERSION)";
+      set { }
+    }
 
     public override IEnumerable<string> LanguagesAvailabel => _languageses;
 
@@ -83,14 +87,17 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tagger.TnTTagger
       }
     }
 
-    protected override bool IsEndOfSentence(string[] data) { return data.Length > 1 && data[1] == "$."; }
+    protected override bool IsEndOfSentence(string[] data)
+    {
+      return data.Length > 1 && data[1] == "$.";
+    }
 
     protected override string TextPostTaggerCleanup(string text)
     {
       var lines =
         new Queue<string>(
           text.Replace("\r>", ">")
-              .Split(new[] {"\r\n", "\n\r", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries));
+            .Split(new[] {"\r\n", "\n\r", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries));
       var clean = new List<string>();
       var level = 0;
 
@@ -103,11 +110,13 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tagger.TnTTagger
             continue;
           level++;
         }
+
         if (line.StartsWith(TaggerFileSeparator) && line.Contains("%%"))
         {
           clean.Add(TaggerFileSeparator);
           break;
         }
+
         clean.Add(line);
       }
 

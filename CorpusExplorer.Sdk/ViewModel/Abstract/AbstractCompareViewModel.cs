@@ -13,6 +13,9 @@ namespace CorpusExplorer.Sdk.ViewModel.Abstract
 
     public Selection SelectionToCompare { get; set; }
 
-    protected override bool Validate() { return SelectionToCompare != null; }
+    protected override bool Validate()
+    {
+      return SelectionToCompare != null;
+    }
   }
 }

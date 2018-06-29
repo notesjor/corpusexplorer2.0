@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA.Model
 
     /// <remarks />
     [XmlElement("sentence")]
-    public sentence[] sentence { get { return sentenceField; } set { sentenceField = value; } }
+    public sentence[] sentence
+    {
+      get => sentenceField;
+      set => sentenceField = value;
+    }
   }
 }

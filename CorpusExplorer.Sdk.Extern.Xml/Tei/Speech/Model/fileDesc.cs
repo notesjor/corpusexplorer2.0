@@ -26,14 +26,22 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
     /// <remarks />
     public publicationStmt publicationStmt
     {
-      get { return publicationStmtField; }
-      set { publicationStmtField = value; }
+      get => publicationStmtField;
+      set => publicationStmtField = value;
     }
 
     /// <remarks />
-    public sourceDesc sourceDesc { get { return sourceDescField; } set { sourceDescField = value; } }
+    public sourceDesc sourceDesc
+    {
+      get => sourceDescField;
+      set => sourceDescField = value;
+    }
 
     /// <remarks />
-    public titleStmt titleStmt { get { return titleStmtField; } set { titleStmtField = value; } }
+    public titleStmt titleStmt
+    {
+      get => titleStmtField;
+      set => titleStmtField = value;
+    }
   }
 }

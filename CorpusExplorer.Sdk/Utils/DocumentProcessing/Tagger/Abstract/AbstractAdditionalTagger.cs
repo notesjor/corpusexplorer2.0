@@ -13,8 +13,6 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
 
     public string ModelPath { get; set; }
 
-    protected abstract void Cleanup();
-
     public override void Execute()
     {
       Initialize();
@@ -30,6 +28,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
 
       Cleanup();
     }
+
+    protected abstract void Cleanup();
 
     /// <summary>
     ///   Muss vom AdditionalTagger implementiert werden.

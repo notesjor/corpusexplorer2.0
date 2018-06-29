@@ -29,18 +29,34 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tiger.Model
     [XmlArray(Form = XmlSchemaForm.Unqualified)]
     [XmlArrayItem("s", typeof(sentenceType), Form = XmlSchemaForm.Unqualified, IsNullable = false)]
     [XmlArrayItem("subcorpus", typeof(subcorpusType), Form = XmlSchemaForm.Unqualified, IsNullable = false)]
-    public object[] body { get { return bodyField; } set { bodyField = value; } }
+    public object[] body
+    {
+      get => bodyField;
+      set => bodyField = value;
+    }
 
     /// <remarks />
     [XmlElement("head", Form = XmlSchemaForm.Unqualified)]
-    public headType head { get { return _headField; } set { _headField = value; } }
+    public headType head
+    {
+      get => _headField;
+      set => _headField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string version { get { return versionField; } set { versionField = value; } }
+    public string version
+    {
+      get => versionField;
+      set => versionField = value;
+    }
   }
 }

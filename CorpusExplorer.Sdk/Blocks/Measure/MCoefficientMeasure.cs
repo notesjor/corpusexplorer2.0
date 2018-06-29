@@ -20,7 +20,9 @@ namespace CorpusExplorer.Sdk.Blocks.Measure
     ///   The k 0.
     /// </param>
     public MCoefficientMeasure(double k0)
-      : base(k0) { }
+      : base(k0)
+    {
+    }
 
     /// <summary>
     ///   Berechnet das entsprechende Maß. Siehe [Heyer2012]

@@ -163,8 +163,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     public AbstractLayerAdapter ExportDocumentLayer(Guid documentGuid, string layerDisplayname)
     {
       return ContainsDocument(documentGuid)
-               ? GetLayerOfDocument(documentGuid, layerDisplayname).Copy(documentGuid)
-               : null;
+        ? GetLayerOfDocument(documentGuid, layerDisplayname).Copy(documentGuid)
+        : null;
     }
 
     /// <summary>
@@ -259,7 +259,10 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
       return ContainsDocument(documentGuid) ? this : null;
     }
 
-    public int[][] GetDocument(Guid documentGuid, Guid layerGuid) { return GetLayer(layerGuid)?[documentGuid]; }
+    public int[][] GetDocument(Guid documentGuid, Guid layerGuid)
+    {
+      return GetLayer(layerGuid)?[documentGuid];
+    }
 
     public int[][] GetDocument(Guid documentGuid, string layerDisplayname)
     {
@@ -279,23 +282,23 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     {
       try
       {
-        if(guid == Guid.Empty)
-          return guid.ToString(Resources.N);
-        
-        var meta = GetDocumentMetadata(guid);
-        if(meta == null)
+        if (guid == Guid.Empty)
           return guid.ToString(Resources.N);
 
-        if (!meta.ContainsKey(Resources.Title)) 
+        var meta = GetDocumentMetadata(guid);
+        if (meta == null)
           return guid.ToString(Resources.N);
-        
-        var res =  meta[Resources.Title] as string;
+
+        if (!meta.ContainsKey(Resources.Title))
+          return guid.ToString(Resources.N);
+
+        var res = meta[Resources.Title] as string;
         return string.IsNullOrEmpty(res) ? guid.ToString(Resources.N) : res;
       }
       catch
       {
         return guid.ToString(Resources.N);
-      }      
+      }
     }
 
     /// <summary>
@@ -389,7 +392,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     public Dictionary<Guid, T> GetDocumentMetadata<T>(string metaKey, T defaultValue)
     {
       return DocumentMetadata.Where(x => x.Value.ContainsKey(metaKey) && x.Value[metaKey] is T)
-                             .ToDictionary(x => x.Key, x => (T) x.Value[metaKey]);
+        .ToDictionary(x => x.Key, x => (T) x.Value[metaKey]);
     }
 
     /// <summary>
@@ -459,7 +462,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     public IEnumerable<KeyValuePair<Guid, string>> GetLayerGuidAndDisplaynamesOfDocument(Guid documentGuid)
     {
       return Layers.Where(layer => layer.ContainsDocument(documentGuid))
-                   .ToDictionary(layer => layer.Guid, layer => layer.Displayname);
+        .ToDictionary(layer => layer.Guid, layer => layer.Displayname);
     }
 
     /// <summary>
@@ -564,17 +567,6 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     public abstract Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(
       Guid documentGuid);
 
-    public Dictionary<Guid, int[][]> GetMultilayerDocument(Guid documentGuid)
-    {
-      return GetLayersOfDocument(documentGuid).ToDictionary(adapter => adapter.Guid, adapter => adapter[documentGuid]);
-    }
-    
-    public Dictionary<Guid, int[][]> GetMultilayerDocument(Guid documentGuid, IEnumerable<Guid> layerGuids)
-    {
-      var valid = new HashSet<Guid>(layerGuids);
-      return GetLayersOfDocument(documentGuid).Where(adapter => valid.Contains(adapter.Guid)).ToDictionary(adapter => adapter.Guid, adapter => adapter[documentGuid]);
-    }
-
     /// <summary>
     ///   Layers the copy.
     /// </summary>
@@ -625,7 +617,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     ///   Gets the layer unique displaynames.
     /// </summary>
     public abstract IEnumerable<string> LayerUniqueDisplaynames { get; }
-    
+
     /// <summary>
     ///   The reset all document metadata.
     /// </summary>
@@ -719,6 +711,18 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     public object GetCorpusMetadata(string key)
     {
       return (from x in GetCorpusMetadata() where x.Key == key select x.Value).FirstOrDefault();
+    }
+
+    public Dictionary<Guid, int[][]> GetMultilayerDocument(Guid documentGuid)
+    {
+      return GetLayersOfDocument(documentGuid).ToDictionary(adapter => adapter.Guid, adapter => adapter[documentGuid]);
+    }
+
+    public Dictionary<Guid, int[][]> GetMultilayerDocument(Guid documentGuid, IEnumerable<Guid> layerGuids)
+    {
+      var valid = new HashSet<Guid>(layerGuids);
+      return GetLayersOfDocument(documentGuid).Where(adapter => valid.Contains(adapter.Guid))
+        .ToDictionary(adapter => adapter.Guid, adapter => adapter[documentGuid]);
     }
 
 

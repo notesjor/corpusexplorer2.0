@@ -68,35 +68,6 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
     } // End of the constructor
 
     /// <summary>
-    ///   Calculate the R1 part for a word
-    /// </summary>
-    /// <param name="characters">An array of characters</param>
-    /// <returns>An int with the r1 index</returns>
-    private int CalculateR1(char[] characters)
-    {
-      // Create the int array to return
-      var r1 = characters.Length;
-
-      // Calculate R1
-      for (var i = 1; i < characters.Length; i++)
-      {
-        if (IsVowel(characters[i]) ||
-            !IsVowel(characters[i - 1]))
-          continue;
-        // Set the r1 index
-        r1 = i + 1;
-        break;
-      }
-
-      // Adjust R1
-      if (r1 < 3)
-        r1 = 3;
-
-      // Return the int array
-      return r1;
-    } // End of the calculateR1 method
-
-    /// <summary>
     ///   Get the steam word from a specific word
     /// </summary>
     /// <param name="word">The word to strip</param>
@@ -124,7 +95,9 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
         part2 = word.Substring(firstNonVowel);
       }
       else
+      {
         part1 = word;
+      }
 
       // **********************************************
       // Step 1
@@ -177,5 +150,34 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
       // Return the stripped word
       return part1 + part2;
     } // End of the GetSteamWord method
+
+    /// <summary>
+    ///   Calculate the R1 part for a word
+    /// </summary>
+    /// <param name="characters">An array of characters</param>
+    /// <returns>An int with the r1 index</returns>
+    private int CalculateR1(char[] characters)
+    {
+      // Create the int array to return
+      var r1 = characters.Length;
+
+      // Calculate R1
+      for (var i = 1; i < characters.Length; i++)
+      {
+        if (IsVowel(characters[i]) ||
+            !IsVowel(characters[i - 1]))
+          continue;
+        // Set the r1 index
+        r1 = i + 1;
+        break;
+      }
+
+      // Adjust R1
+      if (r1 < 3)
+        r1 = 3;
+
+      // Return the int array
+      return r1;
+    } // End of the calculateR1 method
   } // End of the class
 } // End of the namespace

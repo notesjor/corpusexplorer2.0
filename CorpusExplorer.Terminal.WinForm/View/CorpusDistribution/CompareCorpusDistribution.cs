@@ -4,11 +4,13 @@ using System;
 using System.Data;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.ViewModel;
+using CorpusExplorer.Terminal.WinForm.Controls.WinForm;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.Helper;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Properties;
 using CorpusExplorer.Terminal.WinForm.View.AbstractTemplates;
+using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 #endregion
@@ -22,6 +24,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
   {
     private DataTable _table;
     private CorpusWeightUnlimmitedCompareViewModel _vm;
+    private readonly SnapshotDropdown _selectionDropdown1 = new SnapshotDropdown();
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractView" /> class.
@@ -29,6 +32,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     public CompareCorpusDistribution()
     {
       InitializeComponent();
+      commandBarHostItem1.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+      commandBarHostItem1.HostedControl = _selectionDropdown1;
+
       InitializeGrid(radGridView1);
       ShowView += ShowViewCall;
     }
@@ -73,7 +79,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
 
     private void btn_ok_Click(object sender, EventArgs e)
     {
-      if (!(drop_snapshot2.SelectedValue is Selection))
+      if (_selectionDropdown1.ResultSelection == null)
         return;
 
       Processing.Invoke(
@@ -81,7 +87,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
         () =>
         {
           _vm.Selection = Project.CurrentSelection;
-          _vm.SelectionToCompare = (Selection) drop_snapshot2.SelectedValue;
+          _vm.SelectionToCompare = _selectionDropdown1.ResultSelection;
           _vm.Analyse();
 
           _table = _vm.GetDataTable();
@@ -109,8 +115,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
 
     private void ShowViewCall(object sender, EventArgs e)
     {
-      _vm = ViewModelGet<CorpusWeightUnlimmitedCompareViewModel>();
-      DictionaryBindingHelper.BindDictionary(_vm.SelectionsAvailable, drop_snapshot2);
+      _vm = GetViewModel<CorpusWeightUnlimmitedCompareViewModel>();
+      _selectionDropdown1.RefreshSelectionTree();
     }
   }
 }

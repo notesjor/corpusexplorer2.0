@@ -31,38 +31,74 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string plattformName { get { return plattformNameField; } set { plattformNameField = value; } }
+    public string plattformName
+    {
+      get => plattformNameField;
+      set => plattformNameField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string plattformURL { get { return plattformURLField; } set { plattformURLField = value; } }
+    public string plattformURL
+    {
+      get => plattformURLField;
+      set => plattformURLField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string recBy { get { return recByField; } set { recByField = value; } }
+    public string recBy
+    {
+      get => recByField;
+      set => recByField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string recDate { get { return recDateField; } set { recDateField = value; } }
+    public string recDate
+    {
+      get => recDateField;
+      set => recDateField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string recEnd { get { return recEndField; } set { recEndField = value; } }
+    public string recEnd
+    {
+      get => recEndField;
+      set => recEndField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string recStart { get { return recStartField; } set { recStartField = value; } }
+    public string recStart
+    {
+      get => recStartField;
+      set => recStartField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NMTOKEN")]
-    public string TNOM { get { return tNOMField; } set { tNOMField = value; } }
+    public string TNOM
+    {
+      get => tNOMField;
+      set => tNOMField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NMTOKEN")]
-    public string TNOT { get { return tNOTField; } set { tNOTField = value; } }
+    public string TNOT
+    {
+      get => tNOTField;
+      set => tNOTField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string view { get { return viewField; } set { viewField = value; } }
+    public string view
+    {
+      get => viewField;
+      set => viewField = value;
+    }
   }
 }

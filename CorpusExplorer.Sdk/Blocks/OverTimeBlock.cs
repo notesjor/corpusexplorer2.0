@@ -6,6 +6,7 @@ using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.OverTime;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 
 namespace CorpusExplorer.Sdk.Blocks
 {
@@ -22,18 +23,19 @@ namespace CorpusExplorer.Sdk.Blocks
     public override void Calculate()
     {
       var block = Selection.CreateBlock<SelectionClusterBlock>();
-      block.ClusterGenerator = new SelectionClusterGeneratorByDateTimeValue();
+      block.ClusterGenerator = new SelectionClusterGeneratorDateTimeValue();
       block.MetadataKey = MetadataKey;
       block.Calculate();
 
       _dtp = block.Cluster.OfType<DateTimeCluster>()
-                  .ToDictionary(cluster => (DateTime)cluster.CentralValue, cluster => cluster.DocumentGuids);
+        .ToDictionary(cluster => (DateTime) cluster.CentralValue, cluster => cluster.DocumentGuids);
 
       DateTimeValues = new Dictionary<DateTime, T>();
       var @lock = new object();
 
       Parallel.ForEach(
         DateTimePoints,
+        Configuration.ParallelOptions,
         point =>
         {
           var values = CalculateValues(point.Value);

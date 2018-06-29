@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\PostSharp.5.0.43\build\PostSharp.props" Condition="Exists('..\packages\PostSharp.5.0.43\build\PostSharp.props')" />
-  <Import Project="..\packages\CefSharp.WinForms.63.0.0-pre03\build\CefSharp.WinForms.props" Condition="Exists('..\packages\CefSharp.WinForms.63.0.0-pre03\build\CefSharp.WinForms.props')" />
-  <Import Project="..\packages\CefSharp.Common.63.0.0-pre03\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.63.0.0-pre03\build\CefSharp.Common.props')" />
+  <Import Project="..\packages\PostSharp.5.0.52\build\PostSharp.props" Condition="Exists('..\packages\PostSharp.5.0.52\build\PostSharp.props')" />
+  <Import Project="..\packages\CefSharp.WinForms.63.0.1\build\CefSharp.WinForms.props" Condition="Exists('..\packages\CefSharp.WinForms.63.0.1\build\CefSharp.WinForms.props')" />
+  <Import Project="..\packages\CefSharp.Common.63.0.1\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.63.0.1\build\CefSharp.Common.props')" />
   <Import Project="..\packages\cef.redist.x86.3.3239.1723\build\cef.redist.x86.props" Condition="Exists('..\packages\cef.redist.x86.3.3239.1723\build\cef.redist.x86.props')" />
   <Import Project="..\packages\cef.redist.x64.3.3239.1723\build\cef.redist.x64.props" Condition="Exists('..\packages\cef.redist.x64.3.3239.1723\build\cef.redist.x64.props')" />
   <PropertyGroup>
@@ -119,9 +119,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack">
-      <HintPath>..\packages\HtmlAgilityPack.1.6.15\lib\Net45\HtmlAgilityPack.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="HtmlAgilityPack, Version=1.8.4.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.8.4\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
       <HintPath>..\packages\AvalonEdit.5.0.4\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
@@ -131,37 +130,29 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp">
-      <HintPath>..\packages\PostSharp.Redist.5.0.43\lib\net45\PostSharp.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="PostSharp, Version=5.0.52.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.5.0.52\lib\net45\PostSharp.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Compiler.Common">
-      <HintPath>..\packages\PostSharp.Compiler.Common.5.0.43\lib\net45\PostSharp.Compiler.Common.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="PostSharp.Compiler.Common, Version=5.0.52.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Compiler.Common.5.0.52\lib\net45\PostSharp.Compiler.Common.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Compiler.Settings">
-      <HintPath>..\packages\PostSharp.Compiler.Common.5.0.43\lib\net45\PostSharp.Compiler.Settings.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="PostSharp.Compiler.Settings, Version=5.0.52.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Compiler.Common.5.0.52\lib\net45\PostSharp.Compiler.Settings.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Patterns.Aggregation">
-      <HintPath>..\packages\PostSharp.Patterns.Aggregation.Redist.5.0.43\lib\net45\PostSharp.Patterns.Aggregation.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="PostSharp.Patterns.Aggregation, Version=5.0.52.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Aggregation.Redist.5.0.52\lib\net45\PostSharp.Patterns.Aggregation.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Patterns.Common">
-      <HintPath>..\packages\PostSharp.Patterns.Common.Redist.5.0.43\lib\net45\PostSharp.Patterns.Common.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="PostSharp.Patterns.Common, Version=5.0.52.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Common.Redist.5.0.52\lib\net45\PostSharp.Patterns.Common.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Patterns.Model">
-      <HintPath>..\packages\PostSharp.Patterns.Model.Redist.5.0.43\lib\net40\PostSharp.Patterns.Model.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="PostSharp.Patterns.Model, Version=5.0.52.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Model.Redist.5.0.52\lib\net40\PostSharp.Patterns.Model.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Patterns.Threading">
-      <HintPath>..\packages\PostSharp.Patterns.Threading.Redist.5.0.43\lib\net45\PostSharp.Patterns.Threading.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="PostSharp.Patterns.Threading, Version=5.0.52.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Threading.Redist.5.0.52\lib\net45\PostSharp.Patterns.Threading.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -184,205 +175,158 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Telerik.Documents.SpreadsheetStreaming">
-      <HintPath>..\packages\Telerik.Documents.SpreadsheetStreaming.for.Net40.2018.1.112\lib\net40\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Documents.SpreadsheetStreaming, Version=2018.2.619.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Documents.SpreadsheetStreaming.for.Net40.2018.2.619\lib\net40\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls">
-      <HintPath>..\packages\UI.for.WinForms.Common.2018.1.116\lib\net40\Telerik.WinControls.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Common.2018.2.621\lib\net40\Telerik.WinControls.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.ChartView">
-      <HintPath>..\packages\UI.for.WinForms.PivotGrid.2018.1.116\lib\net40\Telerik.WinControls.ChartView.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.ChartView, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.PivotGrid.2018.2.621\lib\net40\Telerik.WinControls.ChartView.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.GridView">
-      <HintPath>..\packages\UI.for.WinForms.GridView.2018.1.116\lib\net40\Telerik.WinControls.GridView.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.GridView, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.GridView.2018.2.621\lib\net40\Telerik.WinControls.GridView.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.PivotGrid">
-      <HintPath>..\packages\UI.for.WinForms.PivotGrid.2018.1.116\lib\net40\Telerik.WinControls.PivotGrid.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.PivotGrid, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.PivotGrid.2018.2.621\lib\net40\Telerik.WinControls.PivotGrid.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.RichTextEditor">
-      <HintPath>..\packages\UI.for.WinForms.RichTextEditor.2018.1.116\lib\net40\Telerik.WinControls.RichTextEditor.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.RichTextEditor, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.RichTextEditor.2018.2.621\lib\net40\Telerik.WinControls.RichTextEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Aqua">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Aqua.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.Aqua, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.Aqua.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Breeze">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Breeze.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.Breeze, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.Breeze.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Desert">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Desert.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.Desert, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.Desert.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Fluent">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Fluent.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.Fluent, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.Fluent.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.HighContrastBlack">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.HighContrastBlack.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.FluentDark, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.FluentDark.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Material">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Material.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.HighContrastBlack, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.HighContrastBlack.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.MaterialBlueGrey">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.MaterialBlueGrey.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.Material, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.Material.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.MaterialPink">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.MaterialPink.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.MaterialBlueGrey, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.MaterialBlueGrey.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.MaterialTeal">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.MaterialTeal.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.MaterialPink, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.MaterialPink.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2007Black">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Office2007Black.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.MaterialTeal, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.MaterialTeal.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2007Silver">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Office2007Silver.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.Office2007Black, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.Office2007Black.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2010Black">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Office2010Black.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.Office2007Silver, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.Office2007Silver.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2010Blue">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Office2010Blue.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.Office2010Black, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.Office2010Black.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2010Silver">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Office2010Silver.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.Office2010Blue, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.Office2010Blue.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2013Dark">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Office2013Dark.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.Office2010Silver, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.Office2010Silver.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2013Light">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Office2013Light.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.Office2013Dark, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.Office2013Dark.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetro">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.TelerikMetro.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.Office2013Light.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetroBlue">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.TelerikMetroBlue.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetro, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.TelerikMetro.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroBlue, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.TelerikMetroBlue.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Dark">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.VisualStudio2012Dark.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Light">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.VisualStudio2012Light.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Dark, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.VisualStudio2012Dark.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Windows7">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Windows7.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Light, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.VisualStudio2012Light.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Windows8">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.1.116\lib\net40\Telerik.WinControls.Themes.Windows8.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.Windows7, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.Windows7.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI">
-      <HintPath>..\packages\UI.for.WinForms.Common.2018.1.116\lib\net40\Telerik.WinControls.UI.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.Themes.Windows8, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2018.2.621\lib\net40\Telerik.WinControls.Themes.Windows8.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI.Design">
-      <HintPath>..\packages\UI.for.WinForms.Common.2018.1.116\lib\net40\Telerik.WinControls.UI.Design.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.UI, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Common.2018.2.621\lib\net40\Telerik.WinControls.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls">
-      <HintPath>..\packages\Telerik.Windows.Controls.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Controls.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.WinControls.UI.Design, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Common.2018.2.621\lib\net40\Telerik.WinControls.UI.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Data">
-      <HintPath>..\packages\Telerik.Windows.Controls.Data.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Controls.Data.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Windows.Controls, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Controls.for.Wpf.2018.2.620\lib\net45\Telerik.Windows.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.DataVisualization">
-      <HintPath>..\packages\Telerik.Windows.Controls.DataVisualization.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Controls.Data.for.Wpf.2018.2.620\lib\net45\Telerik.Windows.Controls.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Diagrams">
-      <HintPath>..\packages\Telerik.Windows.Controls.Diagrams.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Controls.Diagrams.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Windows.Controls.DataVisualization, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Controls.DataVisualization.for.Wpf.2018.2.620\lib\net45\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Diagrams.Extensions">
-      <HintPath>..\packages\Telerik.Windows.Controls.Diagrams.Extensions.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Controls.Diagrams.Extensions.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Windows.Controls.Diagrams, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Controls.Diagrams.for.Wpf.2018.2.620\lib\net45\Telerik.Windows.Controls.Diagrams.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Input">
-      <HintPath>..\packages\Telerik.Windows.Controls.Input.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Controls.Input.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Windows.Controls.Diagrams.Extensions, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Controls.Diagrams.Extensions.for.Wpf.2018.2.620\lib\net45\Telerik.Windows.Controls.Diagrams.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Navigation">
-      <HintPath>..\packages\Telerik.Windows.Controls.Navigation.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Controls.Navigation.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Controls.Input.for.Wpf.2018.2.620\lib\net45\Telerik.Windows.Controls.Input.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Data">
-      <HintPath>..\packages\Telerik.Windows.Data.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Data.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Controls.Navigation.for.Wpf.2018.2.620\lib\net45\Telerik.Windows.Controls.Navigation.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Diagrams.Core">
-      <HintPath>..\packages\Telerik.Windows.Diagrams.Core.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Diagrams.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Windows.Data, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Data.for.Wpf.2018.2.620\lib\net45\Telerik.Windows.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Core">
-      <HintPath>..\packages\Telerik.Windows.Documents.Core.for.Net40.2018.1.112\lib\net40\Telerik.Windows.Documents.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Windows.Diagrams.Core, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Diagrams.Core.for.Wpf.2018.2.620\lib\net45\Telerik.Windows.Diagrams.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Fixed">
-      <HintPath>..\packages\Telerik.Windows.Documents.Fixed.for.Net40.2018.1.112\lib\net40\Telerik.Windows.Documents.Fixed.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2018.2.619.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Documents.Core.for.Net40.2018.2.619\lib\net40\Telerik.Windows.Documents.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet">
-      <HintPath>..\packages\Telerik.Windows.Documents.Spreadsheet.for.Net40.2018.1.112\lib\net40\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2018.2.619.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Documents.Fixed.for.Net40.2018.2.619\lib\net40\Telerik.Windows.Documents.Fixed.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml">
-      <HintPath>..\packages\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.for.Net40.2018.1.112\lib\net40\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2018.2.619.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Documents.Spreadsheet.for.Net40.2018.2.619\lib\net40\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf">
-      <HintPath>..\packages\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.for.Net40.2018.1.112\lib\net40\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2018.2.619.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.for.Net40.2018.2.619\lib\net40\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Themes.Windows8Touch">
-      <HintPath>..\packages\Telerik.Windows.Themes.Windows8Touch.for.Wpf.2018.1.122\lib\net45\Telerik.Windows.Themes.Windows8Touch.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf, Version=2018.2.619.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.for.Net40.2018.2.619\lib\net40\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Zip">
-      <HintPath>..\packages\Telerik.Windows.Zip.for.Net40.2018.1.112\lib\net40\Telerik.Windows.Zip.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Windows.Themes.Windows8Touch, Version=2018.2.620.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Themes.Windows8Touch.for.Wpf.2018.2.620\lib\net45\Telerik.Windows.Themes.Windows8Touch.dll</HintPath>
     </Reference>
-    <Reference Include="TelerikCommon">
-      <HintPath>..\packages\UI.for.WinForms.Common.2018.1.116\lib\net40\TelerikCommon.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Windows.Zip, Version=2018.2.619.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Zip.for.Net40.2018.2.619\lib\net40\Telerik.Windows.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="TelerikData">
-      <HintPath>..\packages\UI.for.WinForms.GridView.2018.1.116\lib\net40\TelerikData.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="TelerikCommon, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Common.2018.2.621\lib\net40\TelerikCommon.dll</HintPath>
     </Reference>
-    <Reference Include="TelerikExport">
-      <HintPath>..\packages\UI.for.WinForms.Export.2018.1.116\lib\net40\TelerikExport.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="TelerikData, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.GridView.2018.2.621\lib\net40\TelerikData.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikExport, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Export.2018.2.621\lib\net40\TelerikExport.dll</HintPath>
     </Reference>
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
@@ -447,6 +391,12 @@
     <Compile Include="Controls\WinForm\InfoButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\WinForm\LayerSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\LayerSettings.Designer.cs">
+      <DependentUpon>LayerSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\WinForm\MapSwitch.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -489,7 +439,16 @@
     <Compile Include="Controls\WinForm\SearchBar.Designer.cs">
       <DependentUpon>SearchBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\WinForm\SelectLayerValues\SelectLayerValuesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\SelectLayerValues\SelectLayerValuesControl.Designer.cs">
+      <DependentUpon>SelectLayerValuesControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\WinForm\SnapshotButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\SnapshotDropdown.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\WinForm\Snapshot\AbstractSnapshotControl.cs">
@@ -562,10 +521,15 @@
     <Compile Include="Controls\Wpf\CodeEditor\CodeEditor.xaml.cs">
       <DependentUpon>CodeEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Wpf\Colorizer\Colorizer.xaml.cs">
+      <DependentUpon>Colorizer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Wpf\Diagram\Converter\Abstract\AbstractGraphConverter.cs" />
     <Compile Include="Controls\Wpf\Diagram\Converter\CsvGraphConverter.cs" />
     <Compile Include="Controls\Wpf\Diagram\Converter\GexfXmlGraphConverter.cs" />
     <Compile Include="Controls\Wpf\Diagram\Converter\GraphVizGraphConverter.cs" />
+    <Compile Include="Controls\Wpf\Diagram\Model\CallAddConnectionsConflictDelegate.cs" />
+    <Compile Include="Controls\Wpf\Diagram\Model\Shape.cs" />
     <Compile Include="Controls\Wpf\Diagram\WpfDiagram.xaml.cs">
       <DependentUpon>WpfDiagram.xaml</DependentUpon>
     </Compile>
@@ -576,6 +540,9 @@
     <Compile Include="Controls\Wpf\HeatMap\Model\HeatmapItem.cs" />
     <Compile Include="Controls\Wpf\HeatMap\Model\IHeatmapItem.cs" />
     <Compile Include="Controls\Wpf\Helper\UniversalColorExtension.cs" />
+    <Compile Include="Controls\Wpf\Kwic\KwicBarcode.xaml.cs">
+      <DependentUpon>KwicBarcode.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Wpf\Kwic\KwicView.cs">
       <DependentUpon>KwicView.xaml</DependentUpon>
     </Compile>
@@ -617,6 +584,18 @@
     </Compile>
     <Compile Include="Forms\CloneDetection\CloneDetectionAlgorithm.Designer.cs">
       <DependentUpon>CloneDetectionAlgorithm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Colorizer\ColorizerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Colorizer\ColorizerForm.Designer.cs">
+      <DependentUpon>ColorizerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CorpusError\CorpusErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CorpusError\CorpusErrorForm.Designer.cs">
+      <DependentUpon>CorpusErrorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Dashboard\Dashboard.cs">
       <SubType>Form</SubType>
@@ -662,30 +641,35 @@
     </Compile>
     <Compile Include="Forms\Insight\InsightController.cs" />
     <Compile Include="Forms\Interfaces\IMainForm.cs" />
-    <Compile Include="Forms\LayerSelection\Abstract\AbstractLayerSelection.cs">
+    <Compile Include="Forms\NamedEntity\NamedEntityConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\LayerSelection\Abstract\AbstractLayerSelection.Designer.cs">
-      <DependentUpon>AbstractLayerSelection.cs</DependentUpon>
+    <Compile Include="Forms\NamedEntity\NamedEntityConfiguration.Designer.cs">
+      <DependentUpon>NamedEntityConfiguration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\LayerSelection\LayerSelectionHelper.cs" />
-    <Compile Include="Forms\LayerSelection\_1LayerSelection.cs">
+    <Compile Include="Forms\SelectLayer\Abstract\AbstractSelectLayer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\LayerSelection\_1LayerSelection.Designer.cs">
-      <DependentUpon>_1LayerSelection.cs</DependentUpon>
+    <Compile Include="Forms\SelectLayer\Abstract\AbstractSelectLayer.Designer.cs">
+      <DependentUpon>AbstractSelectLayer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\LayerSelection\_2LayerSelection.cs">
+    <Compile Include="Forms\SelectLayer\Select1Layer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\LayerSelection\_2LayerSelection.Designer.cs">
-      <DependentUpon>_2LayerSelection.cs</DependentUpon>
+    <Compile Include="Forms\SelectLayer\Select1Layer.Designer.cs">
+      <DependentUpon>Select1Layer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\LayerSelection\_3LayerSelection.cs">
+    <Compile Include="Forms\SelectLayer\Select2Layer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\LayerSelection\_3LayerSelection.Designer.cs">
-      <DependentUpon>_3LayerSelection.cs</DependentUpon>
+    <Compile Include="Forms\SelectLayer\Select2Layer.Designer.cs">
+      <DependentUpon>Select2Layer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectLayer\Select3Layer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectLayer\Select3Layer.Designer.cs">
+      <DependentUpon>Select3Layer.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Map\MapConfiguration.cs">
       <SubType>Form</SubType>
@@ -704,6 +688,12 @@
     </Compile>
     <Compile Include="Forms\Scraper\ShowScraperResults.Designer.cs">
       <DependentUpon>ShowScraperResults.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SentimentDetection\SentimentDetectionConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SentimentDetection\SentimentDetectionConfiguration.Designer.cs">
+      <DependentUpon>SentimentDetectionConfiguration.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Simple\Abstract\AbstractMetadata.cs">
       <SubType>Form</SubType>
@@ -798,6 +788,8 @@
       <DependentUpon>XpathBrowser.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\ColorGenerator.cs" />
+    <Compile Include="Helper\ColorGradientPickHelper.cs" />
+    <Compile Include="Helper\DataTableExporter.cs" />
     <Compile Include="Helper\DictionaryBindingHelper.cs" />
     <Compile Include="Helper\DisposingContainer.cs" />
     <Compile Include="Helper\FilterDescriptorCollectionHelper.cs" />
@@ -828,11 +820,11 @@
     <Compile Include="View\AbstractTemplates\AbstractGridView.Designer.cs">
       <DependentUpon>AbstractGridView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\AbstractTemplates\AbstractGridViewWithCodeLense.cs">
+    <Compile Include="View\AbstractTemplates\AbstractGridViewWithTextLense.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\AbstractTemplates\AbstractGridViewWithCodeLense.Designer.cs">
-      <DependentUpon>AbstractGridViewWithCodeLense.cs</DependentUpon>
+    <Compile Include="View\AbstractTemplates\AbstractGridViewWithTextLense.Designer.cs">
+      <DependentUpon>AbstractGridViewWithTextLense.cs</DependentUpon>
     </Compile>
     <Compile Include="View\AbstractTemplates\Model\FilterConditions.cs" />
     <Compile Include="View\AbstractTemplates\Model\FilterSetting.cs" />
@@ -859,12 +851,6 @@
     </Compile>
     <Compile Include="View\Cooccurrence\CooccurrenceGridSearch.Designer.cs">
       <DependentUpon>CooccurrenceGridSearch.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Cooccurrence\CooccurrenceGridAggregated.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Cooccurrence\CooccurrenceGridAggregated.Designer.cs">
-      <DependentUpon>CooccurrenceGridAggregated.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Cooccurrence\CooccurrenceDiversityOverTime.cs">
       <SubType>UserControl</SubType>
@@ -896,23 +882,17 @@
     <Compile Include="View\CorpusDistribution\CorpusFiniteStateMachine.Designer.cs">
       <DependentUpon>CorpusFiniteStateMachine.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Special\CecScripter.cs">
+    <Compile Include="View\Frequency\CollocateFrequency.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Special\CecScripter.Designer.cs">
-      <DependentUpon>CecScripter.cs</DependentUpon>
+    <Compile Include="View\Frequency\CollocateFrequency.Designer.cs">
+      <DependentUpon>CollocateFrequency.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Special\CecScripterGui\Controls\Abstract\AbstractCecScripterControl.cs">
+    <Compile Include="View\Fulltext\FulltextKwicSearch.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Special\CecScripterGui\Controls\Abstract\AbstractCecScripterControl.Designer.cs">
-      <DependentUpon>AbstractCecScripterControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Special\CecScripterGui\Controls\CecScripterInput.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Special\CecScripterGui\Controls\CecScripterInput.Designer.cs">
-      <DependentUpon>CecScripterInput.cs</DependentUpon>
+    <Compile Include="View\Fulltext\FulltextKwicSearch.Designer.cs">
+      <DependentUpon>FulltextKwicSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Special\FrequencyMap.cs">
       <SubType>UserControl</SubType>
@@ -920,10 +900,10 @@
     <Compile Include="View\Special\FrequencyMap.Designer.cs">
       <DependentUpon>FrequencyMap.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Frequency\NamedEntityGrid.cs">
+    <Compile Include="View\Special\NamedEntityGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Frequency\NamedEntityGrid.Designer.cs">
+    <Compile Include="View\Special\NamedEntityGrid.Designer.cs">
       <DependentUpon>NamedEntityGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Frequency\KeywordGrid.cs">
@@ -968,12 +948,6 @@
     <Compile Include="View\Cooccurrence\CooccurrenceGrid.Designer.cs">
       <DependentUpon>CooccurrenceGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Cooccurrence\CooccurrenceWordCloud.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Cooccurrence\CooccurrenceWordCloud.Designer.cs">
-      <DependentUpon>CooccurrenceWordCloud.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\CorpusDistribution\CompareCorpusDistribution.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -998,11 +972,11 @@
     <Compile Include="View\Ngram\NGramOverTimeView.Designer.cs">
       <DependentUpon>NGramOverTimeView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Sentiment\SentimentGrid.cs">
+    <Compile Include="View\Special\SentimentPivotGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Sentiment\SentimentGrid.Designer.cs">
-      <DependentUpon>SentimentGrid.cs</DependentUpon>
+    <Compile Include="View\Special\SentimentPivotGrid.Designer.cs">
+      <DependentUpon>SentimentPivotGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Special\Html5DevLab.cs">
       <SubType>UserControl</SubType>
@@ -1124,12 +1098,6 @@
     <Compile Include="View\Frequency\FrequencySegments.Designer.cs">
       <DependentUpon>FrequencySegments.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Fulltext\FulltextKwicSearch.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Fulltext\FulltextKwicSearch.Designer.cs">
-      <DependentUpon>FulltextKwicSearch.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Fulltext\PhrasenLaboratory\Model\PhrasesLaboratorySettings.cs" />
     <Compile Include="View\Ngram\PhrasesLaboratory.cs">
       <SubType>UserControl</SubType>
@@ -1217,6 +1185,9 @@
     <EmbeddedResource Include="Controls\WinForm\IHDPanel.resx">
       <DependentUpon>IHDPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\LayerSettings.resx">
+      <DependentUpon>LayerSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\WinForm\MapSwitch.resx">
       <DependentUpon>MapSwitch.cs</DependentUpon>
     </EmbeddedResource>
@@ -1237,6 +1208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\WinForm\SearchBar.resx">
       <DependentUpon>SearchBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\SelectLayerValues\SelectLayerValuesControl.resx">
+      <DependentUpon>SelectLayerValuesControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\WinForm\Snapshot\AbstractSnapshotControl.resx">
       <DependentUpon>AbstractSnapshotControl.cs</DependentUpon>
@@ -1271,6 +1245,12 @@
     <EmbeddedResource Include="Forms\CloneDetection\CloneDetectionAlgorithm.resx">
       <DependentUpon>CloneDetectionAlgorithm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Colorizer\ColorizerForm.resx">
+      <DependentUpon>ColorizerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CorpusError\CorpusErrorForm.resx">
+      <DependentUpon>CorpusErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dashboard\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -1292,17 +1272,20 @@
     <EmbeddedResource Include="Forms\Insight\ApplicationInsight.resx">
       <DependentUpon>ApplicationInsight.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LayerSelection\Abstract\AbstractLayerSelection.resx">
-      <DependentUpon>AbstractLayerSelection.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\NamedEntity\NamedEntityConfiguration.resx">
+      <DependentUpon>NamedEntityConfiguration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LayerSelection\_1LayerSelection.resx">
-      <DependentUpon>_1LayerSelection.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\SelectLayer\Abstract\AbstractSelectLayer.resx">
+      <DependentUpon>AbstractSelectLayer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LayerSelection\_2LayerSelection.resx">
-      <DependentUpon>_2LayerSelection.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\SelectLayer\Select1Layer.resx">
+      <DependentUpon>Select1Layer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LayerSelection\_3LayerSelection.resx">
-      <DependentUpon>_3LayerSelection.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\SelectLayer\Select2Layer.resx">
+      <DependentUpon>Select2Layer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectLayer\Select3Layer.resx">
+      <DependentUpon>Select3Layer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Map\MapConfiguration.resx">
       <DependentUpon>MapConfiguration.cs</DependentUpon>
@@ -1312,6 +1295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Scraper\ShowScraperResults.resx">
       <DependentUpon>ShowScraperResults.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SentimentDetection\SentimentDetectionConfiguration.resx">
+      <DependentUpon>SentimentDetectionConfiguration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Simple\Abstract\AbstractMetadata.resx">
       <DependentUpon>AbstractMetadata.cs</DependentUpon>
@@ -1377,9 +1363,6 @@
     <EmbeddedResource Include="View\Cooccurrence\CooccurrenceGridSearch.resx">
       <DependentUpon>CooccurrenceGridSearch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Cooccurrence\CooccurrenceGridAggregated.resx">
-      <DependentUpon>CooccurrenceGridAggregated.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\Cooccurrence\CooccurrenceDiversityOverTime.resx">
       <DependentUpon>CooccurrenceDiversityOverTime.cs</DependentUpon>
     </EmbeddedResource>
@@ -1395,19 +1378,16 @@
     <EmbeddedResource Include="View\CorpusDistribution\CorpusFiniteStateMachine.resx">
       <DependentUpon>CorpusFiniteStateMachine.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Special\CecScripter.resx">
-      <DependentUpon>CecScripter.cs</DependentUpon>
+    <EmbeddedResource Include="View\Frequency\CollocateFrequency.resx">
+      <DependentUpon>CollocateFrequency.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Special\CecScripterGui\Controls\Abstract\AbstractCecScripterControl.resx">
-      <DependentUpon>AbstractCecScripterControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Special\CecScripterGui\Controls\CecScripterInput.resx">
-      <DependentUpon>CecScripterInput.cs</DependentUpon>
+    <EmbeddedResource Include="View\Fulltext\FulltextKwicSearch.resx">
+      <DependentUpon>FulltextKwicSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Special\FrequencyMap.resx">
       <DependentUpon>FrequencyMap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Frequency\NamedEntityGrid.resx">
+    <EmbeddedResource Include="View\Special\NamedEntityGrid.resx">
       <DependentUpon>NamedEntityGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Frequency\KeywordGrid.resx">
@@ -1431,9 +1411,6 @@
     <EmbeddedResource Include="View\Cooccurrence\CooccurrenceGrid.resx">
       <DependentUpon>CooccurrenceGrid.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Cooccurrence\CooccurrenceWordCloud.resx">
-      <DependentUpon>CooccurrenceWordCloud.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\CorpusDistribution\CompareCorpusDistribution.resx">
       <DependentUpon>CompareCorpusDistribution.cs</DependentUpon>
     </EmbeddedResource>
@@ -1446,8 +1423,8 @@
     <EmbeddedResource Include="View\Ngram\NGramOverTimeView.resx">
       <DependentUpon>NGramOverTimeView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Sentiment\SentimentGrid.resx">
-      <DependentUpon>SentimentGrid.cs</DependentUpon>
+    <EmbeddedResource Include="View\Special\SentimentPivotGrid.resx">
+      <DependentUpon>SentimentPivotGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Special\Html5DevLab.resx">
       <DependentUpon>Html5DevLab.cs</DependentUpon>
@@ -1509,9 +1486,6 @@
     <EmbeddedResource Include="View\Frequency\FrequencySegments.resx">
       <DependentUpon>FrequencySegments.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Fulltext\FulltextKwicSearch.resx">
-      <DependentUpon>FulltextKwicSearch.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\Ngram\PhrasesLaboratory.resx">
       <DependentUpon>PhrasesLaboratory.cs</DependentUpon>
     </EmbeddedResource>
@@ -1551,6 +1525,7 @@
     <None Include="app.manifest" />
     <None Include="CorpusExplorer.Terminal.WinForm.psproj" />
     <None Include="CorpusExplorerNextSnKey.pfx" />
+    <None Include="LICENSE" />
     <None Include="LicenseAgreements\DevartLinqConnect.rtf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1658,6 +1633,10 @@
       <Project>{c126a782-ebef-4940-93cf-5c216d2d26a8}</Project>
       <Name>CorpusExplorer.Sdk.Extern.Epub</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.FuzzyCloneDetection\CorpusExplorer.Sdk.Extern.FuzzyCloneDetection.csproj">
+      <Project>{19F44EE4-3978-4FE0-9533-4042AF0280AF}</Project>
+      <Name>CorpusExplorer.Sdk.Extern.FuzzyCloneDetection</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.iTextSharp\CorpusExplorer.Sdk.Extern.iTextSharp.csproj">
       <Project>{febb88cf-455b-4896-bab3-32e81dd4182f}</Project>
       <Name>CorpusExplorer.Sdk.Extern.iTextSharp</Name>
@@ -1685,6 +1664,10 @@
     <ProjectReference Include="..\CorpusExplorer.Sdk.Obsolete\CorpusExplorer.Sdk.Obsolete.csproj">
       <Project>{CDC70E7F-49FE-4577-BD2F-6D29CBCB0038}</Project>
       <Name>CorpusExplorer.Sdk.Obsolete</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Scripter\CorpusExplorer.Sdk.Scripter.csproj">
+      <Project>{5D550CF3-0696-459C-9AE2-ADFD56AA6B35}</Project>
+      <Name>CorpusExplorer.Sdk.Scripter</Name>
     </ProjectReference>
     <ProjectReference Include="..\CorpusExplorer.Sdk\CorpusExplorer.Sdk.csproj">
       <Project>{dc1b5a58-29da-476d-89f8-e73a1db11e52}</Project>
@@ -1774,6 +1757,18 @@
     <Content Include="LicenseAgreements\WiX.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\color_fill.png" />
+    <None Include="Resources\color_fill1.png" />
+    <None Include="Resources\color_fill2.png" />
+    <None Include="Resources\export_spreadsheet.png" />
+    <None Include="Resources\script.png" />
+    <None Include="Resources\structure.png" />
+    <None Include="Resources\structure1.png" />
+    <None Include="Resources\replace.png" />
+    <None Include="Resources\user_group.png" />
+    <None Include="Resources\user_group1.png" />
+    <None Include="Resources\cabinet-warn.png" />
+    <None Include="Resources\cabinet-warn1.png" />
     <Content Include="XDependencies\NTextCat\Wiki280.profile.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1787,7 +1782,6 @@
     <None Include="Resources\print1.png" />
     <None Include="Resources\tag_green1.png" />
     <None Include="Resources\test-properties.png" />
-    <EmbeddedResource Include="teamdev.licenses" />
     <None Include="Resources\module-warn1.png" />
     <None Include="Resources\resources-error.png" />
     <None Include="Resources\info.png" />
@@ -2061,13 +2055,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Wpf\Diagram\WpfDiagram.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Controls\Wpf\Colorizer\Colorizer.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Wpf\Diagram\WpfDiagram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Wpf\HeatMap\HeatMapView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Wpf\Kwic\KwicBarcode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Wpf\Kwic\KwicView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -2105,16 +2107,16 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\cef.redist.x64.3.3239.1723\build\cef.redist.x64.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.3239.1723\build\cef.redist.x64.props'))" />
     <Error Condition="!Exists('..\packages\cef.redist.x86.3.3239.1723\build\cef.redist.x86.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.3239.1723\build\cef.redist.x86.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.63.0.0-pre03\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.63.0.0-pre03\build\CefSharp.Common.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.63.0.0-pre03\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.63.0.0-pre03\build\CefSharp.Common.targets'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.WinForms.63.0.0-pre03\build\CefSharp.WinForms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.63.0.0-pre03\build\CefSharp.WinForms.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.WinForms.63.0.0-pre03\build\CefSharp.WinForms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.63.0.0-pre03\build\CefSharp.WinForms.targets'))" />
-    <Error Condition="!Exists('..\packages\PostSharp.5.0.43\build\PostSharp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PostSharp.5.0.43\build\PostSharp.props'))" />
-    <Error Condition="!Exists('..\packages\PostSharp.5.0.43\build\PostSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PostSharp.5.0.43\build\PostSharp.targets'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.63.0.1\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.63.0.1\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.63.0.1\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.63.0.1\build\CefSharp.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.WinForms.63.0.1\build\CefSharp.WinForms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.63.0.1\build\CefSharp.WinForms.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.WinForms.63.0.1\build\CefSharp.WinForms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.63.0.1\build\CefSharp.WinForms.targets'))" />
+    <Error Condition="!Exists('..\packages\PostSharp.5.0.52\build\PostSharp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PostSharp.5.0.52\build\PostSharp.props'))" />
+    <Error Condition="!Exists('..\packages\PostSharp.5.0.52\build\PostSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PostSharp.5.0.52\build\PostSharp.targets'))" />
   </Target>
-  <Import Project="..\packages\CefSharp.Common.63.0.0-pre03\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.63.0.0-pre03\build\CefSharp.Common.targets')" />
-  <Import Project="..\packages\CefSharp.WinForms.63.0.0-pre03\build\CefSharp.WinForms.targets" Condition="Exists('..\packages\CefSharp.WinForms.63.0.0-pre03\build\CefSharp.WinForms.targets')" />
-  <Import Project="..\packages\PostSharp.5.0.43\build\PostSharp.targets" Condition="Exists('..\packages\PostSharp.5.0.43\build\PostSharp.targets')" />
+  <Import Project="..\packages\CefSharp.Common.63.0.1\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.63.0.1\build\CefSharp.Common.targets')" />
+  <Import Project="..\packages\CefSharp.WinForms.63.0.1\build\CefSharp.WinForms.targets" Condition="Exists('..\packages\CefSharp.WinForms.63.0.1\build\CefSharp.WinForms.targets')" />
+  <Import Project="..\packages\PostSharp.5.0.52\build\PostSharp.targets" Condition="Exists('..\packages\PostSharp.5.0.52\build\PostSharp.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

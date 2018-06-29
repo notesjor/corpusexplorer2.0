@@ -48,7 +48,7 @@
       this.radLabel1.Location = new System.Drawing.Point(0, 0);
       this.radLabel1.Name = "radLabel1";
       this.radLabel1.Padding = new System.Windows.Forms.Padding(10);
-      this.radLabel1.Size = new System.Drawing.Size(540, 132);
+      this.radLabel1.Size = new System.Drawing.Size(527, 193);
       this.radLabel1.TabIndex = 0;
       this.radLabel1.Text = resources.GetString("radLabel1.Text");
       this.radLabel1.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
@@ -59,15 +59,15 @@
       this.clearPanel1.Controls.Add(this.btn_accepted);
       this.clearPanel1.Controls.Add(this.btn_denied);
       this.clearPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.clearPanel1.Location = new System.Drawing.Point(0, 132);
+      this.clearPanel1.Location = new System.Drawing.Point(0, 193);
       this.clearPanel1.Name = "clearPanel1";
-      this.clearPanel1.Size = new System.Drawing.Size(540, 32);
+      this.clearPanel1.Size = new System.Drawing.Size(527, 32);
       this.clearPanel1.TabIndex = 1;
       // 
       // btn_accepted
       // 
       this.btn_accepted.Dock = System.Windows.Forms.DockStyle.Right;
-      this.btn_accepted.Location = new System.Drawing.Point(430, 0);
+      this.btn_accepted.Location = new System.Drawing.Point(417, 0);
       this.btn_accepted.Name = "btn_accepted";
       this.btn_accepted.Size = new System.Drawing.Size(110, 32);
       this.btn_accepted.TabIndex = 0;
@@ -99,7 +99,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(540, 164);
+      this.ClientSize = new System.Drawing.Size(527, 225);
       this.Controls.Add(this.radLabel1);
       this.Controls.Add(this.clearPanel1);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;

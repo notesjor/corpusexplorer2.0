@@ -7,13 +7,21 @@ namespace CorpusExplorer.Sdk.ViewModel
 {
   public class QuickInfoTextViewModel : AbstractViewModel
   {
-    public QuickInfoTextViewModel() { LayerDisplayname = "Wort"; }
+    public QuickInfoTextViewModel()
+    {
+      LayerDisplayname = "Wort";
+    }
 
     public IEnumerable<KeyValuePair<Guid, int>> Documents { get; set; }
 
     public string LayerDisplayname { get; set; }
 
     public IEnumerable<QuickInfoTextResult> QuickDocumentInfoResults { get; set; }
+
+    public void SetNewDocumentMetadata(KeyValuePair<string, Type> property)
+    {
+      Selection.Project.SetNewDocumentMetadata(property.Key, property.Value);
+    }
 
     protected override void ExecuteAnalyse()
     {
@@ -34,11 +42,9 @@ namespace CorpusExplorer.Sdk.ViewModel
       QuickDocumentInfoResults = res.Values;
     }
 
-    public void SetNewDocumentMetadata(KeyValuePair<string, Type> property)
+    protected override bool Validate()
     {
-      Selection.Project.SetNewDocumentMetadata(property.Key, property.Value);
+      return !string.IsNullOrEmpty(LayerDisplayname) && Documents != null;
     }
-
-    protected override bool Validate() { return !string.IsNullOrEmpty(LayerDisplayname) && Documents != null; }
   }
 }

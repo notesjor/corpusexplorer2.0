@@ -23,14 +23,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Pmg.Model
 
     /// <remarks />
     [XmlElement("autor-name")]
-    public string autorname { get { return autornameField; } set { autornameField = value; } }
+    public string autorname
+    {
+      get => autornameField;
+      set => autornameField = value;
+    }
 
     /// <remarks />
     [XmlElement("autor-id")]
-    public string autorid { get { return autoridField; } set { autoridField = value; } }
+    public string autorid
+    {
+      get => autoridField;
+      set => autoridField = value;
+    }
 
     /// <remarks />
     [XmlElement("autor-kurz")]
-    public string autorkurz { get { return autorkurzField; } set { autorkurzField = value; } }
+    public string autorkurz
+    {
+      get => autorkurzField;
+      set => autorkurzField = value;
+    }
   }
 }

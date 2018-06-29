@@ -29,9 +29,9 @@ namespace CorpusExplorer.Port.TreeTaggerTrainer.ViewModel
       _trainDatas = new List<string>();
     }
 
-    public int CountLexcions { get { return _lexicons.Count; } }
+    public int CountLexcions => _lexicons.Count;
 
-    public int CountTraindata { get { return _trainDatas.Count; } }
+    public int CountTraindata => _trainDatas.Count;
 
     public string ParOutputPath { get; set; }
 
@@ -51,10 +51,7 @@ namespace CorpusExplorer.Port.TreeTaggerTrainer.ViewModel
 
     public string TrainTreeTaggerPath { get; set; }
 
-    public bool TrainTreeTaggerValid
-    {
-      get { return !string.IsNullOrEmpty(TrainTreeTaggerPath) && File.Exists(TrainTreeTaggerPath); }
-    }
+    public bool TrainTreeTaggerValid => !string.IsNullOrEmpty(TrainTreeTaggerPath) && File.Exists(TrainTreeTaggerPath);
 
     public void AddLexicon(string path)
     {
@@ -68,9 +65,15 @@ namespace CorpusExplorer.Port.TreeTaggerTrainer.ViewModel
       _trainDatas = ValidateList(_trainDatas);
     }
 
-    public void ClearAllLexicons() { _lexicons.Clear(); }
+    public void ClearAllLexicons()
+    {
+      _lexicons.Clear();
+    }
 
-    public void ClearAllTraindata() { _trainDatas.Clear(); }
+    public void ClearAllTraindata()
+    {
+      _trainDatas.Clear();
+    }
 
     public void GenerateLexicon(Selection selection, string layerDisplayname, string path)
     {
@@ -82,21 +85,6 @@ namespace CorpusExplorer.Port.TreeTaggerTrainer.ViewModel
     public void GenerateTraindata(Selection selection, string layerDisplayname, string path)
     {
       FileIO.Write(path, Traindata.Create(selection, layerDisplayname));
-    }
-
-    private void MergeLexicons(string path)
-    {
-      new Lexicon(_lexicons.Select(Serializer.Deserialize<Lexicon>)).GenerateTextFile(path);
-    }
-
-    private void MergeTrainingData(string path)
-    {
-      var stb = new StringBuilder();
-
-      foreach (var file in _trainDatas)
-        stb.AppendLine(FileIO.ReadText(file));
-
-      FileIO.Write(path, stb.ToString());
     }
 
     public void StartTraining()
@@ -133,7 +121,7 @@ namespace CorpusExplorer.Port.TreeTaggerTrainer.ViewModel
             $"{lexPath} {unkPath} {traPath} {ParOutputPath}",
           CreateNoWindow = true,
           WindowStyle = ProcessWindowStyle.Hidden,
-          StandardOutputEncoding = Configuration.Encoding,
+          StandardOutputEncoding = Configuration.Encoding
         });
 
       if (process == null)
@@ -142,6 +130,21 @@ namespace CorpusExplorer.Port.TreeTaggerTrainer.ViewModel
       process.WaitForExit();
 
       MessageBox.Show(File.Exists(ParOutputPath) ? "Training erfolgreich!" : "PAR-Model konnte nicht erstellt werden");
+    }
+
+    private void MergeLexicons(string path)
+    {
+      new Lexicon(_lexicons.Select(Serializer.Deserialize<Lexicon>)).GenerateTextFile(path);
+    }
+
+    private void MergeTrainingData(string path)
+    {
+      var stb = new StringBuilder();
+
+      foreach (var file in _trainDatas)
+        stb.AppendLine(FileIO.ReadText(file));
+
+      FileIO.Write(path, stb.ToString());
     }
 
     /// <summary>

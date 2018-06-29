@@ -25,10 +25,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     /// <remarks />
     [XmlArray("common-timeline")]
     [XmlArrayItem("tli", IsNullable = false)]
-    public tli[] commontimeline { get { return commontimelineField; } set { commontimelineField = value; } }
+    public tli[] commontimeline
+    {
+      get => commontimelineField;
+      set => commontimelineField = value;
+    }
 
     /// <remarks />
     [XmlElement("tier")]
-    public tier[] tier { get { return tierField; } set { tierField = value; } }
+    public tier[] tier
+    {
+      get => tierField;
+      set => tierField = value;
+    }
   }
 }

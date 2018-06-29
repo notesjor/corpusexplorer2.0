@@ -27,22 +27,42 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string height { get { return heightField; } set { heightField = value; } }
+    public string height
+    {
+      get => heightField;
+      set => heightField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string src { get { return srcField; } set { srcField = value; } }
+    public string src
+    {
+      get => srcField;
+      set => srcField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public imgType type { get { return typeField; } set { typeField = value; } }
+    public imgType type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool typeSpecified { get { return typeFieldSpecified; } set { typeFieldSpecified = value; } }
+    public bool typeSpecified
+    {
+      get => typeFieldSpecified;
+      set => typeFieldSpecified = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string width { get { return widthField; } set { widthField = value; } }
+    public string width
+    {
+      get => widthField;
+      set => widthField = value;
+    }
   }
 }

@@ -25,17 +25,33 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     private transition[] transitionField;
 
     /// <remarks />
-    public string comment { get { return commentField; } set { commentField = value; } }
+    public string comment
+    {
+      get => commentField;
+      set => commentField = value;
+    }
 
     /// <remarks />
-    public string forbidden { get { return forbiddenField; } set { forbiddenField = value; } }
+    public string forbidden
+    {
+      get => forbiddenField;
+      set => forbiddenField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string source { get { return sourceField; } set { sourceField = value; } }
+    public string source
+    {
+      get => sourceField;
+      set => sourceField = value;
+    }
 
     /// <remarks />
     [XmlElement("transition")]
-    public transition[] transition { get { return transitionField; } set { transitionField = value; } }
+    public transition[] transition
+    {
+      get => transitionField;
+      set => transitionField = value;
+    }
   }
 }

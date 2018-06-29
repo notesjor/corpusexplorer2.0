@@ -26,17 +26,33 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlElement("mpfx")]
-    public morphemicPrefixType[] mpfx { get { return mpfxField; } set { mpfxField = value; } }
+    public morphemicPrefixType[] mpfx
+    {
+      get => mpfxField;
+      set => mpfxField = value;
+    }
 
     /// <remarks />
     [XmlElement("mk")]
-    public morphemic_marker[] mk { get { return mkField; } set { mkField = value; } }
+    public morphemic_marker[] mk
+    {
+      get => mkField;
+      set => mkField = value;
+    }
 
 
     /// <remarks />
-    public posType pos { get { return posField; } set { posField = value; } }
+    public posType pos
+    {
+      get => posField;
+      set => posField = value;
+    }
 
     /// <remarks />
-    public string stem { get { return stemField; } set { stemField = value; } }
+    public string stem
+    {
+      get => stemField;
+      set => stemField = value;
+    }
   }
 }

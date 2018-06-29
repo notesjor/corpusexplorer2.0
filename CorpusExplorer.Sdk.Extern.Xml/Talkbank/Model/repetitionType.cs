@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "nonNegativeInteger")]
-    public string times { get { return timesField; } set { timesField = value; } }
+    public string times
+    {
+      get => timesField;
+      set => timesField = value;
+    }
   }
 }

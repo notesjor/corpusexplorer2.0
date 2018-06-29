@@ -23,14 +23,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "anyURI")]
-    public string @ref { get { return refField; } set { refField = value; } }
+    public string @ref
+    {
+      get => refField;
+      set => refField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string role { get { return roleField; } set { roleField = value; } }
+    public string role
+    {
+      get => roleField;
+      set => roleField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

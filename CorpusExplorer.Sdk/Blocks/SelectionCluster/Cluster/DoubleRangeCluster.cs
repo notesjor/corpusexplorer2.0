@@ -1,20 +1,16 @@
 using System;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
+using CorpusExplorer.Sdk.Helper;
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {
-  public class DoubleRangeCluster : AbstractCluster
+  public class DoubleRangeCluster : AbstractRangeCluster<double>
   {
-    private readonly double _valueEnd;
-    private readonly double _valueStart;
-
-    public DoubleRangeCluster(double valueStart, double valueEnd)
+    public DoubleRangeCluster(double valueStart, double valueEnd) : base(valueStart, valueEnd)
     {
-      _valueStart = valueStart;
-      _valueEnd = valueEnd;
     }
 
-    public override object CentralValue => _valueEnd - _valueStart;
+    public override object CentralValue => _valueStart + (_valueEnd - _valueStart) / 2d;
 
     public override string Displayname => $"{_valueStart} > {_valueEnd}";
 
@@ -22,8 +18,8 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
     {
       try
       {
-        var test = (double) obj;
-        if (test < _valueStart || test > _valueEnd)
+        var val = obj.SafeCastDouble();
+        if (val < _valueStart || val > _valueEnd)
           return false;
         Add(documentGuid);
         return true;

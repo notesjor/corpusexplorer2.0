@@ -9,7 +9,10 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Model.Context
   {
     private static ElasticSearchContext _context;
 
-    public static ElasticSearchContext GetContext() => _context;
+    public static ElasticSearchContext GetContext()
+    {
+      return _context;
+    }
 
     public static void Initialize(string nodeUrl, string index, ElasticSearchContextCredentials credentials = null)
     {

@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string Default { get { return defaultField; } set { defaultField = value; } }
+    public string Default
+    {
+      get => defaultField;
+      set => defaultField = value;
+    }
   }
 }

@@ -1125,6 +1125,26 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap cabinet_warn {
+            get {
+                object obj = ResourceManager.GetObject("cabinet-warn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap cabinet_warn1 {
+            get {
+                object obj = ResourceManager.GetObject("cabinet-warn1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap cabinet1 {
             get {
                 object obj = ResourceManager.GetObject("cabinet1", resourceCulture);
@@ -1385,6 +1405,36 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         public static System.Drawing.Bitmap cloud2 {
             get {
                 object obj = ResourceManager.GetObject("cloud2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap color_fill {
+            get {
+                object obj = ResourceManager.GetObject("color_fill", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap color_fill1 {
+            get {
+                object obj = ResourceManager.GetObject("color_fill1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap color_fill2 {
+            get {
+                object obj = ResourceManager.GetObject("color_fill2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2799,6 +2849,16 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap export_spreadsheet {
+            get {
+                object obj = ResourceManager.GetObject("export_spreadsheet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap export_text {
             get {
                 object obj = ResourceManager.GetObject("export_text", resourceCulture);
@@ -3057,6 +3117,15 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         public static string FileExtension_XML {
             get {
                 return ResourceManager.GetString("FileExtension_XML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die ZIP-Datei (*.zip)|*.zip ähnelt.
+        /// </summary>
+        public static string FileExtension_ZIP {
+            get {
+                return ResourceManager.GetString("FileExtension_ZIP", resourceCulture);
             }
         }
         
@@ -6224,6 +6293,16 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap replace {
+            get {
+                object obj = ResourceManager.GetObject("replace", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap resources {
             get {
                 object obj = ResourceManager.GetObject("resources", resourceCulture);
@@ -6388,6 +6467,16 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         public static string SchnelleVolltextansicht {
             get {
                 return ResourceManager.GetString("SchnelleVolltextansicht", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap script {
+            get {
+                object obj = ResourceManager.GetObject("script", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -7266,6 +7355,26 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap structure {
+            get {
+                object obj = ResourceManager.GetObject("structure", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap structure1 {
+            get {
+                object obj = ResourceManager.GetObject("structure1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Stilmetriken ähnelt.
         /// </summary>
         public static string Stylemetrics {
@@ -8012,6 +8121,26 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         public static System.Drawing.Bitmap upload {
             get {
                 object obj = ResourceManager.GetObject("upload", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap user_group {
+            get {
+                object obj = ResourceManager.GetObject("user_group", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap user_group1 {
+            get {
+                object obj = ResourceManager.GetObject("user_group1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

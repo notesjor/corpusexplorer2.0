@@ -25,10 +25,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NMTOKEN")]
-    public string absolute { get { return absoluteField; } set { absoluteField = value; } }
+    public string absolute
+    {
+      get => absoluteField;
+      set => absoluteField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified, Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
   }
 }

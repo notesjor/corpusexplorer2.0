@@ -21,11 +21,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Bare.Model
   {
     private string typeField;
 
-    public teiHeader() { typeField = "text"; }
+    public teiHeader()
+    {
+      typeField = "text";
+    }
 
     /// <remarks />
     [XmlAttribute]
-    [DefaultValue("text")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    [DefaultValue("text")] public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

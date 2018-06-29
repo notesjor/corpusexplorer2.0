@@ -23,10 +23,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "language")]
-    public string[] lang { get { return langField; } set { langField = value; } }
+    public string[] lang
+    {
+      get => langField;
+      set => langField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string Value { get { return valueField; } set { valueField = value; } }
+    public string Value
+    {
+      get => valueField;
+      set => valueField = value;
+    }
   }
 }

@@ -21,9 +21,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model
 
     /// <remarks />
     [XmlElement("biblScope")]
-    public biblScope[] biblScope { get { return biblScopeField; } set { biblScopeField = value; } }
+    public biblScope[] biblScope
+    {
+      get => biblScopeField;
+      set => biblScopeField = value;
+    }
 
     /// <remarks />
-    public title title { get { return titleField; } set { titleField = value; } }
+    public title title
+    {
+      get => titleField;
+      set => titleField = value;
+    }
   }
 }

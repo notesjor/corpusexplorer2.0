@@ -26,14 +26,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     /// <remarks />
     [XmlElement("ats", typeof(ats))]
     [XmlElement("ts", typeof(ts))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string name { get { return nameField; } set { nameField = value; } }
+    public string name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string tierref { get { return tierrefField; } set { tierrefField = value; } }
+    public string tierref
+    {
+      get => tierrefField;
+      set => tierrefField = value;
+    }
   }
 }

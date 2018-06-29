@@ -1,76 +1,57 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
+namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1381926654438")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1381926654438", IsNullable = false)]
-  public partial class titleStmt
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true, Namespace = "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1381926654438")]
+  [XmlRoot(Namespace = "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1381926654438", IsNullable = false)]
+  public class titleStmt
   {
-
-    private title[] titleField;
-
     private author authorField;
 
     private editor[] editorField;
 
     private respStmt[] respStmtField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("title")]
-    public title[] title
-    {
-      get
-      {
-        return this.titleField;
-      }
-      set
-      {
-        this.titleField = value;
-      }
-    }
+    private title[] titleField;
 
-    /// <remarks/>
+    /// <remarks />
     public author author
     {
-      get
-      {
-        return this.authorField;
-      }
-      set
-      {
-        this.authorField = value;
-      }
+      get => authorField;
+      set => authorField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("editor")]
+    /// <remarks />
+    [XmlElement("title")]
+    public title[] title
+    {
+      get => titleField;
+      set => titleField = value;
+    }
+
+    /// <remarks />
+    [XmlElement("editor")]
     public editor[] editor
     {
-      get
-      {
-        return this.editorField;
-      }
-      set
-      {
-        this.editorField = value;
-      }
+      get => editorField;
+      set => editorField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("respStmt")]
+    /// <remarks />
+    [XmlElement("respStmt")]
     public respStmt[] respStmt
     {
-      get
-      {
-        return this.respStmtField;
-      }
-      set
-      {
-        this.respStmtField = value;
-      }
+      get => respStmtField;
+      set => respStmtField = value;
     }
   }
 }

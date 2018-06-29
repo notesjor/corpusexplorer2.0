@@ -13,18 +13,20 @@ namespace CorpusExplorer.Sdk.Model.Extension
   public static class HydraConversionExtension
   {
     public static AbstractCorpusAdapter ToCorpus(this IHydra hydra, AbstractCorpusBuilder builder = null)
-      => hydra is AbstractCorpusAdapter
+    {
+      return hydra is AbstractCorpusAdapter
         ? ToCorpus((AbstractCorpusAdapter) hydra, builder)
         : hydra is Project
           ? ToCorpus((Project) hydra, builder)
           : hydra is Selection
             ? ToCorpus((Selection) hydra, builder)
             : null;
+    }
 
     public static AbstractCorpusAdapter ToCorpus(this AbstractCorpusAdapter corpus,
       AbstractCorpusBuilder builder = null)
     {
-      if(builder == null)
+      if (builder == null)
         builder = new CorpusBuilderWriteDirect();
 
       var merger = new CorpusMerger {CorpusBuilder = builder};
@@ -33,7 +35,7 @@ namespace CorpusExplorer.Sdk.Model.Extension
 
       return merger.Output.Single();
     }
-    
+
     public static AbstractCorpusAdapter ToCorpus(this Project project, AbstractCorpusBuilder builder = null)
     {
       return project.SelectAll.ToCorpus(builder);
@@ -65,15 +67,20 @@ namespace CorpusExplorer.Sdk.Model.Extension
     }
 
     public static Project ToProject(this IHydra hydra)
-      => hydra is AbstractCorpusAdapter
+    {
+      return hydra is AbstractCorpusAdapter
         ? ToProject((AbstractCorpusAdapter) hydra)
         : hydra is Project
           ? ToProject((Project) hydra)
           : hydra is Selection
             ? ToProject((Selection) hydra)
             : null;
+    }
 
-    public static Project ToProject(this Project project) => project;
+    public static Project ToProject(this Project project)
+    {
+      return project;
+    }
 
     public static Project ToProject(this AbstractCorpusAdapter corpus)
     {
@@ -82,20 +89,31 @@ namespace CorpusExplorer.Sdk.Model.Extension
       return project;
     }
 
-    public static Project ToProject(this Selection selection) { return selection.ToCorpus().ToProject(); }
-    
+    public static Project ToProject(this Selection selection)
+    {
+      return selection.ToCorpus().ToProject();
+    }
+
     public static Selection ToSelection(this IHydra hydra)
-      => hydra is AbstractCorpusAdapter
+    {
+      return hydra is AbstractCorpusAdapter
         ? ToSelection((AbstractCorpusAdapter) hydra)
         : hydra is Project
           ? ToSelection((Project) hydra)
           : hydra is Selection
             ? ToSelection((Selection) hydra)
             : null;
+    }
 
-    public static Selection ToSelection(this Selection selection) => selection;
-    
-    public static Selection ToSelection(this Project project) => project.SelectAll;
+    public static Selection ToSelection(this Selection selection)
+    {
+      return selection;
+    }
+
+    public static Selection ToSelection(this Project project)
+    {
+      return project.SelectAll;
+    }
 
     public static Selection ToSelection(this AbstractCorpusAdapter corpus)
     {

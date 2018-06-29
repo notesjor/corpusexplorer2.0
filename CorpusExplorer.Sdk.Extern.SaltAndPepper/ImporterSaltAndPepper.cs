@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
-using System.Threading.Tasks;
-using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Extern.Plaintext.Conll;
 using CorpusExplorer.Sdk.Helper;
@@ -14,15 +10,6 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
 {
   public class ImporterSaltAndPepper : AbstractImporter
   {
-    private ImporterConll _importer;
-
-    public ImporterSaltAndPepper()
-    {
-      _importer = new ImporterConll();
-    }
-
-    public PepperImportModule Module { get; set; } = PepperImportModule.None;
-
     public enum PepperImportModule
     {
       None,
@@ -54,12 +41,22 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
       Wolof
     }
 
+    private readonly ImporterConll _importer;
+
+    public ImporterSaltAndPepper()
+    {
+      _importer = new ImporterConll();
+    }
+
+    public PepperImportModule Module { get; set; } = PepperImportModule.None;
+
     protected override IEnumerable<AbstractCorpusAdapter> Execute(string importFilePath)
     {
       using (var scriptTemp = new TemporaryFile(Configuration.TempPath))
       using (var outputTemp = new TemporaryFile(Configuration.TempPath))
       {
-        var script = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><?xml-model href=\"https://korpling.german.hu-berlin.de/saltnpepper/pepper/schema/10/pepper.rnc\" type=\"application/relax-ng-compact-syntax\"?><pepper-job version=\"1.0\"><importer name=\"FORMAT_NAME\" path=\"SOURCE_PATH\"/><manipulator name=\"MANIPULATOR_NAME\"/><exporter name=\"EXPORTER_NAME\" path=\"TARGET_PATH\"/></pepper-job>";
+        var script =
+          "<?xml version=\"1.0\" encoding=\"UTF-8\"?><?xml-model href=\"https://korpling.german.hu-berlin.de/saltnpepper/pepper/schema/10/pepper.rnc\" type=\"application/relax-ng-compact-syntax\"?><pepper-job version=\"1.0\"><importer name=\"FORMAT_NAME\" path=\"SOURCE_PATH\"/><manipulator name=\"MANIPULATOR_NAME\"/><exporter name=\"EXPORTER_NAME\" path=\"TARGET_PATH\"/></pepper-job>";
 
         var formatName = GetFormatName();
         // ReSharper disable once ConvertIfStatementToSwitchStatement
@@ -92,10 +89,11 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
           }
         };
         TemplateTextGenerator.GenerateToFile(script, vars, scriptTemp.Path);
-        
+
         var pepperPath = (Configuration.GetDependencyPath(@"pepper") + @"\").Replace(@"\", "/");
-        var javaArguments = $"-cp {pepperPath}lib/*;{pepperPath}plugins/*; -Dfile.encoding=UTF-8 -Dlogback.configurationFile={pepperPath}/conf/logback.xml org.corpus_tools.pepper.cli.PepperStarter {scriptTemp}";
-             
+        var javaArguments =
+          $"-cp {pepperPath}lib/*;{pepperPath}plugins/*; -Dfile.encoding=UTF-8 -Dlogback.configurationFile={pepperPath}/conf/logback.xml org.corpus_tools.pepper.cli.PepperStarter {scriptTemp}";
+
         var pepper = new Process
         {
           StartInfo =
@@ -121,7 +119,7 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
         pepper.Start();
         pepper.WaitForExit();
 
-        return _importer.Execute(new[] { outputTemp.Path });
+        return _importer.Execute(new[] {outputTemp.Path});
       }
     }
 

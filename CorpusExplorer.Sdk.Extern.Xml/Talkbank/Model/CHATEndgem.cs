@@ -22,6 +22,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string label { get { return labelField; } set { labelField = value; } }
+    public string label
+    {
+      get => labelField;
+      set => labelField = value;
+    }
   }
 }

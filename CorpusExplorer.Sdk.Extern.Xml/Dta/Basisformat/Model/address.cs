@@ -20,10 +20,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private string countryField;
 
     /// <remarks />
-    public string addrLine { get { return addrLineField; } set { addrLineField = value; } }
+    public string addrLine
+    {
+      get => addrLineField;
+      set => addrLineField = value;
+    }
 
     /// <remarks />
     [XmlElement(DataType = "NCName")]
-    public string country { get { return countryField; } set { countryField = value; } }
+    public string country
+    {
+      get => countryField;
+      set => countryField = value;
+    }
   }
 }

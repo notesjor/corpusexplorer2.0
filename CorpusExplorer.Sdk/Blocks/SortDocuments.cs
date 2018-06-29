@@ -14,10 +14,10 @@ namespace CorpusExplorer.Sdk.Blocks
     {
       var meta = Selection.DocumentMetadata;
       var list = (from doc in meta
-                  where doc.Value.ContainsKey(MetadataKey)
-                  let value = doc.Value[MetadataKey] as IComparable
-                  where value != null
-                  select new KeyValuePair<IComparable, Guid>(value, doc.Key)).ToList();
+        where doc.Value.ContainsKey(MetadataKey)
+        let value = doc.Value[MetadataKey] as IComparable
+        where value != null
+        select new KeyValuePair<IComparable, Guid>(value, doc.Key)).ToList();
       list.Sort((x, y) => x.Key.CompareTo(y.Key));
       DocumentGuids = list.Select(x => x.Value).ToArray();
     }

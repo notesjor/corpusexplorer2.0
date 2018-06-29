@@ -2,8 +2,8 @@
 
 using System.Collections.Generic;
 using CorpusExplorer.Core.DocumentProcessing.Tokenizer;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer;
 
 #endregion
 
@@ -21,7 +21,11 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tagger.RawText
 
     public override string DisplayName => "Keine Annotation - Nur Textimport";
 
-    public override string InstallationPath { get { return "(NICHT WÄHLBAR - OPTIMIERTE VERSION)"; } set { } }
+    public override string InstallationPath
+    {
+      get => "(NICHT WÄHLBAR - OPTIMIERTE VERSION)";
+      set { }
+    }
 
     public override IEnumerable<string> LanguagesAvailabel => new[] {"Universal"};
 
@@ -43,7 +47,10 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tagger.RawText
 
     protected override string[] TaggerValueSeparator => new[] {"\t"};
 
-    protected override string ExecuteTagger(string text) { return text; }
+    protected override string ExecuteTagger(string text)
+    {
+      return text;
+    }
 
     protected override bool IsEndOfSentence(string[] data)
     {

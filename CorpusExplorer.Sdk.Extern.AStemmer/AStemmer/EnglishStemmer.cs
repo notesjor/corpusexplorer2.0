@@ -29,7 +29,8 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
       Vowels = new[] {'a', 'e', 'i', 'o', 'u', 'y'};
       _validLiEndings = new[] {"c", "d", "e", "g", "h", "k", "m", "n", "r", "t"};
       _doubles = new[] {"bb", "dd", "ff", "gg", "mm", "nn", "pp", "rr", "tt"};
-      _step1Replacements = new[,] {{"eedly", "ee"}, {"ingly", ""}, {"edly", ""}, {"eed", "ee"}, {"ing", ""}, {"ed", ""}};
+      _step1Replacements = new[,]
+        {{"eedly", "ee"}, {"ingly", ""}, {"edly", ""}, {"eed", "ee"}, {"ing", ""}, {"ed", ""}};
       _step2Replacements = new[,]
       {
         {"ization", "ize"},
@@ -115,52 +116,6 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
     } // End of the constructor
 
     /// <summary>
-    ///   Calculate the R1 and R2 part for a word
-    /// </summary>
-    /// <param name="word">The word to calculate R1 and R2 for</param>
-    /// <returns>An int array with the r1 and r2 index</returns>
-    private int[] CalculateR1R2(string word)
-    {
-      // Create the int array to return
-      var r1 = word.Length;
-      var r2 = word.Length;
-
-      // Convert the word to a char array
-      var characters = word.ToCharArray();
-
-      // Calculate R1
-      if (word.StartsWith("gener") ||
-          word.StartsWith("arsen"))
-        r1 = 5;
-      else if (word.StartsWith("commun"))
-        r1 = 6;
-      else
-        for (var i = 1; i < characters.Length; i++)
-        {
-          if (IsVowel(characters[i]) ||
-              !IsVowel(characters[i - 1]))
-            continue;
-          // Set the r1 index
-          r1 = i + 1;
-          break;
-        }
-
-      // Calculate R2
-      for (var i = r1; i < characters.Length; ++i)
-      {
-        if (IsVowel(characters[i]) ||
-            !IsVowel(characters[i - 1]))
-          continue;
-        // Set the r2 index
-        r2 = i + 1;
-        break;
-      }
-
-      // Return the int array
-      return new[] {r1, r2};
-    } // End of the calculateR1R2 method
-
-    /// <summary>
     ///   Get the englist steam word from a specific word
     /// </summary>
     /// <param name="word">The word to strip</param>
@@ -188,16 +143,16 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
       var chars = word.ToCharArray();
 
       // Set initial y to Y
-      if ((chars.Length > 0) &&
-          (chars[0] == 'y'))
+      if (chars.Length > 0 &&
+          chars[0] == 'y')
         chars[0] = 'Y';
 
       // Set y after a vowel to Y
       if (chars.Length > 1)
         for (var i = 1; i < chars.Length; i++)
           foreach (var v in Vowels)
-            if ((chars[i] == 'y') &&
-                (chars[i - 1] == v))
+            if (chars[i] == 'y' &&
+                chars[i - 1] == v)
               chars[i] = 'Y';
 
       // Get the modified word from the char array
@@ -209,13 +164,13 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
       // ********************************************************
       // Step 0 - Remove endings
       // ********************************************************
-      if ((word.Length >= 3) &&
+      if (word.Length >= 3 &&
           word.EndsWith("'s'"))
         word = word.Remove(word.Length - 3, 3);
-      else if ((word.Length >= 2) &&
+      else if (word.Length >= 2 &&
                word.EndsWith("'s"))
         word = word.Remove(word.Length - 2, 2);
-      else if ((word.Length >= 1) &&
+      else if (word.Length >= 1 &&
                word.EndsWith("'"))
         word = word.Remove(word.Length - 1, 1);
       // ********************************************************
@@ -224,10 +179,14 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
       // Step 1a - Remove endings
       // ********************************************************
       if (word.EndsWith("sses"))
+      {
         word = word.Remove(word.Length - 2);
+      }
       else if (word.EndsWith("ied") ||
                word.EndsWith("ies"))
+      {
         word = word.Length > 4 ? word.Remove(word.Length - 2) : word.Remove(word.Length - 1);
+      }
       else if (word.EndsWith("us") ||
                word.EndsWith("ss"))
       {
@@ -262,18 +221,20 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
       // ********************************************************
       for (var i = 0; i < 6; i++)
       {
-        if ((_step1Replacements[i, 0] == "eedly") &&
+        if (_step1Replacements[i, 0] == "eedly" &&
             strR1.EndsWith("eedly"))
         {
           word = word.Length >= 2 ? word.Remove(word.Length - 2, 2) : word;
           break;
         }
-        if ((_step1Replacements[i, 0] == "eed") &&
+
+        if (_step1Replacements[i, 0] == "eed" &&
             strR1.EndsWith("eed"))
         {
           word = word.Length >= 1 ? word.Remove(word.Length - 1, 1) : word;
           break;
         }
+
         if (!word.EndsWith(_step1Replacements[i, 0]))
           continue;
         // Create a character array
@@ -329,9 +290,9 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
       // ********************************************************
       // Step 1c - Replace ending
       // ********************************************************
-      if ((word.Length > 2) &&
+      if (word.Length > 2 &&
           (word.EndsWith("y") || word.EndsWith("Y")) &&
-          (IsVowel(word[word.Length - 2]) == false))
+          IsVowel(word[word.Length - 2]) == false)
       {
         word = word.Remove(word.Length - 1);
         word += "i";
@@ -364,6 +325,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
                 if (_validLiEndings.Any(t => liEnding == t))
                   word = word.Remove(word.Length - 2);
               }
+
               break;
             default:
               if (word.Length >= _step2Replacements[i, 0].Length)
@@ -371,6 +333,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
                 word = word.Remove(word.Length - _step2Replacements[i, 0].Length);
                 word += _step2Replacements[i, 1];
               }
+
               break;
           }
 
@@ -425,12 +388,14 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
           {
             var preChar = word.Length > 4 ? word[word.Length - 4] : '\0';
 
-            if ((preChar == 's') ||
-                (preChar == 't'))
+            if (preChar == 's' ||
+                preChar == 't')
               word = word.Remove(word.Length - t.Length);
           }
           else
+          {
             word = word.Remove(word.Length - t.Length);
+          }
 
         // Break out from the loop
         break;
@@ -445,7 +410,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
       // Step 5 - Remove endings
       // ********************************************************
       if (strR2.EndsWith("e") ||
-          (strR1.EndsWith("e") && (IsShortSyllable(word.ToCharArray(), word.Length - 3) == false)))
+          strR1.EndsWith("e") && IsShortSyllable(word.ToCharArray(), word.Length - 3) == false)
         word = word.Remove(word.Length - 1);
       else if (strR2.EndsWith("l") &&
                word.EndsWith("ll"))
@@ -455,5 +420,51 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
       // Return the stripped word
       return word.ToLowerInvariant();
     } // End of the GetSteamWord method
+
+    /// <summary>
+    ///   Calculate the R1 and R2 part for a word
+    /// </summary>
+    /// <param name="word">The word to calculate R1 and R2 for</param>
+    /// <returns>An int array with the r1 and r2 index</returns>
+    private int[] CalculateR1R2(string word)
+    {
+      // Create the int array to return
+      var r1 = word.Length;
+      var r2 = word.Length;
+
+      // Convert the word to a char array
+      var characters = word.ToCharArray();
+
+      // Calculate R1
+      if (word.StartsWith("gener") ||
+          word.StartsWith("arsen"))
+        r1 = 5;
+      else if (word.StartsWith("commun"))
+        r1 = 6;
+      else
+        for (var i = 1; i < characters.Length; i++)
+        {
+          if (IsVowel(characters[i]) ||
+              !IsVowel(characters[i - 1]))
+            continue;
+          // Set the r1 index
+          r1 = i + 1;
+          break;
+        }
+
+      // Calculate R2
+      for (var i = r1; i < characters.Length; ++i)
+      {
+        if (IsVowel(characters[i]) ||
+            !IsVowel(characters[i - 1]))
+          continue;
+        // Set the r2 index
+        r2 = i + 1;
+        break;
+      }
+
+      // Return the int array
+      return new[] {r1, r2};
+    } // End of the calculateR1R2 method
   } // End of the class
 } // End of the namespace

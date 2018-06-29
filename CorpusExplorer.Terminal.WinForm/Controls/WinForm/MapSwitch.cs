@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows;
 using System.Windows.Media;
 using CorpusExplorer.Sdk.Extern.TileGridMap;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Abstract;
+using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Colorizer;
 using CorpusExplorer.Terminal.WinForm.Helper;
 
 namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
@@ -17,17 +14,25 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
   [ToolboxItem(true)]
   public partial class MapSwitch : AbstractUserControl
   {
-    private RealMap _mapR = new RealMap
+    private readonly RealMap _mapR = new RealMap
     {
-      VerticalAlignment = System.Windows.VerticalAlignment.Stretch,
-      HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch
+      VerticalAlignment = VerticalAlignment.Stretch,
+      HorizontalAlignment = HorizontalAlignment.Stretch
     };
 
-    private TileGridMapAlpha2 _mapT = new TileGridMapAlpha2
+    private readonly TileGridMapAlpha2 _mapT = new TileGridMapAlpha2
     {
-      VerticalAlignment = System.Windows.VerticalAlignment.Stretch,
-      HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch
+      VerticalAlignment = VerticalAlignment.Stretch,
+      HorizontalAlignment = HorizontalAlignment.Stretch
     };
+
+    private readonly Colorizer _colorizer = new Colorizer
+    {
+      VerticalAlignment = VerticalAlignment.Stretch,
+      HorizontalAlignment = HorizontalAlignment.Stretch
+    };
+
+    private Dictionary<string, double> _data;
 
     public MapSwitch()
     {
@@ -37,12 +42,14 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
 
       elementHost1.Child = _mapR;
       elementHost2.Child = _mapT;
+      elementHost3.Child = _colorizer;
 
       // Style TileGridMapAlpha2
       _mapT.SetCountryBorder(_mapT.GetAllCountriesOfRegion("Asia"), new SolidColorBrush(Color.FromRgb(255, 204, 0)));
       _mapT.SetCountryBorder(_mapT.GetAllCountriesOfRegion("Europe"), new SolidColorBrush(Color.FromRgb(0, 201, 255)));
       _mapT.SetCountryBorder(_mapT.GetAllCountriesOfRegion("Africa"), new SolidColorBrush(Color.FromRgb(0, 238, 153)));
-      _mapT.SetCountryBorder(_mapT.GetAllCountriesOfRegion("Americas"), new SolidColorBrush(Color.FromRgb(241, 74, 155)));
+      _mapT.SetCountryBorder(_mapT.GetAllCountriesOfRegion("Americas"),
+        new SolidColorBrush(Color.FromRgb(241, 74, 155)));
       _mapT.SetCountryBorder(_mapT.GetAllCountriesOfRegion("Oceania"), new SolidColorBrush(Color.FromRgb(242, 88, 7)));
 
       _mapT.FixInnerBorder(2);
@@ -52,11 +59,34 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
 
       // Style RealMap
       _mapR.SetAllCountryBackground(new SolidColorBrush(Colors.Black));
+
+      // Colorizer
+      _colorizer.ColorsChanged += _colorizer_ColorsChanged;
     }
 
-    public void ShowVectorMap()
+    private void _colorizer_ColorsChanged(object sender, System.EventArgs e)
     {
-      radPageView1.SelectedPage = radPageViewPage1;
+      Recolor();
+    }
+
+    private void Recolor()
+    {
+      SetData(_data);
+    }
+    
+    public void SetData(Dictionary<string, double> data)
+    {
+      _data = data;
+      var max = data.Max(x => x.Value);
+      var palette = _colorizer.GetValueGradientColorizer(0, 1);
+      foreach (var d in data)
+      {
+        var brush = new SolidColorBrush(ColorGradientPickHelper.GetColor(palette, d.Value / max));
+        _mapR.SetCountryBackground(d.Key, brush);
+        _mapT.SetCountryBackground(d.Key, brush);
+      }
+
+      SetToolTip(data);
     }
 
     public void ShowTileMap()
@@ -64,36 +94,9 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       radPageView1.SelectedPage = radPageViewPage2;
     }
 
-    public void SetData(Dictionary<string, double> data)
+    public void ShowVectorMap()
     {
-      var cdata = new Dictionary<string, double>(data);
-      var max = cdata.Max(x => x.Value);
-      var min = cdata.Min(x => x.Value);
-      var keys = cdata.Keys.ToArray();
-
-      if (min < 0)
-      {
-        max -= min;
-        foreach (var x in keys)
-          cdata[x] -= min;
-      }
-
-      foreach (var x in keys)
-        cdata[x] = 255 - ((cdata[x] / max) * 255);
-
-      var color = new Dictionary<string, UniversalColor>();
-      foreach (var x in cdata)
-      {
-        var val = x.Value;
-        if (val > 255)
-          val = 255;
-        if (val < 0)
-          val = 0;
-        color.Add(x.Key, new UniversalColor((byte)val));
-      }
-      
-      SetColor(color);
-      SetToolTip(data);
+      radPageView1.SelectedPage = radPageViewPage1;
     }
 
     private void SetToolTip(Dictionary<string, double> data)
@@ -102,15 +105,6 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       {
         _mapR.SetCountryValue(x.Key, x.Value);
         _mapT.SetCountryValue(x.Key, x.Value);
-      }
-    }
-
-    public void SetColor(Dictionary<string, UniversalColor> data)
-    {
-      foreach (var x in data)
-      {
-        _mapR.SetCountryBackground(x.Key, new SolidColorBrush(x.Value.ToWpfColor()));
-        _mapT.SetCountryBackground(x.Key, new SolidColorBrush(x.Value.ToWpfColor()));        
       }
     }
   }

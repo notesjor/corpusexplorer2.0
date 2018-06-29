@@ -27,26 +27,54 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     private string typeField;
 
     /// <remarks />
-    public string City { get { return cityField; } set { cityField = value; } }
+    public string City
+    {
+      get => cityField;
+      set => cityField = value;
+    }
 
     /// <remarks />
-    public string Country { get { return countryField; } set { countryField = value; } }
+    public string Country
+    {
+      get => countryField;
+      set => countryField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("Key", IsNullable = false)]
-    public KeyType[] Description { get { return descriptionField; } set { descriptionField = value; } }
+    public KeyType[] Description
+    {
+      get => descriptionField;
+      set => descriptionField = value;
+    }
 
     /// <remarks />
-    public PeriodType Period { get { return periodField; } set { periodField = value; } }
+    public PeriodType Period
+    {
+      get => periodField;
+      set => periodField = value;
+    }
 
     /// <remarks />
-    public string PostalCode { get { return postalCodeField; } set { postalCodeField = value; } }
+    public string PostalCode
+    {
+      get => postalCodeField;
+      set => postalCodeField = value;
+    }
 
     /// <remarks />
-    public string Street { get { return streetField; } set { streetField = value; } }
+    public string Street
+    {
+      get => streetField;
+      set => streetField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified)]
-    public string Type { get { return typeField; } set { typeField = value; } }
+    public string Type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

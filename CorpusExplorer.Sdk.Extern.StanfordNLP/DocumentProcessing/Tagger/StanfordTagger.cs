@@ -14,53 +14,27 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
   public sealed class StanfordTagger : AbstractTaggerWithUnderscore
   {
     private readonly Dictionary<string, string> _languages = new Dictionary<string, string>
-                                                             {
-                                                               {"Arabisch", "arabic.tagger"},
-                                                               {"Chinesisch (distsim)", "chinese-distsim.tagger"},
-                                                               {"Chinesisch (nodistsim)", "chinese-nodistsim.tagger"},
-                                                               {
-                                                                 "Englisch (english-bidirectional-distsim)",
-                                                                 "english-bidirectional-distsim.tagger"
-                                                               },
-                                                               {
-                                                                 "Englisch (english-caseless-left3words-distsim)",
-                                                                 "english-caseless-left3words-distsim.tagger"
-                                                               },
-                                                               {
-                                                                 "Englisch (english-left3words-distsim)",
-                                                                 "english-left3words-distsim.tagger"
-                                                               },
-                                                               {
-                                                                 "Englisch (wsj-0-18-bidirectional-distsim)",
-                                                                 "wsj-0-18-bidirectional-distsim.tagger"
-                                                               },
-                                                               {
-                                                                 "Englisch (wsj-0-18-bidirectional-nodistsim)",
-                                                                 "wsj-0-18-bidirectional-nodistsim.tagger"
-                                                               },
-                                                               {
-                                                                 "Englisch (wsj-0-18-caseless-left3words-distsim)",
-                                                                 "wsj-0-18-caseless-left3words-distsim.tagger"
-                                                               },
-                                                               {
-                                                                 "Englisch (wsj-0-18-left3words-distsim)",
-                                                                 "wsj-0-18-left3words-distsim.tagger"
-                                                               },
-                                                               {
-                                                                 "Englisch (wsj-0-18-left3words-nodistsim)",
-                                                                 "wsj-0-18-left3words-nodistsim.tagger"
-                                                               },
-                                                               {"Französisch", "french.tagger"},
-                                                               {"Deutsch (german-dewac)", "german-dewac.tagger"},
-                                                               {"Deutsch (german-fast)", "german-fast.tagger"},
-                                                               {
-                                                                 "Deutsch (german-fast-caseless)",
-                                                                 "german-fast-caseless.tagger"
-                                                               },
-                                                               {"Deutsch (german-hgc)", "german-hgc.tagger"}
-                                                             };
+    {
+      {"Arabisch", "arabic.tagger"},
+      {"Chinesisch (distsim)", "chinese-distsim.tagger"},
+      {"Chinesisch (nodistsim)", "chinese-nodistsim.tagger"},
+      {"Englisch (english-bidirectional-distsim)", "english-bidirectional-distsim.tagger"},
+      {"Englisch (english-caseless-left3words-distsim)", "english-caseless-left3words-distsim.tagger"},
+      {"Englisch (english-left3words-distsim)", "english-left3words-distsim.tagger"},
+      {"Englisch (wsj-0-18-bidirectional-distsim)", "wsj-0-18-bidirectional-distsim.tagger"},
+      {"Englisch (wsj-0-18-bidirectional-nodistsim)", "wsj-0-18-bidirectional-nodistsim.tagger"},
+      {"Englisch (wsj-0-18-caseless-left3words-distsim)", "wsj-0-18-caseless-left3words-distsim.tagger"},
+      {"Englisch (wsj-0-18-left3words-distsim)", "wsj-0-18-left3words-distsim.tagger"},
+      {"Englisch (wsj-0-18-left3words-nodistsim)", "wsj-0-18-left3words-nodistsim.tagger"},
+      {"Französisch", "french.tagger"},
+      {"Deutsch (german-dewac)", "german-dewac.tagger"},
+      {"Deutsch (german-fast)", "german-fast.tagger"},
+      {"Deutsch (german-fast-caseless)", "german-fast-caseless.tagger"},
+      {"Deutsch (german-hgc)", "german-hgc.tagger"}
+    };
 
     private string _languageSelected;
+
     // ReSharper disable once MemberCanBeInternal
     public StanfordTagger()
     {
@@ -68,15 +42,22 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
       AddValueLayer("POS", 1);
     }
 
-    public override string DisplayName { get { return "Stanford Maxent POS-Tagger"; } }
+    public override string DisplayName => "Stanford Maxent POS-Tagger";
 
-    public override string InstallationPath { get { return "(NICHT WÄHLBAR - OPTIMIERTE VERSION)"; } set { } }
+    public override string InstallationPath
+    {
+      get => "(NICHT WÄHLBAR - OPTIMIERTE VERSION)";
+      set { }
+    }
 
-    public override IEnumerable<string> LanguagesAvailabel { get { return _languages.Select(x => x.Key); } }
+    public override IEnumerable<string> LanguagesAvailabel
+    {
+      get { return _languages.Select(x => x.Key); }
+    }
 
     public override string LanguageSelected
     {
-      get { return _languageSelected; }
+      get => _languageSelected;
       set
       {
         if (!_languages.ContainsKey(value))
@@ -109,25 +90,25 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
         try
         {
           var process = new Process
-                        {
-                          StartInfo =
-                          {
-                            FileName = "\"" + JavaLocation + "\"",
-                            Arguments =
-                              string.Format(
-                                            "-mx300m -classpath \"{2}\" edu.stanford.nlp.tagger.maxent.MaxentTagger -model \"{0}\" -encoding UTF-8 -textFile \"{1}\"",
-                                            model,
-                                            fileInput.Path,
-                                            jar),
-                            RedirectStandardError = true,
-                            RedirectStandardOutput = true,
-                            StandardOutputEncoding = Configuration.Encoding,
-                            StandardErrorEncoding = Configuration.Encoding,
-                            CreateNoWindow = true,
-                            UseShellExecute = false,
-                            WindowStyle = ProcessWindowStyle.Hidden
-                          }
-                        };
+          {
+            StartInfo =
+            {
+              FileName = "\"" + JavaLocation + "\"",
+              Arguments =
+                string.Format(
+                  "-mx300m -classpath \"{2}\" edu.stanford.nlp.tagger.maxent.MaxentTagger -model \"{0}\" -encoding UTF-8 -textFile \"{1}\"",
+                  model,
+                  fileInput.Path,
+                  jar),
+              RedirectStandardError = true,
+              RedirectStandardOutput = true,
+              StandardOutputEncoding = Configuration.Encoding,
+              StandardErrorEncoding = Configuration.Encoding,
+              CreateNoWindow = true,
+              UseShellExecute = false,
+              WindowStyle = ProcessWindowStyle.Hidden
+            }
+          };
           process.Start();
 
           var res = process.StandardOutput.ReadToEnd();
@@ -143,17 +124,20 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
       }
     }
 
-    protected override bool IsEndOfSentence(string[] data) { return data.Length > 1 && data[1] == "$."; }
+    protected override bool IsEndOfSentence(string[] data)
+    {
+      return data.Length > 1 && data[1] == "$.";
+    }
 
     protected override string TextPostTaggerCleanup(string text)
     {
       var splits =
         text.Replace("._$.", "._$. ")
-            .Replace("\t", " ")
-            .Replace("  ", " ")
-            .Replace("  ", " ")
-            .Replace("  ", " ")
-            .Split(new[] {"<ENDOFCORPUSEXPLORERFILE>"}, StringSplitOptions.RemoveEmptyEntries);
+          .Replace("\t", " ")
+          .Replace("  ", " ")
+          .Replace("  ", " ")
+          .Replace("  ", " ")
+          .Split(new[] {"<ENDOFCORPUSEXPLORERFILE>"}, StringSplitOptions.RemoveEmptyEntries);
 
       var res = new List<string> {splits[0]};
 
@@ -172,8 +156,8 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
       return paths.Length == 0
         ? null
         : paths.Select(path => Directory.GetDirectories(path, "jre*"))
-               .Select(versions => versions.Length == 0 ? null : Path.Combine(versions[0], @"bin\java.exe"))
-               .FirstOrDefault();
+          .Select(versions => versions.Length == 0 ? null : Path.Combine(versions[0], @"bin\java.exe"))
+          .FirstOrDefault();
     }
   }
 }

@@ -5,6 +5,7 @@ using CorpusExplorer.Core.DocumentProcessing.Scraper.Html;
 using CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Ecosystem;
+using CorpusExplorer.Sdk.Extern.Xml.LexisNexis;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Extension;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
@@ -21,7 +22,7 @@ namespace CorpusExplorer.Sdk.Test
     {
       var proj = CorpusExplorerEcosystem.InitializeMinimal();
 
-      var scraper = new LexisNexisScraper();
+      var scraper = new NexisComScraper();
       scraper.Input.Enqueue("EXAMPLE/LexisNexisDEMO.HTML");
       scraper.Execute();
       var cleaner1 = new StandardCleanup {Input = scraper.Output};

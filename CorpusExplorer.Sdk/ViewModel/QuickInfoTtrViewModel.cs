@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
 
 namespace CorpusExplorer.Sdk.ViewModel
@@ -29,35 +30,42 @@ namespace CorpusExplorer.Sdk.ViewModel
       var lok = new object();
 
       Parallel.ForEach(Selection,
-                       csel =>
-                       {
-                         var corpus = Selection.GetCorpus(csel.Key);
-                         var layer = corpus?.GetLayers(LayerDisplayname).FirstOrDefault();
-                         if (layer == null)
-                           return;
-                         Parallel.ForEach(csel.Value,
-                                          dsel =>
-                                          {
-                                            if (!layer.ContainsDocument(dsel))
-                                              return;
-                                            var doc = layer[dsel];
-                                            if (doc == null)
-                                              return;
-                                            lock (lok)
-                                              foreach (var s in doc)
-                                              {
-                                                if (s == null)
-                                                  continue;
-                                                foreach (var w in s)
-                                                  all.Add(w);
-                                              }
-                                          });
-                       });
+        Configuration.ParallelOptions,
+        csel =>
+        {
+          var corpus = Selection.GetCorpus(csel.Key);
+          var layer = corpus?.GetLayers(LayerDisplayname).FirstOrDefault();
+          if (layer == null)
+            return;
+          Parallel.ForEach(csel.Value,
+            Configuration.ParallelOptions,
+            dsel =>
+            {
+              if (!layer.ContainsDocument(dsel))
+                return;
+              var doc = layer[dsel];
+              if (doc == null)
+                return;
+              lock (lok)
+              {
+                foreach (var s in doc)
+                {
+                  if (s == null)
+                    continue;
+                  foreach (var w in s)
+                    all.Add(w);
+                }
+              }
+            });
+        });
 
       CounterTypes = all.Count;
-      CounterTypeTokenRatio = ((double) CounterTypes) / ((double) CounterTokens);
+      CounterTypeTokenRatio = CounterTypes / (double) CounterTokens;
     }
 
-    protected override bool Validate() { return true; }
+    protected override bool Validate()
+    {
+      return true;
+    }
   }
 }

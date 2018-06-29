@@ -18,7 +18,10 @@ namespace CorpusExplorer.Sdk.Blocks
   {
     private readonly object _lock = new object();
 
-    public DuplicateSentenceBlock() { FrequencyMinimum = 1; }
+    public DuplicateSentenceBlock()
+    {
+      FrequencyMinimum = 1;
+    }
 
     public int FrequencyMinimum { get; set; }
     public Dictionary<string, int> SentenceFrequency { get; set; }
@@ -56,6 +59,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
           stb.AppendFormat("{0} ", w);
         }
+
         var key = stb.ToString();
 
         lock (_lock)
@@ -87,7 +91,9 @@ namespace CorpusExplorer.Sdk.Blocks
     ///   Wird nach der Bereinigung aufgerufen (nach CalculateCall + CalculateCleanup)
     ///   und dient dem zusammenfassen der bereinigen Ergebnisse
     /// </summary>
-    protected override void CalculateFinalize() { }
+    protected override void CalculateFinalize()
+    {
+    }
 
     /// <summary>
     ///   Wird vor der Berechnung aufgerufen (vor CalculateCall)

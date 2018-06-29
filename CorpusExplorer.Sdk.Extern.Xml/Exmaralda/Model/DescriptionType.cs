@@ -21,6 +21,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement("Key")]
-    public KeyType[] Key { get { return keyField; } set { keyField = value; } }
+    public KeyType[] Key
+    {
+      get => keyField;
+      set => keyField = value;
+    }
   }
 }

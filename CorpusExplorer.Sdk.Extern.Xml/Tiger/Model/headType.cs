@@ -25,14 +25,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tiger.Model
 
     /// <remarks />
     [XmlElement(Form = XmlSchemaForm.Unqualified)]
-    public annotationType annotation { get { return annotationField; } set { annotationField = value; } }
+    public annotationType annotation
+    {
+      get => annotationField;
+      set => annotationField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "anyURI")]
-    public string external { get { return externalField; } set { externalField = value; } }
+    public string external
+    {
+      get => externalField;
+      set => externalField = value;
+    }
 
     /// <remarks />
     [XmlElement(Form = XmlSchemaForm.Unqualified)]
-    public metaType meta { get { return metaField; } set { metaField = value; } }
+    public metaType meta
+    {
+      get => metaField;
+      set => metaField = value;
+    }
   }
 }

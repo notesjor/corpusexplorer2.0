@@ -25,26 +25,49 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     private AGSetTimeline[] timelineField;
     private string versionField;
 
-    public AGSet() { versionField = "1.0"; }
+    public AGSet()
+    {
+      versionField = "1.0";
+    }
 
     /// <remarks />
     [XmlElement("Timeline")]
-    public AGSetTimeline[] Timeline { get { return timelineField; } set { timelineField = value; } }
+    public AGSetTimeline[] Timeline
+    {
+      get => timelineField;
+      set => timelineField = value;
+    }
 
     /// <remarks />
     [XmlElement("AG")]
-    public AGSetAG[] AG { get { return agField; } set { agField = value; } }
+    public AGSetAG[] AG
+    {
+      get => agField;
+      set => agField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
-    public Metadata Metadata { get { return metadataField; } set { metadataField = value; } }
+    public Metadata Metadata
+    {
+      get => metadataField;
+      set => metadataField = value;
+    }
 
 
     /// <remarks />
     [XmlAttribute]
-    public string version { get { return versionField; } set { versionField = value; } }
+    public string version
+    {
+      get => versionField;
+      set => versionField = value;
+    }
   }
 }

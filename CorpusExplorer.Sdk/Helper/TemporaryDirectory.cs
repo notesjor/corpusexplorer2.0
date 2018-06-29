@@ -12,11 +12,11 @@ namespace CorpusExplorer.Sdk.Helper
 
       if (!Directory.Exists(directory))
         Directory.CreateDirectory(directory);
-      
+
       Path = directory;
     }
 
-    public string Path { get; private set; }
+    public string Path { get; }
 
     /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
     public void Dispose()

@@ -20,8 +20,8 @@ namespace CorpusExplorer.Sdk.Helper
           defA.Add(csel.Key, csel.Value);
 
       return selectionA.Project.Equals(selectionB.Project)
-               ? selectionA.Project.CreateSelection(defA, newSelectionDisplayname)
-               : selectionA.Project.JoinFull(selectionB.Project).SelectAll.Create(defA, newSelectionDisplayname);
+        ? selectionA.Project.CreateSelection(defA, newSelectionDisplayname)
+        : selectionA.Project.JoinFull(selectionB.Project).SelectAll.Create(defA, newSelectionDisplayname);
     }
 
     public static Selection JoinInner(this Selection selectionA, Selection selectionB, string newSelectionDisplayname)
@@ -43,8 +43,8 @@ namespace CorpusExplorer.Sdk.Helper
       }
 
       return selectionA.Project.Equals(selectionB.Project)
-               ? selectionA.Project.CreateSelection(defC, newSelectionDisplayname)
-               : selectionA.Project.JoinFull(selectionB.Project).SelectAll.Create(defC, newSelectionDisplayname);
+        ? selectionA.Project.CreateSelection(defC, newSelectionDisplayname)
+        : selectionA.Project.JoinFull(selectionB.Project).SelectAll.Create(defC, newSelectionDisplayname);
     }
 
     public static Selection JoinLeft(this Selection selectionA, Selection selectionB, string newSelectionDisplayname)
@@ -65,8 +65,8 @@ namespace CorpusExplorer.Sdk.Helper
       selectionA.Project.CreateSelection(defA, newSelectionDisplayname);
 
       return selectionA.Project.Equals(selectionB.Project)
-               ? selectionA.Project.CreateSelection(defA, newSelectionDisplayname)
-               : selectionA.Project.JoinFull(selectionB.Project).SelectAll.Create(defA, newSelectionDisplayname);
+        ? selectionA.Project.CreateSelection(defA, newSelectionDisplayname)
+        : selectionA.Project.JoinFull(selectionB.Project).SelectAll.Create(defA, newSelectionDisplayname);
     }
 
     public static Selection JoinOuter(this Selection selectionA, Selection selectionB, string newSelectionDisplayname)
@@ -91,8 +91,8 @@ namespace CorpusExplorer.Sdk.Helper
       }
 
       return selectionA.Project.Equals(selectionB.Project)
-               ? selectionA.Project.CreateSelection(defC, newSelectionDisplayname)
-               : selectionA.Project.JoinFull(selectionB.Project).SelectAll.Create(defC, newSelectionDisplayname);
+        ? selectionA.Project.CreateSelection(defC, newSelectionDisplayname)
+        : selectionA.Project.JoinFull(selectionB.Project).SelectAll.Create(defC, newSelectionDisplayname);
     }
   }
 }

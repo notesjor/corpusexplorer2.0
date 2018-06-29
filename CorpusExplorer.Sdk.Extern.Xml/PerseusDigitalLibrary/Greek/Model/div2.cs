@@ -1,26 +1,27 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
 namespace CorpusExplorer.Sdk.Extern.Xml.PerseusDigitalLibrary.Greek.Model
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-  public partial class div2
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true)]
+  [XmlRoot(Namespace = "", IsNullable = false)]
+  public class div2
   {
+    private div3[] div3Field;
+
+    private object[] items1Field;
 
     private object[] itemsField;
 
     private lg[] lgField;
-
-    private object[] items1Field;
-
-    private p[] pField;
-
-    private div3[] div3Field;
-
-    private string tEIformField;
 
     private string metField;
 
@@ -30,108 +31,114 @@ namespace CorpusExplorer.Sdk.Extern.Xml.PerseusDigitalLibrary.Greek.Model
 
     private string partField;
 
+    private p[] pField;
+
     private string sampleField;
+
+    private string tEIformField;
 
     private string typeField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("docAuthor", typeof(docAuthor))]
-    [System.Xml.Serialization.XmlElementAttribute("head", typeof(head))]
-    [System.Xml.Serialization.XmlElementAttribute("l", typeof(l))]
-    public object[] Items
-    {
-      get { return this.itemsField; }
-      set { this.itemsField = value; }
-    }
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("lg")]
-    public lg[] lg
-    {
-      get { return this.lgField; }
-      set { this.lgField = value; }
-    }
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("label", typeof(label))]
-    [System.Xml.Serialization.XmlElementAttribute("milestone", typeof(milestone))]
-    [System.Xml.Serialization.XmlElementAttribute("sp", typeof(sp))]
+    /// <remarks />
+    [XmlElement("label", typeof(label))]
+    [XmlElement("milestone", typeof(milestone))]
+    [XmlElement("sp", typeof(sp))]
     public object[] Items1
     {
-      get { return this.items1Field; }
-      set { this.items1Field = value; }
+      get => items1Field;
+      set => items1Field = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("p")]
+    /// <remarks />
+    [XmlElement("p")]
     public p[] p
     {
-      get { return this.pField; }
-      set { this.pField = value; }
+      get => pField;
+      set => pField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("div3")]
+    /// <remarks />
+    [XmlElement("div3")]
     public div3[] div3
     {
-      get { return this.div3Field; }
-      set { this.div3Field = value; }
+      get => div3Field;
+      set => div3Field = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
-    public string TEIform
+    /// <remarks />
+    [XmlElement("docAuthor", typeof(docAuthor))]
+    [XmlElement("head", typeof(head))]
+    [XmlElement("l", typeof(l))]
+    public object[] Items
     {
-      get { return this.tEIformField; }
-      set { this.tEIformField = value; }
+      get => itemsField;
+      set => itemsField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlElement("lg")]
+    public lg[] lg
+    {
+      get => lgField;
+      set => lgField = value;
+    }
+
+
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string met
     {
-      get { return this.metField; }
-      set { this.metField = value; }
+      get => metField;
+      set => metField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    /// <remarks />
+    [XmlAttribute]
     public string n
     {
-      get { return this.nField; }
-      set { this.nField = value; }
+      get => nField;
+      set => nField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string org
     {
-      get { return this.orgField; }
-      set { this.orgField = value; }
+      get => orgField;
+      set => orgField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string part
     {
-      get { return this.partField; }
-      set { this.partField = value; }
+      get => partField;
+      set => partField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string sample
     {
-      get { return this.sampleField; }
-      set { this.sampleField = value; }
+      get => sampleField;
+      set => sampleField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
+    public string TEIform
+    {
+      get => tEIformField;
+      set => tEIformField = value;
+    }
+
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string type
     {
-      get { return this.typeField; }
-      set { this.typeField = value; }
+      get => typeField;
+      set => typeField = value;
     }
   }
 }

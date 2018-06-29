@@ -12,12 +12,14 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
   public class QuadTreeNode<T>
     where T : LayoutItem
   {
-    private RectangleF m_Bounds;
     private QuadTreeNode<T>[] m_Nodes = new QuadTreeNode<T>[0];
 
-    public QuadTreeNode(RectangleF bounds) { m_Bounds = bounds; }
+    public QuadTreeNode(RectangleF bounds)
+    {
+      Bounds = bounds;
+    }
 
-    public RectangleF Bounds { get { return m_Bounds; } }
+    public RectangleF Bounds { get; }
 
     public Stack<T> Contents { get; } = new Stack<T>();
 
@@ -33,7 +35,7 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
       }
     }
 
-    public bool IsEmpty { get { return m_Bounds.IsEmpty || (m_Nodes.Length == 0); } }
+    public bool IsEmpty => Bounds.IsEmpty || m_Nodes.Length == 0;
 
     public IEnumerable<T> SubTreeContents
     {
@@ -46,34 +48,6 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
         results = results.Concat(Contents);
         return results;
       }
-    }
-
-    private void CreateSubNodes()
-    {
-      // the smallest subnode has an area 
-      if (m_Bounds.Height*m_Bounds.Width <= 10)
-        return;
-
-      var halfWidth = m_Bounds.Width/2f;
-      var halfHeight = m_Bounds.Height/2f;
-
-      m_Nodes = new QuadTreeNode<T>[4];
-      m_Nodes[0] = new QuadTreeNode<T>(new RectangleF(m_Bounds.Location, new SizeF(halfWidth, halfHeight)));
-      m_Nodes[1] =
-        new QuadTreeNode<T>(
-          new RectangleF(
-            new PointF(m_Bounds.Left, m_Bounds.Top + halfHeight),
-            new SizeF(halfWidth, halfHeight)));
-      m_Nodes[2] =
-        new QuadTreeNode<T>(
-          new RectangleF(
-            new PointF(m_Bounds.Left + halfWidth, m_Bounds.Top),
-            new SizeF(halfWidth, halfHeight)));
-      m_Nodes[3] =
-        new QuadTreeNode<T>(
-          new RectangleF(
-            new PointF(m_Bounds.Left + halfWidth, m_Bounds.Top + halfHeight),
-            new SizeF(halfWidth, halfHeight)));
     }
 
     public void ForEach(QuadTree<T>.QuadTreeAction action)
@@ -94,7 +68,7 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
     public void Insert(T item)
     {
       // if the item is not contained in this quad, there's a problem
-      if (!m_Bounds.Contains(item.Rectangle))
+      if (!Bounds.Contains(item.Rectangle))
       {
         Trace.TraceWarning("feature is out of the bounds of this quadtree node");
         return;
@@ -119,14 +93,6 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
       // 2) we're at the smallest subnode size allowed 
       // add the item to this node's contents.
       Contents.Push(item);
-    }
-
-    private static bool IsEmptyEnumerable(IEnumerable<T> queryResult)
-    {
-      using (var enumerator = queryResult.GetEnumerator())
-      {
-        return enumerator.MoveNext();
-      }
     }
 
     /// <summary>
@@ -179,6 +145,42 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
           foreach (var subResult in subResults)
             yield return subResult;
         }
+      }
+    }
+
+    private void CreateSubNodes()
+    {
+      // the smallest subnode has an area 
+      if (Bounds.Height * Bounds.Width <= 10)
+        return;
+
+      var halfWidth = Bounds.Width / 2f;
+      var halfHeight = Bounds.Height / 2f;
+
+      m_Nodes = new QuadTreeNode<T>[4];
+      m_Nodes[0] = new QuadTreeNode<T>(new RectangleF(Bounds.Location, new SizeF(halfWidth, halfHeight)));
+      m_Nodes[1] =
+        new QuadTreeNode<T>(
+          new RectangleF(
+            new PointF(Bounds.Left, Bounds.Top + halfHeight),
+            new SizeF(halfWidth, halfHeight)));
+      m_Nodes[2] =
+        new QuadTreeNode<T>(
+          new RectangleF(
+            new PointF(Bounds.Left + halfWidth, Bounds.Top),
+            new SizeF(halfWidth, halfHeight)));
+      m_Nodes[3] =
+        new QuadTreeNode<T>(
+          new RectangleF(
+            new PointF(Bounds.Left + halfWidth, Bounds.Top + halfHeight),
+            new SizeF(halfWidth, halfHeight)));
+    }
+
+    private static bool IsEmptyEnumerable(IEnumerable<T> queryResult)
+    {
+      using (var enumerator = queryResult.GetEnumerator())
+      {
+        return enumerator.MoveNext();
       }
     }
   }

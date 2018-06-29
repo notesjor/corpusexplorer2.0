@@ -1,53 +1,58 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
 namespace CorpusExplorer.Sdk.Extern.Xml.PerseusDigitalLibrary.Greek.Model
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-  public partial class title
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true)]
+  [XmlRoot(Namespace = "", IsNullable = false)]
+  public class title
   {
+    private string nField;
 
     private string tEIformField;
 
-    private string nField;
+    private string[] textField;
 
     private string typeField;
 
-    private string[] textField;
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
-    public string TEIform
-    {
-      get { return this.tEIformField; }
-      set { this.tEIformField = value; }
-    }
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string n
     {
-      get { return this.nField; }
-      set { this.nField = value; }
+      get => nField;
+      set => nField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
-    public string type
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
+    public string TEIform
     {
-      get { return this.typeField; }
-      set { this.typeField = value; }
+      get => tEIformField;
+      set => tEIformField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
+    /// <remarks />
+    [XmlText]
     public string[] Text
     {
-      get { return this.textField; }
-      set { this.textField = value; }
+      get => textField;
+      set => textField = value;
+    }
+
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
     }
   }
 }

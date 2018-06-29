@@ -26,7 +26,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private string typeField;
 
     /// <remarks />
-    public gap gap { get { return gapField; } set { gapField = value; } }
+    public gap gap
+    {
+      get => gapField;
+      set => gapField = value;
+    }
 
     /// <remarks />
     [XmlElement("byline", typeof(byline))]
@@ -45,18 +49,34 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("pb", typeof(pb))]
     [XmlElement("space", typeof(space))]
     [XmlElement("titlePart", typeof(titlePart))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "integer")]
-    public string n { get { return nField; } set { nField = value; } }
+    public string n
+    {
+      get => nField;
+      set => nField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string rendition { get { return renditionField; } set { renditionField = value; } }
+    public string rendition
+    {
+      get => renditionField;
+      set => renditionField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

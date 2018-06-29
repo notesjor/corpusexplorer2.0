@@ -22,13 +22,25 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private decimal versionField;
 
     /// <remarks />
-    public idsHeader idsHeader { get { return idsHeaderField; } set { idsHeaderField = value; } }
+    public idsHeader idsHeader
+    {
+      get => idsHeaderField;
+      set => idsHeaderField = value;
+    }
 
     /// <remarks />
-    public text text { get { return textField; } set { textField = value; } }
+    public text text
+    {
+      get => textField;
+      set => textField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public decimal version { get { return versionField; } set { versionField = value; } }
+    public decimal version
+    {
+      get => versionField;
+      set => versionField = value;
+    }
   }
 }

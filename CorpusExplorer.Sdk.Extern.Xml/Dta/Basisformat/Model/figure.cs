@@ -45,28 +45,52 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private string typeField;
 
     /// <remarks />
-    public ab ab { get { return abField; } set { abField = value; } }
+    public ab ab
+    {
+      get => abField;
+      set => abField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string corresp { get { return correspField; } set { correspField = value; } }
+    public string corresp
+    {
+      get => correspField;
+      set => correspField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "anyURI")]
-    public string facs { get { return facsField; } set { facsField = value; } }
+    public string facs
+    {
+      get => facsField;
+      set => facsField = value;
+    }
 
     /// <remarks />
-    public string figDesc { get { return figDescField; } set { figDescField = value; } }
+    public string figDesc
+    {
+      get => figDescField;
+      set => figDescField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified,
-       Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string id { get { return idField; } set { idField = value; } }
+      Namespace = "http://www.w3.org/XML/1998/namespace")]
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlElement("graphic", typeof(graphic))]
     [XmlElement("lg", typeof(lg))]
-    public object Item { get { return itemField; } set { itemField = value; } }
+    public object Item
+    {
+      get => itemField;
+      set => itemField = value;
+    }
 
     /// <remarks />
     [XmlElement("cb", typeof(cb))]
@@ -79,36 +103,68 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("p", typeof(p))]
     [XmlElement("pb", typeof(pb))]
     [XmlElement("signed", typeof(signed))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlElement("argument", typeof(argument))]
     [XmlElement("closer", typeof(closer))]
     [XmlElement("epigraph", typeof(epigraph))]
-    public object Item1 { get { return item1Field; } set { item1Field = value; } }
+    public object Item1
+    {
+      get => item1Field;
+      set => item1Field = value;
+    }
 
 
     /// <remarks />
     [XmlAttribute]
-    public string next { get { return nextField; } set { nextField = value; } }
+    public string next
+    {
+      get => nextField;
+      set => nextField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string prev { get { return prevField; } set { prevField = value; } }
+    public string prev
+    {
+      get => prevField;
+      set => prevField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string rend { get { return rendField; } set { rendField = value; } }
+    public string rend
+    {
+      get => rendField;
+      set => rendField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string rendition { get { return renditionField; } set { renditionField = value; } }
+    public string rendition
+    {
+      get => renditionField;
+      set => renditionField = value;
+    }
 
     /// <remarks />
-    public table table { get { return tableField; } set { tableField = value; } }
+    public table table
+    {
+      get => tableField;
+      set => tableField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

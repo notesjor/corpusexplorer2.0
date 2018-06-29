@@ -19,7 +19,7 @@ namespace CorpusExplorer.Sdk.ViewModel
   /// <summary>
   ///   The disambugion view model.
   /// </summary>
-  public class DisambiguationViewModel : AbstractViewModel, IUseSpecificLayer, IProvideDataTable
+  public class DisambiguationViewModel : AbstractViewModel, IProvideDataTable
   {
     private DisambiguationBlock _block;
     private string _layerQuery;
@@ -96,8 +96,6 @@ namespace CorpusExplorer.Sdk.ViewModel
       return dt;
     }
 
-    public IEnumerable<string> LayerDisplaynames => Selection.LayerUniqueDisplaynames;
-
     public string LayerDisplayname
     {
       get => _selectedLayerDisplayname;
@@ -109,27 +107,6 @@ namespace CorpusExplorer.Sdk.ViewModel
 
         _selectedLayerDisplayname = value;
       }
-    }
-
-    protected override void ExecuteAnalyse()
-    {
-      if (_block == null
-          ||
-          _block.LayerDisplayname != LayerDisplayname
-          ||
-          Math.Abs(_block.MinimumSignificance - MinimumSignificance) > 0
-          ||
-          _block.SimilarityIndex != SimilarityIndex)
-      {
-        _block = Selection.CreateBlock<DisambiguationBlock>();
-        _block.LayerDisplayname = LayerDisplayname;
-        _block.MinimumSignificance = MinimumSignificance;
-        _block.SimilarityIndex = SimilarityIndex;
-      }
-      _block.LayerQuery = LayerQuery;
-      _block.Calculate();
-
-      RootCluster = _block.RootCluster;
     }
 
     /// <summary>
@@ -170,6 +147,7 @@ namespace CorpusExplorer.Sdk.ViewModel
               temp.Add(group.ClusterB);
             }
           }
+
           res = new Queue<IDisambiguationCluster>(temp);
           temp.Clear();
         }
@@ -180,6 +158,28 @@ namespace CorpusExplorer.Sdk.ViewModel
       {
         return null;
       }
+    }
+
+    protected override void ExecuteAnalyse()
+    {
+      if (_block == null
+          ||
+          _block.LayerDisplayname != LayerDisplayname
+          ||
+          Math.Abs(_block.MinimumSignificance - MinimumSignificance) > 0
+          ||
+          _block.SimilarityIndex != SimilarityIndex)
+      {
+        _block = Selection.CreateBlock<DisambiguationBlock>();
+        _block.LayerDisplayname = LayerDisplayname;
+        _block.MinimumSignificance = MinimumSignificance;
+        _block.SimilarityIndex = SimilarityIndex;
+      }
+
+      _block.LayerQuery = LayerQuery;
+      _block.Calculate();
+
+      RootCluster = _block.RootCluster;
     }
 
     protected override bool Validate()

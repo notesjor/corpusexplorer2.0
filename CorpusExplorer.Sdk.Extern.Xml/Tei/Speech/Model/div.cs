@@ -22,6 +22,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
     private u uField;
 
     /// <remarks />
-    public u u { get { return uField; } set { uField = value; } }
+    public u u
+    {
+      get => uField;
+      set => uField = value;
+    }
   }
 }

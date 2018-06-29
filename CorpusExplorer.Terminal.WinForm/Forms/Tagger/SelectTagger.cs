@@ -1,7 +1,6 @@
 ﻿#region
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using CorpusExplorer.Sdk.Ecosystem.Model;
@@ -10,7 +9,6 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
 using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
 using CorpusExplorer.Terminal.WinForm.Helper;
-using CorpusExplorer.Terminal.WinForm.Properties;
 using Telerik.WinControls.UI.Data;
 
 #endregion
@@ -20,7 +18,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Tagger
   public partial class SelectTagger : AbstractDialog
   {
     private readonly int _index;
-    private Dictionary<string, string> _languages;
+    private string[] _languages;
 
     public SelectTagger(AbstractTagger tagger)
     {
@@ -57,6 +55,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Tagger
       if (fbd.ShowDialog() != DialogResult.OK)
         return;
       Tagger.InstallationPath = fbd.FileName;
+
+      _languages = Tagger.LanguagesAvailabel.ToArray();
+      DictionaryBindingHelper.BindDictionary(_languages, combo_language);
+      combo_language.SelectedIndex = 0;
     }
 
     private void combo_backends_SelectedIndexChanged(object sender, PositionChangedEventArgs e)
@@ -89,14 +91,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Tagger
       if (Tagger == null)
         return;
 
-      _languages = Tagger.LanguagesAvailabel.ToDictionary(x => x, x => x);
+      _languages = Tagger.LanguagesAvailabel.ToArray();
       DictionaryBindingHelper.BindDictionary(_languages, combo_language);
 
       combo_language.SelectedValue = Tagger.LanguageSelected;
 
       lbl_destination.Text = Tagger.InstallationPath;
       btn_destination.Enabled = !Tagger.InstallationPath.StartsWith("(");
-      
+
       combo_backends.SelectedIndex = _index;
     }
   }

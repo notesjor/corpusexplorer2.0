@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step.Abstract;
 using CorpusExplorer.Sdk.EchtzeitEngine.Model;
-using CorpusExplorer.Sdk.Helper;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model;
 
 namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator
@@ -19,7 +17,8 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator
 
       Parallel.ForEach(
         steps,
-        (step) =>
+        Configuration.ParallelOptions,
+        step =>
         {
           try
           {

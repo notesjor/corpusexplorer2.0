@@ -1,20 +1,27 @@
-﻿using CorpusExplorer.Sdk.Utils.DocumentProcessing.Crawler;
-using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser;
-using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
-using CorpusExplorer.Terminal.WinForm.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Crawler;
+using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser;
+using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
+using CorpusExplorer.Terminal.WinForm.Properties;
+using Telerik.WinControls;
+using Telerik.WinControls.UI;
+using PositionChangedEventArgs = Telerik.WinControls.UI.Data.PositionChangedEventArgs;
 
 namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
 {
   public partial class WebCrawlerWizard : AbstractForm
   {
-    private WebXpathVisualizer page_3_browser;
-    private WebXpathVisualizer page_4_browser;
-    private List<string> _linkResults = new List<string>();
-    private List<string> _linkResultsCompleted = new List<string>();
+    private readonly List<string> _linkResults = new List<string>();
+    private readonly List<string> _linkResultsCompleted = new List<string>();
+
+    private bool _page3Alert = true;
+
+    private bool _page4Alert = true;
+    private readonly WebXpathVisualizer page_3_browser;
+    private readonly WebXpathVisualizer page_4_browser;
 
     public WebCrawlerWizard()
     {
@@ -24,7 +31,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
       radWizard1.CancelButton.Text = "Abbrechen";
       radWizard1.Cancel += (s, e) => Close();
       radWizard1.FinishButton.Text = "Fertigstellen";
-      radWizard1.HelpButton.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+      radWizard1.HelpButton.Visibility = ElementVisibility.Collapsed;
       radWizard1.NextButton.Text = "Weiter >";
 
       page_3_browser = new WebXpathVisualizer
@@ -51,12 +58,25 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
       };
     }
 
-    private void Page_4_browser_XPathChanged(object sender, EventArgs e)
+    private void btn_showBrowser_Click(object sender, EventArgs e)
     {
-      if (radWizard1.SelectedPage != radWizard1.Pages[3])
-        return;
+      var browser = new XpathBrowser();
+      browser.Show();
+    }
 
-      page_4_txt_xpath.Invoke((MethodInvoker)delegate { page_4_txt_xpath.Text = page_4_browser.XPath; });
+    private Dictionary<string, string> GetMappings()
+    {
+      var res = new Dictionary<string, string>();
+
+      foreach (var row in grid_mappings.Rows)
+      {
+        var key = row.Cells["col_key"].Value.ToString();
+        if (string.IsNullOrEmpty(key))
+          continue;
+        res.Add(row.Cells["col_xpath"].Value.ToString(), key);
+      }
+
+      return res;
     }
 
     private void Page_3_browser_XPathChanged(object sender, EventArgs e)
@@ -64,7 +84,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
       if (radWizard1.SelectedPage != radWizard1.Pages[2])
         return;
 
-      page_3_txt_xpathresult.Invoke((MethodInvoker)delegate { page_3_txt_xpathresult.Text = page_3_browser.XPath; });
+      page_3_txt_xpathresult.Invoke((MethodInvoker) delegate { page_3_txt_xpathresult.Text = page_3_browser.XPath; });
       var selectionContainsNoLinks = false;
       _linkResults.Clear();
 
@@ -75,33 +95,107 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
           selectionContainsNoLinks = true;
           continue;
         }
+
         _linkResults.Add(n.GetAttributeValue("link", ""));
       }
 
       if (selectionContainsNoLinks)
-      {
-        MessageBox.Show("Scheinbar selektiert der von Ihnen angebene XPath-Ausdruck mehr als nur Ergebnislinks. Bitte passen Sie den XPath-Ausdruck an.");
-      }
+        MessageBox.Show(
+          "Scheinbar selektiert der von Ihnen angebene XPath-Ausdruck mehr als nur Ergebnislinks. Bitte passen Sie den XPath-Ausdruck an.");
 
       RefreshLinkResults();
     }
 
-    private void RefreshLinkResults()
+    private void page_3_btn_testquery_Click(object sender, EventArgs e)
     {
-      _linkResultsCompleted.Clear();
-      page_3_list_testresults.Items.Clear();
-      page_4_drop_example.Items.Clear();
-
-      foreach (var l in _linkResults)
-      {
-        var complete = (page_3_txt_prefix.Text ?? string.Empty) + l;
-        page_3_list_testresults.Items.Add(complete);
-        page_4_drop_example.Items.Add(complete);
-        _linkResultsCompleted.Add(complete);
-      }
+      page_3_browser.Url = txt_search_url.Text
+        .Replace("[QUERY]", page_3_txt_testquery.Text)
+        .Replace("[PAGE]", ((int) num_search_min.Value).ToString());
     }
 
-    private void radWizard1_Next(object sender, Telerik.WinControls.UI.WizardCancelEventArgs e)
+    private void page_3_btn_xpathrefresh_Click(object sender, EventArgs e)
+    {
+      page_3_browser.XPath = page_3_txt_xpathresult.Text;
+      RefreshLinkResults();
+    }
+
+    private void page_3_txt_prefix_TextChanged(object sender, EventArgs e)
+    {
+      RefreshLinkResults();
+    }
+
+    private void page_3_txt_xpathresult_TextChanged(object sender, EventArgs e)
+    {
+      if (!_page3Alert)
+        return;
+
+      _page3Alert = false;
+      radDesktopAlert1.Show();
+    }
+
+    private void Page_4_browser_XPathChanged(object sender, EventArgs e)
+    {
+      if (radWizard1.SelectedPage != radWizard1.Pages[3])
+        return;
+
+      page_4_txt_xpath.Invoke((MethodInvoker) delegate { page_4_txt_xpath.Text = page_4_browser.XPath; });
+    }
+
+    private void page_4_btn_loadUrl_Click(object sender, EventArgs e)
+    {
+      page_4_drop_example_SelectedIndexChanged(null, null);
+    }
+
+    private void page_4_btn_xpathrefresh_Click(object sender, EventArgs e)
+    {
+      page_4_browser.XPath = page_4_txt_xpath.Text;
+    }
+
+    private void page_4_btn_xpathToList_Click(object sender, EventArgs e)
+    {
+      page_4_grid_xpath.Rows.Add(string.Empty, page_4_txt_xpath.Text);
+      page_4_txt_xpath.Text = string.Empty;
+    }
+
+    private void page_4_drop_example_SelectedIndexChanged(object sender, PositionChangedEventArgs e)
+    {
+      if (page_4_drop_example.SelectedIndex == -1)
+        return;
+
+      page_4_browser.Url = _linkResultsCompleted[page_4_drop_example.SelectedIndex];
+    }
+
+    private void page_4_txt_xpath_TextChanged(object sender, EventArgs e)
+    {
+      if (!_page4Alert)
+        return;
+
+      _page4Alert = false;
+      radDesktopAlert1.Show();
+    }
+
+    private void radWizard1_Finish(object sender, EventArgs e)
+    {
+      var mappings = GetMappings();
+      if (!mappings.ContainsKey("Text"))
+      {
+        MessageBox.Show(Resources.SieBenötigenMindestensEinMappingMitDemKeyText);
+        return;
+      }
+
+      XpathWebCrawler.Create(
+        txt_name.Text,
+        txt_search_url.Text,
+        (int) num_search_min.Value,
+        (int) num_search_increment.Value,
+        txt_result_xpath.Text,
+        txt_result_prefix.Text,
+        txt_result_limmit.Text,
+        mappings);
+      Close();
+    }
+
+    private void radWizard1_Next(object sender, WizardCancelEventArgs e)
     {
       // Überschreibe Standardlogik
       e.Cancel = true;
@@ -148,10 +242,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
 
       if (radWizard1.SelectedPage == wizardPage2)
       {
-        if (string.IsNullOrEmpty(page_2_txt_url.Text) || !page_2_txt_url.Text.Contains("[QUERY]") || !page_2_txt_url.Text.Contains("[PAGE]"))
-        {
-          MessageBox.Show("Bitte geben Sie die URL für die seitenspezifische Suche an. Außerdem ersetzen Sie bitte den Suchausdruck durch [QUERY] sowie den Seitenindex durch [PAGE].");
-        }
+        if (string.IsNullOrEmpty(page_2_txt_url.Text) || !page_2_txt_url.Text.Contains("[QUERY]") ||
+            !page_2_txt_url.Text.Contains("[PAGE]"))
+          MessageBox.Show(
+            "Bitte geben Sie die URL für die seitenspezifische Suche an. Außerdem ersetzen Sie bitte den Suchausdruck durch [QUERY] sowie den Seitenindex durch [PAGE].");
 
         txt_search_url.Text = page_2_txt_url.Text;
         num_search_min.Value = page_2_num_start.Value;
@@ -178,16 +272,13 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
       if (radWizard1.SelectedPage == wizardPage4)
       {
         grid_mappings.Rows.Clear();
-        foreach (var row in page_4_grid_xpath.Rows)
-        {
-          grid_mappings.Rows.Add(row.Cells[0].Value, row.Cells[1].Value);
-        }
+        foreach (var row in page_4_grid_xpath.Rows) grid_mappings.Rows.Add(row.Cells[0].Value, row.Cells[1].Value);
 
         radWizard1.SelectedPage = wizardCompletionPage1;
       }
     }
 
-    private void radWizard1_Previous(object sender, Telerik.WinControls.UI.WizardCancelEventArgs e)
+    private void radWizard1_Previous(object sender, WizardCancelEventArgs e)
     {
       // Überschreibe Standardlogik
       e.Cancel = true;
@@ -241,116 +332,25 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
         page_3_txt_xpathresult.Text = txt_result_xpath.Text;
 
         page_4_grid_xpath.Rows.Clear();
-        foreach (var row in grid_mappings.Rows)
-        {
-          page_4_grid_xpath.Rows.Add(row.Cells[0].Value, row.Cells[1].Value);
-        }
+        foreach (var row in grid_mappings.Rows) page_4_grid_xpath.Rows.Add(row.Cells[0].Value, row.Cells[1].Value);
 
         radWizard1.SelectedPage = wizardPage4;
       }
     }
 
-    private void btn_showBrowser_Click(object sender, EventArgs e)
+    private void RefreshLinkResults()
     {
-      var browser = new XpathBrowser();
-      browser.Show();
-    }
+      _linkResultsCompleted.Clear();
+      page_3_list_testresults.Items.Clear();
+      page_4_drop_example.Items.Clear();
 
-    private void radWizard1_Finish(object sender, EventArgs e)
-    {
-      var mappings = GetMappings();
-      if (!mappings.ContainsKey("Text"))
+      foreach (var l in _linkResults)
       {
-        MessageBox.Show(Resources.SieBenötigenMindestensEinMappingMitDemKeyText);
-        return;
+        var complete = (page_3_txt_prefix.Text ?? string.Empty) + l;
+        page_3_list_testresults.Items.Add(complete);
+        page_4_drop_example.Items.Add(complete);
+        _linkResultsCompleted.Add(complete);
       }
-
-      XpathWebCrawler.Create(
-        txt_name.Text,
-        txt_search_url.Text,
-        (int)num_search_min.Value,
-        (int)num_search_increment.Value,
-        txt_result_xpath.Text,
-        txt_result_prefix.Text,
-        txt_result_limmit.Text,
-        mappings);
-      Close();
-    }
-
-    private Dictionary<string, string> GetMappings()
-    {
-      var res = new Dictionary<string, string>();
-
-      foreach (var row in grid_mappings.Rows)
-      {
-        var key = row.Cells["col_key"].Value.ToString();
-        if (string.IsNullOrEmpty(key))
-          continue;
-        res.Add(row.Cells["col_xpath"].Value.ToString(), key);
-      }
-
-      return res;
-    }
-
-    private void page_3_btn_testquery_Click(object sender, EventArgs e)
-    {
-      page_3_browser.Url = txt_search_url.Text
-        .Replace("[QUERY]", page_3_txt_testquery.Text)
-        .Replace("[PAGE]", ((int)num_search_min.Value).ToString());
-    }
-
-    private void page_3_btn_xpathrefresh_Click(object sender, EventArgs e)
-    {
-      page_3_browser.XPath = page_3_txt_xpathresult.Text;
-      RefreshLinkResults();
-    }
-
-    private void page_4_drop_example_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
-    {
-      if (page_4_drop_example.SelectedIndex == -1)
-        return;
-
-      page_4_browser.Url = _linkResultsCompleted[page_4_drop_example.SelectedIndex];
-    }
-
-    private void page_4_btn_xpathrefresh_Click(object sender, EventArgs e)
-    {
-      page_4_browser.XPath = page_4_txt_xpath.Text;
-    }
-
-    private void page_4_btn_xpathToList_Click(object sender, EventArgs e)
-    {
-      page_4_grid_xpath.Rows.Add(string.Empty, page_4_txt_xpath.Text);
-      page_4_txt_xpath.Text = string.Empty;
-    }
-
-    private void page_3_txt_prefix_TextChanged(object sender, EventArgs e) { RefreshLinkResults(); }
-
-    private void page_4_btn_loadUrl_Click(object sender, EventArgs e)
-    {
-      page_4_drop_example_SelectedIndexChanged(null, null);
-    }
-
-    private bool _page3Alert = true;
-
-    private void page_3_txt_xpathresult_TextChanged(object sender, EventArgs e)
-    {
-      if (!_page3Alert)
-        return;
-
-      _page3Alert = false;
-      radDesktopAlert1.Show();
-    }
-
-    private bool _page4Alert = true;
-
-    private void page_4_txt_xpath_TextChanged(object sender, EventArgs e)
-    {
-      if (!_page4Alert)
-        return;
-
-      _page4Alert = false;
-      radDesktopAlert1.Show();
     }
   }
 }

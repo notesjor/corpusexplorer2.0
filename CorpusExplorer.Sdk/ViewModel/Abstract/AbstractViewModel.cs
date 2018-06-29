@@ -22,7 +22,6 @@ namespace CorpusExplorer.Sdk.ViewModel.Abstract
         return false;
       try
       {
-        InMemoryErrorConsole.ActionStart(GetType().FullName);
         ExecuteAnalyse();
         return true;
       }
@@ -30,10 +29,6 @@ namespace CorpusExplorer.Sdk.ViewModel.Abstract
       {
         InMemoryErrorConsole.Log(ex);
         return false;
-      }
-      finally
-      {
-        InMemoryErrorConsole.ActionStop();
       }
     }
 

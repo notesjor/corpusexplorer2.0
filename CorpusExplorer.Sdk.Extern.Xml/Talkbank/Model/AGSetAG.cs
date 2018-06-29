@@ -27,25 +27,49 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlElement("Anchor")]
-    public AGSetAGAnchor[] Anchor { get { return anchorField; } set { anchorField = value; } }
+    public AGSetAGAnchor[] Anchor
+    {
+      get => anchorField;
+      set => anchorField = value;
+    }
 
     /// <remarks />
     [XmlElement("Annotation")]
-    public AGSetAGAnnotation[] Annotation { get { return annotationField; } set { annotationField = value; } }
+    public AGSetAGAnnotation[] Annotation
+    {
+      get => annotationField;
+      set => annotationField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
-    public Metadata Metadata { get { return metadataField; } set { metadataField = value; } }
+    public Metadata Metadata
+    {
+      get => metadataField;
+      set => metadataField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string timeline { get { return timelineField; } set { timelineField = value; } }
+    public string timeline
+    {
+      get => timelineField;
+      set => timelineField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NMTOKEN")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

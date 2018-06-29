@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlElement("role")]
-    public role[] role { get { return roleField; } set { roleField = value; } }
+    public role[] role
+    {
+      get => roleField;
+      set => roleField = value;
+    }
   }
 }

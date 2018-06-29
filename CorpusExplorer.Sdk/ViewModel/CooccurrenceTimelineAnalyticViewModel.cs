@@ -18,8 +18,12 @@ namespace CorpusExplorer.Sdk.ViewModel
   /// </summary>
   public class CooccurrenceTimelineAnalyticViewModel : AbstractViewModel
   {
-    public CooccurrenceTimelineAnalyticViewModel() { DateClusters = 100; }
+    public CooccurrenceTimelineAnalyticViewModel()
+    {
+      DateClusters = 100;
+    }
 
+    public bool AutoDetectDateClusterMinMax { get; set; } = true;
     public DateTime DateClusterMax { get; set; }
     public DateTime DateClusterMin { get; set; }
     public int DateClusters { get; set; }
@@ -29,33 +33,6 @@ namespace CorpusExplorer.Sdk.ViewModel
     public IEnumerable<string> DocumentMetadata => Selection.GetDocumentMetadataPrototypeOnlyProperties();
 
     public string MetadataKey { get; set; }
-
-    protected override void ExecuteAnalyse()
-    {
-      var blockGroup = Selection.CreateBlock<SelectionClusterBlock>();
-      blockGroup.ClusterGenerator = new SelectionClusterGeneratorByDateTimeRange().Configure(
-        DateClusters,
-        DateClusterMin,
-        DateClusterMax);
-      blockGroup.MetadataKey = MetadataKey;
-      blockGroup.Calculate();
-
-      DateTimeRangeDocuments = blockGroup.Cluster.ToDictionary(x => (DateTime) x.CentralValue, x => x.DocumentGuids);
-
-      var blockCalc =
-        Selection
-          .CreateBlock
-          <MakeSeparatedPartionBlock<DateTime, Dictionary<string, Dictionary<string, double>>, CooccurrenceBlock>>();
-      blockCalc.InputPartition = DateTimeRangeDocuments;
-      blockCalc.MappingDelegate = block =>
-      {
-        block.Calculate();
-        return block.CooccurrenceSignificance.CompleteDictionaryToFullDictionary();
-      };
-      blockCalc.Calculate();
-
-      DateTimeRanges = blockCalc.OutputPartition;
-    }
 
     public IEnumerable<Guid> GetDocuments(DateTime date)
     {
@@ -67,8 +44,8 @@ namespace CorpusExplorer.Sdk.ViewModel
       return DateTimeRanges?.ToDictionary(
         range => range.Key,
         range => range.Value.ContainsKey(wordA) && range.Value[wordA].ContainsKey(wordB)
-                   ? range.Value[wordA][wordB]
-                   : 0);
+          ? range.Value[wordA][wordB]
+          : 0);
     }
 
     public string GetText(Guid documentGuid, string layerDisplayname = null)
@@ -78,6 +55,39 @@ namespace CorpusExplorer.Sdk.ViewModel
       return Selection.GetReadableDocument(documentGuid, layerDisplayname).ConvertToText();
     }
 
-    protected override bool Validate() { return !string.IsNullOrEmpty(MetadataKey); }
+    protected override void ExecuteAnalyse()
+    {
+      var blockGroup = Selection.CreateBlock<SelectionClusterBlock>();
+      blockGroup.ClusterGenerator = new SelectionClusterGeneratorDateTimeRange
+      {
+        Ranges = DateClusters,
+        Min = DateClusterMin,
+        Max = DateClusterMax,
+        AutoDetectMinMax = AutoDetectDateClusterMinMax
+      };
+      blockGroup.MetadataKey = MetadataKey;
+      blockGroup.Calculate();
+
+      DateTimeRangeDocuments = blockGroup.Cluster.ToDictionary(x => (DateTime) x.CentralValue, x => x.DocumentGuids);
+
+      var blockCalc =
+        Selection
+          .CreateBlock
+            <MakeSeparatedPartionBlock<DateTime, Dictionary<string, Dictionary<string, double>>, CooccurrenceBlock>>();
+      blockCalc.InputPartition = DateTimeRangeDocuments;
+      blockCalc.MappingDelegate = block =>
+      {
+        block.Calculate();
+        return block.CooccurrenceSignificance.CompleteDictionaryToFullDictionary();
+      };
+      blockCalc.Calculate();
+
+      DateTimeRanges = blockCalc.OutputPartition;
+    }
+
+    protected override bool Validate()
+    {
+      return !string.IsNullOrEmpty(MetadataKey);
+    }
   }
 }

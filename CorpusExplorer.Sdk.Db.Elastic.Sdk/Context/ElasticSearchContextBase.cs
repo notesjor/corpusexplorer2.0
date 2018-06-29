@@ -8,27 +8,8 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Sdk.Context
   {
     protected ElasticClient _client;
     protected IConnectionPool _connection;
-    protected ConnectionSettings _settings;
     protected string _index;
-
-    private ElasticSearchContextBase() { }
-
-    public string Connection
-    {
-      get
-      {
-        var stb = new StringBuilder();
-        foreach (var node in _connection.Nodes)
-          stb.AppendLine(node.Uri.ToString());
-        return stb.ToString();
-      }
-    }
-
-    public ElasticClient Client => _client;
-
-    public string Index => _index;
-
-    public ConnectionSettings Settings => _settings;
+    protected ConnectionSettings _settings;
 
     public ElasticSearchContextBase(
       IConnectionPool connectionPool,
@@ -48,5 +29,26 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Sdk.Context
       if (!_client.IndexExists(index).Exists)
         _client.CreateIndex(index);
     }
+
+    private ElasticSearchContextBase()
+    {
+    }
+
+    public ElasticClient Client => _client;
+
+    public string Connection
+    {
+      get
+      {
+        var stb = new StringBuilder();
+        foreach (var node in _connection.Nodes)
+          stb.AppendLine(node.Uri.ToString());
+        return stb.ToString();
+      }
+    }
+
+    public string Index => _index;
+
+    public ConnectionSettings Settings => _settings;
   }
 }

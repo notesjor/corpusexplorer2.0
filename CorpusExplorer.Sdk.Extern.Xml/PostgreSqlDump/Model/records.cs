@@ -1,23 +1,28 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
 namespace CorpusExplorer.Sdk.Extern.Xml.PostgreSqlDump.Model
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-  public partial class records
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true)]
+  [XmlRoot(Namespace = "", IsNullable = false)]
+  public class records
   {
-
     private column[][] rowField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlArrayItemAttribute("column", typeof(column), IsNullable = false)]
+    /// <remarks />
+    [XmlArrayItem("column", typeof(column), IsNullable = false)]
     public column[][] row
     {
-      get { return this.rowField; }
-      set { this.rowField = value; }
+      get => rowField;
+      set => rowField = value;
     }
   }
 }

@@ -19,8 +19,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
   [Serializable]
   public class FilterQueryMetaContains : AbstractFilterQueryMeta
   {
-    [XmlArray]
-    private HashSet<string> _values;
+    [XmlArray] private HashSet<string> _values;
 
     /// <summary>
     ///   Gibt eine automatisch generierte Zusammenfassung des Inhalts/Bedeutung zurück.

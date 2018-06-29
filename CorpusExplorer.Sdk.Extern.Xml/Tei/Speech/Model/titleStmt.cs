@@ -22,6 +22,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
     private title titleField;
 
     /// <remarks />
-    public title title { get { return titleField; } set { titleField = value; } }
+    public title title
+    {
+      get => titleField;
+      set => titleField = value;
+    }
   }
 }

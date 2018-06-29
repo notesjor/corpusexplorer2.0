@@ -94,6 +94,7 @@ namespace CorpusExplorer.Sdk.Blocks
             currentKey = layer1[current];
             chunk = new List<string>();
           }
+
           if (current == -1)
             continue;
 
@@ -110,9 +111,13 @@ namespace CorpusExplorer.Sdk.Blocks
       }
     }
 
-    protected override void CalculateCleanup() { }
+    protected override void CalculateCleanup()
+    {
+    }
 
-    protected override void CalculateFinalize() { }
+    protected override void CalculateFinalize()
+    {
+    }
 
     protected override void CalculateInitProperties()
     {

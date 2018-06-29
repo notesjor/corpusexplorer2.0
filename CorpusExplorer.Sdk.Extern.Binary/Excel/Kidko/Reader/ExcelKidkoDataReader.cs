@@ -29,18 +29,18 @@ namespace CorpusExplorer.Sdk.Extern.Binary.Excel.Kidko.Reader
       var items = reader.ReadData(path);
 
       return (from item in items
-              where !string.IsNullOrEmpty(item["Text"])
-              select
-              new KidkoItem
-              {
-                Category = item["Kategorie"],
-                DateString = item["Datum"],
-                DiscussionTimestamp = item["Reihenfolge (innerhalb eines Diskussions-Threads)"],
-                Name = item["Name/Sigle"],
-                Source = item["Herkunft/Medienbeitrag, auf den sich die Texte beziehen"],
-                Text = item["Text"],
-                Type = item["Typ"]
-              }).ToList();
+        where !string.IsNullOrEmpty(item["Text"])
+        select
+          new KidkoItem
+          {
+            Category = item["Kategorie"],
+            DateString = item["Datum"],
+            DiscussionTimestamp = item["Reihenfolge (innerhalb eines Diskussions-Threads)"],
+            Name = item["Name/Sigle"],
+            Source = item["Herkunft/Medienbeitrag, auf den sich die Texte beziehen"],
+            Text = item["Text"],
+            Type = item["Typ"]
+          }).ToList();
     }
   }
 }

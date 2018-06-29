@@ -13,5 +13,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DariahDe.GeoBrowser.Model
   [DesignerCategory("code")]
   [XmlType(AnonymousType = true)]
   [XmlRoot(Namespace = "", IsNullable = false)]
-  public class description {}
+  public class description
+  {
+  }
 }

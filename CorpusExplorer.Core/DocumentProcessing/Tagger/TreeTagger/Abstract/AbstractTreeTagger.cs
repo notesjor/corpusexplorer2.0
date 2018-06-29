@@ -18,21 +18,27 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger.Abstract
       "Polnisch"
     };
 
-    private string _languageSelected;
-    protected string _sentenceMark = "$.";
-
-    private readonly Dictionary<string, string> _sentenceMarks = new Dictionary<string, string>
+    private readonly Dictionary<string, HashSet<string>> _sentenceMarks = new Dictionary<string, HashSet<string>>
     {
-      {"Deutsch", "$."},
-      {"Englisch", "."},
-      {"Französisch", "SENT"},
-      {"Italienisch", "PON"},
-      {"Niederländisch", "$."},
-      {"Spanisch", "FS"},
-      {"Polnisch", "interp"}
+      {"Deutsch", new HashSet<string> {"$."}},
+      {"Englisch", new HashSet<string> {"."}},
+      {"Französisch", new HashSet<string> {"SENT"}},
+      {"Italienisch", new HashSet<string> {"PON"}},
+      {"Niederländisch", new HashSet<string> {"$."}},
+      {"Spanisch", new HashSet<string> {"FS"}},
+      {"Polnisch", new HashSet<string> {"interp"}}
     };
 
-    public override string InstallationPath { get { return "(NICHT WÄHLBAR - OPTIMIERTE VERSION)"; } set { } }
+    private string _languageSelected;
+
+    protected HashSet<string> _sentenceMark =
+      new HashSet<string> {"$.", "PUNCT", ".", "SENT", "PON", "FS", "interp", "S"};
+
+    public override string InstallationPath
+    {
+      get => "(NICHT WÄHLBAR - OPTIMIERTE VERSION)";
+      set { }
+    }
 
     public override IEnumerable<string> LanguagesAvailabel => _languageses;
 
@@ -48,9 +54,15 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger.Abstract
       }
     }
 
-    protected override bool IsEndOfSentence(string[] data) { return data.Length > 2 && data[1] == _sentenceMark; }
-
     // ReSharper disable once UnusedMember.Global
-    public LayerRangeState NewRangeLayer(string displayname) { return AddRangeLayer(displayname); }
+    public LayerRangeState NewRangeLayer(string displayname)
+    {
+      return AddRangeLayer(displayname);
+    }
+
+    protected override bool IsEndOfSentence(string[] data)
+    {
+      return data.Length > 2 && _sentenceMark.Contains(data[1]);
+    }
   }
 }

@@ -26,7 +26,11 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     /// <summary>
     ///   Gets or sets the help handbook text.
     /// </summary>
-    public string HelpHandbookText { get { return btn_handbook.Text; } set { btn_handbook.Text = value; } }
+    public string HelpHandbookText
+    {
+      get => btn_handbook.Text;
+      set => btn_handbook.Text = value;
+    }
 
     /// <summary>
     ///   Gets or sets the help handbook url.
@@ -36,7 +40,11 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     /// <summary>
     ///   Gets or sets the help handsonlab text.
     /// </summary>
-    public string HelpHandsonlabText { get { return btn_handson.Text; } set { btn_handson.Text = value; } }
+    public string HelpHandsonlabText
+    {
+      get => btn_handson.Text;
+      set => btn_handson.Text = value;
+    }
 
     /// <summary>
     ///   Gets or sets the help handsonlab url.
@@ -45,16 +53,24 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
 
     public string HelpLabelDescribtion
     {
-      get { return header1.HeaderDescribtion; }
-      set { header1.HeaderDescribtion = value; }
+      get => header1.HeaderDescribtion;
+      set => header1.HeaderDescribtion = value;
     }
 
-    public string HelpLabelHeader { get { return header1.HeaderHead; } set { header1.HeaderHead = value; } }
+    public string HelpLabelHeader
+    {
+      get => header1.HeaderHead;
+      set => header1.HeaderHead = value;
+    }
 
     /// <summary>
     ///   Gets or sets the help online text.
     /// </summary>
-    public string HelpOnlineText { get { return btn_online.Text; } set { btn_online.Text = value; } }
+    public string HelpOnlineText
+    {
+      get => btn_online.Text;
+      set => btn_online.Text = value;
+    }
 
     /// <summary>
     ///   Gets or sets the help online url.
@@ -64,7 +80,11 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     /// <summary>
     ///   Gets or sets the help video text.
     /// </summary>
-    public string HelpVideoText { get { return btn_video.Text; } set { btn_video.Text = value; } }
+    public string HelpVideoText
+    {
+      get => btn_video.Text;
+      set => btn_video.Text = value;
+    }
 
     /// <summary>
     ///   Gets or sets the help video url.
@@ -139,7 +159,10 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       {
         Process.Start(url);
       }
-      catch {}
+      catch
+      {
+        // ignore
+      }
     }
   }
 }

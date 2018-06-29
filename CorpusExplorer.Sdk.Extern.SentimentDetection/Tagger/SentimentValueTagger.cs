@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Extern.SentimentDetection.Tagger.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model;
@@ -13,6 +10,10 @@ namespace CorpusExplorer.Sdk.Extern.SentimentDetection.Tagger
   public class SentimentValueTagger : AbstractSentimentTagger
   {
     public override string DisplayName => "Sentiment-Werte-Tagger";
+
+    protected override void Cleanup()
+    {
+    }
 
     protected override IEnumerable<AbstractLayerState> ExecuteCall(ref AbstractCorpusAdapter corpus)
     {
@@ -28,22 +29,23 @@ namespace CorpusExplorer.Sdk.Extern.SentimentDetection.Tagger
           var rdoc = layer.GetReadableDocumentByGuid(dsel);
           var ndoc =
             rdoc.Select(
-                  s =>
-                    s.Select(
-                      w => dim.Value.ContainsKey(w)
-                             ? dim.Value[w].ToString()
-                             : string.Empty).ToArray())
-                .ToArray();
+                s =>
+                  s.Select(
+                    w => dim.Value.ContainsKey(w)
+                      ? dim.Value[w].ToString()
+                      : string.Empty).ToArray())
+              .ToArray();
           nlayer.AddCompleteDocument(dsel, ndoc);
         }
 
         res.Add(nlayer);
       }
-      
+
       return res;
     }
 
-    protected override void Cleanup() { }
-    protected override void Initialize() { }
+    protected override void Initialize()
+    {
+    }
   }
 }

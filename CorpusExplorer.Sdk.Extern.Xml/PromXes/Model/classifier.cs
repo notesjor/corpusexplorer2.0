@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.PromXes.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "anyURI")]
-    public string keys { get { return keysField; } set { keysField = value; } }
+    public string keys
+    {
+      get => keysField;
+      set => keysField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string name { get { return nameField; } set { nameField = value; } }
+    public string name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
   }
 }

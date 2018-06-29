@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using CorpusExplorer.Sdk.EchtzeitEngine.Calculator;
 using CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step.Abstract;
 using CorpusExplorer.Sdk.EchtzeitEngine.Model;
@@ -12,14 +8,18 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.ViewModel
 {
   public class EchtzeitEngineViewModel : AbstractViewModel
   {
+    public List<AbstractCalculatorStep> CalculatorSteps { get; set; } = new List<AbstractCalculatorStep>();
+
+    public UniversalStorage ResultStorage { get; set; }
+
     protected override void ExecuteAnalyse()
     {
       ResultStorage = EchtzeitEngineCalculator.Calculate(Selection, CalculatorSteps);
     }
 
-    public UniversalStorage ResultStorage { get; set; }
-    public List<AbstractCalculatorStep> CalculatorSteps { get; set; } = new List<AbstractCalculatorStep>();
-
-    protected override bool Validate() => CalculatorSteps != null;
+    protected override bool Validate()
+    {
+      return CalculatorSteps != null;
+    }
   }
 }

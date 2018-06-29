@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows.Controls;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter.Abstract;
@@ -13,23 +14,22 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter
       var stb = new StringBuilder();
       stb.Append("digraph G {\r\n");
 
-      foreach (var connection in connections)
+      var cs = connections.ToArray();
+      foreach (var connection in cs)
       {
-        var block = connection.Content as TextBlock;
-        if (block != null)
-          stb.AppendFormat(
-            "\t{0} -> {1} [ label=\"{2}\" ];\r\n",
-            Filter(connection.Source.Content),
-            Filter(connection.Target.Content),
-            block.Text);
+        if (connection.Content is TextBlock block)
+          stb.Append($"\t{Filter(connection.Source.Content)} -> {Filter(connection.Target.Content)} [ label=\"{block.Text}\" ];\r\n");
         else
-          stb.AppendFormat("\t{0} -> {1};\r\n", Filter(connection.Source.Content), Filter(connection.Target.Content));
+          stb.Append($"\t{Filter(connection.Source.Content)} -> {Filter(connection.Target.Content)};\r\n");
       }
 
       stb.Append("\r\n}\r\n");
       return stb.ToString();
     }
 
-    private string Filter(object content) { return "\"" + content.ToString().Replace("\"", "''") + "\""; }
+    private string Filter(object content)
+    {
+      return "\"" + content.ToString().Replace("\"", "''") + "\"";
+    }
   }
 }

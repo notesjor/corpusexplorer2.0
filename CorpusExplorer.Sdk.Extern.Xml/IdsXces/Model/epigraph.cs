@@ -18,6 +18,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private quote quoteField;
 
     /// <remarks />
-    public quote quote { get { return quoteField; } set { quoteField = value; } }
+    public quote quote
+    {
+      get => quoteField;
+      set => quoteField = value;
+    }
   }
 }

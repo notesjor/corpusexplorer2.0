@@ -11,12 +11,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
   public enum ItemsChoiceType
   {
     /// <remarks />
-    [XmlEnum("c.title")]
-    ctitle,
+    [XmlEnum("c.title")] ctitle,
 
     /// <remarks />
-    [XmlEnum("d.title")]
-    dtitle,
+    [XmlEnum("d.title")] dtitle,
 
     /// <remarks />
     dokumentSigle,
@@ -25,8 +23,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     korpusSigle,
 
     /// <remarks />
-    [XmlEnum("t.title")]
-    ttitle,
+    [XmlEnum("t.title")] ttitle,
 
     /// <remarks />
     textSigle

@@ -1,22 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Catma.Helper
 {
   public static class XmlNodeHelper
   {
-    public static bool HasAttribute(this XmlNode node, string attributeName)
-    {
-      return node?.Attributes != null && node.Attributes.Cast<XmlAttribute>().Any(x => x.Name == attributeName);
-    }
-
     public static string GetAttribute(this XmlNode node, string attributeName)
     {
       return node?.Attributes?[attributeName]?.Value;
+    }
+
+    public static XmlNode GetFirstSubNode(this XmlNode node, string name)
+    {
+      return node.Name == name ? node : node.ChildNodes.Cast<XmlNode>().FirstOrDefault(child => child.Name == name);
+    }
+
+    public static XmlNode GetFirstSubNodeRecursive(this XmlNode node, string name)
+    {
+      return node.Name == name
+        ? node
+        : (from XmlNode childchild in node.ChildNodes select GetFirstSubNodeRecursive(childchild, name)).FirstOrDefault(
+          res => res != null);
     }
 
     public static IEnumerable<XmlNode> GetSubNodes(this XmlNode node, string name)
@@ -29,11 +34,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Catma.Helper
       return res;
     }
 
-    public static XmlNode GetFirstSubNode(this XmlNode node, string name)
-    {
-      return node.Name == name ? node : node.ChildNodes.Cast<XmlNode>().FirstOrDefault(child => child.Name == name);
-    }
-
     public static IEnumerable<XmlNode> GetSubNodesRecursive(this XmlNode node, string name)
     {
       var list = new List<XmlNode>();
@@ -42,13 +42,13 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Catma.Helper
 
       foreach (XmlNode childchild in node.ChildNodes)
         list.AddRange(GetSubNodesRecursive(childchild, name));
-      
+
       return list;
     }
 
-    public static XmlNode GetFirstSubNodeRecursive(this XmlNode node, string name)
+    public static bool HasAttribute(this XmlNode node, string attributeName)
     {
-      return node.Name == name ? node : (from XmlNode childchild in node.ChildNodes select GetFirstSubNodeRecursive(childchild, name)).FirstOrDefault(res => res != null);
+      return node?.Attributes != null && node.Attributes.Cast<XmlAttribute>().Any(x => x.Name == attributeName);
     }
   }
 }

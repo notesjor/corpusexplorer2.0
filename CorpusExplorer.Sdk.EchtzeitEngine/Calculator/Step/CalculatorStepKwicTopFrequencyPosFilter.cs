@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
@@ -6,12 +5,12 @@ using CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step.Abstract;
 using CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step.Interface;
 using CorpusExplorer.Sdk.EchtzeitEngine.Model;
 using CorpusExplorer.Sdk.Model;
-using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 
 namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
 {
-  public class CalculatorStepKwicTopFrequencyPosFilter : AbstractCalculatorStepKwic, ICalculatorStepHasTopFilter, ICalculatorStepHasPosFilter
+  public class CalculatorStepKwicTopFrequencyPosFilter : AbstractCalculatorStepKwic, ICalculatorStepHasTopFilter,
+    ICalculatorStepHasPosFilter
   {
     public CalculatorStepKwicTopFrequencyPosFilter()
     {
@@ -20,7 +19,9 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
     }
 
     public override string Method => "KwicTopFrequencyPosFilter";
-   
+
+    public IEnumerable<string> PosTags { get; set; }
+
     public int Top { get; set; }
 
     public override void Calculate(Selection selection, ref UniversalStorage output)
@@ -35,21 +36,17 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
             queries.Add(s);
 
       foreach (var query in queries)
-      {
         output.Set(
           selection,
           Method,
           query,
           RequestDataTableViaTextLive(
-            selection, 
+            selection,
             new FilterQuerySingleLayerAnyMatch
             {
               LayerDisplayname = "Wort",
               LayerQueries = new[] {query}
             }));
-      }
     }
-
-    public IEnumerable<string> PosTags { get; set; }
   }
 }

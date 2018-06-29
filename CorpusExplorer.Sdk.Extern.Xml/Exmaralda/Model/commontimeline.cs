@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement("tli")]
-    public tli[] tli { get { return tliField; } set { tliField = value; } }
+    public tli[] tli
+    {
+      get => tliField;
+      set => tliField = value;
+    }
   }
 }

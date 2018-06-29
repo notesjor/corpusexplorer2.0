@@ -28,14 +28,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     [XmlElement("mt", typeof(baseTerminatorType))]
     [XmlElement("mw", typeof(morphemicWordType))]
     [XmlElement("mwc", typeof(morphemicCompoundWordType))]
-    public object Item { get { return itemField; } set { itemField = value; } }
+    public object Item
+    {
+      get => itemField;
+      set => itemField = value;
+    }
 
     /// <remarks />
     [XmlElement("menx")]
-    public morphemicTranslationType[] menx { get { return menxField; } set { menxField = value; } }
+    public morphemicTranslationType[] menx
+    {
+      get => menxField;
+      set => menxField = value;
+    }
 
     /// <remarks />
     [XmlElement("gra")]
-    public graType[] gra { get { return graField; } set { graField = value; } }
+    public graType[] gra
+    {
+      get => graField;
+      set => graField = value;
+    }
   }
 }

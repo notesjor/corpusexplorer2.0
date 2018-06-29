@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using Bcs.IO;
@@ -10,7 +9,6 @@ using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Extern.Plaintext.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup;
 using HtmlAgilityPack;
-using MsgReader;
 using MsgReader.Mime;
 using MsgReader.Mime.Header;
 
@@ -20,17 +18,11 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.RawMailMsg
 {
   public sealed class RawMsgMsgScraper : AbstractPlaintextScraper
   {
+    private readonly StandardCleanup _cleanup = new StandardCleanup();
+    private readonly object _cleanupLock = new object();
     private string _tempPath;
 
-    private StandardCleanup _cleanup = new StandardCleanup();
-    private object _cleanupLock = new object();
-
     public override string DisplayName => "Easy MSG E-Mail";
-
-    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
-    {
-      return new[] { Bypass(FileIO.ReadBytes(file)) };
-    }
 
     public Dictionary<string, object> Inline(string eml, Encoding encoding = null)
     {
@@ -38,6 +30,11 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.RawMailMsg
         encoding = Encoding.UTF8;
 
       return Bypass(encoding.GetBytes(eml));
+    }
+
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
+    {
+      return new[] {Bypass(FileIO.ReadBytes(file))};
     }
 
     private Dictionary<string, object> Bypass(byte[] rawData)
@@ -69,15 +66,6 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.RawMailMsg
       };
     }
 
-    private string MailAddressListToString(List<RfcMailAddress> list) => string.Join(";", list.Select(x => x.Address));
-
-    private string ExtractText(Message message)
-    {
-      if (message.TextBody != null)
-        return message.TextBody.BodyEncoding.GetString(message.TextBody.Body);
-      return message.HtmlBody != null ? CleanHtml(message.HtmlBody.BodyEncoding.GetString(message.HtmlBody.Body)) : null;
-    }
-
     private string CleanHtml(string html)
     {
       var doc = new HtmlDocument();
@@ -93,7 +81,8 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.RawMailMsg
       do
       {
         t0 = text.Length;
-        text = text.Replace("\r\r", "\r\n").Replace("\n\n", "\r\n").Replace("\r\n\r\n", "\r\n").Replace("\r\n ", "\r\n").Replace("  ", " ").Replace("\t", " ");
+        text = text.Replace("\r\r", "\r\n").Replace("\n\n", "\r\n").Replace("\r\n\r\n", "\r\n").Replace("\r\n ", "\r\n")
+          .Replace("  ", " ").Replace("\t", " ");
       } while (t0 != text.Length);
 
 
@@ -109,6 +98,20 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.RawMailMsg
 
         return _cleanup.Output.First()["Text"] as string;
       }
+    }
+
+    private string ExtractText(Message message)
+    {
+      if (message.TextBody != null)
+        return message.TextBody.BodyEncoding.GetString(message.TextBody.Body);
+      return message.HtmlBody != null
+        ? CleanHtml(message.HtmlBody.BodyEncoding.GetString(message.HtmlBody.Body))
+        : null;
+    }
+
+    private string MailAddressListToString(List<RfcMailAddress> list)
+    {
+      return string.Join(";", list.Select(x => x.Address));
     }
   }
 }

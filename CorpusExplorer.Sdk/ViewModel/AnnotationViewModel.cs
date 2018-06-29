@@ -47,13 +47,10 @@ namespace CorpusExplorer.Sdk.ViewModel
         layer.ValueRemove(layerValue);
     }
 
-    protected override void ExecuteAnalyse()
+    public void ExportLayer(string layerDisplayname)
     {
-      Documents = Selection.DocumentGuidsAndDisplaynames.ToDictionary(x => x.Key, x => x.Value);
-      SelectDocument(Documents.FirstOrDefault().Key);
+      Selection.ExportDocumentLayer(_documentGuid, layerDisplayname);
     }
-
-    public void ExportLayer(string layerDisplayname) { Selection.ExportDocumentLayer(_documentGuid, layerDisplayname); }
 
     public IEnumerable<IEnumerable<string>> GetDocument(Guid? documentGuid = null, Guid? layerGuid = null)
     {
@@ -80,7 +77,10 @@ namespace CorpusExplorer.Sdk.ViewModel
       return Selection.GetDocumentLayerValueMask(_documentGuid, _maskLayerGuid, _maskLayerValue);
     }
 
-    public IEnumerable<string> GetLayerValues(Guid layerGuid) { return Selection.GetLayerValues(layerGuid); }
+    public IEnumerable<string> GetLayerValues(Guid layerGuid)
+    {
+      return Selection.GetLayerValues(layerGuid);
+    }
 
     public void NewLayer(string layerName)
     {
@@ -91,7 +91,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     public void NewLayerValue(string layerDisplayname, string layerValue)
     {
       foreach (var layer in Selection.GetLayers(layerDisplayname))
-        layer.ValueAdd(layerValue);         
+        layer.ValueAdd(layerValue);
     }
 
     public void QuickAnnotation(
@@ -108,11 +108,6 @@ namespace CorpusExplorer.Sdk.ViewModel
         layer.ValueAdd(value);
 
       layer.SetQuickStreamDocumentAnnotation(documentGuid, streamDocument);
-    }
-
-    private void RefrehDocumentLayers()
-    {
-      Layers = Selection.GetLayerGuidAndDisplaynamesOfDocument(_documentGuid).ToDictionary(x => x.Key, x => x.Value);
     }
 
     public void RenameLayer(string layerDisplaynameOld, string layerDisplaynameNew)
@@ -139,18 +134,21 @@ namespace CorpusExplorer.Sdk.ViewModel
       }
     }
 
-    public Selection SelectDocumentAsSelection() { return Selection.CreateTemporary(new[] {_documentGuid}); }
+    public Selection SelectDocumentAsSelection()
+    {
+      return Selection.CreateTemporary(new[] {_documentGuid});
+    }
 
     public IEnumerable<IEnumerable<bool>> SetLayerValueMask(int sentenceIndex, int wordIndex)
     {
       return Selection.SetDocumentLayerValueMask(
-               _documentGuid,
-               _maskLayerGuid,
-               sentenceIndex,
-               wordIndex,
-               _maskLayerValue)
-               ? Selection.GetDocumentLayerValueMask(_documentGuid, _maskLayerGuid, _maskLayerValue)
-               : null;
+        _documentGuid,
+        _maskLayerGuid,
+        sentenceIndex,
+        wordIndex,
+        _maskLayerValue)
+        ? Selection.GetDocumentLayerValueMask(_documentGuid, _maskLayerGuid, _maskLayerValue)
+        : null;
     }
 
     public void SetNewDocumentMetadata(KeyValuePair<string, Type> property)
@@ -158,6 +156,20 @@ namespace CorpusExplorer.Sdk.ViewModel
       Selection.Project.SetNewDocumentMetadata(property.Key, property.Value);
     }
 
-    protected override bool Validate() { return true; }
+    protected override void ExecuteAnalyse()
+    {
+      Documents = Selection.DocumentGuidsAndDisplaynames.ToDictionary(x => x.Key, x => x.Value);
+      SelectDocument(Documents.FirstOrDefault().Key);
+    }
+
+    protected override bool Validate()
+    {
+      return true;
+    }
+
+    private void RefrehDocumentLayers()
+    {
+      Layers = Selection.GetLayerGuidAndDisplaynamesOfDocument(_documentGuid).ToDictionary(x => x.Key, x => x.Value);
+    }
   }
 }

@@ -52,27 +52,6 @@ namespace CorpusExplorer.Installer.Sdk.View
       }
     }
 
-    private void Processing_Load(object sender, EventArgs e) { timer1.Start(); }
-
-    /// <summary>
-    ///   The show splash thread call.
-    /// </summary>
-    private static void ShowSplashThreadCall()
-    {
-      if (_splashForm == null)
-        _splashForm = new Processing();
-
-      _splashForm.TopMost = true;
-      _splashForm.Show();
-
-      lock (_locker)
-      {
-        _waitPlease = false;
-      }
-
-      Application.Run(_splashForm);
-    }
-
     /// <summary>
     ///   The splash close.
     /// </summary>
@@ -93,8 +72,8 @@ namespace CorpusExplorer.Installer.Sdk.View
             launched = true;
         }
 
-      if ((_splashForm == null) ||
-          (_splashThread == null))
+      if (_splashForm == null ||
+          _splashThread == null)
         return;
 
       if (_splashForm.InvokeRequired)
@@ -132,8 +111,8 @@ namespace CorpusExplorer.Installer.Sdk.View
             launched = true;
         }
 
-      if ((_splashForm == null) ||
-          (_splashThread == null))
+      if (_splashForm == null ||
+          _splashThread == null)
         return;
 
       if (_splashForm.InvokeRequired)
@@ -157,6 +136,30 @@ namespace CorpusExplorer.Installer.Sdk.View
       _splashThread = new Thread(ShowSplashThreadCall) {IsBackground = true};
       _splashThread.SetApartmentState(ApartmentState.STA);
       _splashThread.Start();
+    }
+
+    private void Processing_Load(object sender, EventArgs e)
+    {
+      timer1.Start();
+    }
+
+    /// <summary>
+    ///   The show splash thread call.
+    /// </summary>
+    private static void ShowSplashThreadCall()
+    {
+      if (_splashForm == null)
+        _splashForm = new Processing();
+
+      _splashForm.TopMost = true;
+      _splashForm.Show();
+
+      lock (_locker)
+      {
+        _waitPlease = false;
+      }
+
+      Application.Run(_splashForm);
     }
 
     private void timer1_Tick(object sender, EventArgs e)

@@ -13,7 +13,15 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering
   {
     private Selection _selection;
 
-    public WordcloudVisualisation() { InitializeComponent(); }
+    public WordcloudVisualisation()
+    {
+      InitializeComponent();
+    }
+
+    public void Refresh(Selection selection)
+    {
+      _selection = selection;
+    }
 
     private void btn_go_Click(object sender, EventArgs e)
     {
@@ -31,7 +39,5 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering
       cloudControl1.Items = dic.Select(x => new WordCloudItem {Label = x.Key, Occurrences = (int) (x.Value*100)});
       */
     }
-
-    public void Refresh(Selection selection) { _selection = selection; }
   }
 }

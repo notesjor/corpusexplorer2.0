@@ -1,15 +1,12 @@
 ﻿using System.Globalization;
-using System.Reflection;
 using System.Text;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Blocks.Cooccurrence;
 using CorpusExplorer.Sdk.Blocks.Measure.Abstract;
-using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Model.Cache.Abstract;
-using CorpusExplorer.Sdk.Model.Export;
 using CorpusExplorer.Sdk.Properties;
 
 #region
@@ -22,9 +19,7 @@ using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 #endregion
@@ -45,8 +40,7 @@ namespace CorpusExplorer.Sdk.Model
     /// <summary>
     ///   The _corpora.
     /// </summary>
-    [NonSerialized]
-    private List<AbstractCorpusAdapter> _corpora = new List<AbstractCorpusAdapter>();
+    [NonSerialized] private readonly List<AbstractCorpusAdapter> _corpora = new List<AbstractCorpusAdapter>();
 
     /// <summary>
     ///   The _current selection.
@@ -56,14 +50,15 @@ namespace CorpusExplorer.Sdk.Model
     /// <summary>
     ///   The _selection all.
     /// </summary>
-    [NonSerialized]
-    private Selection _selectionAll;
+    [NonSerialized] private Selection _selectionAll;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="Project" /> class.
     ///   Prevents a default instance of the <see cref="Project" /> class from being created.
     /// </summary>
-    private Project() { }
+    private Project()
+    {
+    }
 
     /// <summary>
     ///   Gets or sets the current selection.
@@ -87,14 +82,14 @@ namespace CorpusExplorer.Sdk.Model
     public IEnumerable<KeyValuePair<Selection, string>> OtherSelections
       =>
         Selections.Where(x => x.Guid != CurrentSelection.Guid)
-                  .ToDictionary(
-                    x => x,
-                    x =>
-                      x.Displayname.Replace("<html>", "")
-                       .Replace("</html>", "")
-                       .Replace("<strong>", "")
-                       .Replace("</strong>", "")
-                       .Replace("&nbsp;", ""));
+          .ToDictionary(
+            x => x,
+            x =>
+              x.Displayname.Replace("<html>", "")
+                .Replace("</html>", "")
+                .Replace("<strong>", "")
+                .Replace("</strong>", "")
+                .Replace("&nbsp;", ""));
 
     /// <summary>
     ///   Gets the select all.
@@ -398,10 +393,10 @@ namespace CorpusExplorer.Sdk.Model
     /// </returns>
     public string GetDocumentDisplayname(Guid documentGuid)
     {
-      var corpus = ProxyRequestCorpus(c => c.ContainsDocument(documentGuid));
+      var corpus = ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid));
       return corpus == null
-               ? $"Kein Titel (GUID: {documentGuid:N}"
-               : corpus.GetDocumentDisplayname(documentGuid);
+        ? $"Kein Titel (GUID: {documentGuid:N}"
+        : corpus.GetDocumentDisplayname(documentGuid);
     }
 
     public IEnumerable<IEnumerable<bool>> GetDocumentLayerValueMask(
@@ -409,7 +404,7 @@ namespace CorpusExplorer.Sdk.Model
       string layerDisplayname,
       string layerValue)
     {
-      var corpus = ProxyRequestCorpus(c => c.ContainsDocument(documentGuid));
+      var corpus = ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid));
       return corpus?.GetDocumentLayerValueMask(documentGuid, layerDisplayname, layerValue);
     }
 
@@ -418,7 +413,7 @@ namespace CorpusExplorer.Sdk.Model
       Guid layerGuid,
       string layerValue)
     {
-      var corpus = ProxyRequestCorpus(c => c.ContainsDocument(documentGuid));
+      var corpus = ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid));
       return corpus?.GetDocumentLayerValueMask(documentGuid, layerGuid, layerValue);
     }
 
@@ -479,12 +474,12 @@ namespace CorpusExplorer.Sdk.Model
     /// </returns>
     public Dictionary<string, object> GetDocumentMetadata(Guid documentGuid)
     {
-      return ProxyRequestCorpus(c => c.ContainsDocument(documentGuid))?.GetDocumentMetadata(documentGuid);
+      return ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid))?.GetDocumentMetadata(documentGuid);
     }
 
     public T GetDocumentMetadata<T>(Guid documentGuid, string metaKey, T defaultValue)
     {
-      var corpus = ProxyRequestCorpus(c => c.ContainsDocument(documentGuid));
+      var corpus = ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid));
       return corpus == null ? defaultValue : corpus.GetDocumentMetadata(documentGuid, metaKey, defaultValue);
     }
 
@@ -532,6 +527,7 @@ namespace CorpusExplorer.Sdk.Model
       var res = new HashSet<string>();
       Parallel.ForEach(
         _corpora,
+        Configuration.ParallelOptions,
         c =>
         {
           var items = c.GetDocumentMetadataPrototype();
@@ -550,6 +546,7 @@ namespace CorpusExplorer.Sdk.Model
       var res = new HashSet<object>();
       Parallel.ForEach(
         _corpora,
+        Configuration.ParallelOptions,
         c =>
         {
           var items = c.GetDocumentMetadataPrototypeOnlyPropertieValues(property);
@@ -568,6 +565,7 @@ namespace CorpusExplorer.Sdk.Model
       var res = new HashSet<string>();
       Parallel.ForEach(
         _corpora,
+        Configuration.ParallelOptions,
         c =>
         {
           var items = c.GetDocumentMetadataPrototypeOnlyPropertieValuesAsString(property);
@@ -605,7 +603,7 @@ namespace CorpusExplorer.Sdk.Model
     /// </returns>
     public AbstractLayerAdapter GetLayer(Guid layerGuid)
     {
-      return ProxyRequestCorpus(c => c.ContainsLayer(layerGuid))?.GetLayer(layerGuid);
+      return ProxyRequestCorpus(c => c?.ContainsLayer(layerGuid))?.GetLayer(layerGuid);
     }
 
     /// <summary>
@@ -632,7 +630,7 @@ namespace CorpusExplorer.Sdk.Model
     /// </returns>
     public AbstractLayerAdapter GetLayerOfDocument(Guid documentGuid, string layerDisplayname)
     {
-      return ProxyRequestCorpus(c => c.ContainsDocument(documentGuid))
+      return ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid))
         ?.GetLayerOfDocument(documentGuid, layerDisplayname);
     }
 
@@ -670,7 +668,7 @@ namespace CorpusExplorer.Sdk.Model
     /// </returns>
     public IEnumerable<AbstractLayerAdapter> GetLayersOfDocument(Guid documentGuid)
     {
-      return ProxyRequestCorpus(c => c.ContainsDocument(documentGuid))?.GetLayersOfDocument(documentGuid);
+      return ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid))?.GetLayersOfDocument(documentGuid);
     }
 
     /// <summary>
@@ -729,13 +727,13 @@ namespace CorpusExplorer.Sdk.Model
     /// </returns>
     public IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, string layerDisplayname)
     {
-      return ProxyRequestCorpus(c => c.ContainsDocument(documentGuid))
+      return ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid))
         ?.GetReadableDocument(documentGuid, layerDisplayname);
     }
 
     public IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, Guid layerGuid)
     {
-      return ProxyRequestCorpus(c => c.ContainsDocument(documentGuid))?.GetReadableDocument(documentGuid, layerGuid);
+      return ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid))?.GetReadableDocument(documentGuid, layerGuid);
     }
 
     /// <summary>
@@ -762,7 +760,7 @@ namespace CorpusExplorer.Sdk.Model
       int start,
       int stop)
     {
-      return ProxyRequestCorpus(c => c.ContainsDocument(documentGuid))?
+      return ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid))?
         .GetReadableDocumentSnippet(documentGuid, layerDisplayname, start, stop);
     }
 
@@ -777,7 +775,7 @@ namespace CorpusExplorer.Sdk.Model
     /// </returns>
     public Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(Guid documentGuid)
     {
-      return ProxyRequestCorpus(c => c.ContainsDocument(documentGuid))?.GetReadableMultilayerDocument(documentGuid);
+      return ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid))?.GetReadableMultilayerDocument(documentGuid);
     }
 
     /// <summary>
@@ -859,7 +857,7 @@ namespace CorpusExplorer.Sdk.Model
         return res;
       }
     }
-    
+
     /// <summary>
     ///   The reset all document metadata.
     /// </summary>
@@ -876,7 +874,7 @@ namespace CorpusExplorer.Sdk.Model
           var guids = new HashSet<Guid>(c.DocumentGuids);
           c.ResetAllDocumentMetadata(
             newMetadata.Where(guid => guids.Contains(guid.Key))
-                       .ToDictionary(guid => guid.Key, guid => guid.Value));
+              .ToDictionary(guid => guid.Key, guid => guid.Value));
         });
     }
 
@@ -972,21 +970,6 @@ namespace CorpusExplorer.Sdk.Model
     }
 
     /// <summary>
-    ///   Fügt dem Projekt eine bestehende Auswahl hinzu.
-    ///   ACHTUNG: Sollte nur verwendet werden um Selection die durch BLOCKs erzeugt wurden dem Projekt hinzuzufügen.
-    ///   Für die manuelle Selection-Erzeugung benutzen Sie bitte CreateSelection !!!
-    /// </summary>
-    /// <param name="selection">Die Selection</param>
-    /// <param name="parentSelection">Übergeordnete Selection</param>
-    private void AddSelection(Selection selection, Selection parentSelection = null)
-    {
-      if (parentSelection == null)
-        _selections.Add(selection);
-      else
-        parentSelection.AddSubSelection(selection);
-    }
-
-    /// <summary>
     ///   The create.
     /// </summary>
     /// <param name="displayName">
@@ -1079,32 +1062,6 @@ namespace CorpusExplorer.Sdk.Model
       return (parentSelection ?? SelectAll).CreateTemporary(corpusAndDocumentGuids);
     }
 
-    internal int GetDocumentLengthInSentences(Dictionary<Guid, HashSet<Guid>> selectionDefinition)
-    {
-      return (from csel in selectionDefinition
-              let corpus = GetCorpus(csel.Key)
-              where corpus != null
-              from dsel in csel.Value
-              select corpus.GetDocumentLengthInSentences(dsel)).Sum();
-    }
-
-    private static void GetDocumentMetadataPrototypeCall(
-      AbstractCorpusAdapter c,
-      object l,
-      Dictionary<string, HashSet<object>> res)
-    {
-      var proto = c.GetDocumentMetadataPrototype();
-      foreach (var entry in proto)
-        lock (l)
-        {
-          if (res.ContainsKey(entry.Key))
-            foreach (var v in entry.Value)
-              res[entry.Key].Add(v);
-          else
-            res.Add(entry.Key, new HashSet<object>(entry.Value));
-        }
-    }
-
     /// <summary>
     ///   The load.
     /// </summary>
@@ -1116,7 +1073,8 @@ namespace CorpusExplorer.Sdk.Model
     /// </returns>
     public static Project Load(string path)
     {
-      var lines = FileIO.ReadLines(path, Configuration.Encoding, stringSplitOptions: StringSplitOptions.RemoveEmptyEntries);
+      var lines = FileIO.ReadLines(path, Configuration.Encoding,
+        stringSplitOptions: StringSplitOptions.RemoveEmptyEntries);
       if (lines[0] != "----=----")
         return null;
 
@@ -1155,7 +1113,7 @@ namespace CorpusExplorer.Sdk.Model
               Configuration.ProtectMemoryOverflow = bool.Parse(entry[1]);
               break;
             case "SIGN":
-              Configuration.Significance = Activator.CreateInstance(Type.GetType(entry[1])) as ISignificance;
+              Configuration.SetSignificance(Activator.CreateInstance(Type.GetType(entry[1])) as ISignificance);
               break;
             case "MINF":
               Configuration.MinimumFrequency = int.Parse(entry[1]);
@@ -1165,7 +1123,9 @@ namespace CorpusExplorer.Sdk.Model
               break;
           }
         }
-        catch { }
+        catch
+        {
+        }
       }
 
       for (; i < lines.Length; i++)
@@ -1180,7 +1140,9 @@ namespace CorpusExplorer.Sdk.Model
         var tguid = Guid.Parse(entry[0]);
         var type = Type.GetType(entry[1]);
 
-        var corpus = type.GetMethods().First(x => x.IsStatic && x.IsPublic && x.Name == "Create" && x.GetParameters().Length == 1).Invoke(null, new object[] { entry[2] }) as AbstractCorpusAdapter;
+        var corpus =
+          type.GetMethods().First(x => x.IsStatic && x.IsPublic && x.Name == "Create" && x.GetParameters().Length == 1)
+            .Invoke(null, new object[] { entry[2] }) as AbstractCorpusAdapter;
         if (corpus == null || corpus.CorpusGuid != tguid)
           continue;
         res.Add(corpus);
@@ -1193,24 +1155,150 @@ namespace CorpusExplorer.Sdk.Model
       return res;
     }
 
-    private void OnSelectionChanged() { SelectionChanged?.Invoke(); }
+    /// <summary>
+    ///   The corpus remove.
+    /// </summary>
+    /// <param name="corpusGuid">
+    ///   The corpus guid.
+    /// </param>
+    public void Remove(Guid corpusGuid)
+    {
+      var c = (from x in _corpora where x.CorpusGuid == corpusGuid select x).FirstOrDefault();
+      if (c != null)
+        _corpora.Remove(c);
 
-    private void OnSelectionCreated() { SelectionCreated?.Invoke(); }
+      _selectionAll = null;
+    }
+
+    public void RemoveSelection(Selection selection)
+    {
+      _selections.Remove(selection);
+    }
+
+    /// <summary>
+    ///   The save.
+    /// </summary>
+    /// <param name="path">
+    ///   Pfad unter dem das Projekt gespeichert wird.
+    /// </param>
+    public void Save(string path)
+    {
+      var stb = new StringBuilder();
+
+      stb.AppendLine("----=----");
+
+      stb.AppendLine($"NAME={Displayname}");
+      stb.AppendLine($"GUID={Guid}");
+      stb.AppendLine($"ENCO={Configuration.Encoding.CodePage}");
+      stb.AppendLine($"CACH={Configuration.Cache.GetType().FullName}");
+      stb.AppendLine($"MEAS={Configuration.Measure.GetType().FullName}");
+      stb.AppendLine($"PROT={Configuration.ProtectMemoryOverflow}");
+      stb.AppendLine($"SIGN={Configuration.GetSignificanceType().FullName}");
+      stb.AppendLine($"MINF={Configuration.MinimumFrequency}");
+      stb.AppendLine($"MINS={Configuration.MinimumSignificance.ToString(CultureInfo.InvariantCulture)}");
+
+      stb.AppendLine("---->----");
+
+      foreach (var corpus in _corpora)
+        stb.AppendLine($"{corpus.CorpusGuid}>{corpus.GetType()}>{corpus.CorpusPath}");
+
+      stb.AppendLine("----?----");
+
+      foreach (var selection in _selections)
+        stb.AppendLine(SelectionListConverterHelper.ToListStream(selection));
+
+      FileIO.Write(path.ForceFileExtension("proj5"), stb.ToString(), Configuration.Encoding);
+    }
+
+    /// <summary>
+    ///   The create selection all.
+    /// </summary>
+    public void SelectAllNew()
+    {
+      _selectionAll = null;
+    }
+
+    public event HydraDelegate SelectionChanged;
+
+    /// <summary>
+    ///   Gets or sets the on model changes.
+    /// </summary>
+    /// <value>The on model changes.</value>
+    public event HydraDelegate SelectionCreated;
+
+    internal int GetDocumentLengthInSentences(Dictionary<Guid, HashSet<Guid>> selectionDefinition)
+    {
+      return (from csel in selectionDefinition
+              let corpus = GetCorpus(csel.Key)
+              where corpus != null
+              from dsel in csel.Value
+              select corpus.GetDocumentLengthInSentences(dsel)).Sum();
+    }
+
+    /// <summary>
+    ///   Fügt dem Projekt eine bestehende Auswahl hinzu.
+    ///   ACHTUNG: Sollte nur verwendet werden um Selection die durch BLOCKs erzeugt wurden dem Projekt hinzuzufügen.
+    ///   Für die manuelle Selection-Erzeugung benutzen Sie bitte CreateSelection !!!
+    /// </summary>
+    /// <param name="selection">Die Selection</param>
+    /// <param name="parentSelection">Übergeordnete Selection</param>
+    private void AddSelection(Selection selection, Selection parentSelection = null)
+    {
+      if (parentSelection == null)
+        _selections.Add(selection);
+      else
+        parentSelection.AddSubSelection(selection);
+    }
+
+    private static void GetDocumentMetadataPrototypeCall(
+      AbstractCorpusAdapter c,
+      object l,
+      Dictionary<string, HashSet<object>> res)
+    {
+      var proto = c.GetDocumentMetadataPrototype();
+      foreach (var entry in proto)
+        lock (l)
+        {
+          if (res.ContainsKey(entry.Key))
+            foreach (var v in entry.Value)
+              res[entry.Key].Add(v);
+          else
+            res.Add(entry.Key, new HashSet<object>(entry.Value));
+        }
+    }
+
+    private void OnSelectionChanged()
+    {
+      SelectionChanged?.Invoke();
+    }
+
+    private void OnSelectionCreated()
+    {
+      SelectionCreated?.Invoke();
+    }
 
     private AbstractCorpusAdapter ProxyRequestCorpus(ProxyRequestDelegate func)
     {
       AbstractCorpusAdapter res = null;
 
-      Parallel.ForEach(
-        _corpora,
-        Configuration.ParallelOptions,
-        (c, state) =>
-        {
-          if (!func(c))
-            return;
-          res = c;
-          state.Break();
-        });
+      try
+      {
+        Parallel.ForEach(
+          _corpora,
+          Configuration.ParallelOptions,
+          (c, state) =>
+          {
+            var val = func(c);
+            if (!val.HasValue || !val.Value)
+              return;
+            res = c;
+            state.Break();
+          });
+      }
+      catch
+      {
+        // ignore
+      }
 
       return res;
     }
@@ -1270,66 +1358,6 @@ namespace CorpusExplorer.Sdk.Model
       return res;
     }
 
-    /// <summary>
-    ///   The corpus remove.
-    /// </summary>
-    /// <param name="corpusGuid">
-    ///   The corpus guid.
-    /// </param>
-    public void Remove(Guid corpusGuid)
-    {
-      var c = (from x in _corpora where x.CorpusGuid == corpusGuid select x).FirstOrDefault();
-      if (c != null)
-        _corpora.Remove(c);
-
-      _selectionAll = null;
-    }
-
-    public void RemoveSelection(Selection selection) { _selections.Remove(selection); }
-
-    /// <summary>
-    ///   The save.
-    /// </summary>
-    /// <param name="path">
-    ///   Pfad unter dem das Projekt gespeichert wird.
-    /// </param>
-    public void Save(string path)
-    {
-      var stb = new StringBuilder();
-
-      stb.AppendLine("----=----");
-
-      stb.AppendLine($"NAME={Displayname}");
-      stb.AppendLine($"GUID={Guid}");
-      stb.AppendLine($"ENCO={Configuration.Encoding.CodePage}");
-      stb.AppendLine($"CACH={Configuration.Cache.GetType().FullName}");
-      stb.AppendLine($"MEAS={Configuration.Measure.GetType().FullName}");
-      stb.AppendLine($"PROT={Configuration.ProtectMemoryOverflow}");
-      stb.AppendLine($"SIGN={Configuration.Significance.GetType().FullName}");
-      stb.AppendLine($"MINF={Configuration.MinimumFrequency}");
-      stb.AppendLine($"MINS={Configuration.MinimumSignificance.ToString(CultureInfo.InvariantCulture)}");
-
-      stb.AppendLine("---->----");
-
-      foreach (var corpus in _corpora)
-        stb.AppendLine($"{corpus.CorpusGuid}>{corpus.GetType()}>{corpus.CorpusPath}");
-
-      stb.AppendLine("----?----");
-
-      foreach (var selection in _selections)
-        stb.AppendLine(SelectionListConverterHelper.ToListStream(selection));
-
-      FileIO.Write(path.ForceFileExtension("proj5"), stb.ToString(), Configuration.Encoding);
-    }
-
-    /// <summary>
-    ///   The create selection all.
-    /// </summary>
-    public void SelectAllNew()
-    {
-      _selectionAll = null;
-    }
-
     private void SelectCompleteCorpus(AbstractCorpusAdapter corpus)
     {
       var corpusSelection = new Dictionary<Guid, HashSet<Guid>>
@@ -1346,15 +1374,7 @@ namespace CorpusExplorer.Sdk.Model
       SelectAllNew();
     }
 
-    public event HydraDelegate SelectionChanged;
-
-    /// <summary>
-    ///   Gets or sets the on model changes.
-    /// </summary>
-    /// <value>The on model changes.</value>
-    public event HydraDelegate SelectionCreated;
-
-    private delegate bool ProxyRequestDelegate(AbstractCorpusAdapter c);
+    private delegate bool? ProxyRequestDelegate(AbstractCorpusAdapter c);
 
     /// <summary>
     ///   The proxy request dictionary delegate.

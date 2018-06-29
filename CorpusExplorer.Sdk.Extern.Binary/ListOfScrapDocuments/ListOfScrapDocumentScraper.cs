@@ -10,12 +10,10 @@ namespace CorpusExplorer.Sdk.Extern.Binary.ListOfScrapDocuments
 {
   public sealed class ListOfScrapDocumentScraper : AbstractGenericBinaryFormatScraper<Dictionary<string, object>>
   {
-    protected override AbstractGenericDataReader<Dictionary<string, object>> DataReader
-    {
-      get { return new ListOfScrapDocumentsReader(); }
-    }
+    public override string DisplayName => "ScrapDocument-DUMP";
 
-    public override string DisplayName { get { return "ScrapDocument-DUMP"; } }
+    protected override AbstractGenericDataReader<Dictionary<string, object>> DataReader =>
+      new ListOfScrapDocumentsReader();
 
     protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(
       IEnumerable<Dictionary<string, object>> model)

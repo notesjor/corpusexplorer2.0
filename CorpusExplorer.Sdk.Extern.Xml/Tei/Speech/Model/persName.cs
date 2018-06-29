@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
 
     /// <remarks />
     [XmlElement(DataType = "NCName")]
-    public string abbr { get { return abbrField; } set { abbrField = value; } }
+    public string abbr
+    {
+      get => abbrField;
+      set => abbrField = value;
+    }
   }
 }

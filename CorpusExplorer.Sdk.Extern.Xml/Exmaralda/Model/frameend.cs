@@ -17,5 +17,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
   [DesignerCategory("code")]
   [XmlType(AnonymousType = true, Namespace = "http://tempuri.org/interlinear-text")]
   [XmlRoot("frame-end", Namespace = "http://tempuri.org/interlinear-text", IsNullable = false)]
-  public class frameend {}
+  public class frameend
+  {
+  }
 }

@@ -18,7 +18,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     {
       new FelschKincaidGradeIndex(),
       new FelschReadingEaseIndex(),
-      new GunningFoxIndexIndex(),
+      new GunningFogIndexIndex(),
       new SmogIndexIndex(),
       new WienerSachtextV1Index(),
       new WienerSachtextV2Index(),
@@ -70,20 +70,29 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     protected override void ExecuteAnalyse()
     {
-      var block = Selection.CreateBlock<ReadingEaseBlock>();
-      block.LayerDisplayname = LayerDisplayname;
-
-      ReadingEaseIndices = new Dictionary<string, Dictionary<Guid, double>>();
-
-      foreach (var index in ReadingEaseAlgorithms)
+      try
       {
-        block.ReadingEaseAlgorithm = index;
-        block.Calculate();
+        var block = Selection.CreateBlock<ReadingEaseBlock>();
+        block.LayerDisplayname = LayerDisplayname;
 
-        ReadingEaseIndices.Add(index.Displayname, block.ReadingEaseIndices);
+        ReadingEaseIndices = new Dictionary<string, Dictionary<Guid, double>>();
+
+        foreach (var index in ReadingEaseAlgorithms)
+        {
+          block.ReadingEaseAlgorithm = index;
+          block.Calculate();
+
+          ReadingEaseIndices.Add(index.Displayname, block.ReadingEaseIndices);
+        }
+      }
+      catch (Exception ex)
+      {
       }
     }
 
-    protected override bool Validate() { return true; }
+    protected override bool Validate()
+    {
+      return true;
+    }
   }
 }

@@ -22,6 +22,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     /// <remarks />
     [XmlElement("Communication", typeof(CommunicationType))]
     [XmlElement("Speaker", typeof(PersonType))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
   }
 }

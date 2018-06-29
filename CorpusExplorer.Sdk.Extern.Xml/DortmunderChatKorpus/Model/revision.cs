@@ -25,14 +25,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string by { get { return byField; } set { byField = value; } }
+    public string by
+    {
+      get => byField;
+      set => byField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NMTOKEN")]
-    public string no { get { return noField; } set { noField = value; } }
+    public string no
+    {
+      get => noField;
+      set => noField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

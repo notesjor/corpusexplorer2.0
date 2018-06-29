@@ -25,6 +25,7 @@ namespace CorpusExplorer.Sdk.ViewModel
           n.AddRange(state.Value.Select(t => t.Item1));
           res.Add(n);
         }
+
         return res;
       }
     }
@@ -52,6 +53,9 @@ namespace CorpusExplorer.Sdk.ViewModel
       FiniteStates = block.FiniteStates;
     }
 
-    protected override bool Validate() { return true; }
+    protected override bool Validate()
+    {
+      return true;
+    }
   }
 }

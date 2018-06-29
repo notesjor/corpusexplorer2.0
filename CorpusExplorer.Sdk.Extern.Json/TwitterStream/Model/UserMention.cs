@@ -8,18 +8,14 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStream.Model
 {
   public class UserMention
   {
-    [JsonProperty("id")]
-    public ulong Id { get; set; }
+    [JsonProperty("id")] public ulong Id { get; set; }
 
-    public string IdStr { get { return Id.ToString(); } }
+    public string IdStr => Id.ToString();
 
-    [JsonProperty("indices")]
-    public ulong[] Indices { get; set; }
+    [JsonProperty("indices")] public ulong[] Indices { get; set; }
 
-    [JsonProperty("name")]
-    public string Name { get; set; }
+    [JsonProperty("name")] public string Name { get; set; }
 
-    [JsonProperty("screen_name")]
-    public string ScreenName { get; set; }
+    [JsonProperty("screen_name")] public string ScreenName { get; set; }
   }
 }

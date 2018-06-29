@@ -30,6 +30,53 @@ namespace CorpusExplorer.Installer.Sdk
     private static readonly List<string> _repositoryUrls = new List<string>();
     private static string _updateInfo;
 
+    private static string MyAddons => Path.Combine(
+      Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+      Resources.CorpusExplorerMyAddons);
+
+    private static string MyCorpora => Path.Combine(
+      Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+      Resources.CorpusExplorerMyCorpora);
+
+    private static string MyDataSources => Path.Combine(
+      Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+      Resources.CorpusExplorerMyDataSources);
+
+    private static string MyProjects => Path.Combine(
+      Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+      Resources.CorpusExplorerMyProjects);
+
+    public static void InstallOnly(string repositoryUrl, string appPath)
+    {
+      Run(repositoryUrl, null, appPath, true);
+    }
+
+    public static void Launch(string repositoryUrl, string[] args, string appPath = null)
+    {
+      Run(repositoryUrl, args, appPath, false);
+    }
+
+    private static void AddonInstaller(string[] args)
+    {
+      if (args == null || args.Length == 0)
+        return;
+
+      var valid = args.Where(x => x.ToLower().EndsWith(".ceaddon") && File.Exists(x) && !x.StartsWith(MyAddons))
+        .ToArray();
+      if (valid.Length == 0)
+        return;
+
+      foreach (var x in valid)
+        try
+        {
+          File.Copy(x, Path.Combine(MyAddons, Path.GetFileName(x)));
+        }
+        catch
+        {
+          // ignore
+        }
+    }
+
     private static UpdateState[] CheckForUpdates()
     {
       try
@@ -39,8 +86,8 @@ namespace CorpusExplorer.Installer.Sdk
 
         // Lade lokale update.info
         _installed = File.Exists(_updateInfo)
-                       ? new List<string[]>(TextToManifest(FileIO.ReadText(_updateInfo)))
-                       : new List<string[]>();
+          ? new List<string[]>(TextToManifest(FileIO.ReadText(_updateInfo)))
+          : new List<string[]>();
 
         // Lade online update.info (aka updates.manifest)
         var online = new List<string[]>();
@@ -63,6 +110,7 @@ namespace CorpusExplorer.Installer.Sdk
           {
             InMemoryErrorConsole.Log(ex);
           }
+
           if (string.IsNullOrEmpty(text))
             continue;
           online.AddRange(TextToManifest(text));
@@ -83,8 +131,8 @@ namespace CorpusExplorer.Installer.Sdk
                   OnlineVersion = "SET",
                   InstallationCompleted = ientry != null
                 });
-            else if ((ientry == null) ||
-                     (ientry[1] != oentry[1]))
+            else if (ientry == null ||
+                     ientry[1] != oentry[1])
               list.Add(
                 new UpdateState
                 {
@@ -99,12 +147,32 @@ namespace CorpusExplorer.Installer.Sdk
           {
             InMemoryErrorConsole.Log(ex);
           }
+
         return list.ToArray();
       }
       catch (Exception ex)
       {
         InMemoryErrorConsole.Log(ex);
         return null;
+      }
+    }
+
+    private static void DecompressGzipFile(string path)
+    {
+      using (var output = File.OpenWrite(path.Substring(0, path.Length - 3)))
+      using (var input = File.OpenRead(path))
+      using (var gz = new GZipStream(input, CompressionMode.Decompress))
+      {
+        gz.CopyTo(output);
+      }
+
+      try
+      {
+        File.Delete(path);
+      }
+      catch
+      {
+        // ignore
       }
     }
 
@@ -116,8 +184,19 @@ namespace CorpusExplorer.Installer.Sdk
       if (!Directory.Exists(tempDir))
         Directory.CreateDirectory(tempDir);
 
+      var mb = 1024d * 1024d;
+      var hasError = false;
       for (var i = 0; i < updates.Length; i++)
       {
+        try
+        {
+          Processing.SplashMessage($"Paket {i + 1} von {updates.Length} wird heruntergeladen und installiert.");
+        }
+        catch
+        {
+          // ignore
+        }
+
         try
         {
           if (!string.IsNullOrEmpty(updates[i].Delete))
@@ -128,6 +207,7 @@ namespace CorpusExplorer.Installer.Sdk
         {
           InMemoryErrorConsole.Log(ex);
         }
+
         try
         {
           if (updates[i].IsCEC8)
@@ -155,15 +235,23 @@ namespace CorpusExplorer.Installer.Sdk
         }
         catch (Exception ex)
         {
+          hasError = true;
           InMemoryErrorConsole.Log(ex);
         }
       }
+
+      if (hasError)
+        MessageBox.Show(
+          "HINWEIS: Während der Installation/Aktualisierung kam es zu Problemen. Wie Sie selbst alle Probleme beheben können:\n1. Beenden Sie den CorpusExplorer.\n2. Sorgen Sie für eine stabile Internetverbindung.\n3. Starten Sie den CorpusExplorer erneut.",
+          "Problem: Schlechte Internetverbindung", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
       try
       {
         Directory.Delete(tempDir, true);
       }
-      catch { }
+      catch
+      {
+      }
 
       foreach (var update in updates)
       {
@@ -172,7 +260,7 @@ namespace CorpusExplorer.Installer.Sdk
 
         var index = _installed.FindIndex(x => x[0] == update.Url);
         if (index == -1)
-          _installed.Add(new[] { update.Url, update.OnlineVersion });
+          _installed.Add(new[] {update.Url, update.OnlineVersion});
         else
           _installed[index][1] = update.OnlineVersion;
       }
@@ -188,11 +276,6 @@ namespace CorpusExplorer.Installer.Sdk
       }
     }
 
-    private static void DoUpdate_Delete(string delete)
-    {
-      Directory.Delete(Path.Combine(_appPath, delete), true);
-    }
-
     private static void DoUpdate(bool askForUpdate)
     {
       try
@@ -203,6 +286,7 @@ namespace CorpusExplorer.Installer.Sdk
       {
         InMemoryErrorConsole.Log(ex);
       }
+
       try
       {
         var pflag = Path.Combine(_appPath, "globalpath.flag");
@@ -227,14 +311,16 @@ namespace CorpusExplorer.Installer.Sdk
       }
     }
 
-    private static void DoUpdate_Cec8(string url)
+    private static void DoUpdate_Cec5(string url)
     {
       var path = Path.Combine(MyCorpora, url.Substring(url.LastIndexOf("/", StringComparison.Ordinal) + 1));
+      DownloadFile(url, path);
+    }
 
-      using (var wc = new WebClient())
-      {
-        wc.DownloadFile(url, path);
-      }
+    private static void DoUpdate_Cec6(string url)
+    {
+      var path = Path.Combine(MyCorpora, url.Substring(url.LastIndexOf("/", StringComparison.Ordinal) + 1));
+      DownloadFile(url, path);
 
       if (path.ToLower().EndsWith(".gz"))
         DecompressGzipFile(path);
@@ -243,77 +329,42 @@ namespace CorpusExplorer.Installer.Sdk
     private static void DoUpdate_Cec7(string url)
     {
       var path = Path.Combine(MyCorpora, url.Substring(url.LastIndexOf("/", StringComparison.Ordinal) + 1));
-
-      using (var wc = new WebClient())
-      {
-        wc.DownloadFile(url, path);
-      }
+      DownloadFile(url, path);
 
       if (path.ToLower().EndsWith(".gz"))
         DecompressGzipFile(path);
     }
 
-    private static void DoUpdate_Cec6(string url)
+    private static void DoUpdate_Cec8(string url)
     {
       var path = Path.Combine(MyCorpora, url.Substring(url.LastIndexOf("/", StringComparison.Ordinal) + 1));
-
-      using (var wc = new WebClient())
-      {
-        wc.DownloadFile(url, path);
-      }
+      DownloadFile(url, path);
 
       if (path.ToLower().EndsWith(".gz"))
         DecompressGzipFile(path);
     }
 
-    private static void DecompressGzipFile(string path)
+    private static void DoUpdate_Cecp(string url, string tempDir, int i)
     {
-      using (var output = File.OpenWrite(path.Substring(0, path.Length - 3)))
-      using (var input = File.OpenRead(path))
-      using (var gz = new GZipStream(input, CompressionMode.Decompress))
-      {
-        gz.CopyTo(output);
-      }
+      var tempFile = Path.Combine(tempDir, "update." + i + ".zip");
+      DownloadFile(url, tempFile);
 
-      try
-      {
-        File.Delete(path);
-      }
-      catch
-      {
-        // ignore
-      }
+      var zip = new FastZip();
+      zip.ExtractZip(tempFile, MyCorpora, null);
     }
 
     private static void DoUpdate_Cedb(string url)
     {
       var path = Path.Combine(MyCorpora, url.Substring(url.LastIndexOf("/", StringComparison.Ordinal) + 1));
-
-      using (var wc = new WebClient())
-      {
-        wc.DownloadFile(url, path);
-      }
-    }
-
-    private static void DoUpdate_Cec5(string url)
-    {
-      var path = Path.Combine(MyCorpora, url.Substring(url.LastIndexOf("/", StringComparison.Ordinal) + 1));
-
-      using (var wc = new WebClient())
-      {
-        wc.DownloadFile(url, path);
-      }
+      DownloadFile(url, path);
     }
 
     private static void DoUpdate_Cefs(string url, string tempDir, int i)
     {
       var tempFile = Path.Combine(tempDir, "update." + i + ".zip");
-      var path = Path.Combine(MyCorpora, url.Substring(url.LastIndexOf("/", StringComparison.Ordinal) + 1).Replace(".cefs", ""));
-
-      using (var wc = new WebClient())
-      {
-        wc.DownloadFile(url, tempFile);
-      }
+      var path = Path.Combine(MyCorpora,
+        url.Substring(url.LastIndexOf("/", StringComparison.Ordinal) + 1).Replace(".cefs", ""));
+      DownloadFile(url, tempFile);
 
       var zip = new FastZip();
       zip.ExtractZip(tempFile, path, null);
@@ -322,16 +373,17 @@ namespace CorpusExplorer.Installer.Sdk
     private static void DoUpdate_Cml(string url)
     {
       var path = Path.Combine(MyDataSources, url.Substring(url.LastIndexOf("/", StringComparison.Ordinal) + 1));
+      DownloadFile(url, path);
+    }
 
-      using (var wc = new WebClient())
-      {
-        wc.DownloadFile(url, path);
-      }
+    private static void DoUpdate_Delete(string delete)
+    {
+      Directory.Delete(Path.Combine(_appPath, delete), true);
     }
 
     private static void DoUpdate_Link(string url)
     {
-      var info = url.Split(new[] { "#" }, StringSplitOptions.RemoveEmptyEntries);
+      var info = url.Split(new[] {"#"}, StringSplitOptions.RemoveEmptyEntries);
       if (info.Length != 3)
         return;
 
@@ -348,30 +400,21 @@ namespace CorpusExplorer.Installer.Sdk
       NewShortcut.Save();
     }
 
-    private static void DoUpdate_Cecp(string url, string tempDir, int i)
-    {
-      var tempFile = Path.Combine(tempDir, "update." + i + ".zip");
-
-      using (var wc = new WebClient())
-      {
-        wc.DownloadFile(url, tempFile);
-      }
-
-      var zip = new FastZip();
-      zip.ExtractZip(tempFile, MyCorpora, null);
-    }
-
     private static void DoUpdate_Zip(string url, string tempDir, int i)
     {
       var tempFile = Path.Combine(tempDir, "update." + i + ".zip");
-
-      using (var wc = new WebClient())
-      {
-        wc.DownloadFile(url, tempFile);
-      }
+      DownloadFile(url, tempFile);
 
       var zip = new FastZip();
       zip.ExtractZip(tempFile, _appPath, null);
+    }
+
+    private static void DownloadFile(string url, string file)
+    {
+      using (var wc = new MyWebClient())
+      {
+        wc.DownloadFile(url, file);
+      }
     }
 
     private static void EnsurePath(string path)
@@ -389,26 +432,6 @@ namespace CorpusExplorer.Installer.Sdk
       EnsurePath(MyAddons);
     }
 
-    private static string MyAddons => Path.Combine(
-      Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-      Resources.CorpusExplorerMyAddons);
-    private static string MyDataSources => Path.Combine(
-      Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-      Resources.CorpusExplorerMyDataSources);
-    private static string MyProjects => Path.Combine(
-      Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-      Resources.CorpusExplorerMyProjects);
-    private static string MyCorpora => Path.Combine(
-      Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-      Resources.CorpusExplorerMyCorpora);
-
-    public static void InstallOnly(string repositoryUrl, string appPath) { Run(repositoryUrl, null, appPath, true); }
-
-    public static void Launch(string repositoryUrl, string[] args, string appPath = null)
-    {
-      Run(repositoryUrl, args, appPath, false);
-    }
-
     private static void Load3rdPartyRepositories()
     {
       if (!Directory.Exists(MyAddons))
@@ -422,7 +445,9 @@ namespace CorpusExplorer.Installer.Sdk
           foreach (var url in urls.Where(url => url.StartsWith("http://") || url.StartsWith("https://")))
             _repositoryUrls.Add(url);
         }
-        catch { }
+        catch
+        {
+        }
     }
 
     private static void Main(string[] args, bool installOnly, string appPath = null)
@@ -435,6 +460,7 @@ namespace CorpusExplorer.Installer.Sdk
                    Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                    @"CorpusExplorer\App");
       var exePath = Path.Combine(_appPath, "CorpusExplorer.exe");
+      var cecPath = Path.Combine(_appPath, "cec.exe");
 
       // Überprüf die Standardverzeichnisse
       try
@@ -458,9 +484,13 @@ namespace CorpusExplorer.Installer.Sdk
                 File.Copy(s, path);
             }
             else
+            {
               arguments.Add(s);
+            }
       }
-      catch { }
+      catch
+      {
+      }
 
       // Wird InstallOnly gesetzt wird aus Sicherheitsgründen die Installation/Updates von Addons unterbunden.
       if (!installOnly)
@@ -469,7 +499,9 @@ namespace CorpusExplorer.Installer.Sdk
           // Add-ons installiert sind und 
           Load3rdPartyRepositories();
         }
-        catch { }
+        catch
+        {
+        }
 
       try
       {
@@ -499,7 +531,10 @@ namespace CorpusExplorer.Installer.Sdk
       // Alles aktuell und installiert? - Starte Programm      
       try
       {
-        var process = args == null ? Process.Start(exePath) : Process.Start(exePath, string.Join(" ", arguments));
+        var process = args == null
+          ? Process.Start(exePath)
+          : Process.Start(args.Any(arg => Path.GetExtension(arg)?.ToLower() == ".ceshell") ? cecPath : exePath,
+            string.Join(" ", arguments));
         process?.WaitForExit();
       }
       catch (Exception ex)
@@ -511,7 +546,7 @@ namespace CorpusExplorer.Installer.Sdk
     private static string ManifestToText(List<string[]> manifest)
     {
       var stb = new StringBuilder();
-      foreach (var repo in manifest.Where(repo => (repo != null) && (repo.Length == 2)))
+      foreach (var repo in manifest.Where(repo => repo != null && repo.Length == 2))
         stb.AppendLine($"{repo[0]}|{repo[1]}");
       return stb.ToString();
     }
@@ -530,7 +565,8 @@ namespace CorpusExplorer.Installer.Sdk
 
       try
       {
-        Main(AppDomain.CurrentDomain.SetupInformation.ActivationArguments?.ActivationData ?? args, installOnly, appPath);
+        Main(AppDomain.CurrentDomain.SetupInformation.ActivationArguments?.ActivationData ?? args, installOnly,
+          appPath);
       }
       catch (Exception ex)
       {
@@ -539,37 +575,6 @@ namespace CorpusExplorer.Installer.Sdk
       finally
       {
         mutex.ReleaseMutex();
-      }
-
-      if (installOnly)
-        return;
-
-      if (!InMemoryErrorConsole.Errors.Any())
-        return;
-
-      var form = new ErrorReport();
-      form.ShowDialog();
-    }
-
-    private static void AddonInstaller(string[] args)
-    {
-      if (args == null || args.Length == 0)
-        return;
-
-      var valid = args.Where(x => x.ToLower().EndsWith(".ceaddon") && File.Exists(x) && !x.StartsWith(MyAddons)).ToArray();
-      if (valid.Length == 0)
-        return;
-
-      foreach (var x in valid)
-      {
-        try
-        {
-          File.Copy(x, Path.Combine(MyAddons, Path.GetFileName(x)));
-        }
-        catch
-        {
-          // ignore
-        }
       }
     }
 
@@ -590,8 +595,8 @@ namespace CorpusExplorer.Installer.Sdk
     {
       var update = CheckForUpdates();
 
-      if ((update == null) ||
-          (update.Count(x => !x.InstallationCompleted) == 0))
+      if (update == null ||
+          update.Count(x => !x.InstallationCompleted) == 0)
         return;
 
       if (!_muteGui)
@@ -633,6 +638,7 @@ namespace CorpusExplorer.Installer.Sdk
             {
               InMemoryErrorConsole.Log(ex);
             }
+
             try
             {
               p.Close();
@@ -642,6 +648,7 @@ namespace CorpusExplorer.Installer.Sdk
             {
               InMemoryErrorConsole.Log(ex);
             }
+
             try
             {
               p.Kill();
@@ -651,8 +658,7 @@ namespace CorpusExplorer.Installer.Sdk
               InMemoryErrorConsole.Log(ex);
             }
           }
-        }
-        while (processes.Length > 0);
+        } while (processes.Length > 0);
       }
       catch (Exception ex)
       {
@@ -664,8 +670,10 @@ namespace CorpusExplorer.Installer.Sdk
     {
       try
       {
-        var lines = text.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-        return lines.Select(line => line.Replace("{CPU}", Environment.Is64BitProcess ? "x64" : "x86").Split(new[] { "|" }, StringSplitOptions.RemoveEmptyEntries));
+        var lines = text.Split(new[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+        return lines.Select(line =>
+          line.Replace("{CPU}", Environment.Is64BitProcess ? "x64" : "x86")
+            .Split(new[] {"|"}, StringSplitOptions.RemoveEmptyEntries));
       }
       catch
       {
@@ -673,24 +681,35 @@ namespace CorpusExplorer.Installer.Sdk
       }
     }
 
+    private class MyWebClient : WebClient
+    {
+      protected override WebRequest GetWebRequest(Uri uri)
+      {
+        var res = base.GetWebRequest(uri);
+        if (res != null)
+          res.Timeout = 30 * 60 * 1000;
+        return res;
+      }
+    }
+
     private class UpdateState
     {
+      public string Delete { get; set; }
       public bool InstallationCompleted { get; set; }
       public string InstalledVersion { get; set; }
+      public bool IsCEC5 => Url.ToLower().EndsWith(".cec5");
+      public bool IsCEC6 => Url.ToLower().EndsWith(".cec6.gz") || Url.ToLower().EndsWith(".cec6");
+      public bool IsCEC7 => Url.ToLower().EndsWith(".cec7.gz") || Url.ToLower().EndsWith(".cec7");
+      public bool IsCEC8 => Url.ToLower().EndsWith(".cec8.gz") || Url.ToLower().EndsWith(".cec8");
+      public bool IsCECP => Url.ToLower().EndsWith(".cecp");
 
       public bool IsCEDB => Url.ToLower().EndsWith(".cedb");
-      public bool IsCECP => Url.ToLower().EndsWith(".cecp");
-      public bool IsCEC8 => Url.ToLower().EndsWith(".cec8.gz") || Url.ToLower().EndsWith(".cec8");
-      public bool IsCEC7 => Url.ToLower().EndsWith(".cec7.gz") || Url.ToLower().EndsWith(".cec7");
-      public bool IsCEC6 => Url.ToLower().EndsWith(".cec6.gz") || Url.ToLower().EndsWith(".cec6");
-      public bool IsCEC5 => Url.ToLower().EndsWith(".cec5");
       public bool IsCEFS => Url.ToLower().EndsWith(".cefs");
       public bool IsCML => Url.ToLower().EndsWith(".cml");
       public bool IsLink => Url.StartsWith("LINK#");
       public bool IsZIP => Url.ToLower().EndsWith(".zip");
       public string OnlineVersion { get; set; }
       public string Url { get; set; }
-      public string Delete { get; set; }
     }
   }
 }

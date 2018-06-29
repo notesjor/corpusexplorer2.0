@@ -26,23 +26,43 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Pmg.Model
     private string itemField;
 
     /// <remarks />
-    public Inline beschriftung { get { return beschriftungField; } set { beschriftungField = value; } }
+    public Inline beschriftung
+    {
+      get => beschriftungField;
+      set => beschriftungField = value;
+    }
 
     /// <remarks />
-    public string fotograf { get { return fotografField; } set { fotografField = value; } }
+    public string fotograf
+    {
+      get => fotografField;
+      set => fotografField = value;
+    }
 
     /// <remarks />
-    public string fotonachweis { get { return fotonachweisField; } set { fotonachweisField = value; } }
+    public string fotonachweis
+    {
+      get => fotonachweisField;
+      set => fotonachweisField = value;
+    }
 
     /// <remarks />
     [XmlElement("bild", typeof(string))]
     [XmlElement("foto", typeof(string))]
     [XmlElement("infografik", typeof(string))]
     [XmlChoiceIdentifier("ItemElementName")]
-    public string Item { get { return itemField; } set { itemField = value; } }
+    public string Item
+    {
+      get => itemField;
+      set => itemField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public ItemChoiceType ItemElementName { get { return itemElementNameField; } set { itemElementNameField = value; } }
+    public ItemChoiceType ItemElementName
+    {
+      get => itemElementNameField;
+      set => itemElementNameField = value;
+    }
   }
 }

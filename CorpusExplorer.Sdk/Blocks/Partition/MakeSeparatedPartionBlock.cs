@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.Partition.Delegates;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 
 #endregion
 
@@ -36,6 +37,7 @@ namespace CorpusExplorer.Sdk.Blocks.Partition
 
       Parallel.ForEach(
         InputPartition,
+        Configuration.ParallelOptions,
         part =>
           dic.TryAdd(part.Key, MappingDelegate(Selection.CreateTemporary(part.Value).CreateBlock<TB>())));
 

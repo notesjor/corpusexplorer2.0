@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bcs.IO;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Interface;
 
 #endregion
@@ -15,24 +16,25 @@ namespace CorpusExplorer.Port.TreeTaggerTrainer.Model
   [Serializable]
   public class Lexicon
   {
-    private readonly object @lock = new object();
-    private readonly Dictionary<string, Dictionary<string, string>> _data = new Dictionary<string, Dictionary<string, string>>();
+    private readonly Dictionary<string, Dictionary<string, string>> _data =
+      new Dictionary<string, Dictionary<string, string>>();
 
-    private Lexicon() { }
+    private readonly object @lock = new object();
 
     public Lexicon(IHydra iHydra, string layerDisplayname)
     {
       Parallel.ForEach(
         iHydra.DocumentGuids,
+        Configuration.ParallelOptions,
         tguid =>
         {
           var wl = iHydra.GetLayerOfDocument(tguid, "Wort");
           var ll = iHydra.GetLayerOfDocument(tguid, "Lemma");
           var tl = iHydra.GetLayerOfDocument(tguid, layerDisplayname);
 
-          if ((wl == null) ||
-              (ll == null) ||
-              (tl == null))
+          if (wl == null ||
+              ll == null ||
+              tl == null)
             return;
 
 
@@ -63,11 +65,15 @@ namespace CorpusExplorer.Port.TreeTaggerTrainer.Model
                       _data[wdoc[i][j]].Add(tdoc[i][j], ldoc[i][j]);
                   }
                   else
+                  {
                     _data.Add(wdoc[i][j], new Dictionary<string, string> {{tdoc[i][j], ldoc[i][j]}});
+                  }
                 }
             }
           }
-          catch {}
+          catch
+          {
+          }
         });
     }
 
@@ -79,6 +85,10 @@ namespace CorpusExplorer.Port.TreeTaggerTrainer.Model
             _data[entry.Key].Add(value.Key, value.Value);
         else
           _data.Add(entry.Key, entry.Value);
+    }
+
+    private Lexicon()
+    {
     }
 
     public void GenerateTextFile(string path)

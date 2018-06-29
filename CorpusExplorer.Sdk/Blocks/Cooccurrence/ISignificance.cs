@@ -1,10 +1,4 @@
-﻿#region
-
-
-
-#endregion
-
-namespace CorpusExplorer.Sdk.Blocks.Cooccurrence
+﻿namespace CorpusExplorer.Sdk.Blocks.Cooccurrence
 {
   /// <summary>
   ///   Interface für Kollokationsberechnung

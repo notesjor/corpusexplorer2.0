@@ -21,9 +21,9 @@ namespace CorpusExplorer.Sdk.Blocks
 
     public int MFWCount { get; set; } = 2000;
 
-    private Dictionary<string, Tuple<double, double>> MfwRanges { get; set; }
-
     public int MFWTrainingFactor { get; set; } = 10;
+
+    private Dictionary<string, Tuple<double, double>> MfwRanges { get; set; }
 
     /// <summary>
     ///   Funktion die aufgerufen wird, wenn eine Berechnung durchgeführt werden soll.
@@ -50,7 +50,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
       // Training
       var blockT = Selection.CreateBlock<SelectionClusterBlock>();
-      blockT.ClusterGenerator = new SelectionClusterGeneratorByStringValue();
+      blockT.ClusterGenerator = new SelectionClusterGeneratorStringValue();
       blockT.MetadataKey = MetadataKey;
       blockT.Calculate();
 
@@ -61,6 +61,23 @@ namespace CorpusExplorer.Sdk.Blocks
         if (tsel.CountToken > MFWTrainingFactor * MFWCount)
           KnownAuthors.Add(range.Key, GetProfile(tsel));
       }
+    }
+
+    public BurrowsDeltaResult Compare(Selection seletionToCompare)
+    {
+      var res = new BurrowsDeltaResult {CompareProfile = GetProfile(seletionToCompare)};
+      res.CompareResults = KnownAuthors.ToDictionary(x => x.Key, x => CompareProfiles(x.Value, res.CompareProfile));
+      return res;
+    }
+
+    public double CompareProfiles(Dictionary<string, double> profileA, Dictionary<string, double> profileB)
+    {
+      // Gebe Vektoren eine einheitliche Richtung!
+      var keys = profileA.Keys;
+      var vectorA = keys.Select(key => profileA.ContainsKey(key) ? profileA[key] : 0).Select(x => x).ToArray();
+      var vectorB = keys.Select(key => profileB.ContainsKey(key) ? profileB[key] : 0).Select(x => x).ToArray();
+
+      return Measure.CalculateSimilarity(vectorA, vectorB);
     }
 
     private Dictionary<string, double> CalculateMfw(Selection selection)
@@ -99,23 +116,6 @@ namespace CorpusExplorer.Sdk.Blocks
         res[k] /= sfreq.Length;
 
       return res;
-    }
-
-    public BurrowsDeltaResult Compare(Selection seletionToCompare)
-    {
-      var res = new BurrowsDeltaResult {CompareProfile = GetProfile(seletionToCompare)};
-      res.CompareResults = KnownAuthors.ToDictionary(x => x.Key, x => CompareProfiles(x.Value, res.CompareProfile));
-      return res;
-    }
-
-    public double CompareProfiles(Dictionary<string, double> profileA, Dictionary<string, double> profileB)
-    {
-      // Gebe Vektoren eine einheitliche Richtung!
-      var keys = profileA.Keys;
-      var vectorA = keys.Select(key => profileA.ContainsKey(key) ? profileA[key] : 0).Select(x => x).ToArray();
-      var vectorB = keys.Select(key => profileB.ContainsKey(key) ? profileB[key] : 0).Select(x => x).ToArray();
-
-      return Measure.CalculateSimilarity(vectorA, vectorB);
     }
 
     private Dictionary<string, double> GetProfile(Selection selection)

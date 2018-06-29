@@ -2,6 +2,9 @@
 {
   public class CacheStrategyCurrentSelection : CacheStrategyClearCacheManually
   {
-    public override void CurrentSelectionChanged() { Clear(); }
+    public override void CurrentSelectionChanged()
+    {
+      Clear();
+    }
   }
 }

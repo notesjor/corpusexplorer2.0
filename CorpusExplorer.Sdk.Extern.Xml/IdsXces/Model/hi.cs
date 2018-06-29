@@ -29,14 +29,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     [XmlElement("q", typeof(q))]
     [XmlElement("ref", typeof(@ref))]
     [XmlElement("title", typeof(title))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string rend { get { return rendField; } set { rendField = value; } }
+    public string rend
+    {
+      get => rendField;
+      set => rendField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

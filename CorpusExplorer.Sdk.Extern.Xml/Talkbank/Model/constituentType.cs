@@ -25,27 +25,50 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     private constituentTypeType sctypeField;
     private string[] textField;
 
-    public constituentType() { sctypeField = constituentTypeType.UK; }
+    public constituentType()
+    {
+      sctypeField = constituentTypeType.UK;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public bool hiatus { get { return hiatusField; } set { hiatusField = value; } }
+    public bool hiatus
+    {
+      get => hiatusField;
+      set => hiatusField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool hiatusSpecified { get { return hiatusFieldSpecified; } set { hiatusFieldSpecified = value; } }
+    public bool hiatusSpecified
+    {
+      get => hiatusFieldSpecified;
+      set => hiatusFieldSpecified = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
     [DefaultValue(constituentTypeType.UK)]
-    public constituentTypeType sctype { get { return sctypeField; } set { sctypeField = value; } }
+    public constituentTypeType sctype
+    {
+      get => sctypeField;
+      set => sctypeField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

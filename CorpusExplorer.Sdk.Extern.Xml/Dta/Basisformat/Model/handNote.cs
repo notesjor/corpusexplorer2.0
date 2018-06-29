@@ -32,31 +32,59 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified,
-       Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string id { get { return idField; } set { idField = value; } }
+      Namespace = "http://www.w3.org/XML/1998/namespace")]
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string medium { get { return mediumField; } set { mediumField = value; } }
+    public string medium
+    {
+      get => mediumField;
+      set => mediumField = value;
+    }
 
     /// <remarks />
     [XmlElement("persName")]
-    public persName[] persName { get { return persNameField; } set { persNameField = value; } }
+    public persName[] persName
+    {
+      get => persNameField;
+      set => persNameField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string scope { get { return scopeField; } set { scopeField = value; } }
+    public string scope
+    {
+      get => scopeField;
+      set => scopeField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string scribe { get { return scribeField; } set { scribeField = value; } }
+    public string scribe
+    {
+      get => scribeField;
+      set => scribeField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string scribeRef { get { return scribeRefField; } set { scribeRefField = value; } }
+    public string scribeRef
+    {
+      get => scribeRefField;
+      set => scribeRefField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

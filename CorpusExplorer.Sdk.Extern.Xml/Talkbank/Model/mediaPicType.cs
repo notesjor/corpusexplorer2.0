@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "anyURI")]
-    public string href { get { return hrefField; } set { hrefField = value; } }
+    public string href
+    {
+      get => hrefField;
+      set => hrefField = value;
+    }
   }
 }

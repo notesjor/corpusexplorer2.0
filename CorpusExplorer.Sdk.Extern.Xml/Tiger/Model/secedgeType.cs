@@ -22,10 +22,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tiger.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string idref { get { return idrefField; } set { idrefField = value; } }
+    public string idref
+    {
+      get => idrefField;
+      set => idrefField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string label { get { return labelField; } set { labelField = value; } }
+    public string label
+    {
+      get => labelField;
+      set => labelField = value;
+    }
   }
 }

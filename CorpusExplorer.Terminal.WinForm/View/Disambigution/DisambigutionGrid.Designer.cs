@@ -34,50 +34,63 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
       Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
+      this.commandBarStripElement2 = new Telerik.WinControls.UI.CommandBarStripElement();
+      this.commandBarLabel1 = new Telerik.WinControls.UI.CommandBarLabel();
+      this.txt_level = new Telerik.WinControls.UI.CommandBarTextBox();
       this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
       this.btn_function = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_calc = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_filterlist = new Telerik.WinControls.UI.CommandBarButton();
+      this.btn_filtereditor = new Telerik.WinControls.UI.CommandBarButton();
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_csvExport = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_print = new Telerik.WinControls.UI.CommandBarButton();
       this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-      this.clearPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
-      this.txt_queryA = new Telerik.WinControls.UI.RadTextBox();
-      this.clearPanel2 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
-      this.num_level = new Telerik.WinControls.UI.RadSpinEditor();
-      this.btn_start = new Telerik.WinControls.UI.RadButton();
       this.radSpinEditor1 = new Telerik.WinControls.UI.RadSpinEditor();
-      this.btn_filtereditor = new Telerik.WinControls.UI.CommandBarButton();
+      this.wordBag1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WordBag();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel1)).BeginInit();
-      this.clearPanel1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.txt_queryA)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel2)).BeginInit();
-      this.clearPanel2.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.num_level)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.btn_start)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radSpinEditor1)).BeginInit();
       this.SuspendLayout();
       // 
       // radCommandBar1
       // 
       this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 30);
+      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
+      this.radCommandBar1.Size = new System.Drawing.Size(780, 44);
       this.radCommandBar1.TabIndex = 0;
-      this.radCommandBar1.Text = "radCommandBar1";
       // 
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
+            this.commandBarStripElement2,
             this.commandBarStripElement1});
+      // 
+      // commandBarStripElement2
+      // 
+      this.commandBarStripElement2.DisplayName = "commandBarStripElement2";
+      this.commandBarStripElement2.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
+            this.commandBarLabel1,
+            this.txt_level});
+      this.commandBarStripElement2.Name = "commandBarStripElement2";
+      // 
+      // commandBarLabel1
+      // 
+      this.commandBarLabel1.DisplayName = "commandBarLabel1";
+      this.commandBarLabel1.Name = "commandBarLabel1";
+      this.commandBarLabel1.Text = "Level:";
+      // 
+      // txt_level
+      // 
+      this.txt_level.DisplayName = "commandBarTextBox1";
+      this.txt_level.Name = "txt_level";
+      this.txt_level.Text = "1";
       // 
       // commandBarStripElement1
       // 
@@ -130,6 +143,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
       this.btn_filterlist.Text = "Filterliste";
       this.btn_filterlist.Click += new System.EventHandler(this.btn_filterlist_Click);
       // 
+      // btn_filtereditor
+      // 
+      this.btn_filtereditor.DisplayName = "commandBarButton1";
+      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.grid_list;
+      this.btn_filtereditor.Name = "btn_filtereditor";
+      this.btn_filtereditor.Text = "Filtereditor";
+      this.btn_filtereditor.Click += new System.EventHandler(this.btn_filtereditor_Click);
+      // 
       // commandBarSeparator1
       // 
       this.commandBarSeparator1.AccessibleDescription = "commandBarSeparator1";
@@ -161,7 +182,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
       // radGridView1
       // 
       this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGridView1.Location = new System.Drawing.Point(0, 99);
+      this.radGridView1.Location = new System.Drawing.Point(0, 80);
       // 
       // 
       // 
@@ -171,75 +192,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
       this.radGridView1.MasterTemplate.EnableFiltering = true;
       this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
-      this.radGridView1.Size = new System.Drawing.Size(780, 301);
+      this.radGridView1.Size = new System.Drawing.Size(780, 320);
       this.radGridView1.TabIndex = 1;
-      this.radGridView1.Text = "radGridView1";
-      // 
-      // clearPanel1
-      // 
-      this.clearPanel1.Controls.Add(this.txt_queryA);
-      this.clearPanel1.Controls.Add(this.clearPanel2);
-      this.clearPanel1.Controls.Add(this.btn_start);
-      this.clearPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.clearPanel1.Location = new System.Drawing.Point(0, 0);
-      this.clearPanel1.Name = "clearPanel1";
-      this.clearPanel1.Size = new System.Drawing.Size(780, 30);
-      this.clearPanel1.TabIndex = 2;
-      // 
-      // txt_queryA
-      // 
-      this.txt_queryA.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.txt_queryA.Location = new System.Drawing.Point(0, 0);
-      this.txt_queryA.Name = "txt_queryA";
-      this.txt_queryA.Size = new System.Drawing.Size(504, 30);
-      this.txt_queryA.TabIndex = 0;
-      // 
-      // clearPanel2
-      // 
-      this.clearPanel2.Controls.Add(this.num_level);
-      this.clearPanel2.Dock = System.Windows.Forms.DockStyle.Right;
-      this.clearPanel2.Location = new System.Drawing.Point(504, 0);
-      this.clearPanel2.Name = "clearPanel2";
-      this.clearPanel2.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-      this.clearPanel2.Size = new System.Drawing.Size(121, 30);
-      this.clearPanel2.TabIndex = 5;
-      // 
-      // num_level
-      // 
-      this.num_level.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.num_level.Location = new System.Drawing.Point(3, 0);
-      this.num_level.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-      this.num_level.MinimumSize = new System.Drawing.Size(100, 0);
-      this.num_level.Name = "num_level";
-      // 
-      // 
-      // 
-      this.num_level.RootElement.MinSize = new System.Drawing.Size(100, 0);
-      this.num_level.Size = new System.Drawing.Size(115, 32);
-      this.num_level.TabIndex = 4;
-      this.num_level.TabStop = false;
-      this.num_level.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-      // 
-      // btn_start
-      // 
-      this.btn_start.Dock = System.Windows.Forms.DockStyle.Right;
-      this.btn_start.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.refresh;
-      this.btn_start.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      this.btn_start.Location = new System.Drawing.Point(625, 0);
-      this.btn_start.Name = "btn_start";
-      this.btn_start.Size = new System.Drawing.Size(155, 30);
-      this.btn_start.TabIndex = 3;
-      this.btn_start.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Aktualisieren;
-      this.btn_start.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-      this.btn_start.Click += new System.EventHandler(this.btn_start_Click);
       // 
       // radSpinEditor1
       // 
@@ -252,6 +206,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
             0});
       this.radSpinEditor1.MinimumSize = new System.Drawing.Size(100, 0);
       this.radSpinEditor1.Name = "radSpinEditor1";
+      this.radSpinEditor1.NullableValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
       // 
       // 
       // 
@@ -265,34 +224,31 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
             0,
             0});
       // 
-      // btn_filtereditor
+      // wordBag1
       // 
-      this.btn_filtereditor.DisplayName = "commandBarButton1";
-      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.grid_list;
-      this.btn_filtereditor.Name = "btn_filtereditor";
-      this.btn_filtereditor.Text = "Filtereditor";
-      this.btn_filtereditor.Click += new System.EventHandler(this.btn_filtereditor_Click);
+      this.wordBag1.BackColor = System.Drawing.Color.White;
+      this.wordBag1.Dock = System.Windows.Forms.DockStyle.Top;
+      this.wordBag1.Font = new System.Drawing.Font("Segoe UI", 11F);
+      this.wordBag1.Location = new System.Drawing.Point(0, 44);
+      this.wordBag1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+      this.wordBag1.Name = "wordBag1";
+      this.wordBag1.ResultQueries = new string[0];
+      this.wordBag1.ResultSelectedLayerDisplayname = "Wort";
+      this.wordBag1.Size = new System.Drawing.Size(780, 36);
+      this.wordBag1.TabIndex = 2;
+      this.wordBag1.ExecuteButtonClicked += new System.EventHandler(this.wordBag1_ExecuteButtonClicked);
       // 
       // DisambigutionGrid
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.radGridView1);
+      this.Controls.Add(this.wordBag1);
       this.Controls.Add(this.radCommandBar1);
-      this.Controls.Add(this.clearPanel1);
       this.Name = "DisambigutionGrid";
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel1)).EndInit();
-      this.clearPanel1.ResumeLayout(false);
-      this.clearPanel1.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.txt_queryA)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel2)).EndInit();
-      this.clearPanel2.ResumeLayout(false);
-      this.clearPanel2.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.num_level)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.btn_start)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radSpinEditor1)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
@@ -310,13 +266,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
     private Telerik.WinControls.UI.CommandBarButton btn_csvExport;
     private Telerik.WinControls.UI.CommandBarButton btn_print;
     private Telerik.WinControls.UI.RadGridView radGridView1;
-    private Controls.WinForm.ClearPanel clearPanel1;
-    private Telerik.WinControls.UI.RadTextBox txt_queryA;
-    private Telerik.WinControls.UI.RadButton btn_start;
-    private Controls.WinForm.ClearPanel clearPanel2;
-    private Telerik.WinControls.UI.RadSpinEditor num_level;
     private Telerik.WinControls.UI.RadSpinEditor radSpinEditor1;
     private Telerik.WinControls.UI.CommandBarButton btn_filterlist;
     private Telerik.WinControls.UI.CommandBarButton btn_filtereditor;
+    private Telerik.WinControls.UI.CommandBarStripElement commandBarStripElement2;
+    private Telerik.WinControls.UI.CommandBarLabel commandBarLabel1;
+    private Telerik.WinControls.UI.CommandBarTextBox txt_level;
+    private WordBag wordBag1;
   }
 }

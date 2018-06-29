@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.PhrasesLaboratory;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 
@@ -22,6 +23,55 @@ namespace CorpusExplorer.Sdk.Blocks
 
     public PhraseGrammar Grammar { get; set; }
     public Dictionary<Guid, Constituent[][]> Phrases { get; set; }
+
+    public IEnumerable<Constituent> GetParsedConstituent(Guid documentGuid, int sentenceIndex)
+    {
+      return Grammar.ParseSentence(Phrases[documentGuid][sentenceIndex]);
+    }
+
+    public IEnumerable<IEnumerable<Constituent>> GetParsedConstituent(Guid documentGuid)
+    {
+      return Grammar.ParseDocument(Phrases[documentGuid]);
+    }
+
+    public IEnumerable<Constituent> GetParsedConstituent()
+    {
+      return from doc in Phrases from s in Grammar.ParseDocument(doc.Value) from c in s select c;
+    }
+
+    public Dictionary<string, Dictionary<string, double>> GetParsedConstituentFrequency(string separator = " ")
+    {
+      var res = new Dictionary<string, Dictionary<string, double>>();
+      foreach (var c in GetParsedConstituent())
+      {
+        var key2 = string.Join(separator, c.Childs.Select(x => x.Label));
+
+        if (res.ContainsKey(c.Label))
+          if (res[c.Label].ContainsKey(key2))
+            res[c.Label][key2]++;
+          else
+            res[c.Label].Add(key2, 1);
+        else
+          res.Add(c.Label, new Dictionary<string, double> {{key2, 1}});
+      }
+
+      return res;
+    }
+
+    public IEnumerable<Constituent> GetRawConstituent(Guid documentGuid, int sentenceIndex)
+    {
+      return Phrases[documentGuid][sentenceIndex];
+    }
+
+    public IEnumerable<IEnumerable<Constituent>> GetRawConstituent(Guid documentGuid)
+    {
+      return Phrases[documentGuid];
+    }
+
+    public IEnumerable<Constituent> GetRawConstituent()
+    {
+      return from doc in Phrases from sen in doc.Value from con in sen select con;
+    }
 
     /// <summary>
     ///   Führt die Berechnung aus
@@ -62,6 +112,7 @@ namespace CorpusExplorer.Sdk.Blocks
       Parallel.For(
         0,
         doc1.Length,
+        Configuration.ParallelOptions,
         i =>
         {
           if (doc1[i] == null ||
@@ -83,13 +134,17 @@ namespace CorpusExplorer.Sdk.Blocks
     ///   Wird nach der Berechnung aufgerufen (nach CalculateCall)
     ///   und dient der Bereinigung von Daten
     /// </summary>
-    protected override void CalculateCleanup() { }
+    protected override void CalculateCleanup()
+    {
+    }
 
     /// <summary>
     ///   Wird nach der Bereinigung aufgerufen (nach CalculateCall + CalculateCleanup)
     ///   und dient dem zusammenfassen der bereinigen Ergebnisse
     /// </summary>
-    protected override void CalculateFinalize() { }
+    protected override void CalculateFinalize()
+    {
+    }
 
     /// <summary>
     ///   Wird vor der Berechnung aufgerufen (vor CalculateCall)
@@ -116,52 +171,8 @@ namespace CorpusExplorer.Sdk.Blocks
         nt.Add(layer1[sent1[i]], true);
         termianls.Add(nt);
       }
+
       return termianls;
-    }
-
-    public IEnumerable<Constituent> GetParsedConstituent(Guid documentGuid, int sentenceIndex)
-    {
-      return Grammar.ParseSentence(Phrases[documentGuid][sentenceIndex]);
-    }
-
-    public IEnumerable<IEnumerable<Constituent>> GetParsedConstituent(Guid documentGuid)
-    {
-      return Grammar.ParseDocument(Phrases[documentGuid]);
-    }
-
-    public IEnumerable<Constituent> GetParsedConstituent()
-    {
-      return from doc in Phrases from s in Grammar.ParseDocument(doc.Value) from c in s select c;
-    }
-
-    public Dictionary<string, Dictionary<string, double>> GetParsedConstituentFrequency(string separator = " ")
-    {
-      var res = new Dictionary<string, Dictionary<string, double>>();
-      foreach (var c in GetParsedConstituent())
-      {
-        var key2 = string.Join(separator, c.Childs.Select(x => x.Label));
-
-        if (res.ContainsKey(c.Label))
-          if (res[c.Label].ContainsKey(key2))
-            res[c.Label][key2]++;
-          else
-            res[c.Label].Add(key2, 1);
-        else
-          res.Add(c.Label, new Dictionary<string, double> {{key2, 1}});
-      }
-      return res;
-    }
-
-    public IEnumerable<Constituent> GetRawConstituent(Guid documentGuid, int sentenceIndex)
-    {
-      return Phrases[documentGuid][sentenceIndex];
-    }
-
-    public IEnumerable<IEnumerable<Constituent>> GetRawConstituent(Guid documentGuid) { return Phrases[documentGuid]; }
-
-    public IEnumerable<Constituent> GetRawConstituent()
-    {
-      return from doc in Phrases from sen in doc.Value from con in sen select con;
     }
   }
 }

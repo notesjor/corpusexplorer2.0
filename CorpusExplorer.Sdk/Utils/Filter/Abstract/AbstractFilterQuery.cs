@@ -3,7 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
@@ -38,13 +40,14 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     /// <summary>
     ///   The _or filter queries.
     /// </summary>
-    [XmlArray("queries")]
-    private List<AbstractFilterQuery> _orFilterQueries = new List<AbstractFilterQuery>();
+    [XmlArray("queries")] private List<AbstractFilterQuery> _orFilterQueries = new List<AbstractFilterQuery>();
 
-    protected AbstractFilterQuery() { Guid = Guid.NewGuid(); }
+    protected AbstractFilterQuery()
+    {
+      Guid = Guid.NewGuid();
+    }
 
-    [XmlAttribute("guid")]
-    public Guid Guid { get; set; }
+    [XmlAttribute("guid")] public Guid Guid { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether inverse.
@@ -81,6 +84,30 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     ///   Gibt eine Auflistung aller Sätze und aller Fundstellen (Wortindex) zurück
     /// </summary>
     /// <param name="corpus">Korpus das das Dokument enthält</param>
+    /// <param name="documentGuidPreFilter">Wenn angegeben, werden nur die angegebenen Dokumente durchsucht (müssen im Korpus enthalten sein)</param>
+    /// <returns>Key = DocumentGuid / Value => Key = Satzindex / Value = Fundstelle</returns>
+    public Dictionary<Guid, Dictionary<int, HashSet<int>>> GetSentenceAndWordIndices(AbstractCorpusAdapter corpus, IEnumerable<Guid> documentGuidPreFilter = null)
+    {
+      var res = new Dictionary<Guid, Dictionary<int, HashSet<int>>>();
+      var loc = new object();
+      if (documentGuidPreFilter == null)
+        documentGuidPreFilter = corpus.DocumentGuids;
+
+      Parallel.ForEach(documentGuidPreFilter, Configuration.ParallelOptions, dsel =>
+      {
+        var sen = GetSentenceAndWordIndices(corpus, dsel);
+        if (sen == null || sen.Count == 0)
+          return;
+        lock (loc)
+          res.Add(dsel, sen);
+      });
+      return res;
+    }
+
+    /// <summary>
+    ///   Gibt eine Auflistung aller Sätze und aller Fundstellen (Wortindex) zurück
+    /// </summary>
+    /// <param name="corpus">Korpus das das Dokument enthält</param>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>Key = Satzindex / Value = Fundstelle</returns>
     public Dictionary<int, HashSet<int>> GetSentenceAndWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid)
@@ -97,28 +124,37 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
           continue;
         dictionary.Add(sentence, new HashSet<int>(indices));
       }
+
       return dictionary;
     }
 
     /// <summary>
-    ///   The get sentences index.
+    ///   Gibt eine Auflistung aller Sätze in allen Dokumenten aus, die durch diesen Query und durch dessen OrQueries
+    ///   selektiert werden.
     /// </summary>
-    /// <param name="corpus">
-    ///   The corpus.
-    /// </param>
-    /// <param name="documentGuid">
-    ///   The document guid.
-    /// </param>
-    /// <param name="sentence">
-    ///   The sentence.
-    /// </param>
-    /// <returns>
-    ///   The <see cref="int" />.
-    /// </returns>
-    protected abstract int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence);
+    /// <param name="corpus">Korpus das das Dokument enthält</param>
+    /// <param name="documentGuidPreFilter">Wenn angegeben, werden nur die angegebenen Dokumente durchsucht (müssen im Korpus enthalten sein)</param>
+    /// <returns>Auflistung Key = Dokument / Value = SatzId</returns>
+    public Dictionary<Guid, HashSet<int>> GetSentenceIndices(AbstractCorpusAdapter corpus, IEnumerable<Guid> documentGuidPreFilter = null)
+    {
+      var res = new Dictionary<Guid, HashSet<int>>();
+      var loc = new object();
+      if (documentGuidPreFilter == null)
+        documentGuidPreFilter = corpus.DocumentGuids;
+
+      Parallel.ForEach(documentGuidPreFilter, Configuration.ParallelOptions, dsel =>
+      {
+        var sen = GetSentenceIndices(corpus, dsel);
+        if (sen == null || sen.Count == 0)
+          return;
+        lock (loc)
+          res.Add(dsel, sen);
+      });
+      return res;
+    }
 
     /// <summary>
-    ///   Gibt eine Auflistung aller Sätze in einem bestimmten Dokument aus die durch diesen Query und durch dessen OrQueries
+    ///   Gibt eine Auflistung aller Sätze in einem bestimmten Dokument aus, die durch diesen Query und durch dessen OrQueries
     ///   selektiert werden.
     /// </summary>
     /// <param name="corpus">Korpus das das Dokument enthält</param>
@@ -135,20 +171,6 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
         res.Add(x);
       return res;
     }
-
-    /// <summary>
-    ///   The get sentences.
-    /// </summary>
-    /// <param name="corpus">
-    ///   The corpus.
-    /// </param>
-    /// <param name="documentGuid">
-    ///   The document guid.
-    /// </param>
-    /// <returns>
-    ///   Sentence indices
-    /// </returns>
-    protected abstract IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid);
 
     /// <summary>
     ///   Gibt den ersten Wort-Index der Übereinstimmung zurück die das Query oder dessen OrQuery im gewähltem Korpus -
@@ -172,21 +194,9 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
         if (res > -1)
           return res;
       }
+
       return -1;
     }
-
-    /// <summary>
-    ///   Gibt alle Wort-Index Übereinstimmungen zurück die das Query oder desseb OrQuery in gewählten Korpus - Dokument - Satz
-    ///   hat.
-    /// </summary>
-    /// <param name="corpus">Korpus der das Dokument enthält.</param>
-    /// <param name="documentGuid">GUID des Dokuments</param>
-    /// <param name="sentence">
-    ///   ID des Satzes der die FUnstelle enthalten soll. Alle validen Sätze können zuvor mit
-    ///   GetSentenceIndices() abgefragt werden.
-    /// </param>
-    /// <returns>Auflistung aller Vorkommen im Satz</returns>
-    protected abstract IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence);
 
     /// <summary>
     ///   The validate.
@@ -208,6 +218,50 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
       return (Inverse ? !ValidateCall(corpus, documentGuid) : ValidateCall(corpus, documentGuid))
              || OrFilterQueries.Any(query => query.Validate(corpus, documentGuid));
     }
+
+    /// <summary>
+    ///   The get sentences index.
+    /// </summary>
+    /// <param name="corpus">
+    ///   The corpus.
+    /// </param>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <param name="sentence">
+    ///   The sentence.
+    /// </param>
+    /// <returns>
+    ///   The <see cref="int" />.
+    /// </returns>
+    protected abstract int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence);
+
+    /// <summary>
+    ///   The get sentences.
+    /// </summary>
+    /// <param name="corpus">
+    ///   The corpus.
+    /// </param>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <returns>
+    ///   Sentence indices
+    /// </returns>
+    protected abstract IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid);
+
+    /// <summary>
+    ///   Gibt alle Wort-Index Übereinstimmungen zurück die das Query oder desseb OrQuery in gewählten Korpus - Dokument - Satz
+    ///   hat.
+    /// </summary>
+    /// <param name="corpus">Korpus der das Dokument enthält.</param>
+    /// <param name="documentGuid">GUID des Dokuments</param>
+    /// <param name="sentence">
+    ///   ID des Satzes der die FUnstelle enthalten soll. Alle validen Sätze können zuvor mit
+    ///   GetSentenceIndices() abgefragt werden.
+    /// </param>
+    /// <returns>Auflistung aller Vorkommen im Satz</returns>
+    public abstract IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence);
 
     /// <summary>
     ///   The validate call.

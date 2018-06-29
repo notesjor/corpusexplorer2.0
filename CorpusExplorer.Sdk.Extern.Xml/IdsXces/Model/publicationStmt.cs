@@ -26,18 +26,38 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private string telephoneField;
 
     /// <remarks />
-    public availability availability { get { return availabilityField; } set { availabilityField = value; } }
+    public availability availability
+    {
+      get => availabilityField;
+      set => availabilityField = value;
+    }
 
     /// <remarks />
-    public string distributor { get { return distributorField; } set { distributorField = value; } }
+    public string distributor
+    {
+      get => distributorField;
+      set => distributorField = value;
+    }
 
     /// <remarks />
-    public string pubAddress { get { return pubAddressField; } set { pubAddressField = value; } }
+    public string pubAddress
+    {
+      get => pubAddressField;
+      set => pubAddressField = value;
+    }
 
     /// <remarks />
-    public pubDate pubDate { get { return pubDateField; } set { pubDateField = value; } }
+    public pubDate pubDate
+    {
+      get => pubDateField;
+      set => pubDateField = value;
+    }
 
     /// <remarks />
-    public string telephone { get { return telephoneField; } set { telephoneField = value; } }
+    public string telephone
+    {
+      get => telephoneField;
+      set => telephoneField = value;
+    }
   }
 }

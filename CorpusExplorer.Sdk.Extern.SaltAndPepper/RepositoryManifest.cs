@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
@@ -10,9 +10,61 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
 {
   public class RepositoryManifest : AbstractAddonRepository
   {
-    public override string Guid => "CorpusExplorer.Sdk.Extern.SaltAndPepper";
     public override IEnumerable<AbstractAdditionalTagger> AddonAdditionalTagger => null;
     public override IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> AddonBackends => null;
+
+    public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters =>
+      new Dictionary<string, AbstractExporter>
+      {
+        {
+          "ANNIS XML (*.xml)|*.xml",
+          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Annis}
+        },
+        {
+          "DOT (*.dot)|*.dot",
+          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Dot}
+        },
+        {
+          "GraphANNO (*.xml)|*.xml",
+          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.GraphAnno}
+        },
+        {
+          "MMAX2 (*.mmax2)|*.mmax2",
+          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Mmax2}
+        },
+        {
+          "Paula (*.xml)|*.xml",
+          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Paula}
+        },
+        {
+          "PennTreebank (*.xml)|*.xml",
+          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.PennTreebank}
+        },
+        {
+          "RelANNIS (*.xml)|*.xml",
+          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.RelAnnis}
+        },
+        {
+          "SaltInfo (*.html)|*.html",
+          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.SaltInfo}
+        },
+        {
+          "SaltXML (*.xml)|*.xml",
+          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.SaltXml}
+        },
+        {
+          "Tcf (*.tcf)|*.tcf",
+          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Tcf}
+        },
+        {
+          "Text (*.txt)|*.txt",
+          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Text}
+        },
+        {
+          "TreeTagger (*.txt)|*.txt",
+          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.TreeTagger}
+        }
+      };
 
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter =>
       new Dictionary<string, AbstractImporter>
@@ -36,7 +88,7 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
           new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Exmaralda}
         },
         {
-          "Elan (*.xml)|*.xml", 
+          "Elan (*.xml)|*.xml",
           new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Elan}
         },
         {
@@ -50,14 +102,14 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
           new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.GenericXml}
         },
         {
-          "Graf (*.xml)|*.xml", 
+          "Graf (*.xml)|*.xml",
           new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Graf}
         },
         {
           "MMAX2 (*.mmax2)|*.mmax2", new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Mmax2}
         },
         {
-          "Paula (*.xml)|*.xml", 
+          "Paula (*.xml)|*.xml",
           new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Paula}
         },
         {
@@ -65,7 +117,7 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
           new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.PennTreebank}
         },
         {
-          "RST (*.rst)|*.rst", 
+          "RST (*.rst)|*.rst",
           new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Rst}
         },
         {
@@ -73,11 +125,11 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
           new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.SaltXml}
         },
         {
-          "TCF (*.tcf)|*.tcf", 
+          "TCF (*.tcf)|*.tcf",
           new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Tcf}
         },
         {
-          "TEI-XML (*.xml)|*.xml", 
+          "TEI-XML (*.xml)|*.xml",
           new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Tei}
         },
         {
@@ -89,7 +141,7 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
           new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Tiger2}
         },
         {
-          "Uam (*.xml)|*.xml", 
+          "Uam (*.xml)|*.xml",
           new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Uam}
         },
         {
@@ -113,66 +165,14 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
           new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.WebannoTsv}
         },
         {
-          "Wolof (*.wolof)|*.wolof", 
+          "Wolof (*.wolof)|*.wolof",
           new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Wolof}
-        }
-      };
-
-    public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters =>
-      new Dictionary<string, AbstractExporter>
-      {
-        {
-          "ANNIS XML (*.xml)|*.xml", 
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Annis}
-        },
-        {
-          "DOT (*.dot)|*.dot", 
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Dot}
-        },
-        {
-          "GraphANNO (*.xml)|*.xml",
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.GraphAnno}
-        },
-        {
-          "MMAX2 (*.mmax2)|*.mmax2", 
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Mmax2}
-        },
-        {
-          "Paula (*.xml)|*.xml", 
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Paula}
-        },
-        {
-          "PennTreebank (*.xml)|*.xml",
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.PennTreebank}
-        },
-        {
-          "RelANNIS (*.xml)|*.xml",
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.RelAnnis}
-        },
-        {
-          "SaltInfo (*.html)|*.html",
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.SaltInfo}
-        },
-        {
-          "SaltXML (*.xml)|*.xml", 
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.SaltXml}
-        },
-        {
-          "Tcf (*.tcf)|*.tcf", 
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Tcf}
-        },
-        {
-          "Text (*.txt)|*.txt", 
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Text}
-        },
-        {
-          "TreeTagger (*.txt)|*.txt",
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.TreeTagger}
         }
       };
 
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers => null;
     public override IEnumerable<AbstractTagger> AddonTagger => null;
     public override IEnumerable<IAddonView> AddonViews => null;
+    public override string Guid => "CorpusExplorer.Sdk.Extern.SaltAndPepper";
   }
 }

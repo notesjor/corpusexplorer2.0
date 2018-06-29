@@ -26,18 +26,38 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DariahDe.GeoBrowser.Model
     private TimeStamp timeStampField;
 
     /// <remarks />
-    public string address { get { return addressField; } set { addressField = value; } }
+    public string address
+    {
+      get => addressField;
+      set => addressField = value;
+    }
 
     /// <remarks />
-    public description description { get { return descriptionField; } set { descriptionField = value; } }
+    public description description
+    {
+      get => descriptionField;
+      set => descriptionField = value;
+    }
 
     /// <remarks />
-    public string name { get { return nameField; } set { nameField = value; } }
+    public string name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
 
     /// <remarks />
-    public Point Point { get { return pointField; } set { pointField = value; } }
+    public Point Point
+    {
+      get => pointField;
+      set => pointField = value;
+    }
 
     /// <remarks />
-    public TimeStamp TimeStamp { get { return timeStampField; } set { timeStampField = value; } }
+    public TimeStamp TimeStamp
+    {
+      get => timeStampField;
+      set => timeStampField = value;
+    }
   }
 }

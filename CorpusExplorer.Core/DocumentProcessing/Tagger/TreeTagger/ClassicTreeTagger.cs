@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
 using Bcs.IO;
 using CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger.Abstract;
 using CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger.Parameter;
@@ -9,6 +8,7 @@ using CorpusExplorer.Core.DocumentProcessing.Tokenizer;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger;
 
 namespace CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger
 {
@@ -57,7 +57,6 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger
           process.WaitForExit();
 
           return FileIO.ReadText(fileOutput.Path, Configuration.Encoding);
-
         }
       }
       catch (Exception ex)

@@ -25,22 +25,34 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string oid { get { return oidField; } set { oidField = value; } }
+    public string oid
+    {
+      get => oidField;
+      set => oidField = value;
+    }
 
     /// <remarks />
     [XmlElement("opinion_expression")]
     public opinion_expression[] opinion_expression
     {
-      get { return opinion_expressionField; }
-      set { opinion_expressionField = value; }
+      get => opinion_expressionField;
+      set => opinion_expressionField = value;
     }
 
     /// <remarks />
     [XmlArrayItem("span", typeof(span), IsNullable = false)]
-    public span[][] opinion_holder { get { return opinion_holderField; } set { opinion_holderField = value; } }
+    public span[][] opinion_holder
+    {
+      get => opinion_holderField;
+      set => opinion_holderField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("span", typeof(span), IsNullable = false)]
-    public span[][] opinion_target { get { return opinion_targetField; } set { opinion_targetField = value; } }
+    public span[][] opinion_target
+    {
+      get => opinion_targetField;
+      set => opinion_targetField = value;
+    }
   }
 }

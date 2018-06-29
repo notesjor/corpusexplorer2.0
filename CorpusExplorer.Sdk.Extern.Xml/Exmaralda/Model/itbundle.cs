@@ -28,27 +28,51 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement("anchor")]
-    public string[] anchor { get { return anchorField; } set { anchorField = value; } }
+    public string[] anchor
+    {
+      get => anchorField;
+      set => anchorField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string formatref { get { return formatrefField; } set { formatrefField = value; } }
+    public string formatref
+    {
+      get => formatrefField;
+      set => formatrefField = value;
+    }
 
     /// <remarks />
     [XmlElement("frame-end")]
-    public frameend frameend { get { return frameendField; } set { frameendField = value; } }
+    public frameend frameend
+    {
+      get => frameendField;
+      set => frameendField = value;
+    }
 
     /// <remarks />
     [XmlElement("it-line")]
-    public itline[] itline { get { return itlineField; } set { itlineField = value; } }
+    public itline[] itline
+    {
+      get => itlineField;
+      set => itlineField = value;
+    }
 
     /// <remarks />
     [XmlElement("sync-points")]
-    public syncpoints syncpoints { get { return syncpointsField; } set { syncpointsField = value; } }
+    public syncpoints syncpoints
+    {
+      get => syncpointsField;
+      set => syncpointsField = value;
+    }
 
     /// <remarks />
     [XmlArray("ud-information")]
     [XmlArrayItem("ud-attribute", IsNullable = false)]
-    public udattribute[] udinformation { get { return udinformationField; } set { udinformationField = value; } }
+    public udattribute[] udinformation
+    {
+      get => udinformationField;
+      set => udinformationField = value;
+    }
   }
 }

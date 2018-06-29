@@ -24,9 +24,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus.Model
 
     /// <remarks />
     [XmlArrayItem("message", IsNullable = false)]
-    public message[] body { get { return bodyField; } set { bodyField = value; } }
+    public message[] body
+    {
+      get => bodyField;
+      set => bodyField = value;
+    }
 
     /// <remarks />
-    public head head { get { return headField; } set { headField = value; } }
+    public head head
+    {
+      get => headField;
+      set => headField = value;
+    }
   }
 }

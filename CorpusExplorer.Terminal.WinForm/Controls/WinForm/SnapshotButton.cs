@@ -26,7 +26,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
 
     public Project Project
     {
-      get { return _project; }
+      get => _project;
       set
       {
         _project = value;

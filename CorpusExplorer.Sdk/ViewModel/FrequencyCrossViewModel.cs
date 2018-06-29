@@ -11,6 +11,8 @@ namespace CorpusExplorer.Sdk.ViewModel
   {
     public Dictionary<string, Dictionary<string, double>> CrossFrequency { get; set; }
 
+    public string LayerDisplayname { get; set; } = "Wort";
+
     /// <summary>
     ///   Gibt eine Datentabelle zurück
     /// </summary>
@@ -40,8 +42,9 @@ namespace CorpusExplorer.Sdk.ViewModel
       CrossFrequency = block.CooccurrencesFrequency;
     }
 
-    public string LayerDisplayname { get; set; } = "Wort";
-
-    protected override bool Validate() { return true; }
+    protected override bool Validate()
+    {
+      return true;
+    }
   }
 }

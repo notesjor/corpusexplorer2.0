@@ -8,10 +8,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates.Model
   [Serializable]
   public class FilterConditions
   {
-    [XmlAttribute("operator")]
-    public FilterOperator Operator { get; set; }
+    [XmlAttribute("operator")] public FilterOperator Operator { get; set; }
 
-    [XmlElement]
-    public object Value { get; set; }
+    [XmlElement] public object Value { get; set; }
   }
 }

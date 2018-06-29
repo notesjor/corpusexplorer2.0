@@ -26,7 +26,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     [XmlElement("action", typeof(object))]
     [XmlElement("happening", typeof(string))]
     [XmlElement("otherSpokenEvent", typeof(otherSpokenEvent))]
-    public object Item { get { return itemField; } set { itemField = value; } }
+    public object Item
+    {
+      get => itemField;
+      set => itemField = value;
+    }
 
     /// <remarks />
     [XmlElement("duration", typeof(decimal))]
@@ -35,6 +39,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     [XmlElement("k", typeof(markers))]
     [XmlElement("overlap", typeof(overlapType))]
     [XmlElement("r", typeof(repetitionType))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
   }
 }

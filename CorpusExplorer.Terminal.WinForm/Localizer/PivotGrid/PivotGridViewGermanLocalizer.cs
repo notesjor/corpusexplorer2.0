@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telerik.WinControls.UI;
+﻿using Telerik.WinControls.UI;
 
 namespace CorpusExplorer.Terminal.WinForm.Localizer.PivotGrid
 {
@@ -77,7 +72,7 @@ namespace CorpusExplorer.Terminal.WinForm.Localizer.PivotGrid
         case PivotStringId.CalculationOptionsDialogColumnTotal: return "% der Spalte";
         case PivotStringId.CalculationOptionsDialogRowTotal: return "% der Zeile";
         case PivotStringId.CalculationOptionsDialogOf: return "% von";
-        case PivotStringId.CalculationOptionsDialogDifferenceFrom: return "Unterschied von"; 
+        case PivotStringId.CalculationOptionsDialogDifferenceFrom: return "Unterschied von";
         case PivotStringId.CalculationOptionsDialogPercentDifferenceFrom: return "% Unterschied von";
         case PivotStringId.CalculationOptionsDialogRunningTotalIn: return "Running Total In";
         case PivotStringId.CalculationOptionsDialogPercentRunningTotalIn: return "% Laufende Summe";
@@ -102,10 +97,14 @@ namespace CorpusExplorer.Terminal.WinForm.Localizer.PivotGrid
         case PivotStringId.LabelFilterOptionsDialogLabelFilter: return "Label Filter ({0})";
         case PivotStringId.NumberFormatOptionsDialogCustomFormat: return "Eigenes Format";
         case PivotStringId.NumberFormatOptionsDialogFixedPoint: return "Festkomma mit 2 Nachkommastellen";
-        case PivotStringId.NumberFormatOptionsDialogPrefixedCurrency: return "$ vorangestellte Währung mit 2 Nachkommastellen";
-        case PivotStringId.NumberFormatOptionsDialogPostfixedCurrency: return "€ nachgestelle Währung mit 2 Nachkommastellen";
-        case PivotStringId.NumberFormatOptionsDialogPostfixedTemperatureC: return "°C nachgestellte Temperatur mit 2 Nachkommastellen";
-        case PivotStringId.NumberFormatOptionsDialogPostfixedTemperatureF: return "°F nachgestellte Temperatur mit 2 Nachkommastellen";
+        case PivotStringId.NumberFormatOptionsDialogPrefixedCurrency:
+          return "$ vorangestellte Währung mit 2 Nachkommastellen";
+        case PivotStringId.NumberFormatOptionsDialogPostfixedCurrency:
+          return "€ nachgestelle Währung mit 2 Nachkommastellen";
+        case PivotStringId.NumberFormatOptionsDialogPostfixedTemperatureC:
+          return "°C nachgestellte Temperatur mit 2 Nachkommastellen";
+        case PivotStringId.NumberFormatOptionsDialogPostfixedTemperatureF:
+          return "°F nachgestellte Temperatur mit 2 Nachkommastellen";
         case PivotStringId.NumberFormatOptionsDialogExponential: return "Exponential";
         case PivotStringId.NumberFormatOptionsDialogFormatOptions: return "Format-Optionen";
         case PivotStringId.NumberFormatOptionsDialogFormatOptionsDescription: return "Format Option ({0})";
@@ -118,7 +117,9 @@ namespace CorpusExplorer.Terminal.WinForm.Localizer.PivotGrid
         case PivotStringId.ValueFilter: return "Wert Filter ({0})";
         case PivotStringId.AggregateOptionsDialogGroupBoxText: return "Werte zusammenfassen nach";
         case PivotStringId.AggregateOptionsDialogLabelCustomName: return "Eigener Name:";
-        case PivotStringId.AggregateOptionsDialogLabelDescription: return "Wählen Sie die Berechnungsart aus, mit der die Daten des ausgewählten Feldes zusammengefasst werden sollen.";
+        case PivotStringId.AggregateOptionsDialogLabelDescription:
+          return
+            "Wählen Sie die Berechnungsart aus, mit der die Daten des ausgewählten Feldes zusammengefasst werden sollen.";
         case PivotStringId.AggregateOptionsDialogLabelField: return "FieLabelld Name";
         case PivotStringId.AggregateOptionsDialogLabelSourceName: return "Quellen Name:";
         case PivotStringId.AggregateOptionsDialogText: return "Optionen: Aggregation";
@@ -133,7 +134,9 @@ namespace CorpusExplorer.Terminal.WinForm.Localizer.PivotGrid
         case PivotStringId.LabelFilterOptionsDialogText: return "LabelFilterOptionsDialog";
         case PivotStringId.LabelFilterOptionsDialogLabelAnd: return "und";
         case PivotStringId.NumberFormatOptionsDialogFormat: return "Format";
-        case PivotStringId.NumberFormatOptionsDialogLabelDescription: return "Das Format sollte die Messgröße des Wertes bezeichnen. ($, ¥, €, kg., lb.), Das Format wird für allgemeine Berechnungen wie z. B. Sum, Average, Min und Max und andere verwendet.";
+        case PivotStringId.NumberFormatOptionsDialogLabelDescription:
+          return
+            "Das Format sollte die Messgröße des Wertes bezeichnen. ($, ¥, €, kg., lb.), Das Format wird für allgemeine Berechnungen wie z. B. Sum, Average, Min und Max und andere verwendet.";
         case PivotStringId.NumberFormatOptionsDialogText: return "NumberFormatOptionsDialog";
         case PivotStringId.NumberFormatOptionsDialogGroupBoxText: return "Generelles Format";
         case PivotStringId.SortOptionsDialogAscending: return "Aufsteigend sortieren (A-Z):";
@@ -152,7 +155,8 @@ namespace CorpusExplorer.Terminal.WinForm.Localizer.PivotGrid
         case PivotStringId.DragRowItemsHere: return "Spalten hierhin ziehen";
         case PivotStringId.ResultItemFormat: return "Id: {0}; Aggregation: {1}";
         case PivotStringId.Error: return "Fehler";
-        case PivotStringId.KpiSchemaElementValidatorError: return "Es sollte mindestens ein KPI-Wert definiert werden (Ziel, Status, Trend, Wert)";
+        case PivotStringId.KpiSchemaElementValidatorError:
+          return "Es sollte mindestens ein KPI-Wert definiert werden (Ziel, Status, Trend, Wert)";
         case PivotStringId.SchemaElementValidatorMissingPropertyFormat: return "Erforderliche Eigenschaft fehlt: {0}";
         case PivotStringId.AdomdCellInfoToStringFormat: return "Ordinal: {0} | Wert: {1}";
         case PivotStringId.Aggregates: return "Aggregate";
@@ -219,6 +223,7 @@ namespace CorpusExplorer.Terminal.WinForm.Localizer.PivotGrid
         case PivotStringId.ContextStepText: return "Schritt";
         case PivotStringId.FieldListDateText: return "Datum";
       }
+
       return base.GetLocalizedString(id);
     }
   }

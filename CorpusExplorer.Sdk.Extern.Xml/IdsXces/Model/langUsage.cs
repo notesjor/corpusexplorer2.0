@@ -18,6 +18,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private language languageField;
 
     /// <remarks />
-    public language language { get { return languageField; } set { languageField = value; } }
+    public language language
+    {
+      get => languageField;
+      set => languageField = value;
+    }
   }
 }

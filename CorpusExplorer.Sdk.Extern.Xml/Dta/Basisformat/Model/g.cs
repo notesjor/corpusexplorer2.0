@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string @ref { get { return refField; } set { refField = value; } }
+    public string @ref
+    {
+      get => refField;
+      set => refField = value;
+    }
   }
 }

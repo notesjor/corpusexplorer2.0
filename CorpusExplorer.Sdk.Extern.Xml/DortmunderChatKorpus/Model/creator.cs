@@ -29,24 +29,40 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus.Model
     [XmlAttribute]
     public creatorEstimatedGender estimatedGender
     {
-      get { return estimatedGenderField; }
-      set { estimatedGenderField = value; }
+      get => estimatedGenderField;
+      set => estimatedGenderField = value;
     }
 
     /// <remarks />
     [XmlAttribute]
-    public string name { get { return nameField; } set { nameField = value; } }
+    public string name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NMTOKEN")]
-    public string NOM { get { return nOMField; } set { nOMField = value; } }
+    public string NOM
+    {
+      get => nOMField;
+      set => nOMField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NMTOKEN")]
-    public string NOT { get { return nOTField; } set { nOTField = value; } }
+    public string NOT
+    {
+      get => nOTField;
+      set => nOTField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string role { get { return roleField; } set { roleField = value; } }
+    public string role
+    {
+      get => roleField;
+      set => roleField = value;
+    }
   }
 }

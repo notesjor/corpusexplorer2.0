@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using NTextCat;
 
@@ -9,9 +6,9 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET
 {
   public class LanguageFilter
   {
-    private string _language;
-    private RankedLanguageIdentifierFactory _factory;
-    private RankedLanguageIdentifier _identifier;
+    private readonly RankedLanguageIdentifierFactory _factory;
+    private readonly RankedLanguageIdentifier _identifier;
+    private readonly string _language;
 
     public LanguageFilter(string language)
     {

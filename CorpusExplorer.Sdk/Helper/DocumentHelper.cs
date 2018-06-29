@@ -88,19 +88,24 @@ namespace CorpusExplorer.Sdk.Helper
       return document.SelectMany(sent => sent);
     }
 
-    public static string ReduceDocumentToText(this IEnumerable<IEnumerable<string>> document, string sentenceSeparator = "\r\n", string tokenSeparator = " ")
+    public static string ReduceDocumentToText(this IEnumerable<IEnumerable<string>> document,
+      string sentenceSeparator = "\r\n", string tokenSeparator = " ")
     {
       return string.Join(sentenceSeparator, document.Select(s => string.Join(tokenSeparator, s)));
     }
 
-    public static string ReduceSentenceToText(this IEnumerable<string> sentence, string tokenSeparator = " ") { return string.Join(tokenSeparator, sentence); }
+    public static string ReduceSentenceToText(this IEnumerable<string> sentence, string tokenSeparator = " ")
+    {
+      return string.Join(tokenSeparator, sentence);
+    }
 
     /// <summary>
     ///   Reduziert ein Dokument so, das es eine Auflistung von Sätzen darstellt.
     /// </summary>
     /// <param name="document">The document.</param>
     /// <returns>IEnumerable&lt;System.String&gt;.</returns>
-    public static IEnumerable<string> ReduceToSentences(this IEnumerable<IEnumerable<string>> document, string tokenSeparator = " ")
+    public static IEnumerable<string> ReduceToSentences(this IEnumerable<IEnumerable<string>> document,
+      string tokenSeparator = " ")
     {
       return document.Select(s => string.Join(tokenSeparator, s));
     }
@@ -114,16 +119,25 @@ namespace CorpusExplorer.Sdk.Helper
     {
       var text = streamDocument.ToArray();
 
+      if (from < 0)
+        from = 0;
       if (to == -1)
         to = text.Length;
-      var list = new List<string>();
 
+      var list = new List<string>();
       for (var i = from; i < to; i++)
-        if (text[i].Length == 1)
-          list.Add(text[i]);
-        else
-          list.Add(" " + text[i]);
-      
+        try
+        {
+          if (text[i].Length == 1)
+            list.Add(text[i]);
+          else
+            list.Add(" " + text[i]);
+        }
+        catch
+        {
+          break;
+        }
+
       return string.Concat(list).Trim();
     }
   }

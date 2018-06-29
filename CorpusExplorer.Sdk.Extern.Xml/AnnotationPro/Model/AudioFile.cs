@@ -22,18 +22,38 @@ namespace CorpusExplorer.Sdk.Extern.Xml.AnnotationPro.Model
     private string nameField;
 
     /// <remarks />
-    public bool Current { get { return currentField; } set { currentField = value; } }
+    public bool Current
+    {
+      get => currentField;
+      set => currentField = value;
+    }
 
     /// <remarks />
-    public bool External { get { return externalField; } set { externalField = value; } }
+    public bool External
+    {
+      get => externalField;
+      set => externalField = value;
+    }
 
     /// <remarks />
-    public string FileName { get { return fileNameField; } set { fileNameField = value; } }
+    public string FileName
+    {
+      get => fileNameField;
+      set => fileNameField = value;
+    }
 
     /// <remarks />
-    public string Id { get { return idField; } set { idField = value; } }
+    public string Id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
-    public string Name { get { return nameField; } set { nameField = value; } }
+    public string Name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
   }
 }

@@ -20,7 +20,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private object[] itemsField;
 
     /// <remarks />
-    public head head { get { return headField; } set { headField = value; } }
+    public head head
+    {
+      get => headField;
+      set => headField = value;
+    }
 
     /// <remarks />
     [XmlElement("castGroup", typeof(castGroup))]
@@ -33,6 +37,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("pb", typeof(pb))]
     [XmlElement("space", typeof(space))]
     [XmlElement("stage", typeof(stage))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
   }
 }

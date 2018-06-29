@@ -8,10 +8,6 @@ using CorpusExplorer.Sdk.Data.Model;
 using CorpusExplorer.Sdk.Data.Model.MetaInformationen;
 using CorpusExplorer.Sdk.Ecosystem;
 using CorpusExplorer.Sdk.Ecosystem.Model;
-using CorpusExplorer.Sdk.Helper;
-using CorpusExplorer.Sdk.Model;
-using CorpusExplorer.Sdk.Model.Adapter.Corpus;
-using CorpusExplorer.Sdk.Model.Adapter.Layer;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
@@ -39,34 +35,22 @@ namespace CorpusExplorer.Sdk.Toolkit.Compatibility
     /// <summary>
     ///   Gets the dirs.
     /// </summary>
-    public static string[] Dirs
-    {
-      get { return _dirs; }
-    }
+    public static string[] Dirs => _dirs;
 
     /// <summary>
     ///   Gets the level 1.
     /// </summary>
-    public static int Level1
-    {
-      get { return _dirs.Count(NeedsUpgradeToLayer2); }
-    }
+    public static int Level1 => _dirs.Count(NeedsUpgradeToLayer2);
 
     /// <summary>
     ///   Gets the level 2.
     /// </summary>
-    public static int Level2
-    {
-      get { return _dirs.Count(NeedsUpgradeToLayer3) + Level1; }
-    }
+    public static int Level2 => _dirs.Count(NeedsUpgradeToLayer3) + Level1;
 
     /// <summary>
     ///   Gets a value indicating whether need conversion.
     /// </summary>
-    public static bool NeedConversion
-    {
-      get { return (Level1 + Level2) > 0; }
-    }
+    public static bool NeedConversion => Level1 + Level2 > 0;
 
     #endregion
 
@@ -159,14 +143,10 @@ namespace CorpusExplorer.Sdk.Toolkit.Compatibility
       {
         var ndic = new Dictionary<string, int>();
         var lod = layerOld.Daten;
-        for (var i = 0; i < lod.Length; i++)
-        {
-          ndic.Add(lod[i], i);
-        }
+        for (var i = 0; i < lod.Length; i++) ndic.Add(lod[i], i);
 
         var ndocs = new Dictionary<Guid, int[][]>();
         foreach (var pair in layerOld)
-        {
           try
           {
             if (map.ContainsKey(pair.Key))
@@ -184,8 +164,7 @@ namespace CorpusExplorer.Sdk.Toolkit.Compatibility
           catch
           {
           }
-        }
-        
+
         nlayers.Add(new LayerValueState(layerOld.LayerName, nlayers.Count)
         {
           Documents = ndocs,
@@ -195,10 +174,7 @@ namespace CorpusExplorer.Sdk.Toolkit.Compatibility
 
       // FIX CLEAN
       var master = nlayers.FirstOrDefault(x => x.Displayname == "Wort");
-      if (master == null)
-      {
-        return;
-      }
+      if (master == null) return;
 
       var fmeta = master.Documents.ToDictionary(guid => guid.Key, guid => nmeta[guid.Key]);
 

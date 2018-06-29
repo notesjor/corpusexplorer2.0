@@ -28,26 +28,44 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
     [XmlElement("lengthening", typeof(lengthening))]
     [XmlElement("stress", typeof(stress))]
     [XmlElement("time", typeof(time))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public wTransition transition { get { return transitionField; } set { transitionField = value; } }
+    public wTransition transition
+    {
+      get => transitionField;
+      set => transitionField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
     public bool transitionSpecified
     {
-      get { return transitionFieldSpecified; }
-      set { transitionFieldSpecified = value; }
+      get => transitionFieldSpecified;
+      set => transitionFieldSpecified = value;
     }
 
-    public static implicit operator w(w[] obj) { return obj[0]; }
+    public static implicit operator w(w[] obj)
+    {
+      return obj[0];
+    }
 
-    public static implicit operator w[](w obj) { return new[] {obj}; }
+    public static implicit operator w[](w obj)
+    {
+      return new[] {obj};
+    }
   }
 }

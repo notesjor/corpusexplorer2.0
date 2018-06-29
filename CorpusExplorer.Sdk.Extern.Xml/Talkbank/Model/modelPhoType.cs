@@ -17,5 +17,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
   [DesignerCategory("code")]
   [XmlType(Namespace = "http://www.talkbank.org/ns/talkbank")]
   [XmlRoot("model", Namespace = "http://www.talkbank.org/ns/talkbank", IsNullable = false)]
-  public class modelPhoType : phoType {}
+  public class modelPhoType : phoType
+  {
+  }
 }

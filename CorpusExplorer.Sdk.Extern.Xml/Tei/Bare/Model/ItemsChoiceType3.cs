@@ -18,11 +18,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Bare.Model
     div,
 
     /// <remarks />
-    [XmlEnum("model.common")]
-    modelcommon,
+    [XmlEnum("model.common")] modelcommon,
 
     /// <remarks />
-    [XmlEnum("model.divLike")]
-    modeldivLike
+    [XmlEnum("model.divLike")] modeldivLike
   }
 }

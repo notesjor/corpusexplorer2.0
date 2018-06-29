@@ -26,7 +26,9 @@ namespace CorpusExplorer.Sdk.Blocks.Measure.Abstract
     /// <summary>
     ///   Prevents a default instance of the <see cref="AbstractExtendedMeasure" /> class from being created.
     /// </summary>
-    private AbstractExtendedMeasure() { }
+    private AbstractExtendedMeasure()
+    {
+    }
 
     /// <summary>
     ///   The _k 0.

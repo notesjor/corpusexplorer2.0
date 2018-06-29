@@ -43,6 +43,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       tagger1.TaggerItemSelected += Tagger1OnTaggerItemSelected;
     }
 
+    private void btn_clipboard_Click(object sender, EventArgs e)
+    {
+      Clipboard.SetText(_vmAnnotation.GetDocument().ConvertToPlainText());
+    }
+
     private void btn_export_Click(object sender, EventArgs e)
     {
       var dic = Configuration.AddonExporters.ToArray();
@@ -62,8 +67,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_layer_addValue_Click(object sender, EventArgs e)
     {
       var node = tree.SelectedNode;
-      if ((node == null) ||
-          (node.Parent != null))
+      if (node == null ||
+          node.Parent != null)
         return; // muss != null sein um zu überprüfen ob es sich um den Layernode handelt
 
       var form = new SimpleTextInput(
@@ -81,8 +86,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_layer_export_Click(object sender, EventArgs e)
     {
       var node = tree.SelectedNode;
-      if ((node == null) ||
-          (node.Parent != null))
+      if (node == null ||
+          node.Parent != null)
         return; // muss != null sein um zu überprüfen ob es sich um den Layernode handelt
 
       _vmAnnotation.ExportLayer(node.Text);
@@ -91,8 +96,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_layer_import_Click(object sender, EventArgs e)
     {
       var node = tree.SelectedNode;
-      if ((node == null) ||
-          (node.Parent != null))
+      if (node == null ||
+          node.Parent != null)
         return; // muss != null sein um zu überprüfen ob es sich um den Layernode handelt
     }
 
@@ -113,8 +118,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_layer_remove_Click(object sender, EventArgs e)
     {
       var node = tree.SelectedNode;
-      if ((node == null) ||
-          (node.Parent != null))
+      if (node == null ||
+          node.Parent != null)
         return; // muss != null sein um zu überprüfen ob es sich um den Layernode handelt
 
       if (
@@ -134,13 +139,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_layer_rename_Click(object sender, EventArgs e)
     {
       var node = tree.SelectedNode;
-      if ((node == null) ||
-          (node.Parent != null))
+      if (node == null ||
+          node.Parent != null)
         return; // muss != null sein um zu überprüfen ob es sich um den Layernode handelt
 
-      if ((node.Text == "Wort") ||
-          (node.Text == "Lemma") ||
-          (node.Text == "POS"))
+      if (node.Text == "Wort" ||
+          node.Text == "Lemma" ||
+          node.Text == "POS")
         MessageBox.Show(
           Resources.FulltextAnnotation_RenameLayer,
           Resources.FulltextAnnotation_RenameLayerHead,
@@ -265,15 +270,16 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
         foreach (var sub in values)
           node.Nodes.Add(
-                new RadTreeNode(sub)
-                {
-                  CheckType = CheckType.CheckBox,
-                  Checked = false,
-                  ContextMenu = menu_layervalue
-                });
+            new RadTreeNode(sub)
+            {
+              CheckType = CheckType.CheckBox,
+              Checked = false,
+              ContextMenu = menu_layervalue
+            });
 
         nodes.Add(node);
       }
+
       tree.Nodes.AddRange(nodes);
     }
 
@@ -299,7 +305,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
     private void ShowViewCall(object sender, EventArgs e)
     {
-      _vmAnnotation = ViewModelGet<AnnotationViewModel>();
+      _vmAnnotation = GetViewModel<AnnotationViewModel>();
       _vmAnnotation.Analyse();
       DictionaryBindingHelper.BindDictionary(_vmAnnotation.Documents, drop_selecteddocument);
       if (_vmAnnotation.Documents.Count > 0)
@@ -336,8 +342,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
         if (_coloredNodes.Contains(e.Node))
           _coloredNodes.Remove(e.Node);
 
-        if ((_coloredNodes.Count > 0) &&
-            (_annotationNode == e.Node))
+        if (_coloredNodes.Count > 0 &&
+            _annotationNode == e.Node)
           SetAnnotationNode(_coloredNodes.Last());
 
         SetNodeHighlight(e.Node, false, Color.White);
@@ -346,11 +352,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       ColorizeNodes();
     }
 
-    private void txt_layer_query_TextChanged(object sender, EventArgs e) { tree.Filter = txt_layer_query.Text; }
-
-    private void btn_clipboard_Click(object sender, EventArgs e)
+    private void txt_layer_query_TextChanged(object sender, EventArgs e)
     {
-      Clipboard.SetText(_vmAnnotation.GetDocument().ConvertToPlainText());
+      tree.Filter = txt_layer_query.Text;
     }
   }
 }

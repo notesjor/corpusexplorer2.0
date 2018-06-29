@@ -23,14 +23,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA.Model
 
     /// <remarks />
     [XmlElement(Namespace = "http://www.dspin.de/data/metadata")]
-    public MetaData MetaData { get { return metaDataField; } set { metaDataField = value; } }
+    public MetaData MetaData
+    {
+      get => metaDataField;
+      set => metaDataField = value;
+    }
 
     /// <remarks />
     [XmlElement(Namespace = "http://www.dspin.de/data/textcorpus")]
-    public TextCorpus TextCorpus { get { return textCorpusField; } set { textCorpusField = value; } }
+    public TextCorpus TextCorpus
+    {
+      get => textCorpusField;
+      set => textCorpusField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public decimal version { get { return versionField; } set { versionField = value; } }
+    public decimal version
+    {
+      get => versionField;
+      set => versionField = value;
+    }
   }
 }

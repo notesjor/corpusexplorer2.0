@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model
 
     /// <remarks />
     [XmlElement("orgName")]
-    public orgName[] orgName { get { return orgNameField; } set { orgNameField = value; } }
+    public orgName[] orgName
+    {
+      get => orgNameField;
+      set => orgNameField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

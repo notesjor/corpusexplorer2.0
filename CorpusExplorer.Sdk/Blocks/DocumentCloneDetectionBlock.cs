@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.Diff;
 
@@ -39,6 +40,7 @@ namespace CorpusExplorer.Sdk.Blocks
       Parallel.For(
         0,
         dsels.Length,
+        Configuration.ParallelOptions,
         i =>
         {
           lock (cloneLock)
@@ -56,6 +58,7 @@ namespace CorpusExplorer.Sdk.Blocks
           Parallel.For(
             i + 1,
             dsels.Length,
+            Configuration.ParallelOptions,
             j =>
             {
               lock (cloneLock)

@@ -42,28 +42,28 @@ namespace CorpusExplorer.Sdk.Extern.Binary.Excel.Kidko.Model
     /// </summary>
     internal string DateString
     {
-      get { return _dateString; }
+      get => _dateString;
       set
       {
         value =
           value.Replace(" um ", " ")
-               .Replace("UhUhr", "Uhr")
-               .Replace("MSO120329_36", "")
-               .Replace(" Uhr", ":00")
-               .Replace("Uhr", ":00")
-               .Replace("\"", "")
-               .Replace(" I", "")
-               .Replace(", ", " ")
-               .Replace("<", "")
-               .Replace(">", "")
-               .Replace("/", "")
-               .Replace(" Januar", ".01.2012")
-               .Replace(" Februar", ".02.2012")
-               .Replace(" März", ".03.2012")
-               .Replace(" April", ".04.2012")
-               .Replace("..", ".")
-               .Replace("head", "")
-               .Replace("date", "");
+            .Replace("UhUhr", "Uhr")
+            .Replace("MSO120329_36", "")
+            .Replace(" Uhr", ":00")
+            .Replace("Uhr", ":00")
+            .Replace("\"", "")
+            .Replace(" I", "")
+            .Replace(", ", " ")
+            .Replace("<", "")
+            .Replace(">", "")
+            .Replace("/", "")
+            .Replace(" Januar", ".01.2012")
+            .Replace(" Februar", ".02.2012")
+            .Replace(" März", ".03.2012")
+            .Replace(" April", ".04.2012")
+            .Replace("..", ".")
+            .Replace("head", "")
+            .Replace("date", "");
 
         if (value.StartsWith("229"))
           value = value.Replace("229", "29");
@@ -105,7 +105,7 @@ namespace CorpusExplorer.Sdk.Extern.Binary.Excel.Kidko.Model
     /// </summary>
     internal string Name
     {
-      get { return _name; }
+      get => _name;
       set
       {
         if (string.IsNullOrEmpty(value))

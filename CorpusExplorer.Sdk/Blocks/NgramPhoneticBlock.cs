@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 
 #endregion
 
@@ -46,6 +47,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
       Parallel.ForEach(
         block.Frequency,
+        Configuration.ParallelOptions,
         entry =>
         {
           var chunks = GetChunks(entry.Key);
@@ -72,10 +74,10 @@ namespace CorpusExplorer.Sdk.Blocks
       while (stop < text.Length)
       {
         var chunk = start == 0
-                      ? text.Substring(0, NGramSize) + NGramSeparator
-                      : (stop == text.Length - 1
-                           ? NGramSeparator + text.Substring(start)
-                           : NGramSeparator + text.Substring(start, NGramSize) + NGramSeparator);
+          ? text.Substring(0, NGramSize) + NGramSeparator
+          : (stop == text.Length - 1
+            ? NGramSeparator + text.Substring(start)
+            : NGramSeparator + text.Substring(start, NGramSize) + NGramSeparator);
 
         if (!res.Contains(chunk))
           res.Add(chunk);

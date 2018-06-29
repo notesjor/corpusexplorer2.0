@@ -24,23 +24,39 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Pmg.Model
     private Flow[][] theadField;
 
     /// <remarks />
-    public Inline caption { get { return captionField; } set { captionField = value; } }
+    public Inline caption
+    {
+      get => captionField;
+      set => captionField = value;
+    }
 
     /// <remarks />
     [XmlElement("tbody", typeof(tbody))]
     [XmlElement("tr", typeof(tr))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("tr", IsNullable = false)]
     [XmlArrayItem("td", typeof(td), IsNullable = false, NestingLevel = 1)]
     [XmlArrayItem("th", typeof(th), IsNullable = false, NestingLevel = 1)]
-    public Flow[][] tfoot { get { return tfootField; } set { tfootField = value; } }
+    public Flow[][] tfoot
+    {
+      get => tfootField;
+      set => tfootField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("tr", IsNullable = false)]
     [XmlArrayItem("td", typeof(td), IsNullable = false, NestingLevel = 1)]
     [XmlArrayItem("th", typeof(th), IsNullable = false, NestingLevel = 1)]
-    public Flow[][] thead { get { return theadField; } set { theadField = value; } }
+    public Flow[][] thead
+    {
+      get => theadField;
+      set => theadField = value;
+    }
   }
 }

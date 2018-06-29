@@ -18,6 +18,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model
     private fileDesc fileDescField;
 
     /// <remarks />
-    public fileDesc fileDesc { get { return fileDescField; } set { fileDescField = value; } }
+    public fileDesc fileDesc
+    {
+      get => fileDescField;
+      set => fileDescField = value;
+    }
   }
 }

@@ -35,7 +35,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.GridViewFunctions
         _table.Columns.Add(res, typeof(double));
 
         foreach (DataRow row in _table.Rows)
-          row[res] = (double) row[columnName]/sum*fac;
+          row[res] = (double) row[columnName] / sum * fac;
 
         NewColumnName = res;
         Output = _table;

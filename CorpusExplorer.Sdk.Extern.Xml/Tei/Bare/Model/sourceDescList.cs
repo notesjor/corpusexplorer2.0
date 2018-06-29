@@ -23,21 +23,36 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Bare.Model
     private object[] itemsField;
     private string typeField;
 
-    public sourceDescList() { typeField = "simple"; }
+    public sourceDescList()
+    {
+      typeField = "simple";
+    }
 
     /// <remarks />
     [XmlElement("item", typeof(item))]
     [XmlElement("label", typeof(label))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlElement("head")]
-    public head[] head { get { return headField; } set { headField = value; } }
+    public head[] head
+    {
+      get => headField;
+      set => headField = value;
+    }
 
 
     /// <remarks />
     [XmlAttribute]
     [DefaultValue("simple")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

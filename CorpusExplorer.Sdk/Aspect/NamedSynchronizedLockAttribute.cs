@@ -11,14 +11,18 @@ namespace CorpusExplorer.Sdk.Aspect
   [Serializable]
   public sealed class NamedSynchronizedLockAttribute : MethodInterceptionAspect
   {
-    [NonSerialized]
-    private static readonly Dictionary<string, string> Cache = new Dictionary<string, string>();
+    [NonSerialized] private static readonly Dictionary<string, string> Cache = new Dictionary<string, string>();
 
     private readonly string _name;
 
-    public NamedSynchronizedLockAttribute(string name) { _name = name; }
+    public NamedSynchronizedLockAttribute(string name)
+    {
+      _name = name;
+    }
 
-    private NamedSynchronizedLockAttribute() { }
+    private NamedSynchronizedLockAttribute()
+    {
+    }
 
     public override void OnInvoke(MethodInterceptionArgs args)
     {
@@ -38,6 +42,7 @@ namespace CorpusExplorer.Sdk.Aspect
         Console.WriteLine(ex.Message);
         Console.WriteLine(ex.StackTrace);
       }
+
       Cache[_name] = null;
     }
   }

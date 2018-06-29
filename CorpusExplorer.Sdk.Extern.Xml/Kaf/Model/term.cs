@@ -33,37 +33,69 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string @case { get { return caseField; } set { caseField = value; } }
+    public string @case
+    {
+      get => caseField;
+      set => caseField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string head { get { return headField; } set { headField = value; } }
+    public string head
+    {
+      get => headField;
+      set => headField = value;
+    }
 
     /// <remarks />
     [XmlElement("component", typeof(component))]
     [XmlElement("externalReferences", typeof(externalReferences))]
     [XmlElement("sentiment", typeof(sentiment))]
     [XmlElement("span", typeof(span))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string lemma { get { return lemmaField; } set { lemmaField = value; } }
+    public string lemma
+    {
+      get => lemmaField;
+      set => lemmaField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string morphofeat { get { return morphofeatField; } set { morphofeatField = value; } }
+    public string morphofeat
+    {
+      get => morphofeatField;
+      set => morphofeatField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string pos { get { return posField; } set { posField = value; } }
+    public string pos
+    {
+      get => posField;
+      set => posField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string tid { get { return tidField; } set { tidField = value; } }
+    public string tid
+    {
+      get => tidField;
+      set => tidField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

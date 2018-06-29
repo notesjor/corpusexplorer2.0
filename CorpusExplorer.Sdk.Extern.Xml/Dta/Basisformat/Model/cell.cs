@@ -38,16 +38,28 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "integer")]
-    public string cols { get { return colsField; } set { colsField = value; } }
+    public string cols
+    {
+      get => colsField;
+      set => colsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string corresp { get { return correspField; } set { correspField = value; } }
+    public string corresp
+    {
+      get => correspField;
+      set => correspField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified,
-       Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string id { get { return idField; } set { idField = value; } }
+      Namespace = "http://www.w3.org/XML/1998/namespace")]
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlElement("add", typeof(add))]
@@ -75,30 +87,58 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("subst", typeof(subst))]
     [XmlElement("supplied", typeof(supplied))]
     [XmlElement("table", typeof(table))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string next { get { return nextField; } set { nextField = value; } }
+    public string next
+    {
+      get => nextField;
+      set => nextField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string prev { get { return prevField; } set { prevField = value; } }
+    public string prev
+    {
+      get => prevField;
+      set => prevField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string rendition { get { return renditionField; } set { renditionField = value; } }
+    public string rendition
+    {
+      get => renditionField;
+      set => renditionField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string role { get { return roleField; } set { roleField = value; } }
+    public string role
+    {
+      get => roleField;
+      set => roleField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "integer")]
-    public string rows { get { return rowsField; } set { rowsField = value; } }
+    public string rows
+    {
+      get => rowsField;
+      set => rowsField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

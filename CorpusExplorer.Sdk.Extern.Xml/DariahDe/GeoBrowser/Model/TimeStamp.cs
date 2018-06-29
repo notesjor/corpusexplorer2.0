@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DariahDe.GeoBrowser.Model
 
     /// <remarks />
     [XmlElement(DataType = "integer")]
-    public string when { get { return whenField; } set { whenField = value; } }
+    public string when
+    {
+      get => whenField;
+      set => whenField = value;
+    }
   }
 }

@@ -24,10 +24,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "positiveInteger")]
-    public string index { get { return indexField; } set { indexField = value; } }
+    public string index
+    {
+      get => indexField;
+      set => indexField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public overlapTypeType type { get { return typeField; } set { typeField = value; } }
+    public overlapTypeType type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

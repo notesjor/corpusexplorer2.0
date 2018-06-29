@@ -15,31 +15,25 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
   public enum linkerTypeType
   {
     /// <remarks />
-    [XmlEnum("quoted utterance next")]
-    quotedutterancenext,
+    [XmlEnum("quoted utterance next")] quotedutterancenext,
 
     /// <remarks />
-    [XmlEnum("quick uptake")]
-    quickuptake,
+    [XmlEnum("quick uptake")] quickuptake,
 
     /// <remarks />
-    [XmlEnum("lazy overlap mark")]
-    lazyoverlapmark,
+    [XmlEnum("lazy overlap mark")] lazyoverlapmark,
 
     /// <remarks />
-    [XmlEnum("self completion")]
-    selfcompletion,
+    [XmlEnum("self completion")] selfcompletion,
 
     /// <remarks />
-    [XmlEnum("other completion")]
-    othercompletion,
+    [XmlEnum("other completion")] othercompletion,
 
     /// <remarks />
     [XmlEnum("technical break TCU completion")]
     technicalbreakTCUcompletion,
 
     /// <remarks />
-    [XmlEnum("no break TCU completion")]
-    nobreakTCUcompletion
+    [XmlEnum("no break TCU completion")] nobreakTCUcompletion
   }
 }

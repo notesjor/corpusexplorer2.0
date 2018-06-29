@@ -1,45 +1,38 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
-{
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.clarin.eu/cmd/1")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.clarin.eu/cmd/1", IsNullable = false)]
-  public partial class ResourceType
-  {
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
 
+namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
+{
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true, Namespace = "http://www.clarin.eu/cmd/1")]
+  [XmlRoot(Namespace = "http://www.clarin.eu/cmd/1", IsNullable = false)]
+  public class ResourceType
+  {
     private string mimetypeField;
 
     private string[] textField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    /// <remarks />
+    [XmlAttribute]
     public string mimetype
     {
-      get
-      {
-        return this.mimetypeField;
-      }
-      set
-      {
-        this.mimetypeField = value;
-      }
+      get => mimetypeField;
+      set => mimetypeField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
+    /// <remarks />
+    [XmlText]
     public string[] Text
     {
-      get
-      {
-        return this.textField;
-      }
-      set
-      {
-        this.textField = value;
-      }
+      get => textField;
+      set => textField = value;
     }
   }
 }

@@ -16,7 +16,9 @@ namespace CorpusExplorer.Sdk.Terminal
     /// <summary>
     ///   Initializes a new instance of the <see cref="TerminalController" /> class.
     /// </summary>
-    internal TerminalController() { }
+    internal TerminalController()
+    {
+    }
 
     public bool HasProjectStoredToHarddisk => !string.IsNullOrEmpty(ProjectPath);
 

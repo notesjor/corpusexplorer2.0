@@ -25,14 +25,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlAttribute]
-    public linkType type { get { return typeField; } set { typeField = value; } }
+    public linkType type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool typeSpecified { get { return typeFieldSpecified; } set { typeFieldSpecified = value; } }
+    public bool typeSpecified
+    {
+      get => typeFieldSpecified;
+      set => typeFieldSpecified = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string url { get { return urlField; } set { urlField = value; } }
+    public string url
+    {
+      get => urlField;
+      set => urlField = value;
+    }
   }
 }

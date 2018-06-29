@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlAttribute]
-    public decimal version { get { return versionField; } set { versionField = value; } }
+    public decimal version
+    {
+      get => versionField;
+      set => versionField = value;
+    }
   }
 }

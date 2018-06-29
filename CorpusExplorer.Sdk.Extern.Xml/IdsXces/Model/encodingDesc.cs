@@ -24,16 +24,32 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private tagUsage[] tagsDeclField;
 
     /// <remarks />
-    public editorialDecl editorialDecl { get { return editorialDeclField; } set { editorialDeclField = value; } }
+    public editorialDecl editorialDecl
+    {
+      get => editorialDeclField;
+      set => editorialDeclField = value;
+    }
 
     /// <remarks />
-    public projectDesc projectDesc { get { return projectDescField; } set { projectDescField = value; } }
+    public projectDesc projectDesc
+    {
+      get => projectDescField;
+      set => projectDescField = value;
+    }
 
     /// <remarks />
-    public samplingDecl samplingDecl { get { return samplingDeclField; } set { samplingDeclField = value; } }
+    public samplingDecl samplingDecl
+    {
+      get => samplingDeclField;
+      set => samplingDeclField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("tagUsage", IsNullable = false)]
-    public tagUsage[] tagsDecl { get { return tagsDeclField; } set { tagsDeclField = value; } }
+    public tagUsage[] tagsDecl
+    {
+      get => tagsDeclField;
+      set => tagsDeclField = value;
+    }
   }
 }

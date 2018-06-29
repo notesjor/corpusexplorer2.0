@@ -16,8 +16,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
   [Serializable]
   public class FilterQuerySingleLayerAllInSpanWords : AbstractFilterQuerySingleLayer
   {
-    [XmlAttribute("span")]
-    private int _wordSpan;
+    [XmlAttribute("span")] private int _wordSpan;
 
     /// <summary>
     ///   Gibt eine automatisch generierte Zusammenfassung des Inhalts/Bedeutung zurück.
@@ -36,7 +35,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     }
 
     [XmlIgnore]
-    public int WordSpan { get => _wordSpan; set => _wordSpan = value; }
+    public int WordSpan
+    {
+      get => _wordSpan;
+      set => _wordSpan = value;
+    }
 
     /// <summary>
     ///   Erstellt ein neues Objekt, das eine Kopie der aktuellen Instanz darstellt.
@@ -90,6 +93,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           marker = j;
         }
       }
+
       return res;
     }
 
@@ -122,6 +126,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           marker = i;
         }
       }
+
       return false;
     }
   }

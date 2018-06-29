@@ -37,9 +37,6 @@
       this.drop_category1 = new Telerik.WinControls.UI.CommandBarDropDownList();
       this.commandBarLabel3 = new Telerik.WinControls.UI.CommandBarLabel();
       this.drop_category2 = new Telerik.WinControls.UI.CommandBarDropDownList();
-      this.commandBarDropDownButton2 = new Telerik.WinControls.UI.CommandBarDropDownButton();
-      this.btn_analyse_simple = new Telerik.WinControls.UI.RadMenuItem();
-      this.btn_analyse_aggregated = new Telerik.WinControls.UI.RadMenuItem();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
       this.commandBarDropDownButton1 = new Telerik.WinControls.UI.CommandBarDropDownButton();
@@ -52,6 +49,7 @@
       this.btn_export_csv = new Telerik.WinControls.UI.RadMenuItem();
       this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
       this.simpleDiagram1 = new CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.WpfDiagram();
+      this.btn_start = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       this.SuspendLayout();
       // 
@@ -63,13 +61,13 @@
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement2,
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(813, 85);
+      this.radCommandBar1.Size = new System.Drawing.Size(813, 110);
       this.radCommandBar1.TabIndex = 0;
-      this.radCommandBar1.Text = "radCommandBar1";
       // 
       // commandBarRowElement2
       // 
       this.commandBarRowElement2.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement2.Name = "commandBarRowElement2";
       this.commandBarRowElement2.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement3});
       // 
@@ -83,7 +81,7 @@
             this.drop_category1,
             this.commandBarLabel3,
             this.drop_category2,
-            this.commandBarDropDownButton2});
+            this.btn_start});
       this.commandBarStripElement3.Name = "commandBarStripElement3";
       // 
       // commandBarLabel2
@@ -134,36 +132,10 @@
       this.drop_category2.NullText = "Bitte auswählen...";
       this.drop_category2.Text = "";
       // 
-      // commandBarDropDownButton2
-      // 
-      this.commandBarDropDownButton2.AccessibleDescription = "commandBarDropDownButton2";
-      this.commandBarDropDownButton2.AccessibleName = "commandBarDropDownButton2";
-      this.commandBarDropDownButton2.DisplayName = "commandBarDropDownButton2";
-      this.commandBarDropDownButton2.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
-      this.commandBarDropDownButton2.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.btn_analyse_simple,
-            this.btn_analyse_aggregated});
-      this.commandBarDropDownButton2.Name = "commandBarDropDownButton2";
-      this.commandBarDropDownButton2.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.AnalyseAusführen;
-      this.commandBarDropDownButton2.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.AnalyseAusführen;
-      // 
-      // btn_analyse_simple
-      // 
-      this.btn_analyse_simple.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
-      this.btn_analyse_simple.Name = "btn_analyse_simple";
-      this.btn_analyse_simple.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.EinfacheAnalyse;
-      this.btn_analyse_simple.Click += new System.EventHandler(this.btn_execute_Click);
-      // 
-      // btn_analyse_aggregated
-      // 
-      this.btn_analyse_aggregated.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
-      this.btn_analyse_aggregated.Name = "btn_analyse_aggregated";
-      this.btn_analyse_aggregated.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.AggregierteAnalyse;
-      this.btn_analyse_aggregated.Click += new System.EventHandler(this.btn_analyse_aggregated_Click);
-      // 
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
       // 
@@ -246,12 +218,20 @@
       // elementHost1
       // 
       this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.elementHost1.Location = new System.Drawing.Point(0, 85);
+      this.elementHost1.Location = new System.Drawing.Point(0, 110);
       this.elementHost1.Name = "elementHost1";
-      this.elementHost1.Size = new System.Drawing.Size(813, 315);
+      this.elementHost1.Size = new System.Drawing.Size(813, 290);
       this.elementHost1.TabIndex = 1;
       this.elementHost1.Text = "elementHost1";
       this.elementHost1.Child = this.simpleDiagram1;
+      // 
+      // btn_start
+      // 
+      this.btn_start.DisplayName = "commandBarButton1";
+      this.btn_start.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
+      this.btn_start.Name = "btn_start";
+      this.btn_start.Text = "Analysieren";
+      this.btn_start.Click += new System.EventHandler(this.btn_start_Click);
       // 
       // CorpusFiniteStateMachine
       // 
@@ -275,9 +255,6 @@
     private Telerik.WinControls.UI.CommandBarDropDownButton commandBarDropDownButton1;
     private Telerik.WinControls.UI.RadMenuItem btn_layout_tree;
     private Telerik.WinControls.UI.RadMenuItem btn_layout_default;
-    private Telerik.WinControls.UI.CommandBarDropDownButton commandBarDropDownButton2;
-    private Telerik.WinControls.UI.RadMenuItem btn_analyse_simple;
-    private Telerik.WinControls.UI.RadMenuItem btn_analyse_aggregated;
     private Telerik.WinControls.UI.CommandBarButton btn_save;
     private Telerik.WinControls.UI.CommandBarDropDownButton commandBarDropDownButton3;
     private Telerik.WinControls.UI.RadMenuItem btn_export_graphviz;
@@ -293,5 +270,6 @@
     private Telerik.WinControls.UI.CommandBarLabel commandBarLabel2;
     private Telerik.WinControls.UI.CommandBarDropDownList drop_sort;
     private Telerik.WinControls.UI.RadMenuItem btn_export_csv;
+    private Telerik.WinControls.UI.CommandBarButton btn_start;
   }
 }

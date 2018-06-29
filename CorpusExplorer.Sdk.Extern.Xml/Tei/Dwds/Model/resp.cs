@@ -13,5 +13,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model
   [DesignerCategory("code")]
   [XmlType(AnonymousType = true, Namespace = "http://www.tei-c.org/ns/1.0")]
   [XmlRoot(Namespace = "http://www.tei-c.org/ns/1.0", IsNullable = false)]
-  public class resp {}
+  public class resp
+  {
+  }
 }

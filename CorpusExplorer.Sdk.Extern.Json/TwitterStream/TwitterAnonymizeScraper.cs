@@ -16,9 +16,34 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStream
     private readonly Dictionary<ulong, ulong> _idUser = new Dictionary<ulong, ulong>();
     private readonly object _idUserLock = new object();
 
-    protected override AbstractGenericDataReader<StreamMessage> DataReader { get { return new TwitterDataReader(); } }
+    public override string DisplayName => "Twitter JSON Anonymize Scraper";
 
-    public override string DisplayName { get { return "Twitter JSON Anonymize Scraper"; } }
+    protected override AbstractGenericDataReader<StreamMessage> DataReader => new TwitterDataReader();
+
+    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(IEnumerable<StreamMessage> model)
+    {
+      if (model == null)
+        return null;
+
+      var res = new List<Dictionary<string, object>>();
+
+      foreach (var message in model)
+      {
+        var act = message;
+
+        // Rekursives Durchlaufen des RetweetStatus
+        while (act != null)
+        {
+          var scrap = StreamMessageToScrapDocument(act);
+          if (scrap == null)
+            break;
+          res.Add(scrap);
+          act = act.RetweetedStatus;
+        }
+      }
+
+      return res;
+    }
 
     private ulong AnonymizeTweetId(StreamMessage message)
     {
@@ -54,31 +79,6 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStream
         _idUser.Add(id, res);
         return res;
       }
-    }
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(IEnumerable<StreamMessage> model)
-    {
-      if (model == null)
-        return null;
-
-      var res = new List<Dictionary<string, object>>();
-
-      foreach (var message in model)
-      {
-        var act = message;
-
-        // Rekursives Durchlaufen des RetweetStatus
-        while (act != null)
-        {
-          var scrap = StreamMessageToScrapDocument(act);
-          if (scrap == null)
-            break;
-          res.Add(scrap);
-          act = act.RetweetedStatus;
-        }
-      }
-
-      return res;
     }
 
     // ReSharper disable FunctionComplexityOverflow

@@ -23,12 +23,24 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlArrayItem("div", IsNullable = false)]
-    public div[] back { get { return backField; } set { backField = value; } }
+    public div[] back
+    {
+      get => backField;
+      set => backField = value;
+    }
 
     /// <remarks />
-    public body body { get { return bodyField; } set { bodyField = value; } }
+    public body body
+    {
+      get => bodyField;
+      set => bodyField = value;
+    }
 
     /// <remarks />
-    public front front { get { return frontField; } set { frontField = value; } }
+    public front front
+    {
+      get => frontField;
+      set => frontField = value;
+    }
   }
 }

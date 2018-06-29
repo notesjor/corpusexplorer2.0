@@ -18,8 +18,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
   [Serializable]
   public abstract class AbstractFilterQueryMeta : AbstractFilterQueryCompleteDocumentIndexing
   {
-    [XmlArray("values")]
-    private IEnumerable<object> _metaObjects;
+    [XmlArray("values")] private IEnumerable<object> _metaObjects;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractFilterQueryMeta" /> class.
@@ -66,8 +65,8 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
       return metas == null ||
              metas.Count == 0 ||
              !metas.ContainsKey(MetaLabel)
-               ? null
-               : metas[MetaLabel]?.ToString();
+        ? null
+        : metas[MetaLabel]?.ToString();
     }
   }
 }

@@ -28,25 +28,49 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private imprint imprintField;
 
     /// <remarks />
-    public biblNote biblNote { get { return biblNoteField; } set { biblNoteField = value; } }
+    public biblNote biblNote
+    {
+      get => biblNoteField;
+      set => biblNoteField = value;
+    }
 
     /// <remarks />
     [XmlElement("h.title")]
-    public htitle[] htitle { get { return htitleField; } set { htitleField = value; } }
+    public htitle[] htitle
+    {
+      get => htitleField;
+      set => htitleField = value;
+    }
 
     /// <remarks />
     [XmlElement("h.author")]
-    public string hauthor { get { return hauthorField; } set { hauthorField = value; } }
+    public string hauthor
+    {
+      get => hauthorField;
+      set => hauthorField = value;
+    }
 
     /// <remarks />
     [XmlElement("biblScope")]
-    public biblScope[] biblScope { get { return biblScopeField; } set { biblScopeField = value; } }
+    public biblScope[] biblScope
+    {
+      get => biblScopeField;
+      set => biblScopeField = value;
+    }
 
     /// <remarks />
-    public string editor { get { return editorField; } set { editorField = value; } }
+    public string editor
+    {
+      get => editorField;
+      set => editorField = value;
+    }
 
 
     /// <remarks />
-    public imprint imprint { get { return imprintField; } set { imprintField = value; } }
+    public imprint imprint
+    {
+      get => imprintField;
+      set => imprintField = value;
+    }
   }
 }

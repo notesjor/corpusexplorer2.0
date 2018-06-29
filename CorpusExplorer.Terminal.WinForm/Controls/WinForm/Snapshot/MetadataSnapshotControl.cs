@@ -1,14 +1,14 @@
 ﻿#region
 
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Terminal.WinForm.Helper;
 using CorpusExplorer.Terminal.WinForm.Properties;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using Telerik.WinControls.UI.Data;
 
 #endregion
@@ -41,7 +41,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
         if (query == null)
           return null;
         query.MetaLabel = combo_label.SelectedItem.Text;
-        query.MetaValues = new[] { txt_values.Text };
+        query.MetaValues = new[] {txt_values.Text};
         query.Guid = _guid;
         return query;
       }
@@ -66,18 +66,39 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
     {
       var array = _queries.ToArray();
       combo_label.SelectedText = query.MetaLabel;
-      txt_values.Text = (query.MetaValues == null) || !query.MetaValues.Any() ? "" : query.MetaValues.FirstOrDefault()?.ToString();
+      txt_values.Text = query.MetaValues == null || !query.MetaValues.Any()
+        ? ""
+        : query.MetaValues.FirstOrDefault()?.ToString();
 
-      if (query.GetType() == typeof(FilterQueryMetaContains))
-        combo_query.SelectedValue = query.Inverse ? array[1] : array[0];
-      else if (query.GetType() == typeof(FilterQueryMetaContainsCaseSensitive))
-        combo_query.SelectedValue = query.Inverse ? array[3] : array[2];
-      else if (query.GetType() == typeof(FilterQueryMetaRegex))
-        combo_query.SelectedValue = query.Inverse ? array[5] : array[4];
-      else if (query.GetType() == typeof(FilterQueryMetaIsEmpty))
-        combo_query.SelectedValue = query.Inverse ? array[7] : array[6];
-      else
-        throw new TypeLoadException();
+      switch (query)
+      {
+        case FilterQueryMetaContains _:
+          combo_query.SelectedValue = query.Inverse ? array[1] : array[0];
+          break;
+        case FilterQueryMetaContainsCaseSensitive _:
+          combo_query.SelectedValue = query.Inverse ? array[3] : array[2];
+          break;
+        case FilterQueryMetaRegex _:
+          combo_query.SelectedValue = query.Inverse ? array[5] : array[4];
+          break;
+        case FilterQueryMetaIsEmpty _:
+          combo_query.SelectedValue = query.Inverse ? array[7] : array[6];
+          break;
+        case FilterQueryMetaExactMatch _:
+          combo_query.SelectedValue = query.Inverse ? array[9] : array[8];
+          break;
+        case FilterQueryMetaExactMatchCaseSensitive _:
+          combo_query.SelectedValue = query.Inverse ? array[11] : array[10];
+          break;
+        case FilterQueryMetaStartsWith _:
+          combo_query.SelectedValue = query.Inverse ? array[13] : array[12];
+          break;
+        case FilterQueryMetaEndsWith _:
+          combo_query.SelectedValue = query.Inverse ? array[15] : array[14];
+          break;
+        default:
+          throw new TypeLoadException();
+      }
 
       _guid = query.Guid;
     }
@@ -91,6 +112,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
       _queries = new Dictionary<AbstractFilterQueryMeta, string>
       {
         {
+          // 0
           new FilterQueryMetaContains
           {
             Inverse = false
@@ -98,6 +120,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           Resources.Snapshot_Contains
         },
         {
+          // 1
           new FilterQueryMetaContains
           {
             Inverse = true
@@ -105,6 +128,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           Resources.Snapshot_NotContains
         },
         {
+          // 2
           new FilterQueryMetaContainsCaseSensitive
           {
             Inverse = false
@@ -112,6 +136,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           Resources.Snapshot_ContainsCaseSensitive
         },
         {
+          // 3
           new FilterQueryMetaContainsCaseSensitive
           {
             Inverse = true
@@ -119,34 +144,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           Resources.Snapshot_NotContainsCaseSensitive
         },
         {
-          new FilterQueryMetaExactMatch
-          {
-            Inverse = false
-          },
-          "Ist gleich"
-        },
-        {
-          new FilterQueryMetaExactMatch
-          {
-            Inverse = true
-          },
-          "Ist nicht"
-        },              
-        {
-          new FilterQueryMetaExactMatchCaseSensitive
-          {
-            Inverse = false
-          },
-          "Ist gleich (beachte Groß- und Kleinschreibung)"
-        },
-        {
-          new FilterQueryMetaExactMatchCaseSensitive
-          {
-            Inverse = true
-          },
-          "Ist nicht (beachte Groß- und Kleinschreibung)"
-        },
-        {
+          // 4
           new FilterQueryMetaRegex
           {
             Inverse = false
@@ -154,6 +152,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           Resources.Snapshot_RegExMatch
         },
         {
+          // 5
           new FilterQueryMetaRegex
           {
             Inverse = true
@@ -161,6 +160,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           Resources.Snapshot_RegExNotMatch
         },
         {
+          // 6
           new FilterQueryMetaIsEmpty
           {
             Inverse = false
@@ -168,11 +168,76 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           Resources.Snapshot_MetaEmpty
         },
         {
+          // 7
           new FilterQueryMetaIsEmpty
           {
             Inverse = true
           },
           Resources.Snapshot_MetaNotEmpty
+        },
+        {
+          // 8
+          new FilterQueryMetaExactMatch
+          {
+            Inverse = false
+          },
+          "Ist gleich"
+        },
+        {
+          // 9
+          new FilterQueryMetaExactMatch
+          {
+            Inverse = true
+          },
+          "Ist nicht"
+        },
+        {
+          // 10
+          new FilterQueryMetaExactMatchCaseSensitive
+          {
+            Inverse = false
+          },
+          "Ist gleich (beachte Groß- und Kleinschreibung)"
+        },
+        {
+          // 11
+          new FilterQueryMetaExactMatchCaseSensitive
+          {
+            Inverse = true
+          },
+          "Ist nicht (beachte Groß- und Kleinschreibung)"
+        },
+        {
+          // 12
+          new FilterQueryMetaStartsWith
+          {
+            Inverse = false
+          },
+          "Beginnt mit"
+        },
+        {
+          // 13
+          new FilterQueryMetaStartsWith
+          {
+            Inverse = true
+          },
+          "Beginnt nicht mit"
+        },
+        {
+          // 14
+          new FilterQueryMetaEndsWith
+          {
+            Inverse = false
+          },
+          "Endet auf"
+        },
+        {
+          // 15
+          new FilterQueryMetaEndsWith
+          {
+            Inverse = true
+          },
+          "Endet nicht auf"
         }
       };
 

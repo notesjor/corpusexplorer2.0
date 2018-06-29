@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string desc { get { return descField; } set { descField = value; } }
+    public string desc
+    {
+      get => descField;
+      set => descField = value;
+    }
   }
 }

@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf.Serializer;
@@ -16,11 +15,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf
   // ReSharper disable once UnusedMember.Global
   public class DtaScraper : AbstractGenericXmlSerializerFormatScraper<DSpin>
   {
-    public override string DisplayName { get { return "DTA-TCF-XML"; } }
+    public override string DisplayName => "DTA-TCF-XML";
 
-    protected override AbstractGenericSerializer<DSpin> Serializer { get { return new DtaSerializer(); } }
+    protected override AbstractGenericSerializer<DSpin> Serializer => new DtaSerializer();
 
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(DSpin model)
+    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, DSpin model)
     {
       var corpus = model.TextCorpus;
       var tokens = corpus.tokens.ToDictionary(t => t.ID, t => t.Value);

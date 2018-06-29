@@ -27,26 +27,42 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string @case { get { return caseField; } set { caseField = value; } }
+    public string @case
+    {
+      get => caseField;
+      set => caseField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("externalRef", typeof(externalRef), IsNullable = false)]
     public externalRef[][] externalReferences
     {
-      get { return externalReferencesField; }
-      set { externalReferencesField = value; }
+      get => externalReferencesField;
+      set => externalReferencesField = value;
     }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string lemma { get { return lemmaField; } set { lemmaField = value; } }
+    public string lemma
+    {
+      get => lemmaField;
+      set => lemmaField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string pos { get { return posField; } set { posField = value; } }
+    public string pos
+    {
+      get => posField;
+      set => posField = value;
+    }
   }
 }

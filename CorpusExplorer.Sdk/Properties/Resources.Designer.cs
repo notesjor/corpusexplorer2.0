@@ -19,7 +19,7 @@ namespace CorpusExplorer.Sdk.Properties {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -394,6 +394,15 @@ namespace CorpusExplorer.Sdk.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Frequenz (relativ) ähnelt.
+        /// </summary>
+        internal static string Frequency_Relativ {
+            get {
+                return ResourceManager.GetString("Frequency_Relativ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Frequenz (individueller Layer) ähnelt.
         /// </summary>
         internal static string FrequencyOnSpecialLayer {
@@ -763,7 +772,7 @@ namespace CorpusExplorer.Sdk.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Zufällige Auswahl von {0} ({1}%) Dokumenten ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Zufällige Auswahl von {0} Dokumenten ({1}%) ähnelt.
         /// </summary>
         internal static string SelectionRandomDescribtion {
             get {

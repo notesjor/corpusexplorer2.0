@@ -29,33 +29,65 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string encoding { get { return encodingField; } set { encodingField = value; } }
+    public string encoding
+    {
+      get => encodingField;
+      set => encodingField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string href { get { return hrefField; } set { hrefField = value; } }
+    public string href
+    {
+      get => hrefField;
+      set => hrefField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
-    public Metadata Metadata { get { return metadataField; } set { metadataField = value; } }
+    public Metadata Metadata
+    {
+      get => metadataField;
+      set => metadataField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string mimeClass { get { return mimeClassField; } set { mimeClassField = value; } }
+    public string mimeClass
+    {
+      get => mimeClassField;
+      set => mimeClassField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string mimeType { get { return mimeTypeField; } set { mimeTypeField = value; } }
+    public string mimeType
+    {
+      get => mimeTypeField;
+      set => mimeTypeField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NMTOKEN")]
-    public string track { get { return trackField; } set { trackField = value; } }
+    public string track
+    {
+      get => trackField;
+      set => trackField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string unit { get { return unitField; } set { unitField = value; } }
+    public string unit
+    {
+      get => unitField;
+      set => unitField = value;
+    }
   }
 }

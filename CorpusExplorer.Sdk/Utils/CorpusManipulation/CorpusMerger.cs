@@ -5,6 +5,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
@@ -24,7 +25,10 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
     private Dictionary<string, object> _metaCorpus;
     private Dictionary<Guid, Dictionary<string, object>> _metaDocs;
 
-    public CorpusMerger() { Clear(); }
+    public CorpusMerger()
+    {
+      Clear();
+    }
 
     public AbstractCorpusBuilder CorpusBuilder { get; set; } = new CorpusBuilderWriteDirect();
 
@@ -65,28 +69,33 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
         _concepts.AddRange(corpus.Concepts);
 
       // metaCorpus
-      foreach (var meta in corpus.GetCorpusMetadata())
-        if (!_metaCorpus.ContainsKey(meta.Key))
-          _metaCorpus.Add(meta.Key, meta.Value);
+      var cmeta = corpus.GetCorpusMetadata();
+      if (cmeta != null)
+        foreach (var meta in cmeta)
+          if (!_metaCorpus.ContainsKey(meta.Key))
+            _metaCorpus.Add(meta.Key, meta.Value);
 
       // metaDocs
-      foreach (var meta in corpus.DocumentMetadata)
-        if (!_metaDocs.ContainsKey(meta.Key))
-          _metaDocs.Add(meta.Key, meta.Value);
+      var dmeta = corpus.DocumentMetadata;
+      if (dmeta != null)
+        foreach (var meta in dmeta)
+          if (!_metaDocs.ContainsKey(meta.Key))
+            _metaDocs.Add(meta.Key, meta.Value);
 
       // layers
       foreach (var layer in corpus.Layers)
         if (_layers.ContainsKey(layer.Displayname))
           Parallel.ForEach(
             layer.DocumentGuids,
+            Configuration.ParallelOptions,
             dsel =>
             {
               _layers[layer.Displayname]
                 .AddCompleteDocument(
                   dsel,
                   layer.GetReadableDocumentByGuid(dsel)
-                       .Select(s => s.ToArray())
-                       .ToArray());
+                    .Select(s => s.ToArray())
+                    .ToArray());
             });
         else
           _layers.Add(layer.Displayname, layer.ToLayerState());
@@ -102,6 +111,7 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
       {
         merger.Input(corpus);
       }
+
       merger.Execute();
       return merger.Output.FirstOrDefault();
     }

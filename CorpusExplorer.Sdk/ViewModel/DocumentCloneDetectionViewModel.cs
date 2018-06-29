@@ -16,6 +16,17 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public bool UseSpeedDetection { get; set; } = true;
 
+    /// <summary>
+    ///   Generates the clean selection.
+    /// </summary>
+    public void GenerateCleanSelection()
+    {
+      if (!_done)
+        Analyse();
+
+      Selection.Create(IndividualDocuments, $"{Selection.Displayname} (CLEAN)");
+    }
+
     protected override void ExecuteAnalyse()
     {
       if (_done)
@@ -38,17 +49,9 @@ namespace CorpusExplorer.Sdk.ViewModel
       _done = true;
     }
 
-    /// <summary>
-    ///   Generates the clean selection.
-    /// </summary>
-    public void GenerateCleanSelection()
+    protected override bool Validate()
     {
-      if (!_done)
-        Analyse();
-
-      Selection.Create(IndividualDocuments, $"{Selection.Displayname} (CLEAN)");
+      return true;
     }
-
-    protected override bool Validate() { return true; }
   }
 }

@@ -22,6 +22,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     private ts tsField;
 
     /// <remarks />
-    public ts ts { get { return tsField; } set { tsField = value; } }
+    public ts ts
+    {
+      get => tsField;
+      set => tsField = value;
+    }
   }
 }

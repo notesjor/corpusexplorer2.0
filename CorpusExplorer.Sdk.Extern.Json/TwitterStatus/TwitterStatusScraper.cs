@@ -18,9 +18,35 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStatus
 {
   public class TwitterStatusScraper : AbstractGenericJsonFormatScraper<Tweet>
   {
-    protected override AbstractGenericDataReader<Tweet> DataReader { get { return new TwitterStatusReader(); } }
+    public override string DisplayName
+    {
+      get { return "Twitter-Status JSON Scraper"; }
+    }
 
-    public override string DisplayName { get { return "Twitter-Status JSON Scraper"; } }
+    protected override AbstractGenericDataReader<Tweet> DataReader
+    {
+      get { return new TwitterStatusReader(); }
+    }
+
+    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(IEnumerable<Tweet> model)
+    {
+      if (model == null)
+        return null;
+
+      var res = new List<Dictionary<string, object>>();
+
+      foreach (var message in model)
+      {
+        var act = message;
+
+        var scrap = StreamMessageToScrapDocument(act);
+        if (scrap == null)
+          break;
+        res.Add(scrap);
+      }
+
+      return res;
+    }
 
     private IEnumerable<Dictionary<string, object>> PostProcessingMerge(
       Dictionary<ulong, List<Dictionary<string, object>>> dic)
@@ -50,29 +76,9 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStatus
       return res;
     }
 
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(IEnumerable<Tweet> model)
-    {
-      if (model == null)
-        return null;
-
-      var res = new List<Dictionary<string, object>>();
-
-      foreach (var message in model)
-      {
-        var act = message;
-
-        var scrap = StreamMessageToScrapDocument(act);
-        if (scrap == null)
-          break;
-        res.Add(scrap);
-      }
-
-      return res;
-    }
-
     // ReSharper disable FunctionComplexityOverflow
     private Dictionary<string, object> StreamMessageToScrapDocument(Tweet message)
-    // ReSharper restore FunctionComplexityOverflow
+      // ReSharper restore FunctionComplexityOverflow
     {
       try
       {
@@ -81,7 +87,9 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStatus
           {
             {
               "Geo",
-              message.Coordinates == null ? "" : GeoCoordinatesHelper.Serialize(new[]{message.Coordinates.Longitude, message.Coordinates.Latitude})
+              message.Coordinates == null
+                ? ""
+                : GeoCoordinatesHelper.Serialize(new[] {message.Coordinates.Longitude, message.Coordinates.Latitude})
             },
             {
               "Datum",

@@ -32,48 +32,6 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
       _endingsStep2 = new[] {"est", "en", "er"};
       _endingsStep3 = new[] {"keit", "heit", "lich", "isch", "ung", "end", "ik", "ig"};
     } // End of the constructor
-    // End of the GetSteamWords method
-
-    /// <summary>
-    ///   Calculate the R1 and R2 part for a word
-    /// </summary>
-    /// <param name="characters">An array of characters</param>
-    /// <returns>An int array with the r1 and r2 index</returns>
-    private int[] CalculateR1R2(char[] characters)
-    {
-      // Create the int array to return
-      var r1 = characters.Length;
-      var r2 = characters.Length;
-
-      // Calculate R1
-      for (var i = 1; i < characters.Length; i++)
-      {
-        if (IsVowel(characters[i]) ||
-            !IsVowel(characters[i - 1]))
-          continue;
-        // Set the r1 index
-        r1 = i + 1;
-        break;
-      }
-
-      // Calculate R2
-      for (var i = r1; i < characters.Length; ++i)
-      {
-        if (IsVowel(characters[i]) ||
-            !IsVowel(characters[i - 1]))
-          continue;
-        // Set the r2 index
-        r2 = i + 1;
-        break;
-      }
-
-      // Adjust R1
-      if (r1 < 3)
-        r1 = 3;
-
-      // Return the int array
-      return new[] {r1, r2};
-    } // End of the calculateR1R2 method
 
     /// <summary>
     ///   Get the steam word from a specific word
@@ -95,11 +53,11 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
       // Put u and y between vowels into upper case
       var charCount = chars.Length - 1;
       for (var i = 1; i < charCount; i++)
-        if ((chars[i] == 'u') &&
+        if (chars[i] == 'u' &&
             IsVowel(chars[i - 1]) &&
             IsVowel(chars[i + 1]))
           chars[i] = 'U';
-        else if ((chars[i] == 'y') &&
+        else if (chars[i] == 'y' &&
                  IsVowel(chars[i - 1]) &&
                  IsVowel(chars[i + 1]))
           chars[i] = 'Y';
@@ -175,7 +133,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
 
       // Delete st in the end if st is preceded by a valid st-ending, itself preceded by at least 3 letters 
       if (checkEndsWithSt &&
-          (word.Length > 5) &&
+          word.Length > 5 &&
           strR1.EndsWith("st"))
       {
         // Get the preceding char before the s
@@ -206,16 +164,17 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
 
               // If preceded by ig, delete if in R2 and not preceded by e
               if (strR2.EndsWith("ig" + end) &&
-                  (word.EndsWith("eig") == false))
+                  word.EndsWith("eig") == false)
                 word = word.Remove(word.Length - 2);
             }
+
             break;
           case "ig":
           case "ik":
           case "isch":
             // Delete if in R2 and not preceded by e
             if (strR2.EndsWith(end) &&
-                (word.EndsWith("e" + end) == false))
+                word.EndsWith("e" + end) == false)
               word = word.Remove(word.Length - end.Length);
             break;
           case "lich":
@@ -230,6 +189,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
                   strR1.EndsWith("er" + end))
                 word = word.Remove(word.Length - 2);
             }
+
             break;
           case "keit":
             // Delete if in R2
@@ -243,6 +203,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
               else if (strR2.EndsWith("ig" + end))
                 word = word.Remove(word.Length - 2);
             }
+
             break;
         }
 
@@ -260,5 +221,47 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer
       // Return the word
       return word;
     } // End of the GetSteamWord method
+    // End of the GetSteamWords method
+
+    /// <summary>
+    ///   Calculate the R1 and R2 part for a word
+    /// </summary>
+    /// <param name="characters">An array of characters</param>
+    /// <returns>An int array with the r1 and r2 index</returns>
+    private int[] CalculateR1R2(char[] characters)
+    {
+      // Create the int array to return
+      var r1 = characters.Length;
+      var r2 = characters.Length;
+
+      // Calculate R1
+      for (var i = 1; i < characters.Length; i++)
+      {
+        if (IsVowel(characters[i]) ||
+            !IsVowel(characters[i - 1]))
+          continue;
+        // Set the r1 index
+        r1 = i + 1;
+        break;
+      }
+
+      // Calculate R2
+      for (var i = r1; i < characters.Length; ++i)
+      {
+        if (IsVowel(characters[i]) ||
+            !IsVowel(characters[i - 1]))
+          continue;
+        // Set the r2 index
+        r2 = i + 1;
+        break;
+      }
+
+      // Adjust R1
+      if (r1 < 3)
+        r1 = 3;
+
+      // Return the int array
+      return new[] {r1, r2};
+    } // End of the calculateR1R2 method
   } // End of the class
 } // End of the namespace

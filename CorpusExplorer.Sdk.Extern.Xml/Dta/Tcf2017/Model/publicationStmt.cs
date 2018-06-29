@@ -1,90 +1,65 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
-{
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1381926654438")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1381926654438", IsNullable = false)]
-  public partial class publicationStmt
-  {
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
 
-    private string[] pubPlaceField;
+namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
+{
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true, Namespace = "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1381926654438")]
+  [XmlRoot(Namespace = "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1381926654438", IsNullable = false)]
+  public class publicationStmt
+  {
+    private licence availabilityField;
 
     private date dateField;
 
-    private publisher[] publisherField;
-
-    private licence availabilityField;
-
     private idno idnoField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("pubPlace")]
-    public string[] pubPlace
-    {
-      get
-      {
-        return this.pubPlaceField;
-      }
-      set
-      {
-        this.pubPlaceField = value;
-      }
-    }
+    private publisher[] publisherField;
 
-    /// <remarks/>
-    public date date
-    {
-      get
-      {
-        return this.dateField;
-      }
-      set
-      {
-        this.dateField = value;
-      }
-    }
+    private string[] pubPlaceField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("publisher")]
-    public publisher[] publisher
-    {
-      get
-      {
-        return this.publisherField;
-      }
-      set
-      {
-        this.publisherField = value;
-      }
-    }
-
-    /// <remarks/>
+    /// <remarks />
     public licence availability
     {
-      get
-      {
-        return this.availabilityField;
-      }
-      set
-      {
-        this.availabilityField = value;
-      }
+      get => availabilityField;
+      set => availabilityField = value;
     }
 
-    /// <remarks/>
+    /// <remarks />
+    public date date
+    {
+      get => dateField;
+      set => dateField = value;
+    }
+
+    /// <remarks />
     public idno idno
     {
-      get
-      {
-        return this.idnoField;
-      }
-      set
-      {
-        this.idnoField = value;
-      }
+      get => idnoField;
+      set => idnoField = value;
+    }
+
+    /// <remarks />
+    [XmlElement("pubPlace")]
+    public string[] pubPlace
+    {
+      get => pubPlaceField;
+      set => pubPlaceField = value;
+    }
+
+    /// <remarks />
+    [XmlElement("publisher")]
+    public publisher[] publisher
+    {
+      get => publisherField;
+      set => publisherField = value;
     }
   }
 }

@@ -11,7 +11,10 @@ namespace CorpusExplorer.Sdk.Blocks
   {
     private readonly object _documentLock = new object();
 
-    public DocumentFulltextBlock() { LayerDisplayname = "Wort"; }
+    public DocumentFulltextBlock()
+    {
+      LayerDisplayname = "Wort";
+    }
 
     public Dictionary<Guid, string> Documents { get; set; }
 
@@ -38,11 +41,11 @@ namespace CorpusExplorer.Sdk.Blocks
     {
       var text =
         string.Join(" ", from s in doc from w in s select layer[w])
-              .Replace(" ,", ",")
-              .Replace(" .", ".")
-              .Replace(" !", "!")
-              .Replace(" ?", "?")
-              .Trim();
+          .Replace(" ,", ",")
+          .Replace(" .", ".")
+          .Replace(" !", "!")
+          .Replace(" ?", "?")
+          .Trim();
 
       lock (_documentLock)
       {
@@ -54,13 +57,17 @@ namespace CorpusExplorer.Sdk.Blocks
     ///   Wird nach der Berechnung aufgerufen (nach CalculateCall)
     ///   und dient der Bereinigung von Daten
     /// </summary>
-    protected override void CalculateCleanup() { }
+    protected override void CalculateCleanup()
+    {
+    }
 
     /// <summary>
     ///   Wird nach der Bereinigung aufgerufen (nach CalculateCall + CalculateCleanup)
     ///   und dient dem zusammenfassen der bereinigen Ergebnisse
     /// </summary>
-    protected override void CalculateFinalize() { }
+    protected override void CalculateFinalize()
+    {
+    }
 
     /// <summary>
     ///   Wird vor der Berechnung aufgerufen (vor CalculateCall)

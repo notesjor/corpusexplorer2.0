@@ -33,8 +33,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     comments,
 
     /// <remarks />
-    [XmlEnum("english translation")]
-    englishtranslation,
+    [XmlEnum("english translation")] englishtranslation,
 
     /// <remarks />
     errcoding,
@@ -49,8 +48,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     facial,
 
     /// <remarks />
-    [XmlEnum("target gloss")]
-    targetgloss,
+    [XmlEnum("target gloss")] targetgloss,
 
     /// <remarks />
     gesture,
@@ -74,12 +72,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     situation,
 
     /// <remarks />
-    [XmlEnum("speech act")]
-    speechact,
+    [XmlEnum("speech act")] speechact,
 
     /// <remarks />
-    [XmlEnum("time stamp")]
-    timestamp,
+    [XmlEnum("time stamp")] timestamp,
 
     /// <remarks />
     extension

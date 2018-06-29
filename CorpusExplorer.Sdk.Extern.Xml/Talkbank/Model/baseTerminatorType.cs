@@ -24,6 +24,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute]
-    public baseTerminatorTypeType type { get { return typeField; } set { typeField = value; } }
+    public baseTerminatorTypeType type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

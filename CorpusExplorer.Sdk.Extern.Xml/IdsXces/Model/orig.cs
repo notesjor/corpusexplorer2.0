@@ -23,14 +23,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string reg { get { return regField; } set { regField = value; } }
+    public string reg
+    {
+      get => regField;
+      set => regField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string regalt { get { return regaltField; } set { regaltField = value; } }
+    public string regalt
+    {
+      get => regaltField;
+      set => regaltField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

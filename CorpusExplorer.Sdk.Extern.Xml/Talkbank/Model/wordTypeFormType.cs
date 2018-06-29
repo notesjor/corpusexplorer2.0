@@ -21,23 +21,19 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     babbling,
 
     /// <remarks />
-    [XmlEnum("child-invented")]
-    childinvented,
+    [XmlEnum("child-invented")] childinvented,
 
     /// <remarks />
     dialect,
 
     /// <remarks />
-    [XmlEnum("family-specific")]
-    familyspecific,
+    [XmlEnum("family-specific")] familyspecific,
 
     /// <remarks />
-    [XmlEnum("filled pause")]
-    filledpause,
+    [XmlEnum("filled pause")] filledpause,
 
     /// <remarks />
-    [XmlEnum("filler syllable")]
-    fillersyllable,
+    [XmlEnum("filler syllable")] fillersyllable,
 
     /// <remarks />
     generic,
@@ -55,34 +51,28 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     neologism,
 
     /// <remarks />
-    [XmlEnum("no voice")]
-    novoice,
+    [XmlEnum("no voice")] novoice,
 
     /// <remarks />
     onomatopoeia,
 
     /// <remarks />
-    [XmlEnum("phonology consistent")]
-    phonologyconsistent,
+    [XmlEnum("phonology consistent")] phonologyconsistent,
 
     /// <remarks />
-    [XmlEnum("proto-morpheme")]
-    protomorpheme,
+    [XmlEnum("proto-morpheme")] protomorpheme,
 
     /// <remarks />
-    [XmlEnum("quoted metareference")]
-    quotedmetareference,
+    [XmlEnum("quoted metareference")] quotedmetareference,
 
     /// <remarks />
-    [XmlEnum("sign speech")]
-    signspeech,
+    [XmlEnum("sign speech")] signspeech,
 
     /// <remarks />
     singing,
 
     /// <remarks />
-    [XmlEnum("signed language")]
-    signedlanguage,
+    [XmlEnum("signed language")] signedlanguage,
 
     /// <remarks />
     test,
@@ -91,11 +81,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     UNIBET,
 
     /// <remarks />
-    [XmlEnum("words to be excluded")]
-    wordstobeexcluded,
+    [XmlEnum("words to be excluded")] wordstobeexcluded,
 
     /// <remarks />
-    [XmlEnum("word play")]
-    wordplay
+    [XmlEnum("word play")] wordplay
   }
 }

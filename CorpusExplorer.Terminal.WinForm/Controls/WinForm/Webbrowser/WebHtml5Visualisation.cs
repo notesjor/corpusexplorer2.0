@@ -23,7 +23,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
 
     public override void GoToMainpage()
     {
-      if(_html == null)
+      if (_html == null)
         _html = new Html5Builder();
 
       _html.Execute(MainpageUrl, TemplateVars);

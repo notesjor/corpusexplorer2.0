@@ -21,19 +21,19 @@ namespace CorpusExplorer.Sdk.Helper
       this Dictionary<TKey1, Dictionary<TKey2, Dictionary<TKey3, TVal>>> dic)
     {
       return from x in dic
-             from y in x.Value
-             from z in y.Value
-             select new Tuple<TKey1, TKey2, TKey3, TVal>(x.Key, y.Key, z.Key, z.Value);
+        from y in x.Value
+        from z in y.Value
+        select new Tuple<TKey1, TKey2, TKey3, TVal>(x.Key, y.Key, z.Key, z.Value);
     }
 
     public static IEnumerable<Tuple<TKey1, TKey2, TKey3, TKey4, TVal>> ToTuple<TKey1, TKey2, TKey3, TKey4, TVal>(
       this Dictionary<TKey1, Dictionary<TKey2, Dictionary<TKey3, Dictionary<TKey4, TVal>>>> dic)
     {
       return from x in dic
-             from y in x.Value
-             from z in y.Value
-             from a in z.Value
-             select new Tuple<TKey1, TKey2, TKey3, TKey4, TVal>(x.Key, y.Key, z.Key, a.Key, a.Value);
+        from y in x.Value
+        from z in y.Value
+        from a in z.Value
+        select new Tuple<TKey1, TKey2, TKey3, TKey4, TVal>(x.Key, y.Key, z.Key, a.Key, a.Value);
     }
   }
 }

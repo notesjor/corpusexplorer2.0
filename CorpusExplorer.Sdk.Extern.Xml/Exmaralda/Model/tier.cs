@@ -29,35 +29,59 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string category { get { return categoryField; } set { categoryField = value; } }
+    public string category
+    {
+      get => categoryField;
+      set => categoryField = value;
+    }
 
     /// <remarks />
     [XmlAttribute("display-name")]
-    public string displayname { get { return displaynameField; } set { displaynameField = value; } }
+    public string displayname
+    {
+      get => displaynameField;
+      set => displaynameField = value;
+    }
 
     /// <remarks />
     [XmlElement("event")]
-    public @event[] @event { get { return eventField; } set { eventField = value; } }
+    public @event[] @event
+    {
+      get => eventField;
+      set => eventField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string speaker { get { return speakerField; } set { speakerField = value; } }
+    public string speaker
+    {
+      get => speakerField;
+      set => speakerField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public tierType type { get { return typeField; } set { typeField = value; } }
+    public tierType type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
 
     /// <remarks />
     [XmlArray("ud-tier-information")]
     [XmlArrayItem("ud-information", IsNullable = false)]
     public udinformation[] udtierinformation
     {
-      get { return udtierinformationField; }
-      set { udtierinformationField = value; }
+      get => udtierinformationField;
+      set => udtierinformationField = value;
     }
   }
 }

@@ -25,14 +25,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "integer")]
-    public string length { get { return lengthField; } set { lengthField = value; } }
+    public string length
+    {
+      get => lengthField;
+      set => lengthField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public breatheType type { get { return typeField; } set { typeField = value; } }
+    public breatheType type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool typeSpecified { get { return typeFieldSpecified; } set { typeFieldSpecified = value; } }
+    public bool typeSpecified
+    {
+      get => typeFieldSpecified;
+      set => typeFieldSpecified = value;
+    }
   }
 }

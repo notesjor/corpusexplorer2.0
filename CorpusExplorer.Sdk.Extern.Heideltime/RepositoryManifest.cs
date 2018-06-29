@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Addon;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
@@ -36,7 +33,7 @@ namespace CorpusExplorer.Sdk.Extern.Heideltime
     /// <summary>
     ///   Zusätzliche Tagger
     /// </summary>
-    public override IEnumerable<AbstractTagger> AddonTagger => null;// new []{//new HeideltimeTreeTagger()};
+    public override IEnumerable<AbstractTagger> AddonTagger => null; // new []{//new HeideltimeTreeTagger()};
 
     /// <summary>
     ///   Externe Analysemodule.

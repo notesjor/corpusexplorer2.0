@@ -6,9 +6,9 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger.Parameter
 {
   internal static class OpenNlpLocator
   {
-    public static string BatchFile { get { return Path.Combine(OpenNlpRootDirectory, @"bin\opennlp.bat"); } }
+    public static string BatchFile => Path.Combine(OpenNlpRootDirectory, @"bin\opennlp.bat");
 
-    private static string OpenNlpRootDirectory { get { return Configuration.GetDependencyPath(@"opennlp"); } }
+    private static string OpenNlpRootDirectory => Configuration.GetDependencyPath(@"opennlp");
 
     public static string GetMaxentModel(string language)
     {
@@ -22,6 +22,8 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger.Parameter
           return Path.Combine(OpenNlpRootDirectory, @"model\nl-pos-maxent.bin");
         case "Portugiesisch":
           return Path.Combine(OpenNlpRootDirectory, @"model\pt-pos-maxent.bin");
+        case "Sami":
+          return Path.Combine(OpenNlpRootDirectory, @"model\se-pos-maxent.bin");
         default:
           throw new ArgumentException("language");
       }
@@ -39,6 +41,10 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger.Parameter
           return Path.Combine(OpenNlpRootDirectory, @"model\nl-pos-perceptron.bin");
         case "Portugiesisch":
           return Path.Combine(OpenNlpRootDirectory, @"model\pt-pos-perceptron.bin");
+        case "Sami":
+          return Path.Combine(OpenNlpRootDirectory, @"model\se-pos-perceptron.bin");
+        case "Dänisch":
+          return Path.Combine(OpenNlpRootDirectory, @"model\da-pos-perceptron.bin");
         default:
           throw new ArgumentException("language");
       }
@@ -56,6 +62,10 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger.Parameter
           return Path.Combine(OpenNlpRootDirectory, @"model\nl-token.bin");
         case "Portugiesisch":
           return Path.Combine(OpenNlpRootDirectory, @"model\pt-token.bin");
+        case "Dänisch":
+          return Path.Combine(OpenNlpRootDirectory, @"model\da-token.bin");
+        case "Sami":
+          return Path.Combine(OpenNlpRootDirectory, @"model\se-token.bin");
         default:
           throw new ArgumentException("language");
       }

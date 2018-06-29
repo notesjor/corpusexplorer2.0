@@ -10,14 +10,19 @@ namespace CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter.ElasticSearchFulltext.Mod
   {
     private static ElasticSearchFulltextContext _context;
 
-    public static ElasticSearchFulltextContext GetContext() => _context;
+    public static ElasticSearchFulltextContext GetContext()
+    {
+      return _context;
+    }
 
     public static void Initialize(
       IEnumerable<string> connectionPool,
       string index,
       ElasticSearchContextCredentials credentials = null)
     {
-      Initialize(connectionPool.Select(x => new Uri(x.Replace("\r\n", "").Replace("\r", "").Replace("\n", ""))).ToArray(), index, credentials);
+      Initialize(
+        connectionPool.Select(x => new Uri(x.Replace("\r\n", "").Replace("\r", "").Replace("\n", ""))).ToArray(), index,
+        credentials);
     }
 
     public static void Initialize(

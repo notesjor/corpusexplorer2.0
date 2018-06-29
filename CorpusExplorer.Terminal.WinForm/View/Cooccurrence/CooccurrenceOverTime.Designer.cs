@@ -39,6 +39,8 @@
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.commandBarLabel2 = new Telerik.WinControls.UI.CommandBarLabel();
       this.commandBarTextBox1 = new Telerik.WinControls.UI.CommandBarTextBox();
+      this.commandBarSeparator2 = new Telerik.WinControls.UI.CommandBarSeparator();
+      this.btn_export = new Telerik.WinControls.UI.CommandBarButton();
       this.radAutoCompleteBox1 = new Telerik.WinControls.UI.RadAutoCompleteBox();
       this.btn_go = new Telerik.WinControls.UI.RadButton();
       this.chart_view = new Telerik.WinControls.UI.RadChartView();
@@ -46,6 +48,7 @@
       this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
       this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
       this.drop_select = new Telerik.WinControls.UI.RadCheckedDropDownList();
+      this.btn_layer = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radAutoCompleteBox1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.btn_go)).BeginInit();
@@ -66,13 +69,13 @@
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 44);
+      this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
       this.radCommandBar1.TabIndex = 0;
-      this.radCommandBar1.Text = "radCommandBar1";
       // 
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
       // 
@@ -80,11 +83,14 @@
       // 
       this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
+            this.btn_layer,
             this.commandBarLabel1,
             this.commandBarDropDownList1,
             this.commandBarSeparator1,
             this.commandBarLabel2,
-            this.commandBarTextBox1});
+            this.commandBarTextBox1,
+            this.commandBarSeparator2,
+            this.btn_export});
       this.commandBarStripElement1.Name = "commandBarStripElement1";
       // 
       // commandBarLabel1
@@ -121,6 +127,20 @@
       this.commandBarTextBox1.Name = "commandBarTextBox1";
       this.commandBarTextBox1.Text = "25";
       // 
+      // commandBarSeparator2
+      // 
+      this.commandBarSeparator2.DisplayName = "commandBarSeparator2";
+      this.commandBarSeparator2.Name = "commandBarSeparator2";
+      this.commandBarSeparator2.VisibleInOverflowMenu = false;
+      // 
+      // btn_export
+      // 
+      this.btn_export.DisplayName = "commandBarButton1";
+      this.btn_export.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
+      this.btn_export.Name = "btn_export";
+      this.btn_export.Text = "Daten exportieren";
+      this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
+      // 
       // radAutoCompleteBox1
       // 
       this.radAutoCompleteBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -155,23 +175,22 @@
             categoricalAxis1,
             linearAxis1});
       this.chart_view.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.chart_view.Location = new System.Drawing.Point(0, 76);
+      this.chart_view.Location = new System.Drawing.Point(0, 101);
       this.chart_view.Name = "chart_view";
       this.chart_view.ShowGrid = false;
       this.chart_view.ShowLegend = true;
       this.chart_view.ShowPanZoom = true;
       this.chart_view.ShowToolTip = true;
       this.chart_view.ShowTrackBall = true;
-      this.chart_view.Size = new System.Drawing.Size(780, 324);
+      this.chart_view.Size = new System.Drawing.Size(780, 299);
       this.chart_view.TabIndex = 0;
-      this.chart_view.Text = "radChartView1";
       // 
       // radSplitContainer1
       // 
       this.radSplitContainer1.Controls.Add(this.splitPanel1);
       this.radSplitContainer1.Controls.Add(this.splitPanel2);
       this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radSplitContainer1.Location = new System.Drawing.Point(0, 44);
+      this.radSplitContainer1.Location = new System.Drawing.Point(0, 69);
       this.radSplitContainer1.Name = "radSplitContainer1";
       // 
       // 
@@ -180,7 +199,6 @@
       this.radSplitContainer1.Size = new System.Drawing.Size(780, 32);
       this.radSplitContainer1.TabIndex = 2;
       this.radSplitContainer1.TabStop = false;
-      this.radSplitContainer1.Text = "radSplitContainer1";
       // 
       // splitPanel1
       // 
@@ -220,6 +238,14 @@
       this.drop_select.Size = new System.Drawing.Size(388, 32);
       this.drop_select.TabIndex = 0;
       this.drop_select.ItemCheckedChanged += new Telerik.WinControls.UI.RadCheckedListDataItemEventHandler(this.drop_select_ItemCheckedChanged);
+      // 
+      // btn_layer
+      // 
+      this.btn_layer.DisplayName = "commandBarButton1";
+      this.btn_layer.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers;
+      this.btn_layer.Name = "btn_layer";
+      this.btn_layer.Text = "Layer auswählen";
+      this.btn_layer.Click += new System.EventHandler(this.btn_layer_Click);
       // 
       // CooccurrenceOverTime
       // 
@@ -263,5 +289,8 @@
     private Telerik.WinControls.UI.SplitPanel splitPanel1;
     private Telerik.WinControls.UI.SplitPanel splitPanel2;
     private Telerik.WinControls.UI.RadCheckedDropDownList drop_select;
+    private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator2;
+    private Telerik.WinControls.UI.CommandBarButton btn_export;
+    private Telerik.WinControls.UI.CommandBarButton btn_layer;
   }
 }

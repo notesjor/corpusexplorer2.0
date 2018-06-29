@@ -18,6 +18,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private licence licenceField;
 
     /// <remarks />
-    public licence licence { get { return licenceField; } set { licenceField = value; } }
+    public licence licence
+    {
+      get => licenceField;
+      set => licenceField = value;
+    }
   }
 }

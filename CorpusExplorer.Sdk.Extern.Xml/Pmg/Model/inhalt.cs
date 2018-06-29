@@ -22,14 +22,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Pmg.Model
     private string[] vorspannField;
 
     /// <remarks />
-    public text text { get { return textField; } set { textField = value; } }
+    public text text
+    {
+      get => textField;
+      set => textField = value;
+    }
 
     /// <remarks />
     [XmlElement("titel-liste")]
-    public titelliste titelliste { get { return titellisteField; } set { titellisteField = value; } }
+    public titelliste titelliste
+    {
+      get => titellisteField;
+      set => titellisteField = value;
+    }
 
     /// <remarks />
     [XmlElement("vorspann")]
-    public string[] vorspann { get { return vorspannField; } set { vorspannField = value; } }
+    public string[] vorspann
+    {
+      get => vorspannField;
+      set => vorspannField = value;
+    }
   }
 }

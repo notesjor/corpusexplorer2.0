@@ -5,7 +5,10 @@ namespace CorpusExplorer.Sdk.Blocks
 {
   public class WordListBlock : AbstractBlock
   {
-    public WordListBlock() { LayerDisplayname = "Wort"; }
+    public WordListBlock()
+    {
+      LayerDisplayname = "Wort";
+    }
 
     /// <summary>
     ///   Gets or sets the layer displayname.

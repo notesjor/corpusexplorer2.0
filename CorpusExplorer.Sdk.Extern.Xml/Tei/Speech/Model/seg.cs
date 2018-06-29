@@ -25,7 +25,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string function { get { return functionField; } set { functionField = value; } }
+    public string function
+    {
+      get => functionField;
+      set => functionField = value;
+    }
 
     /// <remarks />
     [XmlElement("anchor", typeof(anchor))]
@@ -34,10 +38,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
     [XmlElement("pause", typeof(pause))]
     [XmlElement("unclear", typeof(unclear))]
     [XmlElement("w", typeof(w))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

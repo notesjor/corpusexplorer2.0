@@ -25,18 +25,34 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
     private string typeField;
 
     /// <remarks />
-    public string desc { get { return descField; } set { descField = value; } }
+    public string desc
+    {
+      get => descField;
+      set => descField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string end { get { return endField; } set { endField = value; } }
+    public string end
+    {
+      get => endField;
+      set => endField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string start { get { return startField; } set { startField = value; } }
+    public string start
+    {
+      get => startField;
+      set => startField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

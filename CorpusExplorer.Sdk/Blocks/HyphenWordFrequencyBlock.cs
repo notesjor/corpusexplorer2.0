@@ -37,7 +37,7 @@ namespace CorpusExplorer.Sdk.Blocks
         try
         {
           hyphens = Configuration.Hyphen.Hyphenate(value)
-                                 .HyphenatedWord.Split(new[] {"="}, StringSplitOptions.RemoveEmptyEntries);
+            .HyphenatedWord.Split(new[] {"="}, StringSplitOptions.RemoveEmptyEntries);
         }
         catch
         {

@@ -25,14 +25,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute]
-    public bool real { get { return realField; } set { realField = value; } }
+    public bool real
+    {
+      get => realField;
+      set => realField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool realSpecified { get { return realFieldSpecified; } set { realFieldSpecified = value; } }
+    public bool realSpecified
+    {
+      get => realFieldSpecified;
+      set => realFieldSpecified = value;
+    }
 
     /// <remarks />
     [XmlElement("w")]
-    public wordType[] w { get { return wField; } set { wField = value; } }
+    public wordType[] w
+    {
+      get => wField;
+      set => wField = value;
+    }
   }
 }

@@ -24,10 +24,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
 
     /// <remarks />
     [XmlAttribute("absolute-time")]
-    public decimal absolutetime { get { return absolutetimeField; } set { absolutetimeField = value; } }
+    public decimal absolutetime
+    {
+      get => absolutetimeField;
+      set => absolutetimeField = value;
+    }
 
     /// <remarks />
     [XmlAttribute("timepoint-id", DataType = "ID")]
-    public string timepointid { get { return timepointidField; } set { timepointidField = value; } }
+    public string timepointid
+    {
+      get => timepointidField;
+      set => timepointidField = value;
+    }
   }
 }

@@ -10,16 +10,6 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public IEnumerable<string> AvailableTags => _data.Keys;
 
-    protected override void ExecuteAnalyse()
-    {
-      var block = Selection.CreateBlock<CorrespondingLayerValueBlock>();
-      block.Layer1Displayname = "POS";
-      block.Layer2Displayname = "Wort";
-      block.Calculate();
-
-      _data = block.CorrespondingLayerValues;
-    }
-
     public HashSet<string> GetValidCases(IEnumerable<string> tags)
     {
       var res = new HashSet<string>();
@@ -32,6 +22,19 @@ namespace CorpusExplorer.Sdk.ViewModel
       return res;
     }
 
-    protected override bool Validate() { return Selection.ContainsLayer("POS") && Selection.ContainsLayer("Wort"); }
+    protected override void ExecuteAnalyse()
+    {
+      var block = Selection.CreateBlock<CorrespondingLayerValueBlock>();
+      block.Layer1Displayname = "POS";
+      block.Layer2Displayname = "Wort";
+      block.Calculate();
+
+      _data = block.CorrespondingLayerValues;
+    }
+
+    protected override bool Validate()
+    {
+      return Selection.ContainsLayer("POS") && Selection.ContainsLayer("Wort");
+    }
   }
 }

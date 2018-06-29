@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using Bcs.IO;
 using CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger.Abstract;
-using CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger.Parameter;
 using CorpusExplorer.Core.DocumentProcessing.Tokenizer;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger;
 
 namespace CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger
 {
@@ -32,6 +32,8 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger
       get => Configuration.GetSetting("TreeTagger", "") as string;
       set => Configuration.SetSetting("TreeTagger", value);
     }
+
+    public override IEnumerable<string> LanguagesAvailabel => new[] {"Durch Skript definiert."};
 
     protected override string ExecuteTagger(string text)
     {
@@ -61,7 +63,6 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger
           process.WaitForExit();
 
           return FileIO.ReadText(fileOutput.Path, Configuration.Encoding);
-
         }
       }
       catch (Exception ex)
@@ -75,23 +76,26 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger
     {
       try
       {
-        var config = FileIO.ReadLines(InstallationPath).FirstOrDefault();
-        var split = config.Split(new[] { "|" }, StringSplitOptions.None);
+        var config = FileIO.ReadLines(InstallationPath)[1];
+        var split = config.Split(new[] {"|"}, StringSplitOptions.None);
         if (split[0].Trim() != "REM CorpusExplorer" || split.Length != 3)
           throw new Exception();
 
-        _sentenceMark = split[1];
+        _sentenceMark = new HashSet<string> {split[1].Trim()};
         if (string.IsNullOrEmpty(split[2]))
           return;
 
-        var phrases = split[2].Split(new[] { ",", " ", "<", ">", "/" }, StringSplitOptions.RemoveEmptyEntries);
+        var phrases = split[2].Trim().Split(new[] {",", " ", "<", ">", "/"}, StringSplitOptions.RemoveEmptyEntries);
         var phrase = AddRangeLayer("Phrase");
         foreach (var p in phrases)
-          phrase.AddRange(x => x == $"<{p}>", x => p, x => x == $"</{p}>");
+        {
+          var tag = p.Trim();
+          phrase.AddRange(x => x == $"<{tag}>", x => p, x => x == $"</{tag}>");
+        }
       }
       catch
       {
-        _sentenceMark = "$.";
+        // ignore
       }
     }
   }

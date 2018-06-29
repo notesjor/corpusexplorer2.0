@@ -22,7 +22,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private lg lgField;
 
     /// <remarks />
-    public closer closer { get { return closerField; } set { closerField = value; } }
+    public closer closer
+    {
+      get => closerField;
+      set => closerField = value;
+    }
 
     /// <remarks />
     [XmlElement("cb", typeof(cb))]
@@ -33,9 +37,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("note", typeof(note))]
     [XmlElement("p", typeof(p))]
     [XmlElement("pb", typeof(pb))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
-    public lg lg { get { return lgField; } set { lgField = value; } }
+    public lg lg
+    {
+      get => lgField;
+      set => lgField = value;
+    }
   }
 }

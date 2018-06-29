@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlElement("titlePart")]
-    public titlePart[] titlePart { get { return titlePartField; } set { titlePartField = value; } }
+    public titlePart[] titlePart
+    {
+      get => titlePartField;
+      set => titlePartField = value;
+    }
   }
 }

@@ -12,7 +12,7 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tokenizer
   // ReSharper disable once MemberCanBeInternal
   public sealed class OpenNlpTokenizer : AbstractTokenizer
   {
-    public override string DisplayName { get { return "OpenNLP Tokenizer"; } }
+    public override string DisplayName => "OpenNLP Tokenizer";
 
     // ReSharper disable once MemberCanBePrivate.Global
     // ReSharper disable once UnusedAutoPropertyAccessor.Global

@@ -14,6 +14,7 @@ namespace CorpusExplorer.Sdk.Helper
         if (task != await Task.WhenAny(task, tcs.Task))
           throw new OperationCanceledException(token);
       }
+
       return await task;
     }
   }

@@ -25,6 +25,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     [XmlElement("ph", typeof(constituentType))]
     [XmlElement("ss", typeof(ss))]
     [XmlElement("wk", typeof(wordnetMarkerType))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
   }
 }

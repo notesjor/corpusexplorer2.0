@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
-using Bcs.IO;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 
 namespace CorpusExplorer.Sdk.Db.Gui
 {
   public static class FormHelper
   {
-    public static DbSettingsReader Show(string providerName, string defaultHost, int defaultPort, ValidateConnectionAction validateAction, string fileFilter, string pathSaveSettings = null)
+    public static DbSettingsReader Show(string providerName, string defaultHost, int defaultPort,
+      ValidateConnectionAction validateAction, string fileFilter, string pathSaveSettings = null)
     {
       var form = new DbCredentialForm(providerName,
         defaultHost,
@@ -15,7 +14,7 @@ namespace CorpusExplorer.Sdk.Db.Gui
         validateAction,
         fileFilter,
         pathSaveSettings
-        );
+      );
       if (form.ShowDialog() != DialogResult.OK)
         throw new Exception("Verbindung zur Datenbank durch Nutzer*in abgebrochen.");
 

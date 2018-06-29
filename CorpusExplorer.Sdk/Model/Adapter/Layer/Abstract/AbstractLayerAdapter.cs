@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model;
 
@@ -10,6 +11,21 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
 {
   public abstract class AbstractLayerAdapter : CeObject
   {
+    /// <summary>
+    ///   Anzahl der enthaltenen Dokumente
+    /// </summary>
+    public abstract int CountDocuments { get; }
+
+    /// <summary>
+    ///   Anzahl der enthaltenen Werte
+    /// </summary>
+    public abstract int CountValues { get; }
+
+    /// <summary>
+    ///   Auflistung aller Dokument-GUIDs
+    /// </summary>
+    public abstract IEnumerable<Guid> DocumentGuids { get; }
+
     /// <summary>
     ///   Gibt die entsprechende Wertbeschreibung zurück
     /// </summary>
@@ -44,21 +60,6 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
     public abstract int[][] this[Guid guid] { get; set; }
 
     /// <summary>
-    ///   Anzahl der enthaltenen Dokumente
-    /// </summary>
-    public abstract int CountDocuments { get; }
-
-    /// <summary>
-    ///   Anzahl der enthaltenen Werte
-    /// </summary>
-    public abstract int CountValues { get; }
-
-    /// <summary>
-    ///   Auflistung aller Dokument-GUIDs
-    /// </summary>
-    public abstract IEnumerable<Guid> DocumentGuids { get; }
-
-    /// <summary>
     ///   Auflistung aller Werte des Layers
     /// </summary>
     public abstract IEnumerable<string> Values { get; }
@@ -66,7 +67,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
     /// <summary>
     ///   Enthält der Layer informationen zum gesuchten Dokument
     /// </summary>
-    /// <param name="guid">GUID des Dokuments
+    /// <param name="guid">
+    ///   GUID des Dokuments
     /// </param>
     /// <returns>
     ///   Ja/Nein?
@@ -135,8 +137,6 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
       Guid documentGuid,
       int start,
       int stop);
-
-    protected abstract CeDictionary GetValueDictionary();
 
     /// <summary>
     ///   Gibt alle Indizes zurück, die auf den RegEx-Ausdruck passen
@@ -253,13 +253,6 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
     public abstract void ValueRemove(string removeValue);
 
     /// <summary>
-    ///   Gibt alle Werte zurück, die auf den RegEx-Ausdruck passen
-    /// </summary>
-    /// <param name="regEx">RegEx-Ausdruck</param>
-    /// <returns>IEnumerable&lt;System.String&gt;.</returns>
-    protected abstract IEnumerable<string> ValuesByRegex(string regEx);
-
-    /// <summary>
     ///   Gibt alle Werte zurück, die auf die RegEx-Ausdrücke passen
     /// </summary>
     /// <param name="regExs">RegEx-Ausdruck</param>
@@ -271,6 +264,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
 
       Parallel.ForEach(
         regExs,
+        Configuration.ParallelOptions,
         x =>
         {
           var values = ValuesByRegex(x);
@@ -324,7 +318,6 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
         return res;
 
       foreach (var value in values)
-      {
         try
         {
           var v = this[value];
@@ -335,9 +328,17 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
         {
           // ignore
         }
-      }
 
       return res;
     }
+
+    protected abstract CeDictionary GetValueDictionary();
+
+    /// <summary>
+    ///   Gibt alle Werte zurück, die auf den RegEx-Ausdruck passen
+    /// </summary>
+    /// <param name="regEx">RegEx-Ausdruck</param>
+    /// <returns>IEnumerable&lt;System.String&gt;.</returns>
+    protected abstract IEnumerable<string> ValuesByRegex(string regEx);
   }
 }

@@ -31,46 +31,82 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement("AsocFile")]
-    public AsocFileType[] AsocFile { get { return asocFileField; } set { asocFileField = value; } }
+    public AsocFileType[] AsocFile
+    {
+      get => asocFileField;
+      set => asocFileField = value;
+    }
 
     /// <remarks />
-    public object DBNode { get { return dBNodeField; } set { dBNodeField = value; } }
+    public object DBNode
+    {
+      get => dBNodeField;
+      set => dBNodeField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("Key", IsNullable = false)]
-    public KeyType[] Description { get { return descriptionField; } set { descriptionField = value; } }
+    public KeyType[] Description
+    {
+      get => descriptionField;
+      set => descriptionField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified, DataType = "ID")]
-    public string Id { get { return idField; } set { idField = value; } }
+    public string Id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlElement("Corpus", typeof(CorpusType))]
     [XmlElement("CorpusData", typeof(CorpusData))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("Key", typeof(KeyType), IsNullable = false)]
-    public KeyType[][] Mirrors { get { return mirrorsField; } set { mirrorsField = value; } }
+    public KeyType[][] Mirrors
+    {
+      get => mirrorsField;
+      set => mirrorsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified)]
-    public string Name { get { return nameField; } set { nameField = value; } }
+    public string Name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified, DataType = "IDREF")]
-    public string Parent { get { return parentField; } set { parentField = value; } }
+    public string Parent
+    {
+      get => parentField;
+      set => parentField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified)]
-    public string schemaVersion { get { return schemaVersionField; } set { schemaVersionField = value; } }
+    public string schemaVersion
+    {
+      get => schemaVersionField;
+      set => schemaVersionField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified)]
     public string uniqueSpeakerDistinction
     {
-      get { return uniqueSpeakerDistinctionField; }
-      set { uniqueSpeakerDistinctionField = value; }
+      get => uniqueSpeakerDistinctionField;
+      set => uniqueSpeakerDistinctionField = value;
     }
   }
 }

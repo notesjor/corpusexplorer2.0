@@ -1,8 +1,5 @@
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 
@@ -56,8 +53,15 @@ namespace CorpusExplorer.Sdk.View.Html.Html5
 
     public void Execute(
       string htmlTemplatePath,
-      Dictionary<string, string> templateVars) => TemplateTextGenerator.GenerateFromFileToFile(htmlTemplatePath, WebserverIndexPath, templateVars, Configuration.Encoding);
+      Dictionary<string, string> templateVars)
+    {
+      TemplateTextGenerator.GenerateFromFileToFile(htmlTemplatePath, WebserverIndexPath, templateVars,
+        Configuration.Encoding);
+    }
 
-    public void Export(string path) { ZipHelper.Compress(WebserverRoot, path); }
+    public void Export(string path)
+    {
+      ZipHelper.Compress(WebserverRoot, path);
+    }
   }
 }

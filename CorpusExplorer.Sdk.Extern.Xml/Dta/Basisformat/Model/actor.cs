@@ -18,6 +18,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private hi hiField;
 
     /// <remarks />
-    public hi hi { get { return hiField; } set { hiField = value; } }
+    public hi hi
+    {
+      get => hiField;
+      set => hiField = value;
+    }
   }
 }

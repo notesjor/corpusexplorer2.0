@@ -16,32 +16,6 @@ namespace CorpusExplorer.Sdk.ViewModel
     public int MinimalPhrasesLength { get; set; } = 2;
     public Dictionary<string, double> Phrases { get; set; }
 
-    protected override void ExecuteAnalyse()
-    {
-      var block = Selection.CreateBlock<PhrasesBlock>();
-      block.Layer2Displayname = LayerDisplayname;
-      block.Calculate();
-
-      Phrases = block.Phrases;
-    }
-
-    private Dictionary<string, double> FilterAndMergePhrases(Dictionary<string[], double> phrases)
-    {
-      var dictionary = new Dictionary<string, double>();
-      foreach (var phrase in phrases)
-      {
-        if (phrase.Key.Length < MinimalPhrasesLength)
-          continue;
-
-        var key = string.Join(" ", phrase.Key);
-        if (dictionary.ContainsKey(key))
-          dictionary[key] += phrase.Value;
-        else
-          dictionary.Add(key, phrase.Value);
-      }
-      return dictionary;
-    }
-
     /// <summary>
     ///   Gibt eine Datentabelle zurück
     /// </summary>
@@ -60,6 +34,36 @@ namespace CorpusExplorer.Sdk.ViewModel
       return res;
     }
 
-    protected override bool Validate() { return !string.IsNullOrEmpty(LayerDisplayname); }
+    protected override void ExecuteAnalyse()
+    {
+      var block = Selection.CreateBlock<PhrasesBlock>();
+      block.Layer2Displayname = LayerDisplayname;
+      block.Calculate();
+
+      Phrases = block.Phrases;
+    }
+
+    protected override bool Validate()
+    {
+      return !string.IsNullOrEmpty(LayerDisplayname);
+    }
+
+    private Dictionary<string, double> FilterAndMergePhrases(Dictionary<string[], double> phrases)
+    {
+      var dictionary = new Dictionary<string, double>();
+      foreach (var phrase in phrases)
+      {
+        if (phrase.Key.Length < MinimalPhrasesLength)
+          continue;
+
+        var key = string.Join(" ", phrase.Key);
+        if (dictionary.ContainsKey(key))
+          dictionary[key] += phrase.Value;
+        else
+          dictionary.Add(key, phrase.Value);
+      }
+
+      return dictionary;
+    }
   }
 }

@@ -35,37 +35,73 @@ namespace CorpusExplorer.Sdk.Extern.Xml.PurlOrg.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string anrede { get { return anredeField; } set { anredeField = value; } }
+    public string anrede
+    {
+      get => anredeField;
+      set => anredeField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string datum { get { return datumField; } set { datumField = value; } }
+    public string datum
+    {
+      get => datumField;
+      set => datumField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string excerpt { get { return excerptField; } set { excerptField = value; } }
+    public string excerpt
+    {
+      get => excerptField;
+      set => excerptField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string ort { get { return ortField; } set { ortField = value; } }
+    public string ort
+    {
+      get => ortField;
+      set => ortField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string person { get { return personField; } set { personField = value; } }
+    public string person
+    {
+      get => personField;
+      set => personField = value;
+    }
 
     /// <remarks />
-    public string rohtext { get { return rohtextField; } set { rohtextField = value; } }
+    public string rohtext
+    {
+      get => rohtextField;
+      set => rohtextField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string titel { get { return titelField; } set { titelField = value; } }
+    public string titel
+    {
+      get => titelField;
+      set => titelField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string untertitel { get { return untertitelField; } set { untertitelField = value; } }
+    public string untertitel
+    {
+      get => untertitelField;
+      set => untertitelField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "anyURI")]
-    public string url { get { return urlField; } set { urlField = value; } }
+    public string url
+    {
+      get => urlField;
+      set => urlField = value;
+    }
   }
 }

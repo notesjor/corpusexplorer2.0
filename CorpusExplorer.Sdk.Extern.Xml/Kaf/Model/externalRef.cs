@@ -23,14 +23,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string confidence { get { return confidenceField; } set { confidenceField = value; } }
+    public string confidence
+    {
+      get => confidenceField;
+      set => confidenceField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string reference { get { return referenceField; } set { referenceField = value; } }
+    public string reference
+    {
+      get => referenceField;
+      set => referenceField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string resource { get { return resourceField; } set { resourceField = value; } }
+    public string resource
+    {
+      get => resourceField;
+      set => resourceField = value;
+    }
   }
 }

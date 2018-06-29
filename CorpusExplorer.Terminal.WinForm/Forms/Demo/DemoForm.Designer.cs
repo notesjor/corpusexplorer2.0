@@ -35,7 +35,7 @@
       // 
       // pictureBox1
       // 
-      this.pictureBox1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.select_table1;
+      this.pictureBox1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.user_group1;
       this.pictureBox1.Location = new System.Drawing.Point(114, 72);
       this.pictureBox1.Name = "pictureBox1";
       this.pictureBox1.Size = new System.Drawing.Size(100, 50);

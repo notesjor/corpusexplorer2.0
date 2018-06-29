@@ -15,11 +15,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
   public enum overlapTypeType
   {
     /// <remarks />
-    [XmlEnum("overlap follows")]
-    overlapfollows,
+    [XmlEnum("overlap follows")] overlapfollows,
 
     /// <remarks />
-    [XmlEnum("overlap precedes")]
-    overlapprecedes
+    [XmlEnum("overlap precedes")] overlapprecedes
   }
 }

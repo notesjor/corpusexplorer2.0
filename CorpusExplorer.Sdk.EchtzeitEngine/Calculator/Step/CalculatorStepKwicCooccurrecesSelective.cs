@@ -14,6 +14,8 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
   {
     public override string Method => "KwicSelectiveCooccurreces";
 
+    public int Top { get; set; }
+
     public override void Calculate(Selection selection, ref UniversalStorage output)
     {
       var block = selection.CreateBlock<CooccurrenceBlock>();
@@ -31,7 +33,6 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
           tmp = signi[query].OrderByDescending(x => x.Value).Take(Top);
 
         foreach (var cooc in tmp)
-        {
           output.Set(
             selection,
             Method,
@@ -41,12 +42,9 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
               new FilterQuerySingleLayerAllInOneSentence
               {
                 LayerDisplayname = "Wort",
-                LayerQueries = new[] { query, cooc.Key }
+                LayerQueries = new[] {query, cooc.Key}
               }));
-        }               
       }
     }
-
-    public int Top { get; set; }
   }
 }

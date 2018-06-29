@@ -39,49 +39,89 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Pmg.Model
 
     /// <remarks />
     [XmlElement("artikel-id")]
-    public string artikelid { get { return artikelidField; } set { artikelidField = value; } }
+    public string artikelid
+    {
+      get => artikelidField;
+      set => artikelidField = value;
+    }
 
     /// <remarks />
     [XmlElement("autor")]
-    public autor[] autor { get { return autorField; } set { autorField = value; } }
+    public autor[] autor
+    {
+      get => autorField;
+      set => autorField = value;
+    }
 
     /// <remarks />
     [XmlElement("seiten-pdf")]
-    public string[] seitenpdf { get { return seitenpdfField; } set { seitenpdfField = value; } }
+    public string[] seitenpdf
+    {
+      get => seitenpdfField;
+      set => seitenpdfField = value;
+    }
 
     /// <remarks />
     [XmlElement("artikel-pdf")]
-    public string artikelpdf { get { return artikelpdfField; } set { artikelpdfField = value; } }
+    public string artikelpdf
+    {
+      get => artikelpdfField;
+      set => artikelpdfField = value;
+    }
 
 
     /// <remarks />
     [XmlElement("firma")]
-    public string[] firma { get { return firmaField; } set { firmaField = value; } }
+    public string[] firma
+    {
+      get => firmaField;
+      set => firmaField = value;
+    }
 
     /// <remarks />
     [XmlElement("person")]
-    public string[] person { get { return personField; } set { personField = value; } }
+    public string[] person
+    {
+      get => personField;
+      set => personField = value;
+    }
 
     /// <remarks />
     [XmlElement("ort")]
-    public string[] ort { get { return ortField; } set { ortField = value; } }
+    public string[] ort
+    {
+      get => ortField;
+      set => ortField = value;
+    }
 
 
     /// <remarks />
-    public quelle quelle { get { return quelleField; } set { quelleField = value; } }
+    public quelle quelle
+    {
+      get => quelleField;
+      set => quelleField = value;
+    }
 
 
     /// <remarks />
     public string urheberinformation
     {
-      get { return urheberinformationField; }
-      set { urheberinformationField = value; }
+      get => urheberinformationField;
+      set => urheberinformationField = value;
     }
 
     /// <remarks />
-    public string weblink { get { return weblinkField; } set { weblinkField = value; } }
+    public string weblink
+    {
+      get => weblinkField;
+      set => weblinkField = value;
+    }
 
     /// <remarks />
-    public string worte { get { return worteField; } set { worteField = value; } }
+    public string worte
+    {
+      get => worteField;
+      set => worteField = value;
+    }
   }
 }

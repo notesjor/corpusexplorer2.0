@@ -44,8 +44,11 @@ namespace CorpusExplorer.Sdk.Addon.Example.CorpusMeasures
     /// <summary>
     ///   Name/Bezeichnung des Addons. Achten Sie auf eine möglichst kurze Bezeichnung.
     /// </summary>
-    public string Label { get { return "Beispiel Addon (Level 100)"; } }
+    public string Label => "Beispiel Addon (Level 100)";
 
-    public void Refresh(Selection selection) { _vm.Refresh(selection); }
+    public void Refresh(Selection selection)
+    {
+      _vm.Refresh(selection);
+    }
   }
 }

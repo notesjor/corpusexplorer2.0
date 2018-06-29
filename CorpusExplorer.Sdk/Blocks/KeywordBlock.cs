@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CenterSpace.NMath.Stats;
 using CorpusExplorer.Sdk.Blocks.Abstract;
+using CorpusExplorer.Sdk.Blocks.Cooccurrence;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model;
 
@@ -16,7 +18,10 @@ namespace CorpusExplorer.Sdk.Blocks
       N = 1000000;
     }
 
-    public Dictionary<string, double> Keywords { get; set; }
+    public Dictionary<string, double> KeywordDiff { get; set; }
+    public Dictionary<string, double> KeywordSignificance { get; set; }
+    public Dictionary<string, double> KeywordFrequencyCurrent { get; set; }
+    public Dictionary<string, double> KeywordFrequencyReference { get; set; }
     public string LayerDisplayname { get; set; }
     public double N { get; set; }
 
@@ -25,20 +30,27 @@ namespace CorpusExplorer.Sdk.Blocks
     /// </summary>
     public override void Calculate()
     {
-      var a = GetFrequency(Selection);
-      var sumA = a.Sum(x => x.Value);
+      KeywordFrequencyCurrent = GetFrequency(Selection);
+      var sumA = KeywordFrequencyCurrent.Sum(x => x.Value);
 
-      var b = GetFrequency(SelectionToCompare);
-      var sumB = b.Sum(x => x.Value);
+      KeywordFrequencyReference = GetFrequency(SelectionToCompare);
+      var sumB = KeywordFrequencyReference.Sum(x => x.Value);
 
-      Keywords = new Dictionary<string, double>();
-      foreach (var x in a)
+      KeywordDiff = new Dictionary<string, double>();
+      KeywordSignificance = new Dictionary<string, double>();
+      foreach (var x in KeywordFrequencyCurrent)
       {
-        if (!b.ContainsKey(x.Key))
+        if (!KeywordFrequencyReference.ContainsKey(x.Key))
           continue;
 
-        Configuration.Significance.PreCalculationSetup(x.Value, sumA - x.Value);
-        Keywords.Add(x.Key, Configuration.Significance.Calculate(b[x.Key], sumB - b[x.Key]));
+        KeywordDiff.Add(x.Key, ((x.Value - KeywordFrequencyReference[x.Key]) * 100d) / KeywordFrequencyReference[x.Key]);
+        var chi = new PearsonsChiSquareTest(new[,]
+        {
+          {(int) x.Value, (int) KeywordFrequencyReference[x.Key]},
+          {(int) (sumA - x.Value), (int) (sumB - KeywordFrequencyReference[x.Key])}
+        });
+
+        KeywordSignificance.Add(x.Key, chi.ChiSquareStatistic);
       }
     }
 
@@ -47,7 +59,10 @@ namespace CorpusExplorer.Sdk.Blocks
       var block = selection.CreateBlock<Frequency1LayerOneOccurrenceBlock>();
       block.LayerDisplayname = LayerDisplayname;
       block.Calculate();
-      return block.Frequency;
+
+      var freq = block.Frequency;
+      var sum = freq.Sum(x => x.Value);
+      return freq.ToDictionary(x => x.Key, x => x.Value / sum * 1000000);
     }
   }
 }

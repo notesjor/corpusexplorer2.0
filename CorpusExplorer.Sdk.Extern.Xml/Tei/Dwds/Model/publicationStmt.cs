@@ -24,15 +24,31 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model
     private publisher publisherField;
 
     /// <remarks />
-    public availability availability { get { return availabilityField; } set { availabilityField = value; } }
+    public availability availability
+    {
+      get => availabilityField;
+      set => availabilityField = value;
+    }
 
     /// <remarks />
-    public date date { get { return dateField; } set { dateField = value; } }
+    public date date
+    {
+      get => dateField;
+      set => dateField = value;
+    }
 
     /// <remarks />
-    public idno idno { get { return idnoField; } set { idnoField = value; } }
+    public idno idno
+    {
+      get => idnoField;
+      set => idnoField = value;
+    }
 
     /// <remarks />
-    public publisher publisher { get { return publisherField; } set { publisherField = value; } }
+    public publisher publisher
+    {
+      get => publisherField;
+      set => publisherField = value;
+    }
   }
 }

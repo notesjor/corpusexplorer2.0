@@ -51,8 +51,13 @@ namespace CorpusExplorer.Sdk.Blocks
       }
     }
 
-    protected override void CalculateCleanup() { }
-    protected override void CalculateFinalize() { }
+    protected override void CalculateCleanup()
+    {
+    }
+
+    protected override void CalculateFinalize()
+    {
+    }
 
     protected override void CalculateInitProperties()
     {

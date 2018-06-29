@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement("ats")]
-    public ats[] ats { get { return atsField; } set { atsField = value; } }
+    public ats[] ats
+    {
+      get => atsField;
+      set => atsField = value;
+    }
   }
 }

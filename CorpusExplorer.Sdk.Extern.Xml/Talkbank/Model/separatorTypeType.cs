@@ -21,31 +21,25 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     colon,
 
     /// <remarks />
-    [XmlEnum("clause delimiter")]
-    clausedelimiter,
+    [XmlEnum("clause delimiter")] clausedelimiter,
 
     /// <remarks />
-    [XmlEnum("rising to high")]
-    risingtohigh,
+    [XmlEnum("rising to high")] risingtohigh,
 
     /// <remarks />
-    [XmlEnum("rising to mid")]
-    risingtomid,
+    [XmlEnum("rising to mid")] risingtomid,
 
     /// <remarks />
     level,
 
     /// <remarks />
-    [XmlEnum("falling to mid")]
-    fallingtomid,
+    [XmlEnum("falling to mid")] fallingtomid,
 
     /// <remarks />
-    [XmlEnum("falling to low")]
-    fallingtolow,
+    [XmlEnum("falling to low")] fallingtolow,
 
     /// <remarks />
-    [XmlEnum("unmarked ending")]
-    unmarkedending,
+    [XmlEnum("unmarked ending")] unmarkedending,
 
     /// <remarks />
     uptake

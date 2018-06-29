@@ -28,27 +28,51 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlAttribute("end-sync")]
-    public string endsync { get { return endsyncField; } set { endsyncField = value; } }
+    public string endsync
+    {
+      get => endsyncField;
+      set => endsyncField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string formatref { get { return formatrefField; } set { formatrefField = value; } }
+    public string formatref
+    {
+      get => formatrefField;
+      set => formatrefField = value;
+    }
 
     /// <remarks />
     [XmlElement("link")]
-    public link[] link { get { return linkField; } set { linkField = value; } }
+    public link[] link
+    {
+      get => linkField;
+      set => linkField = value;
+    }
 
     /// <remarks />
     [XmlElement("run")]
-    public run[] run { get { return runField; } set { runField = value; } }
+    public run[] run
+    {
+      get => runField;
+      set => runField = value;
+    }
 
     /// <remarks />
     [XmlAttribute("start-sync")]
-    public string startsync { get { return startsyncField; } set { startsyncField = value; } }
+    public string startsync
+    {
+      get => startsyncField;
+      set => startsyncField = value;
+    }
 
     /// <remarks />
     [XmlArray("ud-information")]
     [XmlArrayItem("ud-attribute", IsNullable = false)]
-    public udattribute[] udinformation { get { return udinformationField; } set { udinformationField = value; } }
+    public udattribute[] udinformation
+    {
+      get => udinformationField;
+      set => udinformationField = value;
+    }
   }
 }

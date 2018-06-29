@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
-             x:Class="CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.WpfDiagram"
+             xmlns:local="clr-namespace:CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.WpfDiagram"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-
   <UserControl.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
@@ -37,6 +36,6 @@
       <telerik:RadDiagramRuler Diagram="{Binding ElementName=diagram}" Placement="Left" Grid.Row="1"/>
       <telerik:RadDiagramRuler Grid.Column="1" Diagram="{Binding ElementName=diagram}" Placement="Top"/>
     </Grid>
+    <telerik:RadDiagramNavigationPane Diagram="{Binding ElementName=diagram}" x:Name="navigationPane" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 20 0 0" />
   </Grid>
-
 </UserControl>

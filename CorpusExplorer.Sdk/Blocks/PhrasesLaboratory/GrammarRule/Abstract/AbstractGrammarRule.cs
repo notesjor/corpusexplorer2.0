@@ -6,7 +6,10 @@ namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory.GrammarRule.Abstract
   [Serializable]
   public abstract class AbstractGrammarRule
   {
-    protected AbstractGrammarRule() { Childs = new List<AbstractGrammarRule>(); }
+    protected AbstractGrammarRule()
+    {
+      Childs = new List<AbstractGrammarRule>();
+    }
 
     public List<AbstractGrammarRule> Childs { get; set; }
     public abstract bool IsRecursive { get; }

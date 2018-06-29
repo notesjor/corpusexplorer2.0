@@ -37,6 +37,7 @@ namespace CorpusExplorer.Sdk.Blocks
           temp.Add(guid);
           rd.Remove(guid);
         }
+
         cluster.Add(temp);
       }
 
@@ -66,6 +67,7 @@ namespace CorpusExplorer.Sdk.Blocks
         rd.Add(guid);
         sd.Remove(guid);
       }
+
       return rd;
     }
   }

@@ -7,7 +7,6 @@ using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Bcs.Addon;
@@ -19,12 +18,15 @@ using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Cache;
 using CorpusExplorer.Sdk.Model.Cache.Abstract;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
 using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Crawler;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Crawler.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.CorpusExplorerV6;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
 using NHunspell;
@@ -49,9 +51,9 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     private static Dictionary<string, AbstractScraper> _addonScrapers = new Dictionary<string, AbstractScraper>();
     private static List<AbstractTagger> _addonTaggers = new List<AbstractTagger>();
     private static List<IAddonView> _addonViews = new List<IAddonView>();
-    private static ISignificance _significance = new PoissonSignificance();
-    private static Encoding _encoding = null;
+    private static Encoding _encoding;
     private static bool? _rightToLeftSupport;
+    private static ISignificance _significance = new PoissonSignificance();
 
     /// <summary>
     ///   Zusätzliche Tagger
@@ -63,7 +65,16 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// </summary>
     /// <value>The addon backends.</value>
     public static IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> AddonBackends
-      => _addonBackends.OrderBy(x => x.Key);
+    {
+      get
+      {
+        var list = _addonBackends.OrderBy(x => x.Key).ToList();
+        var cec6 = (from x in list where x.Value.GetType() == typeof(CorpusBuilderWriteDirect) select x).FirstOrDefault();
+        list.Remove(cec6);
+        list.Insert(0, cec6);
+        return list;
+      }
+    }
 
     /// <summary>
     ///   Zusätzliche Crawler
@@ -71,14 +82,32 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     public static IEnumerable<AbstractCrawler> AddonCrawlers => _addonCrawlers;
 
     public static IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters
-      => _addonExporters.OrderBy(x => x.Key);
+    {
+      get
+      {
+        var list = _addonExporters.OrderBy(x => x.Key).ToList();
+        var cec6 = (from x in list where x.Value.GetType() == typeof(ExporterCec6) select x).FirstOrDefault();
+        list.Remove(cec6);
+        list.Insert(0, cec6);
+        return list;
+      }
+    }
 
     /// <summary>
     ///   Liste mit Scrapern die lokale Dateien bestehender Korpora importieren (z. B. XML, EXMERaLDA).
     ///   Für Dateien MIT Annotation.
     /// </summary>
     public static IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporters
-      => _addonImporters.OrderBy(x => x.Key);
+    {
+      get
+      {
+        var list = _addonImporters.OrderBy(x => x.Key).ToList();
+        var cec6 = (from x in list where x.Value.GetType() == typeof(ImporterCec6) select x).FirstOrDefault();
+        list.Remove(cec6);
+        list.Insert(0, cec6);
+        return list;
+      }
+    }
 
     /// <summary>
     ///   Liste mit Scrapern die lokale Dateien (z. B. TXT, RTF, DOCX, PDF) in Korpusdokumente konvertieren.
@@ -134,31 +163,6 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       }
     }
 
-    public static bool RightToLeftSupport
-    {
-      get
-      {
-        if (_rightToLeftSupport.HasValue)
-          return _rightToLeftSupport.Value;
-
-        try
-        {
-          _rightToLeftSupport = (bool)GetSetting("R/L-Support", false);
-        }
-        catch
-        {
-          _rightToLeftSupport = false;
-        }
-
-        return _rightToLeftSupport.Value;
-      }
-      set
-      {
-        _rightToLeftSupport = value;
-        SetSetting("R/L-Support", value);
-      }
-    }
-
     /// <summary>
     ///   Gets the extern app path.
     /// </summary>
@@ -203,8 +207,59 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     public static ParallelOptions ParallelOptions { get; set; } =
       new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount * 2 };
 
-    public static bool ProtectMemoryOverflow { get; set; } = false;
+    public static bool ProtectMemoryOverflow
+    {
+      get => (bool)GetSetting("RAM-Selbstschutz", true);
+      set => SetSetting("RAM-Selbstschutz", value);
+    }
+
     public static Random Random { get; private set; } = new Random();
+
+    public static bool RightToLeftSupport
+    {
+      get
+      {
+        if (_rightToLeftSupport.HasValue)
+          return _rightToLeftSupport.Value;
+
+        try
+        {
+          _rightToLeftSupport = (bool)GetSetting("R/L-Support", false);
+        }
+        catch
+        {
+          _rightToLeftSupport = false;
+        }
+
+        return _rightToLeftSupport.Value;
+      }
+      set
+      {
+        _rightToLeftSupport = value;
+        SetSetting("R/L-Support", value);
+      }
+    }
+
+    public static void SetSignificance(ISignificance significance)
+    {
+      _significance = significance;
+      MinimumSignificance = significance.MinimumSignificance;
+    }
+
+    public static ISignificance GetSignificance(double a, double n)
+    {
+      return _significance.PreCalculationSetup(a, n);
+    }
+
+    public static Type GetSignificanceType()
+    {
+      return _significance.GetType();
+    }
+
+    /// <summary>
+    ///   Pfad zu den temporären Dateien
+    /// </summary>
+    public static string TempPath { get; } = Path.Combine(Path.GetTempPath(), "CorpusExplorer");
 
     /// <summary>
     ///   Dateipfad der Einstellungsdatei
@@ -212,22 +267,202 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     private static string SettingsAppPath { get; set; }
 
     /// <summary>
-    ///   Gets or sets the significance.
+    ///   Gibt den Pfad zur Abhängigen (externen) Programmkomponente zurück
     /// </summary>
-    public static ISignificance Significance
+    /// <param name="subPath">Unterpfad</param>
+    /// <returns>Pfad</returns>
+    /// <exception cref="System.NotImplementedException"></exception>
+    public static string GetDependencyPath(string subPath)
     {
-      get => _significance;
-      set
+      var res = Path.Combine(Path.Combine(AppPath, "XDependencies"), subPath);
+      if (Directory.Exists(res))
+        return res;
+
+      var alternative =
+        Path.Combine(
+          Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            @"CorpusExplorer\App\XDependencies"),
+          subPath);
+      if (Directory.Exists(alternative) || File.Exists(alternative))
+        res = alternative;
+
+      return res;
+    }
+
+    /// <summary>
+    ///   Gibt eine Einstellung zurück (safety cast)
+    /// </summary>
+    /// <param name="settingName">
+    ///   Name der Einstellung
+    /// </param>
+    /// <param name="defaultValue">
+    ///   Wert, der gesetzt wird, wenn der Eintrag noch nicht exsistiert
+    /// </param>
+    /// <returns>
+    ///   Wert
+    /// </returns>
+    public static object GetSetting(string settingName, object defaultValue)
+    {
+      try
       {
-        _significance = value;
-        MinimumSignificance = value.MinimumSignificance;
+        var obj = GetSettings();
+        if (obj.ContainsKey(settingName))
+          return obj[settingName];
+
+        SetSetting(settingName, defaultValue);
+        return defaultValue;
+      }
+      catch
+      {
+        return defaultValue;
+      }
+    }
+
+    public static Dictionary<string, object> GetSettings(string alternativePath = null)
+    {
+      try
+      {
+        return File.Exists(alternativePath ?? SettingsAppPath)
+          ? Serializer.Deserialize<Dictionary<string, object>>(alternativePath ?? SettingsAppPath)
+          : new Dictionary<string, object>();
+      }
+      catch
+      {
+        return new Dictionary<string, object>();
+      }
+    }
+
+    public static void Reload3rdPartyAddons()
+    {
+      _addonCrawlers.Clear();
+      _addonImporters.Clear();
+      _addonTaggers.Clear();
+      _addonAdditionalTaggers.Clear();
+      _addonScrapers.Clear();
+      _addonViews.Clear();
+      _addonBackends.Clear();
+
+      var location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+      Load3RdPartyAddons(location);
+
+      // Nur relevant, wenn USB/Pendrive oder DEBUG
+      if (location != AppPath)
+        Load3RdPartyAddons(AppPath);
+    }
+
+    /// <summary>
+    ///   Speichert eine Einstellung
+    /// </summary>
+    /// <param name="settingName">
+    ///   Name der Einstellung
+    /// </param>
+    /// <param name="value">
+    ///   Wert
+    /// </param>
+    public static void RemoveSetting(string settingName)
+    {
+      var obj = GetSettings();
+
+      if (!obj.ContainsKey(settingName))
+        return;
+
+      obj.Remove(settingName);
+      SetSettings(obj);
+    }
+
+    /// <summary>
+    ///   The serialize in memory.
+    /// </summary>
+    /// <param name="obj">
+    ///   The obj.
+    /// </param>
+    /// <returns>
+    ///   The byte[]
+    /// </returns>
+    public static byte[] SerializeInMemory(object obj)
+    {
+      using (var ms = new MemoryStream())
+      {
+        using (var gs = new GZipStream(ms, CompressionMode.Compress))
+        {
+          var bf = new BinaryFormatter();
+          bf.Serialize(gs, obj);
+
+          gs.Seek(0, SeekOrigin.Begin);
+          var res = new byte[gs.Length];
+          gs.Read(res, 0, res.Length);
+          return res;
+        }
       }
     }
 
     /// <summary>
-    ///   Pfad zu den temporären Dateien
+    ///   Speichert eine Einstellung
     /// </summary>
-    public static string TempPath { get; } = Path.Combine(Path.GetTempPath(), "CorpusExplorer");
+    /// <param name="settingName">
+    ///   Name der Einstellung
+    /// </param>
+    /// <param name="value">
+    ///   Wert
+    /// </param>
+    public static void SetSetting(string settingName, object value)
+    {
+      var obj = GetSettings();
+      if (obj.ContainsKey(settingName))
+        obj[settingName] = value;
+      else
+        obj.Add(settingName, value);
+
+      SetSettings(obj);
+    }
+
+    public static void SetSettings(Dictionary<string, object> settings, string alternativePath = null)
+    {
+      Serializer.Serialize(settings, alternativePath ?? SettingsAppPath, true);
+    }
+
+    /// <summary>
+    ///   Schreibt Daten (content) in eine temporäre Datei und gibt deren PFad
+    ///   zurück
+    /// </summary>
+    /// <param name="filename">
+    ///   Name der Datei (ohne Pfadangabe)
+    /// </param>
+    /// <param name="content">
+    ///   Inhalt
+    /// </param>
+    /// <returns>
+    ///   Pfad der Datei
+    /// </returns>
+    public static string WriteTempFile(string filename, string content)
+    {
+      var path = Path.Combine(TempPath, filename);
+      var buffer = Encoding.GetBytes(content);
+      using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+      {
+        fs.Write(buffer, 0, buffer.Length);
+      }
+
+      return path;
+    }
+
+    /// <summary>
+    ///   The initialize.
+    /// </summary>
+    internal static void Initialize(InitialOptionsEnum options, bool forceReInitialization = false)
+    {
+      if (IsInitialized && !forceReInitialization)
+        return;
+
+      InitializeMinimal(forceReInitialization);
+
+      // Ergänze mit 3rd-Party
+      if (options == InitialOptionsEnum.MinimalAnd3rdParty)
+        Reload3rdPartyAddons();
+
+      IsInitialized = true;
+    }
 
     /// <summary>
     ///   Bereinigt einen Dateinamen (OHNE PFAD)
@@ -242,14 +477,14 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     {
       fileName =
         fileName.Replace(@"\", string.Empty)
-                .Replace("/", string.Empty)
-                .Replace(":", string.Empty)
-                .Replace("*", string.Empty)
-                .Replace("?", string.Empty)
-                .Replace("\"", string.Empty)
-                .Replace("<", string.Empty)
-                .Replace(">", string.Empty)
-                .Replace("|", string.Empty);
+          .Replace("/", string.Empty)
+          .Replace(":", string.Empty)
+          .Replace("*", string.Empty)
+          .Replace("?", string.Empty)
+          .Replace("\"", string.Empty)
+          .Replace("<", string.Empty)
+          .Replace(">", string.Empty)
+          .Replace("|", string.Empty);
 
       var ext = Path.GetExtension(fileName);
       fileName = Path.GetFileNameWithoutExtension(fileName);
@@ -275,12 +510,12 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     {
       return
         path.Replace("/", @"\")
-            .Replace("*", string.Empty)
-            .Replace("?", string.Empty)
-            .Replace("\"", string.Empty)
-            .Replace("<", string.Empty)
-            .Replace(">", string.Empty)
-            .Replace("|", string.Empty);
+          .Replace("*", string.Empty)
+          .Replace("?", string.Empty)
+          .Replace("\"", string.Empty)
+          .Replace("<", string.Empty)
+          .Replace(">", string.Empty)
+          .Replace("|", string.Empty);
     }
 
     /// <summary>
@@ -298,30 +533,6 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
         Directory.CreateDirectory(path);
 
       return path;
-    }
-
-    /// <summary>
-    ///   Gibt den Pfad zur Abhängigen (externen) Programmkomponente zurück
-    /// </summary>
-    /// <param name="subPath">Unterpfad</param>
-    /// <returns>Pfad</returns>
-    /// <exception cref="System.NotImplementedException"></exception>
-    public static string GetDependencyPath(string subPath)
-    {
-      var res = Path.Combine(Path.Combine(AppPath, "XDependencies"), subPath);
-      if (Directory.Exists(res))
-        return res;
-
-      var alternative =
-        Path.Combine(
-          Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            @"CorpusExplorer\App\XDependencies"),
-          subPath);
-      if (Directory.Exists(alternative) || File.Exists(alternative))
-        res = alternative;
-
-      return res;
     }
 
     private static string GetRelativAppDirectory(string directory)
@@ -368,111 +579,6 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       return EnsurePath(res);
     }
 
-    /// <summary>
-    ///   Gibt eine Einstellung zurück (safety cast)
-    /// </summary>
-    /// <param name="settingName">
-    ///   Name der Einstellung
-    /// </param>
-    /// <param name="defaultValue">
-    ///   Wert, der gesetzt wird, wenn der Eintrag noch nicht exsistiert
-    /// </param>
-    /// <returns>
-    ///   Wert
-    /// </returns>
-    public static object GetSetting(string settingName, object defaultValue)
-    {
-      try
-      {
-        var obj = GetSettings();
-        if (obj.ContainsKey(settingName))
-          return obj[settingName];
-
-        SetSetting(settingName, defaultValue);
-        return defaultValue;
-      }
-      catch
-      {
-        return defaultValue;
-      }
-    }
-
-    public static Dictionary<string, object> GetSettings(string alternativePath = null)
-    {
-      try
-      {
-        return File.Exists(alternativePath ?? SettingsAppPath)
-                 ? Serializer.Deserialize<Dictionary<string, object>>(alternativePath ?? SettingsAppPath)
-                 : new Dictionary<string, object>();
-      }
-      catch
-      {
-        return new Dictionary<string, object>();
-      }
-    }
-
-    public static void SetSettings(Dictionary<string, object> settings, string alternativePath = null)
-    {
-      Serializer.Serialize(settings, alternativePath ?? SettingsAppPath, true);
-    }
-
-    /// <summary>
-    ///   Speichert eine Einstellung
-    /// </summary>
-    /// <param name="settingName">
-    ///   Name der Einstellung
-    /// </param>
-    /// <param name="value">
-    ///   Wert
-    /// </param>
-    public static void SetSetting(string settingName, object value)
-    {
-      var obj = GetSettings();
-      if (obj.ContainsKey(settingName))
-        obj[settingName] = value;
-      else
-        obj.Add(settingName, value);
-
-      SetSettings(obj);
-    }
-
-    /// <summary>
-    ///   Speichert eine Einstellung
-    /// </summary>
-    /// <param name="settingName">
-    ///   Name der Einstellung
-    /// </param>
-    /// <param name="value">
-    ///   Wert
-    /// </param>
-    public static void RemoveSetting(string settingName)
-    {
-      var obj = GetSettings();
-
-      if (!obj.ContainsKey(settingName))
-        return;
-
-      obj.Remove(settingName);
-      SetSettings(obj);
-    }
-
-    /// <summary>
-    ///   The initialize.
-    /// </summary>
-    internal static void Initialize(InitialOptionsEnum options, bool forceReInitialization = false)
-    {
-      if (IsInitialized && !forceReInitialization)
-        return;
-
-      InitializeMinimal(forceReInitialization);
-
-      // Ergänze mit 3rd-Party
-      if (options == InitialOptionsEnum.MinimalAnd3rdParty)
-        Reload3rdPartyAddons();
-
-      IsInitialized = true;
-    }
-
     private static void InitializeMinimal(bool forceReInitialization = false)
     {
       if (IsInitialized && !forceReInitialization)
@@ -480,7 +586,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
       Random = new Random();
 
-      Significance = new PoissonSignificance();
+      SetSignificance(new PoissonSignificance());
 
       try // notwendig z. B. unter AZURE
       {
@@ -491,6 +597,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       {
         // ignore
       }
+
       try // notwendig z. B. unter AZURE
       {
         MyCorpora = GetRelativPath(Resources.MyCorpora);
@@ -502,6 +609,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       {
         // ignore
       }
+
       // Anwendungskonfiguration
       try // notwendig z. B. unter AZURE
       {
@@ -511,6 +619,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       {
         // ignore
       }
+
       ParallelOptions = new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount * 2 };
 
       try // notwendig z. B. unter AZURE
@@ -537,6 +646,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       // notwendig - Aufruf get > set setzt lädt bzw. initialisiert die Eigenschaften
       Encoding = Encoding;
       RightToLeftSupport = RightToLeftSupport;
+      ProtectMemoryOverflow = ProtectMemoryOverflow;
 
       _addonBackends = new Dictionary<string, AbstractCorpusBuilder>();
       _addonCrawlers = new List<AbstractCrawler>();
@@ -593,6 +703,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
               {
                 InMemoryErrorConsole.Log(ex);
               }
+
           if (repo.AddonImporter != null)
             foreach (var s2 in repo.AddonImporter.Where(s2 => !_addonImporters.ContainsKey(s2.Key)))
               try
@@ -603,6 +714,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
               {
                 InMemoryErrorConsole.Log(ex);
               }
+
           if (repo.AddonExporters != null)
             foreach (var s3 in repo.AddonExporters.Where(s3 => !_addonExporters.ContainsKey(s3.Key)))
               try
@@ -685,74 +797,6 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
         {
           InMemoryErrorConsole.Log(ex);
         }
-    }
-
-    public static void Reload3rdPartyAddons()
-    {
-      _addonCrawlers.Clear();
-      _addonImporters.Clear();
-      _addonTaggers.Clear();
-      _addonAdditionalTaggers.Clear();
-      _addonScrapers.Clear();
-      _addonViews.Clear();
-      _addonBackends.Clear();
-
-      var location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-      Load3RdPartyAddons(location);
-
-      // Nur relevant, wenn USB/Pendrive oder DEBUG
-      if (location != AppPath)
-        Load3RdPartyAddons(AppPath);
-    }
-
-    /// <summary>
-    ///   The serialize in memory.
-    /// </summary>
-    /// <param name="obj">
-    ///   The obj.
-    /// </param>
-    /// <returns>
-    ///   The byte[]
-    /// </returns>
-    public static byte[] SerializeInMemory(object obj)
-    {
-      using (var ms = new MemoryStream())
-      {
-        using (var gs = new GZipStream(ms, CompressionMode.Compress))
-        {
-          var bf = new BinaryFormatter();
-          bf.Serialize(gs, obj);
-
-          gs.Seek(0, SeekOrigin.Begin);
-          var res = new byte[gs.Length];
-          gs.Read(res, 0, res.Length);
-          return res;
-        }
-      }
-    }
-
-    /// <summary>
-    ///   Schreibt Daten (content) in eine temporäre Datei und gibt deren PFad
-    ///   zurück
-    /// </summary>
-    /// <param name="filename">
-    ///   Name der Datei (ohne Pfadangabe)
-    /// </param>
-    /// <param name="content">
-    ///   Inhalt
-    /// </param>
-    /// <returns>
-    ///   Pfad der Datei
-    /// </returns>
-    public static string WriteTempFile(string filename, string content)
-    {
-      var path = Path.Combine(TempPath, filename);
-      var buffer = Encoding.GetBytes(content);
-      using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
-      {
-        fs.Write(buffer, 0, buffer.Length);
-      }
-      return path;
     }
   }
 }

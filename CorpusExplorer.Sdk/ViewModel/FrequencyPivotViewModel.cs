@@ -41,13 +41,6 @@ namespace CorpusExplorer.Sdk.ViewModel
       return res;
     }
 
-    private void AggregationDelegate(
-      ref Dictionary<string, Dictionary<string, Dictionary<string, double>>> memory,
-      ref Dictionary<string, Dictionary<string, Dictionary<string, double>>> dictionary)
-    {
-      DictionaryMergeHelper.Merge3LevelDictionary(ref memory, dictionary, (x, y) => x + y);
-    }
-
     protected override void ExecuteAnalyse()
     {
       var block =
@@ -67,6 +60,16 @@ namespace CorpusExplorer.Sdk.ViewModel
       _partition = block.OutputPartition;
     }
 
-    protected override bool Validate() { return true; }
+    protected override bool Validate()
+    {
+      return true;
+    }
+
+    private void AggregationDelegate(
+      ref Dictionary<string, Dictionary<string, Dictionary<string, double>>> memory,
+      ref Dictionary<string, Dictionary<string, Dictionary<string, double>>> dictionary)
+    {
+      DictionaryMergeHelper.Merge3LevelDictionary(ref memory, dictionary, (x, y) => x + y);
+    }
   }
 }

@@ -22,12 +22,24 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private string creatRefShortField;
 
     /// <remarks />
-    public string creatDate { get { return creatDateField; } set { creatDateField = value; } }
+    public string creatDate
+    {
+      get => creatDateField;
+      set => creatDateField = value;
+    }
 
     /// <remarks />
-    public string creatRef { get { return creatRefField; } set { creatRefField = value; } }
+    public string creatRef
+    {
+      get => creatRefField;
+      set => creatRefField = value;
+    }
 
     /// <remarks />
-    public string creatRefShort { get { return creatRefShortField; } set { creatRefShortField = value; } }
+    public string creatRefShort
+    {
+      get => creatRefShortField;
+      set => creatRefShortField = value;
+    }
   }
 }

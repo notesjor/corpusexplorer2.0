@@ -8,9 +8,15 @@ namespace CorpusExplorer.Installer.Sdk.View
 {
   public partial class ErrorReport : Form
   {
-    public ErrorReport() { InitializeComponent(); }
+    public ErrorReport()
+    {
+      InitializeComponent();
+    }
 
-    private void btn_abort_Click(object sender, EventArgs e) { Close(); }
+    private void btn_abort_Click(object sender, EventArgs e)
+    {
+      Close();
+    }
 
     private void button1_Click(object sender, EventArgs e)
     {

@@ -4,6 +4,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special.PaperLinguistForms
 {
   public partial class PaperLinguist : AbstractDialog
   {
-    public PaperLinguist() { InitializeComponent(); }
+    public PaperLinguist()
+    {
+      InitializeComponent();
+    }
   }
 }

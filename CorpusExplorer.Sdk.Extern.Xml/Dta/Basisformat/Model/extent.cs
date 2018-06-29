@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlElement("measure")]
-    public measure[] measure { get { return measureField; } set { measureField = value; } }
+    public measure[] measure
+    {
+      get => measureField;
+      set => measureField = value;
+    }
   }
 }

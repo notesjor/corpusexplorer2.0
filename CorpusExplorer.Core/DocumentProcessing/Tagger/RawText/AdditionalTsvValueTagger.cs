@@ -20,7 +20,9 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tagger.RawText
     public string LineSeparator { get; set; } = "\r\n";
     public string ValueSeparator { get; set; } = "\t";
 
-    protected override void Cleanup() { }
+    protected override void Cleanup()
+    {
+    }
 
     protected override IEnumerable<AbstractLayerState> ExecuteCall(ref AbstractCorpusAdapter corpus)
     {
@@ -47,6 +49,7 @@ namespace CorpusExplorer.Core.DocumentProcessing.Tagger.RawText
             ndoc[i][j] = _values.ContainsKey(key) ? _values[key] : string.Empty;
           }
         }
+
         layerState.AddCompleteDocument(dsel, ndoc);
       }
 

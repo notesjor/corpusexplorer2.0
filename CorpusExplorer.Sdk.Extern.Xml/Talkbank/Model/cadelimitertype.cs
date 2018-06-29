@@ -15,8 +15,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
   public enum cadelimitertype
   {
     /// <remarks />
-    [XmlEnum("breathy voice")]
-    breathyvoice,
+    [XmlEnum("breathy voice")] breathyvoice,
 
     /// <remarks />
     creaky,
@@ -25,15 +24,13 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     faster,
 
     /// <remarks />
-    [XmlEnum("high-pitch")]
-    highpitch,
+    [XmlEnum("high-pitch")] highpitch,
 
     /// <remarks />
     louder,
 
     /// <remarks />
-    [XmlEnum("low-pitch")]
-    lowpitch,
+    [XmlEnum("low-pitch")] lowpitch,
 
     /// <remarks />
     precise,
@@ -45,8 +42,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     slower,
 
     /// <remarks />
-    [XmlEnum("smile voice")]
-    smilevoice,
+    [XmlEnum("smile voice")] smilevoice,
 
     /// <remarks />
     softer,

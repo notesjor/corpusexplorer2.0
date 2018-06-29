@@ -23,10 +23,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Bare.Model
 
     /// <remarks />
     [XmlElement("model.phrase")]
-    public modelphrase[] modelphrase { get { return modelphraseField; } set { modelphraseField = value; } }
+    public modelphrase[] modelphrase
+    {
+      get => modelphraseField;
+      set => modelphraseField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
   }
 }

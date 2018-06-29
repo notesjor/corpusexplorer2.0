@@ -24,10 +24,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlElement("mor")]
-    public morType[] mor { get { return morField; } set { morField = value; } }
+    public morType[] mor
+    {
+      get => morField;
+      set => morField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public tagMarkerTypeType type { get { return typeField; } set { typeField = value; } }
+    public tagMarkerTypeType type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

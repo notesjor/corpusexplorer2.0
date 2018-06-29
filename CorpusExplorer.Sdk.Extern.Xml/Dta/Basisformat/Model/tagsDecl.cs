@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlElement("rendition")]
-    public rendition[] rendition { get { return renditionField; } set { renditionField = value; } }
+    public rendition[] rendition
+    {
+      get => renditionField;
+      set => renditionField = value;
+    }
   }
 }

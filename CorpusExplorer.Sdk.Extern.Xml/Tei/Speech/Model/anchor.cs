@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string synch { get { return synchField; } set { synchField = value; } }
+    public string synch
+    {
+      get => synchField;
+      set => synchField = value;
+    }
   }
 }

@@ -5,13 +5,15 @@ using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes;
 using CorpusExplorer.Sdk.Extern.Plaintext.ClarinContentSearch;
 using CorpusExplorer.Sdk.Extern.Plaintext.Conll;
-using CorpusExplorer.Sdk.Extern.Plaintext.Csv;
 using CorpusExplorer.Sdk.Extern.Plaintext.EasyHashtagSeparation;
 using CorpusExplorer.Sdk.Extern.Plaintext.Europarl;
+using CorpusExplorer.Sdk.Extern.Plaintext.LeipzigerWortschatz;
 using CorpusExplorer.Sdk.Extern.Plaintext.RawMailMsg;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
+using CorpusExplorer.Sdk.Extern.Plaintext.TreeTagger;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
 
@@ -29,7 +31,12 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
     ///   Liste mit Exportern die Projekte, Korpora und Schnappschüsse (alle IHydra) exportieren können
     /// </summary>
     public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters =>
-      new Dictionary<string, AbstractExporter> {{"CoNLL (*.conll)|*.conll", new ExporterConll()}};
+      new Dictionary<string, AbstractExporter>
+      {
+        {"CoNLL (*.conll)|*.conll", new ExporterConll()},
+        {"TreeTagger (*.treetagger)|*.treetagger", new ExporterTreeTagger()},
+        {"TreeTagger + Satzgrenze (*.treetagger)|*.treetagger", new ExporterTreeTagger {UseSentenceTag = true}}
+      };
 
     /// <summary>
     ///   Liste mit Scrapern die lokale Dateien bestehender Korpora importieren (z. B. XML, EXMERaLDA).
@@ -39,7 +46,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
       new Dictionary<string, AbstractImporter>
       {
         {"CLAN/Childes (*.cex)|*.cex", new ImporterClanChildes()},
-        {"CoNLL (*.conll)|*.conll", new ImporterConll() }
+        {"CoNLL (*.conll)|*.conll", new ImporterConll()}
       };
 
     /// <summary>
@@ -62,12 +69,16 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
           new RawMsgMsgScraper()
         },
         {
-          "CSV-Datei mit Überschriften (*.csv)|*.csv",
-          new CsvScraper()
+          "TSV-Datei mit Überschriften (*.tsv; *.csv)|*.tsv;*.csv",
+          new TsvScraper()
         },
         {
           "EuroParl (*.txt)|*.txt",
           new EuroparlScraper()
+        },
+        {
+          "Deutscher Wortschatz [Leipzig](*.sql)|*.sql",
+          new LeipzigerWortschatzScraper()
         }
       };
 

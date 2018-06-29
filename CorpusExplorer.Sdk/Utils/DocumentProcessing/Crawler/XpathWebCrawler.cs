@@ -16,13 +16,15 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Crawler
   {
     private string _displayName;
 
-    private XpathWebCrawler() { }
-
-    private HtmlSearchCrawler Crawler { get; set; }
+    private XpathWebCrawler()
+    {
+    }
 
     public override string DisplayName => _displayName;
 
     public IEnumerable<string> Queries { get; set; }
+
+    private HtmlSearchCrawler Crawler { get; set; }
 
     /// <summary>
     ///   Erzeugt einen neuen Crawler und speichert ihn als XML-CrawlerDefinition
@@ -130,7 +132,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Crawler
       };
     }
 
-    public void Save(string path) { Save(this, path); }
+    public void Save(string path)
+    {
+      Save(this, path);
+    }
 
     private static void Save(XpathWebCrawler xpathWebCrawler, string path)
     {

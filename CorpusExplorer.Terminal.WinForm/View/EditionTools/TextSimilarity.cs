@@ -24,7 +24,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractView" /> class.
     /// </summary>
-    public TextSimilarity() { InitializeComponent(); }
+    public TextSimilarity()
+    {
+      InitializeComponent();
+    }
 
     private void combo_meta_SelectedIndexChanged(object sender, PositionChangedEventArgs e)
     {
@@ -46,7 +49,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
 
     private void TextSimilarityPage_ShowVisualisation(object sender, EventArgs e)
     {
-      _vm = ViewModelGet<DocumentSimilarityViewModel>();
+      _vm = GetViewModel<DocumentSimilarityViewModel>();
       _vm.Analyse();
       combo_meta.DataSource = _vm.DocumentMetaProperties;
       combo_meta.SelectedIndex = 0;
@@ -59,7 +62,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
       var docsA = _vm.RequestDocumentGuidByMetadata((string) e.Node.Parent.Tag);
       var docsB = _vm.RequestDocumentGuidByMetadata((string) e.Node.Tag);
 
-      var diff = ViewModelGet<DiffViewModel>();
+      var diff = GetViewModel<DiffViewModel>();
 
       var form = new SimpleTextCompare(diff, docsA, docsB);
       form.ShowDialog();
@@ -75,14 +78,15 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
           e.Nodes.Add(new RadTreeNode(entry) {Tag = entry});
         return;
       }
+
       if (e.Parent.Level != 0)
         return;
 
       var value = (string) e.Parent.Tag;
 
       var dic = _vm.RequestMetadataSimilarity(value);
-      if ((dic == null) ||
-          (dic.Count == 0))
+      if (dic == null ||
+          dic.Count == 0)
         return;
 
       var requ = dic.ToList();
@@ -92,13 +96,16 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
         var node in
         requ.Select(
           entry =>
-            new RadTreeNode(string.Format(Resources.DashboardPatternProcent, entry.Value*100, entry.Key))
+            new RadTreeNode(string.Format(Resources.DashboardPatternProcent, entry.Value * 100, entry.Key))
             {
               Tag = entry.Key
             }))
         e.Nodes.Add(node);
     }
 
-    private void txt_searchQuery_TextChanged(object sender, EventArgs e) { tree_results.Filter = txt_searchQuery.Text; }
+    private void txt_searchQuery_TextChanged(object sender, EventArgs e)
+    {
+      tree_results.Filter = txt_searchQuery.Text;
+    }
   }
 }

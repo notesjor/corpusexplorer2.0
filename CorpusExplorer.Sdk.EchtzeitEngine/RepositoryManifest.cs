@@ -2,8 +2,8 @@
 using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.EchtzeitEngine.Importer;
 using CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;

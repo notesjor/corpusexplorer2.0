@@ -24,10 +24,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute]
-    public beginEndType type { get { return typeField; } set { typeField = value; } }
+    public beginEndType type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public empty Value { get { return valueField; } set { valueField = value; } }
+    public empty Value
+    {
+      get => valueField;
+      set => valueField = value;
+    }
   }
 }

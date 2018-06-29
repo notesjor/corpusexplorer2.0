@@ -14,20 +14,20 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
   {
     private readonly object _metaLock = new object();
 
-    private List<Concept> Concepts { get; set; }
-
     public AbstractCorpusBuilder CorpusBuilder { get; set; } = new CorpusBuilderWriteDirect();
-
-    private Dictionary<string, object> CorpusMetadata { get; set; }
-
-    private string CorpusDisplayname { get; set; }
-    private Dictionary<Guid, Dictionary<string, object>> DocumentMetadata { get; set; }
 
     /// <summary>
     ///   Auflistung von Layern die durch diesen Importer bedient werden.
     /// </summary>
     /// <value>The layer names.</value>
     protected abstract IEnumerable<string> LayerNames { get; }
+
+    private List<Concept> Concepts { get; set; }
+
+    private string CorpusDisplayname { get; set; }
+
+    private Dictionary<string, object> CorpusMetadata { get; set; }
+    private Dictionary<Guid, Dictionary<string, object>> DocumentMetadata { get; set; }
 
     private Dictionary<string, LayerValueState> Layers { get; set; }
 
@@ -73,24 +73,6 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
       Layers[layerName].Documents.Add(documentGuid, document);
     }
 
-    private IEnumerable<AbstractCorpusAdapter> BuildCorpus(bool dontFlushHeads)
-    {
-      var res = CorpusBuilder.Create(
-        Layers.Select(x => x.Value),
-        DocumentMetadata,
-        CorpusMetadata,
-        Concepts).ToArray();
-
-      if (res.Length == 1)
-        res[0].CorpusDisplayname = CorpusDisplayname;
-      else
-        for (var i = 0; i < res.Length; i++)
-          res[i].CorpusDisplayname = $"{CorpusDisplayname} ({(i + 1):D5})";
-
-      Reset(dontFlushHeads);
-      return res;
-    }
-
     protected int[][] ConvertToLayer(string layerName, string[][] layerValues)
     {
       return Layers[layerName].ConvertToLayer(layerValues);
@@ -123,6 +105,24 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
     }
 
     protected abstract void ExecuteCall(string path);
+
+    private IEnumerable<AbstractCorpusAdapter> BuildCorpus(bool dontFlushHeads)
+    {
+      var res = CorpusBuilder.Create(
+        Layers.Select(x => x.Value),
+        DocumentMetadata,
+        CorpusMetadata,
+        Concepts).ToArray();
+
+      if (res.Length == 1)
+        res[0].CorpusDisplayname = CorpusDisplayname;
+      else
+        for (var i = 0; i < res.Length; i++)
+          res[i].CorpusDisplayname = $"{CorpusDisplayname} ({i + 1:D5})";
+
+      Reset(dontFlushHeads);
+      return res;
+    }
 
     private void Reset(bool dontFlushHeads)
     {

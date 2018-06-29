@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.HuDesktop.Model
 
     /// <remarks />
     [XmlElement(DataType = "NCName")]
-    public string title { get { return titleField; } set { titleField = value; } }
+    public string title
+    {
+      get => titleField;
+      set => titleField = value;
+    }
   }
 }

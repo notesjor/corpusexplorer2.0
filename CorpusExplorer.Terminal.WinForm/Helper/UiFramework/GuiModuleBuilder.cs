@@ -49,8 +49,8 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
         ToolTipText = describtion,
         UseMnemonic = false,
         Image = iconBig,
-        Row = menu.Items.Count%2 == 0 ? 0 : 1,
-        Column = menu.Items.Count/2
+        Row = menu.Items.Count % 2 == 0 ? 0 : 1,
+        Column = menu.Items.Count / 2
       };
 
       var module = new GuiModulePrototype(
@@ -80,8 +80,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
 
       // Erweitert das MainMenu
       var newMenuItem = new RadMenuItem {Image = iconSmall, Text = header};
-      var tp = newMenuItem.Children[2].Children[0].Children[1].Children[0] as TextPrimitive;
-      if (tp != null)
+      if (newMenuItem.Children[2].Children[0].Children[1].Children[0] is TextPrimitive tp)
         tp.UseMnemonic = false;
       newMenuItem.Click += tileClick;
       menuButton.Items.Add(newMenuItem);

@@ -19,10 +19,6 @@ namespace CorpusExplorer.Sdk.Blocks
     /// <param name="metadata">
     ///   Metadaten des Dokuments
     /// </param>
-    /// 
-    /// 
-    /// 
-    /// 
     protected override void CalculateCall(
       Guid dsel,
       Dictionary<string, object> metadata)
@@ -53,13 +49,17 @@ namespace CorpusExplorer.Sdk.Blocks
     ///   Wird nach der Berechnung aufgerufen (nach CalculateCall)
     ///   und dient der Bereinigung von Daten
     /// </summary>
-    protected override void CalculateCleanup() { }
+    protected override void CalculateCleanup()
+    {
+    }
 
     /// <summary>
     ///   Wird nach der Bereinigung aufgerufen (nach CalculateCall + CalculateCleanup)
     ///   und dient dem zusammenfassen der bereinigen Ergebnisse
     /// </summary>
-    protected override void CalculateFinalize() { }
+    protected override void CalculateFinalize()
+    {
+    }
 
     /// <summary>
     ///   Wird vor der Berechnung aufgerufen (vor CalculateCall)

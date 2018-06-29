@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string initials { get { return initialsField; } set { initialsField = value; } }
+    public string initials
+    {
+      get => initialsField;
+      set => initialsField = value;
+    }
   }
 }

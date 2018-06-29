@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA.Model
 
     /// <remarks />
     [XmlElement("tag")]
-    public tag[] tag { get { return tagField; } set { tagField = value; } }
+    public tag[] tag
+    {
+      get => tagField;
+      set => tagField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string tagset { get { return tagsetField; } set { tagsetField = value; } }
+    public string tagset
+    {
+      get => tagsetField;
+      set => tagsetField = value;
+    }
   }
 }

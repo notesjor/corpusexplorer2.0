@@ -1,211 +1,153 @@
-﻿#region
-
-using CorpusExplorer.Sdk.Helper;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
-using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Kwic;
 using CorpusExplorer.Terminal.WinForm.Forms.Simple;
-using CorpusExplorer.Terminal.WinForm.Forms.Splash;
-using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Properties;
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Telerik.WinControls.Enumerations;
+using CorpusExplorer.Terminal.WinForm.View.AbstractTemplates;
 using Telerik.WinControls.UI;
-using PositionChangedEventArgs = Telerik.WinControls.UI.Data.PositionChangedEventArgs;
-
-#endregion
 
 namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 {
-  public partial class FulltextKwicSearch : AbstractView
+  public partial class FulltextKwicSearch : AbstractGridView
   {
-    private readonly KwicView kwicView1;
+    private DateTime _preventDoubleCommandClick = DateTime.Now;
+    private TextLiveSearchViewModel _vm;
 
     public FulltextKwicSearch()
     {
       InitializeComponent();
-
-      kwicView1 = new KwicView();
-      elementHost1.Child = kwicView1;
-
-      ShowView += (sender, args) =>
-      {
-        cmb_layer.DataSource = Project.CurrentSelection.LayerUniqueDisplaynames;
-        cmb_layer.SelectedIndex = 0;
-      };
+      InitializeGrid(radGridView1);
+      ShowView += OnShowView;
     }
 
     private void Analyse()
     {
-      kwicView1.DataSource = new KeyValuePair<string[], int>[0];
-      if ((txt_query.Items == null) ||
-          (txt_query.Items.Count == 0) ||
-          (cmb_layer.SelectedIndex == -1))
-        return;
-
-      var vm = ViewModelGet<TextLiveSearchViewModel>();
-      vm.AddQuery(
+      _vm.ClearQueries();
+      if (wordBag1.ResultSelectedLayerDisplayname != null)
+        _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
+      _vm.AddQuery(
         new FilterQuerySingleLayerAnyMatch
         {
           Inverse = false,
-          LayerDisplayname = cmb_layer.Items[cmb_layer.SelectedIndex].Text,
-          LayerQueries = txt_query.Items.Select(x => x.Text)
+          LayerDisplayname = _vm.LayerDisplayname,
+          LayerQueries = wordBag1.ResultQueries
         });
-      vm.Analyse();
+      _vm.Analyse();
 
-      // Sinle Results
-      tree.Nodes.Clear();
-      var list = new ConcurrentBag<RadTreeNode>();
-      Parallel.ForEach(
-        vm.SearchResults,
-        csel => Parallel.ForEach(
-          csel.Value,
-          dsel =>
-          {
-            var title = vm.GetDocumentDisplayname(dsel.Key);
-            var dn = new RadTreeNode(title);
+      radGridView1.DataSource = _vm.GetUniqueDataTable();
+      radGridView1.ResetBindings();
 
-            foreach (var sentence in dsel.Value)
-              foreach (var w in sentence.Value)
-                dn.Nodes.Add(
-                    new RadTreeNode(
-                      string.Format(
-                        Resources.FundstelleSatz0Wort1,
-                        sentence.Key,
-                        w))
-                    {
-                      Value =
-                        new Tuple
-                        <Guid, int,
-                          int>(
-                          dsel.Key,
-                          sentence.Key,
-                          w),
-                      CheckType =
-                        CheckType
-                          .CheckBox,
-                      Checked = false
-                    });
-            if (dn.Nodes.Count > 0)
-              list.Add(dn);
-          }));
-      tree.Nodes.AddRange(list);
-      tree.ExpandAll();
-    }
+      AddSummaryRow();
+      radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
 
-    private void btn_select_all_Click(object sender, EventArgs e)
-    {
-      Processing.Invoke(
-        Resources.WähleAlleFundstellen,
-        () =>
-        {
-          foreach (
-            var node in
-            tree.Nodes.SelectMany(parentNodes => parentNodes.Nodes))
-            node.CheckState = ToggleState.On;
-        });
-    }
+      var pre = radGridView1.Columns["Pre"];
+      pre.TextAlignment = ContentAlignment.MiddleRight;
+      pre.AutoSizeMode = BestFitColumnMode.AllCells;
+      pre.Name = Resources.Links;
 
-    private void btn_select_invert_Click(object sender, EventArgs e)
-    {
-      Processing.Invoke(
-        Resources.KehreAuswahlUm,
-        () =>
-        {
-          foreach (
-            var node in
-            tree.Nodes.SelectMany(parentNodes => parentNodes.Nodes))
-            node.CheckState = node.CheckState == ToggleState.Off
-                                ? ToggleState.On
-                                : ToggleState.Off;
-        });
-    }
+      var match = radGridView1.Columns["Match"];
+      match.TextAlignment = ContentAlignment.MiddleCenter;
+      match.AutoSizeMode = BestFitColumnMode.AllCells;
+      match.Name = Resources.Fundstelle;
 
-    private void btn_select_none_Click(object sender, EventArgs e)
-    {
-      foreach (var node in tree.Nodes.SelectMany(parentNodes => parentNodes.Nodes))
-        node.CheckState = ToggleState.Off;
-    }
+      var post = radGridView1.Columns["Post"];
+      post.TextAlignment = ContentAlignment.MiddleLeft;
+      post.AutoSizeMode = BestFitColumnMode.AllCells;
+      post.Name = Resources.Rechts;
 
-    private void btn_snapshot_make_Click(object sender, EventArgs e)
-    {
-      var form = new SimpleTextInput(
-        Resources.NeuerSchnappschuss,
-        Resources.GebenSieDemNeuenSchnappschussEinenNamen,
-        Resources.camera,
-        Resources.NameHierEintragen);
-      if (form.ShowDialog() != DialogResult.OK) return;
+      radGridView1.Columns["Frequenz"].MaxWidth = 80;
+      radGridView1.Columns["Info"].IsVisible = false;
 
-      var dic = new HashSet<Guid>();
-
-      foreach (var parentNode in tree.Nodes)
+      radGridView1.Columns.Add(new GridViewCommandColumn(Resources.Details)
       {
-        foreach (var node in parentNode.Nodes)
-        {
-          if (node == null || node.CheckState != ToggleState.On || !(node.Value is Tuple<Guid, int, int>))
-            continue;
+        AllowFiltering = false,
+        AllowGroup = false,
+        HeaderText = "",
+        DefaultText = "",
+        UseDefaultText = true,
+        MaxWidth = 37,
+        Image = Resources.find
+      });
 
-          var guid = ((Tuple<Guid, int, int>)node.Value).Item1;
-          if (guid != Guid.Empty)
-            dic.Add(guid);
-        }
-      }
-
-      Project.CreateSelection(dic, form.Result);
+      _grid.CommandCellClick += OnGridOnCommandCellClick;
     }
 
-    private void cmb_layer_SelectedIndexChanged(object sender, PositionChangedEventArgs e)
+    /// <summary>
+    ///   The btn_csv export_ click.
+    /// </summary>
+    /// <param name="sender">
+    ///   The sender.
+    /// </param>
+    /// <param name="e">
+    ///   The e.
+    /// </param>
+    private void btn_csvExport_Click(object sender, EventArgs e)
     {
-      if (e.Position == -1)
+      ExportFunction();
+    }
+
+    private void btn_filter_Click(object sender, EventArgs e)
+    {
+      FilterListFunction("Wort");
+    }
+
+    private void btn_filterEditor_Click(object sender, EventArgs e)
+    {
+      QueryBuilderFunction(Resources.Frequency);
+    }
+
+    /// <summary>
+    ///   The btn_print_ click.
+    /// </summary>
+    /// <param name="sender">
+    ///   The sender.
+    /// </param>
+    /// <param name="e">
+    ///   The e.
+    /// </param>
+    private void btn_print_Click(object sender, EventArgs e)
+    {
+      radGridView1.PrintPreview();
+    }
+
+    private void btn_snapshot_create_Click(object sender, EventArgs e)
+    {
+      throw new NotImplementedException();
+    }
+
+    private void OnGridOnCommandCellClick(object sender, GridViewCellEventArgs arg)
+    {
+      if ((DateTime.Now - _preventDoubleCommandClick).Seconds < 1)
         return;
 
-      txt_query.Text = null;
+      if (!(sender is GridCommandCellElement cell))
+        return;
 
-      txt_query.AutoCompleteDataSource = Project.CurrentSelection.GetLayerValues(cmb_layer.Items[e.Position].Text);
+      var vm = GetViewModel<QuickInfoTextViewModel>();
+      vm.Documents = cell.RowElement.RowInfo.Cells["Info"].Value as IEnumerable<KeyValuePair<Guid, int>>;
+      vm.Analyse();
+
+      var form = new SimpleTextView(vm.QuickDocumentInfoResults, Project);
+      form.NewProperty += (o, a) => { vm.SetNewDocumentMetadata((KeyValuePair<string, Type>)o); };
+
+      if (form.ShowDialog() == DialogResult.OK)
+        foreach (var doc in form.Documents)
+          Project.CurrentSelection.SetDocumentMetadata(doc.DocumentGuid, doc.DocumentMetadata);
+
+      _preventDoubleCommandClick = DateTime.Now;
     }
 
-    private void radButton1_Click(object sender, EventArgs e)
+    private void OnShowView(object sender, EventArgs eventArgs)
     {
-      Processing.Invoke(Resources.SucheFundstellen, Analyse);
+      _vm = GetViewModel<TextLiveSearchViewModel>();
     }
 
-    private void tree_NodeCheckedChanged(object sender, TreeNodeCheckedEventArgs e)
+    private void wordBag1_ExecuteButtonClicked(object sender, EventArgs e)
     {
-      var vm = ViewModelGet<TextLiveSearchViewModel>();
-      var results = new List<Tuple<Guid, int, int>>();
-      var queue = new Queue<RadTreeNode>(tree.Nodes);
-
-      while (queue.Count > 0)
-      {
-        var node = queue.Dequeue();
-        if (node.Nodes.Count > 0)
-        {
-          foreach (var n in node.Nodes)
-            queue.Enqueue(n);
-        }
-        else
-        {
-          if (node.Checked)
-            results.Add(node.Value as Tuple<Guid, int, int>);
-        }
-      }
-
-      kwicView1.DataSource =
-        results.Select(
-          r =>
-            new KeyValuePair<string[], int>(
-              vm.GetReadableDocumentSnippet(
-                  r.Item1,
-                  "Wort",
-                  r.Item2,
-                  r.Item2).ReduceDocumentToStreamDocument()
-                .ToArray(),
-              r.Item3));
+      Analyse();
     }
   }
 }

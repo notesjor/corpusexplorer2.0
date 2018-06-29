@@ -17,6 +17,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer.Abstract
       // Set values for instance variables
       Vowels = new char[0];
     } // End of the constructor
+
     protected char[] Vowels { get; set; }
 
     /// <summary>
@@ -62,24 +63,24 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer.Abstract
       var plusOneIndex = index + 1;
       var minusOneIndex = index - 1;
 
-      if ((index == 0) &&
-          (characters.Length > 1))
+      if (index == 0 &&
+          characters.Length > 1)
       {
-        if ((index == 0) &&
+        if (index == 0 &&
             IsVowel(characters[index]) &&
-            (IsVowel(characters[plusOneIndex]) == false))
+            IsVowel(characters[plusOneIndex]) == false)
           isShortSyllable = true;
       }
-      else if ((minusOneIndex > -1) &&
-               (plusOneIndex < characters.Length))
+      else if (minusOneIndex > -1 &&
+               plusOneIndex < characters.Length)
       {
         if (IsVowel(characters[index]) &&
-            (IsVowel(characters[plusOneIndex]) == false) &&
-            (characters[plusOneIndex] != 'w') &&
-            (characters[plusOneIndex] != 'x')
+            IsVowel(characters[plusOneIndex]) == false &&
+            characters[plusOneIndex] != 'w' &&
+            characters[plusOneIndex] != 'x'
             &&
-            (characters[plusOneIndex] != 'Y') &&
-            (IsVowel(characters[minusOneIndex]) == false))
+            characters[plusOneIndex] != 'Y' &&
+            IsVowel(characters[minusOneIndex]) == false)
           isShortSyllable = true;
       }
 
@@ -95,7 +96,7 @@ namespace CorpusExplorer.Sdk.Extern.AStemmer.AStemmer.Abstract
     /// <returns>A boolean that indicates if the word is a short word</returns>
     protected bool IsShortWord(string word, string strR1)
     {
-      return (strR1 == "") && IsShortSyllable(word.ToCharArray(), word.Length - 2);
+      return strR1 == "" && IsShortSyllable(word.ToCharArray(), word.Length - 2);
     } // End of the IsShortWord method
 
     /// <summary>

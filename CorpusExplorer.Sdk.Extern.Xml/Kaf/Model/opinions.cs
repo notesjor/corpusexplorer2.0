@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlElement("opinion")]
-    public opinion[] opinion { get { return opinionField; } set { opinionField = value; } }
+    public opinion[] opinion
+    {
+      get => opinionField;
+      set => opinionField = value;
+    }
   }
 }

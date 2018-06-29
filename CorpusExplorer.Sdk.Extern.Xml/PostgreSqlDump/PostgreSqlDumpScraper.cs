@@ -11,7 +11,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml.PostgreSqlDump
   {
     public override string DisplayName => "PostgreSQL";
     protected override AbstractGenericSerializer<data> Serializer { get; } = new PostgreSqlDumpSerializer();
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(data model)
+
+    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, data model)
     {
       var res = new List<Dictionary<string, object>>();
       var types = new Dictionary<string, byte>();
@@ -22,8 +23,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml.PostgreSqlDump
         if (x.name == "txt" || x.name == "text" || x.name == "txtlong")
           if (txtName == null)
             txtName = x.name;
-        else if (x.name == "Text")
-          txtName = x.name;
+          else if (x.name == "Text")
+            txtName = x.name;
 
         if (x.type.StartsWith("int"))
           types.Add(x.name, 10);
@@ -39,14 +40,13 @@ namespace CorpusExplorer.Sdk.Extern.Xml.PostgreSqlDump
       {
         var ndoc = new Dictionary<string, object>();
         foreach (var c in row)
-        {
           if (c.name == txtName)
             ndoc.Add("Text", c.Value);
           else
             switch (types[c.name])
             {
               case 10:
-                ndoc.Add(c.name, int.Parse( c.Value));
+                ndoc.Add(c.name, int.Parse(c.Value));
                 break;
               case 20:
                 ndoc.Add(c.name, double.Parse(c.Value, CultureInfo.InvariantCulture));
@@ -58,9 +58,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.PostgreSqlDump
                 ndoc.Add(c.name, c.Value);
                 break;
             }
-        }
         res.Add(ndoc);
       }
+
       return res;
     }
   }

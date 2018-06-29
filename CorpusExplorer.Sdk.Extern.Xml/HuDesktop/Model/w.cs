@@ -32,30 +32,58 @@ namespace CorpusExplorer.Sdk.Extern.Xml.HuDesktop.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string function { get { return functionField; } set { functionField = value; } }
+    public string function
+    {
+      get => functionField;
+      set => functionField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified, Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NMTOKEN")]
-    public string lemma { get { return lemmaField; } set { lemmaField = value; } }
+    public string lemma
+    {
+      get => lemmaField;
+      set => lemmaField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string part { get { return partField; } set { partField = value; } }
+    public string part
+    {
+      get => partField;
+      set => partField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string subtype { get { return subtypeField; } set { subtypeField = value; } }
+    public string subtype
+    {
+      get => subtypeField;
+      set => subtypeField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
 
     /// <remarks />
     [XmlText(DataType = "NMTOKEN")]
-    public string Value { get { return valueField; } set { valueField = value; } }
+    public string Value
+    {
+      get => valueField;
+      set => valueField = value;
+    }
   }
 }

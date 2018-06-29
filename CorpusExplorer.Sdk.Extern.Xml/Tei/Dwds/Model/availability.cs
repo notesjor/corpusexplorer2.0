@@ -20,10 +20,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model
     private string statusField;
 
     /// <remarks />
-    public p p { get { return pField; } set { pField = value; } }
+    public p p
+    {
+      get => pField;
+      set => pField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string status { get { return statusField; } set { statusField = value; } }
+    public string status
+    {
+      get => statusField;
+      set => statusField = value;
+    }
   }
 }

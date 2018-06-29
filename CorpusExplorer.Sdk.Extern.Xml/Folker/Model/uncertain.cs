@@ -24,10 +24,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
 
     /// <remarks />
     [XmlArrayItem("w", typeof(w), IsNullable = false)]
-    public w[][] alternative { get { return alternativeField; } set { alternativeField = value; } }
+    public w[][] alternative
+    {
+      get => alternativeField;
+      set => alternativeField = value;
+    }
 
     /// <remarks />
     [XmlElement("w")]
-    public w[] w { get { return wField; } set { wField = value; } }
+    public w[] w
+    {
+      get => wField;
+      set => wField = value;
+    }
   }
 }

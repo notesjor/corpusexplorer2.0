@@ -23,14 +23,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.PromXes.Model
 
     /// <remarks />
     [XmlElement("float")]
-    public @float float1 { get { return float1Field; } set { float1Field = value; } }
+    public @float float1
+    {
+      get => float1Field;
+      set => float1Field = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string key { get { return keyField; } set { keyField = value; } }
+    public string key
+    {
+      get => keyField;
+      set => keyField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public double value { get { return valueField; } set { valueField = value; } }
+    public double value
+    {
+      get => valueField;
+      set => valueField = value;
+    }
   }
 }

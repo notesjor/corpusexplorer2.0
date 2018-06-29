@@ -32,8 +32,8 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>2.2018.02.04</ApplicationVersion>
+    <ApplicationRevision>27</ApplicationRevision>
+    <ApplicationVersion>2.2018.05.27</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -78,7 +78,7 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <ManifestTimestampUrl>http://tsa.startssl.com/timestamp</ManifestTimestampUrl>
+    <ManifestTimestampUrl>http://timestamp.verisign.com/scripts/timstamp.dll</ManifestTimestampUrl>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -192,6 +192,12 @@
       <Visible>False</Visible>
       <Description>CorpusExplorer DB-Corpus</Description>
       <Progid>CorpusExplorer.db.Corpus</Progid>
+      <DefaultIcon>corpusexplorer.ico</DefaultIcon>
+    </FileAssociation>
+    <FileAssociation Include=".ceshell">
+      <Visible>False</Visible>
+      <Description>CorpusExplorer Shell</Description>
+      <Progid>CorpusExplorer.Shell</Progid>
       <DefaultIcon>corpusexplorer.ico</DefaultIcon>
     </FileAssociation>
     <FileAssociation Include=".proj5">

@@ -20,14 +20,12 @@ namespace CorpusExplorer.Sdk.Blocks
   [Serializable]
   public class HyphenBlock : AbstractSimple1LayerBlock
   {
-    [NonSerialized]
-    private readonly object _lockHyphenAccess = new object();
+    [NonSerialized] private readonly object _lockHyphenAccess = new object();
 
     /// <summary>
     ///   The _lock hyphen frequency.
     /// </summary>
-    [NonSerialized]
-    private readonly object _lockHyphenFrequency = new object();
+    [NonSerialized] private readonly object _lockHyphenFrequency = new object();
 
     /// <summary>
     ///   Silbe/Frequenz-Wörterbuch
@@ -63,13 +61,14 @@ namespace CorpusExplorer.Sdk.Blocks
           try
           {
             keys = Configuration.Hyphen.Hyphenate(layer[w])
-                                .HyphenatedWord.Split(new[] {"="}, StringSplitOptions.RemoveEmptyEntries);
+              .HyphenatedWord.Split(new[] {"="}, StringSplitOptions.RemoveEmptyEntries);
           }
           catch
           {
             continue;
           }
         }
+
         lock (_lockHyphenFrequency)
         {
           foreach (var key in keys)
@@ -93,7 +92,9 @@ namespace CorpusExplorer.Sdk.Blocks
     /// <summary>
     ///   The calculate finalize.
     /// </summary>
-    protected override void CalculateFinalize() { }
+    protected override void CalculateFinalize()
+    {
+    }
 
     /// <summary>
     ///   The calculate init properties.

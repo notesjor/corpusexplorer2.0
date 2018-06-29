@@ -24,10 +24,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement("key")]
-    public key[] key { get { return keyField; } set { keyField = value; } }
+    public key[] key
+    {
+      get => keyField;
+      set => keyField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string name { get { return nameField; } set { nameField = value; } }
+    public string name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
   }
 }

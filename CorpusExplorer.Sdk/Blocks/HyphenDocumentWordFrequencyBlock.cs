@@ -16,8 +16,7 @@ namespace CorpusExplorer.Sdk.Blocks
     /// <summary>
     ///   The _lock hyphen frequency.
     /// </summary>
-    [NonSerialized]
-    private readonly object _lockHyphenFrequency = new object();
+    [NonSerialized] private readonly object _lockHyphenFrequency = new object();
 
     private Dictionary<string, IEnumerable<string>> _dic;
 
@@ -63,6 +62,7 @@ namespace CorpusExplorer.Sdk.Blocks
           else
             res.Add(val, new Dictionary<string, int> {{key, 1}});
       }
+
       lock (_lockHyphenFrequency)
       {
         HyphenFrequency.Add(dsel, res);
@@ -80,7 +80,9 @@ namespace CorpusExplorer.Sdk.Blocks
     /// <summary>
     ///   The calculate finalize.
     /// </summary>
-    protected override void CalculateFinalize() { }
+    protected override void CalculateFinalize()
+    {
+    }
 
     /// <summary>
     ///   The calculate init properties.

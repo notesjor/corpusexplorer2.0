@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Serializer;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
 using CorpusExplorer.Sdk.Model.Interface;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 
 #endregion
 
@@ -41,21 +41,23 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017
         {
           xml.Serialize(GetDSpin(hydra, guid, i++), Path.Combine(path, guid + ".tcf.xml"));
         }
-        catch { }
+        catch
+        {
+        }
     }
 
     private DSpin GetDSpin(IHydra hydra, Guid guid, int i)
     {
       var meta = hydra.GetDocumentMetadata(guid);
 
-      var from = (meta != null) && meta.ContainsKey(MetanameAuthor)
-                   ? meta[MetanameAuthor].ToString()
-                   : UnknownPropertyValue;
-      var datum = (meta != null) && meta.ContainsKey(MetanameDate)
-                    ? meta[MetanameDate] is DateTime
-                        ? ((DateTime)meta[MetanameDate]).ToString("yyyy-MM-dd")
-                        : meta[MetanameDate].ToString()
-                    : UnknownDateValue;
+      var from = meta != null && meta.ContainsKey(MetanameAuthor)
+        ? meta[MetanameAuthor].ToString()
+        : UnknownPropertyValue;
+      var datum = meta != null && meta.ContainsKey(MetanameDate)
+        ? meta[MetanameDate] is DateTime
+          ? ((DateTime) meta[MetanameDate]).ToString("yyyy-MM-dd")
+          : meta[MetanameDate].ToString()
+        : UnknownDateValue;
 
       var docW = hydra.GetReadableDocument(guid, LayernameWord).Select(x => x.ToArray()).ToArray();
       // Die folgenden Layer sind optional
@@ -79,19 +81,20 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017
         {
           var iD = "t" + id++;
           sent.AppendFormat(" {0}", iD);
-          tokens.Add(new token { ID = iD, Text = new[] { docW[j][k] } });
+          tokens.Add(new token {ID = iD, Text = new[] {docW[j][k]}});
           if (docL != null)
-            lemmas.Add(new lemma { tokenIDs = iD, Text = new[] { docL[j][k] } });
+            lemmas.Add(new lemma {tokenIDs = iD, Text = new[] {docL[j][k]}});
           if (docP != null)
-            tags.Add(new tag { tokenIDs = iD, Text = new[] { docP[j][k] } });
+            tags.Add(new tag {tokenIDs = iD, Text = new[] {docP[j][k]}});
           if (docO != null)
-            orthos.Add(new correction { tokenIDs = iD, Text = new[] { docO[j][k] }, operation = "replace" });
+            orthos.Add(new correction {tokenIDs = iD, Text = new[] {docO[j][k]}, operation = "replace"});
 
           if (docW[j][k].Length > 1)
             text.Append(" ");
           text.Append(docW[j][k]);
         }
-        sents.Add(new sentence { tokenIDs = sent.ToString().Trim(), ID = "s" + j });
+
+        sents.Add(new sentence {tokenIDs = sent.ToString().Trim(), ID = "s" + j});
       }
 
       return new DSpin
@@ -117,7 +120,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017
                 {
                   encodingDesc = new editorialDecl
                   {
-                    editorialDecl1 = new[] { "" }
+                    editorialDecl1 = new[] {""}
                   },
                   fileDesc = new fileDesc
                   {
@@ -126,7 +129,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017
                       author =
                         new author
                         {
-                          persName = new persName { addName = from }
+                          persName = new persName {addName = from}
                         }
                     }
                   }
@@ -143,7 +146,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017
             tokens = tokens.ToArray(),
             lemmas = docL == null ? null : lemmas.ToArray(),
             orthography = docO == null ? null : orthos.ToArray(),
-            POStags = docP == null ? null : new POStags { tag = tags.ToArray(), tagset = CorpusTagset },
+            POStags = docP == null ? null : new POStags {tag = tags.ToArray(), tagset = CorpusTagset},
             sentences = sents.ToArray()
           }
       };

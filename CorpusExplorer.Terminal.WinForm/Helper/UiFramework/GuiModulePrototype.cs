@@ -53,24 +53,23 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
 
       btn_home.Text = header;
       btn_home.Image = iconSmall;
+      btn_home.UseMnemonic = false;
     }
 
     public IMainForm Dashboard { get; set; }
 
-    internal GuiModelBuilderProjectRequestDelegate GetProjectDelegate { get; set; }
-
     public bool IsVisible
     {
-      get { return _topMenu.Visibility == ElementVisibility.Visible; }
-      set
-      {
-        _topMenu.Visibility = _topTile.Visibility = value ? ElementVisibility.Visible : ElementVisibility.Collapsed;
-      }
+      get => _topMenu.Visibility == ElementVisibility.Visible;
+      set => _topMenu.Visibility =
+        _topTile.Visibility = value ? ElementVisibility.Visible : ElementVisibility.Collapsed;
     }
 
     public EventHandler ModulPage { get; set; }
 
-    public Project Project { get { return GetProjectDelegate(); } }
+    public Project Project => GetProjectDelegate();
+
+    internal GuiModelBuilderProjectRequestDelegate GetProjectDelegate { get; set; }
 
     public GuiModulePrototype AddView(
       AbstractView view,
@@ -79,60 +78,27 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       string label,
       bool isBeta = false)
     {
-      VisualTweak(view);
-      view.InitializeVisualisation(GetProjectDelegate);
-
-      var page = new RadPageViewPage
+      try
       {
-        Location = new Point(0, 0),
-        Margin = new Padding(0),
-        Padding = new Padding(0),
-        Name = "Page_" + label,
-        Text = label
-      };
+        AddView_Initialize(view);
 
-      view.Location = new Point(0, 0);
-      view.Dock = DockStyle.Fill;
+        var page = AddView_AddPage(view, label);
+        Pages.Pages.Add(page);
 
-      page.Controls.Add(view);
-
-      var menuItem1 = new RadMenuItem(page.Text) {Tag = page, Image = iconLow};
-
-      menuItem1.Click += (sender, args) =>
+        AddView_AddMenuItem1(view, iconLow, page);
+        AddView_AddMenuItem2(view, iconLow, page);
+        AddView_AddTile(view, iconHeigh, isBeta, page);
+      }
+      catch (Exception ex)
       {
-        var p = (RadPageViewPage) ((RadMenuItem) sender).Tag;
+        InMemoryErrorConsole.Log(ex);
+      }
 
-        if ((Project == null) ||
-            (Project.CountCorpora == 0))
-        {
-          MessageBox.Show(Resources.PleaseLoadACorpus);
-          return;
-        }
+      return this;
+    }
 
-        ModulPage(null, null);
-        Pages.SelectedPage = p;
-        InMemoryErrorConsole.TrackPageView($"page_mod_{view.GetType()}");
-        Execute(p);
-      };
-
-      var menuItem2 = new RadMenuItem(page.Text) {Tag = page, Image = iconLow};
-      menuItem2.Click += (sender, args) =>
-      {
-        var p = (RadPageViewPage) ((RadMenuItem) sender).Tag;
-
-        if ((Project == null) ||
-            (Project.CountCorpora == 0))
-        {
-          MessageBox.Show(Resources.PleaseLoadACorpus);
-          return;
-        }
-
-        ModulPage(null, null);
-        Pages.SelectedPage = p;
-        InMemoryErrorConsole.TrackPageView($"page_mod_{view.GetType()}");
-        Execute(p);
-      };
-
+    private void AddView_AddTile(AbstractView view, Image iconHeigh, bool isBeta, RadPageViewPage page)
+    {
       var tile = new RadTileElement
       {
         Text = page.Text,
@@ -140,6 +106,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
         Column = modul_viewstates.Items.Count,
         Row = 0,
         Image = iconHeigh,
+        UseMnemonic = false,
         Font = new Font("Segoe UI Light", 10),
         TextAlignment = ContentAlignment.BottomCenter,
         BackColor = Color.White,
@@ -157,12 +124,86 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
         InMemoryErrorConsole.TrackPageView($"page_mod_{view.GetType()}");
         Execute(p);
       };
-
-      Pages.Pages.Add(page);
-      _topMenu.Items.Add(menuItem2);
       modul_viewstates.Items.Add(tile);
+    }
 
-      return this;
+    private void AddView_AddMenuItem2(AbstractView view, Image iconLow, RadPageViewPage page)
+    {
+      var menuItem2 = new RadMenuItem(page.Text) {Tag = page, Image = iconLow};
+      menuItem2.Click += (sender, args) =>
+      {
+        var p = (RadPageViewPage) ((RadMenuItem) sender).Tag;
+
+        if (Project == null ||
+            Project.CountCorpora == 0)
+        {
+          MessageBox.Show(Resources.PleaseLoadACorpus);
+          return;
+        }
+
+        ModulPage(null, null);
+        Pages.SelectedPage = p;
+        InMemoryErrorConsole.TrackPageView($"page_mod_{view.GetType()}");
+        Execute(p);
+      };
+      _topMenu.Items.Add(menuItem2);
+    }
+
+    private void AddView_AddMenuItem1(AbstractView view, Image iconLow, RadPageViewPage page)
+    {
+      var menuItem1 = new RadMenuItem(page.Text) {Tag = page, Image = iconLow};
+
+      menuItem1.Click += (sender, args) =>
+      {
+        var p = (RadPageViewPage) ((RadMenuItem) sender).Tag;
+
+        if (Project == null ||
+            Project.CountCorpora == 0)
+        {
+          MessageBox.Show(Resources.PleaseLoadACorpus);
+          return;
+        }
+
+        ModulPage(null, null);
+        Pages.SelectedPage = p;
+        InMemoryErrorConsole.TrackPageView($"page_mod_{view.GetType()}");
+        Execute(p);
+      };
+    }
+
+    private static RadPageViewPage AddView_AddPage(AbstractView view, string label)
+    {
+      var page = new RadPageViewPage
+      {
+        Location = new Point(0, 0),
+        Margin = new Padding(0),
+        Padding = new Padding(0),
+        Name = "Page_" + label,
+        Text = label
+      };
+
+      view.Location = new Point(0, 0);
+      view.Dock = DockStyle.Fill;
+
+      page.Controls.Add(view);
+      return page;
+    }
+
+    private void AddView_Initialize(AbstractView view)
+    {
+      VisualTweak(view);
+      view.InitializeVisualisation(GetProjectDelegate);
+    }
+
+    public void SaveStates(RadTileElement topTile, RadMenuItem topMenu)
+    {
+      _topTile = topTile;
+      _topMenu = topMenu;
+    }
+
+    public void StartModule()
+    {
+      Pages.SelectedPage = page_HOME;
     }
 
     /// <summary>
@@ -182,19 +223,11 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
     private void Execute(RadPageViewPage page)
     {
       foreach (var c in page.Controls.OfType<AbstractView>())
-      {        
+      {
         Dashboard.CurrentView = c;
         c.OnShowVisualisation();
       }
     }
-
-    public void SaveStates(RadTileElement topTile, RadMenuItem topMenu)
-    {
-      _topTile = topTile;
-      _topMenu = topMenu;
-    }
-
-    public void StartModule() { Pages.SelectedPage = page_HOME; }
 
     private void VisualTweak(object control)
     {

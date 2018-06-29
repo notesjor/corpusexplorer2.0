@@ -18,6 +18,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private div divField;
 
     /// <remarks />
-    public div div { get { return divField; } set { divField = value; } }
+    public div div
+    {
+      get => divField;
+      set => divField = value;
+    }
   }
 }

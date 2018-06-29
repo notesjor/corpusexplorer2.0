@@ -50,24 +50,44 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlAttribute]
-    public bool anchored { get { return anchoredField; } set { anchoredField = value; } }
+    public bool anchored
+    {
+      get => anchoredField;
+      set => anchoredField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool anchoredSpecified { get { return anchoredFieldSpecified; } set { anchoredFieldSpecified = value; } }
+    public bool anchoredSpecified
+    {
+      get => anchoredFieldSpecified;
+      set => anchoredFieldSpecified = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string corresp { get { return correspField; } set { correspField = value; } }
+    public string corresp
+    {
+      get => correspField;
+      set => correspField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string hand { get { return handField; } set { handField = value; } }
+    public string hand
+    {
+      get => handField;
+      set => handField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified,
-       Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string id { get { return idField; } set { idField = value; } }
+      Namespace = "http://www.w3.org/XML/1998/namespace")]
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlElement("add", typeof(add))]
@@ -106,47 +126,91 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("supplied", typeof(supplied))]
     [XmlElement("table", typeof(table))]
     [XmlElement("unclear", typeof(unclear))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified,
-       Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string lang { get { return langField; } set { langField = value; } }
+      Namespace = "http://www.w3.org/XML/1998/namespace")]
+    public string lang
+    {
+      get => langField;
+      set => langField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string n { get { return nField; } set { nField = value; } }
+    public string n
+    {
+      get => nField;
+      set => nField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string next { get { return nextField; } set { nextField = value; } }
+    public string next
+    {
+      get => nextField;
+      set => nextField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string place { get { return placeField; } set { placeField = value; } }
+    public string place
+    {
+      get => placeField;
+      set => placeField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string prev { get { return prevField; } set { prevField = value; } }
+    public string prev
+    {
+      get => prevField;
+      set => prevField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string rendition { get { return renditionField; } set { renditionField = value; } }
+    public string rendition
+    {
+      get => renditionField;
+      set => renditionField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string resp { get { return respField; } set { respField = value; } }
+    public string resp
+    {
+      get => respField;
+      set => respField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string sameAs { get { return sameAsField; } set { sameAsField = value; } }
+    public string sameAs
+    {
+      get => sameAsField;
+      set => sameAsField = value;
+    }
 
     /// <remarks />
     [XmlText]
-    public string[] Text { get { return textField; } set { textField = value; } }
+    public string[] Text
+    {
+      get => textField;
+      set => textField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

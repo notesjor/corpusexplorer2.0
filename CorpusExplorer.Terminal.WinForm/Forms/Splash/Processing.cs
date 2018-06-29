@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash.Forms;
@@ -19,7 +18,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Splash
       SplashShow(message);
 
       try
-      {        
+      {
         action();
       }
       catch (Exception ex)
@@ -32,7 +31,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Splash
 
     public static void SplashClose()
     {
-      InMemoryErrorConsole.ActionStop();
       Show = false;
     }
 
@@ -40,23 +38,27 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Splash
     {
       Show = true;
 
-      if ((_thread == null) || (_thread.Status != TaskStatus.Running))
+      if (_thread == null || _thread.Status != TaskStatus.Running)
       {
         Message = message;
         _thread = Task.Factory.StartNew(
-            () =>
+          () =>
+          {
+            try
             {
-              try
-              {
-                var splashForm = new ProcessingForm();
-                InMemoryErrorConsole.ActionStart(message);
-                splashForm.ShowDialog();
-              }
-              catch {}
-            });
+              var splashForm = new ProcessingForm();
+              splashForm.ShowDialog();
+            }
+            catch
+            {
+              // ignore
+            }
+          });
       }
       else
-        Message = message;           
+      {
+        Message = message;
+      }
     }
   }
 }

@@ -34,7 +34,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
 
     private void Analyse()
     {
-      _vm = ViewModelGet<CorpusWeightUnlimmitedViewModel>();
+      _vm = GetViewModel<CorpusWeightUnlimmitedViewModel>();
       _vm.Analyse();
 
       radGridView1.DataSource = _vm.GetDataTable();
@@ -115,17 +115,20 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     {
       CreateSelection(
         radGridView1.SelectedRows.Select(
-                      row => new FilterQueryMetaContains
-                      {
-                        Inverse = false,
-                        MetaLabel =
-                          row.Cells[Resources.Kategorie].Value.ToString(),
-                        MetaValues =
-                          new[]
-                            {row.Cells[Resources.Metadaten].Value.ToString()}
-                      }));
+          row => new FilterQueryMetaContains
+          {
+            Inverse = false,
+            MetaLabel =
+              row.Cells[Resources.Kategorie].Value.ToString(),
+            MetaValues =
+              new[]
+                {row.Cells[Resources.Metadaten].Value.ToString()}
+          }));
     }
 
-    private void ShowViewCall(object sender, EventArgs e) { Processing.Invoke(Resources.ZählungLäuft, Analyse); }
+    private void ShowViewCall(object sender, EventArgs e)
+    {
+      Processing.Invoke(Resources.ZählungLäuft, Analyse);
+    }
   }
 }

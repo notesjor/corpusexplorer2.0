@@ -11,12 +11,10 @@ namespace CorpusExplorer.Sdk.Extern.Binary.Excel.Universal
 {
   public sealed class UniversalExcelScraper : AbstractGenericBinaryFormatScraper<Dictionary<string, string>>
   {
-    protected override AbstractGenericDataReader<Dictionary<string, string>> DataReader
-    {
-      get { return new ExcelUniversalDataReader(); }
-    }
+    public override string DisplayName => "Universeller Excel™-Scraper";
 
-    public override string DisplayName { get { return "Universeller Excel™-Scraper"; } }
+    protected override AbstractGenericDataReader<Dictionary<string, string>> DataReader =>
+      new ExcelUniversalDataReader();
 
     protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(
       IEnumerable<Dictionary<string, string>> model)

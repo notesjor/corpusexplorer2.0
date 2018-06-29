@@ -34,6 +34,7 @@ namespace CorpusExplorer.Sdk.ViewModel
               meta.ContainsKey(SelectedDocumentMetaProperty))
             res.Add(guid, meta[SelectedDocumentMetaProperty].ToString());
         }
+
         return res;
       }
     }
@@ -48,18 +49,6 @@ namespace CorpusExplorer.Sdk.ViewModel
     public IEnumerable<string> LayerDisplaynames => Selection.LayerUniqueDisplaynames;
 
     public string LayerDisplayname { get; set; } = "Wort";
-
-    protected override void ExecuteAnalyse()
-    {
-      _block = Selection.CreateBlock<DocumentSimilarityBlock>();
-      _block.Similarity = SimilarityMeasure;
-      _block.LayerDisplayname = LayerDisplayname;
-      _block.MinimumInversDocumentFrequency = MinimumInversDocumentFrequency;
-      _block.MinimumDocumentSimilarity = MinimumDocumentSimilarity;
-      _block.Calculate();
-
-      DocumentGuids = _block.DocumentGuids;
-    }
 
     public IEnumerable<Guid> RequestDocumentGuidByMetadata(string metaValue)
     {
@@ -113,6 +102,21 @@ namespace CorpusExplorer.Sdk.ViewModel
       return values.ContainsKey(metaName) ? values[metaName].Select(obj => obj?.ToString() ?? "") : null;
     }
 
-    protected override bool Validate() { return MinimumInversDocumentFrequency > 0 && SimilarityMeasure != null; }
+    protected override void ExecuteAnalyse()
+    {
+      _block = Selection.CreateBlock<DocumentSimilarityBlock>();
+      _block.Similarity = SimilarityMeasure;
+      _block.LayerDisplayname = LayerDisplayname;
+      _block.MinimumInversDocumentFrequency = MinimumInversDocumentFrequency;
+      _block.MinimumDocumentSimilarity = MinimumDocumentSimilarity;
+      _block.Calculate();
+
+      DocumentGuids = _block.DocumentGuids;
+    }
+
+    protected override bool Validate()
+    {
+      return MinimumInversDocumentFrequency > 0 && SimilarityMeasure != null;
+    }
   }
 }

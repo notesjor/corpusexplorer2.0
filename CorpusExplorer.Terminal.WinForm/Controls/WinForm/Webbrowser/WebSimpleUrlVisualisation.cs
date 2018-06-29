@@ -3,7 +3,6 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
 using System.Windows.Forms;
 using CefSharp;
 using CefSharp.WinForms;
@@ -66,28 +65,11 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
         ExportPdf(sfd.FileName);
     }
 
-    private void ExportPdf(string path)
-    {
-      InitializeBrowser();
-      webBrowser1.PrintToPdfAsync(path);
-    }
-
     public virtual void GoToMainpage()
     {
       InitializeBrowser();
 
       webBrowser1.Load(MainpageUrl);
-    }
-
-    private void InitializeBrowser()
-    {
-      if (webBrowser1 != null)
-        return;
-
-      SuspendLayout();
-      webBrowser1 = StaticBrowserHandler.Get(Size);
-      Controls.Add(webBrowser1);
-      ResumeLayout(false);
     }
 
     public void LoadHtml(string html)
@@ -100,6 +82,23 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
     {
       InitializeBrowser();
       webBrowser1.Print();
+    }
+
+    private void ExportPdf(string path)
+    {
+      InitializeBrowser();
+      webBrowser1.PrintToPdfAsync(path);
+    }
+
+    private void InitializeBrowser()
+    {
+      if (webBrowser1 != null)
+        return;
+
+      SuspendLayout();
+      webBrowser1 = StaticBrowserHandler.Get(Size);
+      Controls.Add(webBrowser1);
+      ResumeLayout(false);
     }
   }
 }

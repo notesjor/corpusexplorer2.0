@@ -48,6 +48,9 @@ namespace CorpusExplorer.Sdk.ViewModel
       _block.Calculate();
     }
 
-    protected override bool Validate() { return true; }
+    protected override bool Validate()
+    {
+      return true;
+    }
   }
 }

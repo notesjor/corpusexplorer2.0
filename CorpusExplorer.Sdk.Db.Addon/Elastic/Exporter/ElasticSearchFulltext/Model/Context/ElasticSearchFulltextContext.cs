@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CorpusExplorer.Sdk.Db.Elastic.Sdk.Context;
+﻿using CorpusExplorer.Sdk.Db.Elastic.Sdk.Context;
 using CorpusExplorer.Sdk.Diagnostic;
 using Elasticsearch.Net;
-using Nest;
 
 namespace CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter.ElasticSearchFulltext.Model.Context
 {
@@ -23,9 +19,9 @@ namespace CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter.ElasticSearchFulltext.Mod
 
     public void Add(Document document)
     {
-      var res = _client.Index(document);
+      var res = _client.IndexDocument(document);
       if (res.OriginalException != null)
         InMemoryErrorConsole.Log(res.OriginalException);
-    }    
+    }
   }
 }

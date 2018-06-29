@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\PostSharp.5.0.43\build\PostSharp.props" Condition="Exists('..\packages\PostSharp.5.0.43\build\PostSharp.props')" />
+  <Import Project="..\packages\PostSharp.5.0.52\build\PostSharp.props" Condition="Exists('..\packages\PostSharp.5.0.52\build\PostSharp.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -92,36 +92,34 @@
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CorpusExplorer.Core">
-      <HintPath>..\..\..\..\write2gether\w2g\CorpusExplorer.Sdk (PreRelease)\CorpusExplorer.Core.dll</HintPath>
-    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NHunspell, Version=1.2.5554.16953, Culture=neutral, PublicKeyToken=1ac793ea843b4366, processorArchitecture=MSIL">
       <HintPath>..\packages\NHunspell.1.2.5554.16953\lib\net\NHunspell.dll</HintPath>
     </Reference>
+    <Reference Include="NMathPremium, Version=6.2.0.30, Culture=neutral, PublicKeyToken=873235918a322639, processorArchitecture=MSIL" />
+    <Reference Include="NMathStatsPremium, Version=4.2.0.30, Culture=neutral, PublicKeyToken=873235918a322639, processorArchitecture=MSIL" />
     <Reference Include="Polenter.SharpSerializer, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.1\lib\netstandard1.0\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=5.0.43.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.5.0.43\lib\net45\PostSharp.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="PostSharp, Version=5.0.52.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.5.0.52\lib\net45\PostSharp.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Patterns.Aggregation, Version=5.0.43.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Patterns.Aggregation.Redist.5.0.43\lib\net45\PostSharp.Patterns.Aggregation.dll</HintPath>
+    <Reference Include="PostSharp.Patterns.Aggregation, Version=5.0.52.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Aggregation.Redist.5.0.52\lib\net45\PostSharp.Patterns.Aggregation.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Patterns.Common, Version=5.0.43.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Patterns.Common.Redist.5.0.43\lib\net45\PostSharp.Patterns.Common.dll</HintPath>
+    <Reference Include="PostSharp.Patterns.Common, Version=5.0.52.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Common.Redist.5.0.52\lib\net45\PostSharp.Patterns.Common.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Patterns.Model, Version=5.0.43.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Patterns.Model.Redist.5.0.43\lib\net40\PostSharp.Patterns.Model.dll</HintPath>
+    <Reference Include="PostSharp.Patterns.Model, Version=5.0.52.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Model.Redist.5.0.52\lib\net40\PostSharp.Patterns.Model.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Patterns.Threading, Version=5.0.43.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Patterns.Threading.Redist.5.0.43\lib\net45\PostSharp.Patterns.Threading.dll</HintPath>
+    <Reference Include="PostSharp.Patterns.Threading, Version=5.0.52.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Threading.Redist.5.0.52\lib\net45\PostSharp.Patterns.Threading.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -141,6 +139,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aspect\CacheAspect.cs" />
+    <Compile Include="Blocks\CooccurrenceContextBlock.cs" />
+    <Compile Include="Blocks\NamedEntityRecognitionBlock.cs" />
     <Compile Include="Blocks\CooccurrenceSelectiveBlock.cs" />
     <Compile Include="Blocks\CorrespondingLayerValueBlock.cs" />
     <Compile Include="Blocks\DocumentBestSnippetBlock.cs" />
@@ -150,11 +150,17 @@
     <Compile Include="Blocks\DocumentWordlistBlock.cs" />
     <Compile Include="Blocks\Flow\FlowNode.cs" />
     <Compile Include="Blocks\Flow\FlowNodeDirection.cs" />
+    <Compile Include="Blocks\Frequency3LayerBlock.cs" />
     <Compile Include="Blocks\InverseDocumentTermFrequencyBlock.cs" />
     <Compile Include="Blocks\InverseDocumentVectorBlock.cs" />
     <Compile Include="Blocks\CooccurrenceOverlappingBlock.cs" />
     <Compile Include="Blocks\Mtld\WeightingMode.cs" />
+    <Compile Include="Blocks\NamedEntityRecognition\Entity.cs" />
+    <Compile Include="Blocks\NamedEntityRecognition\Model.cs" />
+    <Compile Include="Blocks\NamedEntityRecognition\Rule.cs" />
+    <Compile Include="Blocks\Ngram1LayerBlock.cs" />
     <Compile Include="Blocks\Ngram1LayerPatternBlock.cs" />
+    <Compile Include="Blocks\Ngram1LayerPatternIgnoreSentencesBlock.cs" />
     <Compile Include="Blocks\OverTimeBlock.cs" />
     <Compile Include="Blocks\DocumentFrequencyDictionaryBlock.cs" />
     <Compile Include="Blocks\GroupDocuments\Abstract\AbstractGroupDocumentsComparer.cs" />
@@ -181,7 +187,6 @@
     <Compile Include="Blocks\HyphenWordFrequencyBlock.cs" />
     <Compile Include="Blocks\Interfaces\IUseMemoryOverflowProtection.cs" />
     <Compile Include="Blocks\KeywordBlock.cs" />
-    <Compile Include="Blocks\NamedEntityDetectionBlock.cs" />
     <Compile Include="Blocks\OverTime\OverTimeAggregationDelegate.cs" />
     <Compile Include="Blocks\OverTime\OverTimeCalculateDelegate.cs" />
     <Compile Include="Blocks\Partition\Delegates\PartitionBlockAggregatioDelegate.cs" />
@@ -194,42 +199,64 @@
     <Compile Include="Blocks\PhrasesLaboratory\GrammarRule\Abstract\AbstractGrammarRule.cs" />
     <Compile Include="Blocks\PhrasesLaboratory\GrammarRule\JoinAllGrammarRule.cs" />
     <Compile Include="Blocks\PhrasesLaboratory\PhraseGrammar.cs" />
+    <Compile Include="Blocks\PositionFrequencyBlock.cs" />
     <Compile Include="Blocks\RandomSelectionClusterBlock.cs" />
     <Compile Include="Blocks\SelectionClusterBlock.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\Abstract\AbstractCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\Abstract\AbstractCountCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\Abstract\AbstractRangeCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeCenturyOnlyCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeDecadeOnlyCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeRangeCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearMonthDayHourMinuteOnlyCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearMonthDayHourOnlyCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearMonthDayOnlyCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearMonthOnlyCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearOnlyCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearQuarterOnlyCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearWeekOnlyCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\DocumentCounterCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\DoubleCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\DoubleRangeCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\Helper\ClusterToSelectionHelper.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\IntegerCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\IntegerRangeCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\SentenceCounterCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\StringCluster.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\Abstract\AbstractSelectionClusterGeneratorByRange.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\Abstract\AbstractSelectionClusterGeneratorByValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\TokenCounterCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\Counter\Abstract\AbstractCounterClusterType.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\Counter\CounterClusterTypeDocument.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\Counter\CounterClusterTypeSentence.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\Counter\GetOrderByValueDelegate.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\Counter\CounterClusterTypeToken.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\Counter\PredefinedGetOrderByValueDelegateDelegates.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorCounter.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\Abstract\AbstractSelectionClusterGeneratorRange.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\Abstract\AbstractSelectionClusterGeneratorValue.cs" />
     <Compile Include="Blocks\SelectionCluster\Generator\Abstract\AbstractSelectionClusterGenerator.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorByDateTimeRange.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorByDateTimeValue.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorByDateTimeYearMonthDayHourMinuteOnlyValue.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorByDateTimeYearMonthDayHourOnlyValue.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorByDateTimeYearMonthDayOnlyValue.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorByDateTimeYearMonthOnlyValue.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorByDateTimeYearOnlyValue.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorByDoubleRange.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorByDoubleValue.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorByIntegerRange.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorByIntegerValue.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorByStringValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeCenturyOnlyValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeDecadeOnlyValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeRange.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthDayHourMinuteOnlyValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthDayHourOnlyValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthDayOnlyValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthOnlyValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearOnlyValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearQuarterOnlyValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearWeekOnlyValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDoubleRange.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDoubleValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorIntegerRange.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorIntegerValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorStringValue.cs" />
     <Compile Include="Blocks\SentenceFrequenceDistributionBlock.cs" />
     <Compile Include="Blocks\SentenceHashBlock.cs" />
     <Compile Include="Blocks\SortDocuments.cs" />
+    <Compile Include="Blocks\SummarizerBlock.cs" />
     <Compile Include="Blocks\SyntagmaBlock.cs" />
-    <Compile Include="Blocks\TextLiveSearchKwicTreeBlock.cs" />
+    <Compile Include="Blocks\ValidateSelectionIntegrityBlock.cs" />
     <Compile Include="Blocks\VocabularyComplaxity\CalculationHelper\VocabularyComplexityMCalculationHelper.cs" />
     <Compile Include="Blocks\VocabularyComplaxity\CalculationHelper\VocabularyComplexityViCalculationHelper.cs" />
     <Compile Include="Blocks\VocabularyComplaxity\VocabularyComplexityCarrollsCorrectedTTR.cs" />
@@ -250,6 +277,7 @@
     <Compile Include="Helper\DocumentSerializerHelper.cs" />
     <Compile Include="Helper\EncodingHelper.cs" />
     <Compile Include="Helper\IntArrayCutter.cs" />
+    <Compile Include="Helper\ObjectCastHelper.cs" />
     <Compile Include="Helper\PathHelper.cs" />
     <Compile Include="Helper\JsonToCsvHelper.cs" />
     <Compile Include="Helper\LayerIndexCacheHelper.cs" />
@@ -259,16 +287,20 @@
     <Compile Include="Helper\SelectionEqualityComparer.cs" />
     <Compile Include="Helper\SelectionJoiner.cs" />
     <Compile Include="Helper\SelectionListConverterHelper.cs" />
+    <Compile Include="Helper\SelectionParentHelper.cs" />
     <Compile Include="Helper\TaskExtension.cs" />
     <Compile Include="Helper\TemplateTextGenerator.cs" />
     <Compile Include="Helper\TemporaryDirectory.cs" />
     <Compile Include="Helper\TemporaryFile.cs" />
     <Compile Include="Helper\TypeEqualityComparer.cs" />
     <Compile Include="Helper\UniversalColor.cs" />
+    <Compile Include="Helper\ValueMergeHelper.cs" />
     <Compile Include="Model\Adapter\Corpus\CorpusAdapterSingleFile.cs" />
+    <Compile Include="Model\Adapter\Corpus\CorpusAdapterWriteIndirect.cs" />
     <Compile Include="Model\Adapter\Corpus\CorpusAdapterWriteDirect.cs" />
     <Compile Include="Model\Adapter\Layer\Abstract\AbstractLayerAdapter.cs" />
     <Compile Include="Model\Adapter\Layer\LayerAdapterSingleFile.cs" />
+    <Compile Include="Model\Adapter\Layer\LayerAdapterWriteIndirect.cs" />
     <Compile Include="Model\Adapter\Layer\LayerAdapterWriteDirect.cs" />
     <Compile Include="Model\Cache\Abstract\AbstractCacheStrategy.cs" />
     <Compile Include="Model\Cache\CacheStrategyClearCacheManually.cs" />
@@ -281,8 +313,9 @@
     <Compile Include="Model\CorpusExplorer\FileSystem\FileSystemCorpusRoot.cs" />
     <Compile Include="Model\CorpusExplorer\FileSystem\FileSystemLayerHead.cs" />
     <Compile Include="Model\Delegates\HydraDelegate.cs" />
-    <Compile Include="Model\Export\ExporterQuery.cs" />
-    <Compile Include="Model\Export\ExporterSimpleGenericBase.cs" />
+    <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCec6.cs" />
+    <Compile Include="Utils\DocumentProcessing\Exporter\ExporterQuery.cs" />
+    <Compile Include="Utils\DocumentProcessing\Exporter\Abstract\AbstractExporterSimpleGenericBase.cs" />
     <Compile Include="Model\Extension\HydraConversionExtension.cs" />
     <Compile Include="Addon\AbstractAddonRepository.cs" />
     <Compile Include="Addon\IAddonRepository.cs" />
@@ -333,6 +366,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utils\DataTableWriter\Abstract\AbstractTableWriter.cs" />
+    <Compile Include="Utils\DataTableWriter\BypassTableWriter.cs" />
+    <Compile Include="Utils\DataTableWriter\CsvTableWriter.cs" />
+    <Compile Include="Utils\DataTableWriter\JsonTableWriter.cs" />
+    <Compile Include="Utils\DataTableWriter\SqlTableWriter.cs" />
+    <Compile Include="Utils\DataTableWriter\TsvTableWriter.cs" />
+    <Compile Include="Utils\DataTableWriter\XmlTableWriter.cs" />
     <Compile Include="Utils\DocumentProcessing\Abstract\AbstractCorpusBuilder.cs" />
     <Compile Include="Utils\DocumentProcessing\Abstract\AbstractDocumentProcessingStep.cs" />
     <Compile Include="Utils\DocumentProcessing\Abstract\AbstractDocumentProcessingStepOutputOnly.cs" />
@@ -340,13 +380,24 @@
     <Compile Include="Utils\DocumentProcessing\Builder\CorpusBuilderSingleFile.cs" />
     <Compile Include="Utils\DocumentProcessing\Builder\CorpusBuilderWriteDirect.cs" />
     <Compile Include="Utils\DocumentProcessing\Cleanup\RegexRemoveNonWesternCharsCleanup.cs" />
+    <Compile Include="Utils\DocumentProcessing\Cluster\DocumentProcessingClusterBuilder.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\Abstract\AbstractImporterBase.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\Abstract\AbstractImporter.cs" />
+    <Compile Include="Utils\DocumentProcessing\Importer\CorpusExplorerV6\ImporterCec6.cs" />
+    <Compile Include="Utils\DocumentProcessing\Importer\CorpusExplorerV6\ImporterCec6Stream.cs" />
+    <Compile Include="Utils\DocumentProcessing\Scraper\TsvScraper.cs" />
+    <Compile Include="Utils\DocumentProcessing\Scraper\TxtScraper.cs" />
     <Compile Include="Utils\DocumentProcessing\Sentenizer\Abstract\AbstractSentenizer.cs" />
     <Compile Include="Utils\DocumentProcessing\Sentenizer\QuickSentenizer.cs" />
     <Compile Include="Utils\DocumentProcessing\Tagger\Abstract\AbstractAdditionalTagger.cs" />
     <Compile Include="Utils\DocumentProcessing\Tagger\Abstract\AbstractTaggerWithUnderscore.cs" />
+    <Compile Include="Utils\DocumentProcessing\Tagger\HighSpeedSpaceTokenizer.cs" />
+    <Compile Include="Utils\DocumentProcessing\Tagger\NoTokenizer.cs" />
+    <Compile Include="Utils\Filter\Queries\FilterQueryMetaEndsWith.cs" />
+    <Compile Include="Utils\Filter\Queries\FilterQueryMetaStartsWith.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMultiLayerPhrase.cs" />
+    <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerFirstAndAnyOtherMatch.cs" />
+    <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerRanked.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryUnsupportedParserFeature.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerAlternativePhrase.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerMarkedPhrase.cs" />
@@ -384,12 +435,12 @@
     <Compile Include="Blocks\HyphenBlock.cs" />
     <Compile Include="Blocks\Measure\Abstract\IMeasure.cs" />
     <Compile Include="Blocks\MetadataCrossFrequency.cs" />
-    <Compile Include="Blocks\Ngram1LayerBlock.cs" />
+    <Compile Include="Blocks\Ngram1LayerIgnoreSentencesBlock.cs" />
     <Compile Include="Blocks\ReadingEaseBlock.cs" />
     <Compile Include="Blocks\ReadingEase\AbstractReadingEaseIndex.cs" />
     <Compile Include="Blocks\ReadingEase\FelschKincaidGradeIndex.cs" />
     <Compile Include="Blocks\ReadingEase\FelschReadingEaseIndex.cs" />
-    <Compile Include="Blocks\ReadingEase\GunningFoxIndexIndex.cs" />
+    <Compile Include="Blocks\ReadingEase\GunningFogIndexIndex.cs" />
     <Compile Include="Blocks\ReadingEase\SmogIndexIndex.cs" />
     <Compile Include="Blocks\ReadingEase\WienerSachtextV1Index.cs" />
     <Compile Include="Blocks\ReadingEase\WienerSachtextV2Index.cs" />
@@ -421,7 +472,8 @@
     <Compile Include="ViewModel\CrossFrequencyOverTimeViewModel.cs" />
     <Compile Include="ViewModel\DocumentCloneDetectionViewModel.cs" />
     <Compile Include="ViewModel\CooccurrenceCompareViewModel.cs" />
-    <Compile Include="ViewModel\DocumentMetadataImportExportViewModel.cs" />
+    <Compile Include="ViewModel\DocumentMetadataViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IProvideNormalizedDataTable.cs" />
     <Compile Include="ViewModel\NGramHighlightCooccurrencesViewModel.cs" />
     <Compile Include="ViewModel\CorpusWeightUnlimmitedCompareViewModel.cs" />
     <Compile Include="ViewModel\DisambiguationCompareViewModel.cs" />
@@ -435,12 +487,11 @@
     <Compile Include="Helper\SafeXmlSectionRemoveableHelper.cs" />
     <Compile Include="Helper\Serializer.cs" />
     <Compile Include="Blocks\Abstract\AbstractBlock.cs" />
-    <Compile Include="Blocks\Frequency3LayerBlock.cs" />
     <Compile Include="Model\Adapter\Corpus\Abstract\AbstractCorpusAdapter.cs" />
     <Compile Include="Model\CorpusExplorer\CeDictionary.cs" />
     <Compile Include="Model\CorpusExplorer\CeTranscriptEntry.cs" />
     <Compile Include="Model\CorpusExplorer\CeObject.cs" />
-    <Compile Include="Model\Export\Abstract\AbstractExporter.cs" />
+    <Compile Include="Utils\DocumentProcessing\Exporter\Abstract\AbstractExporter.cs" />
     <Compile Include="Utils\Filter\QueryFilter.cs" />
     <Compile Include="Model\Interface\IHydra.cs" />
     <Compile Include="Model\Interface\IVerbalize.cs" />
@@ -495,7 +546,6 @@
     <Compile Include="ViewModel\DiffViewModel.cs" />
     <Compile Include="ViewModel\DisambiguationViewModel.cs" />
     <Compile Include="ViewModel\DocumentGranulationViewModel.cs" />
-    <Compile Include="ViewModel\DocumentMetadataViewModel.cs" />
     <Compile Include="ViewModel\DuplicatViewModel.cs" />
     <Compile Include="ViewModel\ExplorationViewModel.cs" />
     <Compile Include="ViewModel\Frequency1LayerViewModel.cs" />
@@ -526,6 +576,7 @@
     <Compile Include="ViewModel\NgramViewModel.cs" />
     <Compile Include="ViewModel\Phrases2ViewModel.cs" />
     <Compile Include="ViewModel\PhrasesViewModel.cs" />
+    <Compile Include="ViewModel\PositionFrequencyViewModel.cs" />
     <Compile Include="ViewModel\PosTagFilterViewModel.cs" />
     <Compile Include="ViewModel\QuickInfoTextViewModel.cs" />
     <Compile Include="ViewModel\QuickInfoText\QuickInfoTextResult.cs" />
@@ -538,6 +589,7 @@
     <Compile Include="ViewModel\AnnotationViewModel.cs" />
     <Compile Include="ViewModel\FrequencyPivotViewModel.cs" />
     <Compile Include="ViewModel\TextLiveSearch\UniqueTextLiveSearchResultEntry.cs" />
+    <Compile Include="ViewModel\ValidateSelectionIntegrityViewModel.cs" />
     <Compile Include="ViewModel\VocabularyComplexityViewModel.cs" />
     <Compile Include="View\Html\Html5\Html5Builder.cs" />
   </ItemGroup>
@@ -584,12 +636,10 @@
     <PropertyGroup>
       <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\PostSharp.5.0.43\build\PostSharp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PostSharp.5.0.43\build\PostSharp.props'))" />
-    <Error Condition="!Exists('..\packages\PostSharp.5.0.43\build\PostSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PostSharp.5.0.43\build\PostSharp.targets'))" />
-    <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.1\build\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.1\build\NETStandard.Library.targets'))" />
+    <Error Condition="!Exists('..\packages\PostSharp.5.0.52\build\PostSharp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PostSharp.5.0.52\build\PostSharp.props'))" />
+    <Error Condition="!Exists('..\packages\PostSharp.5.0.52\build\PostSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PostSharp.5.0.52\build\PostSharp.targets'))" />
   </Target>
-  <Import Project="..\packages\PostSharp.5.0.43\build\PostSharp.targets" Condition="Exists('..\packages\PostSharp.5.0.43\build\PostSharp.targets')" />
-  <Import Project="..\packages\NETStandard.Library.2.0.1\build\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.1\build\NETStandard.Library.targets')" />
+  <Import Project="..\packages\PostSharp.5.0.52\build\PostSharp.targets" Condition="Exists('..\packages\PostSharp.5.0.52\build\PostSharp.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

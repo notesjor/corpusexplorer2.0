@@ -37,66 +37,130 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "duration")]
-    public string age { get { return ageField; } set { ageField = value; } }
+    public string age
+    {
+      get => ageField;
+      set => ageField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "duration")]
-    public string ageTo { get { return ageToField; } set { ageToField = value; } }
+    public string ageTo
+    {
+      get => ageToField;
+      set => ageToField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "date")]
-    public DateTime birthday { get { return birthdayField; } set { birthdayField = value; } }
+    public DateTime birthday
+    {
+      get => birthdayField;
+      set => birthdayField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool birthdaySpecified { get { return birthdayFieldSpecified; } set { birthdayFieldSpecified = value; } }
+    public bool birthdaySpecified
+    {
+      get => birthdayFieldSpecified;
+      set => birthdayFieldSpecified = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string birthplace { get { return birthplaceField; } set { birthplaceField = value; } }
+    public string birthplace
+    {
+      get => birthplaceField;
+      set => birthplaceField = value;
+    }
 
     /// <remarks />
     [XmlAttribute("custom-field")]
-    public string customfield { get { return customfieldField; } set { customfieldField = value; } }
+    public string customfield
+    {
+      get => customfieldField;
+      set => customfieldField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string education { get { return educationField; } set { educationField = value; } }
+    public string education
+    {
+      get => educationField;
+      set => educationField = value;
+    }
 
     /// <remarks />
     [XmlAttribute("first-language", DataType = "language")]
-    public string firstlanguage { get { return firstlanguageField; } set { firstlanguageField = value; } }
+    public string firstlanguage
+    {
+      get => firstlanguageField;
+      set => firstlanguageField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string group { get { return groupField; } set { groupField = value; } }
+    public string group
+    {
+      get => groupField;
+      set => groupField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "language")]
-    public string[] language { get { return languageField; } set { languageField = value; } }
+    public string[] language
+    {
+      get => languageField;
+      set => languageField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string name { get { return nameField; } set { nameField = value; } }
+    public string name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public roleType role { get { return roleField; } set { roleField = value; } }
+    public roleType role
+    {
+      get => roleField;
+      set => roleField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string SES { get { return sESField; } set { sESField = value; } }
+    public string SES
+    {
+      get => sESField;
+      set => sESField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public sexType sex { get { return sexField; } set { sexField = value; } }
+    public sexType sex
+    {
+      get => sexField;
+      set => sexField = value;
+    }
 
     /// <remarks />
     [XmlIgnore]
-    public bool sexSpecified { get { return sexFieldSpecified; } set { sexFieldSpecified = value; } }
+    public bool sexSpecified
+    {
+      get => sexFieldSpecified;
+      set => sexFieldSpecified = value;
+    }
   }
 }

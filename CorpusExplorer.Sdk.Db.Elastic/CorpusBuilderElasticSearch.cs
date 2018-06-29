@@ -14,20 +14,22 @@ namespace CorpusExplorer.Sdk.Db.Elastic
     public string CorpusDisplayname { get; set; } = "ESCE";
 
     protected override AbstractCorpusAdapter CreateCorpus(
-        Dictionary<Guid, Dictionary<string, object>> documentMetadata,
-        Dictionary<string, object> corpusMetadata,
-        List<Concept> concepts)
-      =>
-      CorpusAdapterElasticSearch.Create(
+      Dictionary<Guid, Dictionary<string, object>> documentMetadata,
+      Dictionary<string, object> corpusMetadata,
+      List<Concept> concepts)
+    {
+      return CorpusAdapterElasticSearch.Create(
         CorpusDisplayname,
         documentMetadata,
         corpusMetadata,
         concepts);
+    }
 
     protected override AbstractLayerAdapter CreateLayer(
-        AbstractCorpusAdapter corpus,
-        AbstractLayerState layer)
-      =>
-      LayerAdapterElasticSearch.Create(corpus, layer);
+      AbstractCorpusAdapter corpus,
+      AbstractLayerState layer)
+    {
+      return LayerAdapterElasticSearch.Create(corpus, layer);
+    }
   }
 }

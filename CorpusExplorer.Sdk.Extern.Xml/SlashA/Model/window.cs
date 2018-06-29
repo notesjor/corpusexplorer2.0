@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string edate { get { return edateField; } set { edateField = value; } }
+    public string edate
+    {
+      get => edateField;
+      set => edateField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string sdate { get { return sdateField; } set { sdateField = value; } }
+    public string sdate
+    {
+      get => sdateField;
+      set => sdateField = value;
+    }
   }
 }

@@ -25,23 +25,23 @@
 
     public string LineAnnotationFixed
     {
-      get { return string.IsNullOrEmpty(_lineAnnotationFixed) ? LineAnnotation : _lineAnnotationFixed; }
-      set { _lineAnnotationFixed = value; }
+      get => string.IsNullOrEmpty(_lineAnnotationFixed) ? LineAnnotation : _lineAnnotationFixed;
+      set => _lineAnnotationFixed = value;
     }
 
-    public int LineNumberAnnoation { get; private set; }
+    public int LineNumberAnnoation { get; }
 
-    public int LineNumberUtterance { get; private set; }
+    public int LineNumberUtterance { get; }
     public string LineUtterance { get; }
 
     public string LineUtteranceFixed
     {
-      get { return string.IsNullOrEmpty(_lineUtteranceFixed) ? LineUtterance : _lineUtteranceFixed; }
-      set { _lineUtteranceFixed = value; }
+      get => string.IsNullOrEmpty(_lineUtteranceFixed) ? LineUtterance : _lineUtteranceFixed;
+      set => _lineUtteranceFixed = value;
     }
 
     public string LineUtteranceParsed { get; set; }
 
-    public string Path { get; private set; }
+    public string Path { get; }
   }
 }

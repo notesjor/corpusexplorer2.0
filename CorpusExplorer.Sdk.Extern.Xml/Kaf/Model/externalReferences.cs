@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlElement("externalRef")]
-    public externalRef[] externalRef { get { return externalRefField; } set { externalRefField = value; } }
+    public externalRef[] externalRef
+    {
+      get => externalRefField;
+      set => externalRefField = value;
+    }
   }
 }

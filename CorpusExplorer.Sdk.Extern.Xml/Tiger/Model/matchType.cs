@@ -23,10 +23,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tiger.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string subgraph { get { return subgraphField; } set { subgraphField = value; } }
+    public string subgraph
+    {
+      get => subgraphField;
+      set => subgraphField = value;
+    }
 
     /// <remarks />
     [XmlElement("variable", Form = XmlSchemaForm.Unqualified)]
-    public varType[] variable { get { return variableField; } set { variableField = value; } }
+    public varType[] variable
+    {
+      get => variableField;
+      set => variableField = value;
+    }
   }
 }

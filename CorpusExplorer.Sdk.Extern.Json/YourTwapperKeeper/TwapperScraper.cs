@@ -12,9 +12,13 @@ namespace CorpusExplorer.Sdk.Extern.Json.YourTwapperKeeper
 {
   public sealed class TwapperScraper : AbstractGenericJsonFormatScraper<TwapperCorpus>
   {
-    protected override AbstractGenericDataReader<TwapperCorpus> DataReader { get { return new TwapperCorpusReader(); } }
+    public override string DisplayName => "TwapperCorpus";
+    protected override AbstractGenericDataReader<TwapperCorpus> DataReader => new TwapperCorpusReader();
 
-    public override string DisplayName { get { return "TwapperCorpus"; } }
+    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(IEnumerable<TwapperCorpus> model)
+    {
+      return from tc in model from tweet in tc.Tweets select Map(tweet);
+    }
 
     private static Dictionary<string, object> Map(Tweet tweet)
     {
@@ -34,11 +38,6 @@ namespace CorpusExplorer.Sdk.Extern.Json.YourTwapperKeeper
         {"Datum", tweet.Time},
         {"Empfänger (ID)", tweet.ToUserId}
       };
-    }
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(IEnumerable<TwapperCorpus> model)
-    {
-      return from tc in model from tweet in tc.Tweets select Map(tweet);
     }
   }
 }

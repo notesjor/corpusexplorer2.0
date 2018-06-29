@@ -3,7 +3,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
 using CorpusExplorer.Sdk.Extern.Xml.Folker.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Folker.Serializer;
@@ -14,12 +13,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker
 {
   public class FolkerScraper : AbstractGenericXmlSerializerFormatScraper<folkertranscription>
   {
-    public override string DisplayName { get { return "FOLKER"; } }
+    public override string DisplayName => "FOLKER";
 
-    protected override AbstractGenericSerializer<folkertranscription> Serializer
-    {
-      get { return new FolkerSerializer(); }
-    }
+    protected override AbstractGenericSerializer<folkertranscription> Serializer => new FolkerSerializer();
 
     /*
       Assert.AreEqual(42, folker.timeline.Length);
@@ -31,7 +27,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker
       Assert.IsTrue((folker.contribution[2].Items[2] as w).Text[0] == "segment");
     */
 
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(folkertranscription model)
+    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, folkertranscription model)
     {
       var dic = new Dictionary<string, object>();
 
@@ -43,7 +39,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker
         dic.Add($"Sprecher Nr. {i + 1}", $"{speaker.name} ({speaker.speakerid})");
       }
 
-      if ((model.recording != null) &&
+      if (model.recording != null &&
           string.IsNullOrEmpty(model.recording.path))
         dic.Add("Datei", model.recording.path);
 

@@ -40,7 +40,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     [XmlElement("tagMarker", typeof(tagMarkerType))]
     [XmlElement("underline", typeof(underline))]
     [XmlElement("w", typeof(wordType))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlElement("duration", typeof(decimal))]
@@ -49,6 +53,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
     [XmlElement("k", typeof(markers))]
     [XmlElement("overlap", typeof(overlapType))]
     [XmlElement("r", typeof(repetitionType))]
-    public object[] Items1 { get { return items1Field; } set { items1Field = value; } }
+    public object[] Items1
+    {
+      get => items1Field;
+      set => items1Field = value;
+    }
   }
 }

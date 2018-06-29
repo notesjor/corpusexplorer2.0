@@ -118,7 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="txt_licence.Text" xml:space="preserve">
-    <value>Der CorpusExplorer steht unter der GPL-Lizenz v2 (http://www.gnu.org/licenses/gpl-2.0.html). Daher können Sie das Programm kostenlos nutzen, studieren und erweitern.  Bitte beachten Sie, dass der CorpusExplorer selbst ein kombiniertes Werk im Sinne der GPL darstellt. Daher müssen Sie bei einer Weiterentwicklung auch die Lizenzen Dritter anerkennen, falls Sie diese nutzen. Aufgrund von Verträgen mit Kooperationspartnern und Drittherstellern ist es derzeit nicht möglich, den Quellcode aller Komponenten offenzulegen. Daher verwenden Sie bitte die offizielle Dokumentation des CorpusExplorers sowie die der Drittanbieter und kein Decompiling.
+    <value>CorpusExplorer v2.0
+Copyright (C) 2013-2018  Jan Oliver Rüdiger
+
+Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 3 der Lizenz oder jeder späteren Version.
+Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.
+Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Programm erhalten haben. Falls nicht, siehe &lt;http://www.gnu.org/licenses/&gt;.
 
 IN KEINEM FALL SIND DIE AUTOREN ODER COPYRIGHTINHABER FÜR JEGLICHEN SCHADEN ODER SONSTIGE ANSPRÜCHE HAFTBAR ZU MACHEN, OB INFOLGE DER ERFÜLLUNG EINES VERTRAGES, EINES DELIKTES ODER ANDERS IM ZUSAMMENHANG MIT DER SOFTWARE ODER SONSTIGER VERWENDUNG DER SOFTWARE ENTSTANDEN.</value>
   </data>

@@ -25,17 +25,33 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "integer")]
-    public string cols { get { return colsField; } set { colsField = value; } }
+    public string cols
+    {
+      get => colsField;
+      set => colsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string role { get { return roleField; } set { roleField = value; } }
+    public string role
+    {
+      get => roleField;
+      set => roleField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "integer")]
-    public string rows { get { return rowsField; } set { rowsField = value; } }
+    public string rows
+    {
+      get => rowsField;
+      set => rowsField = value;
+    }
 
     /// <remarks />
-    public s s { get { return sField; } set { sField = value; } }
+    public s s
+    {
+      get => sField;
+      set => sField = value;
+    }
   }
 }

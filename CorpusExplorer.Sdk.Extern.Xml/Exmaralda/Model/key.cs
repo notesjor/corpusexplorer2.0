@@ -24,12 +24,24 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     private font fontField;
 
     /// <remarks />
-    public string content { get { return contentField; } set { contentField = value; } }
+    public string content
+    {
+      get => contentField;
+      set => contentField = value;
+    }
 
     /// <remarks />
-    public string description { get { return descriptionField; } set { descriptionField = value; } }
+    public string description
+    {
+      get => descriptionField;
+      set => descriptionField = value;
+    }
 
     /// <remarks />
-    public font font { get { return fontField; } set { fontField = value; } }
+    public font font
+    {
+      get => fontField;
+      set => fontField = value;
+    }
   }
 }

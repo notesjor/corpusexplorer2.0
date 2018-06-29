@@ -11,6 +11,9 @@ namespace CorpusExplorer.Sdk.Extern.Json.Abstract
   {
     public abstract IEnumerable<T> ReadData(string path);
 
-    public IEnumerable<T> ReadData(IEnumerable<string> paths) { return paths.SelectMany(ReadData); }
+    public IEnumerable<T> ReadData(IEnumerable<string> paths)
+    {
+      return paths.SelectMany(ReadData);
+    }
   }
 }

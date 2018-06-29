@@ -47,9 +47,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("stage", typeof(stage))]
     [XmlElement("table", typeof(table))]
     [XmlElement("trailer", typeof(trailer))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
-    public postscript postscript { get { return postscriptField; } set { postscriptField = value; } }
+    public postscript postscript
+    {
+      get => postscriptField;
+      set => postscriptField = value;
+    }
   }
 }

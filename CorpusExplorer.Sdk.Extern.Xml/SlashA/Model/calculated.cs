@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string date { get { return dateField; } set { dateField = value; } }
+    public string date
+    {
+      get => dateField;
+      set => dateField = value;
+    }
   }
 }

@@ -27,10 +27,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "integer")]
-    public string cols { get { return colsField; } set { colsField = value; } }
+    public string cols
+    {
+      get => colsField;
+      set => colsField = value;
+    }
 
     /// <remarks />
-    public head head { get { return headField; } set { headField = value; } }
+    public head head
+    {
+      get => headField;
+      set => headField = value;
+    }
 
     /// <remarks />
     [XmlElement("cb", typeof(cb))]
@@ -40,14 +48,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     [XmlElement("note", typeof(note))]
     [XmlElement("pb", typeof(pb))]
     [XmlElement("row", typeof(row))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string rendition { get { return renditionField; } set { renditionField = value; } }
+    public string rendition
+    {
+      get => renditionField;
+      set => renditionField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "integer")]
-    public string rows { get { return rowsField; } set { rowsField = value; } }
+    public string rows
+    {
+      get => rowsField;
+      set => rowsField = value;
+    }
   }
 }

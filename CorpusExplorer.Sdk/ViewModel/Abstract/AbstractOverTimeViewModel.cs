@@ -28,7 +28,10 @@ namespace CorpusExplorer.Sdk.ViewModel.Abstract
 
     public IEnumerable<string> DocumentMetadata => Selection.GetDocumentMetadataPrototypeOnlyProperties();
 
-    public DataTable GetDataTable() { return GetDataTable(DateTimeValues.Count()); }
+    public DataTable GetDataTable()
+    {
+      return GetDataTable(DateTimeValues.Count());
+    }
 
     public Dictionary<DateTime, Guid[]> AggregateDateTimeDocuments(int clusters)
     {
@@ -90,17 +93,6 @@ namespace CorpusExplorer.Sdk.ViewModel.Abstract
       return res;
     }
 
-    protected override void ExecuteAnalyse()
-    {
-      _block = Selection.CreateBlock<OverTimeBlock<T>>();
-      _block.MetadataKey = DateTimeProperty;
-      _block.Function = CalculateFunction;
-      _block.Calculate();
-
-      DateTimeDocuments = _block.DateTimePoints;
-      DateTimeValues = _block.DateTimeValues;
-    }
-
     public DateTime[][] GetClusters(int clusters)
     {
       var min = ClusterMaxDateTime;
@@ -134,18 +126,37 @@ namespace CorpusExplorer.Sdk.ViewModel.Abstract
 
         start = end;
         end = start.AddTicks(section);
-      }
-      while (start < max);
+      } while (start < max);
 
       return res.ToArray();
     }
 
-    public DataTable GetDataTable(int clusters) { return GetDataTable(GetClusters(clusters)); }
+    public DataTable GetDataTable(int clusters)
+    {
+      return GetDataTable(GetClusters(clusters));
+    }
 
-    public DataTable GetDataTable(DateTime[][] clusters) { return GetDataTable(AggregateDateTimeValues(clusters)); }
+    public DataTable GetDataTable(DateTime[][] clusters)
+    {
+      return GetDataTable(AggregateDateTimeValues(clusters));
+    }
 
     public abstract DataTable GetDataTable(Dictionary<DateTime, T> aggregateDateTimeValues);
 
-    protected override bool Validate() { return CalculateFunction != null && !string.IsNullOrEmpty(DateTimeProperty); }
+    protected override void ExecuteAnalyse()
+    {
+      _block = Selection.CreateBlock<OverTimeBlock<T>>();
+      _block.MetadataKey = DateTimeProperty;
+      _block.Function = CalculateFunction;
+      _block.Calculate();
+
+      DateTimeDocuments = _block.DateTimePoints;
+      DateTimeValues = _block.DateTimeValues;
+    }
+
+    protected override bool Validate()
+    {
+      return CalculateFunction != null && !string.IsNullOrEmpty(DateTimeProperty);
+    }
   }
 }

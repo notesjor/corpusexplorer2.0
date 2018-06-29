@@ -1,8 +1,8 @@
-﻿using CorpusExplorer.Sdk.Extern.Xml.Abstract.XmlDocumentBasedScraper;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract.XmlDocumentBasedScraper;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.TextGrid
 {
@@ -12,7 +12,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml.TextGrid
 
     protected override IEnumerable<Dictionary<string, object>> Execute(string file, XmlDocument xmlDoc)
     {
-      var container = xmlDoc.ChildNodes.Cast<XmlNode>().Where(node => node is XmlElement).Cast<XmlElement>().FirstOrDefault(node => node.Name == "teiCorpus");
+      var container = xmlDoc.ChildNodes.Cast<XmlNode>().Where(node => node is XmlElement).Cast<XmlElement>()
+        .FirstOrDefault(node => node.Name == "teiCorpus");
       if (container == null)
         return null;
 
@@ -34,22 +35,21 @@ namespace CorpusExplorer.Sdk.Extern.Xml.TextGrid
           foreach (XmlElement item in current.ChildNodes)
           {
             if (item.Name == "TEI")
-            {
               res.Add(
                 new Dictionary<string, object>
                 {
-                {"Autor", author},
-                {"Datei", fn},
-                {"Titel",  PickInnerXml(item, "teiHeader", "fileDesc", "titleStmt", "title")},
-                {"Anmerkung", PickInnerXml(item, "teiHeader", "fileDesc", "noteStmt", "note") },
-                {"Text", PickInnerXml(item, "text", "body")},
-                {"Jahr", PickAttributeValue(item, "when", "", "teiHeader", "fileDesc", "sourceDesc", "biblFull", "publicationStmt", "date") }
+                  {"Autor", author},
+                  {"Datei", fn},
+                  {"Titel", PickInnerXml(item, "teiHeader", "fileDesc", "titleStmt", "title")},
+                  {"Anmerkung", PickInnerXml(item, "teiHeader", "fileDesc", "noteStmt", "note")},
+                  {"Text", PickInnerXml(item, "text", "body")},
+                  {
+                    "Jahr",
+                    PickAttributeValue(item, "when", "", "teiHeader", "fileDesc", "sourceDesc", "biblFull",
+                      "publicationStmt", "date")
+                  }
                 });
-            }
-            if (item.Name == "teiCorpus")
-            {
-              queue.Enqueue(item);
-            }
+            if (item.Name == "teiCorpus") queue.Enqueue(item);
           }
         }
       }

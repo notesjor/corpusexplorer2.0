@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement("conversion-tli")]
-    public conversiontli[] conversiontli { get { return conversiontliField; } set { conversiontliField = value; } }
+    public conversiontli[] conversiontli
+    {
+      get => conversiontliField;
+      set => conversiontliField = value;
+    }
   }
 }

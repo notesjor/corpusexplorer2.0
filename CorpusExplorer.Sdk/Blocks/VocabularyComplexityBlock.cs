@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.VocabularyComplaxity;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 
 #endregion
 
@@ -40,6 +41,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
       Parallel.ForEach(
         block.DocumentDictionaries,
+        Configuration.ParallelOptions,
         doc =>
         {
           var value = ComplexityAlgorithm.CalculateValue(doc.Value);

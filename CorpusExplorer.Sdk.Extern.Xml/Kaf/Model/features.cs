@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlArrayItem("category", typeof(category), IsNullable = false)]
-    public category[][] categories { get { return categoriesField; } set { categoriesField = value; } }
+    public category[][] categories
+    {
+      get => categoriesField;
+      set => categoriesField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("property", typeof(property), IsNullable = false)]
-    public property[][] properties { get { return propertiesField; } set { propertiesField = value; } }
+    public property[][] properties
+    {
+      get => propertiesField;
+      set => propertiesField = value;
+    }
   }
 }

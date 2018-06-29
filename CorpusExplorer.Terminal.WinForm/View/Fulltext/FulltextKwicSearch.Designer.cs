@@ -1,7 +1,4 @@
-using CorpusExplorer.Terminal.WinForm.Properties;
-using CorpusExplorer.Terminal.WinForm.Controls.WinForm;
-
-namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
+﻿namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 {
   partial class FulltextKwicSearch
   {
@@ -31,216 +28,23 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     /// </summary>
     private void InitializeComponent()
     {
-      this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
-      this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
-      this.txt_query = new Telerik.WinControls.UI.RadAutoCompleteBox();
-      this.clearPanel2 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
-      this.clearPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
-      this.radButton1 = new Telerik.WinControls.UI.RadButton();
-      this.cmb_layer = new Telerik.WinControls.UI.RadDropDownList();
-      this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-      this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
-      this.radSplitContainer2 = new Telerik.WinControls.UI.RadSplitContainer();
-      this.splitPanel3 = new Telerik.WinControls.UI.SplitPanel();
-      this.tree = new Telerik.WinControls.UI.RadTreeView();
+      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
-      this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
-      this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
-      this.commandBarLabel1 = new Telerik.WinControls.UI.CommandBarLabel();
-      this.btn_select_all = new Telerik.WinControls.UI.CommandBarButton();
-      this.btn_select_none = new Telerik.WinControls.UI.CommandBarButton();
-      this.btn_select_invert = new Telerik.WinControls.UI.CommandBarButton();
-      this.btn_snapshot_make = new Telerik.WinControls.UI.RadButton();
-      this.splitPanel4 = new Telerik.WinControls.UI.SplitPanel();
-      this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-      ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
-      this.radSplitContainer1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
-      this.splitPanel1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.txt_query)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel2)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel1)).BeginInit();
-      this.clearPanel1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.cmb_layer)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
-      this.splitPanel2.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer2)).BeginInit();
-      this.radSplitContainer2.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.splitPanel3)).BeginInit();
-      this.splitPanel3.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.tree)).BeginInit();
+      this.commandBarRowElement2 = new Telerik.WinControls.UI.CommandBarRowElement();
+      this.commandBarStripElement2 = new Telerik.WinControls.UI.CommandBarStripElement();
+      this.btn_filterEditor = new Telerik.WinControls.UI.CommandBarButton();
+      this.btn_filter = new Telerik.WinControls.UI.CommandBarButton();
+      this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
+      this.btn_csvExport = new Telerik.WinControls.UI.CommandBarButton();
+      this.btn_print = new Telerik.WinControls.UI.CommandBarButton();
+      this.commandBarSeparator2 = new Telerik.WinControls.UI.CommandBarSeparator();
+      this.btn_snapshot_create = new Telerik.WinControls.UI.CommandBarButton();
+      this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
+      this.wordBag1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WordBag();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.btn_snapshot_make)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.splitPanel4)).BeginInit();
-      this.splitPanel4.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
       this.SuspendLayout();
-      // 
-      // radSplitContainer1
-      // 
-      this.radSplitContainer1.Controls.Add(this.splitPanel1);
-      this.radSplitContainer1.Controls.Add(this.splitPanel2);
-      this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer1.Location = new System.Drawing.Point(0, 0);
-      this.radSplitContainer1.Name = "radSplitContainer1";
-      this.radSplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-      // 
-      // 
-      // 
-      this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer1.Size = new System.Drawing.Size(780, 400);
-      this.radSplitContainer1.TabIndex = 0;
-      this.radSplitContainer1.TabStop = false;
-      this.radSplitContainer1.Text = "radSplitContainer1";
-      // 
-      // splitPanel1
-      // 
-      this.splitPanel1.Controls.Add(this.txt_query);
-      this.splitPanel1.Controls.Add(this.clearPanel2);
-      this.splitPanel1.Controls.Add(this.clearPanel1);
-      this.splitPanel1.Location = new System.Drawing.Point(0, 0);
-      this.splitPanel1.Name = "splitPanel1";
-      // 
-      // 
-      // 
-      this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel1.Size = new System.Drawing.Size(780, 182);
-      this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.03982301F);
-      this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -9);
-      this.splitPanel1.TabIndex = 0;
-      this.splitPanel1.TabStop = false;
-      this.splitPanel1.Text = "splitPanel1";
-      // 
-      // txt_query
-      // 
-      this.txt_query.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.txt_query.Location = new System.Drawing.Point(0, 35);
-      this.txt_query.Name = "txt_query";
-      this.txt_query.NullText = "Suchbegriffe hier eingeben...";
-      this.txt_query.Size = new System.Drawing.Size(780, 127);
-      this.txt_query.TabIndex = 2;
-      // 
-      // clearPanel2
-      // 
-      this.clearPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.clearPanel2.Font = new System.Drawing.Font("Segoe UI", 9F);
-      this.clearPanel2.Location = new System.Drawing.Point(0, 162);
-      this.clearPanel2.Name = "clearPanel2";
-      this.clearPanel2.Size = new System.Drawing.Size(780, 20);
-      this.clearPanel2.TabIndex = 1;
-      this.clearPanel2.Text = "Hinweis: Zum Bestätigen der Begriffe drücken Sie ENTER oder verwenden Sie das Sem" +
-    "ikolon \";\"";
-      // 
-      // clearPanel1
-      // 
-      this.clearPanel1.Controls.Add(this.radButton1);
-      this.clearPanel1.Controls.Add(this.cmb_layer);
-      this.clearPanel1.Controls.Add(this.radLabel1);
-      this.clearPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.clearPanel1.Location = new System.Drawing.Point(0, 0);
-      this.clearPanel1.Name = "clearPanel1";
-      this.clearPanel1.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-      this.clearPanel1.Size = new System.Drawing.Size(780, 35);
-      this.clearPanel1.TabIndex = 0;
-      // 
-      // radButton1
-      // 
-      this.radButton1.Dock = System.Windows.Forms.DockStyle.Right;
-      this.radButton1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.find;
-      this.radButton1.Location = new System.Drawing.Point(691, 3);
-      this.radButton1.Name = "radButton1";
-      this.radButton1.Size = new System.Drawing.Size(89, 32);
-      this.radButton1.TabIndex = 2;
-      this.radButton1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Finden;
-      this.radButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-      this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
-      // 
-      // cmb_layer
-      // 
-      this.cmb_layer.AutoCompleteDisplayMember = null;
-      this.cmb_layer.AutoCompleteValueMember = null;
-      this.cmb_layer.Dock = System.Windows.Forms.DockStyle.Left;
-      this.cmb_layer.Location = new System.Drawing.Point(52, 3);
-      this.cmb_layer.Name = "cmb_layer";
-      this.cmb_layer.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.BitteAuswählen;
-      this.cmb_layer.Size = new System.Drawing.Size(205, 32);
-      this.cmb_layer.TabIndex = 1;
-      this.cmb_layer.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.cmb_layer_SelectedIndexChanged);
-      // 
-      // radLabel1
-      // 
-      this.radLabel1.AutoSize = false;
-      this.radLabel1.Dock = System.Windows.Forms.DockStyle.Left;
-      this.radLabel1.Location = new System.Drawing.Point(0, 3);
-      this.radLabel1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
-      this.radLabel1.Name = "radLabel1";
-      this.radLabel1.Size = new System.Drawing.Size(52, 32);
-      this.radLabel1.TabIndex = 0;
-      this.radLabel1.Text = "Layer:";
-      this.radLabel1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-      // 
-      // splitPanel2
-      // 
-      this.splitPanel2.Controls.Add(this.radSplitContainer2);
-      this.splitPanel2.Location = new System.Drawing.Point(0, 186);
-      this.splitPanel2.Name = "splitPanel2";
-      // 
-      // 
-      // 
-      this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel2.Size = new System.Drawing.Size(780, 214);
-      this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.03982301F);
-      this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 9);
-      this.splitPanel2.TabIndex = 1;
-      this.splitPanel2.TabStop = false;
-      this.splitPanel2.Text = "splitPanel2";
-      // 
-      // radSplitContainer2
-      // 
-      this.radSplitContainer2.Controls.Add(this.splitPanel3);
-      this.radSplitContainer2.Controls.Add(this.splitPanel4);
-      this.radSplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer2.Location = new System.Drawing.Point(0, 0);
-      this.radSplitContainer2.Name = "radSplitContainer2";
-      // 
-      // 
-      // 
-      this.radSplitContainer2.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer2.Size = new System.Drawing.Size(780, 214);
-      this.radSplitContainer2.SplitterWidth = 8;
-      this.radSplitContainer2.TabIndex = 0;
-      this.radSplitContainer2.TabStop = false;
-      this.radSplitContainer2.Text = "radSplitContainer2";
-      this.radSplitContainer2.UseSplitterButtons = true;
-      // 
-      // splitPanel3
-      // 
-      this.splitPanel3.Controls.Add(this.tree);
-      this.splitPanel3.Controls.Add(this.radCommandBar1);
-      this.splitPanel3.Controls.Add(this.btn_snapshot_make);
-      this.splitPanel3.Location = new System.Drawing.Point(0, 0);
-      this.splitPanel3.Name = "splitPanel3";
-      // 
-      // 
-      // 
-      this.splitPanel3.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel3.Size = new System.Drawing.Size(386, 214);
-      this.splitPanel3.TabIndex = 0;
-      this.splitPanel3.TabStop = false;
-      this.splitPanel3.Text = "splitPanel3";
-      // 
-      // tree
-      // 
-      this.tree.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.tree.ItemHeight = 40;
-      this.tree.Location = new System.Drawing.Point(0, 44);
-      this.tree.Name = "tree";
-      this.tree.Size = new System.Drawing.Size(386, 137);
-      this.tree.TabIndex = 0;
-      this.tree.Text = "radTreeView1";
-      this.tree.TreeIndent = 40;
-      this.tree.NodeCheckedChanged += new Telerik.WinControls.UI.TreeNodeCheckedEventHandler(this.tree_NodeCheckedChanged);
       // 
       // radCommandBar1
       // 
@@ -248,165 +52,149 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
-            this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(386, 44);
-      this.radCommandBar1.TabIndex = 2;
-      this.radCommandBar1.Text = "radCommandBar1";
+            this.commandBarRowElement2});
+      this.radCommandBar1.Size = new System.Drawing.Size(780, 44);
+      this.radCommandBar1.TabIndex = 0;
       // 
-      // commandBarRowElement1
+      // commandBarRowElement2
       // 
-      this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
-      this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
-            this.commandBarStripElement1});
+      this.commandBarRowElement2.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement2.Name = "commandBarRowElement2";
+      this.commandBarRowElement2.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
+            this.commandBarStripElement2});
       // 
-      // commandBarStripElement1
+      // commandBarStripElement2
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
-      this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
-            this.commandBarLabel1,
-            this.btn_select_all,
-            this.btn_select_none,
-            this.btn_select_invert});
-      this.commandBarStripElement1.Name = "commandBarStripElement1";
+      this.commandBarStripElement2.DisplayName = "commandBarStripElement2";
+      this.commandBarStripElement2.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
+            this.btn_filterEditor,
+            this.btn_filter,
+            this.commandBarSeparator1,
+            this.btn_csvExport,
+            this.btn_print,
+            this.commandBarSeparator2,
+            this.btn_snapshot_create});
+      this.commandBarStripElement2.Name = "commandBarStripElement2";
       // 
-      // commandBarLabel1
+      // btn_filterEditor
       // 
-      this.commandBarLabel1.AccessibleDescription = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Auswahl;
-      this.commandBarLabel1.AccessibleName = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Auswahl;
-      this.commandBarLabel1.DisplayName = "commandBarLabel1";
-      this.commandBarLabel1.Name = "commandBarLabel1";
-      this.commandBarLabel1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Auswahl;
+      this.btn_filterEditor.DisplayName = "commandBarButton1";
+      this.btn_filterEditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.grid_list;
+      this.btn_filterEditor.Name = "btn_filterEditor";
+      this.btn_filterEditor.Text = "Filtereditor";
+      this.btn_filterEditor.Click += new System.EventHandler(this.btn_filterEditor_Click);
       // 
-      // btn_select_all
+      // btn_filter
       // 
-      this.btn_select_all.AccessibleDescription = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Alle;
-      this.btn_select_all.AccessibleName = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Alle;
-      this.btn_select_all.DisplayName = "commandBarButton1";
-      this.btn_select_all.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.select_all;
-      this.btn_select_all.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-      this.btn_select_all.Name = "btn_select_all";
-      this.btn_select_all.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Alle;
-      this.btn_select_all.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.AlleAuswählen;
-      this.btn_select_all.Click += new System.EventHandler(this.btn_select_all_Click);
+      this.btn_filter.DisplayName = "commandBarButton1";
+      this.btn_filter.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_list;
+      this.btn_filter.Name = "btn_filter";
+      this.btn_filter.Text = "Filterliste";
+      this.btn_filter.Click += new System.EventHandler(this.btn_filter_Click);
       // 
-      // btn_select_none
+      // commandBarSeparator1
       // 
-      this.btn_select_none.AccessibleDescription = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Keine;
-      this.btn_select_none.AccessibleName = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Keine;
-      this.btn_select_none.DisplayName = "commandBarButton2";
-      this.btn_select_none.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.select_none;
-      this.btn_select_none.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-      this.btn_select_none.Name = "btn_select_none";
-      this.btn_select_none.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Keine;
-      this.btn_select_none.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.AuswahlLöschen;
-      this.btn_select_none.Click += new System.EventHandler(this.btn_select_none_Click);
+      this.commandBarSeparator1.AccessibleDescription = "commandBarSeparator1";
+      this.commandBarSeparator1.AccessibleName = "commandBarSeparator1";
+      this.commandBarSeparator1.DisplayName = "commandBarSeparator1";
+      this.commandBarSeparator1.Name = "commandBarSeparator1";
+      this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
-      // btn_select_invert
+      // btn_csvExport
       // 
-      this.btn_select_invert.AccessibleDescription = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Invertieren;
-      this.btn_select_invert.AccessibleName = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Invertieren;
-      this.btn_select_invert.DisplayName = "commandBarButton3";
-      this.btn_select_invert.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.select_invert;
-      this.btn_select_invert.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-      this.btn_select_invert.Name = "btn_select_invert";
-      this.btn_select_invert.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Invertieren;
-      this.btn_select_invert.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.AuswahlInvertieren;
-      this.btn_select_invert.Click += new System.EventHandler(this.btn_select_invert_Click);
+      this.btn_csvExport.DisplayName = "commandBarButton3";
+      this.btn_csvExport.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
+      this.btn_csvExport.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.btn_csvExport.Name = "btn_csvExport";
+      this.btn_csvExport.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.CSVExport;
+      this.btn_csvExport.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.CSVExport;
+      this.btn_csvExport.Click += new System.EventHandler(this.btn_csvExport_Click);
       // 
-      // btn_snapshot_make
+      // btn_print
       // 
-      this.btn_snapshot_make.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.btn_snapshot_make.Font = new System.Drawing.Font("Segoe UI", 9F);
-      this.btn_snapshot_make.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.camera1;
-      this.btn_snapshot_make.Location = new System.Drawing.Point(0, 181);
-      this.btn_snapshot_make.Name = "btn_snapshot_make";
-      this.btn_snapshot_make.Size = new System.Drawing.Size(386, 33);
-      this.btn_snapshot_make.TabIndex = 1;
-      this.btn_snapshot_make.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Html_SelectedTextsToSelection;
-      this.btn_snapshot_make.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-      this.btn_snapshot_make.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-      this.btn_snapshot_make.Click += new System.EventHandler(this.btn_snapshot_make_Click);
+      this.btn_print.DisplayName = "commandBarButton4";
+      this.btn_print.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.print;
+      this.btn_print.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.btn_print.Name = "btn_print";
+      this.btn_print.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Drucken;
+      this.btn_print.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Drucken;
+      this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
       // 
-      // splitPanel4
+      // commandBarSeparator2
       // 
-      this.splitPanel4.Controls.Add(this.elementHost1);
-      this.splitPanel4.Location = new System.Drawing.Point(394, 0);
-      this.splitPanel4.Name = "splitPanel4";
+      this.commandBarSeparator2.AccessibleDescription = "commandBarSeparator2";
+      this.commandBarSeparator2.AccessibleName = "commandBarSeparator2";
+      this.commandBarSeparator2.DisplayName = "commandBarSeparator2";
+      this.commandBarSeparator2.Name = "commandBarSeparator2";
+      this.commandBarSeparator2.VisibleInOverflowMenu = false;
+      // 
+      // btn_snapshot_create
+      // 
+      this.btn_snapshot_create.DisplayName = "commandBarButton1";
+      this.btn_snapshot_create.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.camera_add;
+      this.btn_snapshot_create.Name = "btn_snapshot_create";
+      this.btn_snapshot_create.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.SchnappschussErstellen;
+      this.btn_snapshot_create.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.SchnappschussErstellen;
+      this.btn_snapshot_create.Click += new System.EventHandler(this.btn_snapshot_create_Click);
+      // 
+      // radGridView1
+      // 
+      this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.radGridView1.Location = new System.Drawing.Point(0, 80);
       // 
       // 
       // 
-      this.splitPanel4.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel4.Size = new System.Drawing.Size(386, 214);
-      this.splitPanel4.TabIndex = 1;
-      this.splitPanel4.TabStop = false;
-      this.splitPanel4.Text = "splitPanel4";
+      this.radGridView1.MasterTemplate.AllowAddNewRow = false;
+      this.radGridView1.MasterTemplate.AllowDeleteRow = false;
+      this.radGridView1.MasterTemplate.AllowEditRow = false;
+      this.radGridView1.MasterTemplate.EnableFiltering = true;
+      this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition2;
+      this.radGridView1.Name = "radGridView1";
+      this.radGridView1.Size = new System.Drawing.Size(780, 320);
+      this.radGridView1.TabIndex = 1;
       // 
-      // elementHost1
+      // wordBag1
       // 
-      this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.elementHost1.Location = new System.Drawing.Point(0, 0);
-      this.elementHost1.Name = "elementHost1";
-      this.elementHost1.Size = new System.Drawing.Size(386, 214);
-      this.elementHost1.TabIndex = 0;
-      this.elementHost1.Text = "elementHost1";
-      this.elementHost1.Child = null;
+      this.wordBag1.BackColor = System.Drawing.Color.White;
+      this.wordBag1.Dock = System.Windows.Forms.DockStyle.Top;
+      this.wordBag1.Font = new System.Drawing.Font("Segoe UI", 11F);
+      this.wordBag1.Location = new System.Drawing.Point(0, 44);
+      this.wordBag1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+      this.wordBag1.Name = "wordBag1";
+      this.wordBag1.ResultSelectedLayerDisplayname = "Wort";
+      this.wordBag1.Size = new System.Drawing.Size(780, 36);
+      this.wordBag1.TabIndex = 2;
+      this.wordBag1.ExecuteButtonClicked += new System.EventHandler(this.wordBag1_ExecuteButtonClicked);
       // 
       // FulltextKwicSearch
       // 
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.Controls.Add(this.radSplitContainer1);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.Controls.Add(this.radGridView1);
+      this.Controls.Add(this.wordBag1);
+      this.Controls.Add(this.radCommandBar1);
       this.Name = "FulltextKwicSearch";
-      ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
-      this.radSplitContainer1.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
-      this.splitPanel1.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.txt_query)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel2)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel1)).EndInit();
-      this.clearPanel1.ResumeLayout(false);
-      this.clearPanel1.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.cmb_layer)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
-      this.splitPanel2.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer2)).EndInit();
-      this.radSplitContainer2.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.splitPanel3)).EndInit();
-      this.splitPanel3.ResumeLayout(false);
-      this.splitPanel3.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.tree)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.btn_snapshot_make)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.splitPanel4)).EndInit();
-      this.splitPanel4.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
     #endregion
 
-    private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
-    private Telerik.WinControls.UI.SplitPanel splitPanel1;
-    private Telerik.WinControls.UI.RadAutoCompleteBox txt_query;
-    private ClearPanel clearPanel2;
-    private ClearPanel clearPanel1;
-    private Telerik.WinControls.UI.RadDropDownList cmb_layer;
-    private Telerik.WinControls.UI.RadLabel radLabel1;
-    private Telerik.WinControls.UI.SplitPanel splitPanel2;
-    private Telerik.WinControls.UI.RadSplitContainer radSplitContainer2;
-    private Telerik.WinControls.UI.SplitPanel splitPanel3;
-    private Telerik.WinControls.UI.RadTreeView tree;
-    private Telerik.WinControls.UI.SplitPanel splitPanel4;
-    private System.Windows.Forms.Integration.ElementHost elementHost1;
-    private Telerik.WinControls.UI.RadButton btn_snapshot_make;
-    private Telerik.WinControls.UI.RadButton radButton1;
     private Telerik.WinControls.UI.RadCommandBar radCommandBar1;
-    private Telerik.WinControls.UI.CommandBarRowElement commandBarRowElement1;
-    private Telerik.WinControls.UI.CommandBarStripElement commandBarStripElement1;
-    private Telerik.WinControls.UI.CommandBarLabel commandBarLabel1;
-    private Telerik.WinControls.UI.CommandBarButton btn_select_all;
-    private Telerik.WinControls.UI.CommandBarButton btn_select_none;
-    private Telerik.WinControls.UI.CommandBarButton btn_select_invert;
+    private Telerik.WinControls.UI.CommandBarRowElement commandBarRowElement2;
+    private Telerik.WinControls.UI.CommandBarStripElement commandBarStripElement2;
+    private Telerik.WinControls.UI.CommandBarButton btn_filterEditor;
+    private Telerik.WinControls.UI.CommandBarButton btn_filter;
+    private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator1;
+    private Telerik.WinControls.UI.CommandBarButton btn_csvExport;
+    private Telerik.WinControls.UI.CommandBarButton btn_print;
+    private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator2;
+    private Telerik.WinControls.UI.CommandBarButton btn_snapshot_create;
+    private Telerik.WinControls.UI.RadGridView radGridView1;
+    private Controls.WinForm.WordBag wordBag1;
   }
 }

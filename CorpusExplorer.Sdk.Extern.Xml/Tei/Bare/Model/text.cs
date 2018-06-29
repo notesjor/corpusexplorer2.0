@@ -24,12 +24,24 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Bare.Model
     private front frontField;
 
     /// <remarks />
-    public back back { get { return backField; } set { backField = value; } }
+    public back back
+    {
+      get => backField;
+      set => backField = value;
+    }
 
     /// <remarks />
-    public body body { get { return bodyField; } set { bodyField = value; } }
+    public body body
+    {
+      get => bodyField;
+      set => bodyField = value;
+    }
 
     /// <remarks />
-    public front front { get { return frontField; } set { frontField = value; } }
+    public front front
+    {
+      get => frontField;
+      set => frontField = value;
+    }
   }
 }

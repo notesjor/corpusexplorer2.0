@@ -1,74 +1,55 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
+namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.clarin.eu/cmd/1")]
-  [System.Xml.Serialization.XmlRootAttribute("CMD", Namespace = "http://www.clarin.eu/cmd/1", IsNullable = false)]
-  public partial class CMD1
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true, Namespace = "http://www.clarin.eu/cmd/1")]
+  [XmlRoot("CMD", Namespace = "http://www.clarin.eu/cmd/1", IsNullable = false)]
+  public class CMD1
   {
+    private string cMDVersionField;
+
+    private teiHeader componentsField;
 
     private Header headerField;
 
     private Resources resourcesField;
 
-    private teiHeader componentsField;
-
-    private string cMDVersionField;
-
-    /// <remarks/>
-    public Header Header
-    {
-      get
-      {
-        return this.headerField;
-      }
-      set
-      {
-        this.headerField = value;
-      }
-    }
-
-    /// <remarks/>
-    public Resources Resources
-    {
-      get
-      {
-        return this.resourcesField;
-      }
-      set
-      {
-        this.resourcesField = value;
-      }
-    }
-
-    /// <remarks/>
-    public teiHeader Components
-    {
-      get
-      {
-        return this.componentsField;
-      }
-      set
-      {
-        this.componentsField = value;
-      }
-    }
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    /// <remarks />
+    [XmlAttribute]
     public string CMDVersion
     {
-      get
-      {
-        return this.cMDVersionField;
-      }
-      set
-      {
-        this.cMDVersionField = value;
-      }
+      get => cMDVersionField;
+      set => cMDVersionField = value;
+    }
+
+    /// <remarks />
+    public teiHeader Components
+    {
+      get => componentsField;
+      set => componentsField = value;
+    }
+
+    /// <remarks />
+    public Header Header
+    {
+      get => headerField;
+      set => headerField = value;
+    }
+
+    /// <remarks />
+    public Resources Resources
+    {
+      get => resourcesField;
+      set => resourcesField = value;
     }
   }
 }

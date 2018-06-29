@@ -14,9 +14,11 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step.Abstract
       Queries = new string[0];
     }
 
+    public IEnumerable<string> Queries { get; set; }
+
     protected DataTable RequestDataTableViaTextLive(Selection selection, AbstractFilterQuery query)
     {
-      var vm = new TextLiveSearchViewModel { Selection = selection };
+      var vm = new TextLiveSearchViewModel {Selection = selection};
       vm.AddQuery(query);
       vm.Analyse();
 
@@ -28,14 +30,12 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step.Abstract
       dt.BeginLoadData();
 
       foreach (var entry in vm.GetUniqueData())
-        foreach (var sentence in entry.Sentences)
-          dt.Rows.Add(entry.Pre, entry.Match, entry.Post, sentence.Key);
+      foreach (var sentence in entry.Sentences)
+        dt.Rows.Add(entry.Pre, entry.Match, entry.Post, sentence.Key);
 
       dt.EndLoadData();
 
       return dt;
     }
-
-    public IEnumerable<string> Queries { get; set; }
   }
 }

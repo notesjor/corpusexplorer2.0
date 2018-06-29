@@ -16,5 +16,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
   [DebuggerStepThrough]
   [DesignerCategory("code")]
   [XmlType(AnonymousType = true)]
-  public class CommunicationTypeSetting : SettingType {}
+  public class CommunicationTypeSetting : SettingType
+  {
+  }
 }

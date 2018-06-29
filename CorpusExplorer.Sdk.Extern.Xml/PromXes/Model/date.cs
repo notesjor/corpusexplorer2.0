@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.PromXes.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NMTOKEN")]
-    public string key { get { return keyField; } set { keyField = value; } }
+    public string key
+    {
+      get => keyField;
+      set => keyField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public DateTime value { get { return valueField; } set { valueField = value; } }
+    public DateTime value
+    {
+      get => valueField;
+      set => valueField = value;
+    }
   }
 }

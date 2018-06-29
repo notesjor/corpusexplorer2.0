@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
 
     /// <remarks />
     [XmlElement("w")]
-    public w[] w { get { return wField; } set { wField = value; } }
+    public w[] w
+    {
+      get => wField;
+      set => wField = value;
+    }
   }
 }

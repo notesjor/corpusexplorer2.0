@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlElement("entity")]
-    public entity[] entity { get { return entityField; } set { entityField = value; } }
+    public entity[] entity
+    {
+      get => entityField;
+      set => entityField = value;
+    }
   }
 }

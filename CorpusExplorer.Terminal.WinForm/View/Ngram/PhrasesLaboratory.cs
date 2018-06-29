@@ -42,7 +42,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       radGridView3.DataSource = _vm.GetPhrasesFrequencyTable();
     }
 
-    private void btn_colors_Click(object sender, EventArgs e) { RefreshColors(); }
+    private void btn_colors_Click(object sender, EventArgs e)
+    {
+      RefreshColors();
+    }
 
     private void btn_rules_load_Click(object sender, EventArgs e)
     {
@@ -57,8 +60,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
 
       radGridView1.Rows.Clear();
       foreach (var level in settings.Grammar.Rules)
-        foreach (var rule in level.Value)
-          radGridView1.Rows.Add(level.Key, rule.Label, rule is ExactGrammarRule ? ((ExactGrammarRule) rule).Body : "");
+      foreach (var rule in level.Value)
+        radGridView1.Rows.Add(level.Key, rule.Label, rule is ExactGrammarRule grammarRule ? grammarRule.Body : "");
 
       radGridView2.Rows.Clear();
       foreach (var color in settings.Colorset)
@@ -104,7 +107,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       RefreshVisualisation();
     }
 
-    private void btn_update_Click(object sender, EventArgs e) { RefreshVisualisation(); }
+    private void btn_update_Click(object sender, EventArgs e)
+    {
+      RefreshVisualisation();
+    }
 
     private void btn_update_phrases_Click(object sender, EventArgs e)
     {
@@ -117,7 +123,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       IEnumerable<Constituent> data,
       Dictionary<string, KeyValuePair<Brush, Brush>> colors)
     {
-      if ((data == null) ||
+      if (data == null ||
           !data.Any())
         return;
 
@@ -153,11 +159,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     private Dictionary<string, KeyValuePair<Brush, Brush>> GetColorset()
     {
       return radGridView2.Rows.ToDictionary(
-                           row => row.Cells["Terminal"].Value.ToString(),
-                           row =>
-                             new KeyValuePair<Brush, Brush>(
-                               GetBrush(row.Cells["ForeColor"].Value),
-                               GetBrush(row.Cells["BackColor"].Value)));
+        row => row.Cells["Terminal"].Value.ToString(),
+        row =>
+          new KeyValuePair<Brush, Brush>(
+            GetBrush(row.Cells["ForeColor"].Value),
+            GetBrush(row.Cells["BackColor"].Value)));
     }
 
     private PhraseGrammar GetGrammar()
@@ -169,18 +175,21 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
         {
           // ReSharper disable once MergeConditionalExpression
           var level = row.Cells[Resources.Priority].Value == null
-                        ? 0
-                        : Convert.ToInt32(row.Cells[Resources.Priority].Value);
+            ? 0
+            : Convert.ToInt32(row.Cells[Resources.Priority].Value);
 
           if (!res.Rules.ContainsKey(level))
             res.Rules.Add(level, new List<AbstractGrammarRule>());
 
           res.Rules[level].Add(
-               new ExactGrammarRule(
-                 row.Cells["Terminal"].Value.ToString(),
-                 row.Cells[Resources.Expression].Value.ToString()));
+            new ExactGrammarRule(
+              row.Cells["Terminal"].Value.ToString(),
+              row.Cells[Resources.Expression].Value.ToString()));
         }
-        catch {}
+        catch
+        {
+          // ignore
+        }
 
       return res;
     }
@@ -199,7 +208,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
 
     private void OnShowView(object sender, EventArgs eventArgs)
     {
-      _vm = ViewModelGet<PhrasesLaboratoryViewModel>();
+      _vm = GetViewModel<PhrasesLaboratoryViewModel>();
       _vm.Analyse();
       DictionaryBindingHelper.BindDictionary(_vm.Documents, combo_document);
       combo_document.SelectedIndex = 0;

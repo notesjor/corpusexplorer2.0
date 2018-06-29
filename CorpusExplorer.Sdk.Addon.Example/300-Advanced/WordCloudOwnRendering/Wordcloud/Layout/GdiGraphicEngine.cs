@@ -44,7 +44,10 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
     public float MinFontSize { get; set; }
     public Color[] Palette { get; }
 
-    public void Dispose() { m_Graphics.Dispose(); }
+    public void Dispose()
+    {
+      m_Graphics.Dispose();
+    }
 
     public void Draw(LayoutItem layoutItem)
     {
@@ -62,7 +65,7 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
       //m_Graphics.DrawString(layoutItem.Word, font, brush, layoutItem.Rectangle);
       var point = new Point((int) layoutItem.Rectangle.X, (int) layoutItem.Rectangle.Y);
       TextRenderer.DrawText(m_Graphics, layoutItem.Word.Label, font, point, Color.LightGray);
-      var offset = (int) (5*font.Size/MaxFontSize) + 1;
+      var offset = (int) (5 * font.Size / MaxFontSize) + 1;
       point.Offset(-offset, -offset);
       TextRenderer.DrawText(m_Graphics, layoutItem.Word.Label, font, point, color);
     }
@@ -76,8 +79,8 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
 
     private Font GetFont(int weight)
     {
-      var fontSize = (float) (weight - m_MinWordWeight)/(m_MaxWordWeight - m_MinWordWeight)
-                     *(MaxFontSize - MinFontSize) + MinFontSize;
+      var fontSize = (float) (weight - m_MinWordWeight) / (m_MaxWordWeight - m_MinWordWeight)
+                     * (MaxFontSize - MinFontSize) + MinFontSize;
       if (Math.Abs(m_LastUsedFont.Size - fontSize) > 0)
         m_LastUsedFont = new Font(FontFamily, fontSize, FontStyle);
       return m_LastUsedFont;
@@ -85,7 +88,7 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
 
     private Color GetPresudoRandomColorFromPalette(LayoutItem layoutItem)
     {
-      var color = Palette[layoutItem.Word.Occurrences*layoutItem.Word.Label.Length%Palette.Length];
+      var color = Palette[layoutItem.Word.Occurrences * layoutItem.Word.Label.Length % Palette.Length];
       return color;
     }
   }

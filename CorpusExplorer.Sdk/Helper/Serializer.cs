@@ -3,7 +3,6 @@
 using System;
 using System.IO;
 using System.IO.Compression;
-using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
@@ -63,102 +62,6 @@ namespace CorpusExplorer.Sdk.Helper
       }
     }
 
-    private static object DeserializeBinaryFormatterCompressed(string path)
-    {
-      try
-      {
-        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-        {
-          using (var gs = new GZipStream(fs, CompressionMode.Decompress))
-          {
-            var bf = new BinaryFormatter();
-            return bf.Deserialize(gs);
-          }
-        }
-      }
-      catch (Exception ex)
-      {
-        if (LogErrors)
-          InMemoryErrorConsole.Log(ex);
-        return null;
-      }
-    }
-
-    private static object DeserializeBinaryFormatterUncompressed(string path)
-    {
-      try
-      {
-        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None, (int)new FileInfo(path).Length))
-        {
-          var bf = new BinaryFormatter();
-          return bf.Deserialize(fs);
-        }
-      }
-      catch (Exception ex)
-      {
-        if (LogErrors)
-          InMemoryErrorConsole.Log(ex);
-        return null;
-      }
-    }
-
-    private static object DeserializeDataContractCompressed(string path, Type type)
-    {
-      try
-      {
-        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-        {
-          using (var gs = new GZipStream(fs, CompressionMode.Decompress))
-          {
-            var dcs = new DataContractSerializer(type);
-            return dcs.ReadObject(gs);
-          }
-        }
-      }
-      catch (Exception ex)
-      {
-        if (LogErrors)
-          InMemoryErrorConsole.Log(ex);
-        return null;
-      }
-    }
-
-    private static object DeserializeDataContractUncompressed(string path, Type type)
-    {
-      try
-      {
-        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-        {
-          var dcs = new DataContractSerializer(type);
-          return dcs.ReadObject(fs);
-        }
-      }
-      catch (Exception ex)
-      {
-        if (LogErrors)
-          InMemoryErrorConsole.Log(ex);
-        return null;
-      }
-    }
-
-    private static object DeserializeDotNetXml(string path, Type type)
-    {
-      try
-      {
-        var serializer = new XmlSerializer(type);
-        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-        {
-          return serializer.Deserialize(fs);
-        }
-      }
-      catch (Exception ex)
-      {
-        if (LogErrors)
-          InMemoryErrorConsole.Log(ex);
-        return null;
-      }
-    }
-
     public static T DeserializeFromBase64String<T>(string base64String)
       where T : class
     {
@@ -178,77 +81,6 @@ namespace CorpusExplorer.Sdk.Helper
       }
     }
 
-    private static object DeserializeJson(string path)
-    {
-      try
-      {
-        return JsonConvert.DeserializeObject(File.ReadAllText(path));
-      }
-      catch (Exception ex)
-      {
-        if (LogErrors)
-          InMemoryErrorConsole.Log(ex);
-        return null;
-      }
-    }
-
-    private static object DeserializeNetDataContractCompressed(string path)
-    {
-      try
-      {
-        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-        {
-          using (var gs = new GZipStream(fs, CompressionMode.Decompress))
-          {
-            var bf = new NetDataContractSerializer();
-            return bf.Deserialize(gs);
-          }
-        }
-      }
-      catch (Exception ex)
-      {
-        if (LogErrors)
-          InMemoryErrorConsole.Log(ex);
-        return null;
-      }
-    }
-
-    private static object DeserializeNetDataContractUncompressed(string path)
-    {
-      try
-      {
-        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-        {
-          var bf = new NetDataContractSerializer();
-          return bf.Deserialize(fs);
-        }
-      }
-      catch (Exception ex)
-      {
-        if (LogErrors)
-          InMemoryErrorConsole.Log(ex);
-        return null;
-      }
-    }
-
-    private static object DeserializeSharpSerializer(string path)
-    {
-      try
-      {
-        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-        {
-          var serializer = new SharpSerializer();
-          return serializer.Deserialize(fs);
-        }
-      }
-      catch (Exception ex)
-      {
-        if (LogErrors)
-          InMemoryErrorConsole.Log(ex);
-        return null;
-      }
-    }
-
     public static T InMemoryDeserialize<T>(byte[] buffer)
     {
       try
@@ -258,7 +90,7 @@ namespace CorpusExplorer.Sdk.Helper
           using (var gz = new GZipStream(fs, CompressionMode.Decompress))
           {
             var bf = new NetDataContractSerializer();
-            return (T)bf.Deserialize(gz);
+            return (T) bf.Deserialize(gz);
           }
         }
       }
@@ -281,6 +113,7 @@ namespace CorpusExplorer.Sdk.Helper
             var bf = new NetDataContractSerializer();
             bf.Serialize(gz, obj);
           }
+
           return fs.ToArray();
         }
       }
@@ -310,37 +143,16 @@ namespace CorpusExplorer.Sdk.Helper
         SerializeUncompressed(obj, path);
     }
 
-    private static void SerializeCompressed<T>(T obj, string path)
-    {
-      try
-      {
-        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
-        {
-          using (var gs = new GZipStream(fs, CompressionLevel.Fastest))
-          {
-            var bf = new BinaryFormatter();
-            bf.Serialize(gs, obj);
-          }
-        }
-      }
-      catch (Exception ex)
-      {
-        if (LogErrors)
-          InMemoryErrorConsole.Log(ex);
-      }
-    }
-
     public static void SerializeJson<T>(T obj, string path)
     {
       try
       {
         using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+        using (var bs = new BufferedStream(fs))
+        using (var write = new StreamWriter(bs))
         {
-          using (var write = new StreamWriter(fs))
-          {
-            var json = new JsonSerializer();
-            json.Serialize(write, obj);
-          }
+          var json = new JsonSerializer();
+          json.Serialize(write, obj);
         }
       }
       catch (Exception ex)
@@ -370,31 +182,15 @@ namespace CorpusExplorer.Sdk.Helper
       }
     }
 
-    private static void SerializeUncompressed<T>(T obj, string path)
-    {
-      try
-      {
-        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
-        {
-          var bf = new BinaryFormatter();
-          bf.Serialize(fs, obj);
-        }
-      }
-      catch (Exception ex)
-      {
-        if (LogErrors)
-          InMemoryErrorConsole.Log(ex);
-      }
-    }
-
     public static void SerializeXml<T>(T obj, string path)
     {
       try
       {
         using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+        using (var bs = new BufferedStream(fs))
         {
           var serializer = new SharpSerializer();
-          serializer.Serialize(obj, fs);
+          serializer.Serialize(obj, bs);
         }
       }
       catch (Exception ex)
@@ -409,9 +205,10 @@ namespace CorpusExplorer.Sdk.Helper
       try
       {
         using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+        using (var bs = new BufferedStream(fs))
         {
           var serializer = new DataContractSerializer(typeof(T));
-          serializer.WriteObject(fs, obj);
+          serializer.WriteObject(bs, obj);
         }
       }
       catch (Exception ex)
@@ -426,9 +223,217 @@ namespace CorpusExplorer.Sdk.Helper
       try
       {
         using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+        using (var bs = new BufferedStream(fs))
         {
           var serializer = new XmlSerializer(typeof(T));
-          serializer.Serialize(fs, obj);
+          serializer.Serialize(bs, obj);
+        }
+      }
+      catch (Exception ex)
+      {
+        if (LogErrors)
+          InMemoryErrorConsole.Log(ex);
+      }
+    }
+
+    private static object DeserializeBinaryFormatterCompressed(string path)
+    {
+      try
+      {
+        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+        using (var gs = new GZipStream(fs, CompressionMode.Decompress))
+        using (var bs = new BufferedStream(gs))
+        {
+          var bf = new BinaryFormatter();
+          return bf.Deserialize(bs);
+        }
+      }
+      catch (Exception ex)
+      {
+        if (LogErrors)
+          InMemoryErrorConsole.Log(ex);
+        return null;
+      }
+    }
+
+    private static object DeserializeBinaryFormatterUncompressed(string path)
+    {
+      try
+      {
+        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None,
+          (int) new FileInfo(path).Length))
+        using (var bs = new BufferedStream(fs))
+        {
+          var bf = new BinaryFormatter();
+          return bf.Deserialize(bs);
+        }
+      }
+      catch (Exception ex)
+      {
+        if (LogErrors)
+          InMemoryErrorConsole.Log(ex);
+        return null;
+      }
+    }
+
+    private static object DeserializeDataContractCompressed(string path, Type type)
+    {
+      try
+      {
+        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+        using (var gs = new GZipStream(fs, CompressionMode.Decompress))
+        using (var bs = new BufferedStream(gs))
+        {
+          var dcs = new DataContractSerializer(type);
+          return dcs.ReadObject(bs);
+        }
+      }
+      catch (Exception ex)
+      {
+        if (LogErrors)
+          InMemoryErrorConsole.Log(ex);
+        return null;
+      }
+    }
+
+    private static object DeserializeDataContractUncompressed(string path, Type type)
+    {
+      try
+      {
+        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+        using (var bs = new BufferedStream(fs))
+        {
+          var dcs = new DataContractSerializer(type);
+          return dcs.ReadObject(bs);
+        }
+      }
+      catch (Exception ex)
+      {
+        if (LogErrors)
+          InMemoryErrorConsole.Log(ex);
+        return null;
+      }
+    }
+
+    private static object DeserializeDotNetXml(string path, Type type)
+    {
+      try
+      {
+        var serializer = new XmlSerializer(type);
+        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+        using (var bs = new BufferedStream(fs))
+        {
+          return serializer.Deserialize(bs);
+        }
+      }
+      catch (Exception ex)
+      {
+        if (LogErrors)
+          InMemoryErrorConsole.Log(ex);
+        return null;
+      }
+    }
+
+    private static object DeserializeJson(string path)
+    {
+      try
+      {
+        return JsonConvert.DeserializeObject(File.ReadAllText(path));
+      }
+      catch (Exception ex)
+      {
+        if (LogErrors)
+          InMemoryErrorConsole.Log(ex);
+        return null;
+      }
+    }
+
+    private static object DeserializeNetDataContractCompressed(string path)
+    {
+      try
+      {
+        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+        using (var gs = new GZipStream(fs, CompressionMode.Decompress))
+        using (var bs = new BufferedStream(gs))
+        {
+          var bf = new NetDataContractSerializer();
+          return bf.Deserialize(bs);
+        }
+      }
+      catch (Exception ex)
+      {
+        if (LogErrors)
+          InMemoryErrorConsole.Log(ex);
+        return null;
+      }
+    }
+
+    private static object DeserializeNetDataContractUncompressed(string path)
+    {
+      try
+      {
+        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+        using (var bs = new BufferedStream(fs))
+        {
+          var bf = new NetDataContractSerializer();
+          return bf.Deserialize(bs);
+        }
+      }
+      catch (Exception ex)
+      {
+        if (LogErrors)
+          InMemoryErrorConsole.Log(ex);
+        return null;
+      }
+    }
+
+    private static object DeserializeSharpSerializer(string path)
+    {
+      try
+      {
+        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+        using (var bs = new BufferedStream(fs))
+        {
+          var serializer = new SharpSerializer();
+          return serializer.Deserialize(bs);
+        }
+      }
+      catch (Exception ex)
+      {
+        if (LogErrors)
+          InMemoryErrorConsole.Log(ex);
+        return null;
+      }
+    }
+
+    private static void SerializeCompressed<T>(T obj, string path)
+    {
+      try
+      {
+        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+        using (var gs = new GZipStream(fs, CompressionLevel.Fastest))
+        using (var bs = new BufferedStream(gs))
+        {
+          var bf = new BinaryFormatter();
+          bf.Serialize(bs, obj);
+        }
+      }
+      catch (Exception ex)
+      {
+        if (LogErrors)
+          InMemoryErrorConsole.Log(ex);
+      }
+    }
+
+    private static void SerializeUncompressed<T>(T obj, string path)
+    {
+      try
+      {
+        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+        using (var bs = new BufferedStream(fs))
+        {
+          var bf = new BinaryFormatter();
+          bf.Serialize(bs, obj);
         }
       }
       catch (Exception ex)

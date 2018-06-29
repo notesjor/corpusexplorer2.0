@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
 
     /// <remarks />
     [XmlElement("col")]
-    public alignmentColumn[] col { get { return colField; } set { colField = value; } }
+    public alignmentColumn[] col
+    {
+      get => colField;
+      set => colField = value;
+    }
   }
 }

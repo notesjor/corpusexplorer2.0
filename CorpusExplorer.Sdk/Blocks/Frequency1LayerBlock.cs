@@ -23,16 +23,17 @@ namespace CorpusExplorer.Sdk.Blocks
   [Serializable]
   public class Frequency1LayerBlock : AbstractSimple1LayerBlock, IProvideAggregatedDataItems
   {
-    [NonSerialized]
-    private readonly BlockCacheHelper _cache = new BlockCacheHelper();
+    [NonSerialized] private readonly BlockCacheHelper _cache = new BlockCacheHelper();
 
     /// <summary>
     ///   The _lock frequency.
     /// </summary>
-    [NonSerialized]
-    private object _lockFrequency;
+    [NonSerialized] private object _lockFrequency;
 
-    public Frequency1LayerBlock() { LayerDisplayname = "Wort"; }
+    public Frequency1LayerBlock()
+    {
+      LayerDisplayname = "Wort";
+    }
 
     /// <summary>
     ///   Wort/Frequenz-Wörterbuch
@@ -132,7 +133,9 @@ namespace CorpusExplorer.Sdk.Blocks
     /// <summary>
     ///   The calculate finalize.
     /// </summary>
-    protected override void CalculateFinalize() { }
+    protected override void CalculateFinalize()
+    {
+    }
 
     /// <summary>
     ///   The calculate init properties.

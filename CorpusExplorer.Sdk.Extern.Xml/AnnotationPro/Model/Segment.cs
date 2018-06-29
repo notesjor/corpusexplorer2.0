@@ -37,63 +37,139 @@ namespace CorpusExplorer.Sdk.Extern.Xml.AnnotationPro.Model
 
     /// <remarks />
     [XmlElement(DataType = "integer")]
-    public string ForeColor { get { return foreColorField; } set { foreColorField = value; } }
+    public string ForeColor
+    {
+      get => foreColorField;
+      set => foreColorField = value;
+    }
 
     /// <remarks />
     [XmlElement(DataType = "integer")]
-    public string BackColor { get { return backColorField; } set { backColorField = value; } }
+    public string BackColor
+    {
+      get => backColorField;
+      set => backColorField = value;
+    }
 
     /// <remarks />
     [XmlElement(DataType = "integer")]
-    public string BorderColor { get { return borderColorField; } set { borderColorField = value; } }
+    public string BorderColor
+    {
+      get => borderColorField;
+      set => borderColorField = value;
+    }
 
     /// <remarks />
-    public decimal Duration { get { return durationField; } set { durationField = value; } }
+    public decimal Duration
+    {
+      get => durationField;
+      set => durationField = value;
+    }
 
     /// <remarks />
-    public string Feature { get { return featureField; } set { featureField = value; } }
+    public string Feature
+    {
+      get => featureField;
+      set => featureField = value;
+    }
 
 
     /// <remarks />
-    public string Group { get { return groupField; } set { groupField = value; } }
+    public string Group
+    {
+      get => groupField;
+      set => groupField = value;
+    }
 
     /// <remarks />
-    public string Id { get { return idField; } set { idField = value; } }
+    public string Id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
-    public string IdLayer { get { return idLayerField; } set { idLayerField = value; } }
+    public string IdLayer
+    {
+      get => idLayerField;
+      set => idLayerField = value;
+    }
 
     /// <remarks />
-    public bool IsMarker { get { return isMarkerField; } set { isMarkerField = value; } }
+    public bool IsMarker
+    {
+      get => isMarkerField;
+      set => isMarkerField = value;
+    }
 
     /// <remarks />
-    public bool IsSelected { get { return isSelectedField; } set { isSelectedField = value; } }
+    public bool IsSelected
+    {
+      get => isSelectedField;
+      set => isSelectedField = value;
+    }
 
     /// <remarks />
-    public string Label { get { return labelField; } set { labelField = value; } }
+    public string Label
+    {
+      get => labelField;
+      set => labelField = value;
+    }
 
     /// <remarks />
-    public string Language { get { return languageField; } set { languageField = value; } }
+    public string Language
+    {
+      get => languageField;
+      set => languageField = value;
+    }
 
     /// <remarks />
-    public string Marker { get { return markerField; } set { markerField = value; } }
+    public string Marker
+    {
+      get => markerField;
+      set => markerField = value;
+    }
 
     /// <remarks />
-    public string Name { get { return nameField; } set { nameField = value; } }
+    public string Name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
 
     /// <remarks />
-    public string Parameter1 { get { return parameter1Field; } set { parameter1Field = value; } }
+    public string Parameter1
+    {
+      get => parameter1Field;
+      set => parameter1Field = value;
+    }
 
     /// <remarks />
-    public string Parameter2 { get { return parameter2Field; } set { parameter2Field = value; } }
+    public string Parameter2
+    {
+      get => parameter2Field;
+      set => parameter2Field = value;
+    }
 
     /// <remarks />
-    public string Parameter3 { get { return parameter3Field; } set { parameter3Field = value; } }
+    public string Parameter3
+    {
+      get => parameter3Field;
+      set => parameter3Field = value;
+    }
 
     /// <remarks />
-    public string RScript { get { return rScriptField; } set { rScriptField = value; } }
+    public string RScript
+    {
+      get => rScriptField;
+      set => rScriptField = value;
+    }
 
     /// <remarks />
-    public decimal Start { get { return startField; } set { startField = value; } }
+    public decimal Start
+    {
+      get => startField;
+      set => startField = value;
+    }
   }
 }

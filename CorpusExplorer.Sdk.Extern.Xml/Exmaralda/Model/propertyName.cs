@@ -15,50 +15,39 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
   public enum propertyName
   {
     /// <remarks />
-    [XmlEnum("font-color")]
-    fontcolor,
+    [XmlEnum("font-color")] fontcolor,
 
     /// <remarks />
-    [XmlEnum("bg-color")]
-    bgcolor,
+    [XmlEnum("bg-color")] bgcolor,
 
     /// <remarks />
-    [XmlEnum("font-size")]
-    fontsize,
+    [XmlEnum("font-size")] fontsize,
 
     /// <remarks />
-    [XmlEnum("font-name")]
-    fontname,
+    [XmlEnum("font-name")] fontname,
 
     /// <remarks />
     frame,
 
     /// <remarks />
-    [XmlEnum("font-face")]
-    fontface,
+    [XmlEnum("font-face")] fontface,
 
     /// <remarks />
-    [XmlEnum("chunk-border")]
-    chunkborder,
+    [XmlEnum("chunk-border")] chunkborder,
 
     /// <remarks />
-    [XmlEnum("chunk-border-color")]
-    chunkbordercolor,
+    [XmlEnum("chunk-border-color")] chunkbordercolor,
 
     /// <remarks />
-    [XmlEnum("chunk-border-style")]
-    chunkborderstyle,
+    [XmlEnum("chunk-border-style")] chunkborderstyle,
 
     /// <remarks />
-    [XmlEnum("text-alignment")]
-    textalignment,
+    [XmlEnum("text-alignment")] textalignment,
 
     /// <remarks />
-    [XmlEnum("row-height-calculation")]
-    rowheightcalculation,
+    [XmlEnum("row-height-calculation")] rowheightcalculation,
 
     /// <remarks />
-    [XmlEnum("fixed-row-height")]
-    fixedrowheight
+    [XmlEnum("fixed-row-height")] fixedrowheight
   }
 }

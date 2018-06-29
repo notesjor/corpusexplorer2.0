@@ -23,7 +23,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Pmg.Model
     table,
 
     /// <remarks />
-    [XmlEnum("table-fix")]
-    tablefix
+    [XmlEnum("table-fix")] tablefix
   }
 }

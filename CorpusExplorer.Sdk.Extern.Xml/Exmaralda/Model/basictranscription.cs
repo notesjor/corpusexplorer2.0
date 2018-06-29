@@ -26,22 +26,34 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlElement("basic-body")]
-    public basicbody basicbody { get { return basicbodyField; } set { basicbodyField = value; } }
+    public basicbody basicbody
+    {
+      get => basicbodyField;
+      set => basicbodyField = value;
+    }
 
     /// <remarks />
     [XmlElement("head")]
-    public head head { get { return headField; } set { headField = value; } }
+    public head head
+    {
+      get => headField;
+      set => headField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string Id { get { return idField; } set { idField = value; } }
+    public string Id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlElement("tierformat-table")]
     public tierformattable tierformattable
     {
-      get { return tierformattableField; }
-      set { tierformattableField = value; }
+      get => tierformattableField;
+      set => tierformattableField = value;
     }
   }
 }

@@ -42,6 +42,9 @@ namespace CorpusExplorer.Sdk.ViewModel
       NGramFrequency = block.NGramFrequency;
     }
 
-    protected override bool Validate() { return true; }
+    protected override bool Validate()
+    {
+      return true;
+    }
   }
 }

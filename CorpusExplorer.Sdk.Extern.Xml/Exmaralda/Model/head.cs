@@ -26,12 +26,16 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     [XmlElement("meta-information")]
     public metainformation metainformation
     {
-      get { return metainformationField; }
-      set { metainformationField = value; }
+      get => metainformationField;
+      set => metainformationField = value;
     }
 
     /// <remarks />
     [XmlArrayItem("speaker", IsNullable = false)]
-    public speaker[] speakertable { get { return speakertableField; } set { speakertableField = value; } }
+    public speaker[] speakertable
+    {
+      get => speakertableField;
+      set => speakertableField = value;
+    }
   }
 }

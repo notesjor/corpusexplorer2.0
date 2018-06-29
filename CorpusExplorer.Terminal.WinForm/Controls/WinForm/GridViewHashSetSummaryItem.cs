@@ -7,7 +7,10 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
   {
     private readonly HashSet<string> _hashSet;
 
-    public GridViewHashSetSummaryItem() { _hashSet = new HashSet<string>(); }
+    public GridViewHashSetSummaryItem()
+    {
+      _hashSet = new HashSet<string>();
+    }
 
     public override object Evaluate(IHierarchicalRow row)
     {

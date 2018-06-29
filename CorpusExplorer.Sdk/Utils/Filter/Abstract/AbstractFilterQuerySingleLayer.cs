@@ -18,11 +18,9 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
   [Serializable]
   public abstract class AbstractFilterQuerySingleLayer : AbstractFilterQuery
   {
-    [XmlIgnore]
-    protected Dictionary<Guid, HashSet<int>> _cache;
+    [XmlIgnore] protected Dictionary<Guid, HashSet<int>> _cache;
 
-    [XmlAttribute]
-    private IEnumerable<string> _layerQueries;
+    [XmlAttribute] private IEnumerable<string> _layerQueries;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractFilterQuerySingleLayer" /> class.
@@ -54,14 +52,6 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
       }
     }
 
-    private void ClearCache()
-    {
-      lock (_getCachedIndicesLock)
-      {
-        _cache = new Dictionary<Guid, HashSet<int>>();
-      }
-    }
-
     /// <summary>
     ///   Gibt alle Wort-Index Übereinstimmungen zurück die das Query oder desseb OrQuery in gewählten Korpus - Dokument - Satz
     ///   hat.
@@ -73,7 +63,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     ///   GetSentenceIndices() abgefragt werden.
     /// </param>
     /// <returns>Auflistung aller Vorkommen im Satz</returns>
-    protected override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       int[][] doc;
       HashSet<int> indices;
@@ -87,6 +77,14 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
       }
 
       return indices != null && indices.Count > 0 ? GetWordIndicesCall(doc[sentence], indices) : null;
+    }
+
+    private void ClearCache()
+    {
+      lock (_getCachedIndicesLock)
+      {
+        _cache = new Dictionary<Guid, HashSet<int>>();
+      }
     }
 
     #region Methods
@@ -120,8 +118,8 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
       }
 
       return indices != null && indices.Count > 0
-               ? GetSentencesFirstIndexCall(doc[sentence], new HashSet<int>(indices))
-               : -1;
+        ? GetSentencesFirstIndexCall(doc[sentence], new HashSet<int>(indices))
+        : -1;
     }
 
     /// <summary>
@@ -164,19 +162,24 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
       }
     }
 
-    protected readonly object _getCachedIndicesLock = new object();
+    private readonly object _getCachedIndicesLock = new object();
 
-    protected virtual HashSet<int> GetCachedIndices(AbstractLayerAdapter layer)
+    private HashSet<int> GetCachedIndices(AbstractLayerAdapter layer)
     {
       lock (_getCachedIndicesLock)
       {
         if (_cache.ContainsKey(layer.Guid))
           return _cache[layer.Guid];
 
-        var res = new HashSet<int>(layer.ValuesToIndices(LayerQueries));
+        var res = GetCachedIndicesCall(layer, LayerQueries);
         _cache.Add(layer.Guid, res);
         return res;
       }
+    }
+
+    protected virtual HashSet<int> GetCachedIndicesCall(AbstractLayerAdapter layer, IEnumerable<string> layerQueries)
+    {
+      return new HashSet<int>(layer.ValuesToIndices(layerQueries));
     }
 
     /// <summary>

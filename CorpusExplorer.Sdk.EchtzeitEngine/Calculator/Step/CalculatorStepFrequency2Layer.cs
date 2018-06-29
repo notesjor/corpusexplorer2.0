@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step.Abstract;
@@ -19,6 +18,8 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
 
     public override string Method => "Frequency2Layer";
 
+    public int Top { get; set; }
+
     public override void Calculate(Selection selection, ref UniversalStorage output)
     {
       var block = selection.CreateBlock<Frequency2LayerBlock>();
@@ -28,14 +29,12 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
 
       if (Top > 0)
         tmp = (from x in tmp
-               from y in x.Value
-               orderby y.Value
-               descending
-               select x).Take(Top);
+          from y in x.Value
+          orderby y.Value
+            descending
+          select x).Take(Top);
 
       output.Set(selection, Method, "", tmp.ToDataTable(block.Layer1Displayname, block.Layer2Displayname, "Frequency"));
     }
-
-    public int Top { get; set; }
   }
 }

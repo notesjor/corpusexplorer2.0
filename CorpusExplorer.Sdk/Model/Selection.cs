@@ -34,39 +34,29 @@ namespace CorpusExplorer.Sdk.Model
     /// <summary>
     ///   The _sub selections.
     /// </summary>
-    [XmlArray]
-    private readonly List<Selection> _subSelections = new List<Selection>();
+    [XmlArray] private readonly List<Selection> _subSelections = new List<Selection>();
 
-    [XmlIgnore]
-    [NonSerialized]
-    private int _countSentences = -1;
+    [XmlIgnore] [NonSerialized] private int _countSentences = -1;
 
-    [XmlIgnore]
-    [NonSerialized]
-    private int _countToken = -1;
+    [XmlIgnore] [NonSerialized] private int _countToken = -1;
 
-    [XmlIgnore]
-    [NonSerialized]
-    private Dictionary<Guid, Dictionary<string, object>> _documentMetadata;
+    [XmlIgnore] [NonSerialized] private Dictionary<Guid, Dictionary<string, object>> _documentMetadata;
 
-    [XmlIgnore]
-    [NonSerialized]
-    private Project _project;
+    [XmlIgnore] [NonSerialized] private Project _project;
 
     /// <summary>
     ///   Selected Corpora and Documents
     /// </summary>
-    [XmlIgnore]
-    [NonSerialized]
-    private Dictionary<Guid, HashSet<Guid>> _selection;
+    [XmlIgnore] [NonSerialized] private Dictionary<Guid, HashSet<Guid>> _selection;
 
-    [XmlArray]
-    private KeyValuePair<Guid, HashSet<Guid>>[] _selectionSerialized;
+    [XmlArray] private KeyValuePair<Guid, HashSet<Guid>>[] _selectionSerialized;
 
     /// <summary>
     ///   Prevents a default instance of the <see cref="Selection" /> class from being created.
     /// </summary>
-    private Selection() { }
+    private Selection()
+    {
+    }
 
     /// <summary>
     ///   Gets the document guids and displaynames.
@@ -95,18 +85,12 @@ namespace CorpusExplorer.Sdk.Model
               // ignore
             }
         }
+
         return res;
       }
     }
 
-    /// <summary>
-    ///   Gets or sets the project.
-    /// </summary>
-    [XmlIgnore]
-    internal Project Project { get => _project; set => _project = value; }
-
-    [XmlIgnore]
-    public AbstractFilterQuery[] Queries { get; internal set; }
+    [XmlIgnore] public AbstractFilterQuery[] Queries { get; internal set; }
 
     /// <summary>
     ///   Unterauswahlen die auf dieser Auswahl basieren.
@@ -121,6 +105,16 @@ namespace CorpusExplorer.Sdk.Model
     /// </summary>
     [XmlElement]
     public string Verbal => Displayname;
+
+    /// <summary>
+    ///   Gets or sets the project.
+    /// </summary>
+    [XmlIgnore]
+    internal Project Project
+    {
+      get => _project;
+      set => _project = value;
+    }
 
     /// <summary>
     ///   Erstellt ein neues Objekt, das eine Kopie der aktuellen Instanz darstellt.
@@ -271,6 +265,7 @@ namespace CorpusExplorer.Sdk.Model
           foreach (var dsel in csel.Value)
             _countSentences += corpus.GetDocumentLengthInSentences(dsel);
         }
+
         Project.GetDocumentLengthInSentences(_selection);
         return _countSentences;
       }
@@ -293,6 +288,7 @@ namespace CorpusExplorer.Sdk.Model
           foreach (var dsel in csel.Value)
             _countToken += corpus.GetDocumentLengthInWords(dsel);
         }
+
         return _countToken;
       }
     }
@@ -341,6 +337,7 @@ namespace CorpusExplorer.Sdk.Model
 
         Parallel.ForEach(
           _selection,
+          Configuration.ParallelOptions,
           csel =>
           {
             var corpus = GetCorpus(csel.Key);
@@ -374,7 +371,7 @@ namespace CorpusExplorer.Sdk.Model
     /// </returns>
     public IEnumerable<Guid> FindDocumentByMetadata(string exampleKey, object exampleValue)
     {
-      return FindDocumentByMetadata(new Dictionary<string, object> { { exampleKey, exampleValue } });
+      return FindDocumentByMetadata(new Dictionary<string, object> {{exampleKey, exampleValue}});
     }
 
     /// <summary>
@@ -582,12 +579,12 @@ namespace CorpusExplorer.Sdk.Model
       var res = new Dictionary<string, HashSet<object>>();
 
       foreach (var x in meta)
-        foreach (var y in x.Value)
-        {
-          if (!res.ContainsKey(y.Key))
-            res.Add(y.Key, new HashSet<object>());
-          res[y.Key].Add(y.Value);
-        }
+      foreach (var y in x.Value)
+      {
+        if (!res.ContainsKey(y.Key))
+          res.Add(y.Key, new HashSet<object>());
+        res[y.Key].Add(y.Value);
+      }
 
       return res;
     }
@@ -600,29 +597,6 @@ namespace CorpusExplorer.Sdk.Model
     {
       var meta = DocumentMetadata;
       return new HashSet<string>(from x in meta from y in x.Value select y.Key);
-    }
-    
-    public Dictionary<string, Type> GetDocumentMetadataPrototypeOnlyPropertiesAndTypes()
-    {
-      var input = GetDocumentMetadataPrototype();
-      var res = new Dictionary<string, Type>();
-
-      foreach (var p in input)
-      {
-        var temp = new Dictionary<Type, int>();
-
-        foreach (var o in p.Value)
-        {
-          var t = o.GetType();
-          if (temp.ContainsKey(t))
-            temp[t]++;
-          else 
-            temp.Add(t, 1);
-        }
-
-        res.Add(p.Key, temp.OrderByDescending(x => x.Value).First().Key);
-      }
-      return res;
     }
 
     public IEnumerable<object> GetDocumentMetadataPrototypeOnlyPropertieValues(string property)
@@ -692,10 +666,10 @@ namespace CorpusExplorer.Sdk.Model
     public AbstractLayerAdapter GetLayerOfDocument(Guid documentGuid, string layerDisplayname)
     {
       return (from csel in _selection
-              select Project.GetCorpus(csel.Key)
-              into corpus
-              where corpus != null && corpus.ContainsDocument(documentGuid)
-              select corpus.GetLayerOfDocument(documentGuid, layerDisplayname)).FirstOrDefault();
+        select Project.GetCorpus(csel.Key)
+        into corpus
+        where corpus != null && corpus.ContainsDocument(documentGuid)
+        select corpus.GetLayerOfDocument(documentGuid, layerDisplayname)).FirstOrDefault();
     }
 
     /// <summary>
@@ -711,9 +685,9 @@ namespace CorpusExplorer.Sdk.Model
     {
       return
         _selection.Select(csel => Project.GetCorpus(csel.Key))
-                  .Where(corpus => corpus != null)
-                  .SelectMany(corpus => corpus.Layers)
-                  .Where(layer => layer.Displayname == displayname);
+          .Where(corpus => corpus != null)
+          .SelectMany(corpus => corpus.Layers)
+          .Where(layer => layer.Displayname == displayname);
     }
 
     /// <summary>
@@ -728,10 +702,10 @@ namespace CorpusExplorer.Sdk.Model
     public IEnumerable<AbstractLayerAdapter> GetLayersOfDocument(Guid documentGuid)
     {
       return (from csel in _selection
-              select Project.GetCorpus(csel.Key)
-              into corpus
-              where corpus != null && corpus.ContainsDocument(documentGuid)
-              select corpus.GetLayersOfDocument(documentGuid)).FirstOrDefault();
+        select Project.GetCorpus(csel.Key)
+        into corpus
+        where corpus != null && corpus.ContainsDocument(documentGuid)
+        select corpus.GetLayersOfDocument(documentGuid)).FirstOrDefault();
     }
 
     /// <summary>
@@ -744,11 +718,11 @@ namespace CorpusExplorer.Sdk.Model
       var res = new HashSet<string>();
 
       foreach (var value in from csel in Project.CorporaGuids
-                            select Project.GetCorpus(csel)
-                            into corpus
-                            from layer in corpus.GetLayers(layerDisplayname)
-                            from value in layer.Values
-                            select value)
+        select Project.GetCorpus(csel)
+        into corpus
+        from layer in corpus.GetLayers(layerDisplayname)
+        from value in layer.Values
+        select value)
         res.Add(value);
 
       return res;
@@ -837,7 +811,10 @@ namespace CorpusExplorer.Sdk.Model
       Project.LayerCopy(layerDisplaynameOriginal, layerDisplaynameCopy);
     }
 
-    public void LayerDelete(string layerDisplayname) { Project.LayerDelete(layerDisplayname); }
+    public void LayerDelete(string layerDisplayname)
+    {
+      Project.LayerDelete(layerDisplayname);
+    }
 
     /// <summary>
     ///   Gets the layer displaynames.
@@ -858,7 +835,10 @@ namespace CorpusExplorer.Sdk.Model
     [XmlIgnore]
     public IEnumerable<Guid> LayerGuids => ProxyRequestList(x => x.LayerGuids);
 
-    public void LayerNew(string layerDisplayname) { Project.LayerNew(layerDisplayname); }
+    public void LayerNew(string layerDisplayname)
+    {
+      Project.LayerNew(layerDisplayname);
+    }
 
     public void LayerRename(string layerDisplaynameOld, string layerDisplaynameNew)
     {
@@ -883,6 +863,7 @@ namespace CorpusExplorer.Sdk.Model
         var res = new HashSet<string>();
         Parallel.ForEach(
           _selection,
+          Configuration.ParallelOptions,
           csel =>
           {
             var corpus = GetCorpus(csel.Key);
@@ -979,8 +960,6 @@ namespace CorpusExplorer.Sdk.Model
       Project.SetNewDocumentMetadata(metadataKey, type);
     }
 
-    internal void AddSubSelection(Selection res) { _subSelections.Add(res); }
-
     /// <summary>
     ///   Interne Spezialfunktion die eine bereits definierte Auswahl in eine Selection umwandelt.
     /// </summary>
@@ -1048,7 +1027,7 @@ namespace CorpusExplorer.Sdk.Model
 
     public Selection CreateTemporary(Dictionary<Guid, HashSet<Guid>> definition)
     {
-      return new Selection { _selection = definition, Displayname = Resources.TemporarySelection, Project = Project };
+      return new Selection {_selection = definition, Displayname = Resources.TemporarySelection, Project = Project};
     }
 
     public Selection CreateTemporary(IEnumerable<Guid> definition)
@@ -1062,11 +1041,14 @@ namespace CorpusExplorer.Sdk.Model
           res[guid].Add(g);
       }
 
-      return new Selection { _selection = res, Displayname = Resources.TemporarySelection, Project = Project };
+      return new Selection {_selection = res, Displayname = Resources.TemporarySelection, Project = Project};
     }
 
     public Selection CreateTemporary(IEnumerable<AbstractFilterQuery> queries)
     {
+      if (queries == null)
+        return null;
+
       return new Selection
       {
         Queries = queries.ToArray(),
@@ -1074,6 +1056,31 @@ namespace CorpusExplorer.Sdk.Model
         Displayname = Resources.TemporarySelection,
         Project = Project
       };
+    }
+
+    public Dictionary<Guid, int[]> GetSelectedSentences()
+    {
+      if (Queries == null)
+        return null;
+
+      var res = new Dictionary<Guid, int[]>();
+      Parallel.ForEach(this, csel =>
+      {
+        var corpus = GetCorpus(csel.Key);
+        if (corpus == null)
+          return;
+
+        Parallel.ForEach(csel.Value, dsel =>
+        {
+          var sentences = Queries.SelectMany(query => query.GetSentenceIndices(corpus, dsel)).ToArray();
+          if (sentences.Length == 0)
+            return;
+
+          res.Add(dsel, sentences);
+        });
+      });
+
+      return res;
     }
 
     public Dictionary<Guid, object> GetCorporaMetaData(string metadataKey)
@@ -1090,14 +1097,16 @@ namespace CorpusExplorer.Sdk.Model
         T value;
         try
         {
-          value = (T)data;
+          value = (T) data;
         }
         catch
         {
           value = default(T);
         }
+
         dictionary.Add(pair.Key, value);
       }
+
       return dictionary;
     }
 
@@ -1111,9 +1120,39 @@ namespace CorpusExplorer.Sdk.Model
       return _selection.ContainsKey(corpusGuid) ? GetCorpus(corpusGuid).GetCorpusMetadata() : null;
     }
 
-    public Guid GetDocumentGuid(int index) { return _selection.SelectMany(c => c.Value).ToArray()[index]; }
+    public Guid GetDocumentGuid(int index)
+    {
+      return _selection.SelectMany(c => c.Value).ToArray()[index];
+    }
 
-    public Project GetParentProject() { return _project; }
+    public Dictionary<string, Type> GetDocumentMetadataPrototypeOnlyPropertiesAndTypes()
+    {
+      var input = GetDocumentMetadataPrototype();
+      var res = new Dictionary<string, Type>();
+
+      foreach (var p in input)
+      {
+        var temp = new Dictionary<Type, int>();
+
+        foreach (var o in p.Value)
+        {
+          var t = o.GetType();
+          if (temp.ContainsKey(t))
+            temp[t]++;
+          else
+            temp.Add(t, 1);
+        }
+
+        res.Add(p.Key, temp.OrderByDescending(x => x.Value).First().Key);
+      }
+
+      return res;
+    }
+
+    public Project GetParentProject()
+    {
+      return _project;
+    }
 
     /// <summary>
     ///   Virtualisiert
@@ -1134,6 +1173,68 @@ namespace CorpusExplorer.Sdk.Model
         indices.Add(i);
 
       return sentences.Where((t, i) => indices.Contains(i)).ToArray();
+    }
+
+    public void RemoveSelection(Selection selection)
+    {
+      _subSelections.Remove(selection);
+    }
+
+    /// <summary>
+    ///   Verändert die Auswahl.
+    ///   Achtung: Dabei werden alle Blöcke und Unterselektionen gelöscht.
+    /// </summary>
+    /// <param name="queries">Queries</param>
+    public void Reselect(IEnumerable<AbstractFilterQuery> queries)
+    {
+      _subSelections.Clear();
+
+      var temp = Create(queries, Displayname);
+      _selection = temp._selection;
+    }
+
+    public Dictionary<Guid, HashSet<Guid>> ToDictionary()
+    {
+      var res = new Dictionary<Guid, HashSet<Guid>>();
+      foreach (var csel in _selection)
+      {
+        var hs = new HashSet<Guid>();
+        foreach (var dsel in csel.Value)
+          hs.Add(dsel);
+        res.Add(csel.Key, hs);
+      }
+
+      return res;
+    }
+
+    internal void AddSubSelection(Selection res)
+    {
+      _subSelections.Add(res);
+    }
+
+    /// <summary>
+    ///   The remove.
+    /// </summary>
+    /// <param name="corpusGuid">
+    ///   The corpus guid.
+    /// </param>
+    internal void Remove(Guid corpusGuid)
+    {
+      _selection.Remove(corpusGuid);
+    }
+
+    /// <summary>
+    ///   The remove.
+    /// </summary>
+    /// <param name="corpusGuid">
+    ///   The corpus guid.
+    /// </param>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    internal void Remove(Guid corpusGuid, Guid documentGuid)
+    {
+      _selection[corpusGuid].Remove(documentGuid);
     }
 
     [OnDeserialized]
@@ -1179,6 +1280,7 @@ namespace CorpusExplorer.Sdk.Model
       var res = new ConcurrentDictionary<TK, TV>();
       Parallel.ForEach(
         _selection,
+        Configuration.ParallelOptions,
         csel =>
         {
           var corpus = GetCorpus(csel.Key);
@@ -1209,6 +1311,7 @@ namespace CorpusExplorer.Sdk.Model
       var res = new List<T>();
       Parallel.ForEach(
         _selection,
+        Configuration.ParallelOptions,
         csel =>
         {
           var corpus = GetCorpus(csel.Key);
@@ -1221,59 +1324,6 @@ namespace CorpusExplorer.Sdk.Model
             res.AddRange(items);
           }
         });
-      return res;
-    }
-
-    /// <summary>
-    ///   The remove.
-    /// </summary>
-    /// <param name="corpusGuid">
-    ///   The corpus guid.
-    /// </param>
-    internal void Remove(Guid corpusGuid)
-    {
-      _selection.Remove(corpusGuid);
-    }
-
-    /// <summary>
-    ///   The remove.
-    /// </summary>
-    /// <param name="corpusGuid">
-    ///   The corpus guid.
-    /// </param>
-    /// <param name="documentGuid">
-    ///   The document guid.
-    /// </param>
-    internal void Remove(Guid corpusGuid, Guid documentGuid)
-    {
-      _selection[corpusGuid].Remove(documentGuid);
-    }
-
-    public void RemoveSelection(Selection selection) { _subSelections.Remove(selection); }
-
-    /// <summary>
-    ///   Verändert die Auswahl.
-    ///   Achtung: Dabei werden alle Blöcke und Unterselektionen gelöscht.
-    /// </summary>
-    /// <param name="queries">Queries</param>
-    public void Reselect(IEnumerable<AbstractFilterQuery> queries)
-    {
-      _subSelections.Clear();
-
-      var temp = Create(queries, Displayname);
-      _selection = temp._selection;
-    }
-
-    public Dictionary<Guid, HashSet<Guid>> ToDictionary()
-    {
-      var res = new Dictionary<Guid, HashSet<Guid>>();
-      foreach (var csel in _selection)
-      {
-        var hs = new HashSet<Guid>();
-        foreach (var dsel in csel.Value)
-          hs.Add(dsel);
-        res.Add(csel.Key, hs);
-      }
       return res;
     }
 
@@ -1297,6 +1347,6 @@ namespace CorpusExplorer.Sdk.Model
     /// </param>
     /// <typeparam name="T">
     /// </typeparam>
-    private delegate IEnumerable<T> ProxyRequestListDelegate<out T>(AbstractCorpusAdapter c);    
+    private delegate IEnumerable<T> ProxyRequestListDelegate<out T>(AbstractCorpusAdapter c);
   }
 }

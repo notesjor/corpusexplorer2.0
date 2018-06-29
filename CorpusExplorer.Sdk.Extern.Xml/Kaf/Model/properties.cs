@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlElement("property")]
-    public property[] property { get { return propertyField; } set { propertyField = value; } }
+    public property[] property
+    {
+      get => propertyField;
+      set => propertyField = value;
+    }
   }
 }

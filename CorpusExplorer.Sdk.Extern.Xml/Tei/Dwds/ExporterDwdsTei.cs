@@ -5,8 +5,8 @@ using System.Linq;
 using CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Serializer;
 using CorpusExplorer.Sdk.Helper;
-using CorpusExplorer.Sdk.Model.Export.Abstract;
 using CorpusExplorer.Sdk.Model.Interface;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds
 {

@@ -25,10 +25,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
     /// <remarks />
     [XmlElement("anchor", typeof(anchor))]
     [XmlElement("seg", typeof(seg))]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string who { get { return whoField; } set { whoField = value; } }
+    public string who
+    {
+      get => whoField;
+      set => whoField = value;
+    }
   }
 }

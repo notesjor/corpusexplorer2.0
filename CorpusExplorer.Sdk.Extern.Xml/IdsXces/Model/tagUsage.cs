@@ -21,10 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string gi { get { return giField; } set { giField = value; } }
+    public string gi
+    {
+      get => giField;
+      set => giField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "integer")]
-    public string occurs { get { return occursField; } set { occursField = value; } }
+    public string occurs
+    {
+      get => occursField;
+      set => occursField = value;
+    }
   }
 }

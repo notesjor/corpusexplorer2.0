@@ -57,14 +57,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
     private void RefreshCompare()
     {
       if (!_init ||
-          (commandBarDropDownList1.SelectedIndex == -1) ||
-          (commandBarDropDownList2.SelectedIndex == -1))
+          commandBarDropDownList1.SelectedIndex == -1 ||
+          commandBarDropDownList2.SelectedIndex == -1)
         return;
 
       _diff.DocumentAGuid = (Guid) commandBarDropDownList1.SelectedItem.Value;
       _diff.DocumentBGuid = (Guid) commandBarDropDownList2.SelectedItem.Value;
-      if ((_diff.DocumentAGuid == Guid.Empty) ||
-          (_diff.DocumentBGuid == Guid.Empty))
+      if (_diff.DocumentAGuid == Guid.Empty ||
+          _diff.DocumentBGuid == Guid.Empty)
         return;
 
       _diff.Analyse();

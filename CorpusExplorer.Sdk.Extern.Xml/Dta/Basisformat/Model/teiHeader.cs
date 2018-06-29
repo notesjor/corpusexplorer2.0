@@ -22,12 +22,24 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
     private profileDesc profileDescField;
 
     /// <remarks />
-    public encodingDesc encodingDesc { get { return encodingDescField; } set { encodingDescField = value; } }
+    public encodingDesc encodingDesc
+    {
+      get => encodingDescField;
+      set => encodingDescField = value;
+    }
 
     /// <remarks />
-    public fileDesc fileDesc { get { return fileDescField; } set { fileDescField = value; } }
+    public fileDesc fileDesc
+    {
+      get => fileDescField;
+      set => fileDescField = value;
+    }
 
     /// <remarks />
-    public profileDesc profileDesc { get { return profileDescField; } set { profileDescField = value; } }
+    public profileDesc profileDesc
+    {
+      get => profileDescField;
+      set => profileDescField = value;
+    }
   }
 }

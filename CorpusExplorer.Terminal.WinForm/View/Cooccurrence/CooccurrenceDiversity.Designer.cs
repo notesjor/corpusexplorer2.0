@@ -29,6 +29,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     /// </summary>
     private void InitializeComponent()
     {
+      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
       this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
@@ -40,6 +41,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.commandBarButton1 = new Telerik.WinControls.UI.CommandBarButton();
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_snapshot_create = new Telerik.WinControls.UI.CommandBarButton();
+      this.btn_export = new Telerik.WinControls.UI.CommandBarButton();
+      this.btn_layer = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
@@ -57,10 +60,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.radGridView1.MasterTemplate.AllowDeleteRow = false;
       this.radGridView1.MasterTemplate.AllowEditRow = false;
       this.radGridView1.MasterTemplate.MultiSelect = true;
+      this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
       this.radGridView1.Size = new System.Drawing.Size(780, 331);
       this.radGridView1.TabIndex = 4;
-      this.radGridView1.Text = "radGridView1";
       this.radGridView1.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.radGridView1_RowFormatting);
       // 
       // radCommandBar1
@@ -72,11 +75,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
             this.commandBarRowElement1});
       this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
       this.radCommandBar1.TabIndex = 5;
-      this.radCommandBar1.Text = Resources.Html_GreenValues2;
       // 
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
       // 
@@ -84,22 +87,22 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // 
       this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
+            this.btn_layer,
             this.commandBarLabel1,
             this.txt_queryA,
             this.commandBarLabel2,
             this.txt_queryB,
             this.commandBarButton1,
             this.commandBarSeparator1,
-            this.btn_snapshot_create});
+            this.btn_snapshot_create,
+            this.btn_export});
       this.commandBarStripElement1.Name = "commandBarStripElement1";
       // 
       // commandBarLabel1
       // 
-      this.commandBarLabel1.AccessibleDescription = Resources.Html_GreeValues;
-      this.commandBarLabel1.AccessibleName = Resources.Html_GreeValues;
       this.commandBarLabel1.DisplayName = "commandBarLabel1";
       this.commandBarLabel1.Name = "commandBarLabel1";
-      this.commandBarLabel1.Text = Resources.Html_GreeValues;
+      this.commandBarLabel1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Html_GreeValues;
       // 
       // txt_queryA
       // 
@@ -110,12 +113,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // 
       // commandBarLabel2
       // 
-      this.commandBarLabel2.AccessibleDescription = Resources.Html_RedValues;
-      this.commandBarLabel2.AccessibleName = Resources.Html_RedValues;
       this.commandBarLabel2.DisplayName = "commandBarLabel2";
       this.commandBarLabel2.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
       this.commandBarLabel2.Name = "commandBarLabel2";
-      this.commandBarLabel2.Text = Resources.Html_RedValues;
+      this.commandBarLabel2.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Html_RedValues;
       // 
       // txt_queryB
       // 
@@ -131,8 +132,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.commandBarButton1.DisplayName = "commandBarButton1";
       this.commandBarButton1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
       this.commandBarButton1.Name = "commandBarButton1";
-      this.commandBarButton1.Text = Resources.AuswertungStarten;
-      this.commandBarButton1.ToolTipText = Resources.AuswertungStarten;
+      this.commandBarButton1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.AuswertungStarten;
+      this.commandBarButton1.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.AuswertungStarten;
       this.commandBarButton1.Click += new System.EventHandler(this.btn_startB_Click);
       // 
       // commandBarSeparator1
@@ -150,9 +151,25 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.btn_snapshot_create.DisplayName = "commandBarButton2";
       this.btn_snapshot_create.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.camera_add;
       this.btn_snapshot_create.Name = "btn_snapshot_create";
-      this.btn_snapshot_create.Text = Resources.SchnappschussErstellen;
-      this.btn_snapshot_create.ToolTipText = Resources.SchnappschussErstellen;
+      this.btn_snapshot_create.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.SchnappschussErstellen;
+      this.btn_snapshot_create.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.SchnappschussErstellen;
       this.btn_snapshot_create.Click += new System.EventHandler(this.btn_snapshot_create_Click);
+      // 
+      // btn_export
+      // 
+      this.btn_export.DisplayName = "commandBarButton2";
+      this.btn_export.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
+      this.btn_export.Name = "btn_export";
+      this.btn_export.Text = "Daten exportieren...";
+      this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
+      // 
+      // btn_layer
+      // 
+      this.btn_layer.DisplayName = "commandBarButton2";
+      this.btn_layer.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers;
+      this.btn_layer.Name = "btn_layer";
+      this.btn_layer.Text = "Layer auswählen";
+      this.btn_layer.Click += new System.EventHandler(this.btn_layer_Click);
       // 
       // CooccurrenceDiversity
       // 
@@ -182,5 +199,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     private Telerik.WinControls.UI.CommandBarButton commandBarButton1;
     private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator1;
     private Telerik.WinControls.UI.CommandBarButton btn_snapshot_create;
+    private Telerik.WinControls.UI.CommandBarButton btn_export;
+    private Telerik.WinControls.UI.CommandBarButton btn_layer;
   }
 }

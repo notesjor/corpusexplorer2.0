@@ -68,12 +68,12 @@ namespace CorpusExplorer.Sdk.Blocks
 
             var val = sig[chunks[j]];
             var res = val < MinimumSignificanceThreshold
-                        ? (byte) 0
-                        : val < LowSignificanceThreshold
-                          ? (byte) 1
-                          : val < HighSignificanceThreshold
-                            ? (byte) 2
-                            : (byte) 3;
+              ? (byte) 0
+              : val < LowSignificanceThreshold
+                ? (byte) 1
+                : val < HighSignificanceThreshold
+                  ? (byte) 2
+                  : (byte) 3;
 
             if (res > max)
               max = res;

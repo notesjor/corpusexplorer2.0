@@ -22,14 +22,26 @@ namespace CorpusExplorer.Sdk.Extern.Xml.IdsXces.Model
     private reference[] referenceField;
 
     /// <remarks />
-    public biblStruct biblStruct { get { return biblStructField; } set { biblStructField = value; } }
+    public biblStruct biblStruct
+    {
+      get => biblStructField;
+      set => biblStructField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string Default { get { return defaultField; } set { defaultField = value; } }
+    public string Default
+    {
+      get => defaultField;
+      set => defaultField = value;
+    }
 
     /// <remarks />
     [XmlElement("reference")]
-    public reference[] reference { get { return referenceField; } set { referenceField = value; } }
+    public reference[] reference
+    {
+      get => referenceField;
+      set => referenceField = value;
+    }
   }
 }

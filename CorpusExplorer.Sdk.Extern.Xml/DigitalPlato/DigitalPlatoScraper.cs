@@ -11,6 +11,33 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DigitalPlato
 
     public bool ReplaceLinebreakWithSentence { get; set; } = true;
 
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file, XmlDocument xmlDoc)
+    {
+      try
+      {
+        var div = xmlDoc?.SelectNodes("/div")?.Cast<XmlElement>().Single();
+
+        var res = new Dictionary<string, object>
+        {
+          {"AuthorId", PickAttributeValue(div, "author_id", "-")},
+          {"WorkId", PickAttributeValue(div, "work_id", "-")},
+          {"WorkShort", PickAttributeValue(div, "work_short", "-")},
+          {"Text", GetPlaintext(xmlDoc)}
+        };
+
+        return new[] {res};
+      }
+      catch
+      {
+        var res = new Dictionary<string, object>
+        {
+          {"Text", GetPlaintext(xmlDoc)}
+        };
+
+        return new[] {res};
+      }
+    }
+
     private string GetPlaintext(XmlDocument xmlDoc)
     {
       RemoveAllChilds(ref xmlDoc, "//foreign");
@@ -23,7 +50,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DigitalPlato
       else
         RemoveAllChilds(ref xmlDoc, "//lb");
 
-      return xmlDoc.InnerText.Replace("\t", " ").Replace("  ", " ").Replace(". .", ".").Replace("..", ".").Replace("  ", " ").Replace("..", ".").Replace("  ", " ").Replace("..", ".");
+      return xmlDoc.InnerText.Replace("\t", " ").Replace("  ", " ").Replace(". .", ".").Replace("..", ".")
+        .Replace("  ", " ").Replace("..", ".").Replace("  ", " ").Replace("..", ".");
     }
 
     private void RemoveAllChilds(ref XmlDocument xmlDoc, string xpath)
@@ -43,42 +71,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.DigitalPlato
         return;
 
       foreach (XmlNode node in nodes)
-      {
         if (node.ParentNode != null)
           parent.Add(new KeyValuePair<XmlNode, XmlNode>(node.ParentNode, node));
-      }
 
-      foreach (var x in parent)
-      {
-        x.Key.ReplaceChild(xmlDoc.CreateTextNode(replaceText), x.Value);
-      }
-    }
-
-    protected override IEnumerable<Dictionary<string, object>> Execute(string file, XmlDocument xmlDoc)
-    {
-      try
-      {
-        var div = xmlDoc?.SelectNodes("/div")?.Cast<XmlElement>().Single();
-
-        var res = new Dictionary<string, object>
-        {
-          {"AuthorId", PickAttributeValue(div, "author_id", "-")},
-          {"WorkId", PickAttributeValue(div, "work_id", "-")},
-          {"WorkShort", PickAttributeValue(div, "work_short", "-")},
-          {"Text", GetPlaintext(xmlDoc)}
-        };
-
-        return new[] { res };
-      }
-      catch
-      {
-        var res = new Dictionary<string, object>
-        {
-          {"Text", GetPlaintext(xmlDoc)}
-        };
-
-        return new[] { res };
-      }
+      foreach (var x in parent) x.Key.ReplaceChild(xmlDoc.CreateTextNode(replaceText), x.Value);
     }
   }
 }

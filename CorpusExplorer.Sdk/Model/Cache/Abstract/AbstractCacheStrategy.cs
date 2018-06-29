@@ -6,7 +6,9 @@ namespace CorpusExplorer.Sdk.Model.Cache.Abstract
 {
   public abstract class AbstractCacheStrategy
   {
-    private readonly Dictionary<Guid, Dictionary<string, AbstractBlock>> _cache = new Dictionary<Guid, Dictionary<string, AbstractBlock>>();
+    private readonly Dictionary<Guid, Dictionary<string, AbstractBlock>> _cache =
+      new Dictionary<Guid, Dictionary<string, AbstractBlock>>();
+
     private readonly object _cacheLock = new object();
 
     public void Clear()
@@ -15,6 +17,7 @@ namespace CorpusExplorer.Sdk.Model.Cache.Abstract
       {
         _cache.Clear();
       }
+
       GC.Collect();
       GC.WaitForPendingFinalizers();
     }
@@ -34,12 +37,14 @@ namespace CorpusExplorer.Sdk.Model.Cache.Abstract
       }
     }
 
+    public virtual void CurrentSelectionChanged()
+    {
+    }
+
     protected AbstractBlock CreateNewBlock(Selection selection, Type blockType)
     {
       var res = Activator.CreateInstance(blockType) as AbstractBlock;
       return res == null ? null : AbstractBlock.InitializeInstance(selection.Project, selection, res);
     }
-
-    public virtual void CurrentSelectionChanged() { }
   }
 }

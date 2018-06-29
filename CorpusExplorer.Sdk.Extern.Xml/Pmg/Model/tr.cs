@@ -20,6 +20,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Pmg.Model
     /// <remarks />
     [XmlElement("td", typeof(td))]
     [XmlElement("th", typeof(th))]
-    public Flow[] Items { get { return itemsField; } set { itemsField = value; } }
+    public Flow[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
   }
 }

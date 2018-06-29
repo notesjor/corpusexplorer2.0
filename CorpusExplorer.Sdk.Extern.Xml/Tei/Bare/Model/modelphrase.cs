@@ -24,10 +24,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Bare.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string subtype { get { return subtypeField; } set { subtypeField = value; } }
+    public string subtype
+    {
+      get => subtypeField;
+      set => subtypeField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string type { get { return typeField; } set { typeField = value; } }
+    public string type
+    {
+      get => typeField;
+      set => typeField = value;
+    }
   }
 }

@@ -18,7 +18,9 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Corpus
     private readonly EchtzeitCorpus _corpus;
     private readonly Dictionary<Guid, LayerAdapterEchtzeitEngine> _layers;
 
-    private CorpusAdapterEchtzeitEngine() { }
+    private CorpusAdapterEchtzeitEngine()
+    {
+    }
 
     private CorpusAdapterEchtzeitEngine(EchtzeitCorpus corpus)
     {
@@ -35,7 +37,11 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Corpus
     }
 
     public override Guid CorpusGuid => _corpus.Guid;
-    public override IEnumerable<Guid> DocumentGuids { get { yield return _corpus.Guid; } }
+
+    public override IEnumerable<Guid> DocumentGuids
+    {
+      get { yield return _corpus.Guid; }
+    }
 
     public override IEnumerable<KeyValuePair<Guid, Dictionary<string, object>>> DocumentMetadata
       => new Dictionary<Guid, Dictionary<string, object>> {{_corpus.Guid, _corpus.Metadata}};
@@ -54,8 +60,10 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Corpus
       => new HashSet<string>(_layers.Select(x => x.Value.Displayname));
 
     public override bool UseCompression => false;
-    public override AbstractCorpusBuilder GetCorpusBuilder() => new CorpusBuilderLightweightSingleFile();
-    public override void AddConcept(Concept concept) { }
+
+    public override void AddConcept(Concept concept)
+    {
+    }
 
     public override void AddLayer(AbstractLayerAdapter layer)
     {
@@ -65,12 +73,20 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Corpus
       _layers.Add(lalf.Guid, lalf);
     }
 
-    public override bool ContainsDocument(Guid documentGuid) => documentGuid == _corpus.Guid;
+    public override bool ContainsDocument(Guid documentGuid)
+    {
+      return documentGuid == _corpus.Guid;
+    }
 
-    public override bool ContainsLayer(Guid layerGuid) => _layers.Any(x => x.Value.Guid == layerGuid);
+    public override bool ContainsLayer(Guid layerGuid)
+    {
+      return _layers.Any(x => x.Value.Guid == layerGuid);
+    }
 
     public override bool ContainsLayer(string layerDisplayname)
-      => _layers.Any(x => x.Value.Displayname == layerDisplayname);
+    {
+      return _layers.Any(x => x.Value.Displayname == layerDisplayname);
+    }
 
     public static CorpusAdapterEchtzeitEngine Create(
       string displayName,
@@ -94,46 +110,73 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Corpus
     }
 
     public override IEnumerable<Guid> FindDocumentByMetadata(Dictionary<string, object> example)
-      =>
-      example.Any(x => !_corpus.Metadata.ContainsKey(x.Key) || !_corpus.Metadata[x.Key].Equals(x.Value))
+    {
+      return example.Any(x => !_corpus.Metadata.ContainsKey(x.Key) || !_corpus.Metadata[x.Key].Equals(x.Value))
         ? new Guid[0]
         : new[] {_corpus.Guid};
+    }
 
-    public override IEnumerable<KeyValuePair<string, object>> GetCorpusMetadata() => _corpus.Metadata;
+    public override AbstractCorpusBuilder GetCorpusBuilder()
+    {
+      return new CorpusBuilderLightweightSingleFile();
+    }
+
+    public override IEnumerable<KeyValuePair<string, object>> GetCorpusMetadata()
+    {
+      return _corpus.Metadata;
+    }
 
     public override int GetDocumentLengthInSentences(Guid documentGuid)
-      => documentGuid == _corpus.Guid ? _layers.FirstOrDefault().Value._layer.Document.Length : 0;
+    {
+      return documentGuid == _corpus.Guid ? _layers.FirstOrDefault().Value._layer.Document.Length : 0;
+    }
 
     public override int GetDocumentLengthInWords(Guid documentGuid)
-      => documentGuid == _corpus.Guid ? _layers.FirstOrDefault().Value._layer.Document.Sum(s => s.Length) : 0;
+    {
+      return documentGuid == _corpus.Guid ? _layers.FirstOrDefault().Value._layer.Document.Sum(s => s.Length) : 0;
+    }
 
     public override Dictionary<string, object> GetDocumentMetadata(Guid documentGuid)
-      => documentGuid == _corpus.Guid ? _corpus.Metadata : null;
+    {
+      return documentGuid == _corpus.Guid ? _corpus.Metadata : null;
+    }
 
     public override Dictionary<string, HashSet<object>> GetDocumentMetadataPrototype()
-      => _corpus.Metadata.ToDictionary(x => x.Key, x => new HashSet<object> {x.Value});
+    {
+      return _corpus.Metadata.ToDictionary(x => x.Key, x => new HashSet<object> {x.Value});
+    }
 
-    public override IEnumerable<string> GetDocumentMetadataPrototypeOnlyProperties() => _corpus.Metadata.Keys;
+    public override IEnumerable<string> GetDocumentMetadataPrototypeOnlyProperties()
+    {
+      return _corpus.Metadata.Keys;
+    }
 
     public override IEnumerable<object> GetDocumentMetadataPrototypeOnlyPropertieValues(string property)
-      => _corpus.Metadata.ContainsKey(property) ? new[] {_corpus.Metadata[property]} : null;
-    
+    {
+      return _corpus.Metadata.ContainsKey(property) ? new[] {_corpus.Metadata[property]} : null;
+    }
+
     public override AbstractLayerAdapter GetLayer(Guid layerGuid)
     {
       return _layers.ContainsKey(layerGuid) ? _layers[layerGuid] : null;
     }
 
     public override AbstractLayerAdapter GetLayerOfDocument(Guid documentGuid, string layerDisplayname)
-      =>
-      documentGuid != _corpus.Guid
+    {
+      return documentGuid != _corpus.Guid
         ? null
         : (from l in _layers where l.Value.Displayname == layerDisplayname select l.Value).FirstOrDefault();
+    }
 
     public override IEnumerable<AbstractLayerAdapter> GetLayers(string displayname)
-      => from x in _layers where x.Value.Displayname == displayname select x.Value;
+    {
+      return from x in _layers where x.Value.Displayname == displayname select x.Value;
+    }
 
     public override IEnumerable<AbstractLayerAdapter> GetLayersOfDocument(Guid documentGuid)
-      => documentGuid != _corpus.Guid ? null : (from x in _layers select x.Value);
+    {
+      return documentGuid != _corpus.Guid ? null : (from x in _layers select x.Value);
+    }
 
     public override IEnumerable<string> GetLayerValues(string layerDisplayname)
     {
@@ -145,6 +188,7 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Corpus
         foreach (var x in l.Value._layer.Dictionary)
           res.Add(x.Value);
       }
+
       return res;
     }
 
@@ -158,30 +202,39 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Corpus
         foreach (var x in l.Value._layer.Dictionary)
           res.Add(x.Value);
       }
+
       return res;
     }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, string layerDisplayname)
-      => GetLayerOfDocument(documentGuid, layerDisplayname).GetReadableDocumentByGuid(documentGuid);
+    {
+      return GetLayerOfDocument(documentGuid, layerDisplayname).GetReadableDocumentByGuid(documentGuid);
+    }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, Guid layerGuid)
-      => GetLayer(layerGuid).GetReadableDocumentByGuid(documentGuid);
+    {
+      return GetLayer(layerGuid).GetReadableDocumentByGuid(documentGuid);
+    }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocumentSnippet(
-        Guid documentGuid,
-        string layerDisplayname,
-        int start,
-        int stop)
-      => GetLayerOfDocument(documentGuid, layerDisplayname).GetReadableDocumentSnippetByGuid(documentGuid, start, stop);
+      Guid documentGuid,
+      string layerDisplayname,
+      int start,
+      int stop)
+    {
+      return GetLayerOfDocument(documentGuid, layerDisplayname)
+        .GetReadableDocumentSnippetByGuid(documentGuid, start, stop);
+    }
 
     public override Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(
-        Guid documentGuid)
-      =>
-      documentGuid != _corpus.Guid
+      Guid documentGuid)
+    {
+      return documentGuid != _corpus.Guid
         ? null
         : _layers.ToDictionary(
           layer => layer.Value.Displayname,
           layer => layer.Value.GetReadableDocumentByGuid(documentGuid));
+    }
 
     public override void LayerCopy(string layerDisplaynameOriginal, string layerDisplaynameCopy)
     {
@@ -211,8 +264,8 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Corpus
 
       var doc = new int[layer._layer.Document.Length][];
       for (var i = 0; i < layer._layer.Document.Length; i++)
-        for (var j = 0; j < layer._layer.Document[i].Length; j++)
-          doc[i][j] = -1;
+      for (var j = 0; j < layer._layer.Document[i].Length; j++)
+        doc[i][j] = -1;
 
       var nlayer = new EchtzeitLayer
       {
@@ -232,7 +285,10 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Corpus
           layer.Value.Displayname = layerDisplaynameNew;
     }
 
-    public override bool RemoveConcept(Concept concept) { return false; }
+    public override bool RemoveConcept(Concept concept)
+    {
+      return false;
+    }
 
     public override void ResetAllDocumentMetadata(Dictionary<Guid, Dictionary<string, object>> newMetadata)
     {

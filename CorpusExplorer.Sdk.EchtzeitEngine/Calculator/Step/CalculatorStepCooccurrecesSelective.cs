@@ -12,9 +12,14 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
 {
   public class CalculatorStepCooccurrecesSelective : AbstractCalculatorStep, ICalculatorStepHasMultiQueries
   {
-    public CalculatorStepCooccurrecesSelective() { Queries = new string[0]; }
+    public CalculatorStepCooccurrecesSelective()
+    {
+      Queries = new string[0];
+    }
 
     public override string Method => "SelectiveCooccurreces";
+
+    public IEnumerable<string> Queries { get; set; }
 
     public override void Calculate(Selection selection, ref UniversalStorage output)
     {
@@ -39,19 +44,15 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step
         var temp = signi[query].OrderByDescending(x => x.Value);
 
         foreach (var x in temp)
-        {
           dt.Rows.Add(
             x.Key,
             frequ.ContainsKey(x.Key) && frequ[x.Key].ContainsKey(x.Key) ? frequ[query][x.Key] : -1,
             x.Value);
-        }
 
         dt.EndLoadData();
 
         output.Set(selection, Method, query, dt);
-      }      
+      }
     }
-
-    public IEnumerable<string> Queries { get; set; }
   }
 }

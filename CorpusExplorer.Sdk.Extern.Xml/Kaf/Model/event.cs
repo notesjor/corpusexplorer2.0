@@ -37,42 +37,82 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Kaf.Model
 
     /// <remarks />
     [XmlAttribute]
-    public string aspect { get { return aspectField; } set { aspectField = value; } }
+    public string aspect
+    {
+      get => aspectField;
+      set => aspectField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string @class { get { return classField; } set { classField = value; } }
+    public string @class
+    {
+      get => classField;
+      set => classField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "ID")]
-    public string eid { get { return eidField; } set { eidField = value; } }
+    public string eid
+    {
+      get => eidField;
+      set => eidField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string eiid { get { return eiidField; } set { eiidField = value; } }
+    public string eiid
+    {
+      get => eiidField;
+      set => eiidField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string lemma { get { return lemmaField; } set { lemmaField = value; } }
+    public string lemma
+    {
+      get => lemmaField;
+      set => lemmaField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string polarity { get { return polarityField; } set { polarityField = value; } }
+    public string polarity
+    {
+      get => polarityField;
+      set => polarityField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string pos { get { return posField; } set { posField = value; } }
+    public string pos
+    {
+      get => posField;
+      set => posField = value;
+    }
 
     /// <remarks />
     [XmlArrayItem("role", typeof(role), IsNullable = false)]
-    public role[][] roles { get { return rolesField; } set { rolesField = value; } }
+    public role[][] roles
+    {
+      get => rolesField;
+      set => rolesField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "IDREF")]
-    public string span { get { return spanField; } set { spanField = value; } }
+    public string span
+    {
+      get => spanField;
+      set => spanField = value;
+    }
 
     /// <remarks />
     [XmlAttribute]
-    public string tense { get { return tenseField; } set { tenseField = value; } }
+    public string tense
+    {
+      get => tenseField;
+      set => tenseField = value;
+    }
   }
 }

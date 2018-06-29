@@ -57,11 +57,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
             this.commandBarRowElement3});
       this.radCommandBar3.Size = new System.Drawing.Size(780, 44);
       this.radCommandBar3.TabIndex = 3;
-      this.radCommandBar3.Text = "radCommandBar3";
       // 
       // commandBarRowElement3
       // 
       this.commandBarRowElement3.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement3.Name = "commandBarRowElement3";
       this.commandBarRowElement3.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement3});
       // 
@@ -138,7 +138,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
       this.radLabel1.TabIndex = 1;
       this.radLabel1.Text = "<html>Notwendige Transformationen (A -&gt; B) - Hinzufügen: <strong>0</strong> - " +
     "Entfernen: <strong>0</strong> - Distanz: <strong>0</strong></html>";
-      this.radLabel1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+      this.radLabel1.TextWrap = false;
       // 
       // TextCompare
       // 

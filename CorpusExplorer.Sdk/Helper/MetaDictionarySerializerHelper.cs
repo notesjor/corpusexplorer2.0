@@ -2,24 +2,110 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 
 namespace CorpusExplorer.Sdk.Helper
 {
   public static class MetaDictionarySerializerHelper
   {
-    private const int _sizeInt32 = sizeof(int);
-    private const int _sizeDouble = sizeof(double);
     private const int _sizeDateTime = sizeof(long);
+    private const int _sizeDouble = sizeof(double);
     private const int _sizeGuid = 16;
-    private static readonly byte[] _split = BitConverter.GetBytes(int.MinValue);
-    private static readonly byte[] _idInt32 = BitConverter.GetBytes(100);
-    private static readonly byte[] _idDouble = BitConverter.GetBytes(200);
+    private const int _sizeInt32 = sizeof(int);
     private static readonly byte[] _idDateTime = BitConverter.GetBytes(300);
-    private static readonly byte[] _idString = BitConverter.GetBytes(400);
+    private static readonly byte[] _idDouble = BitConverter.GetBytes(200);
     private static readonly byte[] _idGuid = BitConverter.GetBytes(1000);
+    private static readonly byte[] _idInt32 = BitConverter.GetBytes(100);
+    private static readonly byte[] _idString = BitConverter.GetBytes(400);
+    private static readonly byte[] _split = BitConverter.GetBytes(int.MinValue);
+
+    public static Dictionary<string, object> Deserialize(byte[] array)
+    {
+      return Deserialize(new MemoryStream(array));
+    }
+
+    public static Dictionary<string, object> Deserialize(Stream ms)
+    {
+      var res = new Dictionary<string, object>();
+      if (DeserializeInt32(ms) != 400)
+        return null;
+      var key = DeserializeString(ms);
+
+      while (key != null)
+      {
+        var type = DeserializeInt32(ms);
+        object value;
+
+        switch (type)
+        {
+          case 100:
+            value = DeserializeInt32(ms);
+            break;
+          case 200:
+            value = DeserializeDouble(ms);
+            break;
+          case 300:
+            value = DeserializeDateTime(ms);
+            break;
+          case 400:
+            value = DeserializeString(ms);
+            break;
+          default:
+            value = null;
+            break;
+        }
+
+        if (value == null)
+          break;
+
+        if (res.ContainsKey(key))
+          res[key] = value;
+        else
+          res.Add(key, value);
+
+        if (DeserializeInt32(ms) == int.MinValue)
+          break;
+
+        key = DeserializeString(ms);
+      }
+
+      return res;
+    }
+
+    public static Dictionary<string, object> Deserialize(string stream)
+    {
+      return Deserialize(Convert.FromBase64String(stream));
+    }
+
+    public static Dictionary<Guid, Dictionary<string, object>> DeserializeContainer(byte[] array)
+    {
+      return DeserializeContainer(new MemoryStream(array));
+    }
+
+    public static Dictionary<Guid, Dictionary<string, object>> DeserializeContainer(Stream ms)
+    {
+      var res = new Dictionary<Guid, Dictionary<string, object>>();
+      if (DeserializeInt32(ms) != 1000)
+        return null;
+      var key = DeserializeGuid(ms);
+
+      while (key != Guid.Empty)
+      {
+        res.Add(key, Deserialize(ms));
+
+        if (DeserializeInt32(ms) == int.MinValue)
+          break;
+
+        key = DeserializeGuid(ms);
+      }
+
+      return res;
+    }
+
+    public static Dictionary<Guid, Dictionary<string, object>> DeserializeContainer(string stream)
+    {
+      return DeserializeContainer(Convert.FromBase64String(stream));
+    }
 
     public static byte[] Serialize(Dictionary<string, object> meta)
     {
@@ -43,19 +129,17 @@ namespace CorpusExplorer.Sdk.Helper
 
           // Value
           if (entry.Value is int)
-            Serialize(stream, (int)entry.Value);
+            Serialize(stream, (int) entry.Value);
           else if (entry.Value is double)
-            Serialize(stream, (double)entry.Value);
+            Serialize(stream, (double) entry.Value);
           else if (entry.Value is DateTime)
-            Serialize(stream, (DateTime)entry.Value);
+            Serialize(stream, (DateTime) entry.Value);
           else
             Serialize(stream, entry.Value.ToString());
         }
 
       stream.Write(_split, 0, _sizeInt32);
     }
-
-    public static string SerializeToBase64String(Dictionary<string, object> meta) => Convert.ToBase64String(Serialize(meta));
 
     public static byte[] Serialize(Dictionary<Guid, Dictionary<string, object>> meta)
     {
@@ -88,7 +172,54 @@ namespace CorpusExplorer.Sdk.Helper
       stream.Write(_split, 0, _sizeInt32);
     }
 
-    public static string SerializeToBase64String(Dictionary<Guid, Dictionary<string, object>> meta) => Convert.ToBase64String(Serialize(meta));
+    public static string SerializeToBase64String(Dictionary<string, object> meta)
+    {
+      return Convert.ToBase64String(Serialize(meta));
+    }
+
+    public static string SerializeToBase64String(Dictionary<Guid, Dictionary<string, object>> meta)
+    {
+      return Convert.ToBase64String(Serialize(meta));
+    }
+
+    private static DateTime DeserializeDateTime(Stream ms)
+    {
+      var buffer = new byte[_sizeDateTime];
+      ms.Read(buffer, 0, buffer.Length);
+      return new DateTime(BitConverter.ToInt64(buffer, 0));
+    }
+
+    private static double DeserializeDouble(Stream ms)
+    {
+      var buffer = new byte[_sizeDouble];
+      ms.Read(buffer, 0, buffer.Length);
+      return BitConverter.ToDouble(buffer, 0);
+    }
+
+    private static Guid DeserializeGuid(Stream ms)
+    {
+      var buffer = new byte[_sizeGuid];
+      ms.Read(buffer, 0, buffer.Length);
+      return new Guid(buffer);
+    }
+
+    private static int DeserializeInt32(Stream ms)
+    {
+      var buffer = new byte[_sizeInt32];
+      ms.Read(buffer, 0, buffer.Length);
+      return BitConverter.ToInt32(buffer, 0);
+    }
+
+    private static string DeserializeString(Stream ms)
+    {
+      var length = DeserializeInt32(ms);
+      if (length == 0)
+        return string.Empty;
+
+      var buffer = new byte[length];
+      ms.Read(buffer, 0, buffer.Length);
+      return Configuration.Encoding.GetString(buffer);
+    }
 
     private static void Serialize(Stream stream, string v)
     {
@@ -127,119 +258,5 @@ namespace CorpusExplorer.Sdk.Helper
       var buffer = BitConverter.GetBytes(value);
       stream.Write(buffer, 0, _sizeInt32);
     }
-
-    public static Dictionary<string, object> Deserialize(byte[] array) => Deserialize(new MemoryStream(array));
-
-    public static Dictionary<string, object> Deserialize(Stream ms)
-    {
-      var res = new Dictionary<string, object>();
-      if (DeserializeInt32(ms) != 400)
-        return null;
-      var key = DeserializeString(ms);
-
-      while (key != null)
-      {
-        var type = DeserializeInt32(ms);
-        object value;
-
-        switch (type)
-        {
-          case 100:
-            value = DeserializeInt32(ms);
-            break;
-          case 200:
-            value = DeserializeDouble(ms);
-            break;
-          case 300:
-            value = DeserializeDateTime(ms);
-            break;
-          case 400:
-            value = DeserializeString(ms);
-            break;
-          default:
-            value = null;
-            break;
-        }
-        if (value == null)
-          break;
-
-        if (res.ContainsKey(key))
-          res[key] = value;
-        else
-          res.Add(key, value);
-
-        if (DeserializeInt32(ms) == int.MinValue)
-          break;
-
-        key = DeserializeString(ms);
-      }
-
-      return res;
-    }
-
-    public static Dictionary<string, object> Deserialize(string stream) => Deserialize(Convert.FromBase64String(stream));
-
-    private static int DeserializeInt32(Stream ms)
-    {
-      var buffer = new byte[_sizeInt32];
-      ms.Read(buffer, 0, buffer.Length);
-      return BitConverter.ToInt32(buffer, 0);
-    }
-
-    private static double DeserializeDouble(Stream ms)
-    {
-      var buffer = new byte[_sizeDouble];
-      ms.Read(buffer, 0, buffer.Length);
-      return BitConverter.ToDouble(buffer, 0);
-    }
-
-    private static Guid DeserializeGuid(Stream ms)
-    {
-      var buffer = new byte[_sizeGuid];
-      ms.Read(buffer, 0, buffer.Length);
-      return new Guid(buffer);
-    }
-
-    private static DateTime DeserializeDateTime(Stream ms)
-    {
-      var buffer = new byte[_sizeDateTime];
-      ms.Read(buffer, 0, buffer.Length);
-      return new DateTime(BitConverter.ToInt64(buffer, 0));
-    }
-
-    private static string DeserializeString(Stream ms)
-    {
-      var length = DeserializeInt32(ms);
-      if (length == 0)
-        return string.Empty;
-
-      var buffer = new byte[length];
-      ms.Read(buffer, 0, buffer.Length);
-      return Configuration.Encoding.GetString(buffer);
-    }
-
-    public static Dictionary<Guid, Dictionary<string, object>> DeserializeContainer(byte[] array) => DeserializeContainer(new MemoryStream(array));
-
-    public static Dictionary<Guid, Dictionary<string, object>> DeserializeContainer(Stream ms)
-    {
-      var res = new Dictionary<Guid, Dictionary<string, object>>();
-      if (DeserializeInt32(ms) != 1000)
-        return null;
-      var key = DeserializeGuid(ms);
-
-      while (key != Guid.Empty)
-      {
-        res.Add(key, Deserialize(ms));
-
-        if (DeserializeInt32(ms) == int.MinValue)
-          break;
-
-        key = DeserializeGuid(ms);
-      }
-
-      return res;
-    }
-
-    public static Dictionary<Guid, Dictionary<string, object>> DeserializeContainer(string stream) => DeserializeContainer(Convert.FromBase64String(stream));
   }
 }

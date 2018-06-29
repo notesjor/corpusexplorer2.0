@@ -19,8 +19,7 @@ namespace CorpusExplorer.Sdk.Blocks
   [Serializable]
   public class CooccurrenceBlock : AbstractBlock
   {
-    [NonSerialized]
-    private readonly BlockCacheHelper _cache = new BlockCacheHelper();
+    [NonSerialized] private readonly BlockCacheHelper _cache = new BlockCacheHelper();
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="CooccurrenceBlock" /> class.
@@ -80,12 +79,13 @@ namespace CorpusExplorer.Sdk.Blocks
 
       Parallel.ForEach(
         CooccurrenceFrequency,
+        Configuration.ParallelOptions,
         word =>
         {
           ISignificance signi;
           try
           {
-            signi = Configuration.Significance.PreCalculationSetup(
+            signi = Configuration.GetSignificance(
               CooccurrenceFrequency[word.Key][word.Key],
               CountSentences);
           }
@@ -149,6 +149,7 @@ namespace CorpusExplorer.Sdk.Blocks
           keys.Add(y.Key, y.Value);
         }
       }
+
       return keys;
     }
   }

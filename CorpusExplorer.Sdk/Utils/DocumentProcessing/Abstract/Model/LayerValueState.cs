@@ -9,7 +9,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model
   {
     private readonly int _valueIndex;
 
-    public LayerValueState(string displayname, int valueIndex) : base(displayname) { _valueIndex = valueIndex; }
+    public LayerValueState(string displayname, int valueIndex) : base(displayname)
+    {
+      _valueIndex = valueIndex;
+    }
 
     public int MinimumDataLength { get; set; } = 1;
 
@@ -23,15 +26,15 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model
       AddCompleteDocument(documentGuid, ConvertToLayer(documentTokens));
     }
 
-    private void AddCompleteDocument(Guid documentGuid, int[][] documentTokens)
+    public override bool AllowAnnotation(string[] data)
     {
-      if (!Documents.ContainsKey(documentGuid))
-        Documents.Add(documentGuid, documentTokens);
+      return data.Length > MinimumDataLength;
     }
 
-    public override bool AllowAnnotation(string[] data) { return data.Length > MinimumDataLength; }
-
-    public override bool AllowValueChange(string[] data) { return data.Length > MinimumDataLength; }
+    public override bool AllowValueChange(string[] data)
+    {
+      return data.Length > MinimumDataLength;
+    }
 
     public int[][] ConvertToLayer(IEnumerable<IEnumerable<string>> document)
     {
@@ -84,8 +87,20 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model
       }
     }
 
-    public int ConvertToLayer(string layerValue) { return base.RequestIndex(layerValue); }
+    public int ConvertToLayer(string layerValue)
+    {
+      return base.RequestIndex(layerValue);
+    }
 
-    public override int RequestIndex(string[] data, int lastIndex) { return RequestIndex(data[_valueIndex]); }
+    public override int RequestIndex(string[] data, int lastIndex)
+    {
+      return RequestIndex(data[_valueIndex]);
+    }
+
+    private void AddCompleteDocument(Guid documentGuid, int[][] documentTokens)
+    {
+      if (!Documents.ContainsKey(documentGuid))
+        Documents.Add(documentGuid, documentTokens);
+    }
   }
 }

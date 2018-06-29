@@ -25,16 +25,32 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
 
     /// <remarks />
     [XmlArrayItem("Key", IsNullable = false)]
-    public KeyType[] Description { get { return descriptionField; } set { descriptionField = value; } }
+    public KeyType[] Description
+    {
+      get => descriptionField;
+      set => descriptionField = value;
+    }
 
     /// <remarks />
-    public FileType File { get { return fileField; } set { fileField = value; } }
+    public FileType File
+    {
+      get => fileField;
+      set => fileField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified, DataType = "ID")]
-    public string Id { get { return idField; } set { idField = value; } }
+    public string Id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
-    public object Name { get { return nameField; } set { nameField = value; } }
+    public object Name
+    {
+      get => nameField;
+      set => nameField = value;
+    }
   }
 }

@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Speech.Model
 
     /// <remarks />
     [XmlArrayItem("person", IsNullable = false)]
-    public person[] particDesc { get { return particDescField; } set { particDescField = value; } }
+    public person[] particDesc
+    {
+      get => particDescField;
+      set => particDescField = value;
+    }
   }
 }

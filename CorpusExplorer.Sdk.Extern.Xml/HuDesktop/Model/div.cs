@@ -26,18 +26,34 @@ namespace CorpusExplorer.Sdk.Extern.Xml.HuDesktop.Model
 
     /// <remarks />
     [XmlAttribute(Form = XmlSchemaForm.Qualified, Namespace = "http://www.w3.org/XML/1998/namespace")]
-    public string id { get { return idField; } set { idField = value; } }
+    public string id
+    {
+      get => idField;
+      set => idField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string org { get { return orgField; } set { orgField = value; } }
+    public string org
+    {
+      get => orgField;
+      set => orgField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string part { get { return partField; } set { partField = value; } }
+    public string part
+    {
+      get => partField;
+      set => partField = value;
+    }
 
     /// <remarks />
     [XmlAttribute(DataType = "NCName")]
-    public string sample { get { return sampleField; } set { sampleField = value; } }
+    public string sample
+    {
+      get => sampleField;
+      set => sampleField = value;
+    }
   }
 }

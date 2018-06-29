@@ -24,12 +24,15 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractView" /> class.
     /// </summary>
-    public TextCompare() { InitializeComponent(); }
+    public TextCompare()
+    {
+      InitializeComponent();
+    }
 
     private void CompareTexts()
     {
-      if ((_guidA == Guid.Empty) ||
-          (_guidB == Guid.Empty))
+      if (_guidA == Guid.Empty ||
+          _guidB == Guid.Empty)
         return;
 
       _vm.DocumentAGuid = _guidA;
@@ -66,7 +69,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
 
     private void TextComparePage_ShowVisualisation_1(object sender, EventArgs e)
     {
-      _vm = ViewModelGet<DiffViewModel>();
+      _vm = GetViewModel<DiffViewModel>();
       DictionaryBindingHelper.BindDictionary(_vm.DocumentGuidsAndDisplaynames, drop_textA);
       DictionaryBindingHelper.BindDictionary(_vm.DocumentGuidsAndDisplaynames, drop_textB);
     }

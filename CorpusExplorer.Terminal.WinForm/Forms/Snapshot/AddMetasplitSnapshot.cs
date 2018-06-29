@@ -6,6 +6,8 @@ using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract;
+using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Counter;
+using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Counter.Abstract;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
@@ -19,28 +21,32 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
 {
   public partial class AddMetasplitSnapshot : AbstractDialog
   {
-    private readonly Selection _selection;
-
     private readonly Dictionary<AbstractSelectionClusterGenerator, string> _baseGenerators
       = new Dictionary<AbstractSelectionClusterGenerator, string>
       {
-        {new SelectionClusterGeneratorByStringValue(), "Text-Information"},
-        {new SelectionClusterGeneratorByIntegerRange(), "Wert (Ganzzahl)"},
-        {new SelectionClusterGeneratorByDoubleRange(), "Wert (Kommazahl)"},
-        {new SelectionClusterGeneratorByDateTimeRange(), "Datums-Angabe"}
+        {new SelectionClusterGeneratorStringValue(), "Text-Information / Wertbasierte Information"},
+        {new SelectionClusterGeneratorIntegerRange(), "Ganzzahl-Cluster"},
+        {new SelectionClusterGeneratorDoubleRange(), "Kommazahl-Cluster"},
+        {new SelectionClusterGeneratorDateTimeRange(), "Datums-Angabe"}
       };
 
     private readonly Dictionary<AbstractSelectionClusterGenerator, string> _dateGenerators
       = new Dictionary<AbstractSelectionClusterGenerator, string>
       {
-        {new SelectionClusterGeneratorByDateTimeRange(), "Datums-Cluster"},
-        {new SelectionClusterGeneratorByDateTimeValue(), "Identisches Datum/Uhrzeit"},
-        {new SelectionClusterGeneratorByDateTimeYearMonthDayHourMinuteOnlyValue(), "Jahr/Monat/Tag/Stunde/Minute"},
-        {new SelectionClusterGeneratorByDateTimeYearMonthDayHourOnlyValue(), "Jahr/Monat/Tag/Stunde"},
-        {new SelectionClusterGeneratorByDateTimeYearMonthDayOnlyValue(), "Jahr/Monat/Tag"},
-        {new SelectionClusterGeneratorByDateTimeYearMonthOnlyValue(), "Jahr/Monat"},
-        {new SelectionClusterGeneratorByDateTimeYearOnlyValue(), "Jahr"}
+        {new SelectionClusterGeneratorDateTimeRange(), "Datums-Cluster"},
+        {new SelectionClusterGeneratorDateTimeValue(), "Identisches Datum/Uhrzeit"},
+        {new SelectionClusterGeneratorDateTimeYearMonthDayHourMinuteOnlyValue(), "Jahr/Monat/Tag/Stunde/Minute"},
+        {new SelectionClusterGeneratorDateTimeYearMonthDayHourOnlyValue(), "Jahr/Monat/Tag/Stunde"},
+        {new SelectionClusterGeneratorDateTimeYearMonthDayOnlyValue(), "Jahr/Monat/Tag"},
+        {new SelectionClusterGeneratorDateTimeYearQuarterOnlyValue(), "Jahr/Quartal"},
+        {new SelectionClusterGeneratorDateTimeYearWeekOnlyValue(), "Jahr/Woche"},
+        {new SelectionClusterGeneratorDateTimeYearMonthOnlyValue(), "Jahr/Monat"},
+        {new SelectionClusterGeneratorDateTimeYearOnlyValue(), "Jahr"},
+        {new SelectionClusterGeneratorDateTimeDecadeOnlyValue(), "Jahrzehnt"},
+        {new SelectionClusterGeneratorDateTimeCenturyOnlyValue(), "Jahrhundert"}
       };
+
+    private readonly Selection _selection;
 
     private bool _numSpinLock;
 
@@ -57,6 +63,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
 
       DictionaryBindingHelper.BindDictionary(_baseGenerators, drop_auto);
       DictionaryBindingHelper.BindDictionary(_dateGenerators, drop_dateTime);
+
+      panel_clusterFiller.Visible = false;
     }
 
     public Selection Result { get; private set; }
@@ -68,25 +76,50 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       switch (drop_auto.SelectedIndex)
       {
         case 0:
-          blockGroup.ClusterGenerator = new SelectionClusterGeneratorByStringValue();
+          blockGroup.ClusterGenerator = new SelectionClusterGeneratorStringValue();
           break;
         case 1:
-          blockGroup.ClusterGenerator = new SelectionClusterGeneratorByIntegerRange().Configure((int) num_cluster.Value);
+          if (drop_clusterFiller.SelectedIndex < 1)
+            blockGroup.ClusterGenerator = new SelectionClusterGeneratorIntegerRange
+            {
+              Ranges = (int) num_cluster.Value,
+              AutoDetectMinMax = true
+            };
+          else
+            blockGroup.ClusterGenerator =
+              MakeComplexClusterGenerator(PredefinedGetOrderByValueDelegateDelegates.GetInteger);
           break;
         case 2:
-          blockGroup.ClusterGenerator = new SelectionClusterGeneratorByDoubleRange().Configure((int) num_cluster.Value);
+          if (drop_clusterFiller.SelectedIndex < 1)
+            blockGroup.ClusterGenerator = new SelectionClusterGeneratorDoubleRange
+            {
+              Ranges = (int) num_cluster.Value,
+              AutoDetectMinMax = true
+            };
+          else
+            blockGroup.ClusterGenerator =
+              MakeComplexClusterGenerator(PredefinedGetOrderByValueDelegateDelegates.GetDouble);
           break;
         case 3:
           switch (drop_dateTime.SelectedIndex)
           {
             case 0:
-              blockGroup.ClusterGenerator =
-                new SelectionClusterGeneratorByDateTimeRange().Configure((int) num_cluster.Value);
+              if (drop_clusterFiller.SelectedIndex < 1)
+                blockGroup.ClusterGenerator =
+                  new SelectionClusterGeneratorDateTimeRange
+                  {
+                    Ranges = (int) num_cluster.Value,
+                    AutoDetectMinMax = true
+                  };
+              else
+                blockGroup.ClusterGenerator =
+                  MakeComplexClusterGenerator(PredefinedGetOrderByValueDelegateDelegates.GetDateTime);
               break;
             default:
               blockGroup.ClusterGenerator = (AbstractSelectionClusterGenerator) drop_dateTime.SelectedValue;
               break;
           }
+
           break;
       }
 
@@ -117,22 +150,54 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
           break;
         case 0:
           radPageView1.SelectedPage = page_none;
+          panel_clusterFiller.Visible = false;
           break;
         case 1:
           radPageView1.SelectedPage = page_number;
+          panel_clusterFiller.Visible = true;
           break;
         case 2:
           radPageView1.SelectedPage = page_number;
+          panel_clusterFiller.Visible = true;
           break;
         case 3:
           radPageView1.SelectedPage = page_datetime;
+          drop_dateTime.SelectedIndex = 0;
+          panel_clusterFiller.Visible = true;
           break;
       }
     }
 
     private void drop_dateTime_SelectedIndexChanged(object sender, PositionChangedEventArgs e)
     {
-      spin_dateTimeClusters.Visible = drop_dateTime.SelectedIndex == 0;
+      panel_clusterFiller.Visible = spin_dateTimeClusters.Visible = drop_dateTime.SelectedIndex == 0;
+    }
+
+    private AbstractSelectionClusterGenerator MakeComplexClusterGenerator(GetOrderByValueDelegate func)
+    {
+      AbstractCounterClusterType type = null;
+      // ReSharper disable once SwitchStatementMissingSomeCases
+      switch (drop_clusterFiller.SelectedIndex)
+      {
+        // case 0: - Wird bereits zuvor in AddRandomSnapshot_ButtonOkClick behandelt
+        case 1:
+          type = new CounterClusterTypeDocument();
+          break;
+        case 2:
+          type = new CounterClusterTypeSentence();
+          break;
+        case 3:
+          type = new CounterClusterTypeToken();
+          break;
+      }
+
+      return new SelectionClusterGeneratorCounter
+      {
+        EnableAutoOrder = true,
+        ClusterType = type,
+        GetOrderByValue = func,
+        Ranges = (int) num_cluster.Value
+      };
     }
 
     private void num_cluster_ValueChanged(object sender, EventArgs e)
@@ -143,8 +208,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       spin_dateTimeClusters.Value = num_cluster.Value;
       _numSpinLock = false;
     }
-
-    private void radCollapsiblePanel1_Expanded(object sender, EventArgs e) { }
 
     private void spin_dateTimeClusters_ValueChanged(object sender, EventArgs e)
     {

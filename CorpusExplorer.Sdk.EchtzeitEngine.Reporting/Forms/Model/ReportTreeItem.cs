@@ -6,13 +6,15 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Reporting.Forms.Model
 {
   public class ReportTreeItem
   {
-    private ReportTreeItem() { }
-
     public ReportTreeItem(string label, Report report, DataTable dataSource)
     {
       Label = label;
       Report = report;
       DataSource = dataSource;
+    }
+
+    private ReportTreeItem()
+    {
     }
 
     public DataTable DataSource { get; set; }

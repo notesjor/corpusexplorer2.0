@@ -35,6 +35,35 @@ namespace CorpusExplorer.Sdk.ViewModel
       return _dataTable;
     }
 
+    protected override void ExecuteAnalyse()
+    {
+      _dataTable = new DataTable();
+      foreach (var mapping in LayerDisplaynames)
+        _dataTable.Columns.Add(mapping, typeof(string));
+      _dataTable.Columns.Add(Resources.Frequeny1, typeof(double));
+      _dataTable.Columns.Add(Resources.Frequeny2, typeof(double));
+      _dataTable.Columns.Add(Resources.FrequenyD12, typeof(double));
+
+      var layers = LayerDisplaynames.ToArray();
+      switch (LayerDisplaynames.Count())
+      {
+        case 1:
+          Calculate1Layer(layers.FirstOrDefault());
+          break;
+        case 2:
+          Calculate2Layer(layers[0], layers[1]);
+          break;
+        case 3:
+          Calculate3Layer(layers[0], layers[1], layers[2]);
+          break;
+      }
+    }
+
+    protected override bool Validate()
+    {
+      return true;
+    }
+
     private void Calculate1Layer(string layer)
     {
       var blockA = Selection.CreateBlock<Frequency1LayerBlock>();
@@ -78,30 +107,6 @@ namespace CorpusExplorer.Sdk.ViewModel
       blockB.Calculate();
 
       GenerateDataTable(blockA.Frequency.GetNormalizedDictionary(), blockB.Frequency.GetNormalizedDictionary());
-    }
-
-    protected override void ExecuteAnalyse()
-    {
-      _dataTable = new DataTable();
-      foreach (var mapping in LayerDisplaynames)
-        _dataTable.Columns.Add(mapping, typeof(string));
-      _dataTable.Columns.Add(Resources.Frequeny1, typeof(double));
-      _dataTable.Columns.Add(Resources.Frequeny2, typeof(double));
-      _dataTable.Columns.Add(Resources.FrequenyD12, typeof(double));
-
-      var layers = LayerDisplaynames.ToArray();
-      switch (LayerDisplaynames.Count())
-      {
-        case 1:
-          Calculate1Layer(layers.FirstOrDefault());
-          break;
-        case 2:
-          Calculate2Layer(layers[0], layers[1]);
-          break;
-        case 3:
-          Calculate3Layer(layers[0], layers[1], layers[2]);
-          break;
-      }
     }
 
     private void GenerateDataTable(
@@ -192,7 +197,5 @@ namespace CorpusExplorer.Sdk.ViewModel
         _dataTable.Rows.Add(x.Key, 0.0d, x.Value, x.Value);
       _dataTable.EndLoadData();
     }
-
-    protected override bool Validate() { return true; }
   }
 }

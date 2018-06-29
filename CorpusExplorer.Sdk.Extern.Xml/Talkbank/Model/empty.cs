@@ -15,7 +15,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model
   public enum empty
   {
     /// <remarks />
-    [XmlEnum("")]
-    Item
+    [XmlEnum("")] Item
   }
 }

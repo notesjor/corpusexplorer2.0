@@ -11,5 +11,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Crawler.Abstract
 {
   [XmlRoot]
   [Serializable]
-  public abstract class AbstractCrawler : AbstractDocumentProcessingStepOutputOnly<Dictionary<string, object>> { }
+  public abstract class AbstractCrawler : AbstractDocumentProcessingStepOutputOnly<Dictionary<string, object>>
+  {
+  }
 }

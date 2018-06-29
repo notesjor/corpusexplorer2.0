@@ -19,6 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model
 
     /// <remarks />
     [XmlElement("handNote")]
-    public handNote[] handNote { get { return handNoteField; } set { handNoteField = value; } }
+    public handNote[] handNote
+    {
+      get => handNoteField;
+      set => handNoteField = value;
+    }
   }
 }

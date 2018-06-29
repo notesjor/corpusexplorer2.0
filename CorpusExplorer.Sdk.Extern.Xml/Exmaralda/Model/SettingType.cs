@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Model
     [XmlElement("Description", typeof(DescriptionType))]
     [XmlElement("Object", typeof(ObjectType))]
     [XmlElement("Person", typeof(string), DataType = "IDREF")]
-    public object[] Items { get { return itemsField; } set { itemsField = value; } }
+    public object[] Items
+    {
+      get => itemsField;
+      set => itemsField = value;
+    }
   }
 }

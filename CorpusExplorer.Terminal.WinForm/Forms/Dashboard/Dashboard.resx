@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="header1.HeaderDescribtion" xml:space="preserve">
+    <value>Der CorpusExplorer heißt Sie herzlich willkommen. Diese Seite bündelt für Sie alle wichtigen Informationen. Sie können jederzeit auf diese Seite zurückgelangen indem Sie oben links auf das graue Haus klicken.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="page_welcome_btn_projectname.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -256,8 +259,8 @@
         pMB1sBusiKqtIOv+Av229ISoMF1aAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="header1.HeaderDescribtion" xml:space="preserve">
-    <value>Der CorpusExplorer heißt Sie herzlich willkommen. Diese Seite bündelt für Sie alle wichtigen Informationen. Sie können jederzeit auf diese Seite zurückgelangen indem Sie oben links auf das graue Haus klicken.</value>
+  <data name="header3.HeaderDescribtion" xml:space="preserve">
+    <value>Der CorpusLocalExplorer kann mit einer ganzen Reihe an Textdaten gespeißt werden. Sie können über "Korpus akquirieren" eine automatisierte Onlinesuche in Gang setzen. Ein bestehendes "Korpus importieren" oder "Dokumente annotieren".</value>
   </data>
   <data name="corpus_start_add.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -341,11 +344,11 @@
         QmCC
 </value>
   </data>
-  <data name="header3.HeaderDescribtion" xml:space="preserve">
-    <value>Der CorpusLocalExplorer kann mit einer ganzen Reihe an Textdaten gespeißt werden. Sie können über "Korpus akquirieren" eine automatisierte Onlinesuche in Gang setzen. Ein bestehendes "Korpus importieren" oder "Dokumente annotieren".</value>
-  </data>
   <data name="header5.HeaderDescribtion" xml:space="preserve">
     <value>Der CorpusLocalExplorer verfügt über eine einfache aber sehr mächtige Webcrawling-Funktion. Dadurch können Sie ganze Webseiten zur Korpuserstellung nutzen. Webcralwer sind automatisierte Suchroboter, die sich nach Ihren Vorgaben von Webseite zu Webseite bewegen und für Sie Informationen sammeln.</value>
+  </data>
+  <data name="header7.HeaderDescribtion" xml:space="preserve">
+    <value>Die folgenden Liste enthält alle erstellten Schnappschüsse. Ein Schnappschuss garantiert ein konsistentes Ergebnis, selbst wenn neue Texte hinzukommen. Mit einem Klick aktiveren Sie den Schnappschuss (Basis für Analysen).</value>
   </data>
   <data name="page_analytics_snapshot_btn_snapshot_remove.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -370,9 +373,6 @@
         +DNbOydxEJNzKgDDD27+1xzEgeaKu01sJQ4wlW5H9368fG5scgs0z8Yy33qJreTrsRvrELo/45Q47F6e
         UzQAAAAASUVORK5CYII=
 </value>
-  </data>
-  <data name="header7.HeaderDescribtion" xml:space="preserve">
-    <value>Die folgenden Liste enthält alle erstellten Schnappschüsse. Ein Schnappschuss garantiert ein konsistentes Ergebnis, selbst wenn neue Texte hinzukommen. Mit einem Klick aktiveren Sie den Schnappschuss (Basis für Analysen).</value>
   </data>
   <data name="header11.HeaderDescribtion" xml:space="preserve">
     <value>Ein Schnappschuss ist ein exaktes und dauerhaftes Abbild der aktuell verfügbaren Textmenge. Definieren Sie Schnappschüsse um die Ergebnissmenge dauerhaft einzufrieren. Selbst wenn Sie Texte/Korpora später hinzufügen, die Ergebnisse werden sich nicht ändern.</value>

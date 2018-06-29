@@ -23,12 +23,24 @@ namespace CorpusExplorer.Sdk.Extern.Xml.HuDesktop.Model
 
     /// <remarks />
     [XmlArrayItem("idno", IsNullable = false)]
-    public idno[] publicationStmt { get { return publicationStmtField; } set { publicationStmtField = value; } }
+    public idno[] publicationStmt
+    {
+      get => publicationStmtField;
+      set => publicationStmtField = value;
+    }
 
     /// <remarks />
-    public sourceDesc sourceDesc { get { return sourceDescField; } set { sourceDescField = value; } }
+    public sourceDesc sourceDesc
+    {
+      get => sourceDescField;
+      set => sourceDescField = value;
+    }
 
     /// <remarks />
-    public titleStmt titleStmt { get { return titleStmtField; } set { titleStmtField = value; } }
+    public titleStmt titleStmt
+    {
+      get => titleStmtField;
+      set => titleStmtField = value;
+    }
   }
 }

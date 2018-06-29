@@ -44,6 +44,7 @@ namespace CorpusExplorer.Core.DocumentProcessing.Scraper.Txt
       Parallel.For(
         0,
         docs.Length,
+        Configuration.ParallelOptions,
         i =>
         {
           var doc = docs[i];
@@ -57,20 +58,20 @@ namespace CorpusExplorer.Core.DocumentProcessing.Scraper.Txt
             entry.Add(
               "Text",
               doc.Substring(0, index)
-                 .Trim()
-                 .Replace("\r", " ")
-                 .Replace("\n", " ")
-                 .Replace("  ", " ")
-                 .Replace("  ", " "));
+                .Trim()
+                .Replace("\r", " ")
+                .Replace("\n", " ")
+                .Replace("  ", " ")
+                .Replace("  ", " "));
 
             var metaData =
               doc.Substring(index)
-                 .Replace("(", " ")
-                 .Replace(")", " ")
-                 .Trim()
-                 .Replace("  ", " ")
-                 .Replace("  ", " ")
-                 .Replace(",", ";");
+                .Replace("(", " ")
+                .Replace(")", " ")
+                .Trim()
+                .Replace("  ", " ")
+                .Replace("  ", " ")
+                .Replace(",", ";");
 
             var metas = metaData.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries);
             if (metas.Length == 1)

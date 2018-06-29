@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Bcs.IO;
-using CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter.ElasticSearchFulltext.Model.Context;
 using CorpusExplorer.Sdk.Db.Elastic;
 using CorpusExplorer.Sdk.Db.Elastic.Adapter;
 using CorpusExplorer.Sdk.Db.Elastic.Model.Context;

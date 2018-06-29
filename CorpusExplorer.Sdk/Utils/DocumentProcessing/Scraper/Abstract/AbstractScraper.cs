@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Diagnostic;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 
 #endregion
@@ -20,6 +21,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract
         Parallel.For(
           0,
           count,
+          Configuration.ParallelOptions,
           i =>
           {
             try

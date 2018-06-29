@@ -23,7 +23,10 @@ namespace CorpusExplorer.Sdk.Blocks.GroupDocuments.Abstract
 
     public abstract bool IsSmallerOrEqual(object obj, object refernce);
 
-    public bool IsTypeValid(object obj) { return obj.GetType() == Type; }
+    public bool IsTypeValid(object obj)
+    {
+      return obj.GetType() == Type;
+    }
 
     public abstract object Substract(object obj, ulong span);
   }

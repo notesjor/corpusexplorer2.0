@@ -11,10 +11,8 @@ namespace CorpusExplorer.Sdk.Extern.Json.YourTwapperKeeper.Model
 
   public class TwapperCorpus
   {
-    [JsonProperty("archive_info")]
-    public ArchiveInfo ArchiveInfo { get; set; }
+    [JsonProperty("archive_info")] public ArchiveInfo ArchiveInfo { get; set; }
 
-    [JsonProperty("tweets")]
-    public Tweet[] Tweets { get; set; }
+    [JsonProperty("tweets")] public Tweet[] Tweets { get; set; }
   }
 }

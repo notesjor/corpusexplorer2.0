@@ -1,24 +1,19 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace CorpusExplorer.Sdk.Helper
 {
   public static class PathHelper
   {
-    private static readonly char[] Chars = {'\\', '/', ':', '*', '?', '"', '<', '>', '|'};
+    private static char[] Chars;
 
-    public static string EnsureFileName(this string filename, char replaceWith = '_')
+    public static string EnsureFileName(this string path, char replaceWith = '_')
     {
-      filename = Chars.Aggregate(filename, (current, c) => current.Replace(c, replaceWith));
-
-      if (filename.Length < 64)
-        return filename;
-
-      var orig = Path.GetFileNameWithoutExtension(filename);
-      if (orig.Length > 60)
-        filename = orig.Substring(0, 60) + filename.Replace(orig, "");
-
-      return filename;
+      InitCharArray();
+      var res = string.Join(replaceWith.ToString(), path.Split(Chars));
+      if (res[1] == replaceWith)
+        res = $"{res[0]}:{res.Substring(2)}";
+      return res;
     }
 
     public static string ForceFileExtension(this string filename, string extension)
@@ -68,6 +63,17 @@ namespace CorpusExplorer.Sdk.Helper
       {
         return false;
       }
+    }
+
+    private static void InitCharArray()
+    {
+      if (Chars != null)
+        return;
+
+      var list = new List<char>(Path.GetInvalidFileNameChars());
+      list.Remove('/');
+      list.Remove('\\');
+      Chars = list.ToArray();
     }
   }
 }

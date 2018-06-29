@@ -37,6 +37,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.btn_filterlist = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_filtereditor = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_posFilter = new Telerik.WinControls.UI.CommandBarToggleButton();
+      this.btn_layer = new Telerik.WinControls.UI.CommandBarButton();
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_csvExport = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_print = new Telerik.WinControls.UI.CommandBarButton();
@@ -62,13 +63,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 44);
+      this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
       this.radCommandBar1.TabIndex = 0;
-      this.radCommandBar1.Text = "radCommandBar1";
       // 
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
       // 
@@ -85,6 +86,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
             this.btn_filterlist,
             this.btn_filtereditor,
             this.btn_posFilter,
+            this.btn_layer,
             this.commandBarSeparator1,
             this.btn_csvExport,
             this.btn_print,
@@ -142,6 +144,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.btn_posFilter.Text = "POS-Filter";
       this.btn_posFilter.Click += new System.EventHandler(this.btn_posFilter_Click);
       // 
+      // btn_layer
+      // 
+      this.btn_layer.DisplayName = "commandBarButton1";
+      this.btn_layer.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers;
+      this.btn_layer.Name = "btn_layer";
+      this.btn_layer.Text = "Layer auswählen";
+      this.btn_layer.Click += new System.EventHandler(this.btn_layer_Click);
+      // 
       // commandBarSeparator1
       // 
       this.commandBarSeparator1.AccessibleDescription = "commandBarSeparator1";
@@ -190,7 +200,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // radGridView1
       // 
       this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGridView1.Location = new System.Drawing.Point(0, 44);
+      this.radGridView1.Location = new System.Drawing.Point(0, 69);
       // 
       // 
       // 
@@ -201,9 +211,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.radGridView1.MasterTemplate.MultiSelect = true;
       this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
-      this.radGridView1.Size = new System.Drawing.Size(780, 324);
+      this.radGridView1.Size = new System.Drawing.Size(780, 299);
       this.radGridView1.TabIndex = 1;
-      this.radGridView1.Text = "radGridView1";
       // 
       // txt_query
       // 
@@ -274,5 +283,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     private Controls.WinForm.ClearPanel clearPanel1;
     private Telerik.WinControls.UI.RadButton btn_search;
     private Telerik.WinControls.UI.CommandBarToggleButton btn_posFilter;
+    private Telerik.WinControls.UI.CommandBarButton btn_layer;
   }
 }

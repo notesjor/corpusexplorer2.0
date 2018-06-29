@@ -1,55 +1,60 @@
+using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
 namespace CorpusExplorer.Sdk.Extern.Xml.PerseusDigitalLibrary.Greek.Model
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-  public partial class sp
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true)]
+  [XmlRoot(Namespace = "", IsNullable = false)]
+  public class sp
   {
-
     private object[] itemsField;
+
+    private string nField;
 
     private p[] pField;
 
     private string tEIformField;
 
-    private string nField;
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("l", typeof(l))]
-    [System.Xml.Serialization.XmlElementAttribute("milestone", typeof(milestone))]
-    [System.Xml.Serialization.XmlElementAttribute("speaker", typeof(speaker))]
+    /// <remarks />
+    [XmlElement("l", typeof(l))]
+    [XmlElement("milestone", typeof(milestone))]
+    [XmlElement("speaker", typeof(speaker))]
     public object[] Items
     {
-      get { return this.itemsField; }
-      set { this.itemsField = value; }
+      get => itemsField;
+      set => itemsField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("p")]
-    public p[] p
-    {
-      get { return this.pField; }
-      set { this.pField = value; }
-    }
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
-    public string TEIform
-    {
-      get { return this.tEIformField; }
-      set { this.tEIformField = value; }
-    }
-
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute()]
+    /// <remarks />
+    [XmlAttribute]
     public string n
     {
-      get { return this.nField; }
-      set { this.nField = value; }
+      get => nField;
+      set => nField = value;
+    }
+
+    /// <remarks />
+    [XmlElement("p")]
+    public p[] p
+    {
+      get => pField;
+      set => pField = value;
+    }
+
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
+    public string TEIform
+    {
+      get => tEIformField;
+      set => tEIformField = value;
     }
   }
 }

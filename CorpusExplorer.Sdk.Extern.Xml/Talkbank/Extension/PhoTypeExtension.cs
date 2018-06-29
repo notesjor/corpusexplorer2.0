@@ -17,7 +17,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank.Extension
       return phoType.pw.OfType<constituentType>().Select(o => o);
     }
 
-    public static IEnumerable<ss> GetAllSSs(this phoType phoType) { return phoType.pw.OfType<ss>().Select(o => o); }
+    public static IEnumerable<ss> GetAllSSs(this phoType phoType)
+    {
+      return phoType.pw.OfType<ss>().Select(o => o);
+    }
 
     public static IEnumerable<wordnetMarkerType> GetAllWordnetMarkerTypes(this phoType phoType)
     {

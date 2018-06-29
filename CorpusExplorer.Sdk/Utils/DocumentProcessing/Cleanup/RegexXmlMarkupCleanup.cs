@@ -15,6 +15,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup
 
     public string ReplaceWith { get; set; } = string.Empty;
 
-    protected override string Execute(string input) { return _r1.Replace(input, ReplaceWith); }
+    protected override string Execute(string input)
+    {
+      return _r1.Replace(input, ReplaceWith);
+    }
   }
 }

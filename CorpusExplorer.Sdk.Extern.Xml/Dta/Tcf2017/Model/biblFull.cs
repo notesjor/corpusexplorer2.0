@@ -1,104 +1,73 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
+namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1381926654438")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1381926654438", IsNullable = false)]
-  public partial class biblFull
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true, Namespace = "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1381926654438")]
+  [XmlRoot(Namespace = "http://www.clarin.eu/cmd/1/profiles/clarin.eu:cr1:p_1381926654438", IsNullable = false)]
+  public class biblFull
   {
-
-    private titleStmt titleStmtField;
-
     private edition editionStmtField;
 
     private measure[] extentField;
 
-    private publicationStmt publicationStmtField;
-
     private notesStmt notesStmtField;
+
+    private publicationStmt publicationStmtField;
 
     private seriesStmt seriesStmtField;
 
-    /// <remarks/>
-    public titleStmt titleStmt
-    {
-      get
-      {
-        return this.titleStmtField;
-      }
-      set
-      {
-        this.titleStmtField = value;
-      }
-    }
+    private titleStmt titleStmtField;
 
-    /// <remarks/>
+    /// <remarks />
     public edition editionStmt
     {
-      get
-      {
-        return this.editionStmtField;
-      }
-      set
-      {
-        this.editionStmtField = value;
-      }
+      get => editionStmtField;
+      set => editionStmtField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlArrayItemAttribute("measure", IsNullable = false)]
+    /// <remarks />
+    [XmlArrayItem("measure", IsNullable = false)]
     public measure[] extent
     {
-      get
-      {
-        return this.extentField;
-      }
-      set
-      {
-        this.extentField = value;
-      }
+      get => extentField;
+      set => extentField = value;
     }
 
-    /// <remarks/>
-    public publicationStmt publicationStmt
-    {
-      get
-      {
-        return this.publicationStmtField;
-      }
-      set
-      {
-        this.publicationStmtField = value;
-      }
-    }
-
-    /// <remarks/>
+    /// <remarks />
     public notesStmt notesStmt
     {
-      get
-      {
-        return this.notesStmtField;
-      }
-      set
-      {
-        this.notesStmtField = value;
-      }
+      get => notesStmtField;
+      set => notesStmtField = value;
     }
 
-    /// <remarks/>
+    /// <remarks />
+    public publicationStmt publicationStmt
+    {
+      get => publicationStmtField;
+      set => publicationStmtField = value;
+    }
+
+    /// <remarks />
     public seriesStmt seriesStmt
     {
-      get
-      {
-        return this.seriesStmtField;
-      }
-      set
-      {
-        this.seriesStmtField = value;
-      }
+      get => seriesStmtField;
+      set => seriesStmtField = value;
+    }
+
+    /// <remarks />
+    public titleStmt titleStmt
+    {
+      get => titleStmtField;
+      set => titleStmtField = value;
     }
   }
 }

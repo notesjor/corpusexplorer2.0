@@ -21,9 +21,17 @@ namespace CorpusExplorer.Sdk.Extern.SentimentDetection.Formats.IGGSA
 
     /// <remarks />
     [XmlElement("opinion")]
-    public opinion[] opinion { get { return opinionField; } set { opinionField = value; } }
+    public opinion[] opinion
+    {
+      get => opinionField;
+      set => opinionField = value;
+    }
 
     /// <remarks />
-    public string term { get { return termField; } set { termField = value; } }
+    public string term
+    {
+      get => termField;
+      set => termField = value;
+    }
   }
 }

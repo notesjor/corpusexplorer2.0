@@ -32,27 +32,59 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Pmg.Model
     private string untertitelField;
 
     /// <remarks />
-    public string dachzeile { get { return dachzeileField; } set { dachzeileField = value; } }
+    public string dachzeile
+    {
+      get => dachzeileField;
+      set => dachzeileField = value;
+    }
 
     /// <remarks />
-    public string kurztitel { get { return kurztitelField; } set { kurztitelField = value; } }
+    public string kurztitel
+    {
+      get => kurztitelField;
+      set => kurztitelField = value;
+    }
 
     /// <remarks />
-    public string ressort { get { return ressortField; } set { ressortField = value; } }
+    public string ressort
+    {
+      get => ressortField;
+      set => ressortField = value;
+    }
 
     /// <remarks />
-    public string rubrik { get { return rubrikField; } set { rubrikField = value; } }
+    public string rubrik
+    {
+      get => rubrikField;
+      set => rubrikField = value;
+    }
 
     /// <remarks />
-    public string seitentitel { get { return seitentitelField; } set { seitentitelField = value; } }
+    public string seitentitel
+    {
+      get => seitentitelField;
+      set => seitentitelField = value;
+    }
 
     /// <remarks />
-    public string serientitel { get { return serientitelField; } set { serientitelField = value; } }
+    public string serientitel
+    {
+      get => serientitelField;
+      set => serientitelField = value;
+    }
 
     /// <remarks />
-    public string titel { get { return titelField; } set { titelField = value; } }
+    public string titel
+    {
+      get => titelField;
+      set => titelField = value;
+    }
 
     /// <remarks />
-    public string untertitel { get { return untertitelField; } set { untertitelField = value; } }
+    public string untertitel
+    {
+      get => untertitelField;
+      set => untertitelField = value;
+    }
   }
 }

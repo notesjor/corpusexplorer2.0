@@ -18,7 +18,9 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
   {
     private Model.Corpus _corpus;
 
-    private CorpusAdapterSingleFile() { }
+    private CorpusAdapterSingleFile()
+    {
+    }
 
     public override IEnumerable<Concept> Concepts => _corpus.Concepts;
 
@@ -74,7 +76,10 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
 
     public override bool UseCompression => true;
 
-    public override void AddConcept(Concept concept) { _corpus.AddConcept(concept); }
+    public override void AddConcept(Concept concept)
+    {
+      _corpus.AddConcept(concept);
+    }
 
     /// <summary>
     ///   The add layer.
@@ -182,9 +187,15 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       return _corpus.FindDocumentByMetadata(example);
     }
 
-    public override AbstractCorpusBuilder GetCorpusBuilder() { return new CorpusBuilderSingleFile(); }
+    public override AbstractCorpusBuilder GetCorpusBuilder()
+    {
+      return new CorpusBuilderSingleFile();
+    }
 
-    public override IEnumerable<KeyValuePair<string, object>> GetCorpusMetadata() { return _corpus.Metadata; }
+    public override IEnumerable<KeyValuePair<string, object>> GetCorpusMetadata()
+    {
+      return _corpus.Metadata;
+    }
 
     /// <summary>
     ///   Gibt die Anzahl der Sätze in einem Dokument zurück.
@@ -423,8 +434,11 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     {
       _corpus.LayerRename(layerDisplaynameOld, layerDisplaynameNew);
     }
-    
-    public override bool RemoveConcept(Concept concept) { return _corpus.RemoveConcept(concept); }
+
+    public override bool RemoveConcept(Concept concept)
+    {
+      return _corpus.RemoveConcept(concept);
+    }
 
     /// <summary>
     ///   The reset all document metadata.
@@ -447,10 +461,10 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       Serializer.Serialize(
         _corpus,
         (string.IsNullOrEmpty(path)
-           ? string.IsNullOrEmpty(CorpusPath)
-               ? Path.Combine(Configuration.MyCorpora, CorpusDisplayname)
-               : CorpusPath
-           : path).ForceFileExtension(".cec5"),
+          ? string.IsNullOrEmpty(CorpusPath)
+            ? Path.Combine(Configuration.MyCorpora, CorpusDisplayname)
+            : CorpusPath
+          : path).ForceFileExtension(".cec5"),
         useCompression);
     }
 

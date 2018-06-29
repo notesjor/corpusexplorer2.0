@@ -15,9 +15,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter
 
       foreach (var connection in connections)
       {
-        var block = connection.Content as TextBlock;
         stb.AppendLine(
-          block != null
+          connection.Content is TextBlock block
             ? $"{connection.Source.Content}\t{block.Text}\t{connection.Target.Content}"
             : $"{connection.Source.Content}\t \t{connection.Target.Content}");
       }

@@ -35,19 +35,18 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
 
       if (string.IsNullOrEmpty(speaker) ||
           string.IsNullOrEmpty(utterance) ||
-          (speaker == utterance))
+          speaker == utterance)
         return;
 
       var order = new Dictionary<int, KeyValuePair<Guid, string>>();
       foreach (var dsel in Project.CurrentSelection.DocumentGuids)
       {
         var meta = Project.CurrentSelection.GetDocumentMetadata(dsel);
-        if ((meta == null) ||
+        if (meta == null ||
             !meta.ContainsKey(utterance))
           continue;
 
-        int x;
-        if (!int.TryParse(meta[utterance].ToString(), out x) ||
+        if (!int.TryParse(meta[utterance].ToString(), out var x) ||
             order.ContainsKey(x))
           continue;
 
@@ -55,6 +54,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
           x,
           new KeyValuePair<Guid, string>(dsel, meta.ContainsKey(speaker) ? meta[speaker].ToString() : string.Empty));
       }
+
       var array = order.OrderBy(x => x.Key);
 
       var tokens = new Dictionary<string, int>();
@@ -63,7 +63,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       List<ListViewDataItem> list = new List<ListViewDataItem>();
       foreach (var pair in array)
       {
-        var doc = Project.CurrentSelection.GetReadableDocument(pair.Value.Key, "Wort").Select(x=>x.ToArray()).ToArray();
+        var doc = Project.CurrentSelection.GetReadableDocument(pair.Value.Key, "Wort").Select(x => x.ToArray())
+          .ToArray();
         if (!tokens.ContainsKey(pair.Value.Value))
         {
           tokens.Add(pair.Value.Value, 0);
@@ -74,21 +75,22 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
         foreach (var s in doc)
         {
           token += s.Length;
-          foreach (var w in s)
-          {
-            types[pair.Value.Value].Add(w);
-          }
+          foreach (var w in s) types[pair.Value.Value].Add(w);
         }
+
         tokens[pair.Value.Value] += token;
 
         list.Add(
           new ListViewDataItem
           {
             BackColor = GetUserColor(pair.Value.Value),
-            Text = $"<html>({types[pair.Value.Value].Count:D5} / {tokens[pair.Value.Value]:D5}) <u>{pair.Value.Value}</u>: {doc.ReduceDocumentToText()}</html>",
+            Text =
+              $"<html>({types[pair.Value.Value].Count:D5} / {tokens[pair.Value.Value]:D5}) <u>{pair.Value.Value}</u>: {doc.ReduceDocumentToText()}</html>",
             Font = new Font(radListView1.Font.FontFamily, 12, FontStyle.Bold),
-            Key = pair.Value.Key,
-          });}
+            Key = pair.Value.Key
+          });
+      }
+
       _items = list.ToArray();
 
       radListView1.Items.AddRange(_items);
@@ -107,7 +109,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       if (_userColors.ContainsKey(sprecher))
         return _userColors[sprecher];
 
-      var color = _colors[_userColors.Count%_colors.Length];
+      var color = _colors[_userColors.Count % _colors.Length];
       _userColors.Add(sprecher, color);
 
       return color;

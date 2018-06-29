@@ -23,6 +23,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
 
     /// <remarks />
     [XmlElement("timepoint")]
-    public timepoint[] timepoint { get { return timepointField; } set { timepointField = value; } }
+    public timepoint[] timepoint
+    {
+      get => timepointField;
+      set => timepointField = value;
+    }
   }
 }

@@ -1,5 +1,15 @@
 ﻿#region
 
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using System.Windows.Forms;
 using Bcs.IO;
 using CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger;
 using CorpusExplorer.Sdk.Addon;
@@ -9,15 +19,19 @@ using CorpusExplorer.Sdk.Compatibility;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Extern.FuzzyCloneDetection.ViewModel;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
+using CorpusExplorer.Sdk.Model.Extension;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Terminal;
 using CorpusExplorer.Sdk.Utils.CorpusManipulation;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Crawler;
+using CorpusExplorer.Sdk.Utils.Filter;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
@@ -26,7 +40,9 @@ using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser;
 using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
 using CorpusExplorer.Terminal.WinForm.Forms.CloneDetection;
+using CorpusExplorer.Terminal.WinForm.Forms.CorpusError;
 using CorpusExplorer.Terminal.WinForm.Forms.Error;
+using CorpusExplorer.Terminal.WinForm.Forms.Insight;
 using CorpusExplorer.Terminal.WinForm.Forms.Interfaces;
 using CorpusExplorer.Terminal.WinForm.Forms.Scraper;
 using CorpusExplorer.Terminal.WinForm.Forms.Simple;
@@ -38,6 +54,7 @@ using CorpusExplorer.Terminal.WinForm.Forms.WebCrawler;
 using CorpusExplorer.Terminal.WinForm.Helper;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Localizer.GridView;
+using CorpusExplorer.Terminal.WinForm.Localizer.PivotGrid;
 using CorpusExplorer.Terminal.WinForm.Properties;
 using CorpusExplorer.Terminal.WinForm.View.Cooccurrence;
 using CorpusExplorer.Terminal.WinForm.View.CorpusDistribution;
@@ -49,20 +66,6 @@ using CorpusExplorer.Terminal.WinForm.View.Ngram;
 using CorpusExplorer.Terminal.WinForm.View.Special;
 using CorpusExplorer.Terminal.WinForm.View.StyleMetrics;
 using ICSharpCode.SharpZipLib.Zip;
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Windows.Forms;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
-using CorpusExplorer.Sdk.Utils.Filter;
-using CorpusExplorer.Terminal.WinForm.Forms.Insight;
-using CorpusExplorer.Terminal.WinForm.Localizer.PivotGrid;
 using Telerik.WinControls;
 using Telerik.WinControls.Enumerations;
 using Telerik.WinControls.Primitives;
@@ -80,6 +83,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
   /// </summary>
   public partial class Dashboard : AbstractForm, IMainForm
   {
+    private readonly RadMenuItem _addonMenuItem = new RadMenuItem { Image = Resources.addin, Text = "Erweiterungen" };
     private readonly DisposingContainer _snapshotEditDisposingContainer = new DisposingContainer();
     private readonly string _snapshotFileExtension = "Universale Schnappschuss-Definition (*.ceusd)|*.ceusd";
 
@@ -88,7 +92,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     /// </summary>
     private readonly TerminalController _terminal;
 
-    private readonly RadMenuItem _addonMenuItem = new RadMenuItem { Image = Resources.addin, Text = "Erweiterungen" };
+    private readonly Label txt_snapshot_infoHeader;
 
     private AbstractView _currentView;
     private Selection _selectionEditCurrentSelection;
@@ -96,7 +100,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private List<AbstractFilterQuery> _selectionEditQueries;
     private KeyValuePair<string, ISignificance>[] _significanceMessures;
-    private readonly Label txt_snapshot_infoHeader;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="Dashboard" /> class.
@@ -112,8 +115,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       #region 3rdPpartyPanel
 
-      var tp = _addonMenuItem.Children[2].Children[0].Children[1].Children[0] as TextPrimitive;
-      if (tp != null)
+      if (_addonMenuItem.Children[2].Children[0].Children[1].Children[0] is TextPrimitive tp)
         tp.UseMnemonic = false;
       _addonMenuItem.Click += (o, e) => SetAnalyticModul(page_analytics);
 
@@ -182,7 +184,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ParseArguments(args);
 
       LoadSettings();
-      
+
       RealoadInsightSettings();
 
       Corpus_LaodAvailabelCorpora();
@@ -192,10 +194,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     public AbstractView CurrentView
     {
-      get { return _currentView; }
+      get => _currentView;
       set
       {
-        InMemoryErrorConsole.TrackPageView(value.GetType().ToString());
         _currentView?.ViewModelClear();
         _currentView = value;
       }
@@ -203,8 +204,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void AddCorpusToProject(AbstractCorpusAdapter corpus)
     {
-      if ((corpus == null) ||
-          (corpus.CountDocuments == 0))
+      if (corpus == null ||
+          corpus.CountDocuments == 0)
       {
         MessageBox.Show(
           Resources.Corpus_LoadingError,
@@ -216,12 +217,34 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       if (Project.ContainsCorpus(corpus.CorpusGuid))
         return;
-      // Füge Korpus dem Projekt hinzu
+
+      var selection = corpus.ToSelection();
+      var vm = new ValidateSelectionIntegrityViewModel { Selection = selection };
+      vm.Analyse();
+
+      if (vm.HasError)
+      {
+        Processing.SplashClose();
+        var form = new CorpusErrorForm(vm);
+        form.ShowDialog();
+        
+        if (form.ResultSelection != null)
+        {          
+          corpus = form.ResultSelection.ToCorpus();
+          Processing.SplashClose();
+          if (MessageBox.Show("Möchten Sie das bereinigte Korpus speichern?", "Änderungen speichern?",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+          {
+            ExportSelectionAsCorpus(selection);
+          }
+          Processing.SplashShow("Korpus wird überarbeitet...");
+        }
+      }
+
       Project.Add(corpus);
-
       Selection_ReLaod();
-
       Corpora_ReLoad();
+      Processing.SplashClose();
     }
 
     private string AskForSelectionDisplayname()
@@ -232,6 +255,40 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         Resources.camera,
         Resources.NameHierEintragen);
       return form.ShowDialog() != DialogResult.OK ? "" : form.Result;
+    }
+
+    private void btn_settings_load_Click(object sender, EventArgs e)
+    {
+      var ofd = new OpenFileDialog { Filter = "Einstellungen (*.cesettings)|*.cesettings", CheckFileExists = true };
+      if (ofd.ShowDialog() != DialogResult.OK)
+        return;
+      var current = Configuration.GetSettings();
+      var load = Configuration.GetSettings(ofd.FileName);
+
+      foreach (var x in load)
+        if (current.ContainsKey(x.Key))
+          current[x.Key] = x.Value;
+        else
+          current.Add(x.Key, x.Value);
+
+      Configuration.SetSettings(current);
+    }
+
+    private void btn_settings_save_Click(object sender, EventArgs e)
+    {
+      Configuration.SetSettings(((RadPropertyStore)property_meta.SelectedObject)
+        .ToDictionary(x => x.PropertyName,
+          x => x.Value));
+    }
+
+    private void btn_settings_saveas_Click(object sender, EventArgs e)
+    {
+      var sfd = new SaveFileDialog { Filter = "Einstellungen (*.cesettings)|*.cesettings" };
+      if (sfd.ShowDialog() != DialogResult.OK)
+        return;
+      Configuration.SetSettings(((RadPropertyStore)property_meta.SelectedObject)
+        .ToDictionary(x => x.PropertyName,
+          x => x.Value), sfd.FileName);
     }
 
     private void ControlOnQueryRemove(object sender, EventArgs eventArgs)
@@ -335,8 +392,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           corpora = importer.Execute(ofd.FileNames);
         });
 
-      if ((corpora == null) &&
-          (ofd.FileNames.Length == 1))
+      if (corpora == null &&
+          ofd.FileNames.Length == 1)
       {
         MessageBox.Show(Resources.Corpus_ImportError);
         return;
@@ -346,8 +403,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         Resources.Corpus_Loading,
         () =>
         {
-          foreach (var corpus in corpora)
-            AddCorpusToProject(corpus);
+          if (corpora != null)
+            foreach (var corpus in corpora)
+              AddCorpusToProject(corpus);
         });
     }
 
@@ -410,8 +468,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     {
       var crawlers =
         corpus_online_crawler_list.Items.Where(item => item.CheckState == ToggleState.On)
-                                  .Select(item => (XpathWebCrawler)item.Tag)
-                                  .ToArray();
+          .Select(item => (XpathWebCrawler)item.Tag)
+          .ToArray();
 
       var res = new List<Dictionary<string, object>>();
 
@@ -421,6 +479,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       Processing.SplashShow("Websuche beginnt...");
       Parallel.ForEach(
         crawlers,
+        Configuration.ParallelOptions,
         c =>
         {
           c.Execute();
@@ -446,10 +505,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       if (Project.CurrentSelection != null)
         txt_snapshot_infoHeader.Text =
           Project.CurrentSelection.Displayname.Replace("<html>", "")
-                 .Replace("</html>", "")
-                 .Replace("<strong>", "")
-                 .Replace("</strong>", "")
-                 .Replace("&nbsp;", "");
+            .Replace("</html>", "")
+            .Replace("<strong>", "")
+            .Replace("</strong>", "")
+            .Replace("&nbsp;", "");
 
       page_analytics_snapshot_list_snapshots.ExpandAll();
     }
@@ -520,301 +579,313 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // ab hier: modul_panel_rawdata
 
       GuiModuleBuilder.InitializePage(
-                        modul_panel_analytics,
-                        main_mainmenu_analytics,
-                        (o, e) => SetAnalyticModul(page_rawanalytics_annotation),
-                        page_rawanalytics_annotation,
-                        Resources.character_font_highlight_color_1,
-                        Resources.character_font_highlight_color,
-                        Resources.Fulltext,
-                        Resources.Fulltext_Describtion,
-                        "http://www.bitcutstudios.com/products/corpusexplorer/help/volltextzugriff.html",
-                        // Handbook
-                        Resources.Help_Static_HandsOnLab,
-                        // Hand-on Lab
-                        Resources.Help_Static_YoutubeChannel,
-                        // Video
-                        Resources.Help_Static_AdditionalInformation) // Weitere Informationen
-                      .AddView(
-                        new FulltextAnnotation(),
-                        Resources.layers1,
-                        Resources.layers,
-                        Resources.Fulltext_Annotate)
-                      .AddView(
-                        new FulltextAnnotationSpeedup(),
-                        Resources.layers1,
-                        Resources.layers,
-                        Resources.Fulltext_SpeedAnnotate)
-                      .AddView(
-                        new FulltextKwicSearch(),
-                        Resources.find1,
-                        Resources.find,
-                        "Texte suchen (KWIC)")
-                      .AddView(
-                        new FulltextKwicTree(),
-                        Resources.find1,
-                        Resources.find,
-                        "Texte suchen (KWIT)");
+          modul_panel_analytics,
+          main_mainmenu_analytics,
+          (o, e) => SetAnalyticModul(page_rawanalytics_annotation),
+          page_rawanalytics_annotation,
+          Resources.character_font_highlight_color_1,
+          Resources.character_font_highlight_color,
+          Resources.Fulltext,
+          Resources.Fulltext_Describtion,
+          "http://www.bitcutstudios.com/products/corpusexplorer/help/volltextzugriff.html",
+          // Handbook
+          Resources.Help_Static_HandsOnLab,
+          // Hand-on Lab
+          Resources.Help_Static_YoutubeChannel,
+          // Video
+          Resources.Help_Static_AdditionalInformation) // Weitere Informationen
+        .AddView(
+          new FulltextAnnotation(),
+          Resources.layers1,
+          Resources.layers,
+          Resources.Fulltext_Annotate)
+        .AddView(
+          new FulltextAnnotationSpeedup(),
+          Resources.layers1,
+          Resources.layers,
+          Resources.Fulltext_SpeedAnnotate)
+        .AddView(
+          new FulltextKwicSearch(),
+          Resources.find1,
+          Resources.find,
+          "Texte suchen (KWIC)")
+        .AddView(
+          new FulltextKwicTree(),
+          Resources.find1,
+          Resources.find,
+          "Texte suchen (KWIT)");
 
       GuiModuleBuilder.InitializePage(
-                        modul_panel_analytics,
-                        main_mainmenu_analytics,
-                        (o, e) => SetAnalyticModul(page_rawanalytics_edition),
-                        page_rawanalytics_edition,
-                        Resources.history1,
-                        Resources.history,
-                        Resources.Textedition,
-                        Resources.Textedition_Describtion,
-                        "http://www.bitcutstudios.com/products/corpusexplorer/help/textedition.html",
-                        // Handbook
-                        Resources.Help_Static_HandsOnLab,
-                        // Hand-on Lab
-                        Resources.Help_Static_YoutubeChannel,
-                        // Video
-                        Resources.Help_Static_AdditionalInformation) // Weitere Informationen
-                      .AddView(
-                        new TextCompare(),
-                        Resources.history1,
-                        Resources.history,
-                        Resources.Textedition_CompareTexts)
-                      .AddView(
-                        new TextSimilarity(),
-                        Resources.documents1,
-                        Resources.documents,
-                        Resources.Textedition_TextSimilarity);
+          modul_panel_analytics,
+          main_mainmenu_analytics,
+          (o, e) => SetAnalyticModul(page_rawanalytics_edition),
+          page_rawanalytics_edition,
+          Resources.history1,
+          Resources.history,
+          Resources.Textedition,
+          Resources.Textedition_Describtion,
+          "http://www.bitcutstudios.com/products/corpusexplorer/help/textedition.html",
+          // Handbook
+          Resources.Help_Static_HandsOnLab,
+          // Hand-on Lab
+          Resources.Help_Static_YoutubeChannel,
+          // Video
+          Resources.Help_Static_AdditionalInformation) // Weitere Informationen
+        .AddView(
+          new TextCompare(),
+          Resources.history1,
+          Resources.history,
+          Resources.Textedition_CompareTexts)
+        .AddView(
+          new TextSimilarity(),
+          Resources.documents1,
+          Resources.documents,
+          Resources.Textedition_TextSimilarity);
 
       // ab hier: modul_panel_analytics
 
       GuiModuleBuilder.InitializePage(
-                        modul_panel_analytics,
-                        main_mainmenu_analytics,
-                        (o, e) => SetAnalyticModul(page_standardanalytics_frequency),
-                        page_standardanalytics_frequency,
-                        Resources.table_1,
-                        Resources.table,
-                        Resources.FrequncyAnalytics,
-                        Resources.FrequncyAnalytics_Describtion,
-                        "http://www.bitcutstudios.com/products/corpusexplorer/help/frequenzanalyse.html",
-                        // Handbook
-                        Resources.Help_Static_HandsOnLab,
-                        // Hand-on Lab
-                        Resources.Help_Static_YoutubeChannel,
-                        // Video
-                        Resources.Help_Static_AdditionalInformation) // Weitere Informationen
-                      .AddView(
-                        new FrequencyGrid(),
-                        Resources.sheet_calculate_1,
-                        Resources.sheet_calculate,
-                        Resources.FrequncyAnalytics_Table)
-                      .AddView(
-                        new FrequencyPivotGrid(),
-                        Resources.table_pivot_1,
-                        Resources.table_pivot,
-                        Resources.FrequncyAnalytics_PivotTable)
-                      .AddView(
-                        new CrossFrequencyGrid(),
-                        Resources.table_show_hide,
-                        Resources.table_show_hide1,
-                        Resources.Frequency_Cross)
-                      .AddView(
-                        new LeftRightFrequency(),
-                        Resources.table_split_columns,
-                        Resources.table_split_columns1,
-                        Resources.Frequency_LeftRight)
-                      .AddView(
-                        new KeywordGrid(),
-                        Resources.table_key1,
-                        Resources.table_key,
-                        Resources.Keywordanalitics)
-                      .AddView(
-                        new FrequencySegments(),
-                        Resources.documents1,
-                        Resources.documents,
-                        Resources.FrequncyAnalytics_Distribution)
-                      .AddView(
-                        new FrequencyOverTime(),
-                        Resources.charts_color_3d,
-                        Resources.charts_color,
-                        Resources.SpcialFunctions_TimeFrequency)
-                      .AddView(
-                        new CompareFrequency(),
-                        Resources.camera_find,
-                        Resources.camera_find1,
-                        Resources.FrequncyAnalytics_CompareSnapshot);
+          modul_panel_analytics,
+          main_mainmenu_analytics,
+          (o, e) => SetAnalyticModul(page_standardanalytics_frequency),
+          page_standardanalytics_frequency,
+          Resources.table_1,
+          Resources.table,
+          Resources.FrequncyAnalytics,
+          Resources.FrequncyAnalytics_Describtion,
+          "http://www.bitcutstudios.com/products/corpusexplorer/help/frequenzanalyse.html",
+          // Handbook
+          Resources.Help_Static_HandsOnLab,
+          // Hand-on Lab
+          Resources.Help_Static_YoutubeChannel,
+          // Video
+          Resources.Help_Static_AdditionalInformation) // Weitere Informationen
+        .AddView(
+          new FrequencyGrid(),
+          Resources.sheet_calculate_1,
+          Resources.sheet_calculate,
+          Resources.FrequncyAnalytics_Table)
+        .AddView(
+          new FrequencyPivotGrid(),
+          Resources.table_pivot_1,
+          Resources.table_pivot,
+          Resources.FrequncyAnalytics_PivotTable)
+        .AddView(
+          new CrossFrequencyGrid(),
+          Resources.table_show_hide,
+          Resources.table_show_hide1,
+          Resources.Frequency_Cross)
+        /* OBSOLETE
+        .AddView(
+          new LeftRightFrequency(),
+          Resources.table_split_columns,
+          Resources.table_split_columns1,
+          Resources.Frequency_LeftRight)
+        */
+        .AddView(
+          new CollocateFrequency(),
+          Resources.table_split_columns,
+          Resources.table_split_columns1,
+          Resources.Frequency_LeftRight)
+        .AddView(
+          new FrequencySegments(),
+          Resources.documents1,
+          Resources.documents,
+          Resources.FrequncyAnalytics_Distribution)
+        .AddView(
+          new KeywordGrid(),
+          Resources.table_key1,
+          Resources.table_key,
+          Resources.Keywordanalitics)        
+        .AddView(
+          new FrequencyOverTime(),
+          Resources.charts_color_3d,
+          Resources.charts_color,
+          Resources.SpcialFunctions_TimeFrequency)
+        .AddView(
+          new CompareFrequency(),
+          Resources.camera_find,
+          Resources.camera_find1,
+          Resources.FrequncyAnalytics_CompareSnapshot);
 
       GuiModuleBuilder.InitializePage(
-                        modul_panel_analytics,
-                        main_mainmenu_analytics,
-                        (o, e) => SetAnalyticModul(page_standardanalytics_ngram),
-                        page_standardanalytics_ngram,
-                        Resources.dashes_1,
-                        Resources.dashes,
-                        Resources.Phrases,
-                        Resources.Phrases_Describtion,
-                        "http://www.bitcutstudios.com/products/corpusexplorer/help/phrasen___muster.html",
-                        // Handbook
-                        Resources.Help_Static_HandsOnLab,
-                        // Hand-on Lab
-                        Resources.Help_Static_YoutubeChannel,
-                        // Video
-                        Resources.Help_Static_AdditionalInformation) // Weitere Informationen
-                      .AddView(
-                        new NGramGrid(),
-                        Resources.sheet_calculate_1,
-                        Resources.sheet_calculate,
-                        Resources.Phrases_NgramTable)
-                      .AddView(
-                        new NGramDiagram(),
-                        Resources.diagram,
-                        Resources.diagram1,
-                        Resources.Phrases_NgramMindmap)
-                      .AddView(
-                        new PhrasesLaboratory(),
-                        Resources.component1,
-                        Resources.component,
-                        Resources.Phrases_StrucGrammar,
-                        true)
-                      .AddView(
-                        new CooccurrenceMultiwordGrid(),
-                        Resources.sheet_calculate_1,
-                        Resources.sheet_calculate,
-                        "Signifikante-NGramme")
-                      .AddView(
-                        new PhrasesGrid(),
-                        Resources.sheet_calculate_1,
-                        Resources.sheet_calculate,
-                        Resources.Phrases_PhraseTable)
-                      .AddView(
-                        new CompareNGram(),
-                        Resources.camera_find,
-                        Resources.camera_find1,
-                        Resources.Phrases_CompareSnapshot);
+          modul_panel_analytics,
+          main_mainmenu_analytics,
+          (o, e) => SetAnalyticModul(page_standardanalytics_ngram),
+          page_standardanalytics_ngram,
+          Resources.dashes_1,
+          Resources.dashes,
+          Resources.Phrases,
+          Resources.Phrases_Describtion,
+          "http://www.bitcutstudios.com/products/corpusexplorer/help/phrasen___muster.html",
+          // Handbook
+          Resources.Help_Static_HandsOnLab,
+          // Hand-on Lab
+          Resources.Help_Static_YoutubeChannel,
+          // Video
+          Resources.Help_Static_AdditionalInformation) // Weitere Informationen
+        .AddView(
+          new NGramGrid(),
+          Resources.sheet_calculate_1,
+          Resources.sheet_calculate,
+          Resources.Phrases_NgramTable)
+        .AddView(
+          new NGramDiagram(),
+          Resources.diagram,
+          Resources.diagram1,
+          Resources.Phrases_NgramMindmap)
+        .AddView(
+          new PhrasesLaboratory(),
+          Resources.component1,
+          Resources.component,
+          Resources.Phrases_StrucGrammar,
+          true)
+        .AddView(
+          new CooccurrenceMultiwordGrid(),
+          Resources.sheet_calculate_1,
+          Resources.sheet_calculate,
+          "Signifikante-NGramme")
+        .AddView(
+          new PhrasesGrid(),
+          Resources.sheet_calculate_1,
+          Resources.sheet_calculate,
+          Resources.Phrases_PhraseTable)
+        .AddView(
+          new CompareNGram(),
+          Resources.camera_find,
+          Resources.camera_find1,
+          Resources.Phrases_CompareSnapshot);
 
       GuiModuleBuilder.InitializePage(
-                        modul_panel_analytics,
-                        main_mainmenu_analytics,
-                        (o, e) => SetAnalyticModul(page_standardanalytics_cooccurrence),
-                        page_standardanalytics_cooccurrence,
-                        Resources.logo_firewire,
-                        Resources.logo_firewire_1,
-                        Resources.Cooccurrences,
-                        Resources.Cooccurrences_Describtion,
-                        "http://www.bitcutstudios.com/products/corpusexplorer/help/kookkurrenzen.html",
-                        // Handbook
-                        Resources.Help_Static_HandsOnLab,
-                        // Hand-on Lab
-                        Resources.Help_Static_YoutubeChannel,
-                        // Video
-                        Resources.Help_Static_AdditionalInformation) // Weitere Informationen
-                      .AddView(
-                        new CooccurrenceGridSearch(),
-                        Resources.find1,
-                        Resources.find,
-                        "Abfrage")
-                      .AddView(
-                        new CooccurrenceGrid(),
-                        Resources.sheet_calculate_1,
-                        Resources.sheet_calculate,
-                        Resources.Cooccurrences_Table)
-                      .AddView(
-                        new CooccurrenceDiversity(),
-                        Resources.table_split_rows_arrows,
-                        Resources.table_split_rows_arrows1,
-                        Resources.Cooccurrences_CompareTable)
-                      .AddView(
-                        new CooccurrenceDiagram(),
-                        Resources.diagram,
-                        Resources.diagram1,
-                        Resources.Cooccurrences_Mindmap)
-                      .AddView(
-                        new CooccurrenceTagPie(),
-                        Resources.cloud1,
-                        Resources.cloud2,
-                        Resources.Cooccurrences_Cloud)
-                      .AddView(
-                        new CooccurrenceOverTime(),
-                        Resources.charts_color_3d,
-                        Resources.charts_color,
-                        Resources.SpcialFunctions_TimeFrequency)
-                      .AddView(
-                        new CooccurrenceOverlappingGrid(),
-                        Resources.select_table1,
-                        Resources.select_table,
-                        "Multi-Kookkurrenz")
-                      .AddView(
-                        new CompareCooccurrence(),
-                        Resources.camera_find,
-                        Resources.camera_find1,
-                        Resources.Cooccurrences_CompareSnapshot);
+          modul_panel_analytics,
+          main_mainmenu_analytics,
+          (o, e) => SetAnalyticModul(page_standardanalytics_cooccurrence),
+          page_standardanalytics_cooccurrence,
+          Resources.logo_firewire,
+          Resources.logo_firewire_1,
+          Resources.Cooccurrences,
+          Resources.Cooccurrences_Describtion,
+          "http://www.bitcutstudios.com/products/corpusexplorer/help/kookkurrenzen.html",
+          // Handbook
+          Resources.Help_Static_HandsOnLab,
+          // Hand-on Lab
+          Resources.Help_Static_YoutubeChannel,
+          // Video
+          Resources.Help_Static_AdditionalInformation) // Weitere Informationen
+        .AddView(
+          new CooccurrenceGridSearch(),
+          Resources.find1,
+          Resources.find,
+          "Abfrage")
+        .AddView(
+          new CooccurrenceGrid(),
+          Resources.sheet_calculate_1,
+          Resources.sheet_calculate,
+          Resources.Cooccurrences_Table)
+        .AddView(
+          new CooccurrenceTagPie(),
+          Resources.cloud1,
+          Resources.cloud2,
+          Resources.Cooccurrences_Cloud)
+        .AddView(
+          new CooccurrenceOverlappingGrid(),
+          Resources.select_table1,
+          Resources.select_table,
+          "Multi-Kookkurrenz")
+        .AddView(
+          new CooccurrenceDiversity(),
+          Resources.table_split_rows_arrows,
+          Resources.table_split_rows_arrows1,
+          Resources.Cooccurrences_CompareTable)
+        .AddView(
+          new CooccurrenceDiagram(),
+          Resources.diagram,
+          Resources.diagram1,
+          Resources.Cooccurrences_Mindmap)
+        .AddView(
+          new CooccurrenceOverTime(),
+          Resources.charts_color_3d,
+          Resources.charts_color,
+          Resources.SpcialFunctions_TimeFrequency)
+        .AddView(
+          new CooccurrenceDiversityOverTime(),
+          Resources.chart_column_2d_stacked_1001,
+          Resources.chart_column_2d_stacked_100,
+          "Zeitliche Kontrastierung")
+        .AddView(
+          new CompareCooccurrence(),
+          Resources.camera_find,
+          Resources.camera_find1,
+          Resources.Cooccurrences_CompareSnapshot);
 
       GuiModuleBuilder.InitializePage(
-                        modul_panel_analytics,
-                        main_mainmenu_analytics,
-                        (o, e) => SetAnalyticModul(page_standardanalytics_disambiguation),
-                        page_standardanalytics_disambiguation,
-                        Resources.image_size_width,
-                        Resources.image_size_width_1,
-                        Resources.Disambigution,
-                        Resources.Disambigution_Describtion,
-                        "http://www.bitcutstudios.com/products/corpusexplorer/help/disambiguieren.html",
-                        // Handbook
-                        Resources.Help_Static_HandsOnLab,
-                        // Hand-on Lab
-                        Resources.Help_Static_YoutubeChannel,
-                        // Video
-                        Resources.Help_Static_AdditionalInformation) // Weitere Informationen
-                      .AddView(
-                        new DisambigutionGrid(),
-                        Resources.sheet_calculate_1,
-                        Resources.sheet_calculate,
-                        Resources.Disambigution_Table)
-                      .AddView(
-                        new DisambigutionTree(),
-                        Resources.tree,
-                        Resources.tree1,
-                        Resources.Disambigution_Tree)
-                      .AddView(
-                        new DisambigutionProfile(),
-                        Resources.colors,
-                        Resources.colors1,
-                        Resources.Disambigution_Profile);
+          modul_panel_analytics,
+          main_mainmenu_analytics,
+          (o, e) => SetAnalyticModul(page_standardanalytics_disambiguation),
+          page_standardanalytics_disambiguation,
+          Resources.image_size_width,
+          Resources.image_size_width_1,
+          Resources.Disambigution,
+          Resources.Disambigution_Describtion,
+          "http://www.bitcutstudios.com/products/corpusexplorer/help/disambiguieren.html",
+          // Handbook
+          Resources.Help_Static_HandsOnLab,
+          // Hand-on Lab
+          Resources.Help_Static_YoutubeChannel,
+          // Video
+          Resources.Help_Static_AdditionalInformation) // Weitere Informationen
+        .AddView(
+          new DisambigutionGrid(),
+          Resources.sheet_calculate_1,
+          Resources.sheet_calculate,
+          Resources.Disambigution_Table)
+        .AddView(
+          new DisambigutionTree(),
+          Resources.tree,
+          Resources.tree1,
+          Resources.Disambigution_Tree)
+        .AddView(
+          new DisambigutionProfile(),
+          Resources.colors,
+          Resources.colors1,
+          Resources.Disambigution_Profile);
 
       GuiModuleBuilder.InitializePage(
-                        modul_panel_analytics,
-                        main_mainmenu_analytics,
-                        (o, e) => SetAnalyticModul(page_styleMetrics),
-                        page_styleMetrics,
-                        Resources.thermometer_user,
-                        Resources.thermometer_user1,
-                        Resources.Stylemetrics,
-                        Resources.Stylemetrics_Describtion,
-                        "http://www.bitcutstudios.com/products/corpusexplorer/help/stilmetriken.html",
-                        // Handbook
-                        Resources.Help_Static_HandsOnLab,
-                        // Hand-on Lab
-                        Resources.Help_Static_YoutubeChannel,
-                        // Video
-                        Resources.Help_Static_AdditionalInformation) // Weitere Informationen
-                      .AddView(
-                        new CharacterNGramGrid(),
-                        Resources.sheet_calculate_1,
-                        Resources.sheet_calculate,
-                        Resources.NgramCharakter)
-                      .AddView(
-                        new HyphenPivotGrid(),
-                        Resources.table_pivot_1,
-                        Resources.table_pivot,
-                        Resources.HyphenFrequency)
-                      .AddView(
-                        new ReadingEasePivotGrid(),
-                        Resources.table_pivot_1,
-                        Resources.table_pivot,
-                        Resources.ComplexityReadingEase)
-                      .AddView(
-                        new VocabularyComplexityPivotGrid(),
-                        Resources.table_pivot_1,
-                        Resources.table_pivot,
-                        Resources.ComplexityVocabular);
+          modul_panel_analytics,
+          main_mainmenu_analytics,
+          (o, e) => SetAnalyticModul(page_styleMetrics),
+          page_styleMetrics,
+          Resources.thermometer_user,
+          Resources.thermometer_user1,
+          Resources.Stylemetrics,
+          Resources.Stylemetrics_Describtion,
+          "http://www.bitcutstudios.com/products/corpusexplorer/help/stilmetriken.html",
+          // Handbook
+          Resources.Help_Static_HandsOnLab,
+          // Hand-on Lab
+          Resources.Help_Static_YoutubeChannel,
+          // Video
+          Resources.Help_Static_AdditionalInformation) // Weitere Informationen
+        .AddView(
+          new CharacterNGramGrid(),
+          Resources.sheet_calculate_1,
+          Resources.sheet_calculate,
+          Resources.NgramCharakter)
+        .AddView(
+          new HyphenPivotGrid(),
+          Resources.table_pivot_1,
+          Resources.table_pivot,
+          Resources.HyphenFrequency)
+        .AddView(
+          new ReadingEasePivotGrid(),
+          Resources.table_pivot_1,
+          Resources.table_pivot,
+          Resources.ComplexityReadingEase)
+        .AddView(
+          new VocabularyComplexityPivotGrid(),
+          Resources.table_pivot_1,
+          Resources.table_pivot,
+          Resources.ComplexityVocabular);
 
       GuiModuleBuilder.InitializePage(
           modul_panel_analytics,
@@ -885,10 +956,22 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           // Video
           Resources.Help_Static_AdditionalInformation) // Weitere Informationen
         .AddView(
-          new TreeTaggerTrainerView(),
-          Resources.database_access,
-          Resources.database_access1,
-          Resources.SpcialFunctions_TreeTaggerTrainer)
+          new Html5DevLab(),
+          Resources.html_page_gear1,
+          Resources.html_page_gear,
+          "HTML5-Labor")
+        .AddView(
+          new SentimentPivotGrid(),
+          Resources.structure1,
+          Resources.structure,
+          "Sentiment Detection")
+        /*
+        .AddView(
+          new NamedEntityGrid(),
+          Resources.user_group1,
+          Resources.user_group,
+          "Named Entity Recognition")
+        */
         .AddView(
           new ChatView(),
           Resources.chat,
@@ -898,18 +981,17 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           new FrequencyMap(),
           Resources.place,
           Resources.place,
-          "Karte")
-        .AddView(
-          new Html5DevLab(),
-          Resources.html_page_gear1,
-          Resources.html_page_gear,
-          "HTML5-Labor")
+          "Karte")        
         .AddView(
           new PaperLinguist(),
           Resources.print1,
           Resources.print,
-          "PaperLinguist"
-        );
+          "PaperLinguist")
+        .AddView(
+          new TreeTaggerTrainerView(),
+          Resources.database_access,
+          Resources.database_access1,
+          Resources.SpcialFunctions_TreeTaggerTrainer);
 
       // Notwendig um abschließend die 3rd-Party Views im Menü anzuzeigen.
       main_mainmenu_analytics.Items.Add(_addonMenuItem);
@@ -1016,6 +1098,30 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         {
           InMemoryErrorConsole.Log(ex);
         }
+    }
+
+    private void LoadSettings()
+    {
+      Configuration.GetSetting("PC-Poolraum?", false);
+
+      var settings = Configuration.GetSettings();
+
+      var store = new RadPropertyStore();
+      foreach (var x in settings)
+        try
+        {
+          var item = new PropertyStoreItem(x.Value.GetType(),
+            x.Key,
+            x.Value ?? Activator.CreateInstance(x.Value.GetType()));
+
+          store.Add(item);
+        }
+        catch
+        {
+          // ignore
+        }
+
+      property_meta.SelectedObject = store;
     }
 
     /// <summary>
@@ -1151,7 +1257,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           _terminal.ProjectSave(Path.Combine(Configuration.MyProjects, _terminal.Project.Displayname + ".proj5"));
       }
       else
+      {
         _terminal.ProjectSave();
+      }
     }
 
     private void main_mainmenu_project_saveas_Click(object sender, EventArgs e)
@@ -1167,7 +1275,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       _terminal.ProjectSave(sfd.FileName);
     }
 
-    private void main_mainmenu_project_settings_Click(object sender, EventArgs e) { SetPageMain(page_settings); }
+    private void main_mainmenu_project_settings_Click(object sender, EventArgs e)
+    {
+      SetPageMain(page_settings);
+    }
 
     private void main_mainmenu_snapshot_availabel_item_Click(object sender, EventArgs eventArgs)
     {
@@ -1224,13 +1335,35 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         "Suche nach bösen Klonen...",
         () =>
         {
-          var vm = new DocumentCloneDetectionViewModel
+          switch (form.SelectedOption)
           {
-            Selection = Project.CurrentSelection,
-            UseSpeedDetection = form.UseSpeedDetection
-          };
-          vm.Analyse();
-          vm.GenerateCleanSelection();
+            case 1:
+              var vmSHA = new DocumentCloneDetectionViewModel
+              {
+                Selection = Project.CurrentSelection,
+                UseSpeedDetection = true
+              };
+              vmSHA.Analyse();
+              vmSHA.GenerateCleanSelection();
+              break;
+            case 2:
+              var vmVF = new DocumentCloneDetectionViewModel
+              {
+                Selection = Project.CurrentSelection,
+                UseSpeedDetection = false
+              };
+              vmVF.Analyse();
+              vmVF.GenerateCleanSelection();
+              break;
+            case 3:
+              var vmFUZ = new DocumentFuzzyCloneDetectionViewModel
+              {
+                Selection = Project.CurrentSelection
+              };
+              vmFUZ.Analyse();
+              vmFUZ.GenerateCleanSelection();
+              break;
+          }
         });
     }
 
@@ -1256,6 +1389,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void page_analytics_snapshot_btn_snapshot_export_Click(object sender, EventArgs e)
     {
+      ExportSelectionAsCorpus(Project.CurrentSelection);
+    }
+
+    private static void ExportSelectionAsCorpus(Selection selection)
+    {
       var dic = Configuration.AddonExporters.ToArray();
       var sfd = new SaveFileDialog
       {
@@ -1267,7 +1405,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       var exporter = dic[sfd.FilterIndex - 1].Value;
 
-      Processing.Invoke(Resources.GutDingWillWeileHaben, () => exporter.Export(Project.CurrentSelection, sfd.FileName));
+      Processing.Invoke(Resources.GutDingWillWeileHaben, () => exporter.Export(selection, sfd.FileName));
     }
 
     private void page_analytics_snapshot_btn_snapshot_invert_Click(object sender, EventArgs e)
@@ -1282,8 +1420,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           MessageBoxIcon.Question) != DialogResult.Yes)
         return;
 
-      if ((Project.CurrentSelection.Queries != null) &&
-          Project.CurrentSelection.Queries.Any())
+      if (Project.CurrentSelection.Queries != null && Project.CurrentSelection.Queries.Any())
       {
         var queries = new List<AbstractFilterQuery>();
 
@@ -1300,6 +1437,19 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           false,
           queries,
           Resources.Snapshot_CreateInvertSnapshotExtension + Project.CurrentSelection.Displayname);
+      }
+      else
+      {
+        var parent = Project.CurrentSelection.GetParentSelection();
+        if (parent == null)
+          return;
+
+        var dont = new HashSet<Guid>(Project.CurrentSelection.DocumentGuids);
+        var sele = parent.DocumentGuids.Where(dsel => !dont.Contains(dsel));
+        var name = Resources.Snapshot_CreateInvertSnapshotExtension + Project.CurrentSelection.Displayname;
+
+        parent.Create(sele, name);
+        Selection_ReLaod();
       }
     }
 
@@ -1337,11 +1487,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         return;
 
       var queries = FileIO.ReadLines(
-                                     ofd.FileName,
-                                     Configuration.Encoding,
-                                     stringSplitOptions: StringSplitOptions.RemoveEmptyEntries)?
-                          .Select(QueryParser.Parse)
-                          .ToArray();
+          ofd.FileName,
+          Configuration.Encoding,
+          stringSplitOptions: StringSplitOptions.RemoveEmptyEntries)?
+        .Select(QueryParser.Parse)
+        .ToArray();
 
       if (queries == null)
       {
@@ -1404,6 +1554,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
             entry.Key.RemoveSelection(selection);
           break;
         }
+
         foreach (var subSelection in entry.Value.SubSelections)
           queue.Enqueue(new KeyValuePair<Selection, Selection>(entry.Value, subSelection));
       }
@@ -1430,14 +1581,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       var available = Project.SelectionsRecursive;
       var selections =
         available.Where(sel => sel.Guid != Project.CurrentSelection.Guid)
-                 .ToDictionary(selection => selection.Guid, selection => selection.Displayname);
+          .ToDictionary(selection => selection.Guid, selection => selection.Displayname);
 
       var form = new SetTheorySelectSnapshot(head, describtion, selections);
       form.ShowDialog();
 
       return form.DialogResult == DialogResult.OK
-               ? available.FirstOrDefault(selection => selection.Guid == form.Result)
-               : null;
+        ? available.FirstOrDefault(selection => selection.Guid == form.Result)
+        : null;
     }
 
     private void page_analytics_snapshot_btn_snapshot_union_Click(object sender, EventArgs e)
@@ -1480,14 +1631,19 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       page_analytics_snapshot_btn_snapshot_addsub_Click(sender, e);
     }
 
-    private void page_welcome_btn_projectname_Click(object sender, EventArgs e) { ProjectRename(); }
+    private void page_welcome_btn_projectname_Click(object sender, EventArgs e)
+    {
+      ProjectRename();
+    }
 
     private void ParseArguments(string[] args)
     {
-      if ((args == null) || (args.Length == 0))
+      if (args == null || args.Length == 0)
         return;
 
-      var files = (from s in args where s.StartsWith("file:///") select HttpUtility.UrlDecode(s.Replace("file:///", ""))).ToArray();
+      var files =
+        (from s in args where s.StartsWith("file:///") select HttpUtility.UrlDecode(s.Replace("file:///", "")))
+        .ToArray();
 
       var proj = files.FirstOrDefault(file => file.ToLower().EndsWith(".proj5"));
       if (!string.IsNullOrEmpty(proj))
@@ -1536,7 +1692,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       page_welcome_btn_projectname.ShowCheckmark = true;
     }
 
-    private void ProjectModelChanges() { Selection_ReLaod(); }
+    private void ProjectModelChanges()
+    {
+      Selection_ReLaod();
+    }
 
     private void ProjectNew()
     {
@@ -1562,6 +1721,16 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       return true;
     }
 
+    private void RealoadInsightSettings()
+    {
+      var insightEnable = InsightController.IsInsightActive;
+      settings_insight_enable.Visible = !insightEnable;
+      settings_insight_disable.Visible = insightEnable;
+      settings_insight_renew.Visible = insightEnable;
+
+      settings_insigt_id.Text = insightEnable ? InsightController.InsightId : null;
+    }
+
     private void RefreshWebCrawlers()
     {
       Processing.Invoke("Durchsuche Ordner \"Meine Datenquellen\"...", () =>
@@ -1569,7 +1738,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         Configuration.Reload3rdPartyAddons();
         corpus_online_crawler_list.Items.Clear();
         foreach (var c in Configuration.AddonCrawlers)
-          corpus_online_crawler_list.Items.Add(new ListViewDataItem(c.DisplayName) {Tag = c});
+          corpus_online_crawler_list.Items.Add(new ListViewDataItem(c.DisplayName) { Tag = c });
       });
     }
 
@@ -1601,12 +1770,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           tagger.Execute();
           while (tagger.Output.Count > 0)
           {
-            AbstractCorpusAdapter corpus;
-            if (!tagger.Output.TryDequeue(out corpus))
+            if (!tagger.Output.TryDequeue(out var corpus))
               continue;
 
             AddCorpusToProject(corpus);
-            corpus.Save(Path.Combine(Configuration.MyCorpora, formName.Result));
+            corpus.Save(Path.Combine(Configuration.MyCorpora, formName.Result.EnsureFileName()));
           }
         });
     }
@@ -1701,6 +1869,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         tn.Click += main_mainmenu_snapshot_availabel_item_Click;
         node.Items.Add(Selection_ReLaod(tn, sub));
       }
+
       return node;
     }
 
@@ -1720,6 +1889,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         };
         node.Nodes.Add(Selection_ReLaod(tn, sub));
       }
+
       return node;
     }
 
@@ -1742,15 +1912,17 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         _selectionEditCurrentSelection.Reselect(_selectionEditQueries);
       }
       else
+      {
         return Project.CreateSelection(_selectionEditQueries, snapshot_edit_displayname.Text);
+      }
 
       return null;
     }
 
     private void SelectionCheck(Selection selection)
     {
-      if ((selection != null) &&
-          (selection.CountDocuments > 0))
+      if (selection != null &&
+          selection.CountDocuments > 0)
       {
         Selection_ReLaod();
         return;
@@ -1766,11 +1938,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     }
 
     /// <summary>
-    ///   Funktion die aufgerufen wird um eine Selection mittels Queries zu erstellen.
+    ///   Funktion die aufgerufen wird um eine Selection mittels ResultQueries zu erstellen.
     /// </summary>
     /// <param name="parentSelection">Übergeordnete Selection (falls gewünscht)</param>
     /// <param name="currentSelection">Zu bearbeitende Selection (wenn null wird eine neue Selection erstellt)</param>
-    /// <param name="predefinedQueries">Queries die für die neue Selection vordefiniert wurden (z. B. durch ein Modul)</param>
+    /// <param name="predefinedQueries">ResultQueries die für die neue Selection vordefiniert wurden (z. B. durch ein Modul)</param>
     /// <param name="predefineDisplayname">Wert der als Anzeigename verwendet wird</param>
     private void SelectionEdit(
       Selection parentSelection,
@@ -1783,7 +1955,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       _selectionEditParentSelection = parentSelection;
       if (predefinedQueries == null)
         if (currentSelection == null)
+        {
           _selectionEditQueries = new List<AbstractFilterQuery>();
+        }
         else
         {
           if (currentSelection.Queries == null)
@@ -1795,6 +1969,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
               MessageBoxIcon.Stop);
             return;
           }
+
           _selectionEditQueries = new List<AbstractFilterQuery>(currentSelection.Queries);
         }
       else
@@ -1870,8 +2045,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     {
       _selectionEditQueries =
         snapshot_edit_queries.PanelContainer.Controls.OfType<AbstractSnapshotControl>()
-                             .Select(asc => asc.Query)
-                             .ToList();
+          .Select(asc => asc.Query)
+          .ToList();
     }
 
     /// <summary>
@@ -1883,8 +2058,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     private void SetAnalyticModul(RadPageViewPage page)
     {
       // Redirect bei leerer Projektmappe
-      if ((Project.CurrentSelection == null) ||
-          (Project.CurrentSelection.CountCorpora == 0))
+      if (Project.CurrentSelection == null ||
+          Project.CurrentSelection.CountCorpora == 0)
       {
         MessageBox.Show(Resources.Msg_YouNeedToLoadACorpus);
         SetPageCorpora(page_corpus_start);
@@ -1911,13 +2086,13 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     /// </param>
     private void SetPageAnalytics(RadPageViewPage page)
     {
-      if ((page_analytics == pages_main.SelectedPage) &&
-          (pages_analytics.SelectedPage == page))
+      if (page_analytics == pages_main.SelectedPage &&
+          pages_analytics.SelectedPage == page)
         return;
 
       // Redirect bei leerer Projektmappe
-      if ((Project.CurrentSelection == null) ||
-          (Project.CurrentSelection.CountCorpora == 0))
+      if (Project.CurrentSelection == null ||
+          Project.CurrentSelection.CountCorpora == 0)
       {
         MessageBox.Show(Resources.Msg_YouNeedToLoadACorpus);
         SetPageCorpora(page_corpus_start);
@@ -1939,8 +2114,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     /// </param>
     private void SetPageCorpora(RadPageViewPage page)
     {
-      if ((page_corpus == pages_main.SelectedPage) &&
-          (pages_corpora.SelectedPage == page))
+      if (page_corpus == pages_main.SelectedPage &&
+          pages_corpora.SelectedPage == page)
         return;
 
       pages_corpora.SelectedPage = page;
@@ -1970,13 +2145,13 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void SetPageSnapshot(RadPageViewPage page)
     {
-      if ((page_snapshot == pages_main.SelectedPage) &&
-          (pages_snapshot.SelectedPage == page))
+      if (page_snapshot == pages_main.SelectedPage &&
+          pages_snapshot.SelectedPage == page)
         return;
 
       // Redirect bei leerer Projektmappe
-      if ((Project.CurrentSelection == null) ||
-          (Project.CurrentSelection.CountCorpora == 0))
+      if (Project.CurrentSelection == null ||
+          Project.CurrentSelection.CountCorpora == 0)
       {
         MessageBox.Show(Resources.Msg_YouNeedToLoadACorpus);
         SetPageCorpora(page_corpus_start);
@@ -1986,13 +2161,13 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       pages_snapshot.SelectedPage = page;
       SetPageMain(page_snapshot);
     }
-    
+
     [NamedSynchronizedLock("Settings")]
     private void settings_drop_signifikanz_SelectedIndexChanged(object sender, PositionChangedEventArgs e)
     {
       if (e.Position == -1)
         return;
-      Configuration.Significance = _significanceMessures[e.Position].Value;
+      Configuration.SetSignificance(_significanceMessures[e.Position].Value);
     }
 
     [NamedSynchronizedLock("Settings")]
@@ -2017,32 +2192,74 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         settings_drop_signifikanz.Items.Add(new RadListDataItem(x.Key, x.Value));
     }
 
+    private void settings_insight_disable_Click(object sender, EventArgs e)
+    {
+      InsightController.SetInsightStatus(false);
+      RealoadInsightSettings();
+    }
+
+    private void settings_insight_enable_Click(object sender, EventArgs e)
+    {
+      InsightController.SetInsightStatus(true);
+      RealoadInsightSettings();
+    }
+
+    private void settings_insight_info_Click(object sender, EventArgs e)
+    {
+      Process.Start("https://notes.jan-oliver-ruediger.de/software/corpusexplorer-overview/telemetrie/");
+    }
+
+    private void settings_insight_renew_Click(object sender, EventArgs e)
+    {
+      InsightController.NewInstallationId();
+      RealoadInsightSettings();
+    }
+
     [NamedSynchronizedLock("Settings")]
     private void Settings_ReLaod()
     {
       settings_frequenz_min.Value = Configuration.MinimumFrequency >= settings_frequenz_min.Minimum
-                                      ? Configuration.MinimumFrequency
-                                      : settings_frequenz_min.Minimum;
+        ? Configuration.MinimumFrequency
+        : settings_frequenz_min.Minimum;
       settings_signifikanz_min.Value = (decimal)Configuration.MinimumSignificance >= settings_signifikanz_min.Minimum
-                                         ? (decimal)Configuration.MinimumSignificance
-                                         : settings_signifikanz_min.Minimum;
+        ? (decimal)Configuration.MinimumSignificance
+        : settings_signifikanz_min.Minimum;
 
       try
       {
+        var type = Configuration.GetSignificanceType();
         for (var i = 0; i < _significanceMessures.Length; i++)
         {
-          if (_significanceMessures[i].GetType() != Configuration.Significance.GetType())
+          if (_significanceMessures[i].GetType() != type)
             continue;
           settings_drop_signifikanz.SelectedIndex = i;
         }
       }
-      catch { }
+      catch
+      {
+        // ignore
+      }
     }
 
     [NamedSynchronizedLock("Settings")]
     private void settings_signifikanz_min_ValueChanged(object sender, EventArgs e)
     {
       Configuration.MinimumSignificance = (double)settings_signifikanz_min.Value;
+    }
+
+    private void settings_tool_additionalTagger_Click(object sender, EventArgs e)
+    {
+      var form = new AdditionalTagger();
+      if (form.ShowDialog() != DialogResult.OK)
+        return;
+
+      foreach (var csel in Project.CorporaGuids)
+      {
+        var corpus = Project.GetCorpus(csel);
+        form.Result.CorpusBuilder = corpus.GetCorpusBuilder();
+        form.Result.Input.Enqueue(corpus);
+        form.Result.Execute();
+      }
     }
 
     private void settings_tool_eraseCache_Click(object sender, EventArgs e)
@@ -2058,7 +2275,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         var form = new ErrorConsole();
         form.ShowDialog();
       }
-      catch { }
+      catch
+      {
+        // ignore
+      }
     }
 
     private void settings_tool_exportCorpus_Click(object sender, EventArgs e)
@@ -2074,10 +2294,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         return;
 
       var hydra = ofd.FilterIndex == 1
-                    ? CorpusAdapterWriteDirect.Create(ofd.FileName)
-                    : ofd.FilterIndex == 2
-                      ? CorpusAdapterSingleFile.Create(ofd.FileName)
-                      : (IHydra)Project.Load(ofd.FileName);
+        ? CorpusAdapterWriteDirect.Create(ofd.FileName)
+        : ofd.FilterIndex == 2
+          ? CorpusAdapterSingleFile.Create(ofd.FileName)
+          : (IHydra)Project.Load(ofd.FileName);
 
       var dic = Configuration.AddonExporters.ToArray();
       var sfd = new SaveFileDialog
@@ -2102,8 +2322,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         Multiselect = true
       };
 
-      if ((ofd.ShowDialog() != DialogResult.OK) ||
-          (ofd.FileNames.Length < 2))
+      if (ofd.ShowDialog() != DialogResult.OK ||
+          ofd.FileNames.Length < 2)
         return;
 
       var sfd = new SaveFileDialog
@@ -2119,7 +2339,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         Resources.GutDingWillWeileHaben,
         () =>
         {
-          CorpusMerger.Merge(ofd.FileNames.Select(CorpusAdapterWriteDirect.Create), new CorpusBuilderWriteDirect())?.Save(sfd.FileName);
+          CorpusMerger.Merge(ofd.FileNames.Select(CorpusAdapterWriteDirect.Create), new CorpusBuilderWriteDirect())
+            ?.Save(sfd.FileName);
         });
     }
 
@@ -2127,6 +2348,41 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     {
       var form = new GenerateValidationCorpus();
       form.ShowDialog();
+    }
+
+    private void settings_tool_totalReset_Click(object sender, EventArgs e)
+    {
+      if (MessageBox.Show(
+            "Diese Option setzt das komplette CorpusExplorer-Ökosystem zurück. Führen Sie diese Funktion nur aus, wenn es schwerwiegende Probleme mit dem CorpusExplorer gibt. Sind Sie sicher, dass Sie den CorpusExplorer zurücksetzen möchten?",
+            "CorpusExplorer zurücksetzen?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+        return;
+
+      try
+      {
+        File.Delete(Path.Combine(Configuration.AppPath, "update.info"));
+      }
+      catch
+      {
+
+      }
+
+      try
+      {
+        Directory.Delete(Path.Combine(Configuration.AppPath, "XDependencies"), true);
+      }
+      catch
+      {
+        // ignore
+      }
+
+      MessageBox.Show("Der CorpusExplorer wird nun beendet. Bitte starten Sie den CorpusExplorer danach erneut.");
+      Close();
+    }
+
+    private void settings_tool_xpath_Click(object sender, EventArgs e)
+    {
+      var browser = new XpathBrowser();
+      browser.Show();
     }
 
     private void settings_upgrade_btn_Click(object sender, EventArgs e)
@@ -2149,7 +2405,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
             {
               Ce1CompatibilityControler.Upgrade(dir);
             }
-            catch { }
+            catch
+            {
+              // ignore
+            }
         });
     }
 
@@ -2186,127 +2445,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       if (selection != null)
         SelectionCheck(selection);
       pages_snapshot.SelectedPage = page_snapshot_home;
-    }
-
-    private void settings_tool_additionalTagger_Click(object sender, EventArgs e)
-    {
-      var form = new AdditionalTagger();
-      if (form.ShowDialog() != DialogResult.OK)
-        return;
-
-      foreach (var csel in Project.CorporaGuids)
-      {
-        var corpus = Project.GetCorpus(csel);
-        form.Result.CorpusBuilder = corpus.GetCorpusBuilder();
-        form.Result.Input.Enqueue(corpus);
-        form.Result.Execute();
-      }
-    }
-
-    private void settings_tool_xpath_Click(object sender, EventArgs e)
-    {
-      var browser = new XpathBrowser();
-      browser.Show();
-    }
-
-    private void LoadSettings()
-    {
-      Configuration.GetSetting("PC-Poolraum?", false);
-
-      var settings = Configuration.GetSettings();
-
-      var store = new RadPropertyStore();
-      foreach (var x in settings)
-        try
-        {
-          var item = new PropertyStoreItem(x.Value.GetType(),
-                                           x.Key,
-                                           x.Value ?? Activator.CreateInstance(x.Value.GetType()));
-
-          store.Add(item);
-        }
-        catch { }
-
-      property_meta.SelectedObject = store;
-    }
-
-    private void btn_settings_load_Click(object sender, EventArgs e)
-    {
-      var ofd = new OpenFileDialog { Filter = "Einstellungen (*.cesettings)|*.cesettings", CheckFileExists = true };
-      if (ofd.ShowDialog() != DialogResult.OK)
-        return;
-      var current = Configuration.GetSettings();
-      var load = Configuration.GetSettings(ofd.FileName);
-
-      foreach (var x in load)
-        if (current.ContainsKey(x.Key))
-          current[x.Key] = x.Value;
-        else
-          current.Add(x.Key, x.Value);
-
-      Configuration.SetSettings(current);
-    }
-
-    private void btn_settings_save_Click(object sender, EventArgs e)
-    {
-      Configuration.SetSettings(((RadPropertyStore)property_meta.SelectedObject)
-                                .ToDictionary(x => x.PropertyName,
-                                              x => x.Value));
-    }
-
-    private void btn_settings_saveas_Click(object sender, EventArgs e)
-    {
-      var sfd = new SaveFileDialog { Filter = "Einstellungen (*.cesettings)|*.cesettings" };
-      if (sfd.ShowDialog() != DialogResult.OK)
-        return;
-      Configuration.SetSettings(((RadPropertyStore)property_meta.SelectedObject)
-                                .ToDictionary(x => x.PropertyName,
-                                              x => x.Value), sfd.FileName);
-    }
-
-    private void settings_tool_totalReset_Click(object sender, EventArgs e)
-    {
-      if (MessageBox.Show("Diese Option setzt das komplette CorpusExplorer-Ökosystem zurück. Führen Sie diese Funktion nur aus, wenn es schwerwiegende Probleme mit dem CorpusExplorer gibt. Sind Sie sicher, dass Sie den CorpusExplorer zurücksetzen möchten?", "CorpusExplorer zurücksetzen?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
-        return;
-
-      try { File.Delete(Path.Combine(Configuration.AppPath, "update.info")); } catch { }
-      try { Directory.Delete(Path.Combine(Configuration.AppPath, "XDependencies"), true); } catch { }
-
-      MessageBox.Show("Der CorpusExplorer wird nun beendet. Bitte starten Sie den CorpusExplorer danach erneut.");
-      Close();
-    }
-
-    private void settings_insight_enable_Click(object sender, EventArgs e)
-    {
-      InsightController.SetInsightStatus(true);
-      RealoadInsightSettings();
-    }
-
-    private void settings_insight_disable_Click(object sender, EventArgs e)
-    {
-      InsightController.SetInsightStatus(false);
-      RealoadInsightSettings();
-    }
-
-    private void settings_insight_renew_Click(object sender, EventArgs e)
-    {
-      InsightController.NewInstallationId();
-      RealoadInsightSettings();
-    }
-
-    private void RealoadInsightSettings()
-    {
-      var insightEnable = InsightController.IsInsightActive;
-      settings_insight_enable.Visible = !insightEnable;
-      settings_insight_disable.Visible = insightEnable;
-      settings_insight_renew.Visible = insightEnable;
-
-      settings_insigt_id.Text = insightEnable ? InsightController.InsightId : null;
-    }
-
-    private void settings_insight_info_Click(object sender, EventArgs e)
-    {
-      Process.Start("https://notes.jan-oliver-ruediger.de/software/corpusexplorer-overview/telemetrie/");
     }
   }
 }

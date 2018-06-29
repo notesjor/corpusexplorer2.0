@@ -15,8 +15,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
   public enum phraseBoundaryintonation
   {
     /// <remarks />
-    [XmlEnum("high-rise")]
-    highrise,
+    [XmlEnum("high-rise")] highrise,
 
     /// <remarks />
     rise,
@@ -28,7 +27,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker.Model
     fall,
 
     /// <remarks />
-    [XmlEnum("low-fall")]
-    lowfall
+    [XmlEnum("low-fall")] lowfall
   }
 }
