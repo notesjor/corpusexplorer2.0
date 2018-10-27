@@ -35,10 +35,14 @@ namespace CorpusExplorer.Sdk.Extern.Heideltime
     /// </summary>
     public override IEnumerable<AbstractTagger> AddonTagger => null; // new []{//new HeideltimeTreeTagger()};
 
+    public override IEnumerable<IAddonConsoleAction> AddonConsoleActions => null;
+
     /// <summary>
     ///   Externe Analysemodule.
     /// </summary>
     public override IEnumerable<IAddonView> AddonViews => null;
+
+    public override IEnumerable<object> AddonSideloadFeature => null;
 
     /// <summary>
     ///   Eindeutige Bezeichnung (Name) des Addons

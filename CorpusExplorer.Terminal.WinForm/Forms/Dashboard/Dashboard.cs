@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
 using Bcs.IO;
-using CorpusExplorer.Core.DocumentProcessing.Tagger.TreeTagger;
 using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Aspect;
 using CorpusExplorer.Sdk.Blocks.Cooccurrence;
@@ -31,6 +30,7 @@ using CorpusExplorer.Sdk.Utils.CorpusManipulation;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Crawler;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger;
 using CorpusExplorer.Sdk.Utils.Filter;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
@@ -73,6 +73,9 @@ using Telerik.WinControls.UI;
 using Telerik.WinControls.UI.Localization;
 using ArrowDirection = Telerik.WinControls.ArrowDirection;
 using PositionChangedEventArgs = Telerik.WinControls.UI.Data.PositionChangedEventArgs;
+using CompareBasedOnNgrams = CorpusExplorer.Terminal.WinForm.View.StyleMetrics.CompareBasedOnNgrams;
+using CompareBasedOnCooccurrences = CorpusExplorer.Terminal.WinForm.View.StyleMetrics.CompareBasedOnCooccurrences;
+using CompareBasedOnBurrowsDelta = CorpusExplorer.Terminal.WinForm.View.StyleMetrics.CompareBasedOnBurrowsDelta;
 
 #endregion
 
@@ -145,7 +148,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       #region Settings
 
       Settings_Initialize();
-      Settings_ReLaod();
+      Settings_ReLoad();
 
       #endregion
 
@@ -202,7 +205,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       }
     }
 
-    private void AddCorpusToProject(AbstractCorpusAdapter corpus)
+    private void AddCorpusToProject(AbstractCorpusAdapter corpus, bool autoReload)
     {
       if (corpus == null ||
           corpus.CountDocuments == 0)
@@ -220,16 +223,16 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       var selection = corpus.ToSelection();
       var vm = new ValidateSelectionIntegrityViewModel { Selection = selection };
-      vm.Analyse();
+      vm.Execute();
 
       if (vm.HasError)
       {
         Processing.SplashClose();
         var form = new CorpusErrorForm(vm);
         form.ShowDialog();
-        
+
         if (form.ResultSelection != null)
-        {          
+        {
           corpus = form.ResultSelection.ToCorpus();
           Processing.SplashClose();
           if (MessageBox.Show("Möchten Sie das bereinigte Korpus speichern?", "Änderungen speichern?",
@@ -242,7 +245,16 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       }
 
       Project.Add(corpus);
-      Selection_ReLaod();
+
+      if (!autoReload)
+        return;
+
+      ReloadAll();
+    }
+
+    private void ReloadAll()
+    {
+      Selection_ReLoad();
       Corpora_ReLoad();
       Processing.SplashClose();
     }
@@ -314,7 +326,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       // QuickInfo
       var vm = new QuickInfoViewModel { Selection = Project.SelectAll };
-      vm.Analyse();
+      vm.Execute();
 
       page_corpus_start_quickinfo_corpora.Value = vm.CounterCorpora.ToString();
       page_corpus_start_quickinfo_layers.Value = vm.CounterLayers.ToString();
@@ -405,7 +417,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         {
           if (corpora != null)
             foreach (var corpus in corpora)
-              AddCorpusToProject(corpus);
+              AddCorpusToProject(corpus, false); // da false -> ReloadAll();
+          ReloadAll();
         });
     }
 
@@ -515,6 +528,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void Dashboard_FormClosing(object sender, FormClosingEventArgs e)
     {
+      FavoriteManager.Save();
+
       var res = MessageBox.Show(
         "Möchten Sie das Projekt vor dem Verlassen speichern?",
         "Projekt speichern?",
@@ -561,10 +576,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           switch (ext)
           {
             case ".cec5":
-              AddCorpusToProject(CorpusAdapterSingleFile.Create(path));
+              AddCorpusToProject(CorpusAdapterSingleFile.Create(path), true);
               break;
             case ".cec6":
-              AddCorpusToProject(CorpusAdapterWriteDirect.Create(path));
+              AddCorpusToProject(CorpusAdapterWriteDirect.Create(path), true);
               break;
           }
         });
@@ -574,6 +589,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     private void LoadGuiModules()
     {
       // WICHTIG
+      FavoriteManager.InitializeFavoriteManager(this);
       GuiModuleBuilder.InitializeGuiModuleBuilder(this, () => Project);
 
       // ab hier: modul_panel_rawdata
@@ -696,7 +712,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           new KeywordGrid(),
           Resources.table_key1,
           Resources.table_key,
-          Resources.Keywordanalitics)        
+          Resources.Keywordanalitics)
         .AddView(
           new FrequencyOverTime(),
           Resources.charts_color_3d,
@@ -734,6 +750,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           Resources.diagram,
           Resources.diagram1,
           Resources.Phrases_NgramMindmap)
+        .AddView(
+          new SkipgramGrid(),
+          Resources.sheet_calculate_1,
+          Resources.sheet_calculate,
+          "Skipgram-Tabelle")
         .AddView(
           new PhrasesLaboratory(),
           Resources.component1,
@@ -885,7 +906,25 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           new VocabularyComplexityPivotGrid(),
           Resources.table_pivot_1,
           Resources.table_pivot,
-          Resources.ComplexityVocabular);
+          Resources.ComplexityVocabular)
+                      .AddView(
+                               new CompareBasedOnBurrowsDelta(),
+                               Resources.table_pivot_1,
+                               Resources.table_pivot,
+                               "Burrows-Delta");
+
+      /* DODO: Vorbereitet für Release
+      .AddView(
+        new CompareBasedOnCooccurrences(),
+        Resources.logo_firewire,
+        Resources.logo_firewire_1,
+        "Kookkurrenz-Meta-Cluster")
+      .AddView(
+        new CompareBasedOnNgrams(),
+        Resources.dashes_1,
+        Resources.dashes,
+        "NGram-Meta-Cluster");
+    */
 
       GuiModuleBuilder.InitializePage(
           modul_panel_analytics,
@@ -981,7 +1020,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           new FrequencyMap(),
           Resources.place,
           Resources.place,
-          "Karte")        
+          "Karte")
         .AddView(
           new PaperLinguist(),
           Resources.print1,
@@ -1004,6 +1043,23 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         _addonMenuItem.Visibility = ElementVisibility.Collapsed;
         betafunction_thirdpartyPanel.Visible = false;
       }
+
+      // Lade Favoriten
+      RefreshFavorites();
+    }
+
+    private void RefreshFavorites()
+    {
+      main_mainmenu_analytics_favorite.Items.Clear();
+
+      main_mainmenu_analytics_favorite.Items.AddRange(FavoriteManager.PinnedItems);
+      main_mainmenu_analytics_favorite.Items.Add(new RadMenuSeparatorItem());
+      main_mainmenu_analytics_favorite.Items.AddRange(FavoriteManager.MostFrequentItems);
+
+      settings_list_favorites_lock = true;
+      settings_list_favorites.Items.Clear();
+      settings_list_favorites.Items.AddRange(FavoriteManager.PinnedConfiguration);
+      settings_list_favorites_lock = false;
     }
 
     private void LoadGuiModules3rdParty()
@@ -1062,8 +1118,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
               pages_analytics.SelectedPage = page_analytics_thirdparty;
               pages_main.SelectedPage = page_analytics;
               InMemoryErrorConsole.TrackPageView($"page_thirdparty_{pages_3rdParty.Name}");
-              InMemoryErrorConsole.TrackPageView($"page_analytics_{page_analytics_thirdparty.Name}");
-              InMemoryErrorConsole.TrackPageView($"page_main_{page_analytics.Name}");
               ResumeLayout();
             });
 
@@ -1087,8 +1141,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
               pages_analytics.SelectedPage = page_analytics_thirdparty;
               pages_main.SelectedPage = page_analytics;
               InMemoryErrorConsole.TrackPageView($"page_thirdparty_{pages_3rdParty.Name}");
-              InMemoryErrorConsole.TrackPageView($"page_analytics_{page_analytics_thirdparty.Name}");
-              InMemoryErrorConsole.TrackPageView($"page_main_{page_analytics.Name}");
               ResumeLayout();
             });
 
@@ -1235,7 +1287,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       page_welcome_btn_corpus.ShowCheckmark = false;
       page_welcome_btn_snapshot.ShowCheckmark = false;
 
-      Settings_ReLaod();
+      Settings_ReLoad();
     }
 
     /// <summary>
@@ -1288,7 +1340,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         return;
 
       Project.CurrentSelection = sel;
-      Selection_ReLaod();
+      Selection_ReLoad();
     }
 
     /// <summary>
@@ -1343,7 +1395,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                 Selection = Project.CurrentSelection,
                 UseSpeedDetection = true
               };
-              vmSHA.Analyse();
+              vmSHA.Execute();
               vmSHA.GenerateCleanSelection();
               break;
             case 2:
@@ -1352,7 +1404,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                 Selection = Project.CurrentSelection,
                 UseSpeedDetection = false
               };
-              vmVF.Analyse();
+              vmVF.Execute();
               vmVF.GenerateCleanSelection();
               break;
             case 3:
@@ -1360,7 +1412,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
               {
                 Selection = Project.CurrentSelection
               };
-              vmFUZ.Analyse();
+              vmFUZ.Execute();
               vmFUZ.GenerateCleanSelection();
               break;
           }
@@ -1449,7 +1501,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         var name = Resources.Snapshot_CreateInvertSnapshotExtension + Project.CurrentSelection.Displayname;
 
         parent.Create(sele, name);
-        Selection_ReLaod();
+        Selection_ReLoad();
       }
     }
 
@@ -1559,7 +1611,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           queue.Enqueue(new KeyValuePair<Selection, Selection>(entry.Value, subSelection));
       }
 
-      Selection_ReLaod();
+      Selection_ReLoad();
     }
 
     private void page_analytics_snapshot_btn_snapshot_save_Click(object sender, EventArgs e)
@@ -1613,7 +1665,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         return;
 
       Project.CurrentSelection = (Selection)e.Node.Tag;
-      Selection_ReLaod();
+      Selection_ReLoad();
     }
 
     private void page_snapshot_context_edit_Click(object sender, EventArgs e)
@@ -1654,10 +1706,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       ProjectNew();
       foreach (var corpus in files.Where(x => x.ToLower().EndsWith(".cec5")))
-        AddCorpusToProject(CorpusAdapterSingleFile.Create(corpus));
+        AddCorpusToProject(CorpusAdapterSingleFile.Create(corpus), false);
 
       foreach (var corpus in files.Where(x => x.ToLower().EndsWith(".cec6")))
-        AddCorpusToProject(CorpusAdapterWriteDirect.Create(corpus));
+        AddCorpusToProject(CorpusAdapterWriteDirect.Create(corpus), false);
+
+      ReloadAll();
 
       foreach (var setting in files.Where(x => x.ToLower().EndsWith(".cesettings")))
       {
@@ -1687,14 +1741,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       Project.SelectionChanged += CurrentSelectionChanged;
       Project.SelectAllNew();
       Corpora_ReLoad();
-      Selection_ReLaod();
-      Settings_ReLaod();
+      Selection_ReLoad();
+      Settings_ReLoad();
       page_welcome_btn_projectname.ShowCheckmark = true;
     }
 
     private void ProjectModelChanges()
     {
-      Selection_ReLaod();
+      Selection_ReLoad();
     }
 
     private void ProjectNew()
@@ -1773,7 +1827,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
             if (!tagger.Output.TryDequeue(out var corpus))
               continue;
 
-            AddCorpusToProject(corpus);
+            AddCorpusToProject(corpus, true);
             corpus.Save(Path.Combine(Configuration.MyCorpora, formName.Result.EnsureFileName()));
           }
         });
@@ -1793,7 +1847,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         });
     }
 
-    private void Selection_ReLaod()
+    private void Selection_ReLoad()
     {
       page_welcome_btn_analytics.ShowCheckmark = page_welcome_btn_snapshot.ShowCheckmark = Project.Selections.Any();
 
@@ -1815,7 +1869,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           Tag = selection,
           Font = font
         };
-        page_analytics_snapshot_list_snapshots.Nodes.Add(Selection_ReLaod(node, selection));
+        page_analytics_snapshot_list_snapshots.Nodes.Add(Selection_ReLoad(node, selection));
 
         //main_mainmenu_snapshot_availabel
         var item = new RadMenuItem(selection.Displayname)
@@ -1824,7 +1878,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           Font = font
         };
         item.Click += main_mainmenu_snapshot_availabel_item_Click;
-        main_mainmenu_snapshot_availabel.Items.Add(Selection_ReLaod(item, selection));
+        main_mainmenu_snapshot_availabel.Items.Add(Selection_ReLoad(item, selection));
       }
 
       if (Project.CurrentSelection == null)
@@ -1832,7 +1886,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       // QuickInfo
       var vm = new QuickInfoViewModel { Selection = Project.CurrentSelection };
-      vm.Analyse();
+      vm.Execute();
 
       page_snapshot_start_quickinfo_corpora.Value = vm.CounterCorpora.ToString();
       page_snapshot_start_quickinfo_layers.Value = vm.CounterLayers.ToString();
@@ -1852,7 +1906,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       page_analytics_snapshot_list_snapshots.ExpandAll();
     }
 
-    private RadMenuItem Selection_ReLaod(RadMenuItem node, Selection selection)
+    private RadMenuItem Selection_ReLoad(RadMenuItem node, Selection selection)
     {
       foreach (var sub in selection.SubSelections)
       {
@@ -1867,13 +1921,13 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                 : FontStyle.Regular)
         };
         tn.Click += main_mainmenu_snapshot_availabel_item_Click;
-        node.Items.Add(Selection_ReLaod(tn, sub));
+        node.Items.Add(Selection_ReLoad(tn, sub));
       }
 
       return node;
     }
 
-    private RadTreeNode Selection_ReLaod(RadTreeNode node, Selection selection)
+    private RadTreeNode Selection_ReLoad(RadTreeNode node, Selection selection)
     {
       foreach (var sub in selection.SubSelections)
       {
@@ -1887,7 +1941,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                 ? FontStyle.Bold
                 : FontStyle.Regular)
         };
-        node.Nodes.Add(Selection_ReLaod(tn, sub));
+        node.Nodes.Add(Selection_ReLoad(tn, sub));
       }
 
       return node;
@@ -1924,7 +1978,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       if (selection != null &&
           selection.CountDocuments > 0)
       {
-        Selection_ReLaod();
+        Selection_ReLoad();
         return;
       }
 
@@ -1934,7 +1988,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         MessageBoxButtons.OK,
         MessageBoxIcon.Information);
       Project.RemoveSelection(selection);
-      Selection_ReLaod();
+      Selection_ReLoad();
     }
 
     /// <summary>
@@ -1988,7 +2042,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       pages_main.SelectedPage = page_snapshot;
 
       InMemoryErrorConsole.TrackPageView($"page_snapshot_{page_snapshot_edit.Name}");
-      InMemoryErrorConsole.TrackPageView($"page_main_{page_snapshot.Name}");
     }
 
     private void SelectionEditAddMetasplit(Selection parentSelection = null)
@@ -1997,7 +2050,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       if (form.ShowDialog() != DialogResult.OK)
         return;
       Project.CurrentSelection = form.Result;
-      Selection_ReLaod();
+      Selection_ReLoad();
     }
 
     private void SelectionEditAddRandom(Selection parentSelection = null)
@@ -2006,7 +2059,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       if (form.ShowDialog() != DialogResult.OK)
         return;
       Project.CurrentSelection = form.Selection;
-      Selection_ReLaod();
+      Selection_ReLoad();
     }
 
     private void SelectionReloadQueries()
@@ -2075,7 +2128,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       pages_main.SelectedPage = page_analytics;
 
       InMemoryErrorConsole.TrackPageView($"page_analytics_{page.Name}");
-      InMemoryErrorConsole.TrackPageView($"page_main_{page_analytics.Name}");
     }
 
     /// <summary>
@@ -2103,7 +2155,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       pages_main.SelectedPage = page_analytics;
 
       InMemoryErrorConsole.TrackPageView($"page_analytics_{page.Name}");
-      InMemoryErrorConsole.TrackPageView($"page_main_{page_analytics.Name}");
     }
 
     /// <summary>
@@ -2121,7 +2172,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       pages_corpora.SelectedPage = page;
       pages_main.SelectedPage = page_corpus;
       InMemoryErrorConsole.TrackPageView($"page_corpus_{page.Name}");
-      InMemoryErrorConsole.TrackPageView($"page_main_{page_corpus.Name}");
 
       if (page_corpus_start == page)
         Corpus_LaodAvailabelCorpora();
@@ -2138,6 +2188,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // ReSharper disable once RedundantCheckBeforeAssignment
       if (pages_main.SelectedPage == page)
         return;
+
+      if (page == page_welcome)
+        RefreshFavorites();
 
       pages_main.SelectedPage = page;
       InMemoryErrorConsole.TrackPageView($"page_main_{page.Name}");
@@ -2180,12 +2233,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     private void Settings_Initialize()
     {
       _significanceMessures =
-        new Dictionary<string, ISignificance>
-        {
-          {Resources.PoissonVerteilungEmpfohlen, new PoissonSignificance()},
-          {Resources.ChiTestFürKleineTextmengen, new ChiSquaredSignificance()},
-          {Resources.LogLikelihoodFürGroßeTextmengen, new LogLikelihoodSignificance()}
-        }.ToArray();
+        Configuration.GetSideloadFeature<ISignificance>().ToDictionary(x => x.Label, x => x).ToArray();
 
       settings_drop_signifikanz.Items.Clear();
       foreach (var x in _significanceMessures)
@@ -2216,7 +2264,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     }
 
     [NamedSynchronizedLock("Settings")]
-    private void Settings_ReLaod()
+    private void Settings_ReLoad()
     {
       settings_frequenz_min.Value = Configuration.MinimumFrequency >= settings_frequenz_min.Minimum
         ? Configuration.MinimumFrequency
@@ -2445,6 +2493,20 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       if (selection != null)
         SelectionCheck(selection);
       pages_snapshot.SelectedPage = page_snapshot_home;
+    }
+
+    private bool settings_list_favorites_lock = false;
+
+    private void settings_list_favorites_ItemCheckedChanged(object sender, ListViewItemEventArgs e)
+    {
+      if (settings_list_favorites_lock)
+        return;
+      settings_list_favorites_lock = true;
+
+      FavoriteManager.PinnedConfiguration = settings_list_favorites.Items.ToArray();
+      RefreshFavorites();
+
+      settings_list_favorites_lock = false;
     }
   }
 }

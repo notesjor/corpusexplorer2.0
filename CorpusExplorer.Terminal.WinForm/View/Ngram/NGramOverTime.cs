@@ -51,7 +51,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
         _last = meta;
         _vm.DateTimeProperty = meta;
         _vm.LayerQueries = wordBag1.ResultQueries;
-        _vm.Analyse();
+        _vm.Execute();
       }
 
       chart_view.Series.Clear();

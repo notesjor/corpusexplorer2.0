@@ -35,7 +35,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       {
         _vm.Model = form.Model;
 
-        if (!_vm.Analyse())
+        if (!_vm.Execute())
           return;
 
         var dataProvider = new LocalDataSourceProvider

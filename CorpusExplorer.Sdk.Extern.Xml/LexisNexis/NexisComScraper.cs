@@ -21,7 +21,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.LexisNexis
 
       foreach (var section in sections)
       {
-        var lines = section.Split(new[] {"<br>"}, StringSplitOptions.RemoveEmptyEntries);
+        var lines = section.Split(new[] { "<br>" }, StringSplitOptions.RemoveEmptyEntries);
         if (lines.Length < 8)
           continue;
 
@@ -113,7 +113,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.LexisNexis
       }
 
       var body = html.DocumentNode.SelectSingleNode("//body");
-      var cont = body.InnerHtml.Split(new[] {"\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries);
+      var cont = body.InnerHtml.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
       var stb = new StringBuilder();
 
       foreach (var s in cont)
@@ -133,14 +133,15 @@ namespace CorpusExplorer.Sdk.Extern.Xml.LexisNexis
       stb.Replace("&szlig;", "ß");
 
       var sections = stb.ToString()
-        .Split(new[] {"<!-- Hide XML section from browser"}, StringSplitOptions.RemoveEmptyEntries);
+        .Split(new[] { "<!-- Hide XML section from browser" }, StringSplitOptions.RemoveEmptyEntries);
       return sections.Where(x => x.Length > 70);
     }
 
     private static string GetText(string html)
     {
       var doc = new HtmlDocument();
-      doc.LoadHtml(html);
+      using (var ms = new MemoryStream(Configuration.Encoding.GetBytes(html)))
+        doc.Load(ms, Configuration.Encoding);
       return doc.DocumentNode?.InnerText?.Trim() ?? string.Empty;
     }
   }

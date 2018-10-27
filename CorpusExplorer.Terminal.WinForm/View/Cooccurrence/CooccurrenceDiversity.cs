@@ -35,7 +35,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       _vm.LayerValueA = txt_queryA.Text;
       _vm.LayerValueB = txt_queryB.Text;
 
-      if (!_vm.Analyse())
+      if (!_vm.Execute())
         return;
 
       radGridView1.DataSource = _vm.GetDataTable();

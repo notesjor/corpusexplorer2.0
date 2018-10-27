@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Sdk.Extern.Plaintext</RootNamespace>
     <AssemblyName>CorpusExplorer.Sdk.Extern.Plaintext</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,8 +37,8 @@
     <AssemblyOriginatorKeyFile>mycert.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.8.4.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.8.4\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.8.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.8.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Itenso.Rtf.Converter.Html, Version=1.7.0.0, Culture=neutral, PublicKeyToken=d7f23b760ed5c748, processorArchitecture=MSIL">
       <HintPath>..\packages\MSGReader.2.1.5\lib\Itenso.Rtf.Converter.Html.dll</HintPath>
@@ -65,8 +66,6 @@
     <Compile Include="ClanChildes\Model\ClanChildesError.cs" />
     <Compile Include="ClanChildes\Model\ClanChildesRule.cs" />
     <Compile Include="ClarinContentSearch\ClarinContentSearchScraper.cs" />
-    <Compile Include="Conll\ExporterConll.cs" />
-    <Compile Include="Conll\ImporterConll.cs" />
     <Compile Include="EasyHashtagSeparation\EasyHashtagSeparationScraper.cs" />
     <Compile Include="Europarl\EuroparlScraper.cs" />
     <Compile Include="KleineAnfrageDe\KleineanfrageDeScraper.cs" />
@@ -74,7 +73,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RawMailMsg\RawMsgMsgScraper.cs" />
     <Compile Include="RepositoryManifest.cs" />
-    <Compile Include="TreeTagger\ExporterTreeTagger.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj">

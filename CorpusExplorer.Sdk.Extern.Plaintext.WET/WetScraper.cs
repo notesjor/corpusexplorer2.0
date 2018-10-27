@@ -39,6 +39,40 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET
       }
     }
 
+    public IEnumerable<Dictionary<string, object>> ExecuteBypass(Stream stream)
+    {
+      lock (_filterLock)
+      {
+        if (!_filterSet)
+        {
+          var form = new LanguageSelectionForm();
+          form.ShowDialog();
+
+          if (form.UseLanguageFilter)
+            _filterLanguage = new LanguageFilter(form.SelectedLanguage);
+
+          if (form.UseDomainFilter)
+            _filterDomain = new DomainFilter(form.SelectedDomains);
+
+          _filterSet = true;
+        }
+      }
+
+      var res = ExecuteExtraction(stream);
+
+      if (_filterLanguage == null)
+        return res;
+
+      var bag = new ConcurrentBag<Dictionary<string, object>>();
+      Parallel.ForEach(res, Configuration.ParallelOptions, entry =>
+      {
+        if (_filterLanguage.Match(entry["Text"] as string))
+          bag.Add(entry);
+      });
+
+      return bag;
+    }
+
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
       lock (_filterLock)

@@ -38,7 +38,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
       _vm.DocumentAGuid = _guidA;
       _vm.DocumentBGuid = _guidB;
 
-      _vm.Analyse();
+      _vm.Execute();
 
       radLabel1.Text =
         $"<html>Notwendige Transformationen (A -&gt; B) - Hinzufügen: &nbsp;<strong>{_vm.ChangesInsert}</strong> - Entfernen: &nbsp;<strong>{_vm.ChangesRemove}</strong> - Distanz: &nbsp;<strong>{_vm.EditDistance}</strong></html>";

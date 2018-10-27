@@ -41,7 +41,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
         _vm.Layer1Displayname = drop_group.SelectedValue.ToString();
       if (drop_values.SelectedIndex != -1)
         _vm.Layer2Displayname = drop_values.SelectedValue.ToString();
-      _vm.Analyse();
+      _vm.Execute();
 
       radGridView1.DataSource = _vm.GetDataTable();
       radGridView1.ResetBindings();
@@ -193,7 +193,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
           LayerQueries =
             parent[Resources.Muster].ToString().Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)
         });
-      vm.Analyse();
+      vm.Execute();
 
       var dt = vm.GetUniqueData();
       foreach (var row in dt)

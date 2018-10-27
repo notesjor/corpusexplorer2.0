@@ -2,7 +2,7 @@
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 
-namespace CorpusExplorer.Core.Exporter
+namespace CorpusExplorer.Sdk.Exporter
 {
   public class ExporterCec5 : AbstractExporterSimpleGenericBase<CorpusBuilderSingleFile, CorpusAdapterSingleFile>
   {

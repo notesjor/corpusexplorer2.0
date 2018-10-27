@@ -2,11 +2,10 @@
 using System.Diagnostics;
 using System.Linq;
 using Bcs.IO;
-using CorpusExplorer.Core.DocumentProcessing.Tagger.ConllTagger.Abstract;
-using CorpusExplorer.Core.DocumentProcessing.Tokenizer;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.ConllTagger.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.MarMoT

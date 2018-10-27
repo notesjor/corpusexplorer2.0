@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Bcs.IO;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Weblicht.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Weblicht.Serializer;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 
@@ -22,10 +25,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
     public string LayernamePos { get; set; } = "POS";
 
     public string LayernameWord { get; set; } = "Wort";
-    public string MetanameAuthor { get; set; } = "Autor";
-    public string MetanameDate { get; set; } = "Datum";
-    public string UnknownDateValue { get; set; } = "0001-01-01";
-    public string UnknownPropertyValue { get; set; } = "Unbekannt";
 
     public override void Export(IHydra hydra, string path)
     {
@@ -39,11 +38,31 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
       foreach (var guid in hydra.DocumentGuids)
         try
         {
-          xml.Serialize(GetDSpin(hydra, guid, i++), Path.Combine(path, guid + ".xml"));
+          string text;
+          using (var ms = new MemoryStream())
+          {
+            xml.Serialize(GetDSpin(hydra, guid, i++), ms);
+            text = Configuration.Encoding.GetString(ms.ToArray());
+          }
+
+          text = text.Replace("<D-Spin xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" version=\"0.4\" xmlns=\"http://www.dspin.de/data\">",
+                              GetDspinMetadata(hydra.GetDocumentMetadata(guid)));
+
+          FileIO.Write(Path.Combine(path, guid + ".xml"), text, Configuration.Encoding);
         }
         catch
         {
         }
+    }
+
+    private string GetDspinMetadata(Dictionary<string, object> metadata)
+    {
+      var stb = new StringBuilder("<D-Spin xmlns=\"http://www.dspin.de/data\" version=\"0.4\"><MetaData xmlns=\"http://www.dspin.de/data/metadata\"><Services><cmd:CMD xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:cmd=\"http://www.clarin.eu/cmd/1\" CMDVersion=\"1.2\" xsi:schemaLocation=\"http://www.clarin.eu/cmd/1 http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1320657629623/xsd\"><cmd:Resources><cmd:ResourceProxyList></cmd:ResourceProxyList><cmd:JournalFileProxyList></cmd:JournalFileProxyList><cmd:ResourceRelationList></cmd:ResourceRelationList></cmd:Resources><cmd:Components><cmd:WebServiceToolChain><cmd:GeneralInfo><cmd:Descriptions><cmd:Description></cmd:Description></cmd:Descriptions><cmd:ResourceName>Custom chain</cmd:ResourceName><cmd:ResourceClass>Toolchain</cmd:ResourceClass></cmd:GeneralInfo><cmd:Toolchain><cmd:ToolInChain><cmd:PID>http://hdl.handle.net/11858/00-1778-0000-0004-BA56-7</cmd:PID><cmd:Parameter value=\"de\" name=\"lang\"></cmd:Parameter><cmd:Parameter value=\"text/plain\" name=\"type\"></cmd:Parameter></cmd:ToolInChain><cmd:ToolInChain><cmd:PID>http://hdl.handle.net/11022/1007-0000-0000-8E1F-F</cmd:PID><cmd:Parameter value=\"de\" name=\"lang\"></cmd:Parameter></cmd:ToolInChain><cmd:ToolInChain><cmd:PID>http://hdl.handle.net/11022/1007-0000-0000-8E22-A</cmd:PID><cmd:Parameter value=\"de\" name=\"lang\"></cmd:Parameter></cmd:ToolInChain></cmd:Toolchain></cmd:WebServiceToolChain></cmd:Components></cmd:CMD></Services>");
+      stb.Append("<md name=\"Generator\" value=\"CorpusExplorer\"/>");
+      foreach (var x in metadata)
+        stb.Append($"<md name=\"{x.Key}\" value=\"{x.Value}\"/>");
+      stb.Append("</MetaData>");
+      return stb.ToString();
     }
 
     private DSpin GetDSpin(IHydra hydra, Guid guid, int i)
@@ -52,16 +71,12 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
       // Die folgenden Layer sind optional
       var docL = hydra.GetReadableDocument(guid, LayernameLemma)?.Select(x => x.ToArray()).ToArray();
       var docP = hydra.GetReadableDocument(guid, LayernamePos)?.Select(x => x.ToArray()).ToArray();
-      var docN = hydra.GetReadableDocument(guid, "NER")?.Select(x => x.ToArray()).ToArray();
-      var docO = hydra.GetReadableDocument(guid, "Orthografie")?.Select(x => x.ToArray()).ToArray();
 
       var text = new StringBuilder();
-      var tokens = new List<TextCorpusToken>();
-      var lemmas = new List<TextCorpusLemma>();
-      var tags = new List<TextCorpusPOStagsTag>();
-      var sents = new List<TextCorpusSentence>();
-      var ners = new List<TextCorpusNamedEntitiesEntity>();
-      var orthos = new List<TextCorpusCorrection>();
+      var tokens = new List<token>();
+      var lemmas = new List<lemma>();
+      var tags = new List<tag>();
+      var sents = new List<sentence>();
 
       var id = 1;
 
@@ -74,42 +89,31 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
         {
           var iD = "t" + id++;
           sent.AppendFormat(" {0}", iD);
-          tokens.Add(new TextCorpusToken {ID = iD, Value = docW[j][k]});
+          tokens.Add(new token { ID = iD, Text = docW[j][k] });
           if (docL != null)
-            lemmas.Add(new TextCorpusLemma {ID = "" + lId++, tokenIDs = iD, Value = docL[j][k]});
+            lemmas.Add(new lemma { ID = "" + lId++, tokenIDs = iD, Text = docL[j][k] });
           if (docP != null)
-            tags.Add(new TextCorpusPOStagsTag {tokenIDs = iD, Value = docP[j][k]});
-          if (docN != null)
-            ners.Add(new TextCorpusNamedEntitiesEntity {tokenIDs = iD, @class = docN[j][k]});
-          if (docO != null)
-            orthos.Add(new TextCorpusCorrection {tokenIDs = iD, Value = docO[j][k], operation = "replace"});
+            tags.Add(new tag { tokenIDs = iD, Text = docP[j][k] });
 
           if (docW[j][k].Length > 1)
             text.Append(" ");
           text.Append(docW[j][k]);
         }
 
-        sents.Add(new TextCorpusSentence {tokenIDs = sent.ToString().Trim(), ID = "s" + j});
+        sents.Add(new sentence { tokenIDs = sent.ToString().Trim(), ID = "s" + j });
       }
 
       return new DSpin
       {
-        MetaData =
-          new MetaData
-          {
-            source = "CorpusExplorer"
-          },
-        version = (decimal) 2.0,
+        version = (decimal)0.4,
         TextCorpus =
           new TextCorpus
           {
+            text = hydra.GetReadableDocument(guid, "Wort").ReduceDocumentToText(),
             lang = CorpusLanguage,
             tokens = tokens.ToArray(),
             lemmas = docL == null ? null : lemmas.ToArray(),
-            orthography = docO == null ? null : orthos.ToArray(),
-            POStags = docP == null ? null : new TextCorpusPOStags {tag = tags.ToArray(), tagset = CorpusTagset},
-            namedEntities =
-              docN == null ? null : new TextCorpusNamedEntities {type = "CoNLL2002", entity = ners.ToArray()},
+            POStags = docP == null ? null : new POStags { tag = tags.ToArray(), tagset = CorpusTagset },
             sentences = sents.ToArray()
           }
       };

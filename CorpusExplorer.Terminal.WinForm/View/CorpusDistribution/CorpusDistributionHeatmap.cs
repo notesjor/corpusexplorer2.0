@@ -32,7 +32,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
 
     private void Analyse()
     {
-      _vm.Analyse();
+      _vm.Execute();
       var demo = _vm.GetDataTable();
       heatMapView1.DataSource = demo;
     }

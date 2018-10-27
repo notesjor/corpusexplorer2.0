@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Serializer;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
+using HtmlAgilityPack;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat
 {
@@ -14,49 +18,55 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat
 
     protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, TEI model)
     {
+      var helper = new HtmlAgilityPackHelper(file);
+      helper.RemoveNodes(new[] {"//pb", "//fw", "//table", "//figure", "//note"});
+
       return new[]
       {
         new Dictionary<string, object>
         {
           {
             "IDNO",
-            SafeJoin(
-              () =>
-                model?.teiHeader?.fileDesc?.publicationStmt?.idno?.idno1?.FirstOrDefault(idno => idno.type == "URLWeb")?.Text)
+            TextHelper.SafeJoin(() => model?.teiHeader?.fileDesc?.publicationStmt?.idno?.idno1?.FirstOrDefault(idno => idno.type == "URLWeb")?.Text)
           },
           {
             "URN",
-            SafeJoin(
-              () =>
-                model?.teiHeader?.fileDesc?.publicationStmt?.idno?.idno1?.FirstOrDefault(idno => idno.type == "URN")?.Text)
+            TextHelper.SafeJoin(() => model?.teiHeader?.fileDesc?.publicationStmt?.idno?.idno1?.FirstOrDefault(idno => idno.type == "URN")?.Text)
           },
           {
             "Titel",
-            SafeJoin(
-              () =>
-                model?.teiHeader?.fileDesc?.sourceDesc?.bibl?.Text)
+            TextHelper.SafeJoin(() => model?.teiHeader?.fileDesc?.sourceDesc?.bibl?.Text, " - ")
           },
           {
             "Autoren",
-            SafeJoin(
-              () =>
-                model?.teiHeader?.fileDesc?.sourceDesc?.biblFull?.titleStmt?.author?.Select(x => x.persName.@ref),
-              "|")
+            TextHelper.SafeJoin(() =>model?.teiHeader?.fileDesc?.sourceDesc?.biblFull?.titleStmt?.author?.Select(x => x.persName.@ref), "; ")
+          },
+          {
+            "Sprache",
+            model?.teiHeader?.profileDesc?.langUsage?.language?.Value
+          },
+          {
+            "DTA-Main",
+            model?.teiHeader?.profileDesc?.textClass?.FirstOrDefault(
+              classCode => classCode.scheme == "http://www.deutschestextarchiv.de/doku/klassifikation#dtamain")?.Value
+          },
+          {
+            "DTA-Sub",
+            model?.teiHeader?.profileDesc?.textClass?.FirstOrDefault(
+              classCode => classCode.scheme == "http://www.deutschestextarchiv.de/doku/klassifikation#dtasub")?.Value
+          },
+          {
+          "DTA-Korpus",
+            TextHelper.SafeJoin(() =>model?.teiHeader?.profileDesc?.textClass?.Where(
+            classCode => classCode.scheme == "http://www.deutschestextarchiv.de/doku/klassifikation#DTACorpus")
+            .Select(x=> x.Value), " - ")
+          },
+          {
+            "Text",
+            helper.GetBodyText("//text")
           }
         }
       };
-    }
-
-    private string SafeJoin(Func<IEnumerable<string>> call, string separator = " ")
-    {
-      try
-      {
-        return string.Join(separator, call());
-      }
-      catch
-      {
-        return "";
-      }
     }
   }
 }

@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using System.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
-using CorpusExplorer.Sdk.Extern.Plaintext.Conll;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Interface;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.SaltAndPepper

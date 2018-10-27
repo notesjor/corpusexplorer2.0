@@ -63,7 +63,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     private void DocumentMetadataVisualisation_ShowVisualisation(object sender, EventArgs e)
     {
       _vm = GetViewModel<DocumentMetadataViewModel>();
-      _vm.Analyse();
+      _vm.Execute();
       radGridView1.DataSource = _vm.DataTable;
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
     }

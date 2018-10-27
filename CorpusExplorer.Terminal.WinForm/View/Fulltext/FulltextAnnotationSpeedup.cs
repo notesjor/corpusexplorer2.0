@@ -228,7 +228,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void SpeedTaggerVisualisation_ShowVisualisation(object sender, EventArgs e)
     {
       _vm = GetViewModel<AnnotationViewModel>();
-      _vm.Analyse();
+      _vm.Execute();
       DictionaryBindingHelper.BindDictionary(_vm.Documents, drop_selecteddocument);
       DictionaryBindingHelper.BindDictionary(_vm.Layers, drop_layerView);
       DictionaryBindingHelper.BindDictionary(_vm.Layers, drop_layerAnnotate);

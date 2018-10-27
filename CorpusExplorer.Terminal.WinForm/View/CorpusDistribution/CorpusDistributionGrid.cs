@@ -35,7 +35,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     private void Analyse()
     {
       _vm = GetViewModel<CorpusWeightUnlimmitedViewModel>();
-      _vm.Analyse();
+      _vm.Execute();
 
       radGridView1.DataSource = _vm.GetDataTable();
       radGridView1.ResetBindings();

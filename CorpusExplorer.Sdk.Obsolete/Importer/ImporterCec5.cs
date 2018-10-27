@@ -3,7 +3,7 @@ using CorpusExplorer.Sdk.Model.Adapter.Corpus;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
-namespace CorpusExplorer.Core.DocumentProcessing.Importer.CorpusExplorerV5
+namespace CorpusExplorer.Sdk.Importer
 {
   internal sealed class ImporterCec5 : AbstractImporter
   {

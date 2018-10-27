@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
-using CorpusExplorer.Core.DocumentProcessing.Exporter.Tlv;
-using CorpusExplorer.Core.DocumentProcessing.Exporter.Tlv.Model;
-using CorpusExplorer.Core.DocumentProcessing.Importer.TlvXml;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Catma.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Catma.Parser;
 using CorpusExplorer.Sdk.Extern.Xml.Catma.Parser.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Tlv;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Tlv.Model;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Catma

@@ -56,10 +56,5 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Abstract.XmlDocumentBasedScraper
 
       return null;
     }
-
-    protected string SafeJoin(IEnumerable<string> lines)
-    {
-      return lines == null ? string.Empty : string.Join(" ", lines);
-    }
   }
 }

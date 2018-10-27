@@ -2,7 +2,6 @@
 
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
-using CorpusExplorer.Sdk.Extern.Plaintext.WET;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
@@ -11,7 +10,7 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
 
 #endregion
 
-namespace CorpusExplorer.Sdk.Extern.Plaintext
+namespace CorpusExplorer.Sdk.Extern.Plaintext.WET
 {
   // ReSharper disable once UnusedMember.Global
   public class RepositoryManifest : AbstractAddonRepository
@@ -52,6 +51,10 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
     ///   Externe Analysemodule.
     /// </summary>
     public override IEnumerable<IAddonView> AddonViews => null;
+
+    public override IEnumerable<IAction> AddonConsoleActions => null;
+
+    public override IEnumerable<object> AddonSideloadFeature => null;
 
     /// <summary>
     ///   Eindeutige Bezeichnung (Name) des Addons

@@ -50,7 +50,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
     private void TextSimilarityPage_ShowVisualisation(object sender, EventArgs e)
     {
       _vm = GetViewModel<DocumentSimilarityViewModel>();
-      _vm.Analyse();
+      _vm.Execute();
       combo_meta.DataSource = _vm.DocumentMetaProperties;
       combo_meta.SelectedIndex = 0;
     }

@@ -34,7 +34,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.StyleMetrics
     {
       _vm = GetViewModel<NgramPhoneticViewModel>();
       _vm.NGramSize = int.Parse(txt_size.Text);
-      _vm.Analyse();
+      _vm.Execute();
       BindData();
 
       AddSummaryRow();

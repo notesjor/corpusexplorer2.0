@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract;
@@ -125,21 +126,20 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
 
       Hide();
 
-      Processing.Invoke(
-        Resources.Autosplit_wird_ausgeführt,
-        () =>
-        {
-          blockGroup.Calculate();
+      Processing
+       .Invoke(Resources.Autosplit_wird_ausgeführt,
+               () =>
+               {
+                 blockGroup.Calculate();
 
-          var dic = blockGroup.SelectionClusters.ToDictionary(x => x.Key, x => x.Value);
+                 // .ToArray() sorgt dafür, dass zunächst alle Selections erzeugt werden
+                 // .First() würde nur dazu führen, dass nur die erste Selection erzeugt wird.
+                 var selections = (num_window.Value < 2
+                                     ? blockGroup.GetSelectionClusters()
+                                     : blockGroup.GetSelectionClustersWindowed((int) num_window.Value)).ToArray();
 
-          Selection res = null;
-
-          foreach (var range in dic)
-            res = _selection.Create(range.Value, range.Key);
-
-          Result = res;
-        });
+                 Result = selections.First(); 
+               });
     }
 
     private void drop_auto_SelectedIndexChanged(object sender, PositionChangedEventArgs e)
@@ -216,6 +216,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       _numSpinLock = true;
       num_cluster.Value = spin_dateTimeClusters.Value;
       _numSpinLock = false;
+    }
+
+    private void infoButton1_Click(object sender, EventArgs e)
+    {
+      MessageBox.Show("Nachdem der Autosplit erfolgreich durchgeführt wurde, wird ein \"Sliding Window\" über die Schnappschüsse gelegt. Damit werden Übergänge fließender. Setzen Sie den Wert auf 1, um das \"Sliding Window\" zu deaktivieren.");
     }
   }
 }

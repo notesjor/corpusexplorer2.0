@@ -22,7 +22,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
     protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, DSpin model)
     {
       var corpus = model.TextCorpus;
-      var tokens = corpus.tokens.ToDictionary(t => t.ID, t => t.Value);
+      var tokens = corpus.tokens.ToDictionary(t => t.ID, t => t.Text);
       var stb = new StringBuilder();
 
       foreach (

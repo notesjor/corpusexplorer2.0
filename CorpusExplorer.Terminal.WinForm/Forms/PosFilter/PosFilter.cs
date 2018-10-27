@@ -18,7 +18,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.PosFilter
       InitializeComponent();
 
       _vm = new PosTagFilterViewModel {Selection = selection};
-      _vm.Analyse();
+      _vm.Execute();
 
       radCheckedListBox1.SuspendLayout();
       foreach (var x in _vm.AvailableTags.OrderBy(y => y))

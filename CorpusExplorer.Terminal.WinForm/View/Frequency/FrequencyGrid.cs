@@ -41,7 +41,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       if (layerDisplaynames != null)
         _vm.LayerDisplaynames = layerDisplaynames;
 
-      _vm.Analyse();
+      _vm.Execute();
 
       radGridView1.DataSource = _vm.GetDataTable();
       radGridView1.ResetBindings();

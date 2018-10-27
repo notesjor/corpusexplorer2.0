@@ -91,7 +91,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
           _vm.SelectionToCompare = _selectionDropdown1.ResultSelection;
           if (SelectedLayerDisplaynames != null)
             _vm.LayerDisplaynames = SelectedLayerDisplaynames;
-          if (!_vm.Analyse())
+          if (!_vm.Execute())
             return;
 
           _table = _vm.GetDataTable();

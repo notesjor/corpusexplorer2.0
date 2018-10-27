@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using HtmlAgilityPack;
 
@@ -15,7 +16,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Gutenberg
       lock (_lock)
       {
         var scraper = new HtmlDocument();
-        scraper.Load(file);
+        scraper.Load(file, Configuration.Encoding);
         var html = scraper.DocumentNode?.ChildNodes.FirstOrDefault(childNode => childNode.Name == "html");
         var head = html?.ChildNodes.FirstOrDefault(childNode => childNode.Name == "head");
         if (head == null)

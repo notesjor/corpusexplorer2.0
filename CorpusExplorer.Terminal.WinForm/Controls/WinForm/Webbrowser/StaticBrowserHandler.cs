@@ -53,7 +53,6 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
       var settings = new CefSettings
       {
         BrowserSubprocessPath = Path.Combine(Configuration.AppPath,
-          Environment.Is64BitProcess ? "x64" : "x86",
           "CefSharp.BrowserSubprocess.exe")
       };
       CefSharpSettings.LegacyJavascriptBindingEnabled = true;

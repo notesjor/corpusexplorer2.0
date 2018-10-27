@@ -38,7 +38,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       _vm.NGramSize = int.Parse(txt_size.Text);
       if (SelectedLayerDisplaynames != null)
         _vm.LayerDisplayname = SelectedLayerDisplaynames[0];
-      if (!_vm.Analyse())
+      if (!_vm.Execute())
         return;
       BindData();
     }

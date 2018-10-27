@@ -35,7 +35,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
       _vm = GetViewModel<DisambiguationViewModel>();
       _vm.LayerQuery = wordBag1.ResultQueries.First();
       _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
-      _vm.Analyse();
+      _vm.Execute();
       _vm.DataTableLevel = int.Parse(txt_level.Text);
 
       radGridView1.DataSource = _vm.GetDataTable();

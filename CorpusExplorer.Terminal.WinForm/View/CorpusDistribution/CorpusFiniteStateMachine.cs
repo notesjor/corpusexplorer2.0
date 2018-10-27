@@ -50,11 +50,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
 
     private void AnalyseAggregated()
     {
+      if (drop_sort.SelectedIndex == -1 || drop_category1.SelectedIndex == -1 || drop_category2.SelectedIndex == -1)
+        return;
+
       _vm = GetViewModel<CorpusFiniteStateMachineViewModel>();
       _vm.MetadataKeyTimestamp = _index[drop_sort.SelectedIndex];
       _vm.MetadataKeyEntity = _index[drop_category1.SelectedIndex];
       _vm.MetadataKeyLevel = _index[drop_category2.SelectedIndex];
-      _vm.Analyse();
+      _vm.Execute();
 
       simpleDiagram1.CallNew();
       simpleDiagram1.CallAddNodes(new HashSet<string>(_vm.Entities));

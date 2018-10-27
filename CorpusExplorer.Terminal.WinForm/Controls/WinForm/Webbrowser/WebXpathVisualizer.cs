@@ -121,9 +121,9 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
 
           XPathChanged?.Invoke(null, null);
         }
-        catch
+        catch (Exception ex)
         {
-          // ignore
+          InMemoryErrorConsole.Log(ex);
         }
         finally
         {
@@ -139,21 +139,22 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
     {
       if (_browser != null)
         return;
-
-      BoundObject.XPathChanged += (s, e) => XPath = (string) s;
-
-      _browser = StaticBrowserHandler.Get(Size);
-      // _browser.LoadingStateChanged += _browser_LoadingStateChanged;
+      
       try
       {
+        BoundObject.XPathChanged += (s, e) => XPath = (string)s;
+
+        _browser = StaticBrowserHandler.Get(Size);
+        // _browser.LoadingStateChanged += _browser_LoadingStateChanged;
+
         _browser.RegisterAsyncJsObject("ce", new BoundObject(), BindingOptions.DefaultBinder);
+        Controls.Add(_browser);
       }
       catch (Exception ex)
       {
-        var t = ex.Message;
+        InMemoryErrorConsole.Log(ex);
       }
-
-      Controls.Add(_browser);
+      
       ResumeLayout(false);
     }
 

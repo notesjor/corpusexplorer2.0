@@ -45,7 +45,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
           _vm.LayerDisplayname = SelectedLayerDisplaynames[0];
         _vm.DateTimeProperty = meta;
         _vm.LayerQueries = queries;
-        _vm.Analyse();
+        _vm.Execute();
 
         ResetChart();
 

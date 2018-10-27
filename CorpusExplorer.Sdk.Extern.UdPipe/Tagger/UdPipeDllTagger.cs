@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using CorpusExplorer.Core.DocumentProcessing.Tagger.ConllTagger.Abstract;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Extern.UdPipe.Model;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.ConllTagger.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Tagger
 {

@@ -63,6 +63,10 @@ namespace CorpusExplorer.Sdk.Extern.Json
     /// </summary>
     public override IEnumerable<IAddonView> AddonViews => null;
 
+    public override IEnumerable<IAction> AddonConsoleActions => null;
+
+    public override IEnumerable<object> AddonSideloadFeature => null;
+
     /// <summary>
     ///   Eindeutige Bezeichnung (Name) des Addons
     /// </summary>

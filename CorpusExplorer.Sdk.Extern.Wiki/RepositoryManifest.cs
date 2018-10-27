@@ -14,6 +14,7 @@ namespace CorpusExplorer.Sdk.Extern.Wiki
     public override IEnumerable<AbstractAdditionalTagger> AddonAdditionalTagger => null;
     public override IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> AddonBackends => null;
     public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters => null;
+    public override IEnumerable<object> AddonSideloadFeature => null;
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter => null;
 
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers
@@ -27,6 +28,7 @@ namespace CorpusExplorer.Sdk.Extern.Wiki
 
     public override IEnumerable<AbstractTagger> AddonTagger => null;
     public override IEnumerable<IAddonView> AddonViews => null;
+    public override IEnumerable<IAction> AddonConsoleActions => null;
     public override string Guid => "CorpusExplorer.Sdk.Extern.Wiki";
   }
 }

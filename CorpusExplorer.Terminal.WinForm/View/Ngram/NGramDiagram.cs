@@ -46,7 +46,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       _vm.NGramPatternSize = int.Parse(txt_pattern.Text);
       if (SelectedLayerDisplaynames != null)
         _vm.LayerDisplayname = SelectedLayerDisplaynames[0];
-      if (!_vm.Analyse())
+      if (!_vm.Execute())
         return;
       var temp = _vm.TakeTopNGrams(int.Parse(txt_max.Text));
       var nodes = new Dictionary<string, NodeInfo>();

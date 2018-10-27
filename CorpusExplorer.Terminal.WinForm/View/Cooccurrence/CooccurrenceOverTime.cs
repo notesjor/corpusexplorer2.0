@@ -56,7 +56,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
         _vm.LayerQueries = queries;
         if (SelectedLayerDisplaynames != null)
           _vm.LayerDisplayname = SelectedLayerDisplaynames[0];
-        if (!_vm.Analyse())
+        if (!_vm.Execute())
           return;        
 
         drop_select.Items.Clear();

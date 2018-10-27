@@ -36,7 +36,9 @@ namespace CorpusExplorer.Sdk.Db.MySql
 
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers => null;
     public override IEnumerable<AbstractTagger> AddonTagger => null;
+    public override IEnumerable<IAction> AddonConsoleActions => null;
     public override IEnumerable<IAddonView> AddonViews => null;
+    public override IEnumerable<object> AddonSideloadFeature => null;
     public override string Guid => "CorpusExplorer.Sdk.Db.MySQL";
   }
 }

@@ -37,7 +37,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       _vm = GetViewModel<CooccurrenceViewModel>();
       if (SelectedLayerDisplaynames != null)
         _vm.LayerDisplayname = SelectedLayerDisplaynames[0];
-      if (!_vm.Analyse())
+      if (!_vm.Execute())
         return;
 
       radGridView1.DataSource = _vm.GetDataTable();

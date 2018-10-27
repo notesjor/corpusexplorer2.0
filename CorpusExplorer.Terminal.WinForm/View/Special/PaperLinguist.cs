@@ -75,7 +75,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
                 Queries = queries
               });
 
-          vm.Analyse();
+          vm.Execute();
 
           var generator = new ReportingGenerator();
           report = generator.Execute(vm.ResultStorage);

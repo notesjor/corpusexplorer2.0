@@ -69,7 +69,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       _vm.Queries = wordBag1.ResultQueries;
       Processing.Invoke("Zähle an allen Positionen...", () =>
       {
-        if (!_vm.Analyse())
+        if (!_vm.Execute())
           return;
 
         _wpfDoc.SetSegements(_vm.GranulatedDocument);

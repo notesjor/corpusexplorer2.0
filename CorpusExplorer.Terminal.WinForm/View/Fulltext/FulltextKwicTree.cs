@@ -39,7 +39,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
           _vm.LayerQueryPhrase = wordBag1.ResultQueries;
           _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
           _vm.HighlightCooccurrences = highlight;
-          _vm.Analyse();
+          _vm.Execute();
 
           wpfDiagram1.CallNew();
           BuildTree();

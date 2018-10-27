@@ -20,7 +20,7 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Calculator.Step.Abstract
     {
       var vm = new TextLiveSearchViewModel {Selection = selection};
       vm.AddQuery(query);
-      vm.Analyse();
+      vm.Execute();
 
       var dt = new DataTable();
       dt.Columns.Add("Pre");

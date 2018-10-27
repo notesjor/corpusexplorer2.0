@@ -38,10 +38,14 @@ namespace CorpusExplorer.Sdk.Extern.MarMoT
       new MarMoTTagger()
     };
 
+    public override IEnumerable<IAction> AddonConsoleActions => null;
+
     /// <summary>
     ///   Externe Analysemodule.
     /// </summary>
     public override IEnumerable<IAddonView> AddonViews => null;
+
+    public override IEnumerable<object> AddonSideloadFeature => null;
 
     /// <summary>
     ///   Eindeutige Bezeichnung (Name) des Addons

@@ -27,7 +27,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
       var vm = GetViewModel<DisambiguationViewModel>();
       vm.LayerQuery = wordBag1.ResultQueries.First();
       vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
-      vm.Analyse();
+      vm.Execute();
 
       var root = new RadTreeNode(string.Format(Resources.ProfilVon0, wordBag1.ResultQueries.First()));
       RecursivFillNode(root, vm.RootCluster.GetClusters());

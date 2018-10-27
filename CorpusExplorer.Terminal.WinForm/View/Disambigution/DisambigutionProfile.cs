@@ -60,7 +60,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
       var vm = GetViewModel<DisambiguationViewModel>();
       vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
       vm.LayerQuery = wordBag1.ResultQueries.First();
-      vm.Analyse();
+      vm.Execute();
 
       for (var i = 0; i < 16; i++)
         SetListView(_lists[i]);

@@ -40,7 +40,6 @@ namespace CorpusExplorer.Terminal.WinForm
     [STAThread]
     private static void Main(params string[] args)
     {
-      AppDomain.CurrentDomain.AssemblyResolve += Resolver;
       Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE");
       Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
       Application.CurrentCulture = new CultureInfo("de-DE");
@@ -85,22 +84,6 @@ namespace CorpusExplorer.Terminal.WinForm
       {
         // ignore
       }
-    }
-
-    // Will attempt to load missing assembly from either x86 or x64 subdir
-    private static Assembly Resolver(object sender, ResolveEventArgs args)
-    {
-      if (!args.Name.StartsWith("CefSharp"))
-        return null;
-
-      var assemblyName = args.Name.Split(new[] {','}, 2)[0] + ".dll";
-      var archSpecificPath = Path.Combine(Configuration.AppPath,
-        Environment.Is64BitProcess ? "x64" : "x86",
-        assemblyName);
-
-      return File.Exists(archSpecificPath)
-        ? Assembly.LoadFile(archSpecificPath)
-        : null;
     }
   }
 }

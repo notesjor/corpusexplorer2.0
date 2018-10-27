@@ -20,6 +20,8 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine
         {"CorpusExplorer (EchtzeitEngine)", new CorpusBuilderLightweightSingleFile()}
       };
 
+    public override IEnumerable<object> AddonSideloadFeature => null;
+
     public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters => null;
 
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter
@@ -33,6 +35,8 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine
     public override IEnumerable<AbstractTagger> AddonTagger => null;
 
     public override IEnumerable<IAddonView> AddonViews => null;
+
+    public override IEnumerable<IAction> AddonConsoleActions => null;
 
     public override string Guid => "CorpusExplorer.EchtzeitEngine";
   }

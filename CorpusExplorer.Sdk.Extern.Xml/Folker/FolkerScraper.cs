@@ -43,7 +43,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Folker
           string.IsNullOrEmpty(model.recording.path))
         dic.Add("Datei", model.recording.path);
 
-      /* Timeline wird aktuell ignoriert - Ausschnitt aus UnitTest
+      /* ToDo: Timeline wird aktuell ignoriert - Ausschnitt aus UnitTest
       Assert.AreEqual(42, folker.timeline.Length);
       Assert.AreEqual(((decimal)1.1648), Math.Round(folker.timeline[2].absolutetime, 4));
       */

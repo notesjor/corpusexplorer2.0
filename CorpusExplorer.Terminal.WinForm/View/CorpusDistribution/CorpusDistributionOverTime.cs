@@ -76,7 +76,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       _vm.DateTimeProperty = meta;
       _vm.WeightProperty = commandBarDropDownList2.SelectedItem.Text;
       ResetChart();
-      _vm.Analyse();
+      _vm.Execute();
 
       var items = _vm.GetAvailableMetadataValueForCategory(commandBarDropDownList2.SelectedItem.Text);
       drop_select.Items.Clear();

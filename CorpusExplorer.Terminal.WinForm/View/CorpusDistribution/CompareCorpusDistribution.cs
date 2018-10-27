@@ -88,7 +88,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
         {
           _vm.Selection = Project.CurrentSelection;
           _vm.SelectionToCompare = _selectionDropdown1.ResultSelection;
-          _vm.Analyse();
+          _vm.Execute();
 
           _table = _vm.GetDataTable();
 

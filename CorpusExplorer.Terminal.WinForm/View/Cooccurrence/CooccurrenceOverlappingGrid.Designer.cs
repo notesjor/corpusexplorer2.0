@@ -36,6 +36,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.btn_calc = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_filterlist = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_filtereditor = new Telerik.WinControls.UI.CommandBarButton();
+      this.btn_layer = new Telerik.WinControls.UI.CommandBarButton();
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_csvExport = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_print = new Telerik.WinControls.UI.CommandBarButton();
@@ -45,7 +46,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.clearPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
       this.txt_query = new Telerik.WinControls.UI.RadAutoCompleteBox();
       this.btn_search = new Telerik.WinControls.UI.RadButton();
-      this.btn_layer = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
@@ -62,7 +62,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
+      this.radCommandBar1.Size = new System.Drawing.Size(780, 44);
       this.radCommandBar1.TabIndex = 0;
       // 
       // commandBarRowElement1
@@ -134,6 +134,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.btn_filtereditor.Text = "Filtereditor";
       this.btn_filtereditor.Click += new System.EventHandler(this.btn_filtereditor_Click);
       // 
+      // btn_layer
+      // 
+      this.btn_layer.DisplayName = "commandBarButton1";
+      this.btn_layer.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers;
+      this.btn_layer.Name = "btn_layer";
+      this.btn_layer.Text = "Layer auswählen";
+      this.btn_layer.Click += new System.EventHandler(this.btn_layer_Click);
+      // 
       // commandBarSeparator1
       // 
       this.commandBarSeparator1.AccessibleDescription = "commandBarSeparator1";
@@ -182,7 +190,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // radGridView1
       // 
       this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGridView1.Location = new System.Drawing.Point(0, 101);
+      this.radGridView1.Location = new System.Drawing.Point(0, 76);
       // 
       // 
       // 
@@ -193,7 +201,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.radGridView1.MasterTemplate.MultiSelect = true;
       this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
-      this.radGridView1.Size = new System.Drawing.Size(780, 299);
+      this.radGridView1.Size = new System.Drawing.Size(780, 324);
       this.radGridView1.TabIndex = 1;
       // 
       // clearPanel1
@@ -201,7 +209,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.clearPanel1.Controls.Add(this.txt_query);
       this.clearPanel1.Controls.Add(this.btn_search);
       this.clearPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.clearPanel1.Location = new System.Drawing.Point(0, 69);
+      this.clearPanel1.Location = new System.Drawing.Point(0, 44);
       this.clearPanel1.Name = "clearPanel1";
       this.clearPanel1.Size = new System.Drawing.Size(780, 32);
       this.clearPanel1.TabIndex = 3;
@@ -224,14 +232,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.btn_search.Size = new System.Drawing.Size(32, 32);
       this.btn_search.TabIndex = 0;
       this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
-      // 
-      // btn_layer
-      // 
-      this.btn_layer.DisplayName = "commandBarButton1";
-      this.btn_layer.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers;
-      this.btn_layer.Name = "btn_layer";
-      this.btn_layer.Text = "Layer auswählen";
-      this.btn_layer.Click += new System.EventHandler(this.btn_layer_Click);
       // 
       // CooccurrenceOverlappingGrid
       // 

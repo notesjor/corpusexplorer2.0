@@ -47,7 +47,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 
       _vm.DateTimeProperty = meta;
       _vm.LayerQueries = wordBag1.ResultQueries;
-      _vm.Analyse();
+      _vm.Execute();
 
       chart_view.Series.Clear();
       chart_view.Axes.Clear();
@@ -98,7 +98,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
     private void FrequencyOverTimeView_ShowView(object sender, EventArgs e)
     {
       _vm = GetViewModel<FrequencyOverTimeViewModel>();
-      if (!_vm.Analyse())
+      if (!_vm.Execute())
         return;
 
       commandBarDropDownList1.DataSource = _vm.DocumentMetadata;

@@ -46,7 +46,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       if (_vm == null)
         return;
 
-      _vm.Analyse();
+      _vm.Execute();
 
       radGridView1.DataSource = _vm.GetDataTable();
       radGridView1.ResetBindings();
@@ -151,7 +151,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
 
       var vm = GetViewModel<QuickInfoTextViewModel>();
       vm.Documents = new[] { (KeyValuePair<Guid, int>)cell.RowElement.RowInfo.Cells["Info"].Value };
-      vm.Analyse();
+      vm.Execute();
 
       var form = new SimpleTextView(vm.QuickDocumentInfoResults, Project);
       form.NewProperty += (o, a) => { vm.SetNewDocumentMetadata((KeyValuePair<string, Type>)o); };
@@ -257,7 +257,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       {
         _vm.Model = form.Model;
 
-        if (!_vm.Analyse())
+        if (!_vm.Execute())
           return;
 
         radGridView1.DataSource = _vm.GetDataTable();

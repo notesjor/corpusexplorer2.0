@@ -78,9 +78,16 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     
     private void RadTreeView1OnSelectedNodeChanged(object sender, RadTreeViewEventArgs e)
     {
-      CloseDropDown();
-      ResultSelection = radTreeView1.SelectedNodes[0].Tag as Selection;
-      Text = ResultSelection?.Displayname;
+      try
+      {
+        CloseDropDown();
+        ResultSelection = radTreeView1.SelectedNodes[0]?.Tag as Selection;
+        Text = ResultSelection?.Displayname;
+      }
+      catch
+      {
+        // ignore
+      }
     }
 
     public Selection ResultSelection { get; private set; }

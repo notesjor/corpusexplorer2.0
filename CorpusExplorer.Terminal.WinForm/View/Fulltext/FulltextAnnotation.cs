@@ -306,7 +306,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void ShowViewCall(object sender, EventArgs e)
     {
       _vmAnnotation = GetViewModel<AnnotationViewModel>();
-      _vmAnnotation.Analyse();
+      _vmAnnotation.Execute();
       DictionaryBindingHelper.BindDictionary(_vmAnnotation.Documents, drop_selecteddocument);
       if (_vmAnnotation.Documents.Count > 0)
         drop_selecteddocument.SelectedIndex = 0;

@@ -13,7 +13,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
     ///   Auflistung von Layern die durch diesen Importer bedient werden.
     /// </summary>
     /// <value>The layer names.</value>
-    protected override IEnumerable<string> LayerNames => new[] {"Wort", "Lemma", "POS", "NER", "Orthografie"};
+    protected override IEnumerable<string> LayerNames => new[] { "Wort", "Lemma", "POS" };
 
     /// <summary>
     ///   Erster Importschritt - ließt die Datei ein und gibt (ein) entsprechend(es) Objekt(e) zurück.
@@ -52,13 +52,13 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
       // TokenID -> Wert - Zuordnung ermitteln
 
       // Wort (immer vorhanden)
-      var wort = data.TextCorpus.tokens.ToDictionary(t => t.ID, t => t.Value);
+      var wort = data.TextCorpus.tokens.ToDictionary(t => t.ID, t => t.Text);
       BuildLayerDocument("Wort", documentGuid, ref token, wort);
 
       // Lemma (nur vorhanden, wenn lemmatisiert)
       try
       {
-        var lemma = data.TextCorpus.lemmas.ToDictionary(l => l.tokenIDs, l => l.Value);
+        var lemma = data.TextCorpus.lemmas.ToDictionary(l => l.tokenIDs, l => l.Text);
         BuildLayerDocument("Lemma", documentGuid, ref token, lemma);
       }
       catch
@@ -68,41 +68,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
       // POS (nur vorhanden, wenn POS-Tagger)
       try
       {
-        var pos = data.TextCorpus.POStags.tag.ToDictionary(p => p.tokenIDs, p => p.Value);
+        var pos = data.TextCorpus.POStags.tag.ToDictionary(p => p.tokenIDs, p => p.Text);
         BuildLayerDocument("POS", documentGuid, ref token, pos);
-      }
-      catch
-      {
-      }
-
-      // Orthografie (nur vorhanden, wenn Orthografie)
-      try
-      {
-        var ortho = data.TextCorpus.orthography.ToDictionary(p => p.tokenIDs, p => p.Value);
-        BuildLayerDocument("Orthografie", documentGuid, ref token, ortho);
-      }
-      catch
-      {
-      }
-
-      // NER (Nur vorhanden, wen NER eingesetzt)
-      try
-      {
-        var ner = new Dictionary<string, string>();
-        // (Mehrere TokenIDs können einem Wert zugeordnet werden.)
-        foreach (var n in data.TextCorpus.namedEntities.entity)
-          if (n.tokenIDs.Contains(" "))
-          {
-            var tokens = n.tokenIDs.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
-            foreach (var t in tokens)
-              ner.Add(t, n.@class);
-          }
-          else
-          {
-            ner.Add(n.tokenIDs, n.@class);
-          }
-
-        BuildLayerDocument("NER", documentGuid, ref token, ner);
       }
       catch
       {
@@ -125,7 +92,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
       return
         dspin.TextCorpus.sentences.Select(
             sentence =>
-              sentence.tokenIDs.Split(new[] {" ", "\t", "\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries))
+              sentence.tokenIDs.Split(new[] { " ", "\t", "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries))
           .ToArray();
     }
   }

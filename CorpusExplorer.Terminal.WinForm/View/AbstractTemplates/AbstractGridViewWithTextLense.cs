@@ -115,7 +115,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
 
       var vm = GetViewModel<QuickInfoTextViewModel>();
       vm.Documents = cell.RowElement.RowInfo.Cells["Info"].Value as IEnumerable<KeyValuePair<Guid, int>>;
-      vm.Analyse();
+      vm.Execute();
 
       var form = new SimpleTextView(vm.QuickDocumentInfoResults, Project);
       form.NewProperty += (o, a) => { vm.SetNewDocumentMetadata((KeyValuePair<string, Type>) o); };
@@ -136,7 +136,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
       var vm = GetViewModel<TextLiveSearchViewModel>();
       vm.ClearQueries();
       vm.AddQuery(_func(parent));
-      vm.Analyse();
+      vm.Execute();
 
       var dt = vm.GetUniqueData();
       foreach (var row in dt)

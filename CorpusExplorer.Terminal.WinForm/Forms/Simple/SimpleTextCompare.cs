@@ -67,7 +67,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
           _diff.DocumentBGuid == Guid.Empty)
         return;
 
-      _diff.Analyse();
+      _diff.Execute();
 
       webHtml5Visualisation1.MainpageUrl = Configuration.GetDependencyPath("d3Templates/diff.html");
       webHtml5Visualisation1.TemplateVars = new Dictionary<string, string>

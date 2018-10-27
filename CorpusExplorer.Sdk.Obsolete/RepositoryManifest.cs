@@ -1,9 +1,9 @@
 ﻿#region
 
 using System.Collections.Generic;
-using CorpusExplorer.Core.DocumentProcessing.Importer.CorpusExplorerV5;
-using CorpusExplorer.Core.Exporter;
 using CorpusExplorer.Sdk.Addon;
+using CorpusExplorer.Sdk.Exporter;
+using CorpusExplorer.Sdk.Importer;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
@@ -13,13 +13,15 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
 
 #endregion
 
-namespace CorpusExplorer.Core
+namespace CorpusExplorer.Sdk
 {
   // ReSharper disable once UnusedMember.Global
   public class RepositoryManifest : AbstractAddonRepository
   {
     public override IEnumerable<AbstractAdditionalTagger> AddonAdditionalTagger =>
       null;
+
+    public override IEnumerable<object> AddonSideloadFeature => null;
 
     public override IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> AddonBackends =>
       new Dictionary<string, AbstractCorpusBuilder>
@@ -64,6 +66,8 @@ namespace CorpusExplorer.Core
     ///   Externe Analysemodule.
     /// </summary>
     public override IEnumerable<IAddonView> AddonViews => null;
+
+    public override IEnumerable<IAction> AddonConsoleActions => null;
 
     /// <summary>
     ///   Eindeutige Bezeichnung (Name) des Addons

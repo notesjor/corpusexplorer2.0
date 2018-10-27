@@ -54,7 +54,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
         () =>
         {
           var vm = GetViewModel<CorpusWeightUnlimmitedViewModel>();
-          vm.Analyse();
+          vm.Execute();
           var dataProvider = new LocalDataSourceProvider
           {
             ItemsSource = vm.GetDataTable()

@@ -38,7 +38,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
 
       _vm = GetViewModel<Frequency1LayerViewModel>();
       _vm.LayerDisplayname = "Wort";
-      _vm.Analyse();
+      _vm.Execute();
 
       _frequency = new Dictionary<string, double>();
       for (var i = 1; i < _data.Length; i++)

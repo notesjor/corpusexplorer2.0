@@ -106,7 +106,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       _vm = GetViewModel<ExplorationViewModel>();
       _vm.SignificanceMinimum = Configuration.MinimumSignificance;
       _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
-      _vm.Analyse();
+      _vm.Execute();
     }
 
     private void wordBag1_ExecuteButtonClicked(object sender, EventArgs e)

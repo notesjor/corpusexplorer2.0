@@ -12,18 +12,25 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper
   {
     public virtual T Deserialize(string path)
     {
-      DeserializePreValidation(path);
-      T res;
-
-      using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-      using (var bs = new BufferedStream(fs))
+      try
       {
-        res = Deserialize(bs);
+        DeserializePreValidation(path);
+        T res;
+
+        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+        using (var bs = new BufferedStream(fs))
+        {
+          res = Deserialize(bs);
+        }
+
+        DeserializePostValidation(res, path);
+
+        return res;
       }
-
-      DeserializePostValidation(res, path);
-
-      return res;
+      catch
+      {
+        return default(T);
+      }
     }
 
     public T Deserialize(Stream fs)
@@ -44,6 +51,15 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper
       }
 
       SerializePostValidation(obj, path);
+    }
+
+    public virtual void Serialize(T obj, Stream stream)
+    {
+      using (var bs = new BufferedStream(stream))
+      {
+        var xml = new XmlSerializer(typeof(T));
+        xml.Serialize(bs, obj);
+      }
     }
 
     protected void CheckFileExtension(string path, string ext)

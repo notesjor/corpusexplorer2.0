@@ -209,7 +209,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     private void OnShowView(object sender, EventArgs eventArgs)
     {
       _vm = GetViewModel<PhrasesLaboratoryViewModel>();
-      _vm.Analyse();
+      _vm.Execute();
       DictionaryBindingHelper.BindDictionary(_vm.Documents, combo_document);
       combo_document.SelectedIndex = 0;
       SentenceIndex = 0;

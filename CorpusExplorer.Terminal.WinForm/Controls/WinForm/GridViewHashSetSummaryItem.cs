@@ -14,14 +14,21 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
 
     public override object Evaluate(IHierarchicalRow row)
     {
-      var template = row as MasterGridViewTemplate;
-      if (template == null)
+      try
+      {
+        var template = row as MasterGridViewTemplate;
+        if (template == null)
+          return 0;
+
+        foreach (var x in template.ChildRows)
+          _hashSet.Add(x.Cells[Name].Value.ToString());
+
+        return _hashSet.Count;
+      }
+      catch
+      {
         return 0;
-
-      foreach (var x in template.ChildRows)
-        _hashSet.Add(x.Cells[Name].Value.ToString());
-
-      return _hashSet.Count;
+      }
     }
   }
 }

@@ -25,6 +25,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
   {
     private RadMenuItem _topMenu;
     private RadTileElement _topTile;
+    private string _header;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="GuiModulePrototype" /> class.
@@ -54,6 +55,8 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       btn_home.Text = header;
       btn_home.Image = iconSmall;
       btn_home.UseMnemonic = false;
+
+      _header = header;
     }
 
     public IMainForm Dashboard { get; set; }
@@ -88,6 +91,8 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
         AddView_AddMenuItem1(view, iconLow, page);
         AddView_AddMenuItem2(view, iconLow, page);
         AddView_AddTile(view, iconHeigh, isBeta, page);
+
+        FavoriteManager.InitializeView($"{_header} > {label}", iconLow, view.GetType().ToString(), page);
       }
       catch (Exception ex)
       {
@@ -119,9 +124,10 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
 
       tile.Click += (sender, args) =>
       {
-        var p = (RadPageViewPage) ((RadTileElement) sender).Tag;
+        var p = (RadPageViewPage)((RadTileElement)sender).Tag;
         Pages.SelectedPage = p;
         InMemoryErrorConsole.TrackPageView($"page_mod_{view.GetType()}");
+        FavoriteManager.CountPage(view.GetType().ToString());
         Execute(p);
       };
       modul_viewstates.Items.Add(tile);
@@ -129,10 +135,10 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
 
     private void AddView_AddMenuItem2(AbstractView view, Image iconLow, RadPageViewPage page)
     {
-      var menuItem2 = new RadMenuItem(page.Text) {Tag = page, Image = iconLow};
+      var menuItem2 = new RadMenuItem(page.Text) { Tag = page, Image = iconLow };
       menuItem2.Click += (sender, args) =>
       {
-        var p = (RadPageViewPage) ((RadMenuItem) sender).Tag;
+        var p = (RadPageViewPage)((RadMenuItem)sender).Tag;
 
         if (Project == null ||
             Project.CountCorpora == 0)
@@ -144,6 +150,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
         ModulPage(null, null);
         Pages.SelectedPage = p;
         InMemoryErrorConsole.TrackPageView($"page_mod_{view.GetType()}");
+        FavoriteManager.CountPage(view.GetType().ToString());
         Execute(p);
       };
       _topMenu.Items.Add(menuItem2);
@@ -151,11 +158,11 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
 
     private void AddView_AddMenuItem1(AbstractView view, Image iconLow, RadPageViewPage page)
     {
-      var menuItem1 = new RadMenuItem(page.Text) {Tag = page, Image = iconLow};
+      var menuItem1 = new RadMenuItem(page.Text) { Tag = page, Image = iconLow };
 
       menuItem1.Click += (sender, args) =>
       {
-        var p = (RadPageViewPage) ((RadMenuItem) sender).Tag;
+        var p = (RadPageViewPage)((RadMenuItem)sender).Tag;
 
         if (Project == null ||
             Project.CountCorpora == 0)
@@ -167,6 +174,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
         ModulPage(null, null);
         Pages.SelectedPage = p;
         InMemoryErrorConsole.TrackPageView($"page_mod_{view.GetType()}");
+        FavoriteManager.CountPage(view.GetType().ToString());
         Execute(p);
       };
     }

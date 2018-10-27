@@ -12,7 +12,7 @@ namespace CorpusExplorer.Sdk.Db.Gui
 
     public static bool Show { get; set; }
 
-    public static void Invoke(string message, Action action)
+    public static void Invoke(string message, System.Action action)
     {
       SplashShow(message);
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using HtmlAgilityPack;
 
@@ -15,7 +16,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.PureXml
       using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
       using (var bs = new BufferedStream(fs))
       {
-        doc.Load(bs);
+        doc.Load(bs, Configuration.Encoding);
       }
 
       return new[]

@@ -31,7 +31,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
     /// </summary>
     private void InitializeComponent()
     {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TextCompare));
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StyleMetrics.CompareBasedOnCooccurrences));
       this.radCommandBar3 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement3 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement3 = new Telerik.WinControls.UI.CommandBarStripElement();

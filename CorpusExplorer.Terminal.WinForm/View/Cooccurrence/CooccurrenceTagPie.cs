@@ -49,7 +49,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       {
         _vm = GetViewModel<CooccurrenceViewModel>();
         _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
-        if (!_vm.Analyse())
+        if (!_vm.Execute())
           return string.Empty;
         _lastSelectedLayer = wordBag1.ResultSelectedLayerDisplayname;
       }

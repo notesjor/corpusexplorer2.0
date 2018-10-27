@@ -60,7 +60,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       var vm = GetViewModel<FrequencyViewModel>();
       if (SelectedLayerDisplaynames != null)
         vm.LayerDisplaynames = SelectedLayerDisplaynames;
-      if (!vm.Analyse())
+      if (!vm.Execute())
         return;
 
       var dataProvider = new LocalDataSourceProvider

@@ -178,17 +178,22 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
       this.infoButton1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.InfoButton();
       this.splitPanel4 = new Telerik.WinControls.UI.SplitPanel();
+      this.radSplitContainer3 = new Telerik.WinControls.UI.RadSplitContainer();
+      this.splitPanel5 = new Telerik.WinControls.UI.SplitPanel();
       this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
-      this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+      this.radScrollablePanel6 = new Telerik.WinControls.UI.RadScrollablePanel();
+      this.settings_tool_totalReset = new Telerik.WinControls.UI.RadButton();
       this.settings_tool_upgrade = new Telerik.WinControls.UI.RadButton();
-      this.settings_tool_eraseCache = new Telerik.WinControls.UI.RadButton();
-      this.settings_tool_errorconsole = new Telerik.WinControls.UI.RadButton();
+      this.settings_tool_xpath = new Telerik.WinControls.UI.RadButton();
       this.settings_tool_mergeCorpora = new Telerik.WinControls.UI.RadButton();
+      this.settings_tool_additionalTagger = new Telerik.WinControls.UI.RadButton();
       this.settings_tool_exportCorpus = new Telerik.WinControls.UI.RadButton();
       this.settings_tool_testCorpus = new Telerik.WinControls.UI.RadButton();
-      this.settings_tool_additionalTagger = new Telerik.WinControls.UI.RadButton();
-      this.settings_tool_xpath = new Telerik.WinControls.UI.RadButton();
-      this.settings_tool_totalReset = new Telerik.WinControls.UI.RadButton();
+      this.settings_tool_eraseCache = new Telerik.WinControls.UI.RadButton();
+      this.settings_tool_errorconsole = new Telerik.WinControls.UI.RadButton();
+      this.splitPanel6 = new Telerik.WinControls.UI.SplitPanel();
+      this.radGroupBox9 = new Telerik.WinControls.UI.RadGroupBox();
+      this.settings_list_favorites = new Telerik.WinControls.UI.RadCheckedListBox();
       this.radGroupBox8 = new Telerik.WinControls.UI.RadGroupBox();
       this.settings_insigt_id = new Telerik.WinControls.UI.RadTextBox();
       this.clearPanel12 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
@@ -228,8 +233,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.main_mainmenu_snapshot_addsub_autosplit = new Telerik.WinControls.UI.RadMenuItem();
       this.main_mainmenu_snapshot_addsub_random = new Telerik.WinControls.UI.RadMenuItem();
       this.main_mainmenu_analytics = new Telerik.WinControls.UI.RadMenuItem();
-      this.main_mainmenu_analystics_overview = new Telerik.WinControls.UI.RadMenuItem();
+      this.main_mainmenu_analytics_overview = new Telerik.WinControls.UI.RadMenuItem();
       this.radMenuSeparatorItem5 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
+      this.main_mainmenu_analytics_favorite = new Telerik.WinControls.UI.RadMenuItem();
       this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
       ((System.ComponentModel.ISupportInitialize)(this.pages_main)).BeginInit();
       this.pages_main.SuspendLayout();
@@ -365,18 +371,29 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.infoButton1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.splitPanel4)).BeginInit();
       this.splitPanel4.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer3)).BeginInit();
+      this.radSplitContainer3.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.splitPanel5)).BeginInit();
+      this.splitPanel5.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
       this.radGroupBox4.SuspendLayout();
-      this.flowLayoutPanel2.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel6)).BeginInit();
+      this.radScrollablePanel6.PanelContainer.SuspendLayout();
+      this.radScrollablePanel6.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_totalReset)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_tool_upgrade)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_eraseCache)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_errorconsole)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_xpath)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_tool_mergeCorpora)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_additionalTagger)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_tool_exportCorpus)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_tool_testCorpus)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_additionalTagger)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_xpath)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_totalReset)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_eraseCache)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_errorconsole)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.splitPanel6)).BeginInit();
+      this.splitPanel6.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radGroupBox9)).BeginInit();
+      this.radGroupBox9.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.settings_list_favorites)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox8)).BeginInit();
       this.radGroupBox8.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.settings_insigt_id)).BeginInit();
@@ -406,7 +423,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // 
       this.pages_main.RootElement.MinSize = new System.Drawing.Size(576, 445);
-      this.pages_main.SelectedPage = this.page_welcome;
+      this.pages_main.SelectedPage = this.page_settings;
       this.pages_main.Size = new System.Drawing.Size(832, 525);
       this.pages_main.TabIndex = 0;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll;
@@ -983,7 +1000,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // page_snapshot_home
       // 
       this.page_snapshot_home.Controls.Add(this.radScrollablePanel5);
-      this.page_snapshot_home.ItemSize = new System.Drawing.SizeF(85F, 29F);
       this.page_snapshot_home.Location = new System.Drawing.Point(5, 40);
       this.page_snapshot_home.Name = "page_snapshot_home";
       this.page_snapshot_home.Size = new System.Drawing.Size(822, 445);
@@ -1463,7 +1479,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_snapshot_edit.Controls.Add(this.radGroupBox1);
       this.page_snapshot_edit.Controls.Add(this.header11);
       this.page_snapshot_edit.Controls.Add(this.clearPanel3);
-      this.page_snapshot_edit.ItemSize = new System.Drawing.SizeF(85F, 29F);
       this.page_snapshot_edit.Location = new System.Drawing.Point(5, 40);
       this.page_snapshot_edit.Name = "page_snapshot_edit";
       this.page_snapshot_edit.Size = new System.Drawing.Size(822, 445);
@@ -1949,9 +1964,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // 
       this.splitPanel3.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel3.Size = new System.Drawing.Size(451, 414);
-      this.splitPanel3.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.04600483F, 0F);
-      this.splitPanel3.SizeInfo.SplitterCorrection = new System.Drawing.Size(38, 0);
+      this.splitPanel3.Size = new System.Drawing.Size(380, 414);
+      this.splitPanel3.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.03995156F, 0F);
+      this.splitPanel3.SizeInfo.SplitterCorrection = new System.Drawing.Size(-33, 0);
       this.splitPanel3.TabIndex = 0;
       this.splitPanel3.TabStop = false;
       this.splitPanel3.Text = "splitPanel3";
@@ -1962,13 +1977,13 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radGroupBox7.Controls.Add(this.property_meta);
       this.radGroupBox7.Controls.Add(this.radCommandBar1);
       this.radGroupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGroupBox7.HeaderText = "Feature-Toggle & Einstellungen";
+      this.radGroupBox7.HeaderText = "Feature-Toggles & Einstellungen";
       this.radGroupBox7.Location = new System.Drawing.Point(0, 142);
       this.radGroupBox7.Name = "radGroupBox7";
       this.radGroupBox7.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox7.Size = new System.Drawing.Size(451, 272);
+      this.radGroupBox7.Size = new System.Drawing.Size(380, 272);
       this.radGroupBox7.TabIndex = 20;
-      this.radGroupBox7.Text = "Feature-Toggle & Einstellungen";
+      this.radGroupBox7.Text = "Feature-Toggles & Einstellungen";
       this.radGroupBox7.UseMnemonic = false;
       // 
       // property_meta
@@ -1979,11 +1994,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.property_meta.HelpVisible = false;
       this.property_meta.ItemHeight = 40;
       this.property_meta.ItemIndent = 40;
-      this.property_meta.Location = new System.Drawing.Point(5, 25);
+      this.property_meta.Location = new System.Drawing.Point(5, 69);
       this.property_meta.Name = "property_meta";
       this.property_meta.PropertySort = System.Windows.Forms.PropertySort.Alphabetical;
       this.property_meta.ShowItemToolTips = false;
-      this.property_meta.Size = new System.Drawing.Size(441, 242);
+      this.property_meta.Size = new System.Drawing.Size(370, 198);
       this.property_meta.SortOrder = System.Windows.Forms.SortOrder.Ascending;
       this.property_meta.TabIndex = 2;
       // 
@@ -1994,7 +2009,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(441, 0);
+      this.radCommandBar1.Size = new System.Drawing.Size(370, 44);
       this.radCommandBar1.TabIndex = 3;
       // 
       // commandBarRowElement1
@@ -2052,7 +2067,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // 
       this.settings_group_parameter.RootElement.MaxSize = new System.Drawing.Size(0, 0);
-      this.settings_group_parameter.Size = new System.Drawing.Size(451, 142);
+      this.settings_group_parameter.Size = new System.Drawing.Size(380, 142);
       this.settings_group_parameter.TabIndex = 19;
       this.settings_group_parameter.Text = "Parameter";
       // 
@@ -2064,7 +2079,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.clearPanel9.Dock = System.Windows.Forms.DockStyle.Top;
       this.clearPanel9.Location = new System.Drawing.Point(10, 97);
       this.clearPanel9.Name = "clearPanel9";
-      this.clearPanel9.Size = new System.Drawing.Size(431, 36);
+      this.clearPanel9.Size = new System.Drawing.Size(360, 36);
       this.clearPanel9.TabIndex = 24;
       // 
       // settings_frequenz_min
@@ -2093,7 +2108,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       this.settings_frequenz_min.RootElement.MaxSize = new System.Drawing.Size(0, 0);
       this.settings_frequenz_min.RootElement.MinSize = new System.Drawing.Size(0, 33);
-      this.settings_frequenz_min.Size = new System.Drawing.Size(306, 36);
+      this.settings_frequenz_min.Size = new System.Drawing.Size(235, 33);
       this.settings_frequenz_min.TabIndex = 13;
       this.settings_frequenz_min.TabStop = false;
       this.settings_frequenz_min.Value = new decimal(new int[] {
@@ -2122,7 +2137,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.infoButton3.InfoDescribtion = resources.GetString("infoButton3.InfoDescribtion");
       this.infoButton3.InfoHeader = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.MinimumFilterFrequenz;
       this.infoButton3.InfoImage = null;
-      this.infoButton3.Location = new System.Drawing.Point(398, 0);
+      this.infoButton3.Location = new System.Drawing.Point(327, 0);
       this.infoButton3.MaximumSize = new System.Drawing.Size(33, 33);
       this.infoButton3.MinimumSize = new System.Drawing.Size(33, 33);
       this.infoButton3.Name = "infoButton3";
@@ -2142,7 +2157,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.clearPanel8.Dock = System.Windows.Forms.DockStyle.Top;
       this.clearPanel8.Location = new System.Drawing.Point(10, 61);
       this.clearPanel8.Name = "clearPanel8";
-      this.clearPanel8.Size = new System.Drawing.Size(431, 36);
+      this.clearPanel8.Size = new System.Drawing.Size(360, 36);
       this.clearPanel8.TabIndex = 23;
       // 
       // settings_signifikanz_min
@@ -2162,7 +2177,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       this.settings_signifikanz_min.RootElement.MaxSize = new System.Drawing.Size(0, 0);
       this.settings_signifikanz_min.RootElement.MinSize = new System.Drawing.Size(110, 33);
-      this.settings_signifikanz_min.Size = new System.Drawing.Size(306, 36);
+      this.settings_signifikanz_min.Size = new System.Drawing.Size(235, 33);
       this.settings_signifikanz_min.TabIndex = 20;
       this.settings_signifikanz_min.TabStop = false;
       this.settings_signifikanz_min.ValueChanged += new System.EventHandler(this.settings_signifikanz_min_ValueChanged);
@@ -2186,7 +2201,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.infoButton2.InfoDescribtion = resources.GetString("infoButton2.InfoDescribtion");
       this.infoButton2.InfoHeader = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.MinimumFilterSignifikanz;
       this.infoButton2.InfoImage = null;
-      this.infoButton2.Location = new System.Drawing.Point(398, 0);
+      this.infoButton2.Location = new System.Drawing.Point(327, 0);
       this.infoButton2.MaximumSize = new System.Drawing.Size(33, 33);
       this.infoButton2.MinimumSize = new System.Drawing.Size(33, 33);
       this.infoButton2.Name = "infoButton2";
@@ -2206,7 +2221,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.clearPanel4.Dock = System.Windows.Forms.DockStyle.Top;
       this.clearPanel4.Location = new System.Drawing.Point(10, 25);
       this.clearPanel4.Name = "clearPanel4";
-      this.clearPanel4.Size = new System.Drawing.Size(431, 36);
+      this.clearPanel4.Size = new System.Drawing.Size(360, 36);
       this.clearPanel4.TabIndex = 22;
       // 
       // settings_drop_signifikanz
@@ -2217,8 +2232,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.settings_drop_signifikanz.Location = new System.Drawing.Point(92, 0);
       this.settings_drop_signifikanz.MinimumSize = new System.Drawing.Size(200, 33);
       this.settings_drop_signifikanz.Name = "settings_drop_signifikanz";
-      this.settings_drop_signifikanz.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.BitteWählenSieEinSignifikanzmaß;
-      this.settings_drop_signifikanz.Size = new System.Drawing.Size(306, 36);
+      this.settings_drop_signifikanz.NullText = "Signifikanzmaß auswählen...";
+      this.settings_drop_signifikanz.Size = new System.Drawing.Size(235, 33);
       this.settings_drop_signifikanz.TabIndex = 11;
       this.settings_drop_signifikanz.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.settings_drop_signifikanz_SelectedIndexChanged);
       // 
@@ -2240,7 +2255,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.infoButton1.InfoDescribtion = resources.GetString("infoButton1.InfoDescribtion");
       this.infoButton1.InfoHeader = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Signifikanzmaß;
       this.infoButton1.InfoImage = null;
-      this.infoButton1.Location = new System.Drawing.Point(398, 0);
+      this.infoButton1.Location = new System.Drawing.Point(327, 0);
       this.infoButton1.MaximumSize = new System.Drawing.Size(33, 33);
       this.infoButton1.MinimumSize = new System.Drawing.Size(33, 33);
       this.infoButton1.Name = "infoButton1";
@@ -2254,60 +2269,121 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // splitPanel4
       // 
-      this.splitPanel4.Controls.Add(this.radGroupBox4);
+      this.splitPanel4.Controls.Add(this.radSplitContainer3);
       this.splitPanel4.Controls.Add(this.radGroupBox8);
-      this.splitPanel4.Location = new System.Drawing.Point(455, 0);
+      this.splitPanel4.Location = new System.Drawing.Point(384, 0);
       this.splitPanel4.Name = "splitPanel4";
       // 
       // 
       // 
       this.splitPanel4.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel4.Size = new System.Drawing.Size(375, 414);
-      this.splitPanel4.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.04600483F, 0F);
-      this.splitPanel4.SizeInfo.SplitterCorrection = new System.Drawing.Size(-38, 0);
+      this.splitPanel4.Size = new System.Drawing.Size(446, 414);
+      this.splitPanel4.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.03995156F, 0F);
+      this.splitPanel4.SizeInfo.SplitterCorrection = new System.Drawing.Size(33, 0);
       this.splitPanel4.TabIndex = 1;
       this.splitPanel4.TabStop = false;
       this.splitPanel4.Text = "splitPanel4";
       // 
+      // radSplitContainer3
+      // 
+      this.radSplitContainer3.Controls.Add(this.splitPanel5);
+      this.radSplitContainer3.Controls.Add(this.splitPanel6);
+      this.radSplitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.radSplitContainer3.Location = new System.Drawing.Point(0, 0);
+      this.radSplitContainer3.Name = "radSplitContainer3";
+      // 
+      // 
+      // 
+      this.radSplitContainer3.RootElement.MinSize = new System.Drawing.Size(25, 25);
+      this.radSplitContainer3.Size = new System.Drawing.Size(446, 314);
+      this.radSplitContainer3.TabIndex = 32;
+      this.radSplitContainer3.TabStop = false;
+      // 
+      // splitPanel5
+      // 
+      this.splitPanel5.Controls.Add(this.radGroupBox4);
+      this.splitPanel5.Location = new System.Drawing.Point(0, 0);
+      this.splitPanel5.Name = "splitPanel5";
+      // 
+      // 
+      // 
+      this.splitPanel5.RootElement.MinSize = new System.Drawing.Size(25, 25);
+      this.splitPanel5.Size = new System.Drawing.Size(154, 314);
+      this.splitPanel5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.1515837F, 0F);
+      this.splitPanel5.SizeInfo.SplitterCorrection = new System.Drawing.Size(-60, 0);
+      this.splitPanel5.TabIndex = 0;
+      this.splitPanel5.TabStop = false;
+      this.splitPanel5.Text = "splitPanel5";
+      // 
       // radGroupBox4
       // 
       this.radGroupBox4.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-      this.radGroupBox4.Controls.Add(this.flowLayoutPanel2);
+      this.radGroupBox4.Controls.Add(this.radScrollablePanel6);
       this.radGroupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
       this.radGroupBox4.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Werkzeuge;
       this.radGroupBox4.Location = new System.Drawing.Point(0, 0);
       this.radGroupBox4.Name = "radGroupBox4";
       this.radGroupBox4.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox4.Size = new System.Drawing.Size(375, 314);
+      this.radGroupBox4.Size = new System.Drawing.Size(154, 314);
       this.radGroupBox4.TabIndex = 30;
       this.radGroupBox4.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Werkzeuge;
       // 
-      // flowLayoutPanel2
+      // radScrollablePanel6
       // 
-      this.flowLayoutPanel2.Controls.Add(this.settings_tool_upgrade);
-      this.flowLayoutPanel2.Controls.Add(this.settings_tool_eraseCache);
-      this.flowLayoutPanel2.Controls.Add(this.settings_tool_errorconsole);
-      this.flowLayoutPanel2.Controls.Add(this.settings_tool_mergeCorpora);
-      this.flowLayoutPanel2.Controls.Add(this.settings_tool_exportCorpus);
-      this.flowLayoutPanel2.Controls.Add(this.settings_tool_testCorpus);
-      this.flowLayoutPanel2.Controls.Add(this.settings_tool_additionalTagger);
-      this.flowLayoutPanel2.Controls.Add(this.settings_tool_xpath);
-      this.flowLayoutPanel2.Controls.Add(this.settings_tool_totalReset);
-      this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.flowLayoutPanel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.flowLayoutPanel2.Location = new System.Drawing.Point(5, 25);
-      this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-      this.flowLayoutPanel2.Size = new System.Drawing.Size(365, 284);
-      this.flowLayoutPanel2.TabIndex = 2;
+      this.radScrollablePanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.radScrollablePanel6.Location = new System.Drawing.Point(5, 25);
+      this.radScrollablePanel6.Name = "radScrollablePanel6";
+      // 
+      // radScrollablePanel6.PanelContainer
+      // 
+      this.radScrollablePanel6.PanelContainer.Controls.Add(this.settings_tool_totalReset);
+      this.radScrollablePanel6.PanelContainer.Controls.Add(this.settings_tool_upgrade);
+      this.radScrollablePanel6.PanelContainer.Controls.Add(this.settings_tool_xpath);
+      this.radScrollablePanel6.PanelContainer.Controls.Add(this.settings_tool_mergeCorpora);
+      this.radScrollablePanel6.PanelContainer.Controls.Add(this.settings_tool_additionalTagger);
+      this.radScrollablePanel6.PanelContainer.Controls.Add(this.settings_tool_exportCorpus);
+      this.radScrollablePanel6.PanelContainer.Controls.Add(this.settings_tool_testCorpus);
+      this.radScrollablePanel6.PanelContainer.Controls.Add(this.settings_tool_eraseCache);
+      this.radScrollablePanel6.PanelContainer.Controls.Add(this.settings_tool_errorconsole);
+      this.radScrollablePanel6.PanelContainer.Padding = new System.Windows.Forms.Padding(5);
+      this.radScrollablePanel6.PanelContainer.Size = new System.Drawing.Size(106, 282);
+      this.radScrollablePanel6.Size = new System.Drawing.Size(144, 284);
+      this.radScrollablePanel6.TabIndex = 3;
+      // 
+      // settings_tool_totalReset
+      // 
+      this.settings_tool_totalReset.Dock = System.Windows.Forms.DockStyle.Top;
+      this.settings_tool_totalReset.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.settings_tool_totalReset.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.reload_rotate1;
+      this.settings_tool_totalReset.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+      this.settings_tool_totalReset.Location = new System.Drawing.Point(5, 709);
+      this.settings_tool_totalReset.Name = "settings_tool_totalReset";
+      this.settings_tool_totalReset.Size = new System.Drawing.Size(96, 88);
+      this.settings_tool_totalReset.TabIndex = 9;
+      this.settings_tool_totalReset.Text = "<html>CorpusExplorer<br />zurücksetzen</html>";
+      this.settings_tool_totalReset.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+      this.settings_tool_totalReset.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+      this.settings_tool_totalReset.TextWrap = true;
+      this.settings_tool_totalReset.Click += new System.EventHandler(this.settings_tool_totalReset_Click);
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_totalReset.GetChildAt(0))).Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.reload_rotate1;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_totalReset.GetChildAt(0))).TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_totalReset.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_totalReset.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_totalReset.GetChildAt(0))).Text = "<html>CorpusExplorer<br />zurücksetzen</html>";
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_totalReset.GetChildAt(0).GetChildAt(1).GetChildAt(1))).TextWrap = true;
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_totalReset.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = true;
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_totalReset.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Segoe UI", 9F);
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_totalReset.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.BottomCenter;
       // 
       // settings_tool_upgrade
       // 
+      this.settings_tool_upgrade.Dock = System.Windows.Forms.DockStyle.Top;
       this.settings_tool_upgrade.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.settings_tool_upgrade.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.upload;
       this.settings_tool_upgrade.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      this.settings_tool_upgrade.Location = new System.Drawing.Point(3, 3);
+      this.settings_tool_upgrade.Location = new System.Drawing.Point(5, 621);
       this.settings_tool_upgrade.Name = "settings_tool_upgrade";
-      this.settings_tool_upgrade.Size = new System.Drawing.Size(95, 88);
+      this.settings_tool_upgrade.Size = new System.Drawing.Size(96, 88);
       this.settings_tool_upgrade.TabIndex = 0;
       this.settings_tool_upgrade.Text = "Alte Korpora upgraden";
       this.settings_tool_upgrade.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -2322,62 +2398,40 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_upgrade.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Segoe UI", 9F);
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_upgrade.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.MiddleCenter;
       // 
-      // settings_tool_eraseCache
+      // settings_tool_xpath
       // 
-      this.settings_tool_eraseCache.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.settings_tool_eraseCache.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.erase;
-      this.settings_tool_eraseCache.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      this.settings_tool_eraseCache.Location = new System.Drawing.Point(104, 3);
-      this.settings_tool_eraseCache.Name = "settings_tool_eraseCache";
-      this.settings_tool_eraseCache.Size = new System.Drawing.Size(95, 88);
-      this.settings_tool_eraseCache.TabIndex = 3;
-      this.settings_tool_eraseCache.Text = "Lösche Cachedaten";
-      this.settings_tool_eraseCache.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-      this.settings_tool_eraseCache.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-      this.settings_tool_eraseCache.TextWrap = true;
-      this.settings_tool_eraseCache.Click += new System.EventHandler(this.settings_tool_eraseCache_Click);
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_eraseCache.GetChildAt(0))).Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.erase;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_eraseCache.GetChildAt(0))).TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_eraseCache.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_eraseCache.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_eraseCache.GetChildAt(0))).Text = "Lösche Cachedaten";
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_eraseCache.GetChildAt(0).GetChildAt(1).GetChildAt(1))).TextWrap = true;
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_eraseCache.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = true;
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_eraseCache.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Segoe UI", 9F);
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_eraseCache.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.BottomCenter;
-      // 
-      // settings_tool_errorconsole
-      // 
-      this.settings_tool_errorconsole.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.settings_tool_errorconsole.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.worker;
-      this.settings_tool_errorconsole.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      this.settings_tool_errorconsole.Location = new System.Drawing.Point(205, 3);
-      this.settings_tool_errorconsole.Name = "settings_tool_errorconsole";
-      this.settings_tool_errorconsole.Size = new System.Drawing.Size(95, 88);
-      this.settings_tool_errorconsole.TabIndex = 2;
-      this.settings_tool_errorconsole.Text = "Zeige Fehlerbericht";
-      this.settings_tool_errorconsole.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-      this.settings_tool_errorconsole.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-      this.settings_tool_errorconsole.TextWrap = true;
-      this.settings_tool_errorconsole.Click += new System.EventHandler(this.settings_tool_errorconsole_Click);
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_errorconsole.GetChildAt(0))).Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.worker;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_errorconsole.GetChildAt(0))).TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_errorconsole.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_errorconsole.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_errorconsole.GetChildAt(0))).Text = "Zeige Fehlerbericht";
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_errorconsole.GetChildAt(0).GetChildAt(1).GetChildAt(1))).TextWrap = true;
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_errorconsole.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = true;
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_errorconsole.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Segoe UI", 9F);
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_errorconsole.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.BottomCenter;
+      this.settings_tool_xpath.Dock = System.Windows.Forms.DockStyle.Top;
+      this.settings_tool_xpath.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.settings_tool_xpath.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.xml_root;
+      this.settings_tool_xpath.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+      this.settings_tool_xpath.Location = new System.Drawing.Point(5, 533);
+      this.settings_tool_xpath.Name = "settings_tool_xpath";
+      this.settings_tool_xpath.Size = new System.Drawing.Size(96, 88);
+      this.settings_tool_xpath.TabIndex = 8;
+      this.settings_tool_xpath.Text = "<html>XPath<br />Browser</html>";
+      this.settings_tool_xpath.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+      this.settings_tool_xpath.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+      this.settings_tool_xpath.TextWrap = true;
+      this.settings_tool_xpath.Click += new System.EventHandler(this.settings_tool_xpath_Click);
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_xpath.GetChildAt(0))).Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.xml_root;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_xpath.GetChildAt(0))).TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_xpath.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_xpath.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_xpath.GetChildAt(0))).Text = "<html>XPath<br />Browser</html>";
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_xpath.GetChildAt(0).GetChildAt(1).GetChildAt(1))).TextWrap = true;
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_xpath.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = true;
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_xpath.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Segoe UI", 9F);
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_xpath.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.BottomCenter;
       // 
       // settings_tool_mergeCorpora
       // 
+      this.settings_tool_mergeCorpora.Dock = System.Windows.Forms.DockStyle.Top;
       this.settings_tool_mergeCorpora.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.settings_tool_mergeCorpora.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.table_merge_columns1;
       this.settings_tool_mergeCorpora.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      this.settings_tool_mergeCorpora.Location = new System.Drawing.Point(3, 97);
+      this.settings_tool_mergeCorpora.Location = new System.Drawing.Point(5, 445);
       this.settings_tool_mergeCorpora.Name = "settings_tool_mergeCorpora";
-      this.settings_tool_mergeCorpora.Size = new System.Drawing.Size(95, 88);
+      this.settings_tool_mergeCorpora.Size = new System.Drawing.Size(96, 88);
       this.settings_tool_mergeCorpora.TabIndex = 4;
       this.settings_tool_mergeCorpora.Text = "Korpora vereinen";
       this.settings_tool_mergeCorpora.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
@@ -2394,14 +2448,40 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_mergeCorpora.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Segoe UI", 9F);
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_mergeCorpora.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.BottomCenter;
       // 
+      // settings_tool_additionalTagger
+      // 
+      this.settings_tool_additionalTagger.Dock = System.Windows.Forms.DockStyle.Top;
+      this.settings_tool_additionalTagger.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.settings_tool_additionalTagger.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.tag_green1;
+      this.settings_tool_additionalTagger.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+      this.settings_tool_additionalTagger.Location = new System.Drawing.Point(5, 357);
+      this.settings_tool_additionalTagger.Name = "settings_tool_additionalTagger";
+      this.settings_tool_additionalTagger.Size = new System.Drawing.Size(96, 88);
+      this.settings_tool_additionalTagger.TabIndex = 7;
+      this.settings_tool_additionalTagger.Text = "Zusätzliche Annotation";
+      this.settings_tool_additionalTagger.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+      this.settings_tool_additionalTagger.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+      this.settings_tool_additionalTagger.TextWrap = true;
+      this.settings_tool_additionalTagger.Click += new System.EventHandler(this.settings_tool_additionalTagger_Click);
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_additionalTagger.GetChildAt(0))).Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.tag_green1;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_additionalTagger.GetChildAt(0))).TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_additionalTagger.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_additionalTagger.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_additionalTagger.GetChildAt(0))).Text = "Zusätzliche Annotation";
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_additionalTagger.GetChildAt(0).GetChildAt(1).GetChildAt(1))).TextWrap = true;
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_additionalTagger.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = true;
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_additionalTagger.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Segoe UI", 9F);
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_additionalTagger.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.BottomCenter;
+      // 
       // settings_tool_exportCorpus
       // 
+      this.settings_tool_exportCorpus.Dock = System.Windows.Forms.DockStyle.Top;
       this.settings_tool_exportCorpus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.settings_tool_exportCorpus.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_to_database;
       this.settings_tool_exportCorpus.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      this.settings_tool_exportCorpus.Location = new System.Drawing.Point(104, 97);
+      this.settings_tool_exportCorpus.Location = new System.Drawing.Point(5, 269);
       this.settings_tool_exportCorpus.Name = "settings_tool_exportCorpus";
-      this.settings_tool_exportCorpus.Size = new System.Drawing.Size(95, 88);
+      this.settings_tool_exportCorpus.Size = new System.Drawing.Size(96, 88);
       this.settings_tool_exportCorpus.TabIndex = 5;
       this.settings_tool_exportCorpus.Text = "Korpus exportieren";
       this.settings_tool_exportCorpus.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
@@ -2420,12 +2500,13 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // settings_tool_testCorpus
       // 
+      this.settings_tool_testCorpus.Dock = System.Windows.Forms.DockStyle.Top;
       this.settings_tool_testCorpus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.settings_tool_testCorpus.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.test_properties;
       this.settings_tool_testCorpus.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      this.settings_tool_testCorpus.Location = new System.Drawing.Point(205, 97);
+      this.settings_tool_testCorpus.Location = new System.Drawing.Point(5, 181);
       this.settings_tool_testCorpus.Name = "settings_tool_testCorpus";
-      this.settings_tool_testCorpus.Size = new System.Drawing.Size(95, 88);
+      this.settings_tool_testCorpus.Size = new System.Drawing.Size(96, 88);
       this.settings_tool_testCorpus.TabIndex = 6;
       this.settings_tool_testCorpus.Text = "Test-Korpus erzeugen";
       this.settings_tool_testCorpus.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
@@ -2442,77 +2523,95 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_testCorpus.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Segoe UI", 9F);
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_testCorpus.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.BottomCenter;
       // 
-      // settings_tool_additionalTagger
+      // settings_tool_eraseCache
       // 
-      this.settings_tool_additionalTagger.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.settings_tool_additionalTagger.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.tag_green1;
-      this.settings_tool_additionalTagger.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      this.settings_tool_additionalTagger.Location = new System.Drawing.Point(3, 191);
-      this.settings_tool_additionalTagger.Name = "settings_tool_additionalTagger";
-      this.settings_tool_additionalTagger.Size = new System.Drawing.Size(95, 88);
-      this.settings_tool_additionalTagger.TabIndex = 7;
-      this.settings_tool_additionalTagger.Text = "Zusätzliche Annotation";
-      this.settings_tool_additionalTagger.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-      this.settings_tool_additionalTagger.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-      this.settings_tool_additionalTagger.TextWrap = true;
-      this.settings_tool_additionalTagger.Click += new System.EventHandler(this.settings_tool_additionalTagger_Click);
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_additionalTagger.GetChildAt(0))).Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.tag_green1;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_additionalTagger.GetChildAt(0))).TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_additionalTagger.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_additionalTagger.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_additionalTagger.GetChildAt(0))).Text = "Zusätzliche Annotation";
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_additionalTagger.GetChildAt(0).GetChildAt(1).GetChildAt(1))).TextWrap = true;
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_additionalTagger.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = true;
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_additionalTagger.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Segoe UI", 9F);
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_additionalTagger.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.BottomCenter;
+      this.settings_tool_eraseCache.Dock = System.Windows.Forms.DockStyle.Top;
+      this.settings_tool_eraseCache.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.settings_tool_eraseCache.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.erase;
+      this.settings_tool_eraseCache.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+      this.settings_tool_eraseCache.Location = new System.Drawing.Point(5, 93);
+      this.settings_tool_eraseCache.Name = "settings_tool_eraseCache";
+      this.settings_tool_eraseCache.Size = new System.Drawing.Size(96, 88);
+      this.settings_tool_eraseCache.TabIndex = 3;
+      this.settings_tool_eraseCache.Text = "Lösche Cachedaten";
+      this.settings_tool_eraseCache.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+      this.settings_tool_eraseCache.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+      this.settings_tool_eraseCache.TextWrap = true;
+      this.settings_tool_eraseCache.Click += new System.EventHandler(this.settings_tool_eraseCache_Click);
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_eraseCache.GetChildAt(0))).Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.erase;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_eraseCache.GetChildAt(0))).TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_eraseCache.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_eraseCache.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_eraseCache.GetChildAt(0))).Text = "Lösche Cachedaten";
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_eraseCache.GetChildAt(0).GetChildAt(1).GetChildAt(1))).TextWrap = true;
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_eraseCache.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = true;
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_eraseCache.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Segoe UI", 9F);
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_eraseCache.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.BottomCenter;
       // 
-      // settings_tool_xpath
+      // settings_tool_errorconsole
       // 
-      this.settings_tool_xpath.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.settings_tool_xpath.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.xml_root;
-      this.settings_tool_xpath.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      this.settings_tool_xpath.Location = new System.Drawing.Point(104, 191);
-      this.settings_tool_xpath.Name = "settings_tool_xpath";
-      this.settings_tool_xpath.Size = new System.Drawing.Size(95, 88);
-      this.settings_tool_xpath.TabIndex = 8;
-      this.settings_tool_xpath.Text = "<html>XPath<br />Browser</html>";
-      this.settings_tool_xpath.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-      this.settings_tool_xpath.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-      this.settings_tool_xpath.TextWrap = true;
-      this.settings_tool_xpath.Click += new System.EventHandler(this.settings_tool_xpath_Click);
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_xpath.GetChildAt(0))).Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.xml_root;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_xpath.GetChildAt(0))).TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_xpath.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_xpath.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_xpath.GetChildAt(0))).Text = "<html>XPath<br />Browser</html>";
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_xpath.GetChildAt(0).GetChildAt(1).GetChildAt(1))).TextWrap = true;
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_xpath.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = true;
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_xpath.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Segoe UI", 9F);
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_xpath.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.BottomCenter;
+      this.settings_tool_errorconsole.Dock = System.Windows.Forms.DockStyle.Top;
+      this.settings_tool_errorconsole.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.settings_tool_errorconsole.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.worker;
+      this.settings_tool_errorconsole.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+      this.settings_tool_errorconsole.Location = new System.Drawing.Point(5, 5);
+      this.settings_tool_errorconsole.Name = "settings_tool_errorconsole";
+      this.settings_tool_errorconsole.Size = new System.Drawing.Size(96, 88);
+      this.settings_tool_errorconsole.TabIndex = 2;
+      this.settings_tool_errorconsole.Text = "Zeige Fehlerbericht";
+      this.settings_tool_errorconsole.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+      this.settings_tool_errorconsole.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+      this.settings_tool_errorconsole.TextWrap = true;
+      this.settings_tool_errorconsole.Click += new System.EventHandler(this.settings_tool_errorconsole_Click);
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_errorconsole.GetChildAt(0))).Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.worker;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_errorconsole.GetChildAt(0))).TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_errorconsole.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_errorconsole.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_errorconsole.GetChildAt(0))).Text = "Zeige Fehlerbericht";
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_errorconsole.GetChildAt(0).GetChildAt(1).GetChildAt(1))).TextWrap = true;
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_errorconsole.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = true;
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_errorconsole.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Segoe UI", 9F);
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_errorconsole.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.BottomCenter;
       // 
-      // settings_tool_totalReset
+      // splitPanel6
       // 
-      this.settings_tool_totalReset.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.settings_tool_totalReset.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.reload_rotate1;
-      this.settings_tool_totalReset.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      this.settings_tool_totalReset.Location = new System.Drawing.Point(205, 191);
-      this.settings_tool_totalReset.Name = "settings_tool_totalReset";
-      this.settings_tool_totalReset.Size = new System.Drawing.Size(95, 88);
-      this.settings_tool_totalReset.TabIndex = 9;
-      this.settings_tool_totalReset.Text = "<html>CorpusExplorer<br />zurücksetzen</html>";
-      this.settings_tool_totalReset.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-      this.settings_tool_totalReset.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-      this.settings_tool_totalReset.TextWrap = true;
-      this.settings_tool_totalReset.Click += new System.EventHandler(this.settings_tool_totalReset_Click);
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_totalReset.GetChildAt(0))).Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.reload_rotate1;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_totalReset.GetChildAt(0))).TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_totalReset.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_totalReset.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_totalReset.GetChildAt(0))).Text = "<html>CorpusExplorer<br />zurücksetzen</html>";
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_totalReset.GetChildAt(0).GetChildAt(1).GetChildAt(1))).TextWrap = true;
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_totalReset.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = true;
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_totalReset.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Segoe UI", 9F);
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_totalReset.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.BottomCenter;
+      this.splitPanel6.Controls.Add(this.radGroupBox9);
+      this.splitPanel6.Location = new System.Drawing.Point(158, 0);
+      this.splitPanel6.Name = "splitPanel6";
+      // 
+      // 
+      // 
+      this.splitPanel6.RootElement.MinSize = new System.Drawing.Size(25, 25);
+      this.splitPanel6.Size = new System.Drawing.Size(288, 314);
+      this.splitPanel6.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.1515837F, 0F);
+      this.splitPanel6.SizeInfo.SplitterCorrection = new System.Drawing.Size(60, 0);
+      this.splitPanel6.TabIndex = 1;
+      this.splitPanel6.TabStop = false;
+      this.splitPanel6.Text = "splitPanel6";
+      // 
+      // radGroupBox9
+      // 
+      this.radGroupBox9.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+      this.radGroupBox9.Controls.Add(this.settings_list_favorites);
+      this.radGroupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.radGroupBox9.HeaderText = "Favoriten";
+      this.radGroupBox9.Location = new System.Drawing.Point(0, 0);
+      this.radGroupBox9.Name = "radGroupBox9";
+      this.radGroupBox9.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
+      this.radGroupBox9.Size = new System.Drawing.Size(288, 314);
+      this.radGroupBox9.TabIndex = 0;
+      this.radGroupBox9.Text = "Favoriten";
+      // 
+      // settings_list_favorites
+      // 
+      this.settings_list_favorites.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.settings_list_favorites.GroupItemSize = new System.Drawing.Size(200, 40);
+      this.settings_list_favorites.ItemSize = new System.Drawing.Size(200, 40);
+      this.settings_list_favorites.Location = new System.Drawing.Point(5, 25);
+      this.settings_list_favorites.Name = "settings_list_favorites";
+      this.settings_list_favorites.Size = new System.Drawing.Size(278, 284);
+      this.settings_list_favorites.TabIndex = 0;
+      this.settings_list_favorites.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.settings_list_favorites_ItemCheckedChanged);
       // 
       // radGroupBox8
       // 
@@ -2524,7 +2623,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radGroupBox8.Location = new System.Drawing.Point(0, 314);
       this.radGroupBox8.Name = "radGroupBox8";
       this.radGroupBox8.Padding = new System.Windows.Forms.Padding(2, 25, 2, 2);
-      this.radGroupBox8.Size = new System.Drawing.Size(375, 100);
+      this.radGroupBox8.Size = new System.Drawing.Size(446, 100);
       this.radGroupBox8.TabIndex = 31;
       this.radGroupBox8.Text = "CorpusExplorer - Telemetrie";
       // 
@@ -2535,7 +2634,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.settings_insigt_id.Name = "settings_insigt_id";
       this.settings_insigt_id.NullText = ".. :: Telemetrie deaktiviert :: ..";
       this.settings_insigt_id.ReadOnly = true;
-      this.settings_insigt_id.Size = new System.Drawing.Size(371, 35);
+      this.settings_insigt_id.Size = new System.Drawing.Size(442, 32);
       this.settings_insigt_id.TabIndex = 1;
       this.settings_insigt_id.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
       // 
@@ -2548,7 +2647,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.clearPanel12.Dock = System.Windows.Forms.DockStyle.Bottom;
       this.clearPanel12.Location = new System.Drawing.Point(2, 60);
       this.clearPanel12.Name = "clearPanel12";
-      this.clearPanel12.Size = new System.Drawing.Size(371, 38);
+      this.clearPanel12.Size = new System.Drawing.Size(442, 38);
       this.clearPanel12.TabIndex = 0;
       // 
       // settings_insight_info
@@ -2556,7 +2655,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.settings_insight_info.Dock = System.Windows.Forms.DockStyle.Right;
       this.settings_insight_info.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.info;
       this.settings_insight_info.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      this.settings_insight_info.Location = new System.Drawing.Point(3, 0);
+      this.settings_insight_info.Location = new System.Drawing.Point(74, 0);
       this.settings_insight_info.Name = "settings_insight_info";
       this.settings_insight_info.Size = new System.Drawing.Size(38, 38);
       this.settings_insight_info.TabIndex = 3;
@@ -2565,7 +2664,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // settings_insight_renew
       // 
       this.settings_insight_renew.Dock = System.Windows.Forms.DockStyle.Right;
-      this.settings_insight_renew.Location = new System.Drawing.Point(41, 0);
+      this.settings_insight_renew.Location = new System.Drawing.Point(112, 0);
       this.settings_insight_renew.Name = "settings_insight_renew";
       this.settings_insight_renew.Size = new System.Drawing.Size(110, 38);
       this.settings_insight_renew.TabIndex = 2;
@@ -2575,7 +2674,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // settings_insight_disable
       // 
       this.settings_insight_disable.Dock = System.Windows.Forms.DockStyle.Right;
-      this.settings_insight_disable.Location = new System.Drawing.Point(151, 0);
+      this.settings_insight_disable.Location = new System.Drawing.Point(222, 0);
       this.settings_insight_disable.Name = "settings_insight_disable";
       this.settings_insight_disable.Size = new System.Drawing.Size(110, 38);
       this.settings_insight_disable.TabIndex = 1;
@@ -2585,7 +2684,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // settings_insight_enable
       // 
       this.settings_insight_enable.Dock = System.Windows.Forms.DockStyle.Right;
-      this.settings_insight_enable.Location = new System.Drawing.Point(261, 0);
+      this.settings_insight_enable.Location = new System.Drawing.Point(332, 0);
       this.settings_insight_enable.Name = "settings_insight_enable";
       this.settings_insight_enable.Size = new System.Drawing.Size(110, 38);
       this.settings_insight_enable.TabIndex = 0;
@@ -2864,8 +2963,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.main_mainmenu_analytics.AccessibleName = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.NeueAnalyse;
       this.main_mainmenu_analytics.Image = ((System.Drawing.Image)(resources.GetObject("main_mainmenu_analytics.Image")));
       this.main_mainmenu_analytics.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.main_mainmenu_analystics_overview,
-            this.radMenuSeparatorItem5});
+            this.main_mainmenu_analytics_overview,
+            this.radMenuSeparatorItem5,
+            this.main_mainmenu_analytics_favorite});
       this.main_mainmenu_analytics.Margin = new System.Windows.Forms.Padding(0);
       this.main_mainmenu_analytics.Name = "main_mainmenu_analytics";
       this.main_mainmenu_analytics.Padding = new System.Windows.Forms.Padding(7);
@@ -2873,18 +2973,24 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.main_mainmenu_analytics.Text = "";
       this.main_mainmenu_analytics.ToolTipText = "Analysen";
       // 
-      // main_mainmenu_analystics_overview
+      // main_mainmenu_analytics_overview
       // 
-      this.main_mainmenu_analystics_overview.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.eye;
-      this.main_mainmenu_analystics_overview.Name = "main_mainmenu_analystics_overview";
-      this.main_mainmenu_analystics_overview.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.AnalysenÜbersicht;
-      this.main_mainmenu_analystics_overview.Click += new System.EventHandler(this.main_mainmenu_analytics_Click);
+      this.main_mainmenu_analytics_overview.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.eye;
+      this.main_mainmenu_analytics_overview.Name = "main_mainmenu_analytics_overview";
+      this.main_mainmenu_analytics_overview.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.AnalysenÜbersicht;
+      this.main_mainmenu_analytics_overview.Click += new System.EventHandler(this.main_mainmenu_analytics_Click);
       // 
       // radMenuSeparatorItem5
       // 
       this.radMenuSeparatorItem5.Name = "radMenuSeparatorItem5";
       this.radMenuSeparatorItem5.Text = "radMenuSeparatorItem5";
       this.radMenuSeparatorItem5.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // main_mainmenu_analytics_favorite
+      // 
+      this.main_mainmenu_analytics_favorite.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.favorite;
+      this.main_mainmenu_analytics_favorite.Name = "main_mainmenu_analytics_favorite";
+      this.main_mainmenu_analytics_favorite.Text = "Favoriten";
       // 
       // radMenu1
       // 
@@ -3058,18 +3164,29 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.infoButton1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.splitPanel4)).EndInit();
       this.splitPanel4.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer3)).EndInit();
+      this.radSplitContainer3.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.splitPanel5)).EndInit();
+      this.splitPanel5.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).EndInit();
       this.radGroupBox4.ResumeLayout(false);
-      this.flowLayoutPanel2.ResumeLayout(false);
+      this.radScrollablePanel6.PanelContainer.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel6)).EndInit();
+      this.radScrollablePanel6.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_totalReset)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_tool_upgrade)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_eraseCache)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_errorconsole)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_xpath)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_tool_mergeCorpora)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_additionalTagger)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_tool_exportCorpus)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_tool_testCorpus)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_additionalTagger)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_xpath)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_totalReset)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_eraseCache)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_errorconsole)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.splitPanel6)).EndInit();
+      this.splitPanel6.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.radGroupBox9)).EndInit();
+      this.radGroupBox9.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.settings_list_favorites)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox8)).EndInit();
       this.radGroupBox8.ResumeLayout(false);
       this.radGroupBox8.PerformLayout();
@@ -3185,7 +3302,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     private Header header8;
     private Header header10;
     private HelpPanel helpPanel3;
-    private Telerik.WinControls.UI.RadMenuItem main_mainmenu_analystics_overview;
+    private Telerik.WinControls.UI.RadMenuItem main_mainmenu_analytics_overview;
     private Telerik.WinControls.UI.RadMenuSeparatorItem radMenuSeparatorItem5;
     private HelpPanel helpPanel4;
     private Telerik.WinControls.UI.RadPageView pages_snapshot;
@@ -3201,7 +3318,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     private Telerik.WinControls.UI.RadButton page_analytics_snapshot_btn_snapshot_invert;
     private Telerik.WinControls.UI.RadGroupBox radGroupBox4;
     private Telerik.WinControls.UI.RadButton settings_tool_upgrade;
-    private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     private Telerik.WinControls.UI.RadDropDownButton page_analytics_snapshot_btn_snapshot_add;
     private Telerik.WinControls.UI.RadButton settings_tool_errorconsole;
     private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
@@ -3288,5 +3404,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     private Telerik.WinControls.UI.RadButton settings_insight_disable;
     private Telerik.WinControls.UI.RadButton settings_insight_enable;
     private Telerik.WinControls.UI.RadButton settings_insight_info;
+    private Telerik.WinControls.UI.RadMenuItem main_mainmenu_analytics_favorite;
+    private Telerik.WinControls.UI.RadSplitContainer radSplitContainer3;
+    private Telerik.WinControls.UI.SplitPanel splitPanel5;
+    private Telerik.WinControls.UI.SplitPanel splitPanel6;
+    private Telerik.WinControls.UI.RadGroupBox radGroupBox9;
+    private Telerik.WinControls.UI.RadCheckedListBox settings_list_favorites;
+    private Telerik.WinControls.UI.RadScrollablePanel radScrollablePanel6;
   }
 }

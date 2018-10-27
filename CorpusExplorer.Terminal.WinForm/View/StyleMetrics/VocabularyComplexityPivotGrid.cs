@@ -54,7 +54,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.StyleMetrics
         () =>
         {
           var vm = GetViewModel<VocabularyComplexityViewModel>();
-          vm.Analyse();
+          vm.Execute();
 
           var dataProvider = new LocalDataSourceProvider
           {

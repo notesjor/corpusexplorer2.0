@@ -67,7 +67,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
         {
           _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
           _vm.LayerQueries = wordBag1.ResultQueries.ToArray();
-          _vm.Analyse();
+          _vm.Execute();
 
           radGridView1.DataSource = _vm.GetDataTable();
           radGridView1.ResetBindings();

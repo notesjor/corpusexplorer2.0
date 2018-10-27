@@ -1,22 +1,33 @@
-using System.Xml.Serialization;
-
-namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht.Model
+﻿namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht.Model
 {
-  /// <remarks />
-  [XmlType(AnonymousType = true, Namespace = "http://www.dspin.de/data")]
-  [XmlRoot("D-Spin", Namespace = "http://www.dspin.de/data", IsNullable = false)]
-  public class DSpin
+  /// <remarks/>
+  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
+  [System.SerializableAttribute()]
+  [System.Diagnostics.DebuggerStepThroughAttribute()]
+  [System.ComponentModel.DesignerCategoryAttribute("code")]
+  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.dspin.de/data")]
+  [System.Xml.Serialization.XmlRootAttribute("D-Spin", Namespace = "http://www.dspin.de/data", IsNullable = false)]
+  public partial class DSpin
   {
-    /// <remarks />
-    [XmlElement(Namespace = "http://www.dspin.de/data/metadata")]
-    public MetaData MetaData { get; set; }
 
-    /// <remarks />
-    [XmlElement(Namespace = "http://www.dspin.de/data/textcorpus")]
-    public TextCorpus TextCorpus { get; set; }
+    private TextCorpus textCorpusField;
 
-    /// <remarks />
-    [XmlAttribute]
-    public decimal version { get; set; }
+    private decimal versionField;
+
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(Namespace = "http://www.dspin.de/data/textcorpus")]
+    public TextCorpus TextCorpus
+    {
+      get { return this.textCorpusField; }
+      set { this.textCorpusField = value; }
+    }
+
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public decimal version
+    {
+      get { return this.versionField; }
+      set { this.versionField = value; }
+    }
   }
 }

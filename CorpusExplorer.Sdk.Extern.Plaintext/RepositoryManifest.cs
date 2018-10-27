@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes;
 using CorpusExplorer.Sdk.Extern.Plaintext.ClarinContentSearch;
-using CorpusExplorer.Sdk.Extern.Plaintext.Conll;
 using CorpusExplorer.Sdk.Extern.Plaintext.EasyHashtagSeparation;
 using CorpusExplorer.Sdk.Extern.Plaintext.Europarl;
 using CorpusExplorer.Sdk.Extern.Plaintext.LeipzigerWortschatz;
 using CorpusExplorer.Sdk.Extern.Plaintext.RawMailMsg;
-using CorpusExplorer.Sdk.Extern.Plaintext.TreeTagger;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
@@ -30,13 +28,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
     /// <summary>
     ///   Liste mit Exportern die Projekte, Korpora und Schnappschüsse (alle IHydra) exportieren können
     /// </summary>
-    public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters =>
-      new Dictionary<string, AbstractExporter>
-      {
-        {"CoNLL (*.conll)|*.conll", new ExporterConll()},
-        {"TreeTagger (*.treetagger)|*.treetagger", new ExporterTreeTagger()},
-        {"TreeTagger + Satzgrenze (*.treetagger)|*.treetagger", new ExporterTreeTagger {UseSentenceTag = true}}
-      };
+    public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters => null;
 
     /// <summary>
     ///   Liste mit Scrapern die lokale Dateien bestehender Korpora importieren (z. B. XML, EXMERaLDA).
@@ -45,8 +37,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter =>
       new Dictionary<string, AbstractImporter>
       {
-        {"CLAN/Childes (*.cex)|*.cex", new ImporterClanChildes()},
-        {"CoNLL (*.conll)|*.conll", new ImporterConll()}
+        {"CLAN/Childes (*.cex)|*.cex", new ImporterClanChildes()}
       };
 
     /// <summary>
@@ -91,6 +82,10 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
     ///   Externe Analysemodule.
     /// </summary>
     public override IEnumerable<IAddonView> AddonViews => null;
+
+    public override IEnumerable<IAction> AddonConsoleActions => null;
+
+    public override IEnumerable<object> AddonSideloadFeature => null;
 
     /// <summary>
     ///   Eindeutige Bezeichnung (Name) des Addons

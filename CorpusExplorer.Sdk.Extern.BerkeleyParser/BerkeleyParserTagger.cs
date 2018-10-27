@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using Bcs.IO;
-using CorpusExplorer.Core.DocumentProcessing.Tagger.ConllTagger.Abstract;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.ConllTagger.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.BerkeleyParser
 {

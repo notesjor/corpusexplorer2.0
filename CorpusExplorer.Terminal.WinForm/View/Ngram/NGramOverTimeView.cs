@@ -37,7 +37,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       _vm.NGramPatternSize = 0;
       if (SelectedLayerDisplaynames != null)
         _vm.LayerDisplayname = SelectedLayerDisplaynames[0];
-      if (!_vm.Analyse())
+      if (!_vm.Execute())
         return;
       BindData();
 

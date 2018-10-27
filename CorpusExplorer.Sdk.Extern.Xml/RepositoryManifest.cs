@@ -2,16 +2,20 @@
 
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
+using CorpusExplorer.Sdk.Extern.Xml.AltoXml._1._2;
 using CorpusExplorer.Sdk.Extern.Xml.AnnotationPro;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Drucksachen;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle;
+using CorpusExplorer.Sdk.Extern.Xml.Catma;
 using CorpusExplorer.Sdk.Extern.Xml.Dewac;
 using CorpusExplorer.Sdk.Extern.Xml.DigitalPlato;
 using CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus;
 using CorpusExplorer.Sdk.Extern.Xml.Dpxc;
+using CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf;
 using CorpusExplorer.Sdk.Extern.Xml.Exmaralda;
 using CorpusExplorer.Sdk.Extern.Xml.Folker;
+using CorpusExplorer.Sdk.Extern.Xml.Gutenberg;
 using CorpusExplorer.Sdk.Extern.Xml.LexisNexis;
 using CorpusExplorer.Sdk.Extern.Xml.PostgreSqlDump;
 using CorpusExplorer.Sdk.Extern.Xml.PureXml;
@@ -56,7 +60,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml
       {
         {"DEWAC (DEWAC-*.xml)|DEWAC-*.xml", new ImporterDewac()},
         {"WebLicht (*.xml)|*.xml", new ImporterWeblicht()},
-        {"DTAbf Deutsches-Text-Archiv Basisformat (*.tcf.xml)|*.tcf.xml", new ImporterDta()}
+        {"DTAbf Deutsches-Text-Archiv Basisformat (*.tcf.xml)|*.tcf.xml", new ImporterDta()},
+        {"CATMA 5.0 (*.xml)|*.xml", new ImporterCatma()}
       };
 
     /// <summary>
@@ -66,6 +71,22 @@ namespace CorpusExplorer.Sdk.Extern.Xml
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers =>
       new Dictionary<string, AbstractScraper>
       {
+        {
+          "ALTO-XML 1.2 (*.xml)|*.xml",
+          new Alto12Scraper()
+        },
+        {
+          "CATMA 5.0 (*.xml)|*.xml",
+          new CatmaScraper()
+        },
+        {
+          "PMG-XML (*.pmg; *.xml)|*.xml;*.pmg",
+          new GutenbergScraper()
+        },
+        {
+          "Gutenberg 13 DVD (*.xml)|*.xml",
+          new GutenbergScraper()
+        },
         {
           "PostgreSQL-XML-Dump (*.xml)|*.xml",
           new PostgreSqlDumpScraper()
@@ -107,6 +128,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml
           new DtaScraper()
         },
         {
+          "DTA-Basisformat (*.xml)|*.xml",
+          new DtaBasisformatScraper()
+        },
+        {
           "WebLicht-XML (*.xml)|*.xml",
           new WeblichtScraper()
         },
@@ -141,6 +166,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml
     ///   Externe Analysemodule.
     /// </summary>
     public override IEnumerable<IAddonView> AddonViews => null;
+
+    public override IEnumerable<IAction> AddonConsoleActions => null;
+
+    public override IEnumerable<object> AddonSideloadFeature => null;
 
     /// <summary>
     ///   Eindeutige Bezeichnung (Name) des Addons

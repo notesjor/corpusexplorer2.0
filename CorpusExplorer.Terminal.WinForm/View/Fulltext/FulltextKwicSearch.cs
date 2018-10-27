@@ -35,9 +35,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
           LayerDisplayname = _vm.LayerDisplayname,
           LayerQueries = wordBag1.ResultQueries
         });
-      _vm.Analyse();
+      _vm.Execute();
 
-      radGridView1.DataSource = _vm.GetUniqueDataTable();
+      radGridView1.DataSource = _vm.GetUniqueDataTableGui();
       radGridView1.ResetBindings();
 
       AddSummaryRow();
@@ -115,7 +115,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
     private void btn_snapshot_create_Click(object sender, EventArgs e)
     {
-      throw new NotImplementedException();
+      var docs = new HashSet<Guid>();
+      foreach (var r in radGridView1.SelectedRows)
+        if (r.Cells["Info"]?.Value is IEnumerable<KeyValuePair<Guid, int>> info)
+          foreach (var x in info)
+            docs.Add(x.Key);
+
+      CreateSelection(docs);
     }
 
     private void OnGridOnCommandCellClick(object sender, GridViewCellEventArgs arg)
@@ -128,7 +134,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
       var vm = GetViewModel<QuickInfoTextViewModel>();
       vm.Documents = cell.RowElement.RowInfo.Cells["Info"].Value as IEnumerable<KeyValuePair<Guid, int>>;
-      vm.Analyse();
+      vm.Execute();
 
       var form = new SimpleTextView(vm.QuickDocumentInfoResults, Project);
       form.NewProperty += (o, a) => { vm.SetNewDocumentMetadata((KeyValuePair<string, Type>)o); };
