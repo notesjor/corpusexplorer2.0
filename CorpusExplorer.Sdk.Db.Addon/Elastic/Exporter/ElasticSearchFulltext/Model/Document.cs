@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Nest;
 
-namespace CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter.ElasticSearchFulltext.Model
+namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter.ElasticSearchFulltext.Model
 {
   [ElasticsearchType(IdProperty = nameof(DocumentGuid), Name = "document")]
   public class Document

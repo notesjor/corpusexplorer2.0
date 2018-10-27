@@ -2,7 +2,7 @@
 using CorpusExplorer.Sdk.Diagnostic;
 using Elasticsearch.Net;
 
-namespace CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter.ElasticSearchFulltext.Model.Context
+namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter.ElasticSearchFulltext.Model.Context
 {
   public class ElasticSearchFulltextContext : ElasticSearchContextBase
   {

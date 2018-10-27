@@ -7,8 +7,23 @@ namespace CorpusExplorer.Sdk.Helper
 {
   public static class SelectionJoiner
   {
+    public static Selection JoinFull(this IEnumerable<Selection> selections, string newSelectionDisplayname)
+    {
+      var list = selections.ToList();
+      var first = selections.First();
+      list.RemoveAt(0);
+
+      foreach (var x in list)
+        first = JoinFull(first, x, newSelectionDisplayname);
+      
+      return first;
+    }
+
     public static Selection JoinFull(this Selection selectionA, Selection selectionB, string newSelectionDisplayname)
     {
+      if (!selectionA.Project.Equals(selectionB.Project))
+        throw new ArgumentException();
+
       var defA = selectionA.ToDictionary();
       var defB = selectionB.ToDictionary();
 
@@ -19,13 +34,16 @@ namespace CorpusExplorer.Sdk.Helper
         else
           defA.Add(csel.Key, csel.Value);
 
-      return selectionA.Project.Equals(selectionB.Project)
-        ? selectionA.Project.CreateSelection(defA, newSelectionDisplayname)
-        : selectionA.Project.JoinFull(selectionB.Project).SelectAll.Create(defA, newSelectionDisplayname);
+      return string.IsNullOrEmpty(newSelectionDisplayname)
+        ? selectionA.Project.CreateSelectionTemporary(defA)
+        : selectionA.Project.CreateSelection(defA, newSelectionDisplayname);
     }
 
     public static Selection JoinInner(this Selection selectionA, Selection selectionB, string newSelectionDisplayname)
     {
+      if (!selectionA.Project.Equals(selectionB.Project))
+        throw new ArgumentException();
+
       var defA = selectionA.ToDictionary();
       var defB = selectionB.ToDictionary();
       var defC = new Dictionary<Guid, HashSet<Guid>>();
@@ -42,13 +60,16 @@ namespace CorpusExplorer.Sdk.Helper
         defC.Add(csel.Key, hs);
       }
 
-      return selectionA.Project.Equals(selectionB.Project)
-        ? selectionA.Project.CreateSelection(defC, newSelectionDisplayname)
-        : selectionA.Project.JoinFull(selectionB.Project).SelectAll.Create(defC, newSelectionDisplayname);
+      return string.IsNullOrEmpty(newSelectionDisplayname)
+        ?  selectionA.Project.CreateSelectionTemporary(defC)
+        : selectionA.Project.CreateSelection(defC, newSelectionDisplayname);
     }
 
     public static Selection JoinLeft(this Selection selectionA, Selection selectionB, string newSelectionDisplayname)
     {
+      if (!selectionA.Project.Equals(selectionB.Project))
+        throw new ArgumentException();
+
       var defA = selectionA.ToDictionary();
       var defB = selectionB.ToDictionary();
 
@@ -64,13 +85,16 @@ namespace CorpusExplorer.Sdk.Helper
 
       selectionA.Project.CreateSelection(defA, newSelectionDisplayname);
 
-      return selectionA.Project.Equals(selectionB.Project)
-        ? selectionA.Project.CreateSelection(defA, newSelectionDisplayname)
-        : selectionA.Project.JoinFull(selectionB.Project).SelectAll.Create(defA, newSelectionDisplayname);
+      return string.IsNullOrEmpty(newSelectionDisplayname)
+        ? selectionA.Project.CreateSelectionTemporary(defA)
+        : selectionA.Project.CreateSelection(defA, newSelectionDisplayname);
     }
 
     public static Selection JoinOuter(this Selection selectionA, Selection selectionB, string newSelectionDisplayname)
     {
+      if (!selectionA.Project.Equals(selectionB.Project))
+        throw new ArgumentException();
+
       var defA = selectionA.ToDictionary();
       var defB = selectionB.ToDictionary();
       var defC = new Dictionary<Guid, HashSet<Guid>>();
@@ -90,9 +114,9 @@ namespace CorpusExplorer.Sdk.Helper
         defC.Add(csel.Key, hs);
       }
 
-      return selectionA.Project.Equals(selectionB.Project)
-        ? selectionA.Project.CreateSelection(defC, newSelectionDisplayname)
-        : selectionA.Project.JoinFull(selectionB.Project).SelectAll.Create(defC, newSelectionDisplayname);
+      return string.IsNullOrEmpty(newSelectionDisplayname)
+        ? selectionA.Project.CreateSelectionTemporary(defC)
+        :selectionA.Project.CreateSelection(defC, newSelectionDisplayname);
     }
   }
 }

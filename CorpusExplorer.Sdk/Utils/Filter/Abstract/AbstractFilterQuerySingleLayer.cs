@@ -6,6 +6,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
+using CorpusExplorer.Sdk.Utils.Filter.Interface;
 
 #endregion
 
@@ -16,7 +17,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
   /// </summary>
   [XmlRoot]
   [Serializable]
-  public abstract class AbstractFilterQuerySingleLayer : AbstractFilterQuery
+  public abstract class AbstractFilterQuerySingleLayer : AbstractFilterQuery, IFilterQueryWithLayerValues
   {
     [XmlIgnore] protected Dictionary<Guid, HashSet<int>> _cache;
 

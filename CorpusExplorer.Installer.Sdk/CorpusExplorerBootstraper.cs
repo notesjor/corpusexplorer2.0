@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using Bcs.IO;
+using CorpusExplorer.Installer.Sdk.Model;
 using CorpusExplorer.Installer.Sdk.Properties;
 using CorpusExplorer.Installer.Sdk.View;
 using CorpusExplorer.Sdk.Diagnostic;
@@ -124,20 +125,22 @@ namespace CorpusExplorer.Installer.Sdk
             var ientry = _installed.FirstOrDefault(x => oentry[0] == x[0]);
             if (oentry[0].StartsWith("LINK#"))
               list.Add(
-                new UpdateState
+                new UpdateState(oentry[0])
                 {
-                  Url = oentry[0],
-                  InstalledVersion = "SET",
                   OnlineVersion = "SET",
                   InstallationCompleted = ientry != null
                 });
-            else if (ientry == null ||
-                     ientry[1] != oentry[1])
+            else if (oentry[0].StartsWith("CALL#") && (ientry == null || ientry[1] != oentry[1]))
               list.Add(
-                new UpdateState
+                new UpdateState(oentry[0])
                 {
-                  Url = oentry[0],
-                  InstalledVersion = oentry[1],
+                  OnlineVersion = oentry[1],
+                  InstallationCompleted = ientry != null
+                });
+            else if (ientry == null || ientry[1] != oentry[1])
+              list.Add(
+                new UpdateState(oentry[0])
+                {
                   OnlineVersion = oentry[1],
                   Delete = oentry.Length == 3 ? oentry[2] : null,
                   InstallationCompleted = false
@@ -210,26 +213,41 @@ namespace CorpusExplorer.Installer.Sdk
 
         try
         {
-          if (updates[i].IsCEC8)
-            DoUpdate_Cec8(updates[i].Url);
-          else if (updates[i].IsCEC7)
-            DoUpdate_Cec7(updates[i].Url);
-          else if (updates[i].IsCEC6)
-            DoUpdate_Cec6(updates[i].Url);
-          else if (updates[i].IsCEC5)
-            DoUpdate_Cec5(updates[i].Url);
-          else if (updates[i].IsCEDB)
-            DoUpdate_Cedb(updates[i].Url);
-          else if (updates[i].IsCML)
-            DoUpdate_Cml(updates[i].Url);
-          else if (updates[i].IsCEFS)
-            DoUpdate_Cefs(updates[i].Url, tempDir, i);
-          else if (updates[i].IsLink)
-            DoUpdate_Link(updates[i].Url);
-          else if (updates[i].IsZIP)
-            DoUpdate_Zip(updates[i].Url, tempDir, i);
-          else if (updates[i].IsCECP)
-            DoUpdate_Cecp(updates[i].Url, tempDir, i);
+          switch (updates[i].Type)
+          {
+            case UpdateStateType.Cec5:
+            case UpdateStateType.Cec6:
+            case UpdateStateType.Cec7:
+            case UpdateStateType.Cec8:
+            case UpdateStateType.Cec9:
+              DoUpdate_Cec(updates[i].Url);
+              break;
+            case UpdateStateType.Cecp:
+              DoUpdate_Cecp(updates[i].Url, tempDir, i);
+              break;
+            case UpdateStateType.Cedb:
+              DoUpdate_Cedb(updates[i].Url);
+              break;
+            case UpdateStateType.Cefs:
+              DoUpdate_Cefs(updates[i].Url, tempDir, i);
+              break;
+            case UpdateStateType.Cml:
+              DoUpdate_Cml(updates[i].Url);
+              break;
+            case UpdateStateType.Link:
+              DoUpdate_Link(updates[i].Url);
+              break;
+            case UpdateStateType.Call:
+              DoUpdate_Call(updates[i].Url, tempDir, i);
+              break;
+            case UpdateStateType.Zip:
+              DoUpdate_Zip(updates[i].Url, tempDir, i);
+              break;
+            // ReSharper disable once RedundantCaseLabel
+            case UpdateStateType.None:
+            default:
+              throw new ArgumentOutOfRangeException("UNKNOWN UPDATE TYPE");
+          }
 
           updates[i].InstallationCompleted = true;
         }
@@ -260,7 +278,7 @@ namespace CorpusExplorer.Installer.Sdk
 
         var index = _installed.FindIndex(x => x[0] == update.Url);
         if (index == -1)
-          _installed.Add(new[] {update.Url, update.OnlineVersion});
+          _installed.Add(new[] { update.Url, update.OnlineVersion });
         else
           _installed[index][1] = update.OnlineVersion;
       }
@@ -274,6 +292,23 @@ namespace CorpusExplorer.Installer.Sdk
       {
         InMemoryErrorConsole.Log(ex);
       }
+    }
+
+    private static void DoUpdate_Call(string url, string tempDir, int i)
+    {
+      var info = url.Split(new[] { "#" }, StringSplitOptions.None);
+      if (info.Length != 3)
+        return;
+
+      var tempFile = Path.Combine(tempDir, $"update.{i}.{info[1]}");
+      DownloadFile(url, tempFile);
+
+      var process = Process.Start(new ProcessStartInfo
+      {
+        Arguments = info[2],
+        FileName = tempFile
+      });
+      process?.WaitForExit();
     }
 
     private static void DoUpdate(bool askForUpdate)
@@ -311,31 +346,7 @@ namespace CorpusExplorer.Installer.Sdk
       }
     }
 
-    private static void DoUpdate_Cec5(string url)
-    {
-      var path = Path.Combine(MyCorpora, url.Substring(url.LastIndexOf("/", StringComparison.Ordinal) + 1));
-      DownloadFile(url, path);
-    }
-
-    private static void DoUpdate_Cec6(string url)
-    {
-      var path = Path.Combine(MyCorpora, url.Substring(url.LastIndexOf("/", StringComparison.Ordinal) + 1));
-      DownloadFile(url, path);
-
-      if (path.ToLower().EndsWith(".gz"))
-        DecompressGzipFile(path);
-    }
-
-    private static void DoUpdate_Cec7(string url)
-    {
-      var path = Path.Combine(MyCorpora, url.Substring(url.LastIndexOf("/", StringComparison.Ordinal) + 1));
-      DownloadFile(url, path);
-
-      if (path.ToLower().EndsWith(".gz"))
-        DecompressGzipFile(path);
-    }
-
-    private static void DoUpdate_Cec8(string url)
+    private static void DoUpdate_Cec(string url)
     {
       var path = Path.Combine(MyCorpora, url.Substring(url.LastIndexOf("/", StringComparison.Ordinal) + 1));
       DownloadFile(url, path);
@@ -383,7 +394,7 @@ namespace CorpusExplorer.Installer.Sdk
 
     private static void DoUpdate_Link(string url)
     {
-      var info = url.Split(new[] {"#"}, StringSplitOptions.RemoveEmptyEntries);
+      var info = url.Split(new[] { "#" }, StringSplitOptions.RemoveEmptyEntries);
       if (info.Length != 3)
         return;
 
@@ -404,14 +415,14 @@ namespace CorpusExplorer.Installer.Sdk
     {
       var tempFile = Path.Combine(tempDir, "update." + i + ".zip");
       DownloadFile(url, tempFile);
-
+      
       var zip = new FastZip();
       zip.ExtractZip(tempFile, _appPath, null);
     }
 
     private static void DownloadFile(string url, string file)
     {
-      using (var wc = new MyWebClient())
+      using (var wc = new CorpusExplorerWebClient())
       {
         wc.DownloadFile(url, file);
       }
@@ -670,46 +681,15 @@ namespace CorpusExplorer.Installer.Sdk
     {
       try
       {
-        var lines = text.Split(new[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+        var lines = text.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
         return lines.Select(line =>
           line.Replace("{CPU}", Environment.Is64BitProcess ? "x64" : "x86")
-            .Split(new[] {"|"}, StringSplitOptions.RemoveEmptyEntries));
+            .Split(new[] { "|" }, StringSplitOptions.RemoveEmptyEntries));
       }
       catch
       {
         return null;
       }
-    }
-
-    private class MyWebClient : WebClient
-    {
-      protected override WebRequest GetWebRequest(Uri uri)
-      {
-        var res = base.GetWebRequest(uri);
-        if (res != null)
-          res.Timeout = 30 * 60 * 1000;
-        return res;
-      }
-    }
-
-    private class UpdateState
-    {
-      public string Delete { get; set; }
-      public bool InstallationCompleted { get; set; }
-      public string InstalledVersion { get; set; }
-      public bool IsCEC5 => Url.ToLower().EndsWith(".cec5");
-      public bool IsCEC6 => Url.ToLower().EndsWith(".cec6.gz") || Url.ToLower().EndsWith(".cec6");
-      public bool IsCEC7 => Url.ToLower().EndsWith(".cec7.gz") || Url.ToLower().EndsWith(".cec7");
-      public bool IsCEC8 => Url.ToLower().EndsWith(".cec8.gz") || Url.ToLower().EndsWith(".cec8");
-      public bool IsCECP => Url.ToLower().EndsWith(".cecp");
-
-      public bool IsCEDB => Url.ToLower().EndsWith(".cedb");
-      public bool IsCEFS => Url.ToLower().EndsWith(".cefs");
-      public bool IsCML => Url.ToLower().EndsWith(".cml");
-      public bool IsLink => Url.StartsWith("LINK#");
-      public bool IsZIP => Url.ToLower().EndsWith(".zip");
-      public string OnlineVersion { get; set; }
-      public string Url { get; set; }
-    }
+    }    
   }
 }

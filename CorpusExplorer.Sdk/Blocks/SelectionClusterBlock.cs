@@ -59,9 +59,38 @@ namespace CorpusExplorer.Sdk.Blocks
       });
     }
 
-    public IEnumerable<Selection> GetSelectionClusters()
+    public IEnumerable<Selection> GetSelectionClusters() => Cluster.ToSelection(Selection);
+
+    public IEnumerable<Selection> GetTemporarySelectionClusters() => Cluster.ToTemporarySelection(Selection);
+
+    public IEnumerable<KeyValuePair<string, IEnumerable<Guid>>> SelectionClustersWindowed(int window)
     {
-      return Cluster.ToSelection(Selection);
+      var cluster = Cluster.OrderBy(x => x.CentralValue).ToArray();
+
+      var res = new List<KeyValuePair<string, IEnumerable<Guid>>>();
+      for (var i = 0; i < cluster.Length - window + 1; i++)
+      {
+        var key = new List<string>();
+        var values = new HashSet<Guid>();
+
+        for (var j = 0; j < window; j++)
+        {
+          var c = cluster[i + j];
+          key.Add(c.Displayname);
+          foreach (var dsel in c.DocumentGuids)
+            values.Add(dsel);
+        }
+
+        res.Add(new KeyValuePair<string, IEnumerable<Guid>>(string.Join(@" - ", key), values));
+      }
+
+      return res;
     }
+
+    public IEnumerable<Selection> GetSelectionClustersWindowed(int window) 
+      => SelectionClustersWindowed(window).Select(x => Selection.Create(x.Value, x.Key));
+
+    public IEnumerable<Selection> GetTemporarySelectionClustersWindowed(int window)
+      => SelectionClustersWindowed(window).Select(x => Selection.CreateTemporary(x.Value));
   }
 }

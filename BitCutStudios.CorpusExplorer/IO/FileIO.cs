@@ -61,6 +61,16 @@ namespace Bcs.IO
 
     internal static void Write(string path, byte[] bytes)
     {
+      try
+      {
+        if (!Directory.Exists(Path.GetDirectoryName(path)))
+          Directory.CreateDirectory(Path.GetDirectoryName(path));
+      }
+      catch
+      {
+        // ignore
+      }
+
       using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
       {
         fs.Write(bytes, 0, bytes.Length);

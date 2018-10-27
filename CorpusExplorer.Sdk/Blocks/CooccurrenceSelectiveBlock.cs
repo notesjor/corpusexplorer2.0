@@ -97,7 +97,7 @@ namespace CorpusExplorer.Sdk.Blocks
         Parallel.ForEach(Selection, Configuration.ParallelOptions, csel =>
         {
           var corpus = Selection.GetCorpus(csel.Key);
-          var layer = corpus?.GetLayers(LayerDisplayname).FirstOrDefault();
+          var layer = corpus?.GetLayers(LayerDisplayname)?.FirstOrDefault();
           if (layer == null)
             return;
 
@@ -163,7 +163,7 @@ namespace CorpusExplorer.Sdk.Blocks
         foreach (var csel in Selection)
         {
           var corpus = Selection.GetCorpus(csel.Key);
-          var layer = corpus?.GetLayers(LayerDisplayname).FirstOrDefault();
+          var layer = corpus?.GetLayers(LayerDisplayname)?.FirstOrDefault();
           if (layer == null)
             return;
 

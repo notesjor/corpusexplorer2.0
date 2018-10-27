@@ -107,6 +107,10 @@ namespace Bcs.Addon
                 InMemoryErrorConsole.Log(ex);
               }
           }
+          catch(BadImageFormatException)
+          {
+            // ignore
+          }
           catch (ReflectionTypeLoadException)
           {
             // ignore

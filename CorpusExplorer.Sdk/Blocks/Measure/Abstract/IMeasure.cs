@@ -8,6 +8,8 @@ namespace CorpusExplorer.Sdk.Blocks.Measure.Abstract
     /// <summary>
     ///   Berechnet das entsprechende Maﬂ. Siehe [Heyer2012]
     /// </summary>
+    /// <param name="k">Gesamtzahl aller S‰tze</param>
+    /// <param name="k0"></param>
     /// <param name="ki">
     ///   Anzahl der S‰tze die Ki enthalten (Ki = erster Term)
     /// </param>
@@ -20,6 +22,6 @@ namespace CorpusExplorer.Sdk.Blocks.Measure.Abstract
     /// <returns>
     ///   Maﬂ
     /// </returns>
-    double Calculate(double ki, double kj, double kij);
+    double Calculate(double k, double k0, double ki, double kj, double kij);
   }
 }

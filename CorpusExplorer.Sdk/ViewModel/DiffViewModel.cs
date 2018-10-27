@@ -25,12 +25,12 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public int ChangesInsert
     {
-      get { return DiffDeltas.Sum(x => x.InsertedB); }
+      get { return DiffDeltas == null || DiffDeltas.Length == 0 ? 0 : DiffDeltas.Sum(x => x.InsertedB); }
     }
 
     public int ChangesRemove
     {
-      get { return DiffDeltas.Sum(x => x.DeletedA); }
+      get { return DiffDeltas == null || DiffDeltas.Length == 0 ? 0 : DiffDeltas.Sum(x => x.DeletedA); }
     }
 
     [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays")]

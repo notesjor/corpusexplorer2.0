@@ -42,9 +42,9 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
   {
     private static List<AbstractAdditionalTagger> _addonAdditionalTaggers = new List<AbstractAdditionalTagger>();
 
-    private static Dictionary<string, AbstractCorpusBuilder> _addonBackends =
-      new Dictionary<string, AbstractCorpusBuilder>();
-
+    private static Dictionary<string, AbstractCorpusBuilder> _addonBackends = new Dictionary<string, AbstractCorpusBuilder>();
+    private static List<object> _addonSideLoadFeatures = new List<object>();
+    private static List<IAction> _addonConsoleActions = new List<IAction>();
     private static List<AbstractCrawler> _addonCrawlers = new List<AbstractCrawler>();
     private static Dictionary<string, AbstractExporter> _addonExporters = new Dictionary<string, AbstractExporter>();
     private static Dictionary<string, AbstractImporter> _addonImporters = new Dictionary<string, AbstractImporter>();
@@ -75,6 +75,14 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
         return list;
       }
     }
+
+    public static IEnumerable<IAction> AddonConsoleActions => _addonConsoleActions;
+
+    public static IAction GetConsoleAction(string actionName)
+      => (from x in AddonConsoleActions where x.Action == actionName select x).FirstOrDefault();
+
+    public static IEnumerable<T> GetSideloadFeature<T>()
+      => _addonSideLoadFeatures.OfType<T>();
 
     /// <summary>
     ///   Zusätzliche Crawler
@@ -262,6 +270,12 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     public static string TempPath { get; } = Path.Combine(Path.GetTempPath(), "CorpusExplorer");
 
     /// <summary>
+    ///  Pfad zu den Abhängigkeiten - nutzen Sie GetDependencyPath(string subPath) um einen relativen Pfad in einen absoluten umzuwandeln.
+    /// </summary>
+    /// <value>The dependency path.</value>
+    public static string DependencyPath { get; } = Path.Combine(AppPath, "XDependencies");
+
+    /// <summary>
     ///   Dateipfad der Einstellungsdatei
     /// </summary>
     private static string SettingsAppPath { get; set; }
@@ -342,6 +356,8 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       _addonScrapers.Clear();
       _addonViews.Clear();
       _addonBackends.Clear();
+      _addonConsoleActions.Clear();
+      _addonSideLoadFeatures.Clear();
 
       var location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
       Load3RdPartyAddons(location);
@@ -648,7 +664,9 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       RightToLeftSupport = RightToLeftSupport;
       ProtectMemoryOverflow = ProtectMemoryOverflow;
 
+      _addonSideLoadFeatures = new List<object>();
       _addonBackends = new Dictionary<string, AbstractCorpusBuilder>();
+      _addonConsoleActions = new List<IAction>();
       _addonCrawlers = new List<AbstractCrawler>();
       _addonExporters = new Dictionary<string, AbstractExporter>();
       _addonImporters = new Dictionary<string, AbstractImporter>();
@@ -726,6 +744,17 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
                 InMemoryErrorConsole.Log(ex);
               }
 
+          if(repo.AddonConsoleActions != null)
+            foreach (var s in repo.AddonConsoleActions.Where(s => !_addonConsoleActions.Exists(x => x.Action == s.Action)))
+              try
+              {
+                _addonConsoleActions.Add(s);
+              }
+              catch (Exception ex)
+              {
+                InMemoryErrorConsole.Log(ex);
+              }
+
           if (repo.AddonViews != null)
             foreach (var s in repo.AddonViews.Where(s => !_addonViews.Exists(x => x.Label == s.Label)))
               try
@@ -742,6 +771,18 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
               try
               {
                 _addonBackends.Add(s3.Key, s3.Value);
+              }
+              catch (Exception ex)
+              {
+                InMemoryErrorConsole.Log(ex);
+              }
+
+          if(repo.AddonSideloadFeature != null)
+            foreach (var s in repo.AddonSideloadFeature.Where(
+             s=> !_addonSideLoadFeatures.Contains(s)))
+              try
+              {
+                _addonSideLoadFeatures.Add(s);
               }
               catch (Exception ex)
               {

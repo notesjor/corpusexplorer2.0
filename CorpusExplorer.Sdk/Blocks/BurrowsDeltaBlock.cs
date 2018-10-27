@@ -15,7 +15,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
     public Dictionary<string, Dictionary<string, double>> KnownAuthors { get; set; }
 
-    public AbstractSimilarity Measure { get; set; } = new CosineMesure();
+    public AbstractSimilarity Measure { get; set; } = new CosineMeasure();
 
     public string MetadataKey { get; set; } = "Autor";
 

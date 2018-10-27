@@ -15,7 +15,7 @@ namespace CorpusExplorer.Sdk.ViewModel.Abstract
     ///   Führt die Anylse des ViewModels aus.
     /// </summary>
     /// <returns><c>true</c> wenn Analyse zulässig und erfolgreich, <c>false</c> unzulässig oder Ausnahme.</returns>
-    public bool Analyse()
+    public bool Execute()
     {
       if (Selection == null ||
           !IsValid)

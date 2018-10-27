@@ -15,11 +15,11 @@ namespace CorpusExplorer.Sdk.Model.Extension
     public static AbstractCorpusAdapter ToCorpus(this IHydra hydra, AbstractCorpusBuilder builder = null)
     {
       return hydra is AbstractCorpusAdapter
-        ? ToCorpus((AbstractCorpusAdapter) hydra, builder)
+        ? ToCorpus((AbstractCorpusAdapter)hydra, builder)
         : hydra is Project
-          ? ToCorpus((Project) hydra, builder)
+          ? ToCorpus((Project)hydra, builder)
           : hydra is Selection
-            ? ToCorpus((Selection) hydra, builder)
+            ? ToCorpus((Selection)hydra, builder)
             : null;
     }
 
@@ -29,7 +29,7 @@ namespace CorpusExplorer.Sdk.Model.Extension
       if (builder == null)
         builder = new CorpusBuilderWriteDirect();
 
-      var merger = new CorpusMerger {CorpusBuilder = builder};
+      var merger = new CorpusMerger { CorpusBuilder = builder };
       merger.Input(corpus);
       merger.Execute();
 
@@ -43,8 +43,8 @@ namespace CorpusExplorer.Sdk.Model.Extension
 
     public static AbstractCorpusAdapter ToCorpus(this Selection selection, AbstractCorpusBuilder builder = null)
     {
-      var documents = selection.DocumentGuids.ToArray();
       var nlayers = new Dictionary<string, LayerValueState>();
+      var documents = new HashSet<Guid>();
 
       foreach (var layer in selection.Layers)
       {
@@ -53,7 +53,10 @@ namespace CorpusExplorer.Sdk.Model.Extension
 
         foreach (var dsel in selection.DocumentGuids)
           if (layer.ContainsDocument(dsel))
+          {
+            documents.Add(dsel);
             nlayers[layer.Displayname].AddCompleteDocument(dsel, layer.GetReadableDocumentByGuid(dsel));
+          }
       }
 
       if (builder == null)
@@ -69,18 +72,15 @@ namespace CorpusExplorer.Sdk.Model.Extension
     public static Project ToProject(this IHydra hydra)
     {
       return hydra is AbstractCorpusAdapter
-        ? ToProject((AbstractCorpusAdapter) hydra)
+        ? ToProject((AbstractCorpusAdapter)hydra)
         : hydra is Project
-          ? ToProject((Project) hydra)
+          ? ToProject((Project)hydra)
           : hydra is Selection
-            ? ToProject((Selection) hydra)
+            ? ToProject((Selection)hydra)
             : null;
     }
 
-    public static Project ToProject(this Project project)
-    {
-      return project;
-    }
+    public static Project ToProject(this Project project) => project;
 
     public static Project ToProject(this AbstractCorpusAdapter corpus)
     {
@@ -89,45 +89,34 @@ namespace CorpusExplorer.Sdk.Model.Extension
       return project;
     }
 
-    public static Project ToProject(this Selection selection)
-    {
-      return selection.ToCorpus().ToProject();
-    }
+    public static Project ToProject(this Selection selection) => selection.ToCorpus().ToProject();
 
     public static Selection ToSelection(this IHydra hydra)
     {
       return hydra is AbstractCorpusAdapter
-        ? ToSelection((AbstractCorpusAdapter) hydra)
+        ? ToSelection((AbstractCorpusAdapter)hydra)
         : hydra is Project
-          ? ToSelection((Project) hydra)
+          ? ToSelection((Project)hydra)
           : hydra is Selection
-            ? ToSelection((Selection) hydra)
+            ? ToSelection((Selection)hydra)
             : null;
     }
 
-    public static Selection ToSelection(this Selection selection)
-    {
-      return selection;
-    }
+    public static Selection ToSelection(this Selection selection) => selection;
 
-    public static Selection ToSelection(this Project project)
-    {
-      return project.SelectAll;
-    }
+    public static Selection ToSelection(this Project project) => project.SelectAll;
 
     public static Selection ToSelection(this AbstractCorpusAdapter corpus)
-    {
-      return Selection.Create(
-        corpus.ToProject(),
-        new Dictionary<Guid, HashSet<Guid>>
-        {
-          {
-            corpus.CorpusGuid,
-            new HashSet<Guid>(corpus.DocumentGuids)
-          }
-        },
-        corpus.CorpusDisplayname);
-    }
+      => Selection.Create(corpus.ToProject(),
+                          new Dictionary<Guid, HashSet<Guid>>
+                          {
+                            {
+                              corpus.CorpusGuid,
+                              new HashSet<Guid>(corpus.DocumentGuids)
+                            }
+                          },
+                          corpus.CorpusDisplayname,
+                          null);
 
     public static Selection ToSelection(this IEnumerable<AbstractCorpusAdapter> corpora)
     {

@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Blocks.ReadingEase;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
 using CorpusExplorer.Sdk.ViewModel.Interfaces;
@@ -15,16 +16,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     public string LayerDisplayname { get; set; } = "Wort";
 
     public AbstractReadingEaseIndex[] ReadingEaseAlgorithms { get; set; } =
-    {
-      new FelschKincaidGradeIndex(),
-      new FelschReadingEaseIndex(),
-      new GunningFogIndexIndex(),
-      new SmogIndexIndex(),
-      new WienerSachtextV1Index(),
-      new WienerSachtextV2Index(),
-      new WienerSachtextV3Index(),
-      new WienerSachtextV4Index()
-    };
+      Configuration.GetSideloadFeature<AbstractReadingEaseIndex>().ToArray();
 
     public Dictionary<string, Dictionary<Guid, double>> ReadingEaseIndices { get; set; }
 

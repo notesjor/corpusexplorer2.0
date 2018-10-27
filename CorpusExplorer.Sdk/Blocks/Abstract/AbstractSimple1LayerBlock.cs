@@ -47,32 +47,26 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
         return;
       }
 
-      Parallel.ForEach(
-        Selection,
-        Configuration.ParallelOptions,
-        csel =>
-        {
-          var corpus = Selection.GetCorpus(csel.Key);
+      Parallel.ForEach(Selection, Configuration.ParallelOptions, csel =>
+      {
+        var corpus = Selection.GetCorpus(csel.Key);
 
-          var layer = corpus?.GetLayers(LayerDisplayname).FirstOrDefault();
-          if (layer == null)
+        var layer = corpus?.GetLayers(LayerDisplayname)?.FirstOrDefault();
+        if (layer == null)
+          return;
+
+        Parallel.ForEach(csel.Value, Configuration.ParallelOptions, dsel =>
+        {
+          if (!layer.ContainsDocument(dsel))
             return;
 
-          Parallel.ForEach(
-            csel.Value,
-            Configuration.ParallelOptions,
-            dsel =>
-            {
-              if (!layer.ContainsDocument(dsel))
-                return;
+          var doc = layer[dsel];
+          if (doc == null)
+            return;
 
-              var doc = layer[dsel];
-              if (doc == null)
-                return;
-
-              CalculateCall(corpus, layer, dsel, doc);
-            });
+          CalculateCall(corpus, layer, dsel, doc);
         });
+      });
 
       CalculateCleanup();
 

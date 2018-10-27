@@ -16,15 +16,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       new AbstractVocabularyComplexity
         []
         {
-          new VocabularyComplexityByBrunet1978(),
-          new VocabularyComplexityByHonore1979(),
-          new VocabularyComplexityBySichel1975(),
-          new VocabularyComplexityByYule1938(),
-          new VocabularyComplexityCarrollsCorrectedTTR(),
-          new VocabularyComplexityGuiraud1954(),
-          new VocabularyComplexityHerdan1960(),
-          new VocabularyComplexitySummersIndex(),
-          new VocabularyComplexityTypeTokenRatio()
+          
         };
 
     public Dictionary<string, Dictionary<Guid, double>> ComplexityValues { get; set; }

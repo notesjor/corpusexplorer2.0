@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
@@ -95,6 +96,9 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
 
       Parallel.ForEach(documentGuidPreFilter, Configuration.ParallelOptions, dsel =>
       {
+        if(!corpus.ContainsDocument(dsel))
+          return;
+
         var sen = GetSentenceAndWordIndices(corpus, dsel);
         if (sen == null || sen.Count == 0)
           return;
@@ -116,16 +120,38 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
       if (sentences == null || sentences.Count == 0)
         return null;
 
-      var dictionary = new Dictionary<int, HashSet<int>>();
+      var res = new Dictionary<int, HashSet<int>>();
       foreach (var sentence in sentences)
       {
         var indices = GetWordIndices(corpus, documentGuid, sentence);
         if (indices == null)
           continue;
-        dictionary.Add(sentence, new HashSet<int>(indices));
+        res.Add(sentence, new HashSet<int>(indices));
       }
 
-      return dictionary;
+      return res;
+    }
+
+    /// <summary>
+    ///   Gibt eine Auflistung aller Sätze und aller Fundstellen (Wortindex) zurück
+    /// </summary>
+    /// <param name="selection">Korpus das das Dokument enthält</param>
+    /// <param name="documentGuidPreFilter">Wenn angegeben, werden nur die angegebenen Dokumente durchsucht (müssen im Korpus enthalten sein)</param>
+    /// <returns>Key = KorpusGuid / Value => Key = DocumentGuid / Value => Key = Satzindex / Value = Fundstelle</returns>
+    public Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>> GetSentenceAndWordIndices(Selection selection, IEnumerable<Guid> documentGuidPreFilter = null)
+    {
+      var lo = new object();
+      var res = new Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>>();
+
+      Parallel.ForEach(selection, Configuration.ParallelOptions, csel =>
+      {
+        var corpus = selection.GetCorpus(csel.Key);
+        var tmp = GetSentenceAndWordIndices(corpus, documentGuidPreFilter);
+        lock (lo)
+          res.Add(csel.Key, tmp);
+      });
+
+      return res;
     }
 
     /// <summary>

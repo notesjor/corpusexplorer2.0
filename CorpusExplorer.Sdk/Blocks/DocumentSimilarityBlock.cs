@@ -27,7 +27,7 @@ namespace CorpusExplorer.Sdk.Blocks
       LayerDisplayname = "Wort";
       MinimumInversDocumentFrequency = 0.003d;
       MinimumDocumentSimilarity = 0.7d;
-      Similarity = new CosineMesure();
+      Similarity = new CosineMeasure();
     }
 
     public IEnumerable<Guid> DocumentGuids => Selection.DocumentGuids;
@@ -61,14 +61,6 @@ namespace CorpusExplorer.Sdk.Blocks
       block.Calculate();
 
       _documents = block.InverseDocumentVector;
-    }
-
-    public IEnumerable<Guid> RequestDocumentGuidByMetadata(string metaName, string metaValue)
-    {
-      var meta = Selection.DocumentMetadata;
-      return from pair in meta
-        where pair.Value.ContainsKey(metaName) && pair.Value[metaName].ToString() == metaValue
-        select pair.Key;
     }
 
     public Dictionary<Guid, double> RequestDocumentSimilarity(Guid documentGuid)

@@ -107,7 +107,7 @@ namespace CorpusExplorer.Sdk.Model
         var dic = _corpora.ToDictionary(c => c.CorpusGuid, c => new HashSet<Guid>(c.DocumentGuids));
 
         const string label = "<html>Alle Korpora & Dokumente &nbsp;<strong>(dynamisch)</strong></html>";
-        _selectionAll = Selection.Create(this, dic, label);
+        _selectionAll = Selection.Create(this, dic, label, null);
         var sels = _selections.ToArray();
         foreach (var s in sels.Where(s => s.Displayname == label))
           _selections.Remove(s);
@@ -218,24 +218,24 @@ namespace CorpusExplorer.Sdk.Model
     /// <summary>
     ///   Gets the count corpora.
     /// </summary>
-    public int CountCorpora => SelectAll.CountCorpora;
+    public int CountCorpora => SelectAll?.CountCorpora ?? 0;
 
     /// <summary>
     ///   Gets the count documents.
     /// </summary>
-    public int CountDocuments => SelectAll.CountDocuments;
+    public int CountDocuments => SelectAll?.CountDocuments ?? 0;
 
     /// <summary>
     ///   Gets the count sentences.
     /// </summary>
     /// <value>The count sentences.</value>
-    public int CountSentences => SelectAll.CountSentences;
+    public int CountSentences => SelectAll?.CountSentences ?? 0;
 
     /// <summary>
     ///   Gets the count token.
     /// </summary>
     /// <value>The count token.</value>
-    public int CountToken => SelectAll.CountToken;
+    public int CountToken => SelectAll?.CountToken ?? 0;
 
     /// <summary>
     ///   Gets the document titles.
@@ -779,6 +779,20 @@ namespace CorpusExplorer.Sdk.Model
     }
 
     /// <summary>
+    ///   The get readable multilayer document by guid.
+    /// </summary>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <returns>
+    ///   The <see cref="Dictionary{TKey,TValue}" />.
+    /// </returns>
+    public Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(Guid documentGuid, int start, int stop)
+    {
+      return ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid))?.GetReadableMultilayerDocument(documentGuid, start, stop);
+    }
+
+    /// <summary>
     ///   Layers the copy.
     /// </summary>
     /// <param name="layerDisplaynameOriginal">The layer displayname original.</param>
@@ -1003,7 +1017,6 @@ namespace CorpusExplorer.Sdk.Model
     {
       var res = (parentSelection ?? SelectAll).Create(queries, overrideSelectionDisplayname);
 
-      AddSelection(res, parentSelection);
       OnSelectionCreated();
 
       return res;
@@ -1042,7 +1055,6 @@ namespace CorpusExplorer.Sdk.Model
         corpusAndDocumentGuids,
         overrideSelectionDisplayname);
 
-      AddSelection(res, parentSelection);
       OnSelectionCreated();
 
       return res;
@@ -1235,21 +1247,6 @@ namespace CorpusExplorer.Sdk.Model
               select corpus.GetDocumentLengthInSentences(dsel)).Sum();
     }
 
-    /// <summary>
-    ///   Fügt dem Projekt eine bestehende Auswahl hinzu.
-    ///   ACHTUNG: Sollte nur verwendet werden um Selection die durch BLOCKs erzeugt wurden dem Projekt hinzuzufügen.
-    ///   Für die manuelle Selection-Erzeugung benutzen Sie bitte CreateSelection !!!
-    /// </summary>
-    /// <param name="selection">Die Selection</param>
-    /// <param name="parentSelection">Übergeordnete Selection</param>
-    private void AddSelection(Selection selection, Selection parentSelection = null)
-    {
-      if (parentSelection == null)
-        _selections.Add(selection);
-      else
-        parentSelection.AddSubSelection(selection);
-    }
-
     private static void GetDocumentMetadataPrototypeCall(
       AbstractCorpusAdapter c,
       object l,
@@ -1367,9 +1364,10 @@ namespace CorpusExplorer.Sdk.Model
         }
       };
       CurrentSelection = Selection.Create(
-        this,
-        corpusSelection,
-        $"{Resources.AllDocumentsFrom} {corpus.CorpusDisplayname}");
+                                          this,
+                                          corpusSelection,
+                                          $"{Resources.AllDocumentsFrom} {corpus.CorpusDisplayname}",
+                                          null);
       _selections.Add(CurrentSelection);
       SelectAllNew();
     }

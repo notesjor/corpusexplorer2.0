@@ -1,6 +1,6 @@
 using Nest;
 
-namespace CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter.ElasticSearchFulltext.Model
+namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter.ElasticSearchFulltext.Model
 {
   [ElasticsearchType(IdProperty = nameof(Displayname), Name = "layer")]
   public class Layer

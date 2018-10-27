@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
@@ -25,7 +26,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract
       var corpus = CreateCorpus(documentMetadata, corpusMetadata, concepts);
       foreach (var layer in layers)
         corpus.AddLayer(CreateLayer(corpus, layer));
-      return new[] {corpus};
+      return new[] { corpus };
     }
 
     protected abstract AbstractCorpusAdapter CreateCorpus(

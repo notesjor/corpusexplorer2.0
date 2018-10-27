@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Core</RootNamespace>
     <AssemblyName>CorpusExplorer.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,61 +65,31 @@
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Telerik.Windows.Documents.Core, Version=2018.2.619.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Documents.Core.for.Net40.2018.2.619\lib\net40\Telerik.Windows.Documents.Core.dll</HintPath>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2018.3.1010.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Documents.Core.for.Net40.2018.3.1010\lib\net40\Telerik.Windows.Documents.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2018.2.619.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Documents.Fixed.for.Net40.2018.2.619\lib\net40\Telerik.Windows.Documents.Fixed.dll</HintPath>
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2018.3.1010.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Documents.Fixed.for.Net40.2018.3.1010\lib\net40\Telerik.Windows.Documents.Fixed.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Flow, Version=2018.2.619.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Documents.Flow.for.Net40.2018.2.619\lib\net40\Telerik.Windows.Documents.Flow.dll</HintPath>
+    <Reference Include="Telerik.Windows.Documents.Flow, Version=2018.3.1010.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Documents.Flow.for.Net40.2018.3.1010\lib\net40\Telerik.Windows.Documents.Flow.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Pdf, Version=2018.2.619.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Documents.Flow.FormatProviders.Pdf.for.Net40.2018.2.619\lib\net40\Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
+    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Pdf, Version=2018.3.1010.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Documents.Flow.FormatProviders.Pdf.for.Net40.2018.3.1010\lib\net40\Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Zip, Version=2018.2.619.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Zip.for.Net40.2018.2.619\lib\net40\Telerik.Windows.Zip.dll</HintPath>
+    <Reference Include="Telerik.Windows.Zip, Version=2018.3.1010.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Zip.for.Net40.2018.3.1010\lib\net40\Telerik.Windows.Zip.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blocks\MtldBlock.cs" />
-    <Compile Include="Blocks\VocdBlock.cs" />
-    <Compile Include="DocumentProcessing\Scraper\Abstract\AbstractSimpleDocumentScraper.cs" />
-    <Compile Include="DocumentProcessing\Scraper\Docx\SimpleDocxDocumentScraper.cs" />
-    <Compile Include="DocumentProcessing\Scraper\Html\SimpleHtmlDocumentScraper.cs" />
-    <Compile Include="DocumentProcessing\Scraper\Pdf\SimplePdfDocumentScraper.cs" />
-    <Compile Include="DocumentProcessing\Scraper\Rtf\SimpleRtfDocumentScraper.cs" />
-    <Compile Include="DocumentProcessing\Tagger\ConllTagger\Abstract\AbstractConllStyleTagger.cs" />
-    <Compile Include="DocumentProcessing\Tagger\Helper\TaggerHelper.cs" />
-    <Compile Include="DocumentProcessing\Tagger\RawText\AdditionalTsvValueTagger.cs" />
-    <Compile Include="DocumentProcessing\Tagger\RawText\RawTextTagger.cs" />
-    <Compile Include="DocumentProcessing\Tagger\Special\AdditionalTagger.cs" />
-    <Compile Include="DocumentProcessing\Tagger\TnTTagger\TnTLocator.cs" />
-    <Compile Include="DocumentProcessing\Tagger\TnTTagger\TnTTagger.cs" />
-    <Compile Include="DocumentProcessing\Tagger\TreeTagger\Abstract\AbstractTreeTagger.cs" />
-    <Compile Include="DocumentProcessing\Tagger\TreeTagger\OwnTreeTagger.cs" />
-    <Compile Include="DocumentProcessing\Tagger\TreeTagger\Parameter\TreeTaggerLocator.cs" />
-    <Compile Include="DocumentProcessing\Tagger\TreeTagger\ClassicTreeTagger.cs" />
-    <Compile Include="DocumentProcessing\Tagger\TreeTagger\SimpleTreeTagger.cs" />
-    <Compile Include="DocumentProcessing\Tagger\UDPipe\UdPipeExeTagger.cs" />
-    <Compile Include="DocumentProcessing\Tokenizer\HighSpeedGermanTokenizer.cs" />
-    <Compile Include="DocumentProcessing\Exporter\ExporterCsv.cs" />
-    <Compile Include="DocumentProcessing\Exporter\ExporterJson.cs" />
-    <Compile Include="DocumentProcessing\Exporter\ExporterCsvMetadataOnly.cs" />
-    <Compile Include="DocumentProcessing\Exporter\ExporterPlaintext.cs" />
-    <Compile Include="DocumentProcessing\Exporter\ExporterPlaintextPure.cs" />
-    <Compile Include="DocumentProcessing\Exporter\ExporterPlaintextPureInOneFile.cs" />
-    <Compile Include="DocumentProcessing\Exporter\ExporterXml.cs" />
-    <Compile Include="DocumentProcessing\Tagger\Special\DocumentInMemoryAnalytics.cs" />
-    <Compile Include="DocumentProcessing\Exporter\Tlv\Model\TlvEntry.cs" />
-    <Compile Include="DocumentProcessing\Exporter\Tlv\TlvBuilder.cs" />
-    <Compile Include="DocumentProcessing\Exporter\Tlv\ExporterTlv.cs" />
-    <Compile Include="DocumentProcessing\Importer\TlvXml\ImporterTlv.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryManifest.cs" />
-    <Compile Include="DocumentProcessing\Scraper\Txt\CosmasScraper.cs" />
-    <Compile Include="DocumentProcessing\Tokenizer\HighSpeedGermanWikipediaTokenizer.cs" />
+    <Compile Include="Utils\DocumentProcessing\Scraper\Abstract\AbstractSimpleDocumentScraper.cs" />
+    <Compile Include="Utils\DocumentProcessing\Scraper\Docx\SimpleDocxDocumentScraper.cs" />
+    <Compile Include="Utils\DocumentProcessing\Scraper\Html\SimpleHtmlDocumentScraper.cs" />
+    <Compile Include="Utils\DocumentProcessing\Scraper\Pdf\SimplePdfDocumentScraper.cs" />
+    <Compile Include="Utils\DocumentProcessing\Scraper\Rtf\SimpleRtfDocumentScraper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj">

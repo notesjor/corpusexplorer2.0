@@ -1,13 +1,13 @@
 ﻿using System.Linq;
-using CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter.ElasticSearchFulltext.Model;
-using CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter.ElasticSearchFulltext.Model.Context;
 using CorpusExplorer.Sdk.Db.Elastic.Sdk.Context;
+using CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter.ElasticSearchFulltext.Model;
+using CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter.ElasticSearchFulltext.Model.Context;
 using CorpusExplorer.Sdk.Db.Gui;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 
-namespace CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter
+namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter
 {
   public class ExporterElasticSearchFulltext : AbstractExporter
   {

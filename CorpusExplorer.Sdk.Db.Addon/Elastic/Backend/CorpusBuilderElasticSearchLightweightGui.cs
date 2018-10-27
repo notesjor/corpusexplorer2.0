@@ -7,7 +7,7 @@ using CorpusExplorer.Sdk.Db.Gui;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 
-namespace CorpusExplorer.Sdk.Db.Addon.Elastic.Backend
+namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Backend
 {
   public class CorpusBuilderElasticSearchLightweightGui : CorpusBuilderElasticSearch
   {

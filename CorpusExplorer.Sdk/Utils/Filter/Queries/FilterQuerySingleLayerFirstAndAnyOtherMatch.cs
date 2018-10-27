@@ -5,12 +5,13 @@ using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
+using CorpusExplorer.Sdk.Utils.Filter.Interface;
 
 namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 {
   [XmlRoot]
   [Serializable]
-  public class FilterQuerySingleLayerFirstAndAnyOtherMatch : AbstractFilterQuery
+  public class FilterQuerySingleLayerFirstAndAnyOtherMatch : AbstractFilterQuery, IFilterQueryWithLayerValues
   {
     [XmlAttribute] private IEnumerable<string> _layerQueries;
     [XmlIgnore] protected Dictionary<Guid, KeyValuePair<int, HashSet<int>>> _cache;

@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
@@ -25,7 +26,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       NGramPatternSize = 0;
       NGramPattern = "###";
       LayerDisplayname = "Wort";
-      NGramMaxResults = 1000;
+      NGramMaxResults = 0;
     }
 
     /// <summary>
@@ -33,6 +34,10 @@ namespace CorpusExplorer.Sdk.ViewModel
     /// </summary>
     public Dictionary<string, int> NGramFrequency { get; set; }
 
+    /// <summary>
+    /// Limitiert die Ausgabe von GetDataTable auf die TOP-N-Gramm Frequenzen. Wenn 0 - dann keine Limitierung.
+    /// </summary>
+    /// <value>The n gram maximum results.</value>
     public int NGramMaxResults { get; set; }
 
     /// <summary>
@@ -57,23 +62,13 @@ namespace CorpusExplorer.Sdk.ViewModel
       res.Columns.Add(Resources.NGram, typeof(string));
       res.Columns.Add(Resources.Frequency, typeof(int));
 
-      res.BeginLoadData();
-      foreach (var pair in NGramFrequency)
-        res.Rows.Add(pair.Key, pair.Value);
-      res.EndLoadData();
-
-      return res;
-    }
-
-    public DataTable GetDataTable(int minimalFrequency)
-    {
-      var res = new DataTable();
-      res.Columns.Add(Resources.NGram, typeof(string));
-      res.Columns.Add(Resources.Frequency, typeof(int));
+      var data = NGramMaxResults == 0
+        ? NGramFrequency
+        : NGramFrequency.OrderByDescending(x => x.Value).Take(NGramMaxResults);
 
       res.BeginLoadData();
-      foreach (var pair in NGramFrequency)
-        if (pair.Value > minimalFrequency)
+      foreach (var pair in data)
+        if (pair.Value >= NGramMinFrequency)
           res.Rows.Add(pair.Key, pair.Value);
       res.EndLoadData();
 
@@ -83,6 +78,13 @@ namespace CorpusExplorer.Sdk.ViewModel
     public IEnumerable<string> LayerDisplaynames => Selection.LayerUniqueDisplaynames;
 
     public string LayerDisplayname { get; set; }
+
+    /// <summary>
+    /// Eigenschaft kann gesetzt werden, um die Ausgabe von GetDataTable() zu filtern.
+    /// Zum Filter/Optimieren des Blocks sollte Configuration.MinimumFrequency gesetzt werden.
+    /// </summary>
+    /// <value>The n gram minimum frequency.</value>
+    public int NGramMinFrequency { get; set; } = 0;
 
     protected override void ExecuteAnalyse()
     {

@@ -7,7 +7,7 @@ using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Utils.CorpusManipulation;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 
-namespace CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter
+namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter
 {
   public class ExporterElasticSearch : AbstractExporter
   {

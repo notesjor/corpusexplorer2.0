@@ -50,6 +50,10 @@ namespace CorpusExplorer.Sdk.Addon.Example
         new WordcloudVisualisationView()
       };
 
+    public override IEnumerable<object> AddonSideloadFeature => null;
+
+    public override IEnumerable<IAction> AddonConsoleActions => null;
+
     /// <summary>
     ///   Eindeutige Bezeichnung (Name) des Addons
     /// </summary>

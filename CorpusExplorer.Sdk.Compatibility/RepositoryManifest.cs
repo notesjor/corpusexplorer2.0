@@ -30,6 +30,10 @@ namespace CorpusExplorer.Sdk.Compatibility
 
     public override IEnumerable<IAddonView> AddonViews => null;
 
+    public override IEnumerable<IAction> AddonConsoleActions => null;
+
+    public override IEnumerable<object> AddonSideloadFeature => null;
+
     public override string Guid => "CorpusExplorer.Sdk.Compatibility";
   }
 }

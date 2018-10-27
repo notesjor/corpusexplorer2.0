@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -13,10 +14,16 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
     private readonly Regex _r = new Regex(@"<[^>]*>");
 
     public override string TableWriterTag => "F:XML";
+    public override string MimeType => "application/xml";
 
-    public override void WriteTable(DataTable table)
+    protected override void WriteHead(DataTable table)
     {
-      var columns = new List<KeyValuePair<string, Type>>();
+      WriteOutput("<items>");
+    }
+
+    protected override void WriteBody(string tid, DataTable table)
+    {
+      var columns = new List<KeyValuePair<string, Type>> { new KeyValuePair<string, Type>("tid", typeof(string)) };
       foreach (DataColumn c in table.Columns)
         columns.Add(new KeyValuePair<string, Type>(c.ColumnName, c.DataType));
 
@@ -35,13 +42,12 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       var marks = columns.ToDictionary(x => x.Key, x => $"{{{x.Key}}}");
 
       var stb = new StringBuilder();
-      stb.Append("<items>");
       foreach (DataRow row in table.Rows)
       {
         tmp = new StringBuilder(template);
         foreach (var column in columns)
         {
-          var val = row[column.Key];
+          var val = column.Key == "tid" ? tid : row[column.Key];
           if (val == null)
             tmp.Replace(marks[column.Key], string.Empty);
           else
@@ -55,9 +61,15 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
         tmp.Clear();
       }
 
-      stb.Append("</items>");
-
       WriteOutput(stb.ToString());
+    }
+
+    public override AbstractTableWriter Clone(Stream stream)
+      => new XmlTableWriter { OutputStream = stream };
+
+    protected override void WriteFooter()
+    {
+      WriteOutput("</items>");
     }
   }
 }

@@ -6,12 +6,13 @@ using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
+using CorpusExplorer.Sdk.Utils.Filter.Interface;
 
 namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 {
   [XmlRoot]
   [Serializable]
-  public class FilterQuerySingleLayerExactPhrase : AbstractFilterQuery
+  public class FilterQuerySingleLayerExactPhrase : AbstractFilterQuery, IFilterQueryWithLayerValues
   {
     [XmlAttribute("pattern")] public static readonly string SearchPattern = ".<*>.";
 
@@ -199,7 +200,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       var s = doc[sentence];
 
       var sum = queries.Count(q => q > -1);
-      var res = new List<int>();
+      var res = new HashSet<int>();
 
       for (var i = 0; sum + i < s.Length; i++)
       {

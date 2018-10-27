@@ -69,7 +69,7 @@ namespace CorpusExplorer.Sdk.ViewModel
           break;
       }
 
-      _vm.Analyse();
+      _vm.Execute();
     }
 
     protected override bool Validate()

@@ -34,7 +34,7 @@ namespace CorpusExplorer.Sdk.ViewModel
         csel =>
         {
           var corpus = Selection.GetCorpus(csel.Key);
-          var layer = corpus?.GetLayers(LayerDisplayname).FirstOrDefault();
+          var layer = corpus?.GetLayers(LayerDisplayname)?.FirstOrDefault();
           if (layer == null)
             return;
           Parallel.ForEach(csel.Value,

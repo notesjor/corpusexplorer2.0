@@ -11,7 +11,7 @@ namespace CorpusExplorer.Sdk.ViewModel
   {
     private CooccurrenceOverlappingBlock _block;
     public Dictionary<string, double> CooccurrenceFrequency { get; set; }
-
+    public bool IgnoreSentenceMarks { get; set; }
     public Dictionary<string, double> CooccurrenceSignificance { get; set; }
     public string LayerDisplayname { get; set; } = "Wort";
     public IEnumerable<string> LayerQueries { get; set; }
@@ -20,7 +20,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     public DataTable GetDataTable()
     {
       if (CooccurrenceSignificance == null)
-        Analyse();
+        Execute();
 
       var dt = new DataTable();
       dt.Columns.Add(Resources.Cooccurrence, typeof(string));
@@ -46,6 +46,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       }
 
       _block.LayerQueries = LayerQueries;
+      _block.IgnoreSentenceMarks = IgnoreSentenceMarks;
       _block.Calculate();
 
       CooccurrenceFrequency = _block.CooccurrenceFrequency;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
+using CorpusExplorer.Sdk.Blocks.NamedEntityRecognition;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 
 namespace CorpusExplorer.Sdk.Blocks
@@ -15,43 +16,29 @@ namespace CorpusExplorer.Sdk.Blocks
       if (Model == null)
         return;
 
-      var lock1 = new object();
-      DetectedEntities = new Dictionary<string, Dictionary<Guid, HashSet<int>>>();
+      DetectedEntities = new Dictionary<Entity, HashSet<Guid>>();
 
-      Parallel.ForEach(Model.Entities, Configuration.ParallelOptions, entity =>
+      foreach (var entity in Model.Entities)
       {
-        var lock2 = new object();
-        var count = new Dictionary<Guid, HashSet<int>>();
+        var count = new HashSet<Guid>();
 
-        Parallel.ForEach(entity.Rules, Configuration.ParallelOptions, rule =>
+        foreach (var rule in entity.Rules)
         {
           var sub = Selection.CreateTemporary(new[] { rule.Filter });
-          var sen = sub.GetSelectedSentences();
+          if (sub == null || sub.CountDocuments == 0)
+            continue;
 
-          lock (lock2)
-            foreach (var s in sen)
-            {
-              if (count.ContainsKey(s.Key))
-                foreach (var x in s.Value)
-                  count[s.Key].Add(x);
-              else
-                count.Add(s.Key, new HashSet<int>(s.Value));
-            }
-        });
+          foreach (var dsel in sub.DocumentGuids)
+            count.Add(dsel);
+        }
 
-        lock (lock1)
-          if (DetectedEntities.ContainsKey(entity.Name))
-            foreach (var x in count)
-              if (DetectedEntities[entity.Name].ContainsKey(x.Key))
-                foreach (var y in x.Value)
-                  DetectedEntities[entity.Name][x.Key].Add(y);
-              else
-                DetectedEntities[entity.Name].Add(x.Key, x.Value);
-          else
-            DetectedEntities.Add(entity.Name, count);
-      });
+        if (count.Count == 0)
+          continue;
+
+        DetectedEntities.Add(entity, count);
+      }
     }
 
-    public Dictionary<string, Dictionary<Guid, HashSet<int>>> DetectedEntities { get; set; }
+    public Dictionary<Entity, HashSet<Guid>> DetectedEntities { get; set; }
   }
 }

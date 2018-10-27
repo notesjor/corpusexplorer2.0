@@ -44,7 +44,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     public double MinimumDocumentSimilarity { get; set; } = 0.8d;
     public double MinimumInversDocumentFrequency { get; set; } = 0.003d;
     public string SelectedDocumentMetaProperty { get; set; }
-    public AbstractSimilarity SimilarityMeasure { get; set; } = new CosineMesure();
+    public AbstractSimilarity SimilarityMeasure { get; set; } = new CosineMeasure();
 
     public IEnumerable<string> LayerDisplaynames => Selection.LayerUniqueDisplaynames;
 
@@ -52,7 +52,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public IEnumerable<Guid> RequestDocumentGuidByMetadata(string metaValue)
     {
-      return _block.RequestDocumentGuidByMetadata(SelectedDocumentMetaProperty, metaValue);
+      return Selection.FindDocumentByMetadata(SelectedDocumentMetaProperty, metaValue);
     }
 
     public Dictionary<string, double> RequestDocumentSimilarity(Guid guid)

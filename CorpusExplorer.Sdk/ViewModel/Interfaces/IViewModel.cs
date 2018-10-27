@@ -20,6 +20,6 @@ namespace CorpusExplorer.Sdk.ViewModel.Interfaces
     ///   Führt die Analyse durch
     /// </summary>
     /// <returns>War die Analyse erfolgreich?</returns>
-    bool Analyse();
+    bool Execute();
   }
 }

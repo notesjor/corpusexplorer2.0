@@ -25,10 +25,10 @@ namespace CorpusExplorer.Sdk.Helper
       if (!dataTable.Columns.Contains(columnNameToNormalize))
         return dataTable;
 
-      var sum = dataTable.Rows.Cast<DataRow>().Sum(row => (double) row[columnNameToNormalize]);
+      var sum = dataTable.Rows.Cast<DataRow>().Sum(row => (double)row[columnNameToNormalize]);
 
       foreach (DataRow row in dataTable.Rows)
-        row[columnNameToNormalize] = Math.Round((double) row[columnNameToNormalize] / sum * denominator, round);
+        row[columnNameToNormalize] = Math.Round((double)row[columnNameToNormalize] / sum * denominator, round);
 
       return dataTable;
     }
@@ -54,8 +54,9 @@ namespace CorpusExplorer.Sdk.Helper
     {
       using (var ms = new MemoryStream())
       {
-        var tableWriter = new TsvTableWriter {OutputStream = ms};
-        tableWriter.WriteTable(dt);
+        var tableWriter = new TsvTableWriter { OutputStream = ms };
+        tableWriter.WriteTable("CorpusExplorer v2.0", dt);
+        tableWriter.Destroy(false);
         return Configuration.Encoding.GetString(ms.GetBuffer());
       }
     }
@@ -64,26 +65,25 @@ namespace CorpusExplorer.Sdk.Helper
     {
       using (var ms = new MemoryStream())
       {
-        var tableWriter = new CsvTableWriter {OutputStream = ms};
-        tableWriter.WriteTable(dt);
+        var tableWriter = new CsvTableWriter { OutputStream = ms };
+        tableWriter.WriteTable("CorpusExplorer v2.0", dt);
+        tableWriter.Destroy(false);
         return Configuration.Encoding.GetString(ms.GetBuffer());
       }
     }
 
-    public static string ToHtml5(this DataTable dt)
+    public static string ToHtml(this DataTable dt)
     {
-      return ToXmlLike(
-        dt,
-        "<!DOCTYPE html><html><head><link rel=\"stylesheet\" href=\"stylesheet.css\"></head><body><table><tr>",
-        "<th id=\"cid{2:000}\">{0}</th>",
-        "</tr>",
-        "<tr id=\"{0}\">",
-        "<td class=\"cid{0:000} v{1}\">{1}</td>",
-        "</tr>",
-        "</table></body></html>");
+      using (var ms = new MemoryStream())
+      {
+        var tableWriter = new HtmlTableWriter { OutputStream = ms };
+        tableWriter.WriteTable("CorpusExplorer v2.0", dt);
+        tableWriter.Destroy(false);
+        return Configuration.Encoding.GetString(ms.GetBuffer());
+      }
     }
 
-    public static string ToJson(this DataTable source)
+    public static string ToJsonWithoutTid(this DataTable source)
     {
       var result = new JArray();
       foreach (DataRow dr in source.Rows)
@@ -97,55 +97,26 @@ namespace CorpusExplorer.Sdk.Helper
       return result.ToString();
     }
 
-    public static string ToXml(this DataTable dt)
+    public static string ToJson(this DataTable dt)
     {
-      return ToXmlLike(
-        dt,
-        "<dataTable><columns>",
-        "<column id=\"{2}\" name=\"{0}\" type=\"{1}\"/>",
-        "</columns><rows>",
-        "<row id=\"{0}\">",
-        "<cell columnId=\"{0}\">{1}</cell>",
-        "</row>",
-        "</rows></dataTable>");
+      using (var ms = new MemoryStream())
+      {
+        var tableWriter = new JsonTableWriter { OutputStream = ms };
+        tableWriter.WriteTable("CorpusExplorer v2.0", dt);
+        tableWriter.Destroy(false);
+        return Configuration.Encoding.GetString(ms.GetBuffer());
+      }
     }
 
-    private static string ToXmlLike(
-      this DataTable dt,
-      string prefix,
-      string headItemFormat,
-      string separatorHeadBody,
-      string bodyContainerOpenFormat,
-      string bodyContainerItemFormat,
-      string bodyContainerCloseFormat,
-      string postfix)
+    public static string ToXml(this DataTable dt)
     {
-      var stb = new StringBuilder();
-      stb.Append(prefix);
-
-      var columnIndices = new List<int>();
-      for (var i = 0; i < dt.Columns.Count; i++)
+      using (var ms = new MemoryStream())
       {
-        var column = dt.Columns[i];
-        stb.AppendFormat(headItemFormat, column.ColumnName, column.DataType.FullName, i);
-        columnIndices.Add(i);
+        var tableWriter = new XmlTableWriter { OutputStream = ms };
+        tableWriter.WriteTable("CorpusExplorer v2.0", dt);
+        tableWriter.Destroy(false);
+        return Configuration.Encoding.GetString(ms.GetBuffer());
       }
-
-      stb.Append(separatorHeadBody);
-
-      for (var i = 0; i < dt.Rows.Count; i++)
-      {
-        var row = dt.Rows[i];
-        stb.AppendFormat(bodyContainerOpenFormat, i);
-
-        foreach (var index in columnIndices)
-          stb.AppendFormat(bodyContainerItemFormat, index, row[index]);
-
-        stb.Append(bodyContainerCloseFormat);
-      }
-
-      stb.Append(postfix);
-      return stb.ToString();
     }
   }
 }

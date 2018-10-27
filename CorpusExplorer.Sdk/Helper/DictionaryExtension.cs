@@ -25,20 +25,20 @@ namespace CorpusExplorer.Sdk.Helper
       var temp = new Dictionary<string, Dictionary<string, Tuple<double, double, double>>>();
 
       foreach (var dic in dictionaries)
-      foreach (var e1 in dic)
-      foreach (var e2 in e1.Value)
-      {
-        if (!temp.ContainsKey(e1.Key))
-          temp.Add(e1.Key, new Dictionary<string, Tuple<double, double, double>>());
-        if (!temp[e1.Key].ContainsKey(e2.Key))
-          temp[e1.Key].Add(e2.Key, new Tuple<double, double, double>(e2.Value, 1, e2.Value));
-        else
-          temp[e1.Key][e2.Key] =
-            new Tuple<double, double, double>(
-              e2.Value < temp[e1.Key][e2.Key].Item1 ? e2.Value : temp[e1.Key][e2.Key].Item1,
-              temp[e1.Key][e2.Key].Item2 + 1,
-              e2.Value > temp[e1.Key][e2.Key].Item3 ? e2.Value : temp[e1.Key][e2.Key].Item3);
-      }
+        foreach (var e1 in dic)
+          foreach (var e2 in e1.Value)
+          {
+            if (!temp.ContainsKey(e1.Key))
+              temp.Add(e1.Key, new Dictionary<string, Tuple<double, double, double>>());
+            if (!temp[e1.Key].ContainsKey(e2.Key))
+              temp[e1.Key].Add(e2.Key, new Tuple<double, double, double>(e2.Value, 1, e2.Value));
+            else
+              temp[e1.Key][e2.Key] =
+                new Tuple<double, double, double>(
+                  e2.Value < temp[e1.Key][e2.Key].Item1 ? e2.Value : temp[e1.Key][e2.Key].Item1,
+                  temp[e1.Key][e2.Key].Item2 + 1,
+                  e2.Value > temp[e1.Key][e2.Key].Item3 ? e2.Value : temp[e1.Key][e2.Key].Item3);
+          }
 
       return temp.ToDictionary(
         k => k.Key,
@@ -100,14 +100,14 @@ namespace CorpusExplorer.Sdk.Helper
       var temp = new Dictionary<string, Tuple<double, double, double>>();
 
       foreach (var dic in dictionaries)
-      foreach (var k in dic)
-        if (!temp.ContainsKey(k.Key))
-          temp.Add(k.Key, new Tuple<double, double, double>(k.Value, 1, k.Value));
-        else
-          temp[k.Key] = new Tuple<double, double, double>(
-            k.Value < temp[k.Key].Item1 ? k.Value : temp[k.Key].Item1,
-            temp[k.Key].Item2 + 1,
-            k.Value > temp[k.Key].Item3 ? k.Value : temp[k.Key].Item3);
+        foreach (var k in dic)
+          if (!temp.ContainsKey(k.Key))
+            temp.Add(k.Key, new Tuple<double, double, double>(k.Value, 1, k.Value));
+          else
+            temp[k.Key] = new Tuple<double, double, double>(
+              k.Value < temp[k.Key].Item1 ? k.Value : temp[k.Key].Item1,
+              temp[k.Key].Item2 + 1,
+              k.Value > temp[k.Key].Item3 ? k.Value : temp[k.Key].Item3);
 
       return temp.ToDictionary(k => k.Key, v => (v.Value.Item3 - v.Value.Item1) / v.Value.Item2);
     }
@@ -616,7 +616,7 @@ namespace CorpusExplorer.Sdk.Helper
     public static Dictionary<string, double> GetInterpolateDictionary(
       this Dictionary<string, int> dictionary)
     {
-      return GetInterpolateDictionary(dictionary.ToDictionary(x => x.Key, x => (double) x.Value));
+      return GetInterpolateDictionary(dictionary.ToDictionary(x => x.Key, x => (double)x.Value));
     }
 
     /// <summary>
@@ -626,20 +626,23 @@ namespace CorpusExplorer.Sdk.Helper
     /// <param name="dictionary">
     ///   Dicitionary
     /// </param>
+    /// <param name="denominator">
+    ///   Nenner
+    /// </param>
     /// <returns>
     ///   Normalisiertes und bereinigtes Dictionary
     /// </returns>
-    public static Dictionary<string, double> GetNormalizedDictionary(this Dictionary<string, double> dictionary)
+    public static Dictionary<string, double> GetNormalizedDictionary(this Dictionary<string, double> dictionary, double denominator = 1.0d)
     {
       if (dictionary == null)
         return null;
 
       var res = new Dictionary<string, double>();
-      var max = dictionary.Sum(x => x.Value);
+      var factor = denominator / dictionary.Sum(x => x.Value);
 
       foreach (var x in dictionary)
       {
-        var val = x.Value / max;
+        var val = x.Value * factor;
         if (!double.IsInfinity(val) &&
             !double.IsNaN(val))
           res.Add(x.Key, val);
@@ -655,20 +658,23 @@ namespace CorpusExplorer.Sdk.Helper
     /// <param name="dictionary">
     ///   Dicitionary
     /// </param>
+    /// <param name="denominator">
+    ///   Nenner
+    /// </param>
     /// <returns>
     ///   Normalisiertes und bereinigtes Dictionary
     /// </returns>
-    public static Dictionary<Guid, double> GetNormalizedDictionary(this Dictionary<Guid, double> dictionary)
+    public static Dictionary<Guid, double> GetNormalizedDictionary(this Dictionary<Guid, double> dictionary, double denominator = 1.0d)
     {
       if (dictionary == null)
         return null;
 
       var res = new Dictionary<Guid, double>();
-      var max = dictionary.Sum(x => x.Value);
+      var factor = denominator / dictionary.Sum(x => x.Value);
 
       foreach (var x in dictionary)
       {
-        var val = x.Value / max;
+        var val = x.Value * factor;
         if (!double.IsInfinity(val) &&
             !double.IsNaN(val))
           res.Add(x.Key, val);
@@ -684,20 +690,23 @@ namespace CorpusExplorer.Sdk.Helper
     /// <param name="dictionary">
     ///   Dicitionary
     /// </param>
+    /// <param name="denominator">
+    ///   Nenner
+    /// </param>
     /// <returns>
     ///   Normalisiertes und bereinigtes Dictionary
     /// </returns>
-    public static Dictionary<string, double> GetNormalizedDictionary(this Dictionary<string, int> dictionary)
+    public static Dictionary<string, double> GetNormalizedDictionary(this Dictionary<string, int> dictionary, double denominator = 1.0d)
     {
       if (dictionary == null)
         return null;
 
       var res = new Dictionary<string, double>();
-      var max = (double) dictionary.Sum(x => x.Value);
+      var factor = denominator / (double)dictionary.Sum(x => x.Value);
 
       foreach (var x in dictionary)
       {
-        var val = x.Value / max;
+        var val = x.Value * factor;
         if (!double.IsInfinity(val) &&
             !double.IsNaN(val))
           res.Add(x.Key, val);
@@ -713,24 +722,66 @@ namespace CorpusExplorer.Sdk.Helper
     /// <param name="dictionary">
     ///   Dicitionary
     /// </param>
+    /// <param name="denominator">
+    ///   Nenner
+    /// </param>
     /// <returns>
     ///   Normalisiertes und bereinigtes Dictionary
     /// </returns>
     public static Dictionary<string, Dictionary<string, double>> GetNormalizedDictionary(
-      this Dictionary<string, Dictionary<string, double>> dictionary)
+      this Dictionary<string, Dictionary<string, double>> dictionary, double denominator = 1.0d)
     {
       if (dictionary == null)
         return null;
 
       var res = new Dictionary<string, Dictionary<string, double>>();
-      var max = dictionary.SelectMany(e1 => e1.Value).Sum(e2 => e2.Value);
+      var factor = denominator / dictionary.SelectMany(e1 => e1.Value).Sum(e2 => e2.Value);
 
       foreach (var e1 in dictionary)
       {
         var values = new Dictionary<string, double>();
         foreach (var e2 in e1.Value)
         {
-          var val = e2.Value / max;
+          var val = e2.Value * factor;
+          if (!double.IsInfinity(val) && !double.IsNaN(val))
+            values.Add(e2.Key, val);
+        }
+
+        if (values.Count > 0)
+          res.Add(e1.Key, values);
+      }
+
+      return res;
+    }
+
+    /// <summary>
+    ///   Normalisiert ein Dictionary indem es die relative Häufigkeit berechnet und die Werte entfernt,
+    ///   die unter der minimumPercentage liegen.
+    /// </summary>
+    /// <param name="dictionary">
+    ///   Dicitionary
+    /// </param>
+    /// <param name="denominator">
+    ///   Nenner
+    /// </param>
+    /// <returns>
+    ///   Normalisiertes und bereinigtes Dictionary
+    /// </returns>
+    public static Dictionary<string, Dictionary<string, double>> GetNormalizedDictionary(
+      this Dictionary<string, Dictionary<string, int>> dictionary, double denominator = 1.0d)
+    {
+      if (dictionary == null)
+        return null;
+
+      var res = new Dictionary<string, Dictionary<string, double>>();
+      var factor = denominator / (double)dictionary.SelectMany(e1 => e1.Value).Sum(e2 => e2.Value);
+
+      foreach (var e1 in dictionary)
+      {
+        var values = new Dictionary<string, double>();
+        foreach (var e2 in e1.Value)
+        {
+          var val = e2.Value * factor;
           if (!double.IsInfinity(val) &&
               !double.IsNaN(val))
             values.Add(e2.Key, val);
@@ -750,54 +801,20 @@ namespace CorpusExplorer.Sdk.Helper
     /// <param name="dictionary">
     ///   Dicitionary
     /// </param>
-    /// <returns>
-    ///   Normalisiertes und bereinigtes Dictionary
-    /// </returns>
-    public static Dictionary<string, Dictionary<string, double>> GetNormalizedDictionary(
-      this Dictionary<string, Dictionary<string, int>> dictionary)
-    {
-      if (dictionary == null)
-        return null;
-
-      var res = new Dictionary<string, Dictionary<string, double>>();
-      var max = (double) dictionary.SelectMany(e1 => e1.Value).Sum(e2 => e2.Value);
-
-      foreach (var e1 in dictionary)
-      {
-        var values = new Dictionary<string, double>();
-        foreach (var e2 in e1.Value)
-        {
-          var val = e2.Value / max;
-          if (!double.IsInfinity(val) &&
-              !double.IsNaN(val))
-            values.Add(e2.Key, val);
-        }
-
-        if (values.Count > 0)
-          res.Add(e1.Key, values);
-      }
-
-      return res;
-    }
-
-    /// <summary>
-    ///   Normalisiert ein Dictionary indem es die relative Häufigkeit berechnet und die Werte entfernt,
-    ///   die unter der minimumPercentage liegen.
-    /// </summary>
-    /// <param name="dictionary">
-    ///   Dicitionary
+    /// <param name="denominator">
+    ///   Nenner
     /// </param>
     /// <returns>
     ///   Normalisiertes und bereinigtes Dictionary
     /// </returns>
     public static Dictionary<string, Dictionary<string, Dictionary<string, double>>> GetNormalizedDictionary(
-      this Dictionary<string, Dictionary<string, Dictionary<string, double>>> dictionary)
+      this Dictionary<string, Dictionary<string, Dictionary<string, double>>> dictionary, double denominator = 1.0d)
     {
       if (dictionary == null)
         return null;
 
       var res = new Dictionary<string, Dictionary<string, Dictionary<string, double>>>();
-      var max = (from pos in dictionary from lem in pos.Value from wor in lem.Value select wor.Value).Sum();
+      var factor = denominator / (from pos in dictionary from lem in pos.Value from wor in lem.Value select wor.Value).Sum();
 
       foreach (var e1 in dictionary)
       {
@@ -807,7 +824,7 @@ namespace CorpusExplorer.Sdk.Helper
           var dic2 = new Dictionary<string, double>();
           foreach (var e3 in e2.Value)
           {
-            var value = e3.Value / max;
+            var value = e3.Value * factor;
             if (!double.IsInfinity(value) &&
                 !double.IsNaN(value))
               dic2.Add(e3.Key, value);
@@ -834,6 +851,31 @@ namespace CorpusExplorer.Sdk.Helper
       var res = new DataTable();
       res.Columns.Add("Key", typeof(string));
       res.Columns.Add("Value", typeof(double));
+      return res;
+    }
+
+    /// <summary>
+    /// Durchsucht ein Dictionary/Dictionary und gibt alle Werte zurück.
+    /// Ideal für CrossFrequency und Cooccurrence - Wenn kein FullDictionary möglich ist.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="dictionary">The dictionary.</param>
+    /// <param name="query">The query.</param>
+    /// <returns>Dictionary&lt;System.String, T&gt;.</returns>
+    public static Dictionary<string, T> Search<T>(this Dictionary<string, Dictionary<string, T>> dictionary, string query)
+    {
+      var res = new Dictionary<string, T>();
+      foreach (var x in dictionary)
+      {
+        if (x.Key == query)
+        {
+          foreach (var y in x.Value)
+            if (!res.ContainsKey(y.Key))
+              res.Add(y.Key, y.Value);
+        }
+        else if (x.Value.ContainsKey(query) && !res.ContainsKey(x.Key))
+          res.Add(x.Key, x.Value[query]);
+      }
       return res;
     }
   }

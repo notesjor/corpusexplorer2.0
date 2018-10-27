@@ -11,7 +11,7 @@ namespace CorpusExplorer.Sdk.Blocks.Similarity
   ///   The cosine mesure.
   /// </summary>
   [Serializable]
-  public class CosineMesure : AbstractSimilarity
+  public class CosineMeasure : AbstractSimilarity
   {
     /// <summary>
     ///   The calculate similarity.

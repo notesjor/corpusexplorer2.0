@@ -12,7 +12,7 @@ namespace CorpusExplorer.Sdk.Blocks
   {
     private Dictionary<string, Dictionary<string, double>> _crossFrequency;
     public Dictionary<string, double> CooccurrenceFrequency { get; set; }
-
+    public bool IgnoreSentenceMarks { get; set; }
     public Dictionary<string, double> CooccurrenceSignificance { get; set; }
     public string LayerDisplayname { get; set; } = "Wort";
     public IEnumerable<string> LayerQueries { get; set; }
@@ -41,8 +41,7 @@ namespace CorpusExplorer.Sdk.Blocks
         return;
       var sentences = Selection.CountSentences;
 
-      if (_crossFrequency == null)
-        CalculateCrossFrequency();
+      CalculateCrossFrequency();
 
       var cflock = new object();
       Parallel.ForEach(
@@ -51,7 +50,7 @@ namespace CorpusExplorer.Sdk.Blocks
         csel =>
         {
           var corpus = Selection.GetCorpus(csel.Key);
-          var layer = corpus?.GetLayers(LayerDisplayname).FirstOrDefault();
+          var layer = corpus?.GetLayers(LayerDisplayname)?.FirstOrDefault();
           if (layer == null)
             return;
 
@@ -105,10 +104,20 @@ namespace CorpusExplorer.Sdk.Blocks
 
     private void CalculateCrossFrequency()
     {
-      var block = Selection.CreateBlock<CrossFrequencyBlock>();
-      block.LayerDisplayname = LayerDisplayname;
-      block.Calculate();
-      _crossFrequency = block.CooccurrencesFrequency;
+      if (IgnoreSentenceMarks)
+      {
+        var block = Selection.CreateBlock<CrossFrequencyDocumentBasedBlock>();
+        block.LayerDisplayname = LayerDisplayname;
+        block.Calculate();
+        _crossFrequency = block.CooccurrencesFrequency;
+      }
+      else
+      {
+        var block = Selection.CreateBlock<CrossFrequencyBlock>();
+        block.LayerDisplayname = LayerDisplayname;
+        block.Calculate();
+        _crossFrequency = block.CooccurrencesFrequency;
+      }
     }
   }
 }

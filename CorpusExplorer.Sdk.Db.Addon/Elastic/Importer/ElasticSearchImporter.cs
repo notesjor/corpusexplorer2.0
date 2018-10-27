@@ -8,7 +8,7 @@ using CorpusExplorer.Sdk.Db.Elastic.Sdk.Context;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
-namespace CorpusExplorer.Sdk.Db.Addon.Elastic.Importer
+namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Importer
 {
   public class ElasticSearchImporter : AbstractImporter
   {

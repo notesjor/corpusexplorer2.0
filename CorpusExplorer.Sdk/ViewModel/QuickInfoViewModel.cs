@@ -1,5 +1,6 @@
 ﻿#region
 
+using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
 
@@ -21,7 +22,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     {
       CounterCorpora = Selection.CountCorpora;
       CounterDocuments = Selection.CountDocuments;
-      CounterLayers = Selection.LayerGuids.Count();
+      CounterLayers = new HashSet<string>(Selection.LayerDisplaynames).Count();
       CounterTokens = Selection.CountToken;
     }
 

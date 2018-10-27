@@ -22,7 +22,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     public void GenerateCleanSelection()
     {
       if (!_done)
-        Analyse();
+        Execute();
 
       Selection.Create(IndividualDocuments, $"{Selection.Displayname} (CLEAN)");
     }

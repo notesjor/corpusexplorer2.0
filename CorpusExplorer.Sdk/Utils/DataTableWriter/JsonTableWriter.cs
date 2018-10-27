@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.DataTableWriter
@@ -10,10 +12,16 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
   public class JsonTableWriter : AbstractTableWriter
   {
     public override string TableWriterTag => "F:JSON";
+    public override string MimeType => "application/json";
 
-    public override void WriteTable(DataTable table)
+    protected override void WriteHead(DataTable table)
     {
-      var columns = new List<KeyValuePair<string, Type>>();
+      WriteOutput("[");
+    }
+
+    protected override void WriteBody(string tid, DataTable table)
+    {
+      var columns = new List<KeyValuePair<string, Type>> { new KeyValuePair<string, Type>("tid", typeof(string)) };
       foreach (DataColumn c in table.Columns)
         columns.Add(new KeyValuePair<string, Type>(c.ColumnName, c.DataType));
 
@@ -29,28 +37,40 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       var marks = columns.ToDictionary(x => x.Key, x => $"{{{x.Key}}}");
 
       var stb = new StringBuilder();
-      stb.Append("[");
-      foreach (DataRow row in table.Rows)
+      var slo = new object();
+
+      Parallel.ForEach(table.AsEnumerable(), row =>
       {
-        tmp = new StringBuilder(template);
+        var r = new StringBuilder(template);
         foreach (var column in columns)
         {
-          var val = row[column.Key];
+          var val = column.Key == "tid" ? tid : row[column.Key];
           if (val == null)
-            tmp.Replace(marks[column.Key], column.Value == typeof(string) ? string.Empty : "null");
+            r.Replace(marks[column.Key], column.Value == typeof(string) ? string.Empty : "null");
           else
-            tmp.Replace(marks[column.Key],
-              column.Value == typeof(string) ? val.ToString() : val.ToString().Replace(",", "."));
+            r.Replace(marks[column.Key],
+                      column.Value == typeof(string)
+                        ? val.ToString().Replace("\"", "\\\"")
+                        : val.ToString().Replace(",", "."));
         }
 
-        stb.Append(tmp);
-        tmp.Clear();
-      }
+        lock (slo)
+          stb.Append(r);
+      });
 
       stb.Remove(stb.Length - 1, 1);
-      stb.Append("]");
 
       WriteOutput(stb.ToString());
+      WriteOutput(",");
     }
+
+    protected override void WriteFooter()
+    {
+      OutputStream.Seek(-1, SeekOrigin.End);
+      WriteOutput("]");
+    }
+
+    public override AbstractTableWriter Clone(Stream stream)
+      => new JsonTableWriter { OutputStream = stream };
   }
 }

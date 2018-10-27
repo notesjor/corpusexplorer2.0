@@ -16,33 +16,54 @@ namespace CorpusExplorer.Sdk.Helper
     {
       var res = new Dictionary<Guid, Selection>();
 
-      var selDat = listStream.Split(new[] {"?"}, StringSplitOptions.RemoveEmptyEntries);
-      foreach (var sD in selDat)
+      try
       {
-        var dic = new Dictionary<Guid, HashSet<Guid>>();
-
-        var corpora = sD.Split(new[] {"#"}, StringSplitOptions.RemoveEmptyEntries);
-        for (var i = 1; i < corpora.Length; i++)
+        var selDat = listStream.Split(new[] {"?"}, StringSplitOptions.RemoveEmptyEntries);
+        foreach (var sD in selDat)
         {
-          var items = corpora[i].Split(new[] {">"}, StringSplitOptions.RemoveEmptyEntries);
-          if (items.Length < 2)
-            continue;
+          try
+          {
+            var dic = new Dictionary<Guid, HashSet<Guid>>();
 
-          var docs = new HashSet<Guid>();
-          for (var j = 1; j < items.Length; j++)
-            docs.Add(Guid.Parse(items[j]));
+            var corpora = sD.Split(new[] {"#"}, StringSplitOptions.RemoveEmptyEntries);
+            for (var i = 1; i < corpora.Length; i++)
+            {
+              try
+              {
+                var items = corpora[i].Split(new[] {">"}, StringSplitOptions.RemoveEmptyEntries);
+                if (items.Length < 2)
+                  continue;
 
-          dic.Add(Guid.Parse(items[0]), docs);
+                var docs = new HashSet<Guid>();
+                for (var j = 1; j < items.Length; j++)
+                  docs.Add(Guid.Parse(items[j]));
+
+                dic.Add(Guid.Parse(items[0]), docs);
+              }
+              catch
+              {
+                // ignore
+              }
+            }
+
+            var head = corpora[0].Split(new[] {"="}, StringSplitOptions.RemoveEmptyEntries);
+            var selection = project.CreateSelection(dic, DisplaynameDecoder(head[2]),
+                                                    head[1] == "ROOT" ? null : res[Guid.Parse(head[1])]);
+
+            if (head.Length == 4 && !string.IsNullOrEmpty(head[3]))
+              selection.Queries = QueryDecoder(head[3]);
+
+            res.Add(Guid.Parse(head[0]), selection);
+          }
+          catch
+          {
+            // ignore
+          }
         }
-
-        var head = corpora[0].Split(new[] {"="}, StringSplitOptions.RemoveEmptyEntries);
-        var selection = project.CreateSelection(dic, DisplaynameDecoder(head[2]),
-          head[1] == "ROOT" ? null : res[Guid.Parse(head[1])]);
-
-        if (head.Length == 4 && !string.IsNullOrEmpty(head[3]))
-          selection.Queries = QueryDecoder(head[3]);
-
-        res.Add(Guid.Parse(head[0]), selection);
+      }
+      catch
+      {
+        // ignore
       }
     }
 

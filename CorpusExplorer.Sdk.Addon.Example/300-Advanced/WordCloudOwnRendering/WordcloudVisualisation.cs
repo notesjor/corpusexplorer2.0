@@ -29,7 +29,7 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering
         return;
 
       var vm = new CooccurrenceViewModel {Selection = _selection};
-      vm.Analyse();
+      vm.Execute();
 
       /*
       var dic = vm.Search(txt_query.Text.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries));

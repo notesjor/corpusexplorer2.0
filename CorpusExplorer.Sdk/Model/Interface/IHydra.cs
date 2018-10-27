@@ -522,6 +522,25 @@ namespace CorpusExplorer.Sdk.Model.Interface
     Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(Guid documentGuid);
 
     /// <summary>
+    ///   The get readable multilayer document by guid.
+    /// </summary>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <param name="start">
+    ///   The start.
+    /// </param>
+    /// <param name="stop">
+    ///   The stop.
+    /// </param>
+    /// <returns>
+    ///   Key = Layername / Value => Text 0-Dim = Sentence / 1-Dim = Word
+    /// </returns>
+    Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(Guid documentGuid,
+                                                                                       int start,
+                                                                                       int stop);
+
+    /// <summary>
     ///   Layers the copy.
     /// </summary>
     /// <param name="layerDisplaynameOriginal">The layer displayname original.</param>

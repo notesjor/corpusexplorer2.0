@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
-using CorpusExplorer.Sdk.Db.Addon.Elastic.Backend;
-using CorpusExplorer.Sdk.Db.Addon.Elastic.Exporter;
-using CorpusExplorer.Sdk.Db.Addon.Elastic.Importer;
+using CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Backend;
+using CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter;
+using CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Importer;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
 
-namespace CorpusExplorer.Sdk.Db.Addon
+namespace CorpusExplorer.Sdk.Db.ElasticSearch
 {
   public class PluginRepository : AbstractAddonRepository
   {
@@ -36,7 +36,9 @@ namespace CorpusExplorer.Sdk.Db.Addon
 
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers => null;
     public override IEnumerable<AbstractTagger> AddonTagger => null;
+    public override IEnumerable<IAction> AddonConsoleActions => null;
     public override IEnumerable<IAddonView> AddonViews => null;
+    public override IEnumerable<object> AddonSideloadFeature => null;
     public override string Guid => "CorpusExplorer.Sdk.Db.ElasticSearch";
   }
 }

@@ -27,7 +27,8 @@ namespace CorpusExplorer.Sdk.ViewModel
       using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
       {
         var tableWriter = new TsvTableWriter {OutputStream = fs};
-        tableWriter.WriteTable(DataTable);
+        tableWriter.WriteTable("CorpusExplorer v2.0", DataTable);
+        tableWriter.Destroy();
       }
     }
 

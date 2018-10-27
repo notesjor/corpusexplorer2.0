@@ -76,23 +76,23 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     ///   Auflistung - CorpusGuid / DocumentGuids des Korpus
     /// </summary>
     public IEnumerable<KeyValuePair<Guid, IEnumerable<Guid>>> CorporaAndDocumentGuids
-      => new Dictionary<Guid, IEnumerable<Guid>> {{CorpusGuid, DocumentGuids}};
+      => new Dictionary<Guid, IEnumerable<Guid>> { { CorpusGuid, DocumentGuids } };
 
     /// <summary>
     ///   Gets the selected corpora displaynames.
     /// </summary>
-    public IEnumerable<string> CorporaDisplaynames => new[] {CorpusDisplayname};
+    public IEnumerable<string> CorporaDisplaynames => new[] { CorpusDisplayname };
 
     /// <summary>
     ///   Auflistung aller Corpora per GUID
     /// </summary>
-    public IEnumerable<Guid> CorporaGuids => new[] {CorpusGuid};
+    public IEnumerable<Guid> CorporaGuids => new[] { CorpusGuid };
 
     /// <summary>
     ///   Gets the corpora guids and displaynames.
     /// </summary>
     public IEnumerable<KeyValuePair<Guid, string>> CorporaGuidsAndDisplaynames
-      => new Dictionary<Guid, string> {{CorpusGuid, CorpusDisplayname}};
+      => new Dictionary<Guid, string> { { CorpusGuid, CorpusDisplayname } };
 
     /// <summary>
     ///   Gets the count corpora.
@@ -181,7 +181,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     /// </returns>
     public IEnumerable<Guid> FindDocumentByMetadata(string exampleKey, object exampleValue)
     {
-      return FindDocumentByMetadata(new Dictionary<string, object> {{exampleKey, exampleValue}});
+      return FindDocumentByMetadata(new Dictionary<string, object> { { exampleKey, exampleValue } });
     }
 
     /// <summary>
@@ -216,7 +216,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     /// </returns>
     public IEnumerable<AbstractCorpusAdapter> GetCorpora(string displayname)
     {
-      return displayname == CorpusDisplayname ? new[] {this} : null;
+      return displayname == CorpusDisplayname ? new[] { this } : null;
     }
 
     /// <summary>
@@ -385,14 +385,14 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
         return defaultValue;
       var data = meta[metaKey];
       if (data is T)
-        return (T) data;
+        return (T)data;
       return defaultValue;
     }
 
     public Dictionary<Guid, T> GetDocumentMetadata<T>(string metaKey, T defaultValue)
     {
       return DocumentMetadata.Where(x => x.Value.ContainsKey(metaKey) && x.Value[metaKey] is T)
-        .ToDictionary(x => x.Key, x => (T) x.Value[metaKey]);
+        .ToDictionary(x => x.Key, x => (T)x.Value[metaKey]);
     }
 
     /// <summary>
@@ -566,6 +566,35 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     /// </returns>
     public abstract Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(
       Guid documentGuid);
+
+    public Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(
+      Guid documentGuid, int start, int stop)
+    {
+      var doc = GetReadableMultilayerDocument(documentGuid);
+      if (doc == null) return null;
+      if (start < 0)
+        start = 0;
+
+      var res = new Dictionary<string, IEnumerable<IEnumerable<string>>>();
+      foreach (var d in doc)
+      {
+        try
+        {
+          var arr = d.Value.ToArray();
+          stop++;
+          var max = stop > arr.Length ? arr.Length : stop;
+          var cpy = new List<IEnumerable<string>>();
+          for (var i = start; i < max; i++)
+            cpy.Add(arr[i]);
+          res.Add(d.Key, cpy);
+        }
+        catch
+        {
+          // ignore
+        }
+      }
+      return res;
+    }
 
     /// <summary>
     ///   Layers the copy.

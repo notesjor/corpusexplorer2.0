@@ -1,6 +1,7 @@
 ﻿#region
 
 using System.Collections.Generic;
+using System.Linq;
 using Bcs.Addon;
 using Bcs.Addon.Interfaces;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
@@ -94,8 +95,19 @@ namespace CorpusExplorer.Sdk.Addon
     public abstract IEnumerable<AbstractTagger> AddonTagger { get; }
 
     /// <summary>
+    ///   Externe Analysemodule für die Konsole
+    /// </summary>
+    public abstract IEnumerable<IAction> AddonConsoleActions { get; }
+
+    /// <summary>
     ///   Externe Analysemodule.
     /// </summary>
     public abstract IEnumerable<IAddonView> AddonViews { get; }
+
+    /// <summary>
+    /// Funktionen die per Sideload zur Verfügung gestellt werden.
+    /// </summary>
+    /// <value>The sideload feature.</value>
+    public abstract IEnumerable<object> AddonSideloadFeature { get; }
   }
 }

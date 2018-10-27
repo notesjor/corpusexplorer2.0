@@ -40,6 +40,10 @@ namespace CorpusExplorer.Sdk.Model
 
     [XmlIgnore] [NonSerialized] private int _countToken = -1;
 
+    [XmlIgnore] [NonSerialized] private int _countTokenMatches = -1;
+
+    [XmlIgnore] [NonSerialized] private int _countSentenceMatches = -1;
+
     [XmlIgnore] [NonSerialized] private Dictionary<Guid, Dictionary<string, object>> _documentMetadata;
 
     [XmlIgnore] [NonSerialized] private Project _project;
@@ -249,6 +253,9 @@ namespace CorpusExplorer.Sdk.Model
     public int CountDocuments => _selection.Sum(pair => pair.Value.Count);
 
     [XmlIgnore]
+    public bool IsEmpty => _selection == null || _selection.Count == 0 || _selection.Sum(pair => pair.Value.Count) == 0;
+
+    [XmlIgnore]
     public int CountSentences
     {
       get
@@ -290,6 +297,56 @@ namespace CorpusExplorer.Sdk.Model
         }
 
         return _countToken;
+      }
+    }
+
+    [XmlIgnore]
+    public int CountTokenMatches
+    {
+      get
+      {
+        if (_countTokenMatches > -1)
+          return _countTokenMatches;
+
+        if (Queries == null || Queries.Length == 0)
+          _countTokenMatches = CountToken; // Falls keine Queries gesetzt, selektiere alles
+        else
+        {
+          _countTokenMatches = 0;
+
+          foreach (var q in Queries)
+          {
+            var matches = q.GetSentenceAndWordIndices(this);
+            _countTokenMatches += matches.SelectMany(x => x.Value).SelectMany(x => x.Value).SelectMany(x => x.Value).Count();
+          }
+        }
+
+        return _countTokenMatches;
+      }
+    }
+
+    [XmlIgnore]
+    public int CountSentenceMatches
+    {
+      get
+      {
+        if (_countSentenceMatches > -1)
+          return _countSentenceMatches;
+
+        if (Queries == null || Queries.Length == 0)
+          _countSentenceMatches = CountSentences; // Falls keine Queries gesetzt, selektiere alles
+        else
+        {
+          _countSentenceMatches = 0;
+
+          foreach (var q in Queries)
+          {
+            var matches = q.GetSentenceAndWordIndices(this);
+            _countSentenceMatches += matches.SelectMany(x => x.Value).SelectMany(x => x.Value).Count();
+          }
+        }
+
+        return _countSentenceMatches;
       }
     }
 
@@ -371,7 +428,7 @@ namespace CorpusExplorer.Sdk.Model
     /// </returns>
     public IEnumerable<Guid> FindDocumentByMetadata(string exampleKey, object exampleValue)
     {
-      return FindDocumentByMetadata(new Dictionary<string, object> {{exampleKey, exampleValue}});
+      return FindDocumentByMetadata(new Dictionary<string, object> { { exampleKey, exampleValue } });
     }
 
     /// <summary>
@@ -579,12 +636,12 @@ namespace CorpusExplorer.Sdk.Model
       var res = new Dictionary<string, HashSet<object>>();
 
       foreach (var x in meta)
-      foreach (var y in x.Value)
-      {
-        if (!res.ContainsKey(y.Key))
-          res.Add(y.Key, new HashSet<object>());
-        res[y.Key].Add(y.Value);
-      }
+        foreach (var y in x.Value)
+        {
+          if (!res.ContainsKey(y.Key))
+            res.Add(y.Key, new HashSet<object>());
+          res[y.Key].Add(y.Value);
+        }
 
       return res;
     }
@@ -666,10 +723,10 @@ namespace CorpusExplorer.Sdk.Model
     public AbstractLayerAdapter GetLayerOfDocument(Guid documentGuid, string layerDisplayname)
     {
       return (from csel in _selection
-        select Project.GetCorpus(csel.Key)
+              select Project.GetCorpus(csel.Key)
         into corpus
-        where corpus != null && corpus.ContainsDocument(documentGuid)
-        select corpus.GetLayerOfDocument(documentGuid, layerDisplayname)).FirstOrDefault();
+              where corpus != null && corpus.ContainsDocument(documentGuid)
+              select corpus.GetLayerOfDocument(documentGuid, layerDisplayname)).FirstOrDefault();
     }
 
     /// <summary>
@@ -702,10 +759,10 @@ namespace CorpusExplorer.Sdk.Model
     public IEnumerable<AbstractLayerAdapter> GetLayersOfDocument(Guid documentGuid)
     {
       return (from csel in _selection
-        select Project.GetCorpus(csel.Key)
+              select Project.GetCorpus(csel.Key)
         into corpus
-        where corpus != null && corpus.ContainsDocument(documentGuid)
-        select corpus.GetLayersOfDocument(documentGuid)).FirstOrDefault();
+              where corpus != null && corpus.ContainsDocument(documentGuid)
+              select corpus.GetLayersOfDocument(documentGuid)).FirstOrDefault();
     }
 
     /// <summary>
@@ -718,11 +775,11 @@ namespace CorpusExplorer.Sdk.Model
       var res = new HashSet<string>();
 
       foreach (var value in from csel in Project.CorporaGuids
-        select Project.GetCorpus(csel)
+                            select Project.GetCorpus(csel)
         into corpus
-        from layer in corpus.GetLayers(layerDisplayname)
-        from value in layer.Values
-        select value)
+                            from layer in corpus.GetLayers(layerDisplayname)
+                            from value in layer.Values
+                            select value)
         res.Add(value);
 
       return res;
@@ -799,6 +856,20 @@ namespace CorpusExplorer.Sdk.Model
     public Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(Guid documentGuid)
     {
       return Project.GetReadableMultilayerDocument(documentGuid);
+    }
+
+    /// <summary>
+    ///   The get readable multilayer document by guid.
+    /// </summary>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <returns>
+    ///   The <see cref="Dictionary{TKey,TValue}" />.
+    /// </returns>
+    public Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(Guid documentGuid, int start, int stop)
+    {
+      return Project.GetReadableMultilayerDocument(documentGuid, start, stop);
     }
 
     /// <summary>
@@ -972,11 +1043,13 @@ namespace CorpusExplorer.Sdk.Model
       Project project,
       Dictionary<Guid, HashSet<Guid>> definition,
       string displayname,
+      Selection parent,
       IEnumerable<AbstractFilterQuery> queriesForReproduction = null)
     {
       var date = DateTime.Now;
       var res = new Selection
       {
+        _guid = Guid.NewGuid(),
         _selection = definition,
         Project = project,
         Displayname = displayname ?? $"Auswahl ({date.ToString(Resources.DateTimeFormat_Long)})",
@@ -986,17 +1059,35 @@ namespace CorpusExplorer.Sdk.Model
       res.Metadata.Add(Resources.Created, date);
       res.Metadata.Add(Resources.Label, res.Displayname);
 
+      parent?._subSelections.Add(res);
+
       return res;
     }
 
     public Selection Create(IEnumerable<Guid> guids, string displayname)
+      => Create(Project, DocumentGuidsToSelectionDictionary(guids), displayname, this);
+
+    private Dictionary<Guid, HashSet<Guid>> DocumentGuidsToSelectionDictionary(IEnumerable<Guid> guids)
     {
-      return Project.CreateSelection(guids, displayname, this);
+      var dic = new Dictionary<Guid, HashSet<Guid>>();
+      foreach (var guid in guids)
+      {
+        var csel = GetCorpusGuidOfDocument(guid);
+        if (csel == Guid.Empty)
+          continue;
+
+        if (dic.ContainsKey(csel))
+          dic[csel].Add(guid);
+        else
+          dic.Add(csel, new HashSet<Guid> { guid });
+      }
+
+      return dic;
     }
 
     public Selection Create(Dictionary<Guid, HashSet<Guid>> definition, string displayName)
     {
-      return Create(Project, definition, displayName);
+      return Create(Project, definition, displayName, this);
     }
 
     /// <summary>
@@ -1007,8 +1098,11 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns></returns>
     public Selection Create(IEnumerable<AbstractFilterQuery> queries, string displayName)
     {
+      if (queries == null)
+        return null;
+
       var q = queries.ToArray();
-      return Create(Project, QueryFilter.SearchOnDocumentLevel(this, q), displayName, q);
+      return Create(Project, QueryFilter.SearchOnDocumentLevel(this, q), displayName, this, q);
     }
 
     /// <summary>
@@ -1027,35 +1121,28 @@ namespace CorpusExplorer.Sdk.Model
 
     public Selection CreateTemporary(Dictionary<Guid, HashSet<Guid>> definition)
     {
-      return new Selection {_selection = definition, Displayname = Resources.TemporarySelection, Project = Project};
+      return new Selection
+      {
+        _guid = Guid.NewGuid(),
+        _selection = definition,
+        Displayname = Resources.TemporarySelection,
+        Project = Project
+      };
     }
 
     public Selection CreateTemporary(IEnumerable<Guid> definition)
-    {
-      var res = CorporaGuids.ToDictionary(guid => guid, guid => new HashSet<Guid>());
-      foreach (var g in definition)
-      {
-        var guid = GetCorpusGuidOfDocument(g);
-        if (guid != Guid.Empty &&
-            res.ContainsKey(guid))
-          res[guid].Add(g);
-      }
-
-      return new Selection {_selection = res, Displayname = Resources.TemporarySelection, Project = Project};
-    }
+      => CreateTemporary(DocumentGuidsToSelectionDictionary(definition));
 
     public Selection CreateTemporary(IEnumerable<AbstractFilterQuery> queries)
     {
       if (queries == null)
         return null;
 
-      return new Selection
-      {
-        Queries = queries.ToArray(),
-        _selection = QueryFilter.SearchOnDocumentLevel(this, queries),
-        Displayname = Resources.TemporarySelection,
-        Project = Project
-      };
+      var q = queries.ToArray();
+      var res = CreateTemporary(QueryFilter.SearchOnDocumentLevel(this, q));
+      res.Queries = q;
+
+      return res;
     }
 
     public Dictionary<Guid, int[]> GetSelectedSentences()
@@ -1063,6 +1150,7 @@ namespace CorpusExplorer.Sdk.Model
       if (Queries == null)
         return null;
 
+      var loc = new object();
       var res = new Dictionary<Guid, int[]>();
       Parallel.ForEach(this, csel =>
       {
@@ -1076,7 +1164,17 @@ namespace CorpusExplorer.Sdk.Model
           if (sentences.Length == 0)
             return;
 
-          res.Add(dsel, sentences);
+          lock (loc)
+            if (res.ContainsKey(dsel))
+            {
+              var hs = new HashSet<int>(res[dsel]);
+              foreach (var sentence in sentences)
+                hs.Add(sentence);
+
+              res[dsel] = hs.ToArray();
+            }
+            else
+              res.Add(dsel, sentences);
         });
       });
 
@@ -1097,7 +1195,7 @@ namespace CorpusExplorer.Sdk.Model
         T value;
         try
         {
-          value = (T) data;
+          value = (T)data;
         }
         catch
         {
@@ -1205,11 +1303,6 @@ namespace CorpusExplorer.Sdk.Model
       }
 
       return res;
-    }
-
-    internal void AddSubSelection(Selection res)
-    {
-      _subSelections.Add(res);
     }
 
     /// <summary>

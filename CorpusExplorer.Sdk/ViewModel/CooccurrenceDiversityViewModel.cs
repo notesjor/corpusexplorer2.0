@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
+using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
 using CorpusExplorer.Sdk.ViewModel.Interfaces;
 
@@ -26,7 +27,25 @@ namespace CorpusExplorer.Sdk.ViewModel
     /// <returns>Datentabelle</returns>
     public DataTable GetDataTable()
     {
-      throw new NotImplementedException();
+      var res = new DataTable();
+      res.Columns.Add(Resources.Cooccurrence, typeof(string));
+      res.Columns.Add("Beste", typeof(double));
+      res.Columns.Add("Schlechteste", typeof(double));
+      res.Columns.Add("Mittelwert", typeof(double));
+      res.Columns.Add("Standardabweichung", typeof(double));
+
+      res.BeginLoadData();
+      foreach (var x in CollocatesAverage)
+      {
+        if (!CollocatesBest.ContainsKey(x.Key) || !CollocatesDeviation.ContainsKey(x.Key) || !CollocatesWorst.ContainsKey(x.Key))
+          continue;
+
+        res.Rows.Add(x.Key, CollocatesBest[x.Key], CollocatesWorst[x.Key], x.Value, CollocatesDeviation[x.Key]);
+      }
+
+      res.EndLoadData();
+
+      return res;
     }
 
     public IEnumerable<string> LayerDisplaynames => Selection.LayerUniqueDisplaynames;

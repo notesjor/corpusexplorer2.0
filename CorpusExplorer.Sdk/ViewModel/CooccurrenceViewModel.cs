@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
@@ -37,6 +38,20 @@ namespace CorpusExplorer.Sdk.ViewModel
     public IEnumerable<string> LayerDisplaynames => Selection.LayerUniqueDisplaynames;
 
     /// <summary>
+    /// Eigenschaft kann gesetzt werden, um die Ausgabe von GetDataTable() zu filtern.
+    /// Zum Filter/Optimieren des Blocks sollte Configuration.MinimumFrequency gesetzt werden.
+    /// </summary>
+    /// <value>The cooccurrence minimum frequency.</value>
+    public int CooccurrenceMinFrequency { get; set; } = 1;
+
+    /// <summary>
+    /// Eigenschaft kann gesetzt werden, um die Ausgabe von GetDataTable() zu filtern.
+    /// Zum Filter/Optimieren des Blocks sollte Configuration.MinimumSignificance gesetzt werden.
+    /// </summary>
+    /// <value>The cooccurrence minimum significance.</value>
+    public double CooccurrenceMinSignificance { get; set; } = 0;
+
+    /// <summary>
     ///   Gets or sets the significance dictionary.
     /// </summary>
     public Dictionary<string, Dictionary<string, double>> SignificanceDictionary { get; set; }
@@ -59,7 +74,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     public IEnumerable<KeyValuePair<string, double[]>> Search(IEnumerable<string> queries)
     {
       if (SignificanceDictionary == null)
-        Analyse();
+        Execute();
 
       var res = new Dictionary<string, double[]>();
       var hsh = new HashSet<string>(queries);
@@ -85,7 +100,7 @@ namespace CorpusExplorer.Sdk.ViewModel
             continue;
           }
 
-          res.Add(x.Key, new[] {FrequencyDictionary[query][x.Key], x.Value});
+          res.Add(x.Key, new[] { FrequencyDictionary[query][x.Key], x.Value });
         }
       }
 
@@ -96,24 +111,10 @@ namespace CorpusExplorer.Sdk.ViewModel
 
         foreach (var query in hsh)
           if (x.Value.ContainsKey(query) && !res.ContainsKey(x.Key))
-            res.Add(x.Key, new[] {FrequencyDictionary[x.Key][query], x.Value[query]});
+            res.Add(x.Key, new[] { FrequencyDictionary[x.Key][query], x.Value[query] });
       }
 
       return res;
-    }
-
-    public DataTable SearchDataTable(IEnumerable<string> queries)
-    {
-      var dt = new DataTable();
-      dt.Columns.Add(Resources.Cooccurrence, typeof(string));
-      dt.Columns.Add(Resources.Frequency, typeof(double));
-      dt.Columns.Add(Resources.Significance, typeof(double));
-
-      dt.BeginLoadData();
-      foreach (var x in Search(queries))
-        dt.Rows.Add(x.Key, x.Value[0], x.Value[1]);
-      dt.EndLoadData();
-      return dt;
     }
 
     protected override void ExecuteAnalyse()
@@ -151,7 +152,8 @@ namespace CorpusExplorer.Sdk.ViewModel
           continue;
 
         foreach (var se in sd.Value.Where(se => fdf[sd.Key].ContainsKey(se.Key)))
-          res.Rows.Add(sd.Key, se.Key, fdf[sd.Key][se.Key], se.Value);
+          if (se.Value >= CooccurrenceMinSignificance && fdf[sd.Key][se.Key] >= CooccurrenceMinFrequency)
+            res.Rows.Add(sd.Key, se.Key, fdf[sd.Key][se.Key], se.Value);
       }
 
       res.EndLoadData();
@@ -183,7 +185,7 @@ namespace CorpusExplorer.Sdk.ViewModel
             if (nsdf.ContainsKey(x.Key))
               nsdf[x.Key].Add(y.Key, y.Value);
             else
-              nsdf.Add(x.Key, new Dictionary<string, double> {{y.Key, y.Value}});
+              nsdf.Add(x.Key, new Dictionary<string, double> { { y.Key, y.Value } });
           }
 
       // Erzeuge DataTable

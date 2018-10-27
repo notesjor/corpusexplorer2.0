@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Sdk.Db.ElasticSearch</RootNamespace>
     <AssemblyName>CorpusExplorer.Sdk.Db.ElasticSearch</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,17 +49,17 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="Telerik.WinControls, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Common.2018.2.621\lib\net40\Telerik.WinControls.dll</HintPath>
+    <Reference Include="Telerik.WinControls, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Common.2018.3.1016\lib\net40\Telerik.WinControls.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Common.2018.2.621\lib\net40\Telerik.WinControls.UI.dll</HintPath>
+    <Reference Include="Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Common.2018.3.1016\lib\net40\Telerik.WinControls.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI.Design, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Common.2018.2.621\lib\net40\Telerik.WinControls.UI.Design.dll</HintPath>
+    <Reference Include="Telerik.WinControls.UI.Design, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Common.2018.3.1016\lib\net40\Telerik.WinControls.UI.Design.dll</HintPath>
     </Reference>
-    <Reference Include="TelerikCommon, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Common.2018.2.621\lib\net40\TelerikCommon.dll</HintPath>
+    <Reference Include="TelerikCommon, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Common.2018.3.1016\lib\net40\TelerikCommon.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
