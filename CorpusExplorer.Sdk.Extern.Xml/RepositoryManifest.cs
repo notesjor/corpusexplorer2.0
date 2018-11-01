@@ -13,6 +13,7 @@ using CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus;
 using CorpusExplorer.Sdk.Extern.Xml.Dpxc;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf;
+using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017;
 using CorpusExplorer.Sdk.Extern.Xml.Exmaralda;
 using CorpusExplorer.Sdk.Extern.Xml.Folker;
 using CorpusExplorer.Sdk.Extern.Xml.Gutenberg;
@@ -60,7 +61,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml
       {
         {"DEWAC (DEWAC-*.xml)|DEWAC-*.xml", new ImporterDewac()},
         {"WebLicht (*.xml)|*.xml", new ImporterWeblicht()},
-        {"DTAbf Deutsches-Text-Archiv Basisformat (*.tcf.xml)|*.tcf.xml", new ImporterDta()},
+        {"DTAbf Deutsches-Text-Archiv Basisformat (*.tcf.xml)|*.tcf.xml", new ImporterDta2017()},
         {"CATMA 5.0 (*.xml)|*.xml", new ImporterCatma()}
       };
 

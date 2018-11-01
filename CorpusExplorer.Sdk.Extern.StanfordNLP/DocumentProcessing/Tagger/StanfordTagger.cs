@@ -131,15 +131,21 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
 
     protected override string TextPostTaggerCleanup(string text)
     {
+      if (string.IsNullOrEmpty(text))
+        return text;
+
       var splits =
         text.Replace("._$.", "._$. ")
           .Replace("\t", " ")
           .Replace("  ", " ")
           .Replace("  ", " ")
           .Replace("  ", " ")
-          .Split(new[] {"<ENDOFCORPUSEXPLORERFILE>"}, StringSplitOptions.RemoveEmptyEntries);
+          .Split(new[] { "<ENDOFCORPUSEXPLORERFILE>" }, StringSplitOptions.RemoveEmptyEntries);
 
-      var res = new List<string> {splits[0]};
+      if (splits.Length == 0)
+        return text;
+
+      var res = new List<string> { splits[0] };
 
       for (var i = 1; i < splits.Length; i++)
       {

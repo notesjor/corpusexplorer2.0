@@ -127,7 +127,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
           {
             var vm = GetViewModel<FrequencyViewModel>();
             vm.Execute();
-            return vm.GetDataTable().ToJsonWithoutTid();
+            return vm.GetDataTable().ToJson();
           }
         },
         {
@@ -135,7 +135,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
           {
             var vm = GetViewModel<FrequencyCrossViewModel>();
             vm.Execute();
-            return vm.GetDataTable().ToJsonWithoutTid();
+            return vm.GetDataTable().ToJson();
           }
         },
         {
@@ -144,7 +144,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
           {
             var vm = GetViewModel<CooccurrenceViewModel>();
             vm.Execute();
-            return vm.GetDataTable().ToJsonWithoutTid();
+            return vm.GetDataTable().ToJson();
           }
         },
         {
@@ -153,7 +153,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
           {
             var vm = GetViewModel<CorpusWeightUnlimmitedViewModel>();
             vm.Execute();
-            return vm.GetDataTable().ToJsonWithoutTid();
+            return vm.GetDataTable().ToJson();
           }
         }
       };

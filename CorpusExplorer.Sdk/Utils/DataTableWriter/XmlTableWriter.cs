@@ -21,9 +21,9 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       WriteOutput("<items>");
     }
 
-    protected override void WriteBody(string tid, DataTable table)
+    protected override void WriteBody(DataTable table)
     {
-      var columns = new List<KeyValuePair<string, Type>> { new KeyValuePair<string, Type>("tid", typeof(string)) };
+      var columns = new List<KeyValuePair<string, Type>>();
       foreach (DataColumn c in table.Columns)
         columns.Add(new KeyValuePair<string, Type>(c.ColumnName, c.DataType));
 
@@ -47,14 +47,13 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
         tmp = new StringBuilder(template);
         foreach (var column in columns)
         {
-          var val = column.Key == "tid" ? tid : row[column.Key];
-          if (val == null)
+          if (row[column.Key] == null)
             tmp.Replace(marks[column.Key], string.Empty);
           else
             tmp.Replace(marks[column.Key],
               column.Value == typeof(string)
-                ? _r.Replace(val.ToString(), string.Empty).Replace("<", string.Empty).Replace(">", string.Empty)
-                : val.ToString().Replace(",", "."));
+                ? _r.Replace(row[column.Key].ToString(), string.Empty).Replace("<", string.Empty).Replace(">", string.Empty)
+                : row[column.Key].ToString().Replace(",", "."));
         }
 
         stb.Append(tmp);

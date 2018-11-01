@@ -87,7 +87,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
       {
         tableWriter.OutputStream = fs;
-        tableWriter.WriteTable("CorpusExplorer v2.0", res);
+        tableWriter.WriteTable(res);
         tableWriter.Destroy();
       }
     }

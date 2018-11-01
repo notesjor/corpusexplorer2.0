@@ -12,10 +12,10 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
 
     protected override void WriteHead(DataTable table)
     {
-      WriteOutput($"TID\t{string.Join("\t", from DataColumn x in table.Columns select EnsureValue(x.ColumnName))}\r\n");
+      WriteOutput($"{string.Join("\t", from DataColumn x in table.Columns select EnsureValue(x.ColumnName))}\r\n");
     }
 
-    protected override void WriteBody(string tid, DataTable table)
+    protected override void WriteBody(DataTable table)
     {
       foreach (DataRow x in table.Rows)
       {
@@ -25,7 +25,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
             x[i] is string ? EnsureValue(x[i].ToString()) :
             x[i].ToString().Replace(",", ".");
 
-        WriteOutput($"{tid}\t{string.Join("\t", r)}\r\n");
+        WriteOutput($"{string.Join("\t", r)}\r\n");
       }
     }
 

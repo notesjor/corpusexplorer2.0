@@ -33,9 +33,8 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract
     /// <summary>
     /// Schreibt eine Tabelle in den Ausgabestream (Threadsafe).
     /// </summary>
-    /// <param name="tid">Tabellen-ID</param>
     /// <param name="table">Tabelle</param>
-    public virtual void WriteTable(string tid, DataTable table)
+    public virtual void WriteTable(DataTable table)
     {
       lock (WriteLock)
       {
@@ -45,8 +44,22 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract
           _headInitialized = true;
         }
 
-        WriteBody(tid, table);
+        WriteBody(table);
       }
+    }
+
+    /// <summary>
+    /// Schreibt eine Tabelle in den Ausgabestream (Threadsafe).
+    /// </summary>
+    /// <param name="tid">Tabellen ID</param>
+    /// <param name="table">Tabelle</param>
+    public void WriteTable(string tid, DataTable table)
+    {
+      var tCol = table.Columns.Add("TID", typeof(string));
+      tCol.SetOrdinal(0);
+      foreach (DataRow row in table.Rows)
+        row[0] = tid;
+      WriteTable(table);
     }
 
     /// <summary>
@@ -58,9 +71,8 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract
     /// <summary>
     /// Writes the body.
     /// </summary>
-    /// <param name="tid">The tid.</param>
     /// <param name="table">The table.</param>
-    protected abstract void WriteBody(string tid, DataTable table);
+    protected abstract void WriteBody(DataTable table);
 
     /// <summary>
     /// Writes the footer.
@@ -88,7 +100,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract
       error.Columns.Add("hasError", typeof(bool));
 
       error.Rows.Add(message, true);
-      WriteTable("ERROR", error);
+      WriteTable(error);
     }
   }
 }

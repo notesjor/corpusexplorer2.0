@@ -184,7 +184,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
       lock (_parseDocumentLock)
       {
         foreach (var x in document)
-          _layers[x.Key].Documents.Add(guid, x.Value.ToArray());
+          if (_layers[x.Key].Documents.ContainsKey(guid))
+            _layers[x.Key].Documents[guid] = x.Value.ToArray();
+          else
+            _layers[x.Key].Documents.Add(guid, x.Value.ToArray());
       }
     }
 

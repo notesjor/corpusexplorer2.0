@@ -13,7 +13,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017
     ///   Auflistung von Layern die durch diesen Importer bedient werden.
     /// </summary>
     /// <value>The layer names.</value>
-    protected override IEnumerable<string> LayerNames => new[] {"Wort", "Lemma", "POS", "NER", "Orthografie"};
+    protected override IEnumerable<string> LayerNames => new[] {"Wort", "Lemma", "POS", "Orthografie"};
 
     /// <summary>
     ///   Erster Importschritt - ließt die Datei ein und gibt (ein) entsprechend(es) Objekt(e) zurück.

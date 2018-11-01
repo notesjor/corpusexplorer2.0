@@ -19,9 +19,9 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       WriteOutput("[");
     }
 
-    protected override void WriteBody(string tid, DataTable table)
+    protected override void WriteBody(DataTable table)
     {
-      var columns = new List<KeyValuePair<string, Type>> { new KeyValuePair<string, Type>("tid", typeof(string)) };
+      var columns = new List<KeyValuePair<string, Type>>();
       foreach (DataColumn c in table.Columns)
         columns.Add(new KeyValuePair<string, Type>(c.ColumnName, c.DataType));
 
@@ -44,14 +44,13 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
         var r = new StringBuilder(template);
         foreach (var column in columns)
         {
-          var val = column.Key == "tid" ? tid : row[column.Key];
-          if (val == null)
+          if (row[column.Key] == null)
             r.Replace(marks[column.Key], column.Value == typeof(string) ? string.Empty : "null");
           else
             r.Replace(marks[column.Key],
                       column.Value == typeof(string)
-                        ? val.ToString().Replace("\"", "\\\"")
-                        : val.ToString().Replace(",", "."));
+                        ? row[column.Key].ToString().Replace("\"", "\\\"")
+                        : row[column.Key].ToString().Replace(",", "."));
         }
 
         lock (slo)

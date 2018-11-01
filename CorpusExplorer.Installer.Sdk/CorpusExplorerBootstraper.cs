@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using Bcs.IO;
+using CorpusExplorer.Installer.Sdk.Helper;
 using CorpusExplorer.Installer.Sdk.Model;
 using CorpusExplorer.Installer.Sdk.Properties;
 using CorpusExplorer.Installer.Sdk.View;
@@ -591,6 +592,8 @@ namespace CorpusExplorer.Installer.Sdk
 
     private static bool StartInstallation()
     {
+      ValidateDotNetFramework();
+
       if (!_muteGui)
       {
         var form = new MainForm();
@@ -600,6 +603,24 @@ namespace CorpusExplorer.Installer.Sdk
 
       StartUpdate(Resources.InstallationIsRunningPleaseBePatient, false);
       return true;
+    }
+
+    private static void ValidateDotNetFramework()
+    {
+      var version = DotNetFrameworkDetection.GetLatestDotNetVersion();
+      if (version[0] < 4 || 
+          version[0] == 4  && version[1] < 5 ||
+          version[0] == 4 && version[1] == 5 && version[2] < 2)
+      {
+        if (
+          MessageBox.Show("Auf ihrem Rechner ist eine veraltete Version des .NET-Frameworks installiert.\nBitte aktualisieren Sie das .NET-Framework bevor Sie mit der Installation des CorpusExplorers fortfahren.\nMöchten Sie die .NET-Downloadseite aufrufen?",
+                          "Bitte zuerst .NET aktualisieren", 
+                          MessageBoxButtons.YesNo, 
+                          MessageBoxIcon.Information) == DialogResult.Yes)
+        {
+          Process.Start("https://www.microsoft.com/net/download");
+        }
+      }
     }
 
     private static void StartUpdate(string message, bool askForUpdate)

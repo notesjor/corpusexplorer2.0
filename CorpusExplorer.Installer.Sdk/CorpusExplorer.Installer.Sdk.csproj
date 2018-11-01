@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CorpusExplorerBootstraper.cs" />
+    <Compile Include="Helper\DotNetFrameworkDetection.cs" />
     <Compile Include="Model\CorpusExplorerWebClient.cs">
       <SubType>Component</SubType>
     </Compile>

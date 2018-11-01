@@ -55,7 +55,7 @@ namespace CorpusExplorer.Sdk.Helper
       using (var ms = new MemoryStream())
       {
         var tableWriter = new TsvTableWriter { OutputStream = ms };
-        tableWriter.WriteTable("CorpusExplorer v2.0", dt);
+        tableWriter.WriteTable(dt);
         tableWriter.Destroy(false);
         return Configuration.Encoding.GetString(ms.GetBuffer());
       }
@@ -66,7 +66,7 @@ namespace CorpusExplorer.Sdk.Helper
       using (var ms = new MemoryStream())
       {
         var tableWriter = new CsvTableWriter { OutputStream = ms };
-        tableWriter.WriteTable("CorpusExplorer v2.0", dt);
+        tableWriter.WriteTable(dt);
         tableWriter.Destroy(false);
         return Configuration.Encoding.GetString(ms.GetBuffer());
       }
@@ -77,24 +77,10 @@ namespace CorpusExplorer.Sdk.Helper
       using (var ms = new MemoryStream())
       {
         var tableWriter = new HtmlTableWriter { OutputStream = ms };
-        tableWriter.WriteTable("CorpusExplorer v2.0", dt);
+        tableWriter.WriteTable(dt);
         tableWriter.Destroy(false);
         return Configuration.Encoding.GetString(ms.GetBuffer());
       }
-    }
-
-    public static string ToJsonWithoutTid(this DataTable source)
-    {
-      var result = new JArray();
-      foreach (DataRow dr in source.Rows)
-      {
-        var row = new JObject();
-        foreach (DataColumn col in source.Columns)
-          row.Add(col.ColumnName.Trim(), JToken.FromObject(dr[col]));
-        result.Add(row);
-      }
-
-      return result.ToString();
     }
 
     public static string ToJson(this DataTable dt)
@@ -102,7 +88,7 @@ namespace CorpusExplorer.Sdk.Helper
       using (var ms = new MemoryStream())
       {
         var tableWriter = new JsonTableWriter { OutputStream = ms };
-        tableWriter.WriteTable("CorpusExplorer v2.0", dt);
+        tableWriter.WriteTable(dt);
         tableWriter.Destroy(false);
         return Configuration.Encoding.GetString(ms.GetBuffer());
       }
@@ -113,7 +99,7 @@ namespace CorpusExplorer.Sdk.Helper
       using (var ms = new MemoryStream())
       {
         var tableWriter = new XmlTableWriter { OutputStream = ms };
-        tableWriter.WriteTable("CorpusExplorer v2.0", dt);
+        tableWriter.WriteTable(dt);
         tableWriter.Destroy(false);
         return Configuration.Encoding.GetString(ms.GetBuffer());
       }

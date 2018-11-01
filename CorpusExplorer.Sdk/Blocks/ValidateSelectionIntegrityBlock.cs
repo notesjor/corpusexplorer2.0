@@ -90,7 +90,7 @@ namespace CorpusExplorer.Sdk.Blocks
               if (!layer.ContainsDocument(dsel)) // Dokument nicht vorhanden
               {
                 lock (_lockInvalidDocumentGuids)
-                  EmptyDocumentGuids.Add(dsel);
+                  NoLayerMatchingDocumentGuids.Add(dsel);
                 return;
               }
 
@@ -98,7 +98,7 @@ namespace CorpusExplorer.Sdk.Blocks
               if (docC.Length == 0) // Dokument ist leer (keine Sätze)
               {
                 lock (_lockInvalidDocumentGuids)
-                  EmptyDocumentGuids.Add(dsel);
+                  NoLayerMatchingDocumentGuids.Add(dsel);
                 return;
               }
 

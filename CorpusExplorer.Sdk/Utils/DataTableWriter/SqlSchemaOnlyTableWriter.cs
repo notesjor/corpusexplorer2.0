@@ -12,12 +12,10 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
     public override string TableWriterTag => "F:SQLSCHEMA";
     public override string MimeType => "application/sql";
 
-    public override void WriteTable(string tid, DataTable table)
+    public override void WriteTable(DataTable table)
     {
       lock (WriteLock)
       {
-        tid = MakeTidSqlSafe(tid);
-
         WriteHead(table);
 
         var columns = new List<Tuple<string, string, Type>>();
@@ -25,7 +23,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
           columns.Add(new Tuple<string, string, Type>(column.ColumnName, column.ColumnName.Replace(" ", "_"),
                                                       column.DataType));
 
-        var stb = new StringBuilder($"CREATE TABLE CorpusExplorer_{tid} (");
+        var stb = new StringBuilder("CREATE TABLE CorpusExplorer (");
         foreach (var column in columns)
           stb.Append($"{column.Item2} {GetSqlType(column.Item3)},");
         stb.Remove(stb.Length - 1, 1);
@@ -48,12 +46,9 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       WriteOutput("-- 3. set (primary) key(s)\r\n");
     }
 
-    protected override void WriteBody(string tid, DataTable table) { }
+    protected override void WriteBody(DataTable table) { }
 
     protected override void WriteFooter() { }
-
-    private string MakeTidSqlSafe(string tid)
-      => tid.Replace("*", "_").Replace(" ", "_");
 
     public override AbstractTableWriter Clone(Stream stream)
       => new SqlSchemaOnlyTableWriter { OutputStream = stream };

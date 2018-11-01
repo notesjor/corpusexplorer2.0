@@ -73,7 +73,7 @@
       // radPanel1
       // 
       this.radPanel1.Location = new System.Drawing.Point(0, 467);
-      this.radPanel1.Size = new System.Drawing.Size(500, 38);
+      this.radPanel1.Size = new System.Drawing.Size(528, 38);
       // 
       // ihdPanel1
       // 
@@ -86,7 +86,7 @@
       this.ihdPanel1.Location = new System.Drawing.Point(0, 0);
       this.ihdPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.ihdPanel1.Name = "ihdPanel1";
-      this.ihdPanel1.Size = new System.Drawing.Size(500, 54);
+      this.ihdPanel1.Size = new System.Drawing.Size(528, 54);
       this.ihdPanel1.TabIndex = 1;
       // 
       // radPageView1
@@ -98,8 +98,8 @@
       this.radPageView1.ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
       this.radPageView1.Location = new System.Drawing.Point(0, 54);
       this.radPageView1.Name = "radPageView1";
-      this.radPageView1.SelectedPage = this.page_sentenceError;
-      this.radPageView1.Size = new System.Drawing.Size(500, 413);
+      this.radPageView1.SelectedPage = this.page_diffLayer;
+      this.radPageView1.Size = new System.Drawing.Size(528, 413);
       this.radPageView1.TabIndex = 2;
       this.radPageView1.ViewMode = Telerik.WinControls.UI.PageViewMode.Stack;
       // 
@@ -108,11 +108,11 @@
       this.page_sentenceError.Controls.Add(this.grp_senteceError);
       this.page_sentenceError.Controls.Add(this.chk_senteceError);
       this.page_sentenceError.Controls.Add(this.radLabel1);
-      this.page_sentenceError.ItemSize = new System.Drawing.SizeF(498F, 31F);
+      this.page_sentenceError.ItemSize = new System.Drawing.SizeF(526F, 31F);
       this.page_sentenceError.Location = new System.Drawing.Point(5, 45);
       this.page_sentenceError.Name = "page_sentenceError";
       this.page_sentenceError.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-      this.page_sentenceError.Size = new System.Drawing.Size(490, 270);
+      this.page_sentenceError.Size = new System.Drawing.Size(518, 270);
       this.page_sentenceError.Text = "Dokumente ohne Satzgrenzen";
       // 
       // grp_senteceError
@@ -121,10 +121,10 @@
       this.grp_senteceError.Controls.Add(this.list_senteceError);
       this.grp_senteceError.Dock = System.Windows.Forms.DockStyle.Fill;
       this.grp_senteceError.HeaderText = "{0} von {1} Dokumente betroffen";
-      this.grp_senteceError.Location = new System.Drawing.Point(3, 60);
+      this.grp_senteceError.Location = new System.Drawing.Point(3, 77);
       this.grp_senteceError.Name = "grp_senteceError";
       this.grp_senteceError.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.grp_senteceError.Size = new System.Drawing.Size(487, 135);
+      this.grp_senteceError.Size = new System.Drawing.Size(515, 124);
       this.grp_senteceError.TabIndex = 1;
       this.grp_senteceError.Text = "{0} von {1} Dokumente betroffen";
       // 
@@ -135,7 +135,7 @@
       this.list_senteceError.ItemSize = new System.Drawing.Size(200, 40);
       this.list_senteceError.Location = new System.Drawing.Point(5, 25);
       this.list_senteceError.Name = "list_senteceError";
-      this.list_senteceError.Size = new System.Drawing.Size(477, 105);
+      this.list_senteceError.Size = new System.Drawing.Size(505, 94);
       this.list_senteceError.TabIndex = 0;
       // 
       // chk_senteceError
@@ -144,9 +144,9 @@
       this.chk_senteceError.CheckState = System.Windows.Forms.CheckState.Checked;
       this.chk_senteceError.Dock = System.Windows.Forms.DockStyle.Bottom;
       this.chk_senteceError.Font = new System.Drawing.Font("Segoe UI", 10F);
-      this.chk_senteceError.Location = new System.Drawing.Point(3, 195);
+      this.chk_senteceError.Location = new System.Drawing.Point(3, 201);
       this.chk_senteceError.Name = "chk_senteceError";
-      this.chk_senteceError.Size = new System.Drawing.Size(487, 75);
+      this.chk_senteceError.Size = new System.Drawing.Size(515, 69);
       this.chk_senteceError.TabIndex = 2;
       this.chk_senteceError.Text = resources.GetString("chk_senteceError.Text");
       this.chk_senteceError.TextWrap = true;
@@ -165,7 +165,7 @@
       this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 10F);
       this.radLabel1.Location = new System.Drawing.Point(3, 0);
       this.radLabel1.Name = "radLabel1";
-      this.radLabel1.Size = new System.Drawing.Size(487, 60);
+      this.radLabel1.Size = new System.Drawing.Size(515, 77);
       this.radLabel1.TabIndex = 0;
       this.radLabel1.Text = resources.GetString("radLabel1.Text");
       // 
@@ -174,11 +174,11 @@
       this.page_diffLayer.Controls.Add(this.grp_DiffLayer);
       this.page_diffLayer.Controls.Add(this.chk_DiffLayer);
       this.page_diffLayer.Controls.Add(this.radLabel2);
-      this.page_diffLayer.ItemSize = new System.Drawing.SizeF(498F, 31F);
+      this.page_diffLayer.ItemSize = new System.Drawing.SizeF(526F, 31F);
       this.page_diffLayer.Location = new System.Drawing.Point(5, 45);
       this.page_diffLayer.Name = "page_diffLayer";
       this.page_diffLayer.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-      this.page_diffLayer.Size = new System.Drawing.Size(490, 270);
+      this.page_diffLayer.Size = new System.Drawing.Size(518, 270);
       this.page_diffLayer.Text = "Dokumente mit unterschiedlichen Layern";
       // 
       // grp_DiffLayer
@@ -187,10 +187,10 @@
       this.grp_DiffLayer.Controls.Add(this.list_DiffLayer);
       this.grp_DiffLayer.Dock = System.Windows.Forms.DockStyle.Fill;
       this.grp_DiffLayer.HeaderText = "{0} von {1} Dokumente betroffen";
-      this.grp_DiffLayer.Location = new System.Drawing.Point(3, 60);
+      this.grp_DiffLayer.Location = new System.Drawing.Point(3, 80);
       this.grp_DiffLayer.Name = "grp_DiffLayer";
       this.grp_DiffLayer.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.grp_DiffLayer.Size = new System.Drawing.Size(487, 164);
+      this.grp_DiffLayer.Size = new System.Drawing.Size(515, 144);
       this.grp_DiffLayer.TabIndex = 4;
       this.grp_DiffLayer.Text = "{0} von {1} Dokumente betroffen";
       // 
@@ -201,28 +201,26 @@
       this.list_DiffLayer.ItemSize = new System.Drawing.Size(200, 40);
       this.list_DiffLayer.Location = new System.Drawing.Point(5, 25);
       this.list_DiffLayer.Name = "list_DiffLayer";
-      this.list_DiffLayer.Size = new System.Drawing.Size(477, 134);
+      this.list_DiffLayer.Size = new System.Drawing.Size(505, 114);
       this.list_DiffLayer.TabIndex = 0;
       // 
       // chk_DiffLayer
       // 
       this.chk_DiffLayer.AutoSize = false;
-      this.chk_DiffLayer.CheckState = System.Windows.Forms.CheckState.Checked;
       this.chk_DiffLayer.Dock = System.Windows.Forms.DockStyle.Bottom;
       this.chk_DiffLayer.Font = new System.Drawing.Font("Segoe UI", 10F);
       this.chk_DiffLayer.Location = new System.Drawing.Point(3, 224);
       this.chk_DiffLayer.Name = "chk_DiffLayer";
-      this.chk_DiffLayer.Size = new System.Drawing.Size(487, 46);
+      this.chk_DiffLayer.Size = new System.Drawing.Size(515, 46);
       this.chk_DiffLayer.TabIndex = 5;
       this.chk_DiffLayer.Text = "<html><strong>Automatische Korrektur:</strong> Entfernt die betroffenen Dokumente" +
-    ". Diese Option wird empfohlen, wenn nur ein kleiner Prozentsatz betroffen ist.</" +
-    "html>";
+    ". Es wird jedoch empfohlen, zuerst einmal das Korpus ohne diese Korrektur zu tes" +
+    "ten.</html>";
       this.chk_DiffLayer.TextWrap = true;
-      this.chk_DiffLayer.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
-      ((Telerik.WinControls.UI.RadCheckBoxElement)(this.chk_DiffLayer.GetChildAt(0))).ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
+      ((Telerik.WinControls.UI.RadCheckBoxElement)(this.chk_DiffLayer.GetChildAt(0))).ToggleState = Telerik.WinControls.Enumerations.ToggleState.Off;
       ((Telerik.WinControls.UI.RadCheckBoxElement)(this.chk_DiffLayer.GetChildAt(0))).Text = "<html><strong>Automatische Korrektur:</strong> Entfernt die betroffenen Dokumente" +
-    ". Diese Option wird empfohlen, wenn nur ein kleiner Prozentsatz betroffen ist.</" +
-    "html>";
+    ". Es wird jedoch empfohlen, zuerst einmal das Korpus ohne diese Korrektur zu tes" +
+    "ten.</html>";
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.chk_DiffLayer.GetChildAt(0).GetChildAt(1).GetChildAt(0).GetChildAt(0))).TextWrap = true;
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.chk_DiffLayer.GetChildAt(0).GetChildAt(1).GetChildAt(0).GetChildAt(0))).LineLimit = true;
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.chk_DiffLayer.GetChildAt(0).GetChildAt(1).GetChildAt(0).GetChildAt(0))).Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -235,7 +233,7 @@
       this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 10F);
       this.radLabel2.Location = new System.Drawing.Point(3, 0);
       this.radLabel2.Name = "radLabel2";
-      this.radLabel2.Size = new System.Drawing.Size(487, 60);
+      this.radLabel2.Size = new System.Drawing.Size(515, 80);
       this.radLabel2.TabIndex = 3;
       this.radLabel2.Text = resources.GetString("radLabel2.Text");
       // 
@@ -244,11 +242,11 @@
       this.page_emptyDocument.Controls.Add(this.grp_emptyDocuments);
       this.page_emptyDocument.Controls.Add(this.chk_emptyDocuments);
       this.page_emptyDocument.Controls.Add(this.radLabel3);
-      this.page_emptyDocument.ItemSize = new System.Drawing.SizeF(498F, 31F);
+      this.page_emptyDocument.ItemSize = new System.Drawing.SizeF(526F, 31F);
       this.page_emptyDocument.Location = new System.Drawing.Point(5, 45);
       this.page_emptyDocument.Name = "page_emptyDocument";
       this.page_emptyDocument.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-      this.page_emptyDocument.Size = new System.Drawing.Size(490, 270);
+      this.page_emptyDocument.Size = new System.Drawing.Size(518, 270);
       this.page_emptyDocument.Text = "Leere Dokumente";
       // 
       // grp_emptyDocuments
@@ -260,7 +258,7 @@
       this.grp_emptyDocuments.Location = new System.Drawing.Point(3, 61);
       this.grp_emptyDocuments.Name = "grp_emptyDocuments";
       this.grp_emptyDocuments.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.grp_emptyDocuments.Size = new System.Drawing.Size(487, 175);
+      this.grp_emptyDocuments.Size = new System.Drawing.Size(515, 175);
       this.grp_emptyDocuments.TabIndex = 4;
       this.grp_emptyDocuments.Text = "{0} von {1} Dokumente betroffen";
       // 
@@ -271,7 +269,7 @@
       this.list_emptyDocuments.ItemSize = new System.Drawing.Size(200, 40);
       this.list_emptyDocuments.Location = new System.Drawing.Point(5, 25);
       this.list_emptyDocuments.Name = "list_emptyDocuments";
-      this.list_emptyDocuments.Size = new System.Drawing.Size(477, 145);
+      this.list_emptyDocuments.Size = new System.Drawing.Size(505, 145);
       this.list_emptyDocuments.TabIndex = 0;
       // 
       // chk_emptyDocuments
@@ -282,7 +280,7 @@
       this.chk_emptyDocuments.Font = new System.Drawing.Font("Segoe UI", 10F);
       this.chk_emptyDocuments.Location = new System.Drawing.Point(3, 236);
       this.chk_emptyDocuments.Name = "chk_emptyDocuments";
-      this.chk_emptyDocuments.Size = new System.Drawing.Size(487, 34);
+      this.chk_emptyDocuments.Size = new System.Drawing.Size(515, 34);
       this.chk_emptyDocuments.TabIndex = 5;
       this.chk_emptyDocuments.Text = "<html><strong>Automatische Korrektur:</strong> Entfernt die betroffenen Dokumente" +
     ".</html>";
@@ -303,7 +301,7 @@
       this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 10F);
       this.radLabel3.Location = new System.Drawing.Point(3, 0);
       this.radLabel3.Name = "radLabel3";
-      this.radLabel3.Size = new System.Drawing.Size(487, 61);
+      this.radLabel3.Size = new System.Drawing.Size(515, 61);
       this.radLabel3.TabIndex = 3;
       this.radLabel3.Text = resources.GetString("radLabel3.Text");
       // 
@@ -311,7 +309,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(500, 505);
+      this.ClientSize = new System.Drawing.Size(528, 505);
       this.Controls.Add(this.radPageView1);
       this.Controls.Add(this.ihdPanel1);
       this.DisplayAbort = true;

@@ -12,10 +12,10 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
 
     protected override void WriteHead(DataTable table)
     {
-      WriteOutput($"TID;{string.Join(";", from DataColumn x in table.Columns select EnsureValue(x.ColumnName))}\r\n");
+      WriteOutput($"{string.Join(";", from DataColumn x in table.Columns select EnsureValue(x.ColumnName))}\r\n");
     }
 
-    protected override void WriteBody(string tid, DataTable table)
+    protected override void WriteBody(DataTable table)
     {
       foreach (DataRow x in table.Rows)
       {
@@ -23,14 +23,14 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
         for (var i = 0; i < table.Columns.Count; i++)
           r[i] = x[i] == null ? "\"\"" : x[i] is string ? $"\"{EnsureValue(x[i].ToString())}\"" : x[i].ToString().Replace(",", ".");
 
-        WriteOutput($"\"{tid}\";{string.Join(";", r)}\r\n");
+        WriteOutput($"{string.Join(";", r)}\r\n");
       }
     }
 
     protected override void WriteFooter() { }
 
     public override AbstractTableWriter Clone(Stream stream)
-      => new CsvTableWriter {OutputStream = stream};
+      => new CsvTableWriter { OutputStream = stream };
 
     private string EnsureValue(string value)
     {

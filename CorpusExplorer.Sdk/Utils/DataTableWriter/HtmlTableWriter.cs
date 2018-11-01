@@ -21,7 +21,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
     {
       WriteOutput("<!DOCTYPE html><html><head><link rel=\"stylesheet\" href=\"stylesheet.css\"></head><body><table><tr>");
 
-      var columns = new List<KeyValuePair<string, Type>> { new KeyValuePair<string, Type>("tid", typeof(string)) };
+      var columns = new List<KeyValuePair<string, Type>>();
       foreach (DataColumn c in table.Columns)
         columns.Add(new KeyValuePair<string, Type>(c.ColumnName, c.DataType));
 
@@ -39,9 +39,9 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
     public override AbstractTableWriter Clone(Stream stream)
       => new HtmlTableWriter { OutputStream = stream };
 
-    protected override void WriteBody(string tid, DataTable table)
+    protected override void WriteBody(DataTable table)
     {
-      var columns = new List<KeyValuePair<string, Type>> { new KeyValuePair<string, Type>("tid", typeof(string)) };
+      var columns = new List<KeyValuePair<string, Type>>();
       foreach (DataColumn c in table.Columns)
         columns.Add(new KeyValuePair<string, Type>(c.ColumnName, c.DataType));
 
@@ -60,22 +60,21 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       var marks = columns.ToDictionary(x => x.Key, x => $"{{{x.Key}}}");
 
       var res = new StringBuilder();
-      foreach(DataRow row in table.Rows)
+      foreach (DataRow row in table.Rows)
       {
         tmp = new StringBuilder(template);
         tmp.Replace("{num}", _rowCount % 2 == 0 ? "even" : "odd");
-        tmp.Replace("{rid}", _rowCount++.ToString());        
+        tmp.Replace("{rid}", _rowCount++.ToString());
 
         foreach (var column in columns)
         {
-          var val = column.Key == "tid" ? tid : row[column.Key];
-          if (val == null)
+          if (row[column.Key] == null)
             tmp.Replace(marks[column.Key], string.Empty);
           else
             tmp.Replace(marks[column.Key],
               column.Value == typeof(string)
-                ? _r.Replace(val.ToString(), string.Empty).Replace("<", string.Empty).Replace(">", string.Empty)
-                : val.ToString().Replace(",", "."));
+                ? _r.Replace(row[column.Key].ToString(), string.Empty).Replace("<", string.Empty).Replace(">", string.Empty)
+                : row[column.Key].ToString().Replace(",", "."));
         }
 
         res.Append(tmp);

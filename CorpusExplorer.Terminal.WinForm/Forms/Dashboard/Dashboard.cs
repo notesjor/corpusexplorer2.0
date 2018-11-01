@@ -544,7 +544,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       if (res == DialogResult.Yes)
         Processing.Invoke("Projekt wird gespeichert", () => main_mainmenu_project_save_Click(sender, e));
 
-      StaticBrowserHandler.Clear();
+      try
+      {
+        StaticBrowserHandler.Clear();
+      }
+      catch
+      {
+        // ignore
+      }
     }
 
     private void Dashboard_Load(object sender, EventArgs e)

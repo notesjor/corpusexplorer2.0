@@ -124,10 +124,10 @@
     <value>&lt;html&gt;&lt;strong&gt;Automatische Korrektur:&lt;/strong&gt; Entfernt die betroffenen Dokumente. Diese Option wird empfohlen, wenn nur ein kleiner Prozentsatz betroffen ist. Verbessert die Programmperformance.&lt;/html&gt;</value>
   </data>
   <data name="radLabel1.Text" xml:space="preserve">
-    <value>&lt;html&gt;&lt;strong&gt;Grund:&lt;/strong&gt; Folgende Dokumente verfügen über keine erkennbaren Satzgrenzen. Dies kann auf einen fehlerhaft konfigurierten Tagger hinweisen - Achten Sie auch auf die korrekte Tagger-Sprachwahl im Erstellungsprozess.&lt;/html&gt;</value>
+    <value>&lt;html&gt;&lt;strong&gt;Grund:&lt;/strong&gt; Folgende Dokumente verfügen über keine erkennbaren Satzgrenzen. Dies kann auf einen fehlerhaft konfigurierten Tagger hinweisen - Achten Sie auch auf die korrekte Tagger-Sprachwahl. Sie können mit diesen Dokumenten arbeiten, müssen aber ggf. lange Wartezeiten, z. B. bei der Kookkurrenzberechnung, hinnehmen.&lt;/html&gt;</value>
   </data>
   <data name="radLabel2.Text" xml:space="preserve">
-    <value>&lt;html&gt;&lt;strong&gt;Grund:&lt;/strong&gt; Folgende Dokumente verfügen über unterschiedliche Layer. Überprüfen Sie die Tagger-Einstellungen. Das Problem kann außerdem durch das Zusammenfügen unterschiedlich annotierter Korpora entstehen.&lt;/html&gt;</value>
+    <value>&lt;html&gt;&lt;strong&gt;Grund:&lt;/strong&gt; Haben Sie das Korpus importiert? - Dann fehlen in den Dateien einige Informationen. Klicken Sie auf "Abbrechen", um sich die erkannten Daten anzeigen zu lassen. Passen Sie ggf. die Export-Einstellungen der externen Korpusquelle an. Haben Sie das Korpus annotiert? - Überprüfen Sie die Tagger-Einstellungen.&lt;/html&gt;</value>
   </data>
   <data name="radLabel3.Text" xml:space="preserve">
     <value>&lt;html&gt;&lt;strong&gt;Grund:&lt;/strong&gt; Es sind Metadaten im Korpus vorhanden, aber keine Texte. Achten Sie beim Metadaten-Import auf eine korrekte Zuordnung (GUID). Drittanbieter-Tagger können dieses Problem ebenfalls verursachen.&lt;/html&gt;</value>
