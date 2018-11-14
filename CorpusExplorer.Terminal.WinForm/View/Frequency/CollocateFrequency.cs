@@ -100,5 +100,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 
       CreateSelection(queries);
     }
+
+    private void btn_regex_Click(object sender, EventArgs e)
+    {
+      RegexFunction();
+    }
   }
 }

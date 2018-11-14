@@ -44,6 +44,7 @@
       this.commandBarHostItem1 = new Telerik.WinControls.UI.CommandBarHostItem();
       this.btn_ok = new Telerik.WinControls.UI.CommandBarButton();
       this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
+      this.btn_regex = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
@@ -57,7 +58,7 @@
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1,
             this.commandBarRowElement2});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 85);
+      this.radCommandBar1.Size = new System.Drawing.Size(780, 111);
       this.radCommandBar1.TabIndex = 0;
       // 
       // commandBarRowElement1
@@ -78,6 +79,7 @@
             this.btn_calc,
             this.btn_filterlist,
             this.btn_filtereditor,
+            this.btn_regex,
             this.commandBarSeparator1,
             this.btn_csvExport,
             this.btn_print});
@@ -110,7 +112,7 @@
       // btn_filtereditor
       // 
       this.btn_filtereditor.DisplayName = "commandBarButton1";
-      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.grid_list;
+      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
       this.btn_filtereditor.Name = "btn_filtereditor";
       this.btn_filtereditor.Text = "Filtereditor";
       this.btn_filtereditor.Click += new System.EventHandler(this.btn_filtereditor_Click);
@@ -184,7 +186,7 @@
       // radGridView1
       // 
       this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGridView1.Location = new System.Drawing.Point(0, 85);
+      this.radGridView1.Location = new System.Drawing.Point(0, 111);
       // 
       // 
       // 
@@ -195,13 +197,21 @@
       this.radGridView1.MasterTemplate.MultiSelect = true;
       this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
-      this.radGridView1.Size = new System.Drawing.Size(780, 315);
+      this.radGridView1.Size = new System.Drawing.Size(780, 289);
       this.radGridView1.TabIndex = 1;
+      // 
+      // btn_regex
+      // 
+      this.btn_regex.DisplayName = "commandBarButton1";
+      this.btn_regex.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_regex;
+      this.btn_regex.Name = "btn_regex";
+      this.btn_regex.Text = "RegEx-Suche";
+      this.btn_regex.Click += new System.EventHandler(this.btn_regex_Click);
       // 
       // CompareCorpusDistribution
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radGridView1);
       this.Controls.Add(this.radCommandBar1);
       this.Name = "CompareCorpusDistribution";
@@ -230,5 +240,6 @@
     private Telerik.WinControls.UI.CommandBarButton btn_filterlist;
     private Telerik.WinControls.UI.CommandBarButton btn_filtereditor;
     private Telerik.WinControls.UI.CommandBarHostItem commandBarHostItem1;
+    private Telerik.WinControls.UI.CommandBarButton btn_regex;
   }
 }

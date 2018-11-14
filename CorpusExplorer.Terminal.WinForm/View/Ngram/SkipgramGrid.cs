@@ -179,5 +179,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       SelectedLayerDisplaynames = form.ResultSelectedLayerDisplaynames;
       Analyse();
     }
+
+    private void btn_regex_Click(object sender, EventArgs e)
+    {
+      RegexFunction();
+    }
   }
 }

@@ -152,5 +152,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
     }
 
     protected delegate AbstractFilterQuery GetFilterQueryDelegate(DataRowView row);
+    protected delegate IEnumerable<KeyValuePair<Guid,int>> GetKwicResultDelegate(DataRowView row);
   }
 }

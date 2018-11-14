@@ -78,7 +78,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       // WordBag
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.cmb_values);
       this.Controls.Add(this.btn_selectLayer);
       this.Controls.Add(this.btn_go);

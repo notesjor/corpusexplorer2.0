@@ -47,6 +47,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.txt_query = new Telerik.WinControls.UI.RadTextBox();
       this.clearPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
       this.btn_search = new Telerik.WinControls.UI.RadButton();
+      this.btn_regex = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
@@ -85,6 +86,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
             this.btn_calc,
             this.btn_filterlist,
             this.btn_filtereditor,
+            this.btn_regex,
             this.btn_posFilter,
             this.btn_layer,
             this.commandBarSeparator1,
@@ -131,7 +133,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // btn_filtereditor
       // 
       this.btn_filtereditor.DisplayName = "commandBarButton1";
-      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.grid_list;
+      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
       this.btn_filtereditor.Name = "btn_filtereditor";
       this.btn_filtereditor.Text = "Filtereditor";
       this.btn_filtereditor.Click += new System.EventHandler(this.btn_filtereditor_Click);
@@ -243,10 +245,18 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.btn_search.TabIndex = 0;
       this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
       // 
+      // btn_regex
+      // 
+      this.btn_regex.DisplayName = "commandBarButton1";
+      this.btn_regex.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_regex;
+      this.btn_regex.Name = "btn_regex";
+      this.btn_regex.Text = "RegEx-Suche";
+      this.btn_regex.Click += new System.EventHandler(this.btn_regex_Click);
+      // 
       // CooccurrenceGrid
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radGridView1);
       this.Controls.Add(this.clearPanel1);
       this.Controls.Add(this.radCommandBar1);
@@ -284,5 +294,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     private Telerik.WinControls.UI.RadButton btn_search;
     private Telerik.WinControls.UI.CommandBarToggleButton btn_posFilter;
     private Telerik.WinControls.UI.CommandBarButton btn_layer;
+    private Telerik.WinControls.UI.CommandBarButton btn_regex;
   }
 }

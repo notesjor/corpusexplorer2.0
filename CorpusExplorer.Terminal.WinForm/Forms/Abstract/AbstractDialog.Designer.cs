@@ -57,9 +57,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
       this.btn_ok.Name = "btn_ok";
       this.btn_ok.Size = new System.Drawing.Size(110, 32);
       this.btn_ok.TabIndex = 1;
-      this.btn_ok.Text = Resources.OK;
+      this.btn_ok.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.OK;
       this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
-      ((Telerik.WinControls.UI.RadButtonElement)(this.btn_ok.GetChildAt(0))).Text = Resources.OK;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.btn_ok.GetChildAt(0))).Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.OK;
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.btn_ok.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = false;
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.btn_ok.GetChildAt(0).GetChildAt(1).GetChildAt(1))).ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(129)))), ((int)(((byte)(68)))));
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.btn_ok.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.MiddleCenter;
       // 
@@ -70,16 +71,16 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
       this.btn_abort.Name = "btn_abort";
       this.btn_abort.Size = new System.Drawing.Size(110, 32);
       this.btn_abort.TabIndex = 2;
-      this.btn_abort.Text = Resources.Abbrechen;
+      this.btn_abort.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Abbrechen;
       this.btn_abort.Click += new System.EventHandler(this.btn_abort_Click);
-      ((Telerik.WinControls.UI.RadButtonElement)(this.btn_abort.GetChildAt(0))).Text = Resources.Abbrechen;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.btn_abort.GetChildAt(0))).Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Abbrechen;
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.btn_abort.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = false;
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.btn_abort.GetChildAt(0).GetChildAt(1).GetChildAt(1))).ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(0)))), ((int)(((byte)(38)))));
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.btn_abort.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // AbstractDialog
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.ClientSize = new System.Drawing.Size(342, 253);
       this.Controls.Add(this.radPanel1);
       this.MaximizeBox = false;

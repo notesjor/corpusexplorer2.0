@@ -60,8 +60,16 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
           new RawMsgMsgScraper()
         },
         {
-          "TSV-Datei mit Überschriften (*.tsv; *.csv)|*.tsv;*.csv",
+          "TSV-Datei mit Überschriften (*.tsv;)|*.tsv;",
           new TsvScraper()
+        },
+        {
+          "CSV-Datei mit Überschriften - getrennt mit , (*.csv)|*.csv",
+          new CsvScraper { Delimiters = new []{","}}
+        },
+        {
+          "CSV-Datei mit Überschriften - getrennt mit ; (*.csv)|*.csv",
+          new CsvScraper { Delimiters = new []{";"}}
         },
         {
           "EuroParl (*.txt)|*.txt",

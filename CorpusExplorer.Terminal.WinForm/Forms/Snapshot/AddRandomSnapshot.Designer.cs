@@ -120,7 +120,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       // AddRandomSnapshot
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.ClientSize = new System.Drawing.Size(488, 259);
       this.Controls.Add(this.count_percent);
       this.Controls.Add(this.radLabel2);

@@ -285,6 +285,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     public override void Save(string path = null, bool useCompression = true)
     {
       path = path.ForceFileExtension("cec6");
+      _displayname = Path.GetFileNameWithoutExtension(path);
 
       using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
       using (var bs = new BufferedStream(fs))

@@ -120,22 +120,27 @@
     <Compile Include="Abstract\AbstractAuthentication.cs" />
     <Compile Include="Abstract\AbstractService.cs" />
     <Compile Include="Abstract\AbstractSimpleAuthentication.cs" />
+    <Compile Include="Blogger\BloggerApiKeyAuthentication.cs" />
+    <Compile Include="Blogger\BloggerService.cs" />
+    <Compile Include="Facebook\fb.cs" />
     <Compile Include="Helper\GlobalSocialMediaConfiguration.cs" />
+    <Compile Include="Instagram\inst.cs" />
     <Compile Include="Interface\ISimpleAuthenticationForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reddit\ed.cs" />
+    <Compile Include="Tumblr\TumblrAuthentication.cs" />
+    <Compile Include="Tumblr\TumblrService.cs" />
     <Compile Include="Twitter\TwitterAccountService.cs" />
     <Compile Include="Twitter\TwitterContextAuthentication.cs" />
     <Compile Include="Twitter\TwitterStreamService.cs" />
+    <Compile Include="Wordpress\WordPressService.cs" />
+    <Compile Include="Wordpress\WordPressUserAuthentication.cs" />
+    <Compile Include="Wordpress\WordPressNoAuthentication.cs" />
+    <Compile Include="Youtube\YoutTubeVideoService.cs" />
+    <Compile Include="Youtube\YouTubeSearchService.cs" />
+    <Compile Include="Youtube\YoutubeApiKeyAuthentication.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Blogger\" />
-    <Folder Include="Facebook\" />
-    <Folder Include="Instagram\" />
-    <Folder Include="Reddit\" />
-    <Folder Include="Tumblr\" />
-    <Folder Include="Wordpress\" />
-    <Folder Include="Youtube\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

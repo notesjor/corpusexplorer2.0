@@ -155,5 +155,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     {
       Analyse();
     }
+
+    private void btn_regex_Click(object sender, EventArgs e)
+    {
+      RegexFunction();
+    }
   }
 }

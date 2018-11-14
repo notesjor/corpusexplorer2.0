@@ -59,7 +59,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Twitter
                                             {
                                               var stamp = DateTime.Now.ToString("O").Replace(":", "-");
 
-                                              using (var fs = new FileStream(Path.Combine(_outputpath, stamp + ".json"),
+                                              using (var fs = new FileStream(Path.Combine(_outputpath, $"twitter_stream_{stamp}.json"),
                                                                              FileMode.Create,
                                                                              FileAccess.Write))
                                               using (var bs = new BufferedStream(fs))

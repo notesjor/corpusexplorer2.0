@@ -6,6 +6,8 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Utils.DataTableWriter;
 using Newtonsoft.Json.Linq;
@@ -31,6 +33,30 @@ namespace CorpusExplorer.Sdk.Helper
         row[columnNameToNormalize] = Math.Round((double)row[columnNameToNormalize] / sum * denominator, round);
 
       return dataTable;
+    }
+
+    public static DataTable RegexFilter(
+      this DataTable dataTable,
+      string column,
+      string regularExpression)
+    {
+      var res = new DataTable();
+      foreach (DataColumn c in dataTable.Columns)
+        res.Columns.Add(c.ColumnName, c.DataType);
+
+      res.BeginLoadData();
+      var regex = new Regex(regularExpression);
+
+      foreach (DataRow row in dataTable.Rows)
+      {
+        var value = row[column]?.ToString();
+        if (!string.IsNullOrEmpty(value) && regex.IsMatch(value))
+          res.Rows.Add(row.ItemArray);
+      }
+
+      res.EndLoadData();
+
+      return res;
     }
 
     /// <summary>

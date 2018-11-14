@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
@@ -10,6 +11,7 @@ using CorpusExplorer.Sdk.Utils.Filter.Queries;
 
 namespace CorpusExplorer.Sdk.Utils.Filter
 {
+  [SuppressMessage("ReSharper", "LocalizableElement")]
   public static class QueryParser
   {
     public static AbstractFilterQuery Parse(string query)
@@ -51,7 +53,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
       char type,
       string name,
       char oper,
-      string values)
+      string value)
     {
       switch (type)
       {
@@ -64,49 +66,49 @@ namespace CorpusExplorer.Sdk.Utils.Filter
               {
                 Inverse = inverse,
                 MetaLabel = name,
-                MetaValues = DeserializeMetaValues(values)
+                MetaValues = DeserializeMetaValues(value)
               };
             case ':':
               return new FilterQueryMetaContainsCaseSensitive
               {
                 Inverse = inverse,
                 MetaLabel = name,
-                MetaValues = DeserializeMetaValues(values)
+                MetaValues = DeserializeMetaValues(value)
               };
             case '.':
               return new FilterQueryMetaContains
               {
                 Inverse = inverse,
                 MetaLabel = name,
-                MetaValues = DeserializeMetaValues(values)
+                MetaValues = DeserializeMetaValues(value)
               };
             case '=':
               return new FilterQueryMetaExactMatchCaseSensitive
               {
                 Inverse = inverse,
                 MetaLabel = name,
-                MetaValues = DeserializeMetaValues(values)
+                MetaValues = DeserializeMetaValues(value)
               };
             case '-':
               return new FilterQueryMetaExactMatch
               {
                 Inverse = inverse,
                 MetaLabel = name,
-                MetaValues = DeserializeMetaValues(values)
+                MetaValues = DeserializeMetaValues(value)
               };
             case '(':
               return new FilterQueryMetaStartsWith
               {
                 Inverse = inverse,
                 MetaLabel = name,
-                MetaValues = DeserializeMetaValues(values)
+                MetaValues = DeserializeMetaValues(value)
               };
             case ')':
               return new FilterQueryMetaEndsWith
               {
                 Inverse = inverse,
                 MetaLabel = name,
-                MetaValues = DeserializeMetaValues(values)
+                MetaValues = DeserializeMetaValues(value)
               };
             case '!':
               return new FilterQueryMetaIsEmpty
@@ -121,40 +123,54 @@ namespace CorpusExplorer.Sdk.Utils.Filter
         case 't':
           switch (oper)
           {
+            case '?':
+              return new FilterQuerySingleLayerRegex
+              {
+                Inverse = inverse,
+                LayerDisplayname = name,
+                RegexQuery = value
+              };
+            case 'F':
+              return new FilterQuerySingleLayerRegexFulltext
+              {
+                Inverse = inverse,
+                LayerDisplayname = name,
+                RegexQuery = value
+              };
             case '~':
               return new FilterQuerySingleLayerAnyMatch
               {
                 Inverse = inverse,
                 LayerDisplayname = name,
-                LayerQueries = values.Split(new[] {" ", ";"}, StringSplitOptions.RemoveEmptyEntries)
+                LayerQueries = value.Split(new[] {" ", ";"}, StringSplitOptions.RemoveEmptyEntries)
               };
             case '-':
               return new FilterQuerySingleLayerAllInOnDocument
               {
                 Inverse = inverse,
                 LayerDisplayname = name,
-                LayerQueries = values.Split(new[] {" ", ";"}, StringSplitOptions.RemoveEmptyEntries)
+                LayerQueries = value.Split(new[] {" ", ";"}, StringSplitOptions.RemoveEmptyEntries)
               };
             case '=':
               return new FilterQuerySingleLayerAllInOneSentence
               {
                 Inverse = inverse,
                 LayerDisplayname = name,
-                LayerQueries = values.Split(new[] {" ", ";"}, StringSplitOptions.RemoveEmptyEntries)
+                LayerQueries = value.Split(new[] {" ", ";"}, StringSplitOptions.RemoveEmptyEntries)
               };
             case '§':
               return new FilterQuerySingleLayerExactPhrase
               {
                 Inverse = inverse,
                 LayerDisplayname = name,
-                LayerQueries = values.Split(new[] {" ", ";"}, StringSplitOptions.RemoveEmptyEntries)
+                LayerQueries = value.Split(new[] {" ", ";"}, StringSplitOptions.RemoveEmptyEntries)
               };
             case '1':
               return new FilterQuerySingleLayerFirstAndAnyOtherMatch
               {
                 Inverse = inverse,
                 LayerDisplayname = name,
-                LayerQueries = values.Split(new[] {" ", ";"}, StringSplitOptions.RemoveEmptyEntries)
+                LayerQueries = value.Split(new[] {" ", ";"}, StringSplitOptions.RemoveEmptyEntries)
               };
           }
 
@@ -168,14 +184,14 @@ namespace CorpusExplorer.Sdk.Utils.Filter
               {
                 Inverse = inverse,
                 MetaLabel = "<:RANDOM:>",
-                MetaValues = new[] {values}
+                MetaValues = new[] {value}
               };
             case 'S':
               return new FilterQueryUnsupportedParserFeature
               {
                 Inverse = inverse,
                 MetaLabel = name,
-                MetaValues = new[] {values}
+                MetaValues = new[] {value}
               };
             case 'C':
               return new FilterQueryUnsupportedParserFeature
@@ -210,7 +226,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
 
       return BuildQuery(invert, type, name, oper, vals);
     }
-
+    
     private static string SerializeEntry(AbstractFilterQuery query)
     {
       var inv = query.Inverse ? "!" : "";
@@ -261,6 +277,12 @@ namespace CorpusExplorer.Sdk.Utils.Filter
 
           switch (query)
           {
+            case FilterQuerySingleLayerRegex _:
+              return
+                $"{inv}T?{q.LayerDisplayname}::{value}";
+            case FilterQuerySingleLayerRegexFulltext _:
+              return
+                $"{inv}TF{q.LayerDisplayname}::{value}";
             case FilterQuerySingleLayerAnyMatch _:
               return
                 $"{inv}T~{q.LayerDisplayname}::{value}";

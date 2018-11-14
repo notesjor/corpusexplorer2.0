@@ -47,6 +47,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       this.commandBarSeparator3 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.commandBarLabel1 = new Telerik.WinControls.UI.CommandBarLabel();
       this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
+      this.btn_regex = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
@@ -78,6 +79,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
             this.btn_calc,
             this.btn_filter,
             this.btn_filterEditor,
+            this.btn_regex,
             this.commandBarSeparator1,
             this.btn_csvExport,
             this.btn_print,
@@ -116,7 +118,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       // btn_filterEditor
       // 
       this.btn_filterEditor.DisplayName = "commandBarButton1";
-      this.btn_filterEditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.grid_list;
+      this.btn_filterEditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
       this.btn_filterEditor.Name = "btn_filterEditor";
       this.btn_filterEditor.Text = "Filtereditor";
       this.btn_filterEditor.Click += new System.EventHandler(this.btn_filterEditor_Click);
@@ -219,10 +221,18 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       this.radGridView1.Size = new System.Drawing.Size(780, 290);
       this.radGridView1.TabIndex = 1;
       // 
+      // btn_regex
+      // 
+      this.btn_regex.DisplayName = "commandBarButton2";
+      this.btn_regex.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_regex;
+      this.btn_regex.Name = "btn_regex";
+      this.btn_regex.Text = "RegEx-Suche";
+      this.btn_regex.Click += new System.EventHandler(this.btn_regex_Click);
+      // 
       // NamedEntityGrid
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radGridView1);
       this.Controls.Add(this.radCommandBar1);
       this.Name = "NamedEntityGrid";
@@ -254,5 +264,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
     private Telerik.WinControls.UI.CommandBarButton commandBarButton1;
     private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator3;
     private Telerik.WinControls.UI.CommandBarLabel commandBarLabel1;
+    private Telerik.WinControls.UI.CommandBarButton btn_regex;
   }
 }

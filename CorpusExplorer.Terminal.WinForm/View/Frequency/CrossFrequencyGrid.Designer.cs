@@ -36,13 +36,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       this.btn_calc = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_filter = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_filtereditor = new Telerik.WinControls.UI.CommandBarButton();
+      this.btn_layer = new Telerik.WinControls.UI.CommandBarButton();
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_csvExport = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_print = new Telerik.WinControls.UI.CommandBarButton();
       this.commandBarSeparator2 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_snapshot_create = new Telerik.WinControls.UI.CommandBarButton();
       this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-      this.btn_layer = new Telerik.WinControls.UI.CommandBarButton();
+      this.btn_regex = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
@@ -73,6 +74,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
             this.btn_calc,
             this.btn_filter,
             this.btn_filtereditor,
+            this.btn_regex,
             this.btn_layer,
             this.commandBarSeparator1,
             this.btn_csvExport,
@@ -112,10 +114,18 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       // btn_filtereditor
       // 
       this.btn_filtereditor.DisplayName = "commandBarButton1";
-      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.grid_list;
+      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
       this.btn_filtereditor.Name = "btn_filtereditor";
       this.btn_filtereditor.Text = "Filtereditor";
       this.btn_filtereditor.Click += new System.EventHandler(this.btn_filtereditor_Click);
+      // 
+      // btn_layer
+      // 
+      this.btn_layer.DisplayName = "commandBarButton1";
+      this.btn_layer.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers;
+      this.btn_layer.Name = "btn_layer";
+      this.btn_layer.Text = "Layer auswählen";
+      this.btn_layer.Click += new System.EventHandler(this.btn_layer_Click);
       // 
       // commandBarSeparator1
       // 
@@ -179,18 +189,18 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       this.radGridView1.Size = new System.Drawing.Size(780, 331);
       this.radGridView1.TabIndex = 1;
       // 
-      // btn_layer
+      // btn_regex
       // 
-      this.btn_layer.DisplayName = "commandBarButton1";
-      this.btn_layer.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers;
-      this.btn_layer.Name = "btn_layer";
-      this.btn_layer.Text = "Layer auswählen";
-      this.btn_layer.Click += new System.EventHandler(this.btn_layer_Click);
+      this.btn_regex.DisplayName = "commandBarButton1";
+      this.btn_regex.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_regex;
+      this.btn_regex.Name = "btn_regex";
+      this.btn_regex.Text = "RegEx-Suche";
+      this.btn_regex.Click += new System.EventHandler(this.btn_regex_Click);
       // 
       // CrossFrequencyGrid
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radGridView1);
       this.Controls.Add(this.radCommandBar1);
       this.Name = "CrossFrequencyGrid";
@@ -218,5 +228,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
     private Telerik.WinControls.UI.CommandBarButton btn_filter;
     private Telerik.WinControls.UI.CommandBarButton btn_filtereditor;
     private Telerik.WinControls.UI.CommandBarButton btn_layer;
+    private Telerik.WinControls.UI.CommandBarButton btn_regex;
   }
 }

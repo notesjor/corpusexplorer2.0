@@ -99,7 +99,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
       // MetadataSnapshotControl
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Name = "MetadataSnapshotControl";
       this.Size = new System.Drawing.Size(800, 120);
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();

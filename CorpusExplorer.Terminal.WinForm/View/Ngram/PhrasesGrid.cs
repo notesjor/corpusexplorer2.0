@@ -223,5 +223,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       radGridView1.RowSourceNeeded -= radGridView1_RowSourceNeeded;
       radGridView1.RowSourceNeeded += radGridView1_RowSourceNeeded;
     }
+
+    private void btn_regex_Click(object sender, EventArgs e)
+    {
+      RegexFunction();
+    }
   }
 }

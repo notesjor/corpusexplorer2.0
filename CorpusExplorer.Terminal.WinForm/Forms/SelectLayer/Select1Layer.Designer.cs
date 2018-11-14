@@ -52,7 +52,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
       // Select1Layer
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.ClientSize = new System.Drawing.Size(397, 158);
       this.Controls.Add(this.layerSettings1);
       this.DisplayAbort = true;

@@ -30,8 +30,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger
       {
         base.LanguageSelected = value;
         Tokenizer = value == "Deutsch"
-          ? (AbstractTokenizer) new HighSpeedGermanTokenizer()
-          : new HighSpeedSpaceTokenizer();
+                      ? (AbstractTokenizer)new HighSpeedGermanTokenizer()
+                      : new HighSpeedSpaceTokenizer();
       }
     }
 

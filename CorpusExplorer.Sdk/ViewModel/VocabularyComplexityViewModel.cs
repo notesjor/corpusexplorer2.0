@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Blocks.VocabularyComplaxity;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
 using CorpusExplorer.Sdk.ViewModel.Interfaces;
@@ -12,13 +13,6 @@ namespace CorpusExplorer.Sdk.ViewModel
 {
   public class VocabularyComplexityViewModel : AbstractViewModel, IProvideDataTable
   {
-    public IEnumerable<AbstractVocabularyComplexity> ComplexityAlgorithms { get; set; } =
-      new AbstractVocabularyComplexity
-        []
-        {
-          
-        };
-
     public Dictionary<string, Dictionary<Guid, double>> ComplexityValues { get; set; }
 
     public string LayerDisplayname { get; set; } = "Wort";
@@ -67,7 +61,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 
       ComplexityValues = new Dictionary<string, Dictionary<Guid, double>>();
 
-      foreach (var algo in ComplexityAlgorithms)
+      foreach (var algo in Configuration.GetSideloadFeature<AbstractVocabularyComplexity>())
         try
         {
           block.ComplexityAlgorithm = algo;

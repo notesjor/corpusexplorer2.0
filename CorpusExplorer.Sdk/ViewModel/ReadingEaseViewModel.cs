@@ -15,9 +15,6 @@ namespace CorpusExplorer.Sdk.ViewModel
   {
     public string LayerDisplayname { get; set; } = "Wort";
 
-    public AbstractReadingEaseIndex[] ReadingEaseAlgorithms { get; set; } =
-      Configuration.GetSideloadFeature<AbstractReadingEaseIndex>().ToArray();
-
     public Dictionary<string, Dictionary<Guid, double>> ReadingEaseIndices { get; set; }
 
     /// <summary>
@@ -69,7 +66,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 
         ReadingEaseIndices = new Dictionary<string, Dictionary<Guid, double>>();
 
-        foreach (var index in ReadingEaseAlgorithms)
+        foreach (var index in Configuration.GetSideloadFeature<AbstractReadingEaseIndex>())
         {
           block.ReadingEaseAlgorithm = index;
           block.Calculate();

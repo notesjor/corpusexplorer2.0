@@ -63,7 +63,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Twitter
         Directory.CreateDirectory(dir);
 
       foreach (var tweet in tweets)
-        File.WriteAllText(Path.Combine(dir, $"{tweet.CreatedAt:yyyy-MM-dd_HH-mm-ss}.json"),
+        File.WriteAllText(Path.Combine(dir, $"twitter_feed_{tweet.CreatedAt:yyyy-MM-dd_HH-mm-ss}.json"),
                           JsonConvert.SerializeObject(tweet));
     }
   }

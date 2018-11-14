@@ -129,5 +129,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       form.ShowDialog();
       SelectedLayerDisplaynames = form.ResultSelectedLayerDisplaynames;
     }
+
+    private void btn_regex_Click(object sender, EventArgs e)
+    {
+      RegexFunction();
+    }
   }
 }

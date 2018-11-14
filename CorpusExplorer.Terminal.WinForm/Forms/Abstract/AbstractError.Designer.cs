@@ -31,11 +31,17 @@
       this.lbl_funnyHeader = new Telerik.WinControls.UI.RadLabel();
       this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
       this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+      ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.lbl_funnyHeader)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
+      // 
+      // radPanel1
+      // 
+      this.radPanel1.Location = new System.Drawing.Point(0, 327);
+      this.radPanel1.Size = new System.Drawing.Size(544, 38);
       // 
       // lbl_funnyHeader
       // 
@@ -70,8 +76,7 @@
       // 
       // AbstractError
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.ClientSize = new System.Drawing.Size(544, 365);
       this.Controls.Add(this.radLabel2);
       this.Controls.Add(this.radLabel1);
@@ -83,9 +88,11 @@
       // 
       this.RootElement.ApplyShapeToControl = true;
       this.Text = "AbstractError";
+      this.Controls.SetChildIndex(this.radPanel1, 0);
       this.Controls.SetChildIndex(this.lbl_funnyHeader, 0);
       this.Controls.SetChildIndex(this.radLabel1, 0);
       this.Controls.SetChildIndex(this.radLabel2, 0);
+      ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.lbl_funnyHeader)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();

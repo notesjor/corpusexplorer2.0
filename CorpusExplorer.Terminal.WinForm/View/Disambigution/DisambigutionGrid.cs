@@ -1,7 +1,10 @@
 ﻿#region
 
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
@@ -42,15 +45,59 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
       radGridView1.ResetBindings();
       radGridView1.BestFitColumns(BestFitColumnMode.HeaderCells);
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
-
+      
       AddSummaryRow();
       AddChildTemplate(
-        x => new FilterQuerySingleLayerAllInOneSentence
-        {
-          Inverse = false,
-          LayerDisplayname = "Wort",
-          LayerQueries = new[] {wordBag1.ResultSelectedLayerDisplayname, x[Resources.Bezeichnung].ToString()}
-        });
+                       delegate (DataRowView x)
+                       {
+                         var cnt = wordBag1.ResultQueries.Count();
+                         if (cnt == 1)
+                         {
+                           var q = wordBag1.ResultQueries.First();
+                           var bag = new List<string> { q };
+                           bag.AddRange(x[Resources.Label].ToString().Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries));
+
+                           return new FilterQuerySingleLayerFirstAndAnyOtherMatch
+                           {
+                             Inverse = false,
+                             LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname,
+                             LayerQueries = bag
+                           };
+                         }
+                         if (cnt > 1)
+                         {
+                           var qs = wordBag1.ResultQueries.ToArray();
+                           var bag = new List<string> { qs[0] };
+                           var other = x[Resources.Label]
+                                      .ToString()
+                                      .Split(new[] {", "}, StringSplitOptions.RemoveEmptyEntries);
+                           bag.AddRange(other);
+
+                           var or = new List<AbstractFilterQuery>();
+                           for (var i = 1; i < qs.Length; i++)
+                           {
+                             bag = new List<string> { qs[1] };
+                             bag.AddRange(other);
+
+                             or.Add(new FilterQuerySingleLayerFirstAndAnyOtherMatch
+                             {
+                               Inverse = false,
+                               LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname,
+                               LayerQueries = bag.ToArray()
+                             });
+                           }
+
+                           return new FilterQuerySingleLayerFirstAndAnyOtherMatch
+                           {
+                             Inverse = false,
+                             LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname,
+                             LayerQueries = bag.ToArray(),
+                             OrFilterQueries = or
+                           };
+                         }
+
+                         return null;
+                       });
     }
 
     /// <summary>
@@ -122,6 +169,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
     private void wordBag1_ExecuteButtonClicked(object sender, EventArgs e)
     {
       Processing.Invoke(Resources.ZählungLäuft, Analyse);
+    }
+
+    private void btn_regex_Click(object sender, EventArgs e)
+    {
+      RegexFunction();
     }
   }
 }

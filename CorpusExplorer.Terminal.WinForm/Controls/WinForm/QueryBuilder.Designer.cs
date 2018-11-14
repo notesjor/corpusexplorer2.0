@@ -45,7 +45,7 @@
       // QueryBuilder
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radDataFilter1);
       this.Name = "QueryBuilder";
       ((System.ComponentModel.ISupportInitialize)(this.radDataFilter1)).EndInit();

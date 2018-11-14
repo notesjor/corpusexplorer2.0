@@ -246,33 +246,33 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     }
 
     /// <summary>
-    ///   The get sentences index.
+    ///   Gibt die erste Übereinstimmung innerhalb eines Satze zurück
     /// </summary>
     /// <param name="corpus">
-    ///   The corpus.
+    ///   Korpus
     /// </param>
     /// <param name="documentGuid">
-    ///   The document guid.
+    ///   Dokument GUID
     /// </param>
     /// <param name="sentence">
-    ///   The sentence.
+    ///   SatzID
     /// </param>
     /// <returns>
-    ///   The <see cref="int" />.
+    ///   Erste Übereinstimmung
     /// </returns>
     protected abstract int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence);
 
     /// <summary>
-    ///   The get sentences.
+    ///   Gibt alle passenden Sätze zurück.
     /// </summary>
     /// <param name="corpus">
-    ///   The corpus.
+    ///   Korpus
     /// </param>
     /// <param name="documentGuid">
-    ///   The document guid.
+    ///   Dokument GUID
     /// </param>
     /// <returns>
-    ///   Sentence indices
+    ///   Satz Indices
     /// </returns>
     protected abstract IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid);
 
@@ -290,16 +290,16 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     public abstract IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence);
 
     /// <summary>
-    ///   The validate call.
+    ///   Passt das Dokument zum Suchausdruck?
     /// </summary>
     /// <param name="corpus">
-    ///   The corpus.
+    ///   Korpus
     /// </param>
     /// <param name="documentGuid">
-    ///   The document guid.
+    ///   Dokument GUID
     /// </param>
     /// <returns>
-    ///   The <see cref="bool" />.
+    ///   Übereinstimmung: Suchausdruck = Dokument?
     /// </returns>
     protected abstract bool ValidateCall(AbstractCorpusAdapter corpus, Guid documentGuid);
   }

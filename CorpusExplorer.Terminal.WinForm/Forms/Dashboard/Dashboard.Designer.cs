@@ -423,7 +423,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // 
       this.pages_main.RootElement.MinSize = new System.Drawing.Size(576, 445);
-      this.pages_main.SelectedPage = this.page_settings;
+      this.pages_main.SelectedPage = this.page_corpus;
       this.pages_main.Size = new System.Drawing.Size(832, 525);
       this.pages_main.TabIndex = 0;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll;
@@ -588,19 +588,20 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.pages_corpora.ItemSizeMode = Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth;
       this.pages_corpora.Location = new System.Drawing.Point(0, 0);
       this.pages_corpora.Name = "pages_corpora";
-      this.pages_corpora.SelectedPage = this.page_corpus_online;
+      this.pages_corpora.SelectedPage = this.page_corpus_start;
       this.pages_corpora.Size = new System.Drawing.Size(832, 490);
       this.pages_corpora.TabIndex = 0;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_corpora.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_corpora.GetChildAt(0))).ItemFitMode = Telerik.WinControls.UI.StripViewItemFitMode.None;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_corpora.GetChildAt(0))).ItemSizeMode = Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_corpora.GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
-      ((Telerik.WinControls.UI.RadPageViewLabelElement)(this.pages_corpora.GetChildAt(0).GetChildAt(2))).Text = "HungryBetty";
+      ((Telerik.WinControls.UI.RadPageViewLabelElement)(this.pages_corpora.GetChildAt(0).GetChildAt(2))).Text = "Home";
       ((Telerik.WinControls.UI.RadPageViewLabelElement)(this.pages_corpora.GetChildAt(0).GetChildAt(2))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
       // 
       // page_corpus_start
       // 
       this.page_corpus_start.Controls.Add(this.radScrollablePanel3);
+      this.page_corpus_start.ItemSize = new System.Drawing.SizeF(97F, 29F);
       this.page_corpus_start.Location = new System.Drawing.Point(5, 40);
       this.page_corpus_start.Name = "page_corpus_start";
       this.page_corpus_start.Size = new System.Drawing.Size(822, 445);
@@ -729,7 +730,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // corpus_start_add
       // 
       this.corpus_start_add.DropDownDirection = Telerik.WinControls.UI.RadDirection.Right;
-      this.corpus_start_add.Image = ((System.Drawing.Image)(resources.GetObject("corpus_start_add.Image")));
+      this.corpus_start_add.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.cabinet;
       this.corpus_start_add.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
       this.corpus_start_add.Location = new System.Drawing.Point(5, 3);
       this.corpus_start_add.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
@@ -743,7 +744,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // corpus_start_local
       // 
-      this.corpus_start_local.Image = ((System.Drawing.Image)(resources.GetObject("corpus_start_local.Image")));
+      this.corpus_start_local.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.corpus_local;
       this.corpus_start_local.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
       this.corpus_start_local.Location = new System.Drawing.Point(131, 3);
       this.corpus_start_local.Name = "corpus_start_local";
@@ -757,7 +758,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // corpus_start_import
       // 
-      this.corpus_start_import.Image = ((System.Drawing.Image)(resources.GetObject("corpus_start_import.Image")));
+      this.corpus_start_import.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.corpus_extern;
       this.corpus_start_import.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
       this.corpus_start_import.Location = new System.Drawing.Point(257, 3);
       this.corpus_start_import.Name = "corpus_start_import";
@@ -771,7 +772,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // corpus_start_online
       // 
-      this.corpus_start_online.Image = ((System.Drawing.Image)(resources.GetObject("corpus_start_online.Image")));
+      this.corpus_start_online.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.corpus_online;
       this.corpus_start_online.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
       this.corpus_start_online.Location = new System.Drawing.Point(383, 3);
       this.corpus_start_online.Name = "corpus_start_online";
@@ -800,6 +801,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       this.page_corpus_online.Controls.Add(this.radSplitContainer1);
       this.page_corpus_online.Controls.Add(this.header5);
+      this.page_corpus_online.ItemSize = new System.Drawing.SizeF(97F, 29F);
       this.page_corpus_online.Location = new System.Drawing.Point(5, 40);
       this.page_corpus_online.Name = "page_corpus_online";
       this.page_corpus_online.Size = new System.Drawing.Size(822, 445);
@@ -2108,7 +2110,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       this.settings_frequenz_min.RootElement.MaxSize = new System.Drawing.Size(0, 0);
       this.settings_frequenz_min.RootElement.MinSize = new System.Drawing.Size(0, 33);
-      this.settings_frequenz_min.Size = new System.Drawing.Size(235, 33);
+      this.settings_frequenz_min.Size = new System.Drawing.Size(235, 36);
       this.settings_frequenz_min.TabIndex = 13;
       this.settings_frequenz_min.TabStop = false;
       this.settings_frequenz_min.Value = new decimal(new int[] {
@@ -2177,7 +2179,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       this.settings_signifikanz_min.RootElement.MaxSize = new System.Drawing.Size(0, 0);
       this.settings_signifikanz_min.RootElement.MinSize = new System.Drawing.Size(110, 33);
-      this.settings_signifikanz_min.Size = new System.Drawing.Size(235, 33);
+      this.settings_signifikanz_min.Size = new System.Drawing.Size(235, 36);
       this.settings_signifikanz_min.TabIndex = 20;
       this.settings_signifikanz_min.TabStop = false;
       this.settings_signifikanz_min.ValueChanged += new System.EventHandler(this.settings_signifikanz_min_ValueChanged);
@@ -2233,7 +2235,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.settings_drop_signifikanz.MinimumSize = new System.Drawing.Size(200, 33);
       this.settings_drop_signifikanz.Name = "settings_drop_signifikanz";
       this.settings_drop_signifikanz.NullText = "Signifikanzmaß auswählen...";
-      this.settings_drop_signifikanz.Size = new System.Drawing.Size(235, 33);
+      this.settings_drop_signifikanz.Size = new System.Drawing.Size(235, 36);
       this.settings_drop_signifikanz.TabIndex = 11;
       this.settings_drop_signifikanz.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.settings_drop_signifikanz_SelectedIndexChanged);
       // 
@@ -2634,7 +2636,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.settings_insigt_id.Name = "settings_insigt_id";
       this.settings_insigt_id.NullText = ".. :: Telemetrie deaktiviert :: ..";
       this.settings_insigt_id.ReadOnly = true;
-      this.settings_insigt_id.Size = new System.Drawing.Size(442, 32);
+      this.settings_insigt_id.Size = new System.Drawing.Size(442, 35);
       this.settings_insigt_id.TabIndex = 1;
       this.settings_insigt_id.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
       // 
@@ -2707,6 +2709,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // customShape1
       // 
       this.customShape1.Dimension = new System.Drawing.Rectangle(0, 0, 0, 0);
+      this.customShape1.IsRightToLeft = false;
       // 
       // main_mainmenu_app
       // 
@@ -3011,7 +3014,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // Dashboard
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.ClientSize = new System.Drawing.Size(832, 581);
       this.Controls.Add(this.pages_main);
       this.Controls.Add(this.radMenu1);

@@ -198,7 +198,7 @@
       // btn_filtereditor
       // 
       this.btn_filtereditor.DisplayName = "commandBarButton1";
-      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.grid_list;
+      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
       this.btn_filtereditor.Name = "btn_filtereditor";
       this.btn_filtereditor.Text = "Filtereditor";
       this.btn_filtereditor.Click += new System.EventHandler(this.btn_filtereditor_Click);
@@ -206,7 +206,7 @@
       // CharacterNGramGrid
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radGridView1);
       this.Controls.Add(this.radCommandBar1);
       this.Name = "CharacterNGramGrid";

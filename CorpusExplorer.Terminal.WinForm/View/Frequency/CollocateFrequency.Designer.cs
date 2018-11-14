@@ -40,9 +40,10 @@
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_csvExport = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_print = new Telerik.WinControls.UI.CommandBarButton();
-      this.wordBag1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WordBag();
       this.commandBarSeparator2 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_snapshot_new = new Telerik.WinControls.UI.CommandBarButton();
+      this.wordBag1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WordBag();
+      this.btn_regex = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
@@ -99,6 +100,7 @@
             this.btn_calc,
             this.btn_filterlist,
             this.btn_filtereditor,
+            this.btn_regex,
             this.commandBarSeparator1,
             this.btn_csvExport,
             this.btn_print,
@@ -155,7 +157,7 @@
       // 
       this.btn_filtereditor.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
       this.btn_filtereditor.DisplayName = "commandBarButton1";
-      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.grid_list;
+      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
       this.btn_filtereditor.Name = "btn_filtereditor";
       this.btn_filtereditor.Text = "Filtereditor";
       this.btn_filtereditor.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -199,6 +201,20 @@
       this.btn_print.UseCompatibleTextRendering = false;
       this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
       // 
+      // commandBarSeparator2
+      // 
+      this.commandBarSeparator2.DisplayName = "commandBarSeparator2";
+      this.commandBarSeparator2.Name = "commandBarSeparator2";
+      this.commandBarSeparator2.VisibleInOverflowMenu = false;
+      // 
+      // btn_snapshot_new
+      // 
+      this.btn_snapshot_new.DisplayName = "commandBarButton1";
+      this.btn_snapshot_new.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.camera_add;
+      this.btn_snapshot_new.Name = "btn_snapshot_new";
+      this.btn_snapshot_new.Text = "Schnappschuss erstellen";
+      this.btn_snapshot_new.Click += new System.EventHandler(this.btn_snapshot_new_Click);
+      // 
       // wordBag1
       // 
       this.wordBag1.BackColor = System.Drawing.Color.White;
@@ -213,25 +229,18 @@
       this.wordBag1.TabIndex = 5;
       this.wordBag1.ExecuteButtonClicked += new System.EventHandler(this.wordBag1_ExecuteButtonClicked);
       // 
-      // commandBarSeparator2
+      // btn_regex
       // 
-      this.commandBarSeparator2.DisplayName = "commandBarSeparator2";
-      this.commandBarSeparator2.Name = "commandBarSeparator2";
-      this.commandBarSeparator2.Text = "";
-      this.commandBarSeparator2.VisibleInOverflowMenu = false;
-      // 
-      // btn_snapshot_new
-      // 
-      this.btn_snapshot_new.DisplayName = "commandBarButton1";
-      this.btn_snapshot_new.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.camera_add;
-      this.btn_snapshot_new.Name = "btn_snapshot_new";
-      this.btn_snapshot_new.Text = "Schnappschuss erstellen";
-      this.btn_snapshot_new.Click += new System.EventHandler(this.btn_snapshot_new_Click);
+      this.btn_regex.DisplayName = "commandBarButton1";
+      this.btn_regex.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_regex;
+      this.btn_regex.Name = "btn_regex";
+      this.btn_regex.Text = "RegEx-Suche";
+      this.btn_regex.Click += new System.EventHandler(this.btn_regex_Click);
       // 
       // CollocateFrequency
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radGridView1);
       this.Controls.Add(this.wordBag1);
       this.Controls.Add(this.radCommandBar1);
@@ -260,5 +269,6 @@
     private Controls.WinForm.WordBag wordBag1;
     private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator2;
     private Telerik.WinControls.UI.CommandBarButton btn_snapshot_new;
+    private Telerik.WinControls.UI.CommandBarButton btn_regex;
   }
 }

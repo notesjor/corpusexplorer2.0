@@ -466,7 +466,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         return;
 
       var zip = new FastZip();
-      zip.ExtractZip("WebCrawler.zip", fbd.SelectedPath, null);
+      zip.ExtractZip(Path.Combine(Configuration.AppPath, "WebCrawler.zip"), fbd.SelectedPath, null);
 
       foreach (var item in corpus_online_crawler_list.Items.Where(item => item.CheckState == ToggleState.On))
       {
@@ -773,6 +773,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           Resources.sheet_calculate_1,
           Resources.sheet_calculate,
           "Signifikante-NGramme")
+        .AddView(
+          new CutOffPhraseGrid(),
+          Resources.clipboard_cut,
+          Resources.clipboard_cut1,
+          "CutOff-Phrasen")
         .AddView(
           new PhrasesGrid(),
           Resources.sheet_calculate_1,
@@ -1834,8 +1839,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
             if (!tagger.Output.TryDequeue(out var corpus))
               continue;
 
-            AddCorpusToProject(corpus, true);
+            corpus.CorpusDisplayname = formName.Result;
             corpus.Save(Path.Combine(Configuration.MyCorpora, formName.Result.EnsureFileName()));
+            AddCorpusToProject(corpus, true);
           }
         });
     }

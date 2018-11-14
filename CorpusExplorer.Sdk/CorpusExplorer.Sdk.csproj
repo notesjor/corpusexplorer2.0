@@ -178,6 +178,7 @@
     <Compile Include="Blocks\ClusterMetadata\ClusterMetadataItem.cs" />
     <Compile Include="Blocks\CooccurrenceContextBlock.cs" />
     <Compile Include="Blocks\CrossFrequencyDocumentBasedBlock.cs" />
+    <Compile Include="Blocks\CutOffPhraseBlock.cs" />
     <Compile Include="Blocks\Helper\DoubleKeyDictionary.cs" />
     <Compile Include="Blocks\MtldBlock.cs" />
     <Compile Include="Blocks\NamedEntityRecognitionBlock.cs" />
@@ -454,6 +455,7 @@
     <Compile Include="Utils\DocumentProcessing\Importer\ImporterConll.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\ImporterTlv.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\ImporterTreeTagger.cs" />
+    <Compile Include="Utils\DocumentProcessing\Scraper\CsvScraper.cs" />
     <Compile Include="Utils\DocumentProcessing\Scraper\TsvScraper.cs" />
     <Compile Include="Utils\DocumentProcessing\Scraper\TxtScraper.cs" />
     <Compile Include="Utils\DocumentProcessing\Scraper\Txt\CosmasScraper.cs" />
@@ -479,12 +481,15 @@
     <Compile Include="Utils\DocumentProcessing\Tagger\UDPipe\UdPipeExeTagger.cs" />
     <Compile Include="Utils\DocumentProcessing\Tokenizer\HighSpeedGermanTokenizer.cs" />
     <Compile Include="Utils\DocumentProcessing\Tokenizer\HighSpeedGermanWikipediaTokenizer.cs" />
+    <Compile Include="Utils\Filter\Abstract\AbstractFilterQuerySingleLayerFulltext.cs" />
     <Compile Include="Utils\Filter\Interface\IFilterQueryWithLayerValues.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMetaEndsWith.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMetaStartsWith.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMultiLayerPhrase.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerFirstAndAnyOtherMatch.cs" />
+    <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerRegexFulltext.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerRanked.cs" />
+    <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerRegex.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryUnsupportedParserFeature.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerAlternativePhrase.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerMarkedPhrase.cs" />
@@ -561,6 +566,7 @@
     <Compile Include="ViewModel\CorpusFiniteStateMachineViewModel.cs" />
     <Compile Include="ViewModel\CorpusWeightLimmitedOverTimeViewModel.cs" />
     <Compile Include="ViewModel\CrossFrequencyOverTimeViewModel.cs" />
+    <Compile Include="ViewModel\CutOffPhraseViewModel.cs" />
     <Compile Include="ViewModel\DocumentCloneDetectionViewModel.cs" />
     <Compile Include="ViewModel\CooccurrenceCompareViewModel.cs" />
     <Compile Include="ViewModel\DocumentMetadataViewModel.cs" />

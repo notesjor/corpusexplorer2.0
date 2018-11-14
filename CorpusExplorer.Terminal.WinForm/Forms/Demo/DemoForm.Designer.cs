@@ -35,17 +35,17 @@
       // 
       // pictureBox1
       // 
-      this.pictureBox1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.user_group1;
-      this.pictureBox1.Location = new System.Drawing.Point(114, 72);
+      this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pictureBox1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.clipboard_cut1;
+      this.pictureBox1.Location = new System.Drawing.Point(0, 0);
       this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+      this.pictureBox1.Size = new System.Drawing.Size(350, 243);
       this.pictureBox1.TabIndex = 0;
       this.pictureBox1.TabStop = false;
       // 
       // DemoForm
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.ClientSize = new System.Drawing.Size(350, 243);
       this.Controls.Add(this.pictureBox1);
       this.Name = "DemoForm";

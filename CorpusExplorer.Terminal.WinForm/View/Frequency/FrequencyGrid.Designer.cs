@@ -37,6 +37,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       this.btn_calc = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_filter = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_filterEditor = new Telerik.WinControls.UI.CommandBarButton();
+      this.btn_regex = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_layers = new Telerik.WinControls.UI.CommandBarButton();
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_csvExport = new Telerik.WinControls.UI.CommandBarButton();
@@ -74,6 +75,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
             this.btn_calc,
             this.btn_filter,
             this.btn_filterEditor,
+            this.btn_regex,
             this.btn_layers,
             this.commandBarSeparator1,
             this.btn_csvExport,
@@ -113,10 +115,18 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       // btn_filterEditor
       // 
       this.btn_filterEditor.DisplayName = "commandBarButton1";
-      this.btn_filterEditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.grid_list;
+      this.btn_filterEditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
       this.btn_filterEditor.Name = "btn_filterEditor";
       this.btn_filterEditor.Text = "Filtereditor";
       this.btn_filterEditor.Click += new System.EventHandler(this.btn_filterEditor_Click);
+      // 
+      // btn_regex
+      // 
+      this.btn_regex.DisplayName = "commandBarButton1";
+      this.btn_regex.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_regex;
+      this.btn_regex.Name = "btn_regex";
+      this.btn_regex.Text = "RegEx-Suche";
+      this.btn_regex.Click += new System.EventHandler(this.btn_regex_Click);
       // 
       // btn_layers
       // 
@@ -191,7 +201,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       // FrequencyGrid
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radGridView1);
       this.Controls.Add(this.radCommandBar1);
       this.Name = "FrequencyGrid";
@@ -219,5 +229,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
     private Telerik.WinControls.UI.CommandBarButton btn_filter;
     private Telerik.WinControls.UI.CommandBarButton btn_filterEditor;
     private Telerik.WinControls.UI.CommandBarButton btn_layers;
+    private Telerik.WinControls.UI.CommandBarButton btn_regex;
   }
 }

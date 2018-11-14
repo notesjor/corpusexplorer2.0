@@ -118,5 +118,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       _vm = GetViewModel<CorpusWeightUnlimmitedCompareViewModel>();
       _selectionDropdown1.RefreshSelectionTree();
     }
+
+    private void btn_regex_Click(object sender, EventArgs e)
+    {
+      RegexFunction();
+    }
   }
 }

@@ -84,7 +84,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.GridViewFunctions
       // PredefinedFunctions
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.ClientSize = new System.Drawing.Size(387, 180);
       this.Controls.Add(this.radGroupBox1);
       this.Controls.Add(this.header1);

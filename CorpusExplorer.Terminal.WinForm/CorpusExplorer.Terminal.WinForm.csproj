@@ -634,6 +634,12 @@
     <Compile Include="Forms\NamedEntity\NamedEntityConfiguration.Designer.cs">
       <DependentUpon>NamedEntityConfiguration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\RegEx\RegExForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RegEx\RegExForm.Designer.cs">
+      <DependentUpon>RegExForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SelectLayer\Abstract\AbstractSelectLayer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -881,6 +887,12 @@
     </Compile>
     <Compile Include="View\Fulltext\FulltextKwicSearch.Designer.cs">
       <DependentUpon>FulltextKwicSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ngram\CutOffPhraseGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Ngram\CutOffPhraseGrid.Designer.cs">
+      <DependentUpon>CutOffPhraseGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Ngram\SkipgramGrid.cs">
       <SubType>UserControl</SubType>
@@ -1287,6 +1299,9 @@
     <EmbeddedResource Include="Forms\NamedEntity\NamedEntityConfiguration.resx">
       <DependentUpon>NamedEntityConfiguration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RegEx\RegExForm.resx">
+      <DependentUpon>RegExForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SelectLayer\Abstract\AbstractSelectLayer.resx">
       <DependentUpon>AbstractSelectLayer.cs</DependentUpon>
     </EmbeddedResource>
@@ -1395,6 +1410,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Fulltext\FulltextKwicSearch.resx">
       <DependentUpon>FulltextKwicSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Ngram\CutOffPhraseGrid.resx">
+      <DependentUpon>CutOffPhraseGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Ngram\SkipgramGrid.resx">
       <DependentUpon>SkipgramGrid.cs</DependentUpon>
@@ -1546,7 +1564,9 @@
       <DependentUpon>TreeTaggerTrainerView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="app.manifest" />
+    <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="CorpusExplorer.Terminal.WinForm.psproj" />
     <None Include="CorpusExplorerNextSnKey.pfx" />
     <None Include="LICENSE" />
@@ -1794,6 +1814,10 @@
     <None Include="Resources\cabinet-warn.png" />
     <None Include="Resources\cabinet-warn1.png" />
     <None Include="Resources\favorite.png" />
+    <None Include="Resources\filter-settings.png" />
+    <None Include="Resources\filter-regex.png" />
+    <None Include="Resources\clipboard_cut.png" />
+    <None Include="Resources\clipboard_cut1.png" />
     <Content Include="XDependencies\NTextCat\Wiki280.profile.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

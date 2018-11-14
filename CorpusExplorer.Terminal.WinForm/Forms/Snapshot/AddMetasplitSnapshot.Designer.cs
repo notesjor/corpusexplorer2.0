@@ -415,7 +415,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       // AddMetasplitSnapshot
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.ClientSize = new System.Drawing.Size(488, 414);
       this.Controls.Add(this.clearPanel2);
       this.Controls.Add(this.drop_metaKey);

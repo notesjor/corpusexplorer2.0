@@ -58,7 +58,7 @@
       // SearchBar
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radTextBox1);
       this.Controls.Add(this.radButton1);
       this.Name = "SearchBar";

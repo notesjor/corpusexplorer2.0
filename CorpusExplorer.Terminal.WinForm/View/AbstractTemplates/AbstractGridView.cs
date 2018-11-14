@@ -1,9 +1,15 @@
-﻿using System.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using CorpusExplorer.Sdk.Diagnostic;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.ViewModel.Interfaces;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm;
 using CorpusExplorer.Terminal.WinForm.Forms.GridViewFunctions;
+using CorpusExplorer.Terminal.WinForm.Forms.RegEx;
 using CorpusExplorer.Terminal.WinForm.Helper;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Properties;
@@ -15,7 +21,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
   public partial class AbstractGridView : AbstractView
   {
     protected RadGridView _grid;
-    protected readonly  GridException GridException = new GridException("Use InitializeGrid to set the default RadGridView");
+    protected readonly GridException GridException = new GridException("Use InitializeGrid to set the default RadGridView");
 
     public AbstractGridView()
     {
@@ -49,7 +55,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
       foreach (var column in _grid.Columns)
         if (column.DataType == typeof(string))
           summaryRowItem.Add(
-            new GridViewHashSetSummaryItem {Name = column.Name, Aggregate = GridAggregateFunction.Last});
+            new GridViewHashSetSummaryItem { Name = column.Name, Aggregate = GridAggregateFunction.Last });
         else
           summaryRowItem.Add(
             new GridViewSummaryItem
@@ -103,8 +109,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
       _grid.FilterDescriptors.Clear();
       var filter = new CompositeFilterDescriptor();
       foreach (var query in form.Result)
-      foreach (var p in properties)
-        filter.FilterDescriptors.Add(new FilterDescriptor(p, FilterOperator.IsEqualTo, query));
+        foreach (var p in properties)
+          filter.FilterDescriptors.Add(new FilterDescriptor(p, FilterOperator.IsEqualTo, query));
 
       filter.LogicalOperator = FilterLogicalOperator.Or;
       filter.NotOperator = !form.ResultSelectAll;
@@ -118,6 +124,24 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
       _grid.ShowRowHeaderColumn = false;
       _grid.FilterChanged -= _grid_FilterChanged;
       _grid.FilterChanged += _grid_FilterChanged;
+    }
+
+    private DataTable _backup;
+
+    protected void RegexFunction()
+    {
+      var dt = _backup ?? _grid.DataSource as DataTable;
+      var names = new List<string>();
+      foreach (DataColumn c in dt.Columns)
+        names.Add(c.ColumnName);
+
+      var form = new RegExForm(names.ToArray());
+      var res = form.ShowDialog();
+
+      _grid.DataSource = null;
+      _grid.DataSource = res == DialogResult.OK 
+                           ? dt.RegexFilter(form.SelectColumn, form.RegularExpression) 
+                           : _backup;
     }
 
     protected void PredefinedFunctions(IProvideDataTable vm, params string[] properties)

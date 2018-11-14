@@ -35,6 +35,7 @@
       this.btn_calc = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_filterlist = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_filtereditor = new Telerik.WinControls.UI.CommandBarButton();
+      this.btn_regex = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_layer = new Telerik.WinControls.UI.CommandBarButton();
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_csvExport = new Telerik.WinControls.UI.CommandBarButton();
@@ -58,7 +59,7 @@
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1,
             this.commandBarRowElement2});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 85);
+      this.radCommandBar1.Size = new System.Drawing.Size(780, 111);
       this.radCommandBar1.TabIndex = 0;
       // 
       // commandBarRowElement1
@@ -79,6 +80,7 @@
             this.btn_calc,
             this.btn_filterlist,
             this.btn_filtereditor,
+            this.btn_regex,
             this.btn_layer,
             this.commandBarSeparator1,
             this.btn_csvExport,
@@ -112,10 +114,18 @@
       // btn_filtereditor
       // 
       this.btn_filtereditor.DisplayName = "commandBarButton1";
-      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.grid_list;
+      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
       this.btn_filtereditor.Name = "btn_filtereditor";
       this.btn_filtereditor.Text = "Filtereditor";
       this.btn_filtereditor.Click += new System.EventHandler(this.btn_filtereditor_Click);
+      // 
+      // btn_regex
+      // 
+      this.btn_regex.DisplayName = "commandBarButton1";
+      this.btn_regex.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_regex;
+      this.btn_regex.Name = "btn_regex";
+      this.btn_regex.Text = "RegEx-Suche";
+      this.btn_regex.Click += new System.EventHandler(this.btn_regex_Click);
       // 
       // btn_layer
       // 
@@ -194,7 +204,7 @@
       // radGridView1
       // 
       this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGridView1.Location = new System.Drawing.Point(0, 85);
+      this.radGridView1.Location = new System.Drawing.Point(0, 111);
       // 
       // 
       // 
@@ -205,13 +215,13 @@
       this.radGridView1.MasterTemplate.MultiSelect = true;
       this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
-      this.radGridView1.Size = new System.Drawing.Size(780, 315);
+      this.radGridView1.Size = new System.Drawing.Size(780, 289);
       this.radGridView1.TabIndex = 1;
       // 
       // CompareCooccurrence
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radGridView1);
       this.Controls.Add(this.radCommandBar1);
       this.Name = "CompareCooccurrence";
@@ -241,5 +251,6 @@
     private Telerik.WinControls.UI.CommandBarButton btn_filtereditor;
     private Telerik.WinControls.UI.CommandBarButton btn_layer;
     private Telerik.WinControls.UI.CommandBarHostItem commandBarHostItem1;
+    private Telerik.WinControls.UI.CommandBarButton btn_regex;
   }
 }

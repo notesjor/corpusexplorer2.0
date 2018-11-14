@@ -46,6 +46,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       this.txt_query = new Telerik.WinControls.UI.RadTextBox();
       this.clearPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
       this.btn_search = new Telerik.WinControls.UI.RadButton();
+      this.btn_regex = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
@@ -62,7 +63,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 44);
+      this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
       this.radCommandBar1.TabIndex = 0;
       // 
       // commandBarRowElement1
@@ -84,6 +85,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
             this.btn_calc,
             this.btn_filterlist,
             this.btn_filtereditor,
+            this.btn_regex,
             this.btn_layer,
             this.commandBarSeparator1,
             this.btn_csvExport,
@@ -129,7 +131,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // btn_filtereditor
       // 
       this.btn_filtereditor.DisplayName = "commandBarButton1";
-      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.grid_list;
+      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
       this.btn_filtereditor.Name = "btn_filtereditor";
       this.btn_filtereditor.Text = "Filtereditor";
       this.btn_filtereditor.Click += new System.EventHandler(this.btn_filtereditor_Click);
@@ -190,7 +192,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // radGridView1
       // 
       this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGridView1.Location = new System.Drawing.Point(0, 44);
+      this.radGridView1.Location = new System.Drawing.Point(0, 69);
       // 
       // 
       // 
@@ -201,7 +203,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       this.radGridView1.MasterTemplate.MultiSelect = true;
       this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
-      this.radGridView1.Size = new System.Drawing.Size(780, 324);
+      this.radGridView1.Size = new System.Drawing.Size(780, 299);
       this.radGridView1.TabIndex = 1;
       // 
       // txt_query
@@ -233,10 +235,18 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       this.btn_search.TabIndex = 0;
       this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
       // 
+      // btn_regex
+      // 
+      this.btn_regex.DisplayName = "commandBarButton1";
+      this.btn_regex.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_regex;
+      this.btn_regex.Name = "btn_regex";
+      this.btn_regex.Text = "RegEx-Suche";
+      this.btn_regex.Click += new System.EventHandler(this.btn_regex_Click);
+      // 
       // SkipgramGrid
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radGridView1);
       this.Controls.Add(this.clearPanel1);
       this.Controls.Add(this.radCommandBar1);
@@ -273,5 +283,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     private Controls.WinForm.ClearPanel clearPanel1;
     private Telerik.WinControls.UI.RadButton btn_search;
     private Telerik.WinControls.UI.CommandBarButton btn_layer;
+    private Telerik.WinControls.UI.CommandBarButton btn_regex;
   }
 }

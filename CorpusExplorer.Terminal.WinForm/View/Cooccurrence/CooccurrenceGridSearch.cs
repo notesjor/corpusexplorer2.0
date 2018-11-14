@@ -146,5 +146,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
           AddChildTemplate(CreateChildTemplate);
         });
     }
+
+    private void btn_regex_Click(object sender, EventArgs e)
+    {
+      RegexFunction();
+    }
   }
 }

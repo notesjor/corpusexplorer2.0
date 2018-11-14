@@ -130,5 +130,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     {
       Processing.Invoke(Resources.ZählungLäuft, Analyse);
     }
+
+    private void btn_regex_Click(object sender, EventArgs e)
+    {
+      RegexFunction();
+    }
   }
 }

@@ -171,6 +171,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       Analyse();
     }
 
+    private void btn_regex_Click(object sender, EventArgs e)
+    {
+      RegexFunction();
+    }
+
     /*
     private void btn_posFilter_Click(object sender, EventArgs e)
     {

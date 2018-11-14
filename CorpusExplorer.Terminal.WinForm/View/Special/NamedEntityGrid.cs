@@ -263,5 +263,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
         radGridView1.DataSource = _vm.GetDataTable();
       });
     }
+
+    private void btn_regex_Click(object sender, EventArgs e)
+    {
+      RegexFunction();
+    }
   }
 }

@@ -127,7 +127,7 @@
       // XpathBrowser
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.ClientSize = new System.Drawing.Size(658, 433);
       this.Controls.Add(this.panel_webbrowser);
       this.Controls.Add(this.clearPanel3);

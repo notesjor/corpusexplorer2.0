@@ -1372,6 +1372,26 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap clipboard_cut {
+            get {
+                object obj = ResourceManager.GetObject("clipboard_cut", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap clipboard_cut1 {
+            get {
+                object obj = ResourceManager.GetObject("clipboard_cut1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap close_window {
             get {
                 object obj = ResourceManager.GetObject("close_window", resourceCulture);
@@ -3182,6 +3202,26 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         public static System.Drawing.Bitmap filter_list1 {
             get {
                 object obj = ResourceManager.GetObject("filter-list1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap filter_regex {
+            get {
+                object obj = ResourceManager.GetObject("filter-regex", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap filter_settings {
+            get {
+                object obj = ResourceManager.GetObject("filter-settings", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
