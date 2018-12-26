@@ -30,12 +30,12 @@
     {
       this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WebCrawlerWizard));
-      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
-      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
+      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
       this.radWizard1 = new Telerik.WinControls.UI.RadWizard();
       this.wizardCompletionPage1 = new Telerik.WinControls.UI.WizardCompletionPage();
       this.panel6 = new System.Windows.Forms.Panel();
@@ -257,10 +257,9 @@
       this.radWizard1.Controls.Add(this.panel4);
       this.radWizard1.Controls.Add(this.panel5);
       this.radWizard1.Controls.Add(this.panel6);
-      this.radWizard1.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.radWizard1, "radWizard1");
       this.radWizard1.HideCompletionImage = true;
       this.radWizard1.HideWelcomeImage = true;
-      this.radWizard1.Location = new System.Drawing.Point(0, 0);
       this.radWizard1.Name = "radWizard1";
       this.radWizard1.PageHeaderIcon = ((System.Drawing.Image)(resources.GetObject("radWizard1.PageHeaderIcon")));
       this.radWizard1.Pages.Add(this.wizardWelcomePage1);
@@ -268,8 +267,6 @@
       this.radWizard1.Pages.Add(this.wizardPage3);
       this.radWizard1.Pages.Add(this.wizardPage4);
       this.radWizard1.Pages.Add(this.wizardCompletionPage1);
-      this.radWizard1.Size = new System.Drawing.Size(927, 538);
-      this.radWizard1.TabIndex = 0;
       this.radWizard1.WelcomePage = this.wizardWelcomePage1;
       this.radWizard1.Next += new Telerik.WinControls.UI.WizardCancelEventHandler(this.radWizard1_Next);
       this.radWizard1.Previous += new Telerik.WinControls.UI.WizardCancelEventHandler(this.radWizard1_Previous);
@@ -279,34 +276,27 @@
       // 
       this.wizardCompletionPage1.ContentArea = this.panel6;
       this.wizardCompletionPage1.CustomizePageHeader = true;
-      this.wizardCompletionPage1.Header = "Überprüfen Sie die Daten. Mit einem Klick auf \"Fertigstellen\" wird der WebCrawler" +
-    " erstellt.";
+      resources.ApplyResources(this.wizardCompletionPage1, "wizardCompletionPage1");
       this.wizardCompletionPage1.HeaderVisibility = Telerik.WinControls.ElementVisibility.Visible;
       this.wizardCompletionPage1.Name = "wizardCompletionPage1";
-      this.wizardCompletionPage1.Title = "Konfiguration abgeschlossen / Daten überprüfen...";
       // 
       // panel6
       // 
       this.panel6.BackColor = System.Drawing.Color.White;
       this.panel6.Controls.Add(this.radSplitContainer2);
-      this.panel6.Location = new System.Drawing.Point(0, 94);
+      resources.ApplyResources(this.panel6, "panel6");
       this.panel6.Name = "panel6";
-      this.panel6.Size = new System.Drawing.Size(927, 396);
-      this.panel6.TabIndex = 5;
       // 
       // radSplitContainer2
       // 
       this.radSplitContainer2.Controls.Add(this.splitPanel3);
       this.radSplitContainer2.Controls.Add(this.splitPanel4);
-      this.radSplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer2.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radSplitContainer2, "radSplitContainer2");
       this.radSplitContainer2.Name = "radSplitContainer2";
       // 
       // 
       // 
       this.radSplitContainer2.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer2.Size = new System.Drawing.Size(927, 396);
-      this.radSplitContainer2.TabIndex = 8;
       this.radSplitContainer2.TabStop = false;
       // 
       // splitPanel3
@@ -314,18 +304,15 @@
       this.splitPanel3.Controls.Add(this.radGroupBox5);
       this.splitPanel3.Controls.Add(this.radGroupBox2);
       this.splitPanel3.Controls.Add(this.radGroupBox8);
-      this.splitPanel3.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.splitPanel3, "splitPanel3");
       this.splitPanel3.Name = "splitPanel3";
       // 
       // 
       // 
       this.splitPanel3.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel3.Size = new System.Drawing.Size(565, 396);
       this.splitPanel3.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.1121343F, 0F);
       this.splitPanel3.SizeInfo.SplitterCorrection = new System.Drawing.Size(36, 0);
-      this.splitPanel3.TabIndex = 0;
       this.splitPanel3.TabStop = false;
-      this.splitPanel3.Text = "splitPanel3";
       // 
       // radGroupBox5
       // 
@@ -333,67 +320,46 @@
       this.radGroupBox5.Controls.Add(this.radGroupBox7);
       this.radGroupBox5.Controls.Add(this.radGroupBox6);
       this.radGroupBox5.Controls.Add(this.txt_result_xpath);
-      this.radGroupBox5.Dock = System.Windows.Forms.DockStyle.Top;
+      resources.ApplyResources(this.radGroupBox5, "radGroupBox5");
       this.radGroupBox5.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._3Suchergebnisse;
-      this.radGroupBox5.Location = new System.Drawing.Point(0, 207);
       this.radGroupBox5.Name = "radGroupBox5";
-      this.radGroupBox5.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox5.Size = new System.Drawing.Size(565, 184);
-      this.radGroupBox5.TabIndex = 5;
       this.radGroupBox5.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._3Suchergebnisse;
       // 
       // radGroupBox7
       // 
       this.radGroupBox7.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
       this.radGroupBox7.Controls.Add(this.txt_result_limmit);
-      this.radGroupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.radGroupBox7, "radGroupBox7");
       this.radGroupBox7.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._32BegrenzeSuchergebnisAufSeitenbereich;
-      this.radGroupBox7.Location = new System.Drawing.Point(5, 87);
       this.radGroupBox7.Name = "radGroupBox7";
-      this.radGroupBox7.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox7.Size = new System.Drawing.Size(555, 92);
-      this.radGroupBox7.TabIndex = 5;
       this.radGroupBox7.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._32BegrenzeSuchergebnisAufSeitenbereich;
       // 
       // txt_result_limmit
       // 
-      this.txt_result_limmit.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.txt_result_limmit.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.txt_result_limmit, "txt_result_limmit");
       this.txt_result_limmit.Name = "txt_result_limmit";
       this.txt_result_limmit.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.GebenSieHierDenSeitenbereichEinUmDieErgebnisseZuBegrenzen;
-      this.txt_result_limmit.Size = new System.Drawing.Size(545, 62);
-      this.txt_result_limmit.TabIndex = 3;
       // 
       // radGroupBox6
       // 
       this.radGroupBox6.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
       this.radGroupBox6.Controls.Add(this.txt_result_prefix);
-      this.radGroupBox6.Dock = System.Windows.Forms.DockStyle.Top;
+      resources.ApplyResources(this.radGroupBox6, "radGroupBox6");
       this.radGroupBox6.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._31SollDemHrefWertEinPrefixVorangestelltWerden;
-      this.radGroupBox6.Location = new System.Drawing.Point(5, 25);
       this.radGroupBox6.Name = "radGroupBox6";
-      this.radGroupBox6.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox6.Size = new System.Drawing.Size(555, 62);
-      this.radGroupBox6.TabIndex = 4;
       this.radGroupBox6.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._31SollDemHrefWertEinPrefixVorangestelltWerden;
       // 
       // txt_result_prefix
       // 
-      this.txt_result_prefix.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.txt_result_prefix.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.txt_result_prefix, "txt_result_prefix");
       this.txt_result_prefix.Name = "txt_result_prefix";
       this.txt_result_prefix.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.WennJaDannTragenSieHierDasPrefixEin;
-      this.txt_result_prefix.Size = new System.Drawing.Size(545, 32);
-      this.txt_result_prefix.TabIndex = 2;
       // 
       // txt_result_xpath
       // 
-      this.txt_result_xpath.Dock = System.Windows.Forms.DockStyle.Top;
-      this.txt_result_xpath.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.txt_result_xpath, "txt_result_xpath");
       this.txt_result_xpath.Name = "txt_result_xpath";
       this.txt_result_xpath.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.GebenSieHierDenXPATHAusruckFürDasATAGEin;
-      this.txt_result_xpath.Size = new System.Drawing.Size(555, 0);
-      this.txt_result_xpath.TabIndex = 0;
       // 
       // radGroupBox2
       // 
@@ -401,67 +367,49 @@
       this.radGroupBox2.Controls.Add(this.radSplitContainer1);
       this.radGroupBox2.Controls.Add(this.radLabel3);
       this.radGroupBox2.Controls.Add(this.txt_search_url);
-      this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radGroupBox2.HeaderText = "2. URL sowie URL-Parameter";
-      this.radGroupBox2.Location = new System.Drawing.Point(0, 62);
+      resources.ApplyResources(this.radGroupBox2, "radGroupBox2");
       this.radGroupBox2.Name = "radGroupBox2";
-      this.radGroupBox2.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox2.Size = new System.Drawing.Size(565, 145);
-      this.radGroupBox2.TabIndex = 4;
-      this.radGroupBox2.Text = "2. URL sowie URL-Parameter";
       // 
       // radSplitContainer1
       // 
       this.radSplitContainer1.Controls.Add(this.splitPanel1);
       this.radSplitContainer1.Controls.Add(this.splitPanel2);
-      this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer1.Location = new System.Drawing.Point(5, 46);
+      resources.ApplyResources(this.radSplitContainer1, "radSplitContainer1");
       this.radSplitContainer1.Name = "radSplitContainer1";
       // 
       // 
       // 
       this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer1.Size = new System.Drawing.Size(555, 94);
-      this.radSplitContainer1.TabIndex = 4;
       this.radSplitContainer1.TabStop = false;
       // 
       // splitPanel1
       // 
       this.splitPanel1.Controls.Add(this.radGroupBox3);
-      this.splitPanel1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.splitPanel1, "splitPanel1");
       this.splitPanel1.Name = "splitPanel1";
       // 
       // 
       // 
       this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel1.Size = new System.Drawing.Size(276, 94);
-      this.splitPanel1.TabIndex = 0;
       this.splitPanel1.TabStop = false;
-      this.splitPanel1.Text = "splitPanel1";
       // 
       // radGroupBox3
       // 
       this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
       this.radGroupBox3.Controls.Add(this.num_search_min);
-      this.radGroupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.radGroupBox3, "radGroupBox3");
       this.radGroupBox3.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._21PAGEStartindex;
-      this.radGroupBox3.Location = new System.Drawing.Point(0, 0);
       this.radGroupBox3.Name = "radGroupBox3";
-      this.radGroupBox3.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox3.Size = new System.Drawing.Size(276, 94);
-      this.radGroupBox3.TabIndex = 0;
       this.radGroupBox3.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._21PAGEStartindex;
       // 
       // num_search_min
       // 
-      this.num_search_min.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.num_search_min.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.num_search_min, "num_search_min");
       this.num_search_min.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
-      this.num_search_min.MinimumSize = new System.Drawing.Size(100, 0);
       this.num_search_min.Name = "num_search_min";
       this.num_search_min.NullableValue = new decimal(new int[] {
             1,
@@ -472,8 +420,6 @@
       // 
       // 
       this.num_search_min.RootElement.MinSize = new System.Drawing.Size(100, 0);
-      this.num_search_min.Size = new System.Drawing.Size(266, 64);
-      this.num_search_min.TabIndex = 0;
       this.num_search_min.TabStop = false;
       this.num_search_min.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
       this.num_search_min.Value = new decimal(new int[] {
@@ -485,40 +431,31 @@
       // splitPanel2
       // 
       this.splitPanel2.Controls.Add(this.radGroupBox4);
-      this.splitPanel2.Location = new System.Drawing.Point(280, 0);
+      resources.ApplyResources(this.splitPanel2, "splitPanel2");
       this.splitPanel2.Name = "splitPanel2";
       // 
       // 
       // 
       this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel2.Size = new System.Drawing.Size(275, 94);
-      this.splitPanel2.TabIndex = 1;
       this.splitPanel2.TabStop = false;
-      this.splitPanel2.Text = "splitPanel2";
       // 
       // radGroupBox4
       // 
       this.radGroupBox4.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
       this.radGroupBox4.Controls.Add(this.num_search_increment);
-      this.radGroupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.radGroupBox4, "radGroupBox4");
       this.radGroupBox4.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._21PAGEInkrement;
-      this.radGroupBox4.Location = new System.Drawing.Point(0, 0);
       this.radGroupBox4.Name = "radGroupBox4";
-      this.radGroupBox4.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox4.Size = new System.Drawing.Size(275, 94);
-      this.radGroupBox4.TabIndex = 0;
       this.radGroupBox4.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._21PAGEInkrement;
       // 
       // num_search_increment
       // 
-      this.num_search_increment.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.num_search_increment.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.num_search_increment, "num_search_increment");
       this.num_search_increment.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
-      this.num_search_increment.MinimumSize = new System.Drawing.Size(100, 0);
       this.num_search_increment.Name = "num_search_increment";
       this.num_search_increment.NullableValue = new decimal(new int[] {
             1,
@@ -529,8 +466,6 @@
       // 
       // 
       this.num_search_increment.RootElement.MinSize = new System.Drawing.Size(100, 0);
-      this.num_search_increment.Size = new System.Drawing.Size(265, 64);
-      this.num_search_increment.TabIndex = 1;
       this.num_search_increment.TabStop = false;
       this.num_search_increment.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
       this.num_search_increment.Value = new decimal(new int[] {
@@ -541,63 +476,41 @@
       // 
       // radLabel3
       // 
-      this.radLabel3.AutoSize = false;
-      this.radLabel3.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9F);
-      this.radLabel3.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.radLabel3, "radLabel3");
       this.radLabel3.Name = "radLabel3";
-      this.radLabel3.Size = new System.Drawing.Size(555, 21);
-      this.radLabel3.TabIndex = 3;
-      this.radLabel3.Text = "Verwenden Sie [QUERY] als Platzhalter für die Abfrage und [PAGE] als Platzhalter " +
-    "für die Suchseite.";
-      this.radLabel3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // txt_search_url
       // 
-      this.txt_search_url.Dock = System.Windows.Forms.DockStyle.Top;
-      this.txt_search_url.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.txt_search_url, "txt_search_url");
       this.txt_search_url.Name = "txt_search_url";
       this.txt_search_url.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.TragenSieHierDieSuchURLDerWebseiteEin;
-      this.txt_search_url.Size = new System.Drawing.Size(555, 0);
-      this.txt_search_url.TabIndex = 2;
       // 
       // radGroupBox8
       // 
       this.radGroupBox8.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
       this.radGroupBox8.Controls.Add(this.txt_name);
-      this.radGroupBox8.Dock = System.Windows.Forms.DockStyle.Top;
+      resources.ApplyResources(this.radGroupBox8, "radGroupBox8");
       this.radGroupBox8.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._1NamenVergeben;
-      this.radGroupBox8.Location = new System.Drawing.Point(0, 0);
       this.radGroupBox8.Name = "radGroupBox8";
-      this.radGroupBox8.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox8.Size = new System.Drawing.Size(565, 62);
-      this.radGroupBox8.TabIndex = 3;
       this.radGroupBox8.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._1NamenVergeben;
       // 
       // txt_name
       // 
-      this.txt_name.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.txt_name.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.txt_name, "txt_name");
       this.txt_name.Name = "txt_name";
-      this.txt_name.NullText = "Tragen Sie hier einen Namen für den WebCrawler ein...";
-      this.txt_name.Size = new System.Drawing.Size(555, 32);
-      this.txt_name.TabIndex = 2;
       // 
       // splitPanel4
       // 
       this.splitPanel4.Controls.Add(this.radGroupBox9);
-      this.splitPanel4.Location = new System.Drawing.Point(569, 0);
+      resources.ApplyResources(this.splitPanel4, "splitPanel4");
       this.splitPanel4.Name = "splitPanel4";
       // 
       // 
       // 
       this.splitPanel4.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel4.Size = new System.Drawing.Size(358, 396);
       this.splitPanel4.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.1121343F, 0F);
       this.splitPanel4.SizeInfo.SplitterCorrection = new System.Drawing.Size(-36, 0);
-      this.splitPanel4.TabIndex = 1;
       this.splitPanel4.TabStop = false;
-      this.splitPanel4.Text = "splitPanel4";
       // 
       // radGroupBox9
       // 
@@ -605,60 +518,40 @@
       this.radGroupBox9.Controls.Add(this.grid_mappings);
       this.radGroupBox9.Controls.Add(this.radLabel4);
       this.radGroupBox9.Controls.Add(this.btn_showBrowser);
-      this.radGroupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.radGroupBox9, "radGroupBox9");
       this.radGroupBox9.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._4XPathMappings;
-      this.radGroupBox9.Location = new System.Drawing.Point(0, 0);
       this.radGroupBox9.Name = "radGroupBox9";
-      this.radGroupBox9.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox9.Size = new System.Drawing.Size(358, 396);
-      this.radGroupBox9.TabIndex = 0;
       this.radGroupBox9.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._4XPathMappings;
       // 
       // grid_mappings
       // 
-      this.grid_mappings.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.grid_mappings.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.grid_mappings, "grid_mappings");
       // 
       // 
       // 
       this.grid_mappings.MasterTemplate.AllowColumnReorder = false;
-      gridViewTextBoxColumn11.HeaderText = "Key";
-      gridViewTextBoxColumn11.Name = "col_key";
-      gridViewTextBoxColumn11.Width = 75;
-      gridViewTextBoxColumn12.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.XPath;
-      gridViewTextBoxColumn12.Name = "col_xpath";
-      gridViewTextBoxColumn12.Width = 250;
+      resources.ApplyResources(gridViewTextBoxColumn1, "gridViewTextBoxColumn1");
+      gridViewTextBoxColumn1.Name = "col_key";
+      gridViewTextBoxColumn1.Width = 75;
+      gridViewTextBoxColumn2.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.XPath;
+      gridViewTextBoxColumn2.Name = "col_xpath";
+      gridViewTextBoxColumn2.Width = 250;
       this.grid_mappings.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2});
       this.grid_mappings.MasterTemplate.EnableGrouping = false;
-      this.grid_mappings.MasterTemplate.ViewDefinition = tableViewDefinition6;
+      this.grid_mappings.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.grid_mappings.Name = "grid_mappings";
-      this.grid_mappings.Size = new System.Drawing.Size(348, 274);
-      this.grid_mappings.TabIndex = 5;
       // 
       // radLabel4
       // 
-      this.radLabel4.AutoSize = false;
-      this.radLabel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F);
-      this.radLabel4.Location = new System.Drawing.Point(5, 299);
+      resources.ApplyResources(this.radLabel4, "radLabel4");
       this.radLabel4.Name = "radLabel4";
-      this.radLabel4.Size = new System.Drawing.Size(348, 60);
-      this.radLabel4.TabIndex = 4;
-      this.radLabel4.Text = "<html>Sie müssen mindestens ein Mapping mit dem Key <i>Text</i> erstellen. Alle a" +
-    "nderen Mappings können Sie frei wählen. Empfohlen werden zudem: <i>Titel</i>, <i" +
-    ">Autor</i> und <i>Datum</i></html>";
-      this.radLabel4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // btn_showBrowser
       // 
-      this.btn_showBrowser.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.btn_showBrowser.Location = new System.Drawing.Point(5, 359);
+      resources.ApplyResources(this.btn_showBrowser, "btn_showBrowser");
       this.btn_showBrowser.Name = "btn_showBrowser";
-      this.btn_showBrowser.Size = new System.Drawing.Size(348, 32);
-      this.btn_showBrowser.TabIndex = 6;
-      this.btn_showBrowser.Text = "Zeige XPath-Browser";
       this.btn_showBrowser.Click += new System.EventHandler(this.btn_showBrowser_Click);
       // 
       // panel1
@@ -668,11 +561,8 @@
       this.panel1.Controls.Add(this.clearPanel1);
       this.panel1.Controls.Add(this.page_0_txt_name);
       this.panel1.Controls.Add(this.radLabel1);
-      this.panel1.Location = new System.Drawing.Point(0, 69);
+      resources.ApplyResources(this.panel1, "panel1");
       this.panel1.Name = "panel1";
-      this.panel1.Padding = new System.Windows.Forms.Padding(15);
-      this.panel1.Size = new System.Drawing.Size(927, 421);
-      this.panel1.TabIndex = 0;
       // 
       // radGroupBox1
       // 
@@ -680,90 +570,48 @@
       this.radGroupBox1.Controls.Add(this.page_0_chk_mode_3);
       this.radGroupBox1.Controls.Add(this.clearPanel2);
       this.radGroupBox1.Controls.Add(this.page_0_chk_mode_2);
-      this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radGroupBox1.HeaderText = "Assistenzstufe auswählen...";
-      this.radGroupBox1.Location = new System.Drawing.Point(15, 111);
+      resources.ApplyResources(this.radGroupBox1, "radGroupBox1");
       this.radGroupBox1.Name = "radGroupBox1";
-      this.radGroupBox1.Padding = new System.Windows.Forms.Padding(8, 35, 8, 8);
-      this.radGroupBox1.Size = new System.Drawing.Size(897, 240);
-      this.radGroupBox1.TabIndex = 3;
-      this.radGroupBox1.Text = "Assistenzstufe auswählen...";
       // 
       // page_0_chk_mode_3
       // 
-      this.page_0_chk_mode_3.AutoSize = false;
-      this.page_0_chk_mode_3.Dock = System.Windows.Forms.DockStyle.Top;
-      this.page_0_chk_mode_3.Location = new System.Drawing.Point(8, 169);
+      resources.ApplyResources(this.page_0_chk_mode_3, "page_0_chk_mode_3");
       this.page_0_chk_mode_3.Name = "page_0_chk_mode_3";
-      this.page_0_chk_mode_3.Size = new System.Drawing.Size(881, 60);
-      this.page_0_chk_mode_3.TabIndex = 2;
       this.page_0_chk_mode_3.TabStop = false;
-      this.page_0_chk_mode_3.Text = "<html><strong>Profi-Modus</strong><br />Kein Assistent - Führt Sie direkt zur let" +
-    "zten Seite dieses Wizards, auf der Sie alle Daten manuell eintragen müssen.</htm" +
-    "l>";
       // 
       // clearPanel2
       // 
       this.clearPanel2.Controls.Add(this.page_0_check_sampledata);
-      this.clearPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-      this.clearPanel2.Location = new System.Drawing.Point(8, 95);
+      resources.ApplyResources(this.clearPanel2, "clearPanel2");
       this.clearPanel2.Name = "clearPanel2";
-      this.clearPanel2.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-      this.clearPanel2.Size = new System.Drawing.Size(881, 74);
-      this.clearPanel2.TabIndex = 3;
       // 
       // page_0_check_sampledata
       // 
-      this.page_0_check_sampledata.AutoSize = false;
-      this.page_0_check_sampledata.Dock = System.Windows.Forms.DockStyle.Top;
-      this.page_0_check_sampledata.Location = new System.Drawing.Point(25, 0);
+      resources.ApplyResources(this.page_0_check_sampledata, "page_0_check_sampledata");
       this.page_0_check_sampledata.Name = "page_0_check_sampledata";
-      this.page_0_check_sampledata.Size = new System.Drawing.Size(856, 74);
-      this.page_0_check_sampledata.TabIndex = 4;
-      this.page_0_check_sampledata.Text = resources.GetString("page_0_check_sampledata.Text");
       this.page_0_check_sampledata.TextWrap = true;
       // 
       // page_0_chk_mode_2
       // 
-      this.page_0_chk_mode_2.AutoSize = false;
+      resources.ApplyResources(this.page_0_chk_mode_2, "page_0_chk_mode_2");
       this.page_0_chk_mode_2.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.page_0_chk_mode_2.Dock = System.Windows.Forms.DockStyle.Top;
-      this.page_0_chk_mode_2.Location = new System.Drawing.Point(8, 35);
       this.page_0_chk_mode_2.Name = "page_0_chk_mode_2";
-      this.page_0_chk_mode_2.Size = new System.Drawing.Size(881, 60);
-      this.page_0_chk_mode_2.TabIndex = 1;
-      this.page_0_chk_mode_2.Text = "<html><strong>Einsteiger-Modus</strong><br />Fragt alle relevanten Daten in mehre" +
-    "ren Schritten ab. </html>";
       this.page_0_chk_mode_2.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
       // 
       // clearPanel1
       // 
-      this.clearPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.clearPanel1.Location = new System.Drawing.Point(15, 94);
+      resources.ApplyResources(this.clearPanel1, "clearPanel1");
       this.clearPanel1.Name = "clearPanel1";
-      this.clearPanel1.Size = new System.Drawing.Size(897, 17);
-      this.clearPanel1.TabIndex = 2;
       // 
       // page_0_txt_name
       // 
-      this.page_0_txt_name.Dock = System.Windows.Forms.DockStyle.Top;
-      this.page_0_txt_name.Location = new System.Drawing.Point(15, 62);
+      resources.ApplyResources(this.page_0_txt_name, "page_0_txt_name");
       this.page_0_txt_name.Name = "page_0_txt_name";
-      this.page_0_txt_name.NullText = "Tragen Sie hier einen Namen für den WebCrawler ein...";
-      this.page_0_txt_name.Size = new System.Drawing.Size(897, 32);
-      this.page_0_txt_name.TabIndex = 1;
       // 
       // radLabel1
       // 
-      this.radLabel1.AutoSize = false;
-      this.radLabel1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radLabel1.Location = new System.Drawing.Point(15, 15);
+      resources.ApplyResources(this.radLabel1, "radLabel1");
       this.radLabel1.Name = "radLabel1";
-      this.radLabel1.Size = new System.Drawing.Size(897, 47);
-      this.radLabel1.TabIndex = 0;
-      this.radLabel1.Text = "Erstellen Sie einen eigenen WebCrawler, der das Internet nach Dokumenten durchsuc" +
-    "ht. Vergeben Sie zunächst einen Namen für den WebCrawler und wählen Sie dann die" +
-    " Assistenzstufe aus.";
       // 
       // panel3
       // 
@@ -773,64 +621,49 @@
       this.panel3.Controls.Add(this.page_2_txt_url);
       this.panel3.Controls.Add(this.radLabel9);
       this.panel3.Controls.Add(this.radLabel7);
-      this.panel3.Location = new System.Drawing.Point(0, 69);
+      resources.ApplyResources(this.panel3, "panel3");
       this.panel3.Name = "panel3";
-      this.panel3.Padding = new System.Windows.Forms.Padding(15);
-      this.panel3.Size = new System.Drawing.Size(927, 421);
-      this.panel3.TabIndex = 2;
       // 
       // radSplitContainer3
       // 
       this.radSplitContainer3.Controls.Add(this.splitPanel5);
       this.radSplitContainer3.Controls.Add(this.splitPanel6);
-      this.radSplitContainer3.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radSplitContainer3.Location = new System.Drawing.Point(15, 212);
+      resources.ApplyResources(this.radSplitContainer3, "radSplitContainer3");
       this.radSplitContainer3.Name = "radSplitContainer3";
       // 
       // 
       // 
       this.radSplitContainer3.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer3.Size = new System.Drawing.Size(897, 62);
-      this.radSplitContainer3.TabIndex = 6;
       this.radSplitContainer3.TabStop = false;
       // 
       // splitPanel5
       // 
       this.splitPanel5.Controls.Add(this.radGroupBox11);
-      this.splitPanel5.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.splitPanel5, "splitPanel5");
       this.splitPanel5.Name = "splitPanel5";
       // 
       // 
       // 
       this.splitPanel5.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel5.Size = new System.Drawing.Size(446, 62);
-      this.splitPanel5.TabIndex = 0;
       this.splitPanel5.TabStop = false;
-      this.splitPanel5.Text = "splitPanel5";
       // 
       // radGroupBox11
       // 
       this.radGroupBox11.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
       this.radGroupBox11.Controls.Add(this.page_2_num_start);
-      this.radGroupBox11.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.radGroupBox11, "radGroupBox11");
       this.radGroupBox11.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._21PAGEStartindex;
-      this.radGroupBox11.Location = new System.Drawing.Point(0, 0);
       this.radGroupBox11.Name = "radGroupBox11";
-      this.radGroupBox11.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox11.Size = new System.Drawing.Size(446, 62);
-      this.radGroupBox11.TabIndex = 0;
       this.radGroupBox11.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._21PAGEStartindex;
       // 
       // page_2_num_start
       // 
-      this.page_2_num_start.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.page_2_num_start.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.page_2_num_start, "page_2_num_start");
       this.page_2_num_start.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
-      this.page_2_num_start.MinimumSize = new System.Drawing.Size(100, 0);
       this.page_2_num_start.Name = "page_2_num_start";
       this.page_2_num_start.NullableValue = new decimal(new int[] {
             1,
@@ -841,8 +674,6 @@
       // 
       // 
       this.page_2_num_start.RootElement.MinSize = new System.Drawing.Size(100, 0);
-      this.page_2_num_start.Size = new System.Drawing.Size(436, 32);
-      this.page_2_num_start.TabIndex = 0;
       this.page_2_num_start.TabStop = false;
       this.page_2_num_start.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
       this.page_2_num_start.Value = new decimal(new int[] {
@@ -854,40 +685,31 @@
       // splitPanel6
       // 
       this.splitPanel6.Controls.Add(this.radGroupBox12);
-      this.splitPanel6.Location = new System.Drawing.Point(450, 0);
+      resources.ApplyResources(this.splitPanel6, "splitPanel6");
       this.splitPanel6.Name = "splitPanel6";
       // 
       // 
       // 
       this.splitPanel6.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel6.Size = new System.Drawing.Size(447, 62);
-      this.splitPanel6.TabIndex = 1;
       this.splitPanel6.TabStop = false;
-      this.splitPanel6.Text = "splitPanel6";
       // 
       // radGroupBox12
       // 
       this.radGroupBox12.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
       this.radGroupBox12.Controls.Add(this.page_2_num_incr);
-      this.radGroupBox12.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.radGroupBox12, "radGroupBox12");
       this.radGroupBox12.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._21PAGEInkrement;
-      this.radGroupBox12.Location = new System.Drawing.Point(0, 0);
       this.radGroupBox12.Name = "radGroupBox12";
-      this.radGroupBox12.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox12.Size = new System.Drawing.Size(447, 62);
-      this.radGroupBox12.TabIndex = 0;
       this.radGroupBox12.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources._21PAGEInkrement;
       // 
       // page_2_num_incr
       // 
-      this.page_2_num_incr.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.page_2_num_incr.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.page_2_num_incr, "page_2_num_incr");
       this.page_2_num_incr.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
-      this.page_2_num_incr.MinimumSize = new System.Drawing.Size(100, 0);
       this.page_2_num_incr.Name = "page_2_num_incr";
       this.page_2_num_incr.NullableValue = new decimal(new int[] {
             1,
@@ -898,8 +720,6 @@
       // 
       // 
       this.page_2_num_incr.RootElement.MinSize = new System.Drawing.Size(100, 0);
-      this.page_2_num_incr.Size = new System.Drawing.Size(437, 32);
-      this.page_2_num_incr.TabIndex = 1;
       this.page_2_num_incr.TabStop = false;
       this.page_2_num_incr.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
       this.page_2_num_incr.Value = new decimal(new int[] {
@@ -910,84 +730,54 @@
       // 
       // radLabel8
       // 
-      this.radLabel8.AutoSize = false;
-      this.radLabel8.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 11F);
-      this.radLabel8.Location = new System.Drawing.Point(15, 134);
+      resources.ApplyResources(this.radLabel8, "radLabel8");
       this.radLabel8.Name = "radLabel8";
-      this.radLabel8.Size = new System.Drawing.Size(897, 78);
-      this.radLabel8.TabIndex = 5;
-      this.radLabel8.Text = resources.GetString("radLabel8.Text");
-      this.radLabel8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // page_2_txt_url
       // 
-      this.page_2_txt_url.Dock = System.Windows.Forms.DockStyle.Top;
-      this.page_2_txt_url.Location = new System.Drawing.Point(15, 102);
+      resources.ApplyResources(this.page_2_txt_url, "page_2_txt_url");
       this.page_2_txt_url.Name = "page_2_txt_url";
       this.page_2_txt_url.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.TragenSieHierDieSuchURLDerWebseiteEin;
-      this.page_2_txt_url.Size = new System.Drawing.Size(897, 32);
-      this.page_2_txt_url.TabIndex = 4;
       // 
       // radLabel9
       // 
-      this.radLabel9.AutoSize = false;
-      this.radLabel9.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radLabel9.Font = new System.Drawing.Font("Segoe UI", 9F);
-      this.radLabel9.Location = new System.Drawing.Point(15, 62);
+      resources.ApplyResources(this.radLabel9, "radLabel9");
       this.radLabel9.Name = "radLabel9";
-      this.radLabel9.Size = new System.Drawing.Size(897, 40);
-      this.radLabel9.TabIndex = 7;
-      this.radLabel9.Text = resources.GetString("radLabel9.Text");
-      this.radLabel9.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // radLabel7
       // 
-      this.radLabel7.AutoSize = false;
-      this.radLabel7.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radLabel7.Location = new System.Drawing.Point(15, 15);
+      resources.ApplyResources(this.radLabel7, "radLabel7");
       this.radLabel7.Name = "radLabel7";
-      this.radLabel7.Size = new System.Drawing.Size(897, 47);
-      this.radLabel7.TabIndex = 1;
-      this.radLabel7.Text = resources.GetString("radLabel7.Text");
       // 
       // panel4
       // 
       this.panel4.BackColor = System.Drawing.Color.White;
       this.panel4.Controls.Add(this.radSplitContainer4);
-      this.panel4.Location = new System.Drawing.Point(0, 69);
+      resources.ApplyResources(this.panel4, "panel4");
       this.panel4.Name = "panel4";
-      this.panel4.Size = new System.Drawing.Size(927, 421);
-      this.panel4.TabIndex = 3;
       // 
       // radSplitContainer4
       // 
       this.radSplitContainer4.Controls.Add(this.splitPanel7);
       this.radSplitContainer4.Controls.Add(this.splitPanel8);
-      this.radSplitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer4.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radSplitContainer4, "radSplitContainer4");
       this.radSplitContainer4.Name = "radSplitContainer4";
       // 
       // 
       // 
       this.radSplitContainer4.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer4.Size = new System.Drawing.Size(927, 421);
-      this.radSplitContainer4.TabIndex = 0;
       this.radSplitContainer4.TabStop = false;
       // 
       // splitPanel7
       // 
       this.splitPanel7.Controls.Add(this.page_3_cnt_browser);
-      this.splitPanel7.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.splitPanel7, "splitPanel7");
       this.splitPanel7.Name = "splitPanel7";
       // 
       // 
       // 
       this.splitPanel7.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel7.Size = new System.Drawing.Size(462, 421);
-      this.splitPanel7.TabIndex = 0;
       this.splitPanel7.TabStop = false;
-      this.splitPanel7.Text = "splitPanel7";
       // 
       // page_3_cnt_browser
       // 
@@ -997,102 +787,61 @@
       this.page_3_cnt_browser.Controls.Add(this.radLabel10);
       this.page_3_cnt_browser.Controls.Add(this.clearPanel4);
       this.page_3_cnt_browser.Controls.Add(this.clearPanel3);
-      this.page_3_cnt_browser.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.page_3_cnt_browser.HeaderText = "Zuerst Suchergebnis testen / XPath für Ergebnisse auswählen...";
-      this.page_3_cnt_browser.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.page_3_cnt_browser, "page_3_cnt_browser");
       this.page_3_cnt_browser.Name = "page_3_cnt_browser";
-      this.page_3_cnt_browser.Padding = new System.Windows.Forms.Padding(2, 25, 2, 2);
-      this.page_3_cnt_browser.Size = new System.Drawing.Size(462, 421);
-      this.page_3_cnt_browser.TabIndex = 1;
-      this.page_3_cnt_browser.Text = "Zuerst Suchergebnis testen / XPath für Ergebnisse auswählen...";
       // 
       // page_3_webbrowser
       // 
-      this.page_3_webbrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.page_3_webbrowser.Location = new System.Drawing.Point(2, 75);
+      resources.ApplyResources(this.page_3_webbrowser, "page_3_webbrowser");
       this.page_3_webbrowser.Name = "page_3_webbrowser";
-      this.page_3_webbrowser.Size = new System.Drawing.Size(458, 294);
-      this.page_3_webbrowser.TabIndex = 4;
       // 
       // radLabel11
       // 
-      this.radLabel11.AutoSize = false;
-      this.radLabel11.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.radLabel11.Font = new System.Drawing.Font("Segoe UI", 9F);
-      this.radLabel11.Location = new System.Drawing.Point(2, 369);
+      resources.ApplyResources(this.radLabel11, "radLabel11");
       this.radLabel11.Name = "radLabel11";
-      this.radLabel11.Size = new System.Drawing.Size(458, 18);
-      this.radLabel11.TabIndex = 3;
-      this.radLabel11.Text = "3. Modifizieren Sie den XPath bis alle Ergebnisse erfasst werden:";
       // 
       // radLabel10
       // 
-      this.radLabel10.AutoSize = false;
-      this.radLabel10.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radLabel10.Font = new System.Drawing.Font("Segoe UI", 9F);
-      this.radLabel10.Location = new System.Drawing.Point(2, 57);
+      resources.ApplyResources(this.radLabel10, "radLabel10");
       this.radLabel10.Name = "radLabel10";
-      this.radLabel10.Size = new System.Drawing.Size(458, 18);
-      this.radLabel10.TabIndex = 2;
-      this.radLabel10.Text = "2. Klicken Sie auf ein Suchergebnis:";
       // 
       // clearPanel4
       // 
       this.clearPanel4.Controls.Add(this.page_3_txt_xpathresult);
       this.clearPanel4.Controls.Add(this.page_3_btn_xpathrefresh);
-      this.clearPanel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.clearPanel4.Location = new System.Drawing.Point(2, 387);
+      resources.ApplyResources(this.clearPanel4, "clearPanel4");
       this.clearPanel4.Name = "clearPanel4";
-      this.clearPanel4.Size = new System.Drawing.Size(458, 32);
-      this.clearPanel4.TabIndex = 1;
       // 
       // page_3_txt_xpathresult
       // 
-      this.page_3_txt_xpathresult.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.page_3_txt_xpathresult.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.page_3_txt_xpathresult, "page_3_txt_xpathresult");
       this.page_3_txt_xpathresult.Name = "page_3_txt_xpathresult";
-      this.page_3_txt_xpathresult.NullText = "XPath-Ausdruck für alle Ergebnisse...";
-      this.page_3_txt_xpathresult.Size = new System.Drawing.Size(426, 32);
-      this.page_3_txt_xpathresult.TabIndex = 1;
       this.page_3_txt_xpathresult.TextChanged += new System.EventHandler(this.page_3_txt_xpathresult_TextChanged);
       // 
       // page_3_btn_xpathrefresh
       // 
-      this.page_3_btn_xpathrefresh.Dock = System.Windows.Forms.DockStyle.Right;
+      resources.ApplyResources(this.page_3_btn_xpathrefresh, "page_3_btn_xpathrefresh");
       this.page_3_btn_xpathrefresh.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.refresh;
-      this.page_3_btn_xpathrefresh.Location = new System.Drawing.Point(426, 0);
       this.page_3_btn_xpathrefresh.Name = "page_3_btn_xpathrefresh";
-      this.page_3_btn_xpathrefresh.Size = new System.Drawing.Size(32, 32);
-      this.page_3_btn_xpathrefresh.TabIndex = 0;
       this.page_3_btn_xpathrefresh.Click += new System.EventHandler(this.page_3_btn_xpathrefresh_Click);
       // 
       // clearPanel3
       // 
       this.clearPanel3.Controls.Add(this.page_3_txt_testquery);
       this.clearPanel3.Controls.Add(this.page_3_btn_testquery);
-      this.clearPanel3.Dock = System.Windows.Forms.DockStyle.Top;
-      this.clearPanel3.Location = new System.Drawing.Point(2, 25);
+      resources.ApplyResources(this.clearPanel3, "clearPanel3");
       this.clearPanel3.Name = "clearPanel3";
-      this.clearPanel3.Size = new System.Drawing.Size(458, 32);
-      this.clearPanel3.TabIndex = 0;
       // 
       // page_3_txt_testquery
       // 
-      this.page_3_txt_testquery.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.page_3_txt_testquery.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.page_3_txt_testquery, "page_3_txt_testquery");
       this.page_3_txt_testquery.Name = "page_3_txt_testquery";
-      this.page_3_txt_testquery.NullText = "1. Test-Suchausdruck hier eingeben...";
-      this.page_3_txt_testquery.Size = new System.Drawing.Size(426, 32);
-      this.page_3_txt_testquery.TabIndex = 1;
       // 
       // page_3_btn_testquery
       // 
-      this.page_3_btn_testquery.Dock = System.Windows.Forms.DockStyle.Right;
+      resources.ApplyResources(this.page_3_btn_testquery, "page_3_btn_testquery");
       this.page_3_btn_testquery.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.find;
-      this.page_3_btn_testquery.Location = new System.Drawing.Point(426, 0);
       this.page_3_btn_testquery.Name = "page_3_btn_testquery";
-      this.page_3_btn_testquery.Size = new System.Drawing.Size(32, 32);
-      this.page_3_btn_testquery.TabIndex = 0;
       this.page_3_btn_testquery.Click += new System.EventHandler(this.page_3_btn_testquery_Click);
       // 
       // splitPanel8
@@ -1100,107 +849,72 @@
       this.splitPanel8.Controls.Add(this.radGroupBox14);
       this.splitPanel8.Controls.Add(this.radGroupBox16);
       this.splitPanel8.Controls.Add(this.radGroupBox15);
-      this.splitPanel8.Location = new System.Drawing.Point(466, 0);
+      resources.ApplyResources(this.splitPanel8, "splitPanel8");
       this.splitPanel8.Name = "splitPanel8";
       // 
       // 
       // 
       this.splitPanel8.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel8.Size = new System.Drawing.Size(461, 421);
-      this.splitPanel8.TabIndex = 1;
       this.splitPanel8.TabStop = false;
-      this.splitPanel8.Text = "splitPanel8";
       // 
       // radGroupBox14
       // 
       this.radGroupBox14.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
       this.radGroupBox14.Controls.Add(this.page_3_list_testresults);
-      this.radGroupBox14.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGroupBox14.HeaderText = "Auflistung der aktuell durch XPath selektierten Ergebnisse";
-      this.radGroupBox14.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radGroupBox14, "radGroupBox14");
       this.radGroupBox14.Name = "radGroupBox14";
-      this.radGroupBox14.Padding = new System.Windows.Forms.Padding(2, 25, 2, 2);
-      this.radGroupBox14.Size = new System.Drawing.Size(461, 299);
-      this.radGroupBox14.TabIndex = 0;
-      this.radGroupBox14.Text = "Auflistung der aktuell durch XPath selektierten Ergebnisse";
       // 
       // page_3_list_testresults
       // 
-      this.page_3_list_testresults.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.page_3_list_testresults, "page_3_list_testresults");
       this.page_3_list_testresults.GroupItemSize = new System.Drawing.Size(200, 40);
       this.page_3_list_testresults.ItemSize = new System.Drawing.Size(200, 40);
-      this.page_3_list_testresults.Location = new System.Drawing.Point(2, 25);
       this.page_3_list_testresults.Name = "page_3_list_testresults";
-      this.page_3_list_testresults.Size = new System.Drawing.Size(457, 272);
-      this.page_3_list_testresults.TabIndex = 0;
       // 
       // radGroupBox16
       // 
       this.radGroupBox16.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
       this.radGroupBox16.Controls.Add(this.page_3_txt_prefix);
-      this.radGroupBox16.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.radGroupBox16.HeaderText = "Soll dem href-Wert ein Prefix vorangestellt werden?";
-      this.radGroupBox16.Location = new System.Drawing.Point(0, 299);
+      resources.ApplyResources(this.radGroupBox16, "radGroupBox16");
       this.radGroupBox16.Name = "radGroupBox16";
-      this.radGroupBox16.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox16.Size = new System.Drawing.Size(461, 62);
-      this.radGroupBox16.TabIndex = 6;
-      this.radGroupBox16.Text = "Soll dem href-Wert ein Prefix vorangestellt werden?";
       // 
       // page_3_txt_prefix
       // 
-      this.page_3_txt_prefix.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.page_3_txt_prefix.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.page_3_txt_prefix, "page_3_txt_prefix");
       this.page_3_txt_prefix.Name = "page_3_txt_prefix";
       this.page_3_txt_prefix.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.WennJaDannTragenSieHierDasPrefixEin;
-      this.page_3_txt_prefix.Size = new System.Drawing.Size(451, 32);
-      this.page_3_txt_prefix.TabIndex = 2;
       this.page_3_txt_prefix.TextChanged += new System.EventHandler(this.page_3_txt_prefix_TextChanged);
       // 
       // radGroupBox15
       // 
       this.radGroupBox15.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
       this.radGroupBox15.Controls.Add(this.page_3_txt_limit);
-      this.radGroupBox15.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.radGroupBox15.HeaderText = "Begrenze Suchergebnis auf Seitenbereich...";
-      this.radGroupBox15.Location = new System.Drawing.Point(0, 361);
+      resources.ApplyResources(this.radGroupBox15, "radGroupBox15");
       this.radGroupBox15.Name = "radGroupBox15";
-      this.radGroupBox15.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox15.Size = new System.Drawing.Size(461, 60);
-      this.radGroupBox15.TabIndex = 7;
-      this.radGroupBox15.Text = "Begrenze Suchergebnis auf Seitenbereich...";
       // 
       // page_3_txt_limit
       // 
-      this.page_3_txt_limit.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.page_3_txt_limit.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.page_3_txt_limit, "page_3_txt_limit");
       this.page_3_txt_limit.Name = "page_3_txt_limit";
       this.page_3_txt_limit.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.GebenSieHierDenSeitenbereichEinUmDieErgebnisseZuBegrenzen;
-      this.page_3_txt_limit.Size = new System.Drawing.Size(451, 30);
-      this.page_3_txt_limit.TabIndex = 3;
       // 
       // panel5
       // 
       this.panel5.BackColor = System.Drawing.Color.White;
       this.panel5.Controls.Add(this.radSplitContainer5);
-      this.panel5.Location = new System.Drawing.Point(0, 69);
+      resources.ApplyResources(this.panel5, "panel5");
       this.panel5.Name = "panel5";
-      this.panel5.Size = new System.Drawing.Size(927, 421);
-      this.panel5.TabIndex = 4;
       // 
       // radSplitContainer5
       // 
       this.radSplitContainer5.Controls.Add(this.page_4_cnt_browser);
       this.radSplitContainer5.Controls.Add(this.splitPanel10);
-      this.radSplitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer5.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radSplitContainer5, "radSplitContainer5");
       this.radSplitContainer5.Name = "radSplitContainer5";
       // 
       // 
       // 
       this.radSplitContainer5.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer5.Size = new System.Drawing.Size(927, 421);
-      this.radSplitContainer5.TabIndex = 0;
       this.radSplitContainer5.TabStop = false;
       // 
       // page_4_cnt_browser
@@ -1209,208 +923,149 @@
       this.page_4_cnt_browser.Controls.Add(this.panel2);
       this.page_4_cnt_browser.Controls.Add(this.radLabel12);
       this.page_4_cnt_browser.Controls.Add(this.clearPanel5);
-      this.page_4_cnt_browser.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.page_4_cnt_browser, "page_4_cnt_browser");
       this.page_4_cnt_browser.Name = "page_4_cnt_browser";
       // 
       // 
       // 
       this.page_4_cnt_browser.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.page_4_cnt_browser.Size = new System.Drawing.Size(569, 421);
       this.page_4_cnt_browser.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.116468F, 0F);
       this.page_4_cnt_browser.SizeInfo.SplitterCorrection = new System.Drawing.Size(107, 0);
-      this.page_4_cnt_browser.TabIndex = 0;
       this.page_4_cnt_browser.TabStop = false;
-      this.page_4_cnt_browser.Text = "splitPanel9";
       // 
       // page_4_webbrowser
       // 
-      this.page_4_webbrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.page_4_webbrowser.Location = new System.Drawing.Point(0, 32);
+      resources.ApplyResources(this.page_4_webbrowser, "page_4_webbrowser");
       this.page_4_webbrowser.Name = "page_4_webbrowser";
-      this.page_4_webbrowser.Size = new System.Drawing.Size(569, 339);
-      this.page_4_webbrowser.TabIndex = 6;
       // 
       // panel2
       // 
       this.panel2.Controls.Add(this.page_4_drop_example);
       this.panel2.Controls.Add(this.page_4_btn_loadUrl);
-      this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-      this.panel2.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.panel2, "panel2");
       this.panel2.Name = "panel2";
-      this.panel2.Size = new System.Drawing.Size(569, 32);
-      this.panel2.TabIndex = 7;
       // 
       // page_4_drop_example
       // 
-      this.page_4_drop_example.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.page_4_drop_example.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.page_4_drop_example, "page_4_drop_example");
       this.page_4_drop_example.Name = "page_4_drop_example";
-      this.page_4_drop_example.NullText = "Verfügbares Beispielergebnis auswählen...";
-      this.page_4_drop_example.Size = new System.Drawing.Size(537, 32);
-      this.page_4_drop_example.TabIndex = 0;
       this.page_4_drop_example.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.page_4_drop_example_SelectedIndexChanged);
       // 
       // page_4_btn_loadUrl
       // 
-      this.page_4_btn_loadUrl.Dock = System.Windows.Forms.DockStyle.Right;
+      resources.ApplyResources(this.page_4_btn_loadUrl, "page_4_btn_loadUrl");
       this.page_4_btn_loadUrl.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
-      this.page_4_btn_loadUrl.Location = new System.Drawing.Point(537, 0);
       this.page_4_btn_loadUrl.Name = "page_4_btn_loadUrl";
-      this.page_4_btn_loadUrl.Size = new System.Drawing.Size(32, 32);
-      this.page_4_btn_loadUrl.TabIndex = 1;
       this.page_4_btn_loadUrl.Click += new System.EventHandler(this.page_4_btn_loadUrl_Click);
       // 
       // radLabel12
       // 
-      this.radLabel12.AutoSize = false;
-      this.radLabel12.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.radLabel12.Font = new System.Drawing.Font("Segoe UI", 9F);
-      this.radLabel12.Location = new System.Drawing.Point(0, 371);
+      resources.ApplyResources(this.radLabel12, "radLabel12");
       this.radLabel12.Name = "radLabel12";
-      this.radLabel12.Size = new System.Drawing.Size(569, 18);
-      this.radLabel12.TabIndex = 5;
-      this.radLabel12.Text = "Modifizieren Sie den XPath bis alle Bereiche erfasst werden:";
       // 
       // clearPanel5
       // 
       this.clearPanel5.Controls.Add(this.page_4_txt_xpath);
       this.clearPanel5.Controls.Add(this.page_4_btn_xpathrefresh);
       this.clearPanel5.Controls.Add(this.page_4_btn_xpathToList);
-      this.clearPanel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.clearPanel5.Location = new System.Drawing.Point(0, 389);
+      resources.ApplyResources(this.clearPanel5, "clearPanel5");
       this.clearPanel5.Name = "clearPanel5";
-      this.clearPanel5.Size = new System.Drawing.Size(569, 32);
-      this.clearPanel5.TabIndex = 4;
       // 
       // page_4_txt_xpath
       // 
-      this.page_4_txt_xpath.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.page_4_txt_xpath.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.page_4_txt_xpath, "page_4_txt_xpath");
       this.page_4_txt_xpath.Name = "page_4_txt_xpath";
-      this.page_4_txt_xpath.NullText = "XPath-Ausdruck...";
-      this.page_4_txt_xpath.Size = new System.Drawing.Size(505, 32);
-      this.page_4_txt_xpath.TabIndex = 1;
       this.page_4_txt_xpath.TextChanged += new System.EventHandler(this.page_4_txt_xpath_TextChanged);
       // 
       // page_4_btn_xpathrefresh
       // 
-      this.page_4_btn_xpathrefresh.Dock = System.Windows.Forms.DockStyle.Right;
+      resources.ApplyResources(this.page_4_btn_xpathrefresh, "page_4_btn_xpathrefresh");
       this.page_4_btn_xpathrefresh.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.refresh;
-      this.page_4_btn_xpathrefresh.Location = new System.Drawing.Point(505, 0);
       this.page_4_btn_xpathrefresh.Name = "page_4_btn_xpathrefresh";
-      this.page_4_btn_xpathrefresh.Size = new System.Drawing.Size(32, 32);
-      this.page_4_btn_xpathrefresh.TabIndex = 2;
       this.page_4_btn_xpathrefresh.Click += new System.EventHandler(this.page_4_btn_xpathrefresh_Click);
       // 
       // page_4_btn_xpathToList
       // 
-      this.page_4_btn_xpathToList.Dock = System.Windows.Forms.DockStyle.Right;
+      resources.ApplyResources(this.page_4_btn_xpathToList, "page_4_btn_xpathToList");
       this.page_4_btn_xpathToList.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
-      this.page_4_btn_xpathToList.Location = new System.Drawing.Point(537, 0);
       this.page_4_btn_xpathToList.Name = "page_4_btn_xpathToList";
-      this.page_4_btn_xpathToList.Size = new System.Drawing.Size(32, 32);
-      this.page_4_btn_xpathToList.TabIndex = 0;
       this.page_4_btn_xpathToList.Click += new System.EventHandler(this.page_4_btn_xpathToList_Click);
       // 
       // splitPanel10
       // 
       this.splitPanel10.Controls.Add(this.radGroupBox17);
-      this.splitPanel10.Location = new System.Drawing.Point(573, 0);
+      resources.ApplyResources(this.splitPanel10, "splitPanel10");
       this.splitPanel10.Name = "splitPanel10";
       // 
       // 
       // 
       this.splitPanel10.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel10.Size = new System.Drawing.Size(354, 421);
       this.splitPanel10.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.116468F, 0F);
       this.splitPanel10.SizeInfo.SplitterCorrection = new System.Drawing.Size(-107, 0);
-      this.splitPanel10.TabIndex = 1;
       this.splitPanel10.TabStop = false;
-      this.splitPanel10.Text = "splitPanel10";
       // 
       // radGroupBox17
       // 
       this.radGroupBox17.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
       this.radGroupBox17.Controls.Add(this.page_4_grid_xpath);
       this.radGroupBox17.Controls.Add(this.radLabel13);
-      this.radGroupBox17.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGroupBox17.HeaderText = "XPath-Mappings";
-      this.radGroupBox17.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radGroupBox17, "radGroupBox17");
       this.radGroupBox17.Name = "radGroupBox17";
-      this.radGroupBox17.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox17.Size = new System.Drawing.Size(354, 421);
-      this.radGroupBox17.TabIndex = 1;
-      this.radGroupBox17.Text = "XPath-Mappings";
       // 
       // page_4_grid_xpath
       // 
-      this.page_4_grid_xpath.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.page_4_grid_xpath.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.page_4_grid_xpath, "page_4_grid_xpath");
       // 
       // 
       // 
       this.page_4_grid_xpath.MasterTemplate.AllowColumnReorder = false;
-      gridViewTextBoxColumn9.HeaderText = "Key";
-      gridViewTextBoxColumn9.Name = "col_key";
-      gridViewTextBoxColumn9.Width = 75;
-      gridViewTextBoxColumn10.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.XPath;
-      gridViewTextBoxColumn10.Name = "col_xpath";
-      gridViewTextBoxColumn10.Width = 250;
+      resources.ApplyResources(gridViewTextBoxColumn3, "gridViewTextBoxColumn3");
+      gridViewTextBoxColumn3.Name = "col_key";
+      gridViewTextBoxColumn3.Width = 75;
+      gridViewTextBoxColumn4.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.XPath;
+      gridViewTextBoxColumn4.Name = "col_xpath";
+      gridViewTextBoxColumn4.Width = 250;
       this.page_4_grid_xpath.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10});
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4});
       this.page_4_grid_xpath.MasterTemplate.EnableGrouping = false;
-      this.page_4_grid_xpath.MasterTemplate.ViewDefinition = tableViewDefinition5;
+      this.page_4_grid_xpath.MasterTemplate.ViewDefinition = tableViewDefinition2;
       this.page_4_grid_xpath.Name = "page_4_grid_xpath";
-      this.page_4_grid_xpath.Size = new System.Drawing.Size(344, 346);
-      this.page_4_grid_xpath.TabIndex = 5;
       // 
       // radLabel13
       // 
-      this.radLabel13.AutoSize = false;
-      this.radLabel13.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.radLabel13.Font = new System.Drawing.Font("Segoe UI", 9F);
-      this.radLabel13.Location = new System.Drawing.Point(5, 371);
+      resources.ApplyResources(this.radLabel13, "radLabel13");
       this.radLabel13.Name = "radLabel13";
-      this.radLabel13.Size = new System.Drawing.Size(344, 45);
-      this.radLabel13.TabIndex = 4;
-      this.radLabel13.Text = "<html>Sie müssen mindestens ein Mapping mit dem Key <i>Text</i> erstellen. Alle a" +
-    "nderen Mappings können Sie frei wählen.</html>";
-      this.radLabel13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // wizardWelcomePage1
       // 
       this.wizardWelcomePage1.ContentArea = this.panel1;
-      this.wizardWelcomePage1.Header = "Page header";
+      resources.ApplyResources(this.wizardWelcomePage1, "wizardWelcomePage1");
       this.wizardWelcomePage1.Name = "wizardWelcomePage1";
-      this.wizardWelcomePage1.Title = "WebCrawler selbst erstellen...";
       // 
       // wizardPage2
       // 
       this.wizardPage2.ContentArea = this.panel3;
       this.wizardPage2.CustomizePageHeader = true;
-      this.wizardPage2.Header = "";
+      resources.ApplyResources(this.wizardPage2, "wizardPage2");
       this.wizardPage2.HeaderVisibility = Telerik.WinControls.ElementVisibility.Collapsed;
       this.wizardPage2.Name = "wizardPage2";
-      this.wizardPage2.Title = "Fortgeschrittenen-Modus";
       // 
       // wizardPage3
       // 
       this.wizardPage3.ContentArea = this.panel4;
       this.wizardPage3.CustomizePageHeader = true;
-      this.wizardPage3.Header = "";
+      resources.ApplyResources(this.wizardPage3, "wizardPage3");
       this.wizardPage3.HeaderVisibility = Telerik.WinControls.ElementVisibility.Collapsed;
       this.wizardPage3.Name = "wizardPage3";
-      this.wizardPage3.Title = "Link-Verhalten konfigurieren";
       // 
       // wizardPage4
       // 
       this.wizardPage4.ContentArea = this.panel5;
       this.wizardPage4.CustomizePageHeader = true;
-      this.wizardPage4.Header = "";
+      resources.ApplyResources(this.wizardPage4, "wizardPage4");
       this.wizardPage4.HeaderVisibility = Telerik.WinControls.ElementVisibility.Collapsed;
       this.wizardPage4.Name = "wizardPage4";
-      this.wizardPage4.Title = "XPath-Mapping";
       // 
       // radDesktopAlert1
       // 
@@ -1422,16 +1077,14 @@
       // 
       // WebCrawlerWizard
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.ClientSize = new System.Drawing.Size(927, 538);
+      resources.ApplyResources(this, "$this");
       this.Controls.Add(this.radWizard1);
       this.Name = "WebCrawlerWizard";
       // 
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
-      this.Text = "WebCrawler erstellen...";
       ((System.ComponentModel.ISupportInitialize)(this.radWizard1)).EndInit();
       this.radWizard1.ResumeLayout(false);
       this.panel6.ResumeLayout(false);

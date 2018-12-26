@@ -32,16 +32,38 @@ namespace CorpusExplorer.Sdk.Extern.Xml.AltoXml._1._2
     {
       var tokens = new List<string>();
 
-      foreach (var tb in model.Layout.Page.PrintSpace.TextBlock)
+      try
       {
-        foreach (var tl in tb.TextLine)
-        {
-          foreach (var item in tl.Items)
+        foreach (var tb in model.Layout.Page.PrintSpace.TextBlock)
+          try
           {
-            if (item is String s)
-              tokens.Add(s.CONTENT.Replace("■", ""));
+            foreach (var tl in tb.TextLine)
+              try
+              {
+                foreach (var item in tl.Items)
+                  try
+                  {
+                    if (item is String s)
+                      tokens.Add(s.CONTENT.Replace("■", ""));
+                  }
+                  catch
+                  {
+                    //ignore
+                  }
+              }
+              catch
+              {
+                //ignore
+              }
           }
-        }
+          catch
+          {
+            //ignore
+          }
+      }
+      catch
+      {
+        //ignore
       }
 
       dic.Add("Text", string.Join(" ", tokens));

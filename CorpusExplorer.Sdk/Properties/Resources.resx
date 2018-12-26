@@ -234,7 +234,7 @@
   <data name="SelectionRandimSplitB" xml:space="preserve">
     <value>Zufallsauswahl (Split-B): {0}%</value>
   </data>
-  <data name="SelectionRandomDescribtion" xml:space="preserve">
+  <data name="SelectionRandomDescription" xml:space="preserve">
     <value>Zufällige Auswahl von {0} Dokumenten ({1}%)</value>
   </data>
   <data name="SelectionRandimSplitA" xml:space="preserve">

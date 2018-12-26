@@ -117,4 +117,1042 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="list_00.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="list_00.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="list_00.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="list_00.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_00.Name" xml:space="preserve">
+    <value>list_00</value>
+  </data>
+  <data name="&gt;&gt;list_00.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_00.Parent" xml:space="preserve">
+    <value>panel_00</value>
+  </data>
+  <data name="&gt;&gt;list_00.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_00.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="panel_00.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="panel_00.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="panel_00.Text" xml:space="preserve">
+    <value>splitPanel6</value>
+  </data>
+  <data name="&gt;&gt;panel_00.Name" xml:space="preserve">
+    <value>panel_00</value>
+  </data>
+  <data name="&gt;&gt;panel_00.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;panel_00.Parent" xml:space="preserve">
+    <value>radSplitContainer2</value>
+  </data>
+  <data name="&gt;&gt;panel_00.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="list_10.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="list_10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="list_10.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_10.Name" xml:space="preserve">
+    <value>list_10</value>
+  </data>
+  <data name="&gt;&gt;list_10.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_10.Parent" xml:space="preserve">
+    <value>panel_10</value>
+  </data>
+  <data name="&gt;&gt;list_10.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 92</value>
+  </data>
+  <data name="panel_10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="panel_10.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="panel_10.Text" xml:space="preserve">
+    <value>splitPanel7</value>
+  </data>
+  <data name="&gt;&gt;panel_10.Name" xml:space="preserve">
+    <value>panel_10</value>
+  </data>
+  <data name="&gt;&gt;panel_10.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;panel_10.Parent" xml:space="preserve">
+    <value>radSplitContainer2</value>
+  </data>
+  <data name="&gt;&gt;panel_10.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="list_20.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_20.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="list_20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="list_20.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_20.Name" xml:space="preserve">
+    <value>list_20</value>
+  </data>
+  <data name="&gt;&gt;list_20.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_20.Parent" xml:space="preserve">
+    <value>panel_20</value>
+  </data>
+  <data name="&gt;&gt;list_20.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_20.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 184</value>
+  </data>
+  <data name="panel_20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="panel_20.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="panel_20.Text" xml:space="preserve">
+    <value>splitPanel8</value>
+  </data>
+  <data name="&gt;&gt;panel_20.Name" xml:space="preserve">
+    <value>panel_20</value>
+  </data>
+  <data name="&gt;&gt;panel_20.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;panel_20.Parent" xml:space="preserve">
+    <value>radSplitContainer2</value>
+  </data>
+  <data name="&gt;&gt;panel_20.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="list_30.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_30.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="list_30.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="list_30.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_30.Name" xml:space="preserve">
+    <value>list_30</value>
+  </data>
+  <data name="&gt;&gt;list_30.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_30.Parent" xml:space="preserve">
+    <value>panel_30</value>
+  </data>
+  <data name="&gt;&gt;list_30.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_30.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 276</value>
+  </data>
+  <data name="panel_30.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="panel_30.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="panel_30.Text" xml:space="preserve">
+    <value>splitPanel9</value>
+  </data>
+  <data name="&gt;&gt;panel_30.Name" xml:space="preserve">
+    <value>panel_30</value>
+  </data>
+  <data name="&gt;&gt;panel_30.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;panel_30.Parent" xml:space="preserve">
+    <value>radSplitContainer2</value>
+  </data>
+  <data name="&gt;&gt;panel_30.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="radSplitContainer2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radSplitContainer2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radSplitContainer2.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="radSplitContainer2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 364</value>
+  </data>
+  <data name="radSplitContainer2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer2.Name" xml:space="preserve">
+    <value>radSplitContainer2</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer2.Parent" xml:space="preserve">
+    <value>splitPanel1</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="splitPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="splitPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 364</value>
+  </data>
+  <data name="splitPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="splitPanel1.Text" xml:space="preserve">
+    <value>splitPanel1</value>
+  </data>
+  <data name="&gt;&gt;splitPanel1.Name" xml:space="preserve">
+    <value>splitPanel1</value>
+  </data>
+  <data name="&gt;&gt;splitPanel1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;splitPanel1.Parent" xml:space="preserve">
+    <value>radSplitContainer1</value>
+  </data>
+  <data name="&gt;&gt;splitPanel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="list_01.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_01.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="list_01.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="list_01.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_01.Name" xml:space="preserve">
+    <value>list_01</value>
+  </data>
+  <data name="&gt;&gt;list_01.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_01.Parent" xml:space="preserve">
+    <value>panel_01</value>
+  </data>
+  <data name="&gt;&gt;list_01.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_01.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="panel_01.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="panel_01.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="panel_01.Text" xml:space="preserve">
+    <value>splitPanel5</value>
+  </data>
+  <data name="&gt;&gt;panel_01.Name" xml:space="preserve">
+    <value>panel_01</value>
+  </data>
+  <data name="&gt;&gt;panel_01.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;panel_01.Parent" xml:space="preserve">
+    <value>radSplitContainer3</value>
+  </data>
+  <data name="&gt;&gt;panel_01.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="list_11.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="list_11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="list_11.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_11.Name" xml:space="preserve">
+    <value>list_11</value>
+  </data>
+  <data name="&gt;&gt;list_11.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_11.Parent" xml:space="preserve">
+    <value>panel_11</value>
+  </data>
+  <data name="&gt;&gt;list_11.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 92</value>
+  </data>
+  <data name="panel_11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="panel_11.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="panel_11.Text" xml:space="preserve">
+    <value>splitPanel10</value>
+  </data>
+  <data name="&gt;&gt;panel_11.Name" xml:space="preserve">
+    <value>panel_11</value>
+  </data>
+  <data name="&gt;&gt;panel_11.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;panel_11.Parent" xml:space="preserve">
+    <value>radSplitContainer3</value>
+  </data>
+  <data name="&gt;&gt;panel_11.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="list_21.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_21.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="list_21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="list_21.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_21.Name" xml:space="preserve">
+    <value>list_21</value>
+  </data>
+  <data name="&gt;&gt;list_21.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_21.Parent" xml:space="preserve">
+    <value>panel_21</value>
+  </data>
+  <data name="&gt;&gt;list_21.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_21.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 184</value>
+  </data>
+  <data name="panel_21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="panel_21.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="panel_21.Text" xml:space="preserve">
+    <value>splitPanel11</value>
+  </data>
+  <data name="&gt;&gt;panel_21.Name" xml:space="preserve">
+    <value>panel_21</value>
+  </data>
+  <data name="&gt;&gt;panel_21.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;panel_21.Parent" xml:space="preserve">
+    <value>radSplitContainer3</value>
+  </data>
+  <data name="&gt;&gt;panel_21.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="list_31.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_31.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="list_31.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="list_31.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_31.Name" xml:space="preserve">
+    <value>list_31</value>
+  </data>
+  <data name="&gt;&gt;list_31.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_31.Parent" xml:space="preserve">
+    <value>panel_31</value>
+  </data>
+  <data name="&gt;&gt;list_31.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_31.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 276</value>
+  </data>
+  <data name="panel_31.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="panel_31.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="panel_31.Text" xml:space="preserve">
+    <value>splitPanel12</value>
+  </data>
+  <data name="&gt;&gt;panel_31.Name" xml:space="preserve">
+    <value>panel_31</value>
+  </data>
+  <data name="&gt;&gt;panel_31.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;panel_31.Parent" xml:space="preserve">
+    <value>radSplitContainer3</value>
+  </data>
+  <data name="&gt;&gt;panel_31.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="radSplitContainer3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radSplitContainer3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radSplitContainer3.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="radSplitContainer3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 364</value>
+  </data>
+  <data name="radSplitContainer3.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer3.Name" xml:space="preserve">
+    <value>radSplitContainer3</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer3.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer3.Parent" xml:space="preserve">
+    <value>splitPanel2</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="splitPanel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>197, 0</value>
+  </data>
+  <data name="splitPanel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 364</value>
+  </data>
+  <data name="splitPanel2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="splitPanel2.Text" xml:space="preserve">
+    <value>splitPanel2</value>
+  </data>
+  <data name="&gt;&gt;splitPanel2.Name" xml:space="preserve">
+    <value>splitPanel2</value>
+  </data>
+  <data name="&gt;&gt;splitPanel2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;splitPanel2.Parent" xml:space="preserve">
+    <value>radSplitContainer1</value>
+  </data>
+  <data name="&gt;&gt;splitPanel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="list_02.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_02.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="list_02.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="list_02.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_02.Name" xml:space="preserve">
+    <value>list_02</value>
+  </data>
+  <data name="&gt;&gt;list_02.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_02.Parent" xml:space="preserve">
+    <value>panel_02</value>
+  </data>
+  <data name="&gt;&gt;list_02.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_02.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="panel_02.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="panel_02.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="panel_02.Text" xml:space="preserve">
+    <value>splitPanel13</value>
+  </data>
+  <data name="&gt;&gt;panel_02.Name" xml:space="preserve">
+    <value>panel_02</value>
+  </data>
+  <data name="&gt;&gt;panel_02.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;panel_02.Parent" xml:space="preserve">
+    <value>radSplitContainer4</value>
+  </data>
+  <data name="&gt;&gt;panel_02.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="list_12.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="list_12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="list_12.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_12.Name" xml:space="preserve">
+    <value>list_12</value>
+  </data>
+  <data name="&gt;&gt;list_12.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_12.Parent" xml:space="preserve">
+    <value>panel_12</value>
+  </data>
+  <data name="&gt;&gt;list_12.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 92</value>
+  </data>
+  <data name="panel_12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="panel_12.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="panel_12.Text" xml:space="preserve">
+    <value>splitPanel14</value>
+  </data>
+  <data name="&gt;&gt;panel_12.Name" xml:space="preserve">
+    <value>panel_12</value>
+  </data>
+  <data name="&gt;&gt;panel_12.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;panel_12.Parent" xml:space="preserve">
+    <value>radSplitContainer4</value>
+  </data>
+  <data name="&gt;&gt;panel_12.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="list_22.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_22.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="list_22.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="list_22.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_22.Name" xml:space="preserve">
+    <value>list_22</value>
+  </data>
+  <data name="&gt;&gt;list_22.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_22.Parent" xml:space="preserve">
+    <value>panel_22</value>
+  </data>
+  <data name="&gt;&gt;list_22.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_22.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 184</value>
+  </data>
+  <data name="panel_22.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="panel_22.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="panel_22.Text" xml:space="preserve">
+    <value>splitPanel15</value>
+  </data>
+  <data name="&gt;&gt;panel_22.Name" xml:space="preserve">
+    <value>panel_22</value>
+  </data>
+  <data name="&gt;&gt;panel_22.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;panel_22.Parent" xml:space="preserve">
+    <value>radSplitContainer4</value>
+  </data>
+  <data name="&gt;&gt;panel_22.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="list_32.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_32.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="list_32.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="list_32.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_32.Name" xml:space="preserve">
+    <value>list_32</value>
+  </data>
+  <data name="&gt;&gt;list_32.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_32.Parent" xml:space="preserve">
+    <value>panel_32</value>
+  </data>
+  <data name="&gt;&gt;list_32.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_32.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 276</value>
+  </data>
+  <data name="panel_32.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="panel_32.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="panel_32.Text" xml:space="preserve">
+    <value>splitPanel16</value>
+  </data>
+  <data name="&gt;&gt;panel_32.Name" xml:space="preserve">
+    <value>panel_32</value>
+  </data>
+  <data name="&gt;&gt;panel_32.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;panel_32.Parent" xml:space="preserve">
+    <value>radSplitContainer4</value>
+  </data>
+  <data name="&gt;&gt;panel_32.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="radSplitContainer4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radSplitContainer4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radSplitContainer4.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="radSplitContainer4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 364</value>
+  </data>
+  <data name="radSplitContainer4.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer4.Name" xml:space="preserve">
+    <value>radSplitContainer4</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer4.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer4.Parent" xml:space="preserve">
+    <value>splitPanel3</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="splitPanel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>394, 0</value>
+  </data>
+  <data name="splitPanel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 364</value>
+  </data>
+  <data name="splitPanel3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="splitPanel3.Text" xml:space="preserve">
+    <value>splitPanel3</value>
+  </data>
+  <data name="&gt;&gt;splitPanel3.Name" xml:space="preserve">
+    <value>splitPanel3</value>
+  </data>
+  <data name="&gt;&gt;splitPanel3.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;splitPanel3.Parent" xml:space="preserve">
+    <value>radSplitContainer1</value>
+  </data>
+  <data name="&gt;&gt;splitPanel3.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="list_03.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_03.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="list_03.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="list_03.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_03.Name" xml:space="preserve">
+    <value>list_03</value>
+  </data>
+  <data name="&gt;&gt;list_03.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_03.Parent" xml:space="preserve">
+    <value>panel_03</value>
+  </data>
+  <data name="&gt;&gt;list_03.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_03.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="panel_03.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="panel_03.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="panel_03.Text" xml:space="preserve">
+    <value>splitPanel17</value>
+  </data>
+  <data name="&gt;&gt;panel_03.Name" xml:space="preserve">
+    <value>panel_03</value>
+  </data>
+  <data name="&gt;&gt;panel_03.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;panel_03.Parent" xml:space="preserve">
+    <value>radSplitContainer5</value>
+  </data>
+  <data name="&gt;&gt;panel_03.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="list_13.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="list_13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="list_13.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_13.Name" xml:space="preserve">
+    <value>list_13</value>
+  </data>
+  <data name="&gt;&gt;list_13.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_13.Parent" xml:space="preserve">
+    <value>panel_13</value>
+  </data>
+  <data name="&gt;&gt;list_13.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 92</value>
+  </data>
+  <data name="panel_13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="panel_13.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="panel_13.Text" xml:space="preserve">
+    <value>splitPanel18</value>
+  </data>
+  <data name="&gt;&gt;panel_13.Name" xml:space="preserve">
+    <value>panel_13</value>
+  </data>
+  <data name="&gt;&gt;panel_13.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;panel_13.Parent" xml:space="preserve">
+    <value>radSplitContainer5</value>
+  </data>
+  <data name="&gt;&gt;panel_13.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="list_23.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_23.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="list_23.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="list_23.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_23.Name" xml:space="preserve">
+    <value>list_23</value>
+  </data>
+  <data name="&gt;&gt;list_23.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_23.Parent" xml:space="preserve">
+    <value>panel_23</value>
+  </data>
+  <data name="&gt;&gt;list_23.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_23.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 184</value>
+  </data>
+  <data name="panel_23.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="panel_23.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="panel_23.Text" xml:space="preserve">
+    <value>splitPanel19</value>
+  </data>
+  <data name="&gt;&gt;panel_23.Name" xml:space="preserve">
+    <value>panel_23</value>
+  </data>
+  <data name="&gt;&gt;panel_23.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;panel_23.Parent" xml:space="preserve">
+    <value>radSplitContainer5</value>
+  </data>
+  <data name="&gt;&gt;panel_23.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="list_33.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_33.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="list_33.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="list_33.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_33.Name" xml:space="preserve">
+    <value>list_33</value>
+  </data>
+  <data name="&gt;&gt;list_33.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_33.Parent" xml:space="preserve">
+    <value>panel_33</value>
+  </data>
+  <data name="&gt;&gt;list_33.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel_33.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 276</value>
+  </data>
+  <data name="panel_33.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 88</value>
+  </data>
+  <data name="panel_33.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="panel_33.Text" xml:space="preserve">
+    <value>splitPanel20</value>
+  </data>
+  <data name="&gt;&gt;panel_33.Name" xml:space="preserve">
+    <value>panel_33</value>
+  </data>
+  <data name="&gt;&gt;panel_33.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;panel_33.Parent" xml:space="preserve">
+    <value>radSplitContainer5</value>
+  </data>
+  <data name="&gt;&gt;panel_33.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="radSplitContainer5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radSplitContainer5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radSplitContainer5.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="radSplitContainer5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 364</value>
+  </data>
+  <data name="radSplitContainer5.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer5.Name" xml:space="preserve">
+    <value>radSplitContainer5</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer5.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer5.Parent" xml:space="preserve">
+    <value>splitPanel4</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer5.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="splitPanel4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>591, 0</value>
+  </data>
+  <data name="splitPanel4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 364</value>
+  </data>
+  <data name="splitPanel4.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="splitPanel4.Text" xml:space="preserve">
+    <value>splitPanel4</value>
+  </data>
+  <data name="&gt;&gt;splitPanel4.Name" xml:space="preserve">
+    <value>splitPanel4</value>
+  </data>
+  <data name="&gt;&gt;splitPanel4.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;splitPanel4.Parent" xml:space="preserve">
+    <value>radSplitContainer1</value>
+  </data>
+  <data name="&gt;&gt;splitPanel4.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="radSplitContainer1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radSplitContainer1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 36</value>
+  </data>
+  <data name="radSplitContainer1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>780, 364</value>
+  </data>
+  <data name="radSplitContainer1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer1.Name" xml:space="preserve">
+    <value>radSplitContainer1</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="wordBag1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="wordBag1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 11pt</value>
+  </data>
+  <data name="wordBag1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="wordBag1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 6, 5, 6</value>
+  </data>
+  <data name="wordBag1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>780, 36</value>
+  </data>
+  <data name="wordBag1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;wordBag1.Name" xml:space="preserve">
+    <value>wordBag1</value>
+  </data>
+  <data name="&gt;&gt;wordBag1.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.WordBag, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;wordBag1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;wordBag1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>DisambigutionProfile</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Helper.UiFramework.AbstractView, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
 </root>

@@ -30,6 +30,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WordBag));
       this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
       this.btn_go = new Telerik.WinControls.UI.RadButton();
       this.btn_selectLayer = new Telerik.WinControls.UI.RadButton();
@@ -40,50 +41,37 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       // 
       // btn_go
       // 
-      this.btn_go.Dock = System.Windows.Forms.DockStyle.Right;
+      resources.ApplyResources(this.btn_go, "btn_go");
       this.btn_go.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
-      this.btn_go.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      this.btn_go.Location = new System.Drawing.Point(377, 0);
       this.btn_go.Name = "btn_go";
-      this.btn_go.Size = new System.Drawing.Size(36, 36);
-      this.btn_go.TabIndex = 7;
-      this.toolTip1.SetToolTip(this.btn_go, "Aktualisieren");
+      this.toolTip1.SetToolTip(this.btn_go, resources.GetString("btn_go.ToolTip"));
       this.btn_go.Click += new System.EventHandler(this.btn_go_Click);
       // 
       // btn_selectLayer
       // 
-      this.btn_selectLayer.Dock = System.Windows.Forms.DockStyle.Left;
+      resources.ApplyResources(this.btn_selectLayer, "btn_selectLayer");
       this.btn_selectLayer.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers;
-      this.btn_selectLayer.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-      this.btn_selectLayer.Location = new System.Drawing.Point(0, 0);
       this.btn_selectLayer.Name = "btn_selectLayer";
-      this.btn_selectLayer.Size = new System.Drawing.Size(36, 36);
-      this.btn_selectLayer.TabIndex = 8;
-      this.toolTip1.SetToolTip(this.btn_selectLayer, "Layer ändern");
+      this.toolTip1.SetToolTip(this.btn_selectLayer, resources.GetString("btn_selectLayer.ToolTip"));
       this.btn_selectLayer.Click += new System.EventHandler(this.btn_selectLayer_Click);
       // 
       // cmb_values
       // 
       this.cmb_values.BackColor = System.Drawing.Color.White;
-      this.cmb_values.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.cmb_values.Font = new System.Drawing.Font("Segoe UI", 11F);
-      this.cmb_values.Location = new System.Drawing.Point(36, 0);
-      this.cmb_values.Margin = new System.Windows.Forms.Padding(5, 8, 5, 6);
+      resources.ApplyResources(this.cmb_values, "cmb_values");
       this.cmb_values.Name = "cmb_values";
+      this.cmb_values.ResultQueries = new string[0];
       this.cmb_values.SelectedLayerDisplayname = null;
-      this.cmb_values.Size = new System.Drawing.Size(341, 36);
-      this.cmb_values.TabIndex = 9;
-      this.toolTip1.SetToolTip(this.cmb_values, "Geben Sie hier die gewünschten Wert(e)/Abfrage(n) ein.");
+      this.toolTip1.SetToolTip(this.cmb_values, resources.GetString("cmb_values.ToolTip"));
       // 
       // WordBag
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.cmb_values);
       this.Controls.Add(this.btn_selectLayer);
       this.Controls.Add(this.btn_go);
       this.Name = "WordBag";
-      this.Size = new System.Drawing.Size(413, 36);
+      resources.ApplyResources(this, "$this");
       ((System.ComponentModel.ISupportInitialize)(this.btn_go)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.btn_selectLayer)).EndInit();
       this.ResumeLayout(false);

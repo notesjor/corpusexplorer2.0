@@ -20,7 +20,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
     public class YouTubeSearchServiceResult
     {
       public string Title { get; set; }
-      public string Describtion { get; set; }
+      public string Description { get; set; }
       public string Author { get; set; }
       public DateTime? Published { get; set; }
     }
@@ -50,8 +50,6 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
     public string RegionCode { get; set; }
     public bool GetComments { get; set; } = true;
 
-    protected override AbstractAuthentication Authentication { get; } = new YoutubeApiKeyAuthentication();
-
     protected override void Query(object connection, IEnumerable<string> queries, string outputPath)
     {
       var context = connection as YouTubeService;
@@ -72,11 +70,11 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
       var serializer = new Newtonsoft.Json.JsonSerializer();
       foreach (var item in resp.Items)
       {
-        using (var file = new StreamWriter(Path.Combine(OutputPath, $"youtube_{item.Id}.json"), false, Encoding.UTF8))
+        using (var file = new StreamWriter(Path.Combine(outputPath, $"youtube_{item.Id}.json"), false, Encoding.UTF8))
           serializer.Serialize(file, new YouTubeSearchServiceResult
           {
             Title = item.Snippet.Title,
-            Describtion = item.Snippet.Description,
+            Description = item.Snippet.Description,
             Author = item.Snippet.ChannelId,
             Published = item.Snippet.PublishedAt,
           });
@@ -91,7 +89,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
 
         foreach (var comment in comments.Items)
         {
-          using (var file = new StreamWriter(Path.Combine(OutputPath, $"youtube_{item.Id}_comment_{comment.Id}.json"), false, Encoding.UTF8))
+          using (var file = new StreamWriter(Path.Combine(outputPath, $"youtube_{item.Id}_comment_{comment.Id}.json"), false, Encoding.UTF8))
             serializer.Serialize(file, new YouTubeSearchServiceCommentThread
             {
               Published = item.Snippet.PublishedAt,

@@ -117,4 +117,385 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="radPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 296</value>
+  </data>
+  <data name="radPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>583, 38</value>
+  </data>
+  <data name="&gt;&gt;radPanel1.Name" xml:space="preserve">
+    <value>radPanel1</value>
+  </data>
+  <data name="&gt;&gt;radPanel1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radPanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radPanel1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ihdPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="ihdPanel1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt</value>
+  </data>
+  <data name="ihdPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="ihdPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="ihdPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>583, 55</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ihdPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;ihdPanel1.Name" xml:space="preserve">
+    <value>ihdPanel1</value>
+  </data>
+  <data name="&gt;&gt;ihdPanel1.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;ihdPanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ihdPanel1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="combo_tagger.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="combo_tagger.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 25</value>
+  </data>
+  <data name="combo_tagger.Size" type="System.Drawing.Size, System.Drawing">
+    <value>569, 33</value>
+  </data>
+  <data name="combo_tagger.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;combo_tagger.Name" xml:space="preserve">
+    <value>combo_tagger</value>
+  </data>
+  <data name="&gt;&gt;combo_tagger.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;combo_tagger.Parent" xml:space="preserve">
+    <value>radGroupBox1</value>
+  </data>
+  <data name="&gt;&gt;combo_tagger.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radGroupBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radGroupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 55</value>
+  </data>
+  <data name="radGroupBox1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>7, 25, 7, 7</value>
+  </data>
+  <data name="radGroupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>583, 65</value>
+  </data>
+  <data name="radGroupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox1.Name" xml:space="preserve">
+    <value>radGroupBox1</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radCollapsiblePanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radCollapsiblePanel1.HeaderText" xml:space="preserve">
+    <value>Erweiterte Einstellungen (Sprache / Backend)</value>
+  </data>
+  <data name="radCollapsiblePanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 120</value>
+  </data>
+  <data name="radLabel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="radLabel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radLabel1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="radLabel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 57</value>
+  </data>
+  <data name="radLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>531, 37</value>
+  </data>
+  <data name="radLabel1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="radLabel1.Text" xml:space="preserve">
+    <value>&lt;html&gt;&lt;strong&gt;Hinweis:&lt;/strong&gt; Externe Datenbanken müssen zuvor über die Projekteinstellungen konfiguriert werden.&lt;/html&gt;</value>
+  </data>
+  <data name="&gt;&gt;radLabel1.Name" xml:space="preserve">
+    <value>radLabel1</value>
+  </data>
+  <data name="&gt;&gt;radLabel1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radLabel1.Parent" xml:space="preserve">
+    <value>radGroupBox4</value>
+  </data>
+  <data name="&gt;&gt;radLabel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="combo_backends.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="combo_backends.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 25</value>
+  </data>
+  <data name="combo_backends.Size" type="System.Drawing.Size, System.Drawing">
+    <value>531, 32</value>
+  </data>
+  <data name="combo_backends.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;combo_backends.Name" xml:space="preserve">
+    <value>combo_backends</value>
+  </data>
+  <data name="&gt;&gt;combo_backends.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;combo_backends.Parent" xml:space="preserve">
+    <value>radGroupBox4</value>
+  </data>
+  <data name="&gt;&gt;combo_backends.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radGroupBox4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radGroupBox4.HeaderText" xml:space="preserve">
+    <value>Daten-Backend (Für Expert*innen)</value>
+  </data>
+  <data name="radGroupBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 126</value>
+  </data>
+  <data name="radGroupBox4.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>7, 25, 7, 7</value>
+  </data>
+  <data name="radGroupBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>545, 104</value>
+  </data>
+  <data name="radGroupBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="radGroupBox4.Text" xml:space="preserve">
+    <value>Daten-Backend (Für Expert*innen)</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox4.Name" xml:space="preserve">
+    <value>radGroupBox4</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox4.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox4.Parent" xml:space="preserve">
+    <value>radCollapsiblePanel1.PanelContainer</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lbl_destination.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lbl_destination.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 25</value>
+  </data>
+  <data name="lbl_destination.Size" type="System.Drawing.Size, System.Drawing">
+    <value>421, 30</value>
+  </data>
+  <data name="lbl_destination.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="lbl_destination.Text" xml:space="preserve">
+    <value>C:\TreeTagger\bin</value>
+  </data>
+  <data name="lbl_destination.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lbl_destination.Name" xml:space="preserve">
+    <value>lbl_destination</value>
+  </data>
+  <data name="&gt;&gt;lbl_destination.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl_destination.Parent" xml:space="preserve">
+    <value>radGroupBox3</value>
+  </data>
+  <data name="&gt;&gt;lbl_destination.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btn_destination.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="btn_destination.Location" type="System.Drawing.Point, System.Drawing">
+    <value>428, 25</value>
+  </data>
+  <data name="btn_destination.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 30</value>
+  </data>
+  <data name="btn_destination.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btn_destination.Name" xml:space="preserve">
+    <value>btn_destination</value>
+  </data>
+  <data name="&gt;&gt;btn_destination.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_destination.Parent" xml:space="preserve">
+    <value>radGroupBox3</value>
+  </data>
+  <data name="&gt;&gt;btn_destination.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radGroupBox3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radGroupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 64</value>
+  </data>
+  <data name="radGroupBox3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>7, 25, 7, 7</value>
+  </data>
+  <data name="radGroupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>545, 62</value>
+  </data>
+  <data name="radGroupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox3.Name" xml:space="preserve">
+    <value>radGroupBox3</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox3.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox3.Parent" xml:space="preserve">
+    <value>radCollapsiblePanel1.PanelContainer</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox3.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="combo_language.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="combo_language.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 25</value>
+  </data>
+  <data name="combo_language.Size" type="System.Drawing.Size, System.Drawing">
+    <value>531, 32</value>
+  </data>
+  <data name="combo_language.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;combo_language.Name" xml:space="preserve">
+    <value>combo_language</value>
+  </data>
+  <data name="&gt;&gt;combo_language.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;combo_language.Parent" xml:space="preserve">
+    <value>radGroupBox2</value>
+  </data>
+  <data name="&gt;&gt;combo_language.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radGroupBox2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radGroupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radGroupBox2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>7, 25, 7, 7</value>
+  </data>
+  <data name="radGroupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>545, 64</value>
+  </data>
+  <data name="radGroupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox2.Name" xml:space="preserve">
+    <value>radGroupBox2</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox2.Parent" xml:space="preserve">
+    <value>radCollapsiblePanel1.PanelContainer</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="radCollapsiblePanel1.PanelContainer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>545, 140</value>
+  </data>
+  <data name="&gt;&gt;radCollapsiblePanel1.PanelContainer.Name" xml:space="preserve">
+    <value>radCollapsiblePanel1.PanelContainer</value>
+  </data>
+  <data name="&gt;&gt;radCollapsiblePanel1.PanelContainer.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CollapsiblePanelPanelContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radCollapsiblePanel1.PanelContainer.Parent" xml:space="preserve">
+    <value>radCollapsiblePanel1.ControlsContainer</value>
+  </data>
+  <data name="&gt;&gt;radCollapsiblePanel1.PanelContainer.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radCollapsiblePanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>583, 176</value>
+  </data>
+  <data name="radCollapsiblePanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;radCollapsiblePanel1.Name" xml:space="preserve">
+    <value>radCollapsiblePanel1</value>
+  </data>
+  <data name="&gt;&gt;radCollapsiblePanel1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadCollapsiblePanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radCollapsiblePanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radCollapsiblePanel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>583, 334</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Tagger für Annotation auswählen</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>SelectTagger</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Forms.Abstract.AbstractDialog, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
 </root>

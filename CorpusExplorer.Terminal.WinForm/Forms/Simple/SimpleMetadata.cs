@@ -14,6 +14,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
     {
       InitializeComponent();
       RegisterMetadataEditor(metadataEditor1);
+      if (documentMetadata == null)
+        return;
       metadataEditor1.Metadata = documentMetadata;
     }
   }

@@ -117,7 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="radCommandBar1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="radCommandBar1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="commandBarStripElement1.DisplayName" xml:space="preserve">
+    <value>commandBarStripElement1</value>
+  </data>
+  <data name="commandBarButton2.DisplayName" xml:space="preserve">
+    <value>commandBarButton2</value>
+  </data>
   <data name="commandBarButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -126,6 +139,15 @@
         WtJMAKy17ydh2gnqYF+YNoKcc5EY4yWCzJfaCGqwH58eXfCb/xfgTTpVALpgkS5YZFbAZzIPx5j9XPNp
         tOmvog7Wco/HtycNL8CTlueZlsxqAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="commandBarButton2.Text" xml:space="preserve">
+    <value>Neu</value>
+  </data>
+  <data name="commandBarButton2.ToolTipText" xml:space="preserve">
+    <value>Neu</value>
+  </data>
+  <data name="btn_save.DisplayName" xml:space="preserve">
+    <value>commandBarButton1</value>
   </data>
   <data name="btn_save.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -137,6 +159,15 @@
         kADOlPkV6f8FgRLyHtDxKwBT9dknEBX0hmoQ7ARiAvnSOCBO7agAJGEu0q8nMC9t9QOrufsJH9lwBAAA
         AABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="btn_save.Text" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="btn_save.ToolTipText" xml:space="preserve">
+    <value>Diagramm speichern</value>
+  </data>
+  <data name="commandBarDropDownButton3.DisplayName" xml:space="preserve">
+    <value>commandBarDropDownButton3</value>
   </data>
   <data name="commandBarDropDownButton3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -158,6 +189,9 @@
         X4M557DhkNEbIQfZjmQhczcAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btn_export_graphviz.Text" xml:space="preserve">
+    <value>Als GraphViz exportieren</value>
+  </data>
   <data name="btn_export_gexf.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAQBJREFUSEvt
@@ -167,6 +201,18 @@
         H2BsvoNQMO8cSgFj/x9aF0ZIVq9KXU1RX+39roDeU1Ff/ZxXsF2e1iREB7Sk98lzXgGiSy77azMA7yl6
         X4M557DhkNEbIQfZjmQhczcAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="btn_export_gexf.Text" xml:space="preserve">
+    <value>Als GEXF-XML exportieren</value>
+  </data>
+  <data name="commandBarDropDownButton3.Text" xml:space="preserve">
+    <value>Exportieren</value>
+  </data>
+  <data name="commandBarDropDownButton3.ToolTipText" xml:space="preserve">
+    <value>Diagramm exportieren</value>
+  </data>
+  <data name="commandBarButton4.DisplayName" xml:space="preserve">
+    <value>commandBarButton4</value>
   </data>
   <data name="commandBarButton4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -180,6 +226,15 @@
         ZCbYgpqq8hYQA5jB9uHRAGYji6Hz0di9cAuAGUwIxABGMNgCKuDvQGwJtwDGoA3+zwAA04JEOAu7yqYA
         AAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="commandBarButton4.Text" xml:space="preserve">
+    <value>Laden</value>
+  </data>
+  <data name="commandBarButton4.ToolTipText" xml:space="preserve">
+    <value>Laden</value>
+  </data>
+  <data name="commandBarDropDownButton1.DisplayName" xml:space="preserve">
+    <value>commandBarDropDownButton1</value>
   </data>
   <data name="commandBarDropDownButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -201,6 +256,9 @@
         XM96FYdo2FxObQvesw9RDfDW/MaA3t9B71+Rz3Ljfb3IkHtq0uETPh4FnDqDdisAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btn_layout_default.Text" xml:space="preserve">
+    <value>Netzwerk-Layout</value>
+  </data>
   <data name="btn_layout_tree.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -210,6 +268,66 @@
         2k8ULuI4PiVJgtR+b8N62ATM884DKpMPyLUXeTtA406f+dCkq16qaz3zvl7FzF9nTg2bW9ezbRWHaNjs
         XM96FYdo2FxObQvesw9RDfDW/MaA3t9B71+Rz3Ljfb3IkHtq0uETPh4FnDqDdisAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="btn_layout_tree.Text" xml:space="preserve">
+    <value>Baum-Layout</value>
+  </data>
+  <data name="commandBarDropDownButton1.Text" xml:space="preserve">
+    <value>Layout</value>
+  </data>
+  <data name="commandBarDropDownButton1.ToolTipText" xml:space="preserve">
+    <value>Diagramm layouten</value>
+  </data>
+  <data name="commandBarStripElement3.DisplayName" xml:space="preserve">
+    <value>commandBarStripElement3</value>
+  </data>
+  <data name="btn_layer.DisplayName" xml:space="preserve">
+    <value>commandBarButton3</value>
+  </data>
+  <data name="btn_layer.Text" xml:space="preserve">
+    <value>Layer auswählen</value>
+  </data>
+  <data name="btn_layer.ToolTipText" xml:space="preserve">
+    <value>Layer auswählen</value>
+  </data>
+  <data name="commandBarLabel2.DisplayName" xml:space="preserve">
+    <value>commandBarLabel2</value>
+  </data>
+  <data name="commandBarLabel2.Text" xml:space="preserve">
+    <value>NGram-Größe:</value>
+  </data>
+  <data name="txt_size.DisplayName" xml:space="preserve">
+    <value>commandBarTextBox1</value>
+  </data>
+  <data name="txt_size.Text" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="commandBarLabel3.DisplayName" xml:space="preserve">
+    <value>commandBarLabel3</value>
+  </data>
+  <data name="commandBarLabel3.Text" xml:space="preserve">
+    <value>Musteranzahl:</value>
+  </data>
+  <data name="txt_pattern.DisplayName" xml:space="preserve">
+    <value>commandBarTextBox2</value>
+  </data>
+  <data name="txt_pattern.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="commandBarLabel1.DisplayName" xml:space="preserve">
+    <value>commandBarLabel1</value>
+  </data>
+  <data name="commandBarLabel1.Text" xml:space="preserve">
+    <value>Top:</value>
+  </data>
+  <data name="txt_max.DisplayName" xml:space="preserve">
+    <value>commandBarTextBox1</value>
+  </data>
+  <data name="txt_max.Text" xml:space="preserve">
+    <value>100</value>
+  </data>
+  <data name="commandBarButton1.DisplayName" xml:space="preserve">
+    <value>commandBarButton1</value>
   </data>
   <data name="commandBarButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -226,5 +344,192 @@
         cL2/gI+r6fN1UKNaqyt8PhMT7GAdXEHI58yXxffD35Z52HewZB6swO/BUsPGV7Dr1X6ZY0DIXXVh7chy
         e8wa4lPTxbr2tI8CHhTxt/0jOAM/AZsSrhljbsh/SDnyD2vyskyWn8q6AAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="commandBarButton1.Text" xml:space="preserve">
+    <value>Ausführen</value>
+  </data>
+  <data name="commandBarButton1.ToolTipText" xml:space="preserve">
+    <value>Ausführen</value>
+  </data>
+  <data name="radCommandBar1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>780, 85</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="radCommandBar1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radCommandBar1.Name" xml:space="preserve">
+    <value>radCommandBar1</value>
+  </data>
+  <data name="&gt;&gt;radCommandBar1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadCommandBar, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radCommandBar1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radCommandBar1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="elementHost1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="elementHost1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 85</value>
+  </data>
+  <data name="elementHost1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>780, 315</value>
+  </data>
+  <data name="elementHost1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="elementHost1.Text" xml:space="preserve">
+    <value>elementHost1</value>
+  </data>
+  <data name="&gt;&gt;elementHost1.Name" xml:space="preserve">
+    <value>elementHost1</value>
+  </data>
+  <data name="&gt;&gt;elementHost1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Integration.ElementHost, WindowsFormsIntegration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</value>
+  </data>
+  <data name="&gt;&gt;elementHost1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;elementHost1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;commandBarRowElement1.Name" xml:space="preserve">
+    <value>commandBarRowElement1</value>
+  </data>
+  <data name="&gt;&gt;commandBarRowElement1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarRowElement, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarStripElement1.Name" xml:space="preserve">
+    <value>commandBarStripElement1</value>
+  </data>
+  <data name="&gt;&gt;commandBarStripElement1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarStripElement, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarButton2.Name" xml:space="preserve">
+    <value>commandBarButton2</value>
+  </data>
+  <data name="&gt;&gt;commandBarButton2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_save.Name" xml:space="preserve">
+    <value>btn_save</value>
+  </data>
+  <data name="&gt;&gt;btn_save.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarDropDownButton3.Name" xml:space="preserve">
+    <value>commandBarDropDownButton3</value>
+  </data>
+  <data name="&gt;&gt;commandBarDropDownButton3.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarDropDownButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_export_graphviz.Name" xml:space="preserve">
+    <value>btn_export_graphviz</value>
+  </data>
+  <data name="&gt;&gt;btn_export_graphviz.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_export_gexf.Name" xml:space="preserve">
+    <value>btn_export_gexf</value>
+  </data>
+  <data name="&gt;&gt;btn_export_gexf.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarButton4.Name" xml:space="preserve">
+    <value>commandBarButton4</value>
+  </data>
+  <data name="&gt;&gt;commandBarButton4.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarDropDownButton1.Name" xml:space="preserve">
+    <value>commandBarDropDownButton1</value>
+  </data>
+  <data name="&gt;&gt;commandBarDropDownButton1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarDropDownButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_layout_default.Name" xml:space="preserve">
+    <value>btn_layout_default</value>
+  </data>
+  <data name="&gt;&gt;btn_layout_default.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_layout_tree.Name" xml:space="preserve">
+    <value>btn_layout_tree</value>
+  </data>
+  <data name="&gt;&gt;btn_layout_tree.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarRowElement2.Name" xml:space="preserve">
+    <value>commandBarRowElement2</value>
+  </data>
+  <data name="&gt;&gt;commandBarRowElement2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarRowElement, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarStripElement3.Name" xml:space="preserve">
+    <value>commandBarStripElement3</value>
+  </data>
+  <data name="&gt;&gt;commandBarStripElement3.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarStripElement, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_layer.Name" xml:space="preserve">
+    <value>btn_layer</value>
+  </data>
+  <data name="&gt;&gt;btn_layer.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarLabel2.Name" xml:space="preserve">
+    <value>commandBarLabel2</value>
+  </data>
+  <data name="&gt;&gt;commandBarLabel2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;txt_size.Name" xml:space="preserve">
+    <value>txt_size</value>
+  </data>
+  <data name="&gt;&gt;txt_size.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarLabel3.Name" xml:space="preserve">
+    <value>commandBarLabel3</value>
+  </data>
+  <data name="&gt;&gt;commandBarLabel3.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;txt_pattern.Name" xml:space="preserve">
+    <value>txt_pattern</value>
+  </data>
+  <data name="&gt;&gt;txt_pattern.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarLabel1.Name" xml:space="preserve">
+    <value>commandBarLabel1</value>
+  </data>
+  <data name="&gt;&gt;commandBarLabel1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;txt_max.Name" xml:space="preserve">
+    <value>txt_max</value>
+  </data>
+  <data name="&gt;&gt;txt_max.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarButton1.Name" xml:space="preserve">
+    <value>commandBarButton1</value>
+  </data>
+  <data name="&gt;&gt;commandBarButton1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>NGramDiagram</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Helper.UiFramework.AbstractView, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
   </data>
 </root>

@@ -9,10 +9,12 @@ using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.ViewModel;
+using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter.Abstract;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Properties;
+using HorizontalAlignment = System.Windows.HorizontalAlignment;
 using MessageBox = System.Windows.MessageBox;
 
 #endregion
@@ -26,6 +28,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
   {
     private HashSet<string> _done = new HashSet<string>();
     private ExplorationViewModel _vm;
+    private WpfDiagram simpleDiagram1;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractView" /> class.
@@ -33,6 +36,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     public CooccurrenceDiagram()
     {
       InitializeComponent();
+      simpleDiagram1 = new WpfDiagram { VerticalAlignment = VerticalAlignment.Stretch, HorizontalAlignment = HorizontalAlignment.Stretch };
+      elementHost1.Child = simpleDiagram1;
       ShowView += ShowViewCall;
     }
 

@@ -73,7 +73,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
       var form = new SimpleTextInput(
         Resources.FulltextAnnotation_NewLayerValue,
-        Resources.FulltextAnnotation_NewLayerValueDescribtion,
+        Resources.FulltextAnnotation_NewLayerValueDescription,
         Resources.layers1,
         Resources.FulltextAnnotation_NewLayerValueNullText);
       if (form.ShowDialog() != DialogResult.OK)
@@ -105,7 +105,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     {
       var form = new SimpleTextInput(
         Resources.FulltextAnnotation_NewLayer,
-        Resources.FulltextAnnotation_NewLayerDescribtion,
+        Resources.FulltextAnnotation_NewLayerDescription,
         Resources.layers1,
         Resources.FulltextAnnotation_NewLayerNullText);
       if (form.ShowDialog() != DialogResult.OK)
@@ -154,7 +154,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
       var form = new SimpleTextInput(
         Resources.FulltextAnnotation_RenameLayer_Head,
-        Resources.FulltextAnnotation_RenameLayer_Describtion,
+        Resources.FulltextAnnotation_RenameLayer_Description,
         Resources.layers1,
         node.Text
       );
@@ -193,7 +193,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
       var form = new SimpleTextInput(
         Resources.FulltextAnnotation_DeleteLayerValue_ChangeLayerValue,
-        Resources.FulltextAnnotation_DeleteLayerValue_ChangeLayerValueDescribtion,
+        Resources.FulltextAnnotation_DeleteLayerValue_ChangeLayerValueDescription,
         Resources.layers1,
         node.Text
       );

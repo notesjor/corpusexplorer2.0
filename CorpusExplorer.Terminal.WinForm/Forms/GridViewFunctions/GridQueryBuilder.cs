@@ -14,12 +14,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.GridViewFunctions
     private const string _fileExtension = "CorpusExplorer Tabellen-Abfrage (*_{0}.cetq)|*_{0}.cetq";
     private readonly Dictionary<string, Type> _defintion;
     private readonly string _name;
+    private Controls.Wpf.QueryBuilder.QueryBuilderControl queryBuilderControl1 = new WinForm.Controls.Wpf.QueryBuilder.QueryBuilderControl();
 
     public GridQueryBuilder(Dictionary<string, Type> defintion, FilterDescriptorCollection collection, string name)
     {
       _defintion = defintion;
       _name = name;
       InitializeComponent();
+      elementHost1.Child = queryBuilderControl1;
       ButtonOkClick += GridQueryBuilder_ButtonOkClick;
       queryBuilderControl1.Step_1_Initialize(_defintion);
       queryBuilderControl1.Step_2_Load(collection);

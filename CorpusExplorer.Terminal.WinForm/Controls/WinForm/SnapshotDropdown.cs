@@ -101,5 +101,15 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       if (!form.SizingGripDockLayout.Children.Contains(_hosted))
         form.SizingGripDockLayout.Children.Add(_hosted);
     }
+
+    private void InitializeComponent()
+    {
+      ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+      this.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+      this.ResumeLayout(false);
+      this.PerformLayout();
+
+    }
   }
 }

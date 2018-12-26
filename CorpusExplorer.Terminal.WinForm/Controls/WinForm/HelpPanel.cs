@@ -51,10 +51,10 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     /// </summary>
     public string HelpHandsonlabUrl { get; set; }
 
-    public string HelpLabelDescribtion
+    public string HelpLabelDescription
     {
-      get => header1.HeaderDescribtion;
-      set => header1.HeaderDescribtion = value;
+      get => header1.HeaderDescription;
+      set => header1.HeaderDescription = value;
     }
 
     public string HelpLabelHeader

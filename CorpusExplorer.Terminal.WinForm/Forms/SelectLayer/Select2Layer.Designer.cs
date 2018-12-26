@@ -28,6 +28,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Select2Layer));
       this.layerSettings1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.LayerSettings();
       this.layerSettings2 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.LayerSettings();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
@@ -36,37 +37,28 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
       // 
       // radPanel1
       // 
-      this.radPanel1.Location = new System.Drawing.Point(0, 184);
+      resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
       // layerSettings1
       // 
       this.layerSettings1.BackColor = System.Drawing.Color.White;
-      this.layerSettings1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.layerSettings1.Font = new System.Drawing.Font("Segoe UI", 11F);
+      resources.ApplyResources(this.layerSettings1, "layerSettings1");
       this.layerSettings1.Header = "Layer 1";
       this.layerSettings1.IsLayerOptional = false;
-      this.layerSettings1.Location = new System.Drawing.Point(0, 53);
       this.layerSettings1.Name = "layerSettings1";
-      this.layerSettings1.Size = new System.Drawing.Size(397, 62);
-      this.layerSettings1.TabIndex = 2;
       // 
       // layerSettings2
       // 
       this.layerSettings2.BackColor = System.Drawing.Color.White;
-      this.layerSettings2.Dock = System.Windows.Forms.DockStyle.Top;
-      this.layerSettings2.Font = new System.Drawing.Font("Segoe UI", 11F);
+      resources.ApplyResources(this.layerSettings2, "layerSettings2");
       this.layerSettings2.Header = "Layer 2";
       this.layerSettings2.IsLayerOptional = true;
-      this.layerSettings2.Location = new System.Drawing.Point(0, 115);
       this.layerSettings2.Name = "layerSettings2";
-      this.layerSettings2.Size = new System.Drawing.Size(397, 62);
-      this.layerSettings2.TabIndex = 3;
       // 
       // Select2Layer
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.ClientSize = new System.Drawing.Size(397, 222);
+      resources.ApplyResources(this, "$this");
       this.Controls.Add(this.layerSettings2);
       this.Controls.Add(this.layerSettings1);
       this.DisplayAbort = true;
@@ -76,6 +68,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
       // 
       this.RootElement.ApplyShapeToControl = true;
       this.ButtonOkClick += new System.EventHandler(this.Form_ButtonOkClick);
+      this.Controls.SetChildIndex(this.header1, 0);
       this.Controls.SetChildIndex(this.radPanel1, 0);
       this.Controls.SetChildIndex(this.layerSettings1, 0);
       this.Controls.SetChildIndex(this.layerSettings2, 0);

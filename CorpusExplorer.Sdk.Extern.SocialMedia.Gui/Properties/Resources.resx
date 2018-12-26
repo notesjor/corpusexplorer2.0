@@ -118,52 +118,163 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="blogger_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\blogger@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="blogger_padlock_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\blogger-padlock@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="facebook_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\facebook@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="facebook_padlock_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\facebook-padlock@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="instagram_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\instagram@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="instagram_padlock_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\instagram-padlock@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="reddit_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\reddit@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="reddit_padlock_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\reddit-padlock@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tumblr_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tumblr@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tumblr_padlock_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tumblr-padlock@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="twitter_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\twitter@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="twitter_padlock_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\twitter-padlock@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="wordpress_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\wordpress@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="wordpress_padlock_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\wordpress-padlock@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="twitter_padlock_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\twitter-padlock@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="youtube_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\youtube@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="tumblr_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tumblr@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blogger_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blogger@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="home_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\home@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blogger_padlock_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blogger-padlock@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="servers-cloud" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\servers-cloud.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="user_group_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user-group@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="twitter_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\twitter@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="instagram_padlock_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\instagram-padlock@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="instagram_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\instagram@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="key1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\key1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tumblr_padlock_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tumblr-padlock@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reddit_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reddit@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wordpress_padlock_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wordpress-padlock@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="key" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\key.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="internet_padlock_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\internet-padlock@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="internet_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\internet@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reddit_padlock_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reddit-padlock@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="twitter_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\twitter@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wordpress_padlock_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wordpress-padlock@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tumblr_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tumblr@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="user_group_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user-group@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blogger_padlock_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blogger-padlock@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="button_green_arrow_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\button_green_arrow_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="facebook_padlock_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\facebook-padlock@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tumblr_padlock_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tumblr-padlock@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wordpress_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wordpress@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cloud-design" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cloud-design.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="instagram_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\instagram@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="internet_padlock_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\internet-padlock@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="save-ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\save-ok.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="facebook_padlock_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\facebook-padlock@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blogger_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blogger@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="facebook_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\facebook@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="twitter_padlock_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\twitter-padlock@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reddit_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reddit@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="youtube_padlock_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\youtube-padlock@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="user_group_padlock_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user-group-padlock@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="user_group_padlock_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user-group-padlock@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wordpress_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wordpress@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="youtube_padlock_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\youtube-padlock@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reddit_padlock_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reddit-padlock@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="home_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\home@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="internet_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\internet@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="youtube_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\youtube@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="facebook_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\facebook@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="instagram_padlock_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\instagram-padlock@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_open" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\folder_open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="image_download_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image-download@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="image_download_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image-download@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="work_browse_128px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\work-browse@128px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="work_browse_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\work-browse@24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

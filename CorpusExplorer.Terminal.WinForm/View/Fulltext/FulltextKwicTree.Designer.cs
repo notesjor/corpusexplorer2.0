@@ -35,7 +35,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
       this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
       this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-      this.wpfDiagram1 = new CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.WpfDiagram();
       this.wordBag1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WordBag();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
@@ -47,6 +46,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       this.btn_export_graphviz = new Telerik.WinControls.UI.RadMenuItem();
       this.commandBarButton3 = new Telerik.WinControls.UI.CommandBarButton();
       this.commandBarDropDownButton2 = new Telerik.WinControls.UI.CommandBarDropDownButton();
+      this.btn_layout_tree = new Telerik.WinControls.UI.RadMenuItem();
+      this.btn_layout_net = new Telerik.WinControls.UI.RadMenuItem();
       this.webHtml5Visualisation1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser.WebHtml5Visualisation();
       ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
       this.radSplitContainer1.SuspendLayout();
@@ -58,16 +59,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // radSplitContainer1
       // 
       this.radSplitContainer1.Controls.Add(this.splitPanel1);
-      this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radSplitContainer1, "radSplitContainer1");
       this.radSplitContainer1.Name = "radSplitContainer1";
-      this.radSplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
       // 
       // 
       // 
       this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer1.Size = new System.Drawing.Size(780, 400);
-      this.radSplitContainer1.TabIndex = 0;
       this.radSplitContainer1.TabStop = false;
       // 
       // splitPanel1
@@ -76,52 +73,37 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       this.splitPanel1.Controls.Add(this.wordBag1);
       this.splitPanel1.Controls.Add(this.radCommandBar1);
       this.splitPanel1.Controls.Add(this.webHtml5Visualisation1);
-      this.splitPanel1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.splitPanel1, "splitPanel1");
       this.splitPanel1.Name = "splitPanel1";
       // 
       // 
       // 
       this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel1.Size = new System.Drawing.Size(780, 400);
       this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.3131313F);
       this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -117);
-      this.splitPanel1.TabIndex = 0;
       this.splitPanel1.TabStop = false;
-      this.splitPanel1.Text = "splitPanel1";
       // 
       // elementHost1
       // 
-      this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.elementHost1.Location = new System.Drawing.Point(0, 80);
+      resources.ApplyResources(this.elementHost1, "elementHost1");
       this.elementHost1.Name = "elementHost1";
-      this.elementHost1.Size = new System.Drawing.Size(780, 320);
-      this.elementHost1.TabIndex = 4;
-      this.elementHost1.Text = "elementHost1";
-      this.elementHost1.Child = this.wpfDiagram1;
+      this.elementHost1.Child = null;
       // 
       // wordBag1
       // 
       this.wordBag1.BackColor = System.Drawing.Color.White;
-      this.wordBag1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.wordBag1.Font = new System.Drawing.Font("Segoe UI", 11F);
-      this.wordBag1.Location = new System.Drawing.Point(0, 44);
-      this.wordBag1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+      resources.ApplyResources(this.wordBag1, "wordBag1");
       this.wordBag1.Name = "wordBag1";
       this.wordBag1.ResultQueries = new string[0];
-      this.wordBag1.ResultSelectedLayerDisplayname = "Wort";
-      this.wordBag1.Size = new System.Drawing.Size(780, 36);
-      this.wordBag1.TabIndex = 6;
+      this.wordBag1.ResultSelectedLayerDisplayname = null;
       this.wordBag1.ExecuteButtonClicked += new System.EventHandler(this.wordBag1_ExecuteButtonClicked);
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 44);
-      this.radCommandBar1.TabIndex = 5;
       // 
       // commandBarRowElement1
       // 
@@ -132,7 +114,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.commandBarButton1,
             this.commandBarButton2,
@@ -143,68 +125,81 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       // commandBarButton1
       // 
-      this.commandBarButton1.DisplayName = "commandBarButton1";
+      this.commandBarButton1.AutoToolTip = true;
+      resources.ApplyResources(this.commandBarButton1, "commandBarButton1");
       this.commandBarButton1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.document;
       this.commandBarButton1.Name = "commandBarButton1";
-      this.commandBarButton1.Text = "commandBarButton1";
       this.commandBarButton1.Click += new System.EventHandler(this.commandBarButton1_Click);
       // 
       // commandBarButton2
       // 
-      this.commandBarButton2.DisplayName = "commandBarButton2";
+      this.commandBarButton2.AutoToolTip = true;
+      resources.ApplyResources(this.commandBarButton2, "commandBarButton2");
       this.commandBarButton2.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save;
       this.commandBarButton2.Name = "commandBarButton2";
-      this.commandBarButton2.Text = "commandBarButton2";
       this.commandBarButton2.Click += new System.EventHandler(this.commandBarButton2_Click);
       // 
       // commandBarDropDownButton1
       // 
-      this.commandBarDropDownButton1.DisplayName = "commandBarDropDownButton1";
+      resources.ApplyResources(this.commandBarDropDownButton1, "commandBarDropDownButton1");
       this.commandBarDropDownButton1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save_theme;
       this.commandBarDropDownButton1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.btn_export_gexf,
             this.btn_export_graphviz});
       this.commandBarDropDownButton1.Name = "commandBarDropDownButton1";
-      this.commandBarDropDownButton1.Text = "Exportieren";
       // 
       // btn_export_gexf
       // 
       this.btn_export_gexf.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save_theme;
       this.btn_export_gexf.Name = "btn_export_gexf";
-      this.btn_export_gexf.Text = "Als GEXF-XML exportieren";
+      resources.ApplyResources(this.btn_export_gexf, "btn_export_gexf");
       this.btn_export_gexf.Click += new System.EventHandler(this.btn_export_gexf_Click);
       // 
       // btn_export_graphviz
       // 
       this.btn_export_graphviz.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save_theme;
       this.btn_export_graphviz.Name = "btn_export_graphviz";
-      this.btn_export_graphviz.Text = "Als GraphViz exportieren";
+      resources.ApplyResources(this.btn_export_graphviz, "btn_export_graphviz");
       this.btn_export_graphviz.Click += new System.EventHandler(this.btn_export_graphviz_Click);
       // 
       // commandBarButton3
       // 
-      this.commandBarButton3.DisplayName = "commandBarButton3";
+      this.commandBarButton3.AutoToolTip = true;
+      resources.ApplyResources(this.commandBarButton3, "commandBarButton3");
       this.commandBarButton3.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.folder_open;
       this.commandBarButton3.Name = "commandBarButton3";
-      this.commandBarButton3.Text = "commandBarButton3";
       this.commandBarButton3.Click += new System.EventHandler(this.commandBarButton3_Click);
       // 
       // commandBarDropDownButton2
       // 
-      this.commandBarDropDownButton2.DisplayName = "commandBarDropDownButton2";
+      resources.ApplyResources(this.commandBarDropDownButton2, "commandBarDropDownButton2");
       this.commandBarDropDownButton2.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.diagram1;
+      this.commandBarDropDownButton2.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.btn_layout_tree,
+            this.btn_layout_net});
       this.commandBarDropDownButton2.Name = "commandBarDropDownButton2";
-      this.commandBarDropDownButton2.Text = "commandBarDropDownButton2";
+      this.commandBarDropDownButton2.Click += new System.EventHandler(this.commandBarDropDownButton2_Click);
+      // 
+      // btn_layout_tree
+      // 
+      this.btn_layout_tree.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.diagram1;
+      this.btn_layout_tree.Name = "btn_layout_tree";
+      resources.ApplyResources(this.btn_layout_tree, "btn_layout_tree");
+      this.btn_layout_tree.Click += new System.EventHandler(this.btn_layout_tree_Click);
+      // 
+      // btn_layout_net
+      // 
+      this.btn_layout_net.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.diagram1;
+      this.btn_layout_net.Name = "btn_layout_net";
+      resources.ApplyResources(this.btn_layout_net, "btn_layout_net");
+      this.btn_layout_net.Click += new System.EventHandler(this.btn_layout_net_Click);
       // 
       // webHtml5Visualisation1
       // 
       this.webHtml5Visualisation1.BackColor = System.Drawing.Color.White;
-      this.webHtml5Visualisation1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.webHtml5Visualisation1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.webHtml5Visualisation1, "webHtml5Visualisation1");
       this.webHtml5Visualisation1.MainpageUrl = null;
       this.webHtml5Visualisation1.Name = "webHtml5Visualisation1";
-      this.webHtml5Visualisation1.Size = new System.Drawing.Size(780, 400);
-      this.webHtml5Visualisation1.TabIndex = 3;
       this.webHtml5Visualisation1.TemplateVars = ((System.Collections.Generic.Dictionary<string, string>)(resources.GetObject("webHtml5Visualisation1.TemplateVars")));
       // 
       // FulltextKwicTree
@@ -228,7 +223,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private Telerik.WinControls.UI.SplitPanel splitPanel1;
     private Controls.WinForm.Webbrowser.WebHtml5Visualisation webHtml5Visualisation1;
     private System.Windows.Forms.Integration.ElementHost elementHost1;
-    private Controls.Wpf.Diagram.WpfDiagram wpfDiagram1;
+  
     private Telerik.WinControls.UI.RadCommandBar radCommandBar1;
     private Telerik.WinControls.UI.CommandBarRowElement commandBarRowElement1;
     private Telerik.WinControls.UI.CommandBarStripElement commandBarStripElement1;
@@ -240,5 +235,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private Telerik.WinControls.UI.RadMenuItem btn_export_gexf;
     private Telerik.WinControls.UI.RadMenuItem btn_export_graphviz;
     private WordBag wordBag1;
+    private Telerik.WinControls.UI.RadMenuItem btn_layout_tree;
+    private Telerik.WinControls.UI.RadMenuItem btn_layout_net;
   }
 }

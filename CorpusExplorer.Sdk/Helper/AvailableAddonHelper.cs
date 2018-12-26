@@ -4,7 +4,7 @@ namespace CorpusExplorer.Sdk.Helper
 {
   public static class AvailableAddonHelper
   {
-    public static Dictionary<string, T> GetDictionary<T>(this IEnumerable<KeyValuePair<string, T>> dic)
+    public static Dictionary<string, T> GetReflectedTypeNameDictionary<T>(this IEnumerable<KeyValuePair<string, T>> dic)
     {
       var dictionary = new Dictionary<string, T>();
       foreach (var pair in dic)
@@ -17,7 +17,7 @@ namespace CorpusExplorer.Sdk.Helper
       return dictionary;
     }
 
-    public static Dictionary<string, T> GetDictionary<T>(this IEnumerable<T> enumerable)
+    public static Dictionary<string, T> GetReflectedTypeNameDictionary<T>(this IEnumerable<T> enumerable)
     {
       var dictionary = new Dictionary<string, T>();
       foreach (var unknown in enumerable)
@@ -25,20 +25,6 @@ namespace CorpusExplorer.Sdk.Helper
         var key = unknown.GetType().Name;
         if (!dictionary.ContainsKey(key))
           dictionary.Add(key, unknown);
-      }
-
-      return dictionary;
-    }
-
-    public static Dictionary<string, string> GetDictionaryForScriptEditor<T>(
-      this IEnumerable<KeyValuePair<string, T>> dic)
-    {
-      var dictionary = new Dictionary<string, string>();
-      foreach (var pair in dic)
-      {
-        var key = pair.Value.GetType().Name;
-        if (!dictionary.ContainsKey(key))
-          dictionary.Add(key, pair.Key);
       }
 
       return dictionary;

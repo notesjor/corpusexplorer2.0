@@ -117,4 +117,106 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cmb_names.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="cmb_names.Location" type="System.Drawing.Point, System.Drawing">
+    <value>42, 25</value>
+  </data>
+  <data name="cmb_names.NullText" xml:space="preserve">
+    <value>Bitte auswählen...</value>
+  </data>
+  <data name="cmb_names.Size" type="System.Drawing.Size, System.Drawing">
+    <value>353, 32</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cmb_names.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;cmb_names.Name" xml:space="preserve">
+    <value>cmb_names</value>
+  </data>
+  <data name="&gt;&gt;cmb_names.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;cmb_names.Parent" xml:space="preserve">
+    <value>grp</value>
+  </data>
+  <data name="&gt;&gt;cmb_names.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chk_active.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="chk_active.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="chk_active.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 32</value>
+  </data>
+  <data name="chk_active.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;chk_active.Name" xml:space="preserve">
+    <value>chk_active</value>
+  </data>
+  <data name="&gt;&gt;chk_active.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadCheckBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;chk_active.Parent" xml:space="preserve">
+    <value>grp</value>
+  </data>
+  <data name="&gt;&gt;chk_active.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="grp.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="grp.HeaderText" xml:space="preserve">
+    <value>[HEADER]</value>
+  </data>
+  <data name="grp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="grp.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="grp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>400, 62</value>
+  </data>
+  <data name="grp.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="grp.Text" xml:space="preserve">
+    <value>[HEADER]</value>
+  </data>
+  <data name="&gt;&gt;grp.Name" xml:space="preserve">
+    <value>grp</value>
+  </data>
+  <data name="&gt;&gt;grp.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;grp.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grp.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>400, 62</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>LayerSettings</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.Abstract.AbstractUserControl, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
 </root>

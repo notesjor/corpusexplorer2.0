@@ -28,6 +28,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.RegEx
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegExForm));
       this.layerSettings1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.LayerSettings();
       this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
       this.txt_regex = new Telerik.WinControls.UI.RadTextBox();
@@ -40,57 +41,43 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.RegEx
       // 
       // header1
       // 
-      this.header1.HeaderDescribtion = "Wählen Sie aus, auf welche Spalte der Reguläre Ausdruck angewendet werden soll.";
+      this.header1.HeaderDescription = "Wählen Sie aus, auf welche Spalte der Reguläre Ausdruck angewendet werden soll.";
       this.header1.HeaderHead = "Spalte auswählen";
-      this.header1.Size = new System.Drawing.Size(397, 74);
+      resources.ApplyResources(this.header1, "header1");
       // 
       // radPanel1
       // 
-      this.radPanel1.Location = new System.Drawing.Point(0, 262);
+      resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
       // layerSettings1
       // 
       this.layerSettings1.BackColor = System.Drawing.Color.White;
-      this.layerSettings1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.layerSettings1.Font = new System.Drawing.Font("Segoe UI", 11F);
+      resources.ApplyResources(this.layerSettings1, "layerSettings1");
       this.layerSettings1.Header = "Spalte";
       this.layerSettings1.IsLayerOptional = false;
-      this.layerSettings1.Location = new System.Drawing.Point(0, 74);
       this.layerSettings1.Name = "layerSettings1";
-      this.layerSettings1.Size = new System.Drawing.Size(397, 62);
-      this.layerSettings1.TabIndex = 2;
       // 
       // radGroupBox1
       // 
       this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
       this.radGroupBox1.Controls.Add(this.txt_regex);
-      this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGroupBox1.HeaderText = "Regulärer Ausdruck";
-      this.radGroupBox1.Location = new System.Drawing.Point(0, 136);
+      resources.ApplyResources(this.radGroupBox1, "radGroupBox1");
       this.radGroupBox1.Name = "radGroupBox1";
-      this.radGroupBox1.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox1.Size = new System.Drawing.Size(397, 126);
-      this.radGroupBox1.TabIndex = 3;
-      this.radGroupBox1.Text = "Regulärer Ausdruck";
       // 
       // txt_regex
       // 
-      this.txt_regex.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.txt_regex.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.txt_regex, "txt_regex");
       this.txt_regex.Multiline = true;
       this.txt_regex.Name = "txt_regex";
       // 
       // 
       // 
       this.txt_regex.RootElement.StretchVertically = true;
-      this.txt_regex.Size = new System.Drawing.Size(387, 96);
-      this.txt_regex.TabIndex = 0;
       // 
       // RegExForm
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.ClientSize = new System.Drawing.Size(397, 300);
+      resources.ApplyResources(this, "$this");
       this.Controls.Add(this.radGroupBox1);
       this.Controls.Add(this.layerSettings1);
       this.DisplayAbort = true;
@@ -99,7 +86,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.RegEx
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
-      this.Text = "Regular Expression definieren";
       this.ButtonOkClick += new System.EventHandler(this.Form_ButtonOkClick);
       this.Controls.SetChildIndex(this.header1, 0);
       this.Controls.SetChildIndex(this.radPanel1, 0);

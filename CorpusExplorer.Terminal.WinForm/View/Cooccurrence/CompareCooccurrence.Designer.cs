@@ -1,4 +1,4 @@
-﻿namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
+namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
 {
   partial class CompareCooccurrence
   {
@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CompareCooccurrence));
       Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
@@ -53,14 +54,11 @@
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1,
             this.commandBarRowElement2});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 111);
-      this.radCommandBar1.TabIndex = 0;
       // 
       // commandBarRowElement1
       // 
@@ -71,7 +69,7 @@
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       // 
       // 
       // 
@@ -95,9 +93,9 @@
       // 
       // btn_calc
       // 
-      this.btn_calc.DisplayName = "commandBarButton2";
+      resources.ApplyResources(this.btn_calc, "btn_calc");
       this.btn_calc.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.calculator;
-      this.btn_calc.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.btn_calc.AutoToolTip = true;
       this.btn_calc.Name = "btn_calc";
       this.btn_calc.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.EigeneFunktionenBerechnungen;
       this.btn_calc.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.EigeneFunktionenBerechnungen;
@@ -105,49 +103,49 @@
       // 
       // btn_filterlist
       // 
-      this.btn_filterlist.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_filterlist, "btn_filterlist");
       this.btn_filterlist.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_list;
+      this.btn_filterlist.AutoToolTip = true;
       this.btn_filterlist.Name = "btn_filterlist";
-      this.btn_filterlist.Text = "Filterliste";
       this.btn_filterlist.Click += new System.EventHandler(this.btn_filterlist_Click);
       // 
       // btn_filtereditor
       // 
-      this.btn_filtereditor.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_filtereditor, "btn_filtereditor");
       this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
+      this.btn_filtereditor.AutoToolTip = true;
       this.btn_filtereditor.Name = "btn_filtereditor";
-      this.btn_filtereditor.Text = "Filtereditor";
       this.btn_filtereditor.Click += new System.EventHandler(this.btn_filtereditor_Click);
       // 
       // btn_regex
       // 
-      this.btn_regex.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_regex, "btn_regex");
       this.btn_regex.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_regex;
+      this.btn_regex.AutoToolTip = true;
       this.btn_regex.Name = "btn_regex";
-      this.btn_regex.Text = "RegEx-Suche";
       this.btn_regex.Click += new System.EventHandler(this.btn_regex_Click);
       // 
       // btn_layer
       // 
-      this.btn_layer.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_layer, "btn_layer");
       this.btn_layer.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers;
+      this.btn_layer.AutoToolTip = true;
       this.btn_layer.Name = "btn_layer";
-      this.btn_layer.Text = "Layer auswählen";
       this.btn_layer.Click += new System.EventHandler(this.btn_layer_Click);
       // 
       // commandBarSeparator1
       // 
       this.commandBarSeparator1.AccessibleDescription = "commandBarSeparator1";
       this.commandBarSeparator1.AccessibleName = "commandBarSeparator1";
-      this.commandBarSeparator1.DisplayName = "commandBarSeparator1";
+      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
       this.commandBarSeparator1.Name = "commandBarSeparator1";
       this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
       // btn_csvExport
       // 
-      this.btn_csvExport.DisplayName = "commandBarButton3";
+      resources.ApplyResources(this.btn_csvExport, "btn_csvExport");
       this.btn_csvExport.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
-      this.btn_csvExport.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.btn_csvExport.AutoToolTip = true;
       this.btn_csvExport.Name = "btn_csvExport";
       this.btn_csvExport.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.CSVExport;
       this.btn_csvExport.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.CSVExport;
@@ -155,9 +153,9 @@
       // 
       // btn_print
       // 
-      this.btn_print.DisplayName = "commandBarButton4";
+      resources.ApplyResources(this.btn_print, "btn_print");
       this.btn_print.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.print;
-      this.btn_print.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.btn_print.AutoToolTip = true;
       this.btn_print.Name = "btn_print";
       this.btn_print.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Drucken;
       this.btn_print.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Drucken;
@@ -172,7 +170,7 @@
       // 
       // commandBarStripElement2
       // 
-      this.commandBarStripElement2.DisplayName = "commandBarStripElement2";
+      resources.ApplyResources(this.commandBarStripElement2, "commandBarStripElement2");
       this.commandBarStripElement2.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.commandBarLabel2,
             this.commandBarHostItem1,
@@ -181,9 +179,8 @@
       // 
       // commandBarLabel2
       // 
-      this.commandBarLabel2.DisplayName = "commandBarLabel2";
+      resources.ApplyResources(this.commandBarLabel2, "commandBarLabel2");
       this.commandBarLabel2.Name = "commandBarLabel2";
-      this.commandBarLabel2.Text = "Vergleiche mit Schnappschuss (2):";
       // 
       // commandBarHostItem1
       // 
@@ -191,20 +188,19 @@
       this.commandBarHostItem1.Bounds = new System.Drawing.Rectangle(0, 0, 253, 38);
       this.commandBarHostItem1.MinSize = new System.Drawing.Size(250, 36);
       this.commandBarHostItem1.Name = "commandBarHostItem1";
-      this.commandBarHostItem1.Text = "";
       // 
       // btn_ok
       // 
-      this.btn_ok.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_ok, "btn_ok");
       this.btn_ok.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
+      this.btn_ok.AutoToolTip = true;
       this.btn_ok.Name = "btn_ok";
       this.btn_ok.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.VergleichStarten;
       this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
       // 
       // radGridView1
       // 
-      this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGridView1.Location = new System.Drawing.Point(0, 111);
+      resources.ApplyResources(this.radGridView1, "radGridView1");
       // 
       // 
       // 
@@ -215,12 +211,9 @@
       this.radGridView1.MasterTemplate.MultiSelect = true;
       this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
-      this.radGridView1.Size = new System.Drawing.Size(780, 289);
-      this.radGridView1.TabIndex = 1;
       // 
       // CompareCooccurrence
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radGridView1);
       this.Controls.Add(this.radCommandBar1);

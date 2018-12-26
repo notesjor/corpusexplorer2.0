@@ -28,6 +28,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.StyleMetrics
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CompareBasedOnNgrams));
       this.tree_results = new Telerik.WinControls.UI.RadTreeView();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
@@ -36,33 +37,26 @@ namespace CorpusExplorer.Terminal.WinForm.View.StyleMetrics
       this.combo_meta = new Telerik.WinControls.UI.CommandBarDropDownList();
       this.commandBarLabel3 = new Telerik.WinControls.UI.CommandBarLabel();
       this.txt_ngramSize = new Telerik.WinControls.UI.CommandBarTextBox();
+      this.btn_start = new Telerik.WinControls.UI.CommandBarButton();
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.commandBarLabel2 = new Telerik.WinControls.UI.CommandBarLabel();
       this.txt_searchQuery = new Telerik.WinControls.UI.CommandBarTextBox();
-      this.btn_start = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.tree_results)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       this.SuspendLayout();
       // 
       // tree_results
       // 
-      this.tree_results.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.tree_results, "tree_results");
       this.tree_results.ItemHeight = 40;
-      this.tree_results.Location = new System.Drawing.Point(0, 69);
       this.tree_results.Name = "tree_results";
-      this.tree_results.Size = new System.Drawing.Size(780, 331);
-      this.tree_results.TabIndex = 2;
-      this.tree_results.TreeIndent = 40;
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
-      this.radCommandBar1.TabIndex = 3;
       // 
       // commandBarRowElement1
       // 
@@ -73,7 +67,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.StyleMetrics
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.commandBarLabel1,
             this.combo_meta,
@@ -87,64 +81,59 @@ namespace CorpusExplorer.Terminal.WinForm.View.StyleMetrics
       // 
       // commandBarLabel1
       // 
-      this.commandBarLabel1.DisplayName = "commandBarLabel1";
+      resources.ApplyResources(this.commandBarLabel1, "commandBarLabel1");
       this.commandBarLabel1.Name = "commandBarLabel1";
       this.commandBarLabel1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.MetaangabeDP;
       // 
       // combo_meta
       // 
-      this.combo_meta.DisplayName = "commandBarDropDownList1";
+      resources.ApplyResources(this.combo_meta, "combo_meta");
       this.combo_meta.DropDownAnimationEnabled = true;
       this.combo_meta.MaxDropDownItems = 0;
       this.combo_meta.MinSize = new System.Drawing.Size(200, 22);
       this.combo_meta.Name = "combo_meta";
       this.combo_meta.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.BitteAuswählen;
-      this.combo_meta.Text = "";
       // 
       // commandBarLabel3
       // 
-      this.commandBarLabel3.DisplayName = "commandBarLabel3";
+      resources.ApplyResources(this.commandBarLabel3, "commandBarLabel3");
       this.commandBarLabel3.Name = "commandBarLabel3";
-      this.commandBarLabel3.Text = "NGram-Größe:";
       // 
       // txt_ngramSize
       // 
-      this.txt_ngramSize.DisplayName = "commandBarTextBox1";
+      resources.ApplyResources(this.txt_ngramSize, "txt_ngramSize");
       this.txt_ngramSize.Name = "txt_ngramSize";
-      this.txt_ngramSize.Text = "3";
+      // 
+      // btn_start
+      // 
+      resources.ApplyResources(this.btn_start, "btn_start");
+      this.btn_start.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
+      this.btn_start.AutoToolTip = true;
+      this.btn_start.Name = "btn_start";
+      this.btn_start.Click += new System.EventHandler(this.btn_start_Click);
       // 
       // commandBarSeparator1
       // 
-      this.commandBarSeparator1.DisplayName = "commandBarSeparator1";
+      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
       this.commandBarSeparator1.Name = "commandBarSeparator1";
       this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
       // commandBarLabel2
       // 
-      this.commandBarLabel2.DisplayName = "commandBarLabel2";
+      resources.ApplyResources(this.commandBarLabel2, "commandBarLabel2");
       this.commandBarLabel2.Name = "commandBarLabel2";
       this.commandBarLabel2.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Suche;
       // 
       // txt_searchQuery
       // 
-      this.txt_searchQuery.DisplayName = "commandBarTextBox1";
+      resources.ApplyResources(this.txt_searchQuery, "txt_searchQuery");
       this.txt_searchQuery.MinSize = new System.Drawing.Size(200, 0);
       this.txt_searchQuery.Name = "txt_searchQuery";
       this.txt_searchQuery.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.SuchbegriffHierEingeben;
-      this.txt_searchQuery.Text = "";
       this.txt_searchQuery.TextChanged += new System.EventHandler(this.txt_searchQuery_TextChanged);
-      // 
-      // btn_start
-      // 
-      this.btn_start.DisplayName = "commandBarButton1";
-      this.btn_start.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
-      this.btn_start.Name = "btn_start";
-      this.btn_start.Text = "Analyse starten";
-      this.btn_start.Click += new System.EventHandler(this.btn_start_Click);
       // 
       // CompareBasedOnNgrams
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.tree_results);
       this.Controls.Add(this.radCommandBar1);

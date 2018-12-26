@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PosFilter));
       this.ihdPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
       this.radCheckedListBox1 = new Telerik.WinControls.UI.RadCheckedListBox();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
@@ -37,39 +38,28 @@
       // 
       // radPanel1
       // 
-      this.radPanel1.Location = new System.Drawing.Point(0, 447);
-      this.radPanel1.Size = new System.Drawing.Size(456, 38);
+      resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
       // ihdPanel1
       // 
       this.ihdPanel1.BackColor = System.Drawing.Color.White;
-      this.ihdPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.ihdPanel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.ihdPanel1.IHDDeescribtion = "Wählen Sie die gewünschten POS-Tags aus...";
+      resources.ApplyResources(this.ihdPanel1, "ihdPanel1");
+      this.ihdPanel1.IHDDescription = "Wählen Sie die gewünschten POS-Tags aus...";
       this.ihdPanel1.IHDHeader = "POS-Filter";
       this.ihdPanel1.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.tag_green1;
-      this.ihdPanel1.Location = new System.Drawing.Point(0, 0);
-      this.ihdPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.ihdPanel1.Name = "ihdPanel1";
-      this.ihdPanel1.Size = new System.Drawing.Size(456, 64);
-      this.ihdPanel1.TabIndex = 1;
       // 
       // radCheckedListBox1
       // 
-      this.radCheckedListBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.radCheckedListBox1, "radCheckedListBox1");
       this.radCheckedListBox1.GroupItemSize = new System.Drawing.Size(200, 40);
       this.radCheckedListBox1.ItemSize = new System.Drawing.Size(200, 40);
-      this.radCheckedListBox1.Location = new System.Drawing.Point(0, 64);
       this.radCheckedListBox1.Name = "radCheckedListBox1";
-      this.radCheckedListBox1.Size = new System.Drawing.Size(456, 383);
-      this.radCheckedListBox1.TabIndex = 2;
-      this.radCheckedListBox1.Text = "radCheckedListBox1";
       // 
       // PosFilter
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.ClientSize = new System.Drawing.Size(456, 485);
+      resources.ApplyResources(this, "$this");
       this.Controls.Add(this.radCheckedListBox1);
       this.Controls.Add(this.ihdPanel1);
       this.DisplayAbort = true;
@@ -78,7 +68,6 @@
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
-      this.Text = "POS-Filter";
       this.Controls.SetChildIndex(this.radPanel1, 0);
       this.Controls.SetChildIndex(this.ihdPanel1, 0);
       this.Controls.SetChildIndex(this.radCheckedListBox1, 0);

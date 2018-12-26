@@ -37,7 +37,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     {
       var form = new SimpleTextInput(
         Resources.FulltextAnnotation_NewLayer,
-        Resources.FulltextAnnotation_NewLayerDescribtion,
+        Resources.FulltextAnnotation_NewLayerDescription,
         Resources.layers1,
         Resources.FulltextAnnotation_NewLayerNullText);
       if (form.ShowDialog() != DialogResult.OK)
@@ -70,7 +70,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       var form = new SimpleTextInput(
         Resources.FulltextAnnotationSpeedup_CopyLayer,
         string.Format(
-          Resources.FulltextAnnotationSpeedup_CopyLayerDescribtion,
+          Resources.FulltextAnnotationSpeedup_CopyLayerDescription,
           drop_layerAnnotate.SelectedItem.Text),
         Resources.cabinet,
         Resources.EnterNameHere);

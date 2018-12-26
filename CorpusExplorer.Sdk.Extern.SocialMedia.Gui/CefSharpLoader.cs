@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using CefSharp.WinForms;
 
 namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui
 {
   public static class CefSharpLoader
   {
     /*
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
     public static void Initialize()
     {
-      AppDomain.CurrentDomain.AssemblyResolve += Resolver;
-
       var settings = new CefSettings();
 
       // Set BrowserSubProcessPath based on app bitness at runtime
@@ -29,7 +29,6 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui
 
     private static Assembly Resolver(object sender, ResolveEventArgs args)
     {
-      /*
       if (!args.Name.StartsWith("CefSharp"))
         return null;
 
@@ -41,7 +40,9 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui
       return File.Exists(archSpecificPath)
                ? Assembly.LoadFile(archSpecificPath)
                : null;
-      */
-    //}
+
+    }
+
+    */
   }
 }

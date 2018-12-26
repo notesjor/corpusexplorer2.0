@@ -29,6 +29,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimpleTextView));
       this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
       this.wpfTagger1 = new CorpusExplorer.Terminal.WinForm.Controls.Wpf.Tagger.WpfTagger();
       this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
@@ -57,99 +58,75 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       // 
       // radPanel1
       // 
-      this.radPanel1.Location = new System.Drawing.Point(0, 413);
-      this.radPanel1.Size = new System.Drawing.Size(781, 38);
+      resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
       // elementHost1
       // 
-      this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.elementHost1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.elementHost1, "elementHost1");
       this.elementHost1.Name = "elementHost1";
-      this.elementHost1.Size = new System.Drawing.Size(530, 344);
-      this.elementHost1.TabIndex = 2;
-      this.elementHost1.Text = "elementHost1";
       this.elementHost1.Child = this.wpfTagger1;
       // 
       // radSplitContainer1
       // 
       this.radSplitContainer1.Controls.Add(this.splitPanel1);
       this.radSplitContainer1.Controls.Add(this.splitPanel2);
-      this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer1.Location = new System.Drawing.Point(0, 69);
+      resources.ApplyResources(this.radSplitContainer1, "radSplitContainer1");
       this.radSplitContainer1.Name = "radSplitContainer1";
       // 
       // 
       // 
       this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer1.Size = new System.Drawing.Size(781, 344);
-      this.radSplitContainer1.TabIndex = 3;
       this.radSplitContainer1.TabStop = false;
-      this.radSplitContainer1.Text = "radSplitContainer1";
       // 
       // splitPanel1
       // 
       this.splitPanel1.Controls.Add(this.elementHost1);
-      this.splitPanel1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.splitPanel1, "splitPanel1");
       this.splitPanel1.Name = "splitPanel1";
       // 
       // 
       // 
       this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel1.Size = new System.Drawing.Size(530, 344);
       this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.1821107F, 0F);
       this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(142, 0);
-      this.splitPanel1.TabIndex = 0;
       this.splitPanel1.TabStop = false;
-      this.splitPanel1.Text = "splitPanel1";
       // 
       // splitPanel2
       // 
       this.splitPanel2.Controls.Add(this.metadataEditor1);
-      this.splitPanel2.Location = new System.Drawing.Point(534, 0);
+      resources.ApplyResources(this.splitPanel2, "splitPanel2");
       this.splitPanel2.Name = "splitPanel2";
       // 
       // 
       // 
       this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel2.Size = new System.Drawing.Size(247, 344);
       this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.1821107F, 0F);
       this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(-142, 0);
-      this.splitPanel2.TabIndex = 1;
       this.splitPanel2.TabStop = false;
-      this.splitPanel2.Text = "splitPanel2";
       // 
       // metadataEditor1
       // 
       this.metadataEditor1.BackColor = System.Drawing.Color.White;
-      this.metadataEditor1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.metadataEditor1.Font = new System.Drawing.Font("Segoe UI", 11F);
-      this.metadataEditor1.Location = new System.Drawing.Point(0, 0);
-      this.metadataEditor1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.metadataEditor1.Metadata = null;
+      resources.ApplyResources(this.metadataEditor1, "metadataEditor1");
       this.metadataEditor1.Name = "metadataEditor1";
-      this.metadataEditor1.Size = new System.Drawing.Size(247, 344);
-      this.metadataEditor1.TabIndex = 0;
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(781, 69);
-      this.radCommandBar1.TabIndex = 4;
-      this.radCommandBar1.Text = "radCommandBar1";
       // 
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.btn_prev,
             this.lbl_index,
@@ -161,53 +138,47 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       // 
       // btn_prev
       // 
-      this.btn_prev.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_prev, "btn_prev");
       this.btn_prev.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_left;
       this.btn_prev.Name = "btn_prev";
-      this.btn_prev.Text = "commandBarButton1";
       this.btn_prev.Click += new System.EventHandler(this.btn_prev_Click);
       // 
       // lbl_index
       // 
-      this.lbl_index.DisplayName = "commandBarLabel1";
+      resources.ApplyResources(this.lbl_index, "lbl_index");
       this.lbl_index.Name = "lbl_index";
-      this.lbl_index.Text = "1 / 1";
       // 
       // btn_next
       // 
-      this.btn_next.DisplayName = "commandBarButton2";
+      resources.ApplyResources(this.btn_next, "btn_next");
       this.btn_next.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
       this.btn_next.Name = "btn_next";
-      this.btn_next.Text = "commandBarButton2";
       this.btn_next.Click += new System.EventHandler(this.btn_next_Click);
       // 
       // commandBarSeparator1
       // 
-      this.commandBarSeparator1.DisplayName = "commandBarSeparator1";
+      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
       this.commandBarSeparator1.Name = "commandBarSeparator1";
       this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
       // btn_export
       // 
-      this.btn_export.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_export, "btn_export");
       this.btn_export.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
       this.btn_export.Name = "btn_export";
-      this.btn_export.Text = "Export";
       this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
       // 
       // btn_clipboard
       // 
-      this.btn_clipboard.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_clipboard, "btn_clipboard");
       this.btn_clipboard.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.clipboard_copy;
       this.btn_clipboard.Name = "btn_clipboard";
-      this.btn_clipboard.Text = "Kopiere Text in die Zwischenablage";
       this.btn_clipboard.Click += new System.EventHandler(this.btn_clipboard_Click);
       // 
       // SimpleTextView
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.ClientSize = new System.Drawing.Size(781, 451);
+      resources.ApplyResources(this, "$this");
       this.Controls.Add(this.radSplitContainer1);
       this.Controls.Add(this.radCommandBar1);
       this.DisplayAbort = true;
@@ -216,7 +187,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
-      this.Text = "Schnelle Volltextansicht";
       this.Controls.SetChildIndex(this.radPanel1, 0);
       this.Controls.SetChildIndex(this.radCommandBar1, 0);
       this.Controls.SetChildIndex(this.radSplitContainer1, 0);

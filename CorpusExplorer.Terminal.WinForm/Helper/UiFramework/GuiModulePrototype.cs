@@ -34,7 +34,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       Image iconBig,
       Image iconSmall,
       string header,
-      string describtion,
+      string description,
       string urlHandbook,
       string urlHandsOnLab,
       string urlVideo,
@@ -45,7 +45,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
 
       ihd_home.IHDImage = iconBig;
       ihd_home.IHDHeader = header;
-      ihd_home.IHDDeescribtion = describtion;
+      ihd_home.IHDDescription = description;
 
       helpPanel1.HelpHandbookUrl = urlHandbook;
       helpPanel1.HelpHandsonlabUrl = urlHandsOnLab;

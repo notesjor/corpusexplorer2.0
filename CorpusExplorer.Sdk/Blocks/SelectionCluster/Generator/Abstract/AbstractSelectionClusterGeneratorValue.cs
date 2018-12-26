@@ -16,7 +16,7 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract
           if (doc.Value == null)
             continue;
 
-          var val = doc.Value.ContainsKey(MetadataKey) ? doc.Value[MetadataKey] : null;
+          var val = PreFixClusterValue(doc.Value.ContainsKey(MetadataKey) ? doc.Value[MetadataKey] : null);
           var key = GenerateKey(val);
 
           if (!res.ContainsKey(key))
@@ -30,8 +30,25 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract
       return res.Select(x => x.Value).ToArray();
     }
 
+    /// <summary>
+    /// Bereinigt einen Cluster-Wert bevor dieser an GenerateKey/NewCluster übergeben wird.
+    /// </summary>
+    /// <param name="value">Cluster-Wert</param>
+    /// <returns>Bereinigter Cluster-Wert</returns>
+    protected virtual object PreFixClusterValue(object value) => value;
+
+    /// <summary>
+    /// Erzeugt aus einem Cluster-Wert einen eindeutigen Schlüssel
+    /// </summary>
+    /// <param name="value">ClusterWert</param>
+    /// <returns></returns>
     protected abstract string GenerateKey(object value);
 
+    /// <summary>
+    /// Erzeugt ein neues Cluster
+    /// </summary>
+    /// <param name="value">Cluster-Wert</param>
+    /// <returns>Cluster</returns>
     protected abstract AbstractCluster NewCluster(object value);
   }
 }

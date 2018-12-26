@@ -31,6 +31,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DisambigutionProfile));
       this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
       this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
       this.radSplitContainer2 = new Telerik.WinControls.UI.RadSplitContainer();
@@ -147,31 +148,25 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
       this.radSplitContainer1.Controls.Add(this.splitPanel2);
       this.radSplitContainer1.Controls.Add(this.splitPanel3);
       this.radSplitContainer1.Controls.Add(this.splitPanel4);
-      this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer1.Location = new System.Drawing.Point(0, 36);
+      resources.ApplyResources(this.radSplitContainer1, "radSplitContainer1");
       this.radSplitContainer1.Name = "radSplitContainer1";
       // 
       // 
       // 
       this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer1.Size = new System.Drawing.Size(780, 364);
       this.radSplitContainer1.SplitterWidth = 8;
-      this.radSplitContainer1.TabIndex = 0;
       this.radSplitContainer1.TabStop = false;
       // 
       // splitPanel1
       // 
       this.splitPanel1.Controls.Add(this.radSplitContainer2);
-      this.splitPanel1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.splitPanel1, "splitPanel1");
       this.splitPanel1.Name = "splitPanel1";
       // 
       // 
       // 
       this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel1.Size = new System.Drawing.Size(189, 364);
-      this.splitPanel1.TabIndex = 0;
       this.splitPanel1.TabStop = false;
-      this.splitPanel1.Text = "splitPanel1";
       // 
       // radSplitContainer2
       // 
@@ -179,135 +174,104 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
       this.radSplitContainer2.Controls.Add(this.panel_10);
       this.radSplitContainer2.Controls.Add(this.panel_20);
       this.radSplitContainer2.Controls.Add(this.panel_30);
-      this.radSplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer2.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radSplitContainer2, "radSplitContainer2");
       this.radSplitContainer2.Name = "radSplitContainer2";
-      this.radSplitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
       // 
       // 
       // 
       this.radSplitContainer2.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer2.Size = new System.Drawing.Size(189, 364);
-      this.radSplitContainer2.TabIndex = 0;
       this.radSplitContainer2.TabStop = false;
       // 
       // panel_00
       // 
       this.panel_00.Controls.Add(this.list_00);
-      this.panel_00.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.panel_00, "panel_00");
       this.panel_00.Name = "panel_00";
       // 
       // 
       // 
       this.panel_00.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.panel_00.Size = new System.Drawing.Size(189, 88);
-      this.panel_00.TabIndex = 0;
       this.panel_00.TabStop = false;
-      this.panel_00.Text = "splitPanel6";
       // 
       // list_00
       // 
-      this.list_00.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.list_00, "list_00");
       this.list_00.GroupItemSize = new System.Drawing.Size(200, 40);
       this.list_00.ItemSize = new System.Drawing.Size(200, 40);
-      this.list_00.Location = new System.Drawing.Point(0, 0);
       this.list_00.Name = "list_00";
       this.list_00.ShowCheckBoxes = true;
-      this.list_00.Size = new System.Drawing.Size(189, 88);
-      this.list_00.TabIndex = 0;
       this.list_00.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.list_CheckedChanged);
       // 
       // panel_10
       // 
       this.panel_10.Controls.Add(this.list_10);
-      this.panel_10.Location = new System.Drawing.Point(0, 92);
+      resources.ApplyResources(this.panel_10, "panel_10");
       this.panel_10.Name = "panel_10";
       // 
       // 
       // 
       this.panel_10.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.panel_10.Size = new System.Drawing.Size(189, 88);
-      this.panel_10.TabIndex = 1;
       this.panel_10.TabStop = false;
-      this.panel_10.Text = "splitPanel7";
       // 
       // list_10
       // 
-      this.list_10.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.list_10, "list_10");
       this.list_10.GroupItemSize = new System.Drawing.Size(200, 40);
       this.list_10.ItemSize = new System.Drawing.Size(200, 40);
-      this.list_10.Location = new System.Drawing.Point(0, 0);
       this.list_10.Name = "list_10";
       this.list_10.ShowCheckBoxes = true;
-      this.list_10.Size = new System.Drawing.Size(189, 88);
-      this.list_10.TabIndex = 0;
       this.list_10.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.list_CheckedChanged);
       // 
       // panel_20
       // 
       this.panel_20.Controls.Add(this.list_20);
-      this.panel_20.Location = new System.Drawing.Point(0, 184);
+      resources.ApplyResources(this.panel_20, "panel_20");
       this.panel_20.Name = "panel_20";
       // 
       // 
       // 
       this.panel_20.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.panel_20.Size = new System.Drawing.Size(189, 88);
-      this.panel_20.TabIndex = 2;
       this.panel_20.TabStop = false;
-      this.panel_20.Text = "splitPanel8";
       // 
       // list_20
       // 
-      this.list_20.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.list_20, "list_20");
       this.list_20.GroupItemSize = new System.Drawing.Size(200, 40);
       this.list_20.ItemSize = new System.Drawing.Size(200, 40);
-      this.list_20.Location = new System.Drawing.Point(0, 0);
       this.list_20.Name = "list_20";
       this.list_20.ShowCheckBoxes = true;
-      this.list_20.Size = new System.Drawing.Size(189, 88);
-      this.list_20.TabIndex = 0;
       this.list_20.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.list_CheckedChanged);
       // 
       // panel_30
       // 
       this.panel_30.Controls.Add(this.list_30);
-      this.panel_30.Location = new System.Drawing.Point(0, 276);
+      resources.ApplyResources(this.panel_30, "panel_30");
       this.panel_30.Name = "panel_30";
       // 
       // 
       // 
       this.panel_30.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.panel_30.Size = new System.Drawing.Size(189, 88);
-      this.panel_30.TabIndex = 3;
       this.panel_30.TabStop = false;
-      this.panel_30.Text = "splitPanel9";
       // 
       // list_30
       // 
-      this.list_30.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.list_30, "list_30");
       this.list_30.GroupItemSize = new System.Drawing.Size(200, 40);
       this.list_30.ItemSize = new System.Drawing.Size(200, 40);
-      this.list_30.Location = new System.Drawing.Point(0, 0);
       this.list_30.Name = "list_30";
       this.list_30.ShowCheckBoxes = true;
-      this.list_30.Size = new System.Drawing.Size(189, 88);
-      this.list_30.TabIndex = 0;
       this.list_30.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.list_CheckedChanged);
       // 
       // splitPanel2
       // 
       this.splitPanel2.Controls.Add(this.radSplitContainer3);
-      this.splitPanel2.Location = new System.Drawing.Point(197, 0);
+      resources.ApplyResources(this.splitPanel2, "splitPanel2");
       this.splitPanel2.Name = "splitPanel2";
       // 
       // 
       // 
       this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel2.Size = new System.Drawing.Size(189, 364);
-      this.splitPanel2.TabIndex = 1;
       this.splitPanel2.TabStop = false;
-      this.splitPanel2.Text = "splitPanel2";
       // 
       // radSplitContainer3
       // 
@@ -315,135 +279,104 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
       this.radSplitContainer3.Controls.Add(this.panel_11);
       this.radSplitContainer3.Controls.Add(this.panel_21);
       this.radSplitContainer3.Controls.Add(this.panel_31);
-      this.radSplitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer3.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radSplitContainer3, "radSplitContainer3");
       this.radSplitContainer3.Name = "radSplitContainer3";
-      this.radSplitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
       // 
       // 
       // 
       this.radSplitContainer3.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer3.Size = new System.Drawing.Size(189, 364);
-      this.radSplitContainer3.TabIndex = 0;
       this.radSplitContainer3.TabStop = false;
       // 
       // panel_01
       // 
       this.panel_01.Controls.Add(this.list_01);
-      this.panel_01.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.panel_01, "panel_01");
       this.panel_01.Name = "panel_01";
       // 
       // 
       // 
       this.panel_01.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.panel_01.Size = new System.Drawing.Size(189, 88);
-      this.panel_01.TabIndex = 0;
       this.panel_01.TabStop = false;
-      this.panel_01.Text = "splitPanel5";
       // 
       // list_01
       // 
-      this.list_01.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.list_01, "list_01");
       this.list_01.GroupItemSize = new System.Drawing.Size(200, 40);
       this.list_01.ItemSize = new System.Drawing.Size(200, 40);
-      this.list_01.Location = new System.Drawing.Point(0, 0);
       this.list_01.Name = "list_01";
       this.list_01.ShowCheckBoxes = true;
-      this.list_01.Size = new System.Drawing.Size(189, 88);
-      this.list_01.TabIndex = 0;
       this.list_01.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.list_CheckedChanged);
       // 
       // panel_11
       // 
       this.panel_11.Controls.Add(this.list_11);
-      this.panel_11.Location = new System.Drawing.Point(0, 92);
+      resources.ApplyResources(this.panel_11, "panel_11");
       this.panel_11.Name = "panel_11";
       // 
       // 
       // 
       this.panel_11.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.panel_11.Size = new System.Drawing.Size(189, 88);
-      this.panel_11.TabIndex = 1;
       this.panel_11.TabStop = false;
-      this.panel_11.Text = "splitPanel10";
       // 
       // list_11
       // 
-      this.list_11.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.list_11, "list_11");
       this.list_11.GroupItemSize = new System.Drawing.Size(200, 40);
       this.list_11.ItemSize = new System.Drawing.Size(200, 40);
-      this.list_11.Location = new System.Drawing.Point(0, 0);
       this.list_11.Name = "list_11";
       this.list_11.ShowCheckBoxes = true;
-      this.list_11.Size = new System.Drawing.Size(189, 88);
-      this.list_11.TabIndex = 0;
       this.list_11.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.list_CheckedChanged);
       // 
       // panel_21
       // 
       this.panel_21.Controls.Add(this.list_21);
-      this.panel_21.Location = new System.Drawing.Point(0, 184);
+      resources.ApplyResources(this.panel_21, "panel_21");
       this.panel_21.Name = "panel_21";
       // 
       // 
       // 
       this.panel_21.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.panel_21.Size = new System.Drawing.Size(189, 88);
-      this.panel_21.TabIndex = 2;
       this.panel_21.TabStop = false;
-      this.panel_21.Text = "splitPanel11";
       // 
       // list_21
       // 
-      this.list_21.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.list_21, "list_21");
       this.list_21.GroupItemSize = new System.Drawing.Size(200, 40);
       this.list_21.ItemSize = new System.Drawing.Size(200, 40);
-      this.list_21.Location = new System.Drawing.Point(0, 0);
       this.list_21.Name = "list_21";
       this.list_21.ShowCheckBoxes = true;
-      this.list_21.Size = new System.Drawing.Size(189, 88);
-      this.list_21.TabIndex = 0;
       this.list_21.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.list_CheckedChanged);
       // 
       // panel_31
       // 
       this.panel_31.Controls.Add(this.list_31);
-      this.panel_31.Location = new System.Drawing.Point(0, 276);
+      resources.ApplyResources(this.panel_31, "panel_31");
       this.panel_31.Name = "panel_31";
       // 
       // 
       // 
       this.panel_31.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.panel_31.Size = new System.Drawing.Size(189, 88);
-      this.panel_31.TabIndex = 3;
       this.panel_31.TabStop = false;
-      this.panel_31.Text = "splitPanel12";
       // 
       // list_31
       // 
-      this.list_31.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.list_31, "list_31");
       this.list_31.GroupItemSize = new System.Drawing.Size(200, 40);
       this.list_31.ItemSize = new System.Drawing.Size(200, 40);
-      this.list_31.Location = new System.Drawing.Point(0, 0);
       this.list_31.Name = "list_31";
       this.list_31.ShowCheckBoxes = true;
-      this.list_31.Size = new System.Drawing.Size(189, 88);
-      this.list_31.TabIndex = 0;
       this.list_31.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.list_CheckedChanged);
       // 
       // splitPanel3
       // 
       this.splitPanel3.Controls.Add(this.radSplitContainer4);
-      this.splitPanel3.Location = new System.Drawing.Point(394, 0);
+      resources.ApplyResources(this.splitPanel3, "splitPanel3");
       this.splitPanel3.Name = "splitPanel3";
       // 
       // 
       // 
       this.splitPanel3.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel3.Size = new System.Drawing.Size(189, 364);
-      this.splitPanel3.TabIndex = 2;
       this.splitPanel3.TabStop = false;
-      this.splitPanel3.Text = "splitPanel3";
       // 
       // radSplitContainer4
       // 
@@ -451,135 +384,104 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
       this.radSplitContainer4.Controls.Add(this.panel_12);
       this.radSplitContainer4.Controls.Add(this.panel_22);
       this.radSplitContainer4.Controls.Add(this.panel_32);
-      this.radSplitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer4.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radSplitContainer4, "radSplitContainer4");
       this.radSplitContainer4.Name = "radSplitContainer4";
-      this.radSplitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
       // 
       // 
       // 
       this.radSplitContainer4.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer4.Size = new System.Drawing.Size(189, 364);
-      this.radSplitContainer4.TabIndex = 0;
       this.radSplitContainer4.TabStop = false;
       // 
       // panel_02
       // 
       this.panel_02.Controls.Add(this.list_02);
-      this.panel_02.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.panel_02, "panel_02");
       this.panel_02.Name = "panel_02";
       // 
       // 
       // 
       this.panel_02.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.panel_02.Size = new System.Drawing.Size(189, 88);
-      this.panel_02.TabIndex = 0;
       this.panel_02.TabStop = false;
-      this.panel_02.Text = "splitPanel13";
       // 
       // list_02
       // 
-      this.list_02.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.list_02, "list_02");
       this.list_02.GroupItemSize = new System.Drawing.Size(200, 40);
       this.list_02.ItemSize = new System.Drawing.Size(200, 40);
-      this.list_02.Location = new System.Drawing.Point(0, 0);
       this.list_02.Name = "list_02";
       this.list_02.ShowCheckBoxes = true;
-      this.list_02.Size = new System.Drawing.Size(189, 88);
-      this.list_02.TabIndex = 0;
       this.list_02.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.list_CheckedChanged);
       // 
       // panel_12
       // 
       this.panel_12.Controls.Add(this.list_12);
-      this.panel_12.Location = new System.Drawing.Point(0, 92);
+      resources.ApplyResources(this.panel_12, "panel_12");
       this.panel_12.Name = "panel_12";
       // 
       // 
       // 
       this.panel_12.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.panel_12.Size = new System.Drawing.Size(189, 88);
-      this.panel_12.TabIndex = 1;
       this.panel_12.TabStop = false;
-      this.panel_12.Text = "splitPanel14";
       // 
       // list_12
       // 
-      this.list_12.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.list_12, "list_12");
       this.list_12.GroupItemSize = new System.Drawing.Size(200, 40);
       this.list_12.ItemSize = new System.Drawing.Size(200, 40);
-      this.list_12.Location = new System.Drawing.Point(0, 0);
       this.list_12.Name = "list_12";
       this.list_12.ShowCheckBoxes = true;
-      this.list_12.Size = new System.Drawing.Size(189, 88);
-      this.list_12.TabIndex = 0;
       this.list_12.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.list_CheckedChanged);
       // 
       // panel_22
       // 
       this.panel_22.Controls.Add(this.list_22);
-      this.panel_22.Location = new System.Drawing.Point(0, 184);
+      resources.ApplyResources(this.panel_22, "panel_22");
       this.panel_22.Name = "panel_22";
       // 
       // 
       // 
       this.panel_22.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.panel_22.Size = new System.Drawing.Size(189, 88);
-      this.panel_22.TabIndex = 2;
       this.panel_22.TabStop = false;
-      this.panel_22.Text = "splitPanel15";
       // 
       // list_22
       // 
-      this.list_22.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.list_22, "list_22");
       this.list_22.GroupItemSize = new System.Drawing.Size(200, 40);
       this.list_22.ItemSize = new System.Drawing.Size(200, 40);
-      this.list_22.Location = new System.Drawing.Point(0, 0);
       this.list_22.Name = "list_22";
       this.list_22.ShowCheckBoxes = true;
-      this.list_22.Size = new System.Drawing.Size(189, 88);
-      this.list_22.TabIndex = 0;
       this.list_22.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.list_CheckedChanged);
       // 
       // panel_32
       // 
       this.panel_32.Controls.Add(this.list_32);
-      this.panel_32.Location = new System.Drawing.Point(0, 276);
+      resources.ApplyResources(this.panel_32, "panel_32");
       this.panel_32.Name = "panel_32";
       // 
       // 
       // 
       this.panel_32.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.panel_32.Size = new System.Drawing.Size(189, 88);
-      this.panel_32.TabIndex = 3;
       this.panel_32.TabStop = false;
-      this.panel_32.Text = "splitPanel16";
       // 
       // list_32
       // 
-      this.list_32.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.list_32, "list_32");
       this.list_32.GroupItemSize = new System.Drawing.Size(200, 40);
       this.list_32.ItemSize = new System.Drawing.Size(200, 40);
-      this.list_32.Location = new System.Drawing.Point(0, 0);
       this.list_32.Name = "list_32";
       this.list_32.ShowCheckBoxes = true;
-      this.list_32.Size = new System.Drawing.Size(189, 88);
-      this.list_32.TabIndex = 0;
       this.list_32.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.list_CheckedChanged);
       // 
       // splitPanel4
       // 
       this.splitPanel4.Controls.Add(this.radSplitContainer5);
-      this.splitPanel4.Location = new System.Drawing.Point(591, 0);
+      resources.ApplyResources(this.splitPanel4, "splitPanel4");
       this.splitPanel4.Name = "splitPanel4";
       // 
       // 
       // 
       this.splitPanel4.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel4.Size = new System.Drawing.Size(189, 364);
-      this.splitPanel4.TabIndex = 3;
       this.splitPanel4.TabStop = false;
-      this.splitPanel4.Text = "splitPanel4";
       // 
       // radSplitContainer5
       // 
@@ -587,139 +489,105 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
       this.radSplitContainer5.Controls.Add(this.panel_13);
       this.radSplitContainer5.Controls.Add(this.panel_23);
       this.radSplitContainer5.Controls.Add(this.panel_33);
-      this.radSplitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer5.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radSplitContainer5, "radSplitContainer5");
       this.radSplitContainer5.Name = "radSplitContainer5";
-      this.radSplitContainer5.Orientation = System.Windows.Forms.Orientation.Horizontal;
       // 
       // 
       // 
       this.radSplitContainer5.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer5.Size = new System.Drawing.Size(189, 364);
-      this.radSplitContainer5.TabIndex = 0;
       this.radSplitContainer5.TabStop = false;
       // 
       // panel_03
       // 
       this.panel_03.Controls.Add(this.list_03);
-      this.panel_03.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.panel_03, "panel_03");
       this.panel_03.Name = "panel_03";
       // 
       // 
       // 
       this.panel_03.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.panel_03.Size = new System.Drawing.Size(189, 88);
-      this.panel_03.TabIndex = 0;
       this.panel_03.TabStop = false;
-      this.panel_03.Text = "splitPanel17";
       // 
       // list_03
       // 
-      this.list_03.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.list_03, "list_03");
       this.list_03.GroupItemSize = new System.Drawing.Size(200, 40);
       this.list_03.ItemSize = new System.Drawing.Size(200, 40);
-      this.list_03.Location = new System.Drawing.Point(0, 0);
       this.list_03.Name = "list_03";
       this.list_03.ShowCheckBoxes = true;
-      this.list_03.Size = new System.Drawing.Size(189, 88);
-      this.list_03.TabIndex = 0;
       this.list_03.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.list_CheckedChanged);
       // 
       // panel_13
       // 
       this.panel_13.Controls.Add(this.list_13);
-      this.panel_13.Location = new System.Drawing.Point(0, 92);
+      resources.ApplyResources(this.panel_13, "panel_13");
       this.panel_13.Name = "panel_13";
       // 
       // 
       // 
       this.panel_13.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.panel_13.Size = new System.Drawing.Size(189, 88);
-      this.panel_13.TabIndex = 1;
       this.panel_13.TabStop = false;
-      this.panel_13.Text = "splitPanel18";
       // 
       // list_13
       // 
-      this.list_13.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.list_13, "list_13");
       this.list_13.GroupItemSize = new System.Drawing.Size(200, 40);
       this.list_13.ItemSize = new System.Drawing.Size(200, 40);
-      this.list_13.Location = new System.Drawing.Point(0, 0);
       this.list_13.Name = "list_13";
       this.list_13.ShowCheckBoxes = true;
-      this.list_13.Size = new System.Drawing.Size(189, 88);
-      this.list_13.TabIndex = 0;
       this.list_13.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.list_CheckedChanged);
       // 
       // panel_23
       // 
       this.panel_23.Controls.Add(this.list_23);
-      this.panel_23.Location = new System.Drawing.Point(0, 184);
+      resources.ApplyResources(this.panel_23, "panel_23");
       this.panel_23.Name = "panel_23";
       // 
       // 
       // 
       this.panel_23.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.panel_23.Size = new System.Drawing.Size(189, 88);
-      this.panel_23.TabIndex = 2;
       this.panel_23.TabStop = false;
-      this.panel_23.Text = "splitPanel19";
       // 
       // list_23
       // 
-      this.list_23.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.list_23, "list_23");
       this.list_23.GroupItemSize = new System.Drawing.Size(200, 40);
       this.list_23.ItemSize = new System.Drawing.Size(200, 40);
-      this.list_23.Location = new System.Drawing.Point(0, 0);
       this.list_23.Name = "list_23";
       this.list_23.ShowCheckBoxes = true;
-      this.list_23.Size = new System.Drawing.Size(189, 88);
-      this.list_23.TabIndex = 0;
       this.list_23.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.list_CheckedChanged);
       // 
       // panel_33
       // 
       this.panel_33.Controls.Add(this.list_33);
-      this.panel_33.Location = new System.Drawing.Point(0, 276);
+      resources.ApplyResources(this.panel_33, "panel_33");
       this.panel_33.Name = "panel_33";
       // 
       // 
       // 
       this.panel_33.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.panel_33.Size = new System.Drawing.Size(189, 88);
-      this.panel_33.TabIndex = 3;
       this.panel_33.TabStop = false;
-      this.panel_33.Text = "splitPanel20";
       // 
       // list_33
       // 
-      this.list_33.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.list_33, "list_33");
       this.list_33.GroupItemSize = new System.Drawing.Size(200, 40);
       this.list_33.ItemSize = new System.Drawing.Size(200, 40);
-      this.list_33.Location = new System.Drawing.Point(0, 0);
       this.list_33.Name = "list_33";
       this.list_33.ShowCheckBoxes = true;
-      this.list_33.Size = new System.Drawing.Size(189, 88);
-      this.list_33.TabIndex = 0;
       this.list_33.ItemCheckedChanged += new Telerik.WinControls.UI.ListViewItemEventHandler(this.list_CheckedChanged);
       // 
       // wordBag1
       // 
       this.wordBag1.BackColor = System.Drawing.Color.White;
-      this.wordBag1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.wordBag1.Font = new System.Drawing.Font("Segoe UI", 11F);
-      this.wordBag1.Location = new System.Drawing.Point(0, 0);
-      this.wordBag1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+      resources.ApplyResources(this.wordBag1, "wordBag1");
       this.wordBag1.Name = "wordBag1";
       this.wordBag1.ResultQueries = new string[0];
-      this.wordBag1.ResultSelectedLayerDisplayname = "Wort";
-      this.wordBag1.Size = new System.Drawing.Size(780, 36);
-      this.wordBag1.TabIndex = 1;
+      this.wordBag1.ResultSelectedLayerDisplayname = null;
       this.wordBag1.ExecuteButtonClicked += new System.EventHandler(this.wordBag1_ExecuteButtonClicked);
       // 
       // DisambigutionProfile
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radSplitContainer1);
       this.Controls.Add(this.wordBag1);

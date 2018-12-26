@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CloneDetectionAlgorithm));
       this.ihdPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
       this.radRadioButton1 = new Telerik.WinControls.UI.RadRadioButton();
       this.radRadioButton2 = new Telerik.WinControls.UI.RadRadioButton();
@@ -41,59 +42,40 @@
       // 
       // radPanel1
       // 
-      this.radPanel1.Location = new System.Drawing.Point(0, 246);
-      this.radPanel1.Size = new System.Drawing.Size(530, 38);
+      resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
       // ihdPanel1
       // 
       this.ihdPanel1.BackColor = System.Drawing.Color.White;
-      this.ihdPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.ihdPanel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.ihdPanel1.IHDDeescribtion = "Schließt identische Dokumente aus einem Schnappschuss aus.";
+      resources.ApplyResources(this.ihdPanel1, "ihdPanel1");
+      this.ihdPanel1.IHDDescription = "Schließt identische Dokumente aus einem Schnappschuss aus.";
       this.ihdPanel1.IHDHeader = "Clone-Detection";
       this.ihdPanel1.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.module_warn1;
-      this.ihdPanel1.Location = new System.Drawing.Point(0, 0);
-      this.ihdPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.ihdPanel1.Name = "ihdPanel1";
-      this.ihdPanel1.Size = new System.Drawing.Size(530, 64);
-      this.ihdPanel1.TabIndex = 1;
       // 
       // radRadioButton1
       // 
-      this.radRadioButton1.Location = new System.Drawing.Point(12, 72);
+      resources.ApplyResources(this.radRadioButton1, "radRadioButton1");
       this.radRadioButton1.Name = "radRadioButton1";
-      this.radRadioButton1.Size = new System.Drawing.Size(413, 49);
-      this.radRadioButton1.TabIndex = 2;
       this.radRadioButton1.TabStop = false;
-      this.radRadioButton1.Text = "<html><strong>Schneller Hashvergleich</strong> (Qualität: ● / Performance: ●●●)<b" +
-    "r />Nutzt SHA512 - Beseitigt nur 100%ige Kopien.</html>";
       // 
       // radRadioButton2
       // 
-      this.radRadioButton2.Location = new System.Drawing.Point(12, 182);
+      resources.ApplyResources(this.radRadioButton2, "radRadioButton2");
       this.radRadioButton2.Name = "radRadioButton2";
-      this.radRadioButton2.Size = new System.Drawing.Size(505, 49);
-      this.radRadioButton2.TabIndex = 3;
       this.radRadioButton2.TabStop = false;
-      this.radRadioButton2.Text = "<html><strong>Fluss-/Vektorenanalyse </strong> (Qualität: ●●● / Performance: ●)<b" +
-    "r />Beseitigt Dokumente, die sich in unwesentlichen Punkten unterscheiden.</html" +
-    ">";
       // 
       // radRadioButton3
       // 
       this.radRadioButton3.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.radRadioButton3.Location = new System.Drawing.Point(12, 127);
+      resources.ApplyResources(this.radRadioButton3, "radRadioButton3");
       this.radRadioButton3.Name = "radRadioButton3";
-      this.radRadioButton3.Size = new System.Drawing.Size(387, 49);
-      this.radRadioButton3.TabIndex = 3;
-      this.radRadioButton3.Text = "<html><strong>Fuzzy-Hash-Analyse</strong> (Qualität: ●● / Performance: ●●)<br />B" +
-    "asiert auf context triggered piecewise hashes (CTPH).</html>";
       this.radRadioButton3.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
       // 
       // CloneDetectionAlgorithm
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.ClientSize = new System.Drawing.Size(530, 284);
+      resources.ApplyResources(this, "$this");
       this.Controls.Add(this.radRadioButton3);
       this.Controls.Add(this.radRadioButton2);
       this.Controls.Add(this.radRadioButton1);
@@ -104,7 +86,6 @@
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
-      this.Text = "Clone-Detection";
       this.Controls.SetChildIndex(this.radPanel1, 0);
       this.Controls.SetChildIndex(this.ihdPanel1, 0);
       this.Controls.SetChildIndex(this.radRadioButton1, 0);

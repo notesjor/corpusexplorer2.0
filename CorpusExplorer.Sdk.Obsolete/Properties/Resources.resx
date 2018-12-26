@@ -132,4 +132,7 @@
   <data name="FileExtension_ZIP" xml:space="preserve">
     <value>ZIP-Datei (*.zip)|*.zip</value>
   </data>
+  <data name="Gesamtsumme" xml:space="preserve">
+    <value>Gesamtsumme</value>
+  </data>
 </root>

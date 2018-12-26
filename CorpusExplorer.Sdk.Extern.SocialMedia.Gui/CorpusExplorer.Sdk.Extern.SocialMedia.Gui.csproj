@@ -15,6 +15,33 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>C:\Projekte\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk.Extern.SocialMedia.Gui\publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://www.bitcutstudios.com/products/ssmm/</InstallUrl>
+    <UpdateUrl>http://www.bitcutstudios.com/products/ssmm/</UpdateUrl>
+    <SupportUrl>http://corpusexplorer.de</SupportUrl>
+    <ErrorReportUrl>http://corpusexplorer.de</ErrorReportUrl>
+    <ProductName>SSMM %28BETA%29</ProductName>
+    <PublisherName>CorpusExplorer</PublisherName>
+    <SuiteName>CorpusExplorer</SuiteName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <TrustUrlParameters>true</TrustUrlParameters>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>0.8.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>true</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>false</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -25,7 +52,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>true</Prefer32Bit>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,13 +63,31 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>F42EB3633414B1CEAC95D5070D1AD4FFDB837BB0</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>CorpusExplorer.Sdk.Extern.SocialMedia.Gui_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CefSharp.WinForms">
-      <HintPath>..\packages\CefSharp.WinForms.67.0.0\CefSharp\x86\CefSharp.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="CefSharp.WinForms">
-      <HintPath>..\packages\CefSharp.WinForms.67.0.0\CefSharp\x86\CefSharp.WinForms.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -175,17 +220,49 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CefSharpLoader.cs" />
+    <Compile Include="Controls\Abstract\AbstractEndpointRequest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Abstract\AbstractEndpointRequest.Designer.cs">
+      <DependentUpon>AbstractEndpointRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Abstract\AbstractUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\Abstract\AbstractUserControl.Designer.cs">
       <DependentUpon>AbstractUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Delegates\CallEndpointDelegate.cs" />
+    <Compile Include="Controls\Delegates\SigninValidationDelegate.cs" />
+    <Compile Include="Controls\EndpointRequestImages.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EndpointRequestImages.Designer.cs">
+      <DependentUpon>EndpointRequestImages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EndpointRequestSimple.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EndpointRequestSimple.Designer.cs">
+      <DependentUpon>EndpointRequestSimple.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IHDPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\IHDPanel.Designer.cs">
+      <DependentUpon>IHDPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MainControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\MainControl.Designer.cs">
       <DependentUpon>MainControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ServiceHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ServiceHome.Designer.cs">
+      <DependentUpon>ServiceHome.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ServiceInformationButton.cs">
       <SubType>UserControl</SubType>
@@ -199,17 +276,48 @@
     <Compile Include="Forms\Abstract\AbstractForm.Designer.cs">
       <DependentUpon>AbstractForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\OutputPathHelper.cs" />
+    <Compile Include="Helper\RadPageViewHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\Abstract\AbstractEndpointRequest.resx">
+      <DependentUpon>AbstractEndpointRequest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Abstract\AbstractUserControl.resx">
       <DependentUpon>AbstractUserControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\EndpointRequestImages.resx">
+      <DependentUpon>EndpointRequestImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\EndpointRequestSimple.resx">
+      <DependentUpon>EndpointRequestSimple.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\IHDPanel.resx">
+      <DependentUpon>IHDPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\MainControl.resx">
       <DependentUpon>MainControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ServiceHome.resx">
+      <DependentUpon>ServiceHome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ServiceInformationButton.resx">
       <DependentUpon>ServiceInformationButton.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Abstract\AbstractForm.resx">
+      <DependentUpon>AbstractForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -220,7 +328,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="packages.config" />
+    <None Include="CorpusExplorer.Sdk.Extern.SocialMedia.Gui_TemporaryKey.pfx" />
+    <None Include="CorpusExplorerNextSnKey.pfx" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -281,6 +394,336 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\youtube%40128px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-group%40128px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-group-padlock%40128px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\internet%40128px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\internet-padlock%40128px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\servers-cloud.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_green_arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cloud-design.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.SocialMedia\CorpusExplorer.Sdk.Extern.SocialMedia.csproj">
+      <Project>{A29E6608-43FA-45D7-9B76-C7AE0B01A0B5}</Project>
+      <Name>CorpusExplorer.Sdk.Extern.SocialMedia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk\CorpusExplorer.Sdk.csproj">
+      <Project>{DC1B5A58-29DA-476D-89F8-E73A1DB11E52}</Project>
+      <Name>CorpusExplorer.Sdk</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blogger%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\youtube-padlock%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\youtube%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wordpress%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wordpress-padlock%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tumblr-padlock%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tumblr%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twitter%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twitter-padlock%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reddit-padlock%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reddit%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\instagram%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\instagram-padlock%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facebook-padlock%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\internet%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\internet-padlock%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-group-padlock%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-group%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facebook%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blogger-padlock%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home%40128px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image-download%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image-download%40128px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="Microsoft.AnalysisServices.AdomdClient">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.WinControls.ChartView">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.WinControls.GridView">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.WinControls.PdfViewer">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.WinControls.PivotGrid">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.WinControls.RadChart">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.WinControls.RadDiagram">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.WinControls.RadDock">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.WinControls.RadMap">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.WinControls.RadMarkupEditor">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.WinControls.RadSpreadsheet">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.WinControls.RichTextEditor">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.WinControls.Scheduler">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.Windows.Documents.Core">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.Windows.Documents.Fixed">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.Windows.Documents.Spreadsheet">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Telerik.Windows.Zip">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="TelerikData">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\work-browse%4024px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\work-browse%40128px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,12 +9,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
   {
     public SetTheorySelectSnapshot(
       string header,
-      string describtion,
+      string description,
       Dictionary<Guid, string> selectionsAndDisplaynames)
     {
       InitializeComponent();
       header1.HeaderHead = header;
-      header1.HeaderDescribtion = describtion;
+      header1.HeaderDescription = description;
 
       DictionaryBindingHelper.BindDictionary(selectionsAndDisplaynames, radDropDownList1);
     }

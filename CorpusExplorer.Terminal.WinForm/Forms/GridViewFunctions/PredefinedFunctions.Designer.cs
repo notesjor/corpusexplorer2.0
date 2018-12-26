@@ -31,7 +31,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.GridViewFunctions
     /// </summary>
     private void InitializeComponent()
     {
-      this.header1 = new Header();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PredefinedFunctions));
+      this.header1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header();
       this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
       this.drop_funcs = new Telerik.WinControls.UI.RadDropDownList();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
@@ -43,49 +44,36 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.GridViewFunctions
       // 
       // radPanel1
       // 
-      this.radPanel1.Location = new System.Drawing.Point(0, 142);
-      this.radPanel1.Size = new System.Drawing.Size(387, 38);
+      resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
       // header1
       // 
       this.header1.BackColor = System.Drawing.Color.White;
-      this.header1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.header1.Font = new System.Drawing.Font("Segoe UI", 11F);
-      this.header1.HeaderDescribtion = Resources.MitDiesenFunktionenKönnenSieSchnellUndEinfachStandardisierteAuswertungenDurchführen;
-      this.header1.HeaderHead = Resources.VordefinierteFunktionen;
-      this.header1.Location = new System.Drawing.Point(0, 0);
-      this.header1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      resources.ApplyResources(this.header1, "header1");
+      this.header1.HeaderDescription = "Mit diesen Funktionen können Sie schnell und einfach standardisierte Auswertungen" +
+    " durchführen.";
+      this.header1.HeaderHead = "Vordefinierte Funktionen";
       this.header1.Name = "header1";
-      this.header1.Size = new System.Drawing.Size(387, 69);
-      this.header1.TabIndex = 1;
       // 
       // radGroupBox1
       // 
       this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
       this.radGroupBox1.Controls.Add(this.drop_funcs);
-      this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radGroupBox1.HeaderText = Resources.WasMöchtenSieAutomatisieren;
-      this.radGroupBox1.Location = new System.Drawing.Point(0, 69);
+      resources.ApplyResources(this.radGroupBox1, "radGroupBox1");
+      this.radGroupBox1.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.WasMöchtenSieAutomatisieren;
       this.radGroupBox1.Name = "radGroupBox1";
-      this.radGroupBox1.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox1.Size = new System.Drawing.Size(387, 61);
-      this.radGroupBox1.TabIndex = 2;
-      this.radGroupBox1.Text = Resources.WasMöchtenSieAutomatisieren;
+      this.radGroupBox1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.WasMöchtenSieAutomatisieren;
       // 
       // drop_funcs
       // 
-      this.drop_funcs.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.drop_funcs.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.drop_funcs, "drop_funcs");
       this.drop_funcs.Name = "drop_funcs";
-      this.drop_funcs.NullText = Resources.FunktionAuswählen;
-      this.drop_funcs.Size = new System.Drawing.Size(377, 31);
-      this.drop_funcs.TabIndex = 0;
+      this.drop_funcs.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.FunktionAuswählen;
       // 
       // PredefinedFunctions
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.ClientSize = new System.Drawing.Size(387, 180);
+      resources.ApplyResources(this, "$this");
       this.Controls.Add(this.radGroupBox1);
       this.Controls.Add(this.header1);
       this.DisplayAbort = true;
@@ -94,7 +82,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.GridViewFunctions
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
-      this.Text = Resources.TabellenFunktionen;
       this.ButtonOkClick += new System.EventHandler(this.PredefinedFunctions_ButtonOkClick);
       this.Load += new System.EventHandler(this.PredefinedFunctions_Load);
       this.Controls.SetChildIndex(this.radPanel1, 0);

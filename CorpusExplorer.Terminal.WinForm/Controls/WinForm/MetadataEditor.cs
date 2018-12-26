@@ -21,29 +21,46 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
 
     public Dictionary<string, object> Metadata
     {
-      get { return ((RadPropertyStore) property_meta.SelectedObject).ToDictionary(x => x.PropertyName, x => x.Value); }
+      get
+      {
+        try
+        {
+          return ((RadPropertyStore) property_meta.SelectedObject).ToDictionary(x => x.PropertyName, x => x.Value);
+        }
+        catch
+        {
+          return null;
+        }
+      }
       set
       {
-        if (value == null)
-          return;
+        try
+        {
+          if (value == null)
+            return;
 
-        var store = new RadPropertyStore();
-        foreach (var x in value)
-          try
-          {
-            var item = new PropertyStoreItem(
-              x.Value.GetType(),
-              x.Key,
-              x.Value ?? Activator.CreateInstance(x.Value.GetType()));
+          var store = new RadPropertyStore();
+          foreach (var x in value)
+            try
+            {
+              var item = new PropertyStoreItem(
+                                               x.Value.GetType(),
+                                               x.Key,
+                                               x.Value ?? Activator.CreateInstance(x.Value.GetType()));
 
-            store.Add(item);
-          }
-          catch
-          {
-            // ignore
-          }
+              store.Add(item);
+            }
+            catch
+            {
+              // ignore
+            }
 
-        property_meta.SelectedObject = store;
+          property_meta.SelectedObject = store;
+        }
+        catch
+        {
+          // ignore
+        }
       }
     }
 

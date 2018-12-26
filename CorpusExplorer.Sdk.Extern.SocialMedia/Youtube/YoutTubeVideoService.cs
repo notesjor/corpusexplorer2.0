@@ -9,10 +9,6 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
 {
   public class YoutTubeVideoService : AbstractService
   {
-    public string VideoId { get; set; }
-
-    protected override AbstractAuthentication Authentication { get; } = new YoutubeApiKeyAuthentication();
-
     protected override void Query(object connection, IEnumerable<string> queries, string outputPath)
     {
       var context = connection as YouTubeService;
@@ -26,7 +22,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
 
         foreach (var comment in comments.Items)
         {
-          using (var file = new StreamWriter(Path.Combine(OutputPath, $"youtube_{query}_comment_{comment.Id}.json"), false, Encoding.UTF8))
+          using (var file = new StreamWriter(Path.Combine(outputPath, $"youtube_{query}_comment_{comment.Id}.json"), false, Encoding.UTF8))
             serializer.Serialize(file, new YouTubeSearchService.YouTubeSearchServiceCommentThread
             {
               Published = comment.Snippet.TopLevelComment.Snippet.PublishedAt,

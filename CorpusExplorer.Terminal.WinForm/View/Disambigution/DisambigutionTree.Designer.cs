@@ -31,6 +31,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DisambigutionTree));
       this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
       this.wordBag1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WordBag();
       ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
@@ -38,31 +39,21 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
       // 
       // radTreeView1
       // 
-      this.radTreeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.radTreeView1, "radTreeView1");
       this.radTreeView1.ItemHeight = 40;
-      this.radTreeView1.Location = new System.Drawing.Point(0, 36);
       this.radTreeView1.Name = "radTreeView1";
-      this.radTreeView1.Size = new System.Drawing.Size(780, 364);
-      this.radTreeView1.TabIndex = 2;
-      this.radTreeView1.TreeIndent = 40;
       // 
       // wordBag1
       // 
       this.wordBag1.BackColor = System.Drawing.Color.White;
-      this.wordBag1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.wordBag1.Font = new System.Drawing.Font("Segoe UI", 11F);
-      this.wordBag1.Location = new System.Drawing.Point(0, 0);
-      this.wordBag1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+      resources.ApplyResources(this.wordBag1, "wordBag1");
       this.wordBag1.Name = "wordBag1";
       this.wordBag1.ResultQueries = new string[0];
-      this.wordBag1.ResultSelectedLayerDisplayname = "Wort";
-      this.wordBag1.Size = new System.Drawing.Size(780, 36);
-      this.wordBag1.TabIndex = 3;
+      this.wordBag1.ResultSelectedLayerDisplayname = null;
       this.wordBag1.ExecuteButtonClicked += new System.EventHandler(this.wordBag1_ExecuteButtonClicked);
       // 
       // DisambigutionTree
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radTreeView1);
       this.Controls.Add(this.wordBag1);

@@ -25,20 +25,27 @@ namespace CorpusExplorer.Sdk.Extern.Tika
 
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
-      var extractor = new TextExtractor();
-      var text = extractor.Extract(file);
+      try
+      {
+        var extractor = new TextExtractor();
+        var text = extractor.Extract(file);
 
-      if (string.IsNullOrEmpty(text?.Text))
-        return null;
+        if (string.IsNullOrEmpty(text?.Text))
+          return null;
 
-      var res = new Dictionary<string, object> {{"Text", text.Text}};
-      if (text.Metadata == null)
+        var res = new Dictionary<string, object> {{"Text", text.Text}};
+        if (text.Metadata == null)
+          return new[] {res};
+
+        foreach (var meta in text.Metadata.Where(meta => !res.ContainsKey(meta.Key)))
+          res.Add(meta.Key, meta.Value);
+
         return new[] {res};
-
-      foreach (var meta in text.Metadata.Where(meta => !res.ContainsKey(meta.Key)))
-        res.Add(meta.Key, meta.Value);
-
-      return new[] {res};
+      }
+      catch
+      {
+        return null;
+      }
     }
   }
 }

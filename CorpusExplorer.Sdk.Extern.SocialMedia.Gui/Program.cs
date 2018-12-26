@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CefSharp.WinForms;
+using CorpusExplorer.Sdk.Ecosystem;
+using CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Forms;
 
 namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui
 {
@@ -15,10 +16,12 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui
     [STAThread]
     static void Main()
     {
+      CorpusExplorerEcosystem.Initialize();
+
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
       //CefSharpLoader.Initialize();
-      //Application.Run(new Form1());
+      Application.Run(new MainForm());
     }
   }
 }

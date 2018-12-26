@@ -1575,9 +1575,9 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Ermitteln Sie mit diesem Modul alle signifikanten Kookkurrenzen. ähnelt.
         /// </summary>
-        public static string Cooccurrences_Describtion {
+        public static string Cooccurrences_Description {
             get {
-                return ResourceManager.GetString("Cooccurrences_Describtion", resourceCulture);
+                return ResourceManager.GetString("Cooccurrences_Description", resourceCulture);
             }
         }
         
@@ -1760,9 +1760,9 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Ermitteln Sie die Einflussfaktoren, die aktuell im Schnappschuss/Korpus wirken. ähnelt.
         /// </summary>
-        public static string CorpusDistribution_Describtion {
+        public static string CorpusDistribution_Description {
             get {
-                return ResourceManager.GetString("CorpusDistribution_Describtion", resourceCulture);
+                return ResourceManager.GetString("CorpusDistribution_Description", resourceCulture);
             }
         }
         
@@ -1924,9 +1924,9 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Vergeben Sie einen eindeutigen Namen für das Korpus. ähnelt.
         /// </summary>
-        public static string Dashboard_EnterCorpusNameDescribtion {
+        public static string Dashboard_EnterCorpusNameDescription {
             get {
-                return ResourceManager.GetString("Dashboard_EnterCorpusNameDescribtion", resourceCulture);
+                return ResourceManager.GetString("Dashboard_EnterCorpusNameDescription", resourceCulture);
             }
         }
         
@@ -2388,9 +2388,9 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Anaysieren Sie semantischen Ähnlichkeiten und Unterschiede. ähnelt.
         /// </summary>
-        public static string Disambigution_Describtion {
+        public static string Disambigution_Description {
             get {
-                return ResourceManager.GetString("Disambigution_Describtion", resourceCulture);
+                return ResourceManager.GetString("Disambigution_Description", resourceCulture);
             }
         }
         
@@ -3455,9 +3455,9 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Werten Sie Frequenzen und die daraus resultierende Verteilungen aus. ähnelt.
         /// </summary>
-        public static string FrequncyAnalytics_Describtion {
+        public static string FrequncyAnalytics_Description {
             get {
-                return ResourceManager.GetString("FrequncyAnalytics_Describtion", resourceCulture);
+                return ResourceManager.GetString("FrequncyAnalytics_Description", resourceCulture);
             }
         }
         
@@ -3518,9 +3518,9 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dieses Modul erlaubt die (Nach-)Bearbeitung der Textannotation sowie unterschiedliche Darstellungsformen von Text. ähnelt.
         /// </summary>
-        public static string Fulltext_Describtion {
+        public static string Fulltext_Description {
             get {
-                return ResourceManager.GetString("Fulltext_Describtion", resourceCulture);
+                return ResourceManager.GetString("Fulltext_Description", resourceCulture);
             }
         }
         
@@ -3581,9 +3581,9 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Geben Sie eine neue Bezeichnung für den Layerwert ein. Dieser wird in allen Dokument ersetzt. ähnelt.
         /// </summary>
-        public static string FulltextAnnotation_DeleteLayerValue_ChangeLayerValueDescribtion {
+        public static string FulltextAnnotation_DeleteLayerValue_ChangeLayerValueDescription {
             get {
-                return ResourceManager.GetString("FulltextAnnotation_DeleteLayerValue_ChangeLayerValueDescribtion", resourceCulture);
+                return ResourceManager.GetString("FulltextAnnotation_DeleteLayerValue_ChangeLayerValueDescription", resourceCulture);
             }
         }
         
@@ -3626,9 +3626,9 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Geben Sie den Namen des neuen Layers an. ähnelt.
         /// </summary>
-        public static string FulltextAnnotation_NewLayerDescribtion {
+        public static string FulltextAnnotation_NewLayerDescription {
             get {
-                return ResourceManager.GetString("FulltextAnnotation_NewLayerDescribtion", resourceCulture);
+                return ResourceManager.GetString("FulltextAnnotation_NewLayerDescription", resourceCulture);
             }
         }
         
@@ -3653,9 +3653,9 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Geben Sie die Bezeichnung des neuen Layerwerts an. ähnelt.
         /// </summary>
-        public static string FulltextAnnotation_NewLayerValueDescribtion {
+        public static string FulltextAnnotation_NewLayerValueDescription {
             get {
-                return ResourceManager.GetString("FulltextAnnotation_NewLayerValueDescribtion", resourceCulture);
+                return ResourceManager.GetString("FulltextAnnotation_NewLayerValueDescription", resourceCulture);
             }
         }
         
@@ -3680,9 +3680,9 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Geben Sie die neue Bezeichnung für den Layer an. ähnelt.
         /// </summary>
-        public static string FulltextAnnotation_RenameLayer_Describtion {
+        public static string FulltextAnnotation_RenameLayer_Description {
             get {
-                return ResourceManager.GetString("FulltextAnnotation_RenameLayer_Describtion", resourceCulture);
+                return ResourceManager.GetString("FulltextAnnotation_RenameLayer_Description", resourceCulture);
             }
         }
         
@@ -3725,9 +3725,9 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Möchten Sie den aktuellen Layer ({0}) kopieren? Wenn ja, geben Sie einen anderen Namen ein und klicken Sie auf ok. ähnelt.
         /// </summary>
-        public static string FulltextAnnotationSpeedup_CopyLayerDescribtion {
+        public static string FulltextAnnotationSpeedup_CopyLayerDescription {
             get {
-                return ResourceManager.GetString("FulltextAnnotationSpeedup_CopyLayerDescribtion", resourceCulture);
+                return ResourceManager.GetString("FulltextAnnotationSpeedup_CopyLayerDescription", resourceCulture);
             }
         }
         
@@ -5838,9 +5838,9 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Suchen Sie nach Phrasen, wiederkehrenden Mustern und N-Grammen ähnelt.
         /// </summary>
-        public static string Phrases_Describtion {
+        public static string Phrases_Description {
             get {
-                return ResourceManager.GetString("Phrases_Describtion", resourceCulture);
+                return ResourceManager.GetString("Phrases_Description", resourceCulture);
             }
         }
         
@@ -7278,9 +7278,9 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Diese speziellen Funktionen benötigen bestimmte Korpus-/System-Voraussetzungen. ähnelt.
         /// </summary>
-        public static string SpcialFunctions_Describtion {
+        public static string SpcialFunctions_Description {
             get {
-                return ResourceManager.GetString("SpcialFunctions_Describtion", resourceCulture);
+                return ResourceManager.GetString("SpcialFunctions_Description", resourceCulture);
             }
         }
         
@@ -7436,9 +7436,9 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Diese Analysen erlauben einen Blick auf den spezifischen Autoren/Redaktionsstil zu werfen. ähnelt.
         /// </summary>
-        public static string Stylemetrics_Describtion {
+        public static string Stylemetrics_Description {
             get {
-                return ResourceManager.GetString("Stylemetrics_Describtion", resourceCulture);
+                return ResourceManager.GetString("Stylemetrics_Description", resourceCulture);
             }
         }
         
@@ -7801,9 +7801,9 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Erstellen Sie eine Edtion unterschiedlicher Textstufen. ähnelt.
         /// </summary>
-        public static string Textedition_Describtion {
+        public static string Textedition_Description {
             get {
-                return ResourceManager.GetString("Textedition_Describtion", resourceCulture);
+                return ResourceManager.GetString("Textedition_Description", resourceCulture);
             }
         }
         
@@ -8589,9 +8589,9 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Hinweis: Zum Bestätigen der Begriffe drücken Sie ENTER oder verwenden Sie das Semikolon &quot;;&quot; ähnelt.
         /// </summary>
-        public static string Wordbag_EnterQueryDescribtion {
+        public static string Wordbag_EnterQueryDescription {
             get {
-                return ResourceManager.GetString("Wordbag_EnterQueryDescribtion", resourceCulture);
+                return ResourceManager.GetString("Wordbag_EnterQueryDescription", resourceCulture);
             }
         }
         

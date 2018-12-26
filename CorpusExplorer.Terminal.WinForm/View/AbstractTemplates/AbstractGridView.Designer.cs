@@ -28,8 +28,14 @@
     /// </summary>
     private void InitializeComponent()
     {
-      components = new System.ComponentModel.Container();
+      this.SuspendLayout();
+      // 
+      // AbstractGridView
+      // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+      this.Name = "AbstractGridView";
+      this.ResumeLayout(false);
+
     }
 
     #endregion

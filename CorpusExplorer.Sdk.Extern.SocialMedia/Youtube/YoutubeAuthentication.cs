@@ -6,7 +6,7 @@ using Google.Apis.YouTube.v3.Data;
 
 namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
 {
-  public class YoutubeApiKeyAuthentication : AbstractSimpleAuthentication
+  public class YoutubeAuthentication : AbstractAuthentication
   {
     public override string ProviderName => "YouTube via API-Key";
 
@@ -17,13 +17,23 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
         {"ApiKey", ""}
       };
 
-    protected override object OpenConnection()
+    public override object OpenConnection()
     {
-      return new YouTubeService(new BaseClientService.Initializer
+      try
       {
-        ApplicationName = Settings["ApplicationName"],
-        ApiKey = Settings["ApiKey"]
-      });
+        if (string.IsNullOrWhiteSpace(Settings["ApiKey"]))
+          return null;
+
+        return new YouTubeService(new BaseClientService.Initializer
+        {
+          ApplicationName = Settings["ApplicationName"]?.Trim(),
+          ApiKey = Settings["ApiKey"]?.Trim()
+        });
+      }
+      catch
+      {
+        return null;
+      }
     }
   }
 }

@@ -69,6 +69,9 @@ namespace CorpusExplorer.Sdk.Helper
       if (useGermanMarchPatch)
         dateTimeString = GermanMarchPatch.Replace(dateTimeString, " März ");
 
+      if (dateTimeString.Length == 4 && int.TryParse(dateTimeString, out int i))
+        return new DateTime(i, 1, 1);
+
       var dateTime = DateTime.MinValue;
       // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
       CultureInfo.GetCultures(CultureTypes.AllCultures).FirstOrDefault(ci =>
@@ -99,7 +102,7 @@ namespace CorpusExplorer.Sdk.Helper
     /// </summary>
     /// <param name="dt">Datum</param>
     /// <returns>Quartal</returns>
-    public static int GetYearQuarter(DateTime dt) 
+    public static int GetYearQuarter(DateTime dt)
       => (dt.Month - 1) / 3 + 1;
 
     /// <summary>
@@ -107,7 +110,7 @@ namespace CorpusExplorer.Sdk.Helper
     /// </summary>
     /// <param name="dt">The dt.</param>
     /// <returns>System.Int32.</returns>
-    public static int GetYearWeek(DateTime dt, CalendarWeekRule rule = CalendarWeekRule.FirstDay, DayOfWeek firstWeekday = DayOfWeek.Monday) 
+    public static int GetYearWeek(DateTime dt, CalendarWeekRule rule = CalendarWeekRule.FirstDay, DayOfWeek firstWeekday = DayOfWeek.Monday)
       => CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(dt, rule, firstWeekday);
   }
 }

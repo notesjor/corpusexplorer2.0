@@ -32,6 +32,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FulltextAnnotation));
       this.drop_selectedtext = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
@@ -78,13 +79,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       // drop_selectedtext
       // 
-      this.drop_selectedtext.Dock = System.Windows.Forms.DockStyle.Top;
-      this.drop_selectedtext.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.drop_selectedtext, "drop_selectedtext");
       this.drop_selectedtext.Name = "drop_selectedtext";
       this.drop_selectedtext.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.drop_selectedtext.Size = new System.Drawing.Size(780, 44);
-      this.drop_selectedtext.TabIndex = 1;
       // 
       // commandBarRowElement1
       // 
@@ -92,12 +90,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
-      this.commandBarRowElement1.Text = "";
+      resources.ApplyResources(this.commandBarRowElement1, "commandBarRowElement1");
       // 
       // commandBarStripElement1
       // 
       this.commandBarStripElement1.AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.FitToAvailableSize;
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       this.commandBarStripElement1.EnableDragging = false;
       this.commandBarStripElement1.EnableFloating = true;
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
@@ -110,24 +108,24 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       // commandBarLabel1
       // 
-      this.commandBarLabel1.DisplayName = "commandBarLabel1";
+      resources.ApplyResources(this.commandBarLabel1, "commandBarLabel1");
       this.commandBarLabel1.Name = "commandBarLabel1";
       this.commandBarLabel1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.TextDP;
       // 
       // drop_selecteddocument
       // 
-      this.drop_selecteddocument.DisplayName = "commandBarDropDownList1";
+      resources.ApplyResources(this.drop_selecteddocument, "drop_selecteddocument");
       this.drop_selecteddocument.DropDownAnimationEnabled = true;
       this.drop_selecteddocument.MaxDropDownItems = 0;
       this.drop_selecteddocument.MinSize = new System.Drawing.Size(300, 22);
       this.drop_selecteddocument.Name = "drop_selecteddocument";
-      this.drop_selecteddocument.Text = "";
       this.drop_selecteddocument.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.drop_selecteddocument_SelectedIndexChanged);
       // 
       // btn_showMeta
       // 
-      this.btn_showMeta.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_showMeta, "btn_showMeta");
       this.btn_showMeta.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.tag_green;
+      this.btn_showMeta.AutoToolTip = true;
       this.btn_showMeta.Name = "btn_showMeta";
       this.btn_showMeta.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.MetadatenAnzeigen;
       this.btn_showMeta.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.MetadatenAnzeigen;
@@ -135,41 +133,34 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       // btn_export
       // 
-      this.btn_export.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_export, "btn_export");
       this.btn_export.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
+      this.btn_export.AutoToolTip = true;
       this.btn_export.Name = "btn_export";
-      this.btn_export.Text = "Aktuelles Dokument exportieren";
       this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
       // 
       // btn_clipboard
       // 
-      this.btn_clipboard.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_clipboard, "btn_clipboard");
       this.btn_clipboard.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.clipboard_copy;
+      this.btn_clipboard.AutoToolTip = true;
       this.btn_clipboard.Name = "btn_clipboard";
-      this.btn_clipboard.Text = "In die Zwischenablage kopieren";
       this.btn_clipboard.Click += new System.EventHandler(this.btn_clipboard_Click);
       // 
       // tree
       // 
-      this.tree.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.tree, "tree");
       this.tree.ItemHeight = 40;
-      this.tree.Location = new System.Drawing.Point(25, 32);
       this.tree.Name = "tree";
-      this.tree.Size = new System.Drawing.Size(275, 279);
       this.tree.SpacingBetweenNodes = -1;
-      this.tree.TabIndex = 2;
-      this.tree.TreeIndent = 40;
       this.tree.NodeCheckedChanged += new Telerik.WinControls.UI.TreeNodeCheckedEventHandler(this.tree_NodeCheckedChanged);
       // 
       // radCommandBar2
       // 
-      this.radCommandBar2.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.radCommandBar2.Location = new System.Drawing.Point(25, 311);
+      resources.ApplyResources(this.radCommandBar2, "radCommandBar2");
       this.radCommandBar2.Name = "radCommandBar2";
       this.radCommandBar2.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement2});
-      this.radCommandBar2.Size = new System.Drawing.Size(275, 45);
-      this.radCommandBar2.TabIndex = 1;
       // 
       // commandBarRowElement2
       // 
@@ -177,11 +168,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       this.commandBarRowElement2.Name = "commandBarRowElement2";
       this.commandBarRowElement2.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement2});
-      this.commandBarRowElement2.Text = "";
+      resources.ApplyResources(this.commandBarRowElement2, "commandBarRowElement2");
       // 
       // commandBarStripElement2
       // 
-      this.commandBarStripElement2.DisplayName = "commandBarStripElement2";
+      resources.ApplyResources(this.commandBarStripElement2, "commandBarStripElement2");
       this.commandBarStripElement2.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.btn_layer_new});
       this.commandBarStripElement2.Name = "commandBarStripElement2";
@@ -190,10 +181,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       this.btn_layer_new.AccessibleDescription = "commandBarButton1";
       this.btn_layer_new.AccessibleName = "commandBarButton1";
-      this.btn_layer_new.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_layer_new, "btn_layer_new");
       this.btn_layer_new.DrawText = true;
       this.btn_layer_new.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.add_button;
       this.btn_layer_new.MinSize = new System.Drawing.Size(38, 38);
+      this.btn_layer_new.AutoToolTip = true;
       this.btn_layer_new.Name = "btn_layer_new";
       this.btn_layer_new.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.NeuerLayer;
       this.btn_layer_new.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -201,55 +193,41 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       // radLabel55
       // 
-      this.radLabel55.Dock = System.Windows.Forms.DockStyle.Left;
+      resources.ApplyResources(this.radLabel55, "radLabel55");
       this.radLabel55.ForeColor = System.Drawing.Color.DarkSeaGreen;
-      this.radLabel55.Location = new System.Drawing.Point(2, 0);
       this.radLabel55.Name = "radLabel55";
-      this.radLabel55.Size = new System.Drawing.Size(23, 121);
-      this.radLabel55.TabIndex = 0;
-      this.radLabel55.Text = "Verfügbare Layer";
       ((Telerik.WinControls.UI.RadLabelElement)(this.radLabel55.GetChildAt(0))).Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.VerfügbareLayer;
-      ((Telerik.WinControls.UI.RadLabelElement)(this.radLabel55.GetChildAt(0))).AngleTransform = 270F;
+      ((Telerik.WinControls.UI.RadLabelElement)(this.radLabel55.GetChildAt(0))).AngleTransform = ((float)(resources.GetObject("resource.AngleTransform")));
       // 
       // radSplitContainer1
       // 
       this.radSplitContainer1.Controls.Add(this.splitPanel1);
       this.radSplitContainer1.Controls.Add(this.splitPanel2);
-      this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer1.Location = new System.Drawing.Point(0, 44);
+      resources.ApplyResources(this.radSplitContainer1, "radSplitContainer1");
       this.radSplitContainer1.Name = "radSplitContainer1";
       // 
       // 
       // 
       this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer1.Size = new System.Drawing.Size(780, 356);
-      this.radSplitContainer1.TabIndex = 4;
       this.radSplitContainer1.TabStop = false;
       // 
       // splitPanel1
       // 
       this.splitPanel1.Controls.Add(this.elementHost1);
-      this.splitPanel1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.splitPanel1, "splitPanel1");
       this.splitPanel1.Name = "splitPanel1";
       // 
       // 
       // 
       this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel1.Size = new System.Drawing.Size(476, 356);
       this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.1139359F, 0F);
       this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(57, 0);
-      this.splitPanel1.TabIndex = 0;
       this.splitPanel1.TabStop = false;
-      this.splitPanel1.Text = "splitPanel1";
       // 
       // elementHost1
       // 
-      this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.elementHost1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.elementHost1, "elementHost1");
       this.elementHost1.Name = "elementHost1";
-      this.elementHost1.Size = new System.Drawing.Size(476, 356);
-      this.elementHost1.TabIndex = 0;
-      this.elementHost1.Text = "elementHost1";
       this.elementHost1.Child = this.tagger1;
       // 
       // splitPanel2
@@ -258,28 +236,21 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       this.splitPanel2.Controls.Add(this.txt_layer_query);
       this.splitPanel2.Controls.Add(this.radCommandBar2);
       this.splitPanel2.Controls.Add(this.radLabel55);
-      this.splitPanel2.Location = new System.Drawing.Point(480, 0);
+      resources.ApplyResources(this.splitPanel2, "splitPanel2");
       this.splitPanel2.Name = "splitPanel2";
-      this.splitPanel2.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
       // 
       // 
       // 
       this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel2.Size = new System.Drawing.Size(300, 356);
       this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.113936F, 0F);
       this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(-57, 0);
-      this.splitPanel2.TabIndex = 1;
       this.splitPanel2.TabStop = false;
-      this.splitPanel2.Text = "splitPanel2";
       // 
       // txt_layer_query
       // 
-      this.txt_layer_query.Dock = System.Windows.Forms.DockStyle.Top;
-      this.txt_layer_query.Location = new System.Drawing.Point(25, 0);
+      resources.ApplyResources(this.txt_layer_query, "txt_layer_query");
       this.txt_layer_query.Name = "txt_layer_query";
       this.txt_layer_query.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.FilterHierEingeben;
-      this.txt_layer_query.Size = new System.Drawing.Size(275, 32);
-      this.txt_layer_query.TabIndex = 3;
       this.txt_layer_query.TextChanged += new System.EventHandler(this.txt_layer_query_TextChanged);
       // 
       // menu_layer
@@ -303,8 +274,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // radMenuSeparatorItem1
       // 
       this.radMenuSeparatorItem1.Name = "radMenuSeparatorItem1";
-      this.radMenuSeparatorItem1.Text = "radMenuSeparatorItem1";
-      this.radMenuSeparatorItem1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+      resources.ApplyResources(this.radMenuSeparatorItem1, "radMenuSeparatorItem1");
       // 
       // btn_layer_rename
       // 
@@ -323,21 +293,20 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // radMenuSeparatorItem2
       // 
       this.radMenuSeparatorItem2.Name = "radMenuSeparatorItem2";
-      this.radMenuSeparatorItem2.Text = "radMenuSeparatorItem2";
-      this.radMenuSeparatorItem2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+      resources.ApplyResources(this.radMenuSeparatorItem2, "radMenuSeparatorItem2");
       // 
       // btn_layer_export
       // 
       this.btn_layer_export.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.folder_action_open;
       this.btn_layer_export.Name = "btn_layer_export";
-      this.btn_layer_export.Text = "Layer exportieren";
+      resources.ApplyResources(this.btn_layer_export, "btn_layer_export");
       this.btn_layer_export.Click += new System.EventHandler(this.btn_layer_export_Click);
       // 
       // btn_layer_import
       // 
       this.btn_layer_import.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.folder_action_close;
       this.btn_layer_import.Name = "btn_layer_import";
-      this.btn_layer_import.Text = "Layer importieren";
+      resources.ApplyResources(this.btn_layer_import, "btn_layer_import");
       this.btn_layer_import.Click += new System.EventHandler(this.btn_layer_import_Click);
       // 
       // menu_layervalue
@@ -362,7 +331,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       // FulltextAnnotation
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radSplitContainer1);
       this.Controls.Add(this.drop_selectedtext);

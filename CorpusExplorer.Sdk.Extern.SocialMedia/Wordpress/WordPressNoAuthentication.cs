@@ -11,11 +11,11 @@ using WordPressPCL.Models;
 
 namespace CorpusExplorer.Sdk.Extern.SocialMedia.Wordpress
 {
-  public class WordPressNoAuthentication : AbstractSimpleAuthentication
+  public class WordPressNoAuthentication : AbstractAuthentication
   {
-    protected override object OpenConnection()
+    public override object OpenConnection()
     {
-      return new WordPressClient($"{Settings["Url"]}/wp-json/".Replace("//", "/"));
+      return new WordPressClient($"{Settings["Url"]}/wp-json/".Replace("//wp-json/", "/wp-json/"));
     }
 
     public override string ProviderName => "WordPress NoAuth";

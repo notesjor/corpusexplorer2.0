@@ -28,23 +28,19 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryBuilder));
       this.radDataFilter1 = new Telerik.WinControls.UI.RadDataFilter();
       ((System.ComponentModel.ISupportInitialize)(this.radDataFilter1)).BeginInit();
       this.SuspendLayout();
       // 
       // radDataFilter1
       // 
-      this.radDataFilter1.Dock = System.Windows.Forms.DockStyle.Fill;
+      resources.ApplyResources(this.radDataFilter1, "radDataFilter1");
       this.radDataFilter1.ItemHeight = 40;
-      this.radDataFilter1.Location = new System.Drawing.Point(0, 0);
       this.radDataFilter1.Name = "radDataFilter1";
-      this.radDataFilter1.Size = new System.Drawing.Size(681, 388);
-      this.radDataFilter1.TabIndex = 0;
-      this.radDataFilter1.Text = "radDataFilter1";
       // 
       // QueryBuilder
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radDataFilter1);
       this.Name = "QueryBuilder";

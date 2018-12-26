@@ -21,6 +21,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
     private readonly RadCheckBoxElement _checkBox;
     private readonly IndexList<Dictionary<string, object>> _documets;
 
+    public ShowScraperResults()
+    {
+      InitializeComponent();
+    }
+
     public ShowScraperResults(IEnumerable<Dictionary<string, object>> documets)
     {
       InitializeComponent();

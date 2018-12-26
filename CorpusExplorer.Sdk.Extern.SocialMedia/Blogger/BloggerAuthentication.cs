@@ -8,7 +8,7 @@ using Google.Apis.Services;
 
 namespace CorpusExplorer.Sdk.Extern.SocialMedia.Blogger
 {
-  public class BloggerApiKeyAuthentication : AbstractSimpleAuthentication
+  public class BloggerAuthentication : AbstractAuthentication
   {
     public override string ProviderName => "Blogger via API-Key";
 
@@ -19,13 +19,23 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Blogger
         {"ApiKey", ""}
       };
 
-    protected override object OpenConnection()
+    public override object OpenConnection()
     {
-      return new Google.Apis.Blogger.v3.BloggerService(new BaseClientService.Initializer
+      try
       {
-        ApplicationName = Settings["ApplicationName"],
-        ApiKey = Settings["ApiKey"]
-      });
+        if(string.IsNullOrWhiteSpace(Settings["ApiKey"]))
+          return null;
+
+        return new Google.Apis.Blogger.v3.BloggerService(new BaseClientService.Initializer
+        {
+          ApplicationName = Settings["ApplicationName"]?.Trim(),
+          ApiKey = Settings["ApiKey"]?.Trim()
+        });
+      }
+      catch
+      {
+        return null;
+      }
     }
   }
 }

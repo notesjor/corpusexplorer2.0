@@ -30,9 +30,9 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     }
 
     /// <summary>
-    ///   Gets or sets the info describtion.
+    ///   Gets or sets the info description.
     /// </summary>
-    public string InfoDescribtion { get; set; }
+    public string InfoDescription { get; set; }
 
     /// <summary>
     ///   Gets or sets the info header.
@@ -55,7 +55,16 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     /// </param>
     private void OnClick(object sender, EventArgs eventArgs)
     {
-      PushMessageHelper.Show(InfoHeader, InfoImage, InfoDescribtion, Location);
+      PushMessageHelper.Show(InfoHeader, InfoImage, InfoDescription, Location);
+    }
+
+    private void InitializeComponent()
+    {
+      ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+      this.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+      this.ResumeLayout(false);
+
     }
   }
 }

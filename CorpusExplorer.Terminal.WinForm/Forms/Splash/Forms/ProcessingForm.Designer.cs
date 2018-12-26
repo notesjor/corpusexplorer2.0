@@ -30,6 +30,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Splash.Forms
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProcessingForm));
       this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
       this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
       this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
@@ -42,37 +43,19 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Splash.Forms
       // 
       // radLabel1
       // 
-      this.radLabel1.AutoSize = false;
-      this.radLabel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 10F);
-      this.radLabel1.Location = new System.Drawing.Point(10, 61);
+      resources.ApplyResources(this.radLabel1, "radLabel1");
       this.radLabel1.Name = "radLabel1";
-      this.radLabel1.Size = new System.Drawing.Size(221, 94);
-      this.radLabel1.TabIndex = 0;
-      this.radLabel1.Text = "Lehnen Sie sich zurück und enspannen Sie sich, während CorpusExplorer für Sie rec" +
-    "hnet.";
-      this.radLabel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // radWaitingBar1
       // 
-      this.radWaitingBar1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radWaitingBar1.Location = new System.Drawing.Point(10, 33);
+      resources.ApplyResources(this.radWaitingBar1, "radWaitingBar1");
       this.radWaitingBar1.Name = "radWaitingBar1";
-      this.radWaitingBar1.Size = new System.Drawing.Size(221, 28);
-      this.radWaitingBar1.TabIndex = 1;
-      this.radWaitingBar1.Text = "radWaitingBar1";
       this.radWaitingBar1.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.Dash;
       // 
       // radLabel2
       // 
-      this.radLabel2.AutoSize = false;
-      this.radLabel2.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radLabel2.Location = new System.Drawing.Point(10, 10);
+      resources.ApplyResources(this.radLabel2, "radLabel2");
       this.radLabel2.Name = "radLabel2";
-      this.radLabel2.Size = new System.Drawing.Size(221, 23);
-      this.radLabel2.TabIndex = 2;
-      this.radLabel2.Text = "Gut Ding will Weile haben...";
-      this.radLabel2.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
       // 
       // timer1
       // 
@@ -81,20 +64,17 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Splash.Forms
       // 
       // ProcessingForm
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.ClientSize = new System.Drawing.Size(241, 165);
+      resources.ApplyResources(this, "$this");
       this.ControlBox = false;
       this.Controls.Add(this.radWaitingBar1);
       this.Controls.Add(this.radLabel2);
       this.Controls.Add(this.radLabel1);
       this.Name = "ProcessingForm";
-      this.Padding = new System.Windows.Forms.Padding(10);
       // 
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
-      this.Text = "";
       this.TopMost = true;
       ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).EndInit();

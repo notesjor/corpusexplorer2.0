@@ -28,14 +28,14 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AbstractView));
       this.SuspendLayout();
       // 
       // AbstractView
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.MinimumSize = new System.Drawing.Size(780, 400);
+      resources.ApplyResources(this, "$this");
       this.Name = "AbstractView";
-      this.Size = new System.Drawing.Size(780, 400);
       this.ResumeLayout(false);
 
     }

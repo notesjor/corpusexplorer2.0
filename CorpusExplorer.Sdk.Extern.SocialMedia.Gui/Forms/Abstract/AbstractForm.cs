@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Forms.Abstract
 {
-  public partial class AbstractForm : Form
+  public partial class AbstractForm : RadForm
   {
     public AbstractForm()
     {

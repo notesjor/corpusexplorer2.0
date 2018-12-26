@@ -1,4 +1,4 @@
-﻿namespace CorpusExplorer.Terminal.WinForm.View.Special
+namespace CorpusExplorer.Terminal.WinForm.View.Special
 {
   partial class Html5DevLab
   {
@@ -29,6 +29,7 @@
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Html5DevLab));
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
@@ -79,13 +80,10 @@
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
-      this.radCommandBar1.TabIndex = 1;
       // 
       // commandBarRowElement1
       // 
@@ -96,7 +94,7 @@
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.btn_load,
             this.btn_save,
@@ -113,245 +111,196 @@
       // 
       // btn_load
       // 
-      this.btn_load.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_load, "btn_load");
       this.btn_load.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.folder_open;
+      this.btn_load.AutoToolTip = true;
       this.btn_load.Name = "btn_load";
-      this.btn_load.Text = "HTML5-Vorlage laden...";
       this.btn_load.Click += new System.EventHandler(this.btn_load_Click);
       // 
       // btn_save
       // 
-      this.btn_save.DisplayName = "commandBarButton2";
+      resources.ApplyResources(this.btn_save, "btn_save");
       this.btn_save.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save;
+      this.btn_save.AutoToolTip = true;
       this.btn_save.Name = "btn_save";
-      this.btn_save.Text = "HTML5-Vorlage speichern...";
       this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
       // 
       // commandBarSeparator3
       // 
-      this.commandBarSeparator3.DisplayName = "commandBarSeparator3";
+      resources.ApplyResources(this.commandBarSeparator3, "commandBarSeparator3");
       this.commandBarSeparator3.Name = "commandBarSeparator3";
       this.commandBarSeparator3.VisibleInOverflowMenu = false;
       // 
       // btn_refresh
       // 
-      this.btn_refresh.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_refresh, "btn_refresh");
       this.btn_refresh.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.refresh;
+      this.btn_refresh.AutoToolTip = true;
       this.btn_refresh.Name = "btn_refresh";
-      this.btn_refresh.Text = "Ausgabe Aktualisieren";
       this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
       // 
       // commandBarSeparator1
       // 
-      this.commandBarSeparator1.DisplayName = "commandBarSeparator1";
+      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
       this.commandBarSeparator1.Name = "commandBarSeparator1";
       this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
       // btn_print
       // 
-      this.btn_print.DisplayName = "commandBarButton2";
+      resources.ApplyResources(this.btn_print, "btn_print");
       this.btn_print.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.print;
+      this.btn_print.AutoToolTip = true;
       this.btn_print.Name = "btn_print";
-      this.btn_print.Text = "Ausgabe drucken";
       this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
       // 
       // btn_export_html
       // 
-      this.btn_export_html.DisplayName = "commandBarButton3";
+      resources.ApplyResources(this.btn_export_html, "btn_export_html");
       this.btn_export_html.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
+      this.btn_export_html.AutoToolTip = true;
       this.btn_export_html.Name = "btn_export_html";
-      this.btn_export_html.Text = "Ausgabe exportieren";
       // 
       // btn_export_pdf
       // 
-      this.btn_export_pdf.DisplayName = "commandBarButton4";
+      resources.ApplyResources(this.btn_export_pdf, "btn_export_pdf");
       this.btn_export_pdf.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_pdf;
+      this.btn_export_pdf.AutoToolTip = true;
       this.btn_export_pdf.Name = "btn_export_pdf";
-      this.btn_export_pdf.Text = "Ausgabe als PDF exportieren";
       this.btn_export_pdf.Click += new System.EventHandler(this.btn_export_pdf_Click);
       // 
       // btn_export_image
       // 
-      this.btn_export_image.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_export_image, "btn_export_image");
       this.btn_export_image.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.image_save;
+      this.btn_export_image.AutoToolTip = true;
       this.btn_export_image.Name = "btn_export_image";
-      this.btn_export_image.Text = "Bild-Export";
       this.btn_export_image.Click += new System.EventHandler(this.btn_export_image_Click);
       // 
       // commandBarSeparator2
       // 
-      this.commandBarSeparator2.DisplayName = "commandBarSeparator2";
+      resources.ApplyResources(this.commandBarSeparator2, "commandBarSeparator2");
       this.commandBarSeparator2.Name = "commandBarSeparator2";
       this.commandBarSeparator2.VisibleInOverflowMenu = false;
       // 
       // btn_help
       // 
-      this.btn_help.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_help, "btn_help");
       this.btn_help.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.health;
+      this.btn_help.AutoToolTip = true;
       this.btn_help.Name = "btn_help";
-      this.btn_help.Text = "Entwickler-Hilfe";
       this.btn_help.Click += new System.EventHandler(this.btn_help_Click);
       // 
       // radSplitContainer1
       // 
       this.radSplitContainer1.Controls.Add(this.splitPanel1);
       this.radSplitContainer1.Controls.Add(this.splitPanel2);
-      this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer1.Location = new System.Drawing.Point(0, 69);
+      resources.ApplyResources(this.radSplitContainer1, "radSplitContainer1");
       this.radSplitContainer1.Name = "radSplitContainer1";
       // 
       // 
       // 
       this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer1.Size = new System.Drawing.Size(780, 331);
-      this.radSplitContainer1.TabIndex = 2;
       this.radSplitContainer1.TabStop = false;
       // 
       // splitPanel1
       // 
       this.splitPanel1.Controls.Add(this.radSplitContainer2);
-      this.splitPanel1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.splitPanel1, "splitPanel1");
       this.splitPanel1.Name = "splitPanel1";
       // 
       // 
       // 
       this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel1.Size = new System.Drawing.Size(262, 331);
       this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.1623711F, 0F);
       this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-126, 0);
-      this.splitPanel1.TabIndex = 0;
       this.splitPanel1.TabStop = false;
-      this.splitPanel1.Text = "splitPanel1";
       // 
       // radSplitContainer2
       // 
       this.radSplitContainer2.Controls.Add(this.splitPanel3);
       this.radSplitContainer2.Controls.Add(this.splitPanel4);
-      this.radSplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer2.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radSplitContainer2, "radSplitContainer2");
       this.radSplitContainer2.Name = "radSplitContainer2";
-      this.radSplitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
       // 
       // 
       // 
       this.radSplitContainer2.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer2.Size = new System.Drawing.Size(262, 331);
-      this.radSplitContainer2.TabIndex = 0;
       this.radSplitContainer2.TabStop = false;
       // 
       // splitPanel3
       // 
       this.splitPanel3.Controls.Add(this.radGroupBox1);
-      this.splitPanel3.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.splitPanel3, "splitPanel3");
       this.splitPanel3.Name = "splitPanel3";
       // 
       // 
       // 
       this.splitPanel3.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel3.Size = new System.Drawing.Size(262, 164);
-      this.splitPanel3.TabIndex = 0;
       this.splitPanel3.TabStop = false;
-      this.splitPanel3.Text = "splitPanel3";
       // 
       // radGroupBox1
       // 
       this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
       this.radGroupBox1.Controls.Add(this.elementHost1);
-      this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGroupBox1.HeaderText = "HTML5-Vorlage";
-      this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radGroupBox1, "radGroupBox1");
       this.radGroupBox1.Name = "radGroupBox1";
-      this.radGroupBox1.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox1.Size = new System.Drawing.Size(262, 164);
-      this.radGroupBox1.TabIndex = 0;
-      this.radGroupBox1.Text = "HTML5-Vorlage";
       // 
       // elementHost1
       // 
-      this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.elementHost1.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.elementHost1, "elementHost1");
       this.elementHost1.Name = "elementHost1";
-      this.elementHost1.Size = new System.Drawing.Size(252, 134);
-      this.elementHost1.TabIndex = 0;
-      this.elementHost1.Text = "elementHost1";
       this.elementHost1.Child = null;
       // 
       // splitPanel4
       // 
       this.splitPanel4.Controls.Add(this.radGroupBox2);
-      this.splitPanel4.Location = new System.Drawing.Point(0, 168);
+      resources.ApplyResources(this.splitPanel4, "splitPanel4");
       this.splitPanel4.Name = "splitPanel4";
       // 
       // 
       // 
       this.splitPanel4.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel4.Size = new System.Drawing.Size(262, 163);
-      this.splitPanel4.TabIndex = 1;
       this.splitPanel4.TabStop = false;
-      this.splitPanel4.Text = "splitPanel4";
       // 
       // radGroupBox2
       // 
       this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
       this.radGroupBox2.Controls.Add(this.elementHost2);
-      this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGroupBox2.HeaderText = "Ausgabe (HTML)";
-      this.radGroupBox2.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radGroupBox2, "radGroupBox2");
       this.radGroupBox2.Name = "radGroupBox2";
-      this.radGroupBox2.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox2.Size = new System.Drawing.Size(262, 163);
-      this.radGroupBox2.TabIndex = 0;
-      this.radGroupBox2.Text = "Ausgabe (HTML)";
       // 
       // elementHost2
       // 
-      this.elementHost2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.elementHost2.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.elementHost2, "elementHost2");
       this.elementHost2.Name = "elementHost2";
-      this.elementHost2.Size = new System.Drawing.Size(252, 133);
-      this.elementHost2.TabIndex = 0;
-      this.elementHost2.Text = "elementHost2";
       this.elementHost2.Child = null;
       // 
       // splitPanel2
       // 
       this.splitPanel2.Controls.Add(this.radGroupBox3);
-      this.splitPanel2.Location = new System.Drawing.Point(266, 0);
+      resources.ApplyResources(this.splitPanel2, "splitPanel2");
       this.splitPanel2.Name = "splitPanel2";
       // 
       // 
       // 
       this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel2.Size = new System.Drawing.Size(514, 331);
       this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.1623712F, 0F);
       this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(126, 0);
-      this.splitPanel2.TabIndex = 1;
       this.splitPanel2.TabStop = false;
-      this.splitPanel2.Text = "splitPanel2";
       // 
       // radGroupBox3
       // 
       this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
       this.radGroupBox3.Controls.Add(this.webHtml5LaboratoryVisualisation1);
-      this.radGroupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGroupBox3.HeaderText = "Ausgabe (Vorschau)";
-      this.radGroupBox3.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radGroupBox3, "radGroupBox3");
       this.radGroupBox3.Name = "radGroupBox3";
-      this.radGroupBox3.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox3.Size = new System.Drawing.Size(514, 331);
-      this.radGroupBox3.TabIndex = 0;
-      this.radGroupBox3.Text = "Ausgabe (Vorschau)";
       // 
       // webHtml5LaboratoryVisualisation1
       // 
       this.webHtml5LaboratoryVisualisation1.BackColor = System.Drawing.Color.White;
-      this.webHtml5LaboratoryVisualisation1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.webHtml5LaboratoryVisualisation1.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.webHtml5LaboratoryVisualisation1, "webHtml5LaboratoryVisualisation1");
       this.webHtml5LaboratoryVisualisation1.MainpageUrl = null;
-      this.webHtml5LaboratoryVisualisation1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.webHtml5LaboratoryVisualisation1.Name = "webHtml5LaboratoryVisualisation1";
-      this.webHtml5LaboratoryVisualisation1.Size = new System.Drawing.Size(504, 301);
-      this.webHtml5LaboratoryVisualisation1.TabIndex = 0;
       // 
       // timer1
       // 
@@ -360,7 +309,6 @@
       // 
       // Html5DevLab
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radSplitContainer1);
       this.Controls.Add(this.radCommandBar1);

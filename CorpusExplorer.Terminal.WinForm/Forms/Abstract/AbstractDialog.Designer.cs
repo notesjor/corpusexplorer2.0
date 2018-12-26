@@ -29,6 +29,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AbstractDialog));
       this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
       this.btn_ok = new Telerik.WinControls.UI.RadButton();
       this.btn_abort = new Telerik.WinControls.UI.RadButton();
@@ -43,45 +44,35 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
       // 
       this.radPanel1.Controls.Add(this.btn_ok);
       this.radPanel1.Controls.Add(this.btn_abort);
-      this.radPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.radPanel1.Location = new System.Drawing.Point(0, 215);
+      resources.ApplyResources(this.radPanel1, "radPanel1");
       this.radPanel1.Name = "radPanel1";
-      this.radPanel1.Padding = new System.Windows.Forms.Padding(3);
-      this.radPanel1.Size = new System.Drawing.Size(342, 38);
-      this.radPanel1.TabIndex = 0;
       // 
       // btn_ok
       // 
-      this.btn_ok.Dock = System.Windows.Forms.DockStyle.Right;
-      this.btn_ok.Location = new System.Drawing.Point(119, 3);
+      resources.ApplyResources(this.btn_ok, "btn_ok");
       this.btn_ok.Name = "btn_ok";
-      this.btn_ok.Size = new System.Drawing.Size(110, 32);
-      this.btn_ok.TabIndex = 1;
       this.btn_ok.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.OK;
       this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
       ((Telerik.WinControls.UI.RadButtonElement)(this.btn_ok.GetChildAt(0))).Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.OK;
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.btn_ok.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = false;
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.btn_ok.GetChildAt(0).GetChildAt(1).GetChildAt(1))).ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(129)))), ((int)(((byte)(68)))));
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.btn_ok.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.MiddleCenter;
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.btn_ok.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = ((System.Drawing.ContentAlignment)(resources.GetObject("resource.Alignment")));
       // 
       // btn_abort
       // 
-      this.btn_abort.Dock = System.Windows.Forms.DockStyle.Right;
-      this.btn_abort.Location = new System.Drawing.Point(229, 3);
+      resources.ApplyResources(this.btn_abort, "btn_abort");
       this.btn_abort.Name = "btn_abort";
-      this.btn_abort.Size = new System.Drawing.Size(110, 32);
-      this.btn_abort.TabIndex = 2;
       this.btn_abort.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Abbrechen;
       this.btn_abort.Click += new System.EventHandler(this.btn_abort_Click);
       ((Telerik.WinControls.UI.RadButtonElement)(this.btn_abort.GetChildAt(0))).Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Abbrechen;
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.btn_abort.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = false;
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.btn_abort.GetChildAt(0).GetChildAt(1).GetChildAt(1))).ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(0)))), ((int)(((byte)(38)))));
-      ((Telerik.WinControls.Primitives.TextPrimitive)(this.btn_abort.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.MiddleCenter;
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.btn_abort.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = ((System.Drawing.ContentAlignment)(resources.GetObject("resource.Alignment1")));
       // 
       // AbstractDialog
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.ClientSize = new System.Drawing.Size(342, 253);
+      resources.ApplyResources(this, "$this");
       this.Controls.Add(this.radPanel1);
       this.MaximizeBox = false;
       this.MinimizeBox = false;
@@ -91,7 +82,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
       // 
       this.RootElement.ApplyShapeToControl = true;
       this.ShowInTaskbar = false;
-      this.Text = "AbstractDialog";
       this.TopMost = true;
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
       this.radPanel1.ResumeLayout(false);

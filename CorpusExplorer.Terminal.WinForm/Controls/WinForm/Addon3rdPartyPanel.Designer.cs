@@ -28,7 +28,20 @@
     /// </summary>
     private void InitializeComponent()
     {
-      components = new System.ComponentModel.Container();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Addon3rdPartyPanel));
+      ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+      this.SuspendLayout();
+      // 
+      // Addon3rdPartyPanel
+      // 
+      // 
+      // 
+      // 
+      this.PanelContainer.Location = ((System.Drawing.Point)(resources.GetObject("Addon3rdPartyPanel.PanelContainer.Location")));
+      this.PanelContainer.Name = "";
+      ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+      this.ResumeLayout(false);
+
     }
 
     #endregion

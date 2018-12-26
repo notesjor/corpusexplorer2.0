@@ -117,4 +117,1480 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btn_main_blogger.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btn_main_blogger.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="btn_main_blogger.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 188</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btn_main_blogger.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btn_main_blogger.Name" xml:space="preserve">
+    <value>btn_main_blogger</value>
+  </data>
+  <data name="&gt;&gt;btn_main_blogger.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;btn_main_blogger.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;btn_main_blogger.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btn_main_facebook.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 3</value>
+  </data>
+  <data name="btn_main_facebook.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="btn_main_facebook.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 188</value>
+  </data>
+  <data name="btn_main_facebook.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;btn_main_facebook.Name" xml:space="preserve">
+    <value>btn_main_facebook</value>
+  </data>
+  <data name="&gt;&gt;btn_main_facebook.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;btn_main_facebook.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;btn_main_facebook.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btn_main_instagram.Location" type="System.Drawing.Point, System.Drawing">
+    <value>283, 3</value>
+  </data>
+  <data name="btn_main_instagram.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="btn_main_instagram.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 188</value>
+  </data>
+  <data name="btn_main_instagram.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btn_main_instagram.Name" xml:space="preserve">
+    <value>btn_main_instagram</value>
+  </data>
+  <data name="&gt;&gt;btn_main_instagram.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;btn_main_instagram.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;btn_main_instagram.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btn_main_reddit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>435, 3</value>
+  </data>
+  <data name="btn_main_reddit.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="btn_main_reddit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 188</value>
+  </data>
+  <data name="btn_main_reddit.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btn_main_reddit.Name" xml:space="preserve">
+    <value>btn_main_reddit</value>
+  </data>
+  <data name="&gt;&gt;btn_main_reddit.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;btn_main_reddit.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;btn_main_reddit.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btn_main_tumblr.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 197</value>
+  </data>
+  <data name="btn_main_tumblr.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="btn_main_tumblr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 188</value>
+  </data>
+  <data name="btn_main_tumblr.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;btn_main_tumblr.Name" xml:space="preserve">
+    <value>btn_main_tumblr</value>
+  </data>
+  <data name="&gt;&gt;btn_main_tumblr.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;btn_main_tumblr.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;btn_main_tumblr.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="btn_main_twitter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 197</value>
+  </data>
+  <data name="btn_main_twitter.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="btn_main_twitter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 188</value>
+  </data>
+  <data name="btn_main_twitter.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;btn_main_twitter.Name" xml:space="preserve">
+    <value>btn_main_twitter</value>
+  </data>
+  <data name="&gt;&gt;btn_main_twitter.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;btn_main_twitter.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;btn_main_twitter.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="btn_main_wordpress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>283, 197</value>
+  </data>
+  <data name="btn_main_wordpress.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="btn_main_wordpress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 188</value>
+  </data>
+  <data name="btn_main_wordpress.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;btn_main_wordpress.Name" xml:space="preserve">
+    <value>btn_main_wordpress</value>
+  </data>
+  <data name="&gt;&gt;btn_main_wordpress.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;btn_main_wordpress.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;btn_main_wordpress.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="btn_main_youtube.Location" type="System.Drawing.Point, System.Drawing">
+    <value>423, 197</value>
+  </data>
+  <data name="btn_main_youtube.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="btn_main_youtube.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 188</value>
+  </data>
+  <data name="btn_main_youtube.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;btn_main_youtube.Name" xml:space="preserve">
+    <value>btn_main_youtube</value>
+  </data>
+  <data name="&gt;&gt;btn_main_youtube.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;btn_main_youtube.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;btn_main_youtube.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="btn_main_forum.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 391</value>
+  </data>
+  <data name="btn_main_forum.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="btn_main_forum.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 188</value>
+  </data>
+  <data name="btn_main_forum.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;btn_main_forum.Name" xml:space="preserve">
+    <value>btn_main_forum</value>
+  </data>
+  <data name="&gt;&gt;btn_main_forum.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;btn_main_forum.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;btn_main_forum.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="btn_main_web.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 391</value>
+  </data>
+  <data name="btn_main_web.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="btn_main_web.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 188</value>
+  </data>
+  <data name="btn_main_web.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;btn_main_web.Name" xml:space="preserve">
+    <value>btn_main_web</value>
+  </data>
+  <data name="&gt;&gt;btn_main_web.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;btn_main_web.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;btn_main_web.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="flowLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 85</value>
+  </data>
+  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>690, 401</value>
+  </data>
+  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
+    <value>page_main_main</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ihdPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="ihdPanel1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt</value>
+  </data>
+  <data name="ihdPanel1.IHDDeescribtion" xml:space="preserve">
+    <value>Wählen Sie ein soziales Netzwerk oder Online-Forum/Webseite aus, um ein Online-Korpus zu akquirieren. Alle hier alle genannten Marken und Warenzeichen sind Eigentum der jeweiligen Inhaber. Für die Nutzung müssen Sie ggf. eigene API-Zugänge beantragen/erwerben.</value>
+  </data>
+  <data name="ihdPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="ihdPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="ihdPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>690, 85</value>
+  </data>
+  <data name="ihdPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;ihdPanel1.Name" xml:space="preserve">
+    <value>ihdPanel1</value>
+  </data>
+  <data name="&gt;&gt;ihdPanel1.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;ihdPanel1.Parent" xml:space="preserve">
+    <value>page_main_main</value>
+  </data>
+  <data name="&gt;&gt;ihdPanel1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="page_main_main.Location" type="System.Drawing.Point, System.Drawing">
+    <value>139, 33</value>
+  </data>
+  <data name="page_main_main.Size" type="System.Drawing.Size, System.Drawing">
+    <value>690, 486</value>
+  </data>
+  <data name="page_main_main.Text" xml:space="preserve">
+    <value>Übersicht</value>
+  </data>
+  <data name="&gt;&gt;page_main_main.Name" xml:space="preserve">
+    <value>page_main_main</value>
+  </data>
+  <data name="&gt;&gt;page_main_main.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_main_main.Parent" xml:space="preserve">
+    <value>pages_main</value>
+  </data>
+  <data name="&gt;&gt;page_main_main.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="serviceHome_blogger.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="serviceHome_blogger.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="serviceHome_blogger.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="serviceHome_blogger.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_blogger.Name" xml:space="preserve">
+    <value>serviceHome_blogger</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_blogger.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceHome, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_blogger.Parent" xml:space="preserve">
+    <value>page_blogger_home</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_blogger.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_blogger_home.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_blogger_home.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="page_blogger_home.Text" xml:space="preserve">
+    <value>HOME</value>
+  </data>
+  <data name="&gt;&gt;page_blogger_home.Name" xml:space="preserve">
+    <value>page_blogger_home</value>
+  </data>
+  <data name="&gt;&gt;page_blogger_home.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_blogger_home.Parent" xml:space="preserve">
+    <value>pages_blogger</value>
+  </data>
+  <data name="&gt;&gt;page_blogger_home.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_blogger_account.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_blogger_account.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="page_blogger_account.Text" xml:space="preserve">
+    <value>POSTs</value>
+  </data>
+  <data name="&gt;&gt;page_blogger_account.Name" xml:space="preserve">
+    <value>page_blogger_account</value>
+  </data>
+  <data name="&gt;&gt;page_blogger_account.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_blogger_account.Parent" xml:space="preserve">
+    <value>pages_blogger</value>
+  </data>
+  <data name="&gt;&gt;page_blogger_account.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pages_blogger.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="pages_blogger.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pages_blogger.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="pages_blogger.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;pages_blogger.Name" xml:space="preserve">
+    <value>pages_blogger</value>
+  </data>
+  <data name="&gt;&gt;pages_blogger.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;pages_blogger.Parent" xml:space="preserve">
+    <value>page_main_blogger</value>
+  </data>
+  <data name="&gt;&gt;pages_blogger.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_main_blogger.Location" type="System.Drawing.Point, System.Drawing">
+    <value>41, 33</value>
+  </data>
+  <data name="page_main_blogger.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="page_main_blogger.Text" xml:space="preserve">
+    <value>Blogger</value>
+  </data>
+  <data name="&gt;&gt;page_main_blogger.Name" xml:space="preserve">
+    <value>page_main_blogger</value>
+  </data>
+  <data name="&gt;&gt;page_main_blogger.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_main_blogger.Parent" xml:space="preserve">
+    <value>pages_main</value>
+  </data>
+  <data name="&gt;&gt;page_main_blogger.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="serviceHome_facebook.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="serviceHome_facebook.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="serviceHome_facebook.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="serviceHome_facebook.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_facebook.Name" xml:space="preserve">
+    <value>serviceHome_facebook</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_facebook.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceHome, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_facebook.Parent" xml:space="preserve">
+    <value>page_facebook_home</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_facebook.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_facebook_home.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_facebook_home.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="page_facebook_home.Text" xml:space="preserve">
+    <value>HOME</value>
+  </data>
+  <data name="&gt;&gt;page_facebook_home.Name" xml:space="preserve">
+    <value>page_facebook_home</value>
+  </data>
+  <data name="&gt;&gt;page_facebook_home.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_facebook_home.Parent" xml:space="preserve">
+    <value>pages_facebook</value>
+  </data>
+  <data name="&gt;&gt;page_facebook_home.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_facebook_account.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_facebook_account.Size" type="System.Drawing.Size, System.Drawing">
+    <value>810, 398</value>
+  </data>
+  <data name="page_facebook_account.Text" xml:space="preserve">
+    <value>ACCOUNT</value>
+  </data>
+  <data name="&gt;&gt;page_facebook_account.Name" xml:space="preserve">
+    <value>page_facebook_account</value>
+  </data>
+  <data name="&gt;&gt;page_facebook_account.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_facebook_account.Parent" xml:space="preserve">
+    <value>pages_facebook</value>
+  </data>
+  <data name="&gt;&gt;page_facebook_account.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="page_facebook_stream.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_facebook_stream.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="page_facebook_stream.Text" xml:space="preserve">
+    <value>STREAM</value>
+  </data>
+  <data name="&gt;&gt;page_facebook_stream.Name" xml:space="preserve">
+    <value>page_facebook_stream</value>
+  </data>
+  <data name="&gt;&gt;page_facebook_stream.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_facebook_stream.Parent" xml:space="preserve">
+    <value>pages_facebook</value>
+  </data>
+  <data name="&gt;&gt;page_facebook_stream.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="pages_facebook.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="pages_facebook.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pages_facebook.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="pages_facebook.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;pages_facebook.Name" xml:space="preserve">
+    <value>pages_facebook</value>
+  </data>
+  <data name="&gt;&gt;pages_facebook.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;pages_facebook.Parent" xml:space="preserve">
+    <value>page_main_facebook</value>
+  </data>
+  <data name="&gt;&gt;pages_facebook.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_main_facebook.Location" type="System.Drawing.Point, System.Drawing">
+    <value>41, 33</value>
+  </data>
+  <data name="page_main_facebook.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="page_main_facebook.Text" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="&gt;&gt;page_main_facebook.Name" xml:space="preserve">
+    <value>page_main_facebook</value>
+  </data>
+  <data name="&gt;&gt;page_main_facebook.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_main_facebook.Parent" xml:space="preserve">
+    <value>pages_main</value>
+  </data>
+  <data name="&gt;&gt;page_main_facebook.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="serviceHome_instagram.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="serviceHome_instagram.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="serviceHome_instagram.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="serviceHome_instagram.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_instagram.Name" xml:space="preserve">
+    <value>serviceHome_instagram</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_instagram.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceHome, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_instagram.Parent" xml:space="preserve">
+    <value>page_instagram_home</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_instagram.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_instagram_home.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_instagram_home.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="page_instagram_home.Text" xml:space="preserve">
+    <value>HOME</value>
+  </data>
+  <data name="&gt;&gt;page_instagram_home.Name" xml:space="preserve">
+    <value>page_instagram_home</value>
+  </data>
+  <data name="&gt;&gt;page_instagram_home.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_instagram_home.Parent" xml:space="preserve">
+    <value>pages_instagram</value>
+  </data>
+  <data name="&gt;&gt;page_instagram_home.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_instagram_account.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_instagram_account.Size" type="System.Drawing.Size, System.Drawing">
+    <value>810, 398</value>
+  </data>
+  <data name="page_instagram_account.Text" xml:space="preserve">
+    <value>ACCOUNT</value>
+  </data>
+  <data name="&gt;&gt;page_instagram_account.Name" xml:space="preserve">
+    <value>page_instagram_account</value>
+  </data>
+  <data name="&gt;&gt;page_instagram_account.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_instagram_account.Parent" xml:space="preserve">
+    <value>pages_instagram</value>
+  </data>
+  <data name="&gt;&gt;page_instagram_account.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="page_instagram_stream.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_instagram_stream.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="page_instagram_stream.Text" xml:space="preserve">
+    <value>STREAM</value>
+  </data>
+  <data name="&gt;&gt;page_instagram_stream.Name" xml:space="preserve">
+    <value>page_instagram_stream</value>
+  </data>
+  <data name="&gt;&gt;page_instagram_stream.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_instagram_stream.Parent" xml:space="preserve">
+    <value>pages_instagram</value>
+  </data>
+  <data name="&gt;&gt;page_instagram_stream.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="pages_instagram.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="pages_instagram.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pages_instagram.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="pages_instagram.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;pages_instagram.Name" xml:space="preserve">
+    <value>pages_instagram</value>
+  </data>
+  <data name="&gt;&gt;pages_instagram.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;pages_instagram.Parent" xml:space="preserve">
+    <value>page_main_instagram</value>
+  </data>
+  <data name="&gt;&gt;pages_instagram.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_main_instagram.Location" type="System.Drawing.Point, System.Drawing">
+    <value>41, 33</value>
+  </data>
+  <data name="page_main_instagram.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="page_main_instagram.Text" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="&gt;&gt;page_main_instagram.Name" xml:space="preserve">
+    <value>page_main_instagram</value>
+  </data>
+  <data name="&gt;&gt;page_main_instagram.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_main_instagram.Parent" xml:space="preserve">
+    <value>pages_main</value>
+  </data>
+  <data name="&gt;&gt;page_main_instagram.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="serviceHome_reddit.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="serviceHome_reddit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="serviceHome_reddit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="serviceHome_reddit.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_reddit.Name" xml:space="preserve">
+    <value>serviceHome_reddit</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_reddit.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceHome, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_reddit.Parent" xml:space="preserve">
+    <value>page_reddit_home</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_reddit.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_reddit_home.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_reddit_home.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="page_reddit_home.Text" xml:space="preserve">
+    <value>HOME</value>
+  </data>
+  <data name="&gt;&gt;page_reddit_home.Name" xml:space="preserve">
+    <value>page_reddit_home</value>
+  </data>
+  <data name="&gt;&gt;page_reddit_home.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_reddit_home.Parent" xml:space="preserve">
+    <value>pages_reddit</value>
+  </data>
+  <data name="&gt;&gt;page_reddit_home.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_reddit_account.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_reddit_account.Size" type="System.Drawing.Size, System.Drawing">
+    <value>810, 398</value>
+  </data>
+  <data name="page_reddit_account.Text" xml:space="preserve">
+    <value>ACCOUNT</value>
+  </data>
+  <data name="&gt;&gt;page_reddit_account.Name" xml:space="preserve">
+    <value>page_reddit_account</value>
+  </data>
+  <data name="&gt;&gt;page_reddit_account.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_reddit_account.Parent" xml:space="preserve">
+    <value>pages_reddit</value>
+  </data>
+  <data name="&gt;&gt;page_reddit_account.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="page_reddit_stream.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_reddit_stream.Size" type="System.Drawing.Size, System.Drawing">
+    <value>810, 398</value>
+  </data>
+  <data name="page_reddit_stream.Text" xml:space="preserve">
+    <value>STREAM</value>
+  </data>
+  <data name="&gt;&gt;page_reddit_stream.Name" xml:space="preserve">
+    <value>page_reddit_stream</value>
+  </data>
+  <data name="&gt;&gt;page_reddit_stream.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_reddit_stream.Parent" xml:space="preserve">
+    <value>pages_reddit</value>
+  </data>
+  <data name="&gt;&gt;page_reddit_stream.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="pages_reddit.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="pages_reddit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pages_reddit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="pages_reddit.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;pages_reddit.Name" xml:space="preserve">
+    <value>pages_reddit</value>
+  </data>
+  <data name="&gt;&gt;pages_reddit.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;pages_reddit.Parent" xml:space="preserve">
+    <value>page_main_reddit</value>
+  </data>
+  <data name="&gt;&gt;pages_reddit.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_main_reddit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>41, 33</value>
+  </data>
+  <data name="page_main_reddit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="page_main_reddit.Text" xml:space="preserve">
+    <value>Reddit</value>
+  </data>
+  <data name="&gt;&gt;page_main_reddit.Name" xml:space="preserve">
+    <value>page_main_reddit</value>
+  </data>
+  <data name="&gt;&gt;page_main_reddit.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_main_reddit.Parent" xml:space="preserve">
+    <value>pages_main</value>
+  </data>
+  <data name="&gt;&gt;page_main_reddit.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="serviceHome_tumblr.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="serviceHome_tumblr.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="serviceHome_tumblr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="serviceHome_tumblr.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_tumblr.Name" xml:space="preserve">
+    <value>serviceHome_tumblr</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_tumblr.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceHome, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_tumblr.Parent" xml:space="preserve">
+    <value>page_tumblr_home</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_tumblr.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_tumblr_home.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_tumblr_home.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="page_tumblr_home.Text" xml:space="preserve">
+    <value>HOME</value>
+  </data>
+  <data name="&gt;&gt;page_tumblr_home.Name" xml:space="preserve">
+    <value>page_tumblr_home</value>
+  </data>
+  <data name="&gt;&gt;page_tumblr_home.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_tumblr_home.Parent" xml:space="preserve">
+    <value>pages_tumblr</value>
+  </data>
+  <data name="&gt;&gt;page_tumblr_home.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_tumblr_account.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_tumblr_account.Size" type="System.Drawing.Size, System.Drawing">
+    <value>810, 398</value>
+  </data>
+  <data name="page_tumblr_account.Text" xml:space="preserve">
+    <value>ACCOUNT</value>
+  </data>
+  <data name="&gt;&gt;page_tumblr_account.Name" xml:space="preserve">
+    <value>page_tumblr_account</value>
+  </data>
+  <data name="&gt;&gt;page_tumblr_account.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_tumblr_account.Parent" xml:space="preserve">
+    <value>pages_tumblr</value>
+  </data>
+  <data name="&gt;&gt;page_tumblr_account.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="page_tumblr_stream.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_tumblr_stream.Size" type="System.Drawing.Size, System.Drawing">
+    <value>810, 398</value>
+  </data>
+  <data name="page_tumblr_stream.Text" xml:space="preserve">
+    <value>STREAM</value>
+  </data>
+  <data name="&gt;&gt;page_tumblr_stream.Name" xml:space="preserve">
+    <value>page_tumblr_stream</value>
+  </data>
+  <data name="&gt;&gt;page_tumblr_stream.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_tumblr_stream.Parent" xml:space="preserve">
+    <value>pages_tumblr</value>
+  </data>
+  <data name="&gt;&gt;page_tumblr_stream.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="pages_tumblr.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="pages_tumblr.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pages_tumblr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="pages_tumblr.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;pages_tumblr.Name" xml:space="preserve">
+    <value>pages_tumblr</value>
+  </data>
+  <data name="&gt;&gt;pages_tumblr.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;pages_tumblr.Parent" xml:space="preserve">
+    <value>page_main_tumblr</value>
+  </data>
+  <data name="&gt;&gt;pages_tumblr.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_main_tumblr.Location" type="System.Drawing.Point, System.Drawing">
+    <value>41, 33</value>
+  </data>
+  <data name="page_main_tumblr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="page_main_tumblr.Text" xml:space="preserve">
+    <value>Tumblr</value>
+  </data>
+  <data name="&gt;&gt;page_main_tumblr.Name" xml:space="preserve">
+    <value>page_main_tumblr</value>
+  </data>
+  <data name="&gt;&gt;page_main_tumblr.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_main_tumblr.Parent" xml:space="preserve">
+    <value>pages_main</value>
+  </data>
+  <data name="&gt;&gt;page_main_tumblr.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="serviceHome_twitter.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="serviceHome_twitter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="serviceHome_twitter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="serviceHome_twitter.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_twitter.Name" xml:space="preserve">
+    <value>serviceHome_twitter</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_twitter.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceHome, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_twitter.Parent" xml:space="preserve">
+    <value>page_twitter_home</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_twitter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_twitter_home.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_twitter_home.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="page_twitter_home.Text" xml:space="preserve">
+    <value>HOME</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_home.Name" xml:space="preserve">
+    <value>page_twitter_home</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_home.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_home.Parent" xml:space="preserve">
+    <value>pages_twitter</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_home.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_twitter_account.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_twitter_account.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="page_twitter_account.Text" xml:space="preserve">
+    <value>ACCOUNT</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_account.Name" xml:space="preserve">
+    <value>page_twitter_account</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_account.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_account.Parent" xml:space="preserve">
+    <value>pages_twitter</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_account.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="page_twitter_hashtag.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_twitter_hashtag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="page_twitter_hashtag.Text" xml:space="preserve">
+    <value>HASHTAG</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_hashtag.Name" xml:space="preserve">
+    <value>page_twitter_hashtag</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_hashtag.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_hashtag.Parent" xml:space="preserve">
+    <value>pages_twitter</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_hashtag.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="page_twitter_streaming.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_twitter_streaming.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="page_twitter_streaming.Text" xml:space="preserve">
+    <value>STREAM</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_streaming.Name" xml:space="preserve">
+    <value>page_twitter_streaming</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_streaming.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_streaming.Parent" xml:space="preserve">
+    <value>pages_twitter</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_streaming.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="page_twitter_images.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_twitter_images.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="page_twitter_images.Text" xml:space="preserve">
+    <value>IMAGE</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_images.Name" xml:space="preserve">
+    <value>page_twitter_images</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_images.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_images.Parent" xml:space="preserve">
+    <value>pages_twitter</value>
+  </data>
+  <data name="&gt;&gt;page_twitter_images.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="pages_twitter.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="pages_twitter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pages_twitter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="pages_twitter.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;pages_twitter.Name" xml:space="preserve">
+    <value>pages_twitter</value>
+  </data>
+  <data name="&gt;&gt;pages_twitter.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;pages_twitter.Parent" xml:space="preserve">
+    <value>page_main_twitter</value>
+  </data>
+  <data name="&gt;&gt;pages_twitter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_main_twitter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>41, 33</value>
+  </data>
+  <data name="page_main_twitter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="page_main_twitter.Text" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="&gt;&gt;page_main_twitter.Name" xml:space="preserve">
+    <value>page_main_twitter</value>
+  </data>
+  <data name="&gt;&gt;page_main_twitter.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_main_twitter.Parent" xml:space="preserve">
+    <value>pages_main</value>
+  </data>
+  <data name="&gt;&gt;page_main_twitter.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="serviceHome_wordpress.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="serviceHome_wordpress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="serviceHome_wordpress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="serviceHome_wordpress.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_wordpress.Name" xml:space="preserve">
+    <value>serviceHome_wordpress</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_wordpress.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceHome, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_wordpress.Parent" xml:space="preserve">
+    <value>pages_wordpress_home</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_wordpress.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="pages_wordpress_home.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="pages_wordpress_home.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="pages_wordpress_home.Text" xml:space="preserve">
+    <value>HOME</value>
+  </data>
+  <data name="&gt;&gt;pages_wordpress_home.Name" xml:space="preserve">
+    <value>pages_wordpress_home</value>
+  </data>
+  <data name="&gt;&gt;pages_wordpress_home.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;pages_wordpress_home.Parent" xml:space="preserve">
+    <value>pages_wordpress</value>
+  </data>
+  <data name="&gt;&gt;pages_wordpress_home.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="pages_wordpress_onlyPosts.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="pages_wordpress_onlyPosts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="pages_wordpress_onlyPosts.Text" xml:space="preserve">
+    <value>onlyPOSTS</value>
+  </data>
+  <data name="&gt;&gt;pages_wordpress_onlyPosts.Name" xml:space="preserve">
+    <value>pages_wordpress_onlyPosts</value>
+  </data>
+  <data name="&gt;&gt;pages_wordpress_onlyPosts.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;pages_wordpress_onlyPosts.Parent" xml:space="preserve">
+    <value>pages_wordpress</value>
+  </data>
+  <data name="&gt;&gt;pages_wordpress_onlyPosts.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pages_wordpress_postsAndComments.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="pages_wordpress_postsAndComments.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="pages_wordpress_postsAndComments.Text" xml:space="preserve">
+    <value>POSTSandCOMMENTS</value>
+  </data>
+  <data name="&gt;&gt;pages_wordpress_postsAndComments.Name" xml:space="preserve">
+    <value>pages_wordpress_postsAndComments</value>
+  </data>
+  <data name="&gt;&gt;pages_wordpress_postsAndComments.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;pages_wordpress_postsAndComments.Parent" xml:space="preserve">
+    <value>pages_wordpress</value>
+  </data>
+  <data name="&gt;&gt;pages_wordpress_postsAndComments.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="pages_wordpress.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="pages_wordpress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pages_wordpress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="pages_wordpress.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;pages_wordpress.Name" xml:space="preserve">
+    <value>pages_wordpress</value>
+  </data>
+  <data name="&gt;&gt;pages_wordpress.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;pages_wordpress.Parent" xml:space="preserve">
+    <value>page_main_wordpress</value>
+  </data>
+  <data name="&gt;&gt;pages_wordpress.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_main_wordpress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>41, 33</value>
+  </data>
+  <data name="page_main_wordpress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="page_main_wordpress.Text" xml:space="preserve">
+    <value>WordPress</value>
+  </data>
+  <data name="&gt;&gt;page_main_wordpress.Name" xml:space="preserve">
+    <value>page_main_wordpress</value>
+  </data>
+  <data name="&gt;&gt;page_main_wordpress.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_main_wordpress.Parent" xml:space="preserve">
+    <value>pages_main</value>
+  </data>
+  <data name="&gt;&gt;page_main_wordpress.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="serviceHome_youtube.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="serviceHome_youtube.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="serviceHome_youtube.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="serviceHome_youtube.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_youtube.Name" xml:space="preserve">
+    <value>serviceHome_youtube</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_youtube.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceHome, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_youtube.Parent" xml:space="preserve">
+    <value>page_youtube_home</value>
+  </data>
+  <data name="&gt;&gt;serviceHome_youtube.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_youtube_home.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_youtube_home.Size" type="System.Drawing.Size, System.Drawing">
+    <value>778, 441</value>
+  </data>
+  <data name="page_youtube_home.Text" xml:space="preserve">
+    <value>HOME</value>
+  </data>
+  <data name="&gt;&gt;page_youtube_home.Name" xml:space="preserve">
+    <value>page_youtube_home</value>
+  </data>
+  <data name="&gt;&gt;page_youtube_home.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_youtube_home.Parent" xml:space="preserve">
+    <value>pages_youtube</value>
+  </data>
+  <data name="&gt;&gt;page_youtube_home.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_youtube_account.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_youtube_account.Size" type="System.Drawing.Size, System.Drawing">
+    <value>810, 398</value>
+  </data>
+  <data name="page_youtube_account.Text" xml:space="preserve">
+    <value>ACCOUNT</value>
+  </data>
+  <data name="&gt;&gt;page_youtube_account.Name" xml:space="preserve">
+    <value>page_youtube_account</value>
+  </data>
+  <data name="&gt;&gt;page_youtube_account.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_youtube_account.Parent" xml:space="preserve">
+    <value>pages_youtube</value>
+  </data>
+  <data name="&gt;&gt;page_youtube_account.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="page_youtube_stream.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
+  </data>
+  <data name="page_youtube_stream.Size" type="System.Drawing.Size, System.Drawing">
+    <value>810, 398</value>
+  </data>
+  <data name="page_youtube_stream.Text" xml:space="preserve">
+    <value>STREAM</value>
+  </data>
+  <data name="&gt;&gt;page_youtube_stream.Name" xml:space="preserve">
+    <value>page_youtube_stream</value>
+  </data>
+  <data name="&gt;&gt;page_youtube_stream.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_youtube_stream.Parent" xml:space="preserve">
+    <value>pages_youtube</value>
+  </data>
+  <data name="&gt;&gt;page_youtube_stream.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="pages_youtube.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="pages_youtube.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pages_youtube.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="pages_youtube.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;pages_youtube.Name" xml:space="preserve">
+    <value>pages_youtube</value>
+  </data>
+  <data name="&gt;&gt;pages_youtube.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;pages_youtube.Parent" xml:space="preserve">
+    <value>page_main_youtube</value>
+  </data>
+  <data name="&gt;&gt;pages_youtube.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_main_youtube.Location" type="System.Drawing.Point, System.Drawing">
+    <value>41, 33</value>
+  </data>
+  <data name="page_main_youtube.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="page_main_youtube.Text" xml:space="preserve">
+    <value>YouTube</value>
+  </data>
+  <data name="&gt;&gt;page_main_youtube.Name" xml:space="preserve">
+    <value>page_main_youtube</value>
+  </data>
+  <data name="&gt;&gt;page_main_youtube.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_main_youtube.Parent" xml:space="preserve">
+    <value>pages_main</value>
+  </data>
+  <data name="&gt;&gt;page_main_youtube.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="page_main_forum.Location" type="System.Drawing.Point, System.Drawing">
+    <value>41, 33</value>
+  </data>
+  <data name="page_main_forum.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="page_main_forum.Text" xml:space="preserve">
+    <value>Online-Forum</value>
+  </data>
+  <data name="&gt;&gt;page_main_forum.Name" xml:space="preserve">
+    <value>page_main_forum</value>
+  </data>
+  <data name="&gt;&gt;page_main_forum.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_main_forum.Parent" xml:space="preserve">
+    <value>pages_main</value>
+  </data>
+  <data name="&gt;&gt;page_main_forum.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="page_main_web.Location" type="System.Drawing.Point, System.Drawing">
+    <value>41, 33</value>
+  </data>
+  <data name="page_main_web.Size" type="System.Drawing.Size, System.Drawing">
+    <value>788, 486</value>
+  </data>
+  <data name="page_main_web.Text" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="&gt;&gt;page_main_web.Name" xml:space="preserve">
+    <value>page_main_web</value>
+  </data>
+  <data name="&gt;&gt;page_main_web.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_main_web.Parent" xml:space="preserve">
+    <value>pages_main</value>
+  </data>
+  <data name="&gt;&gt;page_main_web.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="pages_main.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="pages_main.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pages_main.Size" type="System.Drawing.Size, System.Drawing">
+    <value>830, 520</value>
+  </data>
+  <data name="pages_main.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;pages_main.Name" xml:space="preserve">
+    <value>pages_main</value>
+  </data>
+  <data name="&gt;&gt;pages_main.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;pages_main.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pages_main.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainControl</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.Abstract.AbstractUserControl, CorpusExplorer.Sdk.Extern.SocialMedia.Gui, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
 </root>

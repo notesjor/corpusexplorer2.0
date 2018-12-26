@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LayerSettings));
       this.grp = new Telerik.WinControls.UI.RadGroupBox();
       this.cmb_names = new Telerik.WinControls.UI.RadDropDownList();
       this.chk_active = new Telerik.WinControls.UI.RadCheckBox();
@@ -42,43 +43,28 @@
       this.grp.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
       this.grp.Controls.Add(this.cmb_names);
       this.grp.Controls.Add(this.chk_active);
-      this.grp.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.grp.HeaderText = "[HEADER]";
-      this.grp.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.grp, "grp");
       this.grp.Name = "grp";
-      this.grp.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.grp.Size = new System.Drawing.Size(400, 62);
-      this.grp.TabIndex = 0;
-      this.grp.Text = "[HEADER]";
       // 
       // cmb_names
       // 
-      this.cmb_names.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.cmb_names.Location = new System.Drawing.Point(42, 25);
+      resources.ApplyResources(this.cmb_names, "cmb_names");
       this.cmb_names.Name = "cmb_names";
-      this.cmb_names.NullText = "Bitte auswählen...";
-      this.cmb_names.Size = new System.Drawing.Size(353, 32);
-      this.cmb_names.TabIndex = 1;
       // 
       // chk_active
       // 
       this.chk_active.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.chk_active.Dock = System.Windows.Forms.DockStyle.Left;
-      this.chk_active.Location = new System.Drawing.Point(5, 25);
+      resources.ApplyResources(this.chk_active, "chk_active");
       this.chk_active.Name = "chk_active";
-      this.chk_active.Size = new System.Drawing.Size(37, 32);
-      this.chk_active.TabIndex = 0;
       this.chk_active.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
       this.chk_active.CheckStateChanged += new System.EventHandler(this.chk_active_CheckStateChanged);
       // 
       // LayerSettings
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.grp);
-      this.Margin = new System.Windows.Forms.Padding(3);
+      resources.ApplyResources(this, "$this");
       this.Name = "LayerSettings";
-      this.Size = new System.Drawing.Size(400, 62);
       ((System.ComponentModel.ISupportInitialize)(this.grp)).EndInit();
       this.grp.ResumeLayout(false);
       this.grp.PerformLayout();

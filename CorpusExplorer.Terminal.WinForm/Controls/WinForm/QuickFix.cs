@@ -36,9 +36,9 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     }
 
     /// <summary>
-    ///   Gets or sets the quick fix info describtion.
+    ///   Gets or sets the quick fix info description.
     /// </summary>
-    public string QuickFixInfoDescribtion { get; set; }
+    public string QuickFixInfoDescription { get; set; }
 
     /// <summary>
     ///   Gets or sets the quick fix info header.
@@ -121,7 +121,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     /// </param>
     private void btn_info_Click(object sender, EventArgs e)
     {
-      PushMessageHelper.Show(QuickFixInfoHeader, QuickFixInfoImage, QuickFixInfoDescribtion, btn_info.Location);
+      PushMessageHelper.Show(QuickFixInfoHeader, QuickFixInfoImage, QuickFixInfoDescription, btn_info.Location);
     }
 
     /// <summary>

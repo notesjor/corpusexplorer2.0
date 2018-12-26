@@ -31,6 +31,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FulltextAnnotationSpeedup));
       Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
@@ -62,14 +63,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1,
             this.commandBarRowElement2});
-      this.radCommandBar1.Size = new System.Drawing.Size(757, 110);
-      this.radCommandBar1.TabIndex = 0;
       // 
       // commandBarRowElement1
       // 
@@ -80,7 +78,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.commandBarLabel1,
             this.drop_selecteddocument,
@@ -90,24 +88,24 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       // commandBarLabel1
       // 
-      this.commandBarLabel1.DisplayName = "commandBarLabel1";
+      resources.ApplyResources(this.commandBarLabel1, "commandBarLabel1");
       this.commandBarLabel1.Name = "commandBarLabel1";
       this.commandBarLabel1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.TextDP;
       // 
       // drop_selecteddocument
       // 
-      this.drop_selecteddocument.DisplayName = "commandBarDropDownList1";
+      resources.ApplyResources(this.drop_selecteddocument, "drop_selecteddocument");
       this.drop_selecteddocument.DropDownAnimationEnabled = true;
       this.drop_selecteddocument.MaxDropDownItems = 0;
       this.drop_selecteddocument.MinSize = new System.Drawing.Size(300, 22);
       this.drop_selecteddocument.Name = "drop_selecteddocument";
-      this.drop_selecteddocument.Text = "";
       this.drop_selecteddocument.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.drop_selecteddocument_SelectedIndexChanged);
       // 
       // btn_showMeta
       // 
-      this.btn_showMeta.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_showMeta, "btn_showMeta");
       this.btn_showMeta.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.tag_green;
+      this.btn_showMeta.AutoToolTip = true;
       this.btn_showMeta.Name = "btn_showMeta";
       this.btn_showMeta.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.MetadatenAnzeigen;
       this.btn_showMeta.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.MetadatenAnzeigen;
@@ -115,10 +113,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       // btn_export
       // 
-      this.btn_export.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_export, "btn_export");
       this.btn_export.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
+      this.btn_export.AutoToolTip = true;
       this.btn_export.Name = "btn_export";
-      this.btn_export.Text = "Aktuelles Dokument exportieren";
       this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
       // 
       // commandBarRowElement2
@@ -130,7 +128,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       // commandBarStripElement2
       // 
-      this.commandBarStripElement2.DisplayName = "commandBarStripElement2";
+      resources.ApplyResources(this.commandBarStripElement2, "commandBarStripElement2");
       this.commandBarStripElement2.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.commandBarLabel2,
             this.drop_layerView,
@@ -142,47 +140,45 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       // commandBarLabel2
       // 
-      this.commandBarLabel2.DisplayName = "commandBarLabel2";
+      resources.ApplyResources(this.commandBarLabel2, "commandBarLabel2");
       this.commandBarLabel2.Name = "commandBarLabel2";
       this.commandBarLabel2.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.AnzeigelayerDP;
       // 
       // drop_layerView
       // 
-      this.drop_layerView.DisplayName = "commandBarDropDownList2";
+      resources.ApplyResources(this.drop_layerView, "drop_layerView");
       this.drop_layerView.DropDownAnimationEnabled = true;
       this.drop_layerView.MaxDropDownItems = 0;
       this.drop_layerView.MinSize = new System.Drawing.Size(220, 22);
       this.drop_layerView.Name = "drop_layerView";
-      this.drop_layerView.Text = "";
       this.drop_layerView.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.drop_layerView_SelectedIndexChanged);
       // 
       // commandBarSeparator1
       // 
       this.commandBarSeparator1.AccessibleDescription = "commandBarSeparator1";
       this.commandBarSeparator1.AccessibleName = "commandBarSeparator1";
-      this.commandBarSeparator1.DisplayName = "commandBarSeparator1";
+      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
       this.commandBarSeparator1.Name = "commandBarSeparator1";
       this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
       // commandBarLabel3
       // 
-      this.commandBarLabel3.DisplayName = "commandBarLabel3";
+      resources.ApplyResources(this.commandBarLabel3, "commandBarLabel3");
       this.commandBarLabel3.Name = "commandBarLabel3";
       this.commandBarLabel3.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.AnnotationslayerDP;
       // 
       // drop_layerAnnotate
       // 
-      this.drop_layerAnnotate.DisplayName = "commandBarDropDownList3";
+      resources.ApplyResources(this.drop_layerAnnotate, "drop_layerAnnotate");
       this.drop_layerAnnotate.DropDownAnimationEnabled = true;
       this.drop_layerAnnotate.MaxDropDownItems = 0;
       this.drop_layerAnnotate.MinSize = new System.Drawing.Size(220, 22);
       this.drop_layerAnnotate.Name = "drop_layerAnnotate";
-      this.drop_layerAnnotate.Text = "";
       this.drop_layerAnnotate.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.drop_layerAnnotate_SelectedIndexChanged);
       // 
       // commandBarDropDownButton1
       // 
-      this.commandBarDropDownButton1.DisplayName = "commandBarDropDownButton1";
+      resources.ApplyResources(this.commandBarDropDownButton1, "commandBarDropDownButton1");
       this.commandBarDropDownButton1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.add_button;
       this.commandBarDropDownButton1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.btn_layer_add_new,
@@ -208,27 +204,19 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // clearPanel1
       // 
       this.clearPanel1.Controls.Add(this.btn_save);
-      this.clearPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.clearPanel1.Location = new System.Drawing.Point(0, 187);
+      resources.ApplyResources(this.clearPanel1, "clearPanel1");
       this.clearPanel1.Name = "clearPanel1";
-      this.clearPanel1.Padding = new System.Windows.Forms.Padding(5);
-      this.clearPanel1.Size = new System.Drawing.Size(757, 43);
-      this.clearPanel1.TabIndex = 1;
       // 
       // btn_save
       // 
-      this.btn_save.Dock = System.Windows.Forms.DockStyle.Right;
-      this.btn_save.Location = new System.Drawing.Point(570, 5);
+      resources.ApplyResources(this.btn_save, "btn_save");
       this.btn_save.Name = "btn_save";
-      this.btn_save.Size = new System.Drawing.Size(182, 33);
-      this.btn_save.TabIndex = 0;
       this.btn_save.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.AnnotationSpeichern;
       this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
       // 
       // radGridView1
       // 
-      this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGridView1.Location = new System.Drawing.Point(0, 110);
+      resources.ApplyResources(this.radGridView1, "radGridView1");
       // 
       // 
       // 
@@ -244,20 +232,16 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
       this.radGridView1.ShowGroupPanel = false;
-      this.radGridView1.Size = new System.Drawing.Size(757, 77);
-      this.radGridView1.TabIndex = 2;
       this.radGridView1.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridView1_CellValueChanged);
       // 
       // FulltextAnnotationSpeedup
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radGridView1);
       this.Controls.Add(this.clearPanel1);
       this.Controls.Add(this.radCommandBar1);
-      this.MinimumSize = new System.Drawing.Size(535, 230);
+      resources.ApplyResources(this, "$this");
       this.Name = "FulltextAnnotationSpeedup";
-      this.Size = new System.Drawing.Size(757, 230);
       this.ShowView += new System.EventHandler(this.SpeedTaggerVisualisation_ShowVisualisation);
       this.Load += new System.EventHandler(this.SpeedTaggerVisualisation_Load);
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).EndInit();

@@ -1,4 +1,4 @@
-﻿namespace CorpusExplorer.Terminal.WinForm.View.Special
+namespace CorpusExplorer.Terminal.WinForm.View.Special
 {
   partial class SentimentPivotGrid
   {
@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SentimentPivotGrid));
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
@@ -51,13 +52,10 @@
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
-      this.radCommandBar1.TabIndex = 0;
       // 
       // commandBarRowElement1
       // 
@@ -68,7 +66,7 @@
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.commandBarButton2,
             this.commandBarSeparator1,
@@ -77,92 +75,74 @@
       // 
       // commandBarButton2
       // 
-      this.commandBarButton2.DisplayName = "commandBarButton2";
+      resources.ApplyResources(this.commandBarButton2, "commandBarButton2");
       this.commandBarButton2.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.structure;
+      this.commandBarButton2.AutoToolTip = true;
       this.commandBarButton2.Name = "commandBarButton2";
-      this.commandBarButton2.Text = "Model laden";
       this.commandBarButton2.Click += new System.EventHandler(this.commandBarButton2_Click);
       // 
       // commandBarSeparator1
       // 
-      this.commandBarSeparator1.DisplayName = "commandBarSeparator1";
+      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
       this.commandBarSeparator1.Name = "commandBarSeparator1";
       this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
       // commandBarLabel1
       // 
-      this.commandBarLabel1.DisplayName = "commandBarLabel1";
+      resources.ApplyResources(this.commandBarLabel1, "commandBarLabel1");
       this.commandBarLabel1.Name = "commandBarLabel1";
-      this.commandBarLabel1.Text = "Das Modell ist: LEER";
       // 
       // radPivotFieldList1
       // 
       this.radPivotFieldList1.AssociatedPivotGrid = this.radPivotGrid1;
-      this.radPivotFieldList1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radPivotFieldList1.Location = new System.Drawing.Point(0, 0);
-      this.radPivotFieldList1.MinimumSize = new System.Drawing.Size(225, 305);
+      resources.ApplyResources(this.radPivotFieldList1, "radPivotFieldList1");
       this.radPivotFieldList1.Name = "radPivotFieldList1";
-      this.radPivotFieldList1.Size = new System.Drawing.Size(334, 331);
-      this.radPivotFieldList1.TabIndex = 1;
       // 
       // radPivotGrid1
       // 
-      this.radPivotGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radPivotGrid1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radPivotGrid1, "radPivotGrid1");
       this.radPivotGrid1.Name = "radPivotGrid1";
-      this.radPivotGrid1.Size = new System.Drawing.Size(442, 331);
-      this.radPivotGrid1.TabIndex = 2;
       // 
       // radSplitContainer1
       // 
       this.radSplitContainer1.Controls.Add(this.splitPanel1);
       this.radSplitContainer1.Controls.Add(this.splitPanel2);
-      this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer1.Location = new System.Drawing.Point(0, 69);
+      resources.ApplyResources(this.radSplitContainer1, "radSplitContainer1");
       this.radSplitContainer1.Name = "radSplitContainer1";
       // 
       // 
       // 
       this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-      this.radSplitContainer1.Size = new System.Drawing.Size(780, 331);
-      this.radSplitContainer1.TabIndex = 3;
       this.radSplitContainer1.TabStop = false;
       // 
       // splitPanel1
       // 
       this.splitPanel1.Controls.Add(this.radPivotGrid1);
-      this.splitPanel1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.splitPanel1, "splitPanel1");
       this.splitPanel1.Name = "splitPanel1";
       // 
       // 
       // 
       this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-      this.splitPanel1.Size = new System.Drawing.Size(442, 331);
       this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.06958765F, 0F);
       this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(54, 0);
-      this.splitPanel1.TabIndex = 0;
       this.splitPanel1.TabStop = false;
-      this.splitPanel1.Text = "splitPanel1";
       // 
       // splitPanel2
       // 
       this.splitPanel2.Controls.Add(this.radPivotFieldList1);
-      this.splitPanel2.Location = new System.Drawing.Point(446, 0);
+      resources.ApplyResources(this.splitPanel2, "splitPanel2");
       this.splitPanel2.Name = "splitPanel2";
       // 
       // 
       // 
       this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-      this.splitPanel2.Size = new System.Drawing.Size(334, 331);
       this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.06958762F, 0F);
       this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(-54, 0);
-      this.splitPanel2.TabIndex = 1;
       this.splitPanel2.TabStop = false;
-      this.splitPanel2.Text = "splitPanel2";
       // 
       // SentimentPivotGrid
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radSplitContainer1);
       this.Controls.Add(this.radCommandBar1);

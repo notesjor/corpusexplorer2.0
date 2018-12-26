@@ -117,10 +117,208 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="radTextBox5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="radTextBox5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radTextBox5.NullText" xml:space="preserve">
+    <value>XPath-Ausdruck...</value>
+  </data>
+  <data name="radTextBox5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>626, 32</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="radTextBox5.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;radTextBox5.Name" xml:space="preserve">
+    <value>radTextBox5</value>
+  </data>
+  <data name="&gt;&gt;radTextBox5.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radTextBox5.Parent" xml:space="preserve">
+    <value>clearPanel4</value>
+  </data>
+  <data name="&gt;&gt;radTextBox5.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radButton2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="radButton2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>626, 0</value>
+  </data>
+  <data name="radButton2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="radButton2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radButton2.Name" xml:space="preserve">
+    <value>radButton2</value>
+  </data>
+  <data name="&gt;&gt;radButton2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radButton2.Parent" xml:space="preserve">
+    <value>clearPanel4</value>
+  </data>
+  <data name="&gt;&gt;radButton2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="clearPanel4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="clearPanel4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 401</value>
+  </data>
+  <data name="clearPanel4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>658, 32</value>
+  </data>
+  <data name="clearPanel4.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;clearPanel4.Name" xml:space="preserve">
+    <value>clearPanel4</value>
+  </data>
+  <data name="&gt;&gt;clearPanel4.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;clearPanel4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;clearPanel4.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="radTextBox3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radTextBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radTextBox3.NullText" xml:space="preserve">
+    <value>Tragen Sie hier die gewünschte URL ein (inkl. http:// bzw. https://)...</value>
+  </data>
+  <data name="radTextBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>626, 32</value>
+  </data>
+  <data name="radTextBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;radTextBox3.Name" xml:space="preserve">
+    <value>radTextBox3</value>
+  </data>
+  <data name="&gt;&gt;radTextBox3.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radTextBox3.Parent" xml:space="preserve">
+    <value>clearPanel3</value>
+  </data>
+  <data name="&gt;&gt;radTextBox3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radButton1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="radButton1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>626, 0</value>
+  </data>
+  <data name="radButton1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="radButton1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radButton1.Name" xml:space="preserve">
+    <value>radButton1</value>
+  </data>
+  <data name="&gt;&gt;radButton1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radButton1.Parent" xml:space="preserve">
+    <value>clearPanel3</value>
+  </data>
+  <data name="&gt;&gt;radButton1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="clearPanel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="clearPanel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="clearPanel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>658, 32</value>
+  </data>
+  <data name="clearPanel3.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;clearPanel3.Name" xml:space="preserve">
+    <value>clearPanel3</value>
+  </data>
+  <data name="&gt;&gt;clearPanel3.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;clearPanel3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;clearPanel3.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="panel_webbrowser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel_webbrowser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 32</value>
+  </data>
+  <data name="panel_webbrowser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>658, 369</value>
+  </data>
+  <data name="panel_webbrowser.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;panel_webbrowser.Name" xml:space="preserve">
+    <value>panel_webbrowser</value>
+  </data>
+  <data name="&gt;&gt;panel_webbrowser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel_webbrowser.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panel_webbrowser.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <metadata name="radDesktopAlert1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <data name="radDesktopAlert1.ContentText" xml:space="preserve">
     <value>&lt;html&gt;Die Vorschau umrahmt alle mittels XPath selektierten Elemente mit blauen Punkten.&lt;br /&gt;&lt;strong&gt;Bitte beachten Sie:&lt;/strong&gt; Die Erzeugung der Vorschau benötigt beim ersten Mal&lt;br /&gt;ca. 30 Sekunden, um anzeigebereit zu sein. Folgeaufrufe benötigen ca. 5-15 Sekunden &lt;br /&gt;(bei komplexen XPath-Ausdrücken).&lt;/html&gt;</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>658, 433</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>XpathBrowser</value>
+  </data>
+  <data name="&gt;&gt;radDesktopAlert1.Name" xml:space="preserve">
+    <value>radDesktopAlert1</value>
+  </data>
+  <data name="&gt;&gt;radDesktopAlert1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadDesktopAlert, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>XpathBrowser</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Forms.Abstract.AbstractForm, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
   </data>
 </root>

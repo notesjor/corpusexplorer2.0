@@ -44,8 +44,8 @@
       this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
       this.ihdPanel5 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
       this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
-      this.ihdPanel6 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
       this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+      this.ihdPanel6 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
       this.radPageView1.SuspendLayout();
@@ -64,24 +64,18 @@
       // 
       // radPanel1
       // 
-      this.radPanel1.Location = new System.Drawing.Point(0, 392);
-      this.radPanel1.Size = new System.Drawing.Size(480, 38);
+      resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
       // ihdPanel1
       // 
       this.ihdPanel1.BackColor = System.Drawing.Color.White;
-      this.ihdPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.ihdPanel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.ihdPanel1.IHDDeescribtion = "Das HTML5-Labor erlaubt es eigene Visualisierungen ganz schnell und einfach mit C" +
+      resources.ApplyResources(this.ihdPanel1, "ihdPanel1");
+      this.ihdPanel1.IHDDescription = "Das HTML5-Labor erlaubt es eigene Visualisierungen ganz schnell und einfach mit C" +
     "orpusExplorer-Daten zu füllen. Diese Hilfe zeigt, welche Datenquellen verfügbar " +
     "sind:";
       this.ihdPanel1.IHDHeader = "Experimentierfreudig?";
       this.ihdPanel1.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.html_page_gear1;
-      this.ihdPanel1.Location = new System.Drawing.Point(0, 0);
-      this.ihdPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.ihdPanel1.Name = "ihdPanel1";
-      this.ihdPanel1.Size = new System.Drawing.Size(480, 87);
-      this.ihdPanel1.TabIndex = 1;
       // 
       // radPageView1
       // 
@@ -90,12 +84,9 @@
       this.radPageView1.Controls.Add(this.page_COOCC);
       this.radPageView1.Controls.Add(this.page_METAD);
       this.radPageView1.Controls.Add(this.radPageViewPage1);
-      this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radPageView1.Location = new System.Drawing.Point(0, 87);
+      resources.ApplyResources(this.radPageView1, "radPageView1");
       this.radPageView1.Name = "radPageView1";
       this.radPageView1.SelectedPage = this.page_FREQU;
-      this.radPageView1.Size = new System.Drawing.Size(480, 305);
-      this.radPageView1.TabIndex = 2;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
       // 
       // page_FREQU
@@ -103,186 +94,120 @@
       this.page_FREQU.Controls.Add(this.radLabel1);
       this.page_FREQU.Controls.Add(this.ihdPanel2);
       this.page_FREQU.ItemSize = new System.Drawing.SizeF(68F, 29F);
-      this.page_FREQU.Location = new System.Drawing.Point(5, 35);
+      resources.ApplyResources(this.page_FREQU, "page_FREQU");
       this.page_FREQU.Name = "page_FREQU";
-      this.page_FREQU.Size = new System.Drawing.Size(470, 265);
-      this.page_FREQU.Text = "#FREQU";
       // 
       // radLabel1
       // 
-      this.radLabel1.AutoSize = false;
-      this.radLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radLabel1.Location = new System.Drawing.Point(0, 75);
+      resources.ApplyResources(this.radLabel1, "radLabel1");
       this.radLabel1.Name = "radLabel1";
-      this.radLabel1.Size = new System.Drawing.Size(470, 190);
-      this.radLabel1.TabIndex = 1;
-      this.radLabel1.Text = "<html><p><strong>Beispiel:</strong></p><p>[<br />  {<br />  \"POS\": \"NN\",<br />  \"" +
-    "Lemma\": \"Berg\",<br />  \"Wort\": \"Berge\",<br />  \"Frequenz\": 20.0<br />  },</p></h" +
-    "tml>";
       // 
       // ihdPanel2
       // 
       this.ihdPanel2.BackColor = System.Drawing.Color.White;
-      this.ihdPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-      this.ihdPanel2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.ihdPanel2.IHDDeescribtion = "Bindet die Frequenz-Tabelle als JSON-Array ein. Die Tabelle hat folgende Spalten:" +
+      resources.ApplyResources(this.ihdPanel2, "ihdPanel2");
+      this.ihdPanel2.IHDDescription = "Bindet die Frequenz-Tabelle als JSON-Array ein. Die Tabelle hat folgende Spalten:" +
     " POS, Lemma, Wort und Frequenz";
       this.ihdPanel2.IHDHeader = "#FREQU";
       this.ihdPanel2.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.table_1;
-      this.ihdPanel2.Location = new System.Drawing.Point(0, 0);
-      this.ihdPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.ihdPanel2.Name = "ihdPanel2";
-      this.ihdPanel2.Size = new System.Drawing.Size(470, 75);
-      this.ihdPanel2.TabIndex = 0;
       // 
       // page_CFREQ
       // 
       this.page_CFREQ.Controls.Add(this.radLabel2);
       this.page_CFREQ.Controls.Add(this.ihdPanel3);
       this.page_CFREQ.ItemSize = new System.Drawing.SizeF(67F, 29F);
-      this.page_CFREQ.Location = new System.Drawing.Point(5, 35);
+      resources.ApplyResources(this.page_CFREQ, "page_CFREQ");
       this.page_CFREQ.Name = "page_CFREQ";
-      this.page_CFREQ.Size = new System.Drawing.Size(470, 265);
-      this.page_CFREQ.Text = "#CFREQ";
       // 
       // radLabel2
       // 
-      this.radLabel2.AutoSize = false;
-      this.radLabel2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radLabel2.Location = new System.Drawing.Point(0, 75);
+      resources.ApplyResources(this.radLabel2, "radLabel2");
       this.radLabel2.Name = "radLabel2";
-      this.radLabel2.Size = new System.Drawing.Size(470, 190);
-      this.radLabel2.TabIndex = 3;
-      this.radLabel2.Text = "<html><p><strong>Beispiel:</strong></p><p>[<br />  {<br />  \"Wort\": \"Frauenquote\"" +
-    ",<br />  \"Partner\": \"Prozent\",<br />  \"Frequenz\": 40.0<br />  },</p></html>";
       // 
       // ihdPanel3
       // 
       this.ihdPanel3.BackColor = System.Drawing.Color.White;
-      this.ihdPanel3.Dock = System.Windows.Forms.DockStyle.Top;
-      this.ihdPanel3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.ihdPanel3.IHDDeescribtion = "Bindet die Kreuz-Frequenz-Tabelle als JSON-Array ein. Die Tabelle hat folgende Sp" +
+      resources.ApplyResources(this.ihdPanel3, "ihdPanel3");
+      this.ihdPanel3.IHDDescription = "Bindet die Kreuz-Frequenz-Tabelle als JSON-Array ein. Die Tabelle hat folgende Sp" +
     "alten: Wort, Partner und Frequenz";
       this.ihdPanel3.IHDHeader = "#CFREQ";
       this.ihdPanel3.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.table_1;
-      this.ihdPanel3.Location = new System.Drawing.Point(0, 0);
-      this.ihdPanel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.ihdPanel3.Name = "ihdPanel3";
-      this.ihdPanel3.Size = new System.Drawing.Size(470, 75);
-      this.ihdPanel3.TabIndex = 2;
       // 
       // page_COOCC
       // 
       this.page_COOCC.Controls.Add(this.radLabel3);
       this.page_COOCC.Controls.Add(this.ihdPanel4);
       this.page_COOCC.ItemSize = new System.Drawing.SizeF(73F, 29F);
-      this.page_COOCC.Location = new System.Drawing.Point(5, 35);
+      resources.ApplyResources(this.page_COOCC, "page_COOCC");
       this.page_COOCC.Name = "page_COOCC";
-      this.page_COOCC.Size = new System.Drawing.Size(470, 242);
-      this.page_COOCC.Text = "#COOCC";
       // 
       // radLabel3
       // 
-      this.radLabel3.AutoSize = false;
-      this.radLabel3.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radLabel3.Location = new System.Drawing.Point(0, 75);
+      resources.ApplyResources(this.radLabel3, "radLabel3");
       this.radLabel3.Name = "radLabel3";
-      this.radLabel3.Size = new System.Drawing.Size(470, 167);
-      this.radLabel3.TabIndex = 5;
-      this.radLabel3.Text = resources.GetString("radLabel3.Text");
       // 
       // ihdPanel4
       // 
       this.ihdPanel4.BackColor = System.Drawing.Color.White;
-      this.ihdPanel4.Dock = System.Windows.Forms.DockStyle.Top;
-      this.ihdPanel4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.ihdPanel4.IHDDeescribtion = "Bindet die Kookkurrenz-Analyse als JSON-Array ein. Die Tabelle hat folgende Spalt" +
+      resources.ApplyResources(this.ihdPanel4, "ihdPanel4");
+      this.ihdPanel4.IHDDescription = "Bindet die Kookkurrenz-Analyse als JSON-Array ein. Die Tabelle hat folgende Spalt" +
     "en: Zeichenkette, Kookkurrenz, Frequenz und Signifikanz";
       this.ihdPanel4.IHDHeader = "#COOCC";
       this.ihdPanel4.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.table_1;
-      this.ihdPanel4.Location = new System.Drawing.Point(0, 0);
-      this.ihdPanel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.ihdPanel4.Name = "ihdPanel4";
-      this.ihdPanel4.Size = new System.Drawing.Size(470, 75);
-      this.ihdPanel4.TabIndex = 4;
       // 
       // page_METAD
       // 
       this.page_METAD.Controls.Add(this.radLabel4);
       this.page_METAD.Controls.Add(this.ihdPanel5);
       this.page_METAD.ItemSize = new System.Drawing.SizeF(72F, 29F);
-      this.page_METAD.Location = new System.Drawing.Point(5, 35);
+      resources.ApplyResources(this.page_METAD, "page_METAD");
       this.page_METAD.Name = "page_METAD";
-      this.page_METAD.Size = new System.Drawing.Size(470, 265);
-      this.page_METAD.Text = "#METAD";
       // 
       // radLabel4
       // 
-      this.radLabel4.AutoSize = false;
-      this.radLabel4.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radLabel4.Location = new System.Drawing.Point(0, 82);
+      resources.ApplyResources(this.radLabel4, "radLabel4");
       this.radLabel4.Name = "radLabel4";
-      this.radLabel4.Size = new System.Drawing.Size(470, 183);
-      this.radLabel4.TabIndex = 5;
-      this.radLabel4.Text = resources.GetString("radLabel4.Text");
       // 
       // ihdPanel5
       // 
       this.ihdPanel5.BackColor = System.Drawing.Color.White;
-      this.ihdPanel5.Dock = System.Windows.Forms.DockStyle.Top;
-      this.ihdPanel5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.ihdPanel5.IHDDeescribtion = "Bindet einen Vergleich auf der Dokumentmetadaten-Ebene als JSON-Array ein. Verfüg" +
+      resources.ApplyResources(this.ihdPanel5, "ihdPanel5");
+      this.ihdPanel5.IHDDescription = "Bindet einen Vergleich auf der Dokumentmetadaten-Ebene als JSON-Array ein. Verfüg" +
     "bare Daten: Kategorie, Metadaten, Token, Types und Dokumente.";
       this.ihdPanel5.IHDHeader = "#METAD";
       this.ihdPanel5.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.table_1;
-      this.ihdPanel5.Location = new System.Drawing.Point(0, 0);
-      this.ihdPanel5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.ihdPanel5.Name = "ihdPanel5";
-      this.ihdPanel5.Size = new System.Drawing.Size(470, 82);
-      this.ihdPanel5.TabIndex = 4;
       // 
       // radPageViewPage1
       // 
       this.radPageViewPage1.Controls.Add(this.radLabel5);
       this.radPageViewPage1.Controls.Add(this.ihdPanel6);
       this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(88F, 29F);
-      this.radPageViewPage1.Location = new System.Drawing.Point(5, 35);
+      resources.ApplyResources(this.radPageViewPage1, "radPageViewPage1");
       this.radPageViewPage1.Name = "radPageViewPage1";
-      this.radPageViewPage1.Size = new System.Drawing.Size(470, 265);
-      this.radPageViewPage1.Text = "ERWEITERT";
+      // 
+      // radLabel5
+      // 
+      resources.ApplyResources(this.radLabel5, "radLabel5");
+      this.radLabel5.Name = "radLabel5";
       // 
       // ihdPanel6
       // 
       this.ihdPanel6.BackColor = System.Drawing.Color.White;
-      this.ihdPanel6.Dock = System.Windows.Forms.DockStyle.Top;
-      this.ihdPanel6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.ihdPanel6.IHDDeescribtion = "Wenn Sie Analysen realisieren möchten, die über die vier Grundfunktionalitäten hi" +
+      resources.ApplyResources(this.ihdPanel6, "ihdPanel6");
+      this.ihdPanel6.IHDDescription = "Wenn Sie Analysen realisieren möchten, die über die vier Grundfunktionalitäten hi" +
     "nausgehen, dann nutzen Sie die erweiterte Skriptfunktionalität.";
       this.ihdPanel6.IHDHeader = "Erweiterte Skriptfunktionalität";
       this.ihdPanel6.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.script;
-      this.ihdPanel6.Location = new System.Drawing.Point(0, 0);
-      this.ihdPanel6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.ihdPanel6.Name = "ihdPanel6";
-      this.ihdPanel6.Size = new System.Drawing.Size(470, 94);
-      this.ihdPanel6.TabIndex = 1;
-      // 
-      // radLabel5
-      // 
-      this.radLabel5.AutoSize = false;
-      this.radLabel5.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 10F);
-      this.radLabel5.Location = new System.Drawing.Point(0, 94);
-      this.radLabel5.Name = "radLabel5";
-      this.radLabel5.Size = new System.Drawing.Size(470, 171);
-      this.radLabel5.TabIndex = 2;
-      this.radLabel5.Text = resources.GetString("radLabel5.Text");
-      this.radLabel5.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
       // 
       // Html5DevLabHelp
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.ClientSize = new System.Drawing.Size(480, 430);
+      resources.ApplyResources(this, "$this");
       this.Controls.Add(this.radPageView1);
       this.Controls.Add(this.ihdPanel1);
       this.DisplayAbort = true;
@@ -291,7 +216,6 @@
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
-      this.Text = "Entwicklerhilfe - HTML5-Labor";
       this.Controls.SetChildIndex(this.radPanel1, 0);
       this.Controls.SetChildIndex(this.ihdPanel1, 0);
       this.Controls.SetChildIndex(this.radPageView1, 0);

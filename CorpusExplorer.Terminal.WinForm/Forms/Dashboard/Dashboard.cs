@@ -30,6 +30,8 @@ using CorpusExplorer.Sdk.Utils.CorpusManipulation;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Crawler;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger;
 using CorpusExplorer.Sdk.Utils.Filter;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
@@ -107,7 +109,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     /// <summary>
     ///   Initializes a new instance of the <see cref="Dashboard" /> class.
     /// </summary>
-    public Dashboard(string[] args)
+    public Dashboard(string[] args, bool quickMode)
       : base(null)
     {
       Serializer.LogErrors = false;
@@ -192,8 +194,90 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       Corpus_LaodAvailabelCorpora();
       Serializer.LogErrors = true;
+
+      #region QuickMode
+      if (args != null && args.Length >= 2 && args[0] == "quick")
+      {
+        Hide();
+        QuickGui(args);
+        return;
+      }
+      #endregion
+
       Welcome.SplashClose();
     }
+
+    #region QuickMode - Functions
+    private void QuickGui(string[] args)
+    {
+      Hide();
+      switch (args[1])
+      {
+        case "convert":
+          QuickGui_Convert(args);
+          break;
+        case "annotate":
+          QuickGui_Annotate(args);
+          break;
+      }
+      QuickMode = true;
+    }
+
+    /// <summary>
+    /// Spezieller Modus, der es erlaubt, aus anderen Programmen bestimmte Funktionen der CE-GUI zu nutzen.
+    /// QuickMode wird in Program.Main(string[] args) aktiviert und:
+    /// Modi werden in Dashboard.QuickGui(string[] args) definiert.
+    /// </summary>
+    public bool QuickMode { get; set; }
+
+    private void QuickGui_Annotate(string[] args)
+    {
+      if (args.Length == 2)
+        corpus_start_local_Click(null, null);
+      else if (args.Length >= 4)
+      {
+        var scraper = Configuration.AddonScrapers.GetReflectedTypeNameDictionary()
+                                   .Where(x => x.Key == args[2])
+                                   .Select(x => x.Value)
+                                   .FirstOrDefault();
+        if (scraper == null)
+          return;
+
+        var files = args.ToList();
+        files.RemoveAt(0);
+        files.RemoveAt(0);
+        files.RemoveAt(0);
+        corpus_start_local_Call(scraper, files);
+      }
+      else
+        return;
+      ExportSelectionAsCorpus(Project.SelectAll);
+    }
+
+    private void QuickGui_Convert(string[] args)
+    {
+      if (args.Length == 2)
+        corpus_start_import_Click(null, null);
+      else if (args.Length >= 4)
+      {
+        var importer = Configuration.AddonImporters.GetReflectedTypeNameDictionary()
+                                   .Where(x => x.Key == args[2])
+                                   .Select(x => x.Value)
+                                   .FirstOrDefault();
+        if (importer == null)
+          return;
+
+        var files = args.ToList();
+        files.RemoveAt(0);
+        files.RemoveAt(0);
+        files.RemoveAt(0);
+        corpus_start_import_Call(importer, files);
+      }
+      else
+        return;
+      ExportSelectionAsCorpus(Project.SelectAll);
+    }
+    #endregion
 
     public AbstractView CurrentView
     {
@@ -328,12 +412,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       var vm = new QuickInfoViewModel { Selection = Project.SelectAll };
       vm.Execute();
 
-      page_corpus_start_quickinfo_corpora.Value = vm.CounterCorpora.ToString();
-      page_corpus_start_quickinfo_layers.Value = vm.CounterLayers.ToString();
-      page_corpus_start_quickinfo_texts.Value = vm.CounterDocuments.ToString();
-      page_corpus_start_quickinfo_tokens.Value = string.Format(
-        Resources.Dashboard_NumberFormat,
-        vm.CounterTokens / 1000000.0d);
+      page_corpus_start_quickinfo_corpora.Value = vm.CounterCorpora;
+      page_corpus_start_quickinfo_layers.Value = vm.CounterLayers;
+      page_corpus_start_quickinfo_texts.Value = vm.CounterDocuments;
+      page_corpus_start_quickinfo_tokens.Value = vm.CounterTokens;
 
       page_welcome_btn_corpus.ShowCheckmark = vm.CounterCorpora > 0;
     }
@@ -394,32 +476,31 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       if (ofd.ShowDialog() != DialogResult.OK)
         return;
 
+      corpus_start_import_Call(dic[ofd.FilterIndex - 1].Value, ofd.FileNames);
+    }
+
+    private void corpus_start_import_Call(AbstractImporter importer, IEnumerable<string> files)
+    {
       IEnumerable<AbstractCorpusAdapter> corpora = null;
-
       Processing.Invoke(
-        Resources.Corpus_ImportIsRunning,
-        () =>
-        {
-          var importer = dic[ofd.FilterIndex - 1].Value;
-          corpora = importer.Execute(ofd.FileNames);
-        });
+                        Resources.Corpus_ImportIsRunning,
+                        () => { corpora = importer.Execute(files); });
 
-      if (corpora == null &&
-          ofd.FileNames.Length == 1)
+      if (corpora == null && files.Count() == 1)
       {
         MessageBox.Show(Resources.Corpus_ImportError);
         return;
       }
 
       Processing.Invoke(
-        Resources.Corpus_Loading,
-        () =>
-        {
-          if (corpora != null)
-            foreach (var corpus in corpora)
-              AddCorpusToProject(corpus, false); // da false -> ReloadAll();
-          ReloadAll();
-        });
+                        Resources.Corpus_Loading,
+                        () =>
+                        {
+                          if (corpora != null)
+                            foreach (var corpus in corpora)
+                              AddCorpusToProject(corpus, false); // da false -> ReloadAll();
+                          ReloadAll();
+                        });
     }
 
     private void corpus_start_local_Click(object sender, EventArgs e)
@@ -435,17 +516,24 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       if (ofd.ShowDialog() != DialogResult.OK)
         return;
 
+      var files = ofd.FileNames;
+      // Warum auch immer der FilterIndex ist NICHT nullbasiert, daher -1 
+      var scraper = dic[ofd.FilterIndex - 1].Value;
+
+      corpus_start_local_Call(scraper, files);
+    }
+
+    private void corpus_start_local_Call(AbstractScraper scraper, IEnumerable<string> files)
+    {
       Processing.Invoke(
-        Resources.Corpus_Reading,
-        () =>
-        {
-          // Warum auch immer der FilterIndex ist NICHT nullbasiert, daher -1
-          var scraper = dic[ofd.FilterIndex - 1].Value;
-          foreach (var x in ofd.FileNames)
-            scraper.Input.Enqueue(x);
-          scraper.Execute();
-          ScrapDocumentsToCorpus(scraper.Output);
-        });
+                        Resources.Corpus_Reading,
+                        () =>
+                        {
+                          foreach (var x in files)
+                            scraper.Input.Enqueue(x);
+                          scraper.Execute();
+                          ScrapDocumentsToCorpus(scraper.Output);
+                        });
     }
 
     private void corpus_start_online_Click(object sender, EventArgs e)
@@ -528,6 +616,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void Dashboard_FormClosing(object sender, FormClosingEventArgs e)
     {
+      if (QuickMode)
+        return;
+
       FavoriteManager.Save();
 
       var res = MessageBox.Show(
@@ -556,6 +647,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void Dashboard_Load(object sender, EventArgs e)
     {
+      if (QuickMode)
+        Close();
+
       if (DesignMode)
         return;
 
@@ -609,7 +703,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           Resources.character_font_highlight_color_1,
           Resources.character_font_highlight_color,
           Resources.Fulltext,
-          Resources.Fulltext_Describtion,
+          Resources.Fulltext_Description,
           "http://www.bitcutstudios.com/products/corpusexplorer/help/volltextzugriff.html",
           // Handbook
           Resources.Help_Static_HandsOnLab,
@@ -646,7 +740,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           Resources.history1,
           Resources.history,
           Resources.Textedition,
-          Resources.Textedition_Describtion,
+          Resources.Textedition_Description,
           "http://www.bitcutstudios.com/products/corpusexplorer/help/textedition.html",
           // Handbook
           Resources.Help_Static_HandsOnLab,
@@ -675,7 +769,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           Resources.table_1,
           Resources.table,
           Resources.FrequncyAnalytics,
-          Resources.FrequncyAnalytics_Describtion,
+          Resources.FrequncyAnalytics_Description,
           "http://www.bitcutstudios.com/products/corpusexplorer/help/frequenzanalyse.html",
           // Handbook
           Resources.Help_Static_HandsOnLab,
@@ -739,7 +833,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           Resources.dashes_1,
           Resources.dashes,
           Resources.Phrases,
-          Resources.Phrases_Describtion,
+          Resources.Phrases_Description,
           "http://www.bitcutstudios.com/products/corpusexplorer/help/phrasen___muster.html",
           // Handbook
           Resources.Help_Static_HandsOnLab,
@@ -797,7 +891,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           Resources.logo_firewire,
           Resources.logo_firewire_1,
           Resources.Cooccurrences,
-          Resources.Cooccurrences_Describtion,
+          Resources.Cooccurrences_Description,
           "http://www.bitcutstudios.com/products/corpusexplorer/help/kookkurrenzen.html",
           // Handbook
           Resources.Help_Static_HandsOnLab,
@@ -859,7 +953,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           Resources.image_size_width,
           Resources.image_size_width_1,
           Resources.Disambigution,
-          Resources.Disambigution_Describtion,
+          Resources.Disambigution_Description,
           "http://www.bitcutstudios.com/products/corpusexplorer/help/disambiguieren.html",
           // Handbook
           Resources.Help_Static_HandsOnLab,
@@ -891,7 +985,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           Resources.thermometer_user,
           Resources.thermometer_user1,
           Resources.Stylemetrics,
-          Resources.Stylemetrics_Describtion,
+          Resources.Stylemetrics_Description,
           "http://www.bitcutstudios.com/products/corpusexplorer/help/stilmetriken.html",
           // Handbook
           Resources.Help_Static_HandsOnLab,
@@ -946,7 +1040,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           Resources.picture_flip_horizontal2,
           Resources.picture_flip_horizontal2_1,
           Resources.CorpusDistribution,
-          Resources.CorpusDistribution_Describtion,
+          Resources.CorpusDistribution_Description,
           "http://www.bitcutstudios.com/products/corpusexplorer/help/korpusverteilung.html",
           // Handbook
           Resources.Help_Static_HandsOnLab,
@@ -998,7 +1092,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
           Resources.snipet_internet,
           Resources.snipet_internet1,
           Resources.SpcialFunctions,
-          Resources.SpcialFunctions_Describtion,
+          Resources.SpcialFunctions_Description,
           "http://www.bitcutstudios.com/products/corpusexplorer/help/spezialfunktionen.html",
           // Handbook
           Resources.Help_Static_HandsOnLab,
@@ -1289,10 +1383,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         _terminal.ProjectSave();
       ProjectNew();
 
-      page_corpus_start_quickinfo_corpora.Value = "0";
-      page_corpus_start_quickinfo_layers.Value = "0";
-      page_corpus_start_quickinfo_texts.Value = "0";
-      page_corpus_start_quickinfo_tokens.Value = "0";
+      page_corpus_start_quickinfo_corpora.Value = 0;
+      page_corpus_start_quickinfo_layers.Value = 0;
+      page_corpus_start_quickinfo_texts.Value = 0;
+      page_corpus_start_quickinfo_tokens.Value = 0;
 
       page_welcome_btn_projectname.ShowCheckmark = false;
       page_welcome_btn_analytics.ShowCheckmark = false;
@@ -1640,14 +1734,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       Serializer.SerializeXmlWithDotNet(model, sfd.FileName.Replace(".ceusd", "2.ceusd"));
     }
 
-    private Selection page_analytics_snapshot_btn_snapshot_settheory_GetSelectionB(string head, string describtion)
+    private Selection page_analytics_snapshot_btn_snapshot_settheory_GetSelectionB(string head, string description)
     {
       var available = Project.SelectionsRecursive;
       var selections =
         available.Where(sel => sel.Guid != Project.CurrentSelection.Guid)
           .ToDictionary(selection => selection.Guid, selection => selection.Displayname);
 
-      var form = new SetTheorySelectSnapshot(head, describtion, selections);
+      var form = new SetTheorySelectSnapshot(head, description, selections);
       form.ShowDialog();
 
       return form.DialogResult == DialogResult.OK
@@ -1820,7 +1914,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       var formName = new SimpleTextInput(
         Resources.Dashboard_EnterCorpusNameHead,
-        Resources.Dashboard_EnterCorpusNameDescribtion,
+        Resources.Dashboard_EnterCorpusNameDescription,
         Resources.cabinet,
         Resources.Dashboard_EnterCorpusNameNullText);
       if (formName.ShowDialog() != DialogResult.OK)
@@ -1901,12 +1995,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       var vm = new QuickInfoViewModel { Selection = Project.CurrentSelection };
       vm.Execute();
 
-      page_snapshot_start_quickinfo_corpora.Value = vm.CounterCorpora.ToString();
-      page_snapshot_start_quickinfo_layers.Value = vm.CounterLayers.ToString();
-      page_snapshot_start_quickinfo_texts.Value = vm.CounterDocuments.ToString();
-      page_snapshot_start_quickinfo_tokens.Value = string.Format(
-        Resources.DashboardPatternNumber,
-        vm.CounterTokens / 1000000.0d);
+      page_snapshot_start_quickinfo_corpora.Value = vm.CounterCorpora;
+      page_snapshot_start_quickinfo_layers.Value = vm.CounterLayers;
+      page_snapshot_start_quickinfo_texts.Value = vm.CounterDocuments;
+      page_snapshot_start_quickinfo_tokens.Value = vm.CounterTokens;
 
       InMemoryErrorConsole.TrackEvent("CurrentSelectionChanged", metrics: new Dictionary<string, double>
       {

@@ -28,27 +28,25 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple.Abstract
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AbstractMetadata));
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
       // 
       // radPanel1
       // 
-      this.radPanel1.Location = new System.Drawing.Point(0, 343);
-      this.radPanel1.Size = new System.Drawing.Size(410, 38);
+      resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
       // AbstractMetadata
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.ClientSize = new System.Drawing.Size(410, 381);
+      resources.ApplyResources(this, "$this");
       this.DisplayAbort = true;
       this.Name = "AbstractMetadata";
       // 
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
-      this.Text = "Dokument-Metadaten";
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
       this.ResumeLayout(false);

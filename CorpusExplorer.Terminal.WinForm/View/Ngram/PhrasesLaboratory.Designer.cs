@@ -29,15 +29,16 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     /// </summary>
     private void InitializeComponent()
     {
-      Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
-      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-      Telerik.WinControls.UI.GridViewColorColumn gridViewColorColumn3 = new Telerik.WinControls.UI.GridViewColorColumn();
-      Telerik.WinControls.UI.GridViewColorColumn gridViewColorColumn4 = new Telerik.WinControls.UI.GridViewColorColumn();
-      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
-      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PhrasesLaboratory));
+      Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+      Telerik.WinControls.UI.GridViewColorColumn gridViewColorColumn1 = new Telerik.WinControls.UI.GridViewColorColumn();
+      Telerik.WinControls.UI.GridViewColorColumn gridViewColorColumn2 = new Telerik.WinControls.UI.GridViewColorColumn();
+      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
@@ -59,15 +60,15 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
       this.radGridView2 = new Telerik.WinControls.UI.RadGridView();
       this.btn_colors = new Telerik.WinControls.UI.RadButton();
+      this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
+      this.radGridView3 = new Telerik.WinControls.UI.RadGridView();
+      this.btn_calculate = new Telerik.WinControls.UI.RadButton();
       this.radCommandBar2 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement2 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement2 = new Telerik.WinControls.UI.CommandBarStripElement();
       this.btn_rules_new = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_rules_load = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_rules_save = new Telerik.WinControls.UI.CommandBarButton();
-      this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
-      this.btn_calculate = new Telerik.WinControls.UI.RadButton();
-      this.radGridView3 = new Telerik.WinControls.UI.RadGridView();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
       this.radSplitContainer1.SuspendLayout();
@@ -85,33 +86,30 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       ((System.ComponentModel.ISupportInitialize)(this.radGridView2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView2.MasterTemplate)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.btn_colors)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.radCommandBar2)).BeginInit();
       this.radPageViewPage3.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.btn_calculate)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView3)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView3.MasterTemplate)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_calculate)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radCommandBar2)).BeginInit();
       this.SuspendLayout();
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 44);
-      this.radCommandBar1.TabIndex = 0;
-      this.radCommandBar1.Text = "radCommandBar1";
       // 
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.commandBarLabel1,
             this.combo_document,
@@ -124,130 +122,110 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       // commandBarLabel1
       // 
-      this.commandBarLabel1.DisplayName = "commandBarLabel1";
+      resources.ApplyResources(this.commandBarLabel1, "commandBarLabel1");
       this.commandBarLabel1.Name = "commandBarLabel1";
       this.commandBarLabel1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Dokument;
       // 
       // combo_document
       // 
-      this.combo_document.DisplayName = "commandBarDropDownList1";
+      resources.ApplyResources(this.combo_document, "combo_document");
       this.combo_document.DropDownAnimationEnabled = true;
       this.combo_document.MaxDropDownItems = 0;
       this.combo_document.MinSize = new System.Drawing.Size(200, 22);
       this.combo_document.Name = "combo_document";
       this.combo_document.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.BitteAuswählen;
-      this.combo_document.Text = "";
       this.combo_document.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.combo_document_SelectedIndexChanged);
       // 
       // commandBarSeparator1
       // 
       this.commandBarSeparator1.AccessibleDescription = "commandBarSeparator1";
       this.commandBarSeparator1.AccessibleName = "commandBarSeparator1";
-      this.commandBarSeparator1.DisplayName = "commandBarSeparator1";
+      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
       this.commandBarSeparator1.Name = "commandBarSeparator1";
       this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
       // commandBarLabel3
       // 
-      this.commandBarLabel3.DisplayName = "commandBarLabel3";
+      resources.ApplyResources(this.commandBarLabel3, "commandBarLabel3");
       this.commandBarLabel3.Name = "commandBarLabel3";
       this.commandBarLabel3.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Satz;
       // 
       // btn_sentence_prev
       // 
-      this.btn_sentence_prev.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_sentence_prev, "btn_sentence_prev");
       this.btn_sentence_prev.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_left;
+      this.btn_sentence_prev.AutoToolTip = true;
       this.btn_sentence_prev.Name = "btn_sentence_prev";
-      this.btn_sentence_prev.Text = "commandBarButton1";
       this.btn_sentence_prev.Click += new System.EventHandler(this.btn_sentence_prev_Click);
       // 
       // lbl_sentence
       // 
       this.lbl_sentence.AccessibleDescription = "{0} / {1}";
       this.lbl_sentence.AccessibleName = "{0} / {1}";
-      this.lbl_sentence.DisplayName = "commandBarLabel2";
+      resources.ApplyResources(this.lbl_sentence, "lbl_sentence");
       this.lbl_sentence.Name = "lbl_sentence";
-      this.lbl_sentence.Text = "0 / 0";
       // 
       // btn_sentence_next
       // 
-      this.btn_sentence_next.DisplayName = "commandBarButton2";
+      resources.ApplyResources(this.btn_sentence_next, "btn_sentence_next");
       this.btn_sentence_next.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
+      this.btn_sentence_next.AutoToolTip = true;
       this.btn_sentence_next.Name = "btn_sentence_next";
-      this.btn_sentence_next.Text = "commandBarButton2";
       this.btn_sentence_next.Click += new System.EventHandler(this.btn_sentence_next_Click);
       // 
       // radSplitContainer1
       // 
       this.radSplitContainer1.Controls.Add(this.splitPanel1);
       this.radSplitContainer1.Controls.Add(this.splitPanel2);
-      this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer1.Location = new System.Drawing.Point(0, 44);
+      resources.ApplyResources(this.radSplitContainer1, "radSplitContainer1");
       this.radSplitContainer1.Name = "radSplitContainer1";
       // 
       // 
       // 
       this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.radSplitContainer1.Size = new System.Drawing.Size(780, 356);
-      this.radSplitContainer1.TabIndex = 1;
       this.radSplitContainer1.TabStop = false;
-      this.radSplitContainer1.Text = "radSplitContainer1";
       // 
       // splitPanel1
       // 
       this.splitPanel1.Controls.Add(this.elementHost1);
-      this.splitPanel1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.splitPanel1, "splitPanel1");
       this.splitPanel1.Name = "splitPanel1";
       // 
       // 
       // 
       this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel1.Size = new System.Drawing.Size(494, 356);
       this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.1365979F, 0F);
       this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(106, 0);
-      this.splitPanel1.TabIndex = 0;
       this.splitPanel1.TabStop = false;
-      this.splitPanel1.Text = "splitPanel1";
       // 
       // elementHost1
       // 
-      this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.elementHost1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.elementHost1, "elementHost1");
       this.elementHost1.Name = "elementHost1";
-      this.elementHost1.Size = new System.Drawing.Size(494, 356);
-      this.elementHost1.TabIndex = 0;
-      this.elementHost1.Text = "elementHost1";
       this.elementHost1.Child = null;
       // 
       // splitPanel2
       // 
       this.splitPanel2.Controls.Add(this.radPageView1);
       this.splitPanel2.Controls.Add(this.radCommandBar2);
-      this.splitPanel2.Location = new System.Drawing.Point(498, 0);
+      resources.ApplyResources(this.splitPanel2, "splitPanel2");
       this.splitPanel2.Name = "splitPanel2";
       // 
       // 
       // 
       this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(0, 0);
-      this.splitPanel2.Size = new System.Drawing.Size(282, 356);
       this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.1365979F, 0F);
       this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(-106, 0);
-      this.splitPanel2.TabIndex = 1;
       this.splitPanel2.TabStop = false;
-      this.splitPanel2.Text = "splitPanel2";
       // 
       // radPageView1
       // 
       this.radPageView1.Controls.Add(this.radPageViewPage1);
       this.radPageView1.Controls.Add(this.radPageViewPage2);
       this.radPageView1.Controls.Add(this.radPageViewPage3);
-      this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radPageView1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radPageView1, "radPageView1");
       this.radPageView1.Name = "radPageView1";
       this.radPageView1.SelectedPage = this.radPageViewPage1;
-      this.radPageView1.Size = new System.Drawing.Size(282, 312);
-      this.radPageView1.TabIndex = 2;
-      this.radPageView1.Text = "radPageView1";
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
       // 
       // radPageViewPage1
@@ -255,15 +233,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       this.radPageViewPage1.Controls.Add(this.radGridView1);
       this.radPageViewPage1.Controls.Add(this.btn_update);
       this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(106F, 29F);
-      this.radPageViewPage1.Location = new System.Drawing.Point(5, 35);
+      resources.ApplyResources(this.radPageViewPage1, "radPageViewPage1");
       this.radPageViewPage1.Name = "radPageViewPage1";
-      this.radPageViewPage1.Size = new System.Drawing.Size(272, 272);
-      this.radPageViewPage1.Text = "Konstituenten";
       // 
       // radGridView1
       // 
-      this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGridView1.Location = new System.Drawing.Point(0, 32);
+      resources.ApplyResources(this.radGridView1, "radGridView1");
       // 
       // 
       // 
@@ -272,41 +247,32 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       this.radGridView1.MasterTemplate.AllowColumnReorder = false;
       this.radGridView1.MasterTemplate.AllowDragToGroup = false;
       this.radGridView1.MasterTemplate.AllowRowReorder = true;
-      gridViewDecimalColumn2.DecimalPlaces = 0;
-      gridViewDecimalColumn2.HeaderText = "P";
-      gridViewDecimalColumn2.Name = "Priorität";
-      gridViewTextBoxColumn4.HeaderText = "T";
-      gridViewTextBoxColumn4.Name = "Terminal";
-      gridViewTextBoxColumn5.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Expression;
-      gridViewTextBoxColumn5.Name = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Expression;
-      gridViewTextBoxColumn5.Width = 150;
+      gridViewDecimalColumn1.DecimalPlaces = 0;
+      resources.ApplyResources(gridViewDecimalColumn1, "gridViewDecimalColumn1");
+      gridViewDecimalColumn1.Name = "Priorität";
+      resources.ApplyResources(gridViewTextBoxColumn1, "gridViewTextBoxColumn1");
+      gridViewTextBoxColumn1.Name = "Terminal";
+      gridViewTextBoxColumn2.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Expression;
+      gridViewTextBoxColumn2.Name = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Expression;
+      gridViewTextBoxColumn2.Width = 150;
       this.radGridView1.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewDecimalColumn2,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5});
+            gridViewDecimalColumn1,
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2});
       this.radGridView1.MasterTemplate.EnableFiltering = true;
       this.radGridView1.MasterTemplate.EnableGrouping = false;
       this.radGridView1.MasterTemplate.ShowFilteringRow = false;
       this.radGridView1.MasterTemplate.ShowHeaderCellButtons = true;
-      this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition4;
+      this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
       this.radGridView1.ShowHeaderCellButtons = true;
-      this.radGridView1.Size = new System.Drawing.Size(272, 240);
-      this.radGridView1.TabIndex = 2;
-      this.radGridView1.Text = "radGridView1";
       // 
       // btn_update
       // 
-      this.btn_update.Dock = System.Windows.Forms.DockStyle.Top;
+      resources.ApplyResources(this.btn_update, "btn_update");
       this.btn_update.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.refresh;
-      this.btn_update.ImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
-      this.btn_update.Location = new System.Drawing.Point(0, 0);
       this.btn_update.Name = "btn_update";
-      this.btn_update.Size = new System.Drawing.Size(272, 32);
-      this.btn_update.TabIndex = 0;
       this.btn_update.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.RegelnAnwenden;
-      this.btn_update.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-      this.btn_update.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
       this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
       // 
       // radPageViewPage2
@@ -314,15 +280,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       this.radPageViewPage2.Controls.Add(this.radGridView2);
       this.radPageViewPage2.Controls.Add(this.btn_colors);
       this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(59F, 29F);
-      this.radPageViewPage2.Location = new System.Drawing.Point(5, 35);
+      resources.ApplyResources(this.radPageViewPage2, "radPageViewPage2");
       this.radPageViewPage2.Name = "radPageViewPage2";
-      this.radPageViewPage2.Size = new System.Drawing.Size(272, 272);
-      this.radPageViewPage2.Text = "Farben";
       // 
       // radGridView2
       // 
-      this.radGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGridView2.Location = new System.Drawing.Point(0, 32);
+      resources.ApplyResources(this.radGridView2, "radGridView2");
       // 
       // 
       // 
@@ -333,63 +296,75 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       this.radGridView2.MasterTemplate.AllowDeleteRow = false;
       this.radGridView2.MasterTemplate.AllowDragToGroup = false;
       this.radGridView2.MasterTemplate.AllowRowReorder = true;
-      gridViewTextBoxColumn6.HeaderText = "T";
-      gridViewTextBoxColumn6.Name = "Terminal";
-      gridViewColorColumn3.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Text;
-      gridViewColorColumn3.Name = "ForeColor";
-      gridViewColorColumn3.Width = 100;
-      gridViewColorColumn4.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Füllung;
-      gridViewColorColumn4.Name = "BackColor";
-      gridViewColorColumn4.Width = 100;
+      resources.ApplyResources(gridViewTextBoxColumn3, "gridViewTextBoxColumn3");
+      gridViewTextBoxColumn3.Name = "Terminal";
+      gridViewColorColumn1.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Text;
+      gridViewColorColumn1.Name = "ForeColor";
+      gridViewColorColumn1.Width = 100;
+      gridViewColorColumn2.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Füllung;
+      gridViewColorColumn2.Name = "BackColor";
+      gridViewColorColumn2.Width = 100;
       this.radGridView2.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn6,
-            gridViewColorColumn3,
-            gridViewColorColumn4});
+            gridViewTextBoxColumn3,
+            gridViewColorColumn1,
+            gridViewColorColumn2});
       this.radGridView2.MasterTemplate.EnableFiltering = true;
       this.radGridView2.MasterTemplate.EnableGrouping = false;
       this.radGridView2.MasterTemplate.ShowFilteringRow = false;
       this.radGridView2.MasterTemplate.ShowHeaderCellButtons = true;
-      this.radGridView2.MasterTemplate.ViewDefinition = tableViewDefinition5;
+      this.radGridView2.MasterTemplate.ViewDefinition = tableViewDefinition2;
       this.radGridView2.Name = "radGridView2";
       this.radGridView2.ShowHeaderCellButtons = true;
-      this.radGridView2.Size = new System.Drawing.Size(272, 240);
-      this.radGridView2.TabIndex = 5;
-      this.radGridView2.Text = "radGridView2";
       // 
       // btn_colors
       // 
-      this.btn_colors.Dock = System.Windows.Forms.DockStyle.Top;
+      resources.ApplyResources(this.btn_colors, "btn_colors");
       this.btn_colors.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.refresh;
-      this.btn_colors.ImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
-      this.btn_colors.Location = new System.Drawing.Point(0, 0);
       this.btn_colors.Name = "btn_colors";
-      this.btn_colors.Size = new System.Drawing.Size(272, 32);
-      this.btn_colors.TabIndex = 4;
       this.btn_colors.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.FarbpaletteAktualisieren;
-      this.btn_colors.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-      this.btn_colors.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
       this.btn_colors.Click += new System.EventHandler(this.btn_colors_Click);
+      // 
+      // radPageViewPage3
+      // 
+      this.radPageViewPage3.Controls.Add(this.radGridView3);
+      this.radPageViewPage3.Controls.Add(this.btn_calculate);
+      this.radPageViewPage3.ItemSize = new System.Drawing.SizeF(93F, 29F);
+      resources.ApplyResources(this.radPageViewPage3, "radPageViewPage3");
+      this.radPageViewPage3.Name = "radPageViewPage3";
+      // 
+      // radGridView3
+      // 
+      resources.ApplyResources(this.radGridView3, "radGridView3");
+      // 
+      // 
+      // 
+      this.radGridView3.MasterTemplate.ViewDefinition = tableViewDefinition3;
+      this.radGridView3.Name = "radGridView3";
+      // 
+      // btn_calculate
+      // 
+      resources.ApplyResources(this.btn_calculate, "btn_calculate");
+      this.btn_calculate.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.refresh;
+      this.btn_calculate.Name = "btn_calculate";
+      this.btn_calculate.Click += new System.EventHandler(this.btn_calculate_Click);
       // 
       // radCommandBar2
       // 
-      this.radCommandBar2.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.radCommandBar2.Location = new System.Drawing.Point(0, 312);
+      resources.ApplyResources(this.radCommandBar2, "radCommandBar2");
       this.radCommandBar2.Name = "radCommandBar2";
       this.radCommandBar2.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement2});
-      this.radCommandBar2.Size = new System.Drawing.Size(282, 44);
-      this.radCommandBar2.TabIndex = 1;
-      this.radCommandBar2.Text = "radCommandBar2";
       // 
       // commandBarRowElement2
       // 
       this.commandBarRowElement2.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement2.Name = "commandBarRowElement2";
       this.commandBarRowElement2.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement2});
       // 
       // commandBarStripElement2
       // 
-      this.commandBarStripElement2.DisplayName = "commandBarStripElement2";
+      resources.ApplyResources(this.commandBarStripElement2, "commandBarStripElement2");
       this.commandBarStripElement2.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.btn_rules_new,
             this.btn_rules_load,
@@ -398,68 +373,30 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       // btn_rules_new
       // 
-      this.btn_rules_new.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_rules_new, "btn_rules_new");
       this.btn_rules_new.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.document;
+      this.btn_rules_new.AutoToolTip = true;
       this.btn_rules_new.Name = "btn_rules_new";
-      this.btn_rules_new.Text = "commandBarButton1";
       this.btn_rules_new.Click += new System.EventHandler(this.btn_rules_new_Click);
       // 
       // btn_rules_load
       // 
-      this.btn_rules_load.DisplayName = "commandBarButton2";
+      resources.ApplyResources(this.btn_rules_load, "btn_rules_load");
       this.btn_rules_load.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.folder_open;
+      this.btn_rules_load.AutoToolTip = true;
       this.btn_rules_load.Name = "btn_rules_load";
-      this.btn_rules_load.Text = "commandBarButton2";
       this.btn_rules_load.Click += new System.EventHandler(this.btn_rules_load_Click);
       // 
       // btn_rules_save
       // 
-      this.btn_rules_save.DisplayName = "commandBarButton3";
+      resources.ApplyResources(this.btn_rules_save, "btn_rules_save");
       this.btn_rules_save.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save;
+      this.btn_rules_save.AutoToolTip = true;
       this.btn_rules_save.Name = "btn_rules_save";
-      this.btn_rules_save.Text = "commandBarButton3";
       this.btn_rules_save.Click += new System.EventHandler(this.btn_rules_save_Click);
-      // 
-      // radPageViewPage3
-      // 
-      this.radPageViewPage3.Controls.Add(this.radGridView3);
-      this.radPageViewPage3.Controls.Add(this.btn_calculate);
-      this.radPageViewPage3.ItemSize = new System.Drawing.SizeF(93F, 29F);
-      this.radPageViewPage3.Location = new System.Drawing.Point(5, 35);
-      this.radPageViewPage3.Name = "radPageViewPage3";
-      this.radPageViewPage3.Size = new System.Drawing.Size(272, 272);
-      this.radPageViewPage3.Text = "Auswertung";
-      // 
-      // btn_calculate
-      // 
-      this.btn_calculate.Dock = System.Windows.Forms.DockStyle.Top;
-      this.btn_calculate.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.refresh;
-      this.btn_calculate.ImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
-      this.btn_calculate.Location = new System.Drawing.Point(0, 0);
-      this.btn_calculate.Name = "btn_calculate";
-      this.btn_calculate.Size = new System.Drawing.Size(272, 32);
-      this.btn_calculate.TabIndex = 5;
-      this.btn_calculate.Text = "Auswertung aktualisieren";
-      this.btn_calculate.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-      this.btn_calculate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-      this.btn_calculate.Click += new System.EventHandler(this.btn_calculate_Click);
-      // 
-      // radGridView3
-      // 
-      this.radGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGridView3.Location = new System.Drawing.Point(0, 32);
-      // 
-      // 
-      // 
-      this.radGridView3.MasterTemplate.ViewDefinition = tableViewDefinition6;
-      this.radGridView3.Name = "radGridView3";
-      this.radGridView3.Size = new System.Drawing.Size(272, 240);
-      this.radGridView3.TabIndex = 6;
-      this.radGridView3.Text = "radGridView3";
       // 
       // PhrasesLaboratory
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radSplitContainer1);
       this.Controls.Add(this.radCommandBar1);
@@ -482,11 +419,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       ((System.ComponentModel.ISupportInitialize)(this.radGridView2.MasterTemplate)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView2)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.btn_colors)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.radCommandBar2)).EndInit();
       this.radPageViewPage3.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.btn_calculate)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView3.MasterTemplate)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView3)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_calculate)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radCommandBar2)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 

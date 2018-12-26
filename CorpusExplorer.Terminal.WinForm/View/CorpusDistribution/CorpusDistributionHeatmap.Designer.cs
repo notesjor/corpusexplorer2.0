@@ -29,8 +29,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CorpusDistributionHeatmap));
       this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-      this.heatMapView1 = new CorpusExplorer.Terminal.WinForm.Controls.Wpf.HeatMap.HeatMapView();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
@@ -45,23 +45,16 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       // 
       // elementHost1
       // 
-      this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.elementHost1.Location = new System.Drawing.Point(0, 69);
+      resources.ApplyResources(this.elementHost1, "elementHost1");
       this.elementHost1.Name = "elementHost1";
-      this.elementHost1.Size = new System.Drawing.Size(780, 331);
-      this.elementHost1.TabIndex = 0;
-      this.elementHost1.Text = "elementHost1";
-      this.elementHost1.Child = this.heatMapView1;
+      this.elementHost1.Child = null;
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
-      this.radCommandBar1.TabIndex = 2;
       // 
       // commandBarRowElement1
       // 
@@ -72,7 +65,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.commandBarLabel1,
             this.combo_groupA,
@@ -84,56 +77,52 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       // 
       // commandBarLabel1
       // 
-      this.commandBarLabel1.DisplayName = "commandBarLabel1";
+      resources.ApplyResources(this.commandBarLabel1, "commandBarLabel1");
       this.commandBarLabel1.Name = "commandBarLabel1";
       this.commandBarLabel1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.GruppeA;
       // 
       // combo_groupA
       // 
-      this.combo_groupA.DisplayName = "commandBarDropDownList1";
+      resources.ApplyResources(this.combo_groupA, "combo_groupA");
       this.combo_groupA.DropDownAnimationEnabled = true;
       this.combo_groupA.MaxDropDownItems = 0;
       this.combo_groupA.MinSize = new System.Drawing.Size(180, 22);
       this.combo_groupA.Name = "combo_groupA";
       this.combo_groupA.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.BitteAuswählen;
-      this.combo_groupA.Text = "";
       this.combo_groupA.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.combo_group_SelectedIndexChanged);
       // 
       // commandBarLabel2
       // 
-      this.commandBarLabel2.DisplayName = "commandBarLabel2";
+      resources.ApplyResources(this.commandBarLabel2, "commandBarLabel2");
       this.commandBarLabel2.Name = "commandBarLabel2";
       this.commandBarLabel2.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.GruppeB;
       // 
       // combo_groupB
       // 
-      this.combo_groupB.DisplayName = "commandBarDropDownList2";
+      resources.ApplyResources(this.combo_groupB, "combo_groupB");
       this.combo_groupB.DropDownAnimationEnabled = true;
       this.combo_groupB.MaxDropDownItems = 0;
       this.combo_groupB.MinSize = new System.Drawing.Size(180, 22);
       this.combo_groupB.Name = "combo_groupB";
       this.combo_groupB.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.BitteAuswählen;
-      this.combo_groupB.Text = "";
       this.combo_groupB.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.combo_group_SelectedIndexChanged);
       // 
       // commandBarSeparator1
       // 
-      this.commandBarSeparator1.DisplayName = "commandBarSeparator1";
+      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
       this.commandBarSeparator1.Name = "commandBarSeparator1";
-      this.commandBarSeparator1.Text = "";
       this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
       // btn_export
       // 
-      this.btn_export.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_export, "btn_export");
       this.btn_export.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
+      this.btn_export.AutoToolTip = true;
       this.btn_export.Name = "btn_export";
-      this.btn_export.Text = "Daten exportieren";
       this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
       // 
       // CorpusDistributionHeatmap
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.elementHost1);
       this.Controls.Add(this.radCommandBar1);

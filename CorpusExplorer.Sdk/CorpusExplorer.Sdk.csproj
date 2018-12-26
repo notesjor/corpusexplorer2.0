@@ -94,8 +94,8 @@
     <Reference Include="ICSharpCode.SharpZipLib, Version=1.0.0.999, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.1.0.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NHunspell, Version=1.2.5554.16953, Culture=neutral, PublicKeyToken=1ac793ea843b4366, processorArchitecture=MSIL">
       <HintPath>..\packages\NHunspell.1.2.5554.16953\lib\net\NHunspell.dll</HintPath>
@@ -105,14 +105,15 @@
     <Reference Include="Polenter.SharpSerializer, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.1\lib\netstandard1.0\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=6.0.27.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.0.27\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.0.31.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.0.31\lib\net45\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
@@ -125,50 +126,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Action\Abstract\AbstractFilterAction.cs" />
-    <Compile Include="Action\BasicInformationAction.cs" />
-    <Compile Include="Action\ClusterAction.cs" />
-    <Compile Include="Action\ClusterListAction.cs" />
-    <Compile Include="Action\CollocateAction.cs" />
-    <Compile Include="Action\CooccurrenceAction.cs" />
-    <Compile Include="Action\CooccurrenceSelectedAction.cs" />
-    <Compile Include="Action\CrossFrequencyAction.cs" />
-    <Compile Include="Action\DocumentCountAction.cs" />
-    <Compile Include="Action\KwicSignificantFilterAction.cs" />
-    <Compile Include="Action\QueryAction.cs" />
-    <Compile Include="Action\Frequency1Action.cs" />
-    <Compile Include="Action\Frequency1SelectAction.cs" />
-    <Compile Include="Action\Frequency2Action.cs" />
-    <Compile Include="Action\Frequency3Action.cs" />
-    <Compile Include="Action\GetDocumentAction.cs" />
-    <Compile Include="Action\GetDocumentDisplaynamesAction.cs" />
-    <Compile Include="Action\GetDocumentMetadataAction.cs" />
-    <Compile Include="Action\KwicAllInDocumentFilterAction.cs" />
-    <Compile Include="Action\KwicAllInSentenceFilterAction.cs" />
-    <Compile Include="Action\KwicAnyFilterAction.cs" />
-    <Compile Include="Action\KwicExactPhraseFilterAction.cs" />
-    <Compile Include="Action\KwicFirstAnyFilterAction.cs" />
-    <Compile Include="Action\KwicNamedEntityAction.cs" />
-    <Compile Include="Action\KwitFilterAction.cs" />
-    <Compile Include="Action\LayerNamesAction.cs" />
-    <Compile Include="Action\LayerValuesAction.cs" />
-    <Compile Include="Action\MetaAction.cs" />
-    <Compile Include="Action\MetaCategoriesAction.cs" />
-    <Compile Include="Action\MetaDocumentAction.cs" />
-    <Compile Include="Action\MtldAction.cs" />
-    <Compile Include="Action\NamedEntityAction.cs" />
-    <Compile Include="Action\NGramAction.cs" />
-    <Compile Include="Action\NgramSelectedAction.cs" />
-    <Compile Include="Action\ConvertAction.cs" />
-    <Compile Include="Action\QueryListAction.cs" />
-    <Compile Include="Action\ReadingEaseAction.cs" />
-    <Compile Include="Action\SentenceCountAction.cs" />
-    <Compile Include="Action\StyleBurrowsDeltaAction.cs" />
-    <Compile Include="Action\StyleNgramAction.cs" />
-    <Compile Include="Action\TokenCountAction.cs" />
-    <Compile Include="Action\TypeCountAction.cs" />
-    <Compile Include="Action\VocabularyComplexityAction.cs" />
-    <Compile Include="Action\VocdAction.cs" />
     <Compile Include="Addon\IAction.cs" />
     <Compile Include="Aspect\CacheAspect.cs" />
     <Compile Include="Blocks\Abstract\AbstractClusterMetadataBlock.cs" />
@@ -177,6 +134,7 @@
     <Compile Include="Blocks\ClusterMetadataByNgramBlock.cs" />
     <Compile Include="Blocks\ClusterMetadata\ClusterMetadataItem.cs" />
     <Compile Include="Blocks\CooccurrenceContextBlock.cs" />
+    <Compile Include="Blocks\CooccurrenceSecondLevelProfileBlock.cs" />
     <Compile Include="Blocks\CrossFrequencyDocumentBasedBlock.cs" />
     <Compile Include="Blocks\CutOffPhraseBlock.cs" />
     <Compile Include="Blocks\Helper\DoubleKeyDictionary.cs" />
@@ -292,6 +250,7 @@
     <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDoubleValue.cs" />
     <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorIntegerRange.cs" />
     <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorIntegerValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorRobustDateTimeValue.cs" />
     <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorStringValue.cs" />
     <Compile Include="Blocks\SentenceFrequenceDistributionBlock.cs" />
     <Compile Include="Blocks\SentenceHashBlock.cs" />
@@ -346,7 +305,6 @@
     <Compile Include="Helper\TemporaryFile.cs" />
     <Compile Include="Helper\TypeEqualityComparer.cs" />
     <Compile Include="Helper\UniversalColor.cs" />
-    <Compile Include="Helper\UnsupportedQueryParserFeatureHelper.cs" />
     <Compile Include="Helper\ValueMergeHelper.cs" />
     <Compile Include="Model\Adapter\Corpus\CorpusAdapterSingleFile.cs" />
     <Compile Include="Model\Adapter\Corpus\CorpusAdapterWriteIndirect.cs" />
@@ -561,6 +519,7 @@
     <Compile Include="ViewModel\ClusterMetadataByCooccurenceViewModel.cs" />
     <Compile Include="ViewModel\ClusterMetadataByNGramViewModel.cs" />
     <Compile Include="ViewModel\CooccurrenceOverlappingViewModel.cs" />
+    <Compile Include="ViewModel\CooccurrenceSecondLevelProfileViewModel.cs" />
     <Compile Include="ViewModel\CooccurrenceSelectiveViewModel.cs" />
     <Compile Include="ViewModel\CooccurrencesOverTimeViewModel.cs" />
     <Compile Include="ViewModel\CorpusFiniteStateMachineViewModel.cs" />

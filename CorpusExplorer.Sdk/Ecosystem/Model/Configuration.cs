@@ -347,7 +347,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       }
     }
 
-    public static void Reload3rdPartyAddons()
+    public static void Reload3rdPartyAddons(string alternativePath = null)
     {
       _addonCrawlers.Clear();
       _addonImporters.Clear();
@@ -359,7 +359,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       _addonConsoleActions.Clear();
       _addonSideLoadFeatures.Clear();
 
-      var location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+      var location = Path.GetDirectoryName(string.IsNullOrEmpty(alternativePath) ? Assembly.GetExecutingAssembly().Location : alternativePath);
       Load3RdPartyAddons(location);
 
       // Nur relevant, wenn USB/Pendrive oder DEBUG
@@ -466,7 +466,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// <summary>
     ///   The initialize.
     /// </summary>
-    internal static void Initialize(InitialOptionsEnum options, bool forceReInitialization = false)
+    internal static void Initialize(InitialOptionsEnum options, bool forceReInitialization = false, string alternative3rdPartyPath = null)
     {
       if (IsInitialized && !forceReInitialization)
         return;
@@ -475,7 +475,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
       // Ergänze mit 3rd-Party
       if (options == InitialOptionsEnum.MinimalAnd3rdParty)
-        Reload3rdPartyAddons();
+        Reload3rdPartyAddons(alternative3rdPartyPath);
 
       IsInitialized = true;
     }
@@ -715,6 +715,9 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
             foreach (var s1 in repo.AddonScrapers.Where(s1 => !_addonScrapers.ContainsKey(s1.Key)))
               try
               {
+                if (!s1.Key.Contains("|"))
+                  throw new CustomAttributeFormatException($"SCRAPER - WRONG ENTRY FOR: {s1.Key} - {s1.Value.GetType().FullName}");
+
                 _addonScrapers.Add(s1.Key, s1.Value);
               }
               catch (Exception ex)
@@ -726,6 +729,9 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
             foreach (var s2 in repo.AddonImporter.Where(s2 => !_addonImporters.ContainsKey(s2.Key)))
               try
               {
+                if (!s2.Key.Contains("|"))
+                  throw new CustomAttributeFormatException($"IMPORTER - WRONG ENTRY FOR: {s2.Key} - {s2.Value.GetType().FullName}");
+
                 _addonImporters.Add(s2.Key, s2.Value);
               }
               catch (Exception ex)
@@ -737,6 +743,9 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
             foreach (var s3 in repo.AddonExporters.Where(s3 => !_addonExporters.ContainsKey(s3.Key)))
               try
               {
+                if (!s3.Key.Contains("|"))
+                  throw new CustomAttributeFormatException($"EXPORTER - WRONG ENTRY FOR: {s3.Key} - {s3.Value.GetType().FullName}");
+
                 _addonExporters.Add(s3.Key, s3.Value);
               }
               catch (Exception ex)

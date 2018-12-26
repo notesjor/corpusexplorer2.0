@@ -31,6 +31,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CooccurrenceDiagram));
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
@@ -49,7 +50,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.pages = new Telerik.WinControls.UI.RadPageView();
       this.radPageView2 = new Telerik.WinControls.UI.RadPageView();
       this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-      this.simpleDiagram1 = new CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.WpfDiagram();
       this.wordBag1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WordBag();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_node)).BeginInit();
@@ -60,13 +60,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 44);
-      this.radCommandBar1.TabIndex = 0;
       // 
       // commandBarRowElement1
       // 
@@ -77,7 +74,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.btn_graph_new,
             this.btn_graph_save,
@@ -90,10 +87,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // 
       this.btn_graph_new.AccessibleDescription = "commandBarButton1";
       this.btn_graph_new.AccessibleName = "commandBarButton1";
-      this.btn_graph_new.DisplayName = "commandBarButton1";
+      this.btn_graph_new.AutoToolTip = true;
+      resources.ApplyResources(this.btn_graph_new, "btn_graph_new");
       this.btn_graph_new.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.document;
       this.btn_graph_new.Name = "btn_graph_new";
-      this.btn_graph_new.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
       this.btn_graph_new.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.NeuesDiagramm;
       this.btn_graph_new.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.NeuesDiagramm;
       this.btn_graph_new.Click += new System.EventHandler(this.btn_graph_new_Click);
@@ -102,10 +99,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // 
       this.btn_graph_save.AccessibleDescription = "commandBarButton2";
       this.btn_graph_save.AccessibleName = "commandBarButton2";
-      this.btn_graph_save.DisplayName = "commandBarButton2";
+      this.btn_graph_save.AutoToolTip = true;
+      resources.ApplyResources(this.btn_graph_save, "btn_graph_save");
       this.btn_graph_save.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save;
       this.btn_graph_save.Name = "btn_graph_save";
-      this.btn_graph_save.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
       this.btn_graph_save.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.DiagrammSpeichern;
       this.btn_graph_save.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.DiagrammSpeichern;
       this.btn_graph_save.Click += new System.EventHandler(this.btn_graph_save_Click);
@@ -114,7 +111,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // 
       this.commandBarDropDownButton1.AccessibleDescription = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Export;
       this.commandBarDropDownButton1.AccessibleName = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Export;
-      this.commandBarDropDownButton1.DisplayName = "commandBarDropDownButton1";
+      resources.ApplyResources(this.commandBarDropDownButton1, "commandBarDropDownButton1");
       this.commandBarDropDownButton1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save_theme;
       this.commandBarDropDownButton1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.btn_export_gexf,
@@ -141,10 +138,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // 
       this.btn_graph_load.AccessibleDescription = "commandBarButton3";
       this.btn_graph_load.AccessibleName = "commandBarButton3";
-      this.btn_graph_load.DisplayName = "commandBarButton3";
+      this.btn_graph_load.AutoToolTip = true;
+      resources.ApplyResources(this.btn_graph_load, "btn_graph_load");
       this.btn_graph_load.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.folder;
       this.btn_graph_load.Name = "btn_graph_load";
-      this.btn_graph_load.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
       this.btn_graph_load.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.DiagrammLaden;
       this.btn_graph_load.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.DiagrammLaden;
       this.btn_graph_load.Click += new System.EventHandler(this.btn_graph_load_Click);
@@ -153,7 +150,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // 
       this.commandBarDropDownButton2.AccessibleDescription = "commandBarDropDownButton2";
       this.commandBarDropDownButton2.AccessibleName = "commandBarDropDownButton2";
-      this.commandBarDropDownButton2.DisplayName = "commandBarDropDownButton2";
+      resources.ApplyResources(this.commandBarDropDownButton2, "commandBarDropDownButton2");
       this.commandBarDropDownButton2.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.diagram1;
       this.commandBarDropDownButton2.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.btn_layout_tree2,
@@ -178,73 +175,49 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // 
       // radPageViewPage1
       // 
-      this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(141F, 29F);
-      this.radPageViewPage1.Location = new System.Drawing.Point(5, 40);
+      resources.ApplyResources(this.radPageViewPage1, "radPageViewPage1");
       this.radPageViewPage1.Name = "radPageViewPage1";
-      this.radPageViewPage1.Size = new System.Drawing.Size(184, 49);
-      this.radPageViewPage1.Text = "radPageViewPage1";
       // 
       // radPageViewPage2
       // 
-      this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(141F, 29F);
-      this.radPageViewPage2.Location = new System.Drawing.Point(5, 40);
+      resources.ApplyResources(this.radPageViewPage2, "radPageViewPage2");
       this.radPageViewPage2.Name = "radPageViewPage2";
-      this.radPageViewPage2.Size = new System.Drawing.Size(184, 49);
-      this.radPageViewPage2.Text = "radPageViewPage2";
       // 
       // page_node
       // 
       this.page_node.Controls.Add(this.radPageViewPage1);
       this.page_node.Controls.Add(this.radPageViewPage2);
-      this.page_node.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.page_node.Location = new System.Drawing.Point(3, 150);
+      resources.ApplyResources(this.page_node, "page_node");
       this.page_node.Name = "page_node";
       this.page_node.SelectedPage = this.radPageViewPage1;
-      this.page_node.Size = new System.Drawing.Size(194, 94);
-      this.page_node.TabIndex = 5;
       // 
       // pages
       // 
-      this.pages.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pages.Location = new System.Drawing.Point(3, 150);
+      resources.ApplyResources(this.pages, "pages");
       this.pages.Name = "pages";
-      this.pages.Size = new System.Drawing.Size(194, 94);
-      this.pages.TabIndex = 5;
       // 
       // radPageView2
       // 
-      this.radPageView2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radPageView2.Location = new System.Drawing.Point(3, 150);
+      resources.ApplyResources(this.radPageView2, "radPageView2");
       this.radPageView2.Name = "radPageView2";
-      this.radPageView2.Size = new System.Drawing.Size(194, 94);
-      this.radPageView2.TabIndex = 5;
       // 
       // elementHost1
       // 
-      this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.elementHost1.Location = new System.Drawing.Point(0, 80);
+      resources.ApplyResources(this.elementHost1, "elementHost1");
       this.elementHost1.Name = "elementHost1";
-      this.elementHost1.Size = new System.Drawing.Size(780, 320);
-      this.elementHost1.TabIndex = 3;
-      this.elementHost1.Text = "elementHost1";
-      this.elementHost1.Child = this.simpleDiagram1;
+      this.elementHost1.Child = null;
       // 
       // wordBag1
       // 
       this.wordBag1.BackColor = System.Drawing.Color.White;
-      this.wordBag1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.wordBag1.Font = new System.Drawing.Font("Segoe UI", 11F);
-      this.wordBag1.Location = new System.Drawing.Point(0, 44);
-      this.wordBag1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+      resources.ApplyResources(this.wordBag1, "wordBag1");
       this.wordBag1.Name = "wordBag1";
-      this.wordBag1.ResultSelectedLayerDisplayname = "Wort";
-      this.wordBag1.Size = new System.Drawing.Size(780, 36);
-      this.wordBag1.TabIndex = 4;
+      this.wordBag1.ResultQueries = new string[0];
+      this.wordBag1.ResultSelectedLayerDisplayname = null;
       this.wordBag1.ExecuteButtonClicked += new System.EventHandler(this.wordBag1_ExecuteButtonClicked);
       // 
       // CooccurrenceDiagram
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.elementHost1);
       this.Controls.Add(this.wordBag1);
@@ -279,8 +252,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     private Telerik.WinControls.UI.RadPageView page_node;
     private Telerik.WinControls.UI.RadPageView pages;
     private Telerik.WinControls.UI.RadPageView radPageView2;
-    private System.Windows.Forms.Integration.ElementHost elementHost1;
-    private Controls.Wpf.Diagram.WpfDiagram simpleDiagram1;
+    private System.Windows.Forms.Integration.ElementHost elementHost1;    
     private WordBag wordBag1;
   }
 }

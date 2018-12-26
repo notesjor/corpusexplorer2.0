@@ -15,10 +15,10 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       InitializeComponent();
     }
 
-    public string HeaderDescribtion
+    public string HeaderDescription
     {
-      get => lbl_describtion.Text;
-      set => lbl_describtion.Text = value;
+      get => lbl_description.Text;
+      set => lbl_description.Text = value;
     }
 
     public string HeaderHead

@@ -86,7 +86,7 @@ namespace CorpusExplorer.Sdk.Blocks
       RandomSelection = Project.CreateSelection(
         selD,
         string.Format(
-          Resources.SelectionRandomDescribtion,
+          Resources.SelectionRandomDescription,
           selD.Count,
           Math.Round(DocumentPercent, 2)),
         Selection);
@@ -94,7 +94,7 @@ namespace CorpusExplorer.Sdk.Blocks
       RandomInvertSelection = Project.CreateSelection(
         rd,
         string.Format(
-          Resources.SelectionRandomDescribtion,
+          Resources.SelectionRandomDescription,
           rd.Count,
           Math.Round(100d - DocumentPercent, 2)),
         Selection);

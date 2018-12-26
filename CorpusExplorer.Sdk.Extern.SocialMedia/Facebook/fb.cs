@@ -8,7 +8,8 @@ using Facebook;
 
 namespace CorpusExplorer.Sdk.Extern.SocialMedia.Facebook
 {
-  public class FacebookAuthentication : AbstractSimpleAuthentication{
+  public class FacebookAuthentication : AbstractAuthentication
+  {
     protected override object OpenConnection()
     {
       return new FacebookClient(Settings["AccessToken"]);

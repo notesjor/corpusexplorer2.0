@@ -16,5 +16,14 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       PanelElement.PanelBorder.Visibility = ElementVisibility.Collapsed;
       Text = "";
     }
+
+    private void InitializeComponent()
+    {
+      ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+      this.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+      this.ResumeLayout(false);
+
+    }
   }
 }

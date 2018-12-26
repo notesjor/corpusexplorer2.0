@@ -32,6 +32,21 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// <param name="dic">
     ///   The dic.
     /// </param>
+    public CeDictionary(IEnumerable<string> dic)
+    {
+      _d2 = new Dictionary<string, int> { { string.Empty, -1 } };
+      foreach (var x in dic)
+        _d2.Add(x, _d2.Count);
+
+      _d1 = _d2.ToDictionary(x => x.Value, x => x.Key);
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="CeDictionary" /> class.
+    /// </summary>
+    /// <param name="dic">
+    ///   The dic.
+    /// </param>
     public CeDictionary(Dictionary<string, int> dic)
     {
       if (!dic.ContainsKey(string.Empty))

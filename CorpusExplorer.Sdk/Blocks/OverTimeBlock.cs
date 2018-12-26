@@ -23,7 +23,7 @@ namespace CorpusExplorer.Sdk.Blocks
     public override void Calculate()
     {
       var block = Selection.CreateBlock<SelectionClusterBlock>();
-      block.ClusterGenerator = new SelectionClusterGeneratorDateTimeValue();
+      block.ClusterGenerator = new SelectionClusterGeneratorRobustDateTimeValue();
       block.MetadataKey = MetadataKey;
       block.Calculate();
 

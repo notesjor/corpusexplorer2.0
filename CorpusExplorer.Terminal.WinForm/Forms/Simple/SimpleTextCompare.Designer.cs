@@ -45,44 +45,37 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       // 
       // radPanel1
       // 
-      this.radPanel1.Location = new System.Drawing.Point(0, 413);
-      this.radPanel1.Size = new System.Drawing.Size(781, 38);
+      resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
       // webHtml5Visualisation1
       // 
-      this.webHtml5Visualisation1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.webHtml5Visualisation1.Location = new System.Drawing.Point(0, 69);
+      this.webHtml5Visualisation1.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this.webHtml5Visualisation1, "webHtml5Visualisation1");
       this.webHtml5Visualisation1.MainpageUrl = null;
-      this.webHtml5Visualisation1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.webHtml5Visualisation1.Name = "webHtml5Visualisation1";
-      this.webHtml5Visualisation1.Size = new System.Drawing.Size(781, 344);
-      this.webHtml5Visualisation1.TabIndex = 6;
       this.webHtml5Visualisation1.TemplateVars = ((System.Collections.Generic.Dictionary<string, string>)(resources.GetObject("webHtml5Visualisation1.TemplateVars")));
       // 
       // radCommandBar3
       // 
-      this.radCommandBar3.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar3.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar3, "radCommandBar3");
       this.radCommandBar3.Name = "radCommandBar3";
       this.radCommandBar3.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement3});
-      this.radCommandBar3.Size = new System.Drawing.Size(781, 69);
-      this.radCommandBar3.TabIndex = 5;
-      this.radCommandBar3.Text = "radCommandBar3";
       // 
       // commandBarRowElement3
       // 
       this.commandBarRowElement3.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
       this.commandBarRowElement3.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement3.Name = "commandBarRowElement3";
       this.commandBarRowElement3.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement3});
-      this.commandBarRowElement3.Text = "";
+      resources.ApplyResources(this.commandBarRowElement3, "commandBarRowElement3");
       this.commandBarRowElement3.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
       // 
       // commandBarStripElement3
       // 
       this.commandBarStripElement3.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-      this.commandBarStripElement3.DisplayName = "commandBarStripElement3";
+      resources.ApplyResources(this.commandBarStripElement3, "commandBarStripElement3");
       this.commandBarStripElement3.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.commandBarLabel3,
             this.commandBarDropDownList1,
@@ -94,44 +87,41 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       // commandBarLabel3
       // 
       this.commandBarLabel3.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-      this.commandBarLabel3.DisplayName = "commandBarLabel3";
+      resources.ApplyResources(this.commandBarLabel3, "commandBarLabel3");
       this.commandBarLabel3.Name = "commandBarLabel3";
       this.commandBarLabel3.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.TextLinks;
       this.commandBarLabel3.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
       // 
       // commandBarDropDownList1
       // 
-      this.commandBarDropDownList1.DisplayName = "commandBarDropDownList1";
+      resources.ApplyResources(this.commandBarDropDownList1, "commandBarDropDownList1");
       this.commandBarDropDownList1.DropDownAnimationEnabled = true;
       this.commandBarDropDownList1.MaxDropDownItems = 0;
       this.commandBarDropDownList1.MinSize = new System.Drawing.Size(250, 22);
       this.commandBarDropDownList1.Name = "commandBarDropDownList1";
-      this.commandBarDropDownList1.Text = "";
       this.commandBarDropDownList1.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.commandBarDropDownList1_SelectedIndexChanged);
       // 
       // commandBarLabel4
       // 
       this.commandBarLabel4.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-      this.commandBarLabel4.DisplayName = "commandBarLabel4";
+      resources.ApplyResources(this.commandBarLabel4, "commandBarLabel4");
       this.commandBarLabel4.Name = "commandBarLabel4";
       this.commandBarLabel4.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.TextRechts;
       this.commandBarLabel4.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
       // 
       // commandBarDropDownList2
       // 
-      this.commandBarDropDownList2.DisplayName = "commandBarDropDownList2";
+      resources.ApplyResources(this.commandBarDropDownList2, "commandBarDropDownList2");
       this.commandBarDropDownList2.DropDownAnimationEnabled = true;
       this.commandBarDropDownList2.MaxDropDownItems = 0;
       this.commandBarDropDownList2.MinSize = new System.Drawing.Size(250, 22);
       this.commandBarDropDownList2.Name = "commandBarDropDownList2";
-      this.commandBarDropDownList2.Text = "";
       this.commandBarDropDownList2.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.commandBarDropDownList2_SelectedIndexChanged);
       // 
       // SimpleTextCompare
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.ClientSize = new System.Drawing.Size(781, 451);
+      resources.ApplyResources(this, "$this");
       this.Controls.Add(this.webHtml5Visualisation1);
       this.Controls.Add(this.radCommandBar3);
       this.DisplayAbort = true;
@@ -140,7 +130,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
-      this.Text = "Textvergleich";
       this.Controls.SetChildIndex(this.radPanel1, 0);
       this.Controls.SetChildIndex(this.radCommandBar3, 0);
       this.Controls.SetChildIndex(this.webHtml5Visualisation1, 0);

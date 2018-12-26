@@ -1,4 +1,4 @@
-﻿namespace CorpusExplorer.Terminal.WinForm.View.Special
+namespace CorpusExplorer.Terminal.WinForm.View.Special
 {
   partial class FrequencyMap
   {
@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrequencyMap));
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
@@ -41,24 +42,21 @@
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
-      this.radCommandBar1.TabIndex = 0;
-      this.radCommandBar1.Text = "radCommandBar1";
       // 
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.btn_showGrid,
             this.commandBarSeparator1,
@@ -68,48 +66,42 @@
       // 
       // btn_showGrid
       // 
-      this.btn_showGrid.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_showGrid, "btn_showGrid");
       this.btn_showGrid.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
+      this.btn_showGrid.AutoToolTip = true;
       this.btn_showGrid.Name = "btn_showGrid";
-      this.btn_showGrid.Text = "Abfragetabelle";
       this.btn_showGrid.Click += new System.EventHandler(this.btn_showGrid_Click);
       // 
       // commandBarSeparator1
       // 
-      this.commandBarSeparator1.DisplayName = "commandBarSeparator1";
+      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
       this.commandBarSeparator1.Name = "commandBarSeparator1";
       this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
       // btn_mapNormal
       // 
-      this.btn_mapNormal.DisplayName = "commandBarButton2";
+      resources.ApplyResources(this.btn_mapNormal, "btn_mapNormal");
       this.btn_mapNormal.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.place;
+      this.btn_mapNormal.AutoToolTip = true;
       this.btn_mapNormal.Name = "btn_mapNormal";
-      this.btn_mapNormal.Text = "Karte (standard)";
       this.btn_mapNormal.Click += new System.EventHandler(this.btn_mapNormal_Click);
       // 
       // btn_mapNormalized
       // 
-      this.btn_mapNormalized.DisplayName = "commandBarButton3";
+      resources.ApplyResources(this.btn_mapNormalized, "btn_mapNormalized");
       this.btn_mapNormalized.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.colors1;
+      this.btn_mapNormalized.AutoToolTip = true;
       this.btn_mapNormalized.Name = "btn_mapNormalized";
-      this.btn_mapNormalized.Text = "Karte (normiert)";
       this.btn_mapNormalized.Click += new System.EventHandler(this.btn_mapNormalized_Click);
       // 
       // mapSwitch1
       // 
       this.mapSwitch1.BackColor = System.Drawing.Color.White;
-      this.mapSwitch1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.mapSwitch1.Font = new System.Drawing.Font("Segoe UI", 11F);
-      this.mapSwitch1.Location = new System.Drawing.Point(0, 69);
-      this.mapSwitch1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+      resources.ApplyResources(this.mapSwitch1, "mapSwitch1");
       this.mapSwitch1.Name = "mapSwitch1";
-      this.mapSwitch1.Size = new System.Drawing.Size(780, 331);
-      this.mapSwitch1.TabIndex = 1;
       // 
       // FrequencyMap
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.mapSwitch1);
       this.Controls.Add(this.radCommandBar1);

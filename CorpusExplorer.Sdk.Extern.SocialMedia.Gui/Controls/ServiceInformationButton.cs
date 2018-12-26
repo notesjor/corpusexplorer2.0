@@ -21,5 +21,8 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
 
     public Image Image { get => pictureBox1.Image; set => pictureBox1.Image = value; }
     public string Label { get => radLabel1.Text; set => radLabel1.Text = value; }
+    public event EventHandler OnClick;
+
+    private void ControlClick(object sender, EventArgs e) => OnClick?.Invoke(sender, e);
   }
 }

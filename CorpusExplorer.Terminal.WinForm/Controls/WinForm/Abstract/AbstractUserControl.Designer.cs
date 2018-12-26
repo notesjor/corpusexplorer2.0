@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AbstractUserControl));
       this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
       this.SuspendLayout();
       // 
@@ -35,10 +36,8 @@
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.BackColor = System.Drawing.Color.White;
-      this.Font = new System.Drawing.Font("Segoe UI", 11F);
-      this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+      resources.ApplyResources(this, "$this");
       this.Name = "AbstractUserControl";
-      this.Size = new System.Drawing.Size(681, 388);
       this.ResumeLayout(false);
 
     }

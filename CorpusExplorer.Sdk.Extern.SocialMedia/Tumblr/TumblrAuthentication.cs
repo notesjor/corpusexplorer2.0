@@ -8,16 +8,26 @@ using DontPanic.TumblrSharp.Client;
 
 namespace CorpusExplorer.Sdk.Extern.SocialMedia.Tumblr
 {
-  public class TumblrAuthentication : AbstractSimpleAuthentication
+  public class TumblrAuthentication : AbstractAuthentication
   {
-    protected override object OpenConnection()
+    public override object OpenConnection()
     {
-      return new TumblrClientFactory()
-       .Create<TumblrClient>(
-                             Settings["ConsumerKey"],
-                             Settings["ConsumerSecret"],
-                             new DontPanic.TumblrSharp.OAuth.Token(Settings["OAuthToken"],
-                                                                   Settings["OAuthSecret"]));
+      try
+      {
+        if (Settings.Any(x => string.IsNullOrWhiteSpace(x.Value)))
+          return null;
+
+        return new TumblrClientFactory()
+         .Create<TumblrClient>(
+                               Settings["ConsumerKey"]?.Trim(),
+                               Settings["ConsumerSecret"]?.Trim(),
+                               new DontPanic.TumblrSharp.OAuth.Token(Settings["OAuthToken"]?.Trim(),
+                                                                     Settings["OAuthSecret"]?.Trim()));
+      }
+      catch
+      {
+        return null;
+      }
     }
 
     public override string ProviderName => "Tumblr";

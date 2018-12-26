@@ -3,16 +3,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Forms;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.ViewModel;
+using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter.Abstract;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Properties;
+using HorizontalAlignment = System.Windows.HorizontalAlignment;
 
 #endregion
 
@@ -25,6 +28,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
   {
     private List<string> _index;
     private CorpusFiniteStateMachineViewModel _vm;
+    private WpfDiagram simpleDiagram1;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractView" /> class.
@@ -32,6 +36,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     public CorpusFiniteStateMachine()
     {
       InitializeComponent();
+      simpleDiagram1 = new WpfDiagram { VerticalAlignment = VerticalAlignment.Stretch, HorizontalAlignment = HorizontalAlignment.Stretch };
+      elementHost1.Child = simpleDiagram1;
 
       ShowView += (sender, args) =>
       {
@@ -67,8 +73,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
 
       var cons = new List<Tuple<string, string, double>>();
       foreach (var connection in _vm.ConnectionsAggregated)
-      foreach (var dest in connection.Value)
-        cons.Add(new Tuple<string, string, double>(connection.Key, dest, 1));
+        foreach (var dest in connection.Value)
+          cons.Add(new Tuple<string, string, double>(connection.Key, dest, 1));
 
       simpleDiagram1.CallAddConnections(cons);
       simpleDiagram1.CallLayoutAsTree();
@@ -101,7 +107,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
 
     private void btn_save_Click(object sender, EventArgs e)
     {
-      var sfd = new SaveFileDialog {Filter = Resources.FileExtension_CEDG, CheckPathExists = true};
+      var sfd = new SaveFileDialog { Filter = Resources.FileExtension_CEDG, CheckPathExists = true };
       if (sfd.ShowDialog() != DialogResult.OK)
         return;
 
@@ -117,7 +123,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
 
     private void Export(AbstractGraphConverter type, string filter)
     {
-      var sfd = new SaveFileDialog {Filter = filter, CheckPathExists = true};
+      var sfd = new SaveFileDialog { Filter = filter, CheckPathExists = true };
       if (sfd.ShowDialog() != DialogResult.OK)
         return;
       FileIO.Write(sfd.FileName, simpleDiagram1.CallExport(type), Configuration.Encoding);

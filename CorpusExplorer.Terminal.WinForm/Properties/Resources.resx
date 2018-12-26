@@ -267,7 +267,7 @@ auf dieses Fenster</value>
   <data name="select_table" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\select_table.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FulltextAnnotation_NewLayerValueDescribtion" xml:space="preserve">
+  <data name="FulltextAnnotation_NewLayerValueDescription" xml:space="preserve">
     <value>Geben Sie die Bezeichnung des neuen Layerwerts an.</value>
   </data>
   <data name="FulltextAnnotation_DeleteLayerValueHead" xml:space="preserve">
@@ -288,7 +288,7 @@ auf dieses Fenster</value>
   <data name="FulltextAnnotation_RenameLayerHead" xml:space="preserve">
     <value>Wichtiger Hinweis</value>
   </data>
-  <data name="Wordbag_EnterQueryDescribtion" xml:space="preserve">
+  <data name="Wordbag_EnterQueryDescription" xml:space="preserve">
     <value>Hinweis: Zum Bestätigen der Begriffe drücken Sie ENTER oder verwenden Sie das Semikolon ";"</value>
   </data>
   <data name="piece2" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -315,7 +315,7 @@ auf dieses Fenster</value>
   <data name="Phrases_PhraseTable" xml:space="preserve">
     <value>Phrasen-Tabelle</value>
   </data>
-  <data name="SpcialFunctions_Describtion" xml:space="preserve">
+  <data name="SpcialFunctions_Description" xml:space="preserve">
     <value>Diese speziellen Funktionen benötigen bestimmte Korpus-/System-Voraussetzungen.</value>
   </data>
   <data name="action_arrow_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -372,7 +372,7 @@ auf dieses Fenster</value>
   <data name="upload" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\upload.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Disambigution_Describtion" xml:space="preserve">
+  <data name="Disambigution_Description" xml:space="preserve">
     <value>Anaysieren Sie semantischen Ähnlichkeiten und Unterschiede.</value>
   </data>
   <data name="FileExtension_TXT" xml:space="preserve">
@@ -693,7 +693,7 @@ auf dieses Fenster</value>
   <data name="Html_ShowErrorReport" xml:space="preserve">
     <value>&lt;html&gt;&lt;span style="font-size: 10pt"&gt;Zeige Fehlerbericht&lt;/span&gt;&lt;/html&gt;</value>
   </data>
-  <data name="FulltextAnnotationSpeedup_CopyLayerDescribtion" xml:space="preserve">
+  <data name="FulltextAnnotationSpeedup_CopyLayerDescription" xml:space="preserve">
     <value>Möchten Sie den aktuellen Layer ({0}) kopieren? Wenn ja, geben Sie einen anderen Namen ein und klicken Sie auf ok.</value>
   </data>
   <data name="Snapshot_Contains" xml:space="preserve">
@@ -711,7 +711,7 @@ auf dieses Fenster</value>
   <data name="folder_action_close" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\folder_action_close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Dashboard_EnterCorpusNameDescribtion" xml:space="preserve">
+  <data name="Dashboard_EnterCorpusNameDescription" xml:space="preserve">
     <value>Vergeben Sie einen eindeutigen Namen für das Korpus.</value>
   </data>
   <data name="NeuerSchnappschuss" xml:space="preserve">
@@ -951,7 +951,7 @@ auf dieses Fenster</value>
   <data name="Dashboard_ProjectSave_Error" xml:space="preserve">
     <value>Das Projekt wurde NICHT gespeichert, da kein Name vergeben wurde.</value>
   </data>
-  <data name="FrequncyAnalytics_Describtion" xml:space="preserve">
+  <data name="FrequncyAnalytics_Description" xml:space="preserve">
     <value>Werten Sie Frequenzen und die daraus resultierende Verteilungen aus.</value>
   </data>
   <data name="EinstellungÜbersicht" xml:space="preserve">
@@ -1406,7 +1406,7 @@ Korpusakquise</value>
   <data name="Html_GreenValues2" xml:space="preserve">
     <value>&lt;html&gt;Begriff &lt;span style="color: #00ff00"&gt;(grün)&lt;/span&gt;:&lt;/html&gt;</value>
   </data>
-  <data name="Phrases_Describtion" xml:space="preserve">
+  <data name="Phrases_Description" xml:space="preserve">
     <value>Suchen Sie nach Phrasen, wiederkehrenden Mustern und N-Grammen</value>
   </data>
   <data name="RegelGiltFür" xml:space="preserve">
@@ -1466,7 +1466,7 @@ Korpusakquise</value>
   <data name="Snapshot_GreenValueHintHead" xml:space="preserve">
     <value>Kein Begriff grün hinterlegt...!</value>
   </data>
-  <data name="Cooccurrences_Describtion" xml:space="preserve">
+  <data name="Cooccurrences_Description" xml:space="preserve">
     <value>Ermitteln Sie mit diesem Modul alle signifikanten Kookkurrenzen.</value>
   </data>
   <data name="AlternativeLayerbezeichnungHierEingeben" xml:space="preserve">
@@ -1655,7 +1655,7 @@ Korpusakquise</value>
   <data name="Snapshot_SelectLayer" xml:space="preserve">
     <value>1. Layer auswählen...</value>
   </data>
-  <data name="CorpusDistribution_Describtion" xml:space="preserve">
+  <data name="CorpusDistribution_Description" xml:space="preserve">
     <value>Ermitteln Sie die Einflussfaktoren, die aktuell im Schnappschuss/Korpus wirken.</value>
   </data>
   <data name="snipet-internet" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -1829,7 +1829,7 @@ Korpusakquise</value>
   <data name="AktuellenSchnappschussEingrenzen" xml:space="preserve">
     <value>Aktuellen Schnappschuss eingrenzen</value>
   </data>
-  <data name="Fulltext_Describtion" xml:space="preserve">
+  <data name="Fulltext_Description" xml:space="preserve">
     <value>Dieses Modul erlaubt die (Nach-)Bearbeitung der Textannotation sowie unterschiedliche Darstellungsformen von Text.</value>
   </data>
   <data name="tool_patch" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -2161,7 +2161,7 @@ auf andere PCs/Server ausgelagert werden.</value>
   <data name="EigeneFunktionenBerechnungen" xml:space="preserve">
     <value>Eigene Funktionen/Berechnungen</value>
   </data>
-  <data name="FulltextAnnotation_DeleteLayerValue_ChangeLayerValueDescribtion" xml:space="preserve">
+  <data name="FulltextAnnotation_DeleteLayerValue_ChangeLayerValueDescription" xml:space="preserve">
     <value>Geben Sie eine neue Bezeichnung für den Layerwert ein. Dieser wird in allen Dokument ersetzt.</value>
   </data>
   <data name="tree" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -2653,7 +2653,7 @@ auf andere PCs/Server ausgelagert werden.</value>
   <data name="Phrases_StrucGrammar" xml:space="preserve">
     <value>Strukturgrammatik</value>
   </data>
-  <data name="Textedition_Describtion" xml:space="preserve">
+  <data name="Textedition_Description" xml:space="preserve">
     <value>Erstellen Sie eine Edtion unterschiedlicher Textstufen.</value>
   </data>
   <data name="tool_ruler_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -2683,7 +2683,7 @@ auf andere PCs/Server ausgelagert werden.</value>
   <data name="Übersicht" xml:space="preserve">
     <value>Übersicht</value>
   </data>
-  <data name="FulltextAnnotation_NewLayerDescribtion" xml:space="preserve">
+  <data name="FulltextAnnotation_NewLayerDescription" xml:space="preserve">
     <value>Geben Sie den Namen des neuen Layers an.</value>
   </data>
   <data name="SieBenötigenMindestensEinMappingMitDemKeyText" xml:space="preserve">
@@ -2722,7 +2722,7 @@ auf andere PCs/Server ausgelagert werden.</value>
   <data name="Top" xml:space="preserve">
     <value>Top:</value>
   </data>
-  <data name="Stylemetrics_Describtion" xml:space="preserve">
+  <data name="Stylemetrics_Description" xml:space="preserve">
     <value>Diese Analysen erlauben einen Blick auf den spezifischen Autoren/Redaktionsstil zu werfen.</value>
   </data>
   <data name="Snapshot_MetaEmpty" xml:space="preserve">
@@ -2795,7 +2795,7 @@ Nicht geeignet für Korpra mit mehr als 5 Mio. Token!</value>
   <data name="Kategorie" xml:space="preserve">
     <value>Kategorie</value>
   </data>
-  <data name="FulltextAnnotation_RenameLayer_Describtion" xml:space="preserve">
+  <data name="FulltextAnnotation_RenameLayer_Description" xml:space="preserve">
     <value>Geben Sie die neue Bezeichnung für den Layer an.</value>
   </data>
   <data name="ZeichenketteWortform" xml:space="preserve">

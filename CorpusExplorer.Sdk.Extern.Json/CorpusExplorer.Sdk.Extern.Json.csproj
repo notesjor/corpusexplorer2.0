@@ -39,8 +39,8 @@
     <AssemblyOriginatorKeyFile>mycert.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -87,6 +87,24 @@
     <Compile Include="TwitterStream\Reader\TwitterDataReader.cs" />
     <Compile Include="TwitterStream\TwitterAnonymizeScraper.cs" />
     <Compile Include="TwitterStream\TwitterScraper.cs" />
+    <Compile Include="Wordpress\Model\About.cs" />
+    <Compile Include="Wordpress\Model\Author.cs" />
+    <Compile Include="Wordpress\Model\Collection.cs" />
+    <Compile Include="Wordpress\Model\Content.cs" />
+    <Compile Include="Wordpress\Model\Cury.cs" />
+    <Compile Include="Wordpress\Model\Excerpt.cs" />
+    <Compile Include="Wordpress\Model\Extension\ExtendedPost.cs" />
+    <Compile Include="Wordpress\Model\Guid.cs" />
+    <Compile Include="Wordpress\Model\Links.cs" />
+    <Compile Include="Wordpress\Model\Post.cs" />
+    <Compile Include="Wordpress\Model\Reply.cs" />
+    <Compile Include="Wordpress\Model\Self.cs" />
+    <Compile Include="Wordpress\Model\Title.cs" />
+    <Compile Include="Wordpress\Model\VersionHistory.cs" />
+    <Compile Include="Wordpress\Model\WpAttachment.cs" />
+    <Compile Include="Wordpress\Model\WpTerm.cs" />
+    <Compile Include="Wordpress\Reader\WordpressDataReader.cs" />
+    <Compile Include="Wordpress\WordpressScraper.cs" />
     <Compile Include="YourTwapperKeeper\Model\ArchiveInfo.cs" />
     <Compile Include="YourTwapperKeeper\Model\TwapperCorpus.cs" />
     <Compile Include="YourTwapperKeeper\Model\Tweet.cs" />
@@ -113,7 +131,14 @@
       <Name>CorpusExplorer.Sdk</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Blogger\" />
+    <Folder Include="Facebook\" />
+    <Folder Include="Instagram\" />
+    <Folder Include="Reddit\" />
+    <Folder Include="Tumblr\" />
+    <Folder Include="YouTube\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

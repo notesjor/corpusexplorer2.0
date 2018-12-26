@@ -1,4 +1,4 @@
-﻿namespace CorpusExplorer.Terminal.WinForm.View.Ngram
+namespace CorpusExplorer.Terminal.WinForm.View.Ngram
 {
   partial class NGramOverTime
   {
@@ -49,13 +49,10 @@
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 44);
-      this.radCommandBar1.TabIndex = 0;
       // 
       // commandBarRowElement1
       // 
@@ -66,7 +63,7 @@
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.commandBarLabel1,
             this.commandBarDropDownList1,
@@ -78,44 +75,39 @@
       // 
       // commandBarLabel1
       // 
-      this.commandBarLabel1.DisplayName = "commandBarLabel1";
+      resources.ApplyResources(this.commandBarLabel1, "commandBarLabel1");
       this.commandBarLabel1.Name = "commandBarLabel1";
-      this.commandBarLabel1.Text = "Datums-ID:";
       // 
       // commandBarDropDownList1
       // 
-      this.commandBarDropDownList1.DisplayName = "commandBarDropDownList1";
+      resources.ApplyResources(this.commandBarDropDownList1, "commandBarDropDownList1");
       this.commandBarDropDownList1.DropDownAnimationEnabled = true;
       this.commandBarDropDownList1.MaxDropDownItems = 0;
       this.commandBarDropDownList1.MinSize = new System.Drawing.Size(200, 22);
       this.commandBarDropDownList1.Name = "commandBarDropDownList1";
-      this.commandBarDropDownList1.NullText = "Bitte auswählen...";
-      this.commandBarDropDownList1.Text = "";
       // 
       // commandBarSeparator1
       // 
-      this.commandBarSeparator1.DisplayName = "commandBarSeparator1";
+      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
       this.commandBarSeparator1.Name = "commandBarSeparator1";
       this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
       // commandBarLabel2
       // 
-      this.commandBarLabel2.DisplayName = "commandBarLabel2";
+      resources.ApplyResources(this.commandBarLabel2, "commandBarLabel2");
       this.commandBarLabel2.Name = "commandBarLabel2";
-      this.commandBarLabel2.Text = "Cluster:";
       // 
       // commandBarTextBox1
       // 
-      this.commandBarTextBox1.DisplayName = "commandBarTextBox1";
+      resources.ApplyResources(this.commandBarTextBox1, "commandBarTextBox1");
       this.commandBarTextBox1.Name = "commandBarTextBox1";
-      this.commandBarTextBox1.Text = "25";
       // 
       // btn_export
       // 
-      this.btn_export.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_export, "btn_export");
       this.btn_export.Image = ((System.Drawing.Image)(resources.GetObject("btn_export.Image")));
+      this.btn_export.AutoToolTip = true;
       this.btn_export.Name = "btn_export";
-      this.btn_export.Text = "Exportieren";
       this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
       // 
       // chart_view
@@ -132,33 +124,25 @@
       this.chart_view.Axes.AddRange(new Telerik.WinControls.UI.Axis[] {
             categoricalAxis1,
             linearAxis1});
-      this.chart_view.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.chart_view.Location = new System.Drawing.Point(0, 80);
+      resources.ApplyResources(this.chart_view, "chart_view");
       this.chart_view.Name = "chart_view";
       this.chart_view.ShowGrid = false;
       this.chart_view.ShowLegend = true;
       this.chart_view.ShowPanZoom = true;
       this.chart_view.ShowToolTip = true;
       this.chart_view.ShowTrackBall = true;
-      this.chart_view.Size = new System.Drawing.Size(780, 320);
-      this.chart_view.TabIndex = 0;
       // 
       // wordBag1
       // 
       this.wordBag1.BackColor = System.Drawing.Color.White;
-      this.wordBag1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.wordBag1.Font = new System.Drawing.Font("Segoe UI", 11F);
-      this.wordBag1.Location = new System.Drawing.Point(0, 44);
-      this.wordBag1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+      resources.ApplyResources(this.wordBag1, "wordBag1");
       this.wordBag1.Name = "wordBag1";
-      this.wordBag1.ResultSelectedLayerDisplayname = "Wort";
-      this.wordBag1.Size = new System.Drawing.Size(780, 36);
-      this.wordBag1.TabIndex = 1;
+      this.wordBag1.ResultQueries = new string[0];
+      this.wordBag1.ResultSelectedLayerDisplayname = null;
       this.wordBag1.ExecuteButtonClicked += new System.EventHandler(this.wordBag1_ExecuteButtonClicked);
       // 
       // NGramOverTime
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.chart_view);
       this.Controls.Add(this.wordBag1);

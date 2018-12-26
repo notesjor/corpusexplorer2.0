@@ -13,15 +13,22 @@ namespace Bcs.IO
   {
     public static byte[] ReadBytes(string path)
     {
-      byte[] res;
-
-      using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+      try
       {
-        res = new byte[fs.Length];
-        fs.Read(res, 0, res.Length);
-      }
+        byte[] res;
 
-      return res;
+        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+        {
+          res = new byte[fs.Length];
+          fs.Read(res, 0, res.Length);
+        }
+
+        return res;
+      }
+      catch
+      {
+        return null;
+      }
     }
 
     public static string[] ReadLines(
@@ -33,17 +40,24 @@ namespace Bcs.IO
       if (encoding == null)
         encoding = Encoding.UTF8;
       if (delimiters == null)
-        delimiters = new[] {"\r\n", "\r", "\n"};
+        delimiters = new[] { "\r\n", "\r", "\n" };
 
       return ReadText(path, encoding).Split(delimiters, stringSplitOptions);
     }
 
     public static string ReadText(string path, Encoding encoding = null)
     {
-      if (encoding == null)
-        encoding = Encoding.UTF8;
+      try
+      {
+        if (encoding == null)
+          encoding = Encoding.UTF8;
 
-      return encoding.GetString(ReadBytes(path));
+        return encoding.GetString(ReadBytes(path));
+      }
+      catch
+      {
+        return null;
+      }
     }
 
     public static void Write(string path, string text, Encoding encoding = null)

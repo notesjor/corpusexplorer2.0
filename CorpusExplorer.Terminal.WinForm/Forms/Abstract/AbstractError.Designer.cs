@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AbstractError));
       this.lbl_funnyHeader = new Telerik.WinControls.UI.RadLabel();
       this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
       this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
@@ -40,44 +41,27 @@
       // 
       // radPanel1
       // 
-      this.radPanel1.Location = new System.Drawing.Point(0, 327);
-      this.radPanel1.Size = new System.Drawing.Size(544, 38);
+      resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
       // lbl_funnyHeader
       // 
-      this.lbl_funnyHeader.Dock = System.Windows.Forms.DockStyle.Top;
-      this.lbl_funnyHeader.Font = new System.Drawing.Font("Segoe UI", 16F);
-      this.lbl_funnyHeader.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.lbl_funnyHeader, "lbl_funnyHeader");
       this.lbl_funnyHeader.Name = "lbl_funnyHeader";
-      this.lbl_funnyHeader.Size = new System.Drawing.Size(80, 33);
-      this.lbl_funnyHeader.TabIndex = 0;
-      this.lbl_funnyHeader.Text = "FUNNY";
       // 
       // radLabel1
       // 
-      this.radLabel1.AutoSize = false;
-      this.radLabel1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radLabel1.Location = new System.Drawing.Point(0, 33);
+      resources.ApplyResources(this.radLabel1, "radLabel1");
       this.radLabel1.Name = "radLabel1";
-      this.radLabel1.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-      this.radLabel1.Size = new System.Drawing.Size(544, 61);
-      this.radLabel1.TabIndex = 1;
-      this.radLabel1.Text = "{Beschreibung warum es gerade jetzt passiert}";
       // 
       // radLabel2
       // 
-      this.radLabel2.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 13F);
-      this.radLabel2.Location = new System.Drawing.Point(0, 94);
+      resources.ApplyResources(this.radLabel2, "radLabel2");
       this.radLabel2.Name = "radLabel2";
-      this.radLabel2.Size = new System.Drawing.Size(181, 27);
-      this.radLabel2.TabIndex = 2;
-      this.radLabel2.Text = "Alles halb so schlimm:";
       // 
       // AbstractError
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.ClientSize = new System.Drawing.Size(544, 365);
+      resources.ApplyResources(this, "$this");
       this.Controls.Add(this.radLabel2);
       this.Controls.Add(this.radLabel1);
       this.Controls.Add(this.lbl_funnyHeader);
@@ -87,7 +71,6 @@
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
-      this.Text = "AbstractError";
       this.Controls.SetChildIndex(this.radPanel1, 0);
       this.Controls.SetChildIndex(this.lbl_funnyHeader, 0);
       this.Controls.SetChildIndex(this.radLabel1, 0);

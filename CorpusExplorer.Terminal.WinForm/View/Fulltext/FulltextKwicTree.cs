@@ -9,11 +9,13 @@ using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm;
+using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter.Abstract;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Properties;
+using HorizontalAlignment = System.Windows.HorizontalAlignment;
 using MessageBox = System.Windows.MessageBox;
 
 #endregion
@@ -23,10 +25,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
   public partial class FulltextKwicTree : AbstractView
   {
     private TextFlowSearchViewModel _vm;
+    private WpfDiagram wpfDiagram1;
 
     public FulltextKwicTree()
     {
       InitializeComponent();
+      wpfDiagram1 = new WpfDiagram { VerticalAlignment = VerticalAlignment.Stretch, HorizontalAlignment = HorizontalAlignment.Stretch };
+      elementHost1.Child = wpfDiagram1;
       ShowView += OnShowView;      
     }
 
@@ -136,6 +141,21 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void OnShowView(object sender, EventArgs eventArgs)
     {
       _vm = GetViewModel<TextFlowSearchViewModel>();
+    }
+
+    private void commandBarDropDownButton2_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void btn_layout_net_Click(object sender, EventArgs e)
+    {
+      wpfDiagram1.CallLayoutAsTreeRadial();
+    }
+
+    private void btn_layout_tree_Click(object sender, EventArgs e)
+    {
+      wpfDiagram1.CallLayoutAsTree();
     }
   }
 }

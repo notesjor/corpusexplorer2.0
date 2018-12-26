@@ -774,9 +774,9 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Zufällige Auswahl von {0} Dokumenten ({1}%) ähnelt.
         /// </summary>
-        internal static string SelectionRandomDescribtion {
+        internal static string SelectionRandomDescription {
             get {
-                return ResourceManager.GetString("SelectionRandomDescribtion", resourceCulture);
+                return ResourceManager.GetString("SelectionRandomDescription", resourceCulture);
             }
         }
         

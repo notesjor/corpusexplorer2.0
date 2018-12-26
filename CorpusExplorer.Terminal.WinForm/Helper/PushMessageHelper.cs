@@ -22,13 +22,13 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
     /// <param name="image">
     ///   The image.
     /// </param>
-    /// <param name="describtion">
-    ///   The describtion.
+    /// <param name="description">
+    ///   The description.
     /// </param>
     /// <param name="location">
     ///   The location.
     /// </param>
-    public static void Show(string header, Image image, string describtion, Point location)
+    public static void Show(string header, Image image, string description, Point location)
     {
       var alert = new RadDesktopAlert
       {
@@ -37,7 +37,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
         CanMove = true,
         CaptionText = header,
         ContentImage = image ?? Resources.info,
-        ContentText = describtion,
+        ContentText = description,
         FadeAnimationType = FadeAnimationType.FadeIn,
         ScreenPosition = AlertScreenPosition.Manual
       };

@@ -29,6 +29,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditMetadata));
       Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
@@ -53,13 +54,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
-      this.radCommandBar1.TabIndex = 0;
       // 
       // commandBarRowElement1
       // 
@@ -70,7 +68,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.btn_save,
             this.commandBarSeparator3,
@@ -90,8 +88,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       // 
       this.btn_save.AccessibleDescription = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Speichern;
       this.btn_save.AccessibleName = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Speichern;
-      this.btn_save.DisplayName = "commandBarButton2";
+      resources.ApplyResources(this.btn_save, "btn_save");
       this.btn_save.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save;
+      this.btn_save.AutoToolTip = true;
       this.btn_save.Name = "btn_save";
       this.btn_save.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.ÄnderungenSpeichern;
       this.btn_save.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.ÄnderungenSpeichern;
@@ -99,64 +98,62 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       // 
       // commandBarSeparator3
       // 
-      this.commandBarSeparator3.DisplayName = "commandBarSeparator3";
+      resources.ApplyResources(this.commandBarSeparator3, "commandBarSeparator3");
       this.commandBarSeparator3.Name = "commandBarSeparator3";
       this.commandBarSeparator3.VisibleInOverflowMenu = false;
       // 
       // btn_export
       // 
-      this.btn_export.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_export, "btn_export");
       this.btn_export.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.folder_action_open;
+      this.btn_export.AutoToolTip = true;
       this.btn_export.Name = "btn_export";
-      this.btn_export.Text = "Exportieren";
       this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
       // 
       // btn_import
       // 
-      this.btn_import.DisplayName = "comandBarButton2";
+      resources.ApplyResources(this.btn_import, "btn_import");
       this.btn_import.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.folder_action_close;
+      this.btn_import.AutoToolTip = true;
       this.btn_import.Name = "btn_import";
-      this.btn_import.Text = "Importieren";
       this.btn_import.Click += new System.EventHandler(this.btn_import_Click);
       // 
       // commandBarSeparator1
       // 
       this.commandBarSeparator1.AccessibleDescription = "commandBarSeparator1";
       this.commandBarSeparator1.AccessibleName = "commandBarSeparator1";
-      this.commandBarSeparator1.DisplayName = "commandBarSeparator1";
+      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
       this.commandBarSeparator1.Name = "commandBarSeparator1";
       this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
       // commandBarLabel1
       // 
-      this.commandBarLabel1.DisplayName = "commandBarLabel1";
+      resources.ApplyResources(this.commandBarLabel1, "commandBarLabel1");
       this.commandBarLabel1.Name = "commandBarLabel1";
       this.commandBarLabel1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Suche;
       // 
       // txt_search
       // 
-      this.txt_search.DisplayName = "commandBarTextBox1";
+      resources.ApplyResources(this.txt_search, "txt_search");
       this.txt_search.MinSize = new System.Drawing.Size(200, 0);
       this.txt_search.Name = "txt_search";
-      this.txt_search.Text = "";
       // 
       // commandBarLabel2
       // 
-      this.commandBarLabel2.DisplayName = "commandBarLabel2";
+      resources.ApplyResources(this.commandBarLabel2, "commandBarLabel2");
       this.commandBarLabel2.Name = "commandBarLabel2";
-      this.commandBarLabel2.Text = "Ersetze:";
       // 
       // txt_replace
       // 
-      this.txt_replace.DisplayName = "commandBarTextBox2";
+      resources.ApplyResources(this.txt_replace, "txt_replace");
       this.txt_replace.MinSize = new System.Drawing.Size(200, 0);
       this.txt_replace.Name = "txt_replace";
-      this.txt_replace.Text = "";
       // 
       // btn_doReplace
       // 
-      this.btn_doReplace.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_doReplace, "btn_doReplace");
       this.btn_doReplace.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.replace;
+      this.btn_doReplace.AutoToolTip = true;
       this.btn_doReplace.Name = "btn_doReplace";
       this.btn_doReplace.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.SuchenUndErsetzenAusführen;
       this.btn_doReplace.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.SuchenUndErsetzenAusführen;
@@ -166,34 +163,30 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       // 
       this.commandBarSeparator2.AccessibleDescription = "commandBarSeparator2";
       this.commandBarSeparator2.AccessibleName = "commandBarSeparator2";
-      this.commandBarSeparator2.DisplayName = "commandBarSeparator2";
+      resources.ApplyResources(this.commandBarSeparator2, "commandBarSeparator2");
       this.commandBarSeparator2.Name = "commandBarSeparator2";
       this.commandBarSeparator2.VisibleInOverflowMenu = false;
       // 
       // btn_meta_add
       // 
-      this.btn_meta_add.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_meta_add, "btn_meta_add");
       this.btn_meta_add.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.add_button;
+      this.btn_meta_add.AutoToolTip = true;
       this.btn_meta_add.Name = "btn_meta_add";
-      this.btn_meta_add.Text = "Metaangabe hinzufügen";
       this.btn_meta_add.Click += new System.EventHandler(this.btn_meta_add_Click);
       // 
       // radGridView1
       // 
-      this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGridView1.Location = new System.Drawing.Point(0, 69);
+      resources.ApplyResources(this.radGridView1, "radGridView1");
       // 
       // 
       // 
       this.radGridView1.MasterTemplate.AllowAddNewRow = false;
       this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
-      this.radGridView1.Size = new System.Drawing.Size(780, 331);
-      this.radGridView1.TabIndex = 1;
       // 
       // EditMetadata
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radGridView1);
       this.Controls.Add(this.radCommandBar1);

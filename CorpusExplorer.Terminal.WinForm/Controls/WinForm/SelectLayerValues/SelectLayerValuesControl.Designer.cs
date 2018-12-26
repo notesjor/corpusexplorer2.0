@@ -28,27 +28,23 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectLayerValuesControl));
       this.radAutoCompleteBox1 = new Telerik.WinControls.UI.RadAutoCompleteBox();
       ((System.ComponentModel.ISupportInitialize)(this.radAutoCompleteBox1)).BeginInit();
       this.SuspendLayout();
       // 
       // radAutoCompleteBox1
       // 
-      this.radAutoCompleteBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radAutoCompleteBox1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radAutoCompleteBox1, "radAutoCompleteBox1");
       this.radAutoCompleteBox1.Name = "radAutoCompleteBox1";
-      this.radAutoCompleteBox1.NullText = "Suchbegriff hier eingeben...";
-      this.radAutoCompleteBox1.Size = new System.Drawing.Size(250, 36);
-      this.radAutoCompleteBox1.TabIndex = 0;
-      ((Telerik.WinControls.UI.TextBoxWrapPanel)(this.radAutoCompleteBox1.GetChildAt(0).GetChildAt(1))).Padding = new System.Windows.Forms.Padding(2, 7, 2, 2);
+      ((Telerik.WinControls.UI.TextBoxWrapPanel)(this.radAutoCompleteBox1.GetChildAt(0).GetChildAt(1))).Padding = ((System.Windows.Forms.Padding)(resources.GetObject("resource.Padding")));
       // 
       // SelectLayerValuesControl
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radAutoCompleteBox1);
       this.Name = "SelectLayerValuesControl";
-      this.Size = new System.Drawing.Size(250, 36);
+      resources.ApplyResources(this, "$this");
       ((System.ComponentModel.ISupportInitialize)(this.radAutoCompleteBox1)).EndInit();
       this.ResumeLayout(false);
 

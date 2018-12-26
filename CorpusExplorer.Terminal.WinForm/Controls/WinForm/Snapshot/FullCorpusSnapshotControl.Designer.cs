@@ -29,6 +29,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FullCorpusSnapshotControl));
       this.radCheckedDropDownList1 = new Telerik.WinControls.UI.RadCheckedDropDownList();
       this.clearPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
       this.clearPanel2 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
@@ -53,36 +54,23 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
       // 
       // radCheckedDropDownList1
       // 
-      this.radCheckedDropDownList1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radCheckedDropDownList1.Location = new System.Drawing.Point(0, 10);
+      resources.ApplyResources(this.radCheckedDropDownList1, "radCheckedDropDownList1");
       this.radCheckedDropDownList1.Name = "radCheckedDropDownList1";
-      this.radCheckedDropDownList1.NullText = "Bitte wähle Sie die Korpora aus, die Sie analysieren wollen...";
-      this.radCheckedDropDownList1.Size = new System.Drawing.Size(690, 32);
-      this.radCheckedDropDownList1.TabIndex = 2;
       // 
       // clearPanel1
       // 
-      this.clearPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-      this.clearPanel1.Location = new System.Drawing.Point(2, 25);
+      resources.ApplyResources(this.clearPanel1, "clearPanel1");
       this.clearPanel1.Name = "clearPanel1";
-      this.clearPanel1.Size = new System.Drawing.Size(78, 53);
-      this.clearPanel1.TabIndex = 3;
-      this.clearPanel1.Text = "Korpora:  ";
       this.clearPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
       // 
       // clearPanel2
       // 
       this.clearPanel2.Controls.Add(this.radCheckedDropDownList1);
-      this.clearPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.clearPanel2.Location = new System.Drawing.Point(80, 25);
+      resources.ApplyResources(this.clearPanel2, "clearPanel2");
       this.clearPanel2.Name = "clearPanel2";
-      this.clearPanel2.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-      this.clearPanel2.Size = new System.Drawing.Size(690, 53);
-      this.clearPanel2.TabIndex = 4;
       // 
       // FullCorpusSnapshotControl
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Name = "FullCorpusSnapshotControl";
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();

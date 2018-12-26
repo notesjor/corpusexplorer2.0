@@ -70,6 +70,15 @@ namespace CorpusExplorer.Sdk.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gesamtsumme ähnelt.
+        /// </summary>
+        internal static string Gesamtsumme {
+            get {
+                return ResourceManager.GetString("Gesamtsumme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die N ähnelt.
         /// </summary>
         internal static string N {

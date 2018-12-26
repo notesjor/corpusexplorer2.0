@@ -1,4 +1,4 @@
-﻿using CorpusExplorer.Terminal.WinForm.Controls.WinForm;
+using CorpusExplorer.Terminal.WinForm.Controls.WinForm;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser;
 
 namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
@@ -48,28 +48,19 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // wordBag1
       // 
       this.wordBag1.BackColor = System.Drawing.Color.White;
-      this.wordBag1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.wordBag1.Font = new System.Drawing.Font("Segoe UI", 11F);
-      this.wordBag1.Location = new System.Drawing.Point(0, 44);
-      this.wordBag1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.wordBag1.MinimumSize = new System.Drawing.Size(413, 36);
+      resources.ApplyResources(this.wordBag1, "wordBag1");
       this.wordBag1.Name = "wordBag1";
-      this.wordBag1.ResultQueries = null;
-      this.wordBag1.Size = new System.Drawing.Size(780, 36);
-      this.wordBag1.TabIndex = 0;
+      this.wordBag1.ResultQueries = new string[0];
+      this.wordBag1.ResultSelectedLayerDisplayname = null;
       this.wordBag1.ExecuteButtonClicked += new System.EventHandler(this.wordBag1_ExecuteButtonClicked);
       this.wordBag1.Load += new System.EventHandler(this.wordBag1_Load);
       // 
       // webHtml5Visualisation1
       // 
       this.webHtml5Visualisation1.BackColor = System.Drawing.Color.White;
-      this.webHtml5Visualisation1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.webHtml5Visualisation1.Location = new System.Drawing.Point(0, 82);
+      resources.ApplyResources(this.webHtml5Visualisation1, "webHtml5Visualisation1");
       this.webHtml5Visualisation1.MainpageUrl = null;
-      this.webHtml5Visualisation1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.webHtml5Visualisation1.Name = "webHtml5Visualisation1";
-      this.webHtml5Visualisation1.Size = new System.Drawing.Size(780, 318);
-      this.webHtml5Visualisation1.TabIndex = 3;
       this.webHtml5Visualisation1.TemplateVars = ((System.Collections.Generic.Dictionary<string, string>)(resources.GetObject("webHtml5Visualisation1.TemplateVars")));
       // 
       // timer1
@@ -79,13 +70,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 44);
-      this.radCommandBar1.TabIndex = 4;
       // 
       // commandBarRowElement1
       // 
@@ -96,7 +84,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.commandBarButton1,
             this.commandBarButton2,
@@ -105,31 +93,30 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // 
       // commandBarButton1
       // 
-      this.commandBarButton1.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.commandBarButton1, "commandBarButton1");
       this.commandBarButton1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.image;
+      this.commandBarButton1.AutoToolTip = true;
       this.commandBarButton1.Name = "commandBarButton1";
-      this.commandBarButton1.Text = "commandBarButton1";
       this.commandBarButton1.Click += new System.EventHandler(this.commandBarButton3_Click);
       // 
       // commandBarButton2
       // 
-      this.commandBarButton2.DisplayName = "commandBarButton2";
+      resources.ApplyResources(this.commandBarButton2, "commandBarButton2");
       this.commandBarButton2.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_pdf;
+      this.commandBarButton2.AutoToolTip = true;
       this.commandBarButton2.Name = "commandBarButton2";
-      this.commandBarButton2.Text = "commandBarButton2";
       this.commandBarButton2.Click += new System.EventHandler(this.commandBarButton4_Click);
       // 
       // commandBarButton3
       // 
-      this.commandBarButton3.DisplayName = "commandBarButton3";
+      resources.ApplyResources(this.commandBarButton3, "commandBarButton3");
       this.commandBarButton3.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.print;
+      this.commandBarButton3.AutoToolTip = true;
       this.commandBarButton3.Name = "commandBarButton3";
-      this.commandBarButton3.Text = "commandBarButton3";
       this.commandBarButton3.Click += new System.EventHandler(this.commandBarButton1_Click);
       // 
       // CooccurrenceTagPie
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.webHtml5Visualisation1);
       this.Controls.Add(this.wordBag1);

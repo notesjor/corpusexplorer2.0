@@ -1,7 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Abstract;
+using CorpusExplorer.Sdk.Extern.SocialMedia.Delegates;
+using CorpusExplorer.Sdk.Extern.SocialMedia.Helper;
+using CorpusExplorer.Sdk.Helper;
 using DontPanic.TumblrSharp;
 using DontPanic.TumblrSharp.Client;
 
@@ -9,36 +14,57 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Tumblr
 {
   public class TumblrService : AbstractService
   {
-    public string BlogName { get; set; }
-
-    protected override AbstractAuthentication Authentication { get; } = new TumblrAuthentication();
-
     protected override void Query(object connection, IEnumerable<string> queries, string outputPath)
+    {
+      foreach (var blogName in queries)
+        Query(connection, blogName, outputPath);
+    }
+
+    protected void Query(object connection, string blogName, string outputPath)
     {
       var context = connection as TumblrClient;
       if (context == null)
         return;
 
-      var serializer = new Newtonsoft.Json.JsonSerializer();
+      var path = Path.Combine(outputPath, blogName).EnsureFileName();
+      if(!Directory.Exists(path))
+        Directory.CreateDirectory(path);
+
+      PostStatusUpdate("Inhalte werden abgerufen...", 0, 1);
+
+      var cnt = 1;
+      var sum = 0;
+      var serializer = new NetDataContractSerializer();
       for (var i = 0; i < int.MaxValue; i += 20)
       {
-        var request = context.GetPostsAsync(BlogName, i, 20, PostType.All, true, true);
-        if (request == null)
-          break;
-        request.Wait();
+        try
+        {          
+          var request = context.GetPostsAsync(blogName, i, 20, PostType.All, true, true);
+          if (request == null)
+            break;
+          request.Wait();
 
-        if (request.Exception != null)
-          break;
-        if (request.Result?.Result == null || request.Result.Result.Length == 0)
-          break;
+          if (request.Exception != null)
+            break;
+          if (request.Result?.Result == null || request.Result.Result.Length == 0)
+            break;
 
-        foreach (var post in request.Result.Result)
+          var array = request.Result.Result;
+          sum += array.Length;
+
+          foreach (var post in request.Result.Result)
+          {
+            PostStatusUpdate($"Speichere Post {cnt}/{sum}...", cnt, array.Length);
+            using (var file = new FileStream(Path.Combine(path, $"{post.Id}.xml"), FileMode.Create, FileAccess.Write))
+              serializer.Serialize(file, post);
+            cnt++;
+          }
+        }
+        catch
         {
-          using (var file = new StreamWriter(Path.Combine(OutputPath, $"tumblr_{post.Id}.json"), false, Encoding.UTF8))
-            serializer.Serialize(file, post);
+          // ignore
         }
       }
-
     }
   }
 }

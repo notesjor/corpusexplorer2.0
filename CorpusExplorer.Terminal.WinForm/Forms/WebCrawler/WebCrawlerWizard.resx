@@ -117,7 +117,2253 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="txt_result_limmit.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="txt_result_limmit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="txt_result_limmit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>545, 62</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="txt_result_limmit.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;txt_result_limmit.Name" xml:space="preserve">
+    <value>txt_result_limmit</value>
+  </data>
+  <data name="&gt;&gt;txt_result_limmit.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;txt_result_limmit.Parent" xml:space="preserve">
+    <value>radGroupBox7</value>
+  </data>
+  <data name="&gt;&gt;txt_result_limmit.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radGroupBox7.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radGroupBox7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 87</value>
+  </data>
+  <data name="radGroupBox7.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>555, 92</value>
+  </data>
+  <data name="radGroupBox7.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox7.Name" xml:space="preserve">
+    <value>radGroupBox7</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox7.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox7.Parent" xml:space="preserve">
+    <value>radGroupBox5</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox7.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txt_result_prefix.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="txt_result_prefix.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="txt_result_prefix.Size" type="System.Drawing.Size, System.Drawing">
+    <value>545, 32</value>
+  </data>
+  <data name="txt_result_prefix.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;txt_result_prefix.Name" xml:space="preserve">
+    <value>txt_result_prefix</value>
+  </data>
+  <data name="&gt;&gt;txt_result_prefix.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;txt_result_prefix.Parent" xml:space="preserve">
+    <value>radGroupBox6</value>
+  </data>
+  <data name="&gt;&gt;txt_result_prefix.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radGroupBox6.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radGroupBox6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="radGroupBox6.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>555, 62</value>
+  </data>
+  <data name="radGroupBox6.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox6.Name" xml:space="preserve">
+    <value>radGroupBox6</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox6.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox6.Parent" xml:space="preserve">
+    <value>radGroupBox5</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox6.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="txt_result_xpath.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="txt_result_xpath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="txt_result_xpath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>555, 0</value>
+  </data>
+  <data name="txt_result_xpath.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txt_result_xpath.Name" xml:space="preserve">
+    <value>txt_result_xpath</value>
+  </data>
+  <data name="&gt;&gt;txt_result_xpath.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;txt_result_xpath.Parent" xml:space="preserve">
+    <value>radGroupBox5</value>
+  </data>
+  <data name="&gt;&gt;txt_result_xpath.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="radGroupBox5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radGroupBox5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 207</value>
+  </data>
+  <data name="radGroupBox5.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>565, 184</value>
+  </data>
+  <data name="radGroupBox5.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox5.Name" xml:space="preserve">
+    <value>radGroupBox5</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox5.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox5.Parent" xml:space="preserve">
+    <value>splitPanel3</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox5.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="num_search_min.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="num_search_min.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="num_search_min.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>100, 0</value>
+  </data>
+  <data name="num_search_min.Size" type="System.Drawing.Size, System.Drawing">
+    <value>266, 64</value>
+  </data>
+  <data name="num_search_min.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;num_search_min.Name" xml:space="preserve">
+    <value>num_search_min</value>
+  </data>
+  <data name="&gt;&gt;num_search_min.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadSpinEditor, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;num_search_min.Parent" xml:space="preserve">
+    <value>radGroupBox3</value>
+  </data>
+  <data name="&gt;&gt;num_search_min.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radGroupBox3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radGroupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radGroupBox3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 94</value>
+  </data>
+  <data name="radGroupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox3.Name" xml:space="preserve">
+    <value>radGroupBox3</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox3.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox3.Parent" xml:space="preserve">
+    <value>splitPanel1</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="splitPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="splitPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 94</value>
+  </data>
+  <data name="splitPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="splitPanel1.Text" xml:space="preserve">
+    <value>splitPanel1</value>
+  </data>
+  <data name="&gt;&gt;splitPanel1.Name" xml:space="preserve">
+    <value>splitPanel1</value>
+  </data>
+  <data name="&gt;&gt;splitPanel1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;splitPanel1.Parent" xml:space="preserve">
+    <value>radSplitContainer1</value>
+  </data>
+  <data name="&gt;&gt;splitPanel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="num_search_increment.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="num_search_increment.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="num_search_increment.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>100, 0</value>
+  </data>
+  <data name="num_search_increment.Size" type="System.Drawing.Size, System.Drawing">
+    <value>265, 64</value>
+  </data>
+  <data name="num_search_increment.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;num_search_increment.Name" xml:space="preserve">
+    <value>num_search_increment</value>
+  </data>
+  <data name="&gt;&gt;num_search_increment.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadSpinEditor, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;num_search_increment.Parent" xml:space="preserve">
+    <value>radGroupBox4</value>
+  </data>
+  <data name="&gt;&gt;num_search_increment.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radGroupBox4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radGroupBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radGroupBox4.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>275, 94</value>
+  </data>
+  <data name="radGroupBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox4.Name" xml:space="preserve">
+    <value>radGroupBox4</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox4.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox4.Parent" xml:space="preserve">
+    <value>splitPanel2</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="splitPanel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>280, 0</value>
+  </data>
+  <data name="splitPanel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>275, 94</value>
+  </data>
+  <data name="splitPanel2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="splitPanel2.Text" xml:space="preserve">
+    <value>splitPanel2</value>
+  </data>
+  <data name="&gt;&gt;splitPanel2.Name" xml:space="preserve">
+    <value>splitPanel2</value>
+  </data>
+  <data name="&gt;&gt;splitPanel2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;splitPanel2.Parent" xml:space="preserve">
+    <value>radSplitContainer1</value>
+  </data>
+  <data name="&gt;&gt;splitPanel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radSplitContainer1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radSplitContainer1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 46</value>
+  </data>
+  <data name="radSplitContainer1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>555, 94</value>
+  </data>
+  <data name="radSplitContainer1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer1.Name" xml:space="preserve">
+    <value>radSplitContainer1</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer1.Parent" xml:space="preserve">
+    <value>radGroupBox2</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radLabel3.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="radLabel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radLabel3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="radLabel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="radLabel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>555, 21</value>
+  </data>
+  <data name="radLabel3.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="radLabel3.Text" xml:space="preserve">
+    <value>Verwenden Sie [QUERY] als Platzhalter für die Abfrage und [PAGE] als Platzhalter für die Suchseite.</value>
+  </data>
+  <data name="radLabel3.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;radLabel3.Name" xml:space="preserve">
+    <value>radLabel3</value>
+  </data>
+  <data name="&gt;&gt;radLabel3.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radLabel3.Parent" xml:space="preserve">
+    <value>radGroupBox2</value>
+  </data>
+  <data name="&gt;&gt;radLabel3.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="txt_search_url.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="txt_search_url.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="txt_search_url.Size" type="System.Drawing.Size, System.Drawing">
+    <value>555, 0</value>
+  </data>
+  <data name="txt_search_url.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;txt_search_url.Name" xml:space="preserve">
+    <value>txt_search_url</value>
+  </data>
+  <data name="&gt;&gt;txt_search_url.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;txt_search_url.Parent" xml:space="preserve">
+    <value>radGroupBox2</value>
+  </data>
+  <data name="&gt;&gt;txt_search_url.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="radGroupBox2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radGroupBox2.HeaderText" xml:space="preserve">
+    <value>2. URL sowie URL-Parameter</value>
+  </data>
+  <data name="radGroupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 62</value>
+  </data>
+  <data name="radGroupBox2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>565, 145</value>
+  </data>
+  <data name="radGroupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="radGroupBox2.Text" xml:space="preserve">
+    <value>2. URL sowie URL-Parameter</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox2.Name" xml:space="preserve">
+    <value>radGroupBox2</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox2.Parent" xml:space="preserve">
+    <value>splitPanel3</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="txt_name.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="txt_name.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="txt_name.NullText" xml:space="preserve">
+    <value>Tragen Sie hier einen Namen für den WebCrawler ein...</value>
+  </data>
+  <data name="txt_name.Size" type="System.Drawing.Size, System.Drawing">
+    <value>555, 32</value>
+  </data>
+  <data name="txt_name.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;txt_name.Name" xml:space="preserve">
+    <value>txt_name</value>
+  </data>
+  <data name="&gt;&gt;txt_name.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;txt_name.Parent" xml:space="preserve">
+    <value>radGroupBox8</value>
+  </data>
+  <data name="&gt;&gt;txt_name.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radGroupBox8.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radGroupBox8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radGroupBox8.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>565, 62</value>
+  </data>
+  <data name="radGroupBox8.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox8.Name" xml:space="preserve">
+    <value>radGroupBox8</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox8.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox8.Parent" xml:space="preserve">
+    <value>splitPanel3</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox8.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="splitPanel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="splitPanel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>565, 396</value>
+  </data>
+  <data name="splitPanel3.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="splitPanel3.Text" xml:space="preserve">
+    <value>splitPanel3</value>
+  </data>
+  <data name="&gt;&gt;splitPanel3.Name" xml:space="preserve">
+    <value>splitPanel3</value>
+  </data>
+  <data name="&gt;&gt;splitPanel3.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;splitPanel3.Parent" xml:space="preserve">
+    <value>radSplitContainer2</value>
+  </data>
+  <data name="&gt;&gt;splitPanel3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="grid_mappings.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="grid_mappings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="gridViewTextBoxColumn1.HeaderText" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="grid_mappings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>348, 274</value>
+  </data>
+  <data name="grid_mappings.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;grid_mappings.Name" xml:space="preserve">
+    <value>grid_mappings</value>
+  </data>
+  <data name="&gt;&gt;grid_mappings.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGridView, Telerik.WinControls.GridView, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;grid_mappings.Parent" xml:space="preserve">
+    <value>radGroupBox9</value>
+  </data>
+  <data name="&gt;&gt;grid_mappings.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radLabel4.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="radLabel4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="radLabel4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="radLabel4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 299</value>
+  </data>
+  <data name="radLabel4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>348, 60</value>
+  </data>
+  <data name="radLabel4.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="radLabel4.Text" xml:space="preserve">
+    <value>&lt;html&gt;Sie müssen mindestens ein Mapping mit dem Key &lt;i&gt;Text&lt;/i&gt; erstellen. Alle anderen Mappings können Sie frei wählen. Empfohlen werden zudem: &lt;i&gt;Titel&lt;/i&gt;, &lt;i&gt;Autor&lt;/i&gt; und &lt;i&gt;Datum&lt;/i&gt;&lt;/html&gt;</value>
+  </data>
+  <data name="radLabel4.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;radLabel4.Name" xml:space="preserve">
+    <value>radLabel4</value>
+  </data>
+  <data name="&gt;&gt;radLabel4.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radLabel4.Parent" xml:space="preserve">
+    <value>radGroupBox9</value>
+  </data>
+  <data name="&gt;&gt;radLabel4.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btn_showBrowser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="btn_showBrowser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 359</value>
+  </data>
+  <data name="btn_showBrowser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>348, 32</value>
+  </data>
+  <data name="btn_showBrowser.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="btn_showBrowser.Text" xml:space="preserve">
+    <value>Zeige XPath-Browser</value>
+  </data>
+  <data name="&gt;&gt;btn_showBrowser.Name" xml:space="preserve">
+    <value>btn_showBrowser</value>
+  </data>
+  <data name="&gt;&gt;btn_showBrowser.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_showBrowser.Parent" xml:space="preserve">
+    <value>radGroupBox9</value>
+  </data>
+  <data name="&gt;&gt;btn_showBrowser.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="radGroupBox9.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radGroupBox9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radGroupBox9.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>358, 396</value>
+  </data>
+  <data name="radGroupBox9.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox9.Name" xml:space="preserve">
+    <value>radGroupBox9</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox9.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox9.Parent" xml:space="preserve">
+    <value>splitPanel4</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox9.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="splitPanel4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>569, 0</value>
+  </data>
+  <data name="splitPanel4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>358, 396</value>
+  </data>
+  <data name="splitPanel4.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="splitPanel4.Text" xml:space="preserve">
+    <value>splitPanel4</value>
+  </data>
+  <data name="&gt;&gt;splitPanel4.Name" xml:space="preserve">
+    <value>splitPanel4</value>
+  </data>
+  <data name="&gt;&gt;splitPanel4.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;splitPanel4.Parent" xml:space="preserve">
+    <value>radSplitContainer2</value>
+  </data>
+  <data name="&gt;&gt;splitPanel4.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radSplitContainer2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radSplitContainer2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radSplitContainer2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>927, 396</value>
+  </data>
+  <data name="radSplitContainer2.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer2.Name" xml:space="preserve">
+    <value>radSplitContainer2</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer2.Parent" xml:space="preserve">
+    <value>panel6</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 94</value>
+  </data>
+  <data name="panel6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>927, 396</value>
+  </data>
+  <data name="panel6.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;panel6.Name" xml:space="preserve">
+    <value>panel6</value>
+  </data>
+  <data name="&gt;&gt;panel6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel6.Parent" xml:space="preserve">
+    <value>radWizard1</value>
+  </data>
+  <data name="&gt;&gt;panel6.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="wizardCompletionPage1.Header" xml:space="preserve">
+    <value>Überprüfen Sie die Daten. Mit einem Klick auf "Fertigstellen" wird der WebCrawler erstellt.</value>
+  </data>
+  <data name="wizardCompletionPage1.Title" xml:space="preserve">
+    <value>Konfiguration abgeschlossen / Daten überprüfen...</value>
+  </data>
+  <data name="page_0_chk_mode_3.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="page_0_chk_mode_3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="page_0_chk_mode_3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 169</value>
+  </data>
+  <data name="page_0_chk_mode_3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>881, 60</value>
+  </data>
+  <data name="page_0_chk_mode_3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="page_0_chk_mode_3.Text" xml:space="preserve">
+    <value>&lt;html&gt;&lt;strong&gt;Profi-Modus&lt;/strong&gt;&lt;br /&gt;Kein Assistent - Führt Sie direkt zur letzten Seite dieses Wizards, auf der Sie alle Daten manuell eintragen müssen.&lt;/html&gt;</value>
+  </data>
+  <data name="&gt;&gt;page_0_chk_mode_3.Name" xml:space="preserve">
+    <value>page_0_chk_mode_3</value>
+  </data>
+  <data name="&gt;&gt;page_0_chk_mode_3.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_0_chk_mode_3.Parent" xml:space="preserve">
+    <value>radGroupBox1</value>
+  </data>
+  <data name="&gt;&gt;page_0_chk_mode_3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_0_check_sampledata.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="page_0_check_sampledata.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="page_0_check_sampledata.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 0</value>
+  </data>
+  <data name="page_0_check_sampledata.Size" type="System.Drawing.Size, System.Drawing">
+    <value>856, 74</value>
+  </data>
+  <data name="page_0_check_sampledata.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="page_0_check_sampledata.Text" xml:space="preserve">
+    <value>&lt;html&gt;&lt;strong&gt;Beispieldaten verwenden&lt;/strong&gt;&lt;br /&gt;Füllt alle Formularfelder soweit aus, dass Sie den Blog &lt;em&gt;http://notesjor.de&lt;/em&gt; crawlen könnten.&lt;br /&gt;Bitte modifizieren Sie das Ergebnis für einen produktiven WebCrawler.&lt;/html&gt;</value>
+  </data>
+  <data name="&gt;&gt;page_0_check_sampledata.Name" xml:space="preserve">
+    <value>page_0_check_sampledata</value>
+  </data>
+  <data name="&gt;&gt;page_0_check_sampledata.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadCheckBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_0_check_sampledata.Parent" xml:space="preserve">
+    <value>clearPanel2</value>
+  </data>
+  <data name="&gt;&gt;page_0_check_sampledata.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="clearPanel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="clearPanel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 95</value>
+  </data>
+  <data name="clearPanel2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>25, 0, 0, 0</value>
+  </data>
+  <data name="clearPanel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>881, 74</value>
+  </data>
+  <data name="clearPanel2.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;clearPanel2.Name" xml:space="preserve">
+    <value>clearPanel2</value>
+  </data>
+  <data name="&gt;&gt;clearPanel2.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;clearPanel2.Parent" xml:space="preserve">
+    <value>radGroupBox1</value>
+  </data>
+  <data name="&gt;&gt;clearPanel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="page_0_chk_mode_2.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="page_0_chk_mode_2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="page_0_chk_mode_2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 35</value>
+  </data>
+  <data name="page_0_chk_mode_2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>881, 60</value>
+  </data>
+  <data name="page_0_chk_mode_2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="page_0_chk_mode_2.Text" xml:space="preserve">
+    <value>&lt;html&gt;&lt;strong&gt;Einsteiger-Modus&lt;/strong&gt;&lt;br /&gt;Fragt alle relevanten Daten in mehreren Schritten ab. &lt;/html&gt;</value>
+  </data>
+  <data name="&gt;&gt;page_0_chk_mode_2.Name" xml:space="preserve">
+    <value>page_0_chk_mode_2</value>
+  </data>
+  <data name="&gt;&gt;page_0_chk_mode_2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_0_chk_mode_2.Parent" xml:space="preserve">
+    <value>radGroupBox1</value>
+  </data>
+  <data name="&gt;&gt;page_0_chk_mode_2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="radGroupBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radGroupBox1.HeaderText" xml:space="preserve">
+    <value>Assistenzstufe auswählen...</value>
+  </data>
+  <data name="radGroupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 111</value>
+  </data>
+  <data name="radGroupBox1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>8, 35, 8, 8</value>
+  </data>
+  <data name="radGroupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>897, 240</value>
+  </data>
+  <data name="radGroupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="radGroupBox1.Text" xml:space="preserve">
+    <value>Assistenzstufe auswählen...</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox1.Name" xml:space="preserve">
+    <value>radGroupBox1</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox1.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="clearPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="clearPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 94</value>
+  </data>
+  <data name="clearPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>897, 17</value>
+  </data>
+  <data name="clearPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;clearPanel1.Name" xml:space="preserve">
+    <value>clearPanel1</value>
+  </data>
+  <data name="&gt;&gt;clearPanel1.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;clearPanel1.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;clearPanel1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="page_0_txt_name.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="page_0_txt_name.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 62</value>
+  </data>
+  <data name="page_0_txt_name.NullText" xml:space="preserve">
+    <value>Tragen Sie hier einen Namen für den WebCrawler ein...</value>
+  </data>
+  <data name="page_0_txt_name.Size" type="System.Drawing.Size, System.Drawing">
+    <value>897, 32</value>
+  </data>
+  <data name="page_0_txt_name.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;page_0_txt_name.Name" xml:space="preserve">
+    <value>page_0_txt_name</value>
+  </data>
+  <data name="&gt;&gt;page_0_txt_name.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_0_txt_name.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;page_0_txt_name.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="radLabel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="radLabel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radLabel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 15</value>
+  </data>
+  <data name="radLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>897, 47</value>
+  </data>
+  <data name="radLabel1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="radLabel1.Text" xml:space="preserve">
+    <value>Erstellen Sie einen eigenen WebCrawler, der das Internet nach Dokumenten durchsucht. Vergeben Sie zunächst einen Namen für den WebCrawler und wählen Sie dann die Assistenzstufe aus.</value>
+  </data>
+  <data name="&gt;&gt;radLabel1.Name" xml:space="preserve">
+    <value>radLabel1</value>
+  </data>
+  <data name="&gt;&gt;radLabel1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radLabel1.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;radLabel1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 69</value>
+  </data>
+  <data name="panel1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>15, 15, 15, 15</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>927, 421</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>radWizard1</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_2_num_start.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="page_2_num_start.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="page_2_num_start.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>100, 0</value>
+  </data>
+  <data name="page_2_num_start.Size" type="System.Drawing.Size, System.Drawing">
+    <value>436, 32</value>
+  </data>
+  <data name="page_2_num_start.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;page_2_num_start.Name" xml:space="preserve">
+    <value>page_2_num_start</value>
+  </data>
+  <data name="&gt;&gt;page_2_num_start.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadSpinEditor, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_2_num_start.Parent" xml:space="preserve">
+    <value>radGroupBox11</value>
+  </data>
+  <data name="&gt;&gt;page_2_num_start.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radGroupBox11.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radGroupBox11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radGroupBox11.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>446, 62</value>
+  </data>
+  <data name="radGroupBox11.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox11.Name" xml:space="preserve">
+    <value>radGroupBox11</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox11.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox11.Parent" xml:space="preserve">
+    <value>splitPanel5</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox11.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="splitPanel5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="splitPanel5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>446, 62</value>
+  </data>
+  <data name="splitPanel5.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="splitPanel5.Text" xml:space="preserve">
+    <value>splitPanel5</value>
+  </data>
+  <data name="&gt;&gt;splitPanel5.Name" xml:space="preserve">
+    <value>splitPanel5</value>
+  </data>
+  <data name="&gt;&gt;splitPanel5.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;splitPanel5.Parent" xml:space="preserve">
+    <value>radSplitContainer3</value>
+  </data>
+  <data name="&gt;&gt;splitPanel5.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_2_num_incr.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="page_2_num_incr.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="page_2_num_incr.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>100, 0</value>
+  </data>
+  <data name="page_2_num_incr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>437, 32</value>
+  </data>
+  <data name="page_2_num_incr.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;page_2_num_incr.Name" xml:space="preserve">
+    <value>page_2_num_incr</value>
+  </data>
+  <data name="&gt;&gt;page_2_num_incr.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadSpinEditor, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_2_num_incr.Parent" xml:space="preserve">
+    <value>radGroupBox12</value>
+  </data>
+  <data name="&gt;&gt;page_2_num_incr.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radGroupBox12.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radGroupBox12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radGroupBox12.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>447, 62</value>
+  </data>
+  <data name="radGroupBox12.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox12.Name" xml:space="preserve">
+    <value>radGroupBox12</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox12.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox12.Parent" xml:space="preserve">
+    <value>splitPanel6</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox12.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="splitPanel6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>450, 0</value>
+  </data>
+  <data name="splitPanel6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>447, 62</value>
+  </data>
+  <data name="splitPanel6.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="splitPanel6.Text" xml:space="preserve">
+    <value>splitPanel6</value>
+  </data>
+  <data name="&gt;&gt;splitPanel6.Name" xml:space="preserve">
+    <value>splitPanel6</value>
+  </data>
+  <data name="&gt;&gt;splitPanel6.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;splitPanel6.Parent" xml:space="preserve">
+    <value>radSplitContainer3</value>
+  </data>
+  <data name="&gt;&gt;splitPanel6.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radSplitContainer3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radSplitContainer3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 180</value>
+  </data>
+  <data name="radSplitContainer3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>897, 62</value>
+  </data>
+  <data name="radSplitContainer3.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer3.Name" xml:space="preserve">
+    <value>radSplitContainer3</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer3.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer3.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radLabel8.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="radLabel8.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radLabel8.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 11pt</value>
+  </data>
+  <data name="radLabel8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 102</value>
+  </data>
+  <data name="radLabel8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>897, 78</value>
+  </data>
+  <data name="radLabel8.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="radLabel8.Text" xml:space="preserve">
+    <value>Der Startindex ist die Seitennummer der ersten Suchseite. Der Inkrement ist der Wert, um den sich der Seitenzählen bei jeder Seite erhöht. Im Normalfall ist 1 / 1 eine gute Wahl. Mache Suchen beginnen aber auch bei 0 oder haben einen Inkrement von 10 oder 25. Daher entnehmen Sie bitte die korreken Wert der URL.</value>
+  </data>
+  <data name="radLabel8.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;radLabel8.Name" xml:space="preserve">
+    <value>radLabel8</value>
+  </data>
+  <data name="&gt;&gt;radLabel8.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radLabel8.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="&gt;&gt;radLabel8.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="page_2_txt_url.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="page_2_txt_url.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 102</value>
+  </data>
+  <data name="page_2_txt_url.Size" type="System.Drawing.Size, System.Drawing">
+    <value>897, 0</value>
+  </data>
+  <data name="page_2_txt_url.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;page_2_txt_url.Name" xml:space="preserve">
+    <value>page_2_txt_url</value>
+  </data>
+  <data name="&gt;&gt;page_2_txt_url.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_2_txt_url.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="&gt;&gt;page_2_txt_url.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="radLabel9.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="radLabel9.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radLabel9.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="radLabel9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 62</value>
+  </data>
+  <data name="radLabel9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>897, 40</value>
+  </data>
+  <data name="radLabel9.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="radLabel9.Text" xml:space="preserve">
+    <value>&lt;html&gt;Verwenden Sie [QUERY] als Platzhalter für die Abfrage und [PAGE] als Platzhalter für die Suchseite.&lt;br /&gt;&lt;strong&gt;Beispiel:&lt;/strong&gt; Anstelle von &lt;em&gt;http://notesjor.de/page/2/?s=CorpusExplorer&lt;/em&gt; fügen Sie &lt;em&gt;http://notesjor.de/page/[PAGE]/?s=[QUERY]&lt;/em&gt; ein.&lt;/html&gt;</value>
+  </data>
+  <data name="radLabel9.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;radLabel9.Name" xml:space="preserve">
+    <value>radLabel9</value>
+  </data>
+  <data name="&gt;&gt;radLabel9.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radLabel9.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="&gt;&gt;radLabel9.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="radLabel7.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="radLabel7.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radLabel7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 15</value>
+  </data>
+  <data name="radLabel7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>897, 47</value>
+  </data>
+  <data name="radLabel7.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="radLabel7.Text" xml:space="preserve">
+    <value>&lt;html&gt;Für die seitenspezifische Suche müssen Sie die URL inkl. Parametern kopieren und entsprechend der Vorgabe anpassen.&lt;br/&gt;&lt;em&gt;Tipp:&lt;/em&gt; Führen Sie einmal die Suche im Webbrowser durch, gehen Sie zur zweiten Ergebnisseite und kopieren Sie danach die URL.&lt;/html&gt;</value>
+  </data>
+  <data name="&gt;&gt;radLabel7.Name" xml:space="preserve">
+    <value>radLabel7</value>
+  </data>
+  <data name="&gt;&gt;radLabel7.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radLabel7.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="&gt;&gt;radLabel7.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 69</value>
+  </data>
+  <data name="panel3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>15, 15, 15, 15</value>
+  </data>
+  <data name="panel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>927, 421</value>
+  </data>
+  <data name="panel3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;panel3.Name" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="&gt;&gt;panel3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel3.Parent" xml:space="preserve">
+    <value>radWizard1</value>
+  </data>
+  <data name="&gt;&gt;panel3.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="page_3_webbrowser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="page_3_webbrowser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 75</value>
+  </data>
+  <data name="page_3_webbrowser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>458, 294</value>
+  </data>
+  <data name="page_3_webbrowser.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;page_3_webbrowser.Name" xml:space="preserve">
+    <value>page_3_webbrowser</value>
+  </data>
+  <data name="&gt;&gt;page_3_webbrowser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;page_3_webbrowser.Parent" xml:space="preserve">
+    <value>page_3_cnt_browser</value>
+  </data>
+  <data name="&gt;&gt;page_3_webbrowser.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radLabel11.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="radLabel11.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="radLabel11.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="radLabel11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 369</value>
+  </data>
+  <data name="radLabel11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>458, 18</value>
+  </data>
+  <data name="radLabel11.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="radLabel11.Text" xml:space="preserve">
+    <value>3. Modifizieren Sie den XPath bis alle Ergebnisse erfasst werden:</value>
+  </data>
+  <data name="&gt;&gt;radLabel11.Name" xml:space="preserve">
+    <value>radLabel11</value>
+  </data>
+  <data name="&gt;&gt;radLabel11.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radLabel11.Parent" xml:space="preserve">
+    <value>page_3_cnt_browser</value>
+  </data>
+  <data name="&gt;&gt;radLabel11.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radLabel10.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="radLabel10.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radLabel10.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="radLabel10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 57</value>
+  </data>
+  <data name="radLabel10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>458, 18</value>
+  </data>
+  <data name="radLabel10.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="radLabel10.Text" xml:space="preserve">
+    <value>2. Klicken Sie auf ein Suchergebnis:</value>
+  </data>
+  <data name="&gt;&gt;radLabel10.Name" xml:space="preserve">
+    <value>radLabel10</value>
+  </data>
+  <data name="&gt;&gt;radLabel10.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radLabel10.Parent" xml:space="preserve">
+    <value>page_3_cnt_browser</value>
+  </data>
+  <data name="&gt;&gt;radLabel10.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="page_3_txt_xpathresult.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="page_3_txt_xpathresult.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="page_3_txt_xpathresult.NullText" xml:space="preserve">
+    <value>XPath-Ausdruck für alle Ergebnisse...</value>
+  </data>
+  <data name="page_3_txt_xpathresult.Size" type="System.Drawing.Size, System.Drawing">
+    <value>426, 32</value>
+  </data>
+  <data name="page_3_txt_xpathresult.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;page_3_txt_xpathresult.Name" xml:space="preserve">
+    <value>page_3_txt_xpathresult</value>
+  </data>
+  <data name="&gt;&gt;page_3_txt_xpathresult.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_3_txt_xpathresult.Parent" xml:space="preserve">
+    <value>clearPanel4</value>
+  </data>
+  <data name="&gt;&gt;page_3_txt_xpathresult.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_3_btn_xpathrefresh.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="page_3_btn_xpathrefresh.Location" type="System.Drawing.Point, System.Drawing">
+    <value>426, 0</value>
+  </data>
+  <data name="page_3_btn_xpathrefresh.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="page_3_btn_xpathrefresh.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;page_3_btn_xpathrefresh.Name" xml:space="preserve">
+    <value>page_3_btn_xpathrefresh</value>
+  </data>
+  <data name="&gt;&gt;page_3_btn_xpathrefresh.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_3_btn_xpathrefresh.Parent" xml:space="preserve">
+    <value>clearPanel4</value>
+  </data>
+  <data name="&gt;&gt;page_3_btn_xpathrefresh.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="clearPanel4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="clearPanel4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 387</value>
+  </data>
+  <data name="clearPanel4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>458, 32</value>
+  </data>
+  <data name="clearPanel4.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;clearPanel4.Name" xml:space="preserve">
+    <value>clearPanel4</value>
+  </data>
+  <data name="&gt;&gt;clearPanel4.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;clearPanel4.Parent" xml:space="preserve">
+    <value>page_3_cnt_browser</value>
+  </data>
+  <data name="&gt;&gt;clearPanel4.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="page_3_txt_testquery.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="page_3_txt_testquery.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="page_3_txt_testquery.NullText" xml:space="preserve">
+    <value>1. Test-Suchausdruck hier eingeben...</value>
+  </data>
+  <data name="page_3_txt_testquery.Size" type="System.Drawing.Size, System.Drawing">
+    <value>426, 32</value>
+  </data>
+  <data name="page_3_txt_testquery.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;page_3_txt_testquery.Name" xml:space="preserve">
+    <value>page_3_txt_testquery</value>
+  </data>
+  <data name="&gt;&gt;page_3_txt_testquery.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_3_txt_testquery.Parent" xml:space="preserve">
+    <value>clearPanel3</value>
+  </data>
+  <data name="&gt;&gt;page_3_txt_testquery.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_3_btn_testquery.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="page_3_btn_testquery.Location" type="System.Drawing.Point, System.Drawing">
+    <value>426, 0</value>
+  </data>
+  <data name="page_3_btn_testquery.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="page_3_btn_testquery.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;page_3_btn_testquery.Name" xml:space="preserve">
+    <value>page_3_btn_testquery</value>
+  </data>
+  <data name="&gt;&gt;page_3_btn_testquery.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_3_btn_testquery.Parent" xml:space="preserve">
+    <value>clearPanel3</value>
+  </data>
+  <data name="&gt;&gt;page_3_btn_testquery.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="clearPanel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="clearPanel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 25</value>
+  </data>
+  <data name="clearPanel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>458, 32</value>
+  </data>
+  <data name="clearPanel3.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;clearPanel3.Name" xml:space="preserve">
+    <value>clearPanel3</value>
+  </data>
+  <data name="&gt;&gt;clearPanel3.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;clearPanel3.Parent" xml:space="preserve">
+    <value>page_3_cnt_browser</value>
+  </data>
+  <data name="&gt;&gt;clearPanel3.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="page_3_cnt_browser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="page_3_cnt_browser.HeaderText" xml:space="preserve">
+    <value>Zuerst Suchergebnis testen / XPath für Ergebnisse auswählen...</value>
+  </data>
+  <data name="page_3_cnt_browser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="page_3_cnt_browser.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 25, 2, 2</value>
+  </data>
+  <data name="page_3_cnt_browser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>462, 421</value>
+  </data>
+  <data name="page_3_cnt_browser.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="page_3_cnt_browser.Text" xml:space="preserve">
+    <value>Zuerst Suchergebnis testen / XPath für Ergebnisse auswählen...</value>
+  </data>
+  <data name="&gt;&gt;page_3_cnt_browser.Name" xml:space="preserve">
+    <value>page_3_cnt_browser</value>
+  </data>
+  <data name="&gt;&gt;page_3_cnt_browser.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_3_cnt_browser.Parent" xml:space="preserve">
+    <value>splitPanel7</value>
+  </data>
+  <data name="&gt;&gt;page_3_cnt_browser.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="splitPanel7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="splitPanel7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>462, 421</value>
+  </data>
+  <data name="splitPanel7.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="splitPanel7.Text" xml:space="preserve">
+    <value>splitPanel7</value>
+  </data>
+  <data name="&gt;&gt;splitPanel7.Name" xml:space="preserve">
+    <value>splitPanel7</value>
+  </data>
+  <data name="&gt;&gt;splitPanel7.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;splitPanel7.Parent" xml:space="preserve">
+    <value>radSplitContainer4</value>
+  </data>
+  <data name="&gt;&gt;splitPanel7.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_3_list_testresults.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="page_3_list_testresults.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 25</value>
+  </data>
+  <data name="page_3_list_testresults.Size" type="System.Drawing.Size, System.Drawing">
+    <value>457, 272</value>
+  </data>
+  <data name="page_3_list_testresults.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;page_3_list_testresults.Name" xml:space="preserve">
+    <value>page_3_list_testresults</value>
+  </data>
+  <data name="&gt;&gt;page_3_list_testresults.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_3_list_testresults.Parent" xml:space="preserve">
+    <value>radGroupBox14</value>
+  </data>
+  <data name="&gt;&gt;page_3_list_testresults.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radGroupBox14.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radGroupBox14.HeaderText" xml:space="preserve">
+    <value>Auflistung der aktuell durch XPath selektierten Ergebnisse</value>
+  </data>
+  <data name="radGroupBox14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radGroupBox14.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 25, 2, 2</value>
+  </data>
+  <data name="radGroupBox14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>461, 299</value>
+  </data>
+  <data name="radGroupBox14.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="radGroupBox14.Text" xml:space="preserve">
+    <value>Auflistung der aktuell durch XPath selektierten Ergebnisse</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox14.Name" xml:space="preserve">
+    <value>radGroupBox14</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox14.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox14.Parent" xml:space="preserve">
+    <value>splitPanel8</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox14.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_3_txt_prefix.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="page_3_txt_prefix.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="page_3_txt_prefix.Size" type="System.Drawing.Size, System.Drawing">
+    <value>451, 32</value>
+  </data>
+  <data name="page_3_txt_prefix.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;page_3_txt_prefix.Name" xml:space="preserve">
+    <value>page_3_txt_prefix</value>
+  </data>
+  <data name="&gt;&gt;page_3_txt_prefix.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_3_txt_prefix.Parent" xml:space="preserve">
+    <value>radGroupBox16</value>
+  </data>
+  <data name="&gt;&gt;page_3_txt_prefix.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radGroupBox16.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="radGroupBox16.HeaderText" xml:space="preserve">
+    <value>Soll dem href-Wert ein Prefix vorangestellt werden?</value>
+  </data>
+  <data name="radGroupBox16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 299</value>
+  </data>
+  <data name="radGroupBox16.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>461, 62</value>
+  </data>
+  <data name="radGroupBox16.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="radGroupBox16.Text" xml:space="preserve">
+    <value>Soll dem href-Wert ein Prefix vorangestellt werden?</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox16.Name" xml:space="preserve">
+    <value>radGroupBox16</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox16.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox16.Parent" xml:space="preserve">
+    <value>splitPanel8</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox16.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="page_3_txt_limit.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="page_3_txt_limit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="page_3_txt_limit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>451, 30</value>
+  </data>
+  <data name="page_3_txt_limit.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;page_3_txt_limit.Name" xml:space="preserve">
+    <value>page_3_txt_limit</value>
+  </data>
+  <data name="&gt;&gt;page_3_txt_limit.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_3_txt_limit.Parent" xml:space="preserve">
+    <value>radGroupBox15</value>
+  </data>
+  <data name="&gt;&gt;page_3_txt_limit.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radGroupBox15.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="radGroupBox15.HeaderText" xml:space="preserve">
+    <value>Begrenze Suchergebnis auf Seitenbereich...</value>
+  </data>
+  <data name="radGroupBox15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 361</value>
+  </data>
+  <data name="radGroupBox15.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>461, 60</value>
+  </data>
+  <data name="radGroupBox15.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="radGroupBox15.Text" xml:space="preserve">
+    <value>Begrenze Suchergebnis auf Seitenbereich...</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox15.Name" xml:space="preserve">
+    <value>radGroupBox15</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox15.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox15.Parent" xml:space="preserve">
+    <value>splitPanel8</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox15.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="splitPanel8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>466, 0</value>
+  </data>
+  <data name="splitPanel8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>461, 421</value>
+  </data>
+  <data name="splitPanel8.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="splitPanel8.Text" xml:space="preserve">
+    <value>splitPanel8</value>
+  </data>
+  <data name="&gt;&gt;splitPanel8.Name" xml:space="preserve">
+    <value>splitPanel8</value>
+  </data>
+  <data name="&gt;&gt;splitPanel8.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;splitPanel8.Parent" xml:space="preserve">
+    <value>radSplitContainer4</value>
+  </data>
+  <data name="&gt;&gt;splitPanel8.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radSplitContainer4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radSplitContainer4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radSplitContainer4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>927, 421</value>
+  </data>
+  <data name="radSplitContainer4.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer4.Name" xml:space="preserve">
+    <value>radSplitContainer4</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer4.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer4.Parent" xml:space="preserve">
+    <value>panel4</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 69</value>
+  </data>
+  <data name="panel4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>927, 421</value>
+  </data>
+  <data name="panel4.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;panel4.Name" xml:space="preserve">
+    <value>panel4</value>
+  </data>
+  <data name="&gt;&gt;panel4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel4.Parent" xml:space="preserve">
+    <value>radWizard1</value>
+  </data>
+  <data name="&gt;&gt;panel4.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="page_4_webbrowser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="page_4_webbrowser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 32</value>
+  </data>
+  <data name="page_4_webbrowser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>569, 339</value>
+  </data>
+  <data name="page_4_webbrowser.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;page_4_webbrowser.Name" xml:space="preserve">
+    <value>page_4_webbrowser</value>
+  </data>
+  <data name="&gt;&gt;page_4_webbrowser.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;page_4_webbrowser.Parent" xml:space="preserve">
+    <value>page_4_cnt_browser</value>
+  </data>
+  <data name="&gt;&gt;page_4_webbrowser.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_4_drop_example.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="page_4_drop_example.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="page_4_drop_example.NullText" xml:space="preserve">
+    <value>Verfügbares Beispielergebnis auswählen...</value>
+  </data>
+  <data name="page_4_drop_example.Size" type="System.Drawing.Size, System.Drawing">
+    <value>537, 32</value>
+  </data>
+  <data name="page_4_drop_example.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;page_4_drop_example.Name" xml:space="preserve">
+    <value>page_4_drop_example</value>
+  </data>
+  <data name="&gt;&gt;page_4_drop_example.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_4_drop_example.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;page_4_drop_example.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_4_btn_loadUrl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="page_4_btn_loadUrl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>537, 0</value>
+  </data>
+  <data name="page_4_btn_loadUrl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="page_4_btn_loadUrl.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;page_4_btn_loadUrl.Name" xml:space="preserve">
+    <value>page_4_btn_loadUrl</value>
+  </data>
+  <data name="&gt;&gt;page_4_btn_loadUrl.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_4_btn_loadUrl.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;page_4_btn_loadUrl.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="panel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>569, 32</value>
+  </data>
+  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
+    <value>page_4_cnt_browser</value>
+  </data>
+  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radLabel12.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="radLabel12.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="radLabel12.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="radLabel12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 371</value>
+  </data>
+  <data name="radLabel12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>569, 18</value>
+  </data>
+  <data name="radLabel12.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="radLabel12.Text" xml:space="preserve">
+    <value>Modifizieren Sie den XPath bis alle Bereiche erfasst werden:</value>
+  </data>
+  <data name="&gt;&gt;radLabel12.Name" xml:space="preserve">
+    <value>radLabel12</value>
+  </data>
+  <data name="&gt;&gt;radLabel12.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radLabel12.Parent" xml:space="preserve">
+    <value>page_4_cnt_browser</value>
+  </data>
+  <data name="&gt;&gt;radLabel12.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="page_4_txt_xpath.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="page_4_txt_xpath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="page_4_txt_xpath.NullText" xml:space="preserve">
+    <value>XPath-Ausdruck...</value>
+  </data>
+  <data name="page_4_txt_xpath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>505, 32</value>
+  </data>
+  <data name="page_4_txt_xpath.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;page_4_txt_xpath.Name" xml:space="preserve">
+    <value>page_4_txt_xpath</value>
+  </data>
+  <data name="&gt;&gt;page_4_txt_xpath.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_4_txt_xpath.Parent" xml:space="preserve">
+    <value>clearPanel5</value>
+  </data>
+  <data name="&gt;&gt;page_4_txt_xpath.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_4_btn_xpathrefresh.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="page_4_btn_xpathrefresh.Location" type="System.Drawing.Point, System.Drawing">
+    <value>505, 0</value>
+  </data>
+  <data name="page_4_btn_xpathrefresh.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="page_4_btn_xpathrefresh.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;page_4_btn_xpathrefresh.Name" xml:space="preserve">
+    <value>page_4_btn_xpathrefresh</value>
+  </data>
+  <data name="&gt;&gt;page_4_btn_xpathrefresh.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_4_btn_xpathrefresh.Parent" xml:space="preserve">
+    <value>clearPanel5</value>
+  </data>
+  <data name="&gt;&gt;page_4_btn_xpathrefresh.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="page_4_btn_xpathToList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="page_4_btn_xpathToList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>537, 0</value>
+  </data>
+  <data name="page_4_btn_xpathToList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 32</value>
+  </data>
+  <data name="page_4_btn_xpathToList.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;page_4_btn_xpathToList.Name" xml:space="preserve">
+    <value>page_4_btn_xpathToList</value>
+  </data>
+  <data name="&gt;&gt;page_4_btn_xpathToList.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_4_btn_xpathToList.Parent" xml:space="preserve">
+    <value>clearPanel5</value>
+  </data>
+  <data name="&gt;&gt;page_4_btn_xpathToList.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="clearPanel5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="clearPanel5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 389</value>
+  </data>
+  <data name="clearPanel5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>569, 32</value>
+  </data>
+  <data name="clearPanel5.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;clearPanel5.Name" xml:space="preserve">
+    <value>clearPanel5</value>
+  </data>
+  <data name="&gt;&gt;clearPanel5.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;clearPanel5.Parent" xml:space="preserve">
+    <value>page_4_cnt_browser</value>
+  </data>
+  <data name="&gt;&gt;clearPanel5.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="page_4_cnt_browser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="page_4_cnt_browser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>569, 421</value>
+  </data>
+  <data name="page_4_cnt_browser.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="page_4_cnt_browser.Text" xml:space="preserve">
+    <value>splitPanel9</value>
+  </data>
+  <data name="&gt;&gt;page_4_cnt_browser.Name" xml:space="preserve">
+    <value>page_4_cnt_browser</value>
+  </data>
+  <data name="&gt;&gt;page_4_cnt_browser.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_4_cnt_browser.Parent" xml:space="preserve">
+    <value>radSplitContainer5</value>
+  </data>
+  <data name="&gt;&gt;page_4_cnt_browser.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="page_4_grid_xpath.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="page_4_grid_xpath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="gridViewTextBoxColumn3.HeaderText" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="page_4_grid_xpath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>344, 346</value>
+  </data>
+  <data name="page_4_grid_xpath.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;page_4_grid_xpath.Name" xml:space="preserve">
+    <value>page_4_grid_xpath</value>
+  </data>
+  <data name="&gt;&gt;page_4_grid_xpath.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGridView, Telerik.WinControls.GridView, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_4_grid_xpath.Parent" xml:space="preserve">
+    <value>radGroupBox17</value>
+  </data>
+  <data name="&gt;&gt;page_4_grid_xpath.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radLabel13.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="radLabel13.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="radLabel13.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="radLabel13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 371</value>
+  </data>
+  <data name="radLabel13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>344, 45</value>
+  </data>
+  <data name="radLabel13.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="radLabel13.Text" xml:space="preserve">
+    <value>&lt;html&gt;Sie müssen mindestens ein Mapping mit dem Key &lt;i&gt;Text&lt;/i&gt; erstellen. Alle anderen Mappings können Sie frei wählen.&lt;/html&gt;</value>
+  </data>
+  <data name="radLabel13.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;radLabel13.Name" xml:space="preserve">
+    <value>radLabel13</value>
+  </data>
+  <data name="&gt;&gt;radLabel13.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radLabel13.Parent" xml:space="preserve">
+    <value>radGroupBox17</value>
+  </data>
+  <data name="&gt;&gt;radLabel13.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radGroupBox17.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radGroupBox17.HeaderText" xml:space="preserve">
+    <value>XPath-Mappings</value>
+  </data>
+  <data name="radGroupBox17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radGroupBox17.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>354, 421</value>
+  </data>
+  <data name="radGroupBox17.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="radGroupBox17.Text" xml:space="preserve">
+    <value>XPath-Mappings</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox17.Name" xml:space="preserve">
+    <value>radGroupBox17</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox17.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox17.Parent" xml:space="preserve">
+    <value>splitPanel10</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox17.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="splitPanel10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>573, 0</value>
+  </data>
+  <data name="splitPanel10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>354, 421</value>
+  </data>
+  <data name="splitPanel10.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="splitPanel10.Text" xml:space="preserve">
+    <value>splitPanel10</value>
+  </data>
+  <data name="&gt;&gt;splitPanel10.Name" xml:space="preserve">
+    <value>splitPanel10</value>
+  </data>
+  <data name="&gt;&gt;splitPanel10.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;splitPanel10.Parent" xml:space="preserve">
+    <value>radSplitContainer5</value>
+  </data>
+  <data name="&gt;&gt;splitPanel10.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radSplitContainer5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radSplitContainer5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="radSplitContainer5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>927, 421</value>
+  </data>
+  <data name="radSplitContainer5.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer5.Name" xml:space="preserve">
+    <value>radSplitContainer5</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer5.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer5.Parent" xml:space="preserve">
+    <value>panel5</value>
+  </data>
+  <data name="&gt;&gt;radSplitContainer5.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 69</value>
+  </data>
+  <data name="panel5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>927, 421</value>
+  </data>
+  <data name="panel5.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;panel5.Name" xml:space="preserve">
+    <value>panel5</value>
+  </data>
+  <data name="&gt;&gt;panel5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel5.Parent" xml:space="preserve">
+    <value>radWizard1</value>
+  </data>
+  <data name="&gt;&gt;panel5.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="radWizard1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radWizard1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
   <data name="radWizard1.PageHeaderIcon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGIAAABDCAYAAABnVdCdAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -161,22 +2407,94 @@
         ru3RbcIOARpb8Ply7YeAJ0/+B1KMHHvVZA0NAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="page_0_check_sampledata.Text" xml:space="preserve">
-    <value>&lt;html&gt;&lt;strong&gt;Beispieldaten verwenden&lt;/strong&gt;&lt;br /&gt;Füllt alle Formularfelder soweit aus, dass Sie den Blog &lt;em&gt;http://notesjor.de&lt;/em&gt; crawlen könnten.&lt;br /&gt;Bitte modifizieren Sie das Ergebnis für einen produktiven WebCrawler.&lt;/html&gt;</value>
+  <data name="wizardWelcomePage1.Header" xml:space="preserve">
+    <value>Page header</value>
   </data>
-  <data name="radLabel8.Text" xml:space="preserve">
-    <value>Der Startindex ist die Seitennummer der ersten Suchseite. Der Inkrement ist der Wert, um den sich der Seitenzählen bei jeder Seite erhöht. Im Normalfall ist 1 / 1 eine gute Wahl. Mache Suchen beginnen aber auch bei 0 oder haben einen Inkrement von 10 oder 25. Daher entnehmen Sie bitte die korreken Wert der URL.</value>
+  <data name="wizardWelcomePage1.Title" xml:space="preserve">
+    <value>WebCrawler selbst erstellen...</value>
   </data>
-  <data name="radLabel9.Text" xml:space="preserve">
-    <value>&lt;html&gt;Verwenden Sie [QUERY] als Platzhalter für die Abfrage und [PAGE] als Platzhalter für die Suchseite.&lt;br /&gt;&lt;strong&gt;Beispiel:&lt;/strong&gt; Anstelle von &lt;em&gt;http://notesjor.de/page/2/?s=CorpusExplorer&lt;/em&gt; fügen Sie &lt;em&gt;http://notesjor.de/page/[PAGE]/?s=[QUERY]&lt;/em&gt; ein.&lt;/html&gt;</value>
+  <data name="wizardPage2.Title" xml:space="preserve">
+    <value>Fortgeschrittenen-Modus</value>
   </data>
-  <data name="radLabel7.Text" xml:space="preserve">
-    <value>&lt;html&gt;Für die seitenspezifische Suche müssen Sie die URL inkl. Parametern kopieren und entsprechend der Vorgabe anpassen.&lt;br/&gt;&lt;em&gt;Tipp:&lt;/em&gt; Führen Sie einmal die Suche im Webbrowser durch, gehen Sie zur zweiten Ergebnisseite und kopieren Sie danach die URL.&lt;/html&gt;</value>
+  <data name="wizardPage3.Title" xml:space="preserve">
+    <value>Link-Verhalten konfigurieren</value>
+  </data>
+  <data name="wizardPage4.Title" xml:space="preserve">
+    <value>XPath-Mapping</value>
+  </data>
+  <data name="radWizard1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>927, 538</value>
+  </data>
+  <data name="radWizard1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radWizard1.Name" xml:space="preserve">
+    <value>radWizard1</value>
+  </data>
+  <data name="&gt;&gt;radWizard1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadWizard, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radWizard1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radWizard1.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="radDesktopAlert1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <data name="radDesktopAlert1.ContentText" xml:space="preserve">
     <value>&lt;html&gt;Die Vorschau umrahmt alle mittels XPath selektierten Elemente mit blauen Punkten.&lt;br /&gt;&lt;strong&gt;Bitte beachten Sie:&lt;/strong&gt; Die Erzeugung der Vorschau benötigt beim ersten Mal&lt;br /&gt;ca. 30 Sekunden, um anzeigebereit zu sein. Folgeaufrufe benötigen ca. 5-15 Sekunden &lt;br /&gt;(bei komplexen XPath-Ausdrücken).&lt;/html&gt;</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>927, 538</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>WebCrawler erstellen...</value>
+  </data>
+  <data name="&gt;&gt;wizardCompletionPage1.Name" xml:space="preserve">
+    <value>wizardCompletionPage1</value>
+  </data>
+  <data name="&gt;&gt;wizardCompletionPage1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.WizardCompletionPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;wizardWelcomePage1.Name" xml:space="preserve">
+    <value>wizardWelcomePage1</value>
+  </data>
+  <data name="&gt;&gt;wizardWelcomePage1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.WizardWelcomePage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;wizardPage2.Name" xml:space="preserve">
+    <value>wizardPage2</value>
+  </data>
+  <data name="&gt;&gt;wizardPage2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.WizardPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;wizardPage3.Name" xml:space="preserve">
+    <value>wizardPage3</value>
+  </data>
+  <data name="&gt;&gt;wizardPage3.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.WizardPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;wizardPage4.Name" xml:space="preserve">
+    <value>wizardPage4</value>
+  </data>
+  <data name="&gt;&gt;wizardPage4.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.WizardPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radDesktopAlert1.Name" xml:space="preserve">
+    <value>radDesktopAlert1</value>
+  </data>
+  <data name="&gt;&gt;radDesktopAlert1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadDesktopAlert, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>WebCrawlerWizard</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Forms.Abstract.AbstractForm, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
   </data>
 </root>

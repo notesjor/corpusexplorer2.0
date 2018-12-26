@@ -1,4 +1,4 @@
-﻿namespace CorpusExplorer.Terminal.WinForm.View.Ngram
+namespace CorpusExplorer.Terminal.WinForm.View.Ngram
 {
   partial class CutOffPhraseGrid
   {
@@ -61,14 +61,11 @@
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1,
             this.commandBarRowElement2});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 110);
-      this.radCommandBar1.TabIndex = 0;
       // 
       // commandBarRowElement1
       // 
@@ -79,7 +76,7 @@
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.btn_function,
             this.btn_calc,
@@ -95,91 +92,82 @@
       // 
       // btn_function
       // 
-      this.btn_function.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_function, "btn_function");
       this.btn_function.Image = ((System.Drawing.Image)(resources.GetObject("btn_function.Image")));
-      this.btn_function.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.btn_function.AutoToolTip = true;
       this.btn_function.Name = "btn_function";
-      this.btn_function.Text = "Vordefinierte Funktionen";
-      this.btn_function.ToolTipText = "Vordefinierte Funktionen";
       this.btn_function.Click += new System.EventHandler(this.btn_function_Click);
       // 
       // btn_calc
       // 
-      this.btn_calc.DisplayName = "commandBarButton2";
+      resources.ApplyResources(this.btn_calc, "btn_calc");
       this.btn_calc.Image = ((System.Drawing.Image)(resources.GetObject("btn_calc.Image")));
-      this.btn_calc.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.btn_calc.AutoToolTip = true;
       this.btn_calc.Name = "btn_calc";
-      this.btn_calc.Text = "Eigene Funktionen/Berechnungen";
-      this.btn_calc.ToolTipText = "Eigene Funktionen/Berechnungen";
       this.btn_calc.Click += new System.EventHandler(this.btn_calc_Click);
       // 
       // btn_filterlist
       // 
-      this.btn_filterlist.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_filterlist, "btn_filterlist");
       this.btn_filterlist.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_list;
+      this.btn_filterlist.AutoToolTip = true;
       this.btn_filterlist.Name = "btn_filterlist";
-      this.btn_filterlist.Text = "Filterliste";
       this.btn_filterlist.Click += new System.EventHandler(this.btn_filterlist_Click);
       // 
       // btn_filtereditor
       // 
-      this.btn_filtereditor.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_filtereditor, "btn_filtereditor");
       this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
+      this.btn_filtereditor.AutoToolTip = true;
       this.btn_filtereditor.Name = "btn_filtereditor";
-      this.btn_filtereditor.Text = "Filtereditor";
       this.btn_filtereditor.Click += new System.EventHandler(this.btn_filtereditor_Click);
       // 
       // btn_regex
       // 
-      this.btn_regex.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_regex, "btn_regex");
       this.btn_regex.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_regex;
+      this.btn_regex.AutoToolTip = true;
       this.btn_regex.Name = "btn_regex";
-      this.btn_regex.Text = "RegEx-Suche";
       this.btn_regex.Click += new System.EventHandler(this.btn_regex_Click);
       // 
       // commandBarSeparator1
       // 
       this.commandBarSeparator1.AccessibleDescription = "commandBarSeparator1";
       this.commandBarSeparator1.AccessibleName = "commandBarSeparator1";
-      this.commandBarSeparator1.DisplayName = "commandBarSeparator1";
+      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
       this.commandBarSeparator1.Name = "commandBarSeparator1";
       this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
       // btn_csvExport
       // 
-      this.btn_csvExport.DisplayName = "commandBarButton3";
+      resources.ApplyResources(this.btn_csvExport, "btn_csvExport");
       this.btn_csvExport.Image = ((System.Drawing.Image)(resources.GetObject("btn_csvExport.Image")));
-      this.btn_csvExport.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.btn_csvExport.AutoToolTip = true;
       this.btn_csvExport.Name = "btn_csvExport";
-      this.btn_csvExport.Text = "CSV-Export";
-      this.btn_csvExport.ToolTipText = "CSV-Export";
       this.btn_csvExport.Click += new System.EventHandler(this.btn_csvExport_Click);
       // 
       // btn_print
       // 
-      this.btn_print.DisplayName = "commandBarButton4";
+      resources.ApplyResources(this.btn_print, "btn_print");
       this.btn_print.Image = ((System.Drawing.Image)(resources.GetObject("btn_print.Image")));
-      this.btn_print.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.btn_print.AutoToolTip = true;
       this.btn_print.Name = "btn_print";
-      this.btn_print.Text = "Drucken";
-      this.btn_print.ToolTipText = "Drucken";
       this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
       // 
       // commandBarSeparator2
       // 
       this.commandBarSeparator2.AccessibleDescription = "commandBarSeparator2";
       this.commandBarSeparator2.AccessibleName = "commandBarSeparator2";
-      this.commandBarSeparator2.DisplayName = "commandBarSeparator2";
+      resources.ApplyResources(this.commandBarSeparator2, "commandBarSeparator2");
       this.commandBarSeparator2.Name = "commandBarSeparator2";
       this.commandBarSeparator2.VisibleInOverflowMenu = false;
       // 
       // btn_snapshot_create
       // 
-      this.btn_snapshot_create.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_snapshot_create, "btn_snapshot_create");
       this.btn_snapshot_create.Image = ((System.Drawing.Image)(resources.GetObject("btn_snapshot_create.Image")));
+      this.btn_snapshot_create.AutoToolTip = true;
       this.btn_snapshot_create.Name = "btn_snapshot_create";
-      this.btn_snapshot_create.Text = "Schnappschuss erstellen";
-      this.btn_snapshot_create.ToolTipText = "Schnappschuss erstellen";
       this.btn_snapshot_create.Click += new System.EventHandler(this.btn_snapshot_create_Click);
       // 
       // commandBarRowElement2
@@ -191,7 +179,7 @@
       // 
       // commandBarStripElement3
       // 
-      this.commandBarStripElement3.DisplayName = "commandBarStripElement3";
+      resources.ApplyResources(this.commandBarStripElement3, "commandBarStripElement3");
       this.commandBarStripElement3.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.btn_layer,
             this.commandBarLabel1,
@@ -205,70 +193,62 @@
       // 
       // btn_layer
       // 
-      this.btn_layer.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_layer, "btn_layer");
       this.btn_layer.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers;
+      this.btn_layer.AutoToolTip = true;
       this.btn_layer.Name = "btn_layer";
-      this.btn_layer.Text = "Layer auswählen";
       this.btn_layer.Click += new System.EventHandler(this.btn_layer_Click);
       // 
       // commandBarLabel1
       // 
-      this.commandBarLabel1.DisplayName = "commandBarLabel1";
+      resources.ApplyResources(this.commandBarLabel1, "commandBarLabel1");
       this.commandBarLabel1.Name = "commandBarLabel1";
-      this.commandBarLabel1.Text = "Begriff (A):";
       // 
       // txt_start
       // 
-      this.txt_start.DisplayName = "commandBarTextBox1";
+      resources.ApplyResources(this.txt_start, "txt_start");
       this.txt_start.MinSize = new System.Drawing.Size(120, 30);
       this.txt_start.Name = "txt_start";
       this.txt_start.NullText = "eingeben...";
-      this.txt_start.Text = "";
       // 
       // commandBarLabel2
       // 
-      this.commandBarLabel2.DisplayName = "commandBarLabel2";
+      resources.ApplyResources(this.commandBarLabel2, "commandBarLabel2");
       this.commandBarLabel2.Name = "commandBarLabel2";
-      this.commandBarLabel2.Text = "Spanne:";
       // 
       // txt_size
       // 
       this.txt_size.AccessibleDescription = "3";
       this.txt_size.AccessibleName = "3";
-      this.txt_size.DisplayName = "commandBarTextBox1";
+      resources.ApplyResources(this.txt_size, "txt_size");
       this.txt_size.Name = "txt_size";
-      this.txt_size.Text = "0";
       // 
       // commandBarLabel3
       // 
-      this.commandBarLabel3.DisplayName = "commandBarLabel3";
+      resources.ApplyResources(this.commandBarLabel3, "commandBarLabel3");
       this.commandBarLabel3.Name = "commandBarLabel3";
-      this.commandBarLabel3.Text = "Begriff (B):";
       // 
       // txt_end
       // 
-      this.txt_end.DisplayName = "commandBarTextBox2";
+      resources.ApplyResources(this.txt_end, "txt_end");
       this.txt_end.MinSize = new System.Drawing.Size(120, 30);
       this.txt_end.Name = "txt_end";
       this.txt_end.NullText = "eingeben...";
       this.txt_end.ShowHorizontalLine = false;
-      this.txt_end.Text = "";
       // 
       // btn_run
       // 
       this.btn_run.AccessibleDescription = "commandBarButton1";
       this.btn_run.AccessibleName = "commandBarButton1";
-      this.btn_run.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_run, "btn_run");
       this.btn_run.Image = ((System.Drawing.Image)(resources.GetObject("btn_run.Image")));
+      this.btn_run.AutoToolTip = true;
       this.btn_run.Name = "btn_run";
-      this.btn_run.Text = "Analyse ausführen";
-      this.btn_run.ToolTipText = "Analyse ausführen";
       this.btn_run.Click += new System.EventHandler(this.btn_execute_Click);
       // 
       // radGridView1
       // 
-      this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGridView1.Location = new System.Drawing.Point(0, 110);
+      resources.ApplyResources(this.radGridView1, "radGridView1");
       // 
       // 
       // 
@@ -279,8 +259,6 @@
       this.radGridView1.MasterTemplate.MultiSelect = true;
       this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
-      this.radGridView1.Size = new System.Drawing.Size(780, 290);
-      this.radGridView1.TabIndex = 1;
       // 
       // CutOffPhraseGrid
       // 

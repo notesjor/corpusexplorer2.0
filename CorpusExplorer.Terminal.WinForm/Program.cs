@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using CorpusExplorer.Sdk.Diagnostic;
+using CorpusExplorer.Sdk.Ecosystem;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Terminal.WinForm.Forms.Dashboard;
 using CorpusExplorer.Terminal.WinForm.Forms.Error;
@@ -60,11 +61,14 @@ namespace CorpusExplorer.Terminal.WinForm
         // ignore
       }
 
-      Welcome.SplashShow();
+      var quickMode = args != null && args.Length >= 2 && args[0] == "quick";
+
+      if (!quickMode)
+        Welcome.SplashShow();
 
       try
       {
-        Application.Run(new Dashboard(args));
+        Application.Run(new Dashboard(args, quickMode));
       }
       catch (Exception ex)
       {

@@ -1,4 +1,4 @@
-﻿namespace CorpusExplorer.Terminal.WinForm.View.StyleMetrics
+namespace CorpusExplorer.Terminal.WinForm.View.StyleMetrics
 {
   partial class CharacterNGramGrid
   {
@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CharacterNGramGrid));
       Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
@@ -35,6 +36,7 @@
       this.btn_function = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_calc = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_filterlist = new Telerik.WinControls.UI.CommandBarButton();
+      this.btn_filtereditor = new Telerik.WinControls.UI.CommandBarButton();
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_csvExport = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_print = new Telerik.WinControls.UI.CommandBarButton();
@@ -44,7 +46,6 @@
       this.txt_size = new Telerik.WinControls.UI.CommandBarTextBox();
       this.btn_run = new Telerik.WinControls.UI.CommandBarButton();
       this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-      this.btn_filtereditor = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
@@ -52,25 +53,22 @@
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1,
             this.commandBarRowElement2});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 110);
-      this.radCommandBar1.TabIndex = 0;
-      this.radCommandBar1.Text = "radCommandBar1";
       // 
       // commandBarRowElement1
       // 
       this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.btn_function,
             this.btn_calc,
@@ -83,9 +81,9 @@
       // 
       // btn_function
       // 
-      this.btn_function.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_function, "btn_function");
       this.btn_function.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.magic_wand;
-      this.btn_function.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.btn_function.AutoToolTip = true;
       this.btn_function.Name = "btn_function";
       this.btn_function.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.VordefinierteFunktionen;
       this.btn_function.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.VordefinierteFunktionen;
@@ -93,9 +91,9 @@
       // 
       // btn_calc
       // 
-      this.btn_calc.DisplayName = "commandBarButton2";
+      resources.ApplyResources(this.btn_calc, "btn_calc");
       this.btn_calc.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.calculator;
-      this.btn_calc.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.btn_calc.AutoToolTip = true;
       this.btn_calc.Name = "btn_calc";
       this.btn_calc.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.EigeneFunktionenBerechnungen;
       this.btn_calc.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.EigeneFunktionenBerechnungen;
@@ -103,25 +101,33 @@
       // 
       // btn_filterlist
       // 
-      this.btn_filterlist.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_filterlist, "btn_filterlist");
       this.btn_filterlist.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_list;
+      this.btn_filterlist.AutoToolTip = true;
       this.btn_filterlist.Name = "btn_filterlist";
-      this.btn_filterlist.Text = "Filterliste";
       this.btn_filterlist.Click += new System.EventHandler(this.btn_filterlist_Click);
+      // 
+      // btn_filtereditor
+      // 
+      resources.ApplyResources(this.btn_filtereditor, "btn_filtereditor");
+      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
+      this.btn_filtereditor.AutoToolTip = true;
+      this.btn_filtereditor.Name = "btn_filtereditor";
+      this.btn_filtereditor.Click += new System.EventHandler(this.btn_filtereditor_Click);
       // 
       // commandBarSeparator1
       // 
       this.commandBarSeparator1.AccessibleDescription = "commandBarSeparator1";
       this.commandBarSeparator1.AccessibleName = "commandBarSeparator1";
-      this.commandBarSeparator1.DisplayName = "commandBarSeparator1";
+      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
       this.commandBarSeparator1.Name = "commandBarSeparator1";
       this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
       // btn_csvExport
       // 
-      this.btn_csvExport.DisplayName = "commandBarButton3";
+      resources.ApplyResources(this.btn_csvExport, "btn_csvExport");
       this.btn_csvExport.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
-      this.btn_csvExport.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.btn_csvExport.AutoToolTip = true;
       this.btn_csvExport.Name = "btn_csvExport";
       this.btn_csvExport.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.CSVExport;
       this.btn_csvExport.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.CSVExport;
@@ -129,9 +135,9 @@
       // 
       // btn_print
       // 
-      this.btn_print.DisplayName = "commandBarButton4";
+      resources.ApplyResources(this.btn_print, "btn_print");
       this.btn_print.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.print;
-      this.btn_print.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.btn_print.AutoToolTip = true;
       this.btn_print.Name = "btn_print";
       this.btn_print.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Drucken;
       this.btn_print.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Drucken;
@@ -140,12 +146,13 @@
       // commandBarRowElement2
       // 
       this.commandBarRowElement2.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement2.Name = "commandBarRowElement2";
       this.commandBarRowElement2.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement3});
       // 
       // commandBarStripElement3
       // 
-      this.commandBarStripElement3.DisplayName = "commandBarStripElement3";
+      resources.ApplyResources(this.commandBarStripElement3, "commandBarStripElement3");
       this.commandBarStripElement3.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.commandBarLabel2,
             this.txt_size,
@@ -154,24 +161,23 @@
       // 
       // commandBarLabel2
       // 
-      this.commandBarLabel2.DisplayName = "commandBarLabel2";
+      resources.ApplyResources(this.commandBarLabel2, "commandBarLabel2");
       this.commandBarLabel2.Name = "commandBarLabel2";
-      this.commandBarLabel2.Text = "NGram-Größe (Zeichen):";
       // 
       // txt_size
       // 
       this.txt_size.AccessibleDescription = "3";
       this.txt_size.AccessibleName = "3";
-      this.txt_size.DisplayName = "commandBarTextBox1";
+      resources.ApplyResources(this.txt_size, "txt_size");
       this.txt_size.Name = "txt_size";
-      this.txt_size.Text = "5";
       // 
       // btn_run
       // 
       this.btn_run.AccessibleDescription = "commandBarButton1";
       this.btn_run.AccessibleName = "commandBarButton1";
-      this.btn_run.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_run, "btn_run");
       this.btn_run.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
+      this.btn_run.AutoToolTip = true;
       this.btn_run.Name = "btn_run";
       this.btn_run.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.AnalyseAusführen;
       this.btn_run.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.AnalyseAusführen;
@@ -179,8 +185,7 @@
       // 
       // radGridView1
       // 
-      this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGridView1.Location = new System.Drawing.Point(0, 110);
+      resources.ApplyResources(this.radGridView1, "radGridView1");
       // 
       // 
       // 
@@ -191,21 +196,9 @@
       this.radGridView1.MasterTemplate.MultiSelect = true;
       this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
-      this.radGridView1.Size = new System.Drawing.Size(780, 290);
-      this.radGridView1.TabIndex = 1;
-      this.radGridView1.Text = "radGridView1";
-      // 
-      // btn_filtereditor
-      // 
-      this.btn_filtereditor.DisplayName = "commandBarButton1";
-      this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
-      this.btn_filtereditor.Name = "btn_filtereditor";
-      this.btn_filtereditor.Text = "Filtereditor";
-      this.btn_filtereditor.Click += new System.EventHandler(this.btn_filtereditor_Click);
       // 
       // CharacterNGramGrid
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radGridView1);
       this.Controls.Add(this.radCommandBar1);

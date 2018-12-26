@@ -15,20 +15,45 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
 
     public override void Execute()
     {
-      Initialize();
-
-      while (Input.Count > 0)
+      try
       {
-        AbstractCorpusAdapter corpus;
-        if (!Input.TryDequeue(out corpus))
-          continue;
-
-        CorpusBuilder.Append(corpus, ExecuteCall(ref corpus));
+        Initialize();
+      }
+      catch
+      {
+        return;
       }
 
-      Cleanup();
+      try
+      {
+        while (Input.Count > 0)
+        {
+          AbstractCorpusAdapter corpus;
+          if (!Input.TryDequeue(out corpus))
+            continue;
+
+          CorpusBuilder.Append(corpus, ExecuteCall(ref corpus));
+        }
+      }
+      catch
+      {
+        //ignore
+      }
+
+      try
+      {
+        Cleanup();
+      }
+      catch
+      {
+        //ignore
+      }
     }
 
+    /// <summary>
+    /// Wird nach ExecuteCall ausgeführt.
+    /// Sollter zur Bereinigung genutzt werden.
+    /// </summary>
     protected abstract void Cleanup();
 
     /// <summary>
@@ -42,6 +67,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
     /// <returns>Gibt die neuen Layer aus, die an das Korpus angefügt werden sollten.</returns>
     protected abstract IEnumerable<AbstractLayerState> ExecuteCall(ref AbstractCorpusAdapter corpus);
 
+    /// <summary>
+    /// Wird zuerst aufgerufen - vor ExecuteCall und Cleanup.
+    /// Sollte dazu genutzt werden, um Daten/Modelle zu laden.
+    /// </summary>
     protected abstract void Initialize();
   }
 }

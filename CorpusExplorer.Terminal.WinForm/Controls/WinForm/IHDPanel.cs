@@ -27,7 +27,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     /// <summary>
     ///   Gets or sets the ihd deescribtion.
     /// </summary>
-    public string IHDDeescribtion
+    public string IHDDescription
     {
       get => radLabel2.Text;
       set => radLabel2.Text = value;

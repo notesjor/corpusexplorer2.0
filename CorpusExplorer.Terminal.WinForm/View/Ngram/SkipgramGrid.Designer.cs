@@ -28,6 +28,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SkipgramGrid));
       Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
@@ -36,6 +37,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       this.btn_calc = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_filterlist = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_filtereditor = new Telerik.WinControls.UI.CommandBarButton();
+      this.btn_regex = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_layer = new Telerik.WinControls.UI.CommandBarButton();
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_csvExport = new Telerik.WinControls.UI.CommandBarButton();
@@ -46,7 +48,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       this.txt_query = new Telerik.WinControls.UI.RadTextBox();
       this.clearPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
       this.btn_search = new Telerik.WinControls.UI.RadButton();
-      this.btn_regex = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
@@ -58,13 +59,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
-      this.radCommandBar1.TabIndex = 0;
       // 
       // commandBarRowElement1
       // 
@@ -75,7 +73,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       // 
       // 
       // 
@@ -102,9 +100,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       // btn_function
       // 
-      this.btn_function.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_function, "btn_function");
       this.btn_function.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.magic_wand;
-      this.btn_function.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.btn_function.AutoToolTip = true;
       this.btn_function.Name = "btn_function";
       this.btn_function.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.VordefinierteFunktionen;
       this.btn_function.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.VordefinierteFunktionen;
@@ -112,9 +110,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       // btn_calc
       // 
-      this.btn_calc.DisplayName = "commandBarButton2";
+      resources.ApplyResources(this.btn_calc, "btn_calc");
       this.btn_calc.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.calculator;
-      this.btn_calc.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.btn_calc.AutoToolTip = true;
       this.btn_calc.Name = "btn_calc";
       this.btn_calc.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.EigeneFunktionenBerechnungen;
       this.btn_calc.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.EigeneFunktionenBerechnungen;
@@ -122,41 +120,49 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       // btn_filterlist
       // 
-      this.btn_filterlist.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_filterlist, "btn_filterlist");
       this.btn_filterlist.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_list;
+      this.btn_filterlist.AutoToolTip = true;
       this.btn_filterlist.Name = "btn_filterlist";
-      this.btn_filterlist.Text = "Filterliste";
       this.btn_filterlist.Click += new System.EventHandler(this.btn_filterlist_Click);
       // 
       // btn_filtereditor
       // 
-      this.btn_filtereditor.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_filtereditor, "btn_filtereditor");
       this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
+      this.btn_filtereditor.AutoToolTip = true;
       this.btn_filtereditor.Name = "btn_filtereditor";
-      this.btn_filtereditor.Text = "Filtereditor";
       this.btn_filtereditor.Click += new System.EventHandler(this.btn_filtereditor_Click);
+      // 
+      // btn_regex
+      // 
+      resources.ApplyResources(this.btn_regex, "btn_regex");
+      this.btn_regex.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_regex;
+      this.btn_regex.AutoToolTip = true;
+      this.btn_regex.Name = "btn_regex";
+      this.btn_regex.Click += new System.EventHandler(this.btn_regex_Click);
       // 
       // btn_layer
       // 
-      this.btn_layer.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_layer, "btn_layer");
       this.btn_layer.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers;
+      this.btn_layer.AutoToolTip = true;
       this.btn_layer.Name = "btn_layer";
-      this.btn_layer.Text = "Layer auswählen";
       this.btn_layer.Click += new System.EventHandler(this.btn_layer_Click);
       // 
       // commandBarSeparator1
       // 
       this.commandBarSeparator1.AccessibleDescription = "commandBarSeparator1";
       this.commandBarSeparator1.AccessibleName = "commandBarSeparator1";
-      this.commandBarSeparator1.DisplayName = "commandBarSeparator1";
+      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
       this.commandBarSeparator1.Name = "commandBarSeparator1";
       this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
       // btn_csvExport
       // 
-      this.btn_csvExport.DisplayName = "commandBarButton3";
+      resources.ApplyResources(this.btn_csvExport, "btn_csvExport");
       this.btn_csvExport.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
-      this.btn_csvExport.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.btn_csvExport.AutoToolTip = true;
       this.btn_csvExport.Name = "btn_csvExport";
       this.btn_csvExport.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.CSVExport;
       this.btn_csvExport.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.CSVExport;
@@ -164,9 +170,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       // btn_print
       // 
-      this.btn_print.DisplayName = "commandBarButton4";
+      resources.ApplyResources(this.btn_print, "btn_print");
       this.btn_print.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.print;
-      this.btn_print.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+      this.btn_print.AutoToolTip = true;
       this.btn_print.Name = "btn_print";
       this.btn_print.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Drucken;
       this.btn_print.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Drucken;
@@ -176,14 +182,15 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       this.commandBarSeparator2.AccessibleDescription = "commandBarSeparator2";
       this.commandBarSeparator2.AccessibleName = "commandBarSeparator2";
-      this.commandBarSeparator2.DisplayName = "commandBarSeparator2";
+      resources.ApplyResources(this.commandBarSeparator2, "commandBarSeparator2");
       this.commandBarSeparator2.Name = "commandBarSeparator2";
       this.commandBarSeparator2.VisibleInOverflowMenu = false;
       // 
       // btn_snapshot_create
       // 
-      this.btn_snapshot_create.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_snapshot_create, "btn_snapshot_create");
       this.btn_snapshot_create.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.camera_add;
+      this.btn_snapshot_create.AutoToolTip = true;
       this.btn_snapshot_create.Name = "btn_snapshot_create";
       this.btn_snapshot_create.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.SchnappschussErstellen;
       this.btn_snapshot_create.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.SchnappschussErstellen;
@@ -191,8 +198,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       // radGridView1
       // 
-      this.radGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radGridView1.Location = new System.Drawing.Point(0, 69);
+      resources.ApplyResources(this.radGridView1, "radGridView1");
       // 
       // 
       // 
@@ -203,49 +209,28 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       this.radGridView1.MasterTemplate.MultiSelect = true;
       this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
-      this.radGridView1.Size = new System.Drawing.Size(780, 299);
-      this.radGridView1.TabIndex = 1;
       // 
       // txt_query
       // 
-      this.txt_query.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.txt_query.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.txt_query, "txt_query");
       this.txt_query.Name = "txt_query";
-      this.txt_query.NullText = "Begriff hier eingeben, um die Tabelle beidseitig zu filtern...";
-      this.txt_query.Size = new System.Drawing.Size(748, 32);
-      this.txt_query.TabIndex = 2;
       // 
       // clearPanel1
       // 
       this.clearPanel1.Controls.Add(this.txt_query);
       this.clearPanel1.Controls.Add(this.btn_search);
-      this.clearPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.clearPanel1.Location = new System.Drawing.Point(0, 368);
+      resources.ApplyResources(this.clearPanel1, "clearPanel1");
       this.clearPanel1.Name = "clearPanel1";
-      this.clearPanel1.Size = new System.Drawing.Size(780, 32);
-      this.clearPanel1.TabIndex = 3;
       // 
       // btn_search
       // 
-      this.btn_search.Dock = System.Windows.Forms.DockStyle.Right;
+      resources.ApplyResources(this.btn_search, "btn_search");
       this.btn_search.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
-      this.btn_search.Location = new System.Drawing.Point(748, 0);
       this.btn_search.Name = "btn_search";
-      this.btn_search.Size = new System.Drawing.Size(32, 32);
-      this.btn_search.TabIndex = 0;
       this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
-      // 
-      // btn_regex
-      // 
-      this.btn_regex.DisplayName = "commandBarButton1";
-      this.btn_regex.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_regex;
-      this.btn_regex.Name = "btn_regex";
-      this.btn_regex.Text = "RegEx-Suche";
-      this.btn_regex.Click += new System.EventHandler(this.btn_regex_Click);
       // 
       // SkipgramGrid
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radGridView1);
       this.Controls.Add(this.clearPanel1);

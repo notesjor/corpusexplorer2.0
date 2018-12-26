@@ -30,6 +30,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer.Abstract
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AbstractSelectLayer));
       this.header1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -37,27 +38,20 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer.Abstract
       // 
       // radPanel1
       // 
-      this.radPanel1.Location = new System.Drawing.Point(0, 87);
-      this.radPanel1.Size = new System.Drawing.Size(397, 38);
+      resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
       // header1
       // 
       this.header1.BackColor = System.Drawing.Color.White;
-      this.header1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.header1.Font = new System.Drawing.Font("Segoe UI", 11F);
-      this.header1.HeaderDescribtion = "In diesem Dialog können Sie die Layerkonfiguration anpassen.";
+      resources.ApplyResources(this.header1, "header1");
+      this.header1.HeaderDescription = "In diesem Dialog können Sie die Layerkonfiguration anpassen.";
       this.header1.HeaderHead = "Layer auswählen";
-      this.header1.Location = new System.Drawing.Point(0, 0);
-      this.header1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.header1.Name = "header1";
-      this.header1.Size = new System.Drawing.Size(397, 53);
-      this.header1.TabIndex = 1;
       // 
       // AbstractSelectLayer
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.ClientSize = new System.Drawing.Size(397, 125);
+      resources.ApplyResources(this, "$this");
       this.Controls.Add(this.header1);
       this.DisplayAbort = true;
       this.Name = "AbstractSelectLayer";
@@ -65,7 +59,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer.Abstract
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
-      this.Text = "Layer auswählen";
       this.Controls.SetChildIndex(this.radPanel1, 0);
       this.Controls.SetChildIndex(this.header1, 0);
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();

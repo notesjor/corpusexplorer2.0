@@ -19,14 +19,10 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStream
   public class TwitterScraper : AbstractGenericJsonFormatScraper<StreamMessage>
   {
     public override string DisplayName
-    {
-      get { return "Twitter JSON Scraper"; }
-    }
+      => "Twitter JSON Scraper";
 
     protected override AbstractGenericDataReader<StreamMessage> DataReader
-    {
-      get { return new TwitterDataReader(); }
-    }
+      => new TwitterDataReader();
 
     protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(IEnumerable<StreamMessage> model)
     {
@@ -83,7 +79,7 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStream
 
     // ReSharper disable FunctionComplexityOverflow
     private Dictionary<string, object> StreamMessageToScrapDocument(StreamMessage message)
-      // ReSharper restore FunctionComplexityOverflow
+    // ReSharper restore FunctionComplexityOverflow
     {
       try
       {

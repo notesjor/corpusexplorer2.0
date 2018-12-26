@@ -29,10 +29,11 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MetadataSnapshotControl));
       this.combo_query = new Telerik.WinControls.UI.RadDropDownList();
       this.combo_label = new Telerik.WinControls.UI.RadDropDownList();
       this.txt_values = new Telerik.WinControls.UI.RadTextBox();
-      this.clearPanel1 = new ClearPanel();
+      this.clearPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
       this.radGroupBox1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.combo_query)).BeginInit();
@@ -48,60 +49,45 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
       this.radGroupBox1.Controls.Add(this.combo_query);
       this.radGroupBox1.Controls.Add(this.clearPanel1);
       this.radGroupBox1.HeaderImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.tag_horizontal;
-      this.radGroupBox1.HeaderText = Resources.Snapshot_MetaQuery;
+      this.radGroupBox1.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Snapshot_MetaQuery;
       this.radGroupBox1.HeaderTextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-      this.radGroupBox1.Padding = new System.Windows.Forms.Padding(7, 35, 2, 2);
-      this.radGroupBox1.Size = new System.Drawing.Size(800, 120);
-      this.radGroupBox1.Text = Resources.Snapshot_MetaQuery;
+      resources.ApplyResources(this.radGroupBox1, "radGroupBox1");
+      this.radGroupBox1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Snapshot_MetaQuery;
       this.radGroupBox1.Controls.SetChildIndex(this.clearPanel1, 0);
       this.radGroupBox1.Controls.SetChildIndex(this.combo_query, 0);
       this.radGroupBox1.Controls.SetChildIndex(this.txt_values, 0);
       // 
       // combo_query
       // 
-      this.combo_query.Dock = System.Windows.Forms.DockStyle.Top;
-      this.combo_query.Location = new System.Drawing.Point(202, 35);
+      resources.ApplyResources(this.combo_query, "combo_query");
       this.combo_query.Name = "combo_query";
-      this.combo_query.NullText = Resources.Snapshot_SelectMetaQuery;
-      this.combo_query.Size = new System.Drawing.Size(568, 32);
-      this.combo_query.TabIndex = 6;
+      this.combo_query.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Snapshot_SelectMetaQuery;
       this.combo_query.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.combo_query_SelectedIndexChanged);
       // 
       // combo_label
       // 
-      this.combo_label.Dock = System.Windows.Forms.DockStyle.Top;
-      this.combo_label.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.combo_label, "combo_label");
       this.combo_label.Name = "combo_label";
-      this.combo_label.NullText = Resources.Snapshot_SelectMetaLabel;
-      this.combo_label.Size = new System.Drawing.Size(195, 32);
-      this.combo_label.TabIndex = 5;
+      this.combo_label.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Snapshot_SelectMetaLabel;
       // 
       // txt_values
       // 
-      this.txt_values.AutoSize = false;
-      this.txt_values.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.txt_values.Location = new System.Drawing.Point(202, 67);
+      resources.ApplyResources(this.txt_values, "txt_values");
       this.txt_values.Multiline = true;
       this.txt_values.Name = "txt_values";
-      this.txt_values.NullText = Resources.Snapshot_InsertValues;
-      this.txt_values.Size = new System.Drawing.Size(568, 51);
-      this.txt_values.TabIndex = 7;
+      this.txt_values.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Snapshot_InsertValues;
       // 
       // clearPanel1
       // 
       this.clearPanel1.Controls.Add(this.combo_label);
-      this.clearPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-      this.clearPanel1.Location = new System.Drawing.Point(7, 35);
+      resources.ApplyResources(this.clearPanel1, "clearPanel1");
       this.clearPanel1.Name = "clearPanel1";
-      this.clearPanel1.Size = new System.Drawing.Size(195, 83);
-      this.clearPanel1.TabIndex = 8;
       // 
       // MetadataSnapshotControl
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Name = "MetadataSnapshotControl";
-      this.Size = new System.Drawing.Size(800, 120);
+      resources.ApplyResources(this, "$this");
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
       this.radGroupBox1.ResumeLayout(false);
       this.radGroupBox1.PerformLayout();

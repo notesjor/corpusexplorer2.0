@@ -28,6 +28,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.StyleMetrics
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CompareBasedOnBurrowsDelta));
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
@@ -55,13 +56,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.StyleMetrics
       // 
       // radCommandBar1
       // 
-      this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(780, 69);
-      this.radCommandBar1.TabIndex = 2;
       // 
       // commandBarRowElement1
       // 
@@ -72,7 +70,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.StyleMetrics
       // 
       // commandBarStripElement1
       // 
-      this.commandBarStripElement1.DisplayName = "commandBarStripElement1";
+      resources.ApplyResources(this.commandBarStripElement1, "commandBarStripElement1");
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.commandBarLabel1,
             this.combo_groupA,
@@ -85,126 +83,107 @@ namespace CorpusExplorer.Terminal.WinForm.View.StyleMetrics
       // 
       // commandBarLabel1
       // 
-      this.commandBarLabel1.DisplayName = "commandBarLabel1";
+      resources.ApplyResources(this.commandBarLabel1, "commandBarLabel1");
       this.commandBarLabel1.Name = "commandBarLabel1";
       this.commandBarLabel1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.GruppeA;
       // 
       // combo_groupA
       // 
-      this.combo_groupA.DisplayName = "commandBarDropDownList1";
+      resources.ApplyResources(this.combo_groupA, "combo_groupA");
       this.combo_groupA.DropDownAnimationEnabled = true;
       this.combo_groupA.MaxDropDownItems = 0;
       this.combo_groupA.MinSize = new System.Drawing.Size(180, 22);
       this.combo_groupA.Name = "combo_groupA";
       this.combo_groupA.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.BitteAuswählen;
-      this.combo_groupA.Text = "";
       // 
       // commandBarLabel2
       // 
-      this.commandBarLabel2.DisplayName = "commandBarLabel2";
+      resources.ApplyResources(this.commandBarLabel2, "commandBarLabel2");
       this.commandBarLabel2.Name = "commandBarLabel2";
       this.commandBarLabel2.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.GruppeB;
       // 
       // combo_groupB
       // 
-      this.combo_groupB.DisplayName = "commandBarDropDownList2";
+      resources.ApplyResources(this.combo_groupB, "combo_groupB");
       this.combo_groupB.DropDownAnimationEnabled = true;
       this.combo_groupB.MaxDropDownItems = 0;
       this.combo_groupB.MinSize = new System.Drawing.Size(180, 22);
       this.combo_groupB.Name = "combo_groupB";
       this.combo_groupB.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.BitteAuswählen;
-      this.combo_groupB.Text = "";
       // 
       // btn_start
       // 
-      this.btn_start.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_start, "btn_start");
       this.btn_start.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
+      this.btn_start.AutoToolTip = true;
       this.btn_start.Name = "btn_start";
-      this.btn_start.Text = "Analyse starten";
       this.btn_start.Click += new System.EventHandler(this.btn_start_Click);
       // 
       // commandBarSeparator1
       // 
-      this.commandBarSeparator1.DisplayName = "commandBarSeparator1";
+      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
       this.commandBarSeparator1.Name = "commandBarSeparator1";
       this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
       // btn_export
       // 
-      this.btn_export.DisplayName = "commandBarButton1";
+      resources.ApplyResources(this.btn_export, "btn_export");
       this.btn_export.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
+      this.btn_export.AutoToolTip = true;
       this.btn_export.Name = "btn_export";
-      this.btn_export.Text = "Daten exportieren";
       this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
       // 
       // radPivotFieldList1
       // 
       this.radPivotFieldList1.AssociatedPivotGrid = this.radPivotGrid1;
-      this.radPivotFieldList1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radPivotFieldList1.Location = new System.Drawing.Point(0, 0);
-      this.radPivotFieldList1.MinimumSize = new System.Drawing.Size(225, 305);
+      resources.ApplyResources(this.radPivotFieldList1, "radPivotFieldList1");
       this.radPivotFieldList1.Name = "radPivotFieldList1";
-      this.radPivotFieldList1.Size = new System.Drawing.Size(292, 331);
-      this.radPivotFieldList1.TabIndex = 3;
       // 
       // radPivotGrid1
       // 
-      this.radPivotGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radPivotGrid1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.radPivotGrid1, "radPivotGrid1");
       this.radPivotGrid1.Name = "radPivotGrid1";
-      this.radPivotGrid1.Size = new System.Drawing.Size(484, 331);
-      this.radPivotGrid1.TabIndex = 4;
       // 
       // radSplitContainer1
       // 
       this.radSplitContainer1.Controls.Add(this.splitPanel1);
       this.radSplitContainer1.Controls.Add(this.splitPanel2);
-      this.radSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radSplitContainer1.Location = new System.Drawing.Point(0, 69);
+      resources.ApplyResources(this.radSplitContainer1, "radSplitContainer1");
       this.radSplitContainer1.Name = "radSplitContainer1";
       // 
       // 
       // 
       this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-      this.radSplitContainer1.Size = new System.Drawing.Size(780, 331);
-      this.radSplitContainer1.TabIndex = 5;
       this.radSplitContainer1.TabStop = false;
       // 
       // splitPanel1
       // 
       this.splitPanel1.Controls.Add(this.radPivotGrid1);
-      this.splitPanel1.Location = new System.Drawing.Point(0, 0);
+      resources.ApplyResources(this.splitPanel1, "splitPanel1");
       this.splitPanel1.Name = "splitPanel1";
       // 
       // 
       // 
       this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-      this.splitPanel1.Size = new System.Drawing.Size(484, 331);
       this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.1237113F, 0F);
       this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(96, 0);
-      this.splitPanel1.TabIndex = 0;
       this.splitPanel1.TabStop = false;
-      this.splitPanel1.Text = "splitPanel1";
       // 
       // splitPanel2
       // 
       this.splitPanel2.Controls.Add(this.radPivotFieldList1);
-      this.splitPanel2.Location = new System.Drawing.Point(488, 0);
+      resources.ApplyResources(this.splitPanel2, "splitPanel2");
       this.splitPanel2.Name = "splitPanel2";
       // 
       // 
       // 
       this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-      this.splitPanel2.Size = new System.Drawing.Size(292, 331);
       this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.1237113F, 0F);
       this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(-96, 0);
-      this.splitPanel2.TabIndex = 1;
       this.splitPanel2.TabStop = false;
-      this.splitPanel2.Text = "splitPanel2";
       // 
       // CompareBasedOnBurrowsDelta
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radSplitContainer1);
       this.Controls.Add(this.radCommandBar1);

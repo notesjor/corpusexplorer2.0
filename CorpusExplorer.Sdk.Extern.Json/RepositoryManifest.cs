@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Extern.Json.TwitterStatus;
 using CorpusExplorer.Sdk.Extern.Json.TwitterStream;
+using CorpusExplorer.Sdk.Extern.Json.Wordpress;
 using CorpusExplorer.Sdk.Extern.Json.YourTwapperKeeper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
@@ -50,7 +51,11 @@ namespace CorpusExplorer.Sdk.Extern.Json
         {
           "Twitter via yourTwappaKeeper (*.php)|*.php",
           new TwapperScraper()
-        }
+        },
+        {
+          "WordPress JSON (*.json)|*.json",
+          new WordpressScraper()
+        },
       };
 
     /// <summary>

@@ -117,19 +117,562 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="radPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 467</value>
+  </data>
+  <data name="radPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>528, 38</value>
+  </data>
+  <data name="&gt;&gt;radPanel1.Name" xml:space="preserve">
+    <value>radPanel1</value>
+  </data>
+  <data name="&gt;&gt;radPanel1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radPanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radPanel1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ihdPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="ihdPanel1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt</value>
+  </data>
+  <data name="ihdPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="ihdPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="ihdPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>528, 54</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ihdPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;ihdPanel1.Name" xml:space="preserve">
+    <value>ihdPanel1</value>
+  </data>
+  <data name="&gt;&gt;ihdPanel1.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  </data>
+  <data name="&gt;&gt;ihdPanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ihdPanel1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="list_senteceError.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_senteceError.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="list_senteceError.Size" type="System.Drawing.Size, System.Drawing">
+    <value>505, 94</value>
+  </data>
+  <data name="list_senteceError.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_senteceError.Name" xml:space="preserve">
+    <value>list_senteceError</value>
+  </data>
+  <data name="&gt;&gt;list_senteceError.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_senteceError.Parent" xml:space="preserve">
+    <value>grp_senteceError</value>
+  </data>
+  <data name="&gt;&gt;list_senteceError.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="grp_senteceError.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="grp_senteceError.HeaderText" xml:space="preserve">
+    <value>{0} von {1} Dokumente betroffen</value>
+  </data>
+  <data name="grp_senteceError.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 77</value>
+  </data>
+  <data name="grp_senteceError.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="grp_senteceError.Size" type="System.Drawing.Size, System.Drawing">
+    <value>515, 124</value>
+  </data>
+  <data name="grp_senteceError.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="grp_senteceError.Text" xml:space="preserve">
+    <value>{0} von {1} Dokumente betroffen</value>
+  </data>
+  <data name="&gt;&gt;grp_senteceError.Name" xml:space="preserve">
+    <value>grp_senteceError</value>
+  </data>
+  <data name="&gt;&gt;grp_senteceError.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;grp_senteceError.Parent" xml:space="preserve">
+    <value>page_sentenceError</value>
+  </data>
+  <data name="&gt;&gt;grp_senteceError.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chk_senteceError.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="chk_senteceError.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="chk_senteceError.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 10pt</value>
+  </data>
+  <data name="chk_senteceError.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 201</value>
+  </data>
+  <data name="chk_senteceError.Size" type="System.Drawing.Size, System.Drawing">
+    <value>515, 69</value>
+  </data>
+  <data name="chk_senteceError.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
   <data name="chk_senteceError.Text" xml:space="preserve">
     <value>&lt;html&gt;&lt;strong&gt;Automatische Korrektur:&lt;/strong&gt; Entfernt die betroffenen Dokumente. Diese Option wird empfohlen, wenn nur ein kleiner Prozentsatz betroffen ist. Verbessert die Programmperformance.&lt;/html&gt;</value>
+  </data>
+  <data name="&gt;&gt;chk_senteceError.Name" xml:space="preserve">
+    <value>chk_senteceError</value>
+  </data>
+  <data name="&gt;&gt;chk_senteceError.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadCheckBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;chk_senteceError.Parent" xml:space="preserve">
+    <value>page_sentenceError</value>
+  </data>
+  <data name="&gt;&gt;chk_senteceError.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="resource.Text" xml:space="preserve">
     <value>&lt;html&gt;&lt;strong&gt;Automatische Korrektur:&lt;/strong&gt; Entfernt die betroffenen Dokumente. Diese Option wird empfohlen, wenn nur ein kleiner Prozentsatz betroffen ist. Verbessert die Programmperformance.&lt;/html&gt;</value>
   </data>
+  <data name="resource.TextWrap" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="resource.Alignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="radLabel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="radLabel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radLabel1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 10pt</value>
+  </data>
+  <data name="radLabel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="radLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>515, 77</value>
+  </data>
+  <data name="radLabel1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="radLabel1.Text" xml:space="preserve">
     <value>&lt;html&gt;&lt;strong&gt;Grund:&lt;/strong&gt; Folgende Dokumente verfügen über keine erkennbaren Satzgrenzen. Dies kann auf einen fehlerhaft konfigurierten Tagger hinweisen - Achten Sie auch auf die korrekte Tagger-Sprachwahl. Sie können mit diesen Dokumenten arbeiten, müssen aber ggf. lange Wartezeiten, z. B. bei der Kookkurrenzberechnung, hinnehmen.&lt;/html&gt;</value>
+  </data>
+  <data name="&gt;&gt;radLabel1.Name" xml:space="preserve">
+    <value>radLabel1</value>
+  </data>
+  <data name="&gt;&gt;radLabel1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radLabel1.Parent" xml:space="preserve">
+    <value>page_sentenceError</value>
+  </data>
+  <data name="&gt;&gt;radLabel1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="page_sentenceError.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 45</value>
+  </data>
+  <data name="page_sentenceError.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 0, 0</value>
+  </data>
+  <data name="page_sentenceError.Size" type="System.Drawing.Size, System.Drawing">
+    <value>518, 270</value>
+  </data>
+  <data name="page_sentenceError.Text" xml:space="preserve">
+    <value>Dokumente ohne Satzgrenzen</value>
+  </data>
+  <data name="&gt;&gt;page_sentenceError.Name" xml:space="preserve">
+    <value>page_sentenceError</value>
+  </data>
+  <data name="&gt;&gt;page_sentenceError.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_sentenceError.Parent" xml:space="preserve">
+    <value>radPageView1</value>
+  </data>
+  <data name="&gt;&gt;page_sentenceError.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="list_DiffLayer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_DiffLayer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="list_DiffLayer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>505, 114</value>
+  </data>
+  <data name="list_DiffLayer.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_DiffLayer.Name" xml:space="preserve">
+    <value>list_DiffLayer</value>
+  </data>
+  <data name="&gt;&gt;list_DiffLayer.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_DiffLayer.Parent" xml:space="preserve">
+    <value>grp_DiffLayer</value>
+  </data>
+  <data name="&gt;&gt;list_DiffLayer.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="grp_DiffLayer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="grp_DiffLayer.HeaderText" xml:space="preserve">
+    <value>{0} von {1} Dokumente betroffen</value>
+  </data>
+  <data name="grp_DiffLayer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 80</value>
+  </data>
+  <data name="grp_DiffLayer.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="grp_DiffLayer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>515, 144</value>
+  </data>
+  <data name="grp_DiffLayer.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="grp_DiffLayer.Text" xml:space="preserve">
+    <value>{0} von {1} Dokumente betroffen</value>
+  </data>
+  <data name="&gt;&gt;grp_DiffLayer.Name" xml:space="preserve">
+    <value>grp_DiffLayer</value>
+  </data>
+  <data name="&gt;&gt;grp_DiffLayer.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;grp_DiffLayer.Parent" xml:space="preserve">
+    <value>page_diffLayer</value>
+  </data>
+  <data name="&gt;&gt;grp_DiffLayer.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chk_DiffLayer.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="chk_DiffLayer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="chk_DiffLayer.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 10pt</value>
+  </data>
+  <data name="chk_DiffLayer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 224</value>
+  </data>
+  <data name="chk_DiffLayer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>515, 46</value>
+  </data>
+  <data name="chk_DiffLayer.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="chk_DiffLayer.Text" xml:space="preserve">
+    <value>&lt;html&gt;&lt;strong&gt;Automatische Korrektur:&lt;/strong&gt; Entfernt die betroffenen Dokumente. Es wird jedoch empfohlen, zuerst einmal das Korpus ohne diese Korrektur zu testen.&lt;/html&gt;</value>
+  </data>
+  <data name="&gt;&gt;chk_DiffLayer.Name" xml:space="preserve">
+    <value>chk_DiffLayer</value>
+  </data>
+  <data name="&gt;&gt;chk_DiffLayer.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadCheckBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;chk_DiffLayer.Parent" xml:space="preserve">
+    <value>page_diffLayer</value>
+  </data>
+  <data name="&gt;&gt;chk_DiffLayer.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="resource.Text1" xml:space="preserve">
+    <value>&lt;html&gt;&lt;strong&gt;Automatische Korrektur:&lt;/strong&gt; Entfernt die betroffenen Dokumente. Es wird jedoch empfohlen, zuerst einmal das Korpus ohne diese Korrektur zu testen.&lt;/html&gt;</value>
+  </data>
+  <data name="resource.TextWrap1" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="resource.Alignment1" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="radLabel2.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="radLabel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radLabel2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 10pt</value>
+  </data>
+  <data name="radLabel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="radLabel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>515, 80</value>
+  </data>
+  <data name="radLabel2.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="radLabel2.Text" xml:space="preserve">
     <value>&lt;html&gt;&lt;strong&gt;Grund:&lt;/strong&gt; Haben Sie das Korpus importiert? - Dann fehlen in den Dateien einige Informationen. Klicken Sie auf "Abbrechen", um sich die erkannten Daten anzeigen zu lassen. Passen Sie ggf. die Export-Einstellungen der externen Korpusquelle an. Haben Sie das Korpus annotiert? - Überprüfen Sie die Tagger-Einstellungen.&lt;/html&gt;</value>
   </data>
+  <data name="&gt;&gt;radLabel2.Name" xml:space="preserve">
+    <value>radLabel2</value>
+  </data>
+  <data name="&gt;&gt;radLabel2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radLabel2.Parent" xml:space="preserve">
+    <value>page_diffLayer</value>
+  </data>
+  <data name="&gt;&gt;radLabel2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="page_diffLayer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 45</value>
+  </data>
+  <data name="page_diffLayer.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 0, 0</value>
+  </data>
+  <data name="page_diffLayer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>518, 270</value>
+  </data>
+  <data name="page_diffLayer.Text" xml:space="preserve">
+    <value>Dokumente mit unterschiedlichen Layern</value>
+  </data>
+  <data name="&gt;&gt;page_diffLayer.Name" xml:space="preserve">
+    <value>page_diffLayer</value>
+  </data>
+  <data name="&gt;&gt;page_diffLayer.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_diffLayer.Parent" xml:space="preserve">
+    <value>radPageView1</value>
+  </data>
+  <data name="&gt;&gt;page_diffLayer.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="list_emptyDocuments.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="list_emptyDocuments.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="list_emptyDocuments.Size" type="System.Drawing.Size, System.Drawing">
+    <value>505, 145</value>
+  </data>
+  <data name="list_emptyDocuments.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;list_emptyDocuments.Name" xml:space="preserve">
+    <value>list_emptyDocuments</value>
+  </data>
+  <data name="&gt;&gt;list_emptyDocuments.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;list_emptyDocuments.Parent" xml:space="preserve">
+    <value>grp_emptyDocuments</value>
+  </data>
+  <data name="&gt;&gt;list_emptyDocuments.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="grp_emptyDocuments.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="grp_emptyDocuments.HeaderText" xml:space="preserve">
+    <value>{0} von {1} Dokumente betroffen</value>
+  </data>
+  <data name="grp_emptyDocuments.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 61</value>
+  </data>
+  <data name="grp_emptyDocuments.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="grp_emptyDocuments.Size" type="System.Drawing.Size, System.Drawing">
+    <value>515, 175</value>
+  </data>
+  <data name="grp_emptyDocuments.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="grp_emptyDocuments.Text" xml:space="preserve">
+    <value>{0} von {1} Dokumente betroffen</value>
+  </data>
+  <data name="&gt;&gt;grp_emptyDocuments.Name" xml:space="preserve">
+    <value>grp_emptyDocuments</value>
+  </data>
+  <data name="&gt;&gt;grp_emptyDocuments.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;grp_emptyDocuments.Parent" xml:space="preserve">
+    <value>page_emptyDocument</value>
+  </data>
+  <data name="&gt;&gt;grp_emptyDocuments.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chk_emptyDocuments.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="chk_emptyDocuments.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="chk_emptyDocuments.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 10pt</value>
+  </data>
+  <data name="chk_emptyDocuments.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 236</value>
+  </data>
+  <data name="chk_emptyDocuments.Size" type="System.Drawing.Size, System.Drawing">
+    <value>515, 34</value>
+  </data>
+  <data name="chk_emptyDocuments.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="chk_emptyDocuments.Text" xml:space="preserve">
+    <value>&lt;html&gt;&lt;strong&gt;Automatische Korrektur:&lt;/strong&gt; Entfernt die betroffenen Dokumente.&lt;/html&gt;</value>
+  </data>
+  <data name="&gt;&gt;chk_emptyDocuments.Name" xml:space="preserve">
+    <value>chk_emptyDocuments</value>
+  </data>
+  <data name="&gt;&gt;chk_emptyDocuments.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadCheckBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;chk_emptyDocuments.Parent" xml:space="preserve">
+    <value>page_emptyDocument</value>
+  </data>
+  <data name="&gt;&gt;chk_emptyDocuments.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="resource.Text2" xml:space="preserve">
+    <value>&lt;html&gt;&lt;strong&gt;Automatische Korrektur:&lt;/strong&gt; Entfernt die betroffenen Dokumente.&lt;/html&gt;</value>
+  </data>
+  <data name="resource.TextWrap2" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="resource.Alignment2" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="radLabel3.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="radLabel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radLabel3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 10pt</value>
+  </data>
+  <data name="radLabel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
+  </data>
+  <data name="radLabel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>515, 61</value>
+  </data>
+  <data name="radLabel3.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
   <data name="radLabel3.Text" xml:space="preserve">
     <value>&lt;html&gt;&lt;strong&gt;Grund:&lt;/strong&gt; Es sind Metadaten im Korpus vorhanden, aber keine Texte. Achten Sie beim Metadaten-Import auf eine korrekte Zuordnung (GUID). Drittanbieter-Tagger können dieses Problem ebenfalls verursachen.&lt;/html&gt;</value>
+  </data>
+  <data name="&gt;&gt;radLabel3.Name" xml:space="preserve">
+    <value>radLabel3</value>
+  </data>
+  <data name="&gt;&gt;radLabel3.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radLabel3.Parent" xml:space="preserve">
+    <value>page_emptyDocument</value>
+  </data>
+  <data name="&gt;&gt;radLabel3.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="page_emptyDocument.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 45</value>
+  </data>
+  <data name="page_emptyDocument.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 0, 0</value>
+  </data>
+  <data name="page_emptyDocument.Size" type="System.Drawing.Size, System.Drawing">
+    <value>518, 270</value>
+  </data>
+  <data name="page_emptyDocument.Text" xml:space="preserve">
+    <value>Leere Dokumente</value>
+  </data>
+  <data name="&gt;&gt;page_emptyDocument.Name" xml:space="preserve">
+    <value>page_emptyDocument</value>
+  </data>
+  <data name="&gt;&gt;page_emptyDocument.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;page_emptyDocument.Parent" xml:space="preserve">
+    <value>radPageView1</value>
+  </data>
+  <data name="&gt;&gt;page_emptyDocument.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="radPageView1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radPageView1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 54</value>
+  </data>
+  <data name="radPageView1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>528, 413</value>
+  </data>
+  <data name="radPageView1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;radPageView1.Name" xml:space="preserve">
+    <value>radPageView1</value>
+  </data>
+  <data name="&gt;&gt;radPageView1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radPageView1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radPageView1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>528, 505</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Mögliche Korpus-Probleme</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>CorpusErrorForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Forms.Abstract.AbstractDialog, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
   </data>
 </root>

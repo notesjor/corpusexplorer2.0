@@ -9,12 +9,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
 {
   public partial class SimpleTextInput : AbstractDialog
   {
-    public SimpleTextInput(string header, string describtion, Image image, string nullText)
+    public SimpleTextInput(string header, string description, Image image, string nullText)
     {
       InitializeComponent();
       Text = header;
       ihdPanel1.IHDHeader = header;
-      ihdPanel1.IHDDeescribtion = describtion;
+      ihdPanel1.IHDDescription = description;
       ihdPanel1.IHDImage = image;
       radTextBox1.NullText = nullText;
     }
