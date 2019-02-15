@@ -10,9 +10,11 @@ namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter.ElasticSearchFull
     public string Displayname { get; set; }
     public Guid DocumentGuid { get; set; }
 
-    [Nested] public List<Layer> Layers { get; set; }
+    [Nested]
+    public List<Layer> Layers { get; set; }
 
-    [Nested] public Dictionary<string, object> Metadata { get; set; }
+    [Nested]
+    public Dictionary<string, object> Metadata { get; set; }
 
     [Number(NumberType.Long, IgnoreMalformed = true)]
     public long SentenceCount { get; set; }

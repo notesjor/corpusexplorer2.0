@@ -122,6 +122,21 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Layer
       return _layer.Dictionary.ReciveRawValueToIndex().ToDictionary(x => x.Key, x => x.Value);
     }
 
+    public override Dictionary<int, string> ReciveRawReverseLayerDictionary()
+    {
+      return _layer.Dictionary.ReciveRawIndexToValue().ToDictionary(x => x.Key, x => x.Value);
+    }
+
+    public override void ResetRawLayerDictionary(Dictionary<string, int> dictionary)
+    {
+      _layer.Dictionary = new CeDictionary(dictionary);
+    }
+
+    public override void ResetRawReverseLayerDictionary(Dictionary<int, string> reverse)
+    {
+      _layer.Dictionary = new CeDictionary(reverse);
+    }
+
     public override void RefreshDictionaries()
     {
       _layer.Dictionary.RefreshDictionaries();

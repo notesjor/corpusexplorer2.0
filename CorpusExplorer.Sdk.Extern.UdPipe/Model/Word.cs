@@ -30,8 +30,8 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       set => udpipe_csharpPINVOKE.Word_children_set(swigCPtr, Children.getCPtr(value));
       get
       {
-        IntPtr cPtr = udpipe_csharpPINVOKE.Word_children_get(swigCPtr);
-        Children ret = cPtr == IntPtr.Zero ? null : new Children(cPtr, false);
+        var cPtr = udpipe_csharpPINVOKE.Word_children_get(swigCPtr);
+        var ret = cPtr == IntPtr.Zero ? null : new Children(cPtr, false);
         return ret;
       }
     }
@@ -46,7 +46,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
       get
       {
-        string ret = udpipe_csharpPINVOKE.Word_deprel_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.Word_deprel_get(swigCPtr);
         if (udpipe_csharpPINVOKE.SWIGPendingException.Pending)
           throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
         return ret;
@@ -63,7 +63,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
       get
       {
-        string ret = udpipe_csharpPINVOKE.Word_deps_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.Word_deps_get(swigCPtr);
         if (udpipe_csharpPINVOKE.SWIGPendingException.Pending)
           throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
         return ret;
@@ -80,7 +80,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
       get
       {
-        string ret = udpipe_csharpPINVOKE.Word_feats_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.Word_feats_get(swigCPtr);
         if (udpipe_csharpPINVOKE.SWIGPendingException.Pending)
           throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
         return ret;
@@ -92,7 +92,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       set => udpipe_csharpPINVOKE.Word_head_set(swigCPtr, value);
       get
       {
-        int ret = udpipe_csharpPINVOKE.Word_head_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.Word_head_get(swigCPtr);
         return ret;
       }
     }
@@ -102,7 +102,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       set => udpipe_csharpPINVOKE.Word_id_set(swigCPtr, value);
       get
       {
-        int ret = udpipe_csharpPINVOKE.Word_id_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.Word_id_get(swigCPtr);
         return ret;
       }
     }
@@ -117,7 +117,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
       get
       {
-        string ret = udpipe_csharpPINVOKE.Word_lemma_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.Word_lemma_get(swigCPtr);
         if (udpipe_csharpPINVOKE.SWIGPendingException.Pending)
           throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
         return ret;
@@ -134,7 +134,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
       get
       {
-        string ret = udpipe_csharpPINVOKE.Word_upostag_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.Word_upostag_get(swigCPtr);
         if (udpipe_csharpPINVOKE.SWIGPendingException.Pending)
           throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
         return ret;
@@ -151,7 +151,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
       get
       {
-        string ret = udpipe_csharpPINVOKE.Word_xpostag_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.Word_xpostag_get(swigCPtr);
         if (udpipe_csharpPINVOKE.SWIGPendingException.Pending)
           throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
         return ret;

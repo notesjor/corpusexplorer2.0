@@ -133,7 +133,7 @@
     <value>0, 30</value>
   </data>
   <data name="lbl_description.Size" type="System.Drawing.Size, System.Drawing">
-    <value>545, 39</value>
+    <value>545, 22</value>
   </data>
   <data name="lbl_description.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -141,11 +141,14 @@
   <data name="lbl_description.Text" xml:space="preserve">
     <value>{HeaderDescription}</value>
   </data>
+  <data name="lbl_description.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
   <data name="&gt;&gt;lbl_description.Name" xml:space="preserve">
     <value>lbl_description</value>
   </data>
   <data name="&gt;&gt;lbl_description.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;lbl_description.Parent" xml:space="preserve">
     <value>$this</value>
@@ -178,7 +181,7 @@
     <value>lbl_head</value>
   </data>
   <data name="&gt;&gt;lbl_head.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;lbl_head.Parent" xml:space="preserve">
     <value>$this</value>
@@ -190,7 +193,7 @@
     <value>True</value>
   </metadata>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>545, 69</value>
+    <value>545, 52</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Header</value>

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
-using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
@@ -38,15 +37,15 @@ namespace CorpusExplorer.Sdk.ViewModel
     public IEnumerable<string> LayerDisplaynames => Selection.LayerUniqueDisplaynames;
 
     /// <summary>
-    /// Eigenschaft kann gesetzt werden, um die Ausgabe von GetDataTable() zu filtern.
-    /// Zum Filter/Optimieren des Blocks sollte Configuration.MinimumFrequency gesetzt werden.
+    ///   Eigenschaft kann gesetzt werden, um die Ausgabe von GetDataTable() zu filtern.
+    ///   Zum Filter/Optimieren des Blocks sollte Configuration.MinimumFrequency gesetzt werden.
     /// </summary>
     /// <value>The cooccurrence minimum frequency.</value>
     public int CooccurrenceMinFrequency { get; set; } = 1;
 
     /// <summary>
-    /// Eigenschaft kann gesetzt werden, um die Ausgabe von GetDataTable() zu filtern.
-    /// Zum Filter/Optimieren des Blocks sollte Configuration.MinimumSignificance gesetzt werden.
+    ///   Eigenschaft kann gesetzt werden, um die Ausgabe von GetDataTable() zu filtern.
+    ///   Zum Filter/Optimieren des Blocks sollte Configuration.MinimumSignificance gesetzt werden.
     /// </summary>
     /// <value>The cooccurrence minimum significance.</value>
     public double CooccurrenceMinSignificance { get; set; } = 0;
@@ -67,8 +66,8 @@ namespace CorpusExplorer.Sdk.ViewModel
     public DataTable GetFullDataTable()
     {
       return FilterDataTable(
-        SignificanceDictionary.CompleteDictionaryToFullDictionary(),
-        FrequencyDictionary.CompleteDictionaryToFullDictionary());
+                             SignificanceDictionary.CompleteDictionaryToFullDictionary(),
+                             FrequencyDictionary.CompleteDictionaryToFullDictionary());
     }
 
     public IEnumerable<KeyValuePair<string, double[]>> Search(IEnumerable<string> queries)
@@ -100,7 +99,7 @@ namespace CorpusExplorer.Sdk.ViewModel
             continue;
           }
 
-          res.Add(x.Key, new[] { FrequencyDictionary[query][x.Key], x.Value });
+          res.Add(x.Key, new[] {FrequencyDictionary[query][x.Key], x.Value});
         }
       }
 
@@ -111,7 +110,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 
         foreach (var query in hsh)
           if (x.Value.ContainsKey(query) && !res.ContainsKey(x.Key))
-            res.Add(x.Key, new[] { FrequencyDictionary[x.Key][query], x.Value[query] });
+            res.Add(x.Key, new[] {FrequencyDictionary[x.Key][query], x.Value[query]});
       }
 
       return res;
@@ -185,7 +184,7 @@ namespace CorpusExplorer.Sdk.ViewModel
             if (nsdf.ContainsKey(x.Key))
               nsdf[x.Key].Add(y.Key, y.Value);
             else
-              nsdf.Add(x.Key, new Dictionary<string, double> { { y.Key, y.Value } });
+              nsdf.Add(x.Key, new Dictionary<string, double> {{y.Key, y.Value}});
           }
 
       // Erzeuge DataTable

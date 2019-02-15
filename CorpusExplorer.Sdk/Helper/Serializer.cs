@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Diagnostic;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using Newtonsoft.Json;
 using Polenter.Serialization;
 
@@ -37,23 +38,29 @@ namespace CorpusExplorer.Sdk.Helper
     {
       try
       {
+        // Standard Serializer
         var obj = DeserializeBinaryFormatterCompressed(path) ?? // Serialize compress = true
-                  DeserializeBinaryFormatterUncompressed(path) ?? // Serialize compress = false                
-                  DeserializeNetDataContractCompressed(path) ?? // CEC2a-CEC4a compress = true
-                  DeserializeNetDataContractUncompressed(path); // CEC2a-CEC4a compress = false
+                  DeserializeBinaryFormatterUncompressed(path); // Serialize compress = false                
+        if (obj != null)
+          return obj as T;
 
-        if (obj == null) // Diese Deserializer benötigen Reflection
-        {
-          var type = typeof(T);
-          obj = DeserializeDataContractCompressed(path, type) ?? // CEC2b-CEC4b compress = true
-                DeserializeDataContractUncompressed(path, type) ?? // CEC2b-CEC4b compress = false
-                DeserializeDotNetXml(path, type); // PROJ5
-        }
+        // Deserializer für externe Dateiformate
+        obj = DeserializeSharpSerializer(path) ??
+              DeserializeJson(path);
+        if (obj != null)
+          return obj as T;
 
-        if (obj == null) // Deserializer für externe Dateiformate
-          obj = DeserializeSharpSerializer(path) ??
-                DeserializeJson(path);
+        // Format CEC2a-CEC4a
+        obj = DeserializeNetDataContractCompressed(path) ?? // CEC2a-CEC4a compress = true
+              DeserializeNetDataContractUncompressed(path); // CEC2a-CEC4a compress = false
+        if (obj != null)
+          return obj as T;
 
+        // Format CEC2b-CEC4b / PROJ5
+        var type = typeof(T);
+        obj = DeserializeDataContractCompressed(path, type) ?? // CEC2b-CEC4b compress = true
+              DeserializeDataContractUncompressed(path, type) ?? // CEC2b-CEC4b compress = false
+              DeserializeDotNetXml(path, type); // PROJ5
         return obj as T;
       }
       catch
@@ -90,7 +97,7 @@ namespace CorpusExplorer.Sdk.Helper
           using (var gz = new GZipStream(fs, CompressionMode.Decompress))
           {
             var bf = new NetDataContractSerializer();
-            return (T) bf.Deserialize(gz);
+            return (T)bf.Deserialize(gz);
           }
         }
       }
@@ -200,6 +207,27 @@ namespace CorpusExplorer.Sdk.Helper
       }
     }
 
+    public static string SerializeXml<T>(T obj)
+    {
+      try
+      {
+        using (var ms = new MemoryStream())
+        {
+          var serializer = new SharpSerializer();
+          serializer.Serialize(obj, ms);
+
+          ms.Seek(0, SeekOrigin.Begin);
+          return Configuration.Encoding.GetString(ms.ToArray());
+        }
+      }
+      catch (Exception ex)
+      {
+        if (LogErrors)
+          InMemoryErrorConsole.Log(ex);
+        return null;
+      }
+    }
+
     public static void SerializeXmlWithContract<T>(T obj, string path)
     {
       try
@@ -261,7 +289,7 @@ namespace CorpusExplorer.Sdk.Helper
       try
       {
         using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None,
-          (int) new FileInfo(path).Length))
+                                       (int)new FileInfo(path).Length))
         using (var bs = new BufferedStream(fs))
         {
           var bf = new BinaryFormatter();

@@ -108,8 +108,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       _selectedLayerDisplayname = combo_layer.SelectedItem.Text;
 
       _fileDialogFilter = string.Format(
-        Resources.ToLayerOutputPattern,
-        _selectedLayerDisplayname.Replace(" ", "_"));
+                                        Resources.ToLayerOutputPattern,
+                                        _selectedLayerDisplayname.Replace(" ", "_"));
     }
 
     private string GetFileDialogFilter(string label, string extension)

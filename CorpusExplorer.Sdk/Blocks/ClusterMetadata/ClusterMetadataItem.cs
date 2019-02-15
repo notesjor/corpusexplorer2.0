@@ -1,19 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CorpusExplorer.Sdk.Blocks.ClusterMetadata
+﻿namespace CorpusExplorer.Sdk.Blocks.ClusterMetadata
 {
   public class ClusterMetadataItem
   {
-    public ClusterMetadataItem CA { get; }
-    public ClusterMetadataItem CB { get; }
-    public string Label { get; private set; }
-    public object Data { get; private set; }
-    public double Similarity { get; }
-
     public ClusterMetadataItem(string label, object data)
     {
       Label = label;
@@ -21,7 +9,8 @@ namespace CorpusExplorer.Sdk.Blocks.ClusterMetadata
       Similarity = 1;
     }
 
-    public ClusterMetadataItem(ClusterMetadataItem cA, ClusterMetadataItem cB, string label, object data, double similarity)
+    public ClusterMetadataItem(ClusterMetadataItem cA, ClusterMetadataItem cB, string label, object data,
+                               double similarity)
     {
       CA = cA;
       CB = cB;
@@ -32,6 +21,12 @@ namespace CorpusExplorer.Sdk.Blocks.ClusterMetadata
       CA.DisposeData();
       CB.DisposeData();
     }
+
+    public ClusterMetadataItem CA { get; }
+    public ClusterMetadataItem CB { get; }
+    public string Label { get; }
+    public object Data { get; private set; }
+    public double Similarity { get; }
 
     public void DisposeData()
     {

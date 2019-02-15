@@ -41,11 +41,11 @@ namespace CorpusExplorer.Sdk.Blocks
     {
       var text =
         string.Join(" ", from s in doc from w in s select layer[w])
-          .Replace(" ,", ",")
-          .Replace(" .", ".")
-          .Replace(" !", "!")
-          .Replace(" ?", "?")
-          .Trim();
+              .Replace(" ,", ",")
+              .Replace(" .", ".")
+              .Replace(" !", "!")
+              .Replace(" ?", "?")
+              .Trim();
 
       lock (_documentLock)
       {

@@ -11,7 +11,8 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Model
 
     public Guid DocumentId { get; set; }
 
-    [Nested] public Dictionary<string, object> Metadata { get; set; }
+    [Nested]
+    public Dictionary<string, object> Metadata { get; set; }
 
     [Number(NumberType.Long, IgnoreMalformed = true)]
     public long SentenceCount { get; set; }

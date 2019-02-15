@@ -18,17 +18,6 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.Abstract
       "Polnisch"
     };
 
-    private readonly Dictionary<string, HashSet<string>> _sentenceMarks = new Dictionary<string, HashSet<string>>
-    {
-      {"Deutsch", new HashSet<string> {"$."}},
-      {"Englisch", new HashSet<string> {"."}},
-      {"Französisch", new HashSet<string> {"SENT"}},
-      {"Italienisch", new HashSet<string> {"PON"}},
-      {"Niederländisch", new HashSet<string> {"$."}},
-      {"Spanisch", new HashSet<string> {"FS"}},
-      {"Polnisch", new HashSet<string> {"interp"}}
-    };
-
     private string _languageSelected;
 
     protected HashSet<string> _sentenceMark =
@@ -50,7 +39,6 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.Abstract
         if (!_languageses.Contains(value))
           throw new NotSupportedException("LanguageSelected-value is not in List of LanguagesAvailabel");
         _languageSelected = value;
-        _sentenceMark = _sentenceMarks[value];
       }
     }
 

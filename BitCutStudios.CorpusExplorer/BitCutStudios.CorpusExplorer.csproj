@@ -41,13 +41,12 @@
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.8.11.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.8.11\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.8.14.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.8.14\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -61,14 +60,9 @@
     <Compile Include="Addon\Interfaces\IService.cs" />
     <Compile Include="Addon\Interfaces\IServiceContract.cs" />
     <Compile Include="Addon\Interfaces\IView.cs" />
-    <Compile Include="Addon\Remoting\AbstractAddonClient.cs" />
-    <Compile Include="Addon\Remoting\AbstractAddonServer.cs" />
-    <Compile Include="Addon\Remoting\AbstractRemotingServerObject.cs" />
-    <Compile Include="Addon\Remoting\Interfaces\IRemotingAuthenticationContract.cs" />
-    <Compile Include="Addon\Remoting\Interfaces\IRemotingContract.cs" />
-    <Compile Include="Addon\Remoting\Interfaces\IServerContract.cs" />
-    <Compile Include="Addon\Remoting\Session.cs" />
     <Compile Include="Crawler\Helper\CrawlerDictionaryExtension.cs" />
+    <Compile Include="Crawler\HtmlMultipageCrawler.cs" />
+    <Compile Include="Crawler\HtmlPagedCrawler.cs" />
     <Compile Include="Crawler\PlaintextCrawler.cs" />
     <Compile Include="Crawler\HtmlCrawler.cs" />
     <Compile Include="Crawler\HtmlSearchCrawler.cs" />
@@ -78,6 +72,8 @@
     <Compile Include="IO\FileAccessHelper.cs" />
     <Compile Include="IO\FileIO.cs" />
     <Compile Include="IO\FileSizeCalculator.cs" />
+    <Compile Include="Network\NetworkFileInfo.cs" />
+    <Compile Include="Network\WebRequestHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\CryptoHelper.cs" />
     <Compile Include="Security\EasyHash.cs" />

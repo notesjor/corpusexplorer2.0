@@ -11,9 +11,11 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Model
     private Guid _documentId;
     private Guid _layerId;
 
-    [Object(Ignore = true)] public int[][] Content { get; set; }
+    [Object(Ignore = true)]
+    public int[][] Content { get; set; }
 
-    [Text] public string ContentRaw { get; set; }
+    [Text]
+    public string ContentRaw { get; set; }
 
     public Guid DocumentId
     {

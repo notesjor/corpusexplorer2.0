@@ -68,53 +68,53 @@ namespace CorpusExplorer.Sdk.ViewModel
             if (cooc2[entry.Key].ContainsKey(row.Key))
             {
               _dataTable.Rows.Add(
-                entry.Key,
-                row.Key,
-                freq1[entry.Key][row.Key],
-                freq2[entry.Key][row.Key],
-                Math.Abs(
-                  freq1[entry.Key][row.Key] -
-                  freq2[entry.Key][row.Key]),
-                row.Value,
-                cooc2[entry.Key][row.Key],
-                Math.Abs(row.Value - cooc2[entry.Key][row.Key]));
+                                  entry.Key,
+                                  row.Key,
+                                  freq1[entry.Key][row.Key],
+                                  freq2[entry.Key][row.Key],
+                                  Math.Abs(
+                                           freq1[entry.Key][row.Key] -
+                                           freq2[entry.Key][row.Key]),
+                                  row.Value,
+                                  cooc2[entry.Key][row.Key],
+                                  Math.Abs(row.Value - cooc2[entry.Key][row.Key]));
               cooc2[entry.Key].Remove(row.Key);
             }
             else
             {
               _dataTable.Rows.Add(
-                entry.Key,
-                row.Key,
-                freq1[entry.Key][row.Key],
-                0.0d,
-                freq1[entry.Key][row.Key],
-                row.Value,
-                0.0d,
-                row.Value);
+                                  entry.Key,
+                                  row.Key,
+                                  freq1[entry.Key][row.Key],
+                                  0.0d,
+                                  freq1[entry.Key][row.Key],
+                                  row.Value,
+                                  0.0d,
+                                  row.Value);
             }
         else
           foreach (var row in entry.Value)
             _dataTable.Rows.Add(
-              entry.Key,
-              row.Key,
-              freq1[entry.Key][row.Key],
-              0.0d,
-              freq1[entry.Key][row.Key],
-              row.Value,
-              0.0d,
-              row.Value);
+                                entry.Key,
+                                row.Key,
+                                freq1[entry.Key][row.Key],
+                                0.0d,
+                                freq1[entry.Key][row.Key],
+                                row.Value,
+                                0.0d,
+                                row.Value);
 
       foreach (var entry in block2.CooccurrenceSignificance)
       foreach (var row in entry.Value)
         _dataTable.Rows.Add(
-          entry.Key,
-          row.Key,
-          0.0d,
-          freq2[entry.Key][row.Key],
-          freq2[entry.Key][row.Key],
-          0.0d,
-          row.Value,
-          row.Value);
+                            entry.Key,
+                            row.Key,
+                            0.0d,
+                            freq2[entry.Key][row.Key],
+                            freq2[entry.Key][row.Key],
+                            0.0d,
+                            row.Value,
+                            row.Value);
 
       _dataTable.EndLoadData();
     }

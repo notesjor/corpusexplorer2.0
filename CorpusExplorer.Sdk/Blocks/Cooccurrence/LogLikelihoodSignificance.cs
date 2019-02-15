@@ -37,13 +37,14 @@ namespace CorpusExplorer.Sdk.Blocks.Cooccurrence
     {
       var aR = _a - k;
       var kR = k;
-      var bR = b - k;
+      var bR = b  - k;
       var nR = _s - bR;
 
       return 2 * (kR * Math.Log(kR) + bR * Math.Log(bR) + aR * Math.Log(aR) + nR * Math.Log(nR) -
-                  (kR + bR) * Math.Log(kR + bR) - (kR + aR) * Math.Log(kR + aR) - (aR + nR) * Math.Log(aR + nR) -
+                  (kR + bR) * Math.Log(kR + bR)                                                 -
+                  (kR + aR) * Math.Log(kR + aR)                                                 - (aR + nR) * Math.Log(aR + nR) -
                   (bR + nR) * Math.Log(bR + nR)
-                  + (aR + kR + bR + nR) * Math.Log(aR + kR + bR + nR));
+                + (aR + kR + bR + nR) * Math.Log(aR + kR + bR + nR));
     }
 
     /// <summary>

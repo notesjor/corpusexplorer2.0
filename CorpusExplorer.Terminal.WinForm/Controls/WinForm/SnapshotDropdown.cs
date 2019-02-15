@@ -1,34 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Ecosystem;
 using CorpusExplorer.Sdk.Model;
 using Telerik.WinControls;
-using Telerik.WinControls.Layouts;
 using Telerik.WinControls.UI;
 
 namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
 {
   public class SnapshotDropdown : RadDropDownList
   {
+    private readonly RadHostItem _hosted;
+
     private readonly RadTreeView radTreeView1 = new RadTreeView
     {
       Size = new Size(150, 250),
       Location = new Point(0, 0)
     };
-    private readonly RadHostItem _hosted;
+
     private Selection _current;
 
     public SnapshotDropdown()
     {
       NullText = "Bitte auswählen...";
       _hosted = new RadHostItem(radTreeView1);
-      PopupOpened += RadDropDownList1_PopupOpened;      
+      PopupOpened += RadDropDownList1_PopupOpened;
       radTreeView1.SelectedNodeChanged += RadTreeView1OnSelectedNodeChanged;
     }
+
+    public Selection ResultSelection { get; private set; }
 
     protected override void OnLoad(Size desiredSize)
     {
@@ -57,7 +57,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
 
       if (selection.Guid == _current.Guid)
       {
-        if (selection.SubSelections == null) 
+        if (selection.SubSelections == null)
           return;
 
         foreach (var sub in selection.SubSelections)
@@ -75,7 +75,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
           BuildTree(sub, node);
       }
     }
-    
+
     private void RadTreeView1OnSelectedNodeChanged(object sender, RadTreeViewEventArgs e)
     {
       try
@@ -90,8 +90,6 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       }
     }
 
-    public Selection ResultSelection { get; private set; }
-
     private void RadDropDownList1_PopupOpened(object sender, EventArgs e)
     {
       if (!(Popup is DropDownPopupForm form))
@@ -104,12 +102,11 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
 
     private void InitializeComponent()
     {
-      ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
-      this.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
-      this.ResumeLayout(false);
-      this.PerformLayout();
-
+      ((ISupportInitialize) this).BeginInit();
+      SuspendLayout();
+      ((ISupportInitialize) this).EndInit();
+      ResumeLayout(false);
+      PerformLayout();
     }
   }
 }

@@ -61,7 +61,7 @@ namespace CorpusExplorer.Sdk.Blocks
           try
           {
             keys = Configuration.Hyphen.Hyphenate(layer[w])
-              .HyphenatedWord.Split(new[] {"="}, StringSplitOptions.RemoveEmptyEntries);
+                                .HyphenatedWord.Split(new[] {"="}, StringSplitOptions.RemoveEmptyEntries);
           }
           catch
           {

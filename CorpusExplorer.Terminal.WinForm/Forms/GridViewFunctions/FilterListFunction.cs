@@ -1,5 +1,6 @@
 ﻿using System;
 using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
+using Telerik.WinControls.Data;
 
 namespace CorpusExplorer.Terminal.WinForm.Forms.GridViewFunctions
 {
@@ -20,9 +21,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.GridViewFunctions
       ResultSelectAll = drop_case.SelectedIndex == 0;
     }
 
-    private void FilterListFunction_Load(object sender, EventArgs e)
-    {
-      drop_case.SelectedIndex = 0;
-    }
+    private void FilterListFunction_Load(object sender, EventArgs e) 
+      => drop_case.SelectedIndex = 0;
+
+    public FilterOperator ResultFilterOperator
+      => radRadioButton1.IsChecked ? FilterOperator.IsEqualTo : FilterOperator.Contains;
   }
 }

@@ -36,10 +36,11 @@ namespace CorpusExplorer.Sdk.Blocks.Partition
       var dic = new ConcurrentDictionary<TK, TV>();
 
       Parallel.ForEach(
-        InputPartition,
-        Configuration.ParallelOptions,
-        part =>
-          dic.TryAdd(part.Key, MappingDelegate(Selection.CreateTemporary(part.Value).CreateBlock<TB>())));
+                       InputPartition,
+                       Configuration.ParallelOptions,
+                       part =>
+                         dic.TryAdd(part.Key,
+                                    MappingDelegate(Selection.CreateTemporary(part.Value).CreateBlock<TB>())));
 
       OutputPartition = dic.ToDictionary(x => x.Key, x => x.Value);
     }

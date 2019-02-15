@@ -11,6 +11,9 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
   [ToolboxItem(true)]
   public partial class WebHtml5Visualisation : WebSimpleUrlVisualisation
   {
+#if LINUX
+    public Dictionary<string, string> TemplateVars { get; set; } = new Dictionary<string, string>();
+#else
     private Html5Builder _html;
 
     public WebHtml5Visualisation()
@@ -30,5 +33,6 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
       MainpageUrl = _html.WebserverIndexUrl;
       base.GoToMainpage();
     }
+#endif
   }
 }

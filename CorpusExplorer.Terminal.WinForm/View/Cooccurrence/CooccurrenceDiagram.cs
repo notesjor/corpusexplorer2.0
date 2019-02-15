@@ -28,7 +28,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
   {
     private HashSet<string> _done = new HashSet<string>();
     private ExplorationViewModel _vm;
-    private WpfDiagram simpleDiagram1;
+    private readonly WpfDiagram simpleDiagram1;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractView" /> class.
@@ -36,7 +36,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     public CooccurrenceDiagram()
     {
       InitializeComponent();
-      simpleDiagram1 = new WpfDiagram { VerticalAlignment = VerticalAlignment.Stretch, HorizontalAlignment = HorizontalAlignment.Stretch };
+      simpleDiagram1 = new WpfDiagram
+        {VerticalAlignment = VerticalAlignment.Stretch, HorizontalAlignment = HorizontalAlignment.Stretch};
       elementHost1.Child = simpleDiagram1;
       ShowView += ShowViewCall;
     }
@@ -53,7 +54,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
 
     private void btn_graph_load_Click(object sender, EventArgs e)
     {
-      var ofd = new OpenFileDialog { Filter = Resources.FileExtension_CEDG, CheckFileExists = true };
+      var ofd = new OpenFileDialog {Filter = Resources.FileExtension_CEDG, CheckFileExists = true};
       if (ofd.ShowDialog() != DialogResult.OK)
         return;
 
@@ -64,10 +65,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     {
       if (
         MessageBox.Show(
-          Resources.MöchtenSieWirklichDasDiagrammLöschenUndNeuBeginnen,
-          Resources.NeuStarten,
-          MessageBoxButton.YesNo,
-          MessageBoxImage.Question) != MessageBoxResult.Yes)
+                        Resources.MöchtenSieWirklichDasDiagrammLöschenUndNeuBeginnen,
+                        Resources.NeuStarten,
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Question) != MessageBoxResult.Yes)
         return;
 
       simpleDiagram1.CallNew();
@@ -76,7 +77,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
 
     private void btn_graph_save_Click(object sender, EventArgs e)
     {
-      var sfd = new SaveFileDialog { Filter = Resources.FileExtension_CEDG, CheckPathExists = true };
+      var sfd = new SaveFileDialog {Filter = Resources.FileExtension_CEDG, CheckPathExists = true};
       if (sfd.ShowDialog() != DialogResult.OK)
         return;
 
@@ -95,7 +96,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
 
     private void Export(AbstractGraphConverter type, string filter)
     {
-      var sfd = new SaveFileDialog { Filter = filter, CheckPathExists = true };
+      var sfd = new SaveFileDialog {Filter = filter, CheckPathExists = true};
       if (sfd.ShowDialog() != DialogResult.OK)
         return;
       FileIO.Write(sfd.FileName, simpleDiagram1.CallExport(type), Configuration.Encoding);
@@ -125,8 +126,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       var queries = wordBag1.ResultQueries.ToArray();
       foreach (var query in queries)
       {
-        simpleDiagram1.CallAddNodes(new[] { query });
-        simpleDiagram1.CallColorizeNodes(new[] { query }, new UniversalColor(130, 255, 180));
+        simpleDiagram1.CallAddNodes(new[] {query});
+        simpleDiagram1.CallColorizeNodes(new[] {query}, new UniversalColor(130, 255, 180));
 
         var collocates = _vm.GetCollocates(query).ToDictionary(x => x.Key, x => x.Value);
 

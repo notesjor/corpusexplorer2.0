@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
-using CorpusExplorer.Sdk.Ecosystem.Model;
-using CorpusExplorer.Sdk.Helper;
 using Hyldahl.Hashing.SpamSum;
 
 namespace CorpusExplorer.Sdk.Extern.FuzzyCloneDetection.Blocks
@@ -32,7 +29,7 @@ namespace CorpusExplorer.Sdk.Extern.FuzzyCloneDetection.Blocks
       block.Calculate();
 
       var hashs = block.Documents.AsParallel().ToDictionary(x => x.Key, x => FuzzyHashing.CalculateQuick(x.Value))
-        .ToArray();
+                       .ToArray();
       DetectedClones = new HashSet<Guid>();
       IndividualDocuments = new HashSet<Guid>();
 

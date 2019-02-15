@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using Bcs.IO;
-using CorpusExplorer.Sdk.Ecosystem.Model;
-using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DataTableWriter;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
@@ -76,8 +73,8 @@ namespace CorpusExplorer.Sdk.ViewModel
 
       foreach (DataRow row in DataTable.Rows)
         Selection.SetDocumentMetadata(
-          Guid.Parse(row["GUID"].ToString()),
-          _columns.ToDictionary(c => c, c => row[c]));
+                                      Guid.Parse(row["GUID"].ToString()),
+                                      _columns.ToDictionary(c => c, c => row[c]));
     }
 
     protected override void ExecuteAnalyse()

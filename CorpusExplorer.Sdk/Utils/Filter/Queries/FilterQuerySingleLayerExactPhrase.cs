@@ -29,19 +29,8 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       _layerQueryCache = new Dictionary<Guid, int[]>();
     }
 
-    [XmlAttribute("layer")] public string LayerDisplayname { get; set; } = "Wort";
-
-    [XmlIgnore]
-    public IEnumerable<string> LayerQueries
-    {
-      get => _layerQueries;
-      set
-      {
-        Eoi = value.Count() - 1;
-        _layerQueries = value;
-        _layerQueryCache = new Dictionary<Guid, int[]>();
-      }
-    }
+    [XmlAttribute("layer")]
+    public string LayerDisplayname { get; set; } = "Wort";
 
     /// <summary>
     ///   Gibt eine automatisch generierte Zusammenfassung des Inhalts/Bedeutung zurück.
@@ -65,6 +54,18 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// <value>The eoi.</value>
     [XmlIgnore]
     private int Eoi { get; set; }
+
+    [XmlIgnore]
+    public IEnumerable<string> LayerQueries
+    {
+      get => _layerQueries;
+      set
+      {
+        Eoi = value.Count() - 1;
+        _layerQueries = value;
+        _layerQueryCache = new Dictionary<Guid, int[]>();
+      }
+    }
 
     /// <summary>
     ///   Erstellt ein neues Objekt, das eine Kopie der aktuellen Instanz darstellt.
@@ -136,11 +137,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     {
       lock (_getSentenceCallLock)
       {
-        if (corpus == null ||
+        if (corpus       == null ||
             documentGuid == Guid.Empty)
           return null;
         var queries = GetQueries(corpus);
-        if (queries == null ||
+        if (queries        == null ||
             queries.Length == 0)
           return null;
         var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
@@ -183,17 +184,17 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// <returns>Auflistung aller Vorkommen im Satz</returns>
     public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      if (corpus == null ||
+      if (corpus       == null ||
           documentGuid == Guid.Empty)
         return null;
       var queries = GetQueries(corpus);
-      if (queries == null ||
+      if (queries        == null ||
           queries.Length == 0)
         return null;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
       var doc = layer?[documentGuid];
-      if (doc == null ||
-          sentence < 0 ||
+      if (doc      == null ||
+          sentence < 0     ||
           sentence >= doc.Length)
         return null;
 
@@ -227,11 +228,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// </returns>
     protected override bool ValidateCall(AbstractCorpusAdapter corpus, Guid documentGuid)
     {
-      if (corpus == null ||
+      if (corpus       == null ||
           documentGuid == Guid.Empty)
         return false;
       var queries = GetQueries(corpus);
-      if (queries == null ||
+      if (queries        == null ||
           queries.Length == 0)
         return false;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);

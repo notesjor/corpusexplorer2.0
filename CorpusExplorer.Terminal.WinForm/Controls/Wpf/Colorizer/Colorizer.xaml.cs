@@ -22,17 +22,23 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Colorizer
       InitializeComponent();
 
       Colors = new LinearGradientBrush(new GradientStopCollection(
-        new[]
-        {
-          new GradientStop(Color.FromArgb(255, 255, 0, 0), 0),
-          new GradientStop(Color.FromArgb(255, 255, 119, 0), 0.17),
-          new GradientStop(Color.FromArgb(255, 255, 255, 0), 0.33),
-          new GradientStop(Color.FromArgb(255, 0, 255, 0), 0.5),
-          new GradientStop(Color.FromArgb(255, 0, 255, 255), 0.67),
-          new GradientStop(Color.FromArgb(255, 0, 0, 255), 0.83),
-          new GradientStop(Color.FromArgb(255, 255, 0, 255), 1)
-        }
-      ));
+                                                                  new[]
+                                                                  {
+                                                                    new GradientStop(Color.FromArgb(255, 255, 0, 0), 0),
+                                                                    new GradientStop(Color.FromArgb(255, 255, 119, 0),
+                                                                                     0.17),
+                                                                    new GradientStop(Color.FromArgb(255, 255, 255, 0),
+                                                                                     0.33),
+                                                                    new GradientStop(Color.FromArgb(255, 0, 255, 0),
+                                                                                     0.5),
+                                                                    new GradientStop(Color.FromArgb(255, 0, 255, 255),
+                                                                                     0.67),
+                                                                    new GradientStop(Color.FromArgb(255, 0, 0, 255),
+                                                                                     0.83),
+                                                                    new GradientStop(Color.FromArgb(255, 255, 0, 255),
+                                                                                     1)
+                                                                  }
+                                                                 ));
 
       btn_img.Source = Properties.Resources.color_fill2.ConvertToImageSource();
     }

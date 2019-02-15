@@ -48,12 +48,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 
       AddSummaryRow();
       AddChildTemplate(
-        x => new FilterQuerySingleLayerAnyMatch
-        {
-          Inverse = false,
-          LayerDisplayname = "Wort",
-          LayerQueries = new[] {x[Resources.ZeichenketteWortform].ToString()}
-        });
+                       x => new FilterQuerySingleLayerAnyMatch
+                       {
+                         Inverse = false,
+                         LayerDisplayname = _vm.LayerDisplaynames.Last(),
+                         LayerQueries = new[] {x[Resources.ZeichenketteWortform].ToString()}
+                       });
 
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
     }
@@ -88,7 +88,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 
     private void btn_filter_Click(object sender, EventArgs e)
     {
-      FilterListFunction("Wort");
+      FilterListFunction(_vm.LayerDisplaynames.ToArray());
     }
 
     private void btn_filterEditor_Click(object sender, EventArgs e)
@@ -136,29 +136,29 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       var map = _vm.LayerDisplaynames.ToArray();
 
       CreateSelection(
-        radGridView1.SelectedRows.Select(
-          row => new FilterQueryMultiLayer
-          {
-            Inverse = false,
-            MultilayerValues = new Dictionary<string, string>
-            {
-              {
-                map[0],
-                row.Cells[map[0]].Value
-                  .ToString()
-              },
-              {
-                map[1],
-                row.Cells[map[1]].Value
-                  .ToString()
-              },
-              {
-                map[2],
-                row.Cells[map[2]].Value
-                  .ToString()
-              }
-            }
-          }));
+                      radGridView1.SelectedRows.Select(
+                                                       row => new FilterQueryMultiLayer
+                                                       {
+                                                         Inverse = false,
+                                                         MultilayerValues = new Dictionary<string, string>
+                                                         {
+                                                           {
+                                                             map[0],
+                                                             row.Cells[map[0]].Value
+                                                                .ToString()
+                                                           },
+                                                           {
+                                                             map[1],
+                                                             row.Cells[map[1]].Value
+                                                                .ToString()
+                                                           },
+                                                           {
+                                                             map[2],
+                                                             row.Cells[map[2]].Value
+                                                                .ToString()
+                                                           }
+                                                         }
+                                                       }));
     }
 
     private void ShowViewCall(object sender, EventArgs e)

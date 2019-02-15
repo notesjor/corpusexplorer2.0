@@ -9,7 +9,10 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     private HandleRef swigCPtr;
 
     public Evaluator(Model m, string tokenizer, string tagger, string parser) : this(
-      udpipe_csharpPINVOKE.new_Evaluator(Model.getCPtr(m), tokenizer, tagger, parser), true)
+                                                                                     udpipe_csharpPINVOKE
+                                                                                      .new_Evaluator(Model.getCPtr(m),
+                                                                                                     tokenizer, tagger,
+                                                                                                     parser), true)
     {
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
     }
@@ -24,7 +27,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.Evaluator_DEFAULT_get();
+        var ret = udpipe_csharpPINVOKE.Evaluator_DEFAULT_get();
         return ret;
       }
     }
@@ -33,7 +36,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.Evaluator_NONE_get();
+        var ret = udpipe_csharpPINVOKE.Evaluator_NONE_get();
         return ret;
       }
     }
@@ -59,14 +62,14 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public string evaluate(string data, ProcessingError error)
     {
-      string ret = udpipe_csharpPINVOKE.Evaluator_evaluate__SWIG_0(swigCPtr, data, ProcessingError.getCPtr(error));
+      var ret = udpipe_csharpPINVOKE.Evaluator_evaluate__SWIG_0(swigCPtr, data, ProcessingError.getCPtr(error));
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public string evaluate(string data)
     {
-      string ret = udpipe_csharpPINVOKE.Evaluator_evaluate__SWIG_1(swigCPtr, data);
+      var ret = udpipe_csharpPINVOKE.Evaluator_evaluate__SWIG_1(swigCPtr, data);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }

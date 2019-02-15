@@ -83,7 +83,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           if (!indices.Contains(document[i][j]))
             continue;
 
-          if (marker > -1 &&
+          if (marker     > -1 &&
               j - marker < WordSpan)
           {
             res.Add(i);
@@ -119,7 +119,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           if (!indices.Contains(sentence[i]))
             continue;
 
-          if (marker > -1 &&
+          if (marker     > -1 &&
               i - marker < WordSpan)
             return true;
 

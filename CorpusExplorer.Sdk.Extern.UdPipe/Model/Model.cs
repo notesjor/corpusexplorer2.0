@@ -18,7 +18,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.Model_DEFAULT_get();
+        var ret = udpipe_csharpPINVOKE.Model_DEFAULT_get();
         return ret;
       }
     }
@@ -27,7 +27,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.Model_TOKENIZER_NORMALIZED_SPACES_get();
+        var ret = udpipe_csharpPINVOKE.Model_TOKENIZER_NORMALIZED_SPACES_get();
         return ret;
       }
     }
@@ -36,7 +36,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.Model_TOKENIZER_PRESEGMENTED_get();
+        var ret = udpipe_csharpPINVOKE.Model_TOKENIZER_PRESEGMENTED_get();
         return ret;
       }
     }
@@ -45,7 +45,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.Model_TOKENIZER_RANGES_get();
+        var ret = udpipe_csharpPINVOKE.Model_TOKENIZER_RANGES_get();
         return ret;
       }
     }
@@ -71,45 +71,45 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public static Model load(string fname)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.Model_load(fname);
-      Model ret = cPtr == IntPtr.Zero ? null : new Model(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.Model_load(fname);
+      var ret = cPtr == IntPtr.Zero ? null : new Model(cPtr, true);
       return ret;
     }
 
     public virtual InputFormat newTokenizer(string options)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.Model_newTokenizer(swigCPtr, options);
-      InputFormat ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.Model_newTokenizer(swigCPtr, options);
+      var ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public virtual bool parse(Sentence s, string options, ProcessingError error)
     {
-      bool ret = udpipe_csharpPINVOKE.Model_parse__SWIG_0(swigCPtr, Sentence.getCPtr(s), options,
-        ProcessingError.getCPtr(error));
+      var ret = udpipe_csharpPINVOKE.Model_parse__SWIG_0(swigCPtr, Sentence.getCPtr(s), options,
+                                                         ProcessingError.getCPtr(error));
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public virtual bool parse(Sentence s, string options)
     {
-      bool ret = udpipe_csharpPINVOKE.Model_parse__SWIG_1(swigCPtr, Sentence.getCPtr(s), options);
+      var ret = udpipe_csharpPINVOKE.Model_parse__SWIG_1(swigCPtr, Sentence.getCPtr(s), options);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public virtual bool tag(Sentence s, string options, ProcessingError error)
     {
-      bool ret = udpipe_csharpPINVOKE.Model_tag__SWIG_0(swigCPtr, Sentence.getCPtr(s), options,
-        ProcessingError.getCPtr(error));
+      var ret = udpipe_csharpPINVOKE.Model_tag__SWIG_0(swigCPtr, Sentence.getCPtr(s), options,
+                                                       ProcessingError.getCPtr(error));
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public virtual bool tag(Sentence s, string options)
     {
-      bool ret = udpipe_csharpPINVOKE.Model_tag__SWIG_1(swigCPtr, Sentence.getCPtr(s), options);
+      var ret = udpipe_csharpPINVOKE.Model_tag__SWIG_1(swigCPtr, Sentence.getCPtr(s), options);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }

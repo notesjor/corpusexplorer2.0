@@ -18,7 +18,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.OutputFormat_CONLLU_V1_get();
+        var ret = udpipe_csharpPINVOKE.OutputFormat_CONLLU_V1_get();
         return ret;
       }
     }
@@ -27,7 +27,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.OutputFormat_CONLLU_V2_get();
+        var ret = udpipe_csharpPINVOKE.OutputFormat_CONLLU_V2_get();
         return ret;
       }
     }
@@ -36,7 +36,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.OutputFormat_HORIZONTAL_PARAGRAPHS_get();
+        var ret = udpipe_csharpPINVOKE.OutputFormat_HORIZONTAL_PARAGRAPHS_get();
         return ret;
       }
     }
@@ -45,7 +45,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.OutputFormat_PLAINTEXT_NORMALIZED_SPACES_get();
+        var ret = udpipe_csharpPINVOKE.OutputFormat_PLAINTEXT_NORMALIZED_SPACES_get();
         return ret;
       }
     }
@@ -54,7 +54,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.OutputFormat_VERTICAL_PARAGRAPHS_get();
+        var ret = udpipe_csharpPINVOKE.OutputFormat_VERTICAL_PARAGRAPHS_get();
         return ret;
       }
     }
@@ -80,111 +80,111 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public virtual string finishDocument()
     {
-      string ret = udpipe_csharpPINVOKE.OutputFormat_finishDocument(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.OutputFormat_finishDocument(swigCPtr);
       return ret;
     }
 
     public static OutputFormat newConlluOutputFormat(string options)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.OutputFormat_newConlluOutputFormat__SWIG_0(options);
-      OutputFormat ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.OutputFormat_newConlluOutputFormat__SWIG_0(options);
+      var ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public static OutputFormat newConlluOutputFormat()
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.OutputFormat_newConlluOutputFormat__SWIG_1();
-      OutputFormat ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.OutputFormat_newConlluOutputFormat__SWIG_1();
+      var ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
       return ret;
     }
 
     public static OutputFormat newEpeOutputFormat(string options)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.OutputFormat_newEpeOutputFormat__SWIG_0(options);
-      OutputFormat ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.OutputFormat_newEpeOutputFormat__SWIG_0(options);
+      var ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public static OutputFormat newEpeOutputFormat()
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.OutputFormat_newEpeOutputFormat__SWIG_1();
-      OutputFormat ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.OutputFormat_newEpeOutputFormat__SWIG_1();
+      var ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
       return ret;
     }
 
     public static OutputFormat newHorizontalOutputFormat(string options)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.OutputFormat_newHorizontalOutputFormat__SWIG_0(options);
-      OutputFormat ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.OutputFormat_newHorizontalOutputFormat__SWIG_0(options);
+      var ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public static OutputFormat newHorizontalOutputFormat()
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.OutputFormat_newHorizontalOutputFormat__SWIG_1();
-      OutputFormat ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.OutputFormat_newHorizontalOutputFormat__SWIG_1();
+      var ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
       return ret;
     }
 
     public static OutputFormat newMatxinOutputFormat(string options)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.OutputFormat_newMatxinOutputFormat__SWIG_0(options);
-      OutputFormat ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.OutputFormat_newMatxinOutputFormat__SWIG_0(options);
+      var ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public static OutputFormat newMatxinOutputFormat()
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.OutputFormat_newMatxinOutputFormat__SWIG_1();
-      OutputFormat ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.OutputFormat_newMatxinOutputFormat__SWIG_1();
+      var ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
       return ret;
     }
 
     public static OutputFormat newOutputFormat(string name)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.OutputFormat_newOutputFormat(name);
-      OutputFormat ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.OutputFormat_newOutputFormat(name);
+      var ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public static OutputFormat newPlaintextOutputFormat(string options)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.OutputFormat_newPlaintextOutputFormat__SWIG_0(options);
-      OutputFormat ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.OutputFormat_newPlaintextOutputFormat__SWIG_0(options);
+      var ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public static OutputFormat newPlaintextOutputFormat()
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.OutputFormat_newPlaintextOutputFormat__SWIG_1();
-      OutputFormat ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.OutputFormat_newPlaintextOutputFormat__SWIG_1();
+      var ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
       return ret;
     }
 
     public static OutputFormat newVerticalOutputFormat(string options)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.OutputFormat_newVerticalOutputFormat__SWIG_0(options);
-      OutputFormat ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.OutputFormat_newVerticalOutputFormat__SWIG_0(options);
+      var ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public static OutputFormat newVerticalOutputFormat()
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.OutputFormat_newVerticalOutputFormat__SWIG_1();
-      OutputFormat ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.OutputFormat_newVerticalOutputFormat__SWIG_1();
+      var ret = cPtr == IntPtr.Zero ? null : new OutputFormat(cPtr, true);
       return ret;
     }
 
     public virtual string writeSentence(Sentence s)
     {
-      string ret = udpipe_csharpPINVOKE.OutputFormat_writeSentence(swigCPtr, Sentence.getCPtr(s));
+      var ret = udpipe_csharpPINVOKE.OutputFormat_writeSentence(swigCPtr, Sentence.getCPtr(s));
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }

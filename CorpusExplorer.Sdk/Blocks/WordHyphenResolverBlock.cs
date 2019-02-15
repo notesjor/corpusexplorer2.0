@@ -28,6 +28,7 @@ namespace CorpusExplorer.Sdk.Blocks
     public override void Calculate()
     {
       lock (_parallelLock)
+      {
         using (var hyphen = new Hyphen(Configuration.GetDependencyPath(@"NHunspell\hyphenation\hyph_de_DE.dic")))
         {
           WordHyphens = new Dictionary<string, IEnumerable<string>>();
@@ -48,13 +49,14 @@ namespace CorpusExplorer.Sdk.Blocks
 
               if (w == null)
                 continue;
-              WordHyphens.Add(value, w.Split(new[] { "=" }, StringSplitOptions.RemoveEmptyEntries));
+              WordHyphens.Add(value, w.Split(new[] {"="}, StringSplitOptions.RemoveEmptyEntries));
             }
             catch
             {
               // ignore
             }
         }
+      }
     }
   }
 }

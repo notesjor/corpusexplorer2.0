@@ -10,7 +10,8 @@ namespace CorpusExplorer.Sdk.Helper
 {
   public static class AutoSplitBlockHelper
   {
-    public static IEnumerable<Selection> RunAutoSplit(Selection selection, FilterQueryUnsupportedParserFeature query, object[] values)
+    public static IEnumerable<Selection> RunAutoSplit(Selection selection, FilterQueryUnsupportedParserFeature query,
+                                                      object[] values)
     {
       var block = selection.CreateBlock<SelectionClusterBlock>();
       var split = values[0].ToString().Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries).ToList();
@@ -23,7 +24,7 @@ namespace CorpusExplorer.Sdk.Helper
         window = int.Parse(split[0].Replace("WINDOW", ""));
         split.RemoveAt(0);
       }
-      
+
       switch (split[0])
       {
         case "TEXT":

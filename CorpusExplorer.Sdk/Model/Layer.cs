@@ -245,9 +245,9 @@ namespace CorpusExplorer.Sdk.Model
         }
 
       return new Layer(
-        new Dictionary<Guid, int[][]> {{documentGuid, _documents[documentGuid]}},
-        ndic,
-        new Dictionary<string, object>());
+                       new Dictionary<Guid, int[][]> {{documentGuid, _documents[documentGuid]}},
+                       ndic,
+                       new Dictionary<string, object>());
     }
 
     public IEnumerable<IEnumerable<bool>> GetDocumentLayervalueMask(Guid documentGuid, string layerValue)
@@ -278,7 +278,7 @@ namespace CorpusExplorer.Sdk.Model
     public IEnumerable<IEnumerable<string>> GetReadableDocumentByGuid(Guid documentGuid)
     {
       var doc = this[documentGuid];
-      return doc == null ? null : (from s in doc where s != null select s.Select(w => this[w]));
+      return doc == null ? null : from s in doc where s != null select s.Select(w => this[w]);
     }
 
     /// <summary>
@@ -303,8 +303,8 @@ namespace CorpusExplorer.Sdk.Model
         return null;
 
       start = start < 0 ? 0 : start;
-      stop = stop >= doc.Length ? doc.Length - 1 : stop;
-      stop = stop <= start ? start + 1 : stop;
+      stop = stop   >= doc.Length ? doc.Length - 1 : stop;
+      stop = stop   <= start ? start           + 1 : stop;
 
       var res = new List<IEnumerable<string>>();
       for (var i = start; i < stop; i++)
@@ -416,49 +416,49 @@ namespace CorpusExplorer.Sdk.Model
       var ignore = ignoreValues == null ? new HashSet<int>() : new HashSet<int>(ignoreValues.Select(x => this[x]));
 
       Parallel.ForEach(
-        DocumentGuids,
-        Configuration.ParallelOptions,
-        dsel =>
-        {
-          var doc = this[dsel];
-          int open = -1, sent = 0, word = 0;
+                       DocumentGuids,
+                       Configuration.ParallelOptions,
+                       dsel =>
+                       {
+                         var doc = this[dsel];
+                         int open = -1, sent = 0, word = 0;
 
-          for (var i = 0; i < doc.Length; i++)
-          {
-            if (doc[i] == null)
-              continue;
-            for (var j = 0; j < doc[i].Length; j++)
-            {
-              if (ignore.Contains(doc[i][j]))
-              {
-                // Fire-and-forget
-                ToConcept_WriteValue(open, @lock, ref res, dsel, sent, word, i, j);
-                open = -1;
-                continue;
-              }
+                         for (var i = 0; i < doc.Length; i++)
+                         {
+                           if (doc[i] == null)
+                             continue;
+                           for (var j = 0; j < doc[i].Length; j++)
+                           {
+                             if (ignore.Contains(doc[i][j]))
+                             {
+                               // Fire-and-forget
+                               ToConcept_WriteValue(open, @lock, ref res, dsel, sent, word, i, j);
+                               open = -1;
+                               continue;
+                             }
 
-              if (open == doc[i][j])
-                continue;
+                             if (open == doc[i][j])
+                               continue;
 
-              // Fire-and-forget
-              ToConcept_WriteValue(open, @lock, ref res, dsel, sent, word, i, j);
-              open = doc[i][j];
-              sent = i;
-              word = j;
-            }
-          }
+                             // Fire-and-forget
+                             ToConcept_WriteValue(open, @lock, ref res, dsel, sent, word, i, j);
+                             open = doc[i][j];
+                             sent = i;
+                             word = j;
+                           }
+                         }
 
-          // Fire-and-forget
-          ToConcept_WriteValue(
-            open,
-            @lock,
-            ref res,
-            dsel,
-            sent,
-            word,
-            doc.Length - 1,
-            doc[doc.Length - 1].Length - 1);
-        });
+                         // Fire-and-forget
+                         ToConcept_WriteValue(
+                                              open,
+                                              @lock,
+                                              ref res,
+                                              dsel,
+                                              sent,
+                                              word,
+                                              doc.Length                 - 1,
+                                              doc[doc.Length - 1].Length - 1);
+                       });
       return res;
     }
 
@@ -513,15 +513,15 @@ namespace CorpusExplorer.Sdk.Model
         return;
 
       Parallel.ForEach(
-        this,
-        Configuration.ParallelOptions,
-        doc =>
-        {
-          foreach (var s in doc.Value)
-            for (var i = 0; i < s.Length; i++)
-              if (s[i] == oidx)
-                s[i] = nidx;
-        });
+                       this,
+                       Configuration.ParallelOptions,
+                       doc =>
+                       {
+                         foreach (var s in doc.Value)
+                           for (var i = 0; i < s.Length; i++)
+                             if (s[i] == oidx)
+                               s[i] = nidx;
+                       });
     }
 
     /// <summary>
@@ -542,16 +542,16 @@ namespace CorpusExplorer.Sdk.Model
 
       var regex = new Regex(regEx);
       Parallel.ForEach(
-        _dictionary,
-        Configuration.ParallelOptions,
-        x =>
-        {
-          if (regex.IsMatch(x.Value))
-            lock (@lock)
-            {
-              res.Add(x.Value);
-            }
-        });
+                       _dictionary,
+                       Configuration.ParallelOptions,
+                       x =>
+                       {
+                         if (regex.IsMatch(x.Value))
+                           lock (@lock)
+                           {
+                             res.Add(x.Value);
+                           }
+                       });
 
       return res;
     }

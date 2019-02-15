@@ -146,9 +146,9 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       {
         _corpus =
           Model.Corpus.Create(
-            documentMetadata,
-            corpusMetadata ?? new Dictionary<string, object>(),
-            concepts == null ? new List<Concept>() : new List<Concept>(concepts))
+                              documentMetadata,
+                              corpusMetadata ?? new Dictionary<string, object>(),
+                              concepts == null ? new List<Concept>() : new List<Concept>(concepts))
       };
       return res;
     }
@@ -459,13 +459,13 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     public override void Save(string path = null, bool useCompression = true)
     {
       Serializer.Serialize(
-        _corpus,
-        (string.IsNullOrEmpty(path)
-          ? string.IsNullOrEmpty(CorpusPath)
-            ? Path.Combine(Configuration.MyCorpora, CorpusDisplayname)
-            : CorpusPath
-          : path).ForceFileExtension(".cec5"),
-        useCompression);
+                           _corpus,
+                           (string.IsNullOrEmpty(path)
+                              ? string.IsNullOrEmpty(CorpusPath)
+                                  ? Path.Combine(Configuration.MyCorpora, CorpusDisplayname)
+                                  : CorpusPath
+                              : path).ForceFileExtension(".cec5"),
+                           useCompression);
     }
 
     public override void SetCorpusMetadata(string key, object value)

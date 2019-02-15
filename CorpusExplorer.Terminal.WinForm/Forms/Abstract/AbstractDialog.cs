@@ -80,10 +80,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
       if (!string.IsNullOrEmpty(Error))
       {
         MessageBox.Show(
-          Error,
-          Resources.Dialog_ErrorHint,
-          MessageBoxButtons.OK,
-          MessageBoxIcon.Information);
+                        Error,
+                        Resources.Dialog_ErrorHint,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
         return;
       }
 

@@ -59,6 +59,9 @@ namespace CorpusExplorer.Sdk.Blocks.Measure.Abstract
     /// <returns>
     ///   The <see cref="double" />.
     /// </returns>
-    protected double GetP(double k0, double ki, double kj, double kij) => k0 + ki + kj + kij;
+    protected double GetP(double k0, double ki, double kj, double kij)
+    {
+      return k0 + ki + kj + kij;
+    }
   }
 }

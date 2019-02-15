@@ -21,38 +21,51 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Model.Context
       _client = new ElasticClient(_settings);
 
       Client.Map<Corpus>(
-        m =>
-          m.AutoMap()
-            .Properties(
-              p =>
-                p.Object<Dictionary<string, object>>(
-                  s =>
-                    s.Name(n => n.Metadata)
-                      .Properties(
-                        v =>
-                          v.Text(k => k.Index(false).Name("key"))
-                            .Text(c => c.Index(false).Name("value"))))));
+                         m =>
+                           m.AutoMap()
+                            .Properties(
+                                        p =>
+                                          p.Object<Dictionary<string, object>>(
+                                                                               s =>
+                                                                                 s.Name(n => n.Metadata)
+                                                                                  .Properties(
+                                                                                              v =>
+                                                                                                v.Text(k => k
+                                                                                                           .Index(false)
+                                                                                                           .Name("key"))
+                                                                                                 .Text(c => c
+                                                                                                           .Index(false)
+                                                                                                           .Name("value"))))));
       Client.Map<Layer>(
-        m => m.AutoMap().Properties(
-          p =>
-            p.Object<Dictionary<int, string>>(
-              s =>
-                s.Name(n => n.DictionaryRaw)
-                  .Properties(
-                    v =>
-                      v.Number(k => k.Type(NumberType.Integer).Name("key"))
-                        .Text(c => c.Index(false).Name("value"))))));
+                        m => m.AutoMap().Properties(
+                                                    p =>
+                                                      p.Object<Dictionary<int, string>>(
+                                                                                        s =>
+                                                                                          s.Name(n => n.DictionaryRaw)
+                                                                                           .Properties(
+                                                                                                       v =>
+                                                                                                         v.Number(k => k
+                                                                                                                      .Type(NumberType
+                                                                                                                             .Integer)
+                                                                                                                      .Name("key"))
+                                                                                                          .Text(c => c
+                                                                                                                    .Index(false)
+                                                                                                                    .Name("value"))))));
       Client.Map<Document>(
-        m => m.AutoMap()
-          .Properties(
-            p =>
-              p.Object<Dictionary<string, object>>(
-                s =>
-                  s.Name(n => n.Metadata)
-                    .Properties(
-                      v =>
-                        v.Text(k => k.Index(false).Name("key"))
-                          .Text(c => c.Index(false).Name("value"))))));
+                           m => m.AutoMap()
+                                 .Properties(
+                                             p =>
+                                               p.Object<Dictionary<string, object>>(
+                                                                                    s =>
+                                                                                      s.Name(n => n.Metadata)
+                                                                                       .Properties(
+                                                                                                   v =>
+                                                                                                     v.Text(k => k
+                                                                                                                .Index(false)
+                                                                                                                .Name("key"))
+                                                                                                      .Text(c => c
+                                                                                                                .Index(false)
+                                                                                                                .Name("value"))))));
 
       Client.Map<LayerDocument>(m => m.AutoMap());
     }
@@ -94,15 +107,16 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Model.Context
 
       var res = new List<Guid>();
       var current = _client
-        .Search<Corpus>(x => x.Skip(start).Size(1000).Source(s => s.Includes(i => i.Field(f => f.CorpusId)))).Documents
-        .Select(x => x.CorpusId).ToArray();
+                   .Search<Corpus>(x => x.Skip(start).Size(1000).Source(s => s.Includes(i => i.Field(f => f.CorpusId))))
+                   .Documents
+                   .Select(x => x.CorpusId).ToArray();
       while (current.Length > 0)
       {
         res.AddRange(current);
         start += pageSize;
         current = _client
-          .Search<Corpus>(x => x.Skip(start).Size(1000).Source(s => s.Includes(i => i.Field(f => f.CorpusId))))
-          .Documents.Select(x => x.CorpusId).ToArray();
+                 .Search<Corpus>(x => x.Skip(start).Size(1000).Source(s => s.Includes(i => i.Field(f => f.CorpusId))))
+                 .Documents.Select(x => x.CorpusId).ToArray();
       }
 
       return res;
@@ -127,10 +141,10 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Model.Context
     {
       return
         _client.Get<LayerDocument>(
-          new GetRequest<LayerDocument>(
-            "corpusexplorer",
-            "layerdocument",
-            string.Concat(documentGuid, ".", layerGuid))).Source;
+                                   new GetRequest<LayerDocument>(
+                                                                 "corpusexplorer",
+                                                                 "layerdocument",
+                                                                 string.Concat(documentGuid, ".", layerGuid))).Source;
     }
 
     public void Update(Layer layer)

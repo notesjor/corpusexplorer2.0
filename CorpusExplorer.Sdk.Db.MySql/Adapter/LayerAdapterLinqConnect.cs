@@ -46,8 +46,8 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
     public override int[][] this[Guid guid]
     {
       get => (from x in _layer.LayerDocuments
-        where x.Document.GUID == guid
-        select DocumentSerializerHelper.Deserialize(x.Content)).FirstOrDefault();
+              where x.Document.GUID == guid
+              select DocumentSerializerHelper.Deserialize(x.Content)).FirstOrDefault();
       set
       {
         var doc = (from x in _layer.LayerDocuments where x.Document.GUID == guid select x).FirstOrDefault();
@@ -77,22 +77,22 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
 
       foreach (var d in _layer.LayerDocuments)
         _db.LayerDocuments.InsertOnSubmit(
-          new LayerDocument
-          {
-            Content = d.Content,
-            LayerID = layer.ID,
-            DocumentID = d.DocumentID
-          });
+                                          new LayerDocument
+                                          {
+                                            Content = d.Content,
+                                            LayerID = layer.ID,
+                                            DocumentID = d.DocumentID
+                                          });
       _db.SubmitChanges();
 
       foreach (var e in _layer.LayerDictionaryEntries)
         _db.LayerDictionaryEntries.InsertOnSubmit(
-          new LayerDictionaryEntry
-          {
-            Index = e.Index,
-            LayerID = layer.ID,
-            Value = e.Value
-          });
+                                                  new LayerDictionaryEntry
+                                                  {
+                                                    Index = e.Index,
+                                                    LayerID = layer.ID,
+                                                    Value = e.Value
+                                                  });
       _db.SubmitChanges();
 
       return new LayerAdapterLinqConnect
@@ -118,22 +118,22 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
 
       var d = (from x in _layer.LayerDocuments where x.Document.GUID == documentGuid select x).SingleOrDefault();
       _db.LayerDocuments.InsertOnSubmit(
-        new LayerDocument
-        {
-          Content = d.Content,
-          LayerID = layer.ID,
-          DocumentID = d.DocumentID
-        });
+                                        new LayerDocument
+                                        {
+                                          Content = d.Content,
+                                          LayerID = layer.ID,
+                                          DocumentID = d.DocumentID
+                                        });
       _db.SubmitChanges();
 
       foreach (var e in _layer.LayerDictionaryEntries)
         _db.LayerDictionaryEntries.InsertOnSubmit(
-          new LayerDictionaryEntry
-          {
-            Index = e.Index,
-            LayerID = layer.ID,
-            Value = e.Value
-          });
+                                                  new LayerDictionaryEntry
+                                                  {
+                                                    Index = e.Index,
+                                                    LayerID = layer.ID,
+                                                    Value = e.Value
+                                                  });
       _db.SubmitChanges();
 
       return new LayerAdapterLinqConnect
@@ -174,12 +174,12 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
         }
 
         context.LayerDocuments.InsertOnSubmit(
-          new LayerDocument
-          {
-            Content = DocumentSerializerHelper.Serialize(d.Value),
-            LayerID = layerSet.ID,
-            DocumentID = doc.ID
-          });
+                                              new LayerDocument
+                                              {
+                                                Content = DocumentSerializerHelper.Serialize(d.Value),
+                                                LayerID = layerSet.ID,
+                                                DocumentID = doc.ID
+                                              });
       }
 
       context.SubmitChanges(ConflictMode.ContinueOnConflict);
@@ -211,7 +211,7 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
     public override Dictionary<Guid, int[][]> GetDocumentDictionary()
     {
       return _layer.LayerDocuments.ToDictionary(x => x.Document.GUID,
-        x => DocumentSerializerHelper.Deserialize(x.Content));
+                                                x => DocumentSerializerHelper.Deserialize(x.Content));
     }
 
     public override IEnumerable<IEnumerable<bool>> GetDocumentLayervalueMask(Guid documentGuid, string layerValue)
@@ -228,7 +228,7 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
     public override IEnumerable<IEnumerable<string>> GetReadableDocumentByGuid(Guid documentGuid)
     {
       var doc = this[documentGuid];
-      return doc == null ? null : (from s in doc where s != null select s.Select(w => this[w]));
+      return doc == null ? null : from s in doc where s != null select s.Select(w => this[w]);
     }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocumentSnippetByGuid(
@@ -241,8 +241,8 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
         return null;
 
       start = start < 0 ? 0 : start;
-      stop = stop >= doc.Length ? doc.Length - 1 : stop;
-      stop = stop <= start ? start + 1 : stop;
+      stop = stop   >= doc.Length ? doc.Length - 1 : stop;
+      stop = stop   <= start ? start           + 1 : stop;
 
       var res = new List<IEnumerable<string>>();
       for (var i = start; i < stop; i++)
@@ -254,6 +254,21 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
     public override Dictionary<string, int> ReciveRawLayerDictionary()
     {
       return _layer.LayerDictionaryEntries.ToDictionary(x => x.Value, x => x.Index);
+    }
+
+    public override Dictionary<int, string> ReciveRawReverseLayerDictionary()
+    {
+      return _layer.LayerDictionaryEntries.ToDictionary(x => x.Index, x => x.Value);
+    }
+
+    public override void ResetRawLayerDictionary(Dictionary<string, int> dictionary)
+    {
+      throw new NotImplementedException();
+    }
+
+    public override void ResetRawReverseLayerDictionary(Dictionary<int, string> reverse)
+    {
+      throw new NotImplementedException();
     }
 
     public override void RefreshDictionaries()
@@ -322,7 +337,7 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
           for (var i = 0; i < sent.Length; i++)
           {
             var value = (from x in _layer.LayerDictionaryEntries where x.Value == stream[cnt] select x)
-              .FirstOrDefault();
+             .FirstOrDefault();
             if (value == null)
             {
               value = new LayerDictionaryEntry
@@ -404,16 +419,16 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
 
       var regex = new Regex(regEx);
       Parallel.ForEach(
-        _db.LayerDictionaryEntries,
-        Configuration.ParallelOptions,
-        x =>
-        {
-          if (regex.IsMatch(x.Value))
-            lock (@lock)
-            {
-              res.Add(x.Value);
-            }
-        });
+                       _db.LayerDictionaryEntries,
+                       Configuration.ParallelOptions,
+                       x =>
+                       {
+                         if (regex.IsMatch(x.Value))
+                           lock (@lock)
+                           {
+                             res.Add(x.Value);
+                           }
+                       });
 
       return res;
     }

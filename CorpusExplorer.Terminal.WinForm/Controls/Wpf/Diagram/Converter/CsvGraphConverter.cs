@@ -14,12 +14,10 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter
       stb.AppendLine("source\tconnection\ttarget");
 
       foreach (var connection in connections)
-      {
         stb.AppendLine(
-          connection.Content is TextBlock block
-            ? $"{connection.Source.Content}\t{block.Text}\t{connection.Target.Content}"
-            : $"{connection.Source.Content}\t \t{connection.Target.Content}");
-      }
+                       connection.Content is TextBlock block
+                         ? $"{connection.Source.Content}\t{block.Text}\t{connection.Target.Content}"
+                         : $"{connection.Source.Content}\t \t{connection.Target.Content}");
 
       return stb.ToString();
     }

@@ -11,9 +11,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Tlv
   [Serializable]
   public class TlvBuilder
   {
-    private readonly string _text;
     private readonly List<TlvEntry> _entries = new List<TlvEntry>();
     private readonly Regex _regex = new Regex(@"<[^>]*>");
+    private readonly string _text;
 
     public TlvBuilder(string text)
     {
@@ -97,7 +97,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Tlv
       foreach (var x in Metadata)
         if (x.Value != null)
           meta.Append(
-            $"<entry category=\"{x.Key}\" type=\"{x.Value.GetType()}\">{HttpUtility.HtmlEncode(_regex.Replace(HttpUtility.HtmlDecode(x.Value.ToString()), string.Empty))}</entry>");
+                      $"<entry category=\"{x.Key}\" type=\"{x.Value.GetType()}\">{HttpUtility.HtmlEncode(_regex.Replace(HttpUtility.HtmlDecode(x.Value.ToString()), string.Empty))}</entry>");
 
       #endregion
 

@@ -118,7 +118,9 @@ namespace CorpusExplorer.Sdk.ViewModel.Abstract
       {
         var items =
           new List<DateTime>(
-            from value in DateTimeValues where value.Key >= start && value.Key <= end select value.Key);
+                             from value in DateTimeValues
+                             where value.Key >= start && value.Key <= end
+                             select value.Key);
         if (items.Count == 0)
           items.Add(end);
 

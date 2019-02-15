@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\CefSharp.WinForms.69.0.0\build\CefSharp.WinForms.props" Condition="Exists('..\packages\CefSharp.WinForms.69.0.0\build\CefSharp.WinForms.props')" />
-  <Import Project="..\packages\CefSharp.Common.69.0.0\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.69.0.0\build\CefSharp.Common.props')" />
-  <Import Project="..\packages\cef.redist.x86.3.3497.1841\build\cef.redist.x86.props" Condition="Exists('..\packages\cef.redist.x86.3.3497.1841\build\cef.redist.x86.props')" />
-  <Import Project="..\packages\cef.redist.x64.3.3497.1841\build\cef.redist.x64.props" Condition="Exists('..\packages\cef.redist.x64.3.3497.1841\build\cef.redist.x64.props')" />
+  <Import Project="..\packages\CefSharp.WinForms.71.0.0\build\CefSharp.WinForms.props" Condition="Exists('..\packages\CefSharp.WinForms.71.0.0\build\CefSharp.WinForms.props')" />
+  <Import Project="..\packages\CefSharp.Common.71.0.0\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.71.0.0\build\CefSharp.Common.props')" />
+  <Import Project="..\packages\cef.redist.x86.3.3578.1863\build\cef.redist.x86.props" Condition="Exists('..\packages\cef.redist.x86.3.3578.1863\build\cef.redist.x86.props')" />
+  <Import Project="..\packages\cef.redist.x64.3.3578.1863\build\cef.redist.x64.props" Condition="Exists('..\packages\cef.redist.x64.3.3578.1863\build\cef.redist.x64.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -117,46 +117,72 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Linux%29|x64'">
+    <OutputPath>bin\x64\Release %28Linux%29\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Linux%29|x86'">
+    <OutputPath>bin\x86\Release %28Linux%29\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release %28Linux%29|AnyCPU'">
+    <OutputPath>bin\Release %28Linux%29\</OutputPath>
+    <Optimize>true</Optimize>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DefineConstants>LINUX</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.8.11.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.8.11\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="CodeHollow.FeedReader, Version=1.1.6.0, Culture=neutral, PublicKeyToken=66d870f2b3d70f48, processorArchitecture=MSIL">
+      <HintPath>..\packages\CodeHollow.FeedReader.1.1.6\lib\net452\CodeHollow.FeedReader.dll</HintPath>
+    </Reference>
+    <Reference Include="CorpusExplorer.Tool4.KAMOKO.GUI">
+      <HintPath>..\CorpusExplorer.Tool4.KAMOKO.GUI\obj\Debug\CorpusExplorer.Tool4.KAMOKO.GUI.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.8.14.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.8.14\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
       <HintPath>..\packages\AvalonEdit.5.0.4\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=1.0.0.999, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpZipLib.1.0.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.1.0.145, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.1.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Windows.Design.Interaction, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=6.0.31.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.0.31\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.0.34.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.0.34\lib\net45\PostSharp.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Patterns.Aggregation, Version=6.0.31.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Patterns.Aggregation.Redist.6.0.31\lib\net45\PostSharp.Patterns.Aggregation.dll</HintPath>
+    <Reference Include="PostSharp.Patterns.Aggregation, Version=6.0.34.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Aggregation.Redist.6.0.34\lib\net45\PostSharp.Patterns.Aggregation.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Patterns.Common, Version=6.0.31.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Patterns.Common.Redist.6.0.31\lib\net45\PostSharp.Patterns.Common.dll</HintPath>
+    <Reference Include="PostSharp.Patterns.Common, Version=6.0.34.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Common.Redist.6.0.34\lib\net45\PostSharp.Patterns.Common.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Patterns.Threading, Version=6.0.31.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Patterns.Threading.Redist.6.0.31\lib\net45\PostSharp.Patterns.Threading.dll</HintPath>
+    <Reference Include="PostSharp.Patterns.Threading, Version=6.0.34.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Threading.Redist.6.0.34\lib\net45\PostSharp.Patterns.Threading.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Printing" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -165,158 +191,164 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Telerik.Documents.SpreadsheetStreaming, Version=2018.3.1010.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Documents.SpreadsheetStreaming.for.Net40.2018.3.1010\lib\net40\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
+    <Reference Include="Telerik.Documents.SpreadsheetStreaming, Version=2019.1.114.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Documents.SpreadsheetStreaming.for.Net40.2019.1.114\lib\net40\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Common.2018.3.1016\lib\net40\Telerik.WinControls.dll</HintPath>
+    <Reference Include="Telerik.WinControls, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Common.2019.1.117\lib\net40\Telerik.WinControls.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.ChartView, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.PivotGrid.2018.3.1016\lib\net40\Telerik.WinControls.ChartView.dll</HintPath>
+    <Reference Include="Telerik.WinControls.ChartView, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.PivotGrid.2019.1.117\lib\net40\Telerik.WinControls.ChartView.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.GridView, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.GridView.2018.3.1016\lib\net40\Telerik.WinControls.GridView.dll</HintPath>
+    <Reference Include="Telerik.WinControls.GridView, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.GridView.2019.1.117\lib\net40\Telerik.WinControls.GridView.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.PivotGrid, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.PivotGrid.2018.3.1016\lib\net40\Telerik.WinControls.PivotGrid.dll</HintPath>
+    <Reference Include="Telerik.WinControls.PivotGrid, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.PivotGrid.2019.1.117\lib\net40\Telerik.WinControls.PivotGrid.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Aqua, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.Aqua.dll</HintPath>
+    <Reference Include="Telerik.WinControls.RichTextEditor, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.RichTextEditor.2019.1.117\lib\net40\Telerik.WinControls.RichTextEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Breeze, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.Breeze.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Aqua, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.Aqua.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Crystal, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.Crystal.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Breeze, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.Breeze.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Desert, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.Desert.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Crystal, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.Crystal.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Fluent, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.Fluent.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.CrystalDark, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.CrystalDark.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.FluentDark, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.FluentDark.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Desert, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.Desert.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.HighContrastBlack, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.HighContrastBlack.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Fluent, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.Fluent.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Material, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.Material.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.FluentDark, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.FluentDark.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.MaterialBlueGrey, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.MaterialBlueGrey.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.HighContrastBlack, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.HighContrastBlack.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.MaterialPink, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.MaterialPink.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Material, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.Material.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.MaterialTeal, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.MaterialTeal.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.MaterialBlueGrey, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.MaterialBlueGrey.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2007Black, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.Office2007Black.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.MaterialPink, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.MaterialPink.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2007Silver, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.Office2007Silver.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.MaterialTeal, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.MaterialTeal.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2010Black, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.Office2010Black.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Office2007Black, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.Office2007Black.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2010Blue, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.Office2010Blue.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Office2007Silver, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.Office2007Silver.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2010Silver, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.Office2010Silver.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Office2010Black, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.Office2010Black.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2013Dark, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.Office2013Dark.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Office2010Blue, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.Office2010Blue.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.Office2013Light.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Office2010Silver, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.Office2010Silver.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetro, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.TelerikMetro.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Office2013Dark, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.Office2013Dark.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetroBlue, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.TelerikMetroBlue.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.Office2013Light.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetro, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.TelerikMetro.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Dark, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.VisualStudio2012Dark.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroBlue, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.TelerikMetroBlue.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Light, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.VisualStudio2012Light.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Windows7, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.Windows7.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Dark, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.VisualStudio2012Dark.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.Windows8, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Themes.2018.3.1016\lib\net40\Telerik.WinControls.Themes.Windows8.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Light, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.VisualStudio2012Light.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Common.2018.3.1016\lib\net40\Telerik.WinControls.UI.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Windows7, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.Windows7.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI.Design, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Common.2018.3.1016\lib\net40\Telerik.WinControls.UI.Design.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.Windows8, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Themes.2019.1.117\lib\net40\Telerik.WinControls.Themes.Windows8.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls, Version=2018.3.1016.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Controls.for.Wpf.2018.3.1016\lib\net45\Telerik.Windows.Controls.dll</HintPath>
+    <Reference Include="Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Common.2019.1.117\lib\net40\Telerik.WinControls.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Data, Version=2018.3.1016.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Controls.Data.for.Wpf.2018.3.1016\lib\net45\Telerik.Windows.Controls.Data.dll</HintPath>
+    <Reference Include="Telerik.WinControls.UI.Design, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Common.2019.1.117\lib\net40\Telerik.WinControls.UI.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.DataVisualization, Version=2018.3.1016.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Controls.DataVisualization.for.Wpf.2018.3.1016\lib\net45\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Controls.for.Wpf.Xaml.2019.1.116\lib\net45\Telerik.Windows.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Diagrams, Version=2018.3.1016.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Controls.Diagrams.for.Wpf.2018.3.1016\lib\net45\Telerik.Windows.Controls.Diagrams.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Controls.Data.for.Wpf.Xaml.2019.1.116\lib\net45\Telerik.Windows.Controls.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Diagrams.Extensions, Version=2018.3.1016.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Controls.Diagrams.Extensions.for.Wpf.2018.3.1016\lib\net45\Telerik.Windows.Controls.Diagrams.Extensions.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.DataVisualization, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Controls.DataVisualization.for.Wpf.2019.1.116\lib\net45\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Input, Version=2018.3.1016.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Controls.Input.for.Wpf.2018.3.1016\lib\net45\Telerik.Windows.Controls.Input.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.Diagrams, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Controls.Diagrams.for.Wpf.2019.1.116\lib\net45\Telerik.Windows.Controls.Diagrams.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2018.3.1016.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Controls.Navigation.for.Wpf.2018.3.1016\lib\net45\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.Diagrams.Extensions, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Controls.Diagrams.Extensions.for.Wpf.2019.1.116\lib\net45\Telerik.Windows.Controls.Diagrams.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Data, Version=2018.3.1016.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Data.for.Wpf.2018.3.1016\lib\net45\Telerik.Windows.Data.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Controls.Input.for.Wpf.Xaml.2019.1.116\lib\net45\Telerik.Windows.Controls.Input.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Diagrams.Core, Version=2018.3.1016.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Diagrams.Core.for.Wpf.2018.3.1016\lib\net45\Telerik.Windows.Diagrams.Core.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Controls.Navigation.for.Wpf.2019.1.116\lib\net45\Telerik.Windows.Controls.Navigation.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Core, Version=2018.3.1010.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Documents.Core.for.Net40.2018.3.1010\lib\net40\Telerik.Windows.Documents.Core.dll</HintPath>
+    <Reference Include="Telerik.Windows.Data, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Data.for.Wpf.Xaml.2019.1.116\lib\net45\Telerik.Windows.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2018.3.1010.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Documents.Fixed.for.Net40.2018.3.1010\lib\net40\Telerik.Windows.Documents.Fixed.dll</HintPath>
+    <Reference Include="Telerik.Windows.Diagrams.Core, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Diagrams.Core.for.Wpf.2019.1.116\lib\net45\Telerik.Windows.Diagrams.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2018.3.1010.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Documents.Spreadsheet.for.Net40.2018.3.1010\lib\net40\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2019.1.114.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Documents.Core.for.Net40.2019.1.114\lib\net40\Telerik.Windows.Documents.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2018.3.1010.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.for.Net40.2018.3.1010\lib\net40\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2019.1.114.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Documents.Fixed.for.Net40.2019.1.114\lib\net40\Telerik.Windows.Documents.Fixed.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf, Version=2018.3.1010.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.for.Net40.2018.3.1010\lib\net40\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2019.1.114.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Documents.Spreadsheet.for.Net40.2019.1.114\lib\net40\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Themes.Windows8Touch, Version=2018.3.1016.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Themes.Windows8Touch.for.Wpf.2018.3.1016\lib\net45\Telerik.Windows.Themes.Windows8Touch.dll</HintPath>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2019.1.114.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.for.Net40.2019.1.114\lib\net40\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Zip, Version=2018.3.1010.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Telerik.Windows.Zip.for.Net40.2018.3.1010\lib\net40\Telerik.Windows.Zip.dll</HintPath>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf, Version=2019.1.114.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.for.Net40.2019.1.114\lib\net40\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
     </Reference>
-    <Reference Include="TelerikCommon, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Common.2018.3.1016\lib\net40\TelerikCommon.dll</HintPath>
+    <Reference Include="Telerik.Windows.Themes.Windows8Touch, Version=2019.1.116.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Themes.Windows8Touch.for.Wpf.2019.1.116\lib\net45\Telerik.Windows.Themes.Windows8Touch.dll</HintPath>
     </Reference>
-    <Reference Include="TelerikData, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.GridView.2018.3.1016\lib\net40\TelerikData.dll</HintPath>
+    <Reference Include="Telerik.Windows.Zip, Version=2019.1.114.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telerik.Windows.Zip.for.Net40.2019.1.114\lib\net40\Telerik.Windows.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="TelerikExport, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\packages\UI.for.WinForms.Export.2018.3.1016\lib\net40\TelerikExport.dll</HintPath>
+    <Reference Include="TelerikCommon, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Common.2019.1.117\lib\net40\TelerikCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikData, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.GridView.2019.1.117\lib\net40\TelerikData.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikExport, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\packages\UI.for.WinForms.Export.2019.1.117\lib\net40\TelerikExport.dll</HintPath>
     </Reference>
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
@@ -341,6 +373,18 @@
     </Compile>
     <Compile Include="Controls\WinForm\Addon3rdPartyPanel.Designer.cs">
       <DependentUpon>Addon3rdPartyPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\AddonCorpusInstallState.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\AddonCorpusInstallState.Designer.cs">
+      <DependentUpon>AddonCorpusInstallState.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForm\AddonAppInstallState.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForm\AddonAppInstallState.Designer.cs">
+      <DependentUpon>AddonAppInstallState.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\WinForm\BigNumber.cs">
       <SubType>UserControl</SubType>
@@ -620,6 +664,12 @@
     <Compile Include="Forms\GridViewFunctions\PredefinedFunctions.Designer.cs">
       <DependentUpon>PredefinedFunctions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Insight\ApplicationInsightLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Insight\ApplicationInsightLocation.Designer.cs">
+      <DependentUpon>ApplicationInsightLocation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Insight\ApplicationInsight.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -805,6 +855,7 @@
     <Compile Include="Helper\UiFramework\GuiModulePrototype.Designer.cs">
       <DependentUpon>GuiModulePrototype.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\UiFramework\InAppAddonHelper.cs" />
     <Compile Include="Helper\UniversalColorExtension.cs" />
     <Compile Include="Localizer\GridView\GridViewGermanLocalizer.cs" />
     <Compile Include="Localizer\PivotGrid\PivotGridViewGermanLocalizer.cs" />
@@ -881,6 +932,12 @@
     </Compile>
     <Compile Include="View\Frequency\CollocateFrequency.Designer.cs">
       <DependentUpon>CollocateFrequency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Fulltext\FulltextKwicRegExSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Fulltext\FulltextKwicRegExSearch.Designer.cs">
+      <DependentUpon>FulltextKwicRegExSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Fulltext\FulltextKwicSearch.cs">
       <SubType>UserControl</SubType>
@@ -1197,6 +1254,12 @@
     <EmbeddedResource Include="Controls\WinForm\Addon3rdPartyPanel.resx">
       <DependentUpon>Addon3rdPartyPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\AddonCorpusInstallState.resx">
+      <DependentUpon>AddonCorpusInstallState.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForm\AddonAppInstallState.resx">
+      <DependentUpon>AddonAppInstallState.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\WinForm\BigNumber.resx">
       <DependentUpon>BigNumber.cs</DependentUpon>
     </EmbeddedResource>
@@ -1305,6 +1368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GridViewFunctions\PredefinedFunctions.resx">
       <DependentUpon>PredefinedFunctions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Insight\ApplicationInsightLocation.resx">
+      <DependentUpon>ApplicationInsightLocation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Insight\ApplicationInsight.resx">
       <DependentUpon>ApplicationInsight.cs</DependentUpon>
@@ -1425,6 +1491,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Frequency\CollocateFrequency.resx">
       <DependentUpon>CollocateFrequency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Fulltext\FulltextKwicRegExSearch.resx">
+      <DependentUpon>FulltextKwicRegExSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Fulltext\FulltextKwicSearch.resx">
       <DependentUpon>FulltextKwicSearch.cs</DependentUpon>
@@ -1631,6 +1700,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="repository_addons.manifest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="repository_corpora.manifest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="XDependencies\NTextCat\ntextcat.list">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1844,6 +1919,10 @@
     <None Include="Resources\filter-regex.png" />
     <None Include="Resources\clipboard_cut.png" />
     <None Include="Resources\clipboard_cut1.png" />
+    <None Include="Resources\barcode-search.png" />
+    <None Include="Resources\barcode-search1.png" />
+    <None Include="Resources\archive-download%40128px.png" />
+    <None Include="Resources\archive-download%4048px.png" />
     <Content Include="XDependencies\NTextCat\Wiki280.profile.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -2180,15 +2259,19 @@
     <PropertyGroup>
       <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\cef.redist.x64.3.3497.1841\build\cef.redist.x64.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.3497.1841\build\cef.redist.x64.props'))" />
-    <Error Condition="!Exists('..\packages\cef.redist.x86.3.3497.1841\build\cef.redist.x86.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.3497.1841\build\cef.redist.x86.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.69.0.0\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.69.0.0\build\CefSharp.Common.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.69.0.0\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.69.0.0\build\CefSharp.Common.targets'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.WinForms.69.0.0\build\CefSharp.WinForms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.69.0.0\build\CefSharp.WinForms.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.WinForms.69.0.0\build\CefSharp.WinForms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.69.0.0\build\CefSharp.WinForms.targets'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x64.3.3578.1863\build\cef.redist.x64.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.3578.1863\build\cef.redist.x64.props'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x86.3.3578.1863\build\cef.redist.x86.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.3578.1863\build\cef.redist.x86.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.71.0.0\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.71.0.0\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.71.0.0\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.71.0.0\build\CefSharp.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.WinForms.71.0.0\build\CefSharp.WinForms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.71.0.0\build\CefSharp.WinForms.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.WinForms.71.0.0\build\CefSharp.WinForms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.71.0.0\build\CefSharp.WinForms.targets'))" />
   </Target>
-  <Import Project="..\packages\CefSharp.Common.69.0.0\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.69.0.0\build\CefSharp.Common.targets')" />
-  <Import Project="..\packages\CefSharp.WinForms.69.0.0\build\CefSharp.WinForms.targets" Condition="Exists('..\packages\CefSharp.WinForms.69.0.0\build\CefSharp.WinForms.targets')" />
+  <Import Project="..\packages\CefSharp.Common.71.0.0\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.71.0.0\build\CefSharp.Common.targets')" />
+  <Import Project="..\packages\CefSharp.WinForms.71.0.0\build\CefSharp.WinForms.targets" Condition="Exists('..\packages\CefSharp.WinForms.71.0.0\build\CefSharp.WinForms.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

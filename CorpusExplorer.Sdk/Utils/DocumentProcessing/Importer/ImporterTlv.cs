@@ -56,9 +56,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
     {
       const string mark = "<-!|!->";
       outerXml = outerXml.Replace("<entry category=\"", string.Empty)
-        .Replace("\" type=\"", mark)
-        .Replace("\">", mark)
-        .Replace("</entry>", string.Empty);
+                         .Replace("\" type=\"", mark)
+                         .Replace("\">", mark)
+                         .Replace("</entry>", string.Empty);
       var split = outerXml.Split(new[] {mark}, StringSplitOptions.RemoveEmptyEntries);
       if (split.Length != 3)
         return new KeyValuePair<string, object>("ERROR", null);
@@ -136,7 +136,13 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
           continue;
 
         var dict = (from XmlElement y in x.ChildNodes where y.Name == "value" select y).ToDictionary(
-          y => HttpUtility.HtmlDecode(y.GetAttribute("label")), y => int.Parse(y.GetAttribute("v")));
+                                                                                                     y => HttpUtility
+                                                                                                      .HtmlDecode(y
+                                                                                                                   .GetAttribute("label")),
+                                                                                                     y =>
+                                                                                                       int
+                                                                                                        .Parse(y
+                                                                                                                .GetAttribute("v")));
 
         layerstate.Add(id, new LayerValueState(name, id) {Cache = dict});
       }
@@ -146,10 +152,13 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
       #region ReverseCache - Wird für den Parsing-Prozess benötigt
 
       var cache = layerstate.ToDictionary(
-        x => x.Key,
-        x => new KeyValuePair<string, Dictionary<int, string>>(
-          x.Value.Displayname,
-          x.Value.Cache.ToDictionary(y => y.Value, y => y.Key)));
+                                          x => x.Key,
+                                          x => new KeyValuePair<string, Dictionary<int, string>>(
+                                                                                                 x.Value.Displayname,
+                                                                                                 x.Value.Cache
+                                                                                                  .ToDictionary(y => y.Value,
+                                                                                                                y => y
+                                                                                                                 .Key)));
 
       #endregion
 
@@ -218,11 +227,13 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
       #endregion
 
       var builder = new CorpusBuilderWriteDirect();
-      return builder.Create(new List<AbstractLayerState>(layerstate.Select(x => x.Value)) {wortLayer}, documentMeta, corpusMeta, null);
+      return builder.Create(new List<AbstractLayerState>(layerstate.Select(x => x.Value)) {wortLayer}, documentMeta,
+                            corpusMeta, null);
     }
 
     private void ParseNodeRecursive(ref Dictionary<int, KeyValuePair<string, Dictionary<int, string>>> cache,
-      ref Word[][] doc, ref int sidx, ref int widx, XmlNode xmlNode, Dictionary<string, string> values = null)
+                                    ref Word[][] doc, ref int sidx, ref int widx, XmlNode xmlNode,
+                                    Dictionary<string, string> values = null)
     {
       if (xmlNode.Name == "#text")
       {

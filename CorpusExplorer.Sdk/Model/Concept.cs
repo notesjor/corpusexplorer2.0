@@ -63,19 +63,22 @@ namespace CorpusExplorer.Sdk.Model
       object metaData = null)
     {
       if (sentenceStopIndex == -1 ||
-          wordStopIndex == -1)
+          wordStopIndex     == -1)
         if (sentenceStopIndex != wordStopIndex)
           throw new ArgumentException(
-            Resources.ConceptRangeException);
+                                      Resources.ConceptRangeException);
 
       var res = Guid.NewGuid();
       _marks.Add(
-        new Tuple<Guid, int[], object>(
-          res,
-          sentenceStopIndex > -1
-            ? new[] {sentenceStartIndex, wordStartIndex, sentenceStopIndex, wordStopIndex}
-            : new[] {sentenceStartIndex, wordStartIndex},
-          metaData));
+                 new Tuple<Guid, int[], object>(
+                                                res,
+                                                sentenceStopIndex > -1
+                                                  ? new[]
+                                                  {
+                                                    sentenceStartIndex, wordStartIndex, sentenceStopIndex, wordStopIndex
+                                                  }
+                                                  : new[] {sentenceStartIndex, wordStartIndex},
+                                                metaData));
       _documentMarks.Add(new Tuple<Guid, Guid>(documenentGuid, res));
 
       return res;
@@ -95,7 +98,9 @@ namespace CorpusExplorer.Sdk.Model
       {
         var hash =
           new HashSet<Guid>(
-            from documentMark in _documentMarks where documentMark.Item1 == documentGuid select documentMark.Item2);
+                            from documentMark in _documentMarks
+                            where documentMark.Item1 == documentGuid
+                            select documentMark.Item2);
         return _marks.Where(item => hash.Contains(item.Item1));
       }
       catch

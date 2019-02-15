@@ -37,13 +37,13 @@ namespace CorpusExplorer.Sdk.Blocks
         if (sid < 0)
           continue;
         res.Add(
-          doc.Key,
-          Selection.GetReadableDocumentSnippet(
-              doc.Key,
-              LayerDisplayname,
-              sid,
-              sid + numberOfSenteces)
-            .ReduceDocumentToText());
+                doc.Key,
+                Selection.GetReadableDocumentSnippet(
+                                                     doc.Key,
+                                                     LayerDisplayname,
+                                                     sid,
+                                                     sid + numberOfSenteces)
+                         .ReduceDocumentToText());
       }
 
       return res;

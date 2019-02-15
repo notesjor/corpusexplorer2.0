@@ -31,11 +31,11 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.ConllTagger.Abstrac
       StartTaggingProcess();
 
       Output.Enqueue(
-        CorpusBuilder.Create(
-          _layers.Select(x => x.Value),
-          meta,
-          new Dictionary<string, object>(),
-          null));
+                     CorpusBuilder.Create(
+                                          _layers.Select(x => x.Value),
+                                          meta,
+                                          new Dictionary<string, object>(),
+                                          null));
     }
 
     protected LayerRangeState AddRangeLayer(string displayname)
@@ -129,15 +129,15 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.ConllTagger.Abstrac
       var meta = new ConcurrentDictionary<Guid, Dictionary<string, object>>();
 
       Parallel.ForEach(
-        Input,
-        Configuration.ParallelOptions,
-        sdm =>
-        {
-          var dic = sdm.GetMetaDictionary().ToDictionary(entry => entry.Key, entry => entry.Value);
-          var guid = sdm.Get("GUID", Guid.NewGuid());
-          dic.Add("GUID", guid);
-          meta.TryAdd(guid, dic);
-        });
+                       Input,
+                       Configuration.ParallelOptions,
+                       sdm =>
+                       {
+                         var dic = sdm.GetMetaDictionary().ToDictionary(entry => entry.Key, entry => entry.Value);
+                         var guid = sdm.Get("GUID", Guid.NewGuid());
+                         dic.Add("GUID", guid);
+                         meta.TryAdd(guid, dic);
+                       });
 
       return meta.ToDictionary(x => x.Key, x => x.Value);
     }
@@ -153,26 +153,27 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.ConllTagger.Abstrac
         while (count > 0)
         {
           Parallel.For(
-            0,
-            count,
-            Configuration.ParallelOptions,
-            i =>
-            {
-              try
-              {
-                Dictionary<string, object> doc;
-                if (!Input.TryDequeue(out doc))
-                  return;
+                       0,
+                       count,
+                       Configuration.ParallelOptions,
+                       i =>
+                       {
+                         try
+                         {
+                           Dictionary<string, object> doc;
+                           if (!Input.TryDequeue(out doc))
+                             return;
 
-                // Tagger
-                var parsedDoc = TextPostTaggerCleanup(ExecuteTagger(TextPreTaggerCleanup(doc["Text"] as string)));
-                ParseDocument(layerKeys, doc.Get("GUID", Guid.NewGuid()), ref parsedDoc);
-              }
-              catch (Exception ex)
-              {
-                // ignore
-              }
-            });
+                           // Tagger
+                           var parsedDoc =
+                             TextPostTaggerCleanup(ExecuteTagger(TextPreTaggerCleanup(doc["Text"] as string)));
+                           ParseDocument(layerKeys, doc.Get("GUID", Guid.NewGuid()), ref parsedDoc);
+                         }
+                         catch (Exception ex)
+                         {
+                           // ignore
+                         }
+                       });
           count = Input.Count;
         }
       }

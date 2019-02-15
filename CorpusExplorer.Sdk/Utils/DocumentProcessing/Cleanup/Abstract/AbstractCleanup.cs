@@ -20,47 +20,47 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup.Abstract
       while (count > 0)
       {
         Parallel.For(
-          0,
-          count,
-          Configuration.ParallelOptions,
-          i =>
-          {
-            Dictionary<string, object> doc;
-            if (!Input.TryDequeue(out doc))
-              return;
-            if (doc?.Keys == null)
-              return;
-            if (string.IsNullOrWhiteSpace(doc.Get("Text", "")))
-              return;
+                     0,
+                     count,
+                     Configuration.ParallelOptions,
+                     i =>
+                     {
+                       Dictionary<string, object> doc;
+                       if (!Input.TryDequeue(out doc))
+                         return;
+                       if (doc?.Keys == null)
+                         return;
+                       if (string.IsNullOrWhiteSpace(doc.Get("Text", "")))
+                         return;
 
-            var keys = doc.Keys.ToArray();
-            foreach (var key in keys)
-              try
-              {
-                if (key.StartsWith("!"))
-                  continue;
+                       var keys = doc.Keys.ToArray();
+                       foreach (var key in keys)
+                         try
+                         {
+                           if (key.StartsWith("!"))
+                             continue;
 
-                var text = doc.Get(key, string.Empty);
+                           var text = doc.Get(key, string.Empty);
 
-                // Nur Bereingung von Text zulassen, DateTime und andere Typen müssen via Scraper definiert/berinigt werden.
-                if (text.GetType() != typeof(string) || string.IsNullOrWhiteSpace(text))
-                  continue;
+                           // Nur Bereingung von Text zulassen, DateTime und andere Typen müssen via Scraper definiert/berinigt werden.
+                           if (text.GetType() != typeof(string) || string.IsNullOrWhiteSpace(text))
+                             continue;
 
-                text = Execute(text);
+                           text = Execute(text);
 
-                // Schütze vor fehlerhafte Bereinigung - nehme im Fehlerfall den Orignaltext
-                if (string.IsNullOrWhiteSpace(text))
-                  continue;
+                           // Schütze vor fehlerhafte Bereinigung - nehme im Fehlerfall den Orignaltext
+                           if (string.IsNullOrWhiteSpace(text))
+                             continue;
 
-                doc[key] = text;
-              }
-              catch
-              {
-                // ignore
-              }
+                           doc[key] = text;
+                         }
+                         catch
+                         {
+                           // ignore
+                         }
 
-            Output.Enqueue(doc);
-          });
+                       Output.Enqueue(doc);
+                     });
         count = Input.Count;
       }
     }

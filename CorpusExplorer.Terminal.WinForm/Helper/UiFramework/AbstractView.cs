@@ -73,10 +73,10 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       }
 
       var form = new SimpleTextInput(
-        Resources.SchnappschussErstellen,
-        Resources.GebenSieDemNeuenSchnappschussEinenNamen,
-        Resources.camera,
-        Resources.NameHierEintragen);
+                                     Resources.SchnappschussErstellen,
+                                     Resources.GebenSieDemNeuenSchnappschussEinenNamen,
+                                     Resources.camera,
+                                     Resources.NameHierEintragen);
       if (form.ShowDialog() != DialogResult.OK)
         return;
 
@@ -89,10 +89,10 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
         return;
 
       var form = new SimpleTextInput(
-        Resources.SchnappschussErstellen,
-        Resources.GebenSieDemNeuenSchnappschussEinenNamen,
-        Resources.camera,
-        Resources.NameHierEintragen);
+                                     Resources.SchnappschussErstellen,
+                                     Resources.GebenSieDemNeuenSchnappschussEinenNamen,
+                                     Resources.camera,
+                                     Resources.NameHierEintragen);
       if (form.ShowDialog() != DialogResult.OK)
         return;
 

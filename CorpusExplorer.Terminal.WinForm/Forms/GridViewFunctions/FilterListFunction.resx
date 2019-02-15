@@ -128,13 +128,13 @@
     <value>radPanel1</value>
   </data>
   <data name="&gt;&gt;radPanel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radPanel1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;radPanel1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ihdPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -166,7 +166,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ihdPanel1.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="radTextBox1.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -181,7 +181,7 @@
     <value>0, 100</value>
   </data>
   <data name="radTextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>450, 353</value>
+    <value>450, 291</value>
   </data>
   <data name="radTextBox1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -190,7 +190,7 @@
     <value>radTextBox1</value>
   </data>
   <data name="&gt;&gt;radTextBox1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radTextBox1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -217,12 +217,99 @@
     <value>drop_case</value>
   </data>
   <data name="&gt;&gt;drop_case.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;drop_case.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;drop_case.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="radRadioButton2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="radRadioButton2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>213, 25</value>
+  </data>
+  <data name="radRadioButton2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 30</value>
+  </data>
+  <data name="radRadioButton2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="radRadioButton2.Text" xml:space="preserve">
+    <value>Beinhaltet</value>
+  </data>
+  <data name="&gt;&gt;radRadioButton2.Name" xml:space="preserve">
+    <value>radRadioButton2</value>
+  </data>
+  <data name="&gt;&gt;radRadioButton2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radRadioButton2.Parent" xml:space="preserve">
+    <value>radGroupBox1</value>
+  </data>
+  <data name="&gt;&gt;radRadioButton2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radRadioButton1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="radRadioButton1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="radRadioButton1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 30</value>
+  </data>
+  <data name="radRadioButton1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="radRadioButton1.Text" xml:space="preserve">
+    <value>Exakte Übereinstimmung</value>
+  </data>
+  <data name="&gt;&gt;radRadioButton1.Name" xml:space="preserve">
+    <value>radRadioButton1</value>
+  </data>
+  <data name="&gt;&gt;radRadioButton1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radRadioButton1.Parent" xml:space="preserve">
+    <value>radGroupBox1</value>
+  </data>
+  <data name="&gt;&gt;radRadioButton1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radGroupBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="radGroupBox1.HeaderText" xml:space="preserve">
+    <value>Filteroptionen</value>
+  </data>
+  <data name="radGroupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 391</value>
+  </data>
+  <data name="radGroupBox1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>450, 62</value>
+  </data>
+  <data name="radGroupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="radGroupBox1.Text" xml:space="preserve">
+    <value>Filteroptionen</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox1.Name" xml:space="preserve">
+    <value>radGroupBox1</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

@@ -45,7 +45,7 @@ namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory.GrammarRule
 
       for (var i = 1; i < _matches.Length; i++)
       {
-        if (index + i >= constituents.Count ||
+        if (index + i                     >= constituents.Count ||
             constituents[index + i].Label != _matches[i])
         {
           match = false;

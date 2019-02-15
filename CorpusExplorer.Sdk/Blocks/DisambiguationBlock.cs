@@ -88,7 +88,9 @@ namespace CorpusExplorer.Sdk.Blocks
         try
         {
           var other = _dic[word.Key];
-          clusters.AddRange(other.Where(w => words.ContainsKey(w.Key)).Select(w => new DisambiguationCluster(word.Value, word.Key, w.Value, w.Key, words[w.Key])));
+          clusters.AddRange(other.Where(w => words.ContainsKey(w.Key))
+                                 .Select(w => new DisambiguationCluster(word.Value, word.Key, w.Value, w.Key,
+                                                                        words[w.Key])));
         }
         catch (Exception ex)
         {
@@ -101,15 +103,15 @@ namespace CorpusExplorer.Sdk.Blocks
         var min = double.MaxValue;
 
         for (var i = 0; i < clusters.Count; i++)
-          for (var j = i + 1; j < clusters.Count; j++)
-          {
-            var diff = clusters[i].Distance(clusters[j]);
-            if (diff >= min)
-              continue;
-            a = i;
-            b = j;
-            min = diff;
-          }
+        for (var j = i + 1; j < clusters.Count; j++)
+        {
+          var diff = clusters[i].Distance(clusters[j]);
+          if (diff >= min)
+            continue;
+          a = i;
+          b = j;
+          min = diff;
+        }
 
         clusters[a].Join(clusters[b]);
         clusters.RemoveAt(b);

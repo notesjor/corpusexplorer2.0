@@ -1,49 +1,54 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
-{
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true,
-    Namespace = "http://www.mediawiki.org/xml/export-0.10/")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.mediawiki.org/xml/export-0.10/",
-    IsNullable = false)]
-  public partial class contributor
-  {
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
 
-    private string[] itemsField;
+namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
+{
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true,
+    Namespace = "http://www.mediawiki.org/xml/export-0.10/")]
+  [XmlRoot(Namespace = "http://www.mediawiki.org/xml/export-0.10/",
+    IsNullable = false)]
+  public class contributor
+  {
+    private string deletedField;
 
     private ItemsChoiceType[] itemsElementNameField;
 
-    private string deletedField;
+    private string[] itemsField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("id", typeof(string), DataType = "integer")]
-    [System.Xml.Serialization.XmlElementAttribute("ip", typeof(string), DataType = "NMTOKEN")]
-    [System.Xml.Serialization.XmlElementAttribute("username", typeof(string))]
-    [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+    /// <remarks />
+    [XmlElement("id", typeof(string), DataType = "integer")]
+    [XmlElement("ip", typeof(string), DataType = "NMTOKEN")]
+    [XmlElement("username", typeof(string))]
+    [XmlChoiceIdentifier("ItemsElementName")]
     public string[] Items
     {
-      get { return this.itemsField; }
-      set { this.itemsField = value; }
+      get => itemsField;
+      set => itemsField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
+    /// <remarks />
+    [XmlElement("ItemsElementName")]
+    [XmlIgnore]
     public ItemsChoiceType[] ItemsElementName
     {
-      get { return this.itemsElementNameField; }
-      set { this.itemsElementNameField = value; }
+      get => itemsElementNameField;
+      set => itemsElementNameField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string deleted
     {
-      get { return this.deletedField; }
-      set { this.deletedField = value; }
+      get => deletedField;
+      set => deletedField = value;
     }
   }
 }

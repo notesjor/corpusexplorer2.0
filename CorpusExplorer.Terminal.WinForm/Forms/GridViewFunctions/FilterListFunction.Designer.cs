@@ -34,9 +34,16 @@
       this.ihdPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
       this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
       this.drop_case = new Telerik.WinControls.UI.RadDropDownList();
+      this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+      this.radRadioButton1 = new Telerik.WinControls.UI.RadRadioButton();
+      this.radRadioButton2 = new Telerik.WinControls.UI.RadRadioButton();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.drop_case)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
+      this.radGroupBox1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radRadioButton1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radRadioButton2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
       // 
@@ -69,11 +76,33 @@
       this.drop_case.Items.Add(radListDataItem2);
       this.drop_case.Name = "drop_case";
       // 
+      // radGroupBox1
+      // 
+      this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+      this.radGroupBox1.Controls.Add(this.radRadioButton2);
+      this.radGroupBox1.Controls.Add(this.radRadioButton1);
+      resources.ApplyResources(this.radGroupBox1, "radGroupBox1");
+      this.radGroupBox1.Name = "radGroupBox1";
+      // 
+      // radRadioButton1
+      // 
+      this.radRadioButton1.CheckState = System.Windows.Forms.CheckState.Checked;
+      resources.ApplyResources(this.radRadioButton1, "radRadioButton1");
+      this.radRadioButton1.Name = "radRadioButton1";
+      this.radRadioButton1.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
+      // 
+      // radRadioButton2
+      // 
+      resources.ApplyResources(this.radRadioButton2, "radRadioButton2");
+      this.radRadioButton2.Name = "radRadioButton2";
+      this.radRadioButton2.TabStop = false;
+      // 
       // FilterListFunction
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       resources.ApplyResources(this, "$this");
       this.Controls.Add(this.radTextBox1);
+      this.Controls.Add(this.radGroupBox1);
       this.Controls.Add(this.drop_case);
       this.Controls.Add(this.ihdPanel1);
       this.DisplayAbort = true;
@@ -87,10 +116,16 @@
       this.Controls.SetChildIndex(this.radPanel1, 0);
       this.Controls.SetChildIndex(this.ihdPanel1, 0);
       this.Controls.SetChildIndex(this.drop_case, 0);
+      this.Controls.SetChildIndex(this.radGroupBox1, 0);
       this.Controls.SetChildIndex(this.radTextBox1, 0);
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.drop_case)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
+      this.radGroupBox1.ResumeLayout(false);
+      this.radGroupBox1.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radRadioButton1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radRadioButton2)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
@@ -102,5 +137,8 @@
     private Controls.WinForm.IHDPanel ihdPanel1;
     private Telerik.WinControls.UI.RadTextBox radTextBox1;
     private Telerik.WinControls.UI.RadDropDownList drop_case;
+    private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
+    private Telerik.WinControls.UI.RadRadioButton radRadioButton2;
+    private Telerik.WinControls.UI.RadRadioButton radRadioButton1;
   }
 }

@@ -111,7 +111,7 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
                 = false,
               WindowStyle
                 = ProcessWindowStyle
-                  .Hidden,
+                 .Hidden,
               WorkingDirectory = pepperPath,
               StandardOutputEncoding = Configuration.Encoding
             }

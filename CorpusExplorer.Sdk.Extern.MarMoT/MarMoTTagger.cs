@@ -123,7 +123,7 @@ namespace CorpusExplorer.Sdk.Extern.MarMoT
     private string DetectSentence(string text)
     {
       return _endings.Aggregate(text,
-        (current, ending) => current.Replace($"\r\n{ending}\r\n", $"\r\n{ending}\r\n\r\n"));
+                                (current, ending) => current.Replace($"\r\n{ending}\r\n", $"\r\n{ending}\r\n\r\n"));
     }
   }
 }

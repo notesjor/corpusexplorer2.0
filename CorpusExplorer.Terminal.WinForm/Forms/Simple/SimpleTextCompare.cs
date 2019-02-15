@@ -56,7 +56,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
 
     private void RefreshCompare()
     {
-      if (!_init ||
+      if (!_init                                      ||
           commandBarDropDownList1.SelectedIndex == -1 ||
           commandBarDropDownList2.SelectedIndex == -1)
         return;

@@ -10,7 +10,7 @@ namespace CorpusExplorer.Sdk.Db.Gui
       var lines = FileIO.ReadLines(path);
       if (lines.Length < 5)
         throw new IndexOutOfRangeException(
-          "Die Datenbankeinstellungen müssen folgende Einstellungen enthalten: Host, Port, DB-Name, Nutzername und Passwort");
+                                           "Die Datenbankeinstellungen müssen folgende Einstellungen enthalten: Host, Port, DB-Name, Nutzername und Passwort");
 
       Host = lines[0];
       Port = int.Parse(lines[1]);

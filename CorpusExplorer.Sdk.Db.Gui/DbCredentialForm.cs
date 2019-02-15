@@ -10,7 +10,7 @@ namespace CorpusExplorer.Sdk.Db.Gui
     private readonly ValidateConnectionAction _validateAction;
 
     public DbCredentialForm(string provider, string defaultHost, int defaultPort,
-      ValidateConnectionAction validateAction, string fileFilter, string pathSaveSettings)
+                            ValidateConnectionAction validateAction, string fileFilter, string pathSaveSettings)
     {
       InitializeComponent();
 
@@ -77,7 +77,7 @@ namespace CorpusExplorer.Sdk.Db.Gui
     private void btn_test_Click(object sender, EventArgs e)
     {
       MessageBox.Show(
-        $"Die Verbindung zum Server war: {(_validateAction(Host, Port, DbName, Username, Password) ? "erfolgreich!" : "nicht erfolgreich!")}");
+                      $"Die Verbindung zum Server war: {(_validateAction(Host, Port, DbName, Username, Password) ? "erfolgreich!" : "nicht erfolgreich!")}");
     }
   }
 }

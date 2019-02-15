@@ -2,7 +2,6 @@
 
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Bcs.Crawler;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
@@ -107,8 +106,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Crawler
       Save(c, Path.Combine(Configuration.MyDataSources, c.DisplayName + ".cml"));
       if (!string.IsNullOrEmpty(alternativePath))
         Save(
-          c,
-          !alternativePath.EndsWith(".cml") ? Path.Combine(alternativePath, c.DisplayName + ".cml") : alternativePath);
+             c,
+             !alternativePath.EndsWith(".cml")
+               ? Path.Combine(alternativePath, c.DisplayName + ".cml")
+               : alternativePath);
     }
 
     public override void Execute()

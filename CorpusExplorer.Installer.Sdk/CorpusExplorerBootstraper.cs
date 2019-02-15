@@ -33,20 +33,21 @@ namespace CorpusExplorer.Installer.Sdk
     private static string _updateInfo;
 
     private static string MyAddons => Path.Combine(
-      Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-      Resources.CorpusExplorerMyAddons);
+                                                   Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                                                   Resources.CorpusExplorerMyAddons);
 
     private static string MyCorpora => Path.Combine(
-      Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-      Resources.CorpusExplorerMyCorpora);
+                                                    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                                                    Resources.CorpusExplorerMyCorpora);
 
     private static string MyDataSources => Path.Combine(
-      Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-      Resources.CorpusExplorerMyDataSources);
+                                                        Environment.GetFolderPath(Environment
+                                                                                 .SpecialFolder.MyDocuments),
+                                                        Resources.CorpusExplorerMyDataSources);
 
     private static string MyProjects => Path.Combine(
-      Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-      Resources.CorpusExplorerMyProjects);
+                                                     Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                                                     Resources.CorpusExplorerMyProjects);
 
     public static void InstallOnly(string repositoryUrl, string appPath)
     {
@@ -64,7 +65,7 @@ namespace CorpusExplorer.Installer.Sdk
         return;
 
       var valid = args.Where(x => x.ToLower().EndsWith(".ceaddon") && File.Exists(x) && !x.StartsWith(MyAddons))
-        .ToArray();
+                      .ToArray();
       if (valid.Length == 0)
         return;
 
@@ -88,8 +89,8 @@ namespace CorpusExplorer.Installer.Sdk
 
         // Lade lokale update.info
         _installed = File.Exists(_updateInfo)
-          ? new List<string[]>(TextToManifest(FileIO.ReadText(_updateInfo)))
-          : new List<string[]>();
+                       ? new List<string[]>(TextToManifest(FileIO.ReadText(_updateInfo)))
+                       : new List<string[]>();
 
         // Lade online update.info (aka updates.manifest)
         var online = new List<string[]>();
@@ -126,26 +127,26 @@ namespace CorpusExplorer.Installer.Sdk
             var ientry = _installed.FirstOrDefault(x => oentry[0] == x[0]);
             if (oentry[0].StartsWith("LINK#"))
               list.Add(
-                new UpdateState(oentry[0])
-                {
-                  OnlineVersion = "SET",
-                  InstallationCompleted = ientry != null
-                });
+                       new UpdateState(oentry[0])
+                       {
+                         OnlineVersion = "SET",
+                         InstallationCompleted = ientry != null
+                       });
             else if (oentry[0].StartsWith("CALL#") && (ientry == null || ientry[1] != oentry[1]))
               list.Add(
-                new UpdateState(oentry[0])
-                {
-                  OnlineVersion = oentry[1],
-                  InstallationCompleted = ientry != null
-                });
+                       new UpdateState(oentry[0])
+                       {
+                         OnlineVersion = oentry[1],
+                         InstallationCompleted = ientry != null
+                       });
             else if (ientry == null || ientry[1] != oentry[1])
               list.Add(
-                new UpdateState(oentry[0])
-                {
-                  OnlineVersion = oentry[1],
-                  Delete = oentry.Length == 3 ? oentry[2] : null,
-                  InstallationCompleted = false
-                });
+                       new UpdateState(oentry[0])
+                       {
+                         OnlineVersion = oentry[1],
+                         Delete = oentry.Length == 3 ? oentry[2] : null,
+                         InstallationCompleted = false
+                       });
           }
           catch (Exception ex)
           {
@@ -261,8 +262,8 @@ namespace CorpusExplorer.Installer.Sdk
 
       if (hasError)
         MessageBox.Show(
-          "HINWEIS: Während der Installation/Aktualisierung kam es zu Problemen. Wie Sie selbst alle Probleme beheben können:\n1. Beenden Sie den CorpusExplorer.\n2. Sorgen Sie für eine stabile Internetverbindung.\n3. Starten Sie den CorpusExplorer erneut.",
-          "Problem: Schlechte Internetverbindung", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        "HINWEIS: Während der Installation/Aktualisierung kam es zu Problemen. Wie Sie selbst alle Probleme beheben können:\n1. Beenden Sie den CorpusExplorer.\n2. Sorgen Sie für eine stabile Internetverbindung.\n3. Starten Sie den CorpusExplorer erneut.",
+                        "Problem: Schlechte Internetverbindung", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
       try
       {
@@ -279,7 +280,7 @@ namespace CorpusExplorer.Installer.Sdk
 
         var index = _installed.FindIndex(x => x[0] == update.Url);
         if (index == -1)
-          _installed.Add(new[] { update.Url, update.OnlineVersion });
+          _installed.Add(new[] {update.Url, update.OnlineVersion});
         else
           _installed[index][1] = update.OnlineVersion;
       }
@@ -297,7 +298,7 @@ namespace CorpusExplorer.Installer.Sdk
 
     private static void DoUpdate_Call(string url, string tempDir, int i)
     {
-      var info = url.Split(new[] { "#" }, StringSplitOptions.None);
+      var info = url.Split(new[] {"#"}, StringSplitOptions.None);
       if (info.Length != 3)
         return;
 
@@ -330,14 +331,14 @@ namespace CorpusExplorer.Installer.Sdk
           return;
 
         Process.Start(
-          new ProcessStartInfo
-          {
-            Arguments = $"PATH \"{_appPath}\";%PATH%",
-            CreateNoWindow = true,
-            FileName = "SETX",
-            UseShellExecute = true,
-            WindowStyle = ProcessWindowStyle.Hidden
-          });
+                      new ProcessStartInfo
+                      {
+                        Arguments = $"PATH \"{_appPath}\";%PATH%",
+                        CreateNoWindow = true,
+                        FileName = "SETX",
+                        UseShellExecute = true,
+                        WindowStyle = ProcessWindowStyle.Hidden
+                      });
 
         File.Create(pflag).Close();
       }
@@ -375,7 +376,7 @@ namespace CorpusExplorer.Installer.Sdk
     {
       var tempFile = Path.Combine(tempDir, "update." + i + ".zip");
       var path = Path.Combine(MyCorpora,
-        url.Substring(url.LastIndexOf("/", StringComparison.Ordinal) + 1).Replace(".cefs", ""));
+                              url.Substring(url.LastIndexOf("/", StringComparison.Ordinal) + 1).Replace(".cefs", ""));
       DownloadFile(url, tempFile);
 
       var zip = new FastZip();
@@ -395,7 +396,7 @@ namespace CorpusExplorer.Installer.Sdk
 
     private static void DoUpdate_Link(string url)
     {
-      var info = url.Split(new[] { "#" }, StringSplitOptions.RemoveEmptyEntries);
+      var info = url.Split(new[] {"#"}, StringSplitOptions.RemoveEmptyEntries);
       if (info.Length != 3)
         return;
 
@@ -416,7 +417,7 @@ namespace CorpusExplorer.Installer.Sdk
     {
       var tempFile = Path.Combine(tempDir, "update." + i + ".zip");
       DownloadFile(url, tempFile);
-      
+
       var zip = new FastZip();
       zip.ExtractZip(tempFile, _appPath, null);
     }
@@ -468,9 +469,7 @@ namespace CorpusExplorer.Installer.Sdk
       Application.SetCompatibleTextRenderingDefault(false);
 
       _muteGui = installOnly;
-      _appPath = appPath ?? Path.Combine(
-                   Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                   @"CorpusExplorer\App");
+      _appPath = appPath ?? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"CorpusExplorer\App");
       var exePath = Path.Combine(_appPath, "CorpusExplorer.exe");
       var cecPath = Path.Combine(_appPath, "cec.exe");
 
@@ -544,9 +543,10 @@ namespace CorpusExplorer.Installer.Sdk
       try
       {
         var process = args == null
-          ? Process.Start(exePath)
-          : Process.Start(args.Any(arg => Path.GetExtension(arg)?.ToLower() == ".ceshell") ? cecPath : exePath,
-            string.Join(" ", arguments));
+                        ? Process.Start(exePath)
+                        : Process
+                         .Start(args.Any(arg => Path.GetExtension(arg)?.ToLower() == ".ceshell") ? cecPath : exePath,
+                                string.Join(" ", arguments));
         process?.WaitForExit();
       }
       catch (Exception ex)
@@ -578,7 +578,7 @@ namespace CorpusExplorer.Installer.Sdk
       try
       {
         Main(AppDomain.CurrentDomain.SetupInformation.ActivationArguments?.ActivationData ?? args, installOnly,
-          appPath);
+             appPath);
       }
       catch (Exception ex)
       {
@@ -608,26 +608,22 @@ namespace CorpusExplorer.Installer.Sdk
     private static void ValidateDotNetFramework()
     {
       var version = DotNetFrameworkDetection.GetLatestDotNetVersion();
-      if (version[0] < 4 || 
-          version[0] == 4  && version[1] < 5 ||
+      if (version[0] < 4                                       ||
+          version[0] == 4                    && version[1] < 5 ||
           version[0] == 4 && version[1] == 5 && version[2] < 2)
-      {
         if (
           MessageBox.Show("Auf ihrem Rechner ist eine veraltete Version des .NET-Frameworks installiert.\nBitte aktualisieren Sie das .NET-Framework bevor Sie mit der Installation des CorpusExplorers fortfahren.\nMöchten Sie die .NET-Downloadseite aufrufen?",
-                          "Bitte zuerst .NET aktualisieren", 
-                          MessageBoxButtons.YesNo, 
+                          "Bitte zuerst .NET aktualisieren",
+                          MessageBoxButtons.YesNo,
                           MessageBoxIcon.Information) == DialogResult.Yes)
-        {
           Process.Start("https://www.microsoft.com/net/download");
-        }
-      }
     }
 
     private static void StartUpdate(string message, bool askForUpdate)
     {
       var update = CheckForUpdates();
 
-      if (update == null ||
+      if (update                                      == null ||
           update.Count(x => !x.InstallationCompleted) == 0)
         return;
 
@@ -636,9 +632,9 @@ namespace CorpusExplorer.Installer.Sdk
         if (askForUpdate)
           if (
             MessageBox.Show(
-              "Für den CorpusExplorer steht ein Update bereit. Soll dieses jetzt installiert werden?",
-              "CorpusExplorer aktualisieren?",
-              MessageBoxButtons.YesNo) == DialogResult.No)
+                            "Für den CorpusExplorer steht ein Update bereit. Soll dieses jetzt installiert werden?",
+                            "CorpusExplorer aktualisieren?",
+                            MessageBoxButtons.YesNo) == DialogResult.No)
             return;
 
         Processing.SplashShow();
@@ -702,15 +698,15 @@ namespace CorpusExplorer.Installer.Sdk
     {
       try
       {
-        var lines = text.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+        var lines = text.Split(new[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries);
         return lines.Select(line =>
-          line.Replace("{CPU}", Environment.Is64BitProcess ? "x64" : "x86")
-            .Split(new[] { "|" }, StringSplitOptions.RemoveEmptyEntries));
+                              line.Replace("{CPU}", Environment.Is64BitProcess ? "x64" : "x86")
+                                  .Split(new[] {"|"}, StringSplitOptions.RemoveEmptyEntries));
       }
       catch
       {
         return null;
       }
-    }    
+    }
   }
 }

@@ -11,7 +11,7 @@ namespace CorpusExplorer.Sdk.Helper
     {
       InitCharArray();
       var res = string.Join(replaceWith.ToString(), path.Split(Chars));
-      if (res[1] == replaceWith)
+      if (res.Length > 4 && res[1] == replaceWith)
         res = $"{res[0]}:{res.Substring(2)}";
       return res;
     }

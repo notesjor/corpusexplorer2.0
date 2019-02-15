@@ -10,16 +10,22 @@ namespace CorpusExplorer.Sdk.Blocks
   [Serializable]
   public class ClusterMetadataByNgramBlock : AbstractClusterMetadataBlock<Dictionary<string, int>>
   {
+    public int NGramMinFrequency { get; set; }
+
+    public int NGramPatternSize { get; set; }
+
+    public string NGramPattern { get; set; }
+
+    public int NGramSize { get; set; }
+
     protected override Dictionary<string, int> Join(Dictionary<string, int> a, Dictionary<string, int> b)
     {
       var res = new Dictionary<string, int>();
       foreach (var x in a)
-      {
         if (b.ContainsKey(x.Key))
           res.Add(x.Key, (x.Value + b[x.Key]) / 2);
         else
           res.Add(x.Key, x.Value);
-      }
 
       foreach (var x in b)
         if (!a.ContainsKey(x.Key))
@@ -30,9 +36,11 @@ namespace CorpusExplorer.Sdk.Blocks
 
     protected override double CalculateDistance(
       AbstractDistance similarityIndex, Dictionary<string, int> a, Dictionary<string, int> b)
-      => similarityIndex.CalculateSimilarity(
-        a.ToDictionary(x => x.Key, x => (double)x.Value),
-        b.ToDictionary(x => x.Key, x => (double)x.Value));
+    {
+      return similarityIndex.CalculateSimilarity(
+                                                 a.ToDictionary(x => x.Key, x => (double) x.Value),
+                                                 b.ToDictionary(x => x.Key, x => (double) x.Value));
+    }
 
     protected override Dictionary<string, int> CalculateValues(Selection selection)
     {
@@ -43,15 +51,9 @@ namespace CorpusExplorer.Sdk.Blocks
       block.LayerDisplayname = LayerDisplayname;
       block.Calculate();
 
-      return NGramMinFrequency > 0 ? block.NGramFrequency.Where(x => x.Value >= NGramMinFrequency).ToDictionary(x => x.Key, x => x.Value) : block.NGramFrequency;
+      return NGramMinFrequency > 0
+               ? block.NGramFrequency.Where(x => x.Value >= NGramMinFrequency).ToDictionary(x => x.Key, x => x.Value)
+               : block.NGramFrequency;
     }
-
-    public int NGramMinFrequency { get; set; }
-
-    public int NGramPatternSize { get; set; }
-
-    public string NGramPattern { get; set; }
-
-    public int NGramSize { get; set; }
   }
 }

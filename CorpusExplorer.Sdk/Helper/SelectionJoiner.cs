@@ -15,7 +15,7 @@ namespace CorpusExplorer.Sdk.Helper
 
       foreach (var x in list)
         first = JoinFull(first, x, newSelectionDisplayname);
-      
+
       return first;
     }
 
@@ -35,8 +35,8 @@ namespace CorpusExplorer.Sdk.Helper
           defA.Add(csel.Key, csel.Value);
 
       return string.IsNullOrEmpty(newSelectionDisplayname)
-        ? selectionA.Project.CreateSelectionTemporary(defA)
-        : selectionA.Project.CreateSelection(defA, newSelectionDisplayname);
+               ? selectionA.Project.CreateSelectionTemporary(defA)
+               : selectionA.Project.CreateSelection(defA, newSelectionDisplayname);
     }
 
     public static Selection JoinInner(this Selection selectionA, Selection selectionB, string newSelectionDisplayname)
@@ -61,8 +61,8 @@ namespace CorpusExplorer.Sdk.Helper
       }
 
       return string.IsNullOrEmpty(newSelectionDisplayname)
-        ?  selectionA.Project.CreateSelectionTemporary(defC)
-        : selectionA.Project.CreateSelection(defC, newSelectionDisplayname);
+               ? selectionA.Project.CreateSelectionTemporary(defC)
+               : selectionA.Project.CreateSelection(defC, newSelectionDisplayname);
     }
 
     public static Selection JoinLeft(this Selection selectionA, Selection selectionB, string newSelectionDisplayname)
@@ -86,8 +86,8 @@ namespace CorpusExplorer.Sdk.Helper
       selectionA.Project.CreateSelection(defA, newSelectionDisplayname);
 
       return string.IsNullOrEmpty(newSelectionDisplayname)
-        ? selectionA.Project.CreateSelectionTemporary(defA)
-        : selectionA.Project.CreateSelection(defA, newSelectionDisplayname);
+               ? selectionA.Project.CreateSelectionTemporary(defA)
+               : selectionA.Project.CreateSelection(defA, newSelectionDisplayname);
     }
 
     public static Selection JoinOuter(this Selection selectionA, Selection selectionB, string newSelectionDisplayname)
@@ -115,8 +115,8 @@ namespace CorpusExplorer.Sdk.Helper
       }
 
       return string.IsNullOrEmpty(newSelectionDisplayname)
-        ? selectionA.Project.CreateSelectionTemporary(defC)
-        :selectionA.Project.CreateSelection(defC, newSelectionDisplayname);
+               ? selectionA.Project.CreateSelectionTemporary(defC)
+               : selectionA.Project.CreateSelection(defC, newSelectionDisplayname);
     }
   }
 }

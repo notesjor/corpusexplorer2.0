@@ -43,12 +43,12 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Tagger
       Orientation = Orientation.Vertical;
 
       Children.Add(
-        new Label
-        {
-          Content = text,
-          Padding = new Thickness(0, 0, 3, 0),
-          FontSize = 18
-        });
+                   new Label
+                   {
+                     Content = text,
+                     Padding = new Thickness(0, 0, 3, 0),
+                     FontSize = 18
+                   });
 
       Margin = new Thickness(0);
 
@@ -93,13 +93,13 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Tagger
       var boar = new Border {BorderThickness = new Thickness(0, 2, 0, 0), BorderBrush = new SolidColorBrush(color)};
       rect.Children.Add(boar);
       rect.Children.Add(
-        new TextBlock
-        {
-          Foreground = new SolidColorBrush(color),
-          Text = label,
-          FontSize = 9,
-          VerticalAlignment = VerticalAlignment.Center
-        });
+                        new TextBlock
+                        {
+                          Foreground = new SolidColorBrush(color),
+                          Text = label,
+                          FontSize = 9,
+                          VerticalAlignment = VerticalAlignment.Center
+                        });
       Children.Add(rect);
       _colorAssoziation.Add(color, rect);
     }

@@ -11,6 +11,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Abstract
   {
     public void Run(AbstractAuthentication authentication, IEnumerable<string> queries, string outputPath)
     {
+      Authentication = authentication;
       var connection = authentication.OpenConnection();
       if (connection == null)
         return;
@@ -18,6 +19,8 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Abstract
       Query(connection, queries, outputPath);
       PostStatusUpdate("Alle Abrfagen wurden abgearbeitet!", 1, 1);
     }
+
+    protected AbstractAuthentication Authentication { get; set; }
 
     protected abstract void Query(object connection, IEnumerable<string> queries, string outputPath);
 

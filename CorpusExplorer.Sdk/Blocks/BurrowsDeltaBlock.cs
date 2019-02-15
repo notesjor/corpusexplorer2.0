@@ -45,8 +45,8 @@ namespace CorpusExplorer.Sdk.Blocks
       var xfreq = CalculateX(cfreq); // Arithmetischer Mittelwert
       var sfreq = CalculateS(cfreq, xfreq); // Standardabweichung
       MfwRanges = sfreq.ToDictionary(
-        s => s.Key,
-        s => new Tuple<double, double>(xfreq[s.Key] - s.Value, xfreq[s.Key] + s.Value));
+                                     s => s.Key,
+                                     s => new Tuple<double, double>(xfreq[s.Key] - s.Value, xfreq[s.Key] + s.Value));
 
       // Training
       var blockT = Selection.CreateBlock<SelectionClusterBlock>();

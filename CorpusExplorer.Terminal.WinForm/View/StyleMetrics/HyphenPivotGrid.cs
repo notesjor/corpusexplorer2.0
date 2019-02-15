@@ -50,18 +50,18 @@ namespace CorpusExplorer.Terminal.WinForm.View.StyleMetrics
     private void PivotGridVisualisation_ShowVisualisation(object sender, EventArgs e)
     {
       Processing.Invoke(
-        null,
-        () =>
-        {
-          var vm = GetViewModel<HyphenWordFrequencyViewModel>();
-          vm.Execute();
+                        null,
+                        () =>
+                        {
+                          var vm = GetViewModel<HyphenWordFrequencyViewModel>();
+                          vm.Execute();
 
-          var dataProvider = new LocalDataSourceProvider
-          {
-            ItemsSource = vm.GetDataTable()
-          };
-          radPivotGrid1.DataProvider = dataProvider;
-        });
+                          var dataProvider = new LocalDataSourceProvider
+                          {
+                            ItemsSource = vm.GetDataTable()
+                          };
+                          radPivotGrid1.DataProvider = dataProvider;
+                        });
     }
   }
 }

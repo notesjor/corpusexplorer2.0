@@ -1,7 +1,6 @@
 ﻿#region
 
 using System.Collections.Generic;
-using System.Dynamic;
 using Bcs.Addon.Interfaces;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
@@ -61,7 +60,7 @@ namespace CorpusExplorer.Sdk.Addon
     IEnumerable<IAddonView> AddonViews { get; }
 
     /// <summary>
-    ///  Funktionen die per Sideload zur Verfügung gestellt werden.
+    ///   Funktionen die per Sideload zur Verfügung gestellt werden.
     /// </summary>
     IEnumerable<object> AddonSideloadFeature { get; }
   }

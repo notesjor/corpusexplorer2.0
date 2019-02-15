@@ -217,7 +217,7 @@
     <value>3</value>
   </data>
   <data name="btn_main_tumblr.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 197</value>
+    <value>575, 3</value>
   </data>
   <data name="btn_main_tumblr.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -241,7 +241,7 @@
     <value>4</value>
   </data>
   <data name="btn_main_twitter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 197</value>
+    <value>3, 197</value>
   </data>
   <data name="btn_main_twitter.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -265,7 +265,7 @@
     <value>5</value>
   </data>
   <data name="btn_main_wordpress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>283, 197</value>
+    <value>143, 197</value>
   </data>
   <data name="btn_main_wordpress.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -289,7 +289,7 @@
     <value>6</value>
   </data>
   <data name="btn_main_youtube.Location" type="System.Drawing.Point, System.Drawing">
-    <value>423, 197</value>
+    <value>283, 197</value>
   </data>
   <data name="btn_main_youtube.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -313,7 +313,7 @@
     <value>7</value>
   </data>
   <data name="btn_main_forum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 391</value>
+    <value>435, 197</value>
   </data>
   <data name="btn_main_forum.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -337,7 +337,7 @@
     <value>8</value>
   </data>
   <data name="btn_main_web.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 391</value>
+    <value>575, 197</value>
   </data>
   <data name="btn_main_web.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -367,7 +367,7 @@
     <value>0, 85</value>
   </data>
   <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>690, 401</value>
+    <value>769, 449</value>
   </data>
   <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -400,7 +400,7 @@
     <value>4, 5, 4, 5</value>
   </data>
   <data name="ihdPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>690, 85</value>
+    <value>769, 85</value>
   </data>
   <data name="ihdPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -418,10 +418,10 @@
     <value>1</value>
   </data>
   <data name="page_main_main.Location" type="System.Drawing.Point, System.Drawing">
-    <value>139, 33</value>
+    <value>41, 33</value>
   </data>
   <data name="page_main_main.Size" type="System.Drawing.Size, System.Drawing">
-    <value>690, 486</value>
+    <value>769, 534</value>
   </data>
   <data name="page_main_main.Text" xml:space="preserve">
     <value>Übersicht</value>
@@ -430,7 +430,7 @@
     <value>page_main_main</value>
   </data>
   <data name="&gt;&gt;page_main_main.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_main_main.Parent" xml:space="preserve">
     <value>pages_main</value>
@@ -475,7 +475,7 @@
     <value>page_blogger_home</value>
   </data>
   <data name="&gt;&gt;page_blogger_home.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_blogger_home.Parent" xml:space="preserve">
     <value>pages_blogger</value>
@@ -496,7 +496,7 @@
     <value>page_blogger_account</value>
   </data>
   <data name="&gt;&gt;page_blogger_account.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_blogger_account.Parent" xml:space="preserve">
     <value>pages_blogger</value>
@@ -520,7 +520,7 @@
     <value>pages_blogger</value>
   </data>
   <data name="&gt;&gt;pages_blogger.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;pages_blogger.Parent" xml:space="preserve">
     <value>page_main_blogger</value>
@@ -541,7 +541,7 @@
     <value>page_main_blogger</value>
   </data>
   <data name="&gt;&gt;page_main_blogger.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_main_blogger.Parent" xml:space="preserve">
     <value>pages_main</value>
@@ -586,7 +586,7 @@
     <value>page_facebook_home</value>
   </data>
   <data name="&gt;&gt;page_facebook_home.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_facebook_home.Parent" xml:space="preserve">
     <value>pages_facebook</value>
@@ -607,7 +607,7 @@
     <value>page_facebook_account</value>
   </data>
   <data name="&gt;&gt;page_facebook_account.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_facebook_account.Parent" xml:space="preserve">
     <value>pages_facebook</value>
@@ -628,7 +628,7 @@
     <value>page_facebook_stream</value>
   </data>
   <data name="&gt;&gt;page_facebook_stream.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_facebook_stream.Parent" xml:space="preserve">
     <value>pages_facebook</value>
@@ -652,7 +652,7 @@
     <value>pages_facebook</value>
   </data>
   <data name="&gt;&gt;pages_facebook.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;pages_facebook.Parent" xml:space="preserve">
     <value>page_main_facebook</value>
@@ -673,7 +673,7 @@
     <value>page_main_facebook</value>
   </data>
   <data name="&gt;&gt;page_main_facebook.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_main_facebook.Parent" xml:space="preserve">
     <value>pages_main</value>
@@ -718,7 +718,7 @@
     <value>page_instagram_home</value>
   </data>
   <data name="&gt;&gt;page_instagram_home.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_instagram_home.Parent" xml:space="preserve">
     <value>pages_instagram</value>
@@ -739,7 +739,7 @@
     <value>page_instagram_account</value>
   </data>
   <data name="&gt;&gt;page_instagram_account.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_instagram_account.Parent" xml:space="preserve">
     <value>pages_instagram</value>
@@ -760,7 +760,7 @@
     <value>page_instagram_stream</value>
   </data>
   <data name="&gt;&gt;page_instagram_stream.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_instagram_stream.Parent" xml:space="preserve">
     <value>pages_instagram</value>
@@ -784,7 +784,7 @@
     <value>pages_instagram</value>
   </data>
   <data name="&gt;&gt;pages_instagram.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;pages_instagram.Parent" xml:space="preserve">
     <value>page_main_instagram</value>
@@ -805,7 +805,7 @@
     <value>page_main_instagram</value>
   </data>
   <data name="&gt;&gt;page_main_instagram.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_main_instagram.Parent" xml:space="preserve">
     <value>pages_main</value>
@@ -850,7 +850,7 @@
     <value>page_reddit_home</value>
   </data>
   <data name="&gt;&gt;page_reddit_home.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_reddit_home.Parent" xml:space="preserve">
     <value>pages_reddit</value>
@@ -871,7 +871,7 @@
     <value>page_reddit_account</value>
   </data>
   <data name="&gt;&gt;page_reddit_account.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_reddit_account.Parent" xml:space="preserve">
     <value>pages_reddit</value>
@@ -892,7 +892,7 @@
     <value>page_reddit_stream</value>
   </data>
   <data name="&gt;&gt;page_reddit_stream.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_reddit_stream.Parent" xml:space="preserve">
     <value>pages_reddit</value>
@@ -916,7 +916,7 @@
     <value>pages_reddit</value>
   </data>
   <data name="&gt;&gt;pages_reddit.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;pages_reddit.Parent" xml:space="preserve">
     <value>page_main_reddit</value>
@@ -937,7 +937,7 @@
     <value>page_main_reddit</value>
   </data>
   <data name="&gt;&gt;page_main_reddit.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_main_reddit.Parent" xml:space="preserve">
     <value>pages_main</value>
@@ -982,7 +982,7 @@
     <value>page_tumblr_home</value>
   </data>
   <data name="&gt;&gt;page_tumblr_home.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_tumblr_home.Parent" xml:space="preserve">
     <value>pages_tumblr</value>
@@ -1003,7 +1003,7 @@
     <value>page_tumblr_account</value>
   </data>
   <data name="&gt;&gt;page_tumblr_account.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_tumblr_account.Parent" xml:space="preserve">
     <value>pages_tumblr</value>
@@ -1024,7 +1024,7 @@
     <value>page_tumblr_stream</value>
   </data>
   <data name="&gt;&gt;page_tumblr_stream.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_tumblr_stream.Parent" xml:space="preserve">
     <value>pages_tumblr</value>
@@ -1048,7 +1048,7 @@
     <value>pages_tumblr</value>
   </data>
   <data name="&gt;&gt;pages_tumblr.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;pages_tumblr.Parent" xml:space="preserve">
     <value>page_main_tumblr</value>
@@ -1069,7 +1069,7 @@
     <value>page_main_tumblr</value>
   </data>
   <data name="&gt;&gt;page_main_tumblr.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_main_tumblr.Parent" xml:space="preserve">
     <value>pages_main</value>
@@ -1114,7 +1114,7 @@
     <value>page_twitter_home</value>
   </data>
   <data name="&gt;&gt;page_twitter_home.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_twitter_home.Parent" xml:space="preserve">
     <value>pages_twitter</value>
@@ -1135,7 +1135,7 @@
     <value>page_twitter_account</value>
   </data>
   <data name="&gt;&gt;page_twitter_account.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_twitter_account.Parent" xml:space="preserve">
     <value>pages_twitter</value>
@@ -1156,7 +1156,7 @@
     <value>page_twitter_hashtag</value>
   </data>
   <data name="&gt;&gt;page_twitter_hashtag.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_twitter_hashtag.Parent" xml:space="preserve">
     <value>pages_twitter</value>
@@ -1177,7 +1177,7 @@
     <value>page_twitter_streaming</value>
   </data>
   <data name="&gt;&gt;page_twitter_streaming.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_twitter_streaming.Parent" xml:space="preserve">
     <value>pages_twitter</value>
@@ -1198,7 +1198,7 @@
     <value>page_twitter_images</value>
   </data>
   <data name="&gt;&gt;page_twitter_images.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_twitter_images.Parent" xml:space="preserve">
     <value>pages_twitter</value>
@@ -1222,7 +1222,7 @@
     <value>pages_twitter</value>
   </data>
   <data name="&gt;&gt;pages_twitter.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;pages_twitter.Parent" xml:space="preserve">
     <value>page_main_twitter</value>
@@ -1243,7 +1243,7 @@
     <value>page_main_twitter</value>
   </data>
   <data name="&gt;&gt;page_main_twitter.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_main_twitter.Parent" xml:space="preserve">
     <value>pages_main</value>
@@ -1288,7 +1288,7 @@
     <value>pages_wordpress_home</value>
   </data>
   <data name="&gt;&gt;pages_wordpress_home.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;pages_wordpress_home.Parent" xml:space="preserve">
     <value>pages_wordpress</value>
@@ -1309,7 +1309,7 @@
     <value>pages_wordpress_onlyPosts</value>
   </data>
   <data name="&gt;&gt;pages_wordpress_onlyPosts.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;pages_wordpress_onlyPosts.Parent" xml:space="preserve">
     <value>pages_wordpress</value>
@@ -1330,7 +1330,7 @@
     <value>pages_wordpress_postsAndComments</value>
   </data>
   <data name="&gt;&gt;pages_wordpress_postsAndComments.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;pages_wordpress_postsAndComments.Parent" xml:space="preserve">
     <value>pages_wordpress</value>
@@ -1354,7 +1354,7 @@
     <value>pages_wordpress</value>
   </data>
   <data name="&gt;&gt;pages_wordpress.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;pages_wordpress.Parent" xml:space="preserve">
     <value>page_main_wordpress</value>
@@ -1375,7 +1375,7 @@
     <value>page_main_wordpress</value>
   </data>
   <data name="&gt;&gt;page_main_wordpress.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_main_wordpress.Parent" xml:space="preserve">
     <value>pages_main</value>
@@ -1420,7 +1420,7 @@
     <value>page_youtube_home</value>
   </data>
   <data name="&gt;&gt;page_youtube_home.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_youtube_home.Parent" xml:space="preserve">
     <value>pages_youtube</value>
@@ -1441,7 +1441,7 @@
     <value>page_youtube_account</value>
   </data>
   <data name="&gt;&gt;page_youtube_account.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_youtube_account.Parent" xml:space="preserve">
     <value>pages_youtube</value>
@@ -1462,7 +1462,7 @@
     <value>page_youtube_stream</value>
   </data>
   <data name="&gt;&gt;page_youtube_stream.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_youtube_stream.Parent" xml:space="preserve">
     <value>pages_youtube</value>
@@ -1486,7 +1486,7 @@
     <value>pages_youtube</value>
   </data>
   <data name="&gt;&gt;pages_youtube.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;pages_youtube.Parent" xml:space="preserve">
     <value>page_main_youtube</value>
@@ -1507,7 +1507,7 @@
     <value>page_main_youtube</value>
   </data>
   <data name="&gt;&gt;page_main_youtube.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_main_youtube.Parent" xml:space="preserve">
     <value>pages_main</value>
@@ -1528,7 +1528,7 @@
     <value>page_main_forum</value>
   </data>
   <data name="&gt;&gt;page_main_forum.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_main_forum.Parent" xml:space="preserve">
     <value>pages_main</value>
@@ -1549,7 +1549,7 @@
     <value>page_main_web</value>
   </data>
   <data name="&gt;&gt;page_main_web.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageViewPage, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_main_web.Parent" xml:space="preserve">
     <value>pages_main</value>
@@ -1564,7 +1564,7 @@
     <value>0, 0</value>
   </data>
   <data name="pages_main.Size" type="System.Drawing.Size, System.Drawing">
-    <value>830, 520</value>
+    <value>811, 568</value>
   </data>
   <data name="pages_main.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1573,7 +1573,7 @@
     <value>pages_main</value>
   </data>
   <data name="&gt;&gt;pages_main.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;pages_main.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1586,6 +1586,9 @@
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>811, 568</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainControl</value>

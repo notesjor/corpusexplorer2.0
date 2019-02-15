@@ -16,12 +16,13 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract
       List<Concept> concepts)
     {
       return documentMetadata.Select(
-        meta =>
-          base.Create(
-            layers.Select(x => x.Reduce(meta.Key)),
-            new Dictionary<Guid, Dictionary<string, object>> {{meta.Key, meta.Value}},
-            corpusMetadata,
-            concepts).FirstOrDefault()).ToList();
+                                     meta =>
+                                       base.Create(
+                                                   layers.Select(x => x.Reduce(meta.Key)),
+                                                   new Dictionary<Guid, Dictionary<string, object>>
+                                                     {{meta.Key, meta.Value}},
+                                                   corpusMetadata,
+                                                   concepts).FirstOrDefault()).ToList();
     }
   }
 }

@@ -24,7 +24,8 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       _layerQueryCache = new Dictionary<Guid, HashSet<int>[]>();
     }
 
-    [XmlAttribute("layer")] public string LayerDisplayname { get; set; } = "Wort";
+    [XmlAttribute("layer")]
+    public string LayerDisplayname { get; set; } = "Wort";
 
     [XmlIgnore]
     public IEnumerable<IEnumerable<string>> LayerQueries
@@ -95,17 +96,17 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// </returns>
     protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      if (corpus == null ||
+      if (corpus       == null ||
           documentGuid == Guid.Empty)
         return -1;
       var queries = GetQueries(corpus);
-      if (queries == null ||
+      if (queries        == null ||
           queries.Length == 0)
         return -1;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
       var doc = layer?[documentGuid];
-      if (doc == null ||
-          sentence < 0 ||
+      if (doc      == null ||
+          sentence < 0     ||
           sentence >= doc.Length)
         return -1;
 
@@ -113,13 +114,15 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       if (Configuration.RightToLeftSupport)
       {
         if (s.TakeWhile((t1, w) => w - queries.Length >= 0).Where((t1, w) =>
-          !queries.Where((t, q) => !queries[queries.Length - 1 - q].Contains(s[w - q])).Any()).Any())
+                                                                    !queries
+                                                                    .Where((t, q) => !queries[queries.Length - 1 - q]
+                                                                                      .Contains(s[w - q])).Any()).Any())
           return sentence;
       }
       else
       {
         if (s.TakeWhile((t1, w) => w + queries.Length < s.Length)
-          .Where((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any())
+             .Where((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any())
           return sentence;
       }
 
@@ -140,11 +143,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// </returns>
     protected override IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid)
     {
-      if (corpus == null ||
+      if (corpus       == null ||
           documentGuid == Guid.Empty)
         return null;
       var queries = GetQueries(corpus);
-      if (queries == null ||
+      if (queries        == null ||
           queries.Length == 0)
         return null;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
@@ -159,7 +162,10 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
         {
           var s = doc[sentence];
           if (s.TakeWhile((t1, w) => w - queries.Length >= 0).Where((t1, w) =>
-            !queries.Where((t, q) => !queries[queries.Length - 1 - q].Contains(s[w - q])).Any()).Any())
+                                                                      !queries
+                                                                      .Where((t, q) => !queries[queries.Length - 1 - q]
+                                                                                        .Contains(s[w - q])).Any())
+               .Any())
             res.Add(sentence);
         }
       else
@@ -167,7 +173,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
         {
           var s = doc[sentence];
           if (s.TakeWhile((t1, w) => w + queries.Length < s.Length)
-            .Where((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any())
+               .Where((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any())
             res.Add(sentence);
         }
 
@@ -187,17 +193,17 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// <returns>Auflistung aller Vorkommen im Satz</returns>
     public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      if (corpus == null ||
+      if (corpus       == null ||
           documentGuid == Guid.Empty)
         return null;
       var queries = GetQueries(corpus);
-      if (queries == null ||
+      if (queries        == null ||
           queries.Length == 0)
         return null;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
       var doc = layer?[documentGuid];
-      if (doc == null ||
-          sentence < 0 ||
+      if (doc      == null ||
+          sentence < 0     ||
           sentence >= doc.Length)
         return null;
 
@@ -206,13 +212,15 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       if (Configuration.RightToLeftSupport)
       {
         if (s.TakeWhile((t1, w) => w - queries.Length >= 0).Where((t1, w) =>
-          !queries.Where((t, q) => !queries[queries.Length - 1 - q].Contains(s[w - q])).Any()).Any())
+                                                                    !queries
+                                                                    .Where((t, q) => !queries[queries.Length - 1 - q]
+                                                                                      .Contains(s[w - q])).Any()).Any())
           res.Add(sentence);
       }
       else
       {
         if (s.TakeWhile((t1, w) => w + queries.Length < s.Length)
-          .Where((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any())
+             .Where((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any())
           res.Add(sentence);
       }
 
@@ -233,11 +241,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// </returns>
     protected override bool ValidateCall(AbstractCorpusAdapter corpus, Guid documentGuid)
     {
-      if (corpus == null ||
+      if (corpus       == null ||
           documentGuid == Guid.Empty)
         return false;
       var queries = GetQueries(corpus);
-      if (queries == null ||
+      if (queries        == null ||
           queries.Length == 0)
         return false;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
@@ -246,11 +254,16 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
         return false;
 
       return Configuration.RightToLeftSupport
-        ? doc.Any(s => s.TakeWhile((t1, w) => w - queries.Length >= 0).Where((t1, w) =>
-          !queries.Where((t, q) => !queries[queries.Length - 1 - q].Contains(s[w - q])).Any()).Any())
-        : doc.Any(s =>
-          s.TakeWhile((t1, w) => w + queries.Length < s.Length)
-            .Select((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any(any => any));
+               ? doc.Any(s => s.TakeWhile((t1, w) => w - queries.Length >= 0).Where((t1, w) =>
+                                                                                      !queries
+                                                                                      .Where((t, q) =>
+                                                                                               !queries
+                                                                                                   [queries.Length - 1 - q]
+                                                                                                .Contains(s[w - q]))
+                                                                                      .Any()).Any())
+               : doc.Any(s =>
+                           s.TakeWhile((t1, w) => w + queries.Length < s.Length)
+                            .Select((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any(any => any));
     }
 
     private HashSet<int>[] GetQueries(AbstractCorpusAdapter corpus)

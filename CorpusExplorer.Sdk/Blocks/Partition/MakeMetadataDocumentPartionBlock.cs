@@ -37,50 +37,53 @@ namespace CorpusExplorer.Sdk.Blocks.Partition
       var @lock = new object();
 
       Parallel.ForEach(
-        metas,
-        Configuration.ParallelOptions,
-        meta =>
-        {
-          lock (@lock)
-          {
-            OutputPartition.Add(meta.Key, new Dictionary<string, Guid[]>());
-          }
+                       metas,
+                       Configuration.ParallelOptions,
+                       meta =>
+                       {
+                         lock (@lock)
+                         {
+                           OutputPartition.Add(meta.Key, new Dictionary<string, Guid[]>());
+                         }
 
-          Parallel.ForEach(
-            meta.Value,
-            Configuration.ParallelOptions,
-            obj =>
-            {
-              Guid[] guids;
+                         Parallel.ForEach(
+                                          meta.Value,
+                                          Configuration.ParallelOptions,
+                                          obj =>
+                                          {
+                                            Guid[] guids;
 
-              try
-              {
-                guids = Selection.FindDocumentByMetadata(meta.Key, obj).ToArray();
-              }
-              catch
-              {
-                return;
-              }
+                                            try
+                                            {
+                                              guids = Selection.FindDocumentByMetadata(meta.Key, obj).ToArray();
+                                            }
+                                            catch
+                                            {
+                                              return;
+                                            }
 
-              // ReSharper disable once MergeConditionalExpression
-              var key = obj == null ? "" : obj.ToString(); // obj?.ToString() führt hier nicht zum gewünschten Ergebnis!
+                                            // ReSharper disable once MergeConditionalExpression
+                                            var key = obj == null
+                                                        ? ""
+                                                        : obj
+                                                         .ToString(); // obj?.ToString() führt hier nicht zum gewünschten Ergebnis!
 
-              lock (@lock)
-              {
-                if (OutputPartition[meta.Key].ContainsKey(key))
-                {
-                  var temp = new HashSet<Guid>(OutputPartition[meta.Key][key]);
-                  foreach (var guid in guids)
-                    temp.Add(guid);
-                  OutputPartition[meta.Key][key] = temp.ToArray();
-                }
-                else
-                {
-                  OutputPartition[meta.Key].Add(key, guids);
-                }
-              }
-            });
-        });
+                                            lock (@lock)
+                                            {
+                                              if (OutputPartition[meta.Key].ContainsKey(key))
+                                              {
+                                                var temp = new HashSet<Guid>(OutputPartition[meta.Key][key]);
+                                                foreach (var guid in guids)
+                                                  temp.Add(guid);
+                                                OutputPartition[meta.Key][key] = temp.ToArray();
+                                              }
+                                              else
+                                              {
+                                                OutputPartition[meta.Key].Add(key, guids);
+                                              }
+                                            }
+                                          });
+                       });
     }
 
     public event PartitionBlockConfiguration<TB> OnConfiguration;

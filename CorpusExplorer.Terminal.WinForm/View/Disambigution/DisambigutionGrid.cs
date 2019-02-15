@@ -45,17 +45,18 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
       radGridView1.ResetBindings();
       radGridView1.BestFitColumns(BestFitColumnMode.HeaderCells);
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
-      
+
       AddSummaryRow();
       AddChildTemplate(
-                       delegate (DataRowView x)
+                       delegate(DataRowView x)
                        {
                          var cnt = wordBag1.ResultQueries.Count();
                          if (cnt == 1)
                          {
                            var q = wordBag1.ResultQueries.First();
-                           var bag = new List<string> { q };
-                           bag.AddRange(x[Resources.Label].ToString().Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries));
+                           var bag = new List<string> {q};
+                           bag.AddRange(x[Resources.Label]
+                                       .ToString().Split(new[] {", "}, StringSplitOptions.RemoveEmptyEntries));
 
                            return new FilterQuerySingleLayerFirstAndAnyOtherMatch
                            {
@@ -64,10 +65,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
                              LayerQueries = bag
                            };
                          }
+
                          if (cnt > 1)
                          {
                            var qs = wordBag1.ResultQueries.ToArray();
-                           var bag = new List<string> { qs[0] };
+                           var bag = new List<string> {qs[0]};
                            var other = x[Resources.Label]
                                       .ToString()
                                       .Split(new[] {", "}, StringSplitOptions.RemoveEmptyEntries);
@@ -76,7 +78,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
                            var or = new List<AbstractFilterQuery>();
                            for (var i = 1; i < qs.Length; i++)
                            {
-                             bag = new List<string> { qs[1] };
+                             bag = new List<string> {qs[1]};
                              bag.AddRange(other);
 
                              or.Add(new FilterQuerySingleLayerFirstAndAnyOtherMatch

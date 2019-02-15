@@ -24,57 +24,57 @@ namespace CorpusExplorer.Port.TreeTaggerTrainer.Model
     public Lexicon(IHydra iHydra, string layerDisplayname)
     {
       Parallel.ForEach(
-        iHydra.DocumentGuids,
-        Configuration.ParallelOptions,
-        tguid =>
-        {
-          var wl = iHydra.GetLayerOfDocument(tguid, "Wort");
-          var ll = iHydra.GetLayerOfDocument(tguid, "Lemma");
-          var tl = iHydra.GetLayerOfDocument(tguid, layerDisplayname);
+                       iHydra.DocumentGuids,
+                       Configuration.ParallelOptions,
+                       tguid =>
+                       {
+                         var wl = iHydra.GetLayerOfDocument(tguid, "Wort");
+                         var ll = iHydra.GetLayerOfDocument(tguid, "Lemma");
+                         var tl = iHydra.GetLayerOfDocument(tguid, layerDisplayname);
 
-          if (wl == null ||
-              ll == null ||
-              tl == null)
-            return;
+                         if (wl == null ||
+                             ll == null ||
+                             tl == null)
+                           return;
 
 
-          string[][] wdoc, ldoc, tdoc;
-          try
-          {
-            wdoc = wl.GetReadableDocumentByGuid(tguid).Select(x => x.ToArray()).ToArray();
-            ldoc = ll.GetReadableDocumentByGuid(tguid).Select(x => x.ToArray()).ToArray();
-            tdoc = tl.GetReadableDocumentByGuid(tguid).Select(x => x.ToArray()).ToArray();
-          }
-          catch
-          {
-            return;
-          }
+                         string[][] wdoc, ldoc, tdoc;
+                         try
+                         {
+                           wdoc = wl.GetReadableDocumentByGuid(tguid).Select(x => x.ToArray()).ToArray();
+                           ldoc = ll.GetReadableDocumentByGuid(tguid).Select(x => x.ToArray()).ToArray();
+                           tdoc = tl.GetReadableDocumentByGuid(tguid).Select(x => x.ToArray()).ToArray();
+                         }
+                         catch
+                         {
+                           return;
+                         }
 
-          try
-          {
-            for (var i = 0; i < wdoc.Length; i++)
-            {
-              if (wdoc[i] == null)
-                continue;
-              for (var j = 0; j < wdoc[i].Length; j++)
-                lock (@lock)
-                {
-                  if (_data.ContainsKey(wdoc[i][j]))
-                  {
-                    if (!_data[wdoc[i][j]].ContainsKey(tdoc[i][j]))
-                      _data[wdoc[i][j]].Add(tdoc[i][j], ldoc[i][j]);
-                  }
-                  else
-                  {
-                    _data.Add(wdoc[i][j], new Dictionary<string, string> {{tdoc[i][j], ldoc[i][j]}});
-                  }
-                }
-            }
-          }
-          catch
-          {
-          }
-        });
+                         try
+                         {
+                           for (var i = 0; i < wdoc.Length; i++)
+                           {
+                             if (wdoc[i] == null)
+                               continue;
+                             for (var j = 0; j < wdoc[i].Length; j++)
+                               lock (@lock)
+                               {
+                                 if (_data.ContainsKey(wdoc[i][j]))
+                                 {
+                                   if (!_data[wdoc[i][j]].ContainsKey(tdoc[i][j]))
+                                     _data[wdoc[i][j]].Add(tdoc[i][j], ldoc[i][j]);
+                                 }
+                                 else
+                                 {
+                                   _data.Add(wdoc[i][j], new Dictionary<string, string> {{tdoc[i][j], ldoc[i][j]}});
+                                 }
+                               }
+                           }
+                         }
+                         catch
+                         {
+                         }
+                       });
     }
 
     public Lexicon(IEnumerable<Lexicon> lexicons)

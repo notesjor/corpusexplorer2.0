@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Diagnostic;
 
@@ -35,14 +36,27 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Insight
       if (status)
       {
         if (!File.Exists(_insightId) || new FileInfo(_insightId).Length != 36)
-          FileIO.Write(_insightId, Guid.NewGuid().ToString());        
+          FileIO.Write(_insightId, Guid.NewGuid().ToString());
       }
       else
       {
         if (File.Exists(_insightId))
           File.Delete(_insightId);
       }
+
       NeverAskAgain();
+    }
+
+    public static void SetLocation(string country, string city)
+    {
+      try
+      {
+        File.WriteAllLines("insight.loc", new[] { country, city }, Encoding.UTF8);
+      }
+      catch
+      {
+        // ignore
+      }
     }
   }
 }

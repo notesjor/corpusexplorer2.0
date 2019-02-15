@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
@@ -19,10 +13,23 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
       InitializeComponent();
     }
 
-    public Image Image { get => pictureBox1.Image; set => pictureBox1.Image = value; }
-    public string Label { get => radLabel1.Text; set => radLabel1.Text = value; }
+    public Image Image
+    {
+      get => pictureBox1.Image;
+      set => pictureBox1.Image = value;
+    }
+
+    public string Label
+    {
+      get => radLabel1.Text;
+      set => radLabel1.Text = value;
+    }
+
     public event EventHandler OnClick;
 
-    private void ControlClick(object sender, EventArgs e) => OnClick?.Invoke(sender, e);
+    private void ControlClick(object sender, EventArgs e)
+    {
+      OnClick?.Invoke(sender, e);
+    }
   }
 }

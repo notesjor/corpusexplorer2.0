@@ -648,6 +648,26 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap archive_download_128px {
+            get {
+                object obj = ResourceManager.GetObject("archive-download@128px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap archive_download_48px {
+            get {
+                object obj = ResourceManager.GetObject("archive-download@48px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Soll das Korpus komprimiert werden (GZip)?
         ///Nicht geeignet für Korpra mit mehr als 5 Mio. Token! ähnelt.
         /// </summary>
@@ -817,6 +837,26 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         public static string Autosplit_wird_ausgeführt {
             get {
                 return ResourceManager.GetString("Autosplit_wird_ausgeführt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap barcode_search {
+            get {
+                object obj = ResourceManager.GetObject("barcode-search", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap barcode_search1 {
+            get {
+                object obj = ResourceManager.GetObject("barcode-search1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

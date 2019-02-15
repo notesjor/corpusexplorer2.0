@@ -7,11 +7,15 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Helper
 {
   public static class ClusterToSelectionHelper
   {
-    public static Selection ToSelection(this AbstractCluster cluster, Selection selection) 
-      => selection.Create(cluster.DocumentGuids, cluster.Displayname);
+    public static Selection ToSelection(this AbstractCluster cluster, Selection selection)
+    {
+      return selection.Create(cluster.DocumentGuids, cluster.Displayname);
+    }
 
-    public static IEnumerable<Selection> ToSelection(this IEnumerable<AbstractCluster> clusters, Selection selection) 
-      => clusters.Select(cluster => ToSelection(cluster, selection));
+    public static IEnumerable<Selection> ToSelection(this IEnumerable<AbstractCluster> clusters, Selection selection)
+    {
+      return clusters.Select(cluster => ToSelection(cluster, selection));
+    }
 
     public static Selection ToTemporarySelection(this AbstractCluster cluster, Selection selection)
     {
@@ -20,7 +24,10 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Helper
       return res;
     }
 
-    public static IEnumerable<Selection> ToTemporarySelection(this IEnumerable<AbstractCluster> clusters, Selection selection) 
-      => clusters.Select(cluster => ToTemporarySelection(cluster, selection));
+    public static IEnumerable<Selection> ToTemporarySelection(this IEnumerable<AbstractCluster> clusters,
+                                                              Selection selection)
+    {
+      return clusters.Select(cluster => ToTemporarySelection(cluster, selection));
+    }
   }
 }

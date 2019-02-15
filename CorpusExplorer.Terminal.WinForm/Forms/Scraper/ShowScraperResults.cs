@@ -33,7 +33,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
       ButtonOkClick += (sender, args) => DataSave();
       _documets =
         new IndexList<Dictionary<string, object>>(
-          documets.Where(doc => !string.IsNullOrEmpty(doc.Get("Text", ""))));
+                                                  documets.Where(doc => !string.IsNullOrEmpty(doc.Get("Text", ""))));
 
       _checkBox = new RadCheckBoxElement {Text = Resources.ShowScraperResults_IgnoreText};
       commandBarHostItem1.HostedItem = _checkBox;
@@ -75,7 +75,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
     {
       lbl_menu.Text = @"0 / 0";
 
-      if (_documets == null ||
+      if (_documets       == null ||
           _documets.Count == 0)
         return;
 

@@ -51,8 +51,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
     private void PivotGridVisualisation_ShowVisualisation(object sender, EventArgs e)
     {
       Processing.Invoke(
-        null,
-        Analyse);
+                        null,
+                        Analyse);
     }
 
     private void Analyse()

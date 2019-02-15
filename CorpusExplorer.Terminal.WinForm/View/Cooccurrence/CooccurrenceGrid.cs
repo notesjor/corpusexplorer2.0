@@ -47,17 +47,17 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
 
       AddSummaryRow();
       AddChildTemplate(
-        x => new FilterQuerySingleLayerAllInOneSentence
-        {
-          Inverse = false,
-          LayerDisplayname = "Wort",
-          LayerQueries =
-            new[]
-            {
-              x[Resources.Zeichenkette].ToString(),
-              x[Resources.Kookkurrenz].ToString()
-            }
-        });
+                       x => new FilterQuerySingleLayerAllInOneSentence
+                       {
+                         Inverse = false,
+                         LayerDisplayname = "Wort",
+                         LayerQueries =
+                           new[]
+                           {
+                             x[Resources.Zeichenkette].ToString(),
+                             x[Resources.Kookkurrenz].ToString()
+                           }
+                       });
     }
 
     /// <summary>
@@ -149,21 +149,21 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       var composite = new CompositeFilterDescriptor {LogicalOperator = FilterLogicalOperator.Or};
 
       composite.FilterDescriptors.Add(
-        new FilterDescriptor
-        {
-          PropertyName = Resources.StringLabel,
-          Operator = FilterOperator.IsEqualTo,
-          Value = txt_query.Text,
-          IsFilterEditor = true
-        });
+                                      new FilterDescriptor
+                                      {
+                                        PropertyName = Resources.StringLabel,
+                                        Operator = FilterOperator.IsEqualTo,
+                                        Value = txt_query.Text,
+                                        IsFilterEditor = true
+                                      });
       composite.FilterDescriptors.Add(
-        new FilterDescriptor
-        {
-          PropertyName = Resources.Cooccurrence,
-          Operator = FilterOperator.IsEqualTo,
-          Value = txt_query.Text,
-          IsFilterEditor = true
-        });
+                                      new FilterDescriptor
+                                      {
+                                        PropertyName = Resources.Cooccurrence,
+                                        Operator = FilterOperator.IsEqualTo,
+                                        Value = txt_query.Text,
+                                        IsFilterEditor = true
+                                      });
 
       radGridView1.FilterDescriptors.Add(composite);
     }
@@ -171,25 +171,25 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     private void btn_snapshot_create_Click(object sender, EventArgs e)
     {
       CreateSelection(
-        radGridView1.SelectedRows.Select(
-          row => new FilterQuerySingleLayerAllInOneSentence
-          {
-            LayerDisplayname = "Wort",
-            Inverse = false,
-            LayerQueries =
-              new[]
-              {
-                row.Cells[Resources.Zeichenkette].Value.ToString(),
-                row.Cells[Resources.Kookkurrenz].Value.ToString()
-              }
-          }));
+                      radGridView1.SelectedRows.Select(
+                                                       row => new FilterQuerySingleLayerAllInOneSentence
+                                                       {
+                                                         LayerDisplayname = "Wort",
+                                                         Inverse = false,
+                                                         LayerQueries =
+                                                           new[]
+                                                           {
+                                                             row.Cells[Resources.Zeichenkette].Value.ToString(),
+                                                             row.Cells[Resources.Kookkurrenz].Value.ToString()
+                                                           }
+                                                       }));
     }
 
     private void ShowViewCall(object sender, EventArgs e)
     {
       btn_posFilter.Visibility = Project.CurrentSelection.ContainsLayer("POS")
-        ? ElementVisibility.Visible
-        : ElementVisibility.Collapsed;
+                                   ? ElementVisibility.Visible
+                                   : ElementVisibility.Collapsed;
       Processing.Invoke(Resources.ZählungLäuft, Analyse);
     }
 

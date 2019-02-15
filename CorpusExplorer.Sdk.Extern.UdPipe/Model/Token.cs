@@ -38,7 +38,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
       get
       {
-        string ret = udpipe_csharpPINVOKE.Token_form_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.Token_form_get(swigCPtr);
         if (udpipe_csharpPINVOKE.SWIGPendingException.Pending)
           throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
         return ret;
@@ -55,7 +55,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
       get
       {
-        string ret = udpipe_csharpPINVOKE.Token_misc_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.Token_misc_get(swigCPtr);
         if (udpipe_csharpPINVOKE.SWIGPendingException.Pending)
           throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
         return ret;
@@ -83,43 +83,43 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public bool getSpaceAfter()
     {
-      bool ret = udpipe_csharpPINVOKE.Token_getSpaceAfter(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Token_getSpaceAfter(swigCPtr);
       return ret;
     }
 
     public string getSpacesAfter()
     {
-      string ret = udpipe_csharpPINVOKE.Token_getSpacesAfter(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Token_getSpacesAfter(swigCPtr);
       return ret;
     }
 
     public string getSpacesBefore()
     {
-      string ret = udpipe_csharpPINVOKE.Token_getSpacesBefore(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Token_getSpacesBefore(swigCPtr);
       return ret;
     }
 
     public string getSpacesInToken()
     {
-      string ret = udpipe_csharpPINVOKE.Token_getSpacesInToken(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Token_getSpacesInToken(swigCPtr);
       return ret;
     }
 
     public bool getTokenRange()
     {
-      bool ret = udpipe_csharpPINVOKE.Token_getTokenRange(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Token_getTokenRange(swigCPtr);
       return ret;
     }
 
     public uint getTokenRangeEnd()
     {
-      uint ret = udpipe_csharpPINVOKE.Token_getTokenRangeEnd(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Token_getTokenRangeEnd(swigCPtr);
       return ret;
     }
 
     public uint getTokenRangeStart()
     {
-      uint ret = udpipe_csharpPINVOKE.Token_getTokenRangeStart(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Token_getTokenRangeStart(swigCPtr);
       return ret;
     }
 

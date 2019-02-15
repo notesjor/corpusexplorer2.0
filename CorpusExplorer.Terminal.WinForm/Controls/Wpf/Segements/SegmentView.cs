@@ -15,8 +15,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Segements
   public partial class SegmentView
   {
     private readonly List<Rectangle> _rectangles = new List<Rectangle>();
-    private Colorizer.Colorizer _colorizer;
     private ValueGradientColorizer _brush;
+    private Colorizer.Colorizer _colorizer;
 
     public SegmentView()
     {
@@ -73,8 +73,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Segements
       if (_rectangles == null)
         return;
 
-      foreach(var r in _rectangles)
-        if(r.Tag != null && r.Tag is double v)
+      foreach (var r in _rectangles)
+        if (r.Tag != null && r.Tag is double v)
           r.Fill = new SolidColorBrush(ColorGradientPickHelper.GetColor(_brush, v));
     }
   }

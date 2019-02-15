@@ -1,5 +1,6 @@
 ﻿#region
 
+using System.Net;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Model.Cache;
@@ -22,15 +23,17 @@ namespace CorpusExplorer.Sdk.Ecosystem
     ///   CacheStrategyCurrentSelection festgelegt.
     /// </param>
     /// <param name="alternative3rdPartyPath">
-    /// Normalerweise wird nur im Pfad der aktuellen EXEcutable nach 3rd-Party-Addons gesucht.
-    /// Mit diesem Parameter kann ein anderer Ordner als Suchpfad angegeben werden.
+    ///   Normalerweise wird nur im Pfad der aktuellen EXEcutable nach 3rd-Party-Addons gesucht.
+    ///   Mit diesem Parameter kann ein anderer Ordner als Suchpfad angegeben werden.
     /// </param>
     /// <returns>TerminalController - erlaubt das Verwalten von Projekten</returns>
-    public static TerminalController Initialize(AbstractCacheStrategy cacheStrategy = null, string alternative3rdPartyPath = null)
+    public static TerminalController Initialize(AbstractCacheStrategy cacheStrategy = null,
+                                                string alternative3rdPartyPath = null)
     {
       if (_controller != null)
         return _controller;
 
+      SslFix();
       Configuration.Initialize(InitialOptionsEnum.MinimalAnd3rdParty, alternative3rdPartyPath: alternative3rdPartyPath);
       Configuration.Cache = cacheStrategy ?? new CacheStrategyCurrentSelection();
       _controller = new TerminalController();
@@ -48,21 +51,36 @@ namespace CorpusExplorer.Sdk.Ecosystem
     ///   CacheStrategyDisableCaching festgelegt.
     /// </param>
     /// <param name="alternative3rdPartyPath">
-    /// Normalerweise wird nur im Pfad der aktuellen EXEcutable nach 3rd-Party-Addons gesucht.
-    /// Mit diesem Parameter kann ein anderer Ordner als Suchpfad angegeben werden.
+    ///   Normalerweise wird nur im Pfad der aktuellen EXEcutable nach 3rd-Party-Addons gesucht.
+    ///   Mit diesem Parameter kann ein anderer Ordner als Suchpfad angegeben werden.
     /// </param>
     /// <returns>Project</returns>
-    public static Project InitializeMinimal(AbstractCacheStrategy cacheStrategy = null, string alternative3rdPartyPath = null)
+    public static Project InitializeMinimal(AbstractCacheStrategy cacheStrategy = null,
+                                            string alternative3rdPartyPath = null)
     {
       if (_controller != null)
         return _controller.Project;
 
+      SslFix();
       Configuration.Initialize(InitialOptionsEnum.Minimal, alternative3rdPartyPath: alternative3rdPartyPath);
       Configuration.Cache = cacheStrategy ?? new CacheStrategyDisableCaching();
       _controller = new TerminalController();
       _controller.ProjectNew();
 
       return _controller.Project;
+    }
+
+    private static void SslFix()
+    {
+      try
+      {
+        ServicePointManager.Expect100Continue = true;
+        ServicePointManager.SecurityProtocol = (SecurityProtocolType) 3072;
+      }
+      catch
+      {
+        // ignore
+      }
     }
   }
 }

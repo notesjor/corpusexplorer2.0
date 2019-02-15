@@ -30,8 +30,8 @@ namespace CorpusExplorer.Sdk.ViewModel
     public Dictionary<string, double> GetMatchingAuthors(Selection selectionToCompare, double threshold)
     {
       return _block.Compare(selectionToCompare)
-        .CompareResults.Where(x => x.Value > threshold)
-        .ToDictionary(x => x.Key, x => x.Value);
+                   .CompareResults.Where(x => x.Value > threshold)
+                   .ToDictionary(x => x.Key, x => x.Value);
     }
 
     public Dictionary<string, double> GetProfile(Selection selectionToCompare)

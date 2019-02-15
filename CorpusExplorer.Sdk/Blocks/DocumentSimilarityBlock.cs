@@ -75,7 +75,7 @@ namespace CorpusExplorer.Sdk.Blocks
       {
         var sim = Similarity.CalculateSimilarity(reference, doc.Value);
         if (double.IsInfinity(sim) ||
-            double.IsNaN(sim) ||
+            double.IsNaN(sim)      ||
             sim < MinimumDocumentSimilarity)
           continue;
         res.Add(doc.Key, sim);
@@ -97,10 +97,10 @@ namespace CorpusExplorer.Sdk.Blocks
       foreach (var cluster in clusters)
       {
         var sim = Similarity.CalculateSimilarity(
-          reference,
-          RequestMetaclusterSimilarity_ConvertClusterToVector(cluster.Value));
+                                                 reference,
+                                                 RequestMetaclusterSimilarity_ConvertClusterToVector(cluster.Value));
         if (double.IsInfinity(sim) ||
-            double.IsNaN(sim) ||
+            double.IsNaN(sim)      ||
             sim < MinimumDocumentSimilarity)
           continue;
         res.Add(cluster.Key, sim);
@@ -117,8 +117,8 @@ namespace CorpusExplorer.Sdk.Blocks
       foreach (
         var entry in
         guids.Where(guid => _documents.ContainsKey(guid))
-          .Select(guid => _documents[guid])
-          .SelectMany(entries => entries))
+             .Select(guid => _documents[guid])
+             .SelectMany(entries => entries))
         if (res.ContainsKey(entry.Key))
         {
           res[entry.Key] += entry.Value;

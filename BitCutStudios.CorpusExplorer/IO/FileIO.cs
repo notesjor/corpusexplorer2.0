@@ -40,7 +40,7 @@ namespace Bcs.IO
       if (encoding == null)
         encoding = Encoding.UTF8;
       if (delimiters == null)
-        delimiters = new[] { "\r\n", "\r", "\n" };
+        delimiters = new[] {"\r\n", "\r", "\n"};
 
       return ReadText(path, encoding).Split(delimiters, stringSplitOptions);
     }

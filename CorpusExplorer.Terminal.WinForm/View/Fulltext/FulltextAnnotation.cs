@@ -67,15 +67,15 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_layer_addValue_Click(object sender, EventArgs e)
     {
       var node = tree.SelectedNode;
-      if (node == null ||
+      if (node        == null ||
           node.Parent != null)
         return; // muss != null sein um zu überprüfen ob es sich um den Layernode handelt
 
       var form = new SimpleTextInput(
-        Resources.FulltextAnnotation_NewLayerValue,
-        Resources.FulltextAnnotation_NewLayerValueDescription,
-        Resources.layers1,
-        Resources.FulltextAnnotation_NewLayerValueNullText);
+                                     Resources.FulltextAnnotation_NewLayerValue,
+                                     Resources.FulltextAnnotation_NewLayerValueDescription,
+                                     Resources.layers1,
+                                     Resources.FulltextAnnotation_NewLayerValueNullText);
       if (form.ShowDialog() != DialogResult.OK)
         return;
 
@@ -86,7 +86,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_layer_export_Click(object sender, EventArgs e)
     {
       var node = tree.SelectedNode;
-      if (node == null ||
+      if (node        == null ||
           node.Parent != null)
         return; // muss != null sein um zu überprüfen ob es sich um den Layernode handelt
 
@@ -96,7 +96,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_layer_import_Click(object sender, EventArgs e)
     {
       var node = tree.SelectedNode;
-      if (node == null ||
+      if (node        == null ||
           node.Parent != null)
         return; // muss != null sein um zu überprüfen ob es sich um den Layernode handelt
     }
@@ -104,10 +104,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_layer_new_Click(object sender, EventArgs e)
     {
       var form = new SimpleTextInput(
-        Resources.FulltextAnnotation_NewLayer,
-        Resources.FulltextAnnotation_NewLayerDescription,
-        Resources.layers1,
-        Resources.FulltextAnnotation_NewLayerNullText);
+                                     Resources.FulltextAnnotation_NewLayer,
+                                     Resources.FulltextAnnotation_NewLayerDescription,
+                                     Resources.layers1,
+                                     Resources.FulltextAnnotation_NewLayerNullText);
       if (form.ShowDialog() != DialogResult.OK)
         return;
 
@@ -118,18 +118,18 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_layer_remove_Click(object sender, EventArgs e)
     {
       var node = tree.SelectedNode;
-      if (node == null ||
+      if (node        == null ||
           node.Parent != null)
         return; // muss != null sein um zu überprüfen ob es sich um den Layernode handelt
 
       if (
         MessageBox.Show(
-          string.Format(
-            Resources.FulltextAnnotation_DeleteLayer,
-            node.Text),
-          Resources.FulltextAnnotation_DeleteLayerHead,
-          MessageBoxButtons.YesNo,
-          MessageBoxIcon.Warning) != DialogResult.Yes)
+                        string.Format(
+                                      Resources.FulltextAnnotation_DeleteLayer,
+                                      node.Text),
+                        Resources.FulltextAnnotation_DeleteLayerHead,
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning) != DialogResult.Yes)
         return;
 
       _vmAnnotation.DeleteLayer(node.Text);
@@ -139,25 +139,25 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_layer_rename_Click(object sender, EventArgs e)
     {
       var node = tree.SelectedNode;
-      if (node == null ||
+      if (node        == null ||
           node.Parent != null)
         return; // muss != null sein um zu überprüfen ob es sich um den Layernode handelt
 
-      if (node.Text == "Wort" ||
+      if (node.Text == "Wort"  ||
           node.Text == "Lemma" ||
           node.Text == "POS")
         MessageBox.Show(
-          Resources.FulltextAnnotation_RenameLayer,
-          Resources.FulltextAnnotation_RenameLayerHead,
-          MessageBoxButtons.OK,
-          MessageBoxIcon.Warning);
+                        Resources.FulltextAnnotation_RenameLayer,
+                        Resources.FulltextAnnotation_RenameLayerHead,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
 
       var form = new SimpleTextInput(
-        Resources.FulltextAnnotation_RenameLayer_Head,
-        Resources.FulltextAnnotation_RenameLayer_Description,
-        Resources.layers1,
-        node.Text
-      );
+                                     Resources.FulltextAnnotation_RenameLayer_Head,
+                                     Resources.FulltextAnnotation_RenameLayer_Description,
+                                     Resources.layers1,
+                                     node.Text
+                                    );
       if (form.ShowDialog() != DialogResult.OK)
         return;
 
@@ -173,12 +173,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
       if (
         MessageBox.Show(
-          string.Format(
-            Resources.FulltextAnnotation_DeleteLayerValue,
-            node.Text),
-          Resources.FulltextAnnotation_DeleteLayerValueHead,
-          MessageBoxButtons.YesNo,
-          MessageBoxIcon.Warning) != DialogResult.Yes)
+                        string.Format(
+                                      Resources.FulltextAnnotation_DeleteLayerValue,
+                                      node.Text),
+                        Resources.FulltextAnnotation_DeleteLayerValueHead,
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning) != DialogResult.Yes)
         return;
 
       _vmAnnotation.DeleteLayerValue(node.Parent.Text, node.Text);
@@ -192,11 +192,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
         return;
 
       var form = new SimpleTextInput(
-        Resources.FulltextAnnotation_DeleteLayerValue_ChangeLayerValue,
-        Resources.FulltextAnnotation_DeleteLayerValue_ChangeLayerValueDescription,
-        Resources.layers1,
-        node.Text
-      );
+                                     Resources.FulltextAnnotation_DeleteLayerValue_ChangeLayerValue,
+                                     Resources.FulltextAnnotation_DeleteLayerValue_ChangeLayerValueDescription,
+                                     Resources.layers1,
+                                     node.Text
+                                    );
       if (form.ShowDialog() != DialogResult.OK)
         return;
 
@@ -223,8 +223,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
         var c = _colors[i];
         _coloredNodes[i].BackColor = c;
         tagger1.SetItemColor(
-          _vmAnnotation.GetLayerValueMask((Guid) _coloredNodes[i].Parent.Tag, _coloredNodes[i].Text),
-          System.Windows.Media.Color.FromArgb(c.A, c.R, c.G, c.B), _coloredNodes[i].Text);
+                             _vmAnnotation.GetLayerValueMask((Guid) _coloredNodes[i].Parent.Tag, _coloredNodes[i].Text),
+                             System.Windows.Media.Color.FromArgb(c.A, c.R, c.G, c.B), _coloredNodes[i].Text);
       }
     }
 
@@ -270,12 +270,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
         foreach (var sub in values)
           node.Nodes.Add(
-            new RadTreeNode(sub)
-            {
-              CheckType = CheckType.CheckBox,
-              Checked = false,
-              ContextMenu = menu_layervalue
-            });
+                         new RadTreeNode(sub)
+                         {
+                           CheckType = CheckType.CheckBox,
+                           Checked = false,
+                           ContextMenu = menu_layervalue
+                         });
 
         nodes.Add(node);
       }
@@ -325,12 +325,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
         if (_coloredNodes.Count + 1 >= _colors.Length)
         {
           MessageBox.Show(
-            string.Format(
-              Resources.FulltextAnnotation_MaxHighlightLimmit,
-              _colors.Length),
-            Resources.FulltextAnnotation_MaxHighlightLimmitHead,
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information);
+                          string.Format(
+                                        Resources.FulltextAnnotation_MaxHighlightLimmit,
+                                        _colors.Length),
+                          Resources.FulltextAnnotation_MaxHighlightLimmitHead,
+                          MessageBoxButtons.OK,
+                          MessageBoxIcon.Information);
           return;
         }
 
@@ -343,7 +343,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
           _coloredNodes.Remove(e.Node);
 
         if (_coloredNodes.Count > 0 &&
-            _annotationNode == e.Node)
+            _annotationNode     == e.Node)
           SetAnnotationNode(_coloredNodes.Last());
 
         SetNodeHighlight(e.Node, false, Color.White);

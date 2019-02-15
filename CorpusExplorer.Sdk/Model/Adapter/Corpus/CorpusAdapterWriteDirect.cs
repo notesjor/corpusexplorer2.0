@@ -48,7 +48,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     public override IEnumerable<AbstractLayerAdapter> Layers => _layers;
 
     public override IEnumerable<string> LayerUniqueDisplaynames => new HashSet<string>(
-      _layers.Select(x => x.Displayname));
+                                                                                       _layers
+                                                                                        .Select(x => x.Displayname));
 
     public override bool UseCompression => false;
 
@@ -118,7 +119,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       {
         _guid = Guid.NewGuid(),
         _documentMetadata = documentMetadata ?? new Dictionary<Guid, Dictionary<string, object>>(),
-        _metadata = corpusMetadata ?? new Dictionary<string, object>(),
+        _metadata = corpusMetadata           ?? new Dictionary<string, object>(),
         _layers = new List<LayerAdapterWriteDirect>()
       };
     }
@@ -148,7 +149,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     public override int GetDocumentLengthInWords(Guid documentGuid)
     {
       return _layers.FirstOrDefault(x => x.ContainsDocument(documentGuid))?[documentGuid]?.SelectMany(s => s).Count()
-             ?? 0;
+          ?? 0;
     }
 
     public override Dictionary<string, object> GetDocumentMetadata(Guid documentGuid)
@@ -160,12 +161,12 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     {
       var res = new Dictionary<string, HashSet<object>>();
       foreach (var x in _documentMetadata)
-        foreach (var o in x.Value)
-        {
-          if (!res.ContainsKey(o.Key))
-            res.Add(o.Key, new HashSet<object>());
-          res[o.Key].Add(o.Value);
-        }
+      foreach (var o in x.Value)
+      {
+        if (!res.ContainsKey(o.Key))
+          res.Add(o.Key, new HashSet<object>());
+        res[o.Key].Add(o.Value);
+      }
 
       return res;
     }
@@ -188,7 +189,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     public override AbstractLayerAdapter GetLayerOfDocument(Guid documentGuid, string layerDisplayname)
     {
       return (from x in _layers where x.Displayname == layerDisplayname && x.ContainsDocument(documentGuid) select x)
-        .FirstOrDefault();
+       .FirstOrDefault();
     }
 
     public override IEnumerable<AbstractLayerAdapter> GetLayers(string displayname)
@@ -214,15 +215,15 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, string layerDisplayname)
     {
       return _layers.FirstOrDefault(
-          x => x.Displayname == layerDisplayname && x.ContainsDocument(documentGuid))?
-        .GetReadableDocumentByGuid(documentGuid);
+                                    x => x.Displayname == layerDisplayname && x.ContainsDocument(documentGuid))?
+       .GetReadableDocumentByGuid(documentGuid);
     }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, Guid layerGuid)
     {
       return _layers.FirstOrDefault(
-          x => x.Guid == layerGuid && x.ContainsDocument(documentGuid))?
-        .GetReadableDocumentByGuid(documentGuid);
+                                    x => x.Guid == layerGuid && x.ContainsDocument(documentGuid))?
+       .GetReadableDocumentByGuid(documentGuid);
     }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocumentSnippet(
@@ -232,17 +233,17 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       int stop)
     {
       return _layers.FirstOrDefault(
-          x => x.Displayname == layerDisplayname && x.ContainsDocument(documentGuid))?
-        .GetReadableDocumentSnippetByGuid(documentGuid, start, stop);
+                                    x => x.Displayname == layerDisplayname && x.ContainsDocument(documentGuid))?
+       .GetReadableDocumentSnippetByGuid(documentGuid, start, stop);
     }
 
     public override Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(
       Guid documentGuid)
     {
       return _layers.Where(x => x.ContainsDocument(documentGuid))
-        .ToDictionary(
-          x => x.Displayname,
-          x => x.GetReadableDocumentByGuid(documentGuid));
+                    .ToDictionary(
+                                  x => x.Displayname,
+                                  x => x.GetReadableDocumentByGuid(documentGuid));
     }
 
     public override void LayerCopy(string layerDisplaynameOriginal, string layerDisplaynameCopy)
@@ -329,7 +330,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       string layerValue)
     {
       return _layers.FirstOrDefault(x => x.Guid == layerGuid && x.ContainsDocument(documentGuid))?
-               .SetDocumentLayerValueMaskBySwitch(documentGuid, sentenceIndex, wordIndex, layerValue) ?? false;
+              .SetDocumentLayerValueMaskBySwitch(documentGuid, sentenceIndex, wordIndex, layerValue) ?? false;
     }
 
     public override bool SetDocumentLayerValueMask(
@@ -340,8 +341,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       string layerValue)
     {
       return _layers.FirstOrDefault(
-                 x => x.Displayname == layerDisplayname && x.ContainsDocument(documentGuid))?
-               .SetDocumentLayerValueMaskBySwitch(documentGuid, sentenceIndex, wordIndex, layerValue) ?? false;
+                                    x => x.Displayname == layerDisplayname && x.ContainsDocument(documentGuid))?
+              .SetDocumentLayerValueMaskBySwitch(documentGuid, sentenceIndex, wordIndex, layerValue) ?? false;
     }
 
     public override void SetDocumentMetadata(Guid documentGuid, Dictionary<string, object> metadata)
@@ -387,7 +388,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       if (buffer.Length > 0)
         using (var ms = new MemoryStream(buffer))
         {
-          res._metadata = (Dictionary<string, object>)bf.Deserialize(ms);
+          res._metadata = (Dictionary<string, object>) bf.Deserialize(ms);
         }
 
       // Document Metadata.Length
@@ -400,7 +401,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       if (buffer.Length > 0)
         using (var ms = new MemoryStream(buffer))
         {
-          res._documentMetadata = (Dictionary<Guid, Dictionary<string, object>>)bf.Deserialize(ms);
+          res._documentMetadata = (Dictionary<Guid, Dictionary<string, object>>) bf.Deserialize(ms);
         }
 
       // Layer
@@ -452,8 +453,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       {
         var guids = new HashSet<Guid>();
         foreach (var l in res._layers)
-          foreach (var dsel in l.DocumentGuids)
-            guids.Add(dsel);
+        foreach (var dsel in l.DocumentGuids)
+          guids.Add(dsel);
 
         res._documentMetadata = guids.ToDictionary(x => x, x => new Dictionary<string, object>());
       }

@@ -12,8 +12,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
   public partial class CooccurrenceTagPie : AbstractView
   {
     private bool _firstRun = true;
-    private CooccurrenceViewModel _vm;
     private string _lastSelectedLayer;
+    private CooccurrenceViewModel _vm;
 
     public CooccurrenceTagPie()
     {
@@ -45,29 +45,26 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
 
     private string ToJsonArray()
     {
-      if (wordBag1.ResultSelectedLayerDisplayname != _lastSelectedLayer)
-      {
-        _vm = GetViewModel<CooccurrenceViewModel>();
-        _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
-        if (!_vm.Execute())
-          return string.Empty;
-        _lastSelectedLayer = wordBag1.ResultSelectedLayerDisplayname;
-      }
+      _vm = GetViewModel<CooccurrenceViewModel>();
+      _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
+      if (!_vm.Execute())
+        return string.Empty;
+      _lastSelectedLayer = wordBag1.ResultSelectedLayerDisplayname;
 
       var array = new JArray();
       const double lim = 52.0;
 
       foreach (var query in wordBag1.ResultQueries)
       {
-        var cooc = _vm.Search(new[] {query}).ToDictionary(x => x.Key, x => x.Value[1] + 1);
-        var max = (int) cooc.Select(x => x.Value).Concat(new[] {1d}).Max();
+        var cooc = _vm.Search(new[] { query }).ToDictionary(x => x.Key, x => x.Value[1] + 1);
+        var max = (int)cooc.Select(x => x.Value).Concat(new[] { 1d }).Max();
         var fact = lim / max;
 
         var array2 = new JArray();
         foreach (var x in cooc)
-          array2.Add(new JObject {{"key", x.Key}, {"value", (int) x.Value * fact}});
+          array2.Add(new JObject { { "key", x.Key }, { "value", (int)x.Value * fact } });
 
-        var entry = new JObject {{"major", new JObject {{"key", query}, {"value", lim}}}, {"data", array2}};
+        var entry = new JObject { { "major", new JObject { { "key", query }, { "value", lim } } }, { "data", array2 } };
         array.Add(entry);
       }
 

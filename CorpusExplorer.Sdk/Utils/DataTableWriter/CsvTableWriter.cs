@@ -21,21 +21,26 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       {
         var r = new string[table.Columns.Count];
         for (var i = 0; i < table.Columns.Count; i++)
-          r[i] = x[i] == null ? "\"\"" : x[i] is string ? $"\"{EnsureValue(x[i].ToString())}\"" : x[i].ToString().Replace(",", ".");
+          r[i] = x[i] == null   ? "\"\"" :
+                 x[i] is string ? $"\"{EnsureValue(x[i].ToString())}\"" : x[i].ToString().Replace(",", ".");
 
         WriteOutput($"{string.Join(";", r)}\r\n");
       }
     }
 
-    protected override void WriteFooter() { }
+    protected override void WriteFooter()
+    {
+    }
 
     public override AbstractTableWriter Clone(Stream stream)
-      => new CsvTableWriter { OutputStream = stream };
+    {
+      return new CsvTableWriter {OutputStream = stream};
+    }
 
     private string EnsureValue(string value)
     {
       return value.Replace("\"", "''").Replace("\t", "").Replace("\r\n", " ").Replace("\r", " ").Replace("\n", " ")
-        .Replace("  ", " ").Replace("  ", " ").Replace("  ", " ");
+                  .Replace("  ", " ").Replace("  ", " ").Replace("  ", " ");
     }
   }
 }

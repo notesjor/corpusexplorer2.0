@@ -28,29 +28,32 @@ namespace CorpusExplorer.Sdk.Blocks
       block.Calculate();
 
       _dtp = block.Cluster.OfType<DateTimeCluster>()
-        .ToDictionary(cluster => (DateTime) cluster.CentralValue, cluster => cluster.DocumentGuids);
+                  .ToDictionary(cluster => (DateTime) cluster.CentralValue, cluster => cluster.DocumentGuids);
 
       DateTimeValues = new Dictionary<DateTime, T>();
       var @lock = new object();
 
       Parallel.ForEach(
-        DateTimePoints,
-        Configuration.ParallelOptions,
-        point =>
-        {
-          var values = CalculateValues(point.Value);
-          lock (@lock)
-          {
-            DateTimeValues.Add(point.Key, values);
-          }
-        });
+                       DateTimePoints,
+                       Configuration.ParallelOptions,
+                       point =>
+                       {
+                         var values = CalculateValues(point.Value);
+                         lock (@lock)
+                         {
+                           DateTimeValues.Add(point.Key, values);
+                         }
+                       });
     }
 
     public T CalculateValues(IEnumerable<DateTime> dateTimePoints)
     {
       return
         CalculateValues(
-          new HashSet<Guid>(from point in dateTimePoints where _dtp.ContainsKey(point) from x in _dtp[point] select x));
+                        new HashSet<Guid>(from point in dateTimePoints
+                                          where _dtp.ContainsKey(point)
+                                          from x in _dtp[point]
+                                          select x));
     }
 
     private T CalculateValues(IEnumerable<Guid> hashSet)

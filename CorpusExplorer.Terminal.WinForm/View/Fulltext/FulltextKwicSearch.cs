@@ -29,12 +29,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       if (wordBag1.ResultSelectedLayerDisplayname != null)
         _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
       _vm.AddQuery(
-        new FilterQuerySingleLayerAnyMatch
-        {
-          Inverse = false,
-          LayerDisplayname = _vm.LayerDisplayname,
-          LayerQueries = wordBag1.ResultQueries
-        });
+                   new FilterQuerySingleLayerAnyMatch
+                   {
+                     Inverse = false,
+                     LayerDisplayname = _vm.LayerDisplayname,
+                     LayerQueries = wordBag1.ResultQueries
+                   });
       _vm.Execute();
 
       radGridView1.DataSource = _vm.GetUniqueDataTableGui();
@@ -91,7 +91,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
     private void btn_filter_Click(object sender, EventArgs e)
     {
-      FilterListFunction("Wort");
+      FilterListFunction("Pre", "Match", "Post");
     }
 
     private void btn_filterEditor_Click(object sender, EventArgs e)
@@ -137,7 +137,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       vm.Execute();
 
       var form = new SimpleTextView(vm.QuickDocumentInfoResults, Project);
-      form.NewProperty += (o, a) => { vm.SetNewDocumentMetadata((KeyValuePair<string, Type>)o); };
+      form.NewProperty += (o, a) => { vm.SetNewDocumentMetadata((KeyValuePair<string, Type>) o); };
 
       if (form.ShowDialog() == DialogResult.OK)
         foreach (var doc in form.Documents)

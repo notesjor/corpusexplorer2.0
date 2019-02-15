@@ -11,10 +11,10 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator
     protected override string GenerateKey(object value)
     {
       return value == null
-        ? string.Empty
-        : value is DateTime
-          ? ((DateTime) value).ToString("yyyy-MM-dd")
-          : value.ToString();
+               ? string.Empty
+               : value is DateTime
+                 ? ((DateTime) value).ToString("yyyy-MM-dd")
+                 : value.ToString();
     }
 
     protected override AbstractCluster NewCluster(object value)

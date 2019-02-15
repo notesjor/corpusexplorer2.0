@@ -38,67 +38,67 @@ namespace CorpusExplorer.Sdk.Blocks
       var cloneLock = new object();
 
       Parallel.For(
-        0,
-        dsels.Length,
-        Configuration.ParallelOptions,
-        i =>
-        {
-          lock (cloneLock)
-          {
-            if (DetectedClones.Contains(dsels[i]))
-              return;
-          }
+                   0,
+                   dsels.Length,
+                   Configuration.ParallelOptions,
+                   i =>
+                   {
+                     lock (cloneLock)
+                     {
+                       if (DetectedClones.Contains(dsels[i]))
+                         return;
+                     }
 
-          var corpusA = Selection.GetCorpusOfDocument(dsels[i]);
-          var layerA = corpusA?.GetLayerOfDocument(dsels[i], LayerDisplayname);
-          var docA = layerA?[dsels[i]];
-          if (docA == null)
-            return;
+                     var corpusA = Selection.GetCorpusOfDocument(dsels[i]);
+                     var layerA = corpusA?.GetLayerOfDocument(dsels[i], LayerDisplayname);
+                     var docA = layerA?[dsels[i]];
+                     if (docA == null)
+                       return;
 
-          Parallel.For(
-            i + 1,
-            dsels.Length,
-            Configuration.ParallelOptions,
-            j =>
-            {
-              lock (cloneLock)
-              {
-                if (DetectedClones.Contains(dsels[j]))
-                  return;
-              }
+                     Parallel.For(
+                                  i + 1,
+                                  dsels.Length,
+                                  Configuration.ParallelOptions,
+                                  j =>
+                                  {
+                                    lock (cloneLock)
+                                    {
+                                      if (DetectedClones.Contains(dsels[j]))
+                                        return;
+                                    }
 
-              var corpusB = Selection.GetCorpusOfDocument(dsels[j]);
-              var layerB = corpusB?.GetLayerOfDocument(dsels[j], LayerDisplayname);
-              var docB = layerB?[dsels[j]];
-              if (docB == null)
-                return;
+                                    var corpusB = Selection.GetCorpusOfDocument(dsels[j]);
+                                    var layerB = corpusB?.GetLayerOfDocument(dsels[j], LayerDisplayname);
+                                    var docB = layerB?[dsels[j]];
+                                    if (docB == null)
+                                      return;
 
-              var small = docA.ReduceToSingleDimension().ToArray();
-              var big = docB.ReduceToSingleDimension().ToArray();
+                                    var small = docA.ReduceToSingleDimension().ToArray();
+                                    var big = docB.ReduceToSingleDimension().ToArray();
 
-              if (small.Length > big.Length)
-              {
-                var temp = small;
-                small = big;
-                big = temp;
-              }
+                                    if (small.Length > big.Length)
+                                    {
+                                      var temp = small;
+                                      small = big;
+                                      big = temp;
+                                    }
 
-              if (big.Length - small.Length > big.Length * InduvidualDocumentFactor)
-                return;
+                                    if (big.Length - small.Length > big.Length * InduvidualDocumentFactor)
+                                      return;
 
-              var diff = Diff.DiffInt(small, big);
-              var sum = diff.Aggregate(0.0d, (current, d) => current + d.EditDistance);
-              var lim = big.Length - small.Length + small.Length * DocumentMutationFactor;
+                                    var diff = Diff.DiffInt(small, big);
+                                    var sum = diff.Aggregate(0.0d, (current, d) => current + d.EditDistance);
+                                    var lim = big.Length - small.Length + small.Length * DocumentMutationFactor;
 
-              if (sum > lim)
-                return;
+                                    if (sum > lim)
+                                      return;
 
-              lock (cloneLock)
-              {
-                DetectedClones.Add(dsels[j]);
-              }
-            });
-        });
+                                    lock (cloneLock)
+                                    {
+                                      DetectedClones.Add(dsels[j]);
+                                    }
+                                  });
+                   });
     }
   }
 }

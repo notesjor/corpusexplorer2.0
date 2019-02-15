@@ -9,8 +9,6 @@ namespace CorpusExplorer.Sdk.Extern.BerkeleyParser
 {
   public class BerkeleyParserTagger : AbstractConllStyleTagger
   {
-    private bool _chinese;
-
     private readonly Dictionary<string, string> _languagesAvailable = new Dictionary<string, string>
     {
       {"Bulgarisch", "bul_sm5.gr"},
@@ -19,6 +17,8 @@ namespace CorpusExplorer.Sdk.Extern.BerkeleyParser
       {"Englisch", "eng_sm6.gr"},
       {"Französisch", "fra_sm5.gr"}
     };
+
+    private bool _chinese;
 
     private string _languageSelected;
     private string _model;
@@ -64,7 +64,7 @@ namespace CorpusExplorer.Sdk.Extern.BerkeleyParser
             {
               FileName = Configuration.GetDependencyPath(@"Java\bin\java.exe"),
               Arguments =
-                $"-jar \"{Configuration.GetDependencyPath($"BerkeleyParser/BerkeleyParser-1.7.jar")}\" -gr \"{_model}\" -tokenize {(_chinese ? "-chinese" : "")} -inputFile \"{fileInput.Path}\"",
+                $"-jar \"{Configuration.GetDependencyPath("BerkeleyParser/BerkeleyParser-1.7.jar")}\" -gr \"{_model}\" -tokenize {(_chinese ? "-chinese" : "")} -inputFile \"{fileInput.Path}\"",
               CreateNoWindow = true,
               UseShellExecute = false,
               StandardOutputEncoding = Configuration.Encoding,

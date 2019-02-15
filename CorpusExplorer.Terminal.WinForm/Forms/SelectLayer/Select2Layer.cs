@@ -70,8 +70,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
 
       if (ResultUseLayer2 && string.IsNullOrEmpty(ResultSelectedLayer2Displayname))
         Error = $"Bitte wählen Sie zuerst einen Layer für \"{Layer2Header}\" aus." + (IsLayer2Optional
-                  ? " Alternativ können Sie auch den Haken entfernen, um diesen Layer nicht zu analysieren."
-                  : "");
+                                                                                        ? " Alternativ können Sie auch den Haken entfernen, um diesen Layer nicht zu analysieren."
+                                                                                        : "");
     }
 
     #endregion

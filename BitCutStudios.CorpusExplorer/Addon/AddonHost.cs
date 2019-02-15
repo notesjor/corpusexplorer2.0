@@ -89,7 +89,7 @@ namespace Bcs.Addon
             foreach (var type in types)
               try
               {
-                if (!type.IsPublic ||
+                if (!type.IsPublic  ||
                     type.IsAbstract ||
                     type.GetInterface("Bcs.Addon.Interfaces.IAddon", true) == null)
                   continue;
@@ -107,7 +107,7 @@ namespace Bcs.Addon
                 InMemoryErrorConsole.Log(ex);
               }
           }
-          catch(BadImageFormatException)
+          catch (BadImageFormatException)
           {
             // ignore
           }
@@ -149,12 +149,12 @@ namespace Bcs.Addon
         var ts = _addons.Select(addon =>
         {
           var t = new Task(
-            () =>
-            {
-              addon.Stop();
-              addon.Terminate();
-              _addons.Remove(addon);
-            });
+                           () =>
+                           {
+                             addon.Stop();
+                             addon.Terminate();
+                             _addons.Remove(addon);
+                           });
           t.Start();
           return t;
         }).ToArray();
@@ -169,8 +169,8 @@ namespace Bcs.Addon
     private static string GetDirectoryPath(string directory)
     {
       return string.IsNullOrEmpty(directory)
-        ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-        : directory;
+               ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+               : directory;
     }
   }
 }

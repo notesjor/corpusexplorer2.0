@@ -66,7 +66,7 @@ namespace CorpusExplorer.Core
 
         new CosineMeasure(),
         new EuclideanDistance(),
-        
+
         new ChiSquaredSignificance(),
         new LogLikelihoodSignificance(),
         new PoissonSignificance(),
@@ -124,9 +124,9 @@ namespace CorpusExplorer.Core
       {
         {"CorpusExplorer v6 (*.cec6)|*.cec6", new ImporterCec6()},
         {"CorpusExplorer v6 [STREAM] (*.cec6)|*.cec6", new ImporterCec6Stream()},
-        {"TLV-XML (*.xml)|*.xml", new ImporterTlv()},        
+        {"TLV-XML (*.xml)|*.xml", new ImporterTlv()},
         {"CoNLL (*.conll)|*.conll", new ImporterConll()},
-        {"TreeTagger (*.txt)|*.txt", new ImporterTreeTagger()},
+        {"TreeTagger (*.txt)|*.txt", new ImporterTreeTagger()}
       };
 
     /// <summary>
@@ -209,7 +209,7 @@ namespace CorpusExplorer.Core
         new KwicNamedEntityAction(),
         new KwicSignificantFilterAction(),
         new KwitFilterAction(),
-        
+
         new ClusterAction(),
         new ConvertAction(),
         new QueryAction(),

@@ -34,8 +34,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Tagger
 
         _items =
           value.Select((satz, i) => satz.Select((wort, j) => new TaggerItem(wort, i, j, TaggerItemSelected)))
-            .Select(slis => slis.ToArray())
-            .ToArray();
+               .Select(slis => slis.ToArray())
+               .ToArray();
 
         container.ItemsSource = null;
         container.ItemsSource = _items.SelectMany(s => s).ToArray();

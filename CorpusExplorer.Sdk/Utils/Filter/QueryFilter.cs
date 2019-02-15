@@ -29,41 +29,41 @@ namespace CorpusExplorer.Sdk.Utils.Filter
       var dicLock = new object();
 
       Parallel.ForEach(
-        selection,
-        Configuration.ParallelOptions,
-        csel =>
-        {
-          var corpus = selection.GetCorpus(csel.Key);
-          if (corpus == null)
-            return;
+                       selection,
+                       Configuration.ParallelOptions,
+                       csel =>
+                       {
+                         var corpus = selection.GetCorpus(csel.Key);
+                         if (corpus == null)
+                           return;
 
-          var bag = new ConcurrentBag<Guid>();
+                         var bag = new ConcurrentBag<Guid>();
 
-          Parallel.ForEach(
-            csel.Value,
-            Configuration.ParallelOptions,
-            dsel =>
-            {
-              var check = true;
+                         Parallel.ForEach(
+                                          csel.Value,
+                                          Configuration.ParallelOptions,
+                                          dsel =>
+                                          {
+                                            var check = true;
 
-              // Damit ein Dokument akzeptiert wird müssen alle Queries positive Ergebnisse zurückliefern
-              foreach (var query in queries)
-              {
-                check = query.Validate(corpus, dsel);
-                if (!check)
-                  break;
-              }
+                                            // Damit ein Dokument akzeptiert wird müssen alle Queries positive Ergebnisse zurückliefern
+                                            foreach (var query in queries)
+                                            {
+                                              check = query.Validate(corpus, dsel);
+                                              if (!check)
+                                                break;
+                                            }
 
-              if (check)
-                bag.Add(dsel);
-            });
+                                            if (check)
+                                              bag.Add(dsel);
+                                          });
 
-          lock (dicLock)
-          {
-            if (bag.Count > 0)
-              dic.Add(csel.Key, new HashSet<Guid>(bag));
-          }
-        });
+                         lock (dicLock)
+                         {
+                           if (bag.Count > 0)
+                             dic.Add(csel.Key, new HashSet<Guid>(bag));
+                         }
+                       });
       return dic;
     }
 
@@ -80,44 +80,44 @@ namespace CorpusExplorer.Sdk.Utils.Filter
       var dic1 = new ConcurrentDictionary<Guid, Dictionary<Guid, HashSet<int>>>();
 
       Parallel.ForEach(
-        selection,
-        Configuration.ParallelOptions,
-        csel =>
-        {
-          var corpus = selection.GetCorpus(csel.Key);
-          if (corpus == null)
-            return;
+                       selection,
+                       Configuration.ParallelOptions,
+                       csel =>
+                       {
+                         var corpus = selection.GetCorpus(csel.Key);
+                         if (corpus == null)
+                           return;
 
-          var dic2 = new ConcurrentDictionary<Guid, HashSet<int>>();
+                         var dic2 = new ConcurrentDictionary<Guid, HashSet<int>>();
 
-          Parallel.ForEach(
-            csel.Value,
-            Configuration.ParallelOptions,
-            dsel =>
-            {
-              var check = true;
-              var dic3 = new HashSet<int>();
+                         Parallel.ForEach(
+                                          csel.Value,
+                                          Configuration.ParallelOptions,
+                                          dsel =>
+                                          {
+                                            var check = true;
+                                            var dic3 = new HashSet<int>();
 
-              // Damit ein Dokument akzeptiert wird müssen alle Queries positive Ergebnisse zurückliefern
-              foreach (
-                var qidx in
-                queries.Select(query => query.GetSentenceIndices(corpus, dsel)))
-              {
-                // Bei leerer Ergebnismenge breche den gesamten Vorgang ab
-                check = qidx != null;
-                if (!check)
-                  break;
+                                            // Damit ein Dokument akzeptiert wird müssen alle Queries positive Ergebnisse zurückliefern
+                                            foreach (
+                                              var qidx in
+                                              queries.Select(query => query.GetSentenceIndices(corpus, dsel)))
+                                            {
+                                              // Bei leerer Ergebnismenge breche den gesamten Vorgang ab
+                                              check = qidx != null;
+                                              if (!check)
+                                                break;
 
-                foreach (var x in qidx)
-                  dic3.Add(x);
-              }
+                                              foreach (var x in qidx)
+                                                dic3.Add(x);
+                                            }
 
-              if (check)
-                dic2.TryAdd(dsel, dic3);
-            });
+                                            if (check)
+                                              dic2.TryAdd(dsel, dic3);
+                                          });
 
-          dic1.TryAdd(csel.Key, dic2.ToDictionary(x => x.Key, x => x.Value));
-        });
+                         dic1.TryAdd(csel.Key, dic2.ToDictionary(x => x.Key, x => x.Value));
+                       });
       return dic1.ToDictionary(x => x.Key, x => x.Value);
     }
 
@@ -134,65 +134,65 @@ namespace CorpusExplorer.Sdk.Utils.Filter
       var dic1 = new ConcurrentDictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>>();
 
       Parallel.ForEach(
-        selection,
-        Configuration.ParallelOptions,
-        csel =>
-        {
-          var corpus = selection.GetCorpus(csel.Key);
-          if (corpus == null)
-            return;
+                       selection,
+                       Configuration.ParallelOptions,
+                       csel =>
+                       {
+                         var corpus = selection.GetCorpus(csel.Key);
+                         if (corpus == null)
+                           return;
 
-          var dic2 = new ConcurrentDictionary<Guid, Dictionary<int, HashSet<int>>>();
+                         var dic2 = new ConcurrentDictionary<Guid, Dictionary<int, HashSet<int>>>();
 
-          Parallel.ForEach(
-            csel.Value,
-            Configuration.ParallelOptions,
-            dsel =>
-            {
-              var check = true;
-              Dictionary<int, HashSet<int>> dic3 = null;
+                         Parallel.ForEach(
+                                          csel.Value,
+                                          Configuration.ParallelOptions,
+                                          dsel =>
+                                          {
+                                            var check = true;
+                                            Dictionary<int, HashSet<int>> dic3 = null;
 
-              // Damit ein Dokument akzeptiert wird müssen alle Queries positive Ergebnisse zurückliefern
-              foreach (
-                var qidx in
-                queries.Select(query => query.GetSentenceAndWordIndices(corpus, dsel)))
-              {
-                // Bei leerer Ergebnismenge breche den gesamten Vorgang ab
-                check = !(qidx == null || qidx.Count == 0);
-                if (!check)
-                  break;
+                                            // Damit ein Dokument akzeptiert wird müssen alle Queries positive Ergebnisse zurückliefern
+                                            foreach (
+                                              var qidx in
+                                              queries.Select(query => query.GetSentenceAndWordIndices(corpus, dsel)))
+                                            {
+                                              // Bei leerer Ergebnismenge breche den gesamten Vorgang ab
+                                              check = !(qidx == null || qidx.Count == 0);
+                                              if (!check)
+                                                break;
 
-                if (dic3 == null)
-                {
-                  // Wenn dic3 noch nicht belegt ist dann verwende qidx
-                  dic3 = qidx;
-                }
-                else
-                {
-                  // qidx wird als dic3 verwendet und erneut gefiltert
+                                              if (dic3 == null)
+                                              {
+                                                // Wenn dic3 noch nicht belegt ist dann verwende qidx
+                                                dic3 = qidx;
+                                              }
+                                              else
+                                              {
+                                                // qidx wird als dic3 verwendet und erneut gefiltert
 
-                  var list = dic3.Select(x => x.Key).ToArray();
-                  foreach (var x in list)
-                    if (qidx.ContainsKey(x))
-                    {
-                      var widx = dic3[x].ToArray();
-                      foreach (var w in widx.Where(w => !qidx[x].Contains(w)))
-                        dic3[x].Remove(w);
-                    }
-                    else
-                    {
-                      // Wenn der Satz nicht vorhanden ist, dann lösche ihn komplett.
-                      dic3.Remove(x);
-                    }
-                }
-              }
+                                                var list = dic3.Select(x => x.Key).ToArray();
+                                                foreach (var x in list)
+                                                  if (qidx.ContainsKey(x))
+                                                  {
+                                                    var widx = dic3[x].ToArray();
+                                                    foreach (var w in widx.Where(w => !qidx[x].Contains(w)))
+                                                      dic3[x].Remove(w);
+                                                  }
+                                                  else
+                                                  {
+                                                    // Wenn der Satz nicht vorhanden ist, dann lösche ihn komplett.
+                                                    dic3.Remove(x);
+                                                  }
+                                              }
+                                            }
 
-              if (check)
-                dic2.TryAdd(dsel, dic3);
-            });
+                                            if (check)
+                                              dic2.TryAdd(dsel, dic3);
+                                          });
 
-          dic1.TryAdd(csel.Key, dic2.ToDictionary(x => x.Key, x => x.Value));
-        });
+                         dic1.TryAdd(csel.Key, dic2.ToDictionary(x => x.Key, x => x.Value));
+                       });
       return dic1.ToDictionary(x => x.Key, x => x.Value);
     }
   }

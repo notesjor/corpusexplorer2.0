@@ -11,7 +11,9 @@ namespace CorpusExplorer.Sdk.Helper
       return res;
     }
 
-    public static IEnumerable<T> Merge<T>(IEnumerable<T> list, T last) 
-      => new List<T>(list) {last};
+    public static IEnumerable<T> Merge<T>(IEnumerable<T> list, T last)
+    {
+      return new List<T>(list) {last};
+    }
   }
 }

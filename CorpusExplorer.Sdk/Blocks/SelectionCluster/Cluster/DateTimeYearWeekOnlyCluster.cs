@@ -6,9 +6,9 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {
   public class DateTimeYearWeekOnlyCluster : AbstractCluster
   {
-    private readonly int _year;
-    private readonly int _week;
     private readonly DateTime _central;
+    private readonly int _week;
+    private readonly int _year;
 
     public DateTimeYearWeekOnlyCluster(DateTime value)
     {
@@ -25,7 +25,7 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
     {
       try
       {
-        var test = (DateTime)obj;
+        var test = (DateTime) obj;
         if (test.Year != _year || _week != DateTimeHelper.GetYearWeek(test))
           return false;
         Add(documentGuid);

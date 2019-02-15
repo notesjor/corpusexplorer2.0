@@ -2665,15 +2665,18 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer
       var cut = input.Length / _max;
       var slots = new string[input.Length % _max == 0 ? cut : cut + 1];
       Parallel.For(
-        0,
-        slots.Length,
-        Configuration.ParallelOptions,
-        i =>
-        {
-          var pos = i * _max;
-          slots[i] = SpecialTokenizerCleanup(
-            input.Substring(pos, pos + _max > input.Length ? input.Length - pos : _max));
-        });
+                   0,
+                   slots.Length,
+                   Configuration.ParallelOptions,
+                   i =>
+                   {
+                     var pos = i * _max;
+                     slots[i] = SpecialTokenizerCleanup(
+                                                        input.Substring(pos,
+                                                                        pos + _max > input.Length
+                                                                          ? input.Length - pos
+                                                                          : _max));
+                   });
 
       return string.Concat(slots);
     }

@@ -33,7 +33,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       var speaker = combo_speaker.SelectedValue as string;
       var utterance = combo_utteranche.SelectedValue as string;
 
-      if (string.IsNullOrEmpty(speaker) ||
+      if (string.IsNullOrEmpty(speaker)   ||
           string.IsNullOrEmpty(utterance) ||
           speaker == utterance)
         return;
@@ -51,8 +51,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
           continue;
 
         order.Add(
-          x,
-          new KeyValuePair<Guid, string>(dsel, meta.ContainsKey(speaker) ? meta[speaker].ToString() : string.Empty));
+                  x,
+                  new KeyValuePair<Guid, string>(dsel,
+                                                 meta.ContainsKey(speaker) ? meta[speaker].ToString() : string.Empty));
       }
 
       var array = order.OrderBy(x => x.Key);
@@ -60,11 +61,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       var tokens = new Dictionary<string, int>();
       var types = new Dictionary<string, HashSet<string>>();
 
-      List<ListViewDataItem> list = new List<ListViewDataItem>();
+      var list = new List<ListViewDataItem>();
       foreach (var pair in array)
       {
         var doc = Project.CurrentSelection.GetReadableDocument(pair.Value.Key, "Wort").Select(x => x.ToArray())
-          .ToArray();
+                         .ToArray();
         if (!tokens.ContainsKey(pair.Value.Value))
         {
           tokens.Add(pair.Value.Value, 0);
@@ -81,14 +82,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
         tokens[pair.Value.Value] += token;
 
         list.Add(
-          new ListViewDataItem
-          {
-            BackColor = GetUserColor(pair.Value.Value),
-            Text =
-              $"<html>({types[pair.Value.Value].Count:D5} / {tokens[pair.Value.Value]:D5}) <u>{pair.Value.Value}</u>: {doc.ReduceDocumentToText()}</html>",
-            Font = new Font(radListView1.Font.FontFamily, 12, FontStyle.Bold),
-            Key = pair.Value.Key
-          });
+                 new ListViewDataItem
+                 {
+                   BackColor = GetUserColor(pair.Value.Value),
+                   Text =
+                     $"<html>({types[pair.Value.Value].Count:D5} / {tokens[pair.Value.Value]:D5}) <u>{pair.Value.Value}</u>: {doc.ReduceDocumentToText()}</html>",
+                   Font = new Font(radListView1.Font.FontFamily, 12, FontStyle.Bold),
+                   Key = pair.Value.Key
+                 });
       }
 
       _items = list.ToArray();
@@ -124,10 +125,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
         return;
 
       var form = new SimpleTextInput(
-        Resources.NeuerSchnappschuss,
-        Resources.GebenSieDemNeuenSchnappschussEinenNamen,
-        Resources.camera,
-        Resources.NameHierEintragen);
+                                     Resources.NeuerSchnappschuss,
+                                     Resources.GebenSieDemNeuenSchnappschussEinenNamen,
+                                     Resources.camera,
+                                     Resources.NameHierEintragen);
       if (form.ShowDialog() != DialogResult.OK)
         return;
 

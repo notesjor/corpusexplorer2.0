@@ -22,8 +22,8 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer.FileSystem
       Dictionary<Guid, Tuple<int, int, Dictionary<string, object>>> documentMetadata,
       Guid? corpusGuid = null)
     {
-      Guid = corpusGuid ?? Guid.NewGuid();
-      _corpusMetadata = corpusMetadata ?? new Dictionary<string, object>();
+      Guid = corpusGuid                    ?? Guid.NewGuid();
+      _corpusMetadata = corpusMetadata     ?? new Dictionary<string, object>();
       _documentMetadata = documentMetadata ?? new Dictionary<Guid, Tuple<int, int, Dictionary<string, object>>>();
     }
 
@@ -69,11 +69,13 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer.FileSystem
       try
       {
         _documentMetadata = _documentMetadataSerialized.ToDictionary(
-          x => x.Key,
-          x => new Tuple<int, int, Dictionary<string, object>>(
-            x.Value.Item1,
-            x.Value.Item1,
-            x.Value.Item3.ToDictionary(y => y.Key, y => y.Value)));
+                                                                     x => x.Key,
+                                                                     x => new Tuple<int, int, Dictionary<string, object>
+                                                                     >(
+                                                                       x.Value.Item1,
+                                                                       x.Value.Item1,
+                                                                       x.Value.Item3.ToDictionary(y => y.Key,
+                                                                                                  y => y.Value)));
       }
       catch
       {
@@ -82,11 +84,13 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer.FileSystem
         if (_documentMetadataSerialized != null)
           foreach (var pair in _documentMetadataSerialized)
             _documentMetadata.Add(
-              pair.Key,
-              new Tuple<int, int, Dictionary<string, object>>(
-                pair.Value.Item1,
-                pair.Value.Item2,
-                pair.Value.Item3.ToDictionary(x => x.Key, x => x.Value)));
+                                  pair.Key,
+                                  new Tuple<int, int, Dictionary<string, object>>(
+                                                                                  pair.Value.Item1,
+                                                                                  pair.Value.Item2,
+                                                                                  pair.Value.Item3
+                                                                                      .ToDictionary(x => x.Key,
+                                                                                                    x => x.Value)));
 
         _documentMetadataSerialized = null;
       }
@@ -119,13 +123,26 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer.FileSystem
       _corpusMetadataSerialized = _corpusMetadata.ToArray();
       _documentMetadataSerialized =
         _documentMetadata.Select(
-          tuple =>
-            new KeyValuePair<Guid, Tuple<int, int, KeyValuePair<string, object>[]>>(
-              tuple.Key,
-              new Tuple<int, int, KeyValuePair<string, object>[]>(
-                tuple.Value.Item1,
-                tuple.Value.Item2,
-                tuple.Value.Item3.ToArray()))).ToArray();
+                                 tuple =>
+                                   new KeyValuePair<Guid, Tuple<int, int, KeyValuePair<string, object>[]>>(
+                                                                                                           tuple.Key,
+                                                                                                           new Tuple<int
+                                                                                                           , int,
+                                                                                                             KeyValuePair
+                                                                                                             <string,
+                                                                                                               object>[]
+                                                                                                           >(
+                                                                                                             tuple
+                                                                                                              .Value
+                                                                                                              .Item1,
+                                                                                                             tuple
+                                                                                                              .Value
+                                                                                                              .Item2,
+                                                                                                             tuple
+                                                                                                              .Value
+                                                                                                              .Item3
+                                                                                                              .ToArray())))
+                         .ToArray();
     }
   }
 }

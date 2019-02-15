@@ -85,7 +85,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
       var value = (string) e.Parent.Tag;
 
       var dic = _vm.RequestMetadataSimilarity(value);
-      if (dic == null ||
+      if (dic       == null ||
           dic.Count == 0)
         return;
 
@@ -95,11 +95,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
       foreach (
         var node in
         requ.Select(
-          entry =>
-            new RadTreeNode(string.Format(Resources.DashboardPatternProcent, entry.Value * 100, entry.Key))
-            {
-              Tag = entry.Key
-            }))
+                    entry =>
+                      new RadTreeNode(string.Format(Resources.DashboardPatternProcent, entry.Value * 100, entry.Key))
+                      {
+                        Tag = entry.Key
+                      }))
         e.Nodes.Add(node);
     }
 

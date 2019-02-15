@@ -35,7 +35,7 @@ namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory
     public Constituent[][] ParseDocument(Constituent[][] terminals)
     {
       Parallel.For(0, terminals.Length, Configuration.ParallelOptions,
-        i => { terminals[i] = ParseSentence(terminals[i].ToList()).ToArray(); });
+                   i => { terminals[i] = ParseSentence(terminals[i].ToList()).ToArray(); });
 
       return terminals;
     }

@@ -44,18 +44,19 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       UseParentCellForHighlighting = Resources.NGramm;
       AddSummaryRow();
       AddChildTemplate(
-        delegate(DataRowView x)
-        {
-          var queries = x[Resources.NGramm].ToString()
-            .Replace(_vm.NGramPattern, FilterQuerySingleLayerExactPhrase.SearchPattern)
-            .Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
-          return new FilterQuerySingleLayerExactPhrase
-          {
-            Inverse = false,
-            LayerDisplayname = _vm.LayerDisplayname,
-            LayerQueries = queries
-          };
-        });
+                       delegate(DataRowView x)
+                       {
+                         var queries = x[Resources.NGramm].ToString()
+                                                          .Replace(_vm.NGramPattern,
+                                                                   FilterQuerySingleLayerExactPhrase.SearchPattern)
+                                                          .Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
+                         return new FilterQuerySingleLayerExactPhrase
+                         {
+                           Inverse = false,
+                           LayerDisplayname = _vm.LayerDisplayname,
+                           LayerQueries = queries
+                         };
+                       });
     }
 
     private void BindData()

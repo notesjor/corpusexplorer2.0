@@ -18,55 +18,55 @@ namespace CorpusExplorer.Port.TreeTaggerTrainer.Model
       var @lock = new object();
 
       Parallel.ForEach(
-        selection.DocumentGuids,
-        Configuration.ParallelOptions,
-        tguid =>
-        {
-          var text = new StringBuilder();
-          var wl = selection.GetLayerOfDocument(tguid, "Wort");
-          var tl = selection.GetLayerOfDocument(tguid, layerDisplayname);
+                       selection.DocumentGuids,
+                       Configuration.ParallelOptions,
+                       tguid =>
+                       {
+                         var text = new StringBuilder();
+                         var wl = selection.GetLayerOfDocument(tguid, "Wort");
+                         var tl = selection.GetLayerOfDocument(tguid, layerDisplayname);
 
-          if (wl == null ||
-              tl == null)
-            return;
+                         if (wl == null ||
+                             tl == null)
+                           return;
 
-          string[][] wdoc, tdoc;
-          try
-          {
-            wdoc = wl.GetReadableDocumentByGuid(tguid).Select(x => x.ToArray()).ToArray();
-            tdoc = tl.GetReadableDocumentByGuid(tguid).Select(x => x.ToArray()).ToArray();
-          }
-          catch
-          {
-            return;
-          }
+                         string[][] wdoc, tdoc;
+                         try
+                         {
+                           wdoc = wl.GetReadableDocumentByGuid(tguid).Select(x => x.ToArray()).ToArray();
+                           tdoc = tl.GetReadableDocumentByGuid(tguid).Select(x => x.ToArray()).ToArray();
+                         }
+                         catch
+                         {
+                           return;
+                         }
 
-          try
-          {
-            for (var i = 0; i < wdoc.Length; i++)
-            {
-              if (wdoc[i] == null)
-                continue;
-              for (var j = 0; j < wdoc[i].Length; j++)
-              {
-                if (string.IsNullOrEmpty(wdoc[i][j]) ||
-                    string.IsNullOrEmpty(tdoc[i][j]))
-                  continue;
+                         try
+                         {
+                           for (var i = 0; i < wdoc.Length; i++)
+                           {
+                             if (wdoc[i] == null)
+                               continue;
+                             for (var j = 0; j < wdoc[i].Length; j++)
+                             {
+                               if (string.IsNullOrEmpty(wdoc[i][j]) ||
+                                   string.IsNullOrEmpty(tdoc[i][j]))
+                                 continue;
 
-                text.AppendFormat("{0}\t{1}\r\n", wdoc[i][j], tdoc[i][j]);
-              }
-            }
-          }
-          catch
-          {
-            return;
-          }
+                               text.AppendFormat("{0}\t{1}\r\n", wdoc[i][j], tdoc[i][j]);
+                             }
+                           }
+                         }
+                         catch
+                         {
+                           return;
+                         }
 
-          lock (@lock)
-          {
-            res.AppendLine(text.ToString());
-          }
-        });
+                         lock (@lock)
+                         {
+                           res.AppendLine(text.ToString());
+                         }
+                       });
 
       return res.ToString();
     }

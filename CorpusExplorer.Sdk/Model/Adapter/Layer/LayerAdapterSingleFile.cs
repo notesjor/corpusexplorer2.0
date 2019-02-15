@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Model.CorpusExplorer;
@@ -134,7 +135,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
     public static LayerAdapterSingleFile Create(AbstractLayerState layerState)
     {
       return Create(
-        new Model.Layer(layerState.Documents, layerState.Cache, null) {Displayname = layerState.Displayname});
+                    new Model.Layer(layerState.Documents, layerState.Cache, null)
+                      {Displayname = layerState.Displayname});
     }
 
     public override Dictionary<Guid, int[][]> GetDocumentDictionary()
@@ -200,6 +202,21 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
     public override Dictionary<string, int> ReciveRawLayerDictionary()
     {
       return _layer.ReciveRawLayerDictionary();
+    }
+
+    public override Dictionary<int, string> ReciveRawReverseLayerDictionary()
+    {
+      return _layer.ReciveRawLayerDictionary().ToDictionary(x => x.Value, x => x.Key);
+    }
+
+    public override void ResetRawLayerDictionary(Dictionary<string, int> dictionary)
+    {
+      throw new NotImplementedException();
+    }
+
+    public override void ResetRawReverseLayerDictionary(Dictionary<int, string> reverse)
+    {
+      throw new NotImplementedException();
     }
 
     public override void RefreshDictionaries()

@@ -70,25 +70,25 @@ namespace CorpusExplorer.Sdk.Blocks
           var exporter = new ExporterPlaintextPureInOneFile {LayerDisplayname = LayerDisplayname};
           var selection = Selection.CreateTemporary(cluster.DocumentGuids);
           var data = exporter.Export(selection)
-            .Replace("+<", "")
-            .Replace("+//.", "")
-            .Replace("+//?", "")
-            .Replace("+//!", "")
-            .Replace("[*]", "")
-            .Replace("+/.", "")
-            .Replace("+...", "")
-            .Replace("...", "")
-            .Replace("..", "")
-            .Replace(".", "")
-            .Replace("!", "")
-            .Replace("#", "")
-            .Replace("[?]", "")
-            .Replace("[*]", "")
-            .Replace("?", "")
-            .Replace("+", "")
-            .Replace("\r\n", " ")
-            .Replace("  ", " ")
-            .Replace("  ", " ");
+                             .Replace("+<", "")
+                             .Replace("+//.", "")
+                             .Replace("+//?", "")
+                             .Replace("+//!", "")
+                             .Replace("[*]", "")
+                             .Replace("+/.", "")
+                             .Replace("+...", "")
+                             .Replace("...", "")
+                             .Replace("..", "")
+                             .Replace(".", "")
+                             .Replace("!", "")
+                             .Replace("#", "")
+                             .Replace("[?]", "")
+                             .Replace("[*]", "")
+                             .Replace("?", "")
+                             .Replace("+", "")
+                             .Replace("\r\n", " ")
+                             .Replace("  ", " ")
+                             .Replace("  ", " ");
           FileIO.Write(dataTemp.Path, data);
 
           var perl = new Process
@@ -120,7 +120,7 @@ namespace CorpusExplorer.Sdk.Blocks
           var ttr = new QuickInfoTtrViewModel {Selection = selection, LayerDisplayname = LayerDisplayname};
           ttr.Execute();
           TypeTokenRatio.Add(cluster.Displayname,
-            new[] {ttr.CounterTypes, ttr.CounterTokens, ttr.CounterTypeTokenRatio});
+                             new[] {ttr.CounterTypes, ttr.CounterTokens, ttr.CounterTypeTokenRatio});
         }
     }
   }

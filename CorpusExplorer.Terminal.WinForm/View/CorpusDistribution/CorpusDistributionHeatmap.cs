@@ -20,6 +20,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
   public partial class CorpusDistributionHeatmap : AbstractView
   {
     private CorpusWeightLimmitedViewModel _vm;
+    private Controls.Wpf.HeatMap.HeatMapView heatMapView1 = new Controls.Wpf.HeatMap.HeatMapView();
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractView" /> class.
@@ -27,6 +28,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     public CorpusDistributionHeatmap()
     {
       InitializeComponent();
+      heatMapView1.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+      heatMapView1.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+      elementHost1.Child = heatMapView1;
+
       ShowView += ShowViewCall;
     }
 
@@ -34,7 +39,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     {
       _vm.Execute();
       var demo = _vm.GetDataTable();
-      heatMapView1.DataSource = demo;
+      heatMapView1.SetDataSource(demo);
     }
 
     private void btn_export_Click(object sender, EventArgs e)

@@ -31,11 +31,11 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator
       var res = new AbstractCluster[Ranges + 1];
       for (var i = 0; i < res.Length; i++)
         res[i] = ClusterType.NewCluster(
-          i + 1 == res.Length
-            ? $"{selection.Displayname} - REST"
-            : $"{selection.Displayname} - {i + 1}/{res.Length - 1}",
-          parts,
-          i + 1 == res.Length);
+                                        i + 1 == res.Length
+                                          ? $"{selection.Displayname} - REST"
+                                          : $"{selection.Displayname} - {i + 1}/{res.Length - 1}",
+                                        parts,
+                                        i + 1 == res.Length);
 
       return res;
     }
@@ -48,8 +48,14 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator
     private KeyValuePair<Guid, Dictionary<string, object>>[] AutoOrder(Selection selection)
     {
       return selection.DocumentMetadata.OrderBy(x =>
-          GetOrderByValue(x.Value == null ? null : x.Value.ContainsKey(MetadataKey) ? x.Value[MetadataKey] : null))
-        .ToArray();
+                                                  GetOrderByValue(x.Value == null
+                                                                    ? null
+                                                                    :
+                                                                    x.Value.ContainsKey(MetadataKey)
+                                                                      ?
+                                                                      x.Value[MetadataKey]
+                                                                      : null))
+                      .ToArray();
     }
   }
 }

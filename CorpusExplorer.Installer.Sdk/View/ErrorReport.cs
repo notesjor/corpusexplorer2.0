@@ -30,9 +30,10 @@ namespace CorpusExplorer.Installer.Sdk.View
     private void button2_Click(object sender, EventArgs e)
     {
       File.Delete(
-        Path.Combine(
-          Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"CorpusExplorer\App"),
-          "update.info"));
+                  Path.Combine(
+                               Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                                            @"CorpusExplorer\App"),
+                               "update.info"));
     }
 
     private void ErrorReport_Load(object sender, EventArgs e)

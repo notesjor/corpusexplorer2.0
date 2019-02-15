@@ -28,10 +28,10 @@ namespace CorpusExplorer.Sdk.Blocks.Flow
       {
         var first = _children.First();
         Content = string.IsNullOrEmpty(Content)
-          ? first.Key
-          : direction == FlowNodeDirection.Forward
-            ? string.Join(nodeValueSeparator, Content, first.Key)
-            : string.Join(nodeValueSeparator, first.Key, Content);
+                    ? first.Key
+                    : direction == FlowNodeDirection.Forward
+                      ? string.Join(nodeValueSeparator, Content, first.Key)
+                      : string.Join(nodeValueSeparator, first.Key, Content);
         _children = first.Value._children;
       }
 
@@ -47,7 +47,7 @@ namespace CorpusExplorer.Sdk.Blocks.Flow
         _children = new Dictionary<string, FlowNode>();
 
       Frequency++;
-      
+
       string key;
       if (direction == FlowNodeDirection.Forward)
       {
@@ -83,8 +83,8 @@ namespace CorpusExplorer.Sdk.Blocks.Flow
       foreach (var child in _children)
       {
         res.Add(forward
-          ? new Tuple<string, string, double>(Content, child.Value.Content, child.Value.Frequency)
-          : new Tuple<string, string, double>(child.Value.Content, Content, child.Value.Frequency));
+                  ? new Tuple<string, string, double>(Content, child.Value.Content, child.Value.Frequency)
+                  : new Tuple<string, string, double>(child.Value.Content, Content, child.Value.Frequency));
         res.AddRange(child.Value.RecursiveConnections(forward));
       }
 

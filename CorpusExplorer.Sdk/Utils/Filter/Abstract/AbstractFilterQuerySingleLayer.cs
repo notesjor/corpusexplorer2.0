@@ -119,8 +119,8 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
       }
 
       return indices != null && indices.Count > 0
-        ? GetSentencesFirstIndexCall(doc[sentence], new HashSet<int>(indices))
-        : -1;
+               ? GetSentencesFirstIndexCall(doc[sentence], new HashSet<int>(indices))
+               : -1;
     }
 
     /// <summary>

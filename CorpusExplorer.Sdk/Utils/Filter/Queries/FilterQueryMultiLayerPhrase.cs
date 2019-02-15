@@ -194,7 +194,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     }
 
     private bool GetSpecificQuery(AbstractCorpusAdapter corpus, out KeyValuePair<Guid, int>[] query,
-      out HashSet<Guid> layers)
+                                  out HashSet<Guid> layers)
     {
       lock (_cacheLock)
       {
@@ -245,7 +245,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
         var split = x.Split(new[] {_multiLayerValueSeparator}, StringSplitOptions.None);
         if (split.Length != 2)
           throw new IndexOutOfRangeException(
-            $"FilterQueryMultiLayerPhrase erfordert die Kombination aus Layer + Wert. Scheinbar wurden mehrere Werte übergeben. Dies ist nicht zulässig. Überprüfen Sie den Wert-Trenner - dieser lautet: \"{_multiLayerValueSeparator}\"");
+                                             $"FilterQueryMultiLayerPhrase erfordert die Kombination aus Layer + Wert. Scheinbar wurden mehrere Werte übergeben. Dies ist nicht zulässig. Überprüfen Sie den Wert-Trenner - dieser lautet: \"{_multiLayerValueSeparator}\"");
 
         _query.Add(new KeyValuePair<string, string>(split[0], split[1]));
       }

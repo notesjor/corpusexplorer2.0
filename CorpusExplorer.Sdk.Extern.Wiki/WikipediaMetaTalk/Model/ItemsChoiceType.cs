@@ -1,20 +1,23 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
+﻿using System;
+using System.CodeDom.Compiler;
+using System.Xml.Serialization;
+
+namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.mediawiki.org/xml/export-0.10/",
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [XmlType(Namespace = "http://www.mediawiki.org/xml/export-0.10/",
     IncludeInSchema = false)]
   public enum ItemsChoiceType
   {
-
-    /// <remarks/>
+    /// <remarks />
     id,
 
-    /// <remarks/>
+    /// <remarks />
     ip,
 
-    /// <remarks/>
-    username,
+    /// <remarks />
+    username
   }
 }

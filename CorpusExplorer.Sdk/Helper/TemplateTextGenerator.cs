@@ -19,8 +19,8 @@ namespace CorpusExplorer.Sdk.Helper
     public static string Generate(string input, Dictionary<string, string> vars)
     {
       return vars == null
-        ? input
-        : vars.Aggregate(input, (current, x) => current.Replace(x.Key, x.Value));
+               ? input
+               : vars.Aggregate(input, (current, x) => current.Replace(x.Key, x.Value));
     }
 
     /// <summary>
@@ -44,13 +44,13 @@ namespace CorpusExplorer.Sdk.Helper
     /// <param name="vars">Variablen (die ersetzt werden sollen)</param>
     /// <param name="encoding">Datei-Encoding</param>
     public static void GenerateFromFileToFile(string pathFrom,
-      string pathTo,
-      Dictionary<string, string> vars,
-      Encoding encoding = null)
+                                              string pathTo,
+                                              Dictionary<string, string> vars,
+                                              Encoding encoding = null)
     {
       if (pathFrom == pathTo)
         throw new NotSupportedException(
-          $"{nameof(pathFrom)} und {nameof(pathTo)} dürfen nicht auf die selbe Datei verweisen.");
+                                        $"{nameof(pathFrom)} und {nameof(pathTo)} dürfen nicht auf die selbe Datei verweisen.");
       FileIO.Write(pathTo, GenerateFromFile(pathFrom, vars, encoding), encoding);
     }
 
@@ -62,14 +62,14 @@ namespace CorpusExplorer.Sdk.Helper
     /// <param name="vars">Variablen (die ersetzt werden sollen)</param>
     /// <param name="encoding">Datei-Encoding</param>
     public static void GenerateToFile(string input,
-      Dictionary<string, string> vars,
-      string pathTo,
-      Encoding encoding = null)
+                                      Dictionary<string, string> vars,
+                                      string pathTo,
+                                      Encoding encoding = null)
     {
       FileIO.Write(
-        pathTo,
-        Generate(input, vars),
-        encoding);
+                   pathTo,
+                   Generate(input, vars),
+                   encoding);
     }
   }
 }

@@ -104,14 +104,14 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.QueryBuilder
 
     private FilterDescriptor ConvertRecursive(FilterViewModel f)
     {
-      if (f.CompositeFilter != null &&
+      if (f.CompositeFilter               != null &&
           f.CompositeFilter.Filters.Count > 0)
         return ConvertRecursive(f.CompositeFilter);
       if (f.SimpleFilter != null)
         return new FilterDescriptor(
-          f.SimpleFilter.Member,
-          ConvertOperator(f.SimpleFilter.Operator),
-          f.SimpleFilter.Value);
+                                    f.SimpleFilter.Member,
+                                    ConvertOperator(f.SimpleFilter.Operator),
+                                    f.SimpleFilter.Value);
       return null;
     }
 

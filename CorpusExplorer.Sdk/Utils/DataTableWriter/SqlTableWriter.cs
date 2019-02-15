@@ -21,7 +21,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
         var columns = new List<Tuple<string, string, Type>>();
         foreach (DataColumn column in table.Columns)
           columns.Add(new Tuple<string, string, Type>(column.ColumnName, column.ColumnName.Replace(" ", "_"),
-            column.DataType));
+                                                      column.DataType));
 
         var stb = new StringBuilder("CREATE TABLE CorpusExplorer (");
         foreach (var column in columns)
@@ -42,9 +42,9 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
           stb.Append("(");
           foreach (var column in columns)
             if (column.Item3 == typeof(DateTime))
-              stb.Append($"'{(DateTime)row[column.Item1]:yyyy-MM-dd HH:mm:ss}', ");
+              stb.Append($"'{(DateTime) row[column.Item1]:yyyy-MM-dd HH:mm:ss}', ");
             else if (column.Item3 == typeof(string))
-              stb.Append($"\"{((string)row[column.Item1]).Replace("\"", "''")}\", ");
+              stb.Append($"\"{((string) row[column.Item1]).Replace("\"", "''")}\", ");
             else
               stb.Append($"{row[column.Item1].ToString().Replace(",", ".")}, ");
           stb.Remove(stb.Length - 2, 2);
@@ -71,12 +71,18 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       WriteOutput("-- 3. set (primary) key(s)\r\n");
     }
 
-    protected override void WriteBody( DataTable table) { }
+    protected override void WriteBody(DataTable table)
+    {
+    }
 
-    protected override void WriteFooter() { }
+    protected override void WriteFooter()
+    {
+    }
 
     public override AbstractTableWriter Clone(Stream stream)
-      => new SqlTableWriter { OutputStream = stream };
+    {
+      return new SqlTableWriter {OutputStream = stream};
+    }
 
     private string GetSqlType(Type type)
     {

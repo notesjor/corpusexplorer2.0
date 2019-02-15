@@ -89,7 +89,7 @@ namespace CorpusExplorer.Sdk.Helper
     }
 
     public static string ReduceDocumentToText(this IEnumerable<IEnumerable<string>> document,
-      string sentenceSeparator = "\r\n", string tokenSeparator = " ")
+                                              string sentenceSeparator = "\r\n", string tokenSeparator = " ")
     {
       return string.Join(sentenceSeparator, document.Select(s => string.Join(tokenSeparator, s)));
     }
@@ -105,7 +105,7 @@ namespace CorpusExplorer.Sdk.Helper
     /// <param name="document">The document.</param>
     /// <returns>IEnumerable&lt;System.String&gt;.</returns>
     public static IEnumerable<string> ReduceToSentences(this IEnumerable<IEnumerable<string>> document,
-      string tokenSeparator = " ")
+                                                        string tokenSeparator = " ")
     {
       return document.Select(s => string.Join(tokenSeparator, s));
     }

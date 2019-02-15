@@ -54,10 +54,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Special
       AbstractTagger tagger = null)
     {
       return Parse(
-        new[] {new Dictionary<string, object> {{"Text", text}}},
-        corpusBuilder,
-        cleaner,
-        tagger);
+                   new[] {new Dictionary<string, object> {{"Text", text}}},
+                   corpusBuilder,
+                   cleaner,
+                   tagger);
     }
 
     /// <summary>
@@ -76,10 +76,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Special
       AbstractTagger tagger = null)
     {
       return Parse(
-        new[] {scrapDocument},
-        corpusBuilder,
-        cleaner,
-        tagger);
+                   new[] {scrapDocument},
+                   corpusBuilder,
+                   cleaner,
+                   tagger);
     }
 
     /// <summary>

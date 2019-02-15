@@ -2,13 +2,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
-using Microsoft.ApplicationInsights;
-using Microsoft.ApplicationInsights.DataContracts;
-using Microsoft.VisualBasic.Devices;
+using OpenSourceTelemetrieClient;
 
 #endregion
 
@@ -24,7 +21,7 @@ namespace CorpusExplorer.Sdk.Diagnostic
     private static readonly Queue<KeyValuePair<DateTime, Exception>> _queue =
       new Queue<KeyValuePair<DateTime, Exception>>();
 
-    private static TelemetryClient _telemetryClient;
+    private static TelemetrieClient _telemetryClient;
 
     public static IEnumerable<KeyValuePair<DateTime, Exception>> Errors => _queue;
 
@@ -34,8 +31,7 @@ namespace CorpusExplorer.Sdk.Diagnostic
     {
       if (_insightAllowed)
       {
-        _telemetryClient.Flush();
-        Thread.Sleep(1000);
+        _telemetryClient.Flush().Wait();
       }
 
       _queue.Clear();
@@ -50,18 +46,11 @@ namespace CorpusExplorer.Sdk.Diagnostic
         {
           _insigtId = File.ReadAllText(insigtFile);
           _insightAllowed = !string.IsNullOrEmpty(_insigtId);
+          GetLocation(out var country, out var city);
 
           if (_insightAllowed)
           {
-            _telemetryClient = new TelemetryClient { InstrumentationKey = "4a02d22c-737b-4af1-af78-b150fb346d98" };
-            _telemetryClient.Context.User.Id = _insigtId;
-            _telemetryClient.Context.Session.Id = Guid.NewGuid().ToString();
-
-            var ci = new ComputerInfo();
-
-            _telemetryClient.Context.Device.OperatingSystem = ci.OSFullName;
-            _telemetryClient.Context.Properties.Add("CPU", Environment.ProcessorCount.ToString());
-            _telemetryClient.Context.Properties.Add("RAM", ci.TotalPhysicalMemory.ToString());
+            _telemetryClient = new TelemetrieClient(_insigtId, "212.224.95.216", 8512, country, city);
           }
         }
       }
@@ -70,6 +59,28 @@ namespace CorpusExplorer.Sdk.Diagnostic
       }
 
       _insightChecked = true;
+    }
+
+    private static void GetLocation(out string country, out string city)
+    {
+      country = "";
+      city = "";
+      try
+      {
+        const string insigtFile = "insight.loc";
+        if (File.Exists(insigtFile))
+        {
+          var lines = File.ReadAllLines(insigtFile, Encoding.UTF8);
+          if (lines.Length < 2)
+            return;
+          country = lines[0];
+          city = lines[1];
+        }
+      }
+      catch
+      {
+        // ignore
+      }
     }
 
     // ReSharper disable once UnusedMember.Global
@@ -89,7 +100,15 @@ namespace CorpusExplorer.Sdk.Diagnostic
 
       _queue.Enqueue(new KeyValuePair<DateTime, Exception>(DateTime.Now, ex));
 
-      if (_insightAllowed) _telemetryClient.TrackException(ex);
+      if (_insightAllowed) _telemetryClient.SendTelemetrie(ex);
+    }
+
+    public static void SendAppCrash(Exception ex)
+    {
+      if (!_insightChecked)
+        InsightSetup();
+
+      _telemetryClient.SendPublicCrashReport(ex);
     }
 
     public static void Save(string path)
@@ -103,12 +122,12 @@ namespace CorpusExplorer.Sdk.Diagnostic
             stb.AppendFormat("{0}\r\n{1}\r\n{2}\r\n---\r\n", error.Key, error.Value.Message, error.Value.StackTrace);
           else
             stb.AppendFormat(
-              "{0}\r\n{1}\r\n>\t{3}\r\n{2}\r\n>\t{4}\r\n---\r\n",
-              error.Key,
-              error.Value.Message,
-              error.Value.StackTrace,
-              error.Value.InnerException.Message,
-              error.Value.InnerException.StackTrace);
+                             "{0}\r\n{1}\r\n>\t{3}\r\n{2}\r\n>\t{4}\r\n---\r\n",
+                             error.Key,
+                             error.Value.Message,
+                             error.Value.StackTrace,
+                             error.Value.InnerException.Message,
+                             error.Value.InnerException.StackTrace);
         }
         catch
         {
@@ -118,8 +137,7 @@ namespace CorpusExplorer.Sdk.Diagnostic
       File.WriteAllText(path, stb.ToString());
     }
 
-    public static void TrackEvent(string @event, Dictionary<string, string> properties = null,
-      Dictionary<string, double> metrics = null)
+    public static void TrackEvent(string @event, double metric)
     {
       if (!_insightChecked)
         InsightSetup();
@@ -130,7 +148,21 @@ namespace CorpusExplorer.Sdk.Diagnostic
       if (!_insightAllowed)
         return;
 
-      _telemetryClient.TrackEvent(@event, properties, metrics);
+      _telemetryClient.SendTelemetrie(@event, metric);
+    }
+
+    public static void TrackEvent(Dictionary<string, double> metrics)
+    {
+      if (!_insightChecked)
+        InsightSetup();
+
+      if (!_insightAllowed)
+        return;
+
+      if (!_insightAllowed)
+        return;
+
+      _telemetryClient.SendTelemetrie(metrics);
     }
 
     public static void TrackPageView(string page)
@@ -144,7 +176,7 @@ namespace CorpusExplorer.Sdk.Diagnostic
       if (!_insightAllowed)
         return;
 
-      _telemetryClient.TrackPageView(page);
+      _telemetryClient.SendTelemetrie(page);
     }
   }
 }

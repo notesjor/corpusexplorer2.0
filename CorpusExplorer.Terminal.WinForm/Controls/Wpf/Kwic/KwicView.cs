@@ -53,27 +53,27 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Kwic
 
       // Füge Daten in Grid ein
       Parallel.For(
-        0,
-        array.Length,
-        Configuration.ParallelOptions,
-        i =>
-        {
-          var sentence = array[i];
-          // Füge Index ein
-          NewTextBlock(sentence.Key[sentence.Value], Colors.Red, i, maxIndex);
+                   0,
+                   array.Length,
+                   Configuration.ParallelOptions,
+                   i =>
+                   {
+                     var sentence = array[i];
+                     // Füge Index ein
+                     NewTextBlock(sentence.Key[sentence.Value], Colors.Red, i, maxIndex);
 
-          // Füge Prefix ein
-          var j = sentence.Value - 1;
-          var k = 1;
-          for (; j > -1; j--, k++)
-            NewTextBlock(sentence.Key[j], Colors.Black, i, maxIndex - k);
+                     // Füge Prefix ein
+                     var j = sentence.Value - 1;
+                     var k = 1;
+                     for (; j > -1; j--, k++)
+                       NewTextBlock(sentence.Key[j], Colors.Black, i, maxIndex - k);
 
-          // Füge Suffix ein
-          j = sentence.Value + 1;
-          k = 1;
-          for (; j < sentence.Key.Length; j++, k++)
-            NewTextBlock(sentence.Key[j], Colors.Black, i, maxIndex + k);
-        });
+                     // Füge Suffix ein
+                     j = sentence.Value + 1;
+                     k = 1;
+                     for (; j < sentence.Key.Length; j++, k++)
+                       NewTextBlock(sentence.Key[j], Colors.Black, i, maxIndex + k);
+                   });
     }
 
     private void ClearGrid()

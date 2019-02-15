@@ -16,12 +16,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
   {
     private readonly List<string> _linkResults = new List<string>();
     private readonly List<string> _linkResultsCompleted = new List<string>();
+    private readonly WebXpathVisualizer page_3_browser;
+    private readonly WebXpathVisualizer page_4_browser;
 
     private bool _page3Alert = true;
 
     private bool _page4Alert = true;
-    private readonly WebXpathVisualizer page_3_browser;
-    private readonly WebXpathVisualizer page_4_browser;
 
     public WebCrawlerWizard()
     {
@@ -101,7 +101,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
 
       if (selectionContainsNoLinks)
         MessageBox.Show(
-          "Scheinbar selektiert der von Ihnen angebene XPath-Ausdruck mehr als nur Ergebnislinks. Bitte passen Sie den XPath-Ausdruck an.");
+                        "Scheinbar selektiert der von Ihnen angebene XPath-Ausdruck mehr als nur Ergebnislinks. Bitte passen Sie den XPath-Ausdruck an.");
 
       RefreshLinkResults();
     }
@@ -109,8 +109,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
     private void page_3_btn_testquery_Click(object sender, EventArgs e)
     {
       page_3_browser.Url = txt_search_url.Text
-        .Replace("[QUERY]", page_3_txt_testquery.Text)
-        .Replace("[PAGE]", ((int) num_search_min.Value).ToString());
+                                         .Replace("[QUERY]", page_3_txt_testquery.Text)
+                                         .Replace("[PAGE]", ((int) num_search_min.Value).ToString());
     }
 
     private void page_3_btn_xpathrefresh_Click(object sender, EventArgs e)
@@ -184,14 +184,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
       }
 
       XpathWebCrawler.Create(
-        txt_name.Text,
-        txt_search_url.Text,
-        (int) num_search_min.Value,
-        (int) num_search_increment.Value,
-        txt_result_xpath.Text,
-        txt_result_prefix.Text,
-        txt_result_limmit.Text,
-        mappings);
+                             txt_name.Text,
+                             txt_search_url.Text,
+                             (int) num_search_min.Value,
+                             (int) num_search_increment.Value,
+                             txt_result_xpath.Text,
+                             txt_result_prefix.Text,
+                             txt_result_limmit.Text,
+                             mappings);
       Close();
     }
 
@@ -245,7 +245,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
         if (string.IsNullOrEmpty(page_2_txt_url.Text) || !page_2_txt_url.Text.Contains("[QUERY]") ||
             !page_2_txt_url.Text.Contains("[PAGE]"))
           MessageBox.Show(
-            "Bitte geben Sie die URL für die seitenspezifische Suche an. Außerdem ersetzen Sie bitte den Suchausdruck durch [QUERY] sowie den Seitenindex durch [PAGE].");
+                          "Bitte geben Sie die URL für die seitenspezifische Suche an. Außerdem ersetzen Sie bitte den Suchausdruck durch [QUERY] sowie den Seitenindex durch [PAGE].");
 
         txt_search_url.Text = page_2_txt_url.Text;
         num_search_min.Value = page_2_num_start.Value;

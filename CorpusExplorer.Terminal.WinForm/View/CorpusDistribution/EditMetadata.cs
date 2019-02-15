@@ -45,10 +45,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     private void btn_meta_add_Click(object sender, EventArgs e)
     {
       var form = new SimpleTextInput(
-        "Neue Metaangabe",
-        "Geben Sie den Namen der neuen Metaangabe an. Dieser Wert kann später nicht mehr geändert werden.",
-        Resources.tag_green,
-        "Name hier eingeben...");
+                                     "Neue Metaangabe",
+                                     "Geben Sie den Namen der neuen Metaangabe an. Dieser Wert kann später nicht mehr geändert werden.",
+                                     Resources.tag_green,
+                                     "Name hier eingeben...");
       if (form.ShowDialog() != DialogResult.OK)
         return;
 

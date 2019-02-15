@@ -1,35 +1,40 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
-{
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true,
-    Namespace = "http://www.mediawiki.org/xml/export-0.10/")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.mediawiki.org/xml/export-0.10/",
-    IsNullable = false)]
-  public partial class comment
-  {
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
 
+namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
+{
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true,
+    Namespace = "http://www.mediawiki.org/xml/export-0.10/")]
+  [XmlRoot(Namespace = "http://www.mediawiki.org/xml/export-0.10/",
+    IsNullable = false)]
+  public class comment
+  {
     private string deletedField;
 
     private string[] textField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string deleted
     {
-      get { return this.deletedField; }
-      set { this.deletedField = value; }
+      get => deletedField;
+      set => deletedField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
+    /// <remarks />
+    [XmlText]
     public string[] Text
     {
-      get { return this.textField; }
-      set { this.textField = value; }
+      get => textField;
+      set => textField = value;
     }
   }
 }

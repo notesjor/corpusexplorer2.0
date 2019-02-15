@@ -72,7 +72,7 @@ namespace CorpusExplorer.Installer.Sdk.View
             launched = true;
         }
 
-      if (_splashForm == null ||
+      if (_splashForm   == null ||
           _splashThread == null)
         return;
 
@@ -111,7 +111,7 @@ namespace CorpusExplorer.Installer.Sdk.View
             launched = true;
         }
 
-      if (_splashForm == null ||
+      if (_splashForm   == null ||
           _splashThread == null)
         return;
 

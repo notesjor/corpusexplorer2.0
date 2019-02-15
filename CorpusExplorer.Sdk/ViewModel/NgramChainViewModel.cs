@@ -93,9 +93,9 @@ namespace CorpusExplorer.Sdk.ViewModel
     public IEnumerable<KeyValuePair<string[], int>> TakeTopNGrams(int max)
     {
       return NGramFrequency
-        .OrderByDescending(x => x.Value)
-        .Take(max)
-        .Select(x => new KeyValuePair<string[], int>(NGramRaw[x.Key], x.Value));
+            .OrderByDescending(x => x.Value)
+            .Take(max)
+            .Select(x => new KeyValuePair<string[], int>(NGramRaw[x.Key], x.Value));
     }
 
     protected override void ExecuteAnalyse()

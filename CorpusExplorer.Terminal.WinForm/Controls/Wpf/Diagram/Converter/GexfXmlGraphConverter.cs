@@ -12,7 +12,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter
     {
       var stb = new StringBuilder();
       stb.Append(
-        "<gexf xmlns=\"http://www.gexf.net/1.2draft\" version=\"1.2\"><meta lastmodifieddate=\"2009-03-20\"><creator>CorpusExplorer by J.O.Rüdiger</creator><description>For more information please visit www.CorpusExplorer.de</description></meta><graph mode=\"static\" defaultedgetype=\"directed\"><nodes>");
+                 "<gexf xmlns=\"http://www.gexf.net/1.2draft\" version=\"1.2\"><meta lastmodifieddate=\"2009-03-20\"><creator>CorpusExplorer by J.O.Rüdiger</creator><description>For more information please visit www.CorpusExplorer.de</description></meta><graph mode=\"static\" defaultedgetype=\"directed\"><nodes>");
 
       var dic = new Dictionary<string, int>();
 
@@ -34,14 +34,14 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter
       foreach (
         var connection in
         connections.Where(
-          connection =>
-            dic.ContainsKey(connection.Source.Content.ToString()) &&
-            dic.ContainsKey(connection.Target.Content.ToString())))
+                          connection =>
+                            dic.ContainsKey(connection.Source.Content.ToString()) &&
+                            dic.ContainsKey(connection.Target.Content.ToString())))
         stb.AppendFormat(
-          "<edge id=\"{0}\" source=\"{1}\" target=\"{2}\" />",
-          cnt++,
-          dic[connection.Source.Content.ToString()],
-          dic[connection.Target.Content.ToString()]);
+                         "<edge id=\"{0}\" source=\"{1}\" target=\"{2}\" />",
+                         cnt++,
+                         dic[connection.Source.Content.ToString()],
+                         dic[connection.Target.Content.ToString()]);
 
       stb.Append("</edges></graph></gexf>");
       return stb.ToString();

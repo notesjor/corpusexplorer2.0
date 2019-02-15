@@ -33,20 +33,20 @@ namespace CorpusExplorer.Terminal.WebCrawler
         return true;
 
       XpathWebCrawler.Create(
-        "notesjor",
-        "http://notes.jan-oliver-ruediger.de/page/[PAGE]/?s=[QUERY]",
-        1,
-        1,
-        ".//*[@id='recent-posts']/article/div/div/div/div/h1/a",
-        "",
-        "",
-        new Dictionary<string, string>
-        {
-          {".//*[@id='recent-posts']/article/div[1]/div/div/div[1]/h1", "Titel"},
-          {".//*[@id='recent-posts']/article/div[1]/div/div/div[1]/span", "Datum"},
-          {".//*[@id='recent-posts']/article/div[1]/div/div/div[2]/p", "Text"}
-        },
-        appPath);
+                             "notesjor",
+                             "http://notes.jan-oliver-ruediger.de/page/[PAGE]/?s=[QUERY]",
+                             1,
+                             1,
+                             ".//*[@id='recent-posts']/article/div/div/div/div/h1/a",
+                             "",
+                             "",
+                             new Dictionary<string, string>
+                             {
+                               {".//*[@id='recent-posts']/article/div[1]/div/div/div[1]/h1", "Titel"},
+                               {".//*[@id='recent-posts']/article/div[1]/div/div/div[1]/span", "Datum"},
+                               {".//*[@id='recent-posts']/article/div[1]/div/div/div[2]/p", "Text"}
+                             },
+                             appPath);
 
       ShowHeader();
       WriteText(Resources.Error_NoCML);
@@ -99,8 +99,9 @@ namespace CorpusExplorer.Terminal.WebCrawler
     private static void PrepareOutput()
     {
       _outputPath = Path.Combine(
-        Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "output"),
-        DateTime.Now.ToString("yyyy-MM-dd_hh-mm"));
+                                 Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                                              "output"),
+                                 DateTime.Now.ToString("yyyy-MM-dd_hh-mm"));
       if (!Directory.Exists(_outputPath))
         Directory.CreateDirectory(_outputPath);
     }
@@ -127,26 +128,26 @@ namespace CorpusExplorer.Terminal.WebCrawler
     private static void StartCrawlingProcess()
     {
       Parallel.ForEach(_crawlers,
-        Configuration.ParallelOptions,
-        crawler =>
-        {
-          try
-          {
-            crawler.Queries = _queries.Where(x => !string.IsNullOrWhiteSpace(x));
-            crawler.Execute();
+                       Configuration.ParallelOptions,
+                       crawler =>
+                       {
+                         try
+                         {
+                           crawler.Queries = _queries.Where(x => !string.IsNullOrWhiteSpace(x));
+                           crawler.Execute();
 
-            if (crawler.Output.Count <= 0)
-              return;
-            var arr = crawler.Output.ToArray();
-            Serializer.Serialize(arr.ToArray(),
-              Path.Combine(_outputPath, $"{crawler.DisplayName}.sdd"),
-              false);
-          }
-          catch (Exception ex)
-          {
-            InMemoryErrorConsole.Log(ex);
-          }
-        });
+                           if (crawler.Output.Count <= 0)
+                             return;
+                           var arr = crawler.Output.ToArray();
+                           Serializer.Serialize(arr.ToArray(),
+                                                Path.Combine(_outputPath, $"{crawler.DisplayName}.sdd"),
+                                                false);
+                         }
+                         catch (Exception ex)
+                         {
+                           InMemoryErrorConsole.Log(ex);
+                         }
+                       });
     }
 
     private static void WriteLine()

@@ -60,9 +60,10 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     protected override bool Validate()
     {
-      return !string.IsNullOrEmpty(LayerDisplayname) && !string.IsNullOrEmpty(LayerValueA)
-                                                     && !string.IsNullOrEmpty(LayerValueB) &&
-                                                     LayerValueA != LayerValueB;
+      return !string.IsNullOrEmpty(LayerDisplayname) &&
+             !string.IsNullOrEmpty(LayerValueA)
+          && !string.IsNullOrEmpty(LayerValueB) &&
+             LayerValueA != LayerValueB;
     }
   }
 }

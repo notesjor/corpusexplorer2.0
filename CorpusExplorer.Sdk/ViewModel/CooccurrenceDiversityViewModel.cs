@@ -1,6 +1,5 @@
 ﻿#region
 
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -37,7 +36,8 @@ namespace CorpusExplorer.Sdk.ViewModel
       res.BeginLoadData();
       foreach (var x in CollocatesAverage)
       {
-        if (!CollocatesBest.ContainsKey(x.Key) || !CollocatesDeviation.ContainsKey(x.Key) || !CollocatesWorst.ContainsKey(x.Key))
+        if (!CollocatesBest.ContainsKey(x.Key) || !CollocatesDeviation.ContainsKey(x.Key) ||
+            !CollocatesWorst.ContainsKey(x.Key))
           continue;
 
         res.Rows.Add(x.Key, CollocatesBest[x.Key], CollocatesWorst[x.Key], x.Value, CollocatesDeviation[x.Key]);

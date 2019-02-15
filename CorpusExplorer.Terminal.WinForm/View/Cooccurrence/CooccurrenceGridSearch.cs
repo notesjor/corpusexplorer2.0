@@ -99,19 +99,20 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     private void btn_snapshot_create_Click(object sender, EventArgs e)
     {
       CreateSelection(
-        radGridView1.SelectedRows.Select(
-          row =>
-          {
-            var queries = new List<string> {row.Cells[Resources.Kookkurrenz].Value.ToString()};
-            queries.AddRange(wordBag1.ResultQueries);
+                      radGridView1.SelectedRows.Select(
+                                                       row =>
+                                                       {
+                                                         var queries = new List<string>
+                                                           {row.Cells[Resources.Kookkurrenz].Value.ToString()};
+                                                         queries.AddRange(wordBag1.ResultQueries);
 
-            return new FilterQuerySingleLayerFirstAndAnyOtherMatch
-            {
-              LayerDisplayname = "Wort",
-              Inverse = false,
-              LayerQueries = queries
-            };
-          }));
+                                                         return new FilterQuerySingleLayerFirstAndAnyOtherMatch
+                                                         {
+                                                           LayerDisplayname = "Wort",
+                                                           Inverse = false,
+                                                           LayerQueries = queries
+                                                         };
+                                                       }));
     }
 
     private AbstractFilterQuery CreateChildTemplate(DataRowView row)
@@ -126,25 +127,25 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
         LayerQueries = queries
       };
     }
-    
+
     private void wordBag1_ExecuteButtonClicked(object sender, EventArgs e)
     {
       Processing.Invoke(
-        "Berechne Kookkurrenzen...",
-        () =>
-        {
-          _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
-          _vm.LayerQueries = wordBag1.ResultQueries.ToArray();
-          _vm.Execute();
+                        "Berechne Kookkurrenzen...",
+                        () =>
+                        {
+                          _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
+                          _vm.LayerQueries = wordBag1.ResultQueries.ToArray();
+                          _vm.Execute();
 
-          radGridView1.DataSource = _vm.GetDataTable();
-          radGridView1.ResetBindings();
-          radGridView1.BestFitColumns(BestFitColumnMode.HeaderCells);
-          radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+                          radGridView1.DataSource = _vm.GetDataTable();
+                          radGridView1.ResetBindings();
+                          radGridView1.BestFitColumns(BestFitColumnMode.HeaderCells);
+                          radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
 
-          AddSummaryRow();
-          AddChildTemplate(CreateChildTemplate);
-        });
+                          AddSummaryRow();
+                          AddChildTemplate(CreateChildTemplate);
+                        });
     }
 
     private void btn_regex_Click(object sender, EventArgs e)

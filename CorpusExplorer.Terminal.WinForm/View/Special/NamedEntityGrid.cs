@@ -7,14 +7,12 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using CorpusExplorer.Sdk.Extern.SentimentDetection.ViewModel;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.NamedEntity;
 using CorpusExplorer.Terminal.WinForm.Forms.Simple;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.Properties;
 using CorpusExplorer.Terminal.WinForm.View.AbstractTemplates;
-using Telerik.Pivot.Core;
 using Telerik.WinControls.UI;
 
 #endregion
@@ -26,9 +24,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
   /// </summary>
   public partial class NamedEntityGrid : AbstractGridView
   {
-    private NamedEntityDetectionViewModel _vm;
     private GridViewTemplate _childTemplate;
     private DateTime _preventDoubleCommandClick;
+    private NamedEntityDetectionViewModel _vm;
 
     /// <summary>
     ///   Initializes a new instance
@@ -125,15 +123,15 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       };
 
       template.Columns.AddRange(
-        txtcontent,
-        new GridViewTextBoxColumn("Rang")
-        {
-          DataType = typeof(double),
-          MaxWidth = 85,
-          TextAlignment = ContentAlignment.MiddleCenter
-        },
-        txtbtn,
-        txtindex);
+                                txtcontent,
+                                new GridViewTextBoxColumn("Rang")
+                                {
+                                  DataType = typeof(double),
+                                  MaxWidth = 85,
+                                  TextAlignment = ContentAlignment.MiddleCenter
+                                },
+                                txtbtn,
+                                txtindex);
 
       template.SortDescriptors.Add(Resources.Frequency, ListSortDirection.Descending);
       _grid.CommandCellClick += OnGridOnCommandCellClick;
@@ -150,11 +148,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
         return;
 
       var vm = GetViewModel<QuickInfoTextViewModel>();
-      vm.Documents = new[] { (KeyValuePair<Guid, int>)cell.RowElement.RowInfo.Cells["Info"].Value };
+      vm.Documents = new[] {(KeyValuePair<Guid, int>) cell.RowElement.RowInfo.Cells["Info"].Value};
       vm.Execute();
 
       var form = new SimpleTextView(vm.QuickDocumentInfoResults, Project);
-      form.NewProperty += (o, a) => { vm.SetNewDocumentMetadata((KeyValuePair<string, Type>)o); };
+      form.NewProperty += (o, a) => { vm.SetNewDocumentMetadata((KeyValuePair<string, Type>) o); };
 
       if (form.ShowDialog() == DialogResult.OK)
         foreach (var doc in form.Documents)
@@ -233,8 +231,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
     {
       var res = new HashSet<Guid>();
       foreach (var row in radGridView1.SelectedRows)
-        foreach (var guid in _vm.GetEntityEntries(row.Cells["Entität"].ToString()).Select(x => x.Item1))
-          res.Add(guid);
+      foreach (var guid in _vm.GetEntityEntries(row.Cells["Entität"].ToString()).Select(x => x.Item1))
+        res.Add(guid);
 
       CreateSelection(res);
     }

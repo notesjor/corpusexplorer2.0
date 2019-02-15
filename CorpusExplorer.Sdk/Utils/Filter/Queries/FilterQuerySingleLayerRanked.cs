@@ -11,14 +11,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
   [Serializable]
   public class FilterQuerySingleLayerRanked : AbstractFilterQuery
   {
-    [XmlArray]
-    public Dictionary<string, double> Expressions = new Dictionary<string, double>();
+    [XmlIgnore] private List<KeyValuePair<AbstractFilterQuery, double>> _queries;
 
-    [XmlIgnore] 
-    private object _queriesLock = new object();
+    [XmlIgnore] private object _queriesLock = new object();
 
-    [XmlIgnore] 
-    private List<KeyValuePair<AbstractFilterQuery, double>> _queries = null;
+    [XmlArray] public Dictionary<string, double> Expressions = new Dictionary<string, double>();
 
     [XmlIgnore]
     private List<KeyValuePair<AbstractFilterQuery, double>> Queries
@@ -33,11 +30,15 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           _queries = new List<KeyValuePair<AbstractFilterQuery, double>>();
           foreach (var expression in Expressions)
             _queries.Add(
-              new KeyValuePair<AbstractFilterQuery, double>(QueryParser.Parse(expression.Key), expression.Value));
+                         new KeyValuePair<AbstractFilterQuery, double>(QueryParser.Parse(expression.Key),
+                                                                       expression.Value));
           return _queries;
         }
       }
     }
+
+    [XmlIgnore]
+    public override string Verbal => "Bewerteter Filterausdruck";
 
     public override object Clone()
     {
@@ -48,9 +49,6 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
         OrFilterQueries = OrFilterQueries.Select(q => q.Clone() as AbstractFilterQuery)
       };
     }
-
-    [XmlIgnore]
-    public override string Verbal => "Bewerteter Filterausdruck";
 
     protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
@@ -64,12 +62,10 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       {
         var indices = query.Key.GetSentenceIndices(corpus, documentGuid);
         foreach (var index in indices)
-        {
           if (res.ContainsKey(index))
             res[index] += query.Value;
           else
             res.Add(index, query.Value);
-        }
       }
 
       return res.Where(x => x.Value >= 1).Select(x => x.Key);
@@ -82,12 +78,10 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       {
         var indices = query.Key.GetWordIndices(corpus, documentGuid, sentence);
         foreach (var index in indices)
-        {
           if (res.ContainsKey(index))
             res[index] += query.Value;
           else
             res.Add(index, query.Value);
-        }
       }
 
       return res.Where(x => x.Value >= 1).Select(x => x.Key);
@@ -97,10 +91,8 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     {
       var sum = 0d;
       foreach (var query in Queries)
-      {
-        if(query.Key.Validate(corpus, documentGuid))
+        if (query.Key.Validate(corpus, documentGuid))
           sum += query.Value;
-      }
 
       return sum >= 1;
     }

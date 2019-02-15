@@ -48,10 +48,10 @@ namespace CorpusExplorer.Sdk.Blocks.Cooccurrence
     {
       var l = b * _a / _n;
       return (k + 1) / l > 2.5
-        ? (k < 10
-          ? (l - k * Math.Log(l) + Math.Log(StatisticHelper.Fakultät(k))) / _log
-          : k * (Math.Log(k) - Math.Log(l) - 1) / _log)
-        : 0;
+               ? k < 10
+                   ? (l                             - k * Math.Log(l) + Math.Log(StatisticHelper.Fakultät(k))) / _log
+                   : k * (Math.Log(k) - Math.Log(l) - 1)                                                       / _log
+               : 0;
     }
 
     /// <summary>

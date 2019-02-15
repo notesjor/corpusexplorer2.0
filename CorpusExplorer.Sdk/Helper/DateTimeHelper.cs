@@ -23,15 +23,15 @@ namespace CorpusExplorer.Sdk.Helper
     public static bool IsDateInRange(DateTime referenceDateTime, TimeSpan timeSpan, DateTime testDateTime)
     {
       return IsDateInRange(
-        referenceDateTime,
-        timeSpan,
-        new TimeSpan(
-          Math.Abs(timeSpan.Days) * -1,
-          Math.Abs(timeSpan.Hours) * -1,
-          Math.Abs(timeSpan.Minutes) * -1,
-          Math.Abs(timeSpan.Seconds) * -1,
-          Math.Abs(timeSpan.Milliseconds) * -1),
-        testDateTime);
+                           referenceDateTime,
+                           timeSpan,
+                           new TimeSpan(
+                                        Math.Abs(timeSpan.Days)         * -1,
+                                        Math.Abs(timeSpan.Hours)        * -1,
+                                        Math.Abs(timeSpan.Minutes)      * -1,
+                                        Math.Abs(timeSpan.Seconds)      * -1,
+                                        Math.Abs(timeSpan.Milliseconds) * -1),
+                           testDateTime);
     }
 
     /// <summary>
@@ -69,13 +69,15 @@ namespace CorpusExplorer.Sdk.Helper
       if (useGermanMarchPatch)
         dateTimeString = GermanMarchPatch.Replace(dateTimeString, " März ");
 
-      if (dateTimeString.Length == 4 && int.TryParse(dateTimeString, out int i))
+      if (dateTimeString.Length == 4 && int.TryParse(dateTimeString, out var i))
         return new DateTime(i, 1, 1);
 
       var dateTime = DateTime.MinValue;
       // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
       CultureInfo.GetCultures(CultureTypes.AllCultures).FirstOrDefault(ci =>
-        DateTime.TryParse(dateTimeString, ci, DateTimeStyles.None, out dateTime));
+                                                                         DateTime.TryParse(dateTimeString, ci,
+                                                                                           DateTimeStyles.None,
+                                                                                           out dateTime));
       return dateTime;
     }
 
@@ -98,19 +100,24 @@ namespace CorpusExplorer.Sdk.Helper
     }
 
     /// <summary>
-    /// Berechnet das Quartal eines gegeben Datums
+    ///   Berechnet das Quartal eines gegeben Datums
     /// </summary>
     /// <param name="dt">Datum</param>
     /// <returns>Quartal</returns>
     public static int GetYearQuarter(DateTime dt)
-      => (dt.Month - 1) / 3 + 1;
+    {
+      return (dt.Month - 1) / 3 + 1;
+    }
 
     /// <summary>
-    /// Gets the week.
+    ///   Gets the week.
     /// </summary>
     /// <param name="dt">The dt.</param>
     /// <returns>System.Int32.</returns>
-    public static int GetYearWeek(DateTime dt, CalendarWeekRule rule = CalendarWeekRule.FirstDay, DayOfWeek firstWeekday = DayOfWeek.Monday)
-      => CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(dt, rule, firstWeekday);
+    public static int GetYearWeek(DateTime dt, CalendarWeekRule rule = CalendarWeekRule.FirstDay,
+                                  DayOfWeek firstWeekday = DayOfWeek.Monday)
+    {
+      return CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(dt, rule, firstWeekday);
+    }
   }
 }

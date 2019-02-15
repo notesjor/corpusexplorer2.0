@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Abstract;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.Delegates;
@@ -20,6 +14,8 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.Abstract
       InitializeComponent();
       InitialGuiState();
     }
+
+    public AbstractAuthentication Authentication { get; set; }
 
     private void btn_start_Click(object sender, EventArgs e)
     {
@@ -62,18 +58,25 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.Abstract
     }
 
     private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-      => InitialGuiState();
+    {
+      InitialGuiState();
+    }
 
-    private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e) => ExecuteBackgroundWorker();
+    private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+    {
+      ExecuteBackgroundWorker();
+    }
 
     protected virtual void ExecuteBackgroundWorker()
-      => OnExecute(null);
+    {
+      OnExecute(null);
+    }
 
     protected void OnExecute(Dictionary<string, object> parameters)
-      => Execute?.Invoke(Authentication, parameters);
+    {
+      Execute?.Invoke(Authentication, parameters);
+    }
 
     public event CallEndpointDelegate Execute;
-
-    public AbstractAuthentication Authentication { get; set; }
   }
 }

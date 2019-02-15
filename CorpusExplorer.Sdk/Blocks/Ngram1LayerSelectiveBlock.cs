@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
-using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 
 namespace CorpusExplorer.Sdk.Blocks
@@ -24,7 +23,7 @@ namespace CorpusExplorer.Sdk.Blocks
         LayerDisplayname = LayerDisplayname,
         LayerQueries = LayerQueries
       };
-      var selection = Selection.CreateTemporary(new[] { query });
+      var selection = Selection.CreateTemporary(new[] {query});
 
       NGramFrequency = new Dictionary<string, int>();
       NGramRaw = new Dictionary<string, string[]>();
@@ -65,7 +64,7 @@ namespace CorpusExplorer.Sdk.Blocks
                 min = 0;
               if (max >= sent.Length)
                 max = sent.Length - 1;
-              
+
               for (var i = min; i < max - NGramSize; i++)
               {
                 var ngram = new string[NGramSize];

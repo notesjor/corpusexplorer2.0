@@ -14,21 +14,21 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
 
       foreach (var setting in settings)
       {
-        if (setting.Conditions == null ||
-            setting.Conditions.Count == 0 ||
+        if (setting.Conditions       == null ||
+            setting.Conditions.Count == 0    ||
             string.IsNullOrEmpty(setting.PropertyName))
           continue;
 
         if (setting.Conditions.Count == 1)
         {
           res.Add(
-            new FilterDescriptor
-            {
-              PropertyName = setting.PropertyName,
-              Operator = setting.Conditions.FirstOrDefault()?.Operator ?? FilterOperator.Contains,
-              Value = setting.Conditions.FirstOrDefault()?.Value,
-              IsFilterEditor = true
-            });
+                  new FilterDescriptor
+                  {
+                    PropertyName = setting.PropertyName,
+                    Operator = setting.Conditions.FirstOrDefault()?.Operator ?? FilterOperator.Contains,
+                    Value = setting.Conditions.FirstOrDefault()?.Value,
+                    IsFilterEditor = true
+                  });
         }
         else
         {
@@ -55,16 +55,16 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
     public static IEnumerable<FilterSetting> SaveColumnFilters(FilterDescriptorCollection collection)
     {
       return (from filter in collection
-        where filter != null
-        select new FilterSetting
-        {
-          PropertyName = filter.PropertyName,
-          Conditions =
-            (filter as CompositeFilterDescriptor)?.FilterDescriptors.Select(GetFilterConditions).ToList() ??
-            new List<FilterConditions> {GetFilterConditions(filter)},
-          InvertFilter = (filter as CompositeFilterDescriptor)?.NotOperator ?? false,
-          LogicalOperator = (filter as CompositeFilterDescriptor)?.LogicalOperator ?? FilterLogicalOperator.And
-        }).ToList();
+              where filter != null
+              select new FilterSetting
+              {
+                PropertyName = filter.PropertyName,
+                Conditions =
+                  (filter as CompositeFilterDescriptor)?.FilterDescriptors.Select(GetFilterConditions).ToList() ??
+                  new List<FilterConditions> {GetFilterConditions(filter)},
+                InvertFilter = (filter as CompositeFilterDescriptor)?.NotOperator        ?? false,
+                LogicalOperator = (filter as CompositeFilterDescriptor)?.LogicalOperator ?? FilterLogicalOperator.And
+              }).ToList();
     }
 
     private static FilterConditions GetFilterConditions(FilterDescriptor filter)

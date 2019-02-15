@@ -62,11 +62,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     private string ValidateGetValue(AbstractCorpusAdapter corpus, Guid documentGuid)
     {
       var metas = corpus.GetDocumentMetadata(documentGuid);
-      return metas == null ||
-             metas.Count == 0 ||
+      return metas       == null ||
+             metas.Count == 0    ||
              !metas.ContainsKey(MetaLabel)
-        ? null
-        : metas[MetaLabel]?.ToString();
+               ? null
+               : metas[MetaLabel]?.ToString();
     }
   }
 }

@@ -51,7 +51,7 @@ namespace CorpusExplorer.Sdk.Blocks.Disambiguation
 
     public double Distance(DisambiguationCluster otherCluster)
     {
-      return Math.Abs(Value - otherCluster.Value) + Math.Abs(ClusterA.Value - otherCluster.ClusterA.Value) +
+      return Math.Abs(Value          - otherCluster.Value) + Math.Abs(ClusterA.Value - otherCluster.ClusterA.Value) +
              Math.Abs(ClusterB.Value - otherCluster.ClusterB.Value);
     }
 

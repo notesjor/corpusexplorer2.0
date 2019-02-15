@@ -17,6 +17,29 @@ namespace CorpusExplorer.Sdk.ViewModel
     private Dictionary<string, Dictionary<string, double>> _dic;
     private string[] _names;
 
+    public string MetadataKeyA { get; set; }
+    public string MetadataKeyB { get; set; }
+
+    public AbstractSelectionClusterGenerator SelectionClusterGenerator { get; set; } =
+      new SelectionClusterGeneratorStringValue();
+
+    public DataTable GetDataTable()
+    {
+      var dt = new DataTable();
+      dt.Columns.Add(MetadataKeyB, typeof(string));
+      dt.Columns.Add(MetadataKeyA, typeof(string));
+      dt.Columns.Add("value", typeof(double));
+
+      dt.BeginLoadData();
+      foreach (var x in _dic)
+      foreach (var y in _names)
+        if (x.Value.ContainsKey(y))
+          dt.Rows.Add(x.Key, y, x.Value[y].ToString(CultureInfo.InvariantCulture));
+      dt.EndLoadData();
+
+      return dt;
+    }
+
     protected override void ExecuteAnalyse()
     {
       var blockAc = Selection.CreateBlock<SelectionClusterBlock>();
@@ -50,6 +73,7 @@ namespace CorpusExplorer.Sdk.ViewModel
             var res = block.Compare(sB).CompareResults;
 
             lock (loc)
+            {
               if (_dic.ContainsKey(sB.Displayname))
                 foreach (var x in res)
                   if (_dic[sB.Displayname].ContainsKey(x.Key) && x.Value > _dic[sB.Displayname][x.Key])
@@ -58,6 +82,7 @@ namespace CorpusExplorer.Sdk.ViewModel
                     _dic[sB.Displayname].Add(x.Key, x.Value);
               else
                 _dic.Add(sB.Displayname, res);
+            }
           }
           catch
           {
@@ -72,25 +97,6 @@ namespace CorpusExplorer.Sdk.ViewModel
       return !string.IsNullOrEmpty(MetadataKeyA) && !string.IsNullOrEmpty(MetadataKeyB);
     }
 
-    public string MetadataKeyA { get; set; }
-    public string MetadataKeyB { get; set; }
-    public AbstractSelectionClusterGenerator SelectionClusterGenerator { get; set; } = new SelectionClusterGeneratorStringValue();
-    public DataTable GetDataTable()
-    {
-      var dt = new DataTable();
-      dt.Columns.Add(MetadataKeyB, typeof(string));
-      dt.Columns.Add(MetadataKeyA, typeof(string));
-      dt.Columns.Add("value", typeof(double));
-
-      dt.BeginLoadData();
-      foreach (var x in _dic)
-        foreach (var y in _names)
-          if (x.Value.ContainsKey(y))
-            dt.Rows.Add(x.Key, y, x.Value[y].ToString(CultureInfo.InvariantCulture));
-      dt.EndLoadData();
-
-      return dt;
-    }
     public DataTable GetCrossDataTable()
     {
       var dt = new DataTable();
@@ -110,6 +116,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 
         dt.Rows.Add(row);
       }
+
       dt.EndLoadData();
 
       return dt;

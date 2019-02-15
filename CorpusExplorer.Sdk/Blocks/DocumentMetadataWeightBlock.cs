@@ -54,8 +54,12 @@ namespace CorpusExplorer.Sdk.Blocks
       // ReSharper restore SuggestVarOrType_BuiltInTypes
 
       return data.ToDictionary(
-        x => x.Key,
-        x => x.Value.ToDictionary(y => y.Key, y => new[] {y.Value[0] / tokens, y.Value[1] / types, y.Value[2] / docs}));
+                               x => x.Key,
+                               x => x.Value.ToDictionary(y => y.Key,
+                                                         y => new[]
+                                                         {
+                                                           y.Value[0] / tokens, y.Value[1] / types, y.Value[2] / docs
+                                                         }));
     }
 
     /// <summary>
@@ -248,8 +252,8 @@ namespace CorpusExplorer.Sdk.Blocks
                 MetaDataDictionary[meta.Key].Add(key, new HashSet<Guid> {dsel});
             else
               MetaDataDictionary.Add(
-                meta.Key,
-                new Dictionary<string, HashSet<Guid>> {{key, new HashSet<Guid> {dsel}}});
+                                     meta.Key,
+                                     new Dictionary<string, HashSet<Guid>> {{key, new HashSet<Guid> {dsel}}});
           }
           catch
           {

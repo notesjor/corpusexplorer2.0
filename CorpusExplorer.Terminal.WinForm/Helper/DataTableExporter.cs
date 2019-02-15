@@ -15,6 +15,19 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
 {
   public static class DataTableExporter
   {
+    private static readonly KeyValuePair<string, ExportDelegate>[] _exportFormats =
+      new Dictionary<string, ExportDelegate>
+      {
+        {"TSV (*.tsv)|*.tsv", (grid, path) => ExportWithDataTableWriter(grid, new TsvTableWriter(), path)},
+        {"CSV (*.csv)|*.csv", (grid, path) => ExportWithDataTableWriter(grid, new CsvTableWriter(), path)},
+        {"JSON (*.json)|*.json", (grid, path) => ExportWithDataTableWriter(grid, new JsonTableWriter(), path)},
+        {"Microsoft Excel (*.xlsx)|*.xlsx", (grid, path) => ExportToStream(grid, SpreadDocumentFormat.Xlsx, path)},
+        {"XML (*.xml)|*.xml", (grid, path) => ExportWithDataTableWriter(grid, new XmlTableWriter(), path)},
+        {"HTML (*.html)|*.html", (grid, path) => new ExportToHTML(grid).RunExport(path)},
+        {"PDF (*.pdf)|*.pdf", (grid, path) => new ExportToPDF(grid).RunExport(path)},
+        {"SQL (*.sql)|*.sql", (grid, path) => ExportWithDataTableWriter(grid, new SqlTableWriter(), path)}
+      }.ToArray();
+
     public static void Export(DataTable dataTable)
     {
       Export(new RadGridView {DataSource = dataTable});
@@ -40,35 +53,19 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       }
     }
 
-    private delegate void ExportDelegate(RadGridView grid, string path);
-
-    private static readonly KeyValuePair<string, ExportDelegate>[] _exportFormats = new Dictionary<string, ExportDelegate>
-    {
-      { "TSV (*.tsv)|*.tsv", (grid, path)=> ExportWithDataTableWriter(grid, new TsvTableWriter(), path)},
-      { "CSV (*.csv)|*.csv", (grid, path)=> ExportWithDataTableWriter(grid, new CsvTableWriter(), path)},
-      { "JSON (*.json)|*.json", (grid, path)=> ExportWithDataTableWriter(grid, new JsonTableWriter(), path)},
-      { "Microsoft Excel (*.xlsx)|*.xlsx", (grid, path)=> ExportToStream(grid, SpreadDocumentFormat.Xlsx, path)},
-      { "XML (*.xml)|*.xml", (grid, path)=> ExportWithDataTableWriter(grid, new XmlTableWriter(), path)},
-      { "HTML (*.html)|*.html", (grid, path)=> new ExportToHTML(grid).RunExport(path)},
-      { "PDF (*.pdf)|*.pdf", (grid, path)=> new ExportToPDF(grid).RunExport(path)},
-      { "SQL (*.sql)|*.sql", (grid, path)=> ExportWithDataTableWriter(grid, new SqlTableWriter(), path)}
-    }.ToArray();
-
     public static void Export(RadGridView grid)
     {
       var sfd = new SaveFileDialog
       {
-        Filter = string.Join("|", _exportFormats.Select(x=>x.Key)),
+        Filter = string.Join("|", _exportFormats.Select(x => x.Key)),
         CheckPathExists = true
       };
 
       if (sfd.ShowDialog() != DialogResult.OK)
         return;
 
-      Processing.Invoke("Daten werden exportiert...", () =>
-      {
-        _exportFormats[sfd.FilterIndex - 1].Value(grid, sfd.FileName);
-      });
+      Processing.Invoke("Daten werden exportiert...",
+                        () => { _exportFormats[sfd.FilterIndex - 1].Value(grid, sfd.FileName); });
     }
 
     private static void ExportWithDataTableWriter(RadGridView grid, AbstractTableWriter tableWriter, string path)
@@ -78,7 +75,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
 
       foreach (var col in grid.Columns)
         res.Columns.Add(col.Name, col.DataType);
-      
+
       res.BeginLoadData();
       foreach (var row in grid.Rows)
         res.Rows.Add(cna.Select(n => row.Cells[n].Value).ToArray());
@@ -127,5 +124,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
           }
       }
     }
+
+    private delegate void ExportDelegate(RadGridView grid, string path);
   }
 }

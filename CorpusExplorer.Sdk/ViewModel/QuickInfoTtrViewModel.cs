@@ -30,34 +30,34 @@ namespace CorpusExplorer.Sdk.ViewModel
       var lok = new object();
 
       Parallel.ForEach(Selection,
-        Configuration.ParallelOptions,
-        csel =>
-        {
-          var corpus = Selection.GetCorpus(csel.Key);
-          var layer = corpus?.GetLayers(LayerDisplayname)?.FirstOrDefault();
-          if (layer == null)
-            return;
-          Parallel.ForEach(csel.Value,
-            Configuration.ParallelOptions,
-            dsel =>
-            {
-              if (!layer.ContainsDocument(dsel))
-                return;
-              var doc = layer[dsel];
-              if (doc == null)
-                return;
-              lock (lok)
-              {
-                foreach (var s in doc)
-                {
-                  if (s == null)
-                    continue;
-                  foreach (var w in s)
-                    all.Add(w);
-                }
-              }
-            });
-        });
+                       Configuration.ParallelOptions,
+                       csel =>
+                       {
+                         var corpus = Selection.GetCorpus(csel.Key);
+                         var layer = corpus?.GetLayers(LayerDisplayname)?.FirstOrDefault();
+                         if (layer == null)
+                           return;
+                         Parallel.ForEach(csel.Value,
+                                          Configuration.ParallelOptions,
+                                          dsel =>
+                                          {
+                                            if (!layer.ContainsDocument(dsel))
+                                              return;
+                                            var doc = layer[dsel];
+                                            if (doc == null)
+                                              return;
+                                            lock (lok)
+                                            {
+                                              foreach (var s in doc)
+                                              {
+                                                if (s == null)
+                                                  continue;
+                                                foreach (var w in s)
+                                                  all.Add(w);
+                                              }
+                                            }
+                                          });
+                       });
 
       CounterTypes = all.Count;
       CounterTypeTokenRatio = CounterTypes / (double) CounterTokens;

@@ -9,6 +9,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.CloneDetection
       InitializeComponent();
     }
 
-    public int SelectedOption => radRadioButton1.IsChecked ? 1 : (radRadioButton2.IsChecked ? 2 : 3);
+    public int SelectedOption => radRadioButton1.IsChecked ? 1 : radRadioButton2.IsChecked ? 2 : 3;
   }
 }

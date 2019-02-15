@@ -5,8 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 {
-  public class Sentences : IDisposable, IEnumerable
-    , IEnumerable<Sentence>
+  public class Sentences : IDisposable, IEnumerable, IEnumerable<Sentence>
   {
     protected bool swigCMemOwn;
     private HandleRef swigCPtr;
@@ -133,7 +132,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
         throw new ArgumentException("Multi dimensional array.", "array");
       if (index + count > Count || arrayIndex + count > array.Length)
         throw new ArgumentException("Number of elements to copy is too large.");
-      for (int i = 0; i < count; i++)
+      for (var i = 0; i < count; i++)
         array.SetValue(getitemcopy(index + i), arrayIndex + i);
     }
 
@@ -144,8 +143,8 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public Sentences GetRange(int index, int count)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.Sentences_GetRange(swigCPtr, index, count);
-      Sentences ret = cPtr == IntPtr.Zero ? null : new Sentences(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.Sentences_GetRange(swigCPtr, index, count);
+      var ret = cPtr == IntPtr.Zero ? null : new Sentences(cPtr, true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
@@ -176,8 +175,8 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public static Sentences Repeat(Sentence value, int count)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.Sentences_Repeat(Sentence.getCPtr(value), count);
-      Sentences ret = cPtr == IntPtr.Zero ? null : new Sentences(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.Sentences_Repeat(Sentence.getCPtr(value), count);
+      var ret = cPtr == IntPtr.Zero ? null : new Sentences(cPtr, true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
@@ -206,20 +205,20 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     private uint capacity()
     {
-      uint ret = udpipe_csharpPINVOKE.Sentences_capacity(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Sentences_capacity(swigCPtr);
       return ret;
     }
 
     private Sentence getitem(int index)
     {
-      Sentence ret = new Sentence(udpipe_csharpPINVOKE.Sentences_getitem(swigCPtr, index), false);
+      var ret = new Sentence(udpipe_csharpPINVOKE.Sentences_getitem(swigCPtr, index), false);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     private Sentence getitemcopy(int index)
     {
-      Sentence ret = new Sentence(udpipe_csharpPINVOKE.Sentences_getitemcopy(swigCPtr, index), true);
+      var ret = new Sentence(udpipe_csharpPINVOKE.Sentences_getitemcopy(swigCPtr, index), true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
@@ -237,7 +236,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     private uint size()
     {
-      uint ret = udpipe_csharpPINVOKE.Sentences_size(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Sentences_size(swigCPtr);
       return ret;
     }
 
@@ -251,13 +250,12 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     /// whenever the collection is modified. This has been done for changes in the size of the
     /// collection but not when one of the elements of the collection is modified as it is a bit
     /// tricky to detect unmanaged code that modifies the collection under our feet.
-    public sealed class SentencesEnumerator : IEnumerator
-      , IEnumerator<Sentence>
+    public sealed class SentencesEnumerator : IEnumerator, IEnumerator<Sentence>
     {
       private readonly Sentences collectionRef;
+      private readonly int currentSize;
       private int currentIndex;
       private object currentObject;
-      private readonly int currentSize;
 
       public SentencesEnumerator(Sentences collection)
       {
@@ -272,8 +270,8 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
       public bool MoveNext()
       {
-        int size = collectionRef.Count;
-        bool moveOkay = currentIndex + 1 < size && size == currentSize;
+        var size = collectionRef.Count;
+        var moveOkay = currentIndex + 1 < size && size == currentSize;
         if (moveOkay)
         {
           currentIndex++;

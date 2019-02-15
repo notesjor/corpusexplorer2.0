@@ -19,11 +19,10 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
 
     private void InitializeComponent()
     {
-      ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
-      this.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
-      this.ResumeLayout(false);
-
+      ((ISupportInitialize) this).BeginInit();
+      SuspendLayout();
+      ((ISupportInitialize) this).EndInit();
+      ResumeLayout(false);
     }
   }
 }

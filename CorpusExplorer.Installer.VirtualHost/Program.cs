@@ -13,18 +13,18 @@ namespace CorpusExplorer.Installer.VirtualHost
     private static void Main()
     {
       var desktop = Directory.Exists("C:/Users/Public/Desktop")
-        ? "C:/Users/Public/Desktop"
-        : "C:/Users/Public/Public Desktop";
+                      ? "C:/Users/Public/Desktop"
+                      : "C:/Users/Public/Public Desktop";
       var workdir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "CorpusExplorer");
 
       Console.Write($"CorpusExplorer v2.x Install/Update - {workdir}...");
       CorpusExplorerBootstraper.InstallOnly(
-        "http://www.bitcutstudios.com/products/corpusexplorer/standard.manifest",
-        workdir);
+                                            "http://www.bitcutstudios.com/products/corpusexplorer/standard.manifest",
+                                            workdir);
       Console.WriteLine("ok!");
 
       Console.WriteLine(
-        $"Add shortcut {Path.Combine(workdir, "CorpusExplorer.exe")} > {Path.Combine(desktop, "CorpusExplorer.lnk")}");
+                        $"Add shortcut {Path.Combine(workdir, "CorpusExplorer.exe")} > {Path.Combine(desktop, "CorpusExplorer.lnk")}");
       Shortcut.Create(Path.Combine(workdir, "CorpusExplorer.exe"), "", desktop, "CorpusExplorer", workdir);
 
       if (InMemoryErrorConsole.Errors.Any())

@@ -4,11 +4,10 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using CorpusExplorer.Sdk.Ecosystem;
-using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Terminal.WinForm.Forms.Dashboard;
 using CorpusExplorer.Terminal.WinForm.Properties;
-using Telerik.WinControls;
+using Telerik.WinControls.Enumerations;
 using Telerik.WinControls.UI;
 
 namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
@@ -18,6 +17,43 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
     private static Dictionary<string, FavoriteManagerEntry> _entries = new Dictionary<string, FavoriteManagerEntry>();
     private static Dashboard _dashboard;
     private static bool _loadDefault;
+
+    public static RadMenuItem[] PinnedItems
+      => _loadDefault
+           ? LoadDefault()
+           : AddEventHandlers((from x in _entries where x.Value.IsPinned select x.Value)
+                             .Select(x => new RadMenuItem(x.Title) {Image = x.Image, Tag = x}).ToArray());
+
+    public static RadMenuItem[] MostFrequentItems
+      => AddEventHandlers((from x in _entries where !x.Value.IsPinned && x.Value.Count > 0 select x.Value)
+                         .OrderByDescending(x => x.Count)
+                         .Take(10)
+                         .Select(x => new RadMenuItem(x.Title) {Image = x.Image, Tag = x}).ToArray());
+
+    public static ListViewDataItem[] PinnedConfiguration
+    {
+      get
+      {
+        var res = (from x in _entries where x.Value.IsPinned select x)
+                 .Select(x => new ListViewDataItem(x.Value.Title) {CheckState = ToggleState.On, Tag = x.Key}).ToList();
+        res.AddRange((from x in _entries where !x.Value.IsPinned select x)
+                    .OrderByDescending(x => x.Value.Count).Select(x => new ListViewDataItem(x.Value.Title)
+                                                                    {CheckState = ToggleState.Off, Tag = x.Key}));
+        return res.ToArray();
+      }
+      set
+      {
+        foreach (var x in value)
+        {
+          var key = x.Tag as string;
+          if (string.IsNullOrEmpty(key))
+            continue;
+
+          if (_entries.ContainsKey(key))
+            _entries[key].IsPinned = x.CheckState == ToggleState.On;
+        }
+      }
+    }
 
     public static void InitializeFavoriteManager(Dashboard dashboard)
     {
@@ -77,10 +113,6 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
         _entries[modulePage].Count++;
     }
 
-    public static RadMenuItem[] PinnedItems
-      => _loadDefault ? LoadDefault() : AddEventHandlers((from x in _entries where x.Value.IsPinned select x.Value)
-        .Select(x => new RadMenuItem(x.Title) { Image = x.Image, Tag = x }).ToArray());
-
     private static RadMenuItem[] LoadDefault()
     {
       _loadDefault = false;
@@ -99,42 +131,14 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
         _entries[x].IsPinned = true;
 
       return AddEventHandlers(predef
-        .Where(x => _entries.ContainsKey(x))
-        .Select(x => new RadMenuItem(_entries[x].Title) { Image = _entries[x].Image, Tag = _entries[x] }).ToArray());
-    }
-
-    public static RadMenuItem[] MostFrequentItems
-      => AddEventHandlers((from x in _entries where !x.Value.IsPinned && x.Value.Count > 0 select x.Value)
-        .OrderByDescending(x => x.Count)
-        .Take(10)
-        .Select(x => new RadMenuItem(x.Title) { Image = x.Image, Tag = x }).ToArray());
-
-    public static ListViewDataItem[] PinnedConfiguration
-    {
-      get
-      {
-        var res = (from x in _entries where x.Value.IsPinned select x).Select(x => new ListViewDataItem(x.Value.Title) { CheckState = Telerik.WinControls.Enumerations.ToggleState.On, Tag = x.Key }).ToList();
-        res.AddRange((from x in _entries where !x.Value.IsPinned select x).OrderByDescending(x => x.Value.Count).Select(x => new ListViewDataItem(x.Value.Title) { CheckState = Telerik.WinControls.Enumerations.ToggleState.Off, Tag = x.Key }));
-        return res.ToArray();
-      }
-      set
-      {
-        foreach (var x in value)
-        {
-          var key = x.Tag as string;
-          if(string.IsNullOrEmpty(key))
-            continue;
-
-          if (_entries.ContainsKey(key))
-            _entries[key].IsPinned = x.CheckState == Telerik.WinControls.Enumerations.ToggleState.On;
-        }
-      }
+                             .Where(x => _entries.ContainsKey(x))
+                             .Select(x => new RadMenuItem(_entries[x].Title)
+                                       {Image = _entries[x].Image, Tag = _entries[x]}).ToArray());
     }
 
     private static RadMenuItem[] AddEventHandlers(RadMenuItem[] items)
     {
       foreach (var item in items)
-      {
         item.Click += (s, e) =>
         {
           var proj = CorpusExplorerEcosystem.InitializeMinimal();
@@ -166,7 +170,6 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
           rpv2.SelectedPage = rpvp2;
           rpv3.SelectedPage = rpvp3;
         };
-      }
       return items;
     }
   }
@@ -174,12 +177,12 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
   [Serializable]
   public class FavoriteManagerEntry
   {
+    [NonSerialized] public RadPageViewPage Page;
+
     public string Title { get; set; }
     public Image Image { get; set; }
     public string ModulePage { get; set; }
     public bool IsPinned { get; set; }
-    public int Count { get; set; } = 0;
-    [NonSerialized]
-    public RadPageViewPage Page;
+    public int Count { get; set; }
   }
 }

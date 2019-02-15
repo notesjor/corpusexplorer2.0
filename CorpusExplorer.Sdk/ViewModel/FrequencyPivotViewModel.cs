@@ -45,7 +45,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     {
       var block =
         Selection
-          .CreateBlock
+         .CreateBlock
           <
             MakeMetadataDocumentPartionBlock
             <Dictionary<string, Dictionary<string, Dictionary<string, double>>>, Frequency3LayerBlock>>();

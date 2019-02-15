@@ -13,6 +13,10 @@ namespace CorpusExplorer.Sdk.ViewModel
 {
   public class NamedEntityDetectionViewModel : AbstractViewModel, IProvideDataTable
   {
+    public Blocks.NamedEntityRecognition.Model Model { get; set; }
+
+    public Dictionary<Entity, HashSet<Guid>> DetectedEntities { get; set; }
+
     /// <summary>
     ///   Gibt eine Datentabelle zurück
     /// </summary>
@@ -26,7 +30,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       dt.BeginLoadData();
 
       foreach (var entity in DetectedEntities)
-        dt.Rows.Add(entity.Key.Name, (double)entity.Value.Count);
+        dt.Rows.Add(entity.Key.Name, (double) entity.Value.Count);
 
       dt.EndLoadData();
 
@@ -48,6 +52,7 @@ namespace CorpusExplorer.Sdk.ViewModel
         foreach (var tuple in tmp)
           dt.Rows.Add(ent.Key.Name, tuple.Item1, tuple.Item2, tuple.Item3);
       }
+
       dt.EndLoadData();
 
       return dt;
@@ -68,7 +73,6 @@ namespace CorpusExplorer.Sdk.ViewModel
 
         var sent = new HashSet<int>();
         foreach (var rule in ent.Key.Rules)
-        {
           try
           {
             var matches = top.CreateTemporary(new[] {rule.Filter}).GetSelectedSentences()?.FirstOrDefault();
@@ -82,7 +86,6 @@ namespace CorpusExplorer.Sdk.ViewModel
           {
             //ignore
           }
-        }
 
         foreach (var s in sent)
           res.Add(new Tuple<Guid, int>(dsel, s));
@@ -103,13 +106,17 @@ namespace CorpusExplorer.Sdk.ViewModel
       var res = new List<Tuple<Guid, int, string>>();
 
       foreach (var x in tmp)
-        res.Add(new Tuple<Guid, int, string>(x.Item1, x.Item2, Selection.GetReadableDocumentSnippet(x.Item1, "Wort", x.Item2, x.Item2).ReduceDocumentToText()));
+        res.Add(new Tuple<Guid, int, string>(x.Item1, x.Item2,
+                                             Selection.GetReadableDocumentSnippet(x.Item1, "Wort", x.Item2, x.Item2)
+                                                      .ReduceDocumentToText()));
 
       return res;
     }
 
     public KeyValuePair<Entity, HashSet<Guid>>? GetDetectedEntityByName(string entityName)
-      => (from x in DetectedEntities where x.Key.Name == entityName select x).FirstOrDefault();
+    {
+      return (from x in DetectedEntities where x.Key.Name == entityName select x).FirstOrDefault();
+    }
 
     protected override void ExecuteAnalyse()
     {
@@ -119,10 +126,6 @@ namespace CorpusExplorer.Sdk.ViewModel
 
       DetectedEntities = block.DetectedEntities;
     }
-
-    public Blocks.NamedEntityRecognition.Model Model { get; set; }
-
-    public Dictionary<Entity, HashSet<Guid>> DetectedEntities { get; set; }
 
     protected override bool Validate()
     {

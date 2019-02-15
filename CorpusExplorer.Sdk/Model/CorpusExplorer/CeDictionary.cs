@@ -34,7 +34,7 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// </param>
     public CeDictionary(IEnumerable<string> dic)
     {
-      _d2 = new Dictionary<string, int> { { string.Empty, -1 } };
+      _d2 = new Dictionary<string, int> {{string.Empty, -1}};
       foreach (var x in dic)
         _d2.Add(x, _d2.Count);
 
@@ -275,7 +275,7 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
 
     public void RefreshDictionaries()
     {
-      if (_d2 == null ||
+      if (_d2       == null ||
           _d2.Count == 0)
         OnDeserialized(new StreamingContext());
     }

@@ -12,7 +12,7 @@ namespace CorpusExplorer.Sdk.Db.Gui
 
     public static bool Show { get; set; }
 
-    public static void Invoke(string message, System.Action action)
+    public static void Invoke(string message, Action action)
     {
       SplashShow(message);
 
@@ -41,17 +41,17 @@ namespace CorpusExplorer.Sdk.Db.Gui
       {
         Message = message;
         _thread = Task.Factory.StartNew(
-          () =>
-          {
-            try
-            {
-              var splashForm = new ProcessingForm();
-              splashForm.ShowDialog();
-            }
-            catch
-            {
-            }
-          });
+                                        () =>
+                                        {
+                                          try
+                                          {
+                                            var splashForm = new ProcessingForm();
+                                            splashForm.ShowDialog();
+                                          }
+                                          catch
+                                          {
+                                          }
+                                        });
       }
       else
       {

@@ -29,8 +29,8 @@ namespace CorpusExplorer.Sdk.Blocks.VocabularyComplaxity
     public override double CalculateValue(Dictionary<string, double> token)
     {
       return 10000.0d
-             * (VocabularyComplexityMCalculationHelper.GetM(token)
-                / VocabularyComplexityViCalculationHelper.GetVi(token, 2) - 1.0d / token.Sum(x => x.Value));
+           * (VocabularyComplexityMCalculationHelper.GetM(token)
+            / VocabularyComplexityViCalculationHelper.GetVi(token, 2) - 1.0d / token.Sum(x => x.Value));
     }
   }
 }

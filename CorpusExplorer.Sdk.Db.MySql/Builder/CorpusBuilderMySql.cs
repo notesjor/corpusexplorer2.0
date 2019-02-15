@@ -24,17 +24,18 @@ namespace CorpusExplorer.Sdk.Db.MySql.Builder
       List<Concept> concepts)
     {
       var setting = FormHelper.Show("MySQL",
-        "localhost",
-        3306, (host, port, dbName, user, password) =>
-        {
-          var context = new DataContext(CreateConnectionString(host, port, dbName, user, password));
-          if (!context.DatabaseExists())
-            context.CreateDatabase(true, true);
+                                    "localhost",
+                                    3306, (host, port, dbName, user, password) =>
+                                    {
+                                      var context =
+                                        new DataContext(CreateConnectionString(host, port, dbName, user, password));
+                                      if (!context.DatabaseExists())
+                                        context.CreateDatabase(true, true);
 
-          return context.DatabaseExists();
-        },
-        "CorpusExplorer <-> MySQL (*.mysql)|*.mysql",
-        SaveSettingsPath);
+                                      return context.DatabaseExists();
+                                    },
+                                    "CorpusExplorer <-> MySQL (*.mysql)|*.mysql",
+                                    SaveSettingsPath);
 
       LinqConnectConfiguration.ConnectionString = CreateConnectionString(setting);
 

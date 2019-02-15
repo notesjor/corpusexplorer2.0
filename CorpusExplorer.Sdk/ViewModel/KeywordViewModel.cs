@@ -11,6 +11,14 @@ namespace CorpusExplorer.Sdk.ViewModel
   {
     public string LayerDisplayname { get; set; } = "Wort";
 
+    public Dictionary<string, double> KeywordSignificance { get; set; }
+
+    public Dictionary<string, double> KeywordFrequencyReference { get; set; }
+
+    public Dictionary<string, double> KeywordFrequencyCurrent { get; set; }
+
+    public Dictionary<string, double> KeywordDiff { get; set; }
+
     /// <summary>
     ///   Gibt eine Datentabelle zurück
     /// </summary>
@@ -22,12 +30,14 @@ namespace CorpusExplorer.Sdk.ViewModel
       res.Columns.Add(Resources.Frequeny1, typeof(double));
       res.Columns.Add(Resources.Frequeny2, typeof(double));
       res.Columns.Add(Resources.FrequenyD12, typeof(double));
-      res.Columns.Add("Chi²", typeof(double));
+      res.Columns.Add(Resources.Significance, typeof(double));
 
       res.BeginLoadData();
       foreach (var pair in KeywordDiff)
-        if(KeywordFrequencyCurrent.ContainsKey(pair.Key) && KeywordFrequencyReference.ContainsKey(pair.Key) && KeywordSignificance.ContainsKey(pair.Key))
-        res.Rows.Add(pair.Key, KeywordFrequencyCurrent[pair.Key], KeywordFrequencyReference[pair.Key], pair.Value, KeywordSignificance[pair.Key]);
+        if (KeywordFrequencyCurrent.ContainsKey(pair.Key) && KeywordFrequencyReference.ContainsKey(pair.Key) &&
+            KeywordSignificance.ContainsKey(pair.Key))
+          res.Rows.Add(pair.Key, KeywordFrequencyCurrent[pair.Key], KeywordFrequencyReference[pair.Key], pair.Value,
+                       KeywordSignificance[pair.Key]);
       res.EndLoadData();
 
       return res;
@@ -45,13 +55,5 @@ namespace CorpusExplorer.Sdk.ViewModel
       KeywordFrequencyReference = block.KeywordFrequencyReference;
       KeywordSignificance = block.KeywordSignificance;
     }
-
-    public Dictionary<string, double> KeywordSignificance { get; set; }
-
-    public Dictionary<string, double> KeywordFrequencyReference { get; set; }
-
-    public Dictionary<string, double> KeywordFrequencyCurrent { get; set; }
-
-    public Dictionary<string, double> KeywordDiff { get; set; }
   }
 }

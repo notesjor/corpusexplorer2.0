@@ -42,10 +42,11 @@ namespace CorpusExplorer.Sdk.ViewModel
     public IEnumerable<KeyValuePair<DateTime, double>> GetSpecificRange(string wordA, string wordB)
     {
       return DateTimeRanges?.ToDictionary(
-        range => range.Key,
-        range => range.Value.ContainsKey(wordA) && range.Value[wordA].ContainsKey(wordB)
-          ? range.Value[wordA][wordB]
-          : 0);
+                                          range => range.Key,
+                                          range => range.Value.ContainsKey(wordA) &&
+                                                   range.Value[wordA].ContainsKey(wordB)
+                                                     ? range.Value[wordA][wordB]
+                                                     : 0);
     }
 
     public string GetText(Guid documentGuid, string layerDisplayname = null)
@@ -72,7 +73,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 
       var blockCalc =
         Selection
-          .CreateBlock
+         .CreateBlock
             <MakeSeparatedPartionBlock<DateTime, Dictionary<string, Dictionary<string, double>>, CooccurrenceBlock>>();
       blockCalc.InputPartition = DateTimeRangeDocuments;
       blockCalc.MappingDelegate = block =>

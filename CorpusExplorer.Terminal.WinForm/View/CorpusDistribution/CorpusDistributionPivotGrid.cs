@@ -50,17 +50,17 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     private void PivotGridVisualisation_ShowVisualisation(object sender, EventArgs e)
     {
       Processing.Invoke(
-        null,
-        () =>
-        {
-          var vm = GetViewModel<CorpusWeightUnlimmitedViewModel>();
-          vm.Execute();
-          var dataProvider = new LocalDataSourceProvider
-          {
-            ItemsSource = vm.GetDataTable()
-          };
-          radPivotGrid1.DataProvider = dataProvider;
-        });
+                        null,
+                        () =>
+                        {
+                          var vm = GetViewModel<CorpusWeightUnlimmitedViewModel>();
+                          vm.Execute();
+                          var dataProvider = new LocalDataSourceProvider
+                          {
+                            ItemsSource = vm.GetDataTable()
+                          };
+                          radPivotGrid1.DataProvider = dataProvider;
+                        });
     }
   }
 }

@@ -29,42 +29,42 @@ namespace CorpusExplorer.Sdk.Blocks
       LayerValueToDocument = new Dictionary<string, HashSet<Guid>>();
 
       Parallel.ForEach(
-        Selection,
-        Configuration.ParallelOptions,
-        csel =>
-        {
-          var corpus = Selection.GetCorpus(csel.Key);
+                       Selection,
+                       Configuration.ParallelOptions,
+                       csel =>
+                       {
+                         var corpus = Selection.GetCorpus(csel.Key);
 
-          var layer = corpus?.GetLayers(LayerDisplayname)?.FirstOrDefault();
-          if (layer == null)
-            return;
+                         var layer = corpus?.GetLayers(LayerDisplayname)?.FirstOrDefault();
+                         if (layer == null)
+                           return;
 
-          lock (_lock)
-          {
-            foreach (var v in layer.Values.Where(v => !LayerValueToDocument.ContainsKey(v)))
-              LayerValueToDocument.Add(v, new HashSet<Guid>());
-          }
+                         lock (_lock)
+                         {
+                           foreach (var v in layer.Values.Where(v => !LayerValueToDocument.ContainsKey(v)))
+                             LayerValueToDocument.Add(v, new HashSet<Guid>());
+                         }
 
-          Parallel.ForEach(
-            csel.Value,
-            Configuration.ParallelOptions,
-            dsel =>
-            {
-              var doc = layer[dsel];
-              if (doc == null)
-                return;
+                         Parallel.ForEach(
+                                          csel.Value,
+                                          Configuration.ParallelOptions,
+                                          dsel =>
+                                          {
+                                            var doc = layer[dsel];
+                                            if (doc == null)
+                                              return;
 
-              var hash = new HashSet<string>();
-              foreach (var w in doc.SelectMany(s => s))
-                hash.Add(layer[w]);
+                                            var hash = new HashSet<string>();
+                                            foreach (var w in doc.SelectMany(s => s))
+                                              hash.Add(layer[w]);
 
-              lock (_lock)
-              {
-                foreach (var v in hash)
-                  LayerValueToDocument[v].Add(dsel);
-              }
-            });
-        });
+                                            lock (_lock)
+                                            {
+                                              foreach (var v in hash)
+                                                LayerValueToDocument[v].Add(dsel);
+                                            }
+                                          });
+                       });
     }
   }
 }

@@ -18,10 +18,13 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.NamedEntity
 {
   public partial class NamedEntityConfiguration : AbstractDialog
   {
+    private const string Filter = "NER-Datei (*.ner)|*.ner";
+
     public NamedEntityConfiguration()
     {
       InitializeComponent();
-      LoadFile(Configuration.GetDependencyPath("NamedEntityRecognition/PredefinedModels/dbPedia_persondata_de_pol.ner"));
+      LoadFile(Configuration
+                .GetDependencyPath("NamedEntityRecognition/PredefinedModels/dbPedia_persondata_de_pol.ner"));
     }
 
     public string ModelDisplayname { get; set; }
@@ -41,7 +44,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.NamedEntity
           if (hashset.Contains(name))
             continue;
           hashset.Add(name);
-          
+
           var context = new List<string> {row.Cells[2].Value.ToString()};
           context.AddRange(row.Cells[3].Value.ToString().Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries));
           entities.Add(new Entity
@@ -57,7 +60,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.NamedEntity
                   LayerDisplayname = "Wort",
                   LayerQueries = row.Cells[0].Value.ToString().Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)
                 }
-              },
+              }
               /*
               new Rule
               {
@@ -86,8 +89,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.NamedEntity
         return res;
       }
     }
-
-    private const string Filter = "NER-Datei (*.ner)|*.ner";
 
     private void btn_open_Click(object sender, EventArgs e)
     {

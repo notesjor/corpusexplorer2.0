@@ -5,12 +5,12 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {
   public class DateTimeYearMonthDayHourMinuteOnlyCluster : AbstractCluster
   {
+    private readonly DateTime _central;
     private readonly int _valueDay;
     private readonly int _valueHour;
     private readonly int _valueMinute;
     private readonly int _valueMonth;
     private readonly int _valueYear;
-    private readonly DateTime _central;
 
     public DateTimeYearMonthDayHourMinuteOnlyCluster(DateTime value)
     {
@@ -32,8 +32,8 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
       try
       {
         var test = (DateTime) obj;
-        if (_valueYear != test.Year || _valueMonth != test.Month || _valueDay != test.Day
-            || _valueHour != test.Hour || _valueMinute != test.Minute)
+        if (_valueYear != test.Year || _valueMonth  != test.Month || _valueDay != test.Day
+         || _valueHour != test.Hour || _valueMinute != test.Minute)
           return false;
         Add(documentGuid);
         return true;

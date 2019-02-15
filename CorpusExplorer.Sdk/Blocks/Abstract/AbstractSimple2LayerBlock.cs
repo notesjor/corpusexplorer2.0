@@ -53,44 +53,45 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
       }
 
       Parallel.ForEach(
-        Selection,
-        Configuration.ParallelOptions,
-        csel =>
-        {
-          var corpus = Selection.GetCorpus(csel.Key);
+                       Selection,
+                       Configuration.ParallelOptions,
+                       csel =>
+                       {
+                         var corpus = Selection.GetCorpus(csel.Key);
 
-          var layer1 = corpus?.GetLayers(Layer1Displayname).FirstOrDefault();
-          if (layer1 == null)
-            return;
+                         var layer1 = corpus?.GetLayers(Layer1Displayname).FirstOrDefault();
+                         if (layer1 == null)
+                           return;
 
-          var layer2 = corpus.GetLayers(Layer2Displayname).FirstOrDefault();
-          if (layer2 == null)
-            return;
+                         var layer2 = corpus.GetLayers(Layer2Displayname).FirstOrDefault();
+                         if (layer2 == null)
+                           return;
 
-          Parallel.ForEach(
-            csel.Value,
-            Configuration.ParallelOptions,
-            dsel =>
-            {
-              if (!layer1.ContainsDocument(dsel) || !layer2.ContainsDocument(dsel))
-                return;
+                         Parallel.ForEach(
+                                          csel.Value,
+                                          Configuration.ParallelOptions,
+                                          dsel =>
+                                          {
+                                            if (!layer1.ContainsDocument(dsel) || !layer2.ContainsDocument(dsel))
+                                              return;
 
-              var doc1 = layer1[dsel];
-              var doc2 = layer2[dsel];
+                                            var doc1 = layer1[dsel];
+                                            var doc2 = layer2[dsel];
 
-              // Überprüfung 
-              if (doc1 == null ||
-                  doc2 == null)
-                return;
+                                            // Überprüfung 
+                                            if (doc1 == null ||
+                                                doc2 == null)
+                                              return;
 
-              // Alle Dokumente müssen die gleiche Länge haben (Stichprobe)
-              if (doc1.Length != doc2.Length || doc1.Length < 1 || doc1[0].Length != doc2[0].Length ||
-                  doc2[doc2.Length - 1].Length != doc1[doc1.Length - 1].Length)
-                return;
+                                            // Alle Dokumente müssen die gleiche Länge haben (Stichprobe)
+                                            if (doc1.Length                  != doc2.Length    || doc1.Length < 1 ||
+                                                doc1[0].Length               != doc2[0].Length ||
+                                                doc2[doc2.Length - 1].Length != doc1[doc1.Length - 1].Length)
+                                              return;
 
-              CalculateCall(corpus, dsel, layer1, doc1, layer2, doc2);
-            });
-        });
+                                            CalculateCall(corpus, dsel, layer1, doc1, layer2, doc2);
+                                          });
+                       });
 
       CalculateCleanup();
 

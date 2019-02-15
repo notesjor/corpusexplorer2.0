@@ -156,7 +156,7 @@
       this.page_main_main.Controls.Add(this.flowLayoutPanel1);
       this.page_main_main.Controls.Add(this.ihdPanel1);
       this.page_main_main.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.home_24px;
-      this.page_main_main.ItemSize = new System.Drawing.SizeF(138F, 36F);
+      this.page_main_main.ItemSize = new System.Drawing.SizeF(40F, 36F);
       resources.ApplyResources(this.page_main_main, "page_main_main");
       this.page_main_main.Name = "page_main_main";
       // 
@@ -277,7 +277,7 @@
       // 
       this.page_main_blogger.Controls.Add(this.pages_blogger);
       this.page_main_blogger.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.blogger_24px;
-      this.page_main_blogger.ItemSize = new System.Drawing.SizeF(138F, 36F);
+      this.page_main_blogger.ItemSize = new System.Drawing.SizeF(40F, 36F);
       resources.ApplyResources(this.page_main_blogger, "page_main_blogger");
       this.page_main_blogger.Name = "page_main_blogger";
       // 
@@ -292,7 +292,6 @@
       // page_blogger_home
       // 
       this.page_blogger_home.Controls.Add(this.serviceHome_blogger);
-      this.page_blogger_home.ItemSize = new System.Drawing.SizeF(57F, 29F);
       resources.ApplyResources(this.page_blogger_home, "page_blogger_home");
       this.page_blogger_home.Name = "page_blogger_home";
       // 
@@ -308,7 +307,6 @@
       // 
       // page_blogger_account
       // 
-      this.page_blogger_account.ItemSize = new System.Drawing.SizeF(56F, 29F);
       resources.ApplyResources(this.page_blogger_account, "page_blogger_account");
       this.page_blogger_account.Name = "page_blogger_account";
       // 
@@ -316,7 +314,7 @@
       // 
       this.page_main_facebook.Controls.Add(this.pages_facebook);
       this.page_main_facebook.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.facebook_padlock_24px;
-      this.page_main_facebook.ItemSize = new System.Drawing.SizeF(138F, 36F);
+      this.page_main_facebook.ItemSize = new System.Drawing.SizeF(40F, 36F);
       resources.ApplyResources(this.page_main_facebook, "page_main_facebook");
       this.page_main_facebook.Name = "page_main_facebook";
       // 
@@ -332,7 +330,6 @@
       // page_facebook_home
       // 
       this.page_facebook_home.Controls.Add(this.serviceHome_facebook);
-      this.page_facebook_home.ItemSize = new System.Drawing.SizeF(57F, 29F);
       resources.ApplyResources(this.page_facebook_home, "page_facebook_home");
       this.page_facebook_home.Name = "page_facebook_home";
       // 
@@ -348,13 +345,11 @@
       // 
       // page_facebook_account
       // 
-      this.page_facebook_account.ItemSize = new System.Drawing.SizeF(83F, 29F);
       resources.ApplyResources(this.page_facebook_account, "page_facebook_account");
       this.page_facebook_account.Name = "page_facebook_account";
       // 
       // page_facebook_stream
       // 
-      this.page_facebook_stream.ItemSize = new System.Drawing.SizeF(69F, 29F);
       resources.ApplyResources(this.page_facebook_stream, "page_facebook_stream");
       this.page_facebook_stream.Name = "page_facebook_stream";
       // 
@@ -362,7 +357,7 @@
       // 
       this.page_main_instagram.Controls.Add(this.pages_instagram);
       this.page_main_instagram.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.instagram_padlock_24px;
-      this.page_main_instagram.ItemSize = new System.Drawing.SizeF(138F, 36F);
+      this.page_main_instagram.ItemSize = new System.Drawing.SizeF(40F, 36F);
       resources.ApplyResources(this.page_main_instagram, "page_main_instagram");
       this.page_main_instagram.Name = "page_main_instagram";
       // 
@@ -378,7 +373,6 @@
       // page_instagram_home
       // 
       this.page_instagram_home.Controls.Add(this.serviceHome_instagram);
-      this.page_instagram_home.ItemSize = new System.Drawing.SizeF(57F, 29F);
       resources.ApplyResources(this.page_instagram_home, "page_instagram_home");
       this.page_instagram_home.Name = "page_instagram_home";
       // 
@@ -394,13 +388,11 @@
       // 
       // page_instagram_account
       // 
-      this.page_instagram_account.ItemSize = new System.Drawing.SizeF(83F, 29F);
       resources.ApplyResources(this.page_instagram_account, "page_instagram_account");
       this.page_instagram_account.Name = "page_instagram_account";
       // 
       // page_instagram_stream
       // 
-      this.page_instagram_stream.ItemSize = new System.Drawing.SizeF(69F, 29F);
       resources.ApplyResources(this.page_instagram_stream, "page_instagram_stream");
       this.page_instagram_stream.Name = "page_instagram_stream";
       // 
@@ -408,7 +400,7 @@
       // 
       this.page_main_reddit.Controls.Add(this.pages_reddit);
       this.page_main_reddit.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.reddit_padlock_24px;
-      this.page_main_reddit.ItemSize = new System.Drawing.SizeF(138F, 36F);
+      this.page_main_reddit.ItemSize = new System.Drawing.SizeF(40F, 36F);
       resources.ApplyResources(this.page_main_reddit, "page_main_reddit");
       this.page_main_reddit.Name = "page_main_reddit";
       // 
@@ -424,7 +416,6 @@
       // page_reddit_home
       // 
       this.page_reddit_home.Controls.Add(this.serviceHome_reddit);
-      this.page_reddit_home.ItemSize = new System.Drawing.SizeF(57F, 29F);
       resources.ApplyResources(this.page_reddit_home, "page_reddit_home");
       this.page_reddit_home.Name = "page_reddit_home";
       // 
@@ -440,13 +431,11 @@
       // 
       // page_reddit_account
       // 
-      this.page_reddit_account.ItemSize = new System.Drawing.SizeF(83F, 29F);
       resources.ApplyResources(this.page_reddit_account, "page_reddit_account");
       this.page_reddit_account.Name = "page_reddit_account";
       // 
       // page_reddit_stream
       // 
-      this.page_reddit_stream.ItemSize = new System.Drawing.SizeF(69F, 29F);
       resources.ApplyResources(this.page_reddit_stream, "page_reddit_stream");
       this.page_reddit_stream.Name = "page_reddit_stream";
       // 
@@ -454,7 +443,7 @@
       // 
       this.page_main_tumblr.Controls.Add(this.pages_tumblr);
       this.page_main_tumblr.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.tumblr_24px;
-      this.page_main_tumblr.ItemSize = new System.Drawing.SizeF(138F, 36F);
+      this.page_main_tumblr.ItemSize = new System.Drawing.SizeF(40F, 36F);
       resources.ApplyResources(this.page_main_tumblr, "page_main_tumblr");
       this.page_main_tumblr.Name = "page_main_tumblr";
       // 
@@ -470,7 +459,6 @@
       // page_tumblr_home
       // 
       this.page_tumblr_home.Controls.Add(this.serviceHome_tumblr);
-      this.page_tumblr_home.ItemSize = new System.Drawing.SizeF(57F, 29F);
       resources.ApplyResources(this.page_tumblr_home, "page_tumblr_home");
       this.page_tumblr_home.Name = "page_tumblr_home";
       // 
@@ -486,13 +474,11 @@
       // 
       // page_tumblr_account
       // 
-      this.page_tumblr_account.ItemSize = new System.Drawing.SizeF(83F, 29F);
       resources.ApplyResources(this.page_tumblr_account, "page_tumblr_account");
       this.page_tumblr_account.Name = "page_tumblr_account";
       // 
       // page_tumblr_stream
       // 
-      this.page_tumblr_stream.ItemSize = new System.Drawing.SizeF(69F, 29F);
       resources.ApplyResources(this.page_tumblr_stream, "page_tumblr_stream");
       this.page_tumblr_stream.Name = "page_tumblr_stream";
       // 
@@ -500,7 +486,7 @@
       // 
       this.page_main_twitter.Controls.Add(this.pages_twitter);
       this.page_main_twitter.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.twitter_24px;
-      this.page_main_twitter.ItemSize = new System.Drawing.SizeF(138F, 36F);
+      this.page_main_twitter.ItemSize = new System.Drawing.SizeF(40F, 36F);
       resources.ApplyResources(this.page_main_twitter, "page_main_twitter");
       this.page_main_twitter.Name = "page_main_twitter";
       // 
@@ -518,7 +504,6 @@
       // page_twitter_home
       // 
       this.page_twitter_home.Controls.Add(this.serviceHome_twitter);
-      this.page_twitter_home.ItemSize = new System.Drawing.SizeF(57F, 29F);
       resources.ApplyResources(this.page_twitter_home, "page_twitter_home");
       this.page_twitter_home.Name = "page_twitter_home";
       // 
@@ -534,25 +519,21 @@
       // 
       // page_twitter_account
       // 
-      this.page_twitter_account.ItemSize = new System.Drawing.SizeF(83F, 29F);
       resources.ApplyResources(this.page_twitter_account, "page_twitter_account");
       this.page_twitter_account.Name = "page_twitter_account";
       // 
       // page_twitter_hashtag
       // 
-      this.page_twitter_hashtag.ItemSize = new System.Drawing.SizeF(81F, 29F);
       resources.ApplyResources(this.page_twitter_hashtag, "page_twitter_hashtag");
       this.page_twitter_hashtag.Name = "page_twitter_hashtag";
       // 
       // page_twitter_streaming
       // 
-      this.page_twitter_streaming.ItemSize = new System.Drawing.SizeF(69F, 29F);
       resources.ApplyResources(this.page_twitter_streaming, "page_twitter_streaming");
       this.page_twitter_streaming.Name = "page_twitter_streaming";
       // 
       // page_twitter_images
       // 
-      this.page_twitter_images.ItemSize = new System.Drawing.SizeF(59F, 29F);
       resources.ApplyResources(this.page_twitter_images, "page_twitter_images");
       this.page_twitter_images.Name = "page_twitter_images";
       // 
@@ -560,7 +541,7 @@
       // 
       this.page_main_wordpress.Controls.Add(this.pages_wordpress);
       this.page_main_wordpress.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.wordpress_padlock_24px;
-      this.page_main_wordpress.ItemSize = new System.Drawing.SizeF(138F, 36F);
+      this.page_main_wordpress.ItemSize = new System.Drawing.SizeF(40F, 36F);
       resources.ApplyResources(this.page_main_wordpress, "page_main_wordpress");
       this.page_main_wordpress.Name = "page_main_wordpress";
       // 
@@ -576,7 +557,6 @@
       // pages_wordpress_home
       // 
       this.pages_wordpress_home.Controls.Add(this.serviceHome_wordpress);
-      this.pages_wordpress_home.ItemSize = new System.Drawing.SizeF(57F, 29F);
       resources.ApplyResources(this.pages_wordpress_home, "pages_wordpress_home");
       this.pages_wordpress_home.Name = "pages_wordpress_home";
       // 
@@ -592,13 +572,11 @@
       // 
       // pages_wordpress_onlyPosts
       // 
-      this.pages_wordpress_onlyPosts.ItemSize = new System.Drawing.SizeF(86F, 29F);
       resources.ApplyResources(this.pages_wordpress_onlyPosts, "pages_wordpress_onlyPosts");
       this.pages_wordpress_onlyPosts.Name = "pages_wordpress_onlyPosts";
       // 
       // pages_wordpress_postsAndComments
       // 
-      this.pages_wordpress_postsAndComments.ItemSize = new System.Drawing.SizeF(165F, 29F);
       resources.ApplyResources(this.pages_wordpress_postsAndComments, "pages_wordpress_postsAndComments");
       this.pages_wordpress_postsAndComments.Name = "pages_wordpress_postsAndComments";
       // 
@@ -606,7 +584,7 @@
       // 
       this.page_main_youtube.Controls.Add(this.pages_youtube);
       this.page_main_youtube.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.youtube_padlock_24px;
-      this.page_main_youtube.ItemSize = new System.Drawing.SizeF(138F, 36F);
+      this.page_main_youtube.ItemSize = new System.Drawing.SizeF(40F, 36F);
       resources.ApplyResources(this.page_main_youtube, "page_main_youtube");
       this.page_main_youtube.Name = "page_main_youtube";
       // 
@@ -648,14 +626,14 @@
       // page_main_forum
       // 
       this.page_main_forum.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.user_group_padlock_24px;
-      this.page_main_forum.ItemSize = new System.Drawing.SizeF(138F, 36F);
+      this.page_main_forum.ItemSize = new System.Drawing.SizeF(40F, 36F);
       resources.ApplyResources(this.page_main_forum, "page_main_forum");
       this.page_main_forum.Name = "page_main_forum";
       // 
       // page_main_web
       // 
       this.page_main_web.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.internet_padlock_24px;
-      this.page_main_web.ItemSize = new System.Drawing.SizeF(138F, 36F);
+      this.page_main_web.ItemSize = new System.Drawing.SizeF(40F, 36F);
       resources.ApplyResources(this.page_main_web, "page_main_web");
       this.page_main_web.Name = "page_main_web";
       // 

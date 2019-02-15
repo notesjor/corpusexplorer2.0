@@ -76,23 +76,23 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     ///   Auflistung - CorpusGuid / DocumentGuids des Korpus
     /// </summary>
     public IEnumerable<KeyValuePair<Guid, IEnumerable<Guid>>> CorporaAndDocumentGuids
-      => new Dictionary<Guid, IEnumerable<Guid>> { { CorpusGuid, DocumentGuids } };
+      => new Dictionary<Guid, IEnumerable<Guid>> {{CorpusGuid, DocumentGuids}};
 
     /// <summary>
     ///   Gets the selected corpora displaynames.
     /// </summary>
-    public IEnumerable<string> CorporaDisplaynames => new[] { CorpusDisplayname };
+    public IEnumerable<string> CorporaDisplaynames => new[] {CorpusDisplayname};
 
     /// <summary>
     ///   Auflistung aller Corpora per GUID
     /// </summary>
-    public IEnumerable<Guid> CorporaGuids => new[] { CorpusGuid };
+    public IEnumerable<Guid> CorporaGuids => new[] {CorpusGuid};
 
     /// <summary>
     ///   Gets the corpora guids and displaynames.
     /// </summary>
     public IEnumerable<KeyValuePair<Guid, string>> CorporaGuidsAndDisplaynames
-      => new Dictionary<Guid, string> { { CorpusGuid, CorpusDisplayname } };
+      => new Dictionary<Guid, string> {{CorpusGuid, CorpusDisplayname}};
 
     /// <summary>
     ///   Gets the count corpora.
@@ -163,8 +163,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     public AbstractLayerAdapter ExportDocumentLayer(Guid documentGuid, string layerDisplayname)
     {
       return ContainsDocument(documentGuid)
-        ? GetLayerOfDocument(documentGuid, layerDisplayname).Copy(documentGuid)
-        : null;
+               ? GetLayerOfDocument(documentGuid, layerDisplayname).Copy(documentGuid)
+               : null;
     }
 
     /// <summary>
@@ -181,7 +181,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     /// </returns>
     public IEnumerable<Guid> FindDocumentByMetadata(string exampleKey, object exampleValue)
     {
-      return FindDocumentByMetadata(new Dictionary<string, object> { { exampleKey, exampleValue } });
+      return FindDocumentByMetadata(new Dictionary<string, object> {{exampleKey, exampleValue}});
     }
 
     /// <summary>
@@ -216,7 +216,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     /// </returns>
     public IEnumerable<AbstractCorpusAdapter> GetCorpora(string displayname)
     {
-      return displayname == CorpusDisplayname ? new[] { this } : null;
+      return displayname == CorpusDisplayname ? new[] {this} : null;
     }
 
     /// <summary>
@@ -385,14 +385,14 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
         return defaultValue;
       var data = meta[metaKey];
       if (data is T)
-        return (T)data;
+        return (T) data;
       return defaultValue;
     }
 
     public Dictionary<Guid, T> GetDocumentMetadata<T>(string metaKey, T defaultValue)
     {
       return DocumentMetadata.Where(x => x.Value.ContainsKey(metaKey) && x.Value[metaKey] is T)
-        .ToDictionary(x => x.Key, x => (T)x.Value[metaKey]);
+                             .ToDictionary(x => x.Key, x => (T) x.Value[metaKey]);
     }
 
     /// <summary>
@@ -462,7 +462,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     public IEnumerable<KeyValuePair<Guid, string>> GetLayerGuidAndDisplaynamesOfDocument(Guid documentGuid)
     {
       return Layers.Where(layer => layer.ContainsDocument(documentGuid))
-        .ToDictionary(layer => layer.Guid, layer => layer.Displayname);
+                   .ToDictionary(layer => layer.Guid, layer => layer.Displayname);
     }
 
     /// <summary>
@@ -577,7 +577,6 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
 
       var res = new Dictionary<string, IEnumerable<IEnumerable<string>>>();
       foreach (var d in doc)
-      {
         try
         {
           var arr = d.Value.ToArray();
@@ -592,7 +591,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
         {
           // ignore
         }
-      }
+
       return res;
     }
 
@@ -751,7 +750,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     {
       var valid = new HashSet<Guid>(layerGuids);
       return GetLayersOfDocument(documentGuid).Where(adapter => valid.Contains(adapter.Guid))
-        .ToDictionary(adapter => adapter.Guid, adapter => adapter[documentGuid]);
+                                              .ToDictionary(adapter => adapter.Guid, adapter => adapter[documentGuid]);
     }
 
 

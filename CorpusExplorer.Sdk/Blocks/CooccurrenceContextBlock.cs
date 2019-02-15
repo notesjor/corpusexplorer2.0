@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 
@@ -33,7 +30,8 @@ namespace CorpusExplorer.Sdk.Blocks
 
       var sentences = selection.GetSelectedSentences();
       // 1 = SatzIndex / 2 = Worte vor / 3 = Index A / 4 = Worte dazwischen / 5 = Index B / 6 = Worte danach
-      var sequences = new Dictionary<Guid, List<Tuple<int, HashSet<string>, int, HashSet<string>, int, HashSet<string>>>>();
+      var sequences =
+        new Dictionary<Guid, List<Tuple<int, HashSet<string>, int, HashSet<string>, int, HashSet<string>>>>();
 
       foreach (var x in sentences)
       {
@@ -44,7 +42,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
         sequences.Add(x.Key, new List<Tuple<int, HashSet<string>, int, HashSet<string>, int, HashSet<string>>>());
         var a = layer[LayerQueryA];
-        var b = layer[LayerQueryB];        
+        var b = layer[LayerQueryB];
 
         foreach (var sI in x.Value)
         {
@@ -56,11 +54,14 @@ namespace CorpusExplorer.Sdk.Blocks
           var s = doc[sI];
 
           for (var i = 0; i < s.Length; i++)
-          {
             if (s[i] == a)
+            {
               iA = i;
+            }
             else if (s[i] == b)
+            {
               iB = i;
+            }
             else
             {
               if (iA == -1 && iB == -1)
@@ -70,12 +71,13 @@ namespace CorpusExplorer.Sdk.Blocks
               else
                 wBetween.Add(layer[s[i]]);
             }
-          }
 
           if (iA == -1 || iB == -1)
             continue;
 
-          sequences[x.Key].Add(new Tuple<int, HashSet<string>, int, HashSet<string>, int, HashSet<string>>(sI, wPre, iA, wBetween, iB, wPost));
+          sequences[x.Key]
+           .Add(new Tuple<int, HashSet<string>, int, HashSet<string>, int, HashSet<string>>(sI, wPre, iA, wBetween, iB,
+                                                                                            wPost));
         }
       }
     }

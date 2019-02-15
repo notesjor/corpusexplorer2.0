@@ -47,16 +47,16 @@ namespace CorpusExplorer.Sdk.Blocks.Cooccurrence
     {
       var aR = _a - k;
       var kR = k;
-      var bR = b - k;
+      var bR = b  - k;
       var nR = _s - bR;
 
-      var kE = _a * b / _n;
-      var bE = _s * b / _n;
+      var kE = _a * b        / _n;
+      var bE = _s * b        / _n;
       var aE = _a * (_n - b) / _n;
       var nE = _s * (_n - b) / _n;
 
       return Math.Pow(kR - kE, 2) / kE + Math.Pow(aR - aE, 2) / aE + Math.Pow(bR - bE, 2) / bE
-             + Math.Pow(nR - nE, 2) / nE;
+           + Math.Pow(nR - nE, 2) / nE;
     }
 
     /// <summary>

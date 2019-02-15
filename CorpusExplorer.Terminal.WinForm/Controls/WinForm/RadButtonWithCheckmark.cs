@@ -24,7 +24,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       set
       {
         if (radButton1.InvokeRequired)
-          radButton1.Invoke((MethodInvoker)delegate { radButton1.Image = value; });
+          radButton1.Invoke((MethodInvoker) delegate { radButton1.Image = value; });
         else
           radButton1.Image = value;
       }
@@ -36,7 +36,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       set
       {
         if (pictureBox1.InvokeRequired)
-          pictureBox1.Invoke((MethodInvoker)delegate { pictureBox1.Image = value; });
+          pictureBox1.Invoke((MethodInvoker) delegate { pictureBox1.Image = value; });
         else
           pictureBox1.Image = value;
       }
@@ -48,7 +48,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       set
       {
         if (radButton1.InvokeRequired)
-          radButton1.Invoke((MethodInvoker)delegate { radButton1.Text = value; });
+          radButton1.Invoke((MethodInvoker) delegate { radButton1.Text = value; });
         else
           radButton1.Text = value;
       }
@@ -60,7 +60,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       set
       {
         if (pictureBox1.InvokeRequired)
-          pictureBox1.Invoke((MethodInvoker)delegate { pictureBox1.Visible = value; });
+          pictureBox1.Invoke((MethodInvoker) delegate { pictureBox1.Visible = value; });
         else
           pictureBox1.Visible = value;
       }

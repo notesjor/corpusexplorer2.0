@@ -28,9 +28,9 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// <value>The verbal.</value>
     [XmlIgnore]
     public override string Verbal => string.Format(
-      Resources.DokumentMetadatenExakt01,
-      MetaLabel,
-      string.Join(", ", MetaValues));
+                                                   Resources.DokumentMetadatenExakt01,
+                                                   MetaLabel,
+                                                   string.Join(", ", MetaValues));
 
     /// <summary>
     ///   Erstellt ein neues Objekt, das eine Kopie der aktuellen Instanz darstellt.

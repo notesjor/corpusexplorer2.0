@@ -48,7 +48,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
 
       var c = clusters.ToArray();
       if (c.Length < 2 ||
-          c[1] == null)
+          c[1]     == null)
         return;
 
       foreach (var cluster in c)

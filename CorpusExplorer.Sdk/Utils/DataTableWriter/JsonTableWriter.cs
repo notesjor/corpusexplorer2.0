@@ -43,7 +43,6 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       {
         var r = new StringBuilder(template);
         foreach (var column in columns)
-        {
           if (row[column.Key] == null)
             r.Replace(marks[column.Key], column.Value == typeof(string) ? string.Empty : "null");
           else
@@ -51,10 +50,11 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
                       column.Value == typeof(string)
                         ? row[column.Key].ToString().Replace("\"", "\\\"")
                         : row[column.Key].ToString().Replace(",", "."));
-        }
 
         lock (slo)
+        {
           stb.Append(r);
+        }
       });
 
       stb.Remove(stb.Length - 1, 1);
@@ -70,6 +70,8 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
     }
 
     public override AbstractTableWriter Clone(Stream stream)
-      => new JsonTableWriter { OutputStream = stream };
+    {
+      return new JsonTableWriter {OutputStream = stream};
+    }
   }
 }

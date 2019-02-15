@@ -59,63 +59,63 @@ namespace CorpusExplorer.Sdk.ViewModel
             if (b[x.Key].ContainsKey(y.Key))
             {
               _dataTable.Rows.Add(
-                x.Key,
-                y.Key,
-                y.Value[0],
-                b[x.Key][y.Key][0],
-                Math.Abs(y.Value[0] - b[x.Key][y.Key][0]),
-                y.Value[1],
-                b[x.Key][y.Key][1],
-                Math.Abs(y.Value[1] - b[x.Key][y.Key][1]),
-                y.Value[2],
-                b[x.Key][y.Key][2],
-                Math.Abs(y.Value[2] - b[x.Key][y.Key][2]));
+                                  x.Key,
+                                  y.Key,
+                                  y.Value[0],
+                                  b[x.Key][y.Key][0],
+                                  Math.Abs(y.Value[0] - b[x.Key][y.Key][0]),
+                                  y.Value[1],
+                                  b[x.Key][y.Key][1],
+                                  Math.Abs(y.Value[1] - b[x.Key][y.Key][1]),
+                                  y.Value[2],
+                                  b[x.Key][y.Key][2],
+                                  Math.Abs(y.Value[2] - b[x.Key][y.Key][2]));
               b[x.Key].Remove(y.Key);
             }
             else
             {
               _dataTable.Rows.Add(
-                x.Key,
-                y.Key,
-                y.Value[0],
-                0.0d,
-                y.Value[0],
-                y.Value[1],
-                0.0d,
-                y.Value[1],
-                y.Value[2],
-                0.0d,
-                y.Value[2]);
+                                  x.Key,
+                                  y.Key,
+                                  y.Value[0],
+                                  0.0d,
+                                  y.Value[0],
+                                  y.Value[1],
+                                  0.0d,
+                                  y.Value[1],
+                                  y.Value[2],
+                                  0.0d,
+                                  y.Value[2]);
             }
         else
           foreach (var y in x.Value)
             _dataTable.Rows.Add(
-              x.Key,
-              y.Key,
-              y.Value[0],
-              0.0d,
-              y.Value[0],
-              y.Value[1],
-              0.0d,
-              y.Value[1],
-              y.Value[2],
-              0.0d,
-              y.Value[2]);
+                                x.Key,
+                                y.Key,
+                                y.Value[0],
+                                0.0d,
+                                y.Value[0],
+                                y.Value[1],
+                                0.0d,
+                                y.Value[1],
+                                y.Value[2],
+                                0.0d,
+                                y.Value[2]);
 
       foreach (var x in b)
       foreach (var y in x.Value)
         _dataTable.Rows.Add(
-          x.Key,
-          y.Key,
-          0.0d,
-          y.Value[0],
-          y.Value[0],
-          0.0d,
-          y.Value[1],
-          y.Value[1],
-          0.0d,
-          y.Value[2],
-          y.Value[2]);
+                            x.Key,
+                            y.Key,
+                            0.0d,
+                            y.Value[0],
+                            y.Value[0],
+                            0.0d,
+                            y.Value[1],
+                            y.Value[1],
+                            0.0d,
+                            y.Value[2],
+                            y.Value[2]);
 
       _dataTable.EndLoadData();
     }

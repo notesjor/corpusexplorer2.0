@@ -100,6 +100,6 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger
     protected override string TextPostTaggerCleanup(string text)
     {
       return base.TextPostTaggerCleanup(text.Replace("<ENDOFCORPUSEXPLORERFILE>_NE", "<ENDOFCORPUSEXPLORERFILE>"));
-    }    
+    }
   }
 }

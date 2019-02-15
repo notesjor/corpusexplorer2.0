@@ -49,22 +49,22 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
 
       AddSummaryRow();
       AddChildTemplate(
-        delegate(DataRowView x)
-        {
-          var queries = x[Resources.NGramm].ToString()
-            .Replace(
-              _vm.NGramPattern,
-              FilterQuerySingleLayerExactPhrase.SearchPattern)
-            .Split(
-              new[] {" "},
-              StringSplitOptions.RemoveEmptyEntries);
-          return new FilterQuerySingleLayerExactPhrase
-          {
-            Inverse = false,
-            LayerDisplayname = _vm.LayerDisplayname,
-            LayerQueries = queries
-          };
-        });
+                       delegate(DataRowView x)
+                       {
+                         var queries = x[Resources.NGramm].ToString()
+                                                          .Replace(
+                                                                   _vm.NGramPattern,
+                                                                   FilterQuerySingleLayerExactPhrase.SearchPattern)
+                                                          .Split(
+                                                                 new[] {" "},
+                                                                 StringSplitOptions.RemoveEmptyEntries);
+                         return new FilterQuerySingleLayerExactPhrase
+                         {
+                           Inverse = false,
+                           LayerDisplayname = _vm.LayerDisplayname,
+                           LayerQueries = queries
+                         };
+                       });
     }
 
     private void BindData()
@@ -147,22 +147,22 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     private void btn_snapshot_create_Click(object sender, EventArgs e)
     {
       CreateSelection(
-        radGridView1.SelectedRows.Select(
-          row => new FilterQuerySingleLayerExactPhrase
-          {
-            Inverse = false,
-            LayerDisplayname = _vm.LayerDisplayname,
-            LayerQueries =
-              row.Cells[Resources.NGramm].Value.ToString()
-                .Replace(
-                  _vm.NGramPattern,
-                  FilterQuerySingleLayerExactPhrase
-                    .SearchPattern)
-                .Split(
-                  new[] {" "},
-                  StringSplitOptions
-                    .RemoveEmptyEntries)
-          }));
+                      radGridView1.SelectedRows.Select(
+                                                       row => new FilterQuerySingleLayerExactPhrase
+                                                       {
+                                                         Inverse = false,
+                                                         LayerDisplayname = _vm.LayerDisplayname,
+                                                         LayerQueries =
+                                                           row.Cells[Resources.NGramm].Value.ToString()
+                                                              .Replace(
+                                                                       _vm.NGramPattern,
+                                                                       FilterQuerySingleLayerExactPhrase
+                                                                        .SearchPattern)
+                                                              .Split(
+                                                                     new[] {" "},
+                                                                     StringSplitOptions
+                                                                      .RemoveEmptyEntries)
+                                                       }));
     }
 
     private void GridNGramVisualisation_ShowVisualisation(object sender, EventArgs e)

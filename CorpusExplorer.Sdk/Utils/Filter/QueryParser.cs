@@ -22,9 +22,9 @@ namespace CorpusExplorer.Sdk.Utils.Filter
 
       // Baue OR-Gruppe auf
       var entries = query.Substring(1, query.Length - 2)
-        .Split(new[] {"|"}, StringSplitOptions.RemoveEmptyEntries)
-        .Select(x => x.Trim())
-        .ToArray();
+                         .Split(new[] {"|"}, StringSplitOptions.RemoveEmptyEntries)
+                         .Select(x => x.Trim())
+                         .ToArray();
       var master = ParseEntry(entries[0]);
       if (master == null)
         return null;
@@ -44,8 +44,8 @@ namespace CorpusExplorer.Sdk.Utils.Filter
     public static string Serialize(AbstractFilterQuery query)
     {
       return query.OrFilterQueries != null && query.OrFilterQueries.Any()
-        ? $"({SerializeEntry(query)}|{string.Join("|", query.OrFilterQueries.Select(SerializeEntry))})"
-        : SerializeEntry(query);
+               ? $"({SerializeEntry(query)}|{string.Join("|", query.OrFilterQueries.Select(SerializeEntry))})"
+               : SerializeEntry(query);
     }
 
     private static AbstractFilterQuery BuildQuery(
@@ -226,7 +226,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
 
       return BuildQuery(invert, type, name, oper, vals);
     }
-    
+
     private static string SerializeEntry(AbstractFilterQuery query)
     {
       var inv = query.Inverse ? "!" : "";

@@ -63,7 +63,7 @@ namespace CorpusExplorer.Sdk.Blocks
         temp.Add(w);
 
       // OrderBy ist nötig um eine konsistente Reihung zu erhalten.
-      var values = temp.Select(x => layer[(int) x]).OrderBy(x => x).ToArray();
+      var values = temp.Select(x => layer[x]).OrderBy(x => x).ToArray();
 
       // Baue freq auf.
       for (var i = 0; i < values.Length; i++)
@@ -74,7 +74,7 @@ namespace CorpusExplorer.Sdk.Blocks
           else
             freq[values[i]].Add(values[j], 1d);
         else
-          freq.Add(values[i], new Dictionary<string, double> { { values[j], 1d } });
+          freq.Add(values[i], new Dictionary<string, double> {{values[j], 1d}});
 
       lock (_resultLock)
       {
@@ -105,7 +105,7 @@ namespace CorpusExplorer.Sdk.Blocks
     /// </summary>
     protected override void CalculateInitProperties()
     {
-      if (_cache.AbortCalculation(new Dictionary<string, object> { { nameof(LayerDisplayname), LayerDisplayname } }))
+      if (_cache.AbortCalculation(new Dictionary<string, object> {{nameof(LayerDisplayname), LayerDisplayname}}))
         throw new BlockAlreadyCachedException();
 
       _cooccurrencesFrequency = new Dictionary<string, Dictionary<string, double>>();

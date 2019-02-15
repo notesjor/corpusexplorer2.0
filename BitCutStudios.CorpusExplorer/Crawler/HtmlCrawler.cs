@@ -82,7 +82,7 @@ namespace Bcs.Crawler
           !Url.StartsWith(UrlLimmit))
         return null;
 
-      if (Parameters == null ||
+      if (Parameters       == null ||
           Parameters.Count == 0)
         // ReSharper disable once NotResolvedInText
         throw new ArgumentNullException("Parameters");
@@ -132,7 +132,7 @@ namespace Bcs.Crawler
           !Url.StartsWith(UrlLimmit))
         return null;
 
-      if (Parameters == null ||
+      if (Parameters       == null ||
           Parameters.Count == 0)
         // ReSharper disable once NotResolvedInText
         throw new ArgumentNullException("Parameters");
@@ -196,7 +196,7 @@ namespace Bcs.Crawler
           stbs[parameter.Value].Append(" ");
 
         var hnode = doc.DocumentNode.SelectNodes(parameter.Key);
-        if (hnode == null ||
+        if (hnode       == null ||
             hnode.Count == 0)
           continue;
         var nodes = hnode.ToArray();
@@ -204,16 +204,16 @@ namespace Bcs.Crawler
         for (var i = 0; i < nodes.Length; i++)
         {
           stbs[parameter.Value].Append(
-            parameter.Key.Contains(AtributMarker)
-              ? nodes[i].GetAttributeValue(
-                parameter.Key.Substring(
-                  parameter.Key.IndexOf(
-                    AtributMarker,
-                    StringComparison
-                      .Ordinal) +
-                  AtributMarker.Length),
-                string.Empty)
-              : HtmlCleanup(nodes[i].InnerText));
+                                       parameter.Key.Contains(AtributMarker)
+                                         ? nodes[i].GetAttributeValue(
+                                                                      parameter.Key.Substring(
+                                                                                              parameter.Key.IndexOf(
+                                                                                                                    AtributMarker,
+                                                                                                                    StringComparison
+                                                                                                                     .Ordinal) +
+                                                                                              AtributMarker.Length),
+                                                                      string.Empty)
+                                         : HtmlCleanup(nodes[i].InnerText));
 
           // separiert mehrere Nodes
           if (i < nodes.Length - 1)
@@ -239,16 +239,16 @@ namespace Bcs.Crawler
     {
       html =
         html.Replace("\t", " ")
-          .Replace("\r", " ")
-          .Replace("\n", " ")
-          .Replace("&nbsp;", " ")
-          .Replace("  ", " ")
-          .Replace("  ", " ")
-          .Replace("  ", " ")
-          .Replace("  ", " ")
-          .Replace("  ", " ")
-          .Replace("  ", " ")
-          .Replace("  ", " ");
+            .Replace("\r", " ")
+            .Replace("\n", " ")
+            .Replace("&nbsp;", " ")
+            .Replace("  ", " ")
+            .Replace("  ", " ")
+            .Replace("  ", " ")
+            .Replace("  ", " ")
+            .Replace("  ", " ")
+            .Replace("  ", " ")
+            .Replace("  ", " ");
 
       if (_criticals == null)
         InitializeCriticals();

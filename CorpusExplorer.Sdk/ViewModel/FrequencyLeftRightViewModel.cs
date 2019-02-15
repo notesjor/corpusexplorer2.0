@@ -12,6 +12,8 @@ namespace CorpusExplorer.Sdk.ViewModel
     public Dictionary<string, Dictionary<string, int>> FrequencyLeft { get; set; }
     public Dictionary<string, Dictionary<string, int>> FrequencyRight { get; set; }
 
+    public string LayerDisplayname { get; set; } = "Wort";
+
     /// <summary>
     ///   Gibt eine Datentabelle zurück
     /// </summary>
@@ -29,10 +31,10 @@ namespace CorpusExplorer.Sdk.ViewModel
       foreach (var x in FrequencyLeft)
       foreach (var y in x.Value)
         res.Rows.Add(
-          x.Key,
-          y.Key,
-          FrequencyRight.ContainsKey(x.Key) && FrequencyRight[x.Key].ContainsKey(y.Key) ? "L/R" : "L",
-          y.Value);
+                     x.Key,
+                     y.Key,
+                     FrequencyRight.ContainsKey(x.Key) && FrequencyRight[x.Key].ContainsKey(y.Key) ? "L/R" : "L",
+                     y.Value);
 
       foreach (var x in FrequencyRight)
       foreach (var y in x.Value)
@@ -43,8 +45,6 @@ namespace CorpusExplorer.Sdk.ViewModel
 
       return res;
     }
-
-    public string LayerDisplayname { get; set; } = "Wort";
 
     protected override void ExecuteAnalyse()
     {

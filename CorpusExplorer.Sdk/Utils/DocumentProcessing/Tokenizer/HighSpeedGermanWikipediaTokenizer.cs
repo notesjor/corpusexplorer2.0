@@ -58,9 +58,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer
       // Ersetze alle Zeichenketten die in _dicPre definiert sind (suche nach Key, ersetze mit Value) und teile dann die Worte anhand der Leerzeichen auf.
       var lines =
         _dicPre.Aggregate(input, (current, entry) => current.Replace(entry.Key, entry.Value)).Split(
-          new[] {" "},
-          StringSplitOptions
-            .RemoveEmptyEntries);
+                                                                                                    new[] {" "},
+                                                                                                    StringSplitOptions
+                                                                                                     .RemoveEmptyEntries);
       var res = new List<string>();
 
       for (var i = 0; i < lines.Length; i++)
@@ -69,7 +69,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer
 
         if (string.IsNullOrEmpty(line))
           continue;
-        if (line[0] == '?' &&
+        if (line[0]     == '?' &&
             line.Length > 1)
           continue;
 
@@ -81,8 +81,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer
           {
             line = res[res.Count - 1] + line;
             res.RemoveAt(res.Count - 1);
-            if (!line.Contains("://") &&
-                res.Count > 1 &&
+            if (!line.Contains("://")            &&
+                res.Count > 1                    &&
                 res[res.Count - 1].EndsWith(".") &&
                 !res[res.Count - 1].Contains("://"))
             {

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.NamedEntityRecognition;
-using CorpusExplorer.Sdk.Ecosystem.Model;
 
 namespace CorpusExplorer.Sdk.Blocks
 {
   public class NamedEntityRecognitionBlock : AbstractBlock
   {
     public NamedEntityRecognition.Model Model { get; set; }
+
+    public Dictionary<Entity, HashSet<Guid>> DetectedEntities { get; set; }
 
     public override void Calculate()
     {
@@ -24,7 +24,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
         foreach (var rule in entity.Rules)
         {
-          var sub = Selection.CreateTemporary(new[] { rule.Filter });
+          var sub = Selection.CreateTemporary(new[] {rule.Filter});
           if (sub == null || sub.CountDocuments == 0)
             continue;
 
@@ -38,7 +38,5 @@ namespace CorpusExplorer.Sdk.Blocks
         DetectedEntities.Add(entity, count);
       }
     }
-
-    public Dictionary<Entity, HashSet<Guid>> DetectedEntities { get; set; }
   }
 }

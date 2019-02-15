@@ -23,9 +23,9 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
   [ToolboxItem(false)]
   public partial class GuiModulePrototype : AbstractUserControl
   {
+    private readonly string _header;
     private RadMenuItem _topMenu;
     private RadTileElement _topTile;
-    private string _header;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="GuiModulePrototype" /> class.
@@ -65,7 +65,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
     {
       get => _topMenu.Visibility == ElementVisibility.Visible;
       set => _topMenu.Visibility =
-        _topTile.Visibility = value ? ElementVisibility.Visible : ElementVisibility.Collapsed;
+               _topTile.Visibility = value ? ElementVisibility.Visible : ElementVisibility.Collapsed;
     }
 
     public EventHandler ModulPage { get; set; }
@@ -124,7 +124,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
 
       tile.Click += (sender, args) =>
       {
-        var p = (RadPageViewPage)((RadTileElement)sender).Tag;
+        var p = (RadPageViewPage) ((RadTileElement) sender).Tag;
         Pages.SelectedPage = p;
         InMemoryErrorConsole.TrackPageView($"page_mod_{view.GetType()}");
         FavoriteManager.CountPage(view.GetType().ToString());
@@ -135,12 +135,12 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
 
     private void AddView_AddMenuItem2(AbstractView view, Image iconLow, RadPageViewPage page)
     {
-      var menuItem2 = new RadMenuItem(page.Text) { Tag = page, Image = iconLow };
+      var menuItem2 = new RadMenuItem(page.Text) {Tag = page, Image = iconLow};
       menuItem2.Click += (sender, args) =>
       {
-        var p = (RadPageViewPage)((RadMenuItem)sender).Tag;
+        var p = (RadPageViewPage) ((RadMenuItem) sender).Tag;
 
-        if (Project == null ||
+        if (Project              == null ||
             Project.CountCorpora == 0)
         {
           MessageBox.Show(Resources.PleaseLoadACorpus);
@@ -158,13 +158,13 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
 
     private void AddView_AddMenuItem1(AbstractView view, Image iconLow, RadPageViewPage page)
     {
-      var menuItem1 = new RadMenuItem(page.Text) { Tag = page, Image = iconLow };
+      var menuItem1 = new RadMenuItem(page.Text) {Tag = page, Image = iconLow};
 
       menuItem1.Click += (sender, args) =>
       {
-        var p = (RadPageViewPage)((RadMenuItem)sender).Tag;
+        var p = (RadPageViewPage) ((RadMenuItem) sender).Tag;
 
-        if (Project == null ||
+        if (Project              == null ||
             Project.CountCorpora == 0)
         {
           MessageBox.Show(Resources.PleaseLoadACorpus);

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Bcs.IO
 {
@@ -20,7 +16,11 @@ namespace Bcs.IO
       try
       {
         if (!File.Exists(path)) return true;
-        using (var fs = File.Open(path, FileMode.Open, FileAccess.ReadWrite, FileShare.None)) { };
+        using (var fs = File.Open(path, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+        {
+        }
+
+        ;
         return true;
       }
       catch (Exception)

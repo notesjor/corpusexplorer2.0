@@ -1,6 +1,7 @@
 #region
 
 using System;
+using System.Linq;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.SelectLayer;
@@ -47,12 +48,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 
       AddSummaryRow();
       AddChildTemplate(
-        x => new FilterQuerySingleLayerAnyMatch
-        {
-          Inverse = false,
-          LayerDisplayname = "Wort",
-          LayerQueries = new[] {x[Resources.ZeichenketteWortform].ToString()}
-        });
+                       x => new FilterQuerySingleLayerAnyMatch
+                       {
+                         Inverse = false,
+                         LayerDisplayname = SelectedLayerDisplaynames.Last(),
+                         LayerQueries = new[] {x[Resources.ZeichenketteWortform].ToString()}
+                       });
 
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
     }
@@ -87,7 +88,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 
     private void btn_filter_Click(object sender, EventArgs e)
     {
-      FilterListFunction("Wort");
+      FilterListFunction(SelectedLayerDisplaynames);
     }
 
     private void btn_filtereditor_Click(object sender, EventArgs e)

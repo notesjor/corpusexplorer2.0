@@ -48,9 +48,9 @@ namespace CorpusExplorer.Sdk.Utils.Diff
       var lineB = 0;
       while (lineA < dataA.Length ||
              lineB < dataB.Length)
-        if (lineA < dataA.Length &&
+        if (lineA < dataA.Length   &&
             !dataA.Modified[lineA] &&
-            lineB < dataB.Length &&
+            lineB < dataB.Length   &&
             !dataB.Modified[lineB])
         {
           // equal lines
@@ -74,13 +74,13 @@ namespace CorpusExplorer.Sdk.Utils.Diff
           if (startA < lineA ||
               startB < lineB)
             a.Add(
-              new DiffDelta
-              {
-                StartA = startA,
-                StartB = startB,
-                DeletedA = lineA - startA,
-                InsertedB = lineB - startB
-              });
+                  new DiffDelta
+                  {
+                    StartA = startA,
+                    StartB = startB,
+                    DeletedA = lineA  - startA,
+                    InsertedB = lineB - startB
+                  });
         } // if
 
       var result = new DiffDelta[a.Count];
@@ -114,8 +114,8 @@ namespace CorpusExplorer.Sdk.Utils.Diff
       int[] upVector)
     {
       // Fast walkthrough equal lines at the start
-      while (lowerA < upperA &&
-             lowerB < upperB &&
+      while (lowerA             < upperA &&
+             lowerB             < upperB &&
              dataA.Data[lowerA] == dataB.Data[lowerB])
       {
         lowerA++;
@@ -123,8 +123,8 @@ namespace CorpusExplorer.Sdk.Utils.Diff
       }
 
       // Fast walkthrough equal lines at the end
-      while (lowerA < upperA &&
-             lowerB < upperB &&
+      while (lowerA                 < upperA &&
+             lowerB                 < upperB &&
              dataA.Data[upperA - 1] == dataB.Data[upperB - 1])
       {
         --upperA;
@@ -179,7 +179,7 @@ namespace CorpusExplorer.Sdk.Utils.Diff
       var max = dataA.Length + dataB.Length + 1;
 
       var downK = lowerA - lowerB; // the k-line to start the forward search
-      var upK = upperA - upperB; // the k-line to start the reverse search
+      var upK = upperA   - upperB; // the k-line to start the reverse search
 
       var delta = upperA - lowerA - (upperB - lowerB);
       var oddDelta = (delta & 1) != 0;
@@ -187,13 +187,13 @@ namespace CorpusExplorer.Sdk.Utils.Diff
       // The vectors in the publication accepts negative indexes. the vectors implemented here are 0-based
       // and are access using a specific offset: UpOffset UpVector and DownOffset for DownVektor
       var downOffset = max - downK;
-      var upOffset = max - upK;
+      var upOffset = max   - upK;
 
       var maxD = (upperA - lowerA + upperB - lowerB) / 2 + 1;
 
       // init vectors
       downVector[downOffset + downK + 1] = lowerA;
-      upVector[upOffset + upK - 1] = upperA;
+      upVector[upOffset + upK       - 1] = upperA;
 
       for (var d = 0; d <= maxD; d++)
       {
@@ -210,7 +210,7 @@ namespace CorpusExplorer.Sdk.Utils.Diff
           else
           {
             x = downVector[downOffset + k - 1] + 1; // a step to the right
-            if (k < downK + d &&
+            if (k                              < downK + d &&
                 downVector[downOffset + k + 1] >= x)
               x = downVector[downOffset + k + 1]; // down
           }
@@ -218,8 +218,8 @@ namespace CorpusExplorer.Sdk.Utils.Diff
           var y = x - k;
 
           // find the end of the furthest reaching forward D-path in diagonal k.
-          while (x < upperA &&
-                 y < upperB &&
+          while (x             < upperA &&
+                 y             < upperB &&
                  dataA.Data[x] == dataB.Data[y])
           {
             x++;
@@ -230,9 +230,9 @@ namespace CorpusExplorer.Sdk.Utils.Diff
 
           // overlap ?
           // ReSharper disable once InvertIf
-          if (oddDelta &&
+          if (oddDelta    &&
               upK - d < k &&
-              k < upK + d)
+              k       < upK + d)
             if (upVector[upOffset + k] <= downVector[downOffset + k])
             {
               ret.X = downVector[downOffset + k];
@@ -255,15 +255,15 @@ namespace CorpusExplorer.Sdk.Utils.Diff
           else
           {
             x = upVector[upOffset + k + 1] - 1; // left
-            if (k > upK - d &&
+            if (k                          > upK - d &&
                 upVector[upOffset + k - 1] < x)
               x = upVector[upOffset + k - 1]; // up
           } // if
 
           var y = x - k;
 
-          while (x > lowerA &&
-                 y > lowerB &&
+          while (x                 > lowerA &&
+                 y                 > lowerB &&
                  dataA.Data[x - 1] == dataB.Data[y - 1])
           {
             x--;
@@ -274,9 +274,9 @@ namespace CorpusExplorer.Sdk.Utils.Diff
 
           // overlap ?
           // ReSharper disable once InvertIf
-          if (!oddDelta &&
+          if (!oddDelta      &&
               downK - d <= k &&
-              k <= downK + d)
+              k         <= downK + d)
             if (upVector[upOffset + k] <= downVector[downOffset + k])
             {
               ret.X = downVector[downOffset + k];

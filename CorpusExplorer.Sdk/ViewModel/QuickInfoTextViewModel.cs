@@ -31,14 +31,14 @@ namespace CorpusExplorer.Sdk.ViewModel
           res[d.Key].HighlightedSentences.Add(d.Value);
         else
           res.Add(
-            d.Key,
-            new QuickInfoTextResult
-            {
-              DocumentGuid = d.Key,
-              DocumentMetadata = Selection.GetDocumentMetadata(d.Key),
-              HighlightedSentences = new HashSet<int> {d.Value},
-              Text = Selection.GetReadableDocument(d.Key, LayerDisplayname)
-            });
+                  d.Key,
+                  new QuickInfoTextResult
+                  {
+                    DocumentGuid = d.Key,
+                    DocumentMetadata = Selection.GetDocumentMetadata(d.Key),
+                    HighlightedSentences = new HashSet<int> {d.Value},
+                    Text = Selection.GetReadableDocument(d.Key, LayerDisplayname)
+                  });
       QuickDocumentInfoResults = res.Values;
     }
 

@@ -51,8 +51,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
     }
 
     /// <summary>
-    /// Wird nach ExecuteCall ausgeführt.
-    /// Sollter zur Bereinigung genutzt werden.
+    ///   Wird nach ExecuteCall ausgeführt.
+    ///   Sollter zur Bereinigung genutzt werden.
     /// </summary>
     protected abstract void Cleanup();
 
@@ -68,8 +68,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
     protected abstract IEnumerable<AbstractLayerState> ExecuteCall(ref AbstractCorpusAdapter corpus);
 
     /// <summary>
-    /// Wird zuerst aufgerufen - vor ExecuteCall und Cleanup.
-    /// Sollte dazu genutzt werden, um Daten/Modelle zu laden.
+    ///   Wird zuerst aufgerufen - vor ExecuteCall und Cleanup.
+    ///   Sollte dazu genutzt werden, um Daten/Modelle zu laden.
     /// </summary>
     protected abstract void Initialize();
   }

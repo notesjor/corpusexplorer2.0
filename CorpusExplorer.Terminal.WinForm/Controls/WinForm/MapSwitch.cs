@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using CorpusExplorer.Sdk.Extern.TileGridMap;
-using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Abstract;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Colorizer;
 using CorpusExplorer.Terminal.WinForm.Helper;
@@ -14,6 +14,12 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
   [ToolboxItem(true)]
   public partial class MapSwitch : AbstractUserControl
   {
+    private readonly Colorizer _colorizer = new Colorizer
+    {
+      VerticalAlignment = VerticalAlignment.Stretch,
+      HorizontalAlignment = HorizontalAlignment.Stretch
+    };
+
     private readonly RealMap _mapR = new RealMap
     {
       VerticalAlignment = VerticalAlignment.Stretch,
@@ -21,12 +27,6 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     };
 
     private readonly TileGridMapAlpha2 _mapT = new TileGridMapAlpha2
-    {
-      VerticalAlignment = VerticalAlignment.Stretch,
-      HorizontalAlignment = HorizontalAlignment.Stretch
-    };
-
-    private readonly Colorizer _colorizer = new Colorizer
     {
       VerticalAlignment = VerticalAlignment.Stretch,
       HorizontalAlignment = HorizontalAlignment.Stretch
@@ -49,7 +49,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       _mapT.SetCountryBorder(_mapT.GetAllCountriesOfRegion("Europe"), new SolidColorBrush(Color.FromRgb(0, 201, 255)));
       _mapT.SetCountryBorder(_mapT.GetAllCountriesOfRegion("Africa"), new SolidColorBrush(Color.FromRgb(0, 238, 153)));
       _mapT.SetCountryBorder(_mapT.GetAllCountriesOfRegion("Americas"),
-        new SolidColorBrush(Color.FromRgb(241, 74, 155)));
+                             new SolidColorBrush(Color.FromRgb(241, 74, 155)));
       _mapT.SetCountryBorder(_mapT.GetAllCountriesOfRegion("Oceania"), new SolidColorBrush(Color.FromRgb(242, 88, 7)));
 
       _mapT.FixInnerBorder(2);
@@ -64,7 +64,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       _colorizer.ColorsChanged += _colorizer_ColorsChanged;
     }
 
-    private void _colorizer_ColorsChanged(object sender, System.EventArgs e)
+    private void _colorizer_ColorsChanged(object sender, EventArgs e)
     {
       Recolor();
     }
@@ -73,7 +73,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     {
       SetData(_data);
     }
-    
+
     public void SetData(Dictionary<string, double> data)
     {
       _data = data;

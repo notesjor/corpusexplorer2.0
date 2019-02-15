@@ -72,10 +72,10 @@ namespace CorpusExplorer.Sdk.ViewModel
         {
           var meta = Selection.GetDocumentMetadata(x.Key);
           res.Add(
-            meta == null || !meta.ContainsKey(SelectedDocumentMetaProperty)
-              ? "- KEIN WERT -"
-              : meta[SelectedDocumentMetaProperty].ToString(),
-            x.Value);
+                  meta == null || !meta.ContainsKey(SelectedDocumentMetaProperty)
+                    ? "- KEIN WERT -"
+                    : meta[SelectedDocumentMetaProperty].ToString(),
+                  x.Value);
         }
 
       return res;

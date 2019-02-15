@@ -27,7 +27,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Map
       {
         var res = new List<string[]> {radGridView1.Columns.Select(x => x.Name).ToArray()};
         res.AddRange(radGridView1.Rows.Select(row =>
-          (from GridViewCellInfo c in row.Cells select c.Value?.ToString()).ToArray()));
+                                                (from GridViewCellInfo c in row.Cells select c.Value?.ToString())
+                                               .ToArray()));
         return res.ToArray();
       }
     }

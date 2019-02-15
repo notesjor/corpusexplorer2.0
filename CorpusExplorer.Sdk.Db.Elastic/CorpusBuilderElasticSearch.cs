@@ -19,10 +19,10 @@ namespace CorpusExplorer.Sdk.Db.Elastic
       List<Concept> concepts)
     {
       return CorpusAdapterElasticSearch.Create(
-        CorpusDisplayname,
-        documentMetadata,
-        corpusMetadata,
-        concepts);
+                                               CorpusDisplayname,
+                                               documentMetadata,
+                                               corpusMetadata,
+                                               concepts);
     }
 
     protected override AbstractLayerAdapter CreateLayer(

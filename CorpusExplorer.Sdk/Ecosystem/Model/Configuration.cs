@@ -42,7 +42,9 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
   {
     private static List<AbstractAdditionalTagger> _addonAdditionalTaggers = new List<AbstractAdditionalTagger>();
 
-    private static Dictionary<string, AbstractCorpusBuilder> _addonBackends = new Dictionary<string, AbstractCorpusBuilder>();
+    private static Dictionary<string, AbstractCorpusBuilder> _addonBackends =
+      new Dictionary<string, AbstractCorpusBuilder>();
+
     private static List<object> _addonSideLoadFeatures = new List<object>();
     private static List<IAction> _addonConsoleActions = new List<IAction>();
     private static List<AbstractCrawler> _addonCrawlers = new List<AbstractCrawler>();
@@ -69,7 +71,8 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       get
       {
         var list = _addonBackends.OrderBy(x => x.Key).ToList();
-        var cec6 = (from x in list where x.Value.GetType() == typeof(CorpusBuilderWriteDirect) select x).FirstOrDefault();
+        var cec6 =
+          (from x in list where x.Value.GetType() == typeof(CorpusBuilderWriteDirect) select x).FirstOrDefault();
         list.Remove(cec6);
         list.Insert(0, cec6);
         return list;
@@ -77,12 +80,6 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     }
 
     public static IEnumerable<IAction> AddonConsoleActions => _addonConsoleActions;
-
-    public static IAction GetConsoleAction(string actionName)
-      => (from x in AddonConsoleActions where x.Action == actionName select x).FirstOrDefault();
-
-    public static IEnumerable<T> GetSideloadFeature<T>()
-      => _addonSideLoadFeatures.OfType<T>();
 
     /// <summary>
     ///   Zusätzliche Crawler
@@ -155,7 +152,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
         try
         {
-          _encoding = Encoding.GetEncoding((int)GetSetting("Encoding (CodePage)", Encoding.UTF8.CodePage));
+          _encoding = Encoding.GetEncoding((int) GetSetting("Encoding (CodePage)", Encoding.UTF8.CodePage));
         }
         catch
         {
@@ -213,11 +210,11 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     public static string MyProjects { get; private set; }
 
     public static ParallelOptions ParallelOptions { get; set; } =
-      new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount * 2 };
+      new ParallelOptions {MaxDegreeOfParallelism = Environment.ProcessorCount * 2};
 
     public static bool ProtectMemoryOverflow
     {
-      get => (bool)GetSetting("RAM-Selbstschutz", true);
+      get => (bool) GetSetting("RAM-Selbstschutz", true);
       set => SetSetting("RAM-Selbstschutz", value);
     }
 
@@ -232,7 +229,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
         try
         {
-          _rightToLeftSupport = (bool)GetSetting("R/L-Support", false);
+          _rightToLeftSupport = (bool) GetSetting("R/L-Support", false);
         }
         catch
         {
@@ -246,6 +243,33 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
         _rightToLeftSupport = value;
         SetSetting("R/L-Support", value);
       }
+    }
+
+    /// <summary>
+    ///   Pfad zu den temporären Dateien
+    /// </summary>
+    public static string TempPath { get; } = Path.Combine(Path.GetTempPath(), "CorpusExplorer");
+
+    /// <summary>
+    ///   Pfad zu den Abhängigkeiten - nutzen Sie GetDependencyPath(string subPath) um einen relativen Pfad in einen absoluten
+    ///   umzuwandeln.
+    /// </summary>
+    /// <value>The dependency path.</value>
+    public static string DependencyPath { get; } = Path.Combine(AppPath, "XDependencies");
+
+    /// <summary>
+    ///   Dateipfad der Einstellungsdatei
+    /// </summary>
+    private static string SettingsAppPath { get; set; }
+
+    public static IAction GetConsoleAction(string actionName)
+    {
+      return (from x in AddonConsoleActions where x.Action == actionName select x).FirstOrDefault();
+    }
+
+    public static IEnumerable<T> GetSideloadFeature<T>()
+    {
+      return _addonSideLoadFeatures.OfType<T>();
     }
 
     public static void SetSignificance(ISignificance significance)
@@ -265,22 +289,6 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     }
 
     /// <summary>
-    ///   Pfad zu den temporären Dateien
-    /// </summary>
-    public static string TempPath { get; } = Path.Combine(Path.GetTempPath(), "CorpusExplorer");
-
-    /// <summary>
-    ///  Pfad zu den Abhängigkeiten - nutzen Sie GetDependencyPath(string subPath) um einen relativen Pfad in einen absoluten umzuwandeln.
-    /// </summary>
-    /// <value>The dependency path.</value>
-    public static string DependencyPath { get; } = Path.Combine(AppPath, "XDependencies");
-
-    /// <summary>
-    ///   Dateipfad der Einstellungsdatei
-    /// </summary>
-    private static string SettingsAppPath { get; set; }
-
-    /// <summary>
     ///   Gibt den Pfad zur Abhängigen (externen) Programmkomponente zurück
     /// </summary>
     /// <param name="subPath">Unterpfad</param>
@@ -294,10 +302,10 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
       var alternative =
         Path.Combine(
-          Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            @"CorpusExplorer\App\XDependencies"),
-          subPath);
+                     Path.Combine(
+                                  Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                                  @"CorpusExplorer\App\XDependencies"),
+                     subPath);
       if (Directory.Exists(alternative) || File.Exists(alternative))
         res = alternative;
 
@@ -337,9 +345,9 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     {
       try
       {
-        return File.Exists(alternativePath ?? SettingsAppPath)
-          ? Serializer.Deserialize<Dictionary<string, object>>(alternativePath ?? SettingsAppPath)
-          : new Dictionary<string, object>();
+        return File.Exists(alternativePath                                            ?? SettingsAppPath)
+                 ? Serializer.Deserialize<Dictionary<string, object>>(alternativePath ?? SettingsAppPath)
+                 : new Dictionary<string, object>();
       }
       catch
       {
@@ -359,7 +367,9 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       _addonConsoleActions.Clear();
       _addonSideLoadFeatures.Clear();
 
-      var location = Path.GetDirectoryName(string.IsNullOrEmpty(alternativePath) ? Assembly.GetExecutingAssembly().Location : alternativePath);
+      var location = Path.GetDirectoryName(string.IsNullOrEmpty(alternativePath)
+                                             ? Assembly.GetExecutingAssembly().Location
+                                             : alternativePath);
       Load3RdPartyAddons(location);
 
       // Nur relevant, wenn USB/Pendrive oder DEBUG
@@ -466,7 +476,8 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// <summary>
     ///   The initialize.
     /// </summary>
-    internal static void Initialize(InitialOptionsEnum options, bool forceReInitialization = false, string alternative3rdPartyPath = null)
+    internal static void Initialize(InitialOptionsEnum options, bool forceReInitialization = false,
+                                    string alternative3rdPartyPath = null)
     {
       if (IsInitialized && !forceReInitialization)
         return;
@@ -493,14 +504,14 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     {
       fileName =
         fileName.Replace(@"\", string.Empty)
-          .Replace("/", string.Empty)
-          .Replace(":", string.Empty)
-          .Replace("*", string.Empty)
-          .Replace("?", string.Empty)
-          .Replace("\"", string.Empty)
-          .Replace("<", string.Empty)
-          .Replace(">", string.Empty)
-          .Replace("|", string.Empty);
+                .Replace("/", string.Empty)
+                .Replace(":", string.Empty)
+                .Replace("*", string.Empty)
+                .Replace("?", string.Empty)
+                .Replace("\"", string.Empty)
+                .Replace("<", string.Empty)
+                .Replace(">", string.Empty)
+                .Replace("|", string.Empty);
 
       var ext = Path.GetExtension(fileName);
       fileName = Path.GetFileNameWithoutExtension(fileName);
@@ -526,12 +537,12 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     {
       return
         path.Replace("/", @"\")
-          .Replace("*", string.Empty)
-          .Replace("?", string.Empty)
-          .Replace("\"", string.Empty)
-          .Replace("<", string.Empty)
-          .Replace(">", string.Empty)
-          .Replace("|", string.Empty);
+            .Replace("*", string.Empty)
+            .Replace("?", string.Empty)
+            .Replace("\"", string.Empty)
+            .Replace("<", string.Empty)
+            .Replace(">", string.Empty)
+            .Replace("|", string.Empty);
     }
 
     /// <summary>
@@ -590,8 +601,8 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     private static string GetRelativPath(string path)
     {
       var res = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-        "CorpusExplorer\\" + path);
+                             Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                             "CorpusExplorer\\" + path);
       return EnsurePath(res);
     }
 
@@ -636,7 +647,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
         // ignore
       }
 
-      ParallelOptions = new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount * 2 };
+      ParallelOptions = new ParallelOptions {MaxDegreeOfParallelism = Environment.ProcessorCount * 2};
 
       try // notwendig z. B. unter AZURE
       {
@@ -716,7 +727,8 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
               try
               {
                 if (!s1.Key.Contains("|"))
-                  throw new CustomAttributeFormatException($"SCRAPER - WRONG ENTRY FOR: {s1.Key} - {s1.Value.GetType().FullName}");
+                  throw new
+                    CustomAttributeFormatException($"SCRAPER - WRONG ENTRY FOR: {s1.Key} - {s1.Value.GetType().FullName}");
 
                 _addonScrapers.Add(s1.Key, s1.Value);
               }
@@ -730,7 +742,8 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
               try
               {
                 if (!s2.Key.Contains("|"))
-                  throw new CustomAttributeFormatException($"IMPORTER - WRONG ENTRY FOR: {s2.Key} - {s2.Value.GetType().FullName}");
+                  throw new
+                    CustomAttributeFormatException($"IMPORTER - WRONG ENTRY FOR: {s2.Key} - {s2.Value.GetType().FullName}");
 
                 _addonImporters.Add(s2.Key, s2.Value);
               }
@@ -744,7 +757,8 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
               try
               {
                 if (!s3.Key.Contains("|"))
-                  throw new CustomAttributeFormatException($"EXPORTER - WRONG ENTRY FOR: {s3.Key} - {s3.Value.GetType().FullName}");
+                  throw new
+                    CustomAttributeFormatException($"EXPORTER - WRONG ENTRY FOR: {s3.Key} - {s3.Value.GetType().FullName}");
 
                 _addonExporters.Add(s3.Key, s3.Value);
               }
@@ -753,8 +767,9 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
                 InMemoryErrorConsole.Log(ex);
               }
 
-          if(repo.AddonConsoleActions != null)
-            foreach (var s in repo.AddonConsoleActions.Where(s => !_addonConsoleActions.Exists(x => x.Action == s.Action)))
+          if (repo.AddonConsoleActions != null)
+            foreach (var s in
+              repo.AddonConsoleActions.Where(s => !_addonConsoleActions.Exists(x => x.Action == s.Action)))
               try
               {
                 _addonConsoleActions.Add(s);
@@ -786,9 +801,9 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
                 InMemoryErrorConsole.Log(ex);
               }
 
-          if(repo.AddonSideloadFeature != null)
+          if (repo.AddonSideloadFeature != null)
             foreach (var s in repo.AddonSideloadFeature.Where(
-             s=> !_addonSideLoadFeatures.Contains(s)))
+                                                              s => !_addonSideLoadFeatures.Contains(s)))
               try
               {
                 _addonSideLoadFeatures.Add(s);
@@ -800,7 +815,9 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
           if (repo.AddonAdditionalTagger != null)
             foreach (var s in repo.AddonAdditionalTagger.Where(
-              s => !_addonAdditionalTaggers.Exists(x => x.DisplayName == s.DisplayName)))
+                                                               s =>
+                                                                 !_addonAdditionalTaggers.Exists(x => x.DisplayName ==
+                                                                                                      s.DisplayName)))
               try
               {
                 _addonAdditionalTaggers.Add(s);

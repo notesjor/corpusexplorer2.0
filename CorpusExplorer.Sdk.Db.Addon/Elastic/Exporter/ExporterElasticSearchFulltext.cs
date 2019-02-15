@@ -14,21 +14,21 @@ namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter
     public override void Export(IHydra hydra, string path)
     {
       FormHelper.Show("ElasticSearch",
-        "http://localhost",
-        9200,
-        (h, p, db, usr, psw) =>
-        {
-          ElasticSearchFulltextContextManager
-            .Initialize(
-              new[] {$"{h}:{p}"},
-              db.ToLower(),
-              string.IsNullOrEmpty(usr)
-                ? null
-                : new
-                  ElasticSearchContextCredentials(usr, psw));
-          return ElasticSearchFulltextContextManager.GetContext() != null;
-        },
-        "CorpusExplorer >>> ElasticSearch (Kein CE-Reimport möglich)|*.elastic");
+                      "http://localhost",
+                      9200,
+                      (h, p, db, usr, psw) =>
+                      {
+                        ElasticSearchFulltextContextManager
+                         .Initialize(
+                                     new[] {$"{h}:{p}"},
+                                     db.ToLower(),
+                                     string.IsNullOrEmpty(usr)
+                                       ? null
+                                       : new
+                                         ElasticSearchContextCredentials(usr, psw));
+                        return ElasticSearchFulltextContextManager.GetContext() != null;
+                      },
+                      "CorpusExplorer >>> ElasticSearch (Kein CE-Reimport möglich)|*.elastic");
 
       var context = ElasticSearchFulltextContextManager.GetContext();
       foreach (var dsel in hydra.DocumentGuids)
@@ -41,16 +41,16 @@ namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter
           TokenCount = hydra.GetDocumentLengthInWords(dsel),
           Metadata = meta,
           Displayname = meta != null && meta.ContainsKey("Titel")
-            ? meta["Titel"].ToString()
-            : dsel.ToString(),
+                          ? meta["Titel"].ToString()
+                          : dsel.ToString(),
           Layers = hydra.GetReadableMultilayerDocument(dsel)
-            .Select(
-              x => new Layer
-              {
-                Displayname = x.Key,
-                Content = x.Value.ReduceDocumentToText()
-              })
-            .ToList()
+                        .Select(
+                                x => new Layer
+                                {
+                                  Displayname = x.Key,
+                                  Content = x.Value.ReduceDocumentToText()
+                                })
+                        .ToList()
         });
       }
     }

@@ -25,7 +25,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
       try
       {
         return string.Join("\r\n",
-          selection.Queries.Select(QueryParser.Serialize).Where(t => !string.IsNullOrEmpty(t)));
+                           selection.Queries.Select(QueryParser.Serialize).Where(t => !string.IsNullOrEmpty(t)));
       }
       catch
       {

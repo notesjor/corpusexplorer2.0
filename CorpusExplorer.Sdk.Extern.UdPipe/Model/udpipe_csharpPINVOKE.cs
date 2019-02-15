@@ -85,8 +85,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Comments_Add")]
     public static extern void Comments_Add(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                           [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                             typeof(UTF8Marshaler))]
+                                           string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Comments_AddRange")]
     public static extern void Comments_AddRange(HandleRef jarg1, HandleRef jarg2);
@@ -99,8 +100,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Comments_Contains")]
     public static extern bool Comments_Contains(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                  typeof(UTF8Marshaler))]
+                                                string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Comments_getitem")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
@@ -115,26 +117,30 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Comments_IndexOf")]
     public static extern int Comments_IndexOf(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                              [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                typeof(UTF8Marshaler))]
+                                              string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Comments_Insert")]
     public static extern void Comments_Insert(HandleRef jarg1, int jarg2,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg3);
+                                              [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                typeof(UTF8Marshaler))]
+                                              string jarg3);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Comments_InsertRange")]
     public static extern void Comments_InsertRange(HandleRef jarg1, int jarg2, HandleRef jarg3);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Comments_LastIndexOf")]
     public static extern int Comments_LastIndexOf(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                    typeof(UTF8Marshaler))]
+                                                  string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Comments_Remove")]
     public static extern bool Comments_Remove(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                              [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                typeof(UTF8Marshaler))]
+                                              string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Comments_RemoveAt")]
     public static extern void Comments_RemoveAt(HandleRef jarg1, int jarg2);
@@ -158,8 +164,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Comments_setitem")]
     public static extern void Comments_setitem(HandleRef jarg1, int jarg2,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg3);
+                                               [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                 typeof(UTF8Marshaler))]
+                                               string jarg3);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Comments_SetRange")]
     public static extern void Comments_SetRange(HandleRef jarg1, int jarg2, HandleRef jarg3);
@@ -230,8 +237,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_EmptyNode_deps_set")]
     public static extern void EmptyNode_deps_set(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                 [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                   typeof(UTF8Marshaler))]
+                                                 string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_EmptyNode_feats_get")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
@@ -239,8 +247,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_EmptyNode_feats_set")]
     public static extern void EmptyNode_feats_set(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                    typeof(UTF8Marshaler))]
+                                                  string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_EmptyNode_form_get")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
@@ -248,8 +257,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_EmptyNode_form_set")]
     public static extern void EmptyNode_form_set(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                 [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                   typeof(UTF8Marshaler))]
+                                                 string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_EmptyNode_id_get")]
     public static extern int EmptyNode_id_get(HandleRef jarg1);
@@ -269,8 +279,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_EmptyNode_lemma_set")]
     public static extern void EmptyNode_lemma_set(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                    typeof(UTF8Marshaler))]
+                                                  string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_EmptyNode_misc_get")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
@@ -278,8 +289,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_EmptyNode_misc_set")]
     public static extern void EmptyNode_misc_set(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                 [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                   typeof(UTF8Marshaler))]
+                                                 string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_EmptyNode_upostag_get")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
@@ -287,8 +299,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_EmptyNode_upostag_set")]
     public static extern void EmptyNode_upostag_set(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                    [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                      typeof(UTF8Marshaler))]
+                                                    string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_EmptyNode_xpostag_get")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
@@ -296,8 +309,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_EmptyNode_xpostag_set")]
     public static extern void EmptyNode_xpostag_set(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                    [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                      typeof(UTF8Marshaler))]
+                                                    string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_EmptyNodes_Add")]
     public static extern void EmptyNodes_Add(HandleRef jarg1, HandleRef jarg2);
@@ -360,14 +374,16 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Evaluator_evaluate__SWIG_0")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
     public static extern string Evaluator_evaluate__SWIG_0(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2, HandleRef jarg3);
+                                                           [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                             typeof(UTF8Marshaler))]
+                                                           string jarg2, HandleRef jarg3);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Evaluator_evaluate__SWIG_1")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
     public static extern string Evaluator_evaluate__SWIG_1(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                           [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                             typeof(UTF8Marshaler))]
+                                                           string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Evaluator_NONE_get")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
@@ -378,18 +394,21 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Evaluator_setParser")]
     public static extern void Evaluator_setParser(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                    typeof(UTF8Marshaler))]
+                                                  string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Evaluator_setTagger")]
     public static extern void Evaluator_setTagger(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                    typeof(UTF8Marshaler))]
+                                                  string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Evaluator_setTokenizer")]
     public static extern void Evaluator_setTokenizer(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                     [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                       typeof(UTF8Marshaler))]
+                                                     string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_InputFormat_CONLLU_V1_get")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
@@ -459,16 +478,18 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_InputFormat_resetDocument__SWIG_0")]
     public static extern void InputFormat_resetDocument__SWIG_0(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                                [MarshalAs(UnmanagedType.CustomMarshaler,
+                                                                  MarshalTypeRef = typeof(UTF8Marshaler))]
+                                                                string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_InputFormat_resetDocument__SWIG_1")]
     public static extern void InputFormat_resetDocument__SWIG_1(HandleRef jarg1);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_InputFormat_setText")]
     public static extern void InputFormat_setText(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                    typeof(UTF8Marshaler))]
+                                                  string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Model_DEFAULT_get")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
@@ -481,28 +502,33 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Model_newTokenizer")]
     public static extern IntPtr Model_newTokenizer(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                   [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                     typeof(UTF8Marshaler))]
+                                                   string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Model_parse__SWIG_0")]
     public static extern bool Model_parse__SWIG_0(HandleRef jarg1, HandleRef jarg2,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg3, HandleRef jarg4);
+                                                  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                    typeof(UTF8Marshaler))]
+                                                  string jarg3, HandleRef jarg4);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Model_parse__SWIG_1")]
     public static extern bool Model_parse__SWIG_1(HandleRef jarg1, HandleRef jarg2,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg3);
+                                                  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                    typeof(UTF8Marshaler))]
+                                                  string jarg3);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Model_tag__SWIG_0")]
     public static extern bool Model_tag__SWIG_0(HandleRef jarg1, HandleRef jarg2,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg3, HandleRef jarg4);
+                                                [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                  typeof(UTF8Marshaler))]
+                                                string jarg3, HandleRef jarg4);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Model_tag__SWIG_1")]
     public static extern bool Model_tag__SWIG_1(HandleRef jarg1, HandleRef jarg2,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg3);
+                                                [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                  typeof(UTF8Marshaler))]
+                                                string jarg3);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Model_TOKENIZER_NORMALIZED_SPACES_get")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
@@ -623,21 +649,27 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_new_Evaluator")]
     public static extern IntPtr new_Evaluator(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg3, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg4);
+                                              [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                typeof(UTF8Marshaler))]
+                                              string jarg2, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                typeof(UTF8Marshaler))]
+                                              string jarg3, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                typeof(UTF8Marshaler))]
+                                              string jarg4);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_new_MultiwordToken__SWIG_0")]
     public static extern IntPtr new_MultiwordToken__SWIG_0(int jarg1, int jarg2,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg3, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg4);
+                                                           [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                             typeof(UTF8Marshaler))]
+                                                           string jarg3, [MarshalAs(UnmanagedType.CustomMarshaler,
+                                                             MarshalTypeRef = typeof(UTF8Marshaler))]
+                                                           string jarg4);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_new_MultiwordToken__SWIG_1")]
     public static extern IntPtr new_MultiwordToken__SWIG_1(int jarg1, int jarg2,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg3);
+                                                           [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                             typeof(UTF8Marshaler))]
+                                                           string jarg3);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_new_MultiwordToken__SWIG_2")]
     public static extern IntPtr new_MultiwordToken__SWIG_2(int jarg1, int jarg2);
@@ -659,11 +691,15 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_new_Pipeline")]
     public static extern IntPtr new_Pipeline(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg3, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg4, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg5);
+                                             [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                               typeof(UTF8Marshaler))]
+                                             string jarg2, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                               typeof(UTF8Marshaler))]
+                                             string jarg3, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                               typeof(UTF8Marshaler))]
+                                             string jarg4, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                               typeof(UTF8Marshaler))]
+                                             string jarg5);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_new_ProcessingError")]
     public static extern IntPtr new_ProcessingError();
@@ -702,8 +738,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_new_Word__SWIG_0")]
     public static extern IntPtr new_Word__SWIG_0(int jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                 [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                   typeof(UTF8Marshaler))]
+                                                 string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_new_Word__SWIG_1")]
     public static extern IntPtr new_Word__SWIG_1(int jarg1);
@@ -812,45 +849,52 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Pipeline_process__SWIG_0")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
     public static extern string Pipeline_process__SWIG_0(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2, HandleRef jarg3);
+                                                         [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                           typeof(UTF8Marshaler))]
+                                                         string jarg2, HandleRef jarg3);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Pipeline_process__SWIG_1")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
     public static extern string Pipeline_process__SWIG_1(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                         [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                           typeof(UTF8Marshaler))]
+                                                         string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Pipeline_setDocumentId")]
     public static extern void Pipeline_setDocumentId(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                     [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                       typeof(UTF8Marshaler))]
+                                                     string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Pipeline_setImmediate")]
     public static extern void Pipeline_setImmediate(HandleRef jarg1, bool jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Pipeline_setInput")]
     public static extern void Pipeline_setInput(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                  typeof(UTF8Marshaler))]
+                                                string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Pipeline_setModel")]
     public static extern void Pipeline_setModel(HandleRef jarg1, HandleRef jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Pipeline_setOutput")]
     public static extern void Pipeline_setOutput(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                 [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                   typeof(UTF8Marshaler))]
+                                                 string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Pipeline_setParser")]
     public static extern void Pipeline_setParser(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                 [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                   typeof(UTF8Marshaler))]
+                                                 string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Pipeline_setTagger")]
     public static extern void Pipeline_setTagger(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                 [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                   typeof(UTF8Marshaler))]
+                                                 string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_ProcessingError_message_get")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
@@ -858,16 +902,18 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_ProcessingError_message_set")]
     public static extern void ProcessingError_message_set(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                          [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                            typeof(UTF8Marshaler))]
+                                                          string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_ProcessingError_occurred")]
     public static extern bool ProcessingError_occurred(HandleRef jarg1);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Sentence_addWord")]
     public static extern IntPtr Sentence_addWord(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                 [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                   typeof(UTF8Marshaler))]
+                                                 string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Sentence_clear")]
     public static extern void Sentence_clear(HandleRef jarg1);
@@ -921,34 +967,39 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Sentence_setHead")]
     public static extern void Sentence_setHead(HandleRef jarg1, int jarg2, int jarg3,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg4);
+                                               [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                 typeof(UTF8Marshaler))]
+                                               string jarg4);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Sentence_setNewDoc__SWIG_0")]
     public static extern void Sentence_setNewDoc__SWIG_0(HandleRef jarg1, bool jarg2,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg3);
+                                                         [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                           typeof(UTF8Marshaler))]
+                                                         string jarg3);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Sentence_setNewDoc__SWIG_1")]
     public static extern void Sentence_setNewDoc__SWIG_1(HandleRef jarg1, bool jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Sentence_setNewPar__SWIG_0")]
     public static extern void Sentence_setNewPar__SWIG_0(HandleRef jarg1, bool jarg2,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg3);
+                                                         [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                           typeof(UTF8Marshaler))]
+                                                         string jarg3);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Sentence_setNewPar__SWIG_1")]
     public static extern void Sentence_setNewPar__SWIG_1(HandleRef jarg1, bool jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Sentence_setSentId")]
     public static extern void Sentence_setSentId(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                 [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                   typeof(UTF8Marshaler))]
+                                                 string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Sentence_setText")]
     public static extern void Sentence_setText(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                               [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                 typeof(UTF8Marshaler))]
+                                               string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Sentence_unlinkAllNodes")]
     public static extern void Sentence_unlinkAllNodes(HandleRef jarg1);
@@ -1019,8 +1070,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Token_form_set")]
     public static extern void Token_form_set(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                             [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                               typeof(UTF8Marshaler))]
+                                             string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Token_getSpaceAfter")]
     public static extern bool Token_getSpaceAfter(HandleRef jarg1);
@@ -1052,26 +1104,30 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Token_misc_set")]
     public static extern void Token_misc_set(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                             [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                               typeof(UTF8Marshaler))]
+                                             string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Token_setSpaceAfter")]
     public static extern void Token_setSpaceAfter(HandleRef jarg1, bool jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Token_setSpacesAfter")]
     public static extern void Token_setSpacesAfter(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                   [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                     typeof(UTF8Marshaler))]
+                                                   string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Token_setSpacesBefore")]
     public static extern void Token_setSpacesBefore(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                    [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                      typeof(UTF8Marshaler))]
+                                                    string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Token_setSpacesInToken")]
     public static extern void Token_setSpacesInToken(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                     [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                       typeof(UTF8Marshaler))]
+                                                     string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Token_setTokenRange")]
     public static extern void Token_setTokenRange(HandleRef jarg1, uint jarg2, uint jarg3);
@@ -1131,8 +1187,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Version_prerelease_set")]
     public static extern void Version_prerelease_set(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                                     [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                       typeof(UTF8Marshaler))]
+                                                     string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Word_children_get")]
     public static extern IntPtr Word_children_get(HandleRef jarg1);
@@ -1146,8 +1203,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Word_deprel_set")]
     public static extern void Word_deprel_set(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                              [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                typeof(UTF8Marshaler))]
+                                              string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Word_deps_get")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
@@ -1155,8 +1213,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Word_deps_set")]
     public static extern void Word_deps_set(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                            [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                              typeof(UTF8Marshaler))]
+                                            string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Word_feats_get")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
@@ -1164,8 +1223,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Word_feats_set")]
     public static extern void Word_feats_set(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                             [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                               typeof(UTF8Marshaler))]
+                                             string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Word_head_get")]
     public static extern int Word_head_get(HandleRef jarg1);
@@ -1185,8 +1245,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Word_lemma_set")]
     public static extern void Word_lemma_set(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                             [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                               typeof(UTF8Marshaler))]
+                                             string jarg2);
 
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Word_SWIGUpcast")]
@@ -1198,8 +1259,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Word_upostag_set")]
     public static extern void Word_upostag_set(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                               [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                 typeof(UTF8Marshaler))]
+                                               string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Word_xpostag_get")]
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
@@ -1207,8 +1269,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Word_xpostag_set")]
     public static extern void Word_xpostag_set(HandleRef jarg1,
-      [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(UTF8Marshaler))]
-      string jarg2);
+                                               [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef =
+                                                 typeof(UTF8Marshaler))]
+                                               string jarg2);
 
     [DllImport("udpipe_csharp", EntryPoint = "CSharp_Words_Add")]
     public static extern void Words_Add(HandleRef jarg1, HandleRef jarg2);
@@ -1292,22 +1355,22 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       static SWIGExceptionHelper()
       {
         SWIGRegisterExceptionCallbacks_udpipe_csharp(
-          applicationDelegate,
-          arithmeticDelegate,
-          divideByZeroDelegate,
-          indexOutOfRangeDelegate,
-          invalidCastDelegate,
-          invalidOperationDelegate,
-          ioDelegate,
-          nullReferenceDelegate,
-          outOfMemoryDelegate,
-          overflowDelegate,
-          systemDelegate);
+                                                     applicationDelegate,
+                                                     arithmeticDelegate,
+                                                     divideByZeroDelegate,
+                                                     indexOutOfRangeDelegate,
+                                                     invalidCastDelegate,
+                                                     invalidOperationDelegate,
+                                                     ioDelegate,
+                                                     nullReferenceDelegate,
+                                                     outOfMemoryDelegate,
+                                                     overflowDelegate,
+                                                     systemDelegate);
 
         SWIGRegisterExceptionCallbacksArgument_udpipe_csharp(
-          argumentDelegate,
-          argumentNullDelegate,
-          argumentOutOfRangeDelegate);
+                                                             argumentDelegate,
+                                                             argumentNullDelegate,
+                                                             argumentOutOfRangeDelegate);
       }
 
       [DllImport("udpipe_csharp", EntryPoint = "SWIGRegisterExceptionCallbacks_udpipe_csharp")]
@@ -1342,14 +1405,14 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
       private static void SetPendingArgumentNullException(string message, string paramName)
       {
-        Exception e = SWIGPendingException.Retrieve();
+        var e = SWIGPendingException.Retrieve();
         if (e != null) message = message + " Inner Exception: " + e.Message;
         SWIGPendingException.Set(new ArgumentNullException(paramName, message));
       }
 
       private static void SetPendingArgumentOutOfRangeException(string message, string paramName)
       {
-        Exception e = SWIGPendingException.Retrieve();
+        var e = SWIGPendingException.Retrieve();
         if (e != null) message = message + " Inner Exception: " + e.Message;
         SWIGPendingException.Set(new ArgumentOutOfRangeException(paramName, message));
       }
@@ -1415,7 +1478,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       {
         get
         {
-          bool pending = false;
+          var pending = false;
           if (numExceptionsPending > 0)
             if (pendingException != null)
               pending = true;
@@ -1444,8 +1507,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       {
         if (pendingException != null)
           throw new ApplicationException(
-            "FATAL: An earlier pending exception from unmanaged code was missed and thus not thrown (" +
-            pendingException + ")", e);
+                                         "FATAL: An earlier pending exception from unmanaged code was missed and thus not thrown (" +
+                                         pendingException                                                                           +
+                                         ")", e);
         pendingException = e;
         lock (typeof(udpipe_csharpPINVOKE))
         {
@@ -1487,8 +1551,8 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
           throw new MarshalDirectiveException("UTF8Marshaler must be used on a string.");
 
         // not null terminated
-        byte[] strbuf = Encoding.UTF8.GetBytes((string) managedObj);
-        IntPtr buffer = Marshal.AllocHGlobal(strbuf.Length + 1);
+        var strbuf = Encoding.UTF8.GetBytes((string) managedObj);
+        var buffer = Marshal.AllocHGlobal(strbuf.Length + 1);
         Marshal.Copy(strbuf, 0, buffer, strbuf.Length);
 
         // write the terminating null
@@ -1498,15 +1562,15 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
       public object MarshalNativeToManaged(IntPtr pNativeData)
       {
-        int length = 0;
+        var length = 0;
         while (Marshal.ReadByte(pNativeData, length) != 0)
           length++;
 
         // should not be null terminated
-        byte[] strbuf = new byte[length];
+        var strbuf = new byte[length];
         // skip the trailing null
         Marshal.Copy(pNativeData, strbuf, 0, length);
-        string data = Encoding.UTF8.GetString(strbuf);
+        var data = Encoding.UTF8.GetString(strbuf);
         return data;
       }
 

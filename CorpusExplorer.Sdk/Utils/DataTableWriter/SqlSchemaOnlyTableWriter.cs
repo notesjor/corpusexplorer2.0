@@ -46,12 +46,18 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       WriteOutput("-- 3. set (primary) key(s)\r\n");
     }
 
-    protected override void WriteBody(DataTable table) { }
+    protected override void WriteBody(DataTable table)
+    {
+    }
 
-    protected override void WriteFooter() { }
+    protected override void WriteFooter()
+    {
+    }
 
     public override AbstractTableWriter Clone(Stream stream)
-      => new SqlSchemaOnlyTableWriter { OutputStream = stream };
+    {
+      return new SqlSchemaOnlyTableWriter {OutputStream = stream};
+    }
 
     private string GetSqlType(Type type)
     {

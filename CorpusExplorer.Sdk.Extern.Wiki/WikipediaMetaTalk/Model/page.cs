@@ -1,22 +1,25 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
-{
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true,
-    Namespace = "http://www.mediawiki.org/xml/export-0.10/")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.mediawiki.org/xml/export-0.10/",
-    IsNullable = false)]
-  public partial class page
-  {
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
 
-    private string titleField;
+namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
+{
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true,
+    Namespace = "http://www.mediawiki.org/xml/export-0.10/")]
+  [XmlRoot(Namespace = "http://www.mediawiki.org/xml/export-0.10/",
+    IsNullable = false)]
+  public class page
+  {
+    private string idField;
 
     private string nsField;
-
-    private string idField;
 
     private redirect redirectField;
 
@@ -24,48 +27,50 @@
 
     private revision revisionField;
 
-    /// <remarks/>
+    private string titleField;
+
+    /// <remarks />
     public string title
     {
-      get { return this.titleField; }
-      set { this.titleField = value; }
+      get => titleField;
+      set => titleField = value;
     }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute(DataType = "integer")]
+
+    /// <remarks />
+    [XmlElement(DataType = "integer")]
     public string ns
     {
-      get { return this.nsField; }
-      set { this.nsField = value; }
+      get => nsField;
+      set => nsField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute(DataType = "integer")]
+    /// <remarks />
+    [XmlElement(DataType = "integer")]
     public string id
     {
-      get { return this.idField; }
-      set { this.idField = value; }
+      get => idField;
+      set => idField = value;
     }
 
-    /// <remarks/>
+    /// <remarks />
     public redirect redirect
     {
-      get { return this.redirectField; }
-      set { this.redirectField = value; }
+      get => redirectField;
+      set => redirectField = value;
     }
 
-    /// <remarks/>
+    /// <remarks />
     public string restrictions
     {
-      get { return this.restrictionsField; }
-      set { this.restrictionsField = value; }
+      get => restrictionsField;
+      set => restrictionsField = value;
     }
 
-    /// <remarks/>
+    /// <remarks />
     public revision revision
     {
-      get { return this.revisionField; }
-      set { this.revisionField = value; }
+      get => revisionField;
+      set => revisionField = value;
     }
   }
 }

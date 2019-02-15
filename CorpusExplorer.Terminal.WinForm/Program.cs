@@ -2,13 +2,9 @@
 
 using System;
 using System.Globalization;
-using System.IO;
-using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using CorpusExplorer.Sdk.Diagnostic;
-using CorpusExplorer.Sdk.Ecosystem;
-using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Terminal.WinForm.Forms.Dashboard;
 using CorpusExplorer.Terminal.WinForm.Forms.Error;
 using CorpusExplorer.Terminal.WinForm.Forms.Insight;
@@ -26,6 +22,7 @@ namespace CorpusExplorer.Terminal.WinForm
     private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
     {
       InMemoryErrorConsole.Log(e.Exception);
+      InMemoryErrorConsole.SendAppCrash(e.Exception);
       if (InMemoryErrorConsole.ShowErrorConsoleOnAppCrash)
       {
         var form = new ErrorConsole();

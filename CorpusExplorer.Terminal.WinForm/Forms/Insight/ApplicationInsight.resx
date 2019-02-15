@@ -151,7 +151,7 @@
     <value>radLabel1</value>
   </data>
   <data name="&gt;&gt;radLabel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -178,7 +178,7 @@
     <value>btn_accepted</value>
   </data>
   <data name="&gt;&gt;btn_accepted.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_accepted.Parent" xml:space="preserve">
     <value>clearPanel1</value>
@@ -211,7 +211,7 @@
     <value>btn_denied</value>
   </data>
   <data name="&gt;&gt;btn_denied.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_denied.Parent" xml:space="preserve">
     <value>clearPanel1</value>
@@ -254,6 +254,9 @@
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>527, 225</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>535, 274</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>CorpusExplorer - Telemetrie</value>

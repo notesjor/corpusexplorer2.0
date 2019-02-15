@@ -61,7 +61,8 @@ namespace Bcs.Crawler
     [XmlElement]
     public ICrawler Crawler { get; set; }
 
-    [XmlAttribute("max")] public int MaxResults { get; set; }
+    [XmlAttribute("max")]
+    public int MaxResults { get; set; }
 
     // ReSharper disable once MemberCanBePrivate.Global
 
@@ -147,12 +148,12 @@ namespace Bcs.Crawler
           var web = new HtmlWeb();
           var doc =
             web.Load(
-              Url.Replace(Query, HttpUtility.UrlEncode(query))
-                .Replace(Page, PageStartValue.ToString(CultureInfo.InvariantCulture)));
+                     Url.Replace(Query, HttpUtility.UrlEncode(query))
+                        .Replace(Page, PageStartValue.ToString(CultureInfo.InvariantCulture)));
           PageStartValue += PageIncrementValue;
 
           nodes = doc.DocumentNode.SelectNodes(ResultsXpath);
-          if (nodes == null ||
+          if (nodes       == null ||
               nodes.Count == 0)
             break;
 
@@ -165,8 +166,8 @@ namespace Bcs.Crawler
                 continue;
 
               Crawler.Url = string.IsNullOrEmpty(UrlResultPrefix)
-                ? url
-                : UrlResultPrefix + (url.StartsWith(".") ? url.Substring(1) : url);
+                              ? url
+                              : UrlResultPrefix + (url.StartsWith(".") ? url.Substring(1) : url);
 
               var items = Crawler.Crawl();
               if (items != null)

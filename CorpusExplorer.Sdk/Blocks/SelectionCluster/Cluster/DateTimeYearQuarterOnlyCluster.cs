@@ -6,9 +6,9 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {
   public class DateTimeYearQuarterOnlyCluster : AbstractCluster
   {
-    private readonly int _year;
-    private readonly int _quarter;
     private readonly DateTime _central;
+    private readonly int _quarter;
+    private readonly int _year;
 
     public DateTimeYearQuarterOnlyCluster(DateTime value)
     {
@@ -25,7 +25,7 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
     {
       try
       {
-        var test = (DateTime)obj;
+        var test = (DateTime) obj;
         if (test.Year != _year || _quarter != DateTimeHelper.GetYearQuarter(test))
           return false;
         Add(documentGuid);

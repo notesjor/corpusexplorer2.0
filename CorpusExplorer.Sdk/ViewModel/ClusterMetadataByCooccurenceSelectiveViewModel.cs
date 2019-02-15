@@ -23,19 +23,6 @@ namespace CorpusExplorer.Sdk.ViewModel
     public IEnumerable<string> DocumentMetaProperties
       => Selection.GetDocumentMetadataPrototypeOnlyProperties();
 
-    protected override void ExecuteAnalyse()
-    {
-      _block = Selection.CreateBlock<ClusterMetadataByCooccurrenceSelectiveBlock>();
-      _block.SimilarityIndex = SimilarityIndex;
-      _block.LayerDisplayname = LayerDisplayname;
-      _block.LayerQueries = LayerQueries;
-      _block.SelectionClusterGenerator = new SelectionClusterGeneratorStringValue { MetadataKey = MetadataKey };
-      _block.CooccurrenceMinFrequency = CooccurrenceMinFrequency;
-      _block.MetadataKey = MetadataKey;
-      _block.CooccurrenceMinSignificance = CooccurrenceMinSignificance;
-      _block.Calculate();
-    }
-
     public string[] LayerQueries { get; set; }
 
     public double CooccurrenceMinSignificance { get; set; } = 1;
@@ -44,10 +31,27 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public ClusterMetadataItem RootCluster => _block.RootCluster;
 
-    protected override bool Validate()
-      => !string.IsNullOrEmpty(LayerDisplayname) && !string.IsNullOrEmpty(MetadataKey) && SimilarityIndex != null;
-
     public DataTable GetDataTable()
-      => _block.GetDataTable();
+    {
+      return _block.GetDataTable();
+    }
+
+    protected override void ExecuteAnalyse()
+    {
+      _block = Selection.CreateBlock<ClusterMetadataByCooccurrenceSelectiveBlock>();
+      _block.SimilarityIndex = SimilarityIndex;
+      _block.LayerDisplayname = LayerDisplayname;
+      _block.LayerQueries = LayerQueries;
+      _block.SelectionClusterGenerator = new SelectionClusterGeneratorStringValue {MetadataKey = MetadataKey};
+      _block.CooccurrenceMinFrequency = CooccurrenceMinFrequency;
+      _block.MetadataKey = MetadataKey;
+      _block.CooccurrenceMinSignificance = CooccurrenceMinSignificance;
+      _block.Calculate();
+    }
+
+    protected override bool Validate()
+    {
+      return !string.IsNullOrEmpty(LayerDisplayname) && !string.IsNullOrEmpty(MetadataKey) && SimilarityIndex != null;
+    }
   }
 }

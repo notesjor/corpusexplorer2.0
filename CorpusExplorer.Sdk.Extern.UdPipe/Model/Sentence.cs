@@ -23,8 +23,8 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       set => udpipe_csharpPINVOKE.Sentence_comments_set(swigCPtr, Comments.getCPtr(value));
       get
       {
-        IntPtr cPtr = udpipe_csharpPINVOKE.Sentence_comments_get(swigCPtr);
-        Comments ret = cPtr == IntPtr.Zero ? null : new Comments(cPtr, false);
+        var cPtr = udpipe_csharpPINVOKE.Sentence_comments_get(swigCPtr);
+        var ret = cPtr == IntPtr.Zero ? null : new Comments(cPtr, false);
         return ret;
       }
     }
@@ -34,8 +34,8 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       set => udpipe_csharpPINVOKE.Sentence_emptyNodes_set(swigCPtr, EmptyNodes.getCPtr(value));
       get
       {
-        IntPtr cPtr = udpipe_csharpPINVOKE.Sentence_emptyNodes_get(swigCPtr);
-        EmptyNodes ret = cPtr == IntPtr.Zero ? null : new EmptyNodes(cPtr, false);
+        var cPtr = udpipe_csharpPINVOKE.Sentence_emptyNodes_get(swigCPtr);
+        var ret = cPtr == IntPtr.Zero ? null : new EmptyNodes(cPtr, false);
         return ret;
       }
     }
@@ -45,8 +45,8 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       set => udpipe_csharpPINVOKE.Sentence_multiwordTokens_set(swigCPtr, MultiwordTokens.getCPtr(value));
       get
       {
-        IntPtr cPtr = udpipe_csharpPINVOKE.Sentence_multiwordTokens_get(swigCPtr);
-        MultiwordTokens ret = cPtr == IntPtr.Zero ? null : new MultiwordTokens(cPtr, false);
+        var cPtr = udpipe_csharpPINVOKE.Sentence_multiwordTokens_get(swigCPtr);
+        var ret = cPtr == IntPtr.Zero ? null : new MultiwordTokens(cPtr, false);
         return ret;
       }
     }
@@ -55,7 +55,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.Sentence_rootForm_get();
+        var ret = udpipe_csharpPINVOKE.Sentence_rootForm_get();
         return ret;
       }
     }
@@ -65,8 +65,8 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       set => udpipe_csharpPINVOKE.Sentence_words_set(swigCPtr, Words.getCPtr(value));
       get
       {
-        IntPtr cPtr = udpipe_csharpPINVOKE.Sentence_words_get(swigCPtr);
-        Words ret = cPtr == IntPtr.Zero ? null : new Words(cPtr, false);
+        var cPtr = udpipe_csharpPINVOKE.Sentence_words_get(swigCPtr);
+        var ret = cPtr == IntPtr.Zero ? null : new Words(cPtr, false);
         return ret;
       }
     }
@@ -92,7 +92,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public virtual Word addWord(string form)
     {
-      Word ret = new Word(udpipe_csharpPINVOKE.Sentence_addWord(swigCPtr, form), false);
+      var ret = new Word(udpipe_csharpPINVOKE.Sentence_addWord(swigCPtr, form), false);
       return ret;
     }
 
@@ -103,43 +103,43 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public bool empty()
     {
-      bool ret = udpipe_csharpPINVOKE.Sentence_empty(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Sentence_empty(swigCPtr);
       return ret;
     }
 
     public bool getNewDoc()
     {
-      bool ret = udpipe_csharpPINVOKE.Sentence_getNewDoc(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Sentence_getNewDoc(swigCPtr);
       return ret;
     }
 
     public string getNewDocId()
     {
-      string ret = udpipe_csharpPINVOKE.Sentence_getNewDocId(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Sentence_getNewDocId(swigCPtr);
       return ret;
     }
 
     public bool getNewPar()
     {
-      bool ret = udpipe_csharpPINVOKE.Sentence_getNewPar(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Sentence_getNewPar(swigCPtr);
       return ret;
     }
 
     public string getNewParId()
     {
-      string ret = udpipe_csharpPINVOKE.Sentence_getNewParId(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Sentence_getNewParId(swigCPtr);
       return ret;
     }
 
     public string getSentId()
     {
-      string ret = udpipe_csharpPINVOKE.Sentence_getSentId(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Sentence_getSentId(swigCPtr);
       return ret;
     }
 
     public string getText()
     {
-      string ret = udpipe_csharpPINVOKE.Sentence_getText(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Sentence_getText(swigCPtr);
       return ret;
     }
 

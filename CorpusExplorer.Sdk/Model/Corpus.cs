@@ -165,11 +165,11 @@ namespace CorpusExplorer.Sdk.Model
             if (dsel.Value.ContainsKey(t.Key))
             {
               if (dsel.Value[t.Key] == null &&
-                  t.Value == null)
+                  t.Value           == null)
                 continue;
 
               if (dsel.Value[t.Key] != null &&
-                  t.Value != null &&
+                  t.Value           != null &&
                   dsel.Value[t.Key].Equals(t.Value))
                 continue;
             }
@@ -213,8 +213,8 @@ namespace CorpusExplorer.Sdk.Model
       var meta = GetDocumentMetadata(guid);
       object value;
       return meta != null && meta.TryGetValue(Resources.Title, out value)
-        ? value.ToString()
-        : string.Format(Resources.NoTitle, guid.ToString(Resources.N));
+               ? value.ToString()
+               : string.Format(Resources.NoTitle, guid.ToString(Resources.N));
     }
 
     public IEnumerable<IEnumerable<bool>> GetDocumentLayerValueMask(
@@ -223,10 +223,10 @@ namespace CorpusExplorer.Sdk.Model
       string layerValue)
     {
       return (from layer in _layers where layer.Value.Displayname == layerDisplayname select layer.Value)
-        .FirstOrDefault()?
-        .GetDocumentLayervalueMask(
-          documentGuid,
-          layerValue);
+            .FirstOrDefault()?
+            .GetDocumentLayervalueMask(
+                                       documentGuid,
+                                       layerValue);
     }
 
     public IEnumerable<IEnumerable<bool>> GetDocumentLayerValueMask(
@@ -235,8 +235,8 @@ namespace CorpusExplorer.Sdk.Model
       string layerValue)
     {
       return _layers.ContainsKey(layerGuid)
-        ? _layers[layerGuid].GetDocumentLayervalueMask(documentGuid, layerValue)
-        : null;
+               ? _layers[layerGuid].GetDocumentLayervalueMask(documentGuid, layerValue)
+               : null;
     }
 
     /// <summary>
@@ -378,9 +378,9 @@ namespace CorpusExplorer.Sdk.Model
     public IEnumerable<string> GetDocumentMetadataPrototypeOnlyPropertieValuesAsString(string property)
     {
       return new HashSet<string>(
-        from x in _documentMetadata
-        where x.Value.ContainsKey(property)
-        select x.Value[property] == null ? "" : x.Value[property].ToString());
+                                 from x in _documentMetadata
+                                 where x.Value.ContainsKey(property)
+                                 select x.Value[property] == null ? "" : x.Value[property].ToString());
     }
 
     /// <summary>
@@ -405,7 +405,7 @@ namespace CorpusExplorer.Sdk.Model
     public IEnumerable<KeyValuePair<Guid, string>> GetLayerGuidAndDisplaynamesOfDocument(Guid documentGuid)
     {
       return Layers.Where(layer => layer.ContainsDocument(documentGuid))
-        .ToDictionary(layer => layer.Guid, layer => layer.Displayname);
+                   .ToDictionary(layer => layer.Guid, layer => layer.Displayname);
     }
 
     /// <summary>
@@ -423,15 +423,15 @@ namespace CorpusExplorer.Sdk.Model
     public AbstractLayerAdapter GetLayerOfDocument(Guid documentGuid, string layerDisplayname)
     {
       return (from layer in _layers
-          where
-            layer.Value
-              .Displayname ==
-            layerDisplayname &&
-            layer.Value
-              .ContainsDocument
-                (documentGuid)
-          select layer.Value)
-        .FirstOrDefault();
+              where
+                layer.Value
+                     .Displayname ==
+                layerDisplayname &&
+                layer.Value
+                     .ContainsDocument
+                        (documentGuid)
+              select layer.Value)
+       .FirstOrDefault();
     }
 
     /// <summary>
@@ -502,9 +502,9 @@ namespace CorpusExplorer.Sdk.Model
     public IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, string layerDisplayname)
     {
       return (from layer in _layers where layer.Value.Displayname == layerDisplayname select layer.Value)
-        .FirstOrDefault()?
-        .GetReadableDocumentByGuid
-          (documentGuid);
+            .FirstOrDefault()?
+            .GetReadableDocumentByGuid
+               (documentGuid);
     }
 
     public IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, Guid layerGuid)
@@ -537,11 +537,11 @@ namespace CorpusExplorer.Sdk.Model
       int stop)
     {
       return (from layer in _layers where layer.Value.Displayname == layerDisplayname select layer.Value)
-        .FirstOrDefault()?
-        .GetReadableDocumentSnippetByGuid(
-          documentGuid,
-          start,
-          stop);
+            .FirstOrDefault()?
+            .GetReadableDocumentSnippetByGuid(
+                                              documentGuid,
+                                              start,
+                                              stop);
     }
 
     /// <summary>
@@ -556,9 +556,9 @@ namespace CorpusExplorer.Sdk.Model
     public Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(Guid documentGuid)
     {
       return _layers.Where(layer => layer.Value.ContainsDocument(documentGuid))
-        .ToDictionary(
-          layer => layer.Value.Displayname,
-          layer => layer.Value.GetReadableDocumentByGuid(documentGuid));
+                    .ToDictionary(
+                                  layer => layer.Value.Displayname,
+                                  layer => layer.Value.GetReadableDocumentByGuid(documentGuid));
     }
 
     /// <summary>
@@ -606,15 +606,15 @@ namespace CorpusExplorer.Sdk.Model
         return;
 
       var layer = (from x in _layers where x.Value.Displayname == "Wort" select x.Value).FirstOrDefault()
-                  ?? (from x in _layers select x.Value).FirstOrDefault();
+               ?? (from x in _layers select x.Value).FirstOrDefault();
       if (layer == null)
         return;
 
       var nlayer = LayerAdapterSingleFile.Create(
-        layer.GetDocumentDictionary(),
-        new Dictionary<string, int>(),
-        new Dictionary<string, object>(),
-        Displayname = layerDisplayname);
+                                                 layer.GetDocumentDictionary(),
+                                                 new Dictionary<string, int>(),
+                                                 new Dictionary<string, object>(),
+                                                 Displayname = layerDisplayname);
       _layers.Add(nlayer.Guid, nlayer);
     }
 
@@ -627,7 +627,7 @@ namespace CorpusExplorer.Sdk.Model
     {
       if (string.IsNullOrEmpty(layerDisplaynameOld) ||
           string.IsNullOrEmpty(layerDisplaynameNew)
-          ||
+        ||
           layerDisplaynameOld == "Wort")
         return;
 
@@ -706,11 +706,11 @@ namespace CorpusExplorer.Sdk.Model
       string layerValue)
     {
       return _layers.ContainsKey(layerGuid)
-             && _layers[layerGuid].SetDocumentLayerValueMaskBySwitch(
-               documentGuid,
-               sentenceIndex,
-               wordIndex,
-               layerValue);
+          && _layers[layerGuid].SetDocumentLayerValueMaskBySwitch(
+                                                                  documentGuid,
+                                                                  sentenceIndex,
+                                                                  wordIndex,
+                                                                  layerValue);
     }
 
     /// <summary>
@@ -749,7 +749,7 @@ namespace CorpusExplorer.Sdk.Model
     public void SetDocumentMetadata(Guid documentGuid, Dictionary<string, object> metadata)
     {
       if (documentGuid == Guid.Empty ||
-          metadata == null)
+          metadata     == null)
         return;
 
       foreach (var m in metadata)
@@ -780,7 +780,7 @@ namespace CorpusExplorer.Sdk.Model
     {
       if (!type.IsSerializable)
         throw new SerializationException(
-          Resources.SetDocumentMetadata_SerializerException);
+                                         Resources.SetDocumentMetadata_SerializerException);
 
       foreach (var doc in _documentMetadata.Where(doc => !doc.Value.ContainsKey(metadataKey)))
         doc.Value.Add(metadataKey, type == typeof(string) ? "" : Activator.CreateInstance(type));
@@ -818,8 +818,8 @@ namespace CorpusExplorer.Sdk.Model
       {
         _layers =
           _layersSerialized?.ToDictionary(
-            x => x.Key,
-            x => (AbstractLayerAdapter) LayerAdapterSingleFile.Create(x.Value)) ??
+                                          x => x.Key,
+                                          x => (AbstractLayerAdapter) LayerAdapterSingleFile.Create(x.Value)) ??
           new Dictionary<Guid, AbstractLayerAdapter>();
       }
       catch // Fallback
@@ -838,10 +838,10 @@ namespace CorpusExplorer.Sdk.Model
       try
       {
         _documentMetadata = _documentMetadataSerialized?.ToDictionary(
-                              x => x.Key,
-                              x =>
-                                x.Value.ToDictionary(y => y.Key, y => y.Value))
-                            ?? new Dictionary<Guid, Dictionary<string, object>>();
+                                                                      x => x.Key,
+                                                                      x =>
+                                                                        x.Value.ToDictionary(y => y.Key, y => y.Value))
+                         ?? new Dictionary<Guid, Dictionary<string, object>>();
       }
       catch
       {
@@ -877,15 +877,16 @@ namespace CorpusExplorer.Sdk.Model
     private void OnSerializing(StreamingContext context)
     {
       var temp = from layer in _layers
-        where layer.Value is LayerAdapterSingleFile
-        select ((LayerAdapterSingleFile) layer.Value).ReciveRawLayer();
+                 where layer.Value is LayerAdapterSingleFile
+                 select ((LayerAdapterSingleFile) layer.Value).ReciveRawLayer();
 
       _layersSerialized = temp.Select(x => new KeyValuePair<Guid, Layer>(x.Guid, x)).ToArray();
       _documentMetadataSerialized =
         _documentMetadata?.Select(
-            meta =>
-              new KeyValuePair<Guid, KeyValuePair<string, object>[]>(meta.Key, meta.Value.ToArray()))
-          .ToArray();
+                                  meta =>
+                                    new KeyValuePair<Guid, KeyValuePair<string, object>[]>(meta.Key,
+                                                                                           meta.Value.ToArray()))
+                          .ToArray();
     }
   }
 }

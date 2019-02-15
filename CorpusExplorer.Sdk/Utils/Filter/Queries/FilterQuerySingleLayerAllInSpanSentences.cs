@@ -82,7 +82,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           if (!indices.Contains(word))
             continue;
 
-          if (marker > -1 &&
+          if (marker     > -1 &&
               i - marker < SentenceSpan)
           {
             res.Add(i);
@@ -116,7 +116,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           if (!indices.Contains(word))
             continue;
 
-          if (marker > -1 &&
+          if (marker     > -1 &&
               i - marker < SentenceSpan)
             return true;
 

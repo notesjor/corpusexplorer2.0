@@ -11,9 +11,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 {
   public partial class FrequencySegments : AbstractView
   {
+    private readonly Colorizer _wpfColorizer;
     private readonly SegmentView _wpfDoc;
     private readonly SegmentView _wpfSen;
-    private readonly Colorizer _wpfColorizer;
     private DocumentGranulationViewModel _vm;
 
     public FrequencySegments()

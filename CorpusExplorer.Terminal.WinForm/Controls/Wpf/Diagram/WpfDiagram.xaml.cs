@@ -48,36 +48,36 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
     public void CallLayoutAsTreeRadial()
     {
       diagram.Layout(
-        LayoutType.Tree,
-        new TreeLayoutSettings
-        {
-          TreeLayoutType = TreeLayoutType.RadialTree,
-          HorizontalSeparation = 30,
-          VerticalSeparation = 30
-        });
+                     LayoutType.Tree,
+                     new TreeLayoutSettings
+                     {
+                       TreeLayoutType = TreeLayoutType.RadialTree,
+                       HorizontalSeparation = 30,
+                       VerticalSeparation = 30
+                     });
     }
 
     public void CallLayoutAsTree()
     {
       diagram.Layout(
-        LayoutType.Tree,
-        new TreeLayoutSettings
-        {
-          TreeLayoutType = TreeLayoutType.TreeUp
-        });
+                     LayoutType.Tree,
+                     new TreeLayoutSettings
+                     {
+                       TreeLayoutType = TreeLayoutType.TreeUp
+                     });
     }
 
     public void CallLayoutAsTreeHorizontal()
     {
       diagram.Layout(
-        LayoutType.Tree,
-        new TreeLayoutSettings
-        {
-          TreeLayoutType = TreeLayoutType.TreeRight,
-          TipOverTreeStartLevel = int.MaxValue,
-          HorizontalSeparation = 50,
-          VerticalSeparation = 30
-        });
+                     LayoutType.Tree,
+                     new TreeLayoutSettings
+                     {
+                       TreeLayoutType = TreeLayoutType.TreeRight,
+                       TipOverTreeStartLevel = int.MaxValue,
+                       HorizontalSeparation = 50,
+                       VerticalSeparation = 30
+                     });
     }
 
     #endregion
@@ -119,7 +119,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
     #region BASIC
 
     public void CallAddNodes(IEnumerable<string> nodes, bool renderComplexNodeContent = false,
-      UniversalColor color = null, Shape shape = Shape.Rectangle)
+                             UniversalColor color = null, Shape shape = Shape.Rectangle)
     {
       if (color == null)
         color = new UniversalColor(30, 80, 255);
@@ -141,8 +141,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
           Content = content,
           Foreground = new SolidColorBrush(Colors.Black),
           Geometry = ShapeFactory.GetShapeGeometry(shape == Shape.Rectangle
-            ? CommonShapeType.RectangleShape
-            : CommonShapeType.EllipseShape),
+                                                     ? CommonShapeType.RectangleShape
+                                                     : CommonShapeType.EllipseShape),
           Background = new SolidColorBrush(color.ToWpfColor())
         };
         newItems.Add(item);
@@ -154,7 +154,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
     }
 
     public void CallAddConnections(IEnumerable<Tuple<string, string, double>> connections, bool drawArrow = true,
-      CallAddConnectionsConflictDelegate func = null)
+                                   CallAddConnectionsConflictDelegate func = null)
     {
       if (func == null)
         func = PredefinedCallAddConnectionsConflictDelegates.Sum;
@@ -182,7 +182,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
             continue;
           newConnections.Add(con);
           _connections[connection.Item1]
-            .Add(connection.Item2, new Tuple<double, RadDiagramConnection>(connection.Item3, con));
+           .Add(connection.Item2, new Tuple<double, RadDiagramConnection>(connection.Item3, con));
         }
       }
 
@@ -191,7 +191,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
     }
 
     public void CallColorizeNode(string node, UniversalColor color1, UniversalColor color2 = null,
-      UniversalColor color3 = null)
+                                 UniversalColor color3 = null)
     {
       if (_nodes.ContainsKey(node))
         _nodes[node].Background = GetColorizeBrush(color1, color2, color3);
@@ -238,7 +238,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
     }
 
     public void CallColorizeNodes(IEnumerable<string> nodes, UniversalColor color1, UniversalColor color2 = null,
-      UniversalColor color3 = null)
+                                  UniversalColor color3 = null)
     {
       var brush = GetColorizeBrush(color1, color2, color3);
 
@@ -291,20 +291,20 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
     private RadDiagramConnection CreateConnection(string source, string target, double value, bool drawArrow)
     {
       return !_nodes.ContainsKey(source) || !_nodes.ContainsKey(target)
-        ? null
-        : new RadDiagramConnection
-        {
-          Source = _nodes[source],
-          Target = _nodes[target],
-          StrokeThickness = 1,
-          TargetCapType = drawArrow ? CapType.Arrow1Filled : CapType.None,
-          Content = new TextBlock
-          {
-            Text = $"{source} > {value} > {target}",
-            Background = new SolidColorBrush(Colors.White)
-          },
-          Tag = value
-        };
+               ? null
+               : new RadDiagramConnection
+               {
+                 Source = _nodes[source],
+                 Target = _nodes[target],
+                 StrokeThickness = 1,
+                 TargetCapType = drawArrow ? CapType.Arrow1Filled : CapType.None,
+                 Content = new TextBlock
+                 {
+                   Text = $"{source} > {value} > {target}",
+                   Background = new SolidColorBrush(Colors.White)
+                 },
+                 Tag = value
+               };
     }
 
     #endregion
@@ -314,14 +314,14 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
     public IEnumerable<KeyValuePair<string, double>> CallGetChildNodes(string node)
     {
       return _connections.ContainsKey(node)
-        ? null
-        : _connections[node].Select(x => new KeyValuePair<string, double>(x.Key, x.Value.Item1));
+               ? null
+               : _connections[node].Select(x => new KeyValuePair<string, double>(x.Key, x.Value.Item1));
     }
 
     public IEnumerable<KeyValuePair<string, double>> CallGetParentNodes(string node)
     {
       return _connections.AsParallel().Where(x => x.Value.ContainsKey(node))
-        .Select(x => new KeyValuePair<string, double>(x.Key, x.Value[node].Item1));
+                         .Select(x => new KeyValuePair<string, double>(x.Key, x.Value[node].Item1));
     }
 
     public IEnumerable<string> CallNodes => _nodes.Keys;

@@ -6,7 +6,6 @@ using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.Helper;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Properties;
-using Telerik.WinControls.UI.Data;
 
 #region
 
@@ -19,8 +18,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.StyleMetrics
   /// </summary>
   public partial class CompareBasedOnBurrowsDelta : AbstractView
   {
-    private ClusterMetadataByBurrowsDeltaViewModel _vm;
     private DataTable _data;
+    private ClusterMetadataByBurrowsDeltaViewModel _vm;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractView" /> class.

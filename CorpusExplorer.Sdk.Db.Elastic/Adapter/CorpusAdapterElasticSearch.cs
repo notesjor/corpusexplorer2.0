@@ -117,14 +117,14 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
         };
 
       context.Add(documentMetadata.Select(
-        m => new Document
-        {
-          CorpusId = corpus.CorpusId,
-          DocumentId = m.Key,
-          Metadata = m.Value,
-          SentenceCount = 0,
-          TokenCount = 0
-        }));
+                                          m => new Document
+                                          {
+                                            CorpusId = corpus.CorpusId,
+                                            DocumentId = m.Key,
+                                            Metadata = m.Value,
+                                            SentenceCount = 0,
+                                            TokenCount = 0
+                                          }));
 
       context.Add(corpus);
 
@@ -147,9 +147,9 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
     public override IEnumerable<Guid> FindDocumentByMetadata(Dictionary<string, object> example)
     {
       return from d in _corpus.Documents
-        let meta = _db.GetDocument(d).Metadata
-        where example.All(x => meta.ContainsKey(x.Key) && meta[x.Key] == x.Value)
-        select d;
+             let meta = _db.GetDocument(d).Metadata
+             where example.All(x => meta.ContainsKey(x.Key) && meta[x.Key] == x.Value)
+             select d;
     }
 
     public override AbstractCorpusBuilder GetCorpusBuilder()
@@ -171,7 +171,7 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
     public override int GetDocumentLengthInWords(Guid documentGuid)
     {
       return (int) (from x in _corpus.Documents where x == documentGuid select _db.GetDocument(x).TokenCount)
-        .FirstOrDefault();
+       .FirstOrDefault();
     }
 
     public override Dictionary<string, object> GetDocumentMetadata(Guid documentGuid)
@@ -227,10 +227,10 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
     public override AbstractLayerAdapter GetLayer(Guid layerGuid)
     {
       return layerGuid == Guid.Empty
-        ? null
-        : (from x in _corpus.Layers
-          where x.Key == layerGuid
-          select LayerAdapterElasticSearch.Create(_db, _db.GetLayer(layerGuid))).FirstOrDefault();
+               ? null
+               : (from x in _corpus.Layers
+                  where x.Key == layerGuid
+                  select LayerAdapterElasticSearch.Create(_db, _db.GetLayer(layerGuid))).FirstOrDefault();
     }
 
     public override AbstractLayerAdapter GetLayerOfDocument(Guid documentGuid, string layerDisplayname)
@@ -245,19 +245,19 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
     public override IEnumerable<AbstractLayerAdapter> GetLayers(string displayname)
     {
       return from l in _corpus.Layers
-        select _db.GetLayer(l.Key)
-        into layer
-        where layer.Displayname == displayname
-        select LayerAdapterElasticSearch.Create(_db, layer);
+             select _db.GetLayer(l.Key)
+             into layer
+             where layer.Displayname == displayname
+             select LayerAdapterElasticSearch.Create(_db, layer);
     }
 
     public override IEnumerable<AbstractLayerAdapter> GetLayersOfDocument(Guid documentGuid)
     {
       return from l in _corpus.Layers
-        select _db.GetLayer(l.Key)
-        into layer
-        where layer.LayerDocuments.Contains(documentGuid)
-        select LayerAdapterElasticSearch.Create(_db, layer);
+             select _db.GetLayer(l.Key)
+             into layer
+             where layer.LayerDocuments.Contains(documentGuid)
+             select LayerAdapterElasticSearch.Create(_db, layer);
     }
 
     public override IEnumerable<string> GetLayerValues(string layerDisplayname)
@@ -283,8 +283,9 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
     public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, string layerDisplayname)
     {
       return GetReadableDocument(
-        documentGuid,
-        (from x in _corpus.Layers where x.Value == layerDisplayname select x.Key).FirstOrDefault());
+                                 documentGuid,
+                                 (from x in _corpus.Layers where x.Value == layerDisplayname select x.Key)
+                                .FirstOrDefault());
     }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, Guid layerGuid)
@@ -299,7 +300,7 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
       int stop)
     {
       return GetLayer((from x in _corpus.Layers where x.Value == layerDisplayname select x.Key).FirstOrDefault())
-        .GetReadableDocumentByGuid(documentGuid);
+       .GetReadableDocumentByGuid(documentGuid);
     }
 
     public override Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(
@@ -342,13 +343,13 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
     public override void LayerNew(string layerDisplayname)
     {
       _db.Add(
-        new Layer
-        {
-          CorpusId = _corpus.CorpusId,
-          Dictionary = new CeDictionary(new Dictionary<string, int>()),
-          Displayname = layerDisplayname,
-          LayerId = Guid.NewGuid()
-        });
+              new Layer
+              {
+                CorpusId = _corpus.CorpusId,
+                Dictionary = new CeDictionary(new Dictionary<string, int>()),
+                Displayname = layerDisplayname,
+                LayerId = Guid.NewGuid()
+              });
     }
 
     public override void LayerRename(string layerDisplaynameOld, string layerDisplaynameNew)
@@ -381,8 +382,8 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
     public override void Save(string path, bool useCompression)
     {
       File.WriteAllLines(
-        path.EndsWith(".cenes") ? path : path + ".cenes",
-        new[] {_corpus.CorpusId.ToString(), _db.Connection});
+                         path.EndsWith(".cenes") ? path : path + ".cenes",
+                         new[] {_corpus.CorpusId.ToString(), _db.Connection});
     }
 
     public override void SetCorpusMetadata(string key, object value)
@@ -404,7 +405,7 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
     {
       var layer = GetLayer(layerGuid);
       return layer != null
-             && layer.SetDocumentLayerValueMaskBySwitch(documentGuid, sentenceIndex, wordIndex, layerValue);
+          && layer.SetDocumentLayerValueMaskBySwitch(documentGuid, sentenceIndex, wordIndex, layerValue);
     }
 
     public override bool SetDocumentLayerValueMask(
@@ -415,11 +416,12 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
       string layerValue)
     {
       return SetDocumentLayerValueMask(
-        documentGuid,
-        (from x in _corpus.Layers where x.Value == layerDisplayname select x.Key).FirstOrDefault(),
-        sentenceIndex,
-        wordIndex,
-        layerValue);
+                                       documentGuid,
+                                       (from x in _corpus.Layers where x.Value == layerDisplayname select x.Key)
+                                      .FirstOrDefault(),
+                                       sentenceIndex,
+                                       wordIndex,
+                                       layerValue);
     }
 
     public override void SetDocumentMetadata(Guid documentGuid, Dictionary<string, object> metadata)

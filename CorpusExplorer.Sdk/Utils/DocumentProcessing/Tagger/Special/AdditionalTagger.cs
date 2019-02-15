@@ -31,11 +31,11 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Special
       {
         var stream = layer.GetReadableDocumentByGuid(guid).ReduceDocumentToStreamDocument().ToArray();
         tagger.Input.Enqueue(
-          new Dictionary<string, object>
-          {
-            {"Text", string.Join("\r\n", stream)},
-            {"GUID", guid}
-          });
+                             new Dictionary<string, object>
+                             {
+                               {"Text", string.Join("\r\n", stream)},
+                               {"GUID", guid}
+                             });
         docs.Add(guid, stream.Length);
       }
 

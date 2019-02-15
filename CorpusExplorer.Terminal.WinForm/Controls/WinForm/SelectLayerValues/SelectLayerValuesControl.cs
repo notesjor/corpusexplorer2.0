@@ -25,7 +25,10 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.SelectLayerValues
       {
         try
         {
-          return string.IsNullOrEmpty(radAutoCompleteBox1.Text) ? new string[0] : radAutoCompleteBox1.Text.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim());
+          return string.IsNullOrEmpty(radAutoCompleteBox1.Text)
+                   ? new string[0]
+                   : radAutoCompleteBox1.Text.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries)
+                                        .Select(x => x.Trim());
         }
         catch
         {

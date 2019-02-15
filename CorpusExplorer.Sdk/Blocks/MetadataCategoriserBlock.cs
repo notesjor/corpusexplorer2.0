@@ -27,8 +27,8 @@ namespace CorpusExplorer.Sdk.Blocks
     {
       return
         Categories.Where(category => category.Key == label)
-          .TakeWhile(category => category.Value.ContainsKey(value))
-          .SelectMany(category => category.Value[label]);
+                  .TakeWhile(category => category.Value.ContainsKey(value))
+                  .SelectMany(category => category.Value[label]);
     }
 
     /// <summary>

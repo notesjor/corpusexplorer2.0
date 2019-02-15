@@ -51,8 +51,8 @@ namespace CorpusExplorer.Sdk.Blocks.Similarity.Abstract
       tmp.Clear();
 
       return CalculateSimilarity(
-        keys.Select(x => vectorA.ContainsKey(x) ? vectorA[x] : 0).ToArray(),
-        keys.Select(x => vectorB.ContainsKey(x) ? vectorB[x] : 0).ToArray());
+                                 keys.Select(x => vectorA.ContainsKey(x) ? vectorA[x] : 0).ToArray(),
+                                 keys.Select(x => vectorB.ContainsKey(x) ? vectorB[x] : 0).ToArray());
     }
 
     /// <summary>
@@ -67,17 +67,18 @@ namespace CorpusExplorer.Sdk.Blocks.Similarity.Abstract
     /// <returns>
     ///   The <see cref="double" />.
     /// </returns>
-    public double CalculateSimilarity(Dictionary<string, Dictionary<string, double>> vectorA, Dictionary<string, Dictionary<string, double>> vectorB)
+    public double CalculateSimilarity(Dictionary<string, Dictionary<string, double>> vectorA,
+                                      Dictionary<string, Dictionary<string, double>> vectorB)
     {
       var a = new Dictionary<string, double>();
       foreach (var x in vectorA)
-        foreach (var y in x.Value)
-          a.Add($"{x.Key}>->{y.Value}", y.Value);
+      foreach (var y in x.Value)
+        a.Add($"{x.Key}>->{y.Value}", y.Value);
 
       var b = new Dictionary<string, double>();
       foreach (var x in vectorB)
-        foreach (var y in x.Value)
-          b.Add($"{x.Key}>->{y.Value}", y.Value);
+      foreach (var y in x.Value)
+        b.Add($"{x.Key}>->{y.Value}", y.Value);
 
       return CalculateSimilarity(a, b);
     }

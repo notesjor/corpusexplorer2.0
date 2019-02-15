@@ -55,11 +55,11 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
     {
       Output =
         new ConcurrentQueue<AbstractCorpusAdapter>(
-          CorpusBuilder.Create(
-            _layers.Select(x => x.Value),
-            _metaDocs,
-            _metaCorpus,
-            _concepts));
+                                                   CorpusBuilder.Create(
+                                                                        _layers.Select(x => x.Value),
+                                                                        _metaDocs,
+                                                                        _metaCorpus,
+                                                                        _concepts));
     }
 
     public void Input(AbstractCorpusAdapter corpus)
@@ -86,17 +86,17 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
       foreach (var layer in corpus.Layers)
         if (_layers.ContainsKey(layer.Displayname))
           Parallel.ForEach(
-            layer.DocumentGuids,
-            Configuration.ParallelOptions,
-            dsel =>
-            {
-              _layers[layer.Displayname]
-                .AddCompleteDocument(
-                  dsel,
-                  layer.GetReadableDocumentByGuid(dsel)
-                    .Select(s => s.ToArray())
-                    .ToArray());
-            });
+                           layer.DocumentGuids,
+                           Configuration.ParallelOptions,
+                           dsel =>
+                           {
+                             _layers[layer.Displayname]
+                              .AddCompleteDocument(
+                                                   dsel,
+                                                   layer.GetReadableDocumentByGuid(dsel)
+                                                        .Select(s => s.ToArray())
+                                                        .ToArray());
+                           });
         else
           _layers.Add(layer.Displayname, layer.ToLayerState());
     }

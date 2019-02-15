@@ -8,7 +8,6 @@ using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Scripter;
-using CorpusExplorer.Sdk.View.Html.Html5;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.CodeEditor;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
@@ -22,8 +21,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
   public partial class Html5DevLab : AbstractView
   {
     private readonly TemporaryFile _file;
-    private bool _firstRun = true;
-    private string _path;
 
     private readonly CodeEditor editor_input = new CodeEditor
     {
@@ -36,6 +33,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       HorizontalAlignment = HorizontalAlignment.Stretch,
       VerticalAlignment = VerticalAlignment.Stretch
     };
+
+    private bool _firstRun = true;
+    private string _path;
 
     public Html5DevLab()
     {
@@ -106,7 +106,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       try
       {
         var html = Html5Scripter.Parse(Project.CurrentSelection,
-          TemplateTextGenerator.Generate(editor_input.Text, vars));
+                                       TemplateTextGenerator.Generate(editor_input.Text, vars));
         FileIO.Write(_file.Path, html);
         webHtml5LaboratoryVisualisation1.MainpageUrl = _file.Path;
         webHtml5LaboratoryVisualisation1.GoToMainpage();

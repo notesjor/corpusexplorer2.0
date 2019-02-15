@@ -128,8 +128,9 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     protected override bool Validate()
     {
-      return !string.IsNullOrEmpty(LayerDisplayname) && !string.IsNullOrEmpty(LayerQuery) &&
-             !double.IsNaN(MinimumSignificance) && !double.IsInfinity(MinimumSignificance) && SimilarityIndex != null;
+      return !string.IsNullOrEmpty(LayerDisplayname) && !string.IsNullOrEmpty(LayerQuery)       &&
+             !double.IsNaN(MinimumSignificance)      && !double.IsInfinity(MinimumSignificance) &&
+             SimilarityIndex != null;
     }
 
     private void GenerateDataTable(Dictionary<string, double> a, Dictionary<string, double> b)

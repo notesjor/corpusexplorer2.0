@@ -66,8 +66,8 @@ namespace CorpusExplorer.Sdk.ViewModel
       _dataTable.Columns.Add(Resources.FrequenyD12, typeof(double));
 
       GenerateDataTable(
-        blockA.NGramFrequency.GetNormalizedDictionary(),
-        blockB.NGramFrequency.GetNormalizedDictionary());
+                        blockA.NGramFrequency.GetNormalizedDictionary(),
+                        blockB.NGramFrequency.GetNormalizedDictionary());
     }
 
     protected override bool Validate()

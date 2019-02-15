@@ -12,12 +12,15 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model.Abstract;
 
 namespace CorpusExplorer.Sdk.Model.Adapter.Layer
 {
-  public class LayerAdapterWriteIndirect : AbstractLayerAdapter
+  public class LayerAdapterWriteIndirect : AbstractLayerAdapter, IDisposable
   {
     private Dictionary<string, int> _dictionary;
     private Dictionary<Guid, long> _documentInfo;
     private string _path;
     private Dictionary<int, string> _reverse;
+    private FileStream _fs;
+    private BufferedStream _stream;
+    private object _streamLock = new object();
 
     public override int CountDocuments => _documentInfo.Count;
     public override int CountValues => _dictionary.Count;
@@ -64,7 +67,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
       throw new NotImplementedException();
     }
 
-    public static LayerAdapterWriteIndirect Create(Stream fs)
+    public static LayerAdapterWriteIndirect Create(Stream fs, string corpusPath)
     {
       try
       {
@@ -73,7 +76,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
           _dictionary = new Dictionary<string, int>(),
           _reverse = new Dictionary<int, string>(),
           _documentInfo = new Dictionary<Guid, long>(),
-          _path = ((FileStream) fs).Name
+          _path = corpusPath
         };
 
         var buffer = new byte[16];
@@ -135,7 +138,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
     }
 
     public static AbstractLayerAdapter Create(Dictionary<Guid, int[][]> documents, ListOptimized<string> listOptimized,
-      string layerDisplayname)
+                                              string layerDisplayname)
     {
       throw new NotImplementedException();
     }
@@ -154,8 +157,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
     public override IEnumerable<IEnumerable<string>> GetReadableDocumentByGuid(Guid documentGuid)
     {
       return this[documentGuid] == null
-        ? null
-        : (from s in this[documentGuid] where s != null select s.Select(w => this[w]));
+               ? null
+               : from s in this[documentGuid] where s != null select s.Select(w => this[w]);
     }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocumentSnippetByGuid(
@@ -181,6 +184,23 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
     public override Dictionary<string, int> ReciveRawLayerDictionary()
     {
       return _dictionary;
+    }
+
+    public override Dictionary<int, string> ReciveRawReverseLayerDictionary()
+    {
+      return _reverse;
+    }
+
+    public override void ResetRawLayerDictionary(Dictionary<string, int> dictionary)
+    {
+      _dictionary = dictionary;
+      RefreshDictionaries();
+    }
+
+    public override void ResetRawReverseLayerDictionary(Dictionary<int, string> reverse)
+    {
+      _reverse = reverse;
+      _dictionary = _reverse.ToDictionary(x => x.Value, x => x.Key);
     }
 
     public override void RefreshDictionaries()
@@ -255,11 +275,27 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
 
     private int[][] ReadDocument(Guid dsel)
     {
-      using (var stream = new FileStream(_path, FileMode.Open, FileAccess.Read, FileShare.Read))
-      using (var bs = new BufferedStream(stream))
-      {
-        return DocumentSerializerHelper.DeserializeDocumentFromStreamPosition(bs, _documentInfo[dsel]);
-      }
+      lock (_streamLock)
+        return DocumentSerializerHelper.DeserializeDocumentFromStreamPosition(GetStream(), _documentInfo[dsel]);
+    }
+
+    private Stream GetStream()
+    {
+      if (_fs != null && _stream != null && _fs.CanRead && _stream.CanRead)
+        return _stream;
+
+      _stream?.Close();
+      _fs?.Close();
+
+      _fs = new FileStream(_path, FileMode.Open, FileAccess.Read, FileShare.Read);
+      _stream = new BufferedStream(_fs);
+      return _stream;
+    }
+
+    public void Dispose()
+    {
+      _fs?.Dispose();
+      _stream?.Dispose();
     }
   }
 }

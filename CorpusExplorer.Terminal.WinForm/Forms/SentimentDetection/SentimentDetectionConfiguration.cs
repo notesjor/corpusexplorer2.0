@@ -15,6 +15,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SentimentDetection
 {
   public partial class SentimentDetectionConfiguration : AbstractDialog
   {
+    private const string Filter = "SDM-Datei (*.sdm)|*.sdm";
+
     public SentimentDetectionConfiguration()
     {
       InitializeComponent();
@@ -49,11 +51,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SentimentDetection
 
     public string ModelDisplayname { get; set; }
 
-    private const string Filter = "SDM-Datei (*.sdm)|*.sdm";
-
     private void btn_open_Click(object sender, EventArgs e)
     {
-      var ofd = new OpenFileDialog { Filter = Filter };
+      var ofd = new OpenFileDialog {Filter = Filter};
       if (ofd.ShowDialog() != DialogResult.OK)
         return;
 
@@ -62,11 +62,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SentimentDetection
 
     private void btn_save_Click(object sender, EventArgs e)
     {
-      var sfd = new SaveFileDialog { Filter = Filter };
+      var sfd = new SaveFileDialog {Filter = Filter};
       if (sfd.ShowDialog() != DialogResult.OK)
         return;
 
-      var csv = new ExportToCSV(radGridView1) { Encoding = Configuration.Encoding };
+      var csv = new ExportToCSV(radGridView1) {Encoding = Configuration.Encoding};
       csv.RunExport(sfd.FileName);
     }
 

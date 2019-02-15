@@ -11,12 +11,12 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.App
       if (args.Length < 3)
       {
         Console.Error.WriteLine(
-          "Usage: RunUDPipe input_format(tokenize|conllu|horizontal|vertical) output_format(conllu) model");
+                                "Usage: RunUDPipe input_format(tokenize|conllu|horizontal|vertical) output_format(conllu) model");
         return 1;
       }
 
       Console.Error.Write("Loading model: ");
-      Model.Model model = Model.Model.load(args[2]);
+      var model = Model.Model.load(args[2]);
       if (model == null)
       {
         Console.Error.WriteLine("Cannot load model from file '{0}'", args[2]);
@@ -25,18 +25,18 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.App
 
       Console.Error.WriteLine("done");
 
-      Pipeline pipeline = new Pipeline(model, args[0], Pipeline.DEFAULT, Pipeline.DEFAULT, args[1]);
-      ProcessingError error = new ProcessingError();
+      var pipeline = new Pipeline(model, args[0], Pipeline.DEFAULT, Pipeline.DEFAULT, args[1]);
+      var error = new ProcessingError();
 
       // Read whole input
-      StringBuilder textBuilder = new StringBuilder();
+      var textBuilder = new StringBuilder();
       string line;
       while (!string.IsNullOrEmpty(line = Console.In.ReadLine()))
         textBuilder.AppendLine(line);
 
       // Process data
-      string text = textBuilder.ToString();
-      string processed = pipeline.process(text, error);
+      var text = textBuilder.ToString();
+      var processed = pipeline.process(text, error);
 
       if (error.occurred())
       {

@@ -10,8 +10,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
   [ToolboxItem(true)]
   public partial class LayerSettings : AbstractUserControl
   {
-    private bool _isLayerOptional;
     private readonly List<string> _names;
+    private bool _isLayerOptional;
 
     public LayerSettings()
     {

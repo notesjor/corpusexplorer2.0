@@ -8,7 +8,7 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper
   public class ReMapperOutline : AbstractReMapper
   {
     protected override string ApplyAnnotation(Tuple<AbstractLayerAdapter, int[][]>[] layers, string originalText,
-      Tuple<int, int, int, int>[] annotationPositions)
+                                              Tuple<int, int, int, int>[] annotationPositions)
     {
       if (layers.Length == 0 || string.IsNullOrEmpty(originalText))
         return string.Empty;

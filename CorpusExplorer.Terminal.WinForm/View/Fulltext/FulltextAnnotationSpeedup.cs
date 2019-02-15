@@ -36,10 +36,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_addLayer_Click(object sender, EventArgs e)
     {
       var form = new SimpleTextInput(
-        Resources.FulltextAnnotation_NewLayer,
-        Resources.FulltextAnnotation_NewLayerDescription,
-        Resources.layers1,
-        Resources.FulltextAnnotation_NewLayerNullText);
+                                     Resources.FulltextAnnotation_NewLayer,
+                                     Resources.FulltextAnnotation_NewLayerDescription,
+                                     Resources.layers1,
+                                     Resources.FulltextAnnotation_NewLayerNullText);
       if (form.ShowDialog() != DialogResult.OK)
         return;
 
@@ -68,12 +68,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_layer_add_copy_Click(object sender, EventArgs e)
     {
       var form = new SimpleTextInput(
-        Resources.FulltextAnnotationSpeedup_CopyLayer,
-        string.Format(
-          Resources.FulltextAnnotationSpeedup_CopyLayerDescription,
-          drop_layerAnnotate.SelectedItem.Text),
-        Resources.cabinet,
-        Resources.EnterNameHere);
+                                     Resources.FulltextAnnotationSpeedup_CopyLayer,
+                                     string.Format(
+                                                   Resources.FulltextAnnotationSpeedup_CopyLayerDescription,
+                                                   drop_layerAnnotate.SelectedItem.Text),
+                                     Resources.cabinet,
+                                     Resources.EnterNameHere);
 
       if (form.ShowDialog() != DialogResult.OK)
         return;
@@ -92,10 +92,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
     private void btn_save_Click(object sender, EventArgs e)
     {
-      if (drop_layerAnnotate.SelectedIndex == -1 ||
-          drop_layerView.SelectedIndex == -1 ||
+      if (drop_layerAnnotate.SelectedIndex    == -1 ||
+          drop_layerView.SelectedIndex        == -1 ||
           drop_selecteddocument.SelectedIndex == -1 ||
-          _dt == null)
+          _dt                                 == null)
         return;
 
       var newValues = new HashSet<string>();
@@ -111,32 +111,32 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       if (newValues.Count > 0)
         if (
           MessageBox.Show(
-            string.Format(
-              Resources.FulltextAnnotationSpeedup_AutoAddNewLayerValue,
-              newValues.Count),
-            newValues.Count + Resources.FulltextAnnotationSpeedup_CreateNewLayer,
-            MessageBoxButtons.YesNo) != DialogResult.Yes)
+                          string.Format(
+                                        Resources.FulltextAnnotationSpeedup_AutoAddNewLayerValue,
+                                        newValues.Count),
+                          newValues.Count + Resources.FulltextAnnotationSpeedup_CreateNewLayer,
+                          MessageBoxButtons.YesNo) != DialogResult.Yes)
           return;
 
       Processing.Invoke(
-        Resources.FulltextAnnotationSpeedup_PleaseWait,
-        () =>
-        {
-          _vm.QuickAnnotation(
-            (
-              Guid
-            )
-            drop_selecteddocument
-              .SelectedValue,
-            (
-              Guid
-            )
-            drop_layerAnnotate
-              .SelectedValue,
-            newValues,
-            stream);
-          RefreshAll();
-        });
+                        Resources.FulltextAnnotationSpeedup_PleaseWait,
+                        () =>
+                        {
+                          _vm.QuickAnnotation(
+                                              (
+                                                Guid
+                                              )
+                                              drop_selecteddocument
+                                               .SelectedValue,
+                                              (
+                                                Guid
+                                              )
+                                              drop_layerAnnotate
+                                               .SelectedValue,
+                                              newValues,
+                                              stream);
+                          RefreshAll();
+                        });
     }
 
     private void btn_showMeta_Click(object sender, EventArgs e)
@@ -169,16 +169,16 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
         return;
 
       e.Row.Cells[Resources.Änderungen].Value = e.Value.ToString() == _oldAnnotation[e.RowIndex]
-        ? Resources.item
-        : _oldHash.Contains(e.Value.ToString())
-          ? Resources.item_edit
-          : Resources.item_error;
+                                                  ? Resources.item
+                                                  : _oldHash.Contains(e.Value.ToString())
+                                                    ? Resources.item_edit
+                                                    : Resources.item_error;
     }
 
     private void RefreshAll()
     {
-      if (drop_layerAnnotate.SelectedIndex == -1 ||
-          drop_layerView.SelectedIndex == -1 ||
+      if (drop_layerAnnotate.SelectedIndex    == -1 ||
+          drop_layerView.SelectedIndex        == -1 ||
           drop_selecteddocument.SelectedIndex == -1)
         return;
 

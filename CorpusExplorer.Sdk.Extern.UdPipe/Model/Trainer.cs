@@ -22,7 +22,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.Trainer_DEFAULT_get();
+        var ret = udpipe_csharpPINVOKE.Trainer_DEFAULT_get();
         return ret;
       }
     }
@@ -31,7 +31,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.Trainer_NONE_get();
+        var ret = udpipe_csharpPINVOKE.Trainer_NONE_get();
         return ret;
       }
     }
@@ -56,19 +56,20 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     }
 
     public static string train(string method, Sentences train, Sentences heldout, string tokenizer, string tagger,
-      string parser, ProcessingError error)
+                               string parser, ProcessingError error)
     {
-      string ret = udpipe_csharpPINVOKE.Trainer_train__SWIG_0(method, Sentences.getCPtr(train),
-        Sentences.getCPtr(heldout), tokenizer, tagger, parser, ProcessingError.getCPtr(error));
+      var ret = udpipe_csharpPINVOKE.Trainer_train__SWIG_0(method, Sentences.getCPtr(train),
+                                                           Sentences.getCPtr(heldout), tokenizer, tagger, parser,
+                                                           ProcessingError.getCPtr(error));
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public static string train(string method, Sentences train, Sentences heldout, string tokenizer, string tagger,
-      string parser)
+                               string parser)
     {
-      string ret = udpipe_csharpPINVOKE.Trainer_train__SWIG_1(method, Sentences.getCPtr(train),
-        Sentences.getCPtr(heldout), tokenizer, tagger, parser);
+      var ret = udpipe_csharpPINVOKE.Trainer_train__SWIG_1(method, Sentences.getCPtr(train),
+                                                           Sentences.getCPtr(heldout), tokenizer, tagger, parser);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }

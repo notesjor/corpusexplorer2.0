@@ -24,15 +24,15 @@ namespace CorpusExplorer.Sdk.Blocks
 
       var queries = new HashSet<string>(LayerQueries);
       var filter = QueryFilter.SearchOnSentenceLevel(
-        Selection,
-        new[]
-        {
-          new FilterQuerySingleLayerAllInOneSentence
-          {
-            LayerDisplayname = LayerDisplayname,
-            LayerQueries = queries
-          }
-        });
+                                                     Selection,
+                                                     new[]
+                                                     {
+                                                       new FilterQuerySingleLayerAllInOneSentence
+                                                       {
+                                                         LayerDisplayname = LayerDisplayname,
+                                                         LayerQueries = queries
+                                                       }
+                                                     });
 
       var matches = filter.SelectMany(c => c.Value).Sum(d => d.Value.Count);
       CooccurrenceFrequency = new Dictionary<string, double>();
@@ -45,43 +45,43 @@ namespace CorpusExplorer.Sdk.Blocks
 
       var cflock = new object();
       Parallel.ForEach(
-        filter,
-        Configuration.ParallelOptions,
-        csel =>
-        {
-          var corpus = Selection.GetCorpus(csel.Key);
-          var layer = corpus?.GetLayers(LayerDisplayname)?.FirstOrDefault();
-          if (layer == null)
-            return;
+                       filter,
+                       Configuration.ParallelOptions,
+                       csel =>
+                       {
+                         var corpus = Selection.GetCorpus(csel.Key);
+                         var layer = corpus?.GetLayers(LayerDisplayname)?.FirstOrDefault();
+                         if (layer == null)
+                           return;
 
-          Parallel.ForEach(
-            csel.Value,
-            Configuration.ParallelOptions,
-            dsel =>
-            {
-              var doc = layer[dsel.Key];
-              if (doc == null)
-                return;
+                         Parallel.ForEach(
+                                          csel.Value,
+                                          Configuration.ParallelOptions,
+                                          dsel =>
+                                          {
+                                            var doc = layer[dsel.Key];
+                                            if (doc == null)
+                                              return;
 
-              foreach (var sidx in dsel.Value)
-              {
-                var once = new HashSet<string>(doc[sidx].Select(x => layer[x]));
-                foreach (var x in once)
-                {
-                  if (string.IsNullOrEmpty(x) || queries.Contains(x))
-                    continue;
+                                            foreach (var sidx in dsel.Value)
+                                            {
+                                              var once = new HashSet<string>(doc[sidx].Select(x => layer[x]));
+                                              foreach (var x in once)
+                                              {
+                                                if (string.IsNullOrEmpty(x) || queries.Contains(x))
+                                                  continue;
 
-                  lock (cflock)
-                  {
-                    if (CooccurrenceFrequency.ContainsKey(x))
-                      CooccurrenceFrequency[x]++;
-                    else
-                      CooccurrenceFrequency.Add(x, 1.0);
-                  }
-                }
-              }
-            });
-        });
+                                                lock (cflock)
+                                                {
+                                                  if (CooccurrenceFrequency.ContainsKey(x))
+                                                    CooccurrenceFrequency[x]++;
+                                                  else
+                                                    CooccurrenceFrequency.Add(x, 1.0);
+                                                }
+                                              }
+                                            }
+                                          });
+                       });
 
       CooccurrenceSignificance = new Dictionary<string, double>();
       var signi = Configuration.GetSignificance(matches, sentences);

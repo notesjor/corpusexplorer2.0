@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CenterSpace.NMath.Stats;
+using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
-using CorpusExplorer.Sdk.Blocks.Cooccurrence;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model;
 
@@ -30,31 +29,33 @@ namespace CorpusExplorer.Sdk.Blocks
     /// </summary>
     public override void Calculate()
     {
-      KeywordFrequencyCurrent = GetFrequency(Selection);
-      var sumA = KeywordFrequencyCurrent.Sum(x => x.Value);
+      var mult = 1000000d;
 
-      KeywordFrequencyReference = GetFrequency(SelectionToCompare);
-      var sumB = KeywordFrequencyReference.Sum(x => x.Value);
+      KeywordFrequencyCurrent = GetFrequency(Selection, mult);
+      KeywordFrequencyReference = GetFrequency(SelectionToCompare, mult);
 
       KeywordDiff = new Dictionary<string, double>();
       KeywordSignificance = new Dictionary<string, double>();
-      foreach (var x in KeywordFrequencyCurrent)
+      var @lock = new object();
+
+      Parallel.ForEach(KeywordFrequencyCurrent, x =>
       {
         if (!KeywordFrequencyReference.ContainsKey(x.Key))
-          continue;
+          return;
 
-        KeywordDiff.Add(x.Key, ((x.Value - KeywordFrequencyReference[x.Key]) * 100d) / KeywordFrequencyReference[x.Key]);
-        var chi = new PearsonsChiSquareTest(new[,]
+        var dif = (x.Value - KeywordFrequencyReference[x.Key]) * 100d / KeywordFrequencyReference[x.Key];
+        var sig = Configuration.GetSignificance((int) KeywordFrequencyReference[x.Key], mult);
+        var val = sig.Calculate((int) x.Value, (int) Math.Abs(KeywordFrequencyReference[x.Key] - x.Value));
+
+        lock (@lock)
         {
-          {(int) x.Value, (int) KeywordFrequencyReference[x.Key]},
-          {(int) (sumA - x.Value), (int) (sumB - KeywordFrequencyReference[x.Key])}
-        });
-
-        KeywordSignificance.Add(x.Key, chi.ChiSquareStatistic);
-      }
+          KeywordDiff.Add(x.Key, dif);
+          KeywordSignificance.Add(x.Key, val);
+        }
+      });
     }
 
-    private Dictionary<string, double> GetFrequency(Selection selection)
+    private Dictionary<string, double> GetFrequency(Selection selection, double mult)
     {
       var block = selection.CreateBlock<Frequency1LayerOneOccurrenceBlock>();
       block.LayerDisplayname = LayerDisplayname;
@@ -62,7 +63,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
       var freq = block.Frequency;
       var sum = freq.Sum(x => x.Value);
-      return freq.ToDictionary(x => x.Key, x => x.Value / sum * 1000000);
+      return freq.ToDictionary(x => x.Key, x => x.Value / sum * mult);
     }
   }
 }

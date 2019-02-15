@@ -42,7 +42,9 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
 
     public override IEnumerable<KeyValuePair<Guid, Dictionary<string, object>>> DocumentMetadata
       => _corpus.Documents.ToDictionary(x => x.GUID,
-        x => x.DocumentMetadataEntries.ToDictionary(y => y.Label, y => ValueSerializer.DeserializeValue(y.Value)));
+                                        x => x.DocumentMetadataEntries.ToDictionary(y => y.Label,
+                                                                                    y => ValueSerializer
+                                                                                     .DeserializeValue(y.Value)));
 
     public override Guid FirstDocument
       => _corpus.Documents.FirstOrDefault().GUID;
@@ -126,12 +128,12 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
 
         foreach (var entry in doc.Value)
           context.DocumentMetadataEntries.InsertOnSubmit(
-            new DocumentMetadataEntry
-            {
-              DocumentID = ndoc,
-              Label = entry.Key,
-              Value = ValueSerializer.SerializeValue(entry.Value)
-            });
+                                                         new DocumentMetadataEntry
+                                                         {
+                                                           DocumentID = ndoc,
+                                                           Label = entry.Key,
+                                                           Value = ValueSerializer.SerializeValue(entry.Value)
+                                                         });
       }
 
       context.SubmitChanges(ConflictMode.ContinueOnConflict);
@@ -185,10 +187,10 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
     public override IEnumerable<Guid> FindDocumentByMetadata(Dictionary<string, object> example)
     {
       return from doc in _corpus.Documents
-        let meta = doc.DocumentMetadataEntries.Where(x => example.ContainsKey(x.Label)).ToArray()
-        where meta.Length == example.Count
-        where meta.All(entry => example.ContainsKey(entry.Label) && example[entry.Label] == entry.Value)
-        select doc.GUID;
+             let meta = doc.DocumentMetadataEntries.Where(x => example.ContainsKey(x.Label)).ToArray()
+             where meta.Length == example.Count
+             where meta.All(entry => example.ContainsKey(entry.Label) && example[entry.Label] == entry.Value)
+             select doc.GUID;
     }
 
     public override AbstractCorpusBuilder GetCorpusBuilder()
@@ -216,7 +218,7 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
       try
       {
         return (from x in _corpus.Documents where x.GUID == documentGuid from y in x.DocumentMetadataEntries select y)
-          .ToDictionary(y => y.Label, y => ValueSerializer.DeserializeValue(y.Value));
+         .ToDictionary(y => y.Label, y => ValueSerializer.DeserializeValue(y.Value));
       }
       catch
       {
@@ -241,33 +243,33 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
     public override IEnumerable<string> GetDocumentMetadataPrototypeOnlyProperties()
     {
       return new HashSet<string>(from doc in _corpus.Documents
-        from entry in doc.DocumentMetadataEntries
-        select entry.Label);
+                                 from entry in doc.DocumentMetadataEntries
+                                 select entry.Label);
     }
 
     public override IEnumerable<object> GetDocumentMetadataPrototypeOnlyPropertieValues(string property)
     {
       return new HashSet<object>(from doc in _corpus.Documents
-        from entry in doc.DocumentMetadataEntries
-        where entry.Label == property
-        select entry.Value);
+                                 from entry in doc.DocumentMetadataEntries
+                                 where entry.Label == property
+                                 select entry.Value);
     }
 
     public override AbstractLayerAdapter GetLayer(Guid layerGuid)
     {
       return layerGuid == Guid.Empty
-        ? null
-        : (from x in _corpus.Layers where x.GUID == layerGuid select LayerAdapterLinqConnect.Create(_db, x))
-        .FirstOrDefault();
+               ? null
+               : (from x in _corpus.Layers where x.GUID == layerGuid select LayerAdapterLinqConnect.Create(_db, x))
+              .FirstOrDefault();
     }
 
     public override AbstractLayerAdapter GetLayerOfDocument(Guid documentGuid, string layerDisplayname)
     {
       return (from l in _corpus.Layers
-        where l.Displayname == layerDisplayname
-        from d in l.LayerDocuments
-        where d.Document != null && d.Document.GUID == documentGuid
-        select LayerAdapterLinqConnect.Create(_db, l)).FirstOrDefault();
+              where l.Displayname == layerDisplayname
+              from d in l.LayerDocuments
+              where d.Document != null && d.Document.GUID == documentGuid
+              select LayerAdapterLinqConnect.Create(_db, l)).FirstOrDefault();
     }
 
     public override IEnumerable<AbstractLayerAdapter> GetLayers(string displayname)
@@ -295,14 +297,15 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
     public override IEnumerable<string> GetLayerValues(Guid layerGuid)
     {
       return (from x in _corpus.Layers where x.GUID == layerGuid select x).FirstOrDefault()?.LayerDictionaryEntries
-        .Select(x => x.Value);
+                                                                          .Select(x => x.Value);
     }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, string layerDisplayname)
     {
       return GetReadableDocument(
-        documentGuid,
-        (from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID).FirstOrDefault());
+                                 documentGuid,
+                                 (from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID)
+                                .FirstOrDefault());
     }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, Guid layerGuid)
@@ -317,7 +320,7 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
       int stop)
     {
       return GetLayer((from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID).FirstOrDefault())
-        .GetReadableDocumentByGuid(documentGuid);
+       .GetReadableDocumentByGuid(documentGuid);
     }
 
     public override Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(
@@ -340,7 +343,8 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
     {
       var layer =
         GetLayer(
-          (from x in _corpus.Layers where x.Displayname == layerDisplaynameOriginal select x.GUID).FirstOrDefault());
+                 (from x in _corpus.Layers where x.Displayname == layerDisplaynameOriginal select x.GUID)
+                .FirstOrDefault());
       var nguid = layer.Copy().Guid;
       var nlayer = (from x in _corpus.Layers where x.GUID == nguid select x).FirstOrDefault();
       nlayer.Displayname = layerDisplaynameCopy;
@@ -359,12 +363,12 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
     public override void LayerNew(string layerDisplayname)
     {
       _db.Layers.InsertOnSubmit(
-        new Layer
-        {
-          CorpusID = _corpus.ID,
-          Displayname = layerDisplayname,
-          GUID = Guid.NewGuid()
-        });
+                                new Layer
+                                {
+                                  CorpusID = _corpus.ID,
+                                  Displayname = layerDisplayname,
+                                  GUID = Guid.NewGuid()
+                                });
       _db.SubmitChanges();
     }
 
@@ -431,7 +435,7 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
     {
       var layer = GetLayer(layerGuid);
       return layer != null
-             && layer.SetDocumentLayerValueMaskBySwitch(documentGuid, sentenceIndex, wordIndex, layerValue);
+          && layer.SetDocumentLayerValueMaskBySwitch(documentGuid, sentenceIndex, wordIndex, layerValue);
     }
 
     public override bool SetDocumentLayerValueMask(
@@ -442,11 +446,12 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
       string layerValue)
     {
       return SetDocumentLayerValueMask(
-        documentGuid,
-        (from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID).FirstOrDefault(),
-        sentenceIndex,
-        wordIndex,
-        layerValue);
+                                       documentGuid,
+                                       (from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID)
+                                      .FirstOrDefault(),
+                                       sentenceIndex,
+                                       wordIndex,
+                                       layerValue);
     }
 
     public override void SetDocumentMetadata(Guid documentGuid, Dictionary<string, object> metadata)
@@ -460,12 +465,12 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
         var exsits = (from y in doc.DocumentMetadataEntries where y.Label == x.Key select y).FirstOrDefault();
         if (exsits == null)
           _db.CorpusMetadataEntries.InsertOnSubmit(
-            new CorpusMetadataEntry
-            {
-              CorpusID = _corpus.ID,
-              Label = x.Key,
-              Value = ValueSerializer.SerializeValue(x.Value)
-            });
+                                                   new CorpusMetadataEntry
+                                                   {
+                                                     CorpusID = _corpus.ID,
+                                                     Label = x.Key,
+                                                     Value = ValueSerializer.SerializeValue(x.Value)
+                                                   });
         else
           exsits.Value = ValueSerializer.SerializeValue(x.Value);
       }
@@ -481,15 +486,16 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
       foreach (var document in _corpus.Documents)
       {
         var exsits = (from y in document.DocumentMetadataEntries where y.Label == metadataKey select y)
-          .FirstOrDefault();
+         .FirstOrDefault();
         if (exsits != null)
           _db.DocumentMetadataEntries.InsertOnSubmit(
-            new DocumentMetadataEntry
-            {
-              DocumentID = document.ID,
-              Label = metadataKey,
-              Value = ValueSerializer.SerializeValue(Activator.CreateInstance(type))
-            });
+                                                     new DocumentMetadataEntry
+                                                     {
+                                                       DocumentID = document.ID,
+                                                       Label = metadataKey,
+                                                       Value =
+                                                         ValueSerializer.SerializeValue(Activator.CreateInstance(type))
+                                                     });
       }
 
       _db.SubmitChanges();

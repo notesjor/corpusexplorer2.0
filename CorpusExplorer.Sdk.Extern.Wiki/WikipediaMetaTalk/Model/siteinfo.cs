@@ -1,74 +1,79 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
+namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true,
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true,
     Namespace = "http://www.mediawiki.org/xml/export-0.10/")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.mediawiki.org/xml/export-0.10/",
+  [XmlRoot(Namespace = "http://www.mediawiki.org/xml/export-0.10/",
     IsNullable = false)]
-  public partial class siteinfo
+  public class siteinfo
   {
-
-    private string sitenameField;
-
-    private string dbnameField;
-
     private string baseField;
-
-    private string generatorField;
 
     private string caseField;
 
+    private string dbnameField;
+
+    private string generatorField;
+
     private @namespace[] namespacesField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute(DataType = "NCName")]
+    private string sitenameField;
+
+    /// <remarks />
+    [XmlElement(DataType = "NCName")]
     public string sitename
     {
-      get { return this.sitenameField; }
-      set { this.sitenameField = value; }
+      get => sitenameField;
+      set => sitenameField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlElement(DataType = "NCName")]
     public string dbname
     {
-      get { return this.dbnameField; }
-      set { this.dbnameField = value; }
+      get => dbnameField;
+      set => dbnameField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute(DataType = "anyURI")]
+    /// <remarks />
+    [XmlElement(DataType = "anyURI")]
     public string @base
     {
-      get { return this.baseField; }
-      set { this.baseField = value; }
+      get => baseField;
+      set => baseField = value;
     }
 
-    /// <remarks/>
+    /// <remarks />
     public string generator
     {
-      get { return this.generatorField; }
-      set { this.generatorField = value; }
+      get => generatorField;
+      set => generatorField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlElement(DataType = "NCName")]
     public string @case
     {
-      get { return this.caseField; }
-      set { this.caseField = value; }
+      get => caseField;
+      set => caseField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlArrayItemAttribute("namespace", IsNullable = false)]
+    /// <remarks />
+    [XmlArrayItem("namespace", IsNullable = false)]
     public @namespace[] namespaces
     {
-      get { return this.namespacesField; }
-      set { this.namespacesField = value; }
+      get => namespacesField;
+      set => namespacesField = value;
     }
   }
 }

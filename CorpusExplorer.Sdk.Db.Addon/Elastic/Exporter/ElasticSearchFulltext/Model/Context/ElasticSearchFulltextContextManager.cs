@@ -21,8 +21,9 @@ namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter.ElasticSearchFull
       ElasticSearchContextCredentials credentials = null)
     {
       Initialize(
-        connectionPool.Select(x => new Uri(x.Replace("\r\n", "").Replace("\r", "").Replace("\n", ""))).ToArray(), index,
-        credentials);
+                 connectionPool.Select(x => new Uri(x.Replace("\r\n", "").Replace("\r", "").Replace("\n", "")))
+                               .ToArray(), index,
+                 credentials);
     }
 
     public static void Initialize(

@@ -33,14 +33,14 @@ namespace CorpusExplorer.Sdk.Model
   public sealed class Project : CeObject, IHydra
   {
     /// <summary>
-    ///   The _selections.
-    /// </summary>
-    private readonly List<Selection> _selections = new List<Selection>();
-
-    /// <summary>
     ///   The _corpora.
     /// </summary>
     [NonSerialized] private readonly List<AbstractCorpusAdapter> _corpora = new List<AbstractCorpusAdapter>();
+
+    /// <summary>
+    ///   The _selections.
+    /// </summary>
+    private readonly List<Selection> _selections = new List<Selection>();
 
     /// <summary>
     ///   The _current selection.
@@ -82,14 +82,14 @@ namespace CorpusExplorer.Sdk.Model
     public IEnumerable<KeyValuePair<Selection, string>> OtherSelections
       =>
         Selections.Where(x => x.Guid != CurrentSelection.Guid)
-          .ToDictionary(
-            x => x,
-            x =>
-              x.Displayname.Replace("<html>", "")
-                .Replace("</html>", "")
-                .Replace("<strong>", "")
-                .Replace("</strong>", "")
-                .Replace("&nbsp;", ""));
+                  .ToDictionary(
+                                x => x,
+                                x =>
+                                  x.Displayname.Replace("<html>", "")
+                                   .Replace("</html>", "")
+                                   .Replace("<strong>", "")
+                                   .Replace("</strong>", "")
+                                   .Replace("&nbsp;", ""));
 
     /// <summary>
     ///   Gets the select all.
@@ -122,7 +122,14 @@ namespace CorpusExplorer.Sdk.Model
     /// <summary>
     ///   Gets the selections.
     /// </summary>
-    public IEnumerable<Selection> Selections => _selections;
+    public IEnumerable<Selection> Selections => _selections.Count == 0 ? InitDefaultSelections() : _selections;
+
+    private IEnumerable<Selection> InitDefaultSelections()
+    {
+      if (_corpora.Count > 0)
+        _selections.Add(SelectAll);
+      return _selections;
+    }
 
     public IEnumerable<Selection> SelectionsRecursive
     {
@@ -395,8 +402,8 @@ namespace CorpusExplorer.Sdk.Model
     {
       var corpus = ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid));
       return corpus == null
-        ? $"Kein Titel (GUID: {documentGuid:N}"
-        : corpus.GetDocumentDisplayname(documentGuid);
+               ? $"Kein Titel (GUID: {documentGuid:N}"
+               : corpus.GetDocumentDisplayname(documentGuid);
     }
 
     public IEnumerable<IEnumerable<bool>> GetDocumentLayerValueMask(
@@ -488,17 +495,17 @@ namespace CorpusExplorer.Sdk.Model
       var l = new object();
       var res = new Dictionary<Guid, T>();
       Parallel.ForEach(
-        _corpora,
-        Configuration.ParallelOptions,
-        c =>
-        {
-          var temp = c.GetDocumentMetadata(metaKey, defaultValue);
-          lock (l)
-          {
-            foreach (var x in temp)
-              res.Add(x.Key, x.Value);
-          }
-        });
+                       _corpora,
+                       Configuration.ParallelOptions,
+                       c =>
+                       {
+                         var temp = c.GetDocumentMetadata(metaKey, defaultValue);
+                         lock (l)
+                         {
+                           foreach (var x in temp)
+                             res.Add(x.Key, x.Value);
+                         }
+                       });
       return res;
     }
 
@@ -511,9 +518,9 @@ namespace CorpusExplorer.Sdk.Model
       var l = new object();
       var res = new Dictionary<string, HashSet<object>>();
       Parallel.ForEach(
-        _corpora,
-        Configuration.ParallelOptions,
-        c => GetDocumentMetadataPrototypeCall(c, l, res));
+                       _corpora,
+                       Configuration.ParallelOptions,
+                       c => GetDocumentMetadataPrototypeCall(c, l, res));
       return res;
     }
 
@@ -526,17 +533,17 @@ namespace CorpusExplorer.Sdk.Model
       var @lock = new object();
       var res = new HashSet<string>();
       Parallel.ForEach(
-        _corpora,
-        Configuration.ParallelOptions,
-        c =>
-        {
-          var items = c.GetDocumentMetadataPrototype();
-          lock (@lock)
-          {
-            foreach (var item in items.Where(item => !res.Contains(item.Key)))
-              res.Add(item.Key);
-          }
-        });
+                       _corpora,
+                       Configuration.ParallelOptions,
+                       c =>
+                       {
+                         var items = c.GetDocumentMetadataPrototype();
+                         lock (@lock)
+                         {
+                           foreach (var item in items.Where(item => !res.Contains(item.Key)))
+                             res.Add(item.Key);
+                         }
+                       });
       return res;
     }
 
@@ -545,17 +552,17 @@ namespace CorpusExplorer.Sdk.Model
       var @lock = new object();
       var res = new HashSet<object>();
       Parallel.ForEach(
-        _corpora,
-        Configuration.ParallelOptions,
-        c =>
-        {
-          var items = c.GetDocumentMetadataPrototypeOnlyPropertieValues(property);
-          lock (@lock)
-          {
-            foreach (var item in items.Where(item => !res.Contains(item)))
-              res.Add(item);
-          }
-        });
+                       _corpora,
+                       Configuration.ParallelOptions,
+                       c =>
+                       {
+                         var items = c.GetDocumentMetadataPrototypeOnlyPropertieValues(property);
+                         lock (@lock)
+                         {
+                           foreach (var item in items.Where(item => !res.Contains(item)))
+                             res.Add(item);
+                         }
+                       });
       return res;
     }
 
@@ -564,17 +571,17 @@ namespace CorpusExplorer.Sdk.Model
       var @lock = new object();
       var res = new HashSet<string>();
       Parallel.ForEach(
-        _corpora,
-        Configuration.ParallelOptions,
-        c =>
-        {
-          var items = c.GetDocumentMetadataPrototypeOnlyPropertieValuesAsString(property);
-          lock (@lock)
-          {
-            foreach (var item in items.Where(item => !res.Contains(item)))
-              res.Add(item);
-          }
-        });
+                       _corpora,
+                       Configuration.ParallelOptions,
+                       c =>
+                       {
+                         var items = c.GetDocumentMetadataPrototypeOnlyPropertieValuesAsString(property);
+                         lock (@lock)
+                         {
+                           foreach (var item in items.Where(item => !res.Contains(item)))
+                             res.Add(item);
+                         }
+                       });
       return res;
     }
 
@@ -631,7 +638,7 @@ namespace CorpusExplorer.Sdk.Model
     public AbstractLayerAdapter GetLayerOfDocument(Guid documentGuid, string layerDisplayname)
     {
       return ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid))
-        ?.GetLayerOfDocument(documentGuid, layerDisplayname);
+      ?.GetLayerOfDocument(documentGuid, layerDisplayname);
     }
 
     /// <summary>
@@ -647,13 +654,13 @@ namespace CorpusExplorer.Sdk.Model
     {
       var res = new ConcurrentBag<AbstractLayerAdapter>();
       Parallel.ForEach(
-        _corpora,
-        Configuration.ParallelOptions,
-        c =>
-        {
-          foreach (var layer in c.GetLayers(displayname))
-            res.Add(layer);
-        });
+                       _corpora,
+                       Configuration.ParallelOptions,
+                       c =>
+                       {
+                         foreach (var layer in c.GetLayers(displayname))
+                           res.Add(layer);
+                       });
       return res;
     }
 
@@ -679,17 +686,17 @@ namespace CorpusExplorer.Sdk.Model
     public IEnumerable<string> GetLayerValues(string layerDisplayname)
     {
       return ProxyRequestHashSet(
-        c =>
-        {
-          var h = new HashSet<string>();
-          foreach (var v in
-            from layer in c.Layers
-            where layer.Displayname == layerDisplayname
-            from v in layer.Values
-            select v)
-            h.Add(v);
-          return h;
-        });
+                                 c =>
+                                 {
+                                   var h = new HashSet<string>();
+                                   foreach (var v in
+                                     from layer in c.Layers
+                                     where layer.Displayname == layerDisplayname
+                                     from v in layer.Values
+                                     select v)
+                                     h.Add(v);
+                                   return h;
+                                 });
     }
 
     /// <summary>
@@ -700,17 +707,17 @@ namespace CorpusExplorer.Sdk.Model
     public IEnumerable<string> GetLayerValues(Guid layerGuid)
     {
       return ProxyRequestHashSet(
-        c =>
-        {
-          var h = new HashSet<string>();
-          foreach (var v in
-            from layer in c.Layers
-            where layer.Guid == layerGuid
-            from v in layer.Values
-            select v)
-            h.Add(v);
-          return h;
-        });
+                                 c =>
+                                 {
+                                   var h = new HashSet<string>();
+                                   foreach (var v in
+                                     from layer in c.Layers
+                                     where layer.Guid == layerGuid
+                                     from v in layer.Values
+                                     select v)
+                                     h.Add(v);
+                                   return h;
+                                 });
     }
 
     /// <summary>
@@ -728,7 +735,7 @@ namespace CorpusExplorer.Sdk.Model
     public IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, string layerDisplayname)
     {
       return ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid))
-        ?.GetReadableDocument(documentGuid, layerDisplayname);
+      ?.GetReadableDocument(documentGuid, layerDisplayname);
     }
 
     public IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, Guid layerGuid)
@@ -761,7 +768,7 @@ namespace CorpusExplorer.Sdk.Model
       int stop)
     {
       return ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid))?
-        .GetReadableDocumentSnippet(documentGuid, layerDisplayname, start, stop);
+       .GetReadableDocumentSnippet(documentGuid, layerDisplayname, start, stop);
     }
 
     /// <summary>
@@ -787,9 +794,11 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns>
     ///   The <see cref="Dictionary{TKey,TValue}" />.
     /// </returns>
-    public Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(Guid documentGuid, int start, int stop)
+    public Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(
+      Guid documentGuid, int start, int stop)
     {
-      return ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid))?.GetReadableMultilayerDocument(documentGuid, start, stop);
+      return ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid))
+      ?.GetReadableMultilayerDocument(documentGuid, start, stop);
     }
 
     /// <summary>
@@ -881,15 +890,15 @@ namespace CorpusExplorer.Sdk.Model
     public void ResetAllDocumentMetadata(Dictionary<Guid, Dictionary<string, object>> newMetadata)
     {
       Parallel.ForEach(
-        _corpora,
-        Configuration.ParallelOptions,
-        c =>
-        {
-          var guids = new HashSet<Guid>(c.DocumentGuids);
-          c.ResetAllDocumentMetadata(
-            newMetadata.Where(guid => guids.Contains(guid.Key))
-              .ToDictionary(guid => guid.Key, guid => guid.Value));
-        });
+                       _corpora,
+                       Configuration.ParallelOptions,
+                       c =>
+                       {
+                         var guids = new HashSet<Guid>(c.DocumentGuids);
+                         c.ResetAllDocumentMetadata(
+                                                    newMetadata.Where(guid => guids.Contains(guid.Key))
+                                                               .ToDictionary(guid => guid.Key, guid => guid.Value));
+                       });
     }
 
     /// <summary>
@@ -1052,8 +1061,8 @@ namespace CorpusExplorer.Sdk.Model
       Selection parentSelection = null)
     {
       var res = (parentSelection ?? SelectAll).Create(
-        corpusAndDocumentGuids,
-        overrideSelectionDisplayname);
+                                                      corpusAndDocumentGuids,
+                                                      overrideSelectionDisplayname);
 
       OnSelectionCreated();
 
@@ -1086,7 +1095,7 @@ namespace CorpusExplorer.Sdk.Model
     public static Project Load(string path)
     {
       var lines = FileIO.ReadLines(path, Configuration.Encoding,
-        stringSplitOptions: StringSplitOptions.RemoveEmptyEntries);
+                                   stringSplitOptions: StringSplitOptions.RemoveEmptyEntries);
       if (lines[0] != "----=----")
         return null;
 
@@ -1154,7 +1163,7 @@ namespace CorpusExplorer.Sdk.Model
 
         var corpus =
           type.GetMethods().First(x => x.IsStatic && x.IsPublic && x.Name == "Create" && x.GetParameters().Length == 1)
-            .Invoke(null, new object[] { entry[2] }) as AbstractCorpusAdapter;
+              .Invoke(null, new object[] { entry[2] }) as AbstractCorpusAdapter;
         if (corpus == null || corpus.CorpusGuid != tguid)
           continue;
         res.Add(corpus);
@@ -1281,16 +1290,16 @@ namespace CorpusExplorer.Sdk.Model
       try
       {
         Parallel.ForEach(
-          _corpora,
-          Configuration.ParallelOptions,
-          (c, state) =>
-          {
-            var val = func(c);
-            if (!val.HasValue || !val.Value)
-              return;
-            res = c;
-            state.Break();
-          });
+                         _corpora,
+                         Configuration.ParallelOptions,
+                         (c, state) =>
+                         {
+                           var val = func(c);
+                           if (!val.HasValue || !val.Value)
+                             return;
+                           res = c;
+                           state.Break();
+                         });
       }
       catch
       {
@@ -1304,14 +1313,14 @@ namespace CorpusExplorer.Sdk.Model
     {
       var res = new ConcurrentDictionary<TK, TV>();
       Parallel.ForEach(
-        _corpora,
-        Configuration.ParallelOptions,
-        c =>
-        {
-          var items = func(c);
-          foreach (var item in items)
-            res.TryAdd(item.Key, item.Value);
-        });
+                       _corpora,
+                       Configuration.ParallelOptions,
+                       c =>
+                       {
+                         var items = func(c);
+                         foreach (var item in items)
+                           res.TryAdd(item.Key, item.Value);
+                       });
 
       return res.ToDictionary(x => x.Key, x => x.Value);
     }
@@ -1321,17 +1330,17 @@ namespace CorpusExplorer.Sdk.Model
       var l = new object();
       var res = new HashSet<T>();
       Parallel.ForEach(
-        _corpora,
-        Configuration.ParallelOptions,
-        c =>
-        {
-          var items = func(c);
-          lock (l)
-          {
-            foreach (var item in items)
-              res.Add(item);
-          }
-        });
+                       _corpora,
+                       Configuration.ParallelOptions,
+                       c =>
+                       {
+                         var items = func(c);
+                         lock (l)
+                         {
+                           foreach (var item in items)
+                             res.Add(item);
+                         }
+                       });
 
       return res;
     }
@@ -1341,16 +1350,16 @@ namespace CorpusExplorer.Sdk.Model
       var l = new object();
       var res = new List<T>();
       Parallel.ForEach(
-        _corpora,
-        Configuration.ParallelOptions,
-        c =>
-        {
-          var items = func(c);
-          lock (l)
-          {
-            res.AddRange(items);
-          }
-        });
+                       _corpora,
+                       Configuration.ParallelOptions,
+                       c =>
+                       {
+                         var items = func(c);
+                         lock (l)
+                         {
+                           res.AddRange(items);
+                         }
+                       });
 
       return res;
     }

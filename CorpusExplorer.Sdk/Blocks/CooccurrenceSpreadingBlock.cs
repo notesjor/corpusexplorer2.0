@@ -97,7 +97,7 @@ namespace CorpusExplorer.Sdk.Blocks
         var sum = entry.Value.Sum();
         var cnt = (double) entry.Value.Count;
 
-        var avr = sum / cnt;
+        var avr = sum                                     / cnt;
         var std = entry.Value.Sum(x => Math.Abs(x - avr)) / cnt;
 
         SignificanceAverageCooccurrence.Add(entry.Key, avr);

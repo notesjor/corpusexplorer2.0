@@ -53,16 +53,16 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     {
       var main = new[] {txt_queryA.Text, txt_queryB.Text};
       CreateSelection(
-        from m in main
-        from row in radGridView1.SelectedRows
-        select
-          new FilterQuerySingleLayerAllInOneSentence
-          {
-            LayerDisplayname = "Wort",
-            Inverse = false,
-            LayerQueries =
-              new[] {m, row.Cells[Resources.Kookkurrenz].Value.ToString()}
-          });
+                      from m in main
+                      from row in radGridView1.SelectedRows
+                      select
+                        new FilterQuerySingleLayerAllInOneSentence
+                        {
+                          LayerDisplayname = "Wort",
+                          Inverse = false,
+                          LayerQueries =
+                            new[] {m, row.Cells[Resources.Kookkurrenz].Value.ToString()}
+                        });
     }
 
     private void btn_startB_Click(object sender, EventArgs e)

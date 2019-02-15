@@ -46,7 +46,7 @@ namespace CorpusExplorer.Sdk.Helper
       {
         if (_dictionary[key].GetType() != value.GetType())
           throw new SettingsPropertyWrongTypeException(
-            Resources.MetaDataTypeExcetion);
+                                                       Resources.MetaDataTypeExcetion);
         _dictionary[key] = value;
       }
       else

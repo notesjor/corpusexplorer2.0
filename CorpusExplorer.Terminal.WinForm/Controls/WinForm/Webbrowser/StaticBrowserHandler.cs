@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
+#if LINUX
+#else
 using CefSharp;
 using CefSharp.WinForms;
+#endif
 using CorpusExplorer.Sdk.Ecosystem.Model;
 
 namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
 {
+#if LINUX
+#else
   public static class StaticBrowserHandler
   {
     private static readonly List<ChromiumWebBrowser> _browser = new List<ChromiumWebBrowser>();
@@ -52,13 +56,18 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
 
       var settings = new CefSettings
       {
-        BrowserSubprocessPath = Path.Combine(Configuration.AppPath,
-          "CefSharp.BrowserSubprocess.exe")
+        BrowserSubprocessPath = Path.Combine(Configuration.AppPath, "CefSharp.BrowserSubprocess.exe"),
       };
+      settings.CefCommandLineArgs.Add("enable-media-stream", "1");
+
       CefSharpSettings.LegacyJavascriptBindingEnabled = true;
-      Cef.Initialize(settings, false, null);
+      CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
+
+      Cef.EnableHighDPISupport();
+      Cef.Initialize(settings, false, browserProcessHandler: null);
 
       _initialized = true;
     }
   }
+#endif
 }

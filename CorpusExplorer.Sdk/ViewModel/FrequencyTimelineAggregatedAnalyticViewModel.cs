@@ -72,7 +72,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 
       var blockCalc =
         Selection
-          .CreateBlock<MakeAggregatedPartionBlock<DateTime, Dictionary<string, double>, Frequency1LayerBlock>>();
+         .CreateBlock<MakeAggregatedPartionBlock<DateTime, Dictionary<string, double>, Frequency1LayerBlock>>();
       blockCalc.InputPartition = DateTimeRangeDocuments;
       blockCalc.MappingDelegate = block =>
       {

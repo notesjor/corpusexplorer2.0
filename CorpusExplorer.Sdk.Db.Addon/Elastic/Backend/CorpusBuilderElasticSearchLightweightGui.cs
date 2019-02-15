@@ -14,27 +14,28 @@ namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Backend
     private bool _initilized;
 
     protected override AbstractCorpusAdapter CreateCorpus(Dictionary<Guid, Dictionary<string, object>> documentMetadata,
-      Dictionary<string, object> corpusMetadata, List<Concept> concepts)
+                                                          Dictionary<string, object> corpusMetadata,
+                                                          List<Concept> concepts)
     {
       if (_initilized)
         return base.CreateCorpus(documentMetadata, corpusMetadata, concepts);
 
       FormHelper.Show("ElasticSearch",
-        "http://localhost",
-        9200,
-        (h, p, db, usr, psw) =>
-        {
-          ElasticSearchContextManager
-            .Initialize(
-              new[] {$"{h}:{p}"},
-              db.ToLower(),
-              string.IsNullOrEmpty(usr)
-                ? null
-                : new
-                  ElasticSearchContextCredentials(usr, psw));
-          return ElasticSearchContextManager.GetContext() != null;
-        },
-        "CorpusExplorer <-> Elasticsearch Verbindungsdaten (*.elastic)|*.elastic");
+                      "http://localhost",
+                      9200,
+                      (h, p, db, usr, psw) =>
+                      {
+                        ElasticSearchContextManager
+                         .Initialize(
+                                     new[] {$"{h}:{p}"},
+                                     db.ToLower(),
+                                     string.IsNullOrEmpty(usr)
+                                       ? null
+                                       : new
+                                         ElasticSearchContextCredentials(usr, psw));
+                        return ElasticSearchContextManager.GetContext() != null;
+                      },
+                      "CorpusExplorer <-> Elasticsearch Verbindungsdaten (*.elastic)|*.elastic");
       _initilized = true;
 
       return base.CreateCorpus(documentMetadata, corpusMetadata, concepts);

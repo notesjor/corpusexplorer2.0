@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
@@ -129,8 +127,8 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       }
 
       return indices != null && indices.Count > 0
-        ? GetSentencesFirstIndexCall(doc[sentence], new HashSet<int>(indices))
-        : -1;
+               ? GetSentencesFirstIndexCall(doc[sentence], new HashSet<int>(indices))
+               : -1;
     }
 
     /// <summary>

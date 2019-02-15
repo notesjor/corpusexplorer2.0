@@ -31,16 +31,17 @@ namespace CorpusExplorer.Sdk.ViewModel
     public string HighlightBodyEnd { get; set; } = "</html>";
 
     public IEnumerable<string> PureKwicSentences => SearchResults == null
-      ? null
-      : (from corpus in SearchResults
-         from result in corpus.Value
-         from sent in result.Value
-         select Selection
-           .GetReadableDocumentSnippet(
-             result.Key,
-             "Wort",
-             sent.Key,
-             sent.Key)?.ReduceDocumentToText());
+                                                      ? null
+                                                      : from corpus in SearchResults
+                                                        from result in corpus.Value
+                                                        from sent in result.Value
+                                                        select Selection
+                                                              .GetReadableDocumentSnippet(
+                                                                                          result.Key,
+                                                                                          "Wort",
+                                                                                          sent.Key,
+                                                                                          sent.Key)
+                                                             ?.ReduceDocumentToText();
 
     public IEnumerable<KeyValuePair<Guid, AbstractFilterQuery>> Queries => _queries;
 
@@ -57,7 +58,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     }
 
     public int ResultCountWords => (from x in SearchResults from y in x.Value from z in y.Value select z.Value.Count)
-      .Sum();
+     .Sum();
 
     public Selection ResultSelection { get; set; }
 
@@ -99,28 +100,35 @@ namespace CorpusExplorer.Sdk.ViewModel
     {
       var res = new List<Tuple<Guid, Guid, int, string, string, string>>();
       foreach (var corpus in SearchResults)
-        foreach (var result in corpus.Value)
-          foreach (var sent in result.Value)
-          {
-            if (sent.Value == null || sent.Value.Count == 0)
-              continue;
+      foreach (var result in corpus.Value)
+      foreach (var sent in result.Value)
+      {
+        if (sent.Value == null || sent.Value.Count == 0)
+          continue;
 
-            var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key).ReduceDocumentToStreamDocument().ToArray();
-            if (EnableHighlighting)
-              streamDoc = RunHighlighting(streamDoc);
+        var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key)
+                                 .ReduceDocumentToStreamDocument().ToArray();
+        if (EnableHighlighting)
+          streamDoc = RunHighlighting(streamDoc);
 
-            var min = sent.Value.Min();
-            var max = sent.Value.Max();
-            res.Add(new Tuple<Guid, Guid, int, string, string, string>
-            (
-              corpus.Key,
-              result.Key,
-              sent.Key,
-              EnableHighlighting ? $"{HighlightBodyStart}{streamDoc.SplitDocument(0, min)}{HighlightBodyEnd}" : streamDoc.SplitDocument(0, min),
-              EnableHighlighting ? $"{HighlightBodyStart}{streamDoc.SplitDocument(min, max + 1)}{HighlightBodyEnd}" : streamDoc.SplitDocument(min, max + 1),
-              EnableHighlighting ? $"{HighlightBodyStart}{streamDoc.SplitDocument(max + 1)}{HighlightBodyEnd}" : streamDoc.SplitDocument(max + 1)
-            ));
-          }
+        var min = sent.Value.Min();
+        var max = sent.Value.Max();
+        res.Add(new Tuple<Guid, Guid, int, string, string, string>
+                  (
+                   corpus.Key,
+                   result.Key,
+                   sent.Key,
+                   EnableHighlighting
+                     ? $"{HighlightBodyStart}{streamDoc.SplitDocument(0, min)}{HighlightBodyEnd}"
+                     : streamDoc.SplitDocument(0, min),
+                   EnableHighlighting
+                     ? $"{HighlightBodyStart}{streamDoc.SplitDocument(min, max + 1)}{HighlightBodyEnd}"
+                     : streamDoc.SplitDocument(min, max + 1),
+                   EnableHighlighting
+                     ? $"{HighlightBodyStart}{streamDoc.SplitDocument(max + 1)}{HighlightBodyEnd}"
+                     : streamDoc.SplitDocument(max + 1)
+                  ));
+      }
 
       return res;
     }
@@ -143,33 +151,83 @@ namespace CorpusExplorer.Sdk.ViewModel
     {
       var res = new Dictionary<string, UniqueTextLiveSearchResultEntry>();
       foreach (var corpus in SearchResults)
-        foreach (var result in corpus.Value)
-          foreach (var sent in result.Value)
-          {
-            if (sent.Value == null || sent.Value.Count == 0)
-              continue;
+      foreach (var result in corpus.Value)
+      foreach (var sent in result.Value)
+      {
+        if (sent.Value == null || sent.Value.Count == 0)
+          continue;
 
-            var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key).ReduceDocumentToStreamDocument().ToArray();
-            if (EnableHighlighting)
-              streamDoc = RunHighlighting(streamDoc);
+        var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key)
+                                 .ReduceDocumentToStreamDocument().ToArray();
+        if (EnableHighlighting)
+          streamDoc = RunHighlighting(streamDoc);
 
-            var key = string.Join("|", streamDoc);
-            if (!res.ContainsKey(key))
-            {
-              var min = sent.Value.Min();
-              var max = sent.Value.Max();
-              res.Add(
-                key,
-                new UniqueTextLiveSearchResultEntry
-                {
-                  Pre = EnableHighlighting ? $"{HighlightBodyStart}{streamDoc.SplitDocument(0, min)}{HighlightBodyEnd}" : streamDoc.SplitDocument(0, min),
-                  Match = EnableHighlighting ? $"{HighlightBodyStart}{streamDoc.SplitDocument(min, max + 1)}{HighlightBodyEnd}" : streamDoc.SplitDocument(min, max + 1),
-                  Post = EnableHighlighting ? $"{HighlightBodyStart}{streamDoc.SplitDocument(max + 1)}{HighlightBodyEnd}" : streamDoc.SplitDocument(max + 1)
-                });
-            }
+        var key = string.Join("|", streamDoc);
+        if (!res.ContainsKey(key))
+        {
+          var min = sent.Value.Min();
+          var max = sent.Value.Max();
+          res.Add(
+                  key,
+                  new UniqueTextLiveSearchResultEntry
+                  {
+                    Pre = EnableHighlighting
+                            ? $"{HighlightBodyStart}{streamDoc.SplitDocument(0, min)}{HighlightBodyEnd}"
+                            : streamDoc.SplitDocument(0, min),
+                    Match = EnableHighlighting
+                              ? $"{HighlightBodyStart}{streamDoc.SplitDocument(min, max + 1)}{HighlightBodyEnd}"
+                              : streamDoc.SplitDocument(min, max + 1),
+                    Post = EnableHighlighting
+                             ? $"{HighlightBodyStart}{streamDoc.SplitDocument(max + 1)}{HighlightBodyEnd}"
+                             : streamDoc.SplitDocument(max + 1)
+                  });
+        }
 
-            res[key].AddSentence(result.Key, sent.Key);
-          }
+        res[key].AddSentence(result.Key, sent.Key);
+      }
+
+      return res.Values;
+    }
+
+    public IEnumerable<UniqueTextLiveSearchCutOffPhraseResultEntry> GetUniqueCutOffPhraseData()
+    {
+      var res = new Dictionary<string, UniqueTextLiveSearchCutOffPhraseResultEntry>();
+      foreach (var corpus in SearchResults)
+      foreach (var result in corpus.Value)
+      foreach (var sent in result.Value)
+      {
+        if (sent.Value == null || sent.Value.Count == 0)
+          continue;
+
+        var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key)
+                                 .ReduceDocumentToStreamDocument().ToArray();
+        if (EnableHighlighting)
+          streamDoc = RunHighlighting(streamDoc);
+
+        var key = string.Join("|", streamDoc);
+        if (!res.ContainsKey(key))
+        {
+          var min = sent.Value.Min();
+          var max = sent.Value.Max() + 1;
+          res.Add(
+                  key,
+                  new UniqueTextLiveSearchCutOffPhraseResultEntry
+                  {
+                    Pre = EnableHighlighting
+                            ? $"{HighlightBodyStart}{streamDoc.SplitDocument(0, min)}{HighlightBodyEnd}"
+                            : streamDoc.SplitDocument(0, min),
+                    Match = EnableHighlighting
+                              ? $"{HighlightBodyStart}{streamDoc.SplitDocument(min, max + 1)}{HighlightBodyEnd}"
+                              : streamDoc.SplitDocument(min, max),
+                    Post = EnableHighlighting
+                             ? $"{HighlightBodyStart}{streamDoc.SplitDocument(max + 1)}{HighlightBodyEnd}"
+                             : streamDoc.SplitDocument(max),
+                    Span = max - min - 2,
+                  });
+        }
+
+        res[key].AddSentence(result.Key, sent.Key);
+      }
 
       return res.Values;
     }
@@ -198,6 +256,26 @@ namespace CorpusExplorer.Sdk.ViewModel
       return dt;
     }
 
+    public DataTable GetUniqueDataTableCutOffPhrase()
+    {
+      var dt = new DataTable();
+      dt.Columns.Add("Pre", typeof(string));
+      dt.Columns.Add("Match", typeof(string));
+      dt.Columns.Add("Post", typeof(string));
+      dt.Columns.Add("Spanne", typeof(int));
+      dt.Columns.Add("Frequenz", typeof(int));
+      dt.Columns.Add("Info", typeof(IEnumerable<KeyValuePair<Guid, int>>));
+
+      var data = GetUniqueCutOffPhraseData();
+
+      dt.BeginLoadData();
+      foreach (var d in data)
+        dt.Rows.Add(d.Pre, d.Match, d.Post, d.Span, d.Count, d.Sentences);
+      dt.EndLoadData();
+
+      return dt;
+    }
+
     public DataTable GetUniqueDataTableCsv()
     {
       var dt = new DataTable();
@@ -220,6 +298,7 @@ namespace CorpusExplorer.Sdk.ViewModel
           first = false;
         }
       }
+
       dt.EndLoadData();
 
       return dt;

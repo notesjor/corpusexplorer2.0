@@ -159,7 +159,7 @@
     <value>btn_video</value>
   </data>
   <data name="&gt;&gt;btn_video.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_video.Parent" xml:space="preserve">
     <value>flowLayoutPanel2</value>
@@ -206,7 +206,7 @@
     <value>btn_handson</value>
   </data>
   <data name="&gt;&gt;btn_handson.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_handson.Parent" xml:space="preserve">
     <value>flowLayoutPanel2</value>
@@ -256,7 +256,7 @@
     <value>btn_handbook</value>
   </data>
   <data name="&gt;&gt;btn_handbook.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_handbook.Parent" xml:space="preserve">
     <value>flowLayoutPanel2</value>
@@ -327,7 +327,7 @@
     <value>btn_online</value>
   </data>
   <data name="&gt;&gt;btn_online.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_online.Parent" xml:space="preserve">
     <value>flowLayoutPanel2</value>
@@ -339,10 +339,10 @@
     <value>Fill</value>
   </data>
   <data name="flowLayoutPanel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 55</value>
+    <value>0, 46</value>
   </data>
   <data name="flowLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>525, 110</value>
+    <value>525, 114</value>
   </data>
   <data name="flowLayoutPanel2.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -372,7 +372,7 @@
     <value>4, 5, 4, 5</value>
   </data>
   <data name="header1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>525, 55</value>
+    <value>525, 46</value>
   </data>
   <data name="header1.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -396,10 +396,10 @@
     <value>Segoe UI, 11pt</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>0, 165</value>
+    <value>0, 160</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>525, 165</value>
+    <value>525, 160</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>HelpPanel</value>

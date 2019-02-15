@@ -27,24 +27,28 @@ namespace CorpusExplorer.Sdk.Blocks
       var blo = new object();
 
       Parallel.ForEach(
-        doc,
-        Configuration.ParallelOptions,
-        sent =>
-        {
-          var set = new HashSet<string>();
-          foreach (var x in sent)
-            set.Add(layer[x]);
-          var hsh =
-            Convert.ToBase64String(
-              HashAlgorithm.ComputeHash(
-                Configuration.Encoding.GetBytes(
-                  string.Join("|", set.OrderBy(x => x)))));
+                       doc,
+                       Configuration.ParallelOptions,
+                       sent =>
+                       {
+                         var set = new HashSet<string>();
+                         foreach (var x in sent)
+                           set.Add(layer[x]);
+                         var hsh =
+                           Convert.ToBase64String(
+                                                  HashAlgorithm.ComputeHash(
+                                                                            Configuration.Encoding.GetBytes(
+                                                                                                            string
+                                                                                                             .Join("|",
+                                                                                                                   set
+                                                                                                                    .OrderBy(x =>
+                                                                                                                               x)))));
 
-          lock (blo)
-          {
-            bag.Add(hsh);
-          }
-        });
+                         lock (blo)
+                         {
+                           bag.Add(hsh);
+                         }
+                       });
 
       lock (_senteceLock)
       {

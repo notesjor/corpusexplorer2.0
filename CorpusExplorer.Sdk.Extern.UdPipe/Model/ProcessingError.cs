@@ -28,7 +28,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
       get
       {
-        string ret = udpipe_csharpPINVOKE.ProcessingError_message_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.ProcessingError_message_get(swigCPtr);
         if (udpipe_csharpPINVOKE.SWIGPendingException.Pending)
           throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
         return ret;
@@ -56,7 +56,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public bool occurred()
     {
-      bool ret = udpipe_csharpPINVOKE.ProcessingError_occurred(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.ProcessingError_occurred(swigCPtr);
       return ret;
     }
 

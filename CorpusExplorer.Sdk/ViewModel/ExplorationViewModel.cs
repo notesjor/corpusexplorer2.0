@@ -35,8 +35,8 @@ namespace CorpusExplorer.Sdk.ViewModel
         return new Dictionary<string, double>();
 
       return CollocatesSignificance[query].Where(x => x.Value > SignificanceMinimum)
-        .OrderByDescending(x => x.Value)
-        .Take(GetLimit);
+                                          .OrderByDescending(x => x.Value)
+                                          .Take(GetLimit);
     }
 
     public IEnumerable<string> GetFulltext(string query, int sentenceSpanPre = 0, int sentenceSpanPost = 0)
@@ -65,7 +65,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 
         foreach (var doc in c.Value)
         {
-          if (doc.Value == null ||
+          if (doc.Value       == null ||
               doc.Value.Count == 0)
             continue;
 
@@ -75,8 +75,8 @@ namespace CorpusExplorer.Sdk.ViewModel
           var max = indices.Max() + sentenceSpanPost;
 
           res.Add(
-            corpus.GetReadableDocumentSnippet(doc.Key, "Wort", min, max).ReduceDocumentToText(),
-            count);
+                  corpus.GetReadableDocumentSnippet(doc.Key, "Wort", min, max).ReduceDocumentToText(),
+                  count);
         }
       }
 
@@ -101,13 +101,13 @@ namespace CorpusExplorer.Sdk.ViewModel
 
       var res = new Dictionary<string, int>();
       foreach (var key in from c in block.SearchResults
-        let corpus = Selection.GetCorpus(c.Key)
-        where corpus != null
-        from doc in c.Value
-        select corpus.GetDocumentMetadata(doc.Key)
-        into meta
-        where meta != null && meta.ContainsKey(metaLabel)
-        select GetMetadata_GetKey(metaLabel, meta))
+                          let corpus = Selection.GetCorpus(c.Key)
+                          where corpus != null
+                          from doc in c.Value
+                          select corpus.GetDocumentMetadata(doc.Key)
+                          into meta
+                          where meta != null && meta.ContainsKey(metaLabel)
+                          select GetMetadata_GetKey(metaLabel, meta))
         if (res.ContainsKey(key))
           res[key]++;
         else

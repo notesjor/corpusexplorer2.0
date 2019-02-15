@@ -3,8 +3,11 @@ using System.Diagnostics;
 using System.Net;
 using System.Windows.Forms;
 using Bcs.IO;
+#if LINUX
+#else
 using CefSharp;
 using CefSharp.WinForms;
+#endif
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
@@ -15,10 +18,16 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
 {
   public partial class WebXpathVisualizer : UserControl
   {
+#if LINUX
+    public string XPath { get; set; }
+    public string Url { get; set; }
+    public event EventHandler XPathChanged;
+    public HtmlNodeCollection SelectedNodesByXPath { get; set; }
+#else
+    private readonly TemporaryFile _file;
     private ChromiumWebBrowser _browser;
     private HtmlDocument _documentOriginal;
     private HtmlDocument _documentWork;
-    private readonly TemporaryFile _file;
 
     private bool _lock;
     private DateTime _lockTimestamp = DateTime.Now;
@@ -139,10 +148,10 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
     {
       if (_browser != null)
         return;
-      
+
       try
       {
-        BoundObject.XPathChanged += (s, e) => XPath = (string)s;
+        BoundObject.XPathChanged += (s, e) => XPath = (string) s;
 
         _browser = StaticBrowserHandler.Get(Size);
         // _browser.LoadingStateChanged += _browser_LoadingStateChanged;
@@ -154,7 +163,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
       {
         InMemoryErrorConsole.Log(ex);
       }
-      
+
       ResumeLayout(false);
     }
 
@@ -176,5 +185,6 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
 
       public static event EventHandler XPathChanged;
     }
+#endif
   }
 }

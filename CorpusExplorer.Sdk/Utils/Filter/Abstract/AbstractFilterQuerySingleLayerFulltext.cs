@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
@@ -22,8 +20,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
 
     protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      return -1;
+      var layer = corpus.GetLayers(LayerDisplayname).FirstOrDefault();
+      return layer == null ? -1 : GetSentenceFirstIndexCall(corpus, documentGuid, layer.GetReadableDocumentByGuid(documentGuid).ReduceToSentences().ToArray()[sentence]);
     }
+
+    protected abstract int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, string sentence);
 
     protected override IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid)
     {
@@ -35,8 +36,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
 
     public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      return null;
+      var layer = corpus.GetLayers(LayerDisplayname).FirstOrDefault();
+      return layer == null ? null : GetWordIndices(corpus, documentGuid, layer.GetReadableDocumentByGuid(documentGuid).ReduceToSentences().ToArray()[sentence]);
     }
+
+    protected abstract IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, string sentence);
 
     protected override bool ValidateCall(AbstractCorpusAdapter corpus, Guid documentGuid)
     {

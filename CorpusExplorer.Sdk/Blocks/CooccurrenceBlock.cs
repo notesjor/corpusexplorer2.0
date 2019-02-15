@@ -78,47 +78,48 @@ namespace CorpusExplorer.Sdk.Blocks
       var @lock = new object();
 
       Parallel.ForEach(
-        CooccurrenceFrequency,
-        Configuration.ParallelOptions,
-        word =>
-        {
-          ISignificance signi;
-          try
-          {
-            signi = Configuration.GetSignificance(
-              CooccurrenceFrequency[word.Key][word.Key],
-              CountSentences);
-          }
-          catch
-          {
-            return;
-          }
+                       CooccurrenceFrequency,
+                       Configuration.ParallelOptions,
+                       word =>
+                       {
+                         ISignificance signi;
+                         try
+                         {
+                           signi = Configuration.GetSignificance(
+                                                                 CooccurrenceFrequency[word.Key][word.Key],
+                                                                 CountSentences);
+                         }
+                         catch
+                         {
+                           return;
+                         }
 
-          var dic = new Dictionary<string, double>();
-          var hsh = new HashSet<string> {word.Key};
+                         var dic = new Dictionary<string, double>();
+                         var hsh = new HashSet<string> {word.Key};
 
-          foreach (var collocate in word.Value)
-          {
-            if (hsh.Contains(collocate.Key))
-              continue;
-            hsh.Add(collocate.Key);
+                         foreach (var collocate in word.Value)
+                         {
+                           if (hsh.Contains(collocate.Key))
+                             continue;
+                           hsh.Add(collocate.Key);
 
-            var val = signi.Calculate(CooccurrenceFrequency[collocate.Key][collocate.Key], collocate.Value);
+                           var val = signi.Calculate(CooccurrenceFrequency[collocate.Key][collocate.Key],
+                                                     collocate.Value);
 
-            if (double.IsInfinity(val) || double.IsNaN(val) || val < Configuration.MinimumSignificance)
-              continue;
+                           if (double.IsInfinity(val) || double.IsNaN(val) || val < Configuration.MinimumSignificance)
+                             continue;
 
-            dic.Add(collocate.Key, val);
-          }
+                           dic.Add(collocate.Key, val);
+                         }
 
-          if (dic.Count <= 0)
-            return;
+                         if (dic.Count <= 0)
+                           return;
 
-          lock (@lock)
-          {
-            CooccurrenceSignificance.Add(word.Key, dic);
-          }
-        });
+                         lock (@lock)
+                         {
+                           CooccurrenceSignificance.Add(word.Key, dic);
+                         }
+                       });
     }
 
     public Dictionary<string, double> GetCooccurrenceRank()

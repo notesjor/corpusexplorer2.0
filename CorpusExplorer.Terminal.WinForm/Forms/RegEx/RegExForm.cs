@@ -6,17 +6,21 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.RegEx
 {
   public partial class RegExForm : AbstractSelectLayer
   {
+    private readonly string[] _initValues;
+
     public RegExForm(string[] initValues, string regEx = "")
     {
+      _initValues = initValues;
       InitializeComponent();
       if (initValues == null)
         return;
 
-      layerSettings1.SelectLayer(initValues[0]);
+      radDropDownList1.DataSource = _initValues;
+      radDropDownList1.SelectedIndex = 0;
       txt_regex.Text = regEx;
     }
 
-    public string SelectColumn => layerSettings1.ResultSelectedLayer;
+    public string SelectColumn => _initValues[radDropDownList1.SelectedIndex];
 
     public string RegularExpression
     {
@@ -33,8 +37,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.RegEx
 
       try
       {
-        var regex = new Regex(txt_regex.Text);
-        if (regex.IsMatch("CorpusExplorerV2.0-JOR-2018"))
+        var regex = new Regex("CorpusExplorerV2.0-JOR-2018");
+        if (regex.IsMatch(txt_regex.Text))
           Error = "Easteregg: Haben Sie gefunden, wonach Sie gesucht haben?";
       }
       catch

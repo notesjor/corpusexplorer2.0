@@ -5,9 +5,9 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {
   public class DateTimeYearMonthOnlyCluster : AbstractCluster
   {
+    private readonly DateTime _central;
     private readonly int _valueMonth;
     private readonly int _valueYear;
-    private readonly DateTime _central;
 
     public DateTimeYearMonthOnlyCluster(DateTime value)
     {

@@ -28,15 +28,15 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
 
         // Erzeuge Index.xml (Guid > Dokumentnamen - Dictionary)
         FileIO.Write(
-          Path.Combine(root, "doc.index.txt"),
-          SerializeDictionary(csel.Value.ToDictionary(x => x, hydra.GetDocumentDisplayname)),
-          Configuration.Encoding);
+                     Path.Combine(root, "doc.index.txt"),
+                     SerializeDictionary(csel.Value.ToDictionary(x => x, hydra.GetDocumentDisplayname)),
+                     Configuration.Encoding);
 
         // Erzeuge Index.xml (Guid > Layernamen - Dictionary)
         FileIO.Write(
-          Path.Combine(root, "layer.index.txt"),
-          SerializeDictionary(hydra.LayerGuidAndDisplaynames.ToDictionary(x => x.Key, x => x.Value)),
-          Configuration.Encoding);
+                     Path.Combine(root, "layer.index.txt"),
+                     SerializeDictionary(hydra.LayerGuidAndDisplaynames.ToDictionary(x => x.Key, x => x.Value)),
+                     Configuration.Encoding);
 
         // Speichere alle Dokumente
         foreach (var dsel in csel.Value)
@@ -45,9 +45,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
 
           // Speichere die Dokument-Metadaten
           FileIO.Write(
-            Path.Combine(dpath, "doc.meta.txt"),
-            SerializeDictionary(hydra.GetDocumentMetadata(dsel)),
-            Configuration.Encoding);
+                       Path.Combine(dpath, "doc.meta.txt"),
+                       SerializeDictionary(hydra.GetDocumentMetadata(dsel)),
+                       Configuration.Encoding);
 
           var list = new List<Guid>();
 
@@ -62,13 +62,13 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
             var lpath = CombineAndEnsureDirectoryExsists(dpath, lguid.ToString());
 
             FileIO.Write(
-              Path.Combine(lpath, "doc.data.txt"),
-              layer.GetReadableDocumentByGuid(dsel).Select(d => string.Join("\t", d)).ToArray(),
-              Configuration.Encoding);
+                         Path.Combine(lpath, "doc.data.txt"),
+                         layer.GetReadableDocumentByGuid(dsel).Select(d => string.Join("\t", d)).ToArray(),
+                         Configuration.Encoding);
           }
 
           FileIO.Write(Path.Combine(dpath, "layer.info.txt"), list.Select(x => x.ToString()).ToArray(),
-            Configuration.Encoding);
+                       Configuration.Encoding);
         }
       }
     }

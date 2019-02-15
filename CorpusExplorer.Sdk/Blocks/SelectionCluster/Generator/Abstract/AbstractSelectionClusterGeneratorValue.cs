@@ -31,21 +31,24 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract
     }
 
     /// <summary>
-    /// Bereinigt einen Cluster-Wert bevor dieser an GenerateKey/NewCluster übergeben wird.
+    ///   Bereinigt einen Cluster-Wert bevor dieser an GenerateKey/NewCluster übergeben wird.
     /// </summary>
     /// <param name="value">Cluster-Wert</param>
     /// <returns>Bereinigter Cluster-Wert</returns>
-    protected virtual object PreFixClusterValue(object value) => value;
+    protected virtual object PreFixClusterValue(object value)
+    {
+      return value;
+    }
 
     /// <summary>
-    /// Erzeugt aus einem Cluster-Wert einen eindeutigen Schlüssel
+    ///   Erzeugt aus einem Cluster-Wert einen eindeutigen Schlüssel
     /// </summary>
     /// <param name="value">ClusterWert</param>
     /// <returns></returns>
     protected abstract string GenerateKey(object value);
 
     /// <summary>
-    /// Erzeugt ein neues Cluster
+    ///   Erzeugt ein neues Cluster
     /// </summary>
     /// <param name="value">Cluster-Wert</param>
     /// <returns>Cluster</returns>

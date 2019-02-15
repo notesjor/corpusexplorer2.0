@@ -5,8 +5,8 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {
   public class DateTimeYearOnlyCluster : AbstractCluster
   {
-    private readonly int _value;
     private readonly DateTime _central;
+    private readonly int _value;
 
     public DateTimeYearOnlyCluster(DateTime value)
     {
@@ -22,7 +22,7 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
     {
       try
       {
-        var test = (DateTime)obj;
+        var test = (DateTime) obj;
         if (_value != test.Year)
           return false;
         Add(documentGuid);

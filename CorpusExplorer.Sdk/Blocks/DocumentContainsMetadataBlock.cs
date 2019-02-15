@@ -39,8 +39,8 @@ namespace CorpusExplorer.Sdk.Blocks
               MetadataToDocument[entry.Key].Add(value, new HashSet<Guid> {dsel});
           else
             MetadataToDocument.Add(
-              entry.Key,
-              new Dictionary<string, HashSet<Guid>> {{value, new HashSet<Guid> {dsel}}});
+                                   entry.Key,
+                                   new Dictionary<string, HashSet<Guid>> {{value, new HashSet<Guid> {dsel}}});
         }
       }
     }

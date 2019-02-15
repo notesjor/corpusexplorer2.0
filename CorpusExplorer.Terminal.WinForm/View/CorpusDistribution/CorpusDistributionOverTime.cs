@@ -54,8 +54,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       foreach (var point in points)
       {
         var value = point.Value.ContainsKey(query)
-          ? point.Value[query][(int) commandBarDropDownList3.SelectedItem.Value]
-          : 0;
+                      ? point.Value[query][(int) commandBarDropDownList3.SelectedItem.Value]
+                      : 0;
         if (value > MaximalValue)
           MaximalValue = value;
 

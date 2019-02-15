@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using CorpusExplorer.Sdk.Extern.SocialMedia.Abstract;
-using CorpusExplorer.Sdk.Extern.SocialMedia.Blogger;
+﻿using CorpusExplorer.Sdk.Extern.SocialMedia.Blogger;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.Abstract;
-using CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Helper;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Tumblr;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Twitter;
@@ -43,7 +40,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
       pages_main.SelectedPageChanging += (s, e) =>
       {
         if (e.Page == page_main_facebook || e.Page == page_main_forum || e.Page == page_main_instagram ||
-            e.Page == page_main_reddit   || e.Page == page_main_web   || e.Page == page_main_youtube ||
+            e.Page == page_main_reddit   || e.Page == page_main_web   || e.Page == page_main_youtube   ||
             e.Page == page_main_wordpress)
           e.Cancel = true;
       };
@@ -86,7 +83,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
        .AddEndpoint(Resources.twitter_128px,
                     "<html><strong>Twitter</strong><br/>Die letzten 3200 Tweets eines Accounts abrufen.</html>",
                     1,
-                    new EndpointRequestSimple(), 
+                    new EndpointRequestSimple(),
                     new TwitterAccountService());
       serviceHome_twitter
        .AddEndpoint(Resources.twitter_128px,
@@ -105,7 +102,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
                     "<html><strong>WordPress</strong><br/>Blogposts suchen und speichern.</html>",
                     1,
                     new EndpointRequestSimple(),
-                    new WordPressService { GetComments = false });
+                    new WordPressService {GetComments = false});
       serviceHome_wordpress
        .AddEndpoint(Resources.wordpress_128px,
                     "<html><strong>WordPress</strong><br/>Blogposts inkl. Kommentare suchen und speichern.</html>",
@@ -127,7 +124,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
       // ToDo: Weitere Service hinzufügen
     }
 
-    private void pages_main_SelectedPageChanging(object sender, Telerik.WinControls.UI.RadPageViewCancelEventArgs e)
+    private void pages_main_SelectedPageChanging(object sender, RadPageViewCancelEventArgs e)
     {
       if (e.Page == null || e.Page.Controls.Count != 1)
         return;

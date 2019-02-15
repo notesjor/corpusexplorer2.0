@@ -22,7 +22,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
       foreach (var dsel in csel.Value)
       {
         var layers = hydra.GetReadableMultilayerDocument(dsel)
-          .ToDictionary(x => x.Key, x => x.Value.Select(y => y.ToArray()).ToArray());
+                          .ToDictionary(x => x.Key, x => x.Value.Select(y => y.ToArray()).ToArray());
         if (!layers.ContainsKey("Wort") || !layers.ContainsKey("Lemma") || !layers.ContainsKey("POS"))
           continue;
 

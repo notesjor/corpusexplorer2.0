@@ -85,7 +85,7 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// </returns>
     public override bool Equals(object obj)
     {
-      if (obj == null ||
+      if (obj       == null ||
           GetType() != obj.GetType())
         return false;
 

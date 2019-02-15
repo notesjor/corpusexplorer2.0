@@ -54,14 +54,14 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       };
 
       var module = new GuiModulePrototype(
-        iconBig,
-        iconSmall,
-        header,
-        description,
-        urlHandbook,
-        urlHandsOnLab,
-        urlVideo,
-        urlOnline)
+                                          iconBig,
+                                          iconSmall,
+                                          header,
+                                          description,
+                                          urlHandbook,
+                                          urlHandsOnLab,
+                                          urlVideo,
+                                          urlOnline)
       {
         Location = new Point(0, 0),
         Dock = DockStyle.Fill,

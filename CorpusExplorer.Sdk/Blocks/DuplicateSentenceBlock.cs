@@ -53,7 +53,7 @@ namespace CorpusExplorer.Sdk.Blocks
         foreach (var w in s.Select(x => layer[x]))
         {
           // Wenn w nur k/ein Zeichen lang ist entferne das zuvor führende Leerzeichen.
-          if (w.Length < 2 &&
+          if (w.Length   < 2 &&
               stb.Length > 0)
             stb.Remove(stb.Length - 1, 1);
 

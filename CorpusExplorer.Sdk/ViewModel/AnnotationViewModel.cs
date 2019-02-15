@@ -55,8 +55,8 @@ namespace CorpusExplorer.Sdk.ViewModel
     public IEnumerable<IEnumerable<string>> GetDocument(Guid? documentGuid = null, Guid? layerGuid = null)
     {
       return Selection.GetReadableDocument(
-        documentGuid ?? _documentGuid,
-        layerGuid ?? _layerGuid);
+                                           documentGuid ?? _documentGuid,
+                                           layerGuid    ?? _layerGuid);
     }
 
     public Dictionary<string, IEnumerable<IEnumerable<string>>> GetDocumentMultilayer(Guid? documentGuid = null)
@@ -142,13 +142,13 @@ namespace CorpusExplorer.Sdk.ViewModel
     public IEnumerable<IEnumerable<bool>> SetLayerValueMask(int sentenceIndex, int wordIndex)
     {
       return Selection.SetDocumentLayerValueMask(
-        _documentGuid,
-        _maskLayerGuid,
-        sentenceIndex,
-        wordIndex,
-        _maskLayerValue)
-        ? Selection.GetDocumentLayerValueMask(_documentGuid, _maskLayerGuid, _maskLayerValue)
-        : null;
+                                                 _documentGuid,
+                                                 _maskLayerGuid,
+                                                 sentenceIndex,
+                                                 wordIndex,
+                                                 _maskLayerValue)
+               ? Selection.GetDocumentLayerValueMask(_documentGuid, _maskLayerGuid, _maskLayerValue)
+               : null;
     }
 
     public void SetNewDocumentMetadata(KeyValuePair<string, Type> property)

@@ -1,6 +1,5 @@
-﻿using System.IO;
+﻿using System;
 using System.Windows.Forms;
-using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Extern.SentimentDetection.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.SentimentDetection;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
@@ -21,7 +20,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       InitializeComponent();
     }
 
-    private void commandBarButton2_Click(object sender, System.EventArgs e)
+    private void commandBarButton2_Click(object sender, EventArgs e)
     {
       var form = new SentimentDetectionConfiguration();
       if (form.ShowDialog() != DialogResult.OK)

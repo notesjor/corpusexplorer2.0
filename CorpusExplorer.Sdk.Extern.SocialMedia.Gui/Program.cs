@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CorpusExplorer.Sdk.Ecosystem;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Forms;
 
 namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui
 {
-  static class Program
+  internal static class Program
   {
     /// <summary>
-    /// Der Haupteinstiegspunkt für die Anwendung.
+    ///   Der Haupteinstiegspunkt für die Anwendung.
     /// </summary>
     [STAThread]
-    static void Main()
+    private static void Main()
     {
       CorpusExplorerEcosystem.Initialize();
 

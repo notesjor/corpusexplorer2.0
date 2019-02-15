@@ -114,16 +114,16 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     private void btn_snapshot_create_Click(object sender, EventArgs e)
     {
       CreateSelection(
-        radGridView1.SelectedRows.Select(
-          row => new FilterQueryMetaContains
-          {
-            Inverse = false,
-            MetaLabel =
-              row.Cells[Resources.Kategorie].Value.ToString(),
-            MetaValues =
-              new[]
-                {row.Cells[Resources.Metadaten].Value.ToString()}
-          }));
+                      radGridView1.SelectedRows.Select(
+                                                       row => new FilterQueryMetaContains
+                                                       {
+                                                         Inverse = false,
+                                                         MetaLabel =
+                                                           row.Cells[Resources.Kategorie].Value.ToString(),
+                                                         MetaValues =
+                                                           new[]
+                                                             {row.Cells[Resources.Metadaten].Value.ToString()}
+                                                       }));
     }
 
     private void ShowViewCall(object sender, EventArgs e)

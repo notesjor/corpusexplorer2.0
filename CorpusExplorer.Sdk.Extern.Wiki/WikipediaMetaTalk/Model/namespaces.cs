@@ -1,25 +1,30 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
-{
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true,
-    Namespace = "http://www.mediawiki.org/xml/export-0.10/")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.mediawiki.org/xml/export-0.10/",
-    IsNullable = false)]
-  public partial class namespaces
-  {
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
 
+namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
+{
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true,
+    Namespace = "http://www.mediawiki.org/xml/export-0.10/")]
+  [XmlRoot(Namespace = "http://www.mediawiki.org/xml/export-0.10/",
+    IsNullable = false)]
+  public class namespaces
+  {
     private @namespace[] namespaceField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute("namespace")]
+    /// <remarks />
+    [XmlElement("namespace")]
     public @namespace[] @namespace
     {
-      get { return this.namespaceField; }
-      set { this.namespaceField = value; }
+      get => namespaceField;
+      set => namespaceField = value;
     }
   }
 }

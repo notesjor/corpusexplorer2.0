@@ -20,20 +20,8 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public string LayerDisplayname { get; set; } = "Wort";
 
-    public IEnumerable<string> DocumentMetaProperties 
+    public IEnumerable<string> DocumentMetaProperties
       => Selection.GetDocumentMetadataPrototypeOnlyProperties();
-
-    protected override void ExecuteAnalyse()
-    {
-      _block = Selection.CreateBlock<ClusterMetadataByCooccurrenceBlock>();
-      _block.SimilarityIndex = SimilarityIndex;
-      _block.LayerDisplayname = LayerDisplayname;
-      _block.SelectionClusterGenerator = new SelectionClusterGeneratorStringValue { MetadataKey = MetadataKey };
-      _block.CooccurrenceMinFrequency = CooccurrenceMinFrequency;
-      _block.MetadataKey = MetadataKey;
-      _block.CooccurrenceMinSignificance = CooccurrenceMinSignificance;
-      _block.Calculate();
-    }
 
     public double CooccurrenceMinSignificance { get; set; } = 1;
 
@@ -41,10 +29,26 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public ClusterMetadataItem RootCluster => _block.RootCluster;
 
-    protected override bool Validate() 
-      => !string.IsNullOrEmpty(LayerDisplayname) && !string.IsNullOrEmpty(MetadataKey) && SimilarityIndex != null;
-
     public DataTable GetDataTable()
-      => _block.GetDataTable();
+    {
+      return _block.GetDataTable();
+    }
+
+    protected override void ExecuteAnalyse()
+    {
+      _block = Selection.CreateBlock<ClusterMetadataByCooccurrenceBlock>();
+      _block.SimilarityIndex = SimilarityIndex;
+      _block.LayerDisplayname = LayerDisplayname;
+      _block.SelectionClusterGenerator = new SelectionClusterGeneratorStringValue {MetadataKey = MetadataKey};
+      _block.CooccurrenceMinFrequency = CooccurrenceMinFrequency;
+      _block.MetadataKey = MetadataKey;
+      _block.CooccurrenceMinSignificance = CooccurrenceMinSignificance;
+      _block.Calculate();
+    }
+
+    protected override bool Validate()
+    {
+      return !string.IsNullOrEmpty(LayerDisplayname) && !string.IsNullOrEmpty(MetadataKey) && SimilarityIndex != null;
+    }
   }
 }

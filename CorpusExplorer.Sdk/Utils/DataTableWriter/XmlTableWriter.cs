@@ -46,15 +46,14 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       {
         tmp = new StringBuilder(template);
         foreach (var column in columns)
-        {
           if (row[column.Key] == null)
             tmp.Replace(marks[column.Key], string.Empty);
           else
             tmp.Replace(marks[column.Key],
-              column.Value == typeof(string)
-                ? _r.Replace(row[column.Key].ToString(), string.Empty).Replace("<", string.Empty).Replace(">", string.Empty)
-                : row[column.Key].ToString().Replace(",", "."));
-        }
+                        column.Value == typeof(string)
+                          ? _r.Replace(row[column.Key].ToString(), string.Empty).Replace("<", string.Empty)
+                              .Replace(">", string.Empty)
+                          : row[column.Key].ToString().Replace(",", "."));
 
         stb.Append(tmp);
         tmp.Clear();
@@ -64,7 +63,9 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
     }
 
     public override AbstractTableWriter Clone(Stream stream)
-      => new XmlTableWriter { OutputStream = stream };
+    {
+      return new XmlTableWriter {OutputStream = stream};
+    }
 
     protected override void WriteFooter()
     {

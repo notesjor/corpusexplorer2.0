@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Forms;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
@@ -40,7 +41,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           {
             MultiLayerValueSeparator = ":",
             MultiLayerQueries = txt_values.Text.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries)
-              .Select(x => x.Trim()),
+                                          .Select(x => x.Trim()),
             Guid = _guid
           };
         // ReSharper disable once CanBeReplacedWithTryCastAndCheckForNull
@@ -50,7 +51,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           var query = (AbstractFilterQuerySingleLayer) combo_query.SelectedValue;
           query.LayerDisplayname = combo_layer.SelectedItem.Text;
           query.LayerQueries = txt_values.Text.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries)
-            .Select(x => x.Trim());
+                                         .Select(x => x.Trim());
           query.Guid = _guid;
           return query;
         }
@@ -62,7 +63,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           var query = (FilterQuerySingleLayerExactPhrase) combo_query.SelectedValue;
           query.LayerDisplayname = combo_layer.SelectedItem.Text;
           query.LayerQueries = txt_values.Text.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries)
-            .Select(x => x.Trim());
+                                         .Select(x => x.Trim());
           query.Guid = _guid;
           return query;
         }
@@ -71,7 +72,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
         // ReSharper disable once CanBeReplacedWithTryCastAndCheckForNull
         if (combo_query.SelectedValue is FilterQuerySingleLayerRegex)
         {
-          var query = (FilterQuerySingleLayerRegex)combo_query.SelectedValue;
+          var query = (FilterQuerySingleLayerRegex) combo_query.SelectedValue;
           query.LayerDisplayname = combo_layer.SelectedItem.Text;
           query.RegexQuery = txt_values.Text;
           query.Guid = _guid;
@@ -82,7 +83,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
         // ReSharper disable once CanBeReplacedWithTryCastAndCheckForNull
         if (combo_query.SelectedValue is FilterQuerySingleLayerRegexFulltext)
         {
-          var query = (FilterQuerySingleLayerRegexFulltext)combo_query.SelectedValue;
+          var query = (FilterQuerySingleLayerRegexFulltext) combo_query.SelectedValue;
           query.LayerDisplayname = combo_layer.SelectedItem.Text;
           query.RegexQuery = txt_values.Text;
           query.Guid = _guid;
@@ -99,9 +100,9 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
       {
         combo_query.Enabled = false;
         txt_values.AutoCompleteDataSource = from layer in _layers
-          where layer != MultiLayer
-          from v in Selection.GetLayerValues(layer)
-          select $"{layer}:{v}";
+                                            where layer != MultiLayer
+                                            from v in Selection.GetLayerValues(layer)
+                                            select $"{layer}:{v}";
         combo_query.SelectedIndex = 3;
       }
       else
@@ -163,7 +164,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
       // combo_query
       _queries = new Dictionary<AbstractFilterQuery, string>
       {
-        { // 0
+        {
+          // 0
           new FilterQuerySingleLayerAnyMatch
           {
             Inverse = false,
@@ -171,7 +173,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           },
           Resources.Snapshot_Condition_AnyValue
         },
-        { // 1
+        {
+          // 1
           new FilterQuerySingleLayerAllInOnDocument
           {
             Inverse = false,
@@ -179,7 +182,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           },
           Resources.Snapshot_Condition_AllValues
         },
-        { // 2
+        {
+          // 2
           new FilterQuerySingleLayerAllInOneSentence
           {
             Inverse = false,
@@ -187,7 +191,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           },
           Resources.Snapshot_Condition_AllValuesInSentence
         },
-        { // 3
+        {
+          // 3
           new FilterQuerySingleLayerExactPhrase
           {
             Inverse = false,
@@ -195,7 +200,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           },
           Resources.Snapshot_Condition_Phrase
         },
-        { // 4
+        {
+          // 4
           new FilterQuerySingleLayerAnyMatch
           {
             Inverse = true,
@@ -203,7 +209,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           },
           Resources.Snapshot_Condition_Exclude
         },
-        { // 5
+        {
+          // 5
           new FilterQuerySingleLayerRegex
           {
             Inverse = false,
@@ -211,7 +218,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           },
           "RegEx-Ausdruck trifft auf Layer-Wert zu"
         },
-        { // 6
+        {
+          // 6
           new FilterQuerySingleLayerRegex
           {
             Inverse = true,
@@ -219,7 +227,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           },
           "RegEx-Ausdruck trifft nicht auf Layer-Wert zu"
         },
-        { // 7
+        {
+          // 7
           new FilterQuerySingleLayerRegex
           {
             Inverse = false,
@@ -227,14 +236,15 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           },
           "RegEx-Ausdruck trifft auf Dokument zu (langsame Abfrage)"
         },
-        { // 8
+        {
+          // 8
           new FilterQuerySingleLayerRegex
           {
             Inverse = true,
             LayerDisplayname = "Wort"
           },
           "RegEx-Ausdruck trifft nicht auf das Dokument zu (langsame Abfrage)"
-        },
+        }
       };
 
       DictionaryBindingHelper.BindDictionary(_queries, combo_query);
@@ -244,8 +254,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
     {
       combo_query.AutoCompleteMode
         = combo_query.SelectedValue is FilterQuerySingleLayerRegex
-            ? System.Windows.Forms.AutoCompleteMode.None
-            : System.Windows.Forms.AutoCompleteMode.Suggest;
+            ? AutoCompleteMode.None
+            : AutoCompleteMode.Suggest;
     }
   }
 }

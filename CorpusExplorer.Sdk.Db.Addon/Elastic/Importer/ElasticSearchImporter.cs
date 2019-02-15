@@ -22,12 +22,12 @@ namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Importer
         return null;
 
       ElasticSearchContextManager
-        .Initialize(
-          new[] {$"{lines[1]}:{lines[2]}"},
-          lines[3].ToLower(),
-          lines.Length < 6 || string.IsNullOrEmpty(lines[4])
-            ? null
-            : new ElasticSearchContextCredentials(lines[4], lines[5]));
+       .Initialize(
+                   new[] {$"{lines[1]}:{lines[2]}"},
+                   lines[3].ToLower(),
+                   lines.Length < 6 || string.IsNullOrEmpty(lines[4])
+                     ? null
+                     : new ElasticSearchContextCredentials(lines[4], lines[5]));
 
       var context = ElasticSearchContextManager.GetContext();
       return context.GetCorpora().Select(guid => CorpusAdapterElasticSearch.Create(context, guid));

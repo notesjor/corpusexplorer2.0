@@ -36,7 +36,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
       get
       {
-        string ret = udpipe_csharpPINVOKE.EmptyNode_deps_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.EmptyNode_deps_get(swigCPtr);
         if (udpipe_csharpPINVOKE.SWIGPendingException.Pending)
           throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
         return ret;
@@ -53,7 +53,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
       get
       {
-        string ret = udpipe_csharpPINVOKE.EmptyNode_feats_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.EmptyNode_feats_get(swigCPtr);
         if (udpipe_csharpPINVOKE.SWIGPendingException.Pending)
           throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
         return ret;
@@ -70,7 +70,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
       get
       {
-        string ret = udpipe_csharpPINVOKE.EmptyNode_form_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.EmptyNode_form_get(swigCPtr);
         if (udpipe_csharpPINVOKE.SWIGPendingException.Pending)
           throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
         return ret;
@@ -82,7 +82,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       set => udpipe_csharpPINVOKE.EmptyNode_id_set(swigCPtr, value);
       get
       {
-        int ret = udpipe_csharpPINVOKE.EmptyNode_id_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.EmptyNode_id_get(swigCPtr);
         return ret;
       }
     }
@@ -92,7 +92,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       set => udpipe_csharpPINVOKE.EmptyNode_index_set(swigCPtr, value);
       get
       {
-        int ret = udpipe_csharpPINVOKE.EmptyNode_index_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.EmptyNode_index_get(swigCPtr);
         return ret;
       }
     }
@@ -107,7 +107,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
       get
       {
-        string ret = udpipe_csharpPINVOKE.EmptyNode_lemma_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.EmptyNode_lemma_get(swigCPtr);
         if (udpipe_csharpPINVOKE.SWIGPendingException.Pending)
           throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
         return ret;
@@ -124,7 +124,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
       get
       {
-        string ret = udpipe_csharpPINVOKE.EmptyNode_misc_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.EmptyNode_misc_get(swigCPtr);
         if (udpipe_csharpPINVOKE.SWIGPendingException.Pending)
           throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
         return ret;
@@ -141,7 +141,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
       get
       {
-        string ret = udpipe_csharpPINVOKE.EmptyNode_upostag_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.EmptyNode_upostag_get(swigCPtr);
         if (udpipe_csharpPINVOKE.SWIGPendingException.Pending)
           throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
         return ret;
@@ -158,7 +158,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
       get
       {
-        string ret = udpipe_csharpPINVOKE.EmptyNode_xpostag_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.EmptyNode_xpostag_get(swigCPtr);
         if (udpipe_csharpPINVOKE.SWIGPendingException.Pending)
           throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
         return ret;

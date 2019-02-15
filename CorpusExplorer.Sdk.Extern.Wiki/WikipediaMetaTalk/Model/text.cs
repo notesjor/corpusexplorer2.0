@@ -1,35 +1,40 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
-{
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true,
-    Namespace = "http://www.mediawiki.org/xml/export-0.10/")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.mediawiki.org/xml/export-0.10/",
-    IsNullable = false)]
-  public partial class text
-  {
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
 
+namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
+{
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true,
+    Namespace = "http://www.mediawiki.org/xml/export-0.10/")]
+  [XmlRoot(Namespace = "http://www.mediawiki.org/xml/export-0.10/",
+    IsNullable = false)]
+  public class text
+  {
     private string spaceField;
 
     private string[] textField;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlAttributeAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlAttribute(DataType = "NCName")]
     public string space
     {
-      get { return this.spaceField; }
-      set { this.spaceField = value; }
+      get => spaceField;
+      set => spaceField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
+    /// <remarks />
+    [XmlText]
     public string[] Text
     {
-      get { return this.textField; }
-      set { this.textField = value; }
+      get => textField;
+      set => textField = value;
     }
   }
 }

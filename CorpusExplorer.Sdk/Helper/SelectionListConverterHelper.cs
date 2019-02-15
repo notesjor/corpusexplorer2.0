@@ -20,14 +20,12 @@ namespace CorpusExplorer.Sdk.Helper
       {
         var selDat = listStream.Split(new[] {"?"}, StringSplitOptions.RemoveEmptyEntries);
         foreach (var sD in selDat)
-        {
           try
           {
             var dic = new Dictionary<Guid, HashSet<Guid>>();
 
             var corpora = sD.Split(new[] {"#"}, StringSplitOptions.RemoveEmptyEntries);
             for (var i = 1; i < corpora.Length; i++)
-            {
               try
               {
                 var items = corpora[i].Split(new[] {">"}, StringSplitOptions.RemoveEmptyEntries);
@@ -44,7 +42,6 @@ namespace CorpusExplorer.Sdk.Helper
               {
                 // ignore
               }
-            }
 
             var head = corpora[0].Split(new[] {"="}, StringSplitOptions.RemoveEmptyEntries);
             var selection = project.CreateSelection(dic, DisplaynameDecoder(head[2]),
@@ -59,7 +56,6 @@ namespace CorpusExplorer.Sdk.Helper
           {
             // ignore
           }
-        }
       }
       catch
       {
@@ -85,20 +81,21 @@ namespace CorpusExplorer.Sdk.Helper
     private static AbstractFilterQuery[] QueryDecoder(string exportInline)
     {
       return Configuration.Encoding.GetString(Convert.FromBase64String(exportInline.Replace("&", "=")))
-        .Split(new[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries).Select(QueryParser.Parse).ToArray();
+                          .Split(new[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries).Select(QueryParser.Parse)
+                          .ToArray();
     }
 
     private static string QueryEncoder(string exportInline)
     {
       return string.IsNullOrEmpty(exportInline)
-        ? ""
-        : Convert.ToBase64String(Configuration.Encoding.GetBytes(exportInline)).Replace("=", "&");
+               ? ""
+               : Convert.ToBase64String(Configuration.Encoding.GetBytes(exportInline)).Replace("=", "&");
     }
 
     private static string ToListStream(string parent, Selection selection)
     {
       var stb = new StringBuilder(
-        $"?{selection.Guid}={parent}={DisplaynameEncoder(selection.Displayname)}={QueryEncoder(ExporterQuery.ExportInline(selection))}");
+                                  $"?{selection.Guid}={parent}={DisplaynameEncoder(selection.Displayname)}={QueryEncoder(ExporterQuery.ExportInline(selection))}");
 
       foreach (var c in selection)
         stb.Append($"#{c.Key}>{string.Join(">", c.Value.ToArray())}");

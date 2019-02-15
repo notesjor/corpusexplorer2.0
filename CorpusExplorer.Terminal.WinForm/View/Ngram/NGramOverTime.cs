@@ -3,7 +3,6 @@ using System.Linq;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Helper;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
-using CorpusExplorer.Terminal.WinForm.Properties;
 using Telerik.Charting;
 using Telerik.WinControls.UI;
 

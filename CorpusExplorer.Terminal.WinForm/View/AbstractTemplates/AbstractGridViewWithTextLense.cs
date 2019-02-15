@@ -25,7 +25,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
     }
 
     protected string UseParentCellForHighlighting { get; set; }
-    
+
     protected void AddChildTemplate(GetFilterQueryDelegate func)
     {
       if (_grid == null)
@@ -87,17 +87,17 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
         new GridViewTextBoxColumn("Info") {IsVisible = false, DataType = typeof(IEnumerable<KeyValuePair<Guid, int>>)};
 
       template.Columns.AddRange(
-        txtpre,
-        txtcontent,
-        txtpost,
-        new GridViewTextBoxColumn(Resources.Frequency)
-        {
-          DataType = typeof(int),
-          MaxWidth = 85,
-          TextAlignment = ContentAlignment.MiddleCenter
-        },
-        txtbtn,
-        txtindex);
+                                txtpre,
+                                txtcontent,
+                                txtpost,
+                                new GridViewTextBoxColumn(Resources.Frequency)
+                                {
+                                  DataType = typeof(int),
+                                  MaxWidth = 85,
+                                  TextAlignment = ContentAlignment.MiddleCenter
+                                },
+                                txtbtn,
+                                txtindex);
 
       template.SortDescriptors.Add(Resources.Frequency, ListSortDirection.Descending);
       _grid.CommandCellClick += OnGridOnCommandCellClick;
@@ -152,6 +152,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
     }
 
     protected delegate AbstractFilterQuery GetFilterQueryDelegate(DataRowView row);
-    protected delegate IEnumerable<KeyValuePair<Guid,int>> GetKwicResultDelegate(DataRowView row);
+
+    protected delegate IEnumerable<KeyValuePair<Guid, int>> GetKwicResultDelegate(DataRowView row);
   }
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <!--*-->
+    <id>CorpusExplorer.Sdk</id>
+    <!--*-->
+    <version>2.2019.1.5</version>
+    <title>CorpusExplorer.Sdk</title>
+    <!--*-->
+    <authors>Jan Oliver Rüdiger</authors>
+    <owners>Jan Oliver Rüdiger</owners>
+    <licenseUrl>https://github.com/notesjor/corpusexplorer2.0/blob/master/LICENSE</licenseUrl>
+    <projectUrl>http://www.CorpusExplorer.de</projectUrl>
+    <iconUrl>http://www.bitcutstudios.com/products/CorpusExplorer/CorpusExplorer_64x64.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <!--*-->
+    <description>Software for corpus linguists and text/data mining enthusiasts. The CorpusExplorer combines over 45 interactive visualizations under a user-friendly interface. Routine tasks such as text acquisition, cleaning or tagging are completely automated. The simple interface supports the use in university teaching and leads users/students to fast and substantial results. The CorpusExplorer is open for many standards (XML, CSV, JSON, R, etc.) and also offers its own software development kit (SDK).</description>
+    <!--*-->
+    <releaseNotes>https://github.com/notesjor/corpusexplorer2.0/</releaseNotes>
+    <copyright>Copyright 2013-2018 - Jan Oliver Rüdiger</copyright>
+    <tags>NLP, text-mining, data-mining, textmining, datamining, linguistics, corpus, corpora, corpus-linguistics, natural language processing</tags>
+    <dependencies>
+      <!--
+      <dependency id="SampleDependency" version="1.0" />
+-->
+    </dependencies>
+  </metadata>
+</package>

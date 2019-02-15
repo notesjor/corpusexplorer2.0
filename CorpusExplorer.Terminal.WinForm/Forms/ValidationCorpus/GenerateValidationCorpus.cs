@@ -37,7 +37,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.ValidationCorpus
       var textAB1 = _labelA + " " + _labelB;
       var textAC1 = _labelA + " " + _labelC;
       var textBC1 = _labelB + " " + _labelC;
-      var textCC = _labelC + " " + _labelC;
+      var textCC = _labelC + " "  + _labelC;
       var textAB2 = _labelB + " " + _labelA;
       var textAC2 = _labelC + " " + _labelA;
       var textBC2 = _labelC + " " + _labelB;

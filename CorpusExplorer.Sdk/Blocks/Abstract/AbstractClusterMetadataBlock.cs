@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.ClusterMetadata;
-using CorpusExplorer.Sdk.Blocks.Disambiguation;
 using CorpusExplorer.Sdk.Blocks.Helper;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract;
 using CorpusExplorer.Sdk.Blocks.Similarity;
 using CorpusExplorer.Sdk.Blocks.Similarity.Abstract;
-using CorpusExplorer.Sdk.Diagnostic;
-using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model;
 
 namespace CorpusExplorer.Sdk.Blocks.Abstract
@@ -45,6 +40,16 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
       }
     }
 
+    public AbstractSelectionClusterGenerator SelectionClusterGenerator { get; set; } =
+      new SelectionClusterGeneratorStringValue();
+
+    /// <summary>
+    ///   Gets or sets the similarity index.
+    /// </summary>
+    public AbstractDistance SimilarityIndex { get; set; } = new EuclideanDistance();
+
+    public string MetadataKey { get; set; } = "Autor";
+
     private ClusterMetadataItem CalculateRootCluster()
     {
       var cvalues = CalculateDistances();
@@ -57,17 +62,15 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
 
         // Ermittle min.
         for (var i = 0; i < _clusters.Count; i++)
+        for (var j = i + 1; j < _clusters.Count; j++)
         {
-          for (var j = i + 1; j < _clusters.Count; j++)
-          {
-            var val = cvalues[_clusters[i].Label, _clusters[j].Label];
-            if (val >= min)
-              continue;
+          var val = cvalues[_clusters[i].Label, _clusters[j].Label];
+          if (val >= min)
+            continue;
 
-            min = val;
-            k1 = i < j ? i : j; // Notwendig, um später korrekt zu löschen
-            k2 = i < j ? j : i;
-          }
+          min = val;
+          k1 = i < j ? i : j; // Notwendig, um später korrekt zu löschen
+          k2 = i < j ? j : i;
         }
 
         // Löse alte Werte aus den bestehenden Werten heraus.
@@ -82,9 +85,9 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
         var ncluster = JoinCluster(c1, c2, min);
         foreach (var c in _clusters)
           cvalues.Add(
-            c.Label,
-            ncluster.Label,
-            CalculateDistance(SimilarityIndex, (T)c.Data, (T)ncluster.Data));
+                      c.Label,
+                      ncluster.Label,
+                      CalculateDistance(SimilarityIndex, (T) c.Data, (T) ncluster.Data));
         _clusters.Add(ncluster); // Einfügen darf erst nach dem Vergleich erfolgen
       }
 
@@ -99,11 +102,11 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
       var cvalues = new DoubleKeyDictionary<double>();
       // Prefill
       for (var i = 0; i < _clusters.Count; i++)
-        for (var j = i + 1; j < _clusters.Count; j++)
-          cvalues.Add(
-            _clusters[i].Label,
-            _clusters[j].Label,
-            CalculateDistance(SimilarityIndex, (T)_clusters[i].Data, (T)_clusters[j].Data));
+      for (var j = i + 1; j < _clusters.Count; j++)
+        cvalues.Add(
+                    _clusters[i].Label,
+                    _clusters[j].Label,
+                    CalculateDistance(SimilarityIndex, (T) _clusters[i].Data, (T) _clusters[j].Data));
       return cvalues;
     }
 
@@ -119,9 +122,9 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
 
       dt.BeginLoadData();
       foreach (var k1 in keys)
-        foreach (var k2 in keys)
-          if (dic.ContainsKeyCombination(k1, k2))
-            dt.Rows.Add(k1, k2, dic[k1, k2]);
+      foreach (var k2 in keys)
+        if (dic.ContainsKeyCombination(k1, k2))
+          dt.Rows.Add(k1, k2, dic[k1, k2]);
       dt.EndLoadData();
 
       return dt;
@@ -151,17 +154,11 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
 
         dt.Rows.Add(row.ToArray());
       }
+
       dt.EndLoadData();
 
       return dt;
     }
-
-    public AbstractSelectionClusterGenerator SelectionClusterGenerator { get; set; } = new SelectionClusterGeneratorStringValue();
-
-    /// <summary>
-    ///   Gets or sets the similarity index.
-    /// </summary>
-    public AbstractDistance SimilarityIndex { get; set; } = new EuclideanDistance();
 
     /// <summary>
     ///   Funktion die aufgerufen wird, wenn eine Berechnung durchgeführt werden soll.
@@ -176,7 +173,7 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
 
     private ClusterMetadataItem JoinCluster(ClusterMetadataItem cA, ClusterMetadataItem cB, double similarity)
     {
-      return new ClusterMetadataItem(cA, cB, $"({cA.Label}|{cB.Label})", Join((T)cA.Data, (T)cB.Data), similarity);
+      return new ClusterMetadataItem(cA, cB, $"({cA.Label}|{cB.Label})", Join((T) cA.Data, (T) cB.Data), similarity);
     }
 
     protected abstract T Join(T a, T b);
@@ -214,8 +211,6 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
 
       return res.Select(x => new ClusterMetadataItem(x.Key, x.Value)).ToList();
     }
-
-    public string MetadataKey { get; set; } = "Autor";
 
     protected abstract T CalculateValues(Selection selection);
   }

@@ -43,22 +43,6 @@ namespace CorpusExplorer.Sdk.ViewModel
       return res;
     }
 
-    protected override void ExecuteAnalyse()
-    {
-      _block = Selection.CreateBlock<Frequency3LayerBlock>();
-      _block.Layer1Displayname = Layer1Displayname;
-      _block.Layer2Displayname = Layer2Displayname;
-      _block.Layer3Displayname = Layer3Displayname;
-
-      _block.Calculate();
-      Frequency = _block.Frequency;
-    }
-
-    protected override bool Validate()
-    {
-      return true;
-    }
-
     public DataTable GetNormalizedDataTable(double baseValue = 1000000)
     {
       var div = Frequency.SelectMany(x => x.Value).SelectMany(x => x.Value).Select(x => x.Value).Sum() / baseValue;
@@ -79,6 +63,22 @@ namespace CorpusExplorer.Sdk.ViewModel
 
       res.EndLoadData();
       return res;
+    }
+
+    protected override void ExecuteAnalyse()
+    {
+      _block = Selection.CreateBlock<Frequency3LayerBlock>();
+      _block.Layer1Displayname = Layer1Displayname;
+      _block.Layer2Displayname = Layer2Displayname;
+      _block.Layer3Displayname = Layer3Displayname;
+
+      _block.Calculate();
+      Frequency = _block.Frequency;
+    }
+
+    protected override bool Validate()
+    {
+      return true;
     }
   }
 }

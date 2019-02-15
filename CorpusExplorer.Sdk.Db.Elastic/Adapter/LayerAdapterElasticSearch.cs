@@ -77,12 +77,12 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
         var doc = _db.GetLayerDocument(d, _layer.LayerId);
 
         _db.Add(
-          new LayerDocument
-          {
-            Content = doc.Content,
-            LayerId = res.LayerId,
-            DocumentId = doc.DocumentId
-          });
+                new LayerDocument
+                {
+                  Content = doc.Content,
+                  LayerId = res.LayerId,
+                  DocumentId = doc.DocumentId
+                });
       }
 
       return new LayerAdapterElasticSearch
@@ -111,12 +111,12 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
       var doc = _db.GetLayerDocument(documentGuid, _layer.LayerId);
 
       _db.Add(
-        new LayerDocument
-        {
-          Content = doc.Content,
-          LayerId = res.LayerId,
-          DocumentId = doc.DocumentId
-        });
+              new LayerDocument
+              {
+                Content = doc.Content,
+                LayerId = res.LayerId,
+                DocumentId = doc.DocumentId
+              });
 
       return new LayerAdapterElasticSearch
       {
@@ -180,12 +180,12 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
           });
 
         context.Add(
-          new LayerDocument
-          {
-            DocumentId = d.Key,
-            Content = d.Value,
-            LayerId = layerSet.LayerId
-          });
+                    new LayerDocument
+                    {
+                      DocumentId = d.Key,
+                      Content = d.Value,
+                      LayerId = layerSet.LayerId
+                    });
       }
 
       var res = Create(context, layerSet);
@@ -225,7 +225,7 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
     public override IEnumerable<IEnumerable<string>> GetReadableDocumentByGuid(Guid documentGuid)
     {
       var doc = this[documentGuid];
-      return doc == null ? null : (from s in doc where s != null select s.Select(w => this[w]));
+      return doc == null ? null : from s in doc where s != null select s.Select(w => this[w]);
     }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocumentSnippetByGuid(
@@ -251,6 +251,21 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
     public override Dictionary<string, int> ReciveRawLayerDictionary()
     {
       return _values.ReciveRawValueToIndex().ToDictionary(x => x.Key, x => x.Value);
+    }
+
+    public override Dictionary<int, string> ReciveRawReverseLayerDictionary()
+    {
+      return _values.ReciveRawIndexToValue().ToDictionary(x => x.Key, x => x.Value);
+    }
+
+    public override void ResetRawLayerDictionary(Dictionary<string, int> dictionary)
+    {
+      _values = new CeDictionary(dictionary);
+    }
+
+    public override void ResetRawReverseLayerDictionary(Dictionary<int, string> reverse)
+    {
+      _values = new CeDictionary(reverse);
     }
 
     public override void RefreshDictionaries()
@@ -377,16 +392,16 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
 
       var regex = new Regex(regEx);
       Parallel.ForEach(
-        _values,
-        Configuration.ParallelOptions,
-        x =>
-        {
-          if (regex.IsMatch(x.Value))
-            lock (@lock)
-            {
-              res.Add(x.Value);
-            }
-        });
+                       _values,
+                       Configuration.ParallelOptions,
+                       x =>
+                       {
+                         if (regex.IsMatch(x.Value))
+                           lock (@lock)
+                           {
+                             res.Add(x.Value);
+                           }
+                       });
 
       return res;
     }

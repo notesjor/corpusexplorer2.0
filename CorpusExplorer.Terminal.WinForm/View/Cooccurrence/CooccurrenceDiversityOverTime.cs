@@ -52,8 +52,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
         drop_select.Items.Clear();
 
         foreach (var x in _vm.DateTimeValues)
-          foreach (var y in x.Value)
-            drop_select.Items.Add(y.Key, false);
+        foreach (var y in x.Value)
+          drop_select.Items.Add(y.Key, false);
       });
     }
 

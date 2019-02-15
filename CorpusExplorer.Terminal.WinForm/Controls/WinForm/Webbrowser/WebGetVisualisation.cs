@@ -12,6 +12,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
   [ToolboxItem(true)]
   public partial class WebGetVisualisation : WebRequestVisualisation
   {
+#if LINUX
+#else
     public WebGetVisualisation()
     {
       InitializeComponent();
@@ -24,10 +26,11 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
 
       foreach (var parameter in Parameters)
         stb.Append(
-          $"{HttpUtility.UrlEncode(parameter.Key, Configuration.Encoding)}={HttpUtility.UrlEncode(parameter.Value, Configuration.Encoding)}&");
+                   $"{HttpUtility.UrlEncode(parameter.Key, Configuration.Encoding)}={HttpUtility.UrlEncode(parameter.Value, Configuration.Encoding)}&");
 
       MainpageUrl = stb.ToString();
       base.GoToMainpage();
     }
+#endif
   }
 }

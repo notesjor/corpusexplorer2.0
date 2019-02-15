@@ -34,9 +34,9 @@ namespace CorpusExplorer.Sdk.Blocks
       SearchResults = QueryFilter.SearchOnWordLevel(Selection, LayerQueries);
       ResultSelection =
         Selection.CreateTemporary(
-          SearchResults.ToDictionary(
-            x => x.Key,
-            x => new HashSet<Guid>(x.Value.Select(y => y.Key))));
+                                  SearchResults.ToDictionary(
+                                                             x => x.Key,
+                                                             x => new HashSet<Guid>(x.Value.Select(y => y.Key))));
     }
   }
 }

@@ -12,15 +12,15 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
 {
   public class ImporterTreeTagger : AbstractImporter
   {
-    private object _layerLock = new object();
-    private LayerValueState _layerW = new LayerValueState("Wort", 0);
-    private LayerValueState _layerP = new LayerValueState("POS", 1);
-    private LayerValueState _layerL = new LayerValueState("Lemma", 2);
-    private Dictionary<Guid, Dictionary<string, object>> _docMeta = new Dictionary<Guid, Dictionary<string, object>>();
+    private readonly Dictionary<Guid, Dictionary<string, object>> _docMeta = new Dictionary<Guid, Dictionary<string, object>>();
+    private readonly LayerValueState _layerL = new LayerValueState("Lemma", 2);    
+    private readonly LayerValueState _layerP = new LayerValueState("POS", 1);
+    private readonly LayerValueState _layerW = new LayerValueState("Wort", 0);
+    private readonly object _layerLock = new object();
 
     protected override IEnumerable<AbstractCorpusAdapter> Execute(string importFilePath)
     {
-      var sentenceMarks = new HashSet<string> { "$.", ".", "SENT", "PON", "FS", "interp" };
+      var sentenceMarks = new HashSet<string> {"$.", ".", "SENT", "PON", "FS", "interp"};
       var lines = FileIO.ReadLines(importFilePath, Configuration.Encoding);
 
       var docW = new List<string[]>();
@@ -32,10 +32,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
       var senL = new List<string>();
 
       foreach (var line in lines)
-      {
         try
         {
-          var split = line.Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
+          var split = line.Split(new[] {"\t"}, StringSplitOptions.RemoveEmptyEntries);
           if (split.Length != 3)
             continue;
 
@@ -60,7 +59,6 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
         {
           //ignore
         }
-      }
 
       if (senW.Count > 0)
       {

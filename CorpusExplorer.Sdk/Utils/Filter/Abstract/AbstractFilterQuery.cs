@@ -48,7 +48,8 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
       Guid = Guid.NewGuid();
     }
 
-    [XmlAttribute("guid")] public Guid Guid { get; set; }
+    [XmlAttribute("guid")]
+    public Guid Guid { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether inverse.
@@ -85,9 +86,13 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     ///   Gibt eine Auflistung aller Sätze und aller Fundstellen (Wortindex) zurück
     /// </summary>
     /// <param name="corpus">Korpus das das Dokument enthält</param>
-    /// <param name="documentGuidPreFilter">Wenn angegeben, werden nur die angegebenen Dokumente durchsucht (müssen im Korpus enthalten sein)</param>
+    /// <param name="documentGuidPreFilter">
+    ///   Wenn angegeben, werden nur die angegebenen Dokumente durchsucht (müssen im Korpus
+    ///   enthalten sein)
+    /// </param>
     /// <returns>Key = DocumentGuid / Value => Key = Satzindex / Value = Fundstelle</returns>
-    public Dictionary<Guid, Dictionary<int, HashSet<int>>> GetSentenceAndWordIndices(AbstractCorpusAdapter corpus, IEnumerable<Guid> documentGuidPreFilter = null)
+    public Dictionary<Guid, Dictionary<int, HashSet<int>>> GetSentenceAndWordIndices(
+      AbstractCorpusAdapter corpus, IEnumerable<Guid> documentGuidPreFilter = null)
     {
       var res = new Dictionary<Guid, Dictionary<int, HashSet<int>>>();
       var loc = new object();
@@ -96,14 +101,16 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
 
       Parallel.ForEach(documentGuidPreFilter, Configuration.ParallelOptions, dsel =>
       {
-        if(!corpus.ContainsDocument(dsel))
+        if (!corpus.ContainsDocument(dsel))
           return;
 
         var sen = GetSentenceAndWordIndices(corpus, dsel);
         if (sen == null || sen.Count == 0)
           return;
         lock (loc)
+        {
           res.Add(dsel, sen);
+        }
       });
       return res;
     }
@@ -136,9 +143,13 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     ///   Gibt eine Auflistung aller Sätze und aller Fundstellen (Wortindex) zurück
     /// </summary>
     /// <param name="selection">Korpus das das Dokument enthält</param>
-    /// <param name="documentGuidPreFilter">Wenn angegeben, werden nur die angegebenen Dokumente durchsucht (müssen im Korpus enthalten sein)</param>
+    /// <param name="documentGuidPreFilter">
+    ///   Wenn angegeben, werden nur die angegebenen Dokumente durchsucht (müssen im Korpus
+    ///   enthalten sein)
+    /// </param>
     /// <returns>Key = KorpusGuid / Value => Key = DocumentGuid / Value => Key = Satzindex / Value = Fundstelle</returns>
-    public Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>> GetSentenceAndWordIndices(Selection selection, IEnumerable<Guid> documentGuidPreFilter = null)
+    public Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>> GetSentenceAndWordIndices(
+      Selection selection, IEnumerable<Guid> documentGuidPreFilter = null)
     {
       var lo = new object();
       var res = new Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>>();
@@ -148,7 +159,9 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
         var corpus = selection.GetCorpus(csel.Key);
         var tmp = GetSentenceAndWordIndices(corpus, documentGuidPreFilter);
         lock (lo)
+        {
           res.Add(csel.Key, tmp);
+        }
       });
 
       return res;
@@ -159,9 +172,13 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     ///   selektiert werden.
     /// </summary>
     /// <param name="corpus">Korpus das das Dokument enthält</param>
-    /// <param name="documentGuidPreFilter">Wenn angegeben, werden nur die angegebenen Dokumente durchsucht (müssen im Korpus enthalten sein)</param>
+    /// <param name="documentGuidPreFilter">
+    ///   Wenn angegeben, werden nur die angegebenen Dokumente durchsucht (müssen im Korpus
+    ///   enthalten sein)
+    /// </param>
     /// <returns>Auflistung Key = Dokument / Value = SatzId</returns>
-    public Dictionary<Guid, HashSet<int>> GetSentenceIndices(AbstractCorpusAdapter corpus, IEnumerable<Guid> documentGuidPreFilter = null)
+    public Dictionary<Guid, HashSet<int>> GetSentenceIndices(AbstractCorpusAdapter corpus,
+                                                             IEnumerable<Guid> documentGuidPreFilter = null)
     {
       var res = new Dictionary<Guid, HashSet<int>>();
       var loc = new object();
@@ -174,7 +191,9 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
         if (sen == null || sen.Count == 0)
           return;
         lock (loc)
+        {
           res.Add(dsel, sen);
+        }
       });
       return res;
     }
@@ -242,7 +261,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
       // Inverse erlaubt es die Hauptbedingung umzukerhen.
       // Sollte nicht Hauptbedingung nicht wahr sein, prüfe die Unterbedingungen.
       return (Inverse ? !ValidateCall(corpus, documentGuid) : ValidateCall(corpus, documentGuid))
-             || OrFilterQueries.Any(query => query.Validate(corpus, documentGuid));
+          || OrFilterQueries.Any(query => query.Validate(corpus, documentGuid));
     }
 
     /// <summary>

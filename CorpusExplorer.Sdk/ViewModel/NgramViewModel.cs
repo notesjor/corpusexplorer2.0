@@ -35,7 +35,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     public Dictionary<string, int> NGramFrequency { get; set; }
 
     /// <summary>
-    /// Limitiert die Ausgabe von GetDataTable auf die TOP-N-Gramm Frequenzen. Wenn 0 - dann keine Limitierung.
+    ///   Limitiert die Ausgabe von GetDataTable auf die TOP-N-Gramm Frequenzen. Wenn 0 - dann keine Limitierung.
     /// </summary>
     /// <value>The n gram maximum results.</value>
     public int NGramMaxResults { get; set; }
@@ -53,6 +53,13 @@ namespace CorpusExplorer.Sdk.ViewModel
     public int NGramSize { get; set; }
 
     /// <summary>
+    ///   Eigenschaft kann gesetzt werden, um die Ausgabe von GetDataTable() zu filtern.
+    ///   Zum Filter/Optimieren des Blocks sollte Configuration.MinimumFrequency gesetzt werden.
+    /// </summary>
+    /// <value>The n gram minimum frequency.</value>
+    public int NGramMinFrequency { get; set; } = 0;
+
+    /// <summary>
     ///   Gibt eine Datentabelle zur�ck
     /// </summary>
     /// <returns>Datentabelle</returns>
@@ -63,8 +70,8 @@ namespace CorpusExplorer.Sdk.ViewModel
       res.Columns.Add(Resources.Frequency, typeof(int));
 
       var data = NGramMaxResults == 0
-        ? NGramFrequency
-        : NGramFrequency.OrderByDescending(x => x.Value).Take(NGramMaxResults);
+                   ? NGramFrequency
+                   : NGramFrequency.OrderByDescending(x => x.Value).Take(NGramMaxResults);
 
       res.BeginLoadData();
       foreach (var pair in data)
@@ -78,13 +85,6 @@ namespace CorpusExplorer.Sdk.ViewModel
     public IEnumerable<string> LayerDisplaynames => Selection.LayerUniqueDisplaynames;
 
     public string LayerDisplayname { get; set; }
-
-    /// <summary>
-    /// Eigenschaft kann gesetzt werden, um die Ausgabe von GetDataTable() zu filtern.
-    /// Zum Filter/Optimieren des Blocks sollte Configuration.MinimumFrequency gesetzt werden.
-    /// </summary>
-    /// <value>The n gram minimum frequency.</value>
-    public int NGramMinFrequency { get; set; } = 0;
 
     protected override void ExecuteAnalyse()
     {
@@ -112,8 +112,9 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     protected override bool Validate()
     {
-      return !string.IsNullOrEmpty(NGramPattern) && !string.IsNullOrEmpty(LayerDisplayname)
-                                                 && NGramPatternSize < NGramSize && NGramSize > 0;
+      return !string.IsNullOrEmpty(NGramPattern) &&
+             !string.IsNullOrEmpty(LayerDisplayname)
+          && NGramPatternSize < NGramSize && NGramSize > 0;
     }
   }
 }

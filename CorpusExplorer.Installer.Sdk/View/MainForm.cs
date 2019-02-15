@@ -19,12 +19,12 @@ namespace CorpusExplorer.Installer.Sdk.View
     private static DialogResult AskAbortInstallation()
     {
       return MessageBox.Show(
-               Resources.MainForm_AskAbortInstallation,
-               Resources.MainForm_AskAbortInstallationHeader,
-               MessageBoxButtons.YesNo,
-               MessageBoxIcon.Question) == DialogResult.Yes
-        ? DialogResult.Abort
-        : DialogResult.None;
+                             Resources.MainForm_AskAbortInstallation,
+                             Resources.MainForm_AskAbortInstallationHeader,
+                             MessageBoxButtons.YesNo,
+                             MessageBoxIcon.Question) == DialogResult.Yes
+               ? DialogResult.Abort
+               : DialogResult.None;
     }
 
     private void btn_abort_Click(object sender, EventArgs e)

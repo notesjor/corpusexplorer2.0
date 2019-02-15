@@ -13,7 +13,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper
   public sealed class CsvScraper : AbstractScraper
   {
     // ReSharper disable once MemberCanBePrivate.Global
-    public string[] Delimiters { get; set; } = { ";" };
+    public string[] Delimiters { get; set; } = {";"};
     public override string DisplayName => "CSV-Datei";
 
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
@@ -73,7 +73,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper
 
     private string Clean(string input)
     {
-      if(input == null || input.Length < 2)
+      if (input == null || input.Length < 2)
         return input;
       if (input[0] == '"' && input[input.Length - 1] == '"')
         return input.Substring(1, input.Length - 2);

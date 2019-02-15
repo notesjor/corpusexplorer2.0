@@ -28,9 +28,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       _layerQueryCache = new ConcurrentDictionary<string, int[]>();
     }
 
-    [XmlAttribute("layer")] public string LayerDisplayname { get; set; }
+    [XmlAttribute("layer")]
+    public string LayerDisplayname { get; set; }
 
-    [XmlAttribute("mark")] public string Mark { get; private set; }
+    [XmlAttribute("mark")]
+    public string Mark { get; private set; }
 
     /// <summary>
     ///   Gibt eine automatisch generierte Zusammenfassung des Inhalts/Bedeutung zur�ck.
@@ -102,17 +104,17 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// </returns>
     protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      if (corpus == null ||
+      if (corpus       == null ||
           documentGuid == Guid.Empty)
         return -1;
       var queries = GetQueries(corpus);
-      if (queries == null ||
+      if (queries        == null ||
           queries.Length == 0)
         return -1;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
       var doc = layer?[documentGuid];
-      if (doc == null ||
-          sentence < 0 ||
+      if (doc      == null ||
+          sentence < 0     ||
           sentence >= doc.Length)
         return -1;
 
@@ -142,11 +144,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     {
       lock (_getSentenceCallLock)
       {
-        if (corpus == null ||
+        if (corpus       == null ||
             documentGuid == Guid.Empty)
           return null;
         var queries = GetQueries(corpus);
-        if (queries == null ||
+        if (queries        == null ||
             queries.Length == 0)
           return null;
         var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
@@ -183,11 +185,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// <returns>Auflistung aller Vorkommen im Satz</returns>
     public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      if (corpus == null ||
+      if (corpus       == null ||
           documentGuid == Guid.Empty)
         return null;
       var queries = GetQueries(corpus);
-      if (queries == null ||
+      if (queries        == null ||
           queries.Length == 0)
         return null;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
@@ -199,8 +201,8 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
         return null;
 
       var doc = layer[documentGuid];
-      if (doc == null ||
-          sentence < 0 ||
+      if (doc      == null ||
+          sentence < 0     ||
           sentence >= doc.Length)
         return null;
 
@@ -228,11 +230,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// </returns>
     protected override bool ValidateCall(AbstractCorpusAdapter corpus, Guid documentGuid)
     {
-      if (corpus == null ||
+      if (corpus       == null ||
           documentGuid == Guid.Empty)
         return false;
       var queries = GetQueries(corpus);
-      if (queries == null ||
+      if (queries        == null ||
           queries.Length == 0)
         return false;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);

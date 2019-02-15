@@ -28,7 +28,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
   public partial class NGramDiagram : AbstractView
   {
     private NgramChainViewModel _vm;
-    private WpfDiagram simpleDiagram1;
+    private readonly WpfDiagram simpleDiagram1;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractView" /> class.
@@ -36,13 +36,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     public NGramDiagram()
     {
       InitializeComponent();
-      simpleDiagram1 = new WpfDiagram { VerticalAlignment = VerticalAlignment.Stretch, HorizontalAlignment = HorizontalAlignment.Stretch };
+      simpleDiagram1 = new WpfDiagram
+        {VerticalAlignment = VerticalAlignment.Stretch, HorizontalAlignment = HorizontalAlignment.Stretch};
       elementHost1.Child = simpleDiagram1;
 
-      ShowView += (sender, args) =>
-      {
-        _vm = GetViewModel<NgramChainViewModel>();
-      };
+      ShowView += (sender, args) => { _vm = GetViewModel<NgramChainViewModel>(); };
     }
 
     private void Analyse()
@@ -96,9 +94,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       simpleDiagram1.CallAddNodes(nodes.Keys);
       foreach (var n in nodes)
         simpleDiagram1.CallColorizeNode(n.Key,
-          n.Value.Start ? new UniversalColor(150, 255, 180) : null,
-          n.Value.Between ? new UniversalColor(150, 180, 255) : null,
-          n.Value.End ? new UniversalColor(255, 150, 150) : null);
+                                        n.Value.Start ? new UniversalColor(150, 255, 180) : null,
+                                        n.Value.Between ? new UniversalColor(150, 180, 255) : null,
+                                        n.Value.End ? new UniversalColor(255, 150, 150) : null);
 
       var cs = new List<Tuple<string, string, double>>();
       foreach (var c in conns)
@@ -147,10 +145,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     {
       if (
         MessageBox.Show(
-          Resources.MöchtenSieWirklichDasDiagrammLöschenUndNeuBeginnen,
-          Resources.NeuStarten,
-          MessageBoxButton.YesNo,
-          MessageBoxImage.Question) != MessageBoxResult.Yes)
+                        Resources.MöchtenSieWirklichDasDiagrammLöschenUndNeuBeginnen,
+                        Resources.NeuStarten,
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Question) != MessageBoxResult.Yes)
         return;
 
       simpleDiagram1.CallNew();
@@ -173,19 +171,19 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       FileIO.Write(sfd.FileName, simpleDiagram1.CallExport(type), Configuration.Encoding);
     }
 
-    private struct NodeInfo
-    {
-      public bool Start;
-      public bool Between;
-      public bool End;
-    }
-
     private void btn_layer_Click(object sender, EventArgs e)
     {
       var form = new Select1Layer(SelectedLayerDisplaynames);
       form.ShowDialog();
       SelectedLayerDisplaynames = form.ResultSelectedLayerDisplaynames;
       Analyse();
+    }
+
+    private struct NodeInfo
+    {
+      public bool Start;
+      public bool Between;
+      public bool End;
     }
   }
 }

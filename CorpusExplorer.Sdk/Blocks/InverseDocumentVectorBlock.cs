@@ -45,9 +45,9 @@ namespace CorpusExplorer.Sdk.Blocks
 
       var idv =
         dic.Where(x => _idf.ContainsKey(x.Key))
-          .ToDictionary(x => x.Key, x => x.Value / count * _idf[x.Key])
-          .Where(x => x.Value > MinimumInversDocumentFrequency)
-          .ToDictionary(x => x.Key, x => x.Value);
+           .ToDictionary(x => x.Key, x => x.Value / count * _idf[x.Key])
+           .Where(x => x.Value > MinimumInversDocumentFrequency)
+           .ToDictionary(x => x.Key, x => x.Value);
 
       lock (_lockInverseDocumentVector)
       {

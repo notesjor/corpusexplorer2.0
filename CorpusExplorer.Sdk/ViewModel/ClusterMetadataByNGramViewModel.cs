@@ -18,20 +18,8 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public string LayerDisplayname { get; set; } = "Wort";
 
-    public IEnumerable<string> DocumentMetaProperties 
+    public IEnumerable<string> DocumentMetaProperties
       => Selection.GetDocumentMetadataPrototypeOnlyProperties();
-
-    protected override void ExecuteAnalyse()
-    {
-      _block = Selection.CreateBlock<ClusterMetadataByNgramBlock>();
-      _block.SimilarityIndex = SimilarityIndex;
-      _block.LayerDisplayname = LayerDisplayname;
-      _block.SelectionClusterGenerator = new SelectionClusterGeneratorStringValue { MetadataKey = MetadataKey };
-      _block.MetadataKey = MetadataKey;
-      _block.NGramSize = NGramSize;
-      _block.NGramMinFrequency = NGramMinFrequency;
-      _block.Calculate();
-    }
 
     public int NGramMinFrequency { get; set; } = 5;
 
@@ -41,13 +29,32 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public int NGramSize { get; set; } = 3;
 
-    protected override bool Validate() 
-      => !string.IsNullOrEmpty(LayerDisplayname) && !string.IsNullOrEmpty(MetadataKey) && NGramSize > 0 && SimilarityIndex != null;
-
     public DataTable GetDataTable()
-      => _block.GetDataTable();
+    {
+      return _block.GetDataTable();
+    }
+
+    protected override void ExecuteAnalyse()
+    {
+      _block = Selection.CreateBlock<ClusterMetadataByNgramBlock>();
+      _block.SimilarityIndex = SimilarityIndex;
+      _block.LayerDisplayname = LayerDisplayname;
+      _block.SelectionClusterGenerator = new SelectionClusterGeneratorStringValue {MetadataKey = MetadataKey};
+      _block.MetadataKey = MetadataKey;
+      _block.NGramSize = NGramSize;
+      _block.NGramMinFrequency = NGramMinFrequency;
+      _block.Calculate();
+    }
+
+    protected override bool Validate()
+    {
+      return !string.IsNullOrEmpty(LayerDisplayname) && !string.IsNullOrEmpty(MetadataKey) && NGramSize > 0 &&
+             SimilarityIndex                                                                            != null;
+    }
 
     public DataTable GetCrossDataTable()
-      => _block.GetCrossDataTable();
+    {
+      return _block.GetCrossDataTable();
+    }
   }
 }

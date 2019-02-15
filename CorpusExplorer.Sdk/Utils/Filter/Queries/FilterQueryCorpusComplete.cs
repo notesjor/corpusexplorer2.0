@@ -15,7 +15,8 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
   [Serializable]
   public class FilterQueryCorpusComplete : AbstractFilterQueryCompleteDocumentIndexing
   {
-    [XmlArray] public IEnumerable<Guid> SelectedCorpora { get; set; }
+    [XmlArray]
+    public IEnumerable<Guid> SelectedCorpora { get; set; }
 
     /// <summary>
     ///   Gibt eine automatisch generierte Zusammenfassung des Inhalts/Bedeutung zurück.

@@ -43,8 +43,8 @@ namespace Bcs.Crawler
             continue;
 
           Crawler.Url = string.IsNullOrEmpty(UrlResultPrefix)
-            ? url
-            : UrlResultPrefix + (url.StartsWith(".") ? url.Substring(1) : url);
+                          ? url
+                          : UrlResultPrefix + (url.StartsWith(".") ? url.Substring(1) : url);
 
           var items = Crawler.Crawl();
           if (items != null)

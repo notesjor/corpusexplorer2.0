@@ -77,7 +77,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
 
       SetListView(list_33, vm.RootClusterLabels);
     }
-    
+
     private void list_CheckedChanged(object sender, ListViewItemEventArgs e)
     {
       var hashset = new HashSet<string>();
@@ -102,7 +102,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
 
       for (var i = 0; i < sortedList.Length; i++)
       {
-        if (i > 0 &&
+        if (i     > 0 &&
             i % 3 == 0)
           cindex++;
 

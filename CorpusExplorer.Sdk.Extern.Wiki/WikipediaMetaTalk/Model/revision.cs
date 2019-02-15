@@ -1,109 +1,114 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
+﻿using System;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
+namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
 {
-  /// <remarks/>
-  [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-  [System.SerializableAttribute()]
-  [System.Diagnostics.DebuggerStepThroughAttribute()]
-  [System.ComponentModel.DesignerCategoryAttribute("code")]
-  [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true,
+  /// <remarks />
+  [GeneratedCode("xsd", "4.6.1055.0")]
+  [Serializable]
+  [DebuggerStepThrough]
+  [DesignerCategory("code")]
+  [XmlType(AnonymousType = true,
     Namespace = "http://www.mediawiki.org/xml/export-0.10/")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.mediawiki.org/xml/export-0.10/",
+  [XmlRoot(Namespace = "http://www.mediawiki.org/xml/export-0.10/",
     IsNullable = false)]
-  public partial class revision
+  public class revision
   {
-
-    private string idField;
-
-    private string parentidField;
-
-    private System.DateTime timestampField;
+    private comment commentField;
 
     private contributor contributorField;
 
-    private minor minorField;
+    private string formatField;
 
-    private comment commentField;
+    private string idField;
+
+    private minor minorField;
 
     private string modelField;
 
-    private string formatField;
-
-    private text textField;
+    private string parentidField;
 
     private string sha1Field;
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute(DataType = "integer")]
+    private text textField;
+
+    private DateTime timestampField;
+
+    /// <remarks />
+    [XmlElement(DataType = "integer")]
     public string id
     {
-      get { return this.idField; }
-      set { this.idField = value; }
+      get => idField;
+      set => idField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute(DataType = "integer")]
+    /// <remarks />
+    [XmlElement(DataType = "integer")]
     public string parentid
     {
-      get { return this.parentidField; }
-      set { this.parentidField = value; }
+      get => parentidField;
+      set => parentidField = value;
     }
 
-    /// <remarks/>
-    public System.DateTime timestamp
+    /// <remarks />
+    public DateTime timestamp
     {
-      get { return this.timestampField; }
-      set { this.timestampField = value; }
+      get => timestampField;
+      set => timestampField = value;
     }
 
-    /// <remarks/>
+    /// <remarks />
     public contributor contributor
     {
-      get { return this.contributorField; }
-      set { this.contributorField = value; }
+      get => contributorField;
+      set => contributorField = value;
     }
 
-    /// <remarks/>
+    /// <remarks />
     public minor minor
     {
-      get { return this.minorField; }
-      set { this.minorField = value; }
+      get => minorField;
+      set => minorField = value;
     }
 
-    /// <remarks/>
+    /// <remarks />
     public comment comment
     {
-      get { return this.commentField; }
-      set { this.commentField = value; }
+      get => commentField;
+      set => commentField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute(DataType = "NCName")]
+    /// <remarks />
+    [XmlElement(DataType = "NCName")]
     public string model
     {
-      get { return this.modelField; }
-      set { this.modelField = value; }
+      get => modelField;
+      set => modelField = value;
     }
 
-    /// <remarks/>
+    /// <remarks />
     public string format
     {
-      get { return this.formatField; }
-      set { this.formatField = value; }
+      get => formatField;
+      set => formatField = value;
     }
 
-    /// <remarks/>
+    /// <remarks />
     public text text
     {
-      get { return this.textField; }
-      set { this.textField = value; }
+      get => textField;
+      set => textField = value;
     }
 
-    /// <remarks/>
-    [System.Xml.Serialization.XmlElementAttribute(DataType = "NMTOKEN")]
+    /// <remarks />
+    [XmlElement(DataType = "NMTOKEN")]
     public string sha1
     {
-      get { return this.sha1Field; }
-      set { this.sha1Field = value; }
+      get => sha1Field;
+      set => sha1Field = value;
     }
   }
 }

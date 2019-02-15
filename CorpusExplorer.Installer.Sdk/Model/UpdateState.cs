@@ -2,7 +2,9 @@ namespace CorpusExplorer.Installer.Sdk.Model
 {
   public class UpdateState
   {
-    private UpdateState() { }
+    private UpdateState()
+    {
+    }
 
     public UpdateState(string url)
     {

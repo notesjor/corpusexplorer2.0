@@ -122,12 +122,12 @@ namespace CorpusExplorer.Sdk.ViewModel
                 if (b[x.Key][y.Key].ContainsKey(z.Key))
                 {
                   _dataTable.Rows.Add(
-                    x.Key,
-                    y.Key,
-                    z.Key,
-                    z.Value,
-                    b[x.Key][y.Key][z.Key],
-                    Math.Abs(z.Value - b[x.Key][y.Key][z.Key]));
+                                      x.Key,
+                                      y.Key,
+                                      z.Key,
+                                      z.Value,
+                                      b[x.Key][y.Key][z.Key],
+                                      Math.Abs(z.Value - b[x.Key][y.Key][z.Key]));
                   b[x.Key][y.Key].Remove(z.Key);
                 }
                 else

@@ -40,7 +40,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     public Guid DocumentBGuid { get; set; }
 
     public IEnumerable<KeyValuePair<Guid, string>> DocumentGuidsAndDisplaynames => Selection
-      .DocumentGuidsAndDisplaynames;
+     .DocumentGuidsAndDisplaynames;
 
     public int EditDistance
     {
@@ -68,13 +68,15 @@ namespace CorpusExplorer.Sdk.ViewModel
           if (delta.DeletedA > 0)
           {
             res.Add(new KeyValuePair<string, int>(
-              IntArrayToStringArray(_docA.CutArray(delta.StartA, delta.StartA + delta.DeletedA), false), -1));
+                                                  IntArrayToStringArray(_docA.CutArray(delta.StartA, delta.StartA + delta.DeletedA),
+                                                                        false), -1));
             idx = delta.StartA + delta.DeletedA;
           }
 
           if (delta.InsertedB > 0)
             res.Add(new KeyValuePair<string, int>(
-              IntArrayToStringArray(_docB.CutArray(delta.StartB, delta.StartB + delta.InsertedB), true), 1));
+                                                  IntArrayToStringArray(_docB.CutArray(delta.StartB, delta.StartB + delta.InsertedB),
+                                                                        true), 1));
         }
 
         if (idx < _docA.Length)
@@ -93,7 +95,7 @@ namespace CorpusExplorer.Sdk.ViewModel
         if (DiffDeltas.Length == 0)
           return
             "<div class=\"label label-danger\">Beide Texte sind absolut identisch.</div><div class=\"label label-default\">"
-            +
+           +
             IntArrayToStringArray(ReciveDocumentAsArray(DocumentAGuid), false);
 
         var stb = new StringBuilder();
@@ -104,29 +106,29 @@ namespace CorpusExplorer.Sdk.ViewModel
           if (delta.StartA > idx)
           {
             stb.AppendFormat(
-              "<div class=\"label label-default\" style=\"float:left\">{0}</div>",
-              IntArrayToStringArray(_docA.CutArray(idx, delta.StartA), false));
+                             "<div class=\"label label-default\" style=\"float:left\">{0}</div>",
+                             IntArrayToStringArray(_docA.CutArray(idx, delta.StartA), false));
             idx = delta.StartA + 1;
           }
 
           if (delta.DeletedA > 0)
           {
             stb.AppendFormat(
-              "<div class=\"label label-danger\" style=\"float:left\">{0}</div>",
-              IntArrayToStringArray(_docA.CutArray(delta.StartA, delta.StartA + delta.DeletedA), false));
+                             "<div class=\"label label-danger\" style=\"float:left\">{0}</div>",
+                             IntArrayToStringArray(_docA.CutArray(delta.StartA, delta.StartA + delta.DeletedA), false));
             idx = delta.StartA + delta.DeletedA + 1;
           }
 
           if (delta.InsertedB > 0)
             stb.AppendFormat(
-              "<div class=\"label label-success\" style=\"float:left\">{0}</div>",
-              IntArrayToStringArray(_docB.CutArray(delta.StartB, delta.StartB + delta.InsertedB), true));
+                             "<div class=\"label label-success\" style=\"float:left\">{0}</div>",
+                             IntArrayToStringArray(_docB.CutArray(delta.StartB, delta.StartB + delta.InsertedB), true));
         }
 
         if (idx < _docA.Length)
           stb.AppendFormat(
-            "<div class=\"label label-default\" style=\"float:left\">{0}</div>",
-            IntArrayToStringArray(_docA.CutArray(idx, _docA.Length), false));
+                           "<div class=\"label label-default\" style=\"float:left\">{0}</div>",
+                           IntArrayToStringArray(_docA.CutArray(idx, _docA.Length), false));
 
         return stb.ToString();
       }
@@ -163,8 +165,8 @@ namespace CorpusExplorer.Sdk.ViewModel
         return null;
 
       var layer = useB
-        ? Selection.GetLayerOfDocument(DocumentBGuid, LayerDisplayname)
-        : Selection.GetLayerOfDocument(DocumentAGuid, LayerDisplayname);
+                    ? Selection.GetLayerOfDocument(DocumentBGuid, LayerDisplayname)
+                    : Selection.GetLayerOfDocument(DocumentAGuid, LayerDisplayname);
 
       return layer == null ? null : array.ConvertToText(layer);
     }
@@ -173,8 +175,8 @@ namespace CorpusExplorer.Sdk.ViewModel
     {
       return
         Selection.GetDocument(guid, LayerDisplayname)?
-          .ReduceToSingleDimension()
-          .ToArray();
+                 .ReduceToSingleDimension()
+                 .ToArray();
     }
   }
 }

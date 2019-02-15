@@ -1,7 +1,6 @@
 ﻿#region
 
 using System;
-using System.Collections.Generic;
 
 #endregion
 
@@ -42,6 +41,6 @@ namespace CorpusExplorer.Sdk.Blocks.Similarity.Abstract
     /// <returns>
     ///   System.Double.
     /// </returns>
-    protected abstract double CalculateDistance(double[] vectorA, double[] vectorB);    
+    protected abstract double CalculateDistance(double[] vectorA, double[] vectorB);
   }
 }

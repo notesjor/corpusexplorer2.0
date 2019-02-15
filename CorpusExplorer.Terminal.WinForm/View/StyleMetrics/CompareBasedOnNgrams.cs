@@ -1,16 +1,11 @@
 using System;
-using System.Linq;
 using CorpusExplorer.Sdk.Blocks.ClusterMetadata;
 using CorpusExplorer.Sdk.ViewModel;
-using CorpusExplorer.Terminal.WinForm.Forms.Simple;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
-using CorpusExplorer.Terminal.WinForm.Properties;
 using Telerik.WinControls.UI;
 
 #region
-
-using PositionChangedEventArgs = Telerik.WinControls.UI.Data.PositionChangedEventArgs;
 
 #endregion
 
@@ -51,7 +46,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.StyleMetrics
 
     private void BuildTree(RadTreeNode parent, ClusterMetadataItem cluster)
     {
-      if(cluster == null)
+      if (cluster == null)
         return;
 
       var current = parent.Nodes.Add($"{Math.Round(cluster.Similarity, 4)} - {cluster.Label}");

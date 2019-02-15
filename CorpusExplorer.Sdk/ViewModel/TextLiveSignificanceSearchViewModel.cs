@@ -31,6 +31,31 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>> SearchResults { get; private set; }
 
+    public DataTable GetDataTable()
+    {
+      var dt = new DataTable();
+      dt.Columns.Add("Pre", typeof(string));
+      dt.Columns.Add("Match", typeof(string));
+      dt.Columns.Add("Post", typeof(string));
+      dt.Columns.Add("Frequenz", typeof(int));
+      dt.Columns.Add("Token", typeof(int));
+      dt.Columns.Add("SigToken", typeof(int));
+      dt.Columns.Add("SigMax", typeof(double));
+      dt.Columns.Add("SigSum", typeof(double));
+      dt.Columns.Add("SigMed", typeof(double));
+      dt.Columns.Add("SigRank", typeof(double));
+
+      var data = GetUniqueData();
+
+      dt.BeginLoadData();
+      foreach (var d in data)
+        dt.Rows.Add(d.Pre, d.Match, d.Post, d.Count, d.Token, d.SignificantToken, d.SignificanceMax, d.SignificanceSum,
+                    d.SignificanceMed, d.SignificanceRank);
+      dt.EndLoadData();
+
+      return dt;
+    }
+
     public Guid AddQuery(AbstractFilterQuery query)
     {
       var res = Guid.NewGuid();
@@ -47,38 +72,40 @@ namespace CorpusExplorer.Sdk.ViewModel
     {
       var res = new Dictionary<string, SignificanceExtendedUniqueTextLiveSearchResultEntry>();
       foreach (var corpus in SearchResults)
-        foreach (var result in corpus.Value)
-          foreach (var sent in result.Value)
-          {
-            if (sent.Value == null || sent.Value.Count == 0)
-              continue;
+      foreach (var result in corpus.Value)
+      foreach (var sent in result.Value)
+      {
+        if (sent.Value == null || sent.Value.Count == 0)
+          continue;
 
-            int token, stoken;
-            double sigMax, sigSum, sigMed;
-            var streamDoc = RunHighlighting(Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key).ReduceDocumentToStreamDocument().ToArray(), out token, out stoken, out sigMax, out sigSum, out sigMed);
+        int token, stoken;
+        double sigMax, sigSum, sigMed;
+        var streamDoc =
+          RunHighlighting(Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key).ReduceDocumentToStreamDocument().ToArray(),
+                          out token, out stoken, out sigMax, out sigSum, out sigMed);
 
-            var key = string.Join("|", streamDoc);
-            if (!res.ContainsKey(key))
-            {
-              var min = sent.Value.Min();
-              var max = sent.Value.Max();
-              res.Add(
-                      key,
-                      new SignificanceExtendedUniqueTextLiveSearchResultEntry
-                      {
-                        Pre = $"{HighlightBodyStart}{streamDoc.SplitDocument(0, min)}{HighlightBodyEnd}",
-                        Match = $"{HighlightBodyStart}{streamDoc.SplitDocument(min, max + 1)}{HighlightBodyEnd}",
-                        Post = $"{HighlightBodyStart}{streamDoc.SplitDocument(max + 1)}{HighlightBodyEnd}",
-                        Token = token,
-                        SignificantToken = stoken,
-                        SignificanceMax = sigMax,
-                        SignificanceSum = sigSum,
-                        SignificanceMed = sigMed
-                      });
-            }
+        var key = string.Join("|", streamDoc);
+        if (!res.ContainsKey(key))
+        {
+          var min = sent.Value.Min();
+          var max = sent.Value.Max();
+          res.Add(
+                  key,
+                  new SignificanceExtendedUniqueTextLiveSearchResultEntry
+                  {
+                    Pre = $"{HighlightBodyStart}{streamDoc.SplitDocument(0, min)}{HighlightBodyEnd}",
+                    Match = $"{HighlightBodyStart}{streamDoc.SplitDocument(min, max + 1)}{HighlightBodyEnd}",
+                    Post = $"{HighlightBodyStart}{streamDoc.SplitDocument(max       + 1)}{HighlightBodyEnd}",
+                    Token = token,
+                    SignificantToken = stoken,
+                    SignificanceMax = sigMax,
+                    SignificanceSum = sigSum,
+                    SignificanceMed = sigMed
+                  });
+        }
 
-            res[key].AddSentence(result.Key, sent.Key);
-          }
+        res[key].AddSentence(result.Key, sent.Key);
+      }
 
       var sigTokenMax = res.Max(x => x.Value.SignificantToken);
       foreach (var x in res)
@@ -97,7 +124,8 @@ namespace CorpusExplorer.Sdk.ViewModel
       return res.Values;
     }
 
-    private string[] RunHighlighting(string[] streamDoc, out int token, out int stoken, out double sigMax, out double sigSum, out double sigMed)
+    private string[] RunHighlighting(string[] streamDoc, out int token, out int stoken, out double sigMax,
+                                     out double sigSum, out double sigMed)
     {
       var res = new List<string>();
       var hsh = new HashSet<string>(); // Verhindert Kookkurrenz-Mehrfachnennung.
@@ -123,37 +151,16 @@ namespace CorpusExplorer.Sdk.ViewModel
           }
         }
         else
+        {
           val = w;
+        }
+
         res.Add(val);
       }
 
       stoken = hsh.Count;
       sigMed = med.Count == 0 ? 0 : med.GetMedian();
       return res.ToArray();
-    }
-
-    public DataTable GetDataTable()
-    {
-      var dt = new DataTable();
-      dt.Columns.Add("Pre", typeof(string));
-      dt.Columns.Add("Match", typeof(string));
-      dt.Columns.Add("Post", typeof(string));
-      dt.Columns.Add("Frequenz", typeof(int));
-      dt.Columns.Add("Token", typeof(int));
-      dt.Columns.Add("SigToken", typeof(int));
-      dt.Columns.Add("SigMax", typeof(double));
-      dt.Columns.Add("SigSum", typeof(double));
-      dt.Columns.Add("SigMed", typeof(double));
-      dt.Columns.Add("SigRank", typeof(double));
-
-      var data = GetUniqueData();
-
-      dt.BeginLoadData();
-      foreach (var d in data)
-        dt.Rows.Add(d.Pre, d.Match, d.Post, d.Count, d.Token, d.SignificantToken, d.SignificanceMax, d.SignificanceSum, d.SignificanceMed, d.SignificanceRank);
-      dt.EndLoadData();
-
-      return dt;
     }
 
     public bool RemoveQuery(Guid queryGuid)

@@ -96,8 +96,8 @@ namespace CorpusExplorer.Port.TreeTaggerTrainer.ViewModel
         File.Delete(ParOutputPath);
 
       var trainPath = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-        "CorpusExplorer/temp");
+                                   Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                                   "CorpusExplorer/temp");
       if (Directory.Exists(trainPath))
         Directory.CreateDirectory(trainPath);
 
@@ -114,15 +114,15 @@ namespace CorpusExplorer.Port.TreeTaggerTrainer.ViewModel
       MergeLexicons(lexPath);
 
       var process = Process.Start(
-        new ProcessStartInfo
-        {
-          FileName = TrainTreeTaggerPath,
-          Arguments =
-            $"{lexPath} {unkPath} {traPath} {ParOutputPath}",
-          CreateNoWindow = true,
-          WindowStyle = ProcessWindowStyle.Hidden,
-          StandardOutputEncoding = Configuration.Encoding
-        });
+                                  new ProcessStartInfo
+                                  {
+                                    FileName = TrainTreeTaggerPath,
+                                    Arguments =
+                                      $"{lexPath} {unkPath} {traPath} {ParOutputPath}",
+                                    CreateNoWindow = true,
+                                    WindowStyle = ProcessWindowStyle.Hidden,
+                                    StandardOutputEncoding = Configuration.Encoding
+                                  });
 
       if (process == null)
         return;

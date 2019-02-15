@@ -86,13 +86,13 @@ namespace CorpusExplorer.Sdk.Blocks
 
       // Erzeuge Selection-Dictionary
       SelectionA = Project.CreateSelection(
-        selD,
-        string.Format(Resources.SelectionRandimSplitA, PartAPercent),
-        Selection);
+                                           selD,
+                                           string.Format(Resources.SelectionRandimSplitA, PartAPercent),
+                                           Selection);
       SelectionB = Project.CreateSelection(
-        rd,
-        string.Format(Resources.SelectionRandimSplitB, PartBPercent),
-        Selection);
+                                           rd,
+                                           string.Format(Resources.SelectionRandimSplitB, PartBPercent),
+                                           Selection);
     }
   }
 }

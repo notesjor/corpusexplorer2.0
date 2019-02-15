@@ -27,10 +27,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Error
     {
       if (
         MessageBox.Show(
-          "Möchten Sie den Fehlerspeicher wirklich löschen?",
-          "Fehlerspeicher löschen?",
-          MessageBoxButtons.YesNo,
-          MessageBoxIcon.Question) == DialogResult.No)
+                        "Möchten Sie den Fehlerspeicher wirklich löschen?",
+                        "Fehlerspeicher löschen?",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) == DialogResult.No)
         return;
 
       InMemoryErrorConsole.Clear();

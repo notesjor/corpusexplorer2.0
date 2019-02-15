@@ -40,7 +40,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
 
     protected virtual string TaggerFileSeparator => "\r\n<ENDOFCORPUSEXPLORERFILE>\r\n";
 
-    protected virtual string[] TaggerValueSeparator => new[] { "\t" };
+    protected virtual string[] TaggerValueSeparator => new[] {"\t"};
 
     public override void Execute()
     {
@@ -51,11 +51,11 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
       StartTaggingProcess();
 
       Output.Enqueue(
-        CorpusBuilder.Create(
-          _layers.Select(x => x.Value),
-          meta,
-          new Dictionary<string, object>(),
-          null));
+                     CorpusBuilder.Create(
+                                          _layers.Select(x => x.Value),
+                                          meta,
+                                          new Dictionary<string, object>(),
+                                          null));
     }
 
     protected LayerRangeState AddRangeLayer(string displayname)
@@ -67,7 +67,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
 
     protected void AddValueLayer(string displayname, int valueIndex, int minimumLength = 1)
     {
-      var res = new LayerValueState(displayname, valueIndex) { MinimumDataLength = minimumLength };
+      var res = new LayerValueState(displayname, valueIndex) {MinimumDataLength = minimumLength};
       _layers.Add(displayname, res);
     }
 
@@ -152,7 +152,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
       var document = keys.ToDictionary(x => x, x => new List<int[]>());
       var values = keys.ToDictionary(x => x, x => 0);
 
-      var lines = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+      var lines = text.Split(new[] {"\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries);
       foreach (var line in lines)
       {
         var entries = line.Split(TaggerValueSeparator, StringSplitOptions.RemoveEmptyEntries);
@@ -218,15 +218,15 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
       var meta = new ConcurrentDictionary<Guid, Dictionary<string, object>>();
 
       Parallel.ForEach(
-        Input,
-        Configuration.ParallelOptions,
-        sdm =>
-        {
-          var dic = sdm.GetMetaDictionary().ToDictionary(entry => entry.Key, entry => entry.Value);
-          var guid = sdm.Get("GUID", Guid.NewGuid());
-          dic.Add("GUID", guid);
-          meta.TryAdd(guid, dic);
-        });
+                       Input,
+                       Configuration.ParallelOptions,
+                       sdm =>
+                       {
+                         var dic = sdm.GetMetaDictionary().ToDictionary(entry => entry.Key, entry => entry.Value);
+                         var guid = sdm.Get("GUID", Guid.NewGuid());
+                         dic.Add("GUID", guid);
+                         meta.TryAdd(guid, dic);
+                       });
 
       return meta.ToDictionary(x => x.Key, x => x.Value);
     }
@@ -242,10 +242,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
       {
         // Überprüfe den Überlauf von act - ggf. setze die Grenzen neu
         act = act < TaggerContentLengthMin
-          ? TaggerContentLengthMin
-          : act > TaggerContentLengthMax
-            ? TaggerContentLengthMax
-            : act;
+                ? TaggerContentLengthMin
+                : act > TaggerContentLengthMax
+                  ? TaggerContentLengthMax
+                  : act;
 
         GetDocumentClusters(act);
 
@@ -253,71 +253,71 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
         while (count > 0)
         {
           Parallel.For(
-            0,
-            count,
-            Configuration.ParallelOptions,
-            i =>
-            {
-              Dictionary<string, object>[] turn;
-              if (!InternQueue.TryDequeue(out turn))
-                return;
+                       0,
+                       count,
+                       Configuration.ParallelOptions,
+                       i =>
+                       {
+                         Dictionary<string, object>[] turn;
+                         if (!InternQueue.TryDequeue(out turn))
+                           return;
 
-              // TreeTagger
-              var text = TextPostTaggerCleanup(ExecuteTagger(GenerateText(ref turn)));
-              var tmp = text.Split(new[] { TaggerFileSeparator }, StringSplitOptions.RemoveEmptyEntries);
-              // mkpt - maximal korrekt geparste texte
-              var correct = text.EndsWith(TaggerFileSeparator) ? tmp.Length : tmp.Length - 1;
+                         // TreeTagger
+                         var text = TextPostTaggerCleanup(ExecuteTagger(GenerateText(ref turn)));
+                         var tmp = text.Split(new[] {TaggerFileSeparator}, StringSplitOptions.RemoveEmptyEntries);
+                         // mkpt - maximal korrekt geparste texte
+                         var correct = text.EndsWith(TaggerFileSeparator) ? tmp.Length : tmp.Length - 1;
 
-              if (turn.Length == 1 && correct == 0)
-                correct = 1;
+                         if (turn.Length == 1 && correct == 0)
+                           correct = 1;
 
-              var @lock = new object();
-              Parallel.For(
-                0,
-                correct,
-                Configuration.ParallelOptions,
-                j =>
-                {
-                  try
-                  {
-                    ParseDocument(layerKeys, turn[j].Get("GUID", Guid.NewGuid()), ref tmp[j]);
-                    lock (@lock)
-                    {
-                      tmp[j] = null; // wichtig zu Error-Erkennung
-                      turn[j].Clear();
-                      turn[j] = null; // wichtig zu Error-Erkennung
-                    }
-                  }
-                  catch (Exception ex)
-                  {
-                    InMemoryErrorConsole.Log(ex);
-                  }
-                });
+                         var @lock = new object();
+                         Parallel.For(
+                                      0,
+                                      correct,
+                                      Configuration.ParallelOptions,
+                                      j =>
+                                      {
+                                        try
+                                        {
+                                          ParseDocument(layerKeys, turn[j].Get("GUID", Guid.NewGuid()), ref tmp[j]);
+                                          lock (@lock)
+                                          {
+                                            tmp[j] = null; // wichtig zu Error-Erkennung
+                                            turn[j].Clear();
+                                            turn[j] = null; // wichtig zu Error-Erkennung
+                                          }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                          InMemoryErrorConsole.Log(ex);
+                                        }
+                                      });
 
-              // Aktualisiere act je nach Fall - Wenn kein Fehler (==) dann vergrößere den Wert.
-              // Wenn ein Fehler auftritt, dann reduziere ihn ( /= 3 )
-              if (correct == turn.Length)
-              {
-                // ReSharper disable once AccessToModifiedClosure
-                act *= 2;
-                return;
-              }
+                         // Aktualisiere act je nach Fall - Wenn kein Fehler (==) dann vergrößere den Wert.
+                         // Wenn ein Fehler auftritt, dann reduziere ihn ( /= 3 )
+                         if (correct == turn.Length)
+                         {
+                           // ReSharper disable once AccessToModifiedClosure
+                           act *= 2;
+                           return;
+                         }
 
-              act /= 3;
+                         act /= 3;
 
-              // Wenn Tagger total versagt, breche das Dokument ab.
-              // Wenn nur ein Dokument in der Queue und dieses nicht bearbeitbar ist, verwerfe es.
-              if (act <= TaggerContentLengthMin ||
-                  turn.Length == 1 && correct < 1)
-                return;
+                         // Wenn Tagger total versagt, breche das Dokument ab.
+                         // Wenn nur ein Dokument in der Queue und dieses nicht bearbeitbar ist, verwerfe es.
+                         if (act <= TaggerContentLengthMin ||
+                             turn.Length == 1 && correct < 1)
+                           return;
 
-              // Fehlerhafte Dokumente werden zurück in die Queue gestellt.        
-              for (var j = correct; j < turn.Length && j > 0; j++)
-                Input.Enqueue(turn[j]);
-              // Fehlerhafte Dokumente werden zurück in die Queue gestellt.        
-              foreach (var t in turn.Where(t => t != null))
-                Input.Enqueue(t);
-            });
+                         // Fehlerhafte Dokumente werden zurück in die Queue gestellt.        
+                         for (var j = correct; j < turn.Length && j > 0; j++)
+                           Input.Enqueue(turn[j]);
+                         // Fehlerhafte Dokumente werden zurück in die Queue gestellt.        
+                         foreach (var t in turn.Where(t => t != null))
+                           Input.Enqueue(t);
+                       });
           count = InternQueue.Count;
         }
       }

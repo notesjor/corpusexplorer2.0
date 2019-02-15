@@ -26,7 +26,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     {
       InitializeComponent();
       InitializeGrid(radGridView1);
-      SelectedLayerDisplaynames = new[] { "Wort" };
+      SelectedLayerDisplaynames = new[] {"Wort"};
       ShowView += ShowViewCall;
     }
 
@@ -45,17 +45,17 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
 
       AddSummaryRow();
       AddChildTemplate(
-        x => new FilterQuerySingleLayerAllInOneSentence
-        {
-          Inverse = false,
-          LayerDisplayname = _vm.LayerDisplayname,
-          LayerQueries =
-            new[]
-            {
-              x[$"{_vm.LayerDisplayname} A"].ToString(),
-              x[$"{_vm.LayerDisplayname} B"].ToString()
-            }
-        });
+                       x => new FilterQuerySingleLayerAllInOneSentence
+                       {
+                         Inverse = false,
+                         LayerDisplayname = _vm.LayerDisplayname,
+                         LayerQueries =
+                           new[]
+                           {
+                             x[$"{_vm.LayerDisplayname} A"].ToString(),
+                             x[$"{_vm.LayerDisplayname} B"].ToString()
+                           }
+                       });
     }
 
     /// <summary>
@@ -128,24 +128,24 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     {
       radGridView1.FilterDescriptors.Clear();
 
-      var composite = new CompositeFilterDescriptor { LogicalOperator = FilterLogicalOperator.Or };
+      var composite = new CompositeFilterDescriptor {LogicalOperator = FilterLogicalOperator.Or};
 
       composite.FilterDescriptors.Add(
-        new FilterDescriptor
-        {
-          PropertyName = $"{_vm.LayerDisplayname} A",
-          Operator = FilterOperator.IsEqualTo,
-          Value = txt_query.Text,
-          IsFilterEditor = true
-        });
+                                      new FilterDescriptor
+                                      {
+                                        PropertyName = $"{_vm.LayerDisplayname} A",
+                                        Operator = FilterOperator.IsEqualTo,
+                                        Value = txt_query.Text,
+                                        IsFilterEditor = true
+                                      });
       composite.FilterDescriptors.Add(
-        new FilterDescriptor
-        {
-          PropertyName = $"{_vm.LayerDisplayname} B",
-          Operator = FilterOperator.IsEqualTo,
-          Value = txt_query.Text,
-          IsFilterEditor = true
-        });
+                                      new FilterDescriptor
+                                      {
+                                        PropertyName = $"{_vm.LayerDisplayname} B",
+                                        Operator = FilterOperator.IsEqualTo,
+                                        Value = txt_query.Text,
+                                        IsFilterEditor = true
+                                      });
 
       radGridView1.FilterDescriptors.Add(composite);
     }
@@ -153,18 +153,18 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     private void btn_snapshot_create_Click(object sender, EventArgs e)
     {
       CreateSelection(
-        radGridView1.SelectedRows.Select(
-          row => new FilterQuerySingleLayerAllInOneSentence
-          {
-            LayerDisplayname = _vm.LayerDisplayname,
-            Inverse = false,
-            LayerQueries =
-              new[]
-              {
-                row.Cells[$"{_vm.LayerDisplayname} A"].Value.ToString(),
-                row.Cells[$"{_vm.LayerDisplayname} B"].Value.ToString()
-              }
-          }));
+                      radGridView1.SelectedRows.Select(
+                                                       row => new FilterQuerySingleLayerAllInOneSentence
+                                                       {
+                                                         LayerDisplayname = _vm.LayerDisplayname,
+                                                         Inverse = false,
+                                                         LayerQueries =
+                                                           new[]
+                                                           {
+                                                             row.Cells[$"{_vm.LayerDisplayname} A"].Value.ToString(),
+                                                             row.Cells[$"{_vm.LayerDisplayname} B"].Value.ToString()
+                                                           }
+                                                       }));
     }
 
     private void ShowViewCall(object sender, EventArgs e)

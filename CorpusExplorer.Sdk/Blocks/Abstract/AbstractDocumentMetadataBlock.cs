@@ -34,27 +34,27 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
       }
 
       Parallel.ForEach(
-        Selection,
-        Configuration.ParallelOptions,
-        csel =>
-        {
-          var corpus = Selection.GetCorpus(csel.Key);
-          if (corpus == null)
-            return;
+                       Selection,
+                       Configuration.ParallelOptions,
+                       csel =>
+                       {
+                         var corpus = Selection.GetCorpus(csel.Key);
+                         if (corpus == null)
+                           return;
 
-          Parallel.ForEach(
-            csel.Value,
-            Configuration.ParallelOptions,
-            dsel =>
-            {
-              if (!corpus.ContainsDocument(dsel))
-                return;
+                         Parallel.ForEach(
+                                          csel.Value,
+                                          Configuration.ParallelOptions,
+                                          dsel =>
+                                          {
+                                            if (!corpus.ContainsDocument(dsel))
+                                              return;
 
-              CalculateCall(
-                dsel,
-                corpus.GetDocumentMetadata(dsel));
-            });
-        });
+                                            CalculateCall(
+                                                          dsel,
+                                                          corpus.GetDocumentMetadata(dsel));
+                                          });
+                       });
 
       CalculateCleanup();
 

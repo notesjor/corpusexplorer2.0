@@ -77,13 +77,25 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
     #region ALL
 
     public string[] ResultSelectedLayerDisplaynames => ResultUseLayer2
-      ? (ResultUseLayer3
-        ? new[]
-          {ResultSelectedLayer1Displayname, ResultSelectedLayer2Displayname, ResultSelectedLayer3Displayname}
-        : new[] {ResultSelectedLayer1Displayname, ResultSelectedLayer2Displayname})
-      : (ResultUseLayer3
-        ? new[] {ResultSelectedLayer1Displayname, ResultSelectedLayer3Displayname}
-        : new[] {ResultSelectedLayer1Displayname});
+                                                         ? ResultUseLayer3
+                                                             ? new[]
+                                                             {
+                                                               ResultSelectedLayer1Displayname,
+                                                               ResultSelectedLayer2Displayname,
+                                                               ResultSelectedLayer3Displayname
+                                                             }
+                                                             : new[]
+                                                             {
+                                                               ResultSelectedLayer1Displayname,
+                                                               ResultSelectedLayer2Displayname
+                                                             }
+                                                         : ResultUseLayer3
+                                                           ? new[]
+                                                           {
+                                                             ResultSelectedLayer1Displayname,
+                                                             ResultSelectedLayer3Displayname
+                                                           }
+                                                           : new[] {ResultSelectedLayer1Displayname};
 
     private void Form_ButtonOkClick(object sender, EventArgs e)
     {
@@ -98,17 +110,15 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
       if (ResultUseLayer2 && string.IsNullOrEmpty(ResultSelectedLayer2Displayname))
       {
         Error = $"Bitte wählen Sie zuerst einen Layer für \"{Layer2Header}\" aus." + (IsLayer2Optional
-                  ? " Alternativ können Sie auch den Haken entfernen, um diesen Layer nicht zu analysieren."
-                  : "");
+                                                                                        ? " Alternativ können Sie auch den Haken entfernen, um diesen Layer nicht zu analysieren."
+                                                                                        : "");
         return;
       }
 
       if (ResultUseLayer3 && string.IsNullOrEmpty(ResultSelectedLayer3Displayname))
-      {
         Error = $"Bitte wählen Sie zuerst einen Layer für \"{Layer3Header}\" aus." + (IsLayer2Optional
-                  ? " Alternativ können Sie auch den Haken entfernen, um diesen Layer nicht zu analysieren."
-                  : "");
-      }
+                                                                                        ? " Alternativ können Sie auch den Haken entfernen, um diesen Layer nicht zu analysieren."
+                                                                                        : "");
     }
 
     #endregion

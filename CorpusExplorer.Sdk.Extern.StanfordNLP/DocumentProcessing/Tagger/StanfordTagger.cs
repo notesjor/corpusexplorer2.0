@@ -72,8 +72,8 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
       {
         var bin = LocateJava(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
         return !string.IsNullOrEmpty(bin)
-          ? bin
-          : LocateJava(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86));
+                 ? bin
+                 : LocateJava(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86));
       }
     }
 
@@ -96,10 +96,10 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
               FileName = "\"" + JavaLocation + "\"",
               Arguments =
                 string.Format(
-                  "-mx300m -classpath \"{2}\" edu.stanford.nlp.tagger.maxent.MaxentTagger -model \"{0}\" -encoding UTF-8 -textFile \"{1}\"",
-                  model,
-                  fileInput.Path,
-                  jar),
+                              "-mx300m -classpath \"{2}\" edu.stanford.nlp.tagger.maxent.MaxentTagger -model \"{0}\" -encoding UTF-8 -textFile \"{1}\"",
+                              model,
+                              fileInput.Path,
+                              jar),
               RedirectStandardError = true,
               RedirectStandardOutput = true,
               StandardOutputEncoding = Configuration.Encoding,
@@ -136,16 +136,16 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
 
       var splits =
         text.Replace("._$.", "._$. ")
-          .Replace("\t", " ")
-          .Replace("  ", " ")
-          .Replace("  ", " ")
-          .Replace("  ", " ")
-          .Split(new[] { "<ENDOFCORPUSEXPLORERFILE>" }, StringSplitOptions.RemoveEmptyEntries);
+            .Replace("\t", " ")
+            .Replace("  ", " ")
+            .Replace("  ", " ")
+            .Replace("  ", " ")
+            .Split(new[] {"<ENDOFCORPUSEXPLORERFILE>"}, StringSplitOptions.RemoveEmptyEntries);
 
       if (splits.Length == 0)
         return text;
 
-      var res = new List<string> { splits[0] };
+      var res = new List<string> {splits[0]};
 
       for (var i = 1; i < splits.Length; i++)
       {
@@ -160,10 +160,10 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
     {
       var paths = Directory.GetDirectories(getFolderPath, "Java");
       return paths.Length == 0
-        ? null
-        : paths.Select(path => Directory.GetDirectories(path, "jre*"))
-          .Select(versions => versions.Length == 0 ? null : Path.Combine(versions[0], @"bin\java.exe"))
-          .FirstOrDefault();
+               ? null
+               : paths.Select(path => Directory.GetDirectories(path, "jre*"))
+                      .Select(versions => versions.Length == 0 ? null : Path.Combine(versions[0], @"bin\java.exe"))
+                      .FirstOrDefault();
     }
   }
 }

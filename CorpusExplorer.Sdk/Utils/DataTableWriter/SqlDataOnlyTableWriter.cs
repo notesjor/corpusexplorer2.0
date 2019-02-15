@@ -33,9 +33,9 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
           stb.Append("(");
           foreach (var column in columns)
             if (column.Item3 == typeof(DateTime))
-              stb.Append($"'{(DateTime)row[column.Item1]:yyyy-MM-dd HH:mm:ss}', ");
+              stb.Append($"'{(DateTime) row[column.Item1]:yyyy-MM-dd HH:mm:ss}', ");
             else if (column.Item3 == typeof(string))
-              stb.Append($"\"{((string)row[column.Item1]).Replace("\"", "''")}\", ");
+              stb.Append($"\"{((string) row[column.Item1]).Replace("\"", "''")}\", ");
             else
               stb.Append($"{row[column.Item1].ToString().Replace(",", ".")}, ");
           stb.Remove(stb.Length - 2, 2);
@@ -49,13 +49,21 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       }
     }
 
-    protected override void WriteHead(DataTable table) { }
+    protected override void WriteHead(DataTable table)
+    {
+    }
 
-    protected override void WriteBody(DataTable table) { }
+    protected override void WriteBody(DataTable table)
+    {
+    }
 
-    protected override void WriteFooter() { }
+    protected override void WriteFooter()
+    {
+    }
 
     public override AbstractTableWriter Clone(Stream stream)
-      => new SqlDataOnlyTableWriter { OutputStream = stream };
+    {
+      return new SqlDataOnlyTableWriter {OutputStream = stream};
+    }
   }
 }

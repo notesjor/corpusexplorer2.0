@@ -125,18 +125,18 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     private void btn_snapshot_create_Click(object sender, EventArgs e)
     {
       CreateSelection(
-        radGridView1.SelectedRows.Select(
-          row => new FilterQuerySingleLayerExactPhrase
-          {
-            Inverse = false,
-            LayerDisplayname = _vm.LayerDisplayname,
-            LayerQueries =
-              row.Cells["Query"].Value.ToString()
-                .Split(
-                  new[] {" "},
-                  StringSplitOptions
-                    .RemoveEmptyEntries)
-          }));
+                      radGridView1.SelectedRows.Select(
+                                                       row => new FilterQuerySingleLayerExactPhrase
+                                                       {
+                                                         Inverse = false,
+                                                         LayerDisplayname = _vm.LayerDisplayname,
+                                                         LayerQueries =
+                                                           row.Cells["Query"].Value.ToString()
+                                                              .Split(
+                                                                     new[] {" "},
+                                                                     StringSplitOptions
+                                                                      .RemoveEmptyEntries)
+                                                       }));
     }
 
     private void GridNGramVisualisation_ShowVisualisation(object sender, EventArgs e)

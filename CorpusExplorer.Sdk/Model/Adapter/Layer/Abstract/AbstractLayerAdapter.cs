@@ -160,6 +160,12 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
 
     public abstract Dictionary<string, int> ReciveRawLayerDictionary();
 
+    public abstract Dictionary<int, string> ReciveRawReverseLayerDictionary();
+
+    public abstract void ResetRawLayerDictionary(Dictionary<string, int> dictionary);
+
+    public abstract void ResetRawReverseLayerDictionary(Dictionary<int, string> reverse);
+
     public abstract void RefreshDictionaries();
 
     /// <summary>
@@ -208,8 +214,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
       {
         Documents = GetDocumentDictionary(),
         Cache = GetValueDictionary()
-          .ReciveRawIndexToValue()
-          .ToDictionary(x => x.Value, x => x.Key)
+               .ReciveRawIndexToValue()
+               .ToDictionary(x => x.Value, x => x.Key)
       };
     }
 
@@ -263,17 +269,17 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
       var @lock = new object();
 
       Parallel.ForEach(
-        regExs,
-        Configuration.ParallelOptions,
-        x =>
-        {
-          var values = ValuesByRegex(x);
-          lock (@lock)
-          {
-            foreach (var v in values)
-              res.Add(v);
-          }
-        });
+                       regExs,
+                       Configuration.ParallelOptions,
+                       x =>
+                       {
+                         var values = ValuesByRegex(x);
+                         lock (@lock)
+                         {
+                           foreach (var v in values)
+                             res.Add(v);
+                         }
+                       });
 
       return res;
     }

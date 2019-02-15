@@ -10,7 +10,7 @@ namespace CorpusExplorer.Sdk.Blocks.NamedEntityRecognition
     [XmlAttribute]
     public string Name { get; set; }
 
-    [XmlArray] 
+    [XmlArray]
     public Rule[] Rules { get; set; } = new Rule[0];
   }
 }

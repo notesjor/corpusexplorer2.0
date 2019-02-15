@@ -46,20 +46,20 @@ namespace CorpusExplorer.Sdk.Blocks
       NGramFrequency = new Dictionary<string, double>();
 
       Parallel.ForEach(
-        block.Frequency,
-        Configuration.ParallelOptions,
-        entry =>
-        {
-          var chunks = GetChunks(entry.Key);
-          foreach (var chunk in chunks)
-            lock (@lock)
-            {
-              if (NGramFrequency.ContainsKey(chunk))
-                NGramFrequency[chunk] += entry.Value;
-              else
-                NGramFrequency.Add(chunk, entry.Value);
-            }
-        });
+                       block.Frequency,
+                       Configuration.ParallelOptions,
+                       entry =>
+                       {
+                         var chunks = GetChunks(entry.Key);
+                         foreach (var chunk in chunks)
+                           lock (@lock)
+                           {
+                             if (NGramFrequency.ContainsKey(chunk))
+                               NGramFrequency[chunk] += entry.Value;
+                             else
+                               NGramFrequency.Add(chunk, entry.Value);
+                           }
+                       });
     }
 
     private IEnumerable<string> GetChunks(string text)
@@ -74,10 +74,10 @@ namespace CorpusExplorer.Sdk.Blocks
       while (stop < text.Length)
       {
         var chunk = start == 0
-          ? text.Substring(0, NGramSize) + NGramSeparator
-          : (stop == text.Length - 1
-            ? NGramSeparator + text.Substring(start)
-            : NGramSeparator + text.Substring(start, NGramSize) + NGramSeparator);
+                      ? text.Substring(0, NGramSize) + NGramSeparator
+                      : stop == text.Length - 1
+                        ? NGramSeparator                                    + text.Substring(start)
+                        : NGramSeparator + text.Substring(start, NGramSize) + NGramSeparator;
 
         if (!res.Contains(chunk))
           res.Add(chunk);

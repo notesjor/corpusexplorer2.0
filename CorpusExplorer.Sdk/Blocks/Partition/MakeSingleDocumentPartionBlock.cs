@@ -31,23 +31,23 @@ namespace CorpusExplorer.Sdk.Blocks.Partition
       var dic = new ConcurrentDictionary<Guid, TV>();
 
       Parallel.ForEach(
-        Selection.DocumentGuids,
-        Configuration.ParallelOptions,
-        part =>
-        {
-          try
-          {
-            var block = Selection.CreateTemporary(new[] {part}).CreateBlock<TB>();
-            if (OnConfiguration != null)
-              block = OnConfiguration(block);
-            block.Calculate();
-            dic.TryAdd(part, MappingDelegate(block));
-          }
-          catch (Exception ex)
-          {
-            InMemoryErrorConsole.Log(ex);
-          }
-        });
+                       Selection.DocumentGuids,
+                       Configuration.ParallelOptions,
+                       part =>
+                       {
+                         try
+                         {
+                           var block = Selection.CreateTemporary(new[] {part}).CreateBlock<TB>();
+                           if (OnConfiguration != null)
+                             block = OnConfiguration(block);
+                           block.Calculate();
+                           dic.TryAdd(part, MappingDelegate(block));
+                         }
+                         catch (Exception ex)
+                         {
+                           InMemoryErrorConsole.Log(ex);
+                         }
+                       });
 
       OutputPartition = dic.ToDictionary(x => x.Key, x => x.Value);
     }

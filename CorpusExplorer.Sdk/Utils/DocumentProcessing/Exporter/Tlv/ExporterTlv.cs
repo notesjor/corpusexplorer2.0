@@ -46,7 +46,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Tlv
       foreach (var x in cmeta)
         if (x.Value != null)
           stb.Append(
-            $"<entry category=\"{x.Key}\" type=\"{x.Value.GetType()}\">{CleanText(HttpUtility.HtmlDecode(x.Value.ToString()))}</entry>");
+                     $"<entry category=\"{x.Key}\" type=\"{x.Value.GetType()}\">{CleanText(HttpUtility.HtmlDecode(x.Value.ToString()))}</entry>");
 
       #endregion
 
@@ -93,7 +93,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Tlv
         foreach (var x in meta)
           if (x.Value != null)
             stb.Append(
-              $"<entry category=\"{x.Key}\" type=\"{x.Value.GetType()}\">{CleanText(HttpUtility.HtmlDecode(x.Value.ToString()))}</entry>");
+                       $"<entry category=\"{x.Key}\" type=\"{x.Value.GetType()}\">{CleanText(HttpUtility.HtmlDecode(x.Value.ToString()))}</entry>");
 
         stb.Append("</meta>");
 
@@ -105,9 +105,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Tlv
 
         // Wort-Layer muss verworfen werden.
         var dlayers = corpus.GetLayersOfDocument(dsel).Where(x => x.Displayname != "Wort")
-          .ToDictionary(x => x.Displayname, x => x.Guid);
+                            .ToDictionary(x => x.Displayname, x => x.Guid);
         var d3D = corpus.GetReadableMultilayerDocument(dsel)
-          .ToDictionary(x => x.Key, x => x.Value.Select(y => y.ToArray()).ToArray());
+                        .ToDictionary(x => x.Key, x => x.Value.Select(y => y.ToArray()).ToArray());
         var wordLayer = d3D["Wort"];
         d3D.Remove("Wort");
 
@@ -120,7 +120,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Tlv
           foreach (var otherLayer in d3D)
           {
             word.Insert(0,
-              $"<t l=\"{layers[dlayers[otherLayer.Key]]}\" v=\"{lyDict[dlayers[otherLayer.Key]][otherLayer.Value[s][w]]}\">");
+                        $"<t l=\"{layers[dlayers[otherLayer.Key]]}\" v=\"{lyDict[dlayers[otherLayer.Key]][otherLayer.Value[s][w]]}\">");
             word.Append("</t>");
           }
 

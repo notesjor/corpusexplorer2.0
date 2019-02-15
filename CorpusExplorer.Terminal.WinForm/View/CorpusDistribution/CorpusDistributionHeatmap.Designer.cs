@@ -142,8 +142,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     private Telerik.WinControls.UI.CommandBarLabel commandBarLabel1;
     private Telerik.WinControls.UI.CommandBarDropDownList combo_groupA;
     private Telerik.WinControls.UI.CommandBarLabel commandBarLabel2;
-    private Telerik.WinControls.UI.CommandBarDropDownList combo_groupB;
-    private Controls.Wpf.HeatMap.HeatMapView heatMapView1;
+    private Telerik.WinControls.UI.CommandBarDropDownList combo_groupB;    
     private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator1;
     private Telerik.WinControls.UI.CommandBarButton btn_export;
   }

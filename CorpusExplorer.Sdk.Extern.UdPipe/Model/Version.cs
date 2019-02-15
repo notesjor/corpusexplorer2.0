@@ -23,7 +23,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       set => udpipe_csharpPINVOKE.Version_major_set(swigCPtr, value);
       get
       {
-        uint ret = udpipe_csharpPINVOKE.Version_major_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.Version_major_get(swigCPtr);
         return ret;
       }
     }
@@ -33,7 +33,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       set => udpipe_csharpPINVOKE.Version_minor_set(swigCPtr, value);
       get
       {
-        uint ret = udpipe_csharpPINVOKE.Version_minor_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.Version_minor_get(swigCPtr);
         return ret;
       }
     }
@@ -43,7 +43,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       set => udpipe_csharpPINVOKE.Version_patch_set(swigCPtr, value);
       get
       {
-        uint ret = udpipe_csharpPINVOKE.Version_patch_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.Version_patch_get(swigCPtr);
         return ret;
       }
     }
@@ -58,7 +58,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
       get
       {
-        string ret = udpipe_csharpPINVOKE.Version_prerelease_get(swigCPtr);
+        var ret = udpipe_csharpPINVOKE.Version_prerelease_get(swigCPtr);
         if (udpipe_csharpPINVOKE.SWIGPendingException.Pending)
           throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
         return ret;
@@ -86,7 +86,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public static Version current()
     {
-      Version ret = new Version(udpipe_csharpPINVOKE.Version_current(), true);
+      var ret = new Version(udpipe_csharpPINVOKE.Version_current(), true);
       return ret;
     }
 

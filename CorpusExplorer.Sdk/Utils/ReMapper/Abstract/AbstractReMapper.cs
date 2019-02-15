@@ -54,8 +54,9 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper.Abstract
       if (LayerDisplaynames == null)
         throw new NullReferenceException("Property LayerDisplaynames is null");
       FileIO.Write(fileOutput,
-        ApplyAnnotation(corpus, documentGuid, FileIO.ReadText(fileInput, Configuration.Encoding), LayerDisplaynames),
-        Configuration.Encoding);
+                   ApplyAnnotation(corpus, documentGuid, FileIO.ReadText(fileInput, Configuration.Encoding),
+                                   LayerDisplaynames),
+                   Configuration.Encoding);
     }
 
     /// <summary>
@@ -69,7 +70,7 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper.Abstract
     /// </param>
     /// <returns></returns>
     protected abstract string ApplyAnnotation(Tuple<AbstractLayerAdapter, int[][]>[] layers, string originalText,
-      Tuple<int, int, int, int>[] annotationPositions);
+                                              Tuple<int, int, int, int>[] annotationPositions);
 
     /// <summary>
     ///   Findet die zu annotierenden Positionen im Originaltext
@@ -80,14 +81,15 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper.Abstract
     /// <param name="layerDisplaynames">Layer die zur Annotation herangezogen werden</param>
     /// <returns></returns>
     private string ApplyAnnotation(AbstractCorpusAdapter corpus, Guid documentGuid, string originalText,
-      IEnumerable<string> layerDisplaynames)
+                                   IEnumerable<string> layerDisplaynames)
     {
       return ApplyAnnotation((from name in layerDisplaynames
-          select corpus.GetLayerOfDocument(documentGuid, name)
-          into layer
-          where layer != null
-          select new Tuple<AbstractLayerAdapter, int[][]>(layer, layer[documentGuid])).ToArray(), originalText,
-        FindPositions(corpus, documentGuid, originalText));
+                              select corpus.GetLayerOfDocument(documentGuid, name)
+                              into layer
+                              where layer != null
+                              select new Tuple<AbstractLayerAdapter, int[][]>(layer, layer[documentGuid])).ToArray(),
+                             originalText,
+                             FindPositions(corpus, documentGuid, originalText));
     }
 
     /// <summary>
@@ -98,7 +100,7 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper.Abstract
     /// <param name="originalText">Originaltext (muss mit dem Inhalt von Korpus/DocumentGuid übereinstimmen)</param>
     /// <returns>Tuple-Aufbau: SatzID / WortID / Position im originalText (Start) / Position im originalText (Stop)</returns>
     private Tuple<int, int, int, int>[] FindPositions(AbstractCorpusAdapter corpus, Guid documentGuid,
-      string originalText)
+                                                      string originalText)
     {
       var res = new List<Tuple<int, int, int, int>>();
 

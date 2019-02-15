@@ -7,8 +7,8 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract
 {
   public abstract class AbstractTableWriter
   {
-    protected bool _headInitialized;
     protected readonly object WriteLock = new object();
+    protected bool _headInitialized;
 
     public AbstractTableWriter()
     {
@@ -24,14 +24,16 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract
     public void Destroy(bool closeStream = true)
     {
       lock (WriteLock)
+      {
         WriteFooter();
+      }
 
       if (closeStream)
         OutputStream?.Close();
     }
 
     /// <summary>
-    /// Schreibt eine Tabelle in den Ausgabestream (Threadsafe).
+    ///   Schreibt eine Tabelle in den Ausgabestream (Threadsafe).
     /// </summary>
     /// <param name="table">Tabelle</param>
     public virtual void WriteTable(DataTable table)
@@ -49,7 +51,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract
     }
 
     /// <summary>
-    /// Schreibt eine Tabelle in den Ausgabestream (Threadsafe).
+    ///   Schreibt eine Tabelle in den Ausgabestream (Threadsafe).
     /// </summary>
     /// <param name="tid">Tabellen ID</param>
     /// <param name="table">Tabelle</param>
@@ -63,19 +65,19 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract
     }
 
     /// <summary>
-    /// Writes the head.
+    ///   Writes the head.
     /// </summary>
     /// <param name="table">The table.</param>
     protected abstract void WriteHead(DataTable table);
 
     /// <summary>
-    /// Writes the body.
+    ///   Writes the body.
     /// </summary>
     /// <param name="table">The table.</param>
     protected abstract void WriteBody(DataTable table);
 
     /// <summary>
-    /// Writes the footer.
+    ///   Writes the footer.
     /// </summary>
     protected abstract void WriteFooter();
 

@@ -58,7 +58,7 @@ namespace CorpusExplorer.Sdk.Blocks
         {
           if (doc1[i][j] == -1)
           {
-            if (list != null &&
+            if (list       != null &&
                 list.Count > 0)
             {
               var key = string.Join(" ", list);
@@ -91,7 +91,7 @@ namespace CorpusExplorer.Sdk.Blocks
           list.Add(layer2[doc2[i][j]]);
         }
 
-        if (list != null &&
+        if (list       != null &&
             list.Count > 0)
         {
           var key = string.Join(" ", list);

@@ -26,9 +26,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
 
         // Erzeuge Index.xml (Guid > Dokumentnamen - Dictionary)
         FileIO.Write(
-          Path.Combine(root, "documents.txt"),
-          SerializeDictionary(csel.Value.ToDictionary(x => x.ToString("N"), hydra.GetDocumentDisplayname)),
-          Configuration.Encoding);
+                     Path.Combine(root, "documents.txt"),
+                     SerializeDictionary(csel.Value.ToDictionary(x => x.ToString("N"), hydra.GetDocumentDisplayname)),
+                     Configuration.Encoding);
 
         var corpus = hydra.GetCorpus(csel.Key);
         var layer = corpus?.GetLayers(LayerDisplayname)?.FirstOrDefault();
@@ -43,15 +43,15 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
 
           // Speichere die Dokument-Metadaten
           FileIO.Write(
-            Path.Combine(root, $"{dsel:N}.meta.txt"),
-            SerializeDictionary(hydra.GetDocumentMetadata(dsel)),
-            Configuration.Encoding);
+                       Path.Combine(root, $"{dsel:N}.meta.txt"),
+                       SerializeDictionary(hydra.GetDocumentMetadata(dsel)),
+                       Configuration.Encoding);
 
           // Gebe die Layerdaten des Dokuments aus
           FileIO.Write(
-            Path.Combine(root, $"{dsel:N}.text.txt"),
-            layer.GetReadableDocumentByGuid(dsel).ConvertToPlainText(),
-            Configuration.Encoding);
+                       Path.Combine(root, $"{dsel:N}.text.txt"),
+                       layer.GetReadableDocumentByGuid(dsel).ConvertToPlainText(),
+                       Configuration.Encoding);
         }
       }
     }

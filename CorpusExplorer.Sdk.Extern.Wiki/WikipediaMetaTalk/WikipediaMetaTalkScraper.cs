@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk.Serializer;
 using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
 
@@ -12,6 +8,7 @@ namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
   {
     public override string DisplayName => "Wikipedia-Meta-DUMP";
     protected override AbstractGenericSerializer<page> Serializer => new WikipediaMetaTalkSerializer();
+
     protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, page model)
     {
       var text = model.revision.comment.Text == null
@@ -33,18 +30,18 @@ namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
         {"SHA1", model.revision.sha1},
         {"Benutzer gelöscht?", model.revision.contributor.deleted},
         {"Kommentar gelöscht?", model.revision.comment.deleted},
-        {"Text", text},
+        {"Text", text}
       };
       doc = AppendContributor(doc, model.revision.contributor);
-      return new[] { doc };
+      return new[] {doc};
     }
 
-    private static Dictionary<string, object> AppendContributor(Dictionary<string, object> doc, contributor revisionContributor)
+    private static Dictionary<string, object> AppendContributor(Dictionary<string, object> doc,
+                                                                contributor revisionContributor)
     {
       string ip = null, user = null, userId = null;
 
-      for (int i = 0; i < revisionContributor.ItemsElementName.Length; i++)
-      {
+      for (var i = 0; i < revisionContributor.ItemsElementName.Length; i++)
         switch (revisionContributor.ItemsElementName[i])
         {
           case ItemsChoiceType.id:
@@ -57,7 +54,6 @@ namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
             user = revisionContributor.Items[i];
             break;
         }
-      }
 
       if (ip != null)
         doc.Add("UserIP", ip);

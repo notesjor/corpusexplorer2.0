@@ -54,7 +54,7 @@ namespace CorpusExplorer.Sdk.Aspect
     private string GetCacheKey(object instance, Arguments arguments)
     {
       // If we have no argument, return just the method name so we don't uselessly allocate memory.
-      if (instance == null &&
+      if (instance        == null &&
           arguments.Count == 0)
         return _methodName;
 

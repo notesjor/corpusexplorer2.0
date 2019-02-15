@@ -22,7 +22,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       EnsureInitialisation();
 
       var before = _collection.FirstOrDefault(w => w.Offset == _collection.Min(m => m.Offset));
-      var after = _collection.FirstOrDefault(w => w.Offset == _collection.Max(m => m.Offset));
+      var after = _collection.FirstOrDefault(w => w.Offset  == _collection.Max(m => m.Offset));
 
       foreach (var gs in _collection)
       {
@@ -75,16 +75,16 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
         return;
 
       _collection = new GradientStopCollection(
-        new[]
-        {
-          new GradientStop(Color.FromRgb(255, 0, 0), 0.0),
-          new GradientStop(Color.FromRgb(255, 126, 0), 0.17),
-          new GradientStop(Color.FromRgb(255, 255, 0), 0.33),
-          new GradientStop(Color.FromRgb(0, 255, 0), 0.5),
-          new GradientStop(Color.FromRgb(0, 255, 255), 0.67),
-          new GradientStop(Color.FromRgb(0, 0, 255), 0.83),
-          new GradientStop(Color.FromRgb(255, 0, 255), 1.0)
-        });
+                                               new[]
+                                               {
+                                                 new GradientStop(Color.FromRgb(255, 0, 0), 0.0),
+                                                 new GradientStop(Color.FromRgb(255, 126, 0), 0.17),
+                                                 new GradientStop(Color.FromRgb(255, 255, 0), 0.33),
+                                                 new GradientStop(Color.FromRgb(0, 255, 0), 0.5),
+                                                 new GradientStop(Color.FromRgb(0, 255, 255), 0.67),
+                                                 new GradientStop(Color.FromRgb(0, 0, 255), 0.83),
+                                                 new GradientStop(Color.FromRgb(255, 0, 255), 1.0)
+                                               });
       _specturm = new LinearGradientBrush(_collection);
     }
   }

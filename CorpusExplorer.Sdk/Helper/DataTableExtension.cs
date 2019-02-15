@@ -1,16 +1,12 @@
 ﻿#region
 
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Utils.DataTableWriter;
-using Newtonsoft.Json.Linq;
 
 #endregion
 
@@ -27,10 +23,10 @@ namespace CorpusExplorer.Sdk.Helper
       if (!dataTable.Columns.Contains(columnNameToNormalize))
         return dataTable;
 
-      var sum = dataTable.Rows.Cast<DataRow>().Sum(row => (double)row[columnNameToNormalize]);
+      var sum = dataTable.Rows.Cast<DataRow>().Sum(row => (double) row[columnNameToNormalize]);
 
       foreach (DataRow row in dataTable.Rows)
-        row[columnNameToNormalize] = Math.Round((double)row[columnNameToNormalize] / sum * denominator, round);
+        row[columnNameToNormalize] = Math.Round((double) row[columnNameToNormalize] / sum * denominator, round);
 
       return dataTable;
     }
@@ -69,18 +65,18 @@ namespace CorpusExplorer.Sdk.Helper
     public static DataTable OnlyTheBiggestRows(this DataTable dataTable, string sortColumnname, int rowLimmit)
     {
       return dataTable.Rows.Count < rowLimmit
-        ? dataTable
-        : dataTable.Rows.Cast<DataRow>()
-          .OrderByDescending(r => r[sortColumnname])
-          .Take(rowLimmit)
-          .CopyToDataTable();
+               ? dataTable
+               : dataTable.Rows.Cast<DataRow>()
+                          .OrderByDescending(r => r[sortColumnname])
+                          .Take(rowLimmit)
+                          .CopyToDataTable();
     }
 
     public static string ToTsv(this DataTable dt)
     {
       using (var ms = new MemoryStream())
       {
-        var tableWriter = new TsvTableWriter { OutputStream = ms };
+        var tableWriter = new TsvTableWriter {OutputStream = ms};
         tableWriter.WriteTable(dt);
         tableWriter.Destroy(false);
         return Configuration.Encoding.GetString(ms.GetBuffer());
@@ -91,7 +87,7 @@ namespace CorpusExplorer.Sdk.Helper
     {
       using (var ms = new MemoryStream())
       {
-        var tableWriter = new CsvTableWriter { OutputStream = ms };
+        var tableWriter = new CsvTableWriter {OutputStream = ms};
         tableWriter.WriteTable(dt);
         tableWriter.Destroy(false);
         return Configuration.Encoding.GetString(ms.GetBuffer());
@@ -102,7 +98,7 @@ namespace CorpusExplorer.Sdk.Helper
     {
       using (var ms = new MemoryStream())
       {
-        var tableWriter = new HtmlTableWriter { OutputStream = ms };
+        var tableWriter = new HtmlTableWriter {OutputStream = ms};
         tableWriter.WriteTable(dt);
         tableWriter.Destroy(false);
         return Configuration.Encoding.GetString(ms.GetBuffer());
@@ -113,7 +109,7 @@ namespace CorpusExplorer.Sdk.Helper
     {
       using (var ms = new MemoryStream())
       {
-        var tableWriter = new JsonTableWriter { OutputStream = ms };
+        var tableWriter = new JsonTableWriter {OutputStream = ms};
         tableWriter.WriteTable(dt);
         tableWriter.Destroy(false);
         return Configuration.Encoding.GetString(ms.GetBuffer());
@@ -124,7 +120,7 @@ namespace CorpusExplorer.Sdk.Helper
     {
       using (var ms = new MemoryStream())
       {
-        var tableWriter = new XmlTableWriter { OutputStream = ms };
+        var tableWriter = new XmlTableWriter {OutputStream = ms};
         tableWriter.WriteTable(dt);
         tableWriter.Destroy(false);
         return Configuration.Encoding.GetString(ms.GetBuffer());

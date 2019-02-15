@@ -138,7 +138,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
                                      ? blockGroup.GetSelectionClusters()
                                      : blockGroup.GetSelectionClustersWindowed((int) num_window.Value)).ToArray();
 
-                 Result = selections.First(); 
+                 Result = selections.First();
                });
     }
 

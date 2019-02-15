@@ -25,7 +25,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
           foreach (var dsel in csel.Value)
           {
             var layers = hydra.GetReadableMultilayerDocument(dsel)
-              .ToDictionary(x => x.Key, x => x.Value.Select(y => y.ToArray()).ToArray());
+                              .ToDictionary(x => x.Key, x => x.Value.Select(y => y.ToArray()).ToArray());
             var first = layers["ID"];
             var stb = new StringBuilder();
             for (var i = 0; i < first.Length; i++)
@@ -41,7 +41,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
           foreach (var dsel in csel.Value)
           {
             var layers = hydra.GetReadableMultilayerDocument(dsel)
-              .ToDictionary(x => x.Key, x => x.Value.Select(y => y.ToArray()).ToArray());
+                              .ToDictionary(x => x.Key, x => x.Value.Select(y => y.ToArray()).ToArray());
             var first = layers.First().Value;
             var stb = new StringBuilder();
             for (var i = 0; i < first.Length; i++)

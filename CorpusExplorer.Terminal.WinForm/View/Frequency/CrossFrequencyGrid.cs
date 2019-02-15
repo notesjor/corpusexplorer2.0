@@ -47,12 +47,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 
       AddSummaryRow();
       AddChildTemplate(
-        x => new FilterQuerySingleLayerAnyMatch
-        {
-          Inverse = false,
-          LayerDisplayname = "Wort",
-          LayerQueries = new[] {x[Resources.ZeichenketteWortform].ToString()}
-        });
+                       x => new FilterQuerySingleLayerAnyMatch
+                       {
+                         Inverse = false,
+                         LayerDisplayname = _vm.LayerDisplayname,
+                         LayerQueries = new[] {x[Resources.ZeichenketteWortform].ToString()}
+                       });
 
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
     }
@@ -87,7 +87,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 
     private void btn_filter_Click(object sender, EventArgs e)
     {
-      FilterListFunction("Wort");
+      FilterListFunction(_vm.LayerDisplayname);
     }
 
     private void btn_filtereditor_Click(object sender, EventArgs e)

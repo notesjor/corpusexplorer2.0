@@ -36,10 +36,10 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
     private void btn_remove_Click(object sender, EventArgs e)
     {
       if (MessageBox.Show(
-            Resources.Snapshot_ConditionDelete,
-            Resources.Snapshot_ConditionDeleteHead,
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question) == DialogResult.No)
+                          Resources.Snapshot_ConditionDelete,
+                          Resources.Snapshot_ConditionDeleteHead,
+                          MessageBoxButtons.YesNo,
+                          MessageBoxIcon.Question) == DialogResult.No)
         return;
 
       QueryRemove?.Invoke(this, null);

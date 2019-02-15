@@ -17,9 +17,11 @@ namespace CorpusExplorer.Sdk.Blocks
 
     public Dictionary<string, double> CooccurrenceSignificance { get; set; }
 
-    [XmlElement] public string LayerDisplayname { get; set; } = "Wort";
+    [XmlElement]
+    public string LayerDisplayname { get; set; } = "Wort";
 
-    [XmlArray] public string[] LayerQueries { get; set; }
+    [XmlArray]
+    public string[] LayerQueries { get; set; }
 
     public override void Calculate()
     {
@@ -80,11 +82,14 @@ namespace CorpusExplorer.Sdk.Blocks
       private readonly object _lockFrequency = new object();
       private readonly object _lockSum = new object();
 
-      [XmlIgnore] public Dictionary<string, double> Frequency { get; set; } = new Dictionary<string, double>();
+      [XmlIgnore]
+      public Dictionary<string, double> Frequency { get; set; } = new Dictionary<string, double>();
 
-      [XmlElement] public string LayerDisplayname { get; set; } = "Wort";
+      [XmlElement]
+      public string LayerDisplayname { get; set; } = "Wort";
 
-      [XmlIgnore] public int SentenceCount { get; set; }
+      [XmlIgnore]
+      public int SentenceCount { get; set; }
 
       public override void Calculate()
       {
@@ -146,11 +151,14 @@ namespace CorpusExplorer.Sdk.Blocks
       private readonly object _lockFrequency = new object();
       private readonly object _lockSum = new object();
 
-      [XmlIgnore] public Dictionary<string, double> Frequency { get; set; } = new Dictionary<string, double>();
+      [XmlIgnore]
+      public Dictionary<string, double> Frequency { get; set; } = new Dictionary<string, double>();
 
-      [XmlElement] public string LayerDisplayname { get; set; } = "Wort";
+      [XmlElement]
+      public string LayerDisplayname { get; set; } = "Wort";
 
-      [XmlIgnore] public int SentenceCount { get; set; }
+      [XmlIgnore]
+      public int SentenceCount { get; set; }
 
       public override void Calculate()
       {

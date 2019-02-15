@@ -12,8 +12,8 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
   public class HtmlTableWriter : AbstractTableWriter
   {
     private readonly Regex _r = new Regex(@"<[^>]*>");
-    public override string MimeType => "text/html";
     private int _rowCount;
+    public override string MimeType => "text/html";
 
     public override string TableWriterTag => "F:HTML";
 
@@ -37,7 +37,9 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
     }
 
     public override AbstractTableWriter Clone(Stream stream)
-      => new HtmlTableWriter { OutputStream = stream };
+    {
+      return new HtmlTableWriter {OutputStream = stream};
+    }
 
     protected override void WriteBody(DataTable table)
     {
@@ -67,15 +69,14 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
         tmp.Replace("{rid}", _rowCount++.ToString());
 
         foreach (var column in columns)
-        {
           if (row[column.Key] == null)
             tmp.Replace(marks[column.Key], string.Empty);
           else
             tmp.Replace(marks[column.Key],
-              column.Value == typeof(string)
-                ? _r.Replace(row[column.Key].ToString(), string.Empty).Replace("<", string.Empty).Replace(">", string.Empty)
-                : row[column.Key].ToString().Replace(",", "."));
-        }
+                        column.Value == typeof(string)
+                          ? _r.Replace(row[column.Key].ToString(), string.Empty).Replace("<", string.Empty)
+                              .Replace(">", string.Empty)
+                          : row[column.Key].ToString().Replace(",", "."));
 
         res.Append(tmp);
         tmp.Clear();

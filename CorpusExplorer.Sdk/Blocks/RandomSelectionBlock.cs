@@ -84,20 +84,20 @@ namespace CorpusExplorer.Sdk.Blocks
       }
 
       RandomSelection = Project.CreateSelection(
-        selD,
-        string.Format(
-          Resources.SelectionRandomDescription,
-          selD.Count,
-          Math.Round(DocumentPercent, 2)),
-        Selection);
+                                                selD,
+                                                string.Format(
+                                                              Resources.SelectionRandomDescription,
+                                                              selD.Count,
+                                                              Math.Round(DocumentPercent, 2)),
+                                                Selection);
 
       RandomInvertSelection = Project.CreateSelection(
-        rd,
-        string.Format(
-          Resources.SelectionRandomDescription,
-          rd.Count,
-          Math.Round(100d - DocumentPercent, 2)),
-        Selection);
+                                                      rd,
+                                                      string.Format(
+                                                                    Resources.SelectionRandomDescription,
+                                                                    rd.Count,
+                                                                    Math.Round(100d - DocumentPercent, 2)),
+                                                      Selection);
     }
 
     private void EnsureDocumentCountMax()

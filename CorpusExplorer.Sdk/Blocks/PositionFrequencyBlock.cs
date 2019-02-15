@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Ecosystem.Model;
@@ -12,34 +11,36 @@ namespace CorpusExplorer.Sdk.Blocks
 {
   public class PositionFrequencyBlock : AbstractSimple1LayerBlock
   {
-    private object _positionsLock = new object();
     private Dictionary<string, Dictionary<int, int>> _positions;
+    private readonly object _positionsLock = new object();
+
     /// <summary>
-    /// Wort-Positionen.
-    /// Key = Wort.
-    /// Value => 
-    /// 1 = erstes Vorkommen links
-    /// 2 = Summe Vorkommen links
-    /// 3 = Frequenz Vorkommen links
-    /// 4 = Frequenz Vorkommen rechts
-    /// 5 = Summe Vorkommen rechts
-    /// 6 = letztes Vorkommen rechts
-    /// 7 = Vorkommen Summe
+    ///   Wort-Positionen.
+    ///   Key = Wort.
+    ///   Value =>
+    ///   1 = erstes Vorkommen links
+    ///   2 = Summe Vorkommen links
+    ///   3 = Frequenz Vorkommen links
+    ///   4 = Frequenz Vorkommen rechts
+    ///   5 = Summe Vorkommen rechts
+    ///   6 = letztes Vorkommen rechts
+    ///   7 = Vorkommen Summe
     /// </summary>
     public Dictionary<string, Tuple<int, int, int[], int[], int, int, int>> Positions;
 
     public string[] LayerQueries { get; set; }
 
-    protected override void CalculateCall(AbstractCorpusAdapter corpus, AbstractLayerAdapter layer, Guid dsel, int[][] doc)
+    protected override void CalculateCall(AbstractCorpusAdapter corpus, AbstractLayerAdapter layer, Guid dsel,
+                                          int[][] doc)
     {
       var temp = new Dictionary<string, Dictionary<int, int>>();
-      
+
       foreach (var layerQuery in LayerQueries)
       {
         var q = layer[layerQuery];
         if (q < 0)
           continue;
-        
+
         foreach (var s in doc)
         {
           if (Configuration.ProtectMemoryOverflow && s.Length > 100)
@@ -47,12 +48,13 @@ namespace CorpusExplorer.Sdk.Blocks
 
           var idx = -1;
           for (var i = 0; i < s.Length; i++)
-          {
             if (idx > -1)
             {
               if (s[i] == q)
                 if (i <= idx)
+                {
                   continue;
+                }
                 else
                 {
                   var t = idx;
@@ -60,6 +62,7 @@ namespace CorpusExplorer.Sdk.Blocks
                   i = t;
                   continue;
                 }
+
               var pos = i - idx;
               var word = layer[s[i]];
               if (temp.ContainsKey(word))
@@ -68,7 +71,7 @@ namespace CorpusExplorer.Sdk.Blocks
                 else
                   temp[word].Add(pos, 1);
               else
-                temp.Add(word, new Dictionary<int, int> { { pos, 1 } });
+                temp.Add(word, new Dictionary<int, int> {{pos, 1}});
             }
             else
             {
@@ -77,14 +80,12 @@ namespace CorpusExplorer.Sdk.Blocks
               idx = i;
               i = -1;
             }
-          }
-        }        
-      }  
-      
+        }
+      }
+
       lock (_positionsLock)
       {
         foreach (var x in temp)
-        {
           if (_positions.ContainsKey(x.Key))
             foreach (var y in x.Value)
               if (_positions[x.Key].ContainsKey(y.Key))
@@ -93,7 +94,6 @@ namespace CorpusExplorer.Sdk.Blocks
                 _positions[x.Key].Add(y.Key, y.Value);
           else
             _positions.Add(x.Key, x.Value);
-        }
       }
     }
 
@@ -128,12 +128,14 @@ namespace CorpusExplorer.Sdk.Blocks
             pre[i] = position.Value[i - pre.Length];
             sum += pre[i];
             leftSum += pre[i];
-            if(left > i - pre.Length)
+            if (left > i - pre.Length)
               left = i - pre.Length;
           }
         }
         else
+        {
           pre = new int[0];
+        }
 
         var right = 0;
         var rightSum = 0;
@@ -157,10 +159,16 @@ namespace CorpusExplorer.Sdk.Blocks
           }
         }
         else
+        {
           post = new int[0];
+        }
 
         lock (plock)
-          Positions.Add(position.Key, new Tuple<int, int, int[], int[], int, int, int>(left, leftSum, pre, post, rightSum, right, sum));
+        {
+          Positions.Add(position.Key,
+                        new Tuple<int, int, int[], int[], int, int, int>(left, leftSum, pre, post, rightSum, right,
+                                                                         sum));
+        }
       });
 
       _positions.Clear();

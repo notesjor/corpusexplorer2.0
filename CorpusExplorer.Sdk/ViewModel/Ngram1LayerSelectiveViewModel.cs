@@ -13,11 +13,12 @@ namespace CorpusExplorer.Sdk.ViewModel
       IProvideDataTable
   {
     /// <summary>
-    /// Eigenschaft kann gesetzt werden, um die Ausgabe von GetDataTable() zu filtern.
-    /// Zum Filter/Optimieren des Blocks sollte Configuration.MinimumFrequency gesetzt werden.
+    ///   Eigenschaft kann gesetzt werden, um die Ausgabe von GetDataTable() zu filtern.
+    ///   Zum Filter/Optimieren des Blocks sollte Configuration.MinimumFrequency gesetzt werden.
     /// </summary>
     /// <value>The n gram minimum frequency.</value>
     public int NGramMinFrequency { get; set; } = 0;
+
     public Dictionary<string, int> NGramFrequency { get; private set; }
     public Dictionary<string, string[]> NGramRaw { get; private set; }
     public IEnumerable<string> LayerQueries { get; set; }

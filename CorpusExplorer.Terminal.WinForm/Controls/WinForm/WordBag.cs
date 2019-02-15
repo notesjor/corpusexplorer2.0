@@ -42,10 +42,10 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       catch
       {
         MessageBox.Show(
-          Resources.Snapshot_GreenValueError,
-          Resources.Snapshot_GreenValueHintHead,
-          MessageBoxButton.OK,
-          MessageBoxImage.Warning);
+                        Resources.Snapshot_GreenValueError,
+                        Resources.Snapshot_GreenValueHintHead,
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning);
         return;
       }
 
@@ -54,7 +54,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
 
     private void btn_selectLayer_Click(object sender, EventArgs e)
     {
-      var form = new Select1Layer(new[] { "Wort" });
+      var form = new Select1Layer(new[] {"Wort"});
       form.ShowDialog();
 
       if (string.IsNullOrEmpty(form.ResultSelectedLayer1Displayname))

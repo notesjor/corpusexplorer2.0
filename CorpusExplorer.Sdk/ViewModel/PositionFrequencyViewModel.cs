@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
 using CorpusExplorer.Sdk.ViewModel.Interfaces;
@@ -15,22 +13,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     public string[] LayerQueries { get; set; }
     public string LayerDisplayname { get; set; } = "Wort";
 
-    protected override void ExecuteAnalyse()
-    {
-      var block = Selection.CreateBlock<PositionFrequencyBlock>();
-      block.LayerDisplayname = LayerDisplayname;
-      block.LayerQueries = LayerQueries;
-      block.Calculate();
-
-      Positions = block.Positions;
-    }
-
     public Dictionary<string, Tuple<int, int, int[], int[], int, int, int>> Positions { get; set; }
-
-    protected override bool Validate()
-    {
-      return LayerQueries != null && !string.IsNullOrEmpty(LayerDisplayname);
-    }
 
     public DataTable GetDataTable()
     {
@@ -52,15 +35,33 @@ namespace CorpusExplorer.Sdk.ViewModel
 
       foreach (var position in Positions)
       {
-        var row = new List<object> { position.Key, position.Value.Item1, position.Value.Item2 };
-        row.AddRange(position.Value.Item3.Select(x => (object)x));
-        row.AddRange(position.Value.Item4.Select(x => (object)x));
-        row.AddRange(new object[] { position.Value.Item5, position.Value.Item6, position.Value.Item5 - position.Value.Item2, position.Value.Item7 });
+        var row = new List<object> {position.Key, position.Value.Item1, position.Value.Item2};
+        row.AddRange(position.Value.Item3.Select(x => (object) x));
+        row.AddRange(position.Value.Item4.Select(x => (object) x));
+        row.AddRange(new object[]
+        {
+          position.Value.Item5, position.Value.Item6, position.Value.Item5 - position.Value.Item2, position.Value.Item7
+        });
         dt.Rows.Add(row.ToArray());
       }
 
       dt.EndLoadData();
       return dt;
+    }
+
+    protected override void ExecuteAnalyse()
+    {
+      var block = Selection.CreateBlock<PositionFrequencyBlock>();
+      block.LayerDisplayname = LayerDisplayname;
+      block.LayerQueries = LayerQueries;
+      block.Calculate();
+
+      Positions = block.Positions;
+    }
+
+    protected override bool Validate()
+    {
+      return LayerQueries != null && !string.IsNullOrEmpty(LayerDisplayname);
     }
   }
 }

@@ -89,21 +89,21 @@ namespace CorpusExplorer.Sdk.Blocks
 
       var countSentences = (double) doc.Length;
       var countWords = (double) doc.SelectMany(s => s).Count();
-      var averageSentenceLength = countWords / countSentences;
+      var averageSentenceLength = countWords            / countSentences;
       var averageNumberOfSyllablesPerWord = countHypens / countWords;
-      var ms = hypenCount3More / countWords * 100.0d;
-      var iw = characterCount6More / countWords * 100.0d;
-      var es = hypenCount1 / countWords * 100.0d;
+      var ms = hypenCount3More     / countWords         * 100.0d;
+      var iw = characterCount6More / countWords         * 100.0d;
+      var es = hypenCount1         / countWords         * 100.0d;
 
       _values.TryAdd(
-        dsel,
-        ReadingEaseAlgorithm.CalculateIndex(
-          averageSentenceLength,
-          averageNumberOfSyllablesPerWord,
-          ms,
-          iw,
-          es,
-          hypenCount3More));
+                     dsel,
+                     ReadingEaseAlgorithm.CalculateIndex(
+                                                         averageSentenceLength,
+                                                         averageNumberOfSyllablesPerWord,
+                                                         ms,
+                                                         iw,
+                                                         es,
+                                                         hypenCount3More));
     }
 
     /// <summary>

@@ -102,26 +102,26 @@ namespace CorpusExplorer.Sdk.Blocks
       AbstractLayerAdapter layer2,
       int[][] doc2)
     {
-      if (doc1 == null ||
-          doc2 == null ||
+      if (doc1        == null ||
+          doc2        == null ||
           doc1.Length != doc2.Length)
         return;
 
       var array = new Constituent[doc1.Length][];
 
       Parallel.For(
-        0,
-        doc1.Length,
-        Configuration.ParallelOptions,
-        i =>
-        {
-          if (doc1[i] == null ||
-              doc2[i] == null ||
-              doc1[i].Length != doc2[i].Length)
-            return;
+                   0,
+                   doc1.Length,
+                   Configuration.ParallelOptions,
+                   i =>
+                   {
+                     if (doc1[i]        == null ||
+                         doc2[i]        == null ||
+                         doc1[i].Length != doc2[i].Length)
+                       return;
 
-          array[i] = GetBaseConstituents(layer1, doc1[i], layer2, doc2[i]).ToArray();
-        });
+                     array[i] = GetBaseConstituents(layer1, doc1[i], layer2, doc2[i]).ToArray();
+                   });
 
       lock (_phrasesLock)
       {

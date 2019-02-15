@@ -2,11 +2,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.SelectLayer;
 using CorpusExplorer.Terminal.WinForm.Forms.Simple;
@@ -25,8 +23,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
   /// </summary>
   public partial class CutOffPhraseGrid : AbstractGridViewWithTextLense
   {
-    private CutOffPhraseViewModel _vm;
     private DateTime _preventDoubleCommandClick2;
+    private CutOffPhraseViewModel _vm;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractView" /> class.
@@ -36,13 +34,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       InitializeComponent();
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
       radGridView1.AllowAutoSizeColumns = true;
+
       InitializeGrid(radGridView1);
+      ShowView += GridNGramVisualisation_ShowVisualisation;
     }
 
     private void Analyse()
     {
       _vm = GetViewModel<CutOffPhraseViewModel>();
-      _vm.WordSpan = int.Parse(txt_size.Text);
       _vm.LayerQuery1 = txt_start.Text;
       _vm.LayerQuery2 = txt_end.Text;
       if (SelectedLayerDisplaynames != null)
@@ -106,7 +105,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       vm.Execute();
 
       var form = new SimpleTextView(vm.QuickDocumentInfoResults, Project);
-      form.NewProperty += (o, a) => { vm.SetNewDocumentMetadata((KeyValuePair<string, Type>)o); };
+      form.NewProperty += (o, a) => { vm.SetNewDocumentMetadata((KeyValuePair<string, Type>) o); };
 
       if (form.ShowDialog() == DialogResult.OK)
         foreach (var doc in form.Documents)
@@ -191,7 +190,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       var res = new List<Guid>();
       foreach (var r in radGridView1.SelectedRows)
       {
-        if(!(r.Cells["Info"].Value is IEnumerable<KeyValuePair<Guid, int>> items))
+        if (!(r.Cells["Info"].Value is IEnumerable<KeyValuePair<Guid, int>> items))
           continue;
         res.AddRange(items.Select(item => item.Key));
       }

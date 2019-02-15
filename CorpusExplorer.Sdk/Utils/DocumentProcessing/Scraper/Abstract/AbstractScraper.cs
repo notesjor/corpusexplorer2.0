@@ -19,28 +19,28 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract
       while (count > 0)
       {
         Parallel.For(
-          0,
-          count,
-          Configuration.ParallelOptions,
-          i =>
-          {
-            try
-            {
-              string item;
-              if (!Input.TryDequeue(out item))
-                return;
+                     0,
+                     count,
+                     Configuration.ParallelOptions,
+                     i =>
+                     {
+                       try
+                       {
+                         string item;
+                         if (!Input.TryDequeue(out item))
+                           return;
 
-              var temp = Execute(item);
-              if (temp == null)
-                return;
-              foreach (var t in temp)
-                Output.Enqueue(t);
-            }
-            catch (Exception ex)
-            {
-              InMemoryErrorConsole.Log(ex);
-            }
-          });
+                         var temp = Execute(item);
+                         if (temp == null)
+                           return;
+                         foreach (var t in temp)
+                           Output.Enqueue(t);
+                       }
+                       catch (Exception ex)
+                       {
+                         InMemoryErrorConsole.Log(ex);
+                       }
+                     });
         count = Input.Count;
       }
     }

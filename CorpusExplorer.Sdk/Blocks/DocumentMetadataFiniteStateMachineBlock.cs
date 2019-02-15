@@ -32,7 +32,7 @@ namespace CorpusExplorer.Sdk.Blocks
           continue;
 
         var entity = dmeta[MetadataKeyEntity]?.ToString() ?? "";
-        var level = dmeta[MetadataKeyLevel]?.ToString() ?? "";
+        var level = dmeta[MetadataKeyLevel]?.ToString()   ?? "";
 
         if (FiniteStates.ContainsKey(entity))
           if (FiniteStates[entity].Last().Item1 == level)
@@ -41,8 +41,9 @@ namespace CorpusExplorer.Sdk.Blocks
             FiniteStates[entity].Add(new Tuple<string, HashSet<Guid>>(level, new HashSet<Guid> {dsel}));
         else
           FiniteStates.Add(
-            entity,
-            new List<Tuple<string, HashSet<Guid>>> {new Tuple<string, HashSet<Guid>>(level, new HashSet<Guid> {dsel})});
+                           entity,
+                           new List<Tuple<string, HashSet<Guid>>>
+                             {new Tuple<string, HashSet<Guid>>(level, new HashSet<Guid> {dsel})});
       }
     }
   }

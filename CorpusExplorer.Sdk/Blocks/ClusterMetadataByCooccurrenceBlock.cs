@@ -8,9 +8,14 @@ using CorpusExplorer.Sdk.Model;
 namespace CorpusExplorer.Sdk.Blocks
 {
   [Serializable]
-  public class ClusterMetadataByCooccurrenceBlock : AbstractClusterMetadataBlock<Dictionary<string, Dictionary<string, double>>>
+  public class
+    ClusterMetadataByCooccurrenceBlock : AbstractClusterMetadataBlock<Dictionary<string, Dictionary<string, double>>>
   {
-    protected override Dictionary<string, Dictionary<string, double>> Join(Dictionary<string, Dictionary<string, double>> a, Dictionary<string, Dictionary<string, double>> b)
+    public double CooccurrenceMinFrequency { get; set; }
+    public double CooccurrenceMinSignificance { get; set; }
+
+    protected override Dictionary<string, Dictionary<string, double>> Join(
+      Dictionary<string, Dictionary<string, double>> a, Dictionary<string, Dictionary<string, double>> b)
     {
       var res = new Dictionary<string, Dictionary<string, double>>();
 
@@ -26,7 +31,9 @@ namespace CorpusExplorer.Sdk.Blocks
               res[x.Key].Add(y.Key, y.Value);
         }
         else
+        {
           res.Add(x.Key, x.Value);
+        }
 
       foreach (var x in b)
         if (res.ContainsKey(x.Key))
@@ -36,14 +43,19 @@ namespace CorpusExplorer.Sdk.Blocks
               res[x.Key].Add(y.Key, y.Value);
         }
         else
+        {
           res.Add(x.Key, x.Value);
+        }
 
       return res;
     }
 
     protected override double CalculateDistance(
-      AbstractDistance similarityIndex, Dictionary<string, Dictionary<string, double>> a, Dictionary<string, Dictionary<string, double>> b)
-      => similarityIndex.CalculateSimilarity(a, b) / 2d;
+      AbstractDistance similarityIndex, Dictionary<string, Dictionary<string, double>> a,
+      Dictionary<string, Dictionary<string, double>> b)
+    {
+      return similarityIndex.CalculateSimilarity(a, b) / 2d;
+    }
 
     protected override Dictionary<string, Dictionary<string, double>> CalculateValues(Selection selection)
     {
@@ -61,14 +73,15 @@ namespace CorpusExplorer.Sdk.Blocks
       {
         var tmp = new Dictionary<string, Dictionary<string, double>>();
         foreach (var x in res)
-          foreach (var y in x.Value)
-            if (y.Value >= CooccurrenceMinSignificance)
-            {
-              if (tmp.ContainsKey(x.Key))
-                tmp[x.Key].Add(y.Key, y.Value);
-              else
-                tmp.Add(x.Key, new Dictionary<string, double> { { y.Key, y.Value } });
-            }
+        foreach (var y in x.Value)
+          if (y.Value >= CooccurrenceMinSignificance)
+          {
+            if (tmp.ContainsKey(x.Key))
+              tmp[x.Key].Add(y.Key, y.Value);
+            else
+              tmp.Add(x.Key, new Dictionary<string, double> {{y.Key, y.Value}});
+          }
+
         res = tmp;
       }
 
@@ -76,21 +89,19 @@ namespace CorpusExplorer.Sdk.Blocks
       {
         var tmp = new Dictionary<string, Dictionary<string, double>>();
         foreach (var x in res)
-          foreach (var y in x.Value)
-            if (block.CooccurrenceFrequency[x.Key][y.Key] >= CooccurrenceMinFrequency)
-            {
-              if (tmp.ContainsKey(x.Key))
-                tmp[x.Key].Add(y.Key, y.Value);
-              else
-                tmp.Add(x.Key, new Dictionary<string, double> { { y.Key, y.Value } });
-            }
+        foreach (var y in x.Value)
+          if (block.CooccurrenceFrequency[x.Key][y.Key] >= CooccurrenceMinFrequency)
+          {
+            if (tmp.ContainsKey(x.Key))
+              tmp[x.Key].Add(y.Key, y.Value);
+            else
+              tmp.Add(x.Key, new Dictionary<string, double> {{y.Key, y.Value}});
+          }
+
         res = tmp;
       }
 
       return res;
     }
-
-    public double CooccurrenceMinFrequency { get; set; }
-    public double CooccurrenceMinSignificance { get; set; }
   }
 }

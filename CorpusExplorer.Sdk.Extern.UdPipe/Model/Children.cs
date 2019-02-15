@@ -5,8 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 {
-  public class Children : IDisposable, IEnumerable
-    , IList<int>
+  public class Children : IDisposable, IEnumerable, IList<int>
   {
     protected bool swigCMemOwn;
     private HandleRef swigCPtr;
@@ -121,19 +120,19 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public bool Contains(int value)
     {
-      bool ret = udpipe_csharpPINVOKE.Children_Contains(swigCPtr, value);
+      var ret = udpipe_csharpPINVOKE.Children_Contains(swigCPtr, value);
       return ret;
     }
 
     public int IndexOf(int value)
     {
-      int ret = udpipe_csharpPINVOKE.Children_IndexOf(swigCPtr, value);
+      var ret = udpipe_csharpPINVOKE.Children_IndexOf(swigCPtr, value);
       return ret;
     }
 
     public bool Remove(int value)
     {
-      bool ret = udpipe_csharpPINVOKE.Children_Remove(swigCPtr, value);
+      var ret = udpipe_csharpPINVOKE.Children_Remove(swigCPtr, value);
       return ret;
     }
 
@@ -162,7 +161,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
         throw new ArgumentException("Multi dimensional array.", "array");
       if (index + count > Count || arrayIndex + count > array.Length)
         throw new ArgumentException("Number of elements to copy is too large.");
-      for (int i = 0; i < count; i++)
+      for (var i = 0; i < count; i++)
         array.SetValue(getitemcopy(index + i), arrayIndex + i);
     }
 
@@ -173,8 +172,8 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public Children GetRange(int index, int count)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.Children_GetRange(swigCPtr, index, count);
-      Children ret = cPtr == IntPtr.Zero ? null : new Children(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.Children_GetRange(swigCPtr, index, count);
+      var ret = cPtr == IntPtr.Zero ? null : new Children(cPtr, true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
@@ -187,7 +186,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public int LastIndexOf(int value)
     {
-      int ret = udpipe_csharpPINVOKE.Children_LastIndexOf(swigCPtr, value);
+      var ret = udpipe_csharpPINVOKE.Children_LastIndexOf(swigCPtr, value);
       return ret;
     }
 
@@ -199,8 +198,8 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public static Children Repeat(int value, int count)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.Children_Repeat(value, count);
-      Children ret = cPtr == IntPtr.Zero ? null : new Children(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.Children_Repeat(value, count);
+      var ret = cPtr == IntPtr.Zero ? null : new Children(cPtr, true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
@@ -229,20 +228,20 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     private uint capacity()
     {
-      uint ret = udpipe_csharpPINVOKE.Children_capacity(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Children_capacity(swigCPtr);
       return ret;
     }
 
     private int getitem(int index)
     {
-      int ret = udpipe_csharpPINVOKE.Children_getitem(swigCPtr, index);
+      var ret = udpipe_csharpPINVOKE.Children_getitem(swigCPtr, index);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     private int getitemcopy(int index)
     {
-      int ret = udpipe_csharpPINVOKE.Children_getitemcopy(swigCPtr, index);
+      var ret = udpipe_csharpPINVOKE.Children_getitemcopy(swigCPtr, index);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
@@ -260,7 +259,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     private uint size()
     {
-      uint ret = udpipe_csharpPINVOKE.Children_size(swigCPtr);
+      var ret = udpipe_csharpPINVOKE.Children_size(swigCPtr);
       return ret;
     }
 
@@ -274,13 +273,12 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     /// whenever the collection is modified. This has been done for changes in the size of the
     /// collection but not when one of the elements of the collection is modified as it is a bit
     /// tricky to detect unmanaged code that modifies the collection under our feet.
-    public sealed class ChildrenEnumerator : IEnumerator
-      , IEnumerator<int>
+    public sealed class ChildrenEnumerator : IEnumerator, IEnumerator<int>
     {
       private readonly Children collectionRef;
+      private readonly int currentSize;
       private int currentIndex;
       private object currentObject;
-      private readonly int currentSize;
 
       public ChildrenEnumerator(Children collection)
       {
@@ -295,8 +293,8 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
       public bool MoveNext()
       {
-        int size = collectionRef.Count;
-        bool moveOkay = currentIndex + 1 < size && size == currentSize;
+        var size = collectionRef.Count;
+        var moveOkay = currentIndex + 1 < size && size == currentSize;
         if (moveOkay)
         {
           currentIndex++;

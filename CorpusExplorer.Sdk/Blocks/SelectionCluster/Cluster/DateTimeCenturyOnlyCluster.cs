@@ -5,10 +5,10 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {
   public class DateTimeCenturyOnlyCluster : AbstractCluster
   {
-    private readonly int _min;
-    private readonly int _max;
-    private readonly int _value;
     private readonly DateTime _central;
+    private readonly int _max;
+    private readonly int _min;
+    private readonly int _value;
 
     public DateTimeCenturyOnlyCluster(DateTime value)
     {
@@ -26,7 +26,7 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
     {
       try
       {
-        var test = (DateTime)obj;
+        var test = (DateTime) obj;
         if (test.Year < _min || test.Year > _max)
           return false;
         Add(documentGuid);

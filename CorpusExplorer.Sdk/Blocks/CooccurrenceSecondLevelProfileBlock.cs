@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.CorpusExplorer;
@@ -51,10 +48,14 @@ namespace CorpusExplorer.Sdk.Blocks
                 CooccurrenceDuos[a][b] = cooc.Value;
             }
             else
+            {
               CooccurrenceDuos[a].Add(b, cooc.Value);
+            }
           }
           else
-            CooccurrenceDuos.Add(a, new Dictionary<string, double> { { b, cooc.Value } });
+          {
+            CooccurrenceDuos.Add(a, new Dictionary<string, double> {{b, cooc.Value}});
+          }
         }
       }
     }

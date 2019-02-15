@@ -91,8 +91,8 @@
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=1.0.0.999, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpZipLib.1.0.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.1.0.145, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.1.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -100,21 +100,16 @@
     <Reference Include="NHunspell, Version=1.2.5554.16953, Culture=neutral, PublicKeyToken=1ac793ea843b4366, processorArchitecture=MSIL">
       <HintPath>..\packages\NHunspell.1.2.5554.16953\lib\net\NHunspell.dll</HintPath>
     </Reference>
-    <Reference Include="NMathPremium, Version=6.2.0.30, Culture=neutral, PublicKeyToken=873235918a322639, processorArchitecture=MSIL" />
-    <Reference Include="NMathStatsPremium, Version=4.2.0.30, Culture=neutral, PublicKeyToken=873235918a322639, processorArchitecture=MSIL" />
     <Reference Include="Polenter.SharpSerializer, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.1\lib\netstandard1.0\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=6.0.31.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.0.31\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.0.34.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.0.34\lib\net45\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
     </Reference>
@@ -123,10 +118,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Addon\AbstractSimpleOnDemandAddon.cs" />
     <Compile Include="Addon\IAction.cs" />
+    <Compile Include="Addon\AbstractOnDemandAddon.cs" />
     <Compile Include="Aspect\CacheAspect.cs" />
     <Compile Include="Blocks\Abstract\AbstractClusterMetadataBlock.cs" />
     <Compile Include="Blocks\ClusterMetadataByCooccurrenceBlock.cs" />
@@ -324,9 +320,11 @@
     <Compile Include="Model\CorpusExplorer\FileSystem\FileSystemCorpusRoot.cs" />
     <Compile Include="Model\CorpusExplorer\FileSystem\FileSystemLayerHead.cs" />
     <Compile Include="Model\Delegates\HydraDelegate.cs" />
+    <Compile Include="Utils\CorpusManipulation\CorpusCleaner.cs" />
     <Compile Include="Utils\DataTableWriter\HtmlTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\SqlDataOnlyTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\SqlSchemaOnlyTableWriter.cs" />
+    <Compile Include="Utils\DocumentProcessing\Cleanup\RegexHyphenationCleanup.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCec6.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterConll.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCsv.cs" />
@@ -444,7 +442,11 @@
     <Compile Include="Utils\Filter\Queries\FilterQueryMetaEndsWith.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMetaStartsWith.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMultiLayerPhrase.cs" />
+    <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerAFollowedByBMatch.cs" />
+    <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerAFollowedByBSpanMatch.cs" />
+    <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerAllInExactSpanWords.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerFirstAndAnyOtherMatch.cs" />
+    <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerFirstFollowedByAnyOtherMatch.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerRegexFulltext.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerRanked.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerRegex.cs" />
@@ -648,6 +650,7 @@
     <Compile Include="ViewModel\FrequencyPivotViewModel.cs" />
     <Compile Include="ViewModel\TextLiveSearch\SignificanceExtendedUniqueTextLiveSearchResultEntry.cs" />
     <Compile Include="ViewModel\TextLiveSearch\UniqueTextLiveSearchResultEntry.cs" />
+    <Compile Include="ViewModel\TextLiveSearch\UniqueTextLiveSearchCutOffPhraseResultEntry.cs" />
     <Compile Include="ViewModel\TextLiveSignificanceSearchViewModel.cs" />
     <Compile Include="ViewModel\ValidateSelectionIntegrityViewModel.cs" />
     <Compile Include="ViewModel\VocabularyComplexityViewModel.cs" />
@@ -659,6 +662,9 @@
     <None Include="CorpusExplorer.Sdk.psproj" />
     <None Include="CorpusExplorerNextSnKey.pfx" />
     <None Include="mycert.pfx" />
+    <None Include="package.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -197,7 +197,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Events
       var text = HeaderText;
 
       if (_currentColumnIndex >= 0 &&
-          _currentRowIndex >= 0)
+          _currentRowIndex    >= 0)
         text = $"{_currentColumnIndex + 1}x{_currentRowIndex + 1}";
 
       _header.Text = text;

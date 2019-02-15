@@ -41,7 +41,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
         if (query == null)
           return null;
         query.MetaLabel = combo_label.SelectedItem.Text;
-        query.MetaValues = new[] { txt_values.Text };
+        query.MetaValues = new[] {txt_values.Text};
         query.Guid = _guid;
         return query;
       }
@@ -70,8 +70,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
       var array = _queries.ToArray();
       combo_label.SelectedText = query.MetaLabel;
       txt_values.Text = query.MetaValues == null || !query.MetaValues.Any()
-        ? ""
-        : query.MetaValues.FirstOrDefault()?.ToString();
+                          ? ""
+                          : query.MetaValues.FirstOrDefault()?.ToString();
 
       switch (query)
       {

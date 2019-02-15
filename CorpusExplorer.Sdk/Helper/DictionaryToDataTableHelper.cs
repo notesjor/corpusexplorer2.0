@@ -68,12 +68,12 @@ namespace CorpusExplorer.Sdk.Helper
       string columnNameValue)
     {
       return ToDataTableInternal(
-        dictionary,
-        columnNameKey1,
-        columnNameKey2,
-        columnNameKey3,
-        columnNameKey4,
-        columnNameValue);
+                                 dictionary,
+                                 columnNameKey1,
+                                 columnNameKey2,
+                                 columnNameKey3,
+                                 columnNameKey4,
+                                 columnNameValue);
     }
 
     public static DataTable ToDataTable<TK1, TK2, TK3, TK4, TV>(
@@ -85,12 +85,12 @@ namespace CorpusExplorer.Sdk.Helper
       string columnNameValue)
     {
       return ToDataTableInternal(
-        dictionary,
-        columnNameKey1,
-        columnNameKey2,
-        columnNameKey3,
-        columnNameKey4,
-        columnNameValue);
+                                 dictionary,
+                                 columnNameKey1,
+                                 columnNameKey2,
+                                 columnNameKey3,
+                                 columnNameKey4,
+                                 columnNameValue);
     }
 
     public static DataTable ToDataTable<TK1, TK2, TK3, TK4, TK5, TV>(
@@ -103,13 +103,13 @@ namespace CorpusExplorer.Sdk.Helper
       string columnNameValue)
     {
       return ToDataTableInternal(
-        dictionary,
-        columnNameKey1,
-        columnNameKey2,
-        columnNameKey3,
-        columnNameKey4,
-        columnNameKey5,
-        columnNameValue);
+                                 dictionary,
+                                 columnNameKey1,
+                                 columnNameKey2,
+                                 columnNameKey3,
+                                 columnNameKey4,
+                                 columnNameKey5,
+                                 columnNameValue);
     }
 
     public static DataTable ToDataTable<TK1, TK2, TK3, TK4, TK5, TV>(
@@ -123,13 +123,13 @@ namespace CorpusExplorer.Sdk.Helper
       string columnNameValue)
     {
       return ToDataTableInternal(
-        dictionary,
-        columnNameKey1,
-        columnNameKey2,
-        columnNameKey3,
-        columnNameKey4,
-        columnNameKey5,
-        columnNameValue);
+                                 dictionary,
+                                 columnNameKey1,
+                                 columnNameKey2,
+                                 columnNameKey3,
+                                 columnNameKey4,
+                                 columnNameKey5,
+                                 columnNameValue);
     }
 
     private static DataTable ToDataTableInternal<TK1, TV>(

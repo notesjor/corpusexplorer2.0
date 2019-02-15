@@ -12,9 +12,11 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Model
   {
     public Guid CorpusId { get; set; }
 
-    [Object(Ignore = true)] public CeDictionary Dictionary { get; set; }
+    [Object(Ignore = true)]
+    public CeDictionary Dictionary { get; set; }
 
-    [Nested] public Dictionary<int, string> DictionaryRaw { get; set; }
+    [Nested]
+    public Dictionary<int, string> DictionaryRaw { get; set; }
 
     public string Displayname { get; set; }
     public HashSet<Guid> LayerDocuments { get; set; }

@@ -161,7 +161,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
     }
 
     public static AbstractLayerAdapter Create(Dictionary<Guid, int[][]> documents, ListOptimized<string> listOptimized,
-      string layerDisplayname)
+                                              string layerDisplayname)
     {
       return new LayerAdapterWriteDirect
       {
@@ -187,8 +187,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
     public override IEnumerable<IEnumerable<string>> GetReadableDocumentByGuid(Guid documentGuid)
     {
       return this[documentGuid] == null
-        ? null
-        : (from s in this[documentGuid] where s != null select s.Select(w => this[w]));
+               ? null
+               : from s in this[documentGuid] where s != null select s.Select(w => this[w]);
     }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocumentSnippetByGuid(
@@ -201,8 +201,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
         return null;
 
       start = start < 0 ? 0 : start;
-      stop = stop >= doc.Length ? doc.Length - 1 : stop;
-      stop = stop <= start ? start + 1 : stop;
+      stop = stop   >= doc.Length ? doc.Length - 1 : stop;
+      stop = stop   <= start ? start           + 1 : stop;
 
       var res = new List<IEnumerable<string>>();
       for (var i = start; i < stop; i++)
@@ -214,6 +214,23 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
     public override Dictionary<string, int> ReciveRawLayerDictionary()
     {
       return _dictionary;
+    }
+
+    public override Dictionary<int, string> ReciveRawReverseLayerDictionary()
+    {
+      return _reverse;
+    }
+
+    public override void ResetRawLayerDictionary(Dictionary<string, int> dictionary)
+    {
+      _dictionary = dictionary;
+      RefreshDictionaries();
+    }
+
+    public override void ResetRawReverseLayerDictionary(Dictionary<int, string> reverse)
+    {
+      _reverse = reverse;
+      _dictionary = _reverse.ToDictionary(x => x.Value, x => x.Key);
     }
 
     public override void RefreshDictionaries()

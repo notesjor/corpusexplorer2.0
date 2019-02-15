@@ -105,39 +105,39 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     private void btn_search_Click(object sender, EventArgs e)
     {
       Processing.Invoke(
-        "Berechne Multi-Kookkurrenzen...",
-        () =>
-        {
-          _vm.LayerQueries = txt_query.Items.Select(x => x.Text);
-          if (SelectedLayerDisplaynames != null)
-            _vm.LayerDisplayname = SelectedLayerDisplaynames[0];
-          if (!_vm.Execute())
-            return;
-          radGridView1.DataSource = _vm.GetDataTable();
-          radGridView1.ResetBindings();
-          radGridView1.BestFitColumns(BestFitColumnMode.HeaderCells);
-          radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+                        "Berechne Multi-Kookkurrenzen...",
+                        () =>
+                        {
+                          _vm.LayerQueries = txt_query.Items.Select(x => x.Text);
+                          if (SelectedLayerDisplaynames != null)
+                            _vm.LayerDisplayname = SelectedLayerDisplaynames[0];
+                          if (!_vm.Execute())
+                            return;
+                          radGridView1.DataSource = _vm.GetDataTable();
+                          radGridView1.ResetBindings();
+                          radGridView1.BestFitColumns(BestFitColumnMode.HeaderCells);
+                          radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
 
-          AddSummaryRow();
-          AddChildTemplate(CreateChildTemplate);
-        });
+                          AddSummaryRow();
+                          AddChildTemplate(CreateChildTemplate);
+                        });
     }
 
     private void btn_snapshot_create_Click(object sender, EventArgs e)
     {
       CreateSelection(
-        radGridView1.SelectedRows.Select(
-          row => new FilterQuerySingleLayerAllInOneSentence
-          {
-            LayerDisplayname = "Wort",
-            Inverse = false,
-            LayerQueries =
-              new[]
-              {
-                txt_query.Text,
-                row.Cells[Resources.Kookkurrenz].Value.ToString()
-              }
-          }));
+                      radGridView1.SelectedRows.Select(
+                                                       row => new FilterQuerySingleLayerAllInOneSentence
+                                                       {
+                                                         LayerDisplayname = "Wort",
+                                                         Inverse = false,
+                                                         LayerQueries =
+                                                           new[]
+                                                           {
+                                                             txt_query.Text,
+                                                             row.Cells[Resources.Kookkurrenz].Value.ToString()
+                                                           }
+                                                       }));
     }
 
     private AbstractFilterQuery CreateChildTemplate(DataRowView row)

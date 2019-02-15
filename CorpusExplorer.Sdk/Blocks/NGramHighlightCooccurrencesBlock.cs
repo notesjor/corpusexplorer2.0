@@ -68,12 +68,12 @@ namespace CorpusExplorer.Sdk.Blocks
 
             var val = sig[chunks[j]];
             var res = val < MinimumSignificanceThreshold
-              ? (byte) 0
-              : val < LowSignificanceThreshold
-                ? (byte) 1
-                : val < HighSignificanceThreshold
-                  ? (byte) 2
-                  : (byte) 3;
+                        ? (byte) 0
+                        : val < LowSignificanceThreshold
+                          ? (byte) 1
+                          : val < HighSignificanceThreshold
+                            ? (byte) 2
+                            : (byte) 3;
 
             if (res > max)
               max = res;
@@ -110,7 +110,7 @@ namespace CorpusExplorer.Sdk.Blocks
               was0 = true;
           }
 
-        while (join.Count > 0 &&
+        while (join.Count                 > 0 &&
                join[join.Count - 1].Value == 0)
           join.RemoveAt(join.Count - 1);
 

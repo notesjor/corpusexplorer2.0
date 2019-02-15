@@ -56,7 +56,7 @@ namespace CorpusExplorer.Sdk.View.Html.Html5
       Dictionary<string, string> templateVars)
     {
       TemplateTextGenerator.GenerateFromFileToFile(htmlTemplatePath, WebserverIndexPath, templateVars,
-        Configuration.Encoding);
+                                                   Configuration.Encoding);
     }
 
     public void Export(string path)

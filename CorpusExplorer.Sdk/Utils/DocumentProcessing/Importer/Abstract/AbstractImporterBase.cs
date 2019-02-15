@@ -109,10 +109,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
     private IEnumerable<AbstractCorpusAdapter> BuildCorpus(bool dontFlushHeads)
     {
       var res = CorpusBuilder.Create(
-        Layers.Select(x => x.Value),
-        DocumentMetadata,
-        CorpusMetadata,
-        Concepts).ToArray();
+                                     Layers.Select(x => x.Value),
+                                     DocumentMetadata,
+                                     CorpusMetadata,
+                                     Concepts).ToArray();
 
       if (res.Length == 1)
         res[0].CorpusDisplayname = CorpusDisplayname;

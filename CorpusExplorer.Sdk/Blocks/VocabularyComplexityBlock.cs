@@ -40,16 +40,16 @@ namespace CorpusExplorer.Sdk.Blocks
       var @lock = new object();
 
       Parallel.ForEach(
-        block.DocumentDictionaries,
-        Configuration.ParallelOptions,
-        doc =>
-        {
-          var value = ComplexityAlgorithm.CalculateValue(doc.Value);
-          lock (@lock)
-          {
-            ComplexityValues.Add(doc.Key, value);
-          }
-        });
+                       block.DocumentDictionaries,
+                       Configuration.ParallelOptions,
+                       doc =>
+                       {
+                         var value = ComplexityAlgorithm.CalculateValue(doc.Value);
+                         lock (@lock)
+                         {
+                           ComplexityValues.Add(doc.Key, value);
+                         }
+                       });
     }
   }
 }

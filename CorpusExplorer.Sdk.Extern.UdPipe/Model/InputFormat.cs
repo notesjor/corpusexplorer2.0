@@ -18,7 +18,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.InputFormat_CONLLU_V1_get();
+        var ret = udpipe_csharpPINVOKE.InputFormat_CONLLU_V1_get();
         return ret;
       }
     }
@@ -27,7 +27,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.InputFormat_CONLLU_V2_get();
+        var ret = udpipe_csharpPINVOKE.InputFormat_CONLLU_V2_get();
         return ret;
       }
     }
@@ -36,7 +36,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.InputFormat_GENERIC_TOKENIZER_NORMALIZED_SPACES_get();
+        var ret = udpipe_csharpPINVOKE.InputFormat_GENERIC_TOKENIZER_NORMALIZED_SPACES_get();
         return ret;
       }
     }
@@ -45,7 +45,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.InputFormat_GENERIC_TOKENIZER_PRESEGMENTED_get();
+        var ret = udpipe_csharpPINVOKE.InputFormat_GENERIC_TOKENIZER_PRESEGMENTED_get();
         return ret;
       }
     }
@@ -54,7 +54,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       get
       {
-        string ret = udpipe_csharpPINVOKE.InputFormat_GENERIC_TOKENIZER_RANGES_get();
+        var ret = udpipe_csharpPINVOKE.InputFormat_GENERIC_TOKENIZER_RANGES_get();
         return ret;
       }
     }
@@ -80,90 +80,90 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public static InputFormat newConlluInputFormat(string options)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.InputFormat_newConlluInputFormat__SWIG_0(options);
-      InputFormat ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.InputFormat_newConlluInputFormat__SWIG_0(options);
+      var ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public static InputFormat newConlluInputFormat()
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.InputFormat_newConlluInputFormat__SWIG_1();
-      InputFormat ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.InputFormat_newConlluInputFormat__SWIG_1();
+      var ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
       return ret;
     }
 
     public static InputFormat newGenericTokenizerInputFormat(string options)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.InputFormat_newGenericTokenizerInputFormat__SWIG_0(options);
-      InputFormat ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.InputFormat_newGenericTokenizerInputFormat__SWIG_0(options);
+      var ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public static InputFormat newGenericTokenizerInputFormat()
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.InputFormat_newGenericTokenizerInputFormat__SWIG_1();
-      InputFormat ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.InputFormat_newGenericTokenizerInputFormat__SWIG_1();
+      var ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
       return ret;
     }
 
     public static InputFormat newHorizontalInputFormat(string options)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.InputFormat_newHorizontalInputFormat__SWIG_0(options);
-      InputFormat ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.InputFormat_newHorizontalInputFormat__SWIG_0(options);
+      var ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public static InputFormat newHorizontalInputFormat()
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.InputFormat_newHorizontalInputFormat__SWIG_1();
-      InputFormat ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.InputFormat_newHorizontalInputFormat__SWIG_1();
+      var ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
       return ret;
     }
 
     public static InputFormat newInputFormat(string name)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.InputFormat_newInputFormat(name);
-      InputFormat ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.InputFormat_newInputFormat(name);
+      var ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public static InputFormat newPresegmentedTokenizer(InputFormat DISOWN)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.InputFormat_newPresegmentedTokenizer(getCPtrAndDisown(DISOWN));
-      InputFormat ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.InputFormat_newPresegmentedTokenizer(getCPtrAndDisown(DISOWN));
+      var ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
       return ret;
     }
 
     public static InputFormat newVerticalInputFormat(string options)
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.InputFormat_newVerticalInputFormat__SWIG_0(options);
-      InputFormat ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.InputFormat_newVerticalInputFormat__SWIG_0(options);
+      var ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public static InputFormat newVerticalInputFormat()
     {
-      IntPtr cPtr = udpipe_csharpPINVOKE.InputFormat_newVerticalInputFormat__SWIG_1();
-      InputFormat ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
+      var cPtr = udpipe_csharpPINVOKE.InputFormat_newVerticalInputFormat__SWIG_1();
+      var ret = cPtr == IntPtr.Zero ? null : new InputFormat(cPtr, true);
       return ret;
     }
 
     public virtual bool nextSentence(Sentence s, ProcessingError error)
     {
-      bool ret = udpipe_csharpPINVOKE.InputFormat_nextSentence__SWIG_0(swigCPtr, Sentence.getCPtr(s),
-        ProcessingError.getCPtr(error));
+      var ret = udpipe_csharpPINVOKE.InputFormat_nextSentence__SWIG_0(swigCPtr, Sentence.getCPtr(s),
+                                                                      ProcessingError.getCPtr(error));
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }
 
     public virtual bool nextSentence(Sentence s)
     {
-      bool ret = udpipe_csharpPINVOKE.InputFormat_nextSentence__SWIG_1(swigCPtr, Sentence.getCPtr(s));
+      var ret = udpipe_csharpPINVOKE.InputFormat_nextSentence__SWIG_1(swigCPtr, Sentence.getCPtr(s));
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
     }

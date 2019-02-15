@@ -28,14 +28,14 @@ namespace CorpusExplorer.Sdk.Blocks
     public int MaxTfIdfCount { get; set; } = 100;
 
     protected override void CalculateCall(AbstractCorpusAdapter corpus, AbstractLayerAdapter layer, Guid dsel,
-      int[][] doc)
+                                          int[][] doc)
     {
       if (_idtdf[dsel] == null || _idtdf[dsel].Count == 0)
         return;
 
       var max = _idtdf[dsel].Max(x => x.Value);
       var vec = _idtdf[dsel].OrderByDescending(x => x.Value).Take(MaxTfIdfCount)
-        .ToDictionary(x => layer[x.Key], x => x.Value / max);
+                            .ToDictionary(x => layer[x.Key], x => x.Value / max);
 
       var sentences = new Dictionary<int, double>();
       var @lock = new object();
@@ -49,7 +49,7 @@ namespace CorpusExplorer.Sdk.Blocks
       });
 
       var select = sentences.OrderByDescending(x => x.Value).Take(MaxSentenceCount).OrderBy(x => x.Key)
-        .Select(x => x.Key).ToArray();
+                            .Select(x => x.Key).ToArray();
       var stb = new StringBuilder();
 
       var last = -1;

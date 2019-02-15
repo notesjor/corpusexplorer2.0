@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using CorpusExplorer.Sdk.Helper;
+using CorpusExplorer.Terminal.WinForm.Controls.Wpf.QueryBuilder;
 using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
 using CorpusExplorer.Terminal.WinForm.Helper;
 using CorpusExplorer.Terminal.WinForm.View.AbstractTemplates.Model;
@@ -14,7 +15,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.GridViewFunctions
     private const string _fileExtension = "CorpusExplorer Tabellen-Abfrage (*_{0}.cetq)|*_{0}.cetq";
     private readonly Dictionary<string, Type> _defintion;
     private readonly string _name;
-    private Controls.Wpf.QueryBuilder.QueryBuilderControl queryBuilderControl1 = new WinForm.Controls.Wpf.QueryBuilder.QueryBuilderControl();
+    private readonly QueryBuilderControl queryBuilderControl1 = new QueryBuilderControl();
 
     public GridQueryBuilder(Dictionary<string, Type> defintion, FilterDescriptorCollection collection, string name)
     {

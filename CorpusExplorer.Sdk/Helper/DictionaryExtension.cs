@@ -25,24 +25,29 @@ namespace CorpusExplorer.Sdk.Helper
       var temp = new Dictionary<string, Dictionary<string, Tuple<double, double, double>>>();
 
       foreach (var dic in dictionaries)
-        foreach (var e1 in dic)
-          foreach (var e2 in e1.Value)
-          {
-            if (!temp.ContainsKey(e1.Key))
-              temp.Add(e1.Key, new Dictionary<string, Tuple<double, double, double>>());
-            if (!temp[e1.Key].ContainsKey(e2.Key))
-              temp[e1.Key].Add(e2.Key, new Tuple<double, double, double>(e2.Value, 1, e2.Value));
-            else
-              temp[e1.Key][e2.Key] =
-                new Tuple<double, double, double>(
-                  e2.Value < temp[e1.Key][e2.Key].Item1 ? e2.Value : temp[e1.Key][e2.Key].Item1,
-                  temp[e1.Key][e2.Key].Item2 + 1,
-                  e2.Value > temp[e1.Key][e2.Key].Item3 ? e2.Value : temp[e1.Key][e2.Key].Item3);
-          }
+      foreach (var e1 in dic)
+      foreach (var e2 in e1.Value)
+      {
+        if (!temp.ContainsKey(e1.Key))
+          temp.Add(e1.Key, new Dictionary<string, Tuple<double, double, double>>());
+        if (!temp[e1.Key].ContainsKey(e2.Key))
+          temp[e1.Key].Add(e2.Key, new Tuple<double, double, double>(e2.Value, 1, e2.Value));
+        else
+          temp[e1.Key][e2.Key] =
+            new Tuple<double, double, double>(
+                                              e2.Value < temp[e1.Key][e2.Key].Item1
+                                                ? e2.Value
+                                                : temp[e1.Key][e2.Key].Item1,
+                                              temp[e1.Key][e2.Key].Item2 + 1,
+                                              e2.Value > temp[e1.Key][e2.Key].Item3
+                                                ? e2.Value
+                                                : temp[e1.Key][e2.Key].Item3);
+      }
 
       return temp.ToDictionary(
-        k => k.Key,
-        k => k.Value.ToDictionary(v => v.Key, v => (v.Value.Item3 - v.Value.Item1) / v.Value.Item2));
+                               k => k.Key,
+                               k => k.Value.ToDictionary(v => v.Key,
+                                                         v => (v.Value.Item3 - v.Value.Item1) / v.Value.Item2));
     }
 
     /// <summary>
@@ -71,23 +76,27 @@ namespace CorpusExplorer.Sdk.Helper
             else
               temp[e1.Key][e2.Key][e3.Key] =
                 new Tuple<double, double, double>(
-                  e3.Value < temp[e1.Key][e2.Key][e3.Key].Item1 ? e3.Value : temp[e1.Key][e2.Key][e3.Key].Item1,
-                  temp[e1.Key][e2.Key][e3.Key].Item2 + 1,
-                  e3.Value > temp[e1.Key][e2.Key][e3.Key].Item3 ? e3.Value : temp[e1.Key][e2.Key][e3.Key].Item3);
+                                                  e3.Value < temp[e1.Key][e2.Key][e3.Key].Item1
+                                                    ? e3.Value
+                                                    : temp[e1.Key][e2.Key][e3.Key].Item1,
+                                                  temp[e1.Key][e2.Key][e3.Key].Item2 + 1,
+                                                  e3.Value > temp[e1.Key][e2.Key][e3.Key].Item3
+                                                    ? e3.Value
+                                                    : temp[e1.Key][e2.Key][e3.Key].Item3);
         }
       }
 
       return temp.ToDictionary(
-        e1 => e1.Key,
-        e1 =>
-          e1.Value.ToDictionary(
-            e2 => e2.Key,
-            e2 =>
-              e2.Value.ToDictionary(
-                e3 => e3.Key,
-                e3 =>
-                  (e3.Value.Item3 - e3.Value.Item1) /
-                  e3.Value.Item2)));
+                               e1 => e1.Key,
+                               e1 =>
+                                 e1.Value.ToDictionary(
+                                                       e2 => e2.Key,
+                                                       e2 =>
+                                                         e2.Value.ToDictionary(
+                                                                               e3 => e3.Key,
+                                                                               e3 =>
+                                                                                 (e3.Value.Item3 - e3.Value.Item1) /
+                                                                                 e3.Value.Item2)));
     }
 
     /// <summary>
@@ -100,14 +109,14 @@ namespace CorpusExplorer.Sdk.Helper
       var temp = new Dictionary<string, Tuple<double, double, double>>();
 
       foreach (var dic in dictionaries)
-        foreach (var k in dic)
-          if (!temp.ContainsKey(k.Key))
-            temp.Add(k.Key, new Tuple<double, double, double>(k.Value, 1, k.Value));
-          else
-            temp[k.Key] = new Tuple<double, double, double>(
-              k.Value < temp[k.Key].Item1 ? k.Value : temp[k.Key].Item1,
-              temp[k.Key].Item2 + 1,
-              k.Value > temp[k.Key].Item3 ? k.Value : temp[k.Key].Item3);
+      foreach (var k in dic)
+        if (!temp.ContainsKey(k.Key))
+          temp.Add(k.Key, new Tuple<double, double, double>(k.Value, 1, k.Value));
+        else
+          temp[k.Key] = new Tuple<double, double, double>(
+                                                          k.Value < temp[k.Key].Item1 ? k.Value : temp[k.Key].Item1,
+                                                          temp[k.Key].Item2 + 1,
+                                                          k.Value > temp[k.Key].Item3 ? k.Value : temp[k.Key].Item3);
 
       return temp.ToDictionary(k => k.Key, v => (v.Value.Item3 - v.Value.Item1) / v.Value.Item2);
     }
@@ -126,9 +135,9 @@ namespace CorpusExplorer.Sdk.Helper
           temp.Add(k.Key, new Tuple<double, double, double>(k.Value, 1, k.Value));
         else
           temp[k.Key] = new Tuple<double, double, double>(
-            k.Value < temp[k.Key].Item1 ? k.Value : temp[k.Key].Item1,
-            temp[k.Key].Item2 + 1,
-            k.Value > temp[k.Key].Item3 ? k.Value : temp[k.Key].Item3);
+                                                          k.Value < temp[k.Key].Item1 ? k.Value : temp[k.Key].Item1,
+                                                          temp[k.Key].Item2 + 1,
+                                                          k.Value > temp[k.Key].Item3 ? k.Value : temp[k.Key].Item3);
 
       return temp.ToDictionary(k => k.Key, v => (v.Value.Item3 - v.Value.Item1) / v.Value.Item2);
     }
@@ -161,8 +170,9 @@ namespace CorpusExplorer.Sdk.Helper
       this Dictionary<TK, Dictionary<TK, Dictionary<TK, TV>>> dict)
     {
       return dict.ToDictionary(
-        x => x.Key,
-        x => x.Value.ToDictionary(y => y.Key, y => y.Value.ToDictionary(z => z.Key, z => z.Value)));
+                               x => x.Key,
+                               x => x.Value.ToDictionary(y => y.Key,
+                                                         y => y.Value.ToDictionary(z => z.Key, z => z.Value)));
     }
 
     public static Dictionary<string, Dictionary<string, double>> CompleteDictionaryToFullDictionary(
@@ -252,9 +262,9 @@ namespace CorpusExplorer.Sdk.Helper
       this Dictionary<string, Dictionary<string, Dictionary<string, double>>> dictionary)
     {
       return dictionary == null
-        ? CreateDataTable()
-        : dictionary.ToDictionary(p1 => p1.Key, p1 => p1.Value.SelectMany(p2 => p2.Value).Sum(p3 => p3.Value))
-          .ConvertToDataTableNormalized();
+               ? CreateDataTable()
+               : dictionary.ToDictionary(p1 => p1.Key, p1 => p1.Value.SelectMany(p2 => p2.Value).Sum(p3 => p3.Value))
+                           .ConvertToDataTableNormalized();
     }
 
     /// <summary>
@@ -266,9 +276,9 @@ namespace CorpusExplorer.Sdk.Helper
     public static DataTable DrilldownToDataTable(this Dictionary<string, Dictionary<string, double>> dictionary)
     {
       return dictionary == null
-        ? CreateDataTable()
-        : dictionary.ToDictionary(p1 => p1.Key, p1 => p1.Value.Sum(p2 => p2.Value))
-          .ConvertToDataTableNormalized();
+               ? CreateDataTable()
+               : dictionary.ToDictionary(p1 => p1.Key, p1 => p1.Value.Sum(p2 => p2.Value))
+                           .ConvertToDataTableNormalized();
     }
 
     /// <summary>
@@ -286,9 +296,9 @@ namespace CorpusExplorer.Sdk.Helper
       string key)
     {
       return dictionary == null || !dictionary.ContainsKey(key)
-        ? CreateDataTable()
-        : dictionary[key].ToDictionary(pair => pair.Key, pair => pair.Value.Sum(p2 => p2.Value))
-          .ConvertToDataTableNormalized();
+               ? CreateDataTable()
+               : dictionary[key].ToDictionary(pair => pair.Key, pair => pair.Value.Sum(p2 => p2.Value))
+                                .ConvertToDataTableNormalized();
     }
 
     /// <summary>
@@ -306,8 +316,8 @@ namespace CorpusExplorer.Sdk.Helper
       string key)
     {
       return dictionary == null || !dictionary.ContainsKey(key)
-        ? CreateDataTable()
-        : dictionary[key].ConvertToDataTableNormalized();
+               ? CreateDataTable()
+               : dictionary[key].ConvertToDataTableNormalized();
     }
 
     /// <summary>
@@ -329,8 +339,8 @@ namespace CorpusExplorer.Sdk.Helper
       string key2)
     {
       return dictionary == null || !dictionary.ContainsKey(key1) || !dictionary.ContainsKey(key2)
-        ? CreateDataTable()
-        : dictionary[key1][key2].ConvertToDataTableNormalized();
+               ? CreateDataTable()
+               : dictionary[key1][key2].ConvertToDataTableNormalized();
     }
 
     /// <summary>
@@ -469,7 +479,7 @@ namespace CorpusExplorer.Sdk.Helper
       {
         var val = x.Value * factor;
         if (double.IsInfinity(val) ||
-            double.IsNaN(val) ||
+            double.IsNaN(val)      ||
             val < minimum)
           continue;
 
@@ -512,7 +522,7 @@ namespace CorpusExplorer.Sdk.Helper
         {
           var val = y.Value * factor;
           if (double.IsInfinity(val) ||
-              double.IsNaN(val) ||
+              double.IsNaN(val)      ||
               val < minimum)
             continue;
           value.Add(y.Key, val);
@@ -616,7 +626,7 @@ namespace CorpusExplorer.Sdk.Helper
     public static Dictionary<string, double> GetInterpolateDictionary(
       this Dictionary<string, int> dictionary)
     {
-      return GetInterpolateDictionary(dictionary.ToDictionary(x => x.Key, x => (double)x.Value));
+      return GetInterpolateDictionary(dictionary.ToDictionary(x => x.Key, x => (double) x.Value));
     }
 
     /// <summary>
@@ -632,7 +642,8 @@ namespace CorpusExplorer.Sdk.Helper
     /// <returns>
     ///   Normalisiertes und bereinigtes Dictionary
     /// </returns>
-    public static Dictionary<string, double> GetNormalizedDictionary(this Dictionary<string, double> dictionary, double denominator = 1.0d)
+    public static Dictionary<string, double> GetNormalizedDictionary(this Dictionary<string, double> dictionary,
+                                                                     double denominator = 1.0d)
     {
       if (dictionary == null)
         return null;
@@ -664,7 +675,8 @@ namespace CorpusExplorer.Sdk.Helper
     /// <returns>
     ///   Normalisiertes und bereinigtes Dictionary
     /// </returns>
-    public static Dictionary<Guid, double> GetNormalizedDictionary(this Dictionary<Guid, double> dictionary, double denominator = 1.0d)
+    public static Dictionary<Guid, double> GetNormalizedDictionary(this Dictionary<Guid, double> dictionary,
+                                                                   double denominator = 1.0d)
     {
       if (dictionary == null)
         return null;
@@ -696,13 +708,14 @@ namespace CorpusExplorer.Sdk.Helper
     /// <returns>
     ///   Normalisiertes und bereinigtes Dictionary
     /// </returns>
-    public static Dictionary<string, double> GetNormalizedDictionary(this Dictionary<string, int> dictionary, double denominator = 1.0d)
+    public static Dictionary<string, double> GetNormalizedDictionary(this Dictionary<string, int> dictionary,
+                                                                     double denominator = 1.0d)
     {
       if (dictionary == null)
         return null;
 
       var res = new Dictionary<string, double>();
-      var factor = denominator / (double)dictionary.Sum(x => x.Value);
+      var factor = denominator / dictionary.Sum(x => x.Value);
 
       foreach (var x in dictionary)
       {
@@ -774,7 +787,7 @@ namespace CorpusExplorer.Sdk.Helper
         return null;
 
       var res = new Dictionary<string, Dictionary<string, double>>();
-      var factor = denominator / (double)dictionary.SelectMany(e1 => e1.Value).Sum(e2 => e2.Value);
+      var factor = denominator / dictionary.SelectMany(e1 => e1.Value).Sum(e2 => e2.Value);
 
       foreach (var e1 in dictionary)
       {
@@ -814,7 +827,8 @@ namespace CorpusExplorer.Sdk.Helper
         return null;
 
       var res = new Dictionary<string, Dictionary<string, Dictionary<string, double>>>();
-      var factor = denominator / (from pos in dictionary from lem in pos.Value from wor in lem.Value select wor.Value).Sum();
+      var factor = denominator /
+                   (from pos in dictionary from lem in pos.Value from wor in lem.Value select wor.Value).Sum();
 
       foreach (var e1 in dictionary)
       {
@@ -855,18 +869,18 @@ namespace CorpusExplorer.Sdk.Helper
     }
 
     /// <summary>
-    /// Durchsucht ein Dictionary/Dictionary und gibt alle Werte zurück.
-    /// Ideal für CrossFrequency und Cooccurrence - Wenn kein FullDictionary möglich ist.
+    ///   Durchsucht ein Dictionary/Dictionary und gibt alle Werte zurück.
+    ///   Ideal für CrossFrequency und Cooccurrence - Wenn kein FullDictionary möglich ist.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="dictionary">The dictionary.</param>
     /// <param name="query">The query.</param>
     /// <returns>Dictionary&lt;System.String, T&gt;.</returns>
-    public static Dictionary<string, T> Search<T>(this Dictionary<string, Dictionary<string, T>> dictionary, string query)
+    public static Dictionary<string, T> Search<T>(this Dictionary<string, Dictionary<string, T>> dictionary,
+                                                  string query)
     {
       var res = new Dictionary<string, T>();
       foreach (var x in dictionary)
-      {
         if (x.Key == query)
         {
           foreach (var y in x.Value)
@@ -874,8 +888,10 @@ namespace CorpusExplorer.Sdk.Helper
               res.Add(y.Key, y.Value);
         }
         else if (x.Value.ContainsKey(query) && !res.ContainsKey(x.Key))
+        {
           res.Add(x.Key, x.Value[query]);
-      }
+        }
+
       return res;
     }
   }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows.Media;
 using Telerik.Windows.Controls.TreeMap;
 
@@ -29,12 +25,12 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
         return l.Color;
 
       offset = (offset - l.Offset) / (r.Offset - l.Offset);
-      if(double.IsNaN(offset) || double.IsInfinity(offset))
+      if (double.IsNaN(offset) || double.IsInfinity(offset))
         return l.Color;
 
-      var R = (byte)((r.Color.R - l.Color.R)*offset + l.Color.R);
-      var G = (byte)((r.Color.G - l.Color.G)*offset + l.Color.G);
-      var B = (byte)((r.Color.B - l.Color.B)*offset + l.Color.B);
+      var R = (byte) ((r.Color.R - l.Color.R) * offset + l.Color.R);
+      var G = (byte) ((r.Color.G - l.Color.G) * offset + l.Color.G);
+      var B = (byte) ((r.Color.B - l.Color.B) * offset + l.Color.B);
       return Color.FromArgb(255, R, G, B);
     }
   }

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.ViewModel.Interfaces;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm;
@@ -20,8 +17,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
 {
   public partial class AbstractGridView : AbstractView
   {
+    protected readonly GridException GridException =
+      new GridException("Use InitializeGrid to set the default RadGridView");
+
+    private DataTable _backup;
     protected RadGridView _grid;
-    protected readonly GridException GridException = new GridException("Use InitializeGrid to set the default RadGridView");
 
     public AbstractGridView()
     {
@@ -55,14 +55,15 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
       foreach (var column in _grid.Columns)
         if (column.DataType == typeof(string))
           summaryRowItem.Add(
-            new GridViewHashSetSummaryItem { Name = column.Name, Aggregate = GridAggregateFunction.Last });
+                             new GridViewHashSetSummaryItem
+                               {Name = column.Name, Aggregate = GridAggregateFunction.Last});
         else
           summaryRowItem.Add(
-            new GridViewSummaryItem
-            {
-              Name = column.Name,
-              Aggregate = GridAggregateFunction.Sum
-            });
+                             new GridViewSummaryItem
+                             {
+                               Name = column.Name,
+                               Aggregate = GridAggregateFunction.Sum
+                             });
 
       _grid.SummaryRowsTop.Add(summaryRowItem);
       _grid.SummaryRowsBottom.Add(summaryRowItem);
@@ -78,13 +79,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
 
       if (!_grid.Columns.Contains(Resources.Result))
         _grid.Columns.Add(
-          new GridViewTextBoxColumn
-          {
-            Name = Resources.Result,
-            HeaderText = Resources.Result,
-            Width = 150,
-            EnableExpressionEditor = true
-          });
+                          new GridViewTextBoxColumn
+                          {
+                            Name = Resources.Result,
+                            HeaderText = Resources.Result,
+                            Width = 150,
+                            EnableExpressionEditor = true
+                          });
 
       RadExpressionEditorForm.Show(_grid, _grid.Columns[Resources.Result]);
     }
@@ -109,8 +110,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
       _grid.FilterDescriptors.Clear();
       var filter = new CompositeFilterDescriptor();
       foreach (var query in form.Result)
-        foreach (var p in properties)
-          filter.FilterDescriptors.Add(new FilterDescriptor(p, FilterOperator.IsEqualTo, query));
+      foreach (var p in properties)
+        filter.FilterDescriptors.Add(new FilterDescriptor(p, form.ResultFilterOperator, query));
 
       filter.LogicalOperator = FilterLogicalOperator.Or;
       filter.NotOperator = !form.ResultSelectAll;
@@ -126,11 +127,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
       _grid.FilterChanged += _grid_FilterChanged;
     }
 
-    private DataTable _backup;
-
     protected void RegexFunction()
     {
-      var dt = _backup ?? _grid.DataSource as DataTable;
+      var dt = _grid.DataSource as DataTable ?? _backup;
       var names = new List<string>();
       foreach (DataColumn c in dt.Columns)
         names.Add(c.ColumnName);
@@ -139,9 +138,15 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
       var res = form.ShowDialog();
 
       _grid.DataSource = null;
-      _grid.DataSource = res == DialogResult.OK 
-                           ? dt.RegexFilter(form.SelectColumn, form.RegularExpression) 
-                           : _backup;
+      if (res == DialogResult.OK)
+      {
+        var tmp = _grid.DataSource as DataTable;
+        if (tmp != null)
+          _backup = tmp;
+        _grid.DataSource = dt.RegexFilter(form.SelectColumn, form.RegularExpression);
+      }
+      else
+        _grid.DataSource = _backup;
     }
 
     protected void PredefinedFunctions(IProvideDataTable vm, params string[] properties)
@@ -159,11 +164,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
         return;
       if (_grid.SummaryRowsTop[0].All(item => item.Name != func.NewColumnName))
         _grid.SummaryRowsTop[0].Add(
-          new GridViewSummaryItem
-          {
-            Name = func.NewColumnName,
-            Aggregate = GridAggregateFunction.Sum
-          });
+                                    new GridViewSummaryItem
+                                    {
+                                      Name = func.NewColumnName,
+                                      Aggregate = GridAggregateFunction.Sum
+                                    });
     }
 
     protected void QueryBuilderFunction(string name)
@@ -177,9 +182,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
 
       var form =
         new GridQueryBuilder(
-          table.Columns.Cast<DataColumn>().ToDictionary(column => column.ColumnName, column => column.DataType),
-          _grid.FilterDescriptors,
-          name);
+                             table.Columns.Cast<DataColumn>()
+                                  .ToDictionary(column => column.ColumnName, column => column.DataType),
+                             _grid.FilterDescriptors,
+                             name);
       if (form.ShowDialog() != DialogResult.OK)
         return;
 

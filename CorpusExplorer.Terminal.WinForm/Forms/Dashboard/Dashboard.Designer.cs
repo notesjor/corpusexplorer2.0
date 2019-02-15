@@ -1,5 +1,7 @@
 using CorpusExplorer.Terminal.WinForm.Properties;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm;
+using System;
+using Telerik.WinControls.UI;
 
 namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 {
@@ -32,6 +34,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
+      Telerik.WinControls.UI.ListViewDataItem listViewDataItem1 = new Telerik.WinControls.UI.ListViewDataItem("<html><strong>Hinweis:</strong> \"Aktuelles und Neuigkeiten\" können nur bei besteh" +
+        "ender Internetverbindung angeziegt werden.</html>");
       this.radScrollablePanel3 = new Telerik.WinControls.UI.RadScrollablePanel();
       this.helpPanel2 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HelpPanel();
       this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -45,6 +49,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.corpus_start_local = new Telerik.WinControls.UI.RadButton();
       this.corpus_start_import = new Telerik.WinControls.UI.RadButton();
       this.corpus_start_online = new Telerik.WinControls.UI.RadButton();
+      this.corpus_start_download = new Telerik.WinControls.UI.RadButton();
       this.header3 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header();
       this.radScrollablePanel5 = new Telerik.WinControls.UI.RadScrollablePanel();
       this.helpPanel3 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HelpPanel();
@@ -141,8 +146,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.settings_insight_disable = new Telerik.WinControls.UI.RadButton();
       this.settings_insight_enable = new Telerik.WinControls.UI.RadButton();
       this.header10 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header();
-      this.pages_main = new Telerik.WinControls.UI.RadPageView();
-      this.page_welcome = new Telerik.WinControls.UI.RadPageViewPage();
+      this.radScrollablePanel7 = new Telerik.WinControls.UI.RadScrollablePanel();
+      this.radScrollablePanel8 = new Telerik.WinControls.UI.RadScrollablePanel();
+      this.header13 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header();
+      this.radListView1 = new Telerik.WinControls.UI.RadListView();
+      this.header6 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header();
       this.helpPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HelpPanel();
       this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
       this.page_welcome_btn_projectname = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.RadButtonWithCheckmark();
@@ -151,6 +159,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_welcome_btn_analytics = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.RadButtonWithCheckmark();
       this.header2 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header();
       this.header1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header();
+      this.pages_main = new Telerik.WinControls.UI.RadPageView();
+      this.page_welcome = new Telerik.WinControls.UI.RadPageViewPage();
       this.page_corpus = new Telerik.WinControls.UI.RadPageViewPage();
       this.pages_corpora = new Telerik.WinControls.UI.RadPageView();
       this.page_corpus_start = new Telerik.WinControls.UI.RadPageViewPage();
@@ -237,6 +247,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radMenuSeparatorItem5 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
       this.main_mainmenu_analytics_favorite = new Telerik.WinControls.UI.RadMenuItem();
       this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+      this.header14 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header();
+      this.radScrollablePanel9 = new Telerik.WinControls.UI.RadScrollablePanel();
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel3)).BeginInit();
       this.radScrollablePanel3.PanelContainer.SuspendLayout();
       this.radScrollablePanel3.SuspendLayout();
@@ -246,6 +258,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_local)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_import)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_online)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.corpus_start_download)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel5)).BeginInit();
       this.radScrollablePanel5.PanelContainer.SuspendLayout();
       this.radScrollablePanel5.SuspendLayout();
@@ -348,10 +361,16 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.settings_insight_renew)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_insight_disable)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_insight_enable)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel7)).BeginInit();
+      this.radScrollablePanel7.PanelContainer.SuspendLayout();
+      this.radScrollablePanel7.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel8)).BeginInit();
+      this.radScrollablePanel8.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radListView1)).BeginInit();
+      this.flowLayoutPanel3.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pages_main)).BeginInit();
       this.pages_main.SuspendLayout();
       this.page_welcome.SuspendLayout();
-      this.flowLayoutPanel3.SuspendLayout();
       this.page_corpus.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pages_corpora)).BeginInit();
       this.pages_corpora.SuspendLayout();
@@ -404,6 +423,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.pages_3rdParty)).BeginInit();
       this.page_settings.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel9)).BeginInit();
+      this.radScrollablePanel9.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
       // 
@@ -414,6 +435,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // radScrollablePanel3.PanelContainer
       // 
+      this.radScrollablePanel3.PanelContainer.Controls.Add(this.radScrollablePanel9);
+      this.radScrollablePanel3.PanelContainer.Controls.Add(this.header14);
       this.radScrollablePanel3.PanelContainer.Controls.Add(this.helpPanel2);
       this.radScrollablePanel3.PanelContainer.Controls.Add(this.flowLayoutPanel1);
       this.radScrollablePanel3.PanelContainer.Controls.Add(this.header4);
@@ -454,6 +477,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_corpus_start_quickinfo_corpora.Label = "Korpora";
       this.page_corpus_start_quickinfo_corpora.Name = "page_corpus_start_quickinfo_corpora";
       this.page_corpus_start_quickinfo_corpora.Value = 0;
+      this.page_corpus_start_quickinfo_corpora.ValueAutoCut = true;
       // 
       // page_corpus_start_quickinfo_texts
       // 
@@ -462,6 +486,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_corpus_start_quickinfo_texts.Label = "Dokumente";
       this.page_corpus_start_quickinfo_texts.Name = "page_corpus_start_quickinfo_texts";
       this.page_corpus_start_quickinfo_texts.Value = 0;
+      this.page_corpus_start_quickinfo_texts.ValueAutoCut = true;
       // 
       // page_corpus_start_quickinfo_layers
       // 
@@ -470,6 +495,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_corpus_start_quickinfo_layers.Label = "Layer";
       this.page_corpus_start_quickinfo_layers.Name = "page_corpus_start_quickinfo_layers";
       this.page_corpus_start_quickinfo_layers.Value = 0;
+      this.page_corpus_start_quickinfo_layers.ValueAutoCut = true;
       // 
       // page_corpus_start_quickinfo_tokens
       // 
@@ -478,6 +504,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_corpus_start_quickinfo_tokens.Label = "Token";
       this.page_corpus_start_quickinfo_tokens.Name = "page_corpus_start_quickinfo_tokens";
       this.page_corpus_start_quickinfo_tokens.Value = 0;
+      this.page_corpus_start_quickinfo_tokens.ValueAutoCut = true;
       // 
       // header4
       // 
@@ -493,6 +520,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.flowLayoutPanel5.Controls.Add(this.corpus_start_local);
       this.flowLayoutPanel5.Controls.Add(this.corpus_start_import);
       this.flowLayoutPanel5.Controls.Add(this.corpus_start_online);
+      this.flowLayoutPanel5.Controls.Add(this.corpus_start_download);
       resources.ApplyResources(this.flowLayoutPanel5, "flowLayoutPanel5");
       this.flowLayoutPanel5.Name = "flowLayoutPanel5";
       // 
@@ -532,6 +560,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.corpus_start_online.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.OnlineKorpusAkquirieren;
       this.corpus_start_online.TextWrap = true;
       this.corpus_start_online.Click += new System.EventHandler(this.corpus_start_online_Click);
+      // 
+      // corpus_start_download
+      // 
+      this.corpus_start_download.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.archive_download_48px;
+      resources.ApplyResources(this.corpus_start_download, "corpus_start_download");
+      this.corpus_start_download.Name = "corpus_start_download";
+      this.corpus_start_download.TextWrap = true;
+      this.corpus_start_download.Click += new System.EventHandler(this.corpus_start_download_Click);
       // 
       // header3
       // 
@@ -587,6 +623,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_snapshot_start_quickinfo_corpora.Label = "Korpora";
       this.page_snapshot_start_quickinfo_corpora.Name = "page_snapshot_start_quickinfo_corpora";
       this.page_snapshot_start_quickinfo_corpora.Value = 0;
+      this.page_snapshot_start_quickinfo_corpora.ValueAutoCut = true;
       // 
       // page_snapshot_start_quickinfo_texts
       // 
@@ -595,6 +632,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_snapshot_start_quickinfo_texts.Label = "Dokumente";
       this.page_snapshot_start_quickinfo_texts.Name = "page_snapshot_start_quickinfo_texts";
       this.page_snapshot_start_quickinfo_texts.Value = 0;
+      this.page_snapshot_start_quickinfo_texts.ValueAutoCut = true;
       // 
       // page_snapshot_start_quickinfo_layers
       // 
@@ -603,6 +641,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_snapshot_start_quickinfo_layers.Label = "Layer";
       this.page_snapshot_start_quickinfo_layers.Name = "page_snapshot_start_quickinfo_layers";
       this.page_snapshot_start_quickinfo_layers.Value = 0;
+      this.page_snapshot_start_quickinfo_layers.ValueAutoCut = true;
       // 
       // page_snapshot_start_quickinfo_tokens
       // 
@@ -611,6 +650,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_snapshot_start_quickinfo_tokens.Label = "Token";
       this.page_snapshot_start_quickinfo_tokens.Name = "page_snapshot_start_quickinfo_tokens";
       this.page_snapshot_start_quickinfo_tokens.Value = 0;
+      this.page_snapshot_start_quickinfo_tokens.ValueAutoCut = true;
       // 
       // header12
       // 
@@ -1517,43 +1557,60 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.header10.HeaderHead = "Projekteinstellungen";
       this.header10.Name = "header10";
       // 
-      // pages_main
+      // radScrollablePanel7
       // 
-      this.pages_main.Controls.Add(this.page_welcome);
-      this.pages_main.Controls.Add(this.page_corpus);
-      this.pages_main.Controls.Add(this.page_snapshot);
-      this.pages_main.Controls.Add(this.page_analytics);
-      this.pages_main.Controls.Add(this.page_settings);
-      resources.ApplyResources(this.pages_main, "pages_main");
-      this.pages_main.ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
-      this.pages_main.Name = "pages_main";
+      resources.ApplyResources(this.radScrollablePanel7, "radScrollablePanel7");
+      this.radScrollablePanel7.Name = "radScrollablePanel7";
       // 
+      // radScrollablePanel7.PanelContainer
       // 
+      this.radScrollablePanel7.PanelContainer.Controls.Add(this.radScrollablePanel8);
+      this.radScrollablePanel7.PanelContainer.Controls.Add(this.header13);
+      this.radScrollablePanel7.PanelContainer.Controls.Add(this.radListView1);
+      this.radScrollablePanel7.PanelContainer.Controls.Add(this.header6);
+      this.radScrollablePanel7.PanelContainer.Controls.Add(this.helpPanel1);
+      this.radScrollablePanel7.PanelContainer.Controls.Add(this.flowLayoutPanel3);
+      this.radScrollablePanel7.PanelContainer.Controls.Add(this.header2);
+      this.radScrollablePanel7.PanelContainer.Controls.Add(this.header1);
+      resources.ApplyResources(this.radScrollablePanel7.PanelContainer, "radScrollablePanel7.PanelContainer");
       // 
-      this.pages_main.RootElement.MinSize = new System.Drawing.Size(576, 445);
-      this.pages_main.SelectedPage = this.page_snapshot;
-      ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll;
-      ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).ItemFitMode = Telerik.WinControls.UI.StripViewItemFitMode.Fill;
-      ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
-      ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
-      ((Telerik.WinControls.UI.StripViewItemContainer)(this.pages_main.GetChildAt(0).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
-      ((Telerik.WinControls.UI.StripViewButtonsPanel)(this.pages_main.GetChildAt(0).GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
-      ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_main.GetChildAt(0).GetChildAt(1))).BorderWidth = 0F;
-      ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_main.GetChildAt(0).GetChildAt(1))).BorderLeftWidth = 0F;
-      ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_main.GetChildAt(0).GetChildAt(1))).BorderRightWidth = 0F;
-      ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_main.GetChildAt(0).GetChildAt(1))).BorderBottomWidth = 0F;
-      ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_main.GetChildAt(0).GetChildAt(1))).Padding = ((System.Windows.Forms.Padding)(resources.GetObject("resource.Padding9")));
-      ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_main.GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
+      // radScrollablePanel8
       // 
-      // page_welcome
+      resources.ApplyResources(this.radScrollablePanel8, "radScrollablePanel8");
+      this.radScrollablePanel8.Name = "radScrollablePanel8";
       // 
-      this.page_welcome.Controls.Add(this.helpPanel1);
-      this.page_welcome.Controls.Add(this.flowLayoutPanel3);
-      this.page_welcome.Controls.Add(this.header2);
-      this.page_welcome.Controls.Add(this.header1);
-      this.page_welcome.ItemSize = new System.Drawing.SizeF(153F, 29F);
-      resources.ApplyResources(this.page_welcome, "page_welcome");
-      this.page_welcome.Name = "page_welcome";
+      // radScrollablePanel8.PanelContainer
+      // 
+      resources.ApplyResources(this.radScrollablePanel8.PanelContainer, "radScrollablePanel8.PanelContainer");
+      // 
+      // header13
+      // 
+      this.header13.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this.header13, "header13");
+      this.header13.HeaderDescription = "Folgende Add-ons können Sie installieren, um den Funktionsumfang des CorpusExplor" +
+    "ers zu erweitern.";
+      this.header13.HeaderHead = "Verfügbare Add-ons";
+      this.header13.Name = "header13";
+      // 
+      // radListView1
+      // 
+      resources.ApplyResources(this.radListView1, "radListView1");
+      this.radListView1.GroupItemSize = new System.Drawing.Size(200, 40);
+      listViewDataItem1.Text = "<html><strong>Hinweis:</strong> \"Aktuelles und Neuigkeiten\" können nur bei besteh" +
+    "ender Internetverbindung angeziegt werden.</html>";
+      this.radListView1.Items.AddRange(new Telerik.WinControls.UI.ListViewDataItem[] {
+            listViewDataItem1});
+      this.radListView1.ItemSize = new System.Drawing.Size(200, 40);
+      this.radListView1.Name = "radListView1";
+      // 
+      // header6
+      // 
+      this.header6.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this.header6, "header6");
+      this.header6.HeaderDescription = "Per Klick auf einen Eintrag gelangen Sie zur aktuellen Infos rund um den CorpusEx" +
+    "plorer - Workshops, Infos zu Updates, uvm.";
+      this.header6.HeaderHead = "Aktuelles und Neuigkeiten";
+      this.header6.Name = "header6";
       // 
       // helpPanel1
       // 
@@ -1640,6 +1697,41 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.header1.HeaderDescription = resources.GetString("header1.HeaderDescription");
       this.header1.HeaderHead = "Herzlich willkommen!";
       this.header1.Name = "header1";
+      // 
+      // pages_main
+      // 
+      this.pages_main.Controls.Add(this.page_welcome);
+      this.pages_main.Controls.Add(this.page_corpus);
+      this.pages_main.Controls.Add(this.page_snapshot);
+      this.pages_main.Controls.Add(this.page_analytics);
+      this.pages_main.Controls.Add(this.page_settings);
+      resources.ApplyResources(this.pages_main, "pages_main");
+      this.pages_main.ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
+      this.pages_main.Name = "pages_main";
+      // 
+      // 
+      // 
+      this.pages_main.RootElement.MinSize = new System.Drawing.Size(576, 445);
+      this.pages_main.SelectedPage = this.page_corpus;
+      ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll;
+      ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).ItemFitMode = Telerik.WinControls.UI.StripViewItemFitMode.Fill;
+      ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
+      ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
+      ((Telerik.WinControls.UI.StripViewItemContainer)(this.pages_main.GetChildAt(0).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
+      ((Telerik.WinControls.UI.StripViewButtonsPanel)(this.pages_main.GetChildAt(0).GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
+      ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_main.GetChildAt(0).GetChildAt(1))).BorderWidth = 0F;
+      ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_main.GetChildAt(0).GetChildAt(1))).BorderLeftWidth = 0F;
+      ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_main.GetChildAt(0).GetChildAt(1))).BorderRightWidth = 0F;
+      ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_main.GetChildAt(0).GetChildAt(1))).BorderBottomWidth = 0F;
+      ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_main.GetChildAt(0).GetChildAt(1))).Padding = ((System.Windows.Forms.Padding)(resources.GetObject("resource.Padding9")));
+      ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_main.GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
+      // 
+      // page_welcome
+      // 
+      this.page_welcome.Controls.Add(this.radScrollablePanel7);
+      this.page_welcome.ItemSize = new System.Drawing.SizeF(153F, 29F);
+      resources.ApplyResources(this.page_welcome, "page_welcome");
+      this.page_welcome.Name = "page_welcome";
       // 
       // page_corpus
       // 
@@ -1819,7 +1911,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // page_snapshot_home
       // 
       this.page_snapshot_home.Controls.Add(this.radScrollablePanel5);
-      this.page_snapshot_home.ItemSize = new System.Drawing.SizeF(85F, 29F);
       resources.ApplyResources(this.page_snapshot_home, "page_snapshot_home");
       this.page_snapshot_home.Name = "page_snapshot_home";
       // 
@@ -1829,7 +1920,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_snapshot_edit.Controls.Add(this.radGroupBox1);
       this.page_snapshot_edit.Controls.Add(this.header11);
       this.page_snapshot_edit.Controls.Add(this.clearPanel3);
-      this.page_snapshot_edit.ItemSize = new System.Drawing.SizeF(85F, 29F);
       resources.ApplyResources(this.page_snapshot_edit, "page_snapshot_edit");
       this.page_snapshot_edit.Name = "page_snapshot_edit";
       // 
@@ -2323,6 +2413,24 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radMenu1.Name = "radMenu1";
       this.radMenu1.ThemeName = "TelerikMetroTouch";
       // 
+      // header14
+      // 
+      this.header14.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this.header14, "header14");
+      this.header14.HeaderDescription = "Folgende Korpora können Sie abonnieren und frei verwenden - z. B. als Referenzkor" +
+    "pus oder zu Übungszwecken...";
+      this.header14.HeaderHead = "Frei verfügbare Korpora";
+      this.header14.Name = "header14";
+      // 
+      // radScrollablePanel9
+      // 
+      resources.ApplyResources(this.radScrollablePanel9, "radScrollablePanel9");
+      this.radScrollablePanel9.Name = "radScrollablePanel9";
+      // 
+      // radScrollablePanel9.PanelContainer
+      // 
+      resources.ApplyResources(this.radScrollablePanel9.PanelContainer, "radScrollablePanel9.PanelContainer");
+      // 
       // Dashboard
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2346,6 +2454,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_local)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_import)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_online)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.corpus_start_download)).EndInit();
       this.radScrollablePanel5.PanelContainer.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel5)).EndInit();
       this.radScrollablePanel5.ResumeLayout(false);
@@ -2453,10 +2562,16 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.settings_insight_renew)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_insight_disable)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_insight_enable)).EndInit();
+      this.radScrollablePanel7.PanelContainer.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel7)).EndInit();
+      this.radScrollablePanel7.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel8)).EndInit();
+      this.radScrollablePanel8.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.radListView1)).EndInit();
+      this.flowLayoutPanel3.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.pages_main)).EndInit();
       this.pages_main.ResumeLayout(false);
       this.page_welcome.ResumeLayout(false);
-      this.flowLayoutPanel3.ResumeLayout(false);
       this.page_corpus.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.pages_corpora)).EndInit();
       this.pages_corpora.ResumeLayout(false);
@@ -2510,6 +2625,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.pages_3rdParty)).EndInit();
       this.page_settings.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel9)).EndInit();
+      this.radScrollablePanel9.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
@@ -2723,5 +2840,13 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     private Telerik.WinControls.UI.RadGroupBox radGroupBox9;
     private Telerik.WinControls.UI.RadCheckedListBox settings_list_favorites;
     private Telerik.WinControls.UI.RadScrollablePanel radScrollablePanel6;
+    private Header header6;
+    private Telerik.WinControls.UI.RadScrollablePanel radScrollablePanel7;
+    private Telerik.WinControls.UI.RadListView radListView1;
+    private Header header13;
+    private Telerik.WinControls.UI.RadScrollablePanel radScrollablePanel8;
+    private RadButton corpus_start_download;
+    private RadScrollablePanel radScrollablePanel9;
+    private Header header14;
   }
 }

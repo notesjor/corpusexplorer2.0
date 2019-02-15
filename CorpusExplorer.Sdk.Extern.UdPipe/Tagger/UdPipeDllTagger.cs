@@ -39,7 +39,8 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Tagger
 
         _languageSelected = value;
         _model = Model.Model.load(
-          Configuration.GetDependencyPath($"UDPipe/Models/{_languagesAvailable[_languageSelected]}.udpipe"));
+                                  Configuration
+                                   .GetDependencyPath($"UDPipe/Models/{_languagesAvailable[_languageSelected]}.udpipe"));
       }
     }
 

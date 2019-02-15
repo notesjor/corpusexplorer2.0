@@ -27,59 +27,61 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       ReportTreeItem report = null;
 
       Processing.Invoke(
-        "Erstelle Analysebericht...",
-        () =>
-        {
-          var vm = GetViewModel<EchtzeitEngineViewModel>();
-          vm.CalculatorSteps.Add(new CalculatorStepCorpusBaseInfo());
-          if (chk_overview_analy_corpusDistribution.Checked)
-            vm.CalculatorSteps.Add(new CalculatorStepDistribution
-            {
-              Top = (int) num_overview_analy_corpusDistribution.Value
-            });
-          if (chk_overview_analy_cooccurrences.Checked)
-            vm.CalculatorSteps.Add(new CalculatorStepCooccurreces
-            {
-              Top = (int) num_overview_analy_cooccurrences.Value
-            });
+                        "Erstelle Analysebericht...",
+                        () =>
+                        {
+                          var vm = GetViewModel<EchtzeitEngineViewModel>();
+                          vm.CalculatorSteps.Add(new CalculatorStepCorpusBaseInfo());
+                          if (chk_overview_analy_corpusDistribution.Checked)
+                            vm.CalculatorSteps.Add(new CalculatorStepDistribution
+                            {
+                              Top = (int) num_overview_analy_corpusDistribution.Value
+                            });
+                          if (chk_overview_analy_cooccurrences.Checked)
+                            vm.CalculatorSteps.Add(new CalculatorStepCooccurreces
+                            {
+                              Top = (int) num_overview_analy_cooccurrences.Value
+                            });
 
-          var posFilter =
-            txt_overview_analy_posFilter.Text.Split(new[] {";", " "}, StringSplitOptions.RemoveEmptyEntries);
+                          var posFilter =
+                            txt_overview_analy_posFilter.Text.Split(new[] {";", " "},
+                                                                    StringSplitOptions.RemoveEmptyEntries);
 
-          if (chk_overview_analy_frequency.Checked)
-            vm.CalculatorSteps.Add(new CalculatorStepFrequency3LayerPosFilter
-            {
-              Top = (int) num_overview_analy_frequency.Value,
-              PosTags = posFilter
-            });
-          if (chk_overview_analy_kwic.Checked)
-            vm.CalculatorSteps.Add(
-              new CalculatorStepKwicTopFrequencyPosFilter
-              {
-                Top = (int) num_overview_analy_frequency.Value,
-                PosTags = posFilter
-              });
+                          if (chk_overview_analy_frequency.Checked)
+                            vm.CalculatorSteps.Add(new CalculatorStepFrequency3LayerPosFilter
+                            {
+                              Top = (int) num_overview_analy_frequency.Value,
+                              PosTags = posFilter
+                            });
+                          if (chk_overview_analy_kwic.Checked)
+                            vm.CalculatorSteps.Add(
+                                                   new CalculatorStepKwicTopFrequencyPosFilter
+                                                   {
+                                                     Top = (int) num_overview_analy_frequency.Value,
+                                                     PosTags = posFilter
+                                                   });
 
-          var queries = txt_query_kwicRequests.Text.Split(new[] {";", " "}, StringSplitOptions.RemoveEmptyEntries);
+                          var queries = txt_query_kwicRequests.Text.Split(new[] {";", " "},
+                                                                          StringSplitOptions.RemoveEmptyEntries);
 
-          if (chk_query_kwic.Checked)
-            vm.CalculatorSteps.Add(
-              new CalculatorStepKwicAnyMatch
-              {
-                Queries = queries
-              });
-          if (chk_query_cooccurrences.Checked)
-            vm.CalculatorSteps.Add(
-              new CalculatorStepCooccurrecesSelective
-              {
-                Queries = queries
-              });
+                          if (chk_query_kwic.Checked)
+                            vm.CalculatorSteps.Add(
+                                                   new CalculatorStepKwicAnyMatch
+                                                   {
+                                                     Queries = queries
+                                                   });
+                          if (chk_query_cooccurrences.Checked)
+                            vm.CalculatorSteps.Add(
+                                                   new CalculatorStepCooccurrecesSelective
+                                                   {
+                                                     Queries = queries
+                                                   });
 
-          vm.Execute();
+                          vm.Execute();
 
-          var generator = new ReportingGenerator();
-          report = generator.Execute(vm.ResultStorage);
-        });
+                          var generator = new ReportingGenerator();
+                          report = generator.Execute(vm.ResultStorage);
+                        });
       var form = new ReportView(report);
       form.ShowDialog();
     }

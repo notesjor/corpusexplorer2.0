@@ -67,6 +67,19 @@ namespace CorpusExplorer.Sdk.ViewModel
     /// </summary>
     public AbstractDistance SimilarityIndex { get; set; }
 
+    public string LayerDisplayname
+    {
+      get => _selectedLayerDisplayname;
+      set
+      {
+        if (string.IsNullOrEmpty(value) ||
+            _selectedLayerDisplayname == value)
+          return;
+
+        _selectedLayerDisplayname = value;
+      }
+    }
+
     /// <summary>
     ///   Gibt eine Datentabelle zur�ck
     /// </summary>
@@ -94,19 +107,6 @@ namespace CorpusExplorer.Sdk.ViewModel
       dt.EndLoadData();
 
       return dt;
-    }
-
-    public string LayerDisplayname
-    {
-      get => _selectedLayerDisplayname;
-      set
-      {
-        if (string.IsNullOrEmpty(value) ||
-            _selectedLayerDisplayname == value)
-          return;
-
-        _selectedLayerDisplayname = value;
-      }
     }
 
     /// <summary>
@@ -163,11 +163,11 @@ namespace CorpusExplorer.Sdk.ViewModel
     protected override void ExecuteAnalyse()
     {
       if (_block == null
-          ||
+        ||
           _block.LayerDisplayname != LayerDisplayname
-          ||
+        ||
           Math.Abs(_block.MinimumSignificance - MinimumSignificance) > 0
-          ||
+        ||
           _block.SimilarityIndex != SimilarityIndex)
       {
         _block = Selection.CreateBlock<DisambiguationBlock>();
@@ -184,8 +184,9 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     protected override bool Validate()
     {
-      return !string.IsNullOrEmpty(LayerDisplayname) && !string.IsNullOrEmpty(LayerQuery) &&
-             !double.IsNaN(MinimumSignificance) && !double.IsInfinity(MinimumSignificance) && SimilarityIndex != null;
+      return !string.IsNullOrEmpty(LayerDisplayname) && !string.IsNullOrEmpty(LayerQuery)       &&
+             !double.IsNaN(MinimumSignificance)      && !double.IsInfinity(MinimumSignificance) &&
+             SimilarityIndex != null;
     }
   }
 }
