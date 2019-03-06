@@ -10,12 +10,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf
   public class ImporterDta : AbstractImporterSimple3Steps<DSpin>
   {
     /// <summary>
-    ///   Auflistung von Layern die durch diesen Importer bedient werden.
-    /// </summary>
-    /// <value>The layer names.</value>
-    protected override IEnumerable<string> LayerNames => new[] {"Wort", "Lemma", "POS", "NER", "Orthografie"};
-
-    /// <summary>
     ///   Erster Importschritt - ließt die Datei ein und gibt (ein) entsprechend(es) Objekt(e) zurück.
     /// </summary>
     /// <param name="path">Dateipfad</param>

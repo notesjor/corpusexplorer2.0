@@ -1602,6 +1602,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
             listViewDataItem1});
       this.radListView1.ItemSize = new System.Drawing.Size(200, 40);
       this.radListView1.Name = "radListView1";
+      this.radListView1.ItemMouseClick += OpenRssFeedItemClick;
+      this.radListView1.AllowEdit = false;
+      this.radListView1.AllowRemove = false;
       // 
       // header6
       // 

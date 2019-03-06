@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Helper;
 using CorpusExplorer.Terminal.WinForm.Helper;
 using Telerik.Windows.Controls.TreeMap;
 
@@ -20,7 +21,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Segements
 
     public SegmentView()
     {
-      InitializeComponent();
+      XamlHighDpiExceptionHelper.Ensure(InitializeComponent);
     }
 
     public void SetSegements(double[] segements)

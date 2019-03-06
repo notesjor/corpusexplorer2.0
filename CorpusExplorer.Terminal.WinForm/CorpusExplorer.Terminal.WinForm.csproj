@@ -571,6 +571,7 @@
     <Compile Include="Controls\Wpf\HeatMap\Model\HeatmapItem.cs" />
     <Compile Include="Controls\Wpf\HeatMap\Model\IHeatmapItem.cs" />
     <Compile Include="Controls\Wpf\Helper\UniversalColorExtension.cs" />
+    <Compile Include="Controls\Wpf\Helper\XamlHighDpiExceptionHelper.cs" />
     <Compile Include="Controls\Wpf\Kwic\KwicBarcode.xaml.cs">
       <DependentUpon>KwicBarcode.xaml</DependentUpon>
     </Compile>
@@ -1650,6 +1651,9 @@
     <EmbeddedResource Include="View\Special\TreeTaggerTrainerView.resx">
       <DependentUpon>TreeTaggerTrainerView.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.config.patch">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="app.config" />
     <None Include="app.manifest">
       <SubType>Designer</SubType>

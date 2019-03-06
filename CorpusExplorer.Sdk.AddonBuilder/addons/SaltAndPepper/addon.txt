@@ -1,0 +1,2 @@
+﻿addon_saltANDpepper.zip
+C:\Projekte\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk.Extern.SaltAndPepper\bin\Release

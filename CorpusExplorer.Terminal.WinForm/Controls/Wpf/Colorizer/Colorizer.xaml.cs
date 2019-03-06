@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Helper;
 using CorpusExplorer.Terminal.WinForm.Forms.Colorizer;
 using CorpusExplorer.Terminal.WinForm.Helper;
 using Telerik.Windows.Controls.TreeMap;
@@ -19,7 +20,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Colorizer
 
     public Colorizer()
     {
-      InitializeComponent();
+      XamlHighDpiExceptionHelper.Ensure(InitializeComponent);
 
       Colors = new LinearGradientBrush(new GradientStopCollection(
                                                                   new[]

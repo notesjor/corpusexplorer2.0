@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Helper;
 using Telerik.WinControls.Data;
 using Telerik.Windows.Controls.Data.DataFilter;
 using Telerik.Windows.Data;
@@ -37,7 +38,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.QueryBuilder
 
     public QueryBuilderControl()
     {
-      InitializeComponent();
+      XamlHighDpiExceptionHelper.Ensure(InitializeComponent);
     }
 
     public void Step_1_Initialize(Dictionary<string, Type> settings)

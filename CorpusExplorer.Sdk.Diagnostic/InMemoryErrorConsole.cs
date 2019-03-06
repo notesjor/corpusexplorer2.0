@@ -105,10 +105,17 @@ namespace CorpusExplorer.Sdk.Diagnostic
 
     public static void SendAppCrash(Exception ex)
     {
-      if (!_insightChecked)
-        InsightSetup();
+      try
+      {
+        if (!_insightChecked)
+          InsightSetup();
 
-      _telemetryClient.SendPublicCrashReport(ex);
+        _telemetryClient.SendPublicCrashReport(ex);
+      }
+      catch
+      {
+        // ignore
+      }
     }
 
     public static void Save(string path)

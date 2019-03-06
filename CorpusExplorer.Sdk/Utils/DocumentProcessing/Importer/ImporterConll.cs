@@ -12,8 +12,6 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
     internal static string[] _layerNames =
       {"ID", "Wort", "Lemma", "UPOS", "POS", "FEATS", "HEAD", "DEPREL", "DEPS", "MISC"};
 
-    protected override IEnumerable<string> LayerNames => _layerNames;
-
     protected override string[] ImportStep_1_ReadFile(string path)
     {
       return File.ReadAllLines(path, Configuration.Encoding);
@@ -27,8 +25,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
 
     protected override void ImportStep_3_ImportContent(Guid documentGuid, ref string[] data)
     {
-      var docs = LayerNames.ToDictionary(x => x, x => new List<string[]>());
-      var sent = LayerNames.ToDictionary(x => x, x => new List<string>());
+      var docs = _layerNames.ToDictionary(x => x, x => new List<string[]>());
+      var sent = _layerNames.ToDictionary(x => x, x => new List<string>());
 
       foreach (var line in data)
       {

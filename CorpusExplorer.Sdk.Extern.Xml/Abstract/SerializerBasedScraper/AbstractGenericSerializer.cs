@@ -1,7 +1,9 @@
 ﻿#region
 
+using System;
 using System.IO;
 using System.Xml.Serialization;
+using Bcs.IO;
 
 #endregion
 
@@ -17,27 +19,33 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper
         DeserializePreValidation(path);
         T res;
 
+        if (Debug)
+        {
+          using (var reader = new StringReader(FileIO.ReadText(path)))
+          {
+            var serializer = new XmlSerializer(typeof(T));
+            return (T)serializer.Deserialize(reader);
+          }
+        }
+
         using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
         using (var bs = new BufferedStream(fs))
         {
-          res = Deserialize(bs);
+          var xml = new XmlSerializer(typeof(T));
+          res = xml.Deserialize(bs) as T;
         }
 
         DeserializePostValidation(res, path);
 
         return res;
       }
-      catch
+      catch (Exception ex)
       {
         return default(T);
       }
     }
 
-    public T Deserialize(Stream fs)
-    {
-      var xml = new XmlSerializer(typeof(T));
-      return xml.Deserialize(fs) as T;
-    }
+    public bool Debug { get; set; } = false;
 
     public virtual void Serialize(T obj, string path)
     {

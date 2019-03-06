@@ -31,5 +31,7 @@ namespace CorpusExplorer.Sdk.Helper
         // ignore
       }
     }
+
+    public override string ToString() => Path;
   }
 }

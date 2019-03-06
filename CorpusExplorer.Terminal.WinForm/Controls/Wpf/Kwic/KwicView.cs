@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Helper;
 using PostSharp.Patterns.Threading;
 
 #endregion
@@ -22,7 +23,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Kwic
 
     public KwicView()
     {
-      InitializeComponent();
+      XamlHighDpiExceptionHelper.Ensure(InitializeComponent);
     }
 
     public IEnumerable<KeyValuePair<string[], int>> DataSource

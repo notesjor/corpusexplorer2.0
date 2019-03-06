@@ -28,7 +28,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
 
     public WpfDiagram()
     {
-      InitializeComponent();
+      XamlHighDpiExceptionHelper.Ensure(InitializeComponent);
     }
 
     #region LAYOUT

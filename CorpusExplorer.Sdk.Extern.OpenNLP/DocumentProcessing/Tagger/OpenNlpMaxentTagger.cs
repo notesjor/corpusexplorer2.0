@@ -69,12 +69,8 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger
               StartInfo =
               {
                 FileName = OpenNlpLocator.BatchFile,
-                Arguments =
-                  $"POSTagger {OpenNlpLocator.GetMaxentModel(LanguageSelected)} < {fileInput.Path} > {fileOutput.Path}",
-                RedirectStandardOutput = false,
+                Arguments = $"POSTagger {OpenNlpLocator.GetMaxentModel(LanguageSelected)} < {fileInput.Path} > {fileOutput.Path}",
                 CreateNoWindow = true,
-                UseShellExecute = false,
-                StandardOutputEncoding = Configuration.Encoding,
                 WindowStyle = ProcessWindowStyle.Hidden
               }
             };

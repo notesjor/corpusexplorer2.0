@@ -1,0 +1,2 @@
+﻿addon_stanford.zip
+C:\Projekte\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk.Extern.StanfordNLP\bin\Release

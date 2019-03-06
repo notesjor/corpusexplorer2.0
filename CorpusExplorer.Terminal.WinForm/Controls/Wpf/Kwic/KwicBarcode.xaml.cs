@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Helper;
 
 namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Kwic
 {
@@ -14,7 +15,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Kwic
 
     public KwicBarcode()
     {
-      InitializeComponent();
+      XamlHighDpiExceptionHelper.Ensure(InitializeComponent);
       BuildMapping();
     }
 

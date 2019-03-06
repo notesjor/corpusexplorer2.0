@@ -120,14 +120,10 @@ namespace CorpusExplorer.Port.TreeTaggerTrainer.ViewModel
                                     Arguments =
                                       $"{lexPath} {unkPath} {traPath} {ParOutputPath}",
                                     CreateNoWindow = true,
-                                    WindowStyle = ProcessWindowStyle.Hidden,
-                                    StandardOutputEncoding = Configuration.Encoding
+                                    WindowStyle = ProcessWindowStyle.Hidden
                                   });
 
-      if (process == null)
-        return;
-
-      process.WaitForExit();
+      process?.WaitForExit();
 
       MessageBox.Show(File.Exists(ParOutputPath) ? "Training erfolgreich!" : "PAR-Model konnte nicht erstellt werden");
     }

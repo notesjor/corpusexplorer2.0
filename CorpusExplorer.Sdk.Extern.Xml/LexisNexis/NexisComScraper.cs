@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
@@ -18,87 +19,123 @@ namespace CorpusExplorer.Sdk.Extern.Xml.LexisNexis
     {
       var res = new List<Dictionary<string, object>>();
       var sections = GetDocumentSections(file);
+      var l = new object();
 
-      foreach (var section in sections)
+      Parallel.ForEach(sections, section =>
       {
-        var lines = section.Split(new[] { "<br>" }, StringSplitOptions.RemoveEmptyEntries);
-        if (lines.Length < 8)
-          continue;
-
-        var verlag = GetText(lines[4]);
-        var datum = DateTimeHelper.Parse(GetText(lines[5]), true);
-        var titel = GetText(lines[6]);
-        var i = 7;
-        for (; i < lines.Length; i++)
+        try
         {
-          if (lines[i].StartsWith("<div"))
-            break;
-          titel = $"{titel} {GetText(lines[i])}";
-        }
+          var lines = section?.Split(new[] { "<br>" }, StringSplitOptions.RemoveEmptyEntries);
+          if (lines == null || lines.Length < 1)
+            return;
 
-        titel = titel.Trim();
+          var i = 0;
+          for (; i < lines.Length; i++)
+            if (lines[i].StartsWith("<p class=\"c1\">")) // Finde Einsprungspunkt
+              break;
 
-        string autor = string.Empty, rubrik = string.Empty, type = string.Empty;
-        var start = 0;
-        var stop = 0;
+          var verlag = GetText(lines[++i]);
+          var datum = GetText(lines[++i]);
+          var titel = GetText(lines[++i]);
+          i++;
+          for (; i < lines.Length; i++)
+          {
+            if (lines[i].StartsWith("<div"))
+              break;
+            titel = $"{titel} {GetText(lines[i])}";
+          }
 
-        for (; i < lines.Length; i++)
-        {
-          var test = GetText(lines[i]);
-          if (test.StartsWith("AUTOR:"))
-            autor = test.Replace("AUTOR:", "").Trim();
-          if (test.StartsWith("RUBRIK:"))
-            rubrik = test.Replace("RUBRIK:", "").Trim();
-          if (test.StartsWith("LÄNGE:"))
-            start = i + 1;
-          if (test.StartsWith("UPDATE:"))
+          titel = titel.Trim();
+          if (titel.StartsWith("LÄNGE:")) // Kein Titel Fix
+          {
+            titel = "";
+            i--;
+          }
+
+          string autor = string.Empty, rubrik = string.Empty, type = string.Empty;
+          var start = 0;
+          var stop = 0;
+
+          for (; i < lines.Length; i++)
+          {
+            var test = GetText(lines[i]);
+            if (test.StartsWith("AUTOR:"))
+              autor = test.Replace("AUTOR:", "").Trim();
+            if (test.StartsWith("RUBRIK:"))
+              rubrik = test.Replace("RUBRIK:", "").Trim();
+            if (test.StartsWith("UPDATE:") && string.IsNullOrEmpty(datum))
+              datum = test.Replace("UPDATE:", "").Trim();
+            if (test.StartsWith("PUBLICATION-TYPE:"))
+              type = test.Replace("PUBLICATION-TYPE:", "").Trim();
+            if (test.StartsWith("LÄNGE:"))
+              start = i + 1;
+            if (!test.StartsWith("UPDATE:"))
+              continue;
             stop = i;
-          if (test.StartsWith("PUBLICATION-TYPE:"))
-            type = test.Replace("PUBLICATION-TYPE:", "").Trim();
+            if (string.IsNullOrEmpty(datum))
+              datum = test.Replace("UPDATE:", "").Trim();
+          }
+
+          if (stop == 0)
+            return;
+
+          var stb = new StringBuilder();
+          for (i = start; i < stop; i++)
+          {
+            var line = GetText(lines[i]);
+            if (line.StartsWith("HIGHLIGHT:"))
+            {
+              var c = i;
+              for (; i < lines.Length; i++)
+              {
+                if (lines[i].StartsWith("<div"))
+                  break;
+              }
+
+              if (c + 1 == i)
+                continue;
+
+              i--;
+              continue;
+            }
+
+            if (!string.IsNullOrEmpty(autor))
+            {
+              if (line.StartsWith($"Von {autor}"))
+                line = line.Replace($"Von {autor}", "");
+              if (line.StartsWith($"Von: {autor}"))
+                line = line.Replace($"Von: {autor}", "");
+              if (line.StartsWith($"von {autor}"))
+                line = line.Replace($"von {autor}", "");
+              if (line.StartsWith($"von: {autor}"))
+                line = line.Replace($"von: {autor}", "");
+              if (line.StartsWith(autor))
+                line = line.Replace(autor, "");
+            }
+
+            stb.AppendLine(line.Trim());
+          }
+
+          var text = stb.ToString().Trim();
+
+          lock (l)
+            res.Add(
+                    new Dictionary<string, object>
+                    {
+                    {"Text", text},
+                    {"Titel", titel},
+                    {"Autor", autor},
+                    {"Rubrik", rubrik},
+                    {"Publikation", type},
+                    {"Zeitung", verlag},
+                    {"Datum", DateTimeHelper.Parse(datum, true)}
+                    });
         }
-
-        if (stop == 0)
-          continue;
-        var testAuthor = !string.IsNullOrEmpty(autor);
-        var vonAutor = $"Von {autor}";
-
-        var stb = new StringBuilder();
-        for (i = start; i < stop; i++)
+        catch
         {
-          var line = GetText(lines[i]);
-          if (line.StartsWith("HIGHLIGHT:"))
-          {
-            for (; i < lines.Length; i++)
-              if (lines[i].StartsWith("<div"))
-                break;
-            continue;
-          }
-
-          if (testAuthor)
-          {
-            if (line.StartsWith(vonAutor))
-              line = line.Replace(vonAutor, "");
-            if (line.StartsWith(autor))
-              line = line.Replace(autor, "");
-          }
-
-          stb.AppendLine(line.Trim());
+          // ignore
         }
-
-        var text = stb.ToString().Trim();
-
-        res.Add(
-          new Dictionary<string, object>
-          {
-            {"Text", text},
-            {"Titel", titel},
-            {"Autor", autor},
-            {"Rubrik", rubrik},
-            {"Publikation", type},
-            {"Zeitung", verlag},
-            {"Datum", datum}
-          });
-      }
+      });
 
       return res;
     }

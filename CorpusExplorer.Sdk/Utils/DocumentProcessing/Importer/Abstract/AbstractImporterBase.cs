@@ -13,22 +13,12 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
   public abstract class AbstractImporterBase : AbstractImporter
   {
     private readonly object _metaLock = new object();
-
+    private readonly object _layerLock = new object();
     public AbstractCorpusBuilder CorpusBuilder { get; set; } = new CorpusBuilderWriteDirect();
-
-    /// <summary>
-    ///   Auflistung von Layern die durch diesen Importer bedient werden.
-    /// </summary>
-    /// <value>The layer names.</value>
-    protected abstract IEnumerable<string> LayerNames { get; }
-
     private List<Concept> Concepts { get; set; }
-
     private string CorpusDisplayname { get; set; }
-
     private Dictionary<string, object> CorpusMetadata { get; set; }
     private Dictionary<Guid, Dictionary<string, object>> DocumentMetadata { get; set; }
-
     private Dictionary<string, LayerValueState> Layers { get; set; }
 
     protected void AddCorpusMetadata(string key, object value)
@@ -65,22 +55,38 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
 
     protected void AddDocumet(string layerName, Guid documentGuid, string[][] document)
     {
-      Layers[layerName].AddCompleteDocument(documentGuid, document);
+      lock (_layerLock)
+      {
+        EnsureLayer(layerName);
+        Layers[layerName].AddCompleteDocument(documentGuid, document);
+      }
     }
 
     protected void AddDocumet(string layerName, Guid documentGuid, int[][] document)
     {
-      Layers[layerName].Documents.Add(documentGuid, document);
+      lock (_layerLock)
+      {
+        EnsureLayer(layerName);
+        Layers[layerName].Documents.Add(documentGuid, document);
+      }
     }
 
     protected int[][] ConvertToLayer(string layerName, string[][] layerValues)
     {
-      return Layers[layerName].ConvertToLayer(layerValues);
+      lock (_layerLock)
+      {
+        EnsureLayer(layerName);
+        return Layers[layerName].ConvertToLayer(layerValues);
+      }
     }
 
     protected int ConvertToLayer(string layerName, string layerValue)
     {
-      return Layers[layerName].ConvertToLayer(layerValue);
+      lock (_layerLock)
+      {
+        EnsureLayer(layerName);
+        return Layers[layerName].ConvertToLayer(layerValue);
+      }
     }
 
     /// <summary>
@@ -91,7 +97,17 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
     /// <returns>System.Int32[].</returns>
     protected int[] ConvertToLayer(string layerName, string[] layerValues)
     {
-      return Layers[layerName].ConvertToLayer(layerValues);
+      lock (_layerLock)
+      {
+        EnsureLayer(layerName);
+        return Layers[layerName].ConvertToLayer(layerValues);
+      }
+    }
+
+    private void EnsureLayer(string layerName)
+    {
+      if (!Layers.ContainsKey(layerName))
+        Layers.Add(layerName, new LayerValueState(layerName, Layers.Count));
     }
 
     protected override IEnumerable<AbstractCorpusAdapter> Execute(string inputPath)
@@ -126,31 +142,29 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
 
     private void Reset(bool dontFlushHeads)
     {
-      if (LayerNames == null)
-        return;
-
       // Flush nur wenn null oder explizit angefragt
-      if (Layers == null)
-        dontFlushHeads = false;
-      if (dontFlushHeads)
+      lock (_layerLock)
       {
-        if (Layers != null)
-          foreach (var layerName in LayerNames)
-            Layers[layerName].Documents.Clear();
+        if (Layers == null)
+          dontFlushHeads = false;
+        if (dontFlushHeads)
+        {
+          if (Layers != null)
+            foreach (var layer in Layers)
+              layer.Value.Documents.Clear();
+          GC.Collect();
+          return;
+        }
+
+        CorpusMetadata = new Dictionary<string, object>();
+        DocumentMetadata = new Dictionary<Guid, Dictionary<string, object>>();
+        Concepts = new List<Concept>();
+
+        Layers = new Dictionary<string, LayerValueState>();
+
         GC.Collect();
-        return;
+        GC.WaitForPendingFinalizers();
       }
-
-      CorpusMetadata = new Dictionary<string, object>();
-      DocumentMetadata = new Dictionary<Guid, Dictionary<string, object>>();
-      Concepts = new List<Concept>();
-
-      Layers = new Dictionary<string, LayerValueState>();
-      foreach (var layerName in LayerNames)
-        Layers.Add(layerName, new LayerValueState(layerName, 0));
-
-      GC.Collect();
-      GC.WaitForPendingFinalizers();
     }
   }
 }

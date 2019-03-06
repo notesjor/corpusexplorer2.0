@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database Name="openthesaurus" EntityNamespace="CorpusExplorer.Sdk.Extern.OpenThesaurus.Db" ContextNamespace="CorpusExplorer.Sdk.Extern.OpenThesaurus.Db" Class="OpenThesaurusContext" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ed:Guid="9a16a255-2dfb-4a42-863e-65eea9ac1a38" Provider="Devart.Data.MySql.Linq.Provider.MySqlDataProvider, Devart.Data.MySql.Linq" Extended="true" xmlns="http://schemas.devart.com/linqconnect/mapping">
+  <Connection Mode="ConnectionString" ConnectionString="User Id=root;Host=localhost;Database=openthesaurus;Persist Security Info=True" Provider="Devart.Data.MySql" />
+  <Table Name="openthesaurus.category" Member="Categories">
+    <Type Name="Category" ed:Guid="831af127-2924-4ac6-be86-f0278b349b75">
+      <Column Name="id" Member="Id" Type="System.Int64" AutoSync="OnInsert" DbType="BIGINT(20) NOT NULL AUTO_INCREMENT" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="20" ed:ValidateRequired="true" ed:Guid="2e0ddc8c-afb9-4ceb-865f-696c62a8a788" />
+      <Column Name="version" Member="Version" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="ffa36c0b-a589-4b82-8e8a-e04bea2586ff" />
+      <Column Name="category_name" Member="CategoryName" Type="System.String" DbType="VARCHAR(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="0f9609fd-ebb1-4e43-8d77-fc7e2b06cecc" />
+      <Column Name="is_disabled" Member="IsDisabled" Type="System.Boolean" DbType="BIT NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="e45a70df-f1eb-4a4a-8bdb-36f0e747f182" />
+      <Association Name="Category_CategoryLink" ed:AssociationGuid="215afda1-802c-48a9-9e7e-1522d35fd4f8" Member="CategoryLinks" ed:Guid="43d05a6e-5ceb-4179-91ec-3daa5739b945" ThisKey="Id" OtherKey="CategoryId" Type="CategoryLink" />
+    </Type>
+  </Table>
+  <Table Name="openthesaurus.category_link" Member="CategoryLinks">
+    <Type Name="CategoryLink" ed:Guid="e328d396-e378-4f0c-9dbc-fba642b4820f">
+      <Column Name="id" Member="Id" Type="System.Int64" AutoSync="OnInsert" DbType="BIGINT(20) NOT NULL AUTO_INCREMENT" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="20" ed:ValidateRequired="true" ed:Guid="fc576c3f-bcee-443d-b35a-725c0842bb17" />
+      <Column Name="version" Member="Version" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="43476285-59c5-4c1d-9287-01ab0c266901" />
+      <Column Name="category_id" Member="CategoryId" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="ab7438ae-7216-4ae2-a6a1-85be8e5defab" />
+      <Column Name="synset_id" Member="SynsetId" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="1e57aae9-196b-4fd3-a4cc-533962d146cb" />
+      <Association Name="Synset_CategoryLink" ed:AssociationGuid="93518060-820a-4ac8-9ec7-971365309281" Member="Synset" ed:Guid="b07f2cb1-4ee7-47f1-a3a1-bef0b2fa6541" ThisKey="SynsetId" OtherKey="Id" Type="Synset" IsForeignKey="true" />
+      <Association Name="Category_CategoryLink" ed:AssociationGuid="215afda1-802c-48a9-9e7e-1522d35fd4f8" Member="Category" ed:Guid="75af605c-15ea-4d3e-9f45-c9edbc292e7a" ThisKey="CategoryId" OtherKey="Id" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="openthesaurus.language" Member="Languages">
+    <Type Name="Language" ed:Guid="fd4080c8-ccca-4eed-9963-bcb8fb2e85b6">
+      <Column Name="id" Member="Id" Type="System.Int64" AutoSync="OnInsert" DbType="BIGINT(20) NOT NULL AUTO_INCREMENT" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" Precision="20" ed:ValidateRequired="true" ed:Guid="4240f4a7-c76e-463b-becc-8c44503d0f39" />
+      <Column Name="version" Member="Version" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="e1e5c52a-f58c-433d-b3a4-3e14e3998183" />
+      <Column Name="long_form" Member="LongForm" Type="System.String" DbType="VARCHAR(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="968f9068-7ca9-42f1-8112-7a98225295d6" />
+      <Column Name="short_form" Member="ShortForm" Type="System.String" DbType="VARCHAR(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="56165ff0-1186-4395-b842-1af149ec8f10" />
+      <Column Name="is_disabled" Member="IsDisabled" Type="System.Boolean" DbType="BIT NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="1451c9e1-f7ea-4aae-bfae-64de6de85c51" />
+      <Association Name="Language_Term" ed:AssociationGuid="dd8a91e8-536b-42d4-bc71-c04037baf0a5" Member="Terms" ed:Guid="562560f9-d31c-4b58-9df7-a4aa129617fd" ThisKey="Id" OtherKey="LanguageId" Type="Term" />
+    </Type>
+  </Table>
+  <Table Name="openthesaurus.link_type" Member="LinkTypes">
+    <Type Name="LinkType" ed:Guid="8325164f-7c36-4be2-befa-f1b0e92a13a9">
+      <Column Name="id" Member="Id" Type="System.Int64" AutoSync="OnInsert" DbType="BIGINT(20) NOT NULL AUTO_INCREMENT" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="20" ed:ValidateRequired="true" ed:Guid="d8dc5031-9207-4f5c-8f34-f60abac39115" />
+      <Column Name="version" Member="Version" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="e4ea5375-6bc0-46af-ba73-ca759f991a85" />
+      <Column Name="link_name" Member="LinkName" Type="System.String" DbType="VARCHAR(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="d69df23d-9ee2-420a-8504-e0832513531e" />
+      <Column Name="other_direction_link_name" Member="OtherDirectionLinkName" Type="System.String" DbType="VARCHAR(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="0df48892-dd03-426d-b8b0-d8f99eb18d27" />
+      <Column Name="verb_name" Member="VerbName" Type="System.String" DbType="VARCHAR(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="985fddd9-22e7-469e-9838-1573954292ea" />
+      <Association Name="LinkType_SynsetLink" ed:AssociationGuid="ce368b76-348f-4669-bc62-eb6aa7f70ae0" Member="SynsetLinks" ed:Guid="85c1aa74-709a-478b-a2c4-48485b9469bf" ThisKey="Id" OtherKey="LinkTypeId" Type="SynsetLink" />
+    </Type>
+  </Table>
+  <Table Name="openthesaurus.synset" Member="Synsets">
+    <Type Name="Synset" ed:Guid="a0b79f4a-38b7-46a1-87b6-fe5d072a4a37">
+      <Column Name="id" Member="Id" Type="System.Int64" AutoSync="OnInsert" DbType="BIGINT(20) NOT NULL AUTO_INCREMENT" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="20" ed:ValidateRequired="true" ed:Guid="8569cc9a-9483-4019-a220-e3774b68074b" />
+      <Column Name="version" Member="Version" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="a6e4cbcd-6dd2-4734-bc95-d99902977d5a" />
+      <Column Name="evaluation" Member="Evaluation" Type="System.Int32" DbType="INT(11) NULL" CanBeNull="true" UpdateCheck="Never" Precision="11" ed:ValidateRequired="false" ed:Guid="608f8c9f-e362-4033-a2a0-83752c5c40e5" />
+      <Column Name="is_visible" Member="IsVisible" Type="System.Boolean" DbType="BIT NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="15e6c225-576f-4e79-83b8-10881e130315" />
+      <Column Name="original_id" Member="OriginalId" Type="System.Int32" DbType="INT(11) NULL" CanBeNull="true" UpdateCheck="Never" Precision="11" ed:ValidateRequired="false" ed:Guid="efdb313a-dda6-47b4-9cdc-f3f6dfbe5a7a" />
+      <Column Name="preferred_category_id" Member="PreferredCategoryId" Type="System.Int64" DbType="BIGINT(20) NULL" CanBeNull="true" UpdateCheck="Never" Precision="20" ed:ValidateRequired="false" ed:Guid="ea782730-9796-403c-846c-24455b604c0f" />
+      <Association Name="Synset_Term" ed:AssociationGuid="bf2e3ce7-a2d0-4b5a-8c26-a7cbd2c8b88f" Member="Terms" ed:Guid="e3faf21e-3e90-4ae4-9d7d-4faae6b065a8" ThisKey="Id" OtherKey="SynsetId" Type="Term" />
+      <Association Name="Synset_SynsetLink" ed:AssociationGuid="41e65b76-52ae-4644-b8f7-2f1ca74707b5" Member="SynsetLinkSources" ed:Guid="7620de66-850d-4533-92d7-78b5a6e9b5be" ThisKey="Id" OtherKey="SynsetId" Type="SynsetLink" />
+      <Association Name="Synset_SynsetLink1" ed:AssociationGuid="3f1971cf-f34e-405a-a99b-57f7c0ac504e" Member="SynsetLinkTargets" ed:Guid="b56304e8-c2f2-4c7b-8db7-2d32ad643daf" ThisKey="Id" OtherKey="TargetSynsetId" Type="SynsetLink" />
+      <Association Name="Synset_CategoryLink" ed:AssociationGuid="93518060-820a-4ac8-9ec7-971365309281" Member="CategoryLinks" ed:Guid="8084c19d-ee21-4228-9650-a1fdc61712e5" ThisKey="Id" OtherKey="SynsetId" Type="CategoryLink" />
+    </Type>
+  </Table>
+  <Table Name="openthesaurus.synset_link" Member="SynsetLinks">
+    <Type Name="SynsetLink" ed:Guid="8e9bebb5-7be6-460c-8e02-5b4eb734b37a">
+      <Column Name="id" Member="Id" Type="System.Int64" AutoSync="OnInsert" DbType="BIGINT(20) NOT NULL AUTO_INCREMENT" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="20" ed:ValidateRequired="true" ed:Guid="0aae5e34-1849-49ee-8073-679391f2e4e3" />
+      <Column Name="version" Member="Version" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="847a385e-2f22-4a2b-8c57-e0517b66924c" />
+      <Column Name="evaluation_status" Member="EvaluationStatus" Type="System.Int32" DbType="INT(11) NULL" CanBeNull="true" UpdateCheck="Never" Precision="11" ed:ValidateRequired="false" ed:Guid="60564479-a0dc-40bc-8c2f-f5f087d79c5b" />
+      <Column Name="fact_count" Member="FactCount" Type="System.Int32" DbType="INT(11) NULL" CanBeNull="true" UpdateCheck="Never" Precision="11" ed:ValidateRequired="false" ed:Guid="6997ab83-6ad7-4240-8fcf-0f264aabbd96" />
+      <Column Name="link_type_id" Member="LinkTypeId" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="67f4ef58-2812-49b9-be86-9bafa0d5189e" />
+      <Column Name="synset_id" Member="SynsetId" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="85cab423-9670-4f0c-a555-33087a52c306" />
+      <Column Name="target_synset_id" Member="TargetSynsetId" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="a4404657-b3ee-47a5-a35e-382af0a15498" />
+      <Association Name="Synset_SynsetLink" ed:AssociationGuid="41e65b76-52ae-4644-b8f7-2f1ca74707b5" Member="SynsetSource" ed:Guid="75e042c8-f7af-46cf-b5f8-86259b925fd5" ThisKey="SynsetId" OtherKey="Id" Type="Synset" IsForeignKey="true" />
+      <Association Name="Synset_SynsetLink1" ed:AssociationGuid="3f1971cf-f34e-405a-a99b-57f7c0ac504e" Member="SynsetTarget" ed:Guid="02a17e02-88cd-4edd-a509-d9cbf1be53a6" ThisKey="TargetSynsetId" OtherKey="Id" Type="Synset" IsForeignKey="true" />
+      <Association Name="LinkType_SynsetLink" ed:AssociationGuid="ce368b76-348f-4669-bc62-eb6aa7f70ae0" Member="LinkType" ed:Guid="e7ccfd1c-328c-4d7e-98b1-47fc7e031990" ThisKey="LinkTypeId" OtherKey="Id" Type="LinkType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="openthesaurus.tag" Member="Tags">
+    <Type Name="Tag" ed:Guid="b78c7730-9a14-48e8-beb3-a9f80d9bcb10">
+      <Column Name="id" Member="Id" Type="System.Int64" AutoSync="OnInsert" DbType="BIGINT(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" Precision="20" ed:ValidateRequired="true" ed:Guid="f1ccd323-1751-4a39-83f0-5c909c1b8bba" />
+      <Column Name="version" Member="Version" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="8653765f-65fe-4c24-ba77-a39af6ba36ff" />
+      <Column Name="color" Member="Color" Type="System.String" DbType="VARCHAR(255) NULL" CanBeNull="true" UpdateCheck="Never" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="7ec96b45-599a-4941-ae57-eb679f26c076" />
+      <Column Name="created" Member="Created" Type="System.DateTime" DbType="DATETIME NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="256999dc-a4fc-4d40-a215-76d84cf6ecb2" />
+      <Column Name="created_by" Member="CreatedBy" Type="System.String" DbType="VARCHAR(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="41baf550-89a6-4d12-9f9b-006a0c5b6a96" />
+      <Column Name="name" Member="Name" Type="System.String" DbType="VARCHAR(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="ff374fdd-8708-4120-9cb4-4c1fde32f4e9" />
+      <Column Name="short_name" Member="ShortName" Type="System.String" DbType="VARCHAR(255) NULL" CanBeNull="true" UpdateCheck="Never" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="694626d1-cd02-4281-816a-b8286ea5f8de" />
+      <Column Name="is_visible" Member="IsVisible" Type="System.Boolean" DbType="BIT NULL" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="e5db38fe-311b-4228-8a96-4c4f264aefe5" />
+      <Association Name="Tag_TermTag" ed:AssociationGuid="796e0cd1-f6ff-4a12-ab21-736888651980" Member="TermTags" ed:Guid="194d6b1b-9129-4cea-ba8f-a4ae144ac76a" ThisKey="Id" OtherKey="TagId" Type="TermTag" />
+    </Type>
+  </Table>
+  <Table Name="openthesaurus.term" Member="Terms">
+    <Type Name="Term" ed:Guid="33364a75-0604-4e56-beb3-ea44d17e4fef">
+      <Column Name="id" Member="Id" Type="System.Int64" AutoSync="OnInsert" DbType="BIGINT(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" Precision="20" ed:ValidateRequired="true" ed:Guid="c0beffe1-95d5-4acf-9317-190670ad893a" />
+      <Column Name="version" Member="Version" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="6f00175d-5130-4e25-9abb-e4a81de3870d" />
+      <Column Name="language_id" Member="LanguageId" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="true" UpdateCheck="Never" Precision="20" ed:ValidateRequired="false" ed:Guid="0bb055bf-e6ec-449c-b6eb-433ec7fdf218" />
+      <Column Name="level_id" Member="LevelId" Type="System.Int64" DbType="BIGINT(20) NULL" CanBeNull="true" UpdateCheck="Never" Precision="20" ed:ValidateRequired="false" ed:Guid="e37bd779-5c92-442d-8bfa-ba502ebee64c" />
+      <Column Name="normalized_word" Member="NormalizedWord" Type="System.String" DbType="VARCHAR(255) NULL" CanBeNull="true" UpdateCheck="Never" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="f5cbad65-bf41-435e-a5d8-f306b65bf9e7" />
+      <Column Name="original_id" Member="OriginalId" Type="System.Int32" DbType="INT(11) NULL" CanBeNull="true" UpdateCheck="Never" Precision="11" ed:ValidateRequired="false" ed:Guid="4f327dea-0764-411a-b248-80da7dc50031" />
+      <Column Name="synset_id" Member="SynsetId" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="6cabeebd-407f-4a21-9b56-670bb1fc14b4" />
+      <Column Name="user_comment" Member="UserComment" Type="System.String" DbType="VARCHAR(400) NULL" CanBeNull="true" UpdateCheck="Never" MaxLength="400" Unicode="true" ed:ValidateMaxLength="400" ed:ValidateRequired="false" ed:Guid="07ae0c24-4871-4f61-b26e-318a2002e16b" />
+      <Column Name="word" Member="Word" Type="System.String" DbType="VARCHAR(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="24aa0698-488e-4fb7-a9a1-bd252d5fff40" />
+      <Column Name="normalized_word2" Member="NormalizedWord2" Type="System.String" DbType="VARCHAR(255) NULL" CanBeNull="true" UpdateCheck="Never" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="false" ed:Guid="a462d570-f0dc-4c07-bf11-45b84a14c112" />
+      <Association Name="Term_TermTag" ed:AssociationGuid="c1a1e1e6-d4a6-49fd-9ed9-5d4c65e71b29" Member="TermTags" ed:Guid="2749abce-7338-44ba-aef5-2919f0a3e459" ThisKey="Id" OtherKey="TermTagsId" Type="TermTag" />
+      <Association Name="Term_TermLink" ed:AssociationGuid="9110a8b2-ad46-4b06-81b8-d58950bb2951" Member="TermLinkTargets" ed:Guid="8fcaacb7-5acd-415b-aee9-2b4a83d39efc" ThisKey="Id" OtherKey="TargetTermId" Type="TermLink" />
+      <Association Name="Term_TermLink1" ed:AssociationGuid="93c88762-4410-49cb-b92a-4d76ee002633" Member="TermLinkSoruces" ed:Guid="e48d81a4-0a6e-4f98-8b67-030d7943b220" ThisKey="Id" OtherKey="TermId" Type="TermLink" />
+      <Association Name="TermLevel_Term" ed:AssociationGuid="c94ec515-b52d-4e00-8a4d-e18edf0271cb" Member="TermLevel" ed:Guid="6b1ffad3-e92c-4c04-acb4-185b0d0e1199" ThisKey="LevelId" OtherKey="Id" Type="TermLevel" IsForeignKey="true" />
+      <Association Name="Language_Term" ed:AssociationGuid="dd8a91e8-536b-42d4-bc71-c04037baf0a5" Member="Language" ed:Guid="298824d5-338b-4c36-aa0e-d6f9fd278c0e" ThisKey="LanguageId" OtherKey="Id" Type="Language" IsForeignKey="true" />
+      <Association Name="Synset_Term" ed:AssociationGuid="bf2e3ce7-a2d0-4b5a-8c26-a7cbd2c8b88f" Member="Synset" ed:Guid="f50d75af-7e0a-450c-959c-b5578280f39b" ThisKey="SynsetId" OtherKey="Id" Type="Synset" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="openthesaurus.term_level" Member="TermLevels">
+    <Type Name="TermLevel" ed:Guid="36728519-8871-41f8-a627-67c36ce78122">
+      <Column Name="id" Member="Id" Type="System.Int64" AutoSync="OnInsert" DbType="BIGINT(20) NOT NULL AUTO_INCREMENT" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" Precision="20" ed:ValidateRequired="true" ed:Guid="f85f3f1d-ee2d-4e35-966b-1740a1f91093" />
+      <Column Name="version" Member="Version" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="d0bf85b3-7628-40b1-8016-7a617483e781" />
+      <Column Name="level_name" Member="LevelName" Type="System.String" DbType="VARCHAR(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="73b1f5a0-b6fa-42bb-807d-4582cf615ec5" />
+      <Column Name="short_level_name" Member="ShortLevelName" Type="System.String" DbType="VARCHAR(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="bfeb3ad4-44bc-4006-8a3f-54c9ec182309" />
+      <Column Name="sort_value" Member="SortValue" Type="System.Int32" DbType="INT(11) NULL" CanBeNull="true" UpdateCheck="Never" Precision="11" ed:ValidateRequired="false" ed:Guid="68c8ba71-2b48-4239-aae7-1e4620380a4e" />
+      <Association Name="TermLevel_Term" ed:AssociationGuid="c94ec515-b52d-4e00-8a4d-e18edf0271cb" Member="Terms" ed:Guid="4ee33887-ad61-4d67-914e-70f1a6c131b1" ThisKey="Id" OtherKey="LevelId" Type="Term" />
+    </Type>
+  </Table>
+  <Table Name="openthesaurus.term_link" Member="TermLinks">
+    <Type Name="TermLink" ed:Guid="ef90c040-efba-4c4b-8b19-0d2c8c944491">
+      <Column Name="id" Member="Id" Type="System.Int64" AutoSync="OnInsert" DbType="BIGINT(20) NOT NULL AUTO_INCREMENT" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="20" ed:ValidateRequired="true" ed:Guid="64703627-0d53-44ae-925b-b42c52c26c8c" />
+      <Column Name="version" Member="Version" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="1c59f8ef-047a-460d-a126-34ee4bcfee44" />
+      <Column Name="link_type_id" Member="LinkTypeId" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="4bf4834c-9869-4bc0-9e66-8a2d11d7c99f" />
+      <Column Name="target_term_id" Member="TargetTermId" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="029e4989-03ea-4d04-b3d8-c99943a41079" />
+      <Column Name="term_id" Member="TermId" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="b4f49612-8e9f-4636-89c9-cca913d26ffd" />
+      <Association Name="Term_TermLink" ed:AssociationGuid="9110a8b2-ad46-4b06-81b8-d58950bb2951" Member="TermTarget" ed:Guid="7b8716ee-6484-4039-964f-2096bc61dc07" ThisKey="TargetTermId" OtherKey="Id" Type="Term" IsForeignKey="true" />
+      <Association Name="Term_TermLink1" ed:AssociationGuid="93c88762-4410-49cb-b92a-4d76ee002633" Member="TermSource" ed:Guid="fd57d187-ba28-4f63-9cbb-886991a27298" ThisKey="TermId" OtherKey="Id" Type="Term" IsForeignKey="true" />
+      <Association Name="TermLinkType_TermLink" ed:AssociationGuid="db080758-91fa-446a-8ec7-d44920071d0b" Member="TermLinkType" ed:Guid="c43f14e1-5437-4f82-8035-d6de9d949f93" ThisKey="LinkTypeId" OtherKey="Id" Type="TermLinkType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="openthesaurus.term_link_type" Member="TermLinkTypes">
+    <Type Name="TermLinkType" ed:Guid="958cdb9f-b368-46a0-aa2c-1648244ab18a">
+      <Column Name="id" Member="Id" Type="System.Int64" AutoSync="OnInsert" DbType="BIGINT(20) NOT NULL AUTO_INCREMENT" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="20" ed:ValidateRequired="true" ed:Guid="3854f1ba-68a5-4346-ad7d-5640cadfa442" />
+      <Column Name="version" Member="Version" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="083e4141-2108-4da1-beab-408f9ae631e1" />
+      <Column Name="link_name" Member="LinkName" Type="System.String" DbType="VARCHAR(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="8449893f-2e9b-4557-a05c-3122313fe834" />
+      <Column Name="other_direction_link_name" Member="OtherDirectionLinkName" Type="System.String" DbType="VARCHAR(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="3ba676dc-917a-455c-9ce3-2672d00e263f" />
+      <Column Name="verb_name" Member="VerbName" Type="System.String" DbType="VARCHAR(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="15b824d7-892f-4eef-b903-e3a9162ee2d1" />
+      <Association Name="TermLinkType_TermLink" ed:AssociationGuid="db080758-91fa-446a-8ec7-d44920071d0b" Member="TermLinks" ed:Guid="9920cef5-d324-4e93-852d-b9b517ac47e7" ThisKey="Id" OtherKey="LinkTypeId" Type="TermLink" />
+    </Type>
+  </Table>
+  <Table Name="openthesaurus.term_tag" Member="TermTags">
+    <Type Name="TermTag" ed:Guid="39314466-ee04-4c8e-8a65-cf43b26a2f32">
+      <Column Name="term_tags_id" Member="TermTagsId" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="4b09a3ed-dab1-44c2-81ad-9fcb43a7bd28" />
+      <Column Name="tag_id" Member="TagId" Type="System.Int64" DbType="BIGINT(20) NOT NULL" CanBeNull="false" UpdateCheck="Never" Precision="20" ed:ValidateRequired="true" ed:Guid="f973b85e-fe43-4b8f-8e4f-78ae97be2a41" />
+      <Association Name="Term_TermTag" ed:AssociationGuid="c1a1e1e6-d4a6-49fd-9ed9-5d4c65e71b29" Member="Term" ed:Guid="33cfab55-d36c-404b-bdb0-62163053c4f8" ThisKey="TermTagsId" OtherKey="Id" Type="Term" IsForeignKey="true" />
+      <Association Name="Tag_TermTag" ed:AssociationGuid="796e0cd1-f6ff-4a12-ab21-736888651980" Member="Tag" ed:Guid="e6a13cb3-bc51-43ad-8605-fcd69a53efd1" ThisKey="TagId" OtherKey="Id" Type="Tag" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="openthesaurus.word_mapping" Member="WordMappings">
+    <Type Name="WordMapping" ed:Guid="27f16955-940f-41cd-b21e-be86602f44bb">
+      <Documentation>
+        <Summary>Mapping Vollform nach Grundform aus Morphy</Summary>
+      </Documentation>
+      <Column Name="fullform" Member="Fullform" Type="System.String" DbType="VARCHAR(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="100b8f43-8268-4882-ac1f-c487d1945863" />
+      <Column Name="baseform" Member="Baseform" Type="System.String" DbType="VARCHAR(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="255" Unicode="true" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="4752a2fd-ade1-4504-8be5-822e4e3e45a6" />
+    </Type>
+  </Table>
+</Database>

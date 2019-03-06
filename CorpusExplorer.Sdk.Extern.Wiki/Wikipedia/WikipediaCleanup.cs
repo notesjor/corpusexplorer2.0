@@ -27,8 +27,6 @@ namespace CorpusExplorer.Sdk.Extern.Wiki.Wikipedia
               FileName = Configuration.GetDependencyPath(@"pandoc\pandoc.exe"),
               Arguments = $"-s -f mediawiki -t html5 -o {fileOutput.Path} {fileInput.Path}",
               CreateNoWindow = true,
-              UseShellExecute = false,
-              StandardOutputEncoding = Configuration.Encoding,
               WindowStyle = ProcessWindowStyle.Hidden
             }
           };

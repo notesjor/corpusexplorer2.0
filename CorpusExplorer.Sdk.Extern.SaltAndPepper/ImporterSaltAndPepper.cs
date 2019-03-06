@@ -92,28 +92,18 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
 
         var pepperPath = (Configuration.GetDependencyPath(@"pepper") + @"\").Replace(@"\", "/");
         var javaArguments =
-          $"-cp {pepperPath}lib/*;{pepperPath}plugins/*; -Dfile.encoding=UTF-8 -Dlogback.configurationFile={pepperPath}/conf/logback.xml org.corpus_tools.pepper.cli.PepperStarter {scriptTemp}";
+          $"-cp \"{pepperPath}lib/*\";\"{pepperPath}plugins/*\"; -Dfile.encoding=UTF-8 -Dlogback.configurationFile=\"{pepperPath}conf/logback.xml\" org.corpus_tools.pepper.cli.PepperStarter \"{scriptTemp.Path}\"";
 
         var pepper = new Process
         {
           StartInfo =
-            new ProcessStartInfo(Configuration.GetDependencyPath(@"Java\bin\java.exe"))
+            new ProcessStartInfo
             {
-              Arguments
-                = javaArguments,
-              UseShellExecute
-                = false,
-              RedirectStandardOutput
-                = false,
-              RedirectStandardError
-                = false,
-              CreateNoWindow
-                = false,
-              WindowStyle
-                = ProcessWindowStyle
-                 .Hidden,
-              WorkingDirectory = pepperPath,
-              StandardOutputEncoding = Configuration.Encoding
+              FileName = Configuration.GetDependencyPath(@"Java\bin\java.exe"),
+              Arguments = javaArguments,
+              CreateNoWindow = false,
+              WindowStyle = ProcessWindowStyle.Hidden,
+              WorkingDirectory = pepperPath
             }
         };
         pepper.Start();

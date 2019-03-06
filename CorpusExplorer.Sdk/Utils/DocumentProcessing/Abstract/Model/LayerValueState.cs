@@ -51,15 +51,16 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model
         {
           res[i] = new int[document[i].Length];
           for (var j = 0; j < document[i].Length; j++)
-            if (Cache.ContainsKey(document[i][j]))
-            {
-              res[i][j] = Cache[document[i][j]];
-            }
+          {
+            var val = document[i][j] ?? string.Empty;
+            if (Cache.ContainsKey(val))
+              res[i][j] = Cache[val];
             else
             {
               res[i][j] = Cache.Count;
-              Cache.Add(document[i][j], Cache.Count);
+              Cache.Add(val, Cache.Count);
             }
+          }
         }
 
         return res;
@@ -73,15 +74,16 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model
         var res = new int[layerValues.Length];
 
         for (var i = 0; i < layerValues.Length; i++)
-          if (Cache.ContainsKey(layerValues[i]))
-          {
-            res[i] = Cache[layerValues[i]];
-          }
+        {
+          var val = layerValues[i] ?? string.Empty;
+          if (Cache.ContainsKey(val))
+            res[i] = Cache[val];
           else
           {
             res[i] = Cache.Count;
-            Cache.Add(layerValues[i], Cache.Count);
+            Cache.Add(val, Cache.Count);
           }
+        }
 
         return res;
       }

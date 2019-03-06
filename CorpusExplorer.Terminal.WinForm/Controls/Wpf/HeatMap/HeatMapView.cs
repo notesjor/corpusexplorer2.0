@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.HeatMap.Model;
+using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Helper;
 using Telerik.Windows.Controls.TreeMap;
 
 #endregion
@@ -26,7 +27,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.HeatMap
     /// </summary>
     public HeatMapView()
     {
-      InitializeComponent();
+      XamlHighDpiExceptionHelper.Ensure(InitializeComponent);
     }
 
     public void SetDataSource(DataTable value)

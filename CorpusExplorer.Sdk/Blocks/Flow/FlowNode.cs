@@ -88,15 +88,15 @@ namespace CorpusExplorer.Sdk.Blocks.Flow
         res.AddRange(child.Value.RecursiveConnections(forward));
       }
 
-      return res;
+      return res.Where(x => x.Item3 > 0);
     }
 
     public IEnumerable<string> RecursiveNodes()
     {
       if (_children == null || _children.Count == 0)
-        return new List<string> {Content};
+        return new List<string> { Content };
 
-      var res = new HashSet<string> {Content};
+      var res = new HashSet<string> { Content };
       foreach (var c in _children)
       {
         var t = c.Value.RecursiveNodes();

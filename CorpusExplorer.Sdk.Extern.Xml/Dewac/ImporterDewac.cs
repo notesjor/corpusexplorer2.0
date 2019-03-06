@@ -8,12 +8,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dewac
 {
   public class ImporterDewac : AbstractImporterBase
   {
-    /// <summary>
-    ///   Auflistung von Layern die durch diesen Importer bedient werden.
-    /// </summary>
-    /// <value>The layer names.</value>
-    protected override IEnumerable<string> LayerNames { get; } = new[] {"Wort", "Lemma", "POS"};
-
     protected override void ExecuteCall(string path)
     {
       var buffer = new byte[4096];

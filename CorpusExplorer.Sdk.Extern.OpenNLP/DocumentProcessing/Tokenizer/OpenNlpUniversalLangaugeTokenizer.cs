@@ -45,9 +45,6 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tokenizer
             FileName = OpenNlpLocator.BatchFile,
             Arguments = $"SimpleTokenizer < {fin} > {fout}",
             CreateNoWindow = true,
-            UseShellExecute = false,
-            RedirectStandardOutput = false,
-            StandardOutputEncoding = Configuration.Encoding,
             WindowStyle = ProcessWindowStyle.Hidden
           }
         };

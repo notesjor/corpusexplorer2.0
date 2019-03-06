@@ -1,0 +1,2 @@
+﻿marmot_addon.zip
+C:\Projekte\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk.Extern.MarMoT\bin\Release

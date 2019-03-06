@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Helper;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.SingleSentence.Model;
 using Telerik.Windows.Controls;
 
@@ -18,7 +19,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.SingleSentence
   {
     public SentenceView()
     {
-      InitializeComponent();
+      XamlHighDpiExceptionHelper.Ensure(InitializeComponent);
     }
 
     public void ClearItems()

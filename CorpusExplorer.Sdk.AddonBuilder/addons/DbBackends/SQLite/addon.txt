@@ -1,0 +1,2 @@
+﻿db_sqlite.zip
+C:\Projekte\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk.Db.SQLite\bin\Release

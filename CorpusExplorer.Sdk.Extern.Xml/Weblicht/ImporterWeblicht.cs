@@ -10,12 +10,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
   public class ImporterWeblicht : AbstractImporterSimple3Steps<DSpin>
   {
     /// <summary>
-    ///   Auflistung von Layern die durch diesen Importer bedient werden.
-    /// </summary>
-    /// <value>The layer names.</value>
-    protected override IEnumerable<string> LayerNames => new[] { "Wort", "Lemma", "POS" };
-
-    /// <summary>
     ///   Erster Importschritt - ließt die Datei ein und gibt (ein) entsprechend(es) Objekt(e) zurück.
     /// </summary>
     /// <param name="path">Dateipfad</param>

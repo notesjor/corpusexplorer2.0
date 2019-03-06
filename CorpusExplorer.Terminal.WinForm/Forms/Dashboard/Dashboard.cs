@@ -271,9 +271,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void OpenRssFeedItemClick(object sender, ListViewItemEventArgs e)
     {
-      if (!(sender is ListViewDataItem item))
+      if (!(sender is RadListViewElement elem))
         return;
-      if (!(item.Tag is string url))
+      if (!(elem.SelectedItem.Tag is string url))
         return;
 
       Process.Start(url);

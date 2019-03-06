@@ -1,0 +1,2 @@
+﻿addon_opennlp.zip
+C:\Projekte\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk.Extern.OpenNLP\bin\Release

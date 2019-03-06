@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Media;
+using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Helper;
 
 namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Tagger
 {
@@ -23,7 +24,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Tagger
     /// </summary>
     public WpfTagger()
     {
-      InitializeComponent();
+      XamlHighDpiExceptionHelper.Ensure(InitializeComponent);
     }
 
     public IEnumerable<IEnumerable<string>> Text

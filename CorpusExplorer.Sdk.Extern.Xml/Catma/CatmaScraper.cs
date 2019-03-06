@@ -4,9 +4,9 @@ using System.Linq;
 using System.Xml;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Catma.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Catma.Parser;
 using CorpusExplorer.Sdk.Extern.Xml.Catma.Parser.Abstract;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Catma

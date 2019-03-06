@@ -7,6 +7,8 @@ using CorpusExplorer.Sdk.Extern.Xml.AnnotationPro;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Drucksachen;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle;
 using CorpusExplorer.Sdk.Extern.Xml.Catma;
+using CorpusExplorer.Sdk.Extern.Xml.CoraXml._0._8;
+using CorpusExplorer.Sdk.Extern.Xml.CoraXml._1._0;
 using CorpusExplorer.Sdk.Extern.Xml.Dewac;
 using CorpusExplorer.Sdk.Extern.Xml.DigitalPlato;
 using CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus;
@@ -14,7 +16,9 @@ using CorpusExplorer.Sdk.Extern.Xml.Dpxc;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017;
+using CorpusExplorer.Sdk.Extern.Xml.EuroparlUds;
 using CorpusExplorer.Sdk.Extern.Xml.Exmaralda;
+using CorpusExplorer.Sdk.Extern.Xml.FnhdC;
 using CorpusExplorer.Sdk.Extern.Xml.Folker;
 using CorpusExplorer.Sdk.Extern.Xml.Gutenberg;
 using CorpusExplorer.Sdk.Extern.Xml.LexisNexis;
@@ -62,7 +66,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"DEWAC (DEWAC-*.xml)|DEWAC-*.xml", new ImporterDewac()},
         {"WebLicht (*.xml)|*.xml", new ImporterWeblicht()},
         {"DTAbf Deutsches-Text-Archiv Basisformat (*.tcf.xml)|*.tcf.xml", new ImporterDta2017()},
-        {"CATMA 5.0 (*.xml)|*.xml", new ImporterCatma()}
+        {"CATMA 5.0 (*.xml)|*.xml", new ImporterCatma()},
+        {"CoraXML 1.0 (*.xml)|*.xml", new ImporterCoraXml10()},
+        {"CoraXML 0.8 (*.xml)|*.xml", new ImporterCoraXml08()},
+        {"FnhdC (*.xml)|*.xml", new ImporterFnhdC()},
       };
 
     /// <summary>
@@ -155,6 +162,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {
           "nexis.com - Zeitungsartikel (*.html)|*.html",
           new NexisComScraper()
+        },
+        {
+          "Europarl-UDS (*.xml)|*.xml",
+          new EuroParlUdsScraper()
         }
       };
 

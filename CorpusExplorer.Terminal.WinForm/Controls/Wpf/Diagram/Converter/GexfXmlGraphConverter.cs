@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter.Abstract;
+using Telerik.Windows.Controls;
 using Telerik.Windows.Diagrams.Core;
 
 namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter
@@ -38,10 +39,11 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter
                             dic.ContainsKey(connection.Source.Content.ToString()) &&
                             dic.ContainsKey(connection.Target.Content.ToString())))
         stb.AppendFormat(
-                         "<edge id=\"{0}\" source=\"{1}\" target=\"{2}\" />",
+                         "<edge id=\"{0}\" source=\"{1}\" target=\"{2}\" weight=\"{3}\" />",
                          cnt++,
                          dic[connection.Source.Content.ToString()],
-                         dic[connection.Target.Content.ToString()]);
+                         dic[connection.Target.Content.ToString()],
+                         System.Convert.ToSingle((double)((RadDiagramConnection)connection).Tag));
 
       stb.Append("</edges></graph></gexf>");
       return stb.ToString();

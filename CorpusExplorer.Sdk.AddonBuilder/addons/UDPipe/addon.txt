@@ -1,0 +1,2 @@
+﻿udpipe_addon.zip
+C:\Projekte\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk.Extern.UdPipe\bin\Release

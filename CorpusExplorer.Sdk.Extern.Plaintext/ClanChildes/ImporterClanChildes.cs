@@ -28,9 +28,6 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
 
     public List<ClanChildesError> Errors { get; }
 
-    protected override IEnumerable<string> LayerNames => new[]
-      {"Wort", "Lemma", "Lemma-Info", "POS", "POS-Info", "POS-Person", "@-Kategorie"};
-
     protected override ClanChildesImportData ImportStep_1_ReadFile(string path)
     {
       _path = path;
