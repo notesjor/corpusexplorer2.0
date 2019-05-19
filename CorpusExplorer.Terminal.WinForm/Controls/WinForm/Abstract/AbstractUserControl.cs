@@ -21,6 +21,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Abstract
     public AbstractUserControl()
     {
       ThemeResolutionService.ApplicationThemeName = "TelerikMetroTouch";
+      RadControl.EnableDpiScaling = true;
       InitializeComponent();
       Font = new Font("Segoe UI", 11);
     }

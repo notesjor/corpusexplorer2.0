@@ -43,7 +43,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter
                          cnt++,
                          dic[connection.Source.Content.ToString()],
                          dic[connection.Target.Content.ToString()],
-                         System.Convert.ToSingle((double)((RadDiagramConnection)connection).Tag));
+                         System.Convert.ToSingle((double)((RadDiagramConnection)connection).Tag).ToString().Replace(",", "."));
 
       stb.Append("</edges></graph></gexf>");
       return stb.ToString();

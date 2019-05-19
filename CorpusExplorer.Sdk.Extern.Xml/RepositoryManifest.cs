@@ -51,7 +51,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml
       new Dictionary<string, AbstractExporter>
       {
         {"Slash/A-XML (*.xml)|*.xml", new ExporterSlashA()},
-        {"DTA Basisformat (*.tcf.xml)|*.tcf.xml", new ExporterDta()},
+        {"DTA-TCF (*.tcf.xml)|*.tcf.xml", new ExporterDta()},
+        {"DTA-TCF 2017 (*.tcf.xml)|*.tcf.xml", new ExporterDta2017()},
         {"WebLicht (*.xml)|*.xml", new ExporterWeblicht()},
         {"AnnotationPro (*.ant)|*.ant", new ExporterAnnoationPro()}
       };
@@ -65,7 +66,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml
       {
         {"DEWAC (DEWAC-*.xml)|DEWAC-*.xml", new ImporterDewac()},
         {"WebLicht (*.xml)|*.xml", new ImporterWeblicht()},
-        {"DTAbf Deutsches-Text-Archiv Basisformat (*.tcf.xml)|*.tcf.xml", new ImporterDta2017()},
+        {"DTA-TCF 2017 (*.tcf.xml)|*.tcf.xml", new ImporterDta2017()},
+        {"DTA-TCF (*.tcf.xml)|*.tcf.xml", new ImporterDta()},
         {"CATMA 5.0 (*.xml)|*.xml", new ImporterCatma()},
         {"CoraXML 1.0 (*.xml)|*.xml", new ImporterCoraXml10()},
         {"CoraXML 0.8 (*.xml)|*.xml", new ImporterCoraXml08()},
@@ -132,7 +134,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml
           new SlashAScraper()
         },
         {
-          "DTA-Basisformat (*.tcf.xml)|*.tcf.xml",
+          "DTA-TCF 2017 (*.tcf.xml)|*.tcf.xml",
+          new Dta2017Scraper()
+        },
+        {
+          "DTA-TCF (*.tcf.xml)|*.tcf.xml",
           new DtaScraper()
         },
         {

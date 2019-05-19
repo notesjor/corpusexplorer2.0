@@ -95,7 +95,7 @@
       <HintPath>..\packages\SharpZipLib.1.1.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NHunspell, Version=1.2.5554.16953, Culture=neutral, PublicKeyToken=1ac793ea843b4366, processorArchitecture=MSIL">
       <HintPath>..\packages\NHunspell.1.2.5554.16953\lib\net\NHunspell.dll</HintPath>
@@ -103,10 +103,11 @@
     <Reference Include="Polenter.SharpSerializer, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.1\lib\netstandard1.0\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=6.0.34.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.0.34\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.2.5.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.2.5\lib\net45\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
@@ -431,8 +432,11 @@
     <Compile Include="Utils\DocumentProcessing\Tagger\TnTTagger\TnTTagger.cs" />
     <Compile Include="Utils\DocumentProcessing\Tagger\TreeTagger\Abstract\AbstractTreeTagger.cs" />
     <Compile Include="Utils\DocumentProcessing\Tagger\TreeTagger\ClassicTreeTagger.cs" />
+    <Compile Include="Utils\DocumentProcessing\Tagger\TreeTagger\LocatorStrategy\Abstract\AbstractLocatorStrategy.cs" />
+    <Compile Include="Utils\DocumentProcessing\Tagger\TreeTagger\LocatorStrategy\LocatorStrategyBatchFile.cs" />
+    <Compile Include="Utils\DocumentProcessing\Tagger\TreeTagger\LocatorStrategy\LocatorStrategyNull.cs" />
+    <Compile Include="Utils\DocumentProcessing\Tagger\TreeTagger\LocatorStrategy\LocatorStrategyParFile.cs" />
     <Compile Include="Utils\DocumentProcessing\Tagger\TreeTagger\OwnTreeTagger.cs" />
-    <Compile Include="Utils\DocumentProcessing\Tagger\TreeTagger\Parameter\TreeTaggerLocator.cs" />
     <Compile Include="Utils\DocumentProcessing\Tagger\TreeTagger\SimpleTreeTagger.cs" />
     <Compile Include="Utils\DocumentProcessing\Tagger\UDPipe\UdPipeExeTagger.cs" />
     <Compile Include="Utils\DocumentProcessing\Tokenizer\HighSpeedGermanTokenizer.cs" />

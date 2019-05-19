@@ -12,7 +12,7 @@ namespace CorpusExplorer.Sdk.Blocks.ReadingEase
   [Serializable]
   public class FelschKincaidGradeIndex : AbstractReadingEaseIndex
   {
-    public override string Displayname => "Felsch-Kincaid";
+    public override string Displayname => "Flesch-Kincaid";
 
     /// <summary>
     ///   The calculate index.

@@ -32,9 +32,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Tagger
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectTagger));
-      this.ihdPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
-      this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
-      this.combo_tagger = new Telerik.WinControls.UI.RadDropDownList();
       this.radCollapsiblePanel1 = new Telerik.WinControls.UI.RadCollapsiblePanel();
       this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
       this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
@@ -44,13 +41,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Tagger
       this.btn_destination = new Telerik.WinControls.UI.RadButton();
       this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
       this.combo_language = new Telerik.WinControls.UI.RadDropDownList();
+      this.ihdPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
+      this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+      this.combo_tagger = new Telerik.WinControls.UI.RadDropDownList();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
-      this.radGroupBox1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.combo_tagger)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radCollapsiblePanel1)).BeginInit();
       this.radCollapsiblePanel1.PanelContainer.SuspendLayout();
-      this.radCollapsiblePanel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
       this.radGroupBox4.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -61,37 +57,15 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Tagger
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
       this.radGroupBox2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.combo_language)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
+      this.radGroupBox1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.combo_tagger)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
       // 
       // radPanel1
       // 
       resources.ApplyResources(this.radPanel1, "radPanel1");
-      // 
-      // ihdPanel1
-      // 
-      this.ihdPanel1.BackColor = System.Drawing.Color.White;
-      resources.ApplyResources(this.ihdPanel1, "ihdPanel1");
-      this.ihdPanel1.IHDDescription = "Wählen Sie einen Tagger und konfigurieren Sie ihn für die automatische Annotation" +
-    "";
-      this.ihdPanel1.IHDHeader = "Tagger-Optionen";
-      this.ihdPanel1.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.gears1;
-      this.ihdPanel1.Name = "ihdPanel1";
-      // 
-      // radGroupBox1
-      // 
-      this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-      this.radGroupBox1.Controls.Add(this.combo_tagger);
-      resources.ApplyResources(this.radGroupBox1, "radGroupBox1");
-      this.radGroupBox1.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.VerfügbareTaggerKonfigurationen;
-      this.radGroupBox1.Name = "radGroupBox1";
-      this.radGroupBox1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.VerfügbareTaggerKonfigurationen;
-      // 
-      // combo_tagger
-      // 
-      resources.ApplyResources(this.combo_tagger, "combo_tagger");
-      this.combo_tagger.Name = "combo_tagger";
-      this.combo_tagger.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.combo_tagger_SelectedIndexChanged);
       // 
       // radCollapsiblePanel1
       // 
@@ -105,6 +79,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Tagger
       this.radCollapsiblePanel1.PanelContainer.Controls.Add(this.radGroupBox3);
       this.radCollapsiblePanel1.PanelContainer.Controls.Add(this.radGroupBox2);
       resources.ApplyResources(this.radCollapsiblePanel1.PanelContainer, "radCollapsiblePanel1.PanelContainer");
+      this.radCollapsiblePanel1.Expanded += new System.EventHandler(this.radCollapsiblePanel1_Expanded);
       // 
       // radGroupBox4
       // 
@@ -162,6 +137,31 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Tagger
       this.combo_language.Name = "combo_language";
       this.combo_language.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.combo_language_SelectedIndexChanged);
       // 
+      // ihdPanel1
+      // 
+      this.ihdPanel1.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this.ihdPanel1, "ihdPanel1");
+      this.ihdPanel1.IHDDescription = "Wählen Sie einen Tagger und konfigurieren Sie ihn für die automatische Annotation" +
+    "";
+      this.ihdPanel1.IHDHeader = "Tagger-Optionen";
+      this.ihdPanel1.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.gears1;
+      this.ihdPanel1.Name = "ihdPanel1";
+      // 
+      // radGroupBox1
+      // 
+      this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+      this.radGroupBox1.Controls.Add(this.combo_tagger);
+      resources.ApplyResources(this.radGroupBox1, "radGroupBox1");
+      this.radGroupBox1.HeaderText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.VerfügbareTaggerKonfigurationen;
+      this.radGroupBox1.Name = "radGroupBox1";
+      this.radGroupBox1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.VerfügbareTaggerKonfigurationen;
+      // 
+      // combo_tagger
+      // 
+      resources.ApplyResources(this.combo_tagger, "combo_tagger");
+      this.combo_tagger.Name = "combo_tagger";
+      this.combo_tagger.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.combo_tagger_SelectedIndexChanged);
+      // 
       // SelectTagger
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -180,13 +180,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Tagger
       this.Controls.SetChildIndex(this.radGroupBox1, 0);
       this.Controls.SetChildIndex(this.radCollapsiblePanel1, 0);
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
-      this.radGroupBox1.ResumeLayout(false);
-      this.radGroupBox1.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.combo_tagger)).EndInit();
       this.radCollapsiblePanel1.PanelContainer.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radCollapsiblePanel1)).EndInit();
-      this.radCollapsiblePanel1.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).EndInit();
       this.radGroupBox4.ResumeLayout(false);
       this.radGroupBox4.PerformLayout();
@@ -199,6 +194,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Tagger
       this.radGroupBox2.ResumeLayout(false);
       this.radGroupBox2.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.combo_language)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
+      this.radGroupBox1.ResumeLayout(false);
+      this.radGroupBox1.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.combo_tagger)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
       this.ResumeLayout(false);
 

@@ -53,6 +53,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       this.txt_max = new Telerik.WinControls.UI.CommandBarTextBox();
       this.commandBarButton1 = new Telerik.WinControls.UI.CommandBarButton();
       this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+      this.btn_export_graphml = new Telerik.WinControls.UI.RadMenuItem();
+      this.btn_export_csv = new Telerik.WinControls.UI.RadMenuItem();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       this.SuspendLayout();
       // 
@@ -104,7 +106,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       this.commandBarDropDownButton3.Image = ((System.Drawing.Image)(resources.GetObject("commandBarDropDownButton3.Image")));
       this.commandBarDropDownButton3.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.btn_export_graphviz,
-            this.btn_export_gexf});
+            this.btn_export_gexf,
+            this.btn_export_graphml,
+            this.btn_export_csv});
       this.commandBarDropDownButton3.Name = "commandBarDropDownButton3";
       // 
       // btn_export_graphviz
@@ -223,6 +227,20 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       this.elementHost1.Name = "elementHost1";
       this.elementHost1.Child = null;
       // 
+      // btn_export_graphml
+      // 
+      this.btn_export_graphml.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save_theme;
+      this.btn_export_graphml.Name = "btn_export_graphml";
+      resources.ApplyResources(this.btn_export_graphml, "btn_export_graphml");
+      this.btn_export_graphml.Click += new System.EventHandler(this.btn_export_graphml_Click);
+      // 
+      // btn_export_csv
+      // 
+      this.btn_export_csv.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save_theme;
+      this.btn_export_csv.Name = "btn_export_csv";
+      resources.ApplyResources(this.btn_export_csv, "btn_export_csv");
+      this.btn_export_csv.Click += new System.EventHandler(this.btn_export_csv_Click);
+      // 
       // NGramDiagram
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -260,5 +278,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     private Telerik.WinControls.UI.CommandBarButton commandBarButton2;
     private Telerik.WinControls.UI.CommandBarButton commandBarButton4;
     private Telerik.WinControls.UI.CommandBarButton btn_layer;
+    private Telerik.WinControls.UI.RadMenuItem btn_export_graphml;
+    private Telerik.WinControls.UI.RadMenuItem btn_export_csv;
   }
 }

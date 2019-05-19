@@ -101,5 +101,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Tagger
 
       combo_backends.SelectedIndex = _index;
     }
+
+    private void radCollapsiblePanel1_Expanded(object sender, EventArgs e)
+    {
+
+    }
   }
 }

@@ -186,7 +186,7 @@ namespace CorpusExplorer.Core
         new CooccurrenceAction(),
         new CooccurrenceProfileAction(),
         new CooccurrenceSelectedAction(),
-        new CollocateAction(),
+        new PositionFrequencyAction(),
         new StyleNgramAction(),
         new MetaAction(),
         new MetaDocumentAction(),

@@ -135,4 +135,7 @@
   <data name="Gesamtsumme" xml:space="preserve">
     <value>Gesamtsumme</value>
   </data>
+  <data name="FileExtension_GraphML" xml:space="preserve">
+    <value>GraphML (*.grapml)|*.graphml</value>
+  </data>
 </root>

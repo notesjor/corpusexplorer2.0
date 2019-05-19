@@ -3119,6 +3119,15 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die GraphML (*.grapml)|*.graphml ähnelt.
+        /// </summary>
+        public static string FileExtension_GraphML {
+            get {
+                return ResourceManager.GetString("FileExtension_GraphML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die HTML-Datei (*.html)|*.html ähnelt.
         /// </summary>
         public static string FileExtension_HTML {

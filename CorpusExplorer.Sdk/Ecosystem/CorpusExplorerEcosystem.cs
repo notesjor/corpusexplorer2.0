@@ -13,8 +13,6 @@ namespace CorpusExplorer.Sdk.Ecosystem
 {
   public static class CorpusExplorerEcosystem
   {
-    private static TerminalController _controller;
-
     /// <summary>
     ///   Initialisiert ein vollständiges CorpusExplorer-Ökosystem.
     /// </summary>
@@ -30,16 +28,13 @@ namespace CorpusExplorer.Sdk.Ecosystem
     public static TerminalController Initialize(AbstractCacheStrategy cacheStrategy = null,
                                                 string alternative3rdPartyPath = null)
     {
-      if (_controller != null)
-        return _controller;
-
       SslFix();
       Configuration.Initialize(InitialOptionsEnum.MinimalAnd3rdParty, alternative3rdPartyPath: alternative3rdPartyPath);
       Configuration.Cache = cacheStrategy ?? new CacheStrategyCurrentSelection();
-      _controller = new TerminalController();
-      _controller.ProjectNew();
+      var res = new TerminalController();
+      res.ProjectNew();
 
-      return _controller;
+      return res;
     }
 
     /// <summary>
@@ -58,16 +53,13 @@ namespace CorpusExplorer.Sdk.Ecosystem
     public static Project InitializeMinimal(AbstractCacheStrategy cacheStrategy = null,
                                             string alternative3rdPartyPath = null)
     {
-      if (_controller != null)
-        return _controller.Project;
-
       SslFix();
       Configuration.Initialize(InitialOptionsEnum.Minimal, alternative3rdPartyPath: alternative3rdPartyPath);
       Configuration.Cache = cacheStrategy ?? new CacheStrategyDisableCaching();
-      _controller = new TerminalController();
-      _controller.ProjectNew();
+      var res = new TerminalController();
+      res.ProjectNew();
 
-      return _controller.Project;
+      return res.Project;
     }
 
     private static void SslFix()

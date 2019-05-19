@@ -1,5 +1,6 @@
 ﻿#region
 
+using System;
 using System.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model;
@@ -44,8 +45,25 @@ namespace CorpusExplorer.Sdk.Terminal
     /// <summary>
     ///   The project new.
     /// </summary>
-    public void ProjectNew()
+    /// <param name="clearOldProject">Wenn true, wird ein zuvor erstelltes Projekt gelöscht. False - um Multi-Project-Handling zu aktivieren.
+    /// Achtung: Sie sollten beim setzen von false das Projekt (A) selbst verwalten (B) Multithrad-Resistent machen
+    /// </param>
+    /// <example>
+    /// Project project;
+    /// lock (_lockState)
+    /// {
+    ///   terminal.ProjectNew(false);
+    ///   project = terminal.Project;
+    /// }
+    /// </example>
+    public void ProjectNew(bool clearOldProject = true)
     {
+      if (clearOldProject && Project != null)
+      {
+        Project.Clear();
+        GC.Collect();
+      }
+
       Project = Project.Create();
       ProjectPath = null;
     }

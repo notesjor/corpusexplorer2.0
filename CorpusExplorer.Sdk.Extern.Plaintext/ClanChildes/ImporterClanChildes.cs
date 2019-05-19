@@ -87,7 +87,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
       {
         {"Sprache", language},
         {"Media", media},
-        {"Datumsangabe", date},
+        {"Datum", date},
         {"Autor (Transkript)", transcriber},
         {"Ort", location},
         {"Situation", situation},

@@ -30,7 +30,7 @@ namespace CorpusExplorer.Sdk.Model
   ///   The project.
   /// </summary>
   [Serializable]
-  public sealed class Project : CeObject, IHydra
+  public sealed class Project : CeObject, IHydra, IDisposable
   {
     /// <summary>
     ///   The _corpora.
@@ -1404,5 +1404,19 @@ namespace CorpusExplorer.Sdk.Model
     /// <typeparam name="T">
     /// </typeparam>
     private delegate IEnumerable<T> ProxyRequestListDelegate<out T>(AbstractCorpusAdapter c);
+
+    internal void Clear()
+    {
+      _corpora.Clear();
+      _selections.Clear();      
+      _guid = Guid.NewGuid();
+      _selectionAll = null;
+      _currentSelection = null;
+    }
+
+    public void Dispose()
+    {
+      Clear();
+    }
   }
 }

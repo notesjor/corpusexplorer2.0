@@ -4,7 +4,8 @@ using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.Abstract;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.Parameter;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.LocatorStrategy;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.LocatorStrategy.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer.Abstract;
 
@@ -22,6 +23,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger
     }
 
     public override string DisplayName => "TreeTagger (ohne Phrasen / höhere Performance)";
+
+    protected override AbstractLocatorStrategy LocatorStrategy => new LocatorStrategyParFile();
 
     public override string LanguageSelected
     {
@@ -47,9 +50,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger
           {
             StartInfo =
             {
-              FileName = Path.Combine(TreeTaggerLocator.TreeTaggerRootDirectory, @"bin\tree-tagger.exe"),
+              FileName = Path.Combine(LocatorStrategy.TreeTaggerRootDirectory, @"bin\tree-tagger.exe"),
               Arguments =
-                $"-quiet -token -lemma -sgml -no-unknown \"{TreeTaggerLocator.ParFile(LanguageSelected)}\" \"{fileInput.Path}\"",
+                $"-quiet -token -lemma -sgml -no-unknown \"{LocatorStrategy.ApplyLanguage(LanguageSelected)}\" \"{fileInput.Path}\"",
               CreateNoWindow = true,
               UseShellExecute = false,
               StandardOutputEncoding = Configuration.Encoding,

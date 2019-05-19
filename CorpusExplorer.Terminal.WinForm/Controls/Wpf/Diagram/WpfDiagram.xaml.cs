@@ -12,7 +12,6 @@ using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Helper;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Diagrams;
 using Telerik.Windows.Diagrams.Core;
-using Orientation = Telerik.Windows.Diagrams.Core.Orientation;
 
 namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
 {
@@ -39,7 +38,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
       {
         HorizontalDistance = 50,
         VerticalDistance = 50,
-        Orientation = Orientation.Horizontal,
+        Orientation = Telerik.Windows.Diagrams.Core.Orientation.Horizontal,
         TotalMargin = new Size(20, 20),
         ShapeMargin = new Size(10, 10)
       });
@@ -137,7 +136,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
         {
           Width = 180,
           Height = 100,
-          Position = new Point {X = 100, Y = 100},
+          Position = new System.Windows.Point {X = 100, Y = 100},
           Content = content,
           Foreground = new SolidColorBrush(Colors.Black),
           Geometry = ShapeFactory.GetShapeGeometry(shape == Shape.Rectangle
@@ -281,7 +280,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
         {
           FontWeight = highlight ? FontWeights.ExtraBold : FontWeights.Normal,
           Text = highlight ? s.Replace("<strong>", "").Replace("</strong>", "") : s,
-          Margin = new Thickness(0, 0, 3, 4)
+          Margin = new System.Windows.Thickness(0, 0, 3, 4)
         });
       }
 

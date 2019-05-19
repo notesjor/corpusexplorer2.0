@@ -7,6 +7,8 @@ using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.LocatorStrategy;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.LocatorStrategy.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger
 {
@@ -24,6 +26,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger
     }
 
     public override string DisplayName => "TreeTagger (eigenes Skript)";
+
+    protected override AbstractLocatorStrategy LocatorStrategy => new LocatorStrategyNull();
 
     public override string InstallationPath
     {

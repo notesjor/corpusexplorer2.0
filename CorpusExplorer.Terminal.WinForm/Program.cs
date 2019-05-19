@@ -38,9 +38,8 @@ namespace CorpusExplorer.Terminal.WinForm
     [STAThread]
     private static void Main(params string[] args)
     {
-      Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE");
-      Thread.CurrentThread.CurrentCulture = new CultureInfo("de-DE");
-      Application.CurrentCulture = new CultureInfo("de-DE");
+      ChangeLanguage(args);
+
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
       Application.ThreadException += Application_ThreadException;
@@ -84,6 +83,23 @@ namespace CorpusExplorer.Terminal.WinForm
       catch
       {
         // ignore
+      }
+    }
+
+    private static void ChangeLanguage(string[] args)
+    {
+      if (args == null)
+        return;
+
+      foreach (var arg in args)
+      {
+        if (!arg.StartsWith("--lang:")) 
+          continue;
+
+        var lang = arg.Replace("--lang:", "");
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+        Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
+        Application.CurrentCulture = new CultureInfo(lang);
       }
     }
   }

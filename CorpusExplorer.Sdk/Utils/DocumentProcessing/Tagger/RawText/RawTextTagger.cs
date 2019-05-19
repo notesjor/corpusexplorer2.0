@@ -54,5 +54,27 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.RawText
     {
       return data != null && data.Length > 0 && _endOfSentence.Contains(data[0]);
     }
+
+    /// <summary>
+    /// Ergänzt die bishierge Liste der Satzenden {".", "!", "?", ":", ";"} um weitere gültige Endungen.
+    /// </summary>
+    /// <param name="additionalEndings">Zusätzliche Satzenden.</param>
+    public void AddEndOfSentence(IEnumerable<string> additionalEndings)
+    {
+      foreach (var x in additionalEndings)
+      {
+        _endOfSentence.Add(x);
+      }
+    }
+
+    /// <summary>
+    /// Setzt die Liste der gültigen Satzenden komplett neu. Die Standardeinträge {".", "!", "?", ":", ";"} gehen dabei verloren.
+    /// </summary>
+    /// <param name="completeEndingsList">Satzenden</param>
+    public void DefineEndOfSentence(IEnumerable<string> completeEndingsList)
+    {
+      _endOfSentence.Clear();
+      AddEndOfSentence(completeEndingsList);
+    }
   }
 }

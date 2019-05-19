@@ -20,8 +20,8 @@ namespace CorpusExplorer.Sdk.Helper
     public static string ConvertToPlainText(this IEnumerable<IEnumerable<string>> readableDocument)
     {
       return ConvertToText(readableDocument).Replace(" . ", ". ")
-                                            .Replace(" : ", "; ")
-                                            .Replace(" ; ", ": ")
+                                            .Replace(" : ", ": ")
+                                            .Replace(" ; ", "; ")
                                             .Replace(" , ", ", ")
                                             .Replace(" ! ", "! ")
                                             .Replace(" ? ", "? ")

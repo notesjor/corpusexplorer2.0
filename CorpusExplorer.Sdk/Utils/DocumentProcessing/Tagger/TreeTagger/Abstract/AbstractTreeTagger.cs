@@ -2,26 +2,16 @@
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.LocatorStrategy.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.Abstract
 {
   public abstract class AbstractTreeTagger : AbstractTaggerOneWordPerLine
   {
-    private readonly HashSet<string> _languageses = new HashSet<string>
-    {
-      "Deutsch",
-      "Englisch",
-      "Französisch",
-      "Italienisch",
-      "Niederländisch",
-      "Spanisch",
-      "Polnisch"
-    };
-
+    protected abstract AbstractLocatorStrategy LocatorStrategy { get; }
     private string _languageSelected;
-
     protected HashSet<string> _sentenceMark =
-      new HashSet<string> {"$.", "PUNCT", ".", "SENT", "PON", "FS", "interp", "S"};
+      new HashSet<string> { "$.", "PUNCT", ".", "SENT", "PON", "FS", "interp", "S" };
 
     public override string InstallationPath
     {
@@ -29,14 +19,14 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.Abstract
       set { }
     }
 
-    public override IEnumerable<string> LanguagesAvailabel => _languageses;
+    public override IEnumerable<string> LanguagesAvailabel => LocatorStrategy.AvailableLanguages;
 
     public override string LanguageSelected
     {
       get => _languageSelected;
       set
       {
-        if (!_languageses.Contains(value))
+        if (LocatorStrategy != null && !LocatorStrategy.ValidateLanguageSelection(value))
           throw new NotSupportedException("LanguageSelected-value is not in List of LanguagesAvailabel");
         _languageSelected = value;
       }

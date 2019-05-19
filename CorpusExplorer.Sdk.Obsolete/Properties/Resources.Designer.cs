@@ -61,6 +61,15 @@ namespace CorpusExplorer.Sdk.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die GraphML (*.grapml)|*.graphml ähnelt.
+        /// </summary>
+        internal static string FileExtension_GraphML {
+            get {
+                return ResourceManager.GetString("FileExtension_GraphML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die ZIP-Datei (*.zip)|*.zip ähnelt.
         /// </summary>
         internal static string FileExtension_ZIP {

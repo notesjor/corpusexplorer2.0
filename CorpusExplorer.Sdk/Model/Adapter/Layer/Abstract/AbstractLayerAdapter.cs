@@ -207,15 +207,20 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
     /// <summary>
     ///   Erlaubt es, einen bestehenden Layer in einen LayerState zurück zu verwandeln.
     /// </summary>
+    /// <param name="newDisplayname">Displayname des neuen LayerStates</param>
+    /// <param name="valueIndex">Index des Layers</param>
+    /// <param name="clearDictionary">Wenn true, wird das Dictionary des Layers nicht kopiert.</param>
     /// <returns></returns>
-    public LayerValueState ToLayerState()
+    public LayerValueState ToLayerState(string newDisplayname = null, int valueIndex = 0, bool clearDictionary = false)
     {
-      return new LayerValueState(Displayname, 0)
+      return new LayerValueState(newDisplayname ?? Displayname, 0)
       {
-        Documents = GetDocumentDictionary(),
-        Cache = GetValueDictionary()
-               .ReciveRawIndexToValue()
-               .ToDictionary(x => x.Value, x => x.Key)
+        Documents = GetDocumentDictionary().ToDictionary(x => x.Key, x => x.Value),
+        Cache = clearDictionary
+                  ? new Dictionary<string, int>()
+                  : GetValueDictionary()
+                   .ReciveRawIndexToValue()
+                   .ToDictionary(x => x.Value, x => x.Key)
       };
     }
 
@@ -303,8 +308,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
     {
       var res = new HashSet<string>();
       foreach (var s in document)
-      foreach (var w in s)
-        res.Add(this[w]);
+        foreach (var w in s)
+          res.Add(this[w]);
       return res;
     }
 

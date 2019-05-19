@@ -81,6 +81,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       simpleDiagram1.CallLayoutAsTree();
     }
 
+    private void btn_export_graphml_Click(object sender, EventArgs e)
+    {
+      Export(new GraphMlConverter(), Resources.FileExtension_GraphML);
+    }
+
     private void btn_export_csv_Click(object sender, EventArgs e)
     {
       Export(new CsvGraphConverter(), Resources.FileExtension_CSV);

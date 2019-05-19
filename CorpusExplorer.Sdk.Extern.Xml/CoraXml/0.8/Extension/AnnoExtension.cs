@@ -17,5 +17,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.CoraXml._0._8.Extension
       => anno.Items1.OfType<morph>();
     public static IEnumerable<pos> GetPos(this anno anno)
       => anno.Items1.OfType<pos>();
+    public static IEnumerable<bound_sent> GetBoundSent(this anno anno)
+      => anno.Items2.OfType<bound_sent>();
   }
 }

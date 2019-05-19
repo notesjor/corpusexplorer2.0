@@ -29,6 +29,9 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Helper
           var configPath = Path.Combine(Configuration.AppPath, "CorpusExplorer.exe.config");
           var patchPath = Path.Combine(Configuration.AppPath, "app.config.patch");
 
+          if (!File.Exists(patchPath))
+            return;
+
           File.Move(configPath, configPath + ".old");
           File.Move(patchPath, configPath);
 

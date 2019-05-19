@@ -50,6 +50,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       this.btn_export_gexf = new Telerik.WinControls.UI.RadMenuItem();
       this.btn_export_csv = new Telerik.WinControls.UI.RadMenuItem();
       this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+      this.btn_export_graphml = new Telerik.WinControls.UI.RadMenuItem();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       this.SuspendLayout();
       // 
@@ -185,6 +186,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       this.commandBarDropDownButton3.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.btn_export_graphviz,
             this.btn_export_gexf,
+            this.btn_export_graphml,
             this.btn_export_csv});
       this.commandBarDropDownButton3.Name = "commandBarDropDownButton3";
       this.commandBarDropDownButton3.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Export;
@@ -216,6 +218,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       resources.ApplyResources(this.elementHost1, "elementHost1");
       this.elementHost1.Name = "elementHost1";
       this.elementHost1.Child = null;
+      // 
+      // btn_export_graphml
+      // 
+      this.btn_export_graphml.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save_theme;
+      this.btn_export_graphml.Name = "btn_export_graphml";
+      resources.ApplyResources(this.btn_export_graphml, "btn_export_graphml");
+      this.btn_export_graphml.Click += new System.EventHandler(this.btn_export_graphml_Click);
       // 
       // CorpusFiniteStateMachine
       // 
@@ -253,5 +262,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     private Telerik.WinControls.UI.CommandBarDropDownList drop_sort;
     private Telerik.WinControls.UI.RadMenuItem btn_export_csv;
     private Telerik.WinControls.UI.CommandBarButton btn_start;
+    private Telerik.WinControls.UI.RadMenuItem btn_export_graphml;
   }
 }

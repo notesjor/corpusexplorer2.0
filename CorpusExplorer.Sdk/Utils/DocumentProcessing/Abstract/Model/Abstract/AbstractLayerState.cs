@@ -16,7 +16,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model.Abstract
     }
 
     public Dictionary<string, int> Cache { get; set; }
-    public string Displayname { get; }
+    public string Displayname { get; set; }
     public Dictionary<Guid, int[][]> Documents { get; set; }
     public abstract bool AllowAnnotation(string[] data);
     public abstract bool AllowValueChange(string[] data);

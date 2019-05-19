@@ -51,6 +51,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.radPageView2 = new Telerik.WinControls.UI.RadPageView();
       this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
       this.wordBag1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WordBag();
+      this.btn_export_graphml = new Telerik.WinControls.UI.RadMenuItem();
+      this.btn_export_csv = new Telerik.WinControls.UI.RadMenuItem();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_node)).BeginInit();
       this.page_node.SuspendLayout();
@@ -115,7 +117,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.commandBarDropDownButton1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save_theme;
       this.commandBarDropDownButton1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.btn_export_gexf,
-            this.btn_export_graphviz});
+            this.btn_export_graphviz,
+            this.btn_export_graphml,
+            this.btn_export_csv});
       this.commandBarDropDownButton1.Name = "commandBarDropDownButton1";
       this.commandBarDropDownButton1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.DiagrammExportieren;
       this.commandBarDropDownButton1.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.DiagrammExportieren;
@@ -216,6 +220,20 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.wordBag1.ResultSelectedLayerDisplayname = null;
       this.wordBag1.ExecuteButtonClicked += new System.EventHandler(this.wordBag1_ExecuteButtonClicked);
       // 
+      // btn_export_graphml
+      // 
+      this.btn_export_graphml.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save_theme;
+      this.btn_export_graphml.Name = "btn_export_graphml";
+      resources.ApplyResources(this.btn_export_graphml, "btn_export_graphml");
+      this.btn_export_graphml.Click += new System.EventHandler(this.btn_export_graphml_Click);
+      // 
+      // btn_export_csv
+      // 
+      this.btn_export_csv.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save_theme;
+      this.btn_export_csv.Name = "btn_export_csv";
+      resources.ApplyResources(this.btn_export_csv, "btn_export_csv");
+      this.btn_export_csv.Click += new System.EventHandler(this.btn_export_csv_Click);
+      // 
       // CooccurrenceDiagram
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -254,5 +272,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     private Telerik.WinControls.UI.RadPageView radPageView2;
     private System.Windows.Forms.Integration.ElementHost elementHost1;    
     private WordBag wordBag1;
+    private Telerik.WinControls.UI.RadMenuItem btn_export_graphml;
+    private Telerik.WinControls.UI.RadMenuItem btn_export_csv;
   }
 }

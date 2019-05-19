@@ -107,6 +107,16 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       simpleDiagram1.CallLayoutAsTree();
     }
 
+    private void btn_export_graphml_Click(object sender, EventArgs e)
+    {
+      Export(new GraphMlConverter(), Resources.FileExtension_GraphML);
+    }
+
+    private void btn_export_csv_Click(object sender, EventArgs e)
+    {
+      Export(new CsvGraphConverter(), Resources.FileExtension_CSV);
+    }
+
     private void btn_export_gexf_Click(object sender, EventArgs e)
     {
       Export(new GexfXmlGraphConverter(), Resources.GEXFXMLDokumentGexfGexf);

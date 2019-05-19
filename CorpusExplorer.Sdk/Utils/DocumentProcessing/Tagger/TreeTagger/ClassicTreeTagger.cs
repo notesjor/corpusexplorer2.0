@@ -6,7 +6,8 @@ using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.Abstract;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.Parameter;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.LocatorStrategy;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.LocatorStrategy.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger
 {
@@ -37,7 +38,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger
         using (var fileInput = new TemporaryFile(Configuration.TempPath))
         {
           FileIO.Write(fileInput.Path, text);
-          TreeTaggerLocator.BatchFile(LanguageSelected, fileBatch.Path);
+          LocatorStrategy.ApplyLanguage(LanguageSelected, fileBatch.Path);
 
           var process = new Process
           {
@@ -63,5 +64,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger
         return string.Empty;
       }
     }
+
+    protected override AbstractLocatorStrategy LocatorStrategy => new LocatorStrategyBatchFile();
   }
 }

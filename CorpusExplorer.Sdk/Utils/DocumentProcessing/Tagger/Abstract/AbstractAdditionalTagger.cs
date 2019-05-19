@@ -32,7 +32,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
           if (!Input.TryDequeue(out corpus))
             continue;
 
-          CorpusBuilder.Append(corpus, ExecuteCall(ref corpus));
+          Output.Enqueue(CorpusBuilder.Append(corpus, ExecuteCall(ref corpus)));
         }
       }
       catch

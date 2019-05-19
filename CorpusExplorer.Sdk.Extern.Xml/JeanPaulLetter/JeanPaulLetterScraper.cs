@@ -22,7 +22,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.JeanPaulLetter
     protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, TEI model)
     {
       var helper = new HtmlAgilityPackHelper(file);
-      helper.RemoveNodes(new[] { "//note", "//lb", "//dateline" });
+      helper.RemoveNodes(new[] { "//note", "//lb", "//dateline", "//div[@type=\"comment\"]" });
 
       var text = helper.GetBodyText("//body")?.Replace("↩", "").Replace("„", "\"").Replace("“", "\"");
       if (string.IsNullOrEmpty(text))

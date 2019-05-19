@@ -32,14 +32,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.CoraXml._0._8
 
       foreach (var token in doc.GetToken())
       {
-        if (token.trans == ".")
+        foreach (var anno in token.anno)
         {
-          cWort.Add(token.trans);
-          cLemmaS.Add(token.trans);
-          cLemma.Add(token.trans);
-          cPos.Add(token.trans);
-          cMorph.Add(token.trans);
+          cWort.Add(anno.utf);
+          cLemmaS.Add(anno.GetSimpleLemmas().FirstOrDefault()?.tag);
+          cLemma.Add(anno.GetLemmas().FirstOrDefault()?.tag);
+          cPos.Add(anno.GetPos().FirstOrDefault()?.tag);
+          cMorph.Add(anno.GetMorphs().FirstOrDefault()?.tag);
+        }
 
+        var boundSent = token.anno.LastOrDefault()?.GetBoundSent().FirstOrDefault()?.tag;
+        if (!string.IsNullOrEmpty(boundSent))
+        {
           sWort.Add(cWort.ToArray());
           sLemmaS.Add(cLemmaS.ToArray());
           sLemma.Add(cLemma.ToArray());
@@ -51,17 +55,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.CoraXml._0._8
           cLemma.Clear();
           cPos.Clear();
           cMorph.Clear();
-
-          continue;
-        }
-
-        foreach (var anno in token.anno)
-        {
-          cWort.Add(anno.utf);
-          cLemmaS.Add(anno.GetSimpleLemmas().FirstOrDefault()?.tag);
-          cLemma.Add(anno.GetLemmas().FirstOrDefault()?.tag);
-          cPos.Add(anno.GetPos().FirstOrDefault()?.tag);
-          cMorph.Add(anno.GetMorphs().FirstOrDefault()?.tag);
         }
       }
 
