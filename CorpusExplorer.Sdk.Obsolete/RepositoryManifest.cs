@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Exporter;
 using CorpusExplorer.Sdk.Importer;
+using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
@@ -48,6 +49,8 @@ namespace CorpusExplorer.Sdk
       {
         {"CorpusExplorer v5 (*.cec5)|*.cec5", new ImporterCec5()}
       };
+
+    public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter => null;
 
     /// <summary>
     ///   Liste mit Scrapern die lokale Dateien (z. B. TXT, RTF, DOCX, PDF) in Korpusdokumente konvertieren.

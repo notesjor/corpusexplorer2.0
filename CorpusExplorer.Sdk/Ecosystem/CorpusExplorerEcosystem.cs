@@ -13,6 +13,9 @@ namespace CorpusExplorer.Sdk.Ecosystem
 {
   public static class CorpusExplorerEcosystem
   {
+    public static TerminalController CurrentTerminalController { get;private set; }
+    public static Project CurrentProject => CurrentTerminalController.Project;
+
     /// <summary>
     ///   Initialisiert ein vollständiges CorpusExplorer-Ökosystem.
     /// </summary>
@@ -33,6 +36,8 @@ namespace CorpusExplorer.Sdk.Ecosystem
       Configuration.Cache = cacheStrategy ?? new CacheStrategyCurrentSelection();
       var res = new TerminalController();
       res.ProjectNew();
+
+      CurrentTerminalController = res;
 
       return res;
     }
@@ -58,6 +63,8 @@ namespace CorpusExplorer.Sdk.Ecosystem
       Configuration.Cache = cacheStrategy ?? new CacheStrategyDisableCaching();
       var res = new TerminalController();
       res.ProjectNew();
+
+      CurrentTerminalController = CurrentTerminalController;
 
       return res.Project;
     }

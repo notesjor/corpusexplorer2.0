@@ -12,6 +12,8 @@ using CorpusExplorer.Sdk.Blocks.Measure;
 using CorpusExplorer.Sdk.Blocks.ReadingEase;
 using CorpusExplorer.Sdk.Blocks.Similarity;
 using CorpusExplorer.Sdk.Blocks.VocabularyComplaxity;
+using CorpusExplorer.Sdk.Utils.DataTableWriter;
+using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter;
@@ -41,6 +43,19 @@ namespace CorpusExplorer.Core
       {
         new AdditionalTsvValueTagger()
       };
+
+    public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter =>
+    new Dictionary<string, AbstractTableWriter>
+    {
+      {"CSV-Tabelle (*.csv)|*.csv", new CsvTableWriter() },
+      {"HTML-Dokument (*.html)|*.html", new HtmlTableWriter() },
+      {"JSON-Dokument (*.json)|*.json", new JsonTableWriter() },
+      {"SQL-Query nur Daten (*.sql)|*.sql", new SqlDataOnlyTableWriter() },
+      {"SQL-Query nur Schema (*.sql)|*.sql", new SqlSchemaOnlyTableWriter() },
+      {"SQL-Query Schema und Daten (*.sql)|*.sql", new SqlTableWriter() },
+      {"TSV-Tabelle (*.tsv)|*.tsv", new TsvTableWriter() },
+      {"XML-Dokument (*.xml)|*.xml", new XmlTableWriter() }
+    };
 
     public override IEnumerable<object> AddonSideloadFeature =>
       new List<object>
@@ -107,6 +122,7 @@ namespace CorpusExplorer.Core
         {"CorpusExplorer v6 (*.cec6)|*.cec6", new ExporterCec6()},
         {"Plaintext-Export (*.txt)|*.txt", new ExporterPlaintext()},
         {"Plaintext-Export [Nur Wort-Layer] (*.txt)|*.txt", new ExporterPlaintextPure()},
+        {"Einfacher HTML-Export [Nur Wort-Layer] (*.txt)|*.txt", new ExporterHtmlPure()},
         {"CSV-Export [Nur Metadatan] (*.csv)|*.csv", new ExporterCsvMetadataOnly()},
         {"CSV-Export [Metadaten + Wort-Layer] (*.csv)|*.csv", new ExporterCsv()},
         {"Abfragen-Export [Nur für Schnappschüsse] (*.ceusd)|*.ceusd", new ExporterQuery()},
@@ -138,6 +154,7 @@ namespace CorpusExplorer.Core
       {
         {"Plain-TXT (*.txt)|*.txt", new TxtScraper()},
         {"COSMAS-TXT (*.rtf)|*.rtf", new CosmasScraper()},
+        {"COSMAS-RTF ab Version 4 (*.rtf)|*.rtf", new Utils.DocumentProcessing.Scraper.Cosmas.CosmasScraper()},
         {"Nur Text (*.docx; *.doc)|*.docx;*.doc", new SimpleDocxDocumentScraper()},
         {"Nur Text (*.rtf)|*.rtf", new SimpleRtfDocumentScraper()},
         {"Nur Text (*.html)|*.htm;*.html", new SimpleHtmlDocumentScraper()},
@@ -180,6 +197,9 @@ namespace CorpusExplorer.Core
         new Frequency1Action(),
         new Frequency2Action(),
         new Frequency3Action(),
+        new Frequency1RawAction(),
+        new Frequency2RawAction(),
+        new Frequency3RawAction(),
         new NGramAction(),
         new NGramSelectedAction(),
         new CrossFrequencyAction(),
@@ -200,6 +220,7 @@ namespace CorpusExplorer.Core
         new VocabularyComplexityAction(),
         new ReadingEaseAction(),
         new StyleBurrowsDeltaAction(),
+        new DisambiguationeAction(),
 
         new KwicAnyFilterAction(),
         new KwicAllInDocumentFilterAction(),

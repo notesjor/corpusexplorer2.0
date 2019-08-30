@@ -16,6 +16,8 @@ namespace CorpusExplorer.Sdk.Blocks
   {
     private int _documentCount;
 
+    public bool NoParent { get; set; } = false;
+
     public RandomSelectionBlock()
     {
       DocumentCount = 0;
@@ -83,21 +85,19 @@ namespace CorpusExplorer.Sdk.Blocks
         rd.Remove(guid);
       }
 
-      RandomSelection = Project.CreateSelection(
-                                                selD,
+      RandomSelection = Project.CreateSelection(selD,
                                                 string.Format(
                                                               Resources.SelectionRandomDescription,
                                                               selD.Count,
                                                               Math.Round(DocumentPercent, 2)),
-                                                Selection);
+                                                NoParent ? null : Selection);
 
-      RandomInvertSelection = Project.CreateSelection(
-                                                      rd,
+      RandomInvertSelection = Project.CreateSelection(rd,
                                                       string.Format(
                                                                     Resources.SelectionRandomDescription,
                                                                     rd.Count,
                                                                     Math.Round(100d - DocumentPercent, 2)),
-                                                      Selection);
+                                                      NoParent ? null : Selection);
     }
 
     private void EnsureDocumentCountMax()

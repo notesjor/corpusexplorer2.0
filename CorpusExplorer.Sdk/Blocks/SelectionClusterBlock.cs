@@ -17,6 +17,8 @@ namespace CorpusExplorer.Sdk.Blocks
 
     public AbstractSelectionClusterGenerator ClusterGenerator { get; set; }
 
+    public bool NoParent { get; set; } = false;
+
     public string MetadataKey { get; set; }
 
     public IEnumerable<KeyValuePair<string, IEnumerable<Guid>>> SelectionClusters
@@ -62,12 +64,12 @@ namespace CorpusExplorer.Sdk.Blocks
 
     public IEnumerable<Selection> GetSelectionClusters()
     {
-      return Cluster.ToSelection(Selection);
+      return Cluster.ToSelection(Project, NoParent ? null : Selection);
     }
 
     public IEnumerable<Selection> GetTemporarySelectionClusters()
     {
-      return Cluster.ToTemporarySelection(Selection);
+      return Cluster.ToTemporarySelection(NoParent ? null : Selection);
     }
 
     public IEnumerable<KeyValuePair<string, IEnumerable<Guid>>> SelectionClustersWindowed(int window)
@@ -96,7 +98,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
     public IEnumerable<Selection> GetSelectionClustersWindowed(int window)
     {
-      return SelectionClustersWindowed(window).Select(x => Selection.Create(x.Value, x.Key));
+      return SelectionClustersWindowed(window).Select(x => Selection.Create(x.Value, x.Key, false));
     }
 
     public IEnumerable<Selection> GetTemporarySelectionClustersWindowed(int window)

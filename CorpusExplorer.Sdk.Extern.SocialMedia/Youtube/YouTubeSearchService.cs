@@ -27,7 +27,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
 
     public class YouTubeSearchServiceCommentThread : YouTubeSearchServiceComment
     {
-      public YouTubeSearchServiceComment[] Replies { get; set; }
+      public string ParentId { get; set; }
       public long? ReplyCount { get; set; }
     }
 
@@ -89,26 +89,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
 
         foreach (var comment in comments.Items)
         {
-          using (var file = new StreamWriter(Path.Combine(outputPath, $"youtube_{item.Id}_comment_{comment.Id}.json"), false, Encoding.UTF8))
-            serializer.Serialize(file, new YouTubeSearchServiceCommentThread
-            {
-              Published = item.Snippet.PublishedAt,
-              Id = comment.Id,
-              ReplyCount = comment.Snippet.TotalReplyCount,
-              UserId = comment.Snippet.TopLevelComment.Snippet.AuthorDisplayName,
-              LikeCount = comment.Snippet.TopLevelComment.Snippet.LikeCount,
-              Updated = comment.Snippet.TopLevelComment.Snippet.UpdatedAt,
-              Text = comment.Snippet.TopLevelComment.Snippet.TextDisplay,
-              Replies = comment.Replies?.Comments?.Select(c => new YouTubeSearchServiceComment
-              {
-                Id = c.Id,
-                LikeCount = c.Snippet.LikeCount,
-                Published = c.Snippet.PublishedAt,
-                Text = c.Snippet.TextDisplay,
-                Updated = c.Snippet.UpdatedAt,
-                UserId = c.Snippet.AuthorDisplayName
-              }).ToArray()
-            });
+          YouTubeTheadStorageHelper.Store(context, serializer, outputPath, comment);
         }
       }
     }

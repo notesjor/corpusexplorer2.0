@@ -119,23 +119,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
         res.Displayname = Configuration.Encoding.GetString(buffer);
 
         // Dictionary
-        var buffer2 = new byte[sizeof(int)];
-        while (true)
-        {
-          fs.Read(buffer2, 0, buffer2.Length);
-          length = BitConverter.ToInt32(buffer2, 0);
-          if (length < 0)
-            break; // SPLIT (durch int.MinValue)
-          buffer = new byte[length];
-          fs.Read(buffer, 0, buffer.Length);
-
-          var v = Configuration.Encoding.GetString(buffer);
-          fs.Read(buffer2, 0, buffer2.Length);
-          var i = BitConverter.ToInt32(buffer2, 0);
-
-          res._dictionary.Add(v, i);
-          res._reverse.Add(i, v);
-        }
+        DictionarySerializerHelper.Deserialize(fs, ref res._dictionary, ref res._reverse);
 
         // Documents
         buffer = new byte[16];
@@ -373,22 +357,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
       fs.Write(buffer, 0, buffer.Length);
 
       // Dictionary
-      // ReSharper disable once RedundantAssignment
-      var buffer3 = new byte[sizeof(int)];
-      foreach (var x in _dictionary)
-      {
-        buffer = Configuration.Encoding.GetBytes(x.Key);
-        buffer2 = BitConverter.GetBytes(buffer.Length);
-        fs.Write(buffer2, 0, buffer2.Length);
-        fs.Write(buffer, 0, buffer.Length);
-        buffer3 = BitConverter.GetBytes(x.Value);
-        fs.Write(buffer3, 0, buffer2.Length);
-      }
-
-      // SPLIT (durch int.MinValue)
-      var split = BitConverter.GetBytes(int.MinValue);
-      fs.Write(split, 0, split.Length);
-
+      DictionarySerializerHelper.Serialize(_dictionary, fs);
+      
       // Documents
       foreach (var document in _documents)
       {
@@ -411,6 +381,31 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
       // SPLIT / SPLIT (durch Guid.Empty)
       buffer = Guid.Empty.ToByteArray();
       fs.Write(buffer, 0, buffer.Length);
+    }
+
+    internal Dictionary<Guid, long> GetFuriousIndex(long pos)
+    {
+      pos += 16; // GUID
+      pos += 4; // Length Displayname;
+      pos += Configuration.Encoding.GetBytes(Displayname).Length; // Displayname
+      using (var ms = new MemoryStream())
+      {
+        DictionarySerializerHelper.Serialize(_dictionary, ms);
+        pos += ms.Length;
+      }
+
+      var res = new Dictionary<Guid, long>();
+      foreach (var document in _documents)
+      {
+        pos += 16;
+        res.Add(document.Key, pos);
+        using (var ms = new MemoryStream())
+        {
+          DocumentSerializerHelper.Serialize(ms, document.Value);
+          pos += ms.Length;
+        }
+      }
+      return res;
     }
   }
 }

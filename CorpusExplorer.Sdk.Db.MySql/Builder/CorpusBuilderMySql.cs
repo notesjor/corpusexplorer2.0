@@ -50,14 +50,9 @@ namespace CorpusExplorer.Sdk.Db.MySql.Builder
     }
 
     private string CreateConnectionString(DbSettingsReader setting)
-    {
-      return
-        $"user id={setting.Username};password={setting.Password};host={setting.Host};port={setting.Port};database={setting.DbName};persist security info=True";
-    }
+      => CreateConnectionString(setting.Host, setting.Port, setting.DbName, setting.Username, setting.Password);
 
     private string CreateConnectionString(string host, int port, string dbName, string user, string password)
-    {
-      return $"user id={user};password={password};host={host};port={port};database={dbName};persist security info=True";
-    }
+      => $"user id={user};password={password};host={host};port={port};database={dbName};persist security info=True";
   }
 }

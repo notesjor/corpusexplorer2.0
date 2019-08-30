@@ -129,7 +129,7 @@ namespace CorpusExplorer.Sdk.Model.Extension
                                 }
                               },
                               corpus.CorpusDisplayname,
-                              null);
+                              null, true);
     }
 
     public static Selection ToSelection(this IEnumerable<AbstractCorpusAdapter> corpora)

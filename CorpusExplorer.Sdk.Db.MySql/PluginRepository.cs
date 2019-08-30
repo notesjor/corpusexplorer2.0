@@ -3,6 +3,7 @@ using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Db.MySql.Builder;
 using CorpusExplorer.Sdk.Db.MySql.Exporter;
 using CorpusExplorer.Sdk.Db.MySql.Importer;
+using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
@@ -14,7 +15,7 @@ namespace CorpusExplorer.Sdk.Db.MySql
   public class PluginRepository : AbstractAddonRepository
   {
     public override IEnumerable<AbstractAdditionalTagger> AddonAdditionalTagger => null;
-
+    public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter => null;
     public override IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> AddonBackends =>
       new Dictionary<string, AbstractCorpusBuilder>
       {
@@ -24,8 +25,8 @@ namespace CorpusExplorer.Sdk.Db.MySql
     public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters =>
       new Dictionary<string, AbstractExporter>
       {
-        {"CorpusExplorer <-> MySQL (*.mysql)|*.mysql", new ExporterMysql()}
-        //{"CorpusExplorer >A> MySQL (*.mysql)|*.mysql", new MysqlAnalyticsExporter()},
+        {"CorpusExplorer <-> MySQL (*.mysql)|*.mysql", new ExporterMysql()},
+        {"CorpusExplorer --> MySQL (*.db)|*.db", new ExporterMySqlFullAccess()},
       };
 
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter =>

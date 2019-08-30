@@ -2,6 +2,7 @@
 using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.EchtzeitEngine.Importer;
 using CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile;
+using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
@@ -29,6 +30,8 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine
       {
         {"CorpusExplorer EchtzeitEngine (*.cec5ee)|*.cec5ee", new ImporterEchtzeitEngine()}
       };
+
+    public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter => null;
 
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers => null;
 

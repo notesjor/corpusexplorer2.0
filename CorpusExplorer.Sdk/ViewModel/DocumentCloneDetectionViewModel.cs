@@ -24,7 +24,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       if (!_done)
         Execute();
 
-      Selection.Create(IndividualDocuments, $"{Selection.Displayname} (CLEAN)");
+      Selection.Create(IndividualDocuments, $"{Selection.Displayname} (CLEAN)", false);
     }
 
     protected override void ExecuteAnalyse()

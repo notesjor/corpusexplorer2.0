@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon.Example.CorpusMeasures;
 using CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering;
+using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
@@ -34,6 +35,8 @@ namespace CorpusExplorer.Sdk.Addon.Example
     ///   Für Dateien OHNE Annotation.
     /// </summary>
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers => null;
+
+    public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter => null;
 
     /// <summary>
     ///   Zusätzliche Tagger

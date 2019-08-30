@@ -40,7 +40,7 @@ namespace CorpusExplorer.Sdk.Model
     /// <summary>
     ///   The _selections.
     /// </summary>
-    private readonly List<Selection> _selections = new List<Selection>();
+    internal readonly List<Selection> _selections = new List<Selection>();
 
     /// <summary>
     ///   The _current selection.
@@ -107,7 +107,7 @@ namespace CorpusExplorer.Sdk.Model
         var dic = _corpora.ToDictionary(c => c.CorpusGuid, c => new HashSet<Guid>(c.DocumentGuids));
 
         const string label = "<html>Alle Korpora & Dokumente &nbsp;<strong>(dynamisch)</strong></html>";
-        _selectionAll = Selection.Create(this, dic, label, null);
+        _selectionAll = Selection.Create(this, dic, label, null, true);
         var sels = _selections.ToArray();
         foreach (var s in sels.Where(s => s.Displayname == label))
           _selections.Remove(s);
@@ -1024,7 +1024,9 @@ namespace CorpusExplorer.Sdk.Model
       string overrideSelectionDisplayname,
       Selection parentSelection = null)
     {
-      var res = (parentSelection ?? SelectAll).Create(queries, overrideSelectionDisplayname);
+      var res = parentSelection == null 
+                  ? SelectAll.Create(queries, overrideSelectionDisplayname, true) 
+                  : parentSelection.Create(queries, overrideSelectionDisplayname, false);
 
       OnSelectionCreated();
 
@@ -1060,9 +1062,9 @@ namespace CorpusExplorer.Sdk.Model
       string overrideSelectionDisplayname,
       Selection parentSelection = null)
     {
-      var res = (parentSelection ?? SelectAll).Create(
-                                                      corpusAndDocumentGuids,
-                                                      overrideSelectionDisplayname);
+      var res = parentSelection == null 
+                  ? SelectAll.Create(corpusAndDocumentGuids, overrideSelectionDisplayname, true) 
+                  : parentSelection.Create(corpusAndDocumentGuids, overrideSelectionDisplayname, false);
 
       OnSelectionCreated();
 
@@ -1372,12 +1374,11 @@ namespace CorpusExplorer.Sdk.Model
           corpus.CorpusGuid, new HashSet<Guid>(corpus.DocumentGuids)
         }
       };
-      CurrentSelection = Selection.Create(
-                                          this,
+      CurrentSelection = Selection.Create(this,
                                           corpusSelection,
                                           $"{Resources.AllDocumentsFrom} {corpus.CorpusDisplayname}",
-                                          null);
-      _selections.Add(CurrentSelection);
+                                          null,
+                                          true);
       SelectAllNew();
     }
 
@@ -1408,7 +1409,7 @@ namespace CorpusExplorer.Sdk.Model
     internal void Clear()
     {
       _corpora.Clear();
-      _selections.Clear();      
+      _selections.Clear();
       _guid = Guid.NewGuid();
       _selectionAll = null;
       _currentSelection = null;

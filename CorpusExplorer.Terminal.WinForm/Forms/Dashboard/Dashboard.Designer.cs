@@ -37,6 +37,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       Telerik.WinControls.UI.ListViewDataItem listViewDataItem1 = new Telerik.WinControls.UI.ListViewDataItem("<html><strong>Hinweis:</strong> \"Aktuelles und Neuigkeiten\" können nur bei besteh" +
         "ender Internetverbindung angeziegt werden.</html>");
       this.radScrollablePanel3 = new Telerik.WinControls.UI.RadScrollablePanel();
+      this.radScrollablePanel9 = new Telerik.WinControls.UI.RadScrollablePanel();
+      this.header14 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header();
       this.helpPanel2 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HelpPanel();
       this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
       this.page_corpus_start_quickinfo_corpora = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.BigNumber();
@@ -49,7 +51,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.corpus_start_local = new Telerik.WinControls.UI.RadButton();
       this.corpus_start_import = new Telerik.WinControls.UI.RadButton();
       this.corpus_start_online = new Telerik.WinControls.UI.RadButton();
-      this.corpus_start_download = new Telerik.WinControls.UI.RadButton();
       this.header3 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header();
       this.radScrollablePanel5 = new Telerik.WinControls.UI.RadScrollablePanel();
       this.helpPanel3 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HelpPanel();
@@ -247,22 +248,25 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radMenuSeparatorItem5 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
       this.main_mainmenu_analytics_favorite = new Telerik.WinControls.UI.RadMenuItem();
       this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
-      this.header14 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header();
-      this.radScrollablePanel9 = new Telerik.WinControls.UI.RadScrollablePanel();
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel3)).BeginInit();
       this.radScrollablePanel3.PanelContainer.SuspendLayout();
       this.radScrollablePanel3.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel9)).BeginInit();
+      this.radScrollablePanel9.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.header14)).BeginInit();
       this.flowLayoutPanel1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.header4)).BeginInit();
       this.flowLayoutPanel5.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_add)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_local)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_import)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_online)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.corpus_start_download)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header3)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel5)).BeginInit();
       this.radScrollablePanel5.PanelContainer.SuspendLayout();
       this.radScrollablePanel5.SuspendLayout();
       this.flowLayoutPanel4.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.header12)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel8)).BeginInit();
       this.radPanel8.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_list_snapshots)).BeginInit();
@@ -287,6 +291,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.clearPanel5)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_mask)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_add)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header7)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.snapshot_edit_queries)).BeginInit();
       this.snapshot_edit_queries.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel1)).BeginInit();
@@ -298,7 +303,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.betafunction_thirdpartyPanel)).BeginInit();
       this.betafunction_thirdpartyPanel.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.modul_panel_betafunction_thirdparty)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header9)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.modul_panel_analytics)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header8)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel2)).BeginInit();
       this.radScrollablePanel2.PanelContainer.SuspendLayout();
       this.radScrollablePanel2.SuspendLayout();
@@ -361,13 +368,18 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.settings_insight_renew)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_insight_disable)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_insight_enable)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header10)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel7)).BeginInit();
       this.radScrollablePanel7.PanelContainer.SuspendLayout();
       this.radScrollablePanel7.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel8)).BeginInit();
       this.radScrollablePanel8.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.header13)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radListView1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header6)).BeginInit();
       this.flowLayoutPanel3.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.header2)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pages_main)).BeginInit();
       this.pages_main.SuspendLayout();
       this.page_welcome.SuspendLayout();
@@ -393,6 +405,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radGroupBox5.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_online_crawler_start_compile)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_online_crawler_start)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header5)).BeginInit();
       this.page_snapshot.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pages_snapshot)).BeginInit();
       this.pages_snapshot.SuspendLayout();
@@ -408,6 +421,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
       this.radGroupBox1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.snapshot_edit_displayname)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header11)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.clearPanel3)).BeginInit();
       this.clearPanel3.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.snapshot_edit_abort)).BeginInit();
@@ -423,8 +437,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.pages_3rdParty)).BeginInit();
       this.page_settings.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel9)).BeginInit();
-      this.radScrollablePanel9.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
       // 
@@ -443,6 +455,24 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radScrollablePanel3.PanelContainer.Controls.Add(this.flowLayoutPanel5);
       this.radScrollablePanel3.PanelContainer.Controls.Add(this.header3);
       resources.ApplyResources(this.radScrollablePanel3.PanelContainer, "radScrollablePanel3.PanelContainer");
+      // 
+      // radScrollablePanel9
+      // 
+      resources.ApplyResources(this.radScrollablePanel9, "radScrollablePanel9");
+      this.radScrollablePanel9.Name = "radScrollablePanel9";
+      // 
+      // radScrollablePanel9.PanelContainer
+      // 
+      resources.ApplyResources(this.radScrollablePanel9.PanelContainer, "radScrollablePanel9.PanelContainer");
+      // 
+      // header14
+      // 
+      resources.ApplyResources(this.header14, "header14");
+      this.header14.BackColor = System.Drawing.Color.White;
+      this.header14.HeaderDescription = "Folgende Korpora können Sie abonnieren und frei verwenden - z. B. als Referenzkor" +
+    "pus oder zu Übungszwecken...";
+      this.header14.HeaderHead = "Frei verfügbare Korpora";
+      this.header14.Name = "header14";
       // 
       // helpPanel2
       // 
@@ -508,8 +538,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // header4
       // 
-      this.header4.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.header4, "header4");
+      this.header4.BackColor = System.Drawing.Color.White;
       this.header4.HeaderDescription = "Das aktuelle Projekt umfasst folgende Datenbestände:";
       this.header4.HeaderHead = "QuickInfo: Alle Korpora im aktuellen Projekt";
       this.header4.Name = "header4";
@@ -520,7 +550,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.flowLayoutPanel5.Controls.Add(this.corpus_start_local);
       this.flowLayoutPanel5.Controls.Add(this.corpus_start_import);
       this.flowLayoutPanel5.Controls.Add(this.corpus_start_online);
-      this.flowLayoutPanel5.Controls.Add(this.corpus_start_download);
       resources.ApplyResources(this.flowLayoutPanel5, "flowLayoutPanel5");
       this.flowLayoutPanel5.Name = "flowLayoutPanel5";
       // 
@@ -561,18 +590,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.corpus_start_online.TextWrap = true;
       this.corpus_start_online.Click += new System.EventHandler(this.corpus_start_online_Click);
       // 
-      // corpus_start_download
-      // 
-      this.corpus_start_download.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.archive_download_48px;
-      resources.ApplyResources(this.corpus_start_download, "corpus_start_download");
-      this.corpus_start_download.Name = "corpus_start_download";
-      this.corpus_start_download.TextWrap = true;
-      this.corpus_start_download.Click += new System.EventHandler(this.corpus_start_download_Click);
-      // 
       // header3
       // 
-      this.header3.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.header3, "header3");
+      this.header3.BackColor = System.Drawing.Color.White;
       this.header3.HeaderDescription = resources.GetString("header3.HeaderDescription");
       this.header3.HeaderHead = "Korpus hinzufügen";
       this.header3.Name = "header3";
@@ -654,8 +675,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // header12
       // 
-      this.header12.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.header12, "header12");
+      this.header12.BackColor = System.Drawing.Color.White;
       this.header12.HeaderDescription = "Hier sehen Sie, welchen Umfang der von ihnen aktuell gewählte Schnappschuss hat.";
       this.header12.HeaderHead = "QuickInfo: Aktuell gewählter Schnappschuss";
       this.header12.Name = "header12";
@@ -899,8 +920,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // header7
       // 
-      this.header7.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.header7, "header7");
+      this.header7.BackColor = System.Drawing.Color.White;
       this.header7.HeaderDescription = resources.GetString("header7.HeaderDescription");
       this.header7.HeaderHead = "Schnappschüsse verwalten";
       this.header7.Name = "header7";
@@ -976,8 +997,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // header9
       // 
-      this.header9.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.header9, "header9");
+      this.header9.BackColor = System.Drawing.Color.White;
       this.header9.HeaderDescription = resources.GetString("header9.HeaderDescription");
       this.header9.HeaderHead = "Erweiterungen von Drittanbietern";
       this.header9.Name = "header9";
@@ -993,8 +1014,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // header8
       // 
-      this.header8.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.header8, "header8");
+      this.header8.BackColor = System.Drawing.Color.White;
       this.header8.HeaderDescription = resources.GetString("header8.HeaderDescription");
       this.header8.HeaderHead = "Verfügbare Analysemodule";
       this.header8.Name = "header8";
@@ -1289,8 +1310,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // 
       this.splitPanel5.RootElement.MinSize = new System.Drawing.Size(25, 25);
-      this.splitPanel5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.1515837F, 0F);
-      this.splitPanel5.SizeInfo.SplitterCorrection = new System.Drawing.Size(-60, 0);
+      this.splitPanel5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.1018099F, 0F);
+      this.splitPanel5.SizeInfo.SplitterCorrection = new System.Drawing.Size(-38, 0);
       this.splitPanel5.TabStop = false;
       // 
       // radGroupBox4
@@ -1481,8 +1502,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // 
       this.splitPanel6.RootElement.MinSize = new System.Drawing.Size(25, 25);
-      this.splitPanel6.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.1515837F, 0F);
-      this.splitPanel6.SizeInfo.SplitterCorrection = new System.Drawing.Size(60, 0);
+      this.splitPanel6.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.10181F, 0F);
+      this.splitPanel6.SizeInfo.SplitterCorrection = new System.Drawing.Size(38, 0);
       this.splitPanel6.TabStop = false;
       // 
       // radGroupBox9
@@ -1551,9 +1572,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // header10
       // 
-      this.header10.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.header10, "header10");
-      this.header10.HeaderDescription = resources.GetString("header10.HeaderDescription");
+      this.header10.BackColor = System.Drawing.Color.White;
+      this.header10.HeaderDescription = "Diese Einstellungen sind für das gesamte Projekt gültig und werden in der Projekt" +
+    "datei gespeichert. Einige Einstellungen haben einen direkten Einfluss auf das An" +
+    "alyseergebnis.";
       this.header10.HeaderHead = "Projekteinstellungen";
       this.header10.Name = "header10";
       // 
@@ -1585,8 +1608,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // header13
       // 
-      this.header13.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.header13, "header13");
+      this.header13.BackColor = System.Drawing.Color.White;
       this.header13.HeaderDescription = "Folgende Add-ons können Sie installieren, um den Funktionsumfang des CorpusExplor" +
     "ers zu erweitern.";
       this.header13.HeaderHead = "Verfügbare Add-ons";
@@ -1594,6 +1617,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // radListView1
       // 
+      this.radListView1.AllowEdit = false;
+      this.radListView1.AllowRemove = false;
       resources.ApplyResources(this.radListView1, "radListView1");
       this.radListView1.GroupItemSize = new System.Drawing.Size(200, 40);
       listViewDataItem1.Text = "<html><strong>Hinweis:</strong> \"Aktuelles und Neuigkeiten\" können nur bei besteh" +
@@ -1602,14 +1627,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
             listViewDataItem1});
       this.radListView1.ItemSize = new System.Drawing.Size(200, 40);
       this.radListView1.Name = "radListView1";
-      this.radListView1.ItemMouseClick += OpenRssFeedItemClick;
-      this.radListView1.AllowEdit = false;
-      this.radListView1.AllowRemove = false;
+      this.radListView1.ItemMouseClick += new Telerik.WinControls.UI.ListViewItemEventHandler(this.OpenRssFeedItemClick);
       // 
       // header6
       // 
-      this.header6.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.header6, "header6");
+      this.header6.BackColor = System.Drawing.Color.White;
       this.header6.HeaderDescription = "Per Klick auf einen Eintrag gelangen Sie zur aktuellen Infos rund um den CorpusEx" +
     "plorer - Workshops, Infos zu Updates, uvm.";
       this.header6.HeaderHead = "Aktuelles und Neuigkeiten";
@@ -1687,16 +1710,16 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // header2
       // 
-      this.header2.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.header2, "header2");
+      this.header2.BackColor = System.Drawing.Color.White;
       this.header2.HeaderDescription = "Diese Liste führt alle Schritte auf und geleitet Sie durch den Analyseprozess.";
       this.header2.HeaderHead = "Die Checkliste für eine gelungene Analyse:";
       this.header2.Name = "header2";
       // 
       // header1
       // 
-      this.header1.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.header1, "header1");
+      this.header1.BackColor = System.Drawing.Color.White;
       this.header1.HeaderDescription = resources.GetString("header1.HeaderDescription");
       this.header1.HeaderHead = "Herzlich willkommen!";
       this.header1.Name = "header1";
@@ -1888,8 +1911,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // header5
       // 
-      this.header5.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.header5, "header5");
+      this.header5.BackColor = System.Drawing.Color.White;
       this.header5.HeaderDescription = resources.GetString("header5.HeaderDescription");
       this.header5.HeaderHead = "Online-Korpus akquirieren";
       this.header5.Name = "header5";
@@ -1978,8 +2001,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // header11
       // 
-      this.header11.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.header11, "header11");
+      this.header11.BackColor = System.Drawing.Color.White;
       this.header11.HeaderDescription = resources.GetString("header11.HeaderDescription");
       this.header11.HeaderHead = "Schnappschuss definieren";
       this.header11.Name = "header11";
@@ -2416,24 +2439,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radMenu1.Name = "radMenu1";
       this.radMenu1.ThemeName = "TelerikMetroTouch";
       // 
-      // header14
-      // 
-      this.header14.BackColor = System.Drawing.Color.White;
-      resources.ApplyResources(this.header14, "header14");
-      this.header14.HeaderDescription = "Folgende Korpora können Sie abonnieren und frei verwenden - z. B. als Referenzkor" +
-    "pus oder zu Übungszwecken...";
-      this.header14.HeaderHead = "Frei verfügbare Korpora";
-      this.header14.Name = "header14";
-      // 
-      // radScrollablePanel9
-      // 
-      resources.ApplyResources(this.radScrollablePanel9, "radScrollablePanel9");
-      this.radScrollablePanel9.Name = "radScrollablePanel9";
-      // 
-      // radScrollablePanel9.PanelContainer
-      // 
-      resources.ApplyResources(this.radScrollablePanel9.PanelContainer, "radScrollablePanel9.PanelContainer");
-      // 
       // Dashboard
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2451,17 +2456,22 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radScrollablePanel3.PanelContainer.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel3)).EndInit();
       this.radScrollablePanel3.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel9)).EndInit();
+      this.radScrollablePanel9.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.header14)).EndInit();
       this.flowLayoutPanel1.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.header4)).EndInit();
       this.flowLayoutPanel5.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_add)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_local)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_import)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_online)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.corpus_start_download)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header3)).EndInit();
       this.radScrollablePanel5.PanelContainer.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel5)).EndInit();
       this.radScrollablePanel5.ResumeLayout(false);
       this.flowLayoutPanel4.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.header12)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel8)).EndInit();
       this.radPanel8.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_list_snapshots)).EndInit();
@@ -2486,6 +2496,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.clearPanel5)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_mask)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_add)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header7)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.snapshot_edit_queries)).EndInit();
       this.snapshot_edit_queries.ResumeLayout(false);
       this.radScrollablePanel1.PanelContainer.ResumeLayout(false);
@@ -2497,7 +2508,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.betafunction_thirdpartyPanel)).EndInit();
       this.betafunction_thirdpartyPanel.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.modul_panel_betafunction_thirdparty)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header9)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.modul_panel_analytics)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header8)).EndInit();
       this.radScrollablePanel2.PanelContainer.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel2)).EndInit();
       this.radScrollablePanel2.ResumeLayout(false);
@@ -2565,13 +2578,18 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.settings_insight_renew)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_insight_disable)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_insight_enable)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header10)).EndInit();
       this.radScrollablePanel7.PanelContainer.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel7)).EndInit();
       this.radScrollablePanel7.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel8)).EndInit();
       this.radScrollablePanel8.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.header13)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radListView1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header6)).EndInit();
       this.flowLayoutPanel3.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.header2)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pages_main)).EndInit();
       this.pages_main.ResumeLayout(false);
       this.page_welcome.ResumeLayout(false);
@@ -2597,6 +2615,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radGroupBox5.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.corpus_online_crawler_start_compile)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_online_crawler_start)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header5)).EndInit();
       this.page_snapshot.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.pages_snapshot)).EndInit();
       this.pages_snapshot.ResumeLayout(false);
@@ -2613,6 +2632,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radGroupBox1.ResumeLayout(false);
       this.radGroupBox1.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.snapshot_edit_displayname)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header11)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.clearPanel3)).EndInit();
       this.clearPanel3.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.snapshot_edit_abort)).EndInit();
@@ -2628,8 +2648,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.pages_3rdParty)).EndInit();
       this.page_settings.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel9)).EndInit();
-      this.radScrollablePanel9.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
@@ -2848,7 +2866,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     private Telerik.WinControls.UI.RadListView radListView1;
     private Header header13;
     private Telerik.WinControls.UI.RadScrollablePanel radScrollablePanel8;
-    private RadButton corpus_start_download;
     private RadScrollablePanel radScrollablePanel9;
     private Header header14;
   }

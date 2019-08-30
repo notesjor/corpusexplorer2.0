@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.DataTableWriter
@@ -27,24 +29,13 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       foreach (DataColumn c in table.Columns)
         columns.Add(new KeyValuePair<string, Type>(c.ColumnName, c.DataType));
 
-      var tmp = new StringBuilder();
-      tmp.Append("<item>");
-      foreach (var c in columns)
-      {
-        var tag = c.Key.Replace(" ", "_");
-        tmp.Append($"<{tag}>{{{c.Key}}}</{tag}>");
-      }
-
-      tmp.Append("</item>");
-      var template = tmp.ToString();
-      tmp.Clear();
-
+      string template = GenerateTemplate(columns);
       var marks = columns.ToDictionary(x => x.Key, x => $"{{{x.Key}}}");
+      var wlock = new object();
 
-      var stb = new StringBuilder();
-      foreach (DataRow row in table.Rows)
+      Parallel.ForEach(table.AsEnumerable(), Configuration.ParallelOptions, row =>
       {
-        tmp = new StringBuilder(template);
+        var tmp = new StringBuilder(template);
         foreach (var column in columns)
           if (row[column.Key] == null)
             tmp.Replace(marks[column.Key], string.Empty);
@@ -55,16 +46,29 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
                               .Replace(">", string.Empty)
                           : row[column.Key].ToString().Replace(",", "."));
 
-        stb.Append(tmp);
-        tmp.Clear();
+        var line = tmp.ToString();
+        lock (wlock)
+          WriteOutput(line);
+      });
+    }
+
+    private static string GenerateTemplate(List<KeyValuePair<string, Type>> columns)
+    {
+      var gen = new StringBuilder();
+      gen.Append("<item>");
+      foreach (var c in columns)
+      {
+        var tag = c.Key.Replace(" ", "_");
+        gen.Append($"<{tag}>{{{c.Key}}}</{tag}>");
       }
 
-      WriteOutput(stb.ToString());
+      gen.Append("</item>");
+      return gen.ToString();
     }
 
     public override AbstractTableWriter Clone(Stream stream)
     {
-      return new XmlTableWriter {OutputStream = stream};
+      return new XmlTableWriter { OutputStream = stream, WriteTid = WriteTid };
     }
 
     protected override void WriteFooter()

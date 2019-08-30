@@ -16,7 +16,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     public LayerSettings()
     {
       InitializeComponent();
-      _names = CorpusExplorerEcosystem.InitializeMinimal().LayerDisplaynames.ToList();
+      _names = CorpusExplorerEcosystem.CurrentProject.LayerDisplaynames.ToList();
       cmb_names.Items.AddRange(_names);
     }
 

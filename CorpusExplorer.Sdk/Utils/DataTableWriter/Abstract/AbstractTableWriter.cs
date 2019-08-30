@@ -7,13 +7,15 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract
 {
   public abstract class AbstractTableWriter
   {
-    protected readonly object WriteLock = new object();
+    private readonly object WriteLock = new object();
     protected bool _headInitialized;
 
     public AbstractTableWriter()
     {
       OutputStream = Console.OpenStandardOutput();
     }
+
+    public bool WriteTid { get; set; } = true;
 
     public Stream OutputStream { get; set; }
 
@@ -57,10 +59,13 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract
     /// <param name="table">Tabelle</param>
     public void WriteTable(string tid, DataTable table)
     {
-      var tCol = table.Columns.Add("TID", typeof(string));
-      tCol.SetOrdinal(0);
-      foreach (DataRow row in table.Rows)
-        row[0] = tid;
+      if (WriteTid)
+      {
+        var tCol = table.Columns.Add("TID", typeof(string));
+        tCol.SetOrdinal(0);
+        foreach (DataRow row in table.Rows)
+          row[0] = tid;
+      }
       WriteTable(table);
     }
 
@@ -85,6 +90,11 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract
     {
       var buffer = Configuration.Encoding.GetBytes(line.Replace("&#", "#"));
       OutputStream.Write(buffer, 0, buffer.Length);
+    }
+
+    protected void DeleteLastChars(int num)
+    {
+      OutputStream.Seek(-1 * num, SeekOrigin.End);
     }
 
     public void WriteDirectThroughStream(string line)

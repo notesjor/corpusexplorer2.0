@@ -89,7 +89,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       if (RootCluster == null)
         return new DataTable();
 
-      IEnumerable<IDisambiguationCluster> current = new[] {RootCluster};
+      IEnumerable<IDisambiguationCluster> current = new[] { RootCluster };
       if (DataTableLevel < 1)
         DataTableLevel = 1;
 
@@ -108,6 +108,43 @@ namespace CorpusExplorer.Sdk.ViewModel
 
       return dt;
     }
+
+    public DataTable GetFullDataTable()
+    {
+      if (RootCluster == null)
+        return new DataTable();
+
+      var dic = GetFullDataTableRecursiveCall(RootCluster);
+
+      var dt = new DataTable();
+      dt.Columns.Add(Resources.Label, typeof(string));
+      dt.Columns.Add(Resources.Wert, typeof(double));
+
+      dt.BeginLoadData();
+      foreach (var item in dic)
+        dt.Rows.Add(item.Key, item.Value);
+      dt.EndLoadData();
+
+      return dt;
+    }
+
+    private Dictionary<string, double> GetFullDataTableRecursiveCall(IDisambiguationCluster cluster)
+    {
+      var res = new Dictionary<string, double>();
+
+      var subC = cluster.GetClusters();
+
+      if (subC == null)
+        res.Add(cluster.Label, cluster.Value);
+      else
+        foreach (var c in subC)
+          foreach (var t in GetFullDataTableRecursiveCall(c))
+            if (!res.ContainsKey(t.Key))
+              res.Add(t.Key, t.Value);
+
+      return res;
+    }
+
 
     /// <summary>
     ///   The get cluster level.
@@ -184,8 +221,8 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     protected override bool Validate()
     {
-      return !string.IsNullOrEmpty(LayerDisplayname) && !string.IsNullOrEmpty(LayerQuery)       &&
-             !double.IsNaN(MinimumSignificance)      && !double.IsInfinity(MinimumSignificance) &&
+      return !string.IsNullOrEmpty(LayerDisplayname) && !string.IsNullOrEmpty(LayerQuery) &&
+             !double.IsNaN(MinimumSignificance) && !double.IsInfinity(MinimumSignificance) &&
              SimilarityIndex != null;
     }
   }

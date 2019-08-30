@@ -2,7 +2,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.SelectLayer;
@@ -47,15 +49,65 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       radGridView1.ResetBindings();
 
       AddSummaryRow();
-      AddChildTemplate(
-                       x => new FilterQuerySingleLayerAnyMatch
-                       {
-                         Inverse = false,
-                         LayerDisplayname = _vm.LayerDisplaynames.Last(),
-                         LayerQueries = new[] {x[Resources.ZeichenketteWortform].ToString()}
-                       });
+      AddChildTemplate(SetFilter);
 
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+    }
+
+    private AbstractFilterQuery SetFilter(DataRowView row)
+    {
+      try
+      {
+        switch (_vm.LayerDisplaynames.Count())
+        {
+          case 1:
+            return new FilterQuerySingleLayerAnyMatch
+            {
+              Inverse = false,
+              LayerDisplayname = _vm.LayerDisplaynames.First(),
+              LayerQueries = new[] { row[_vm.LayerDisplaynames.First()].ToString() }
+            };
+          case 2:
+            var arr2 = _vm.LayerDisplaynames.ToArray();
+            return new FilterQueryMultiLayer
+            {
+              Inverse = false,
+              MultilayerValues = new Dictionary<string, string>
+            {
+              { arr2[0], row[arr2[0]].ToString() },
+              { arr2[1], row[arr2[1]].ToString() }
+            }
+            };
+          case 3:
+            var arr3 = _vm.LayerDisplaynames.ToArray();
+            return new FilterQueryMultiLayer
+            {
+              Inverse = false,
+              MultilayerValues = new Dictionary<string, string>
+            {
+              { arr3[0], row[arr3[0]].ToString() },
+              { arr3[1], row[arr3[1]].ToString() },
+              { arr3[2], row[arr3[2]].ToString() }
+            }
+            };
+          default:
+            return new FilterQuerySingleLayerAnyMatch
+            {
+              Inverse = false,
+              LayerDisplayname = _vm.LayerDisplaynames.Last(),
+              LayerQueries = new[] { row[_vm.LayerDisplaynames.Last()].ToString() }
+            };
+        }
+      }
+      catch
+      {
+        return new FilterQuerySingleLayerAnyMatch
+        {
+          Inverse = false,
+          LayerDisplayname = _vm.LayerDisplaynames.Last(),
+          LayerQueries = new[] { row[_vm.LayerDisplaynames.Last()].ToString() }
+        };
+      }
     }
 
     /// <summary>

@@ -18,7 +18,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
     {
       InitializeComponent();
       _selection = selection;
-      count_docs.Maximum = selection.CountDocuments;
+      count_docs.Maximum = selection == null ? project.SelectAll.CountDocuments : selection.CountDocuments;
     }
 
     public Selection InvertSelection { get; private set; }
@@ -27,7 +27,17 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
 
     private void AddRandomSnapshot_ButtonOkClick(object sender, EventArgs e)
     {
-      var block = _selection.CreateBlock<RandomSelectionBlock>();
+      RandomSelectionBlock block;
+      if(_selection == null)
+      {
+        block = Project.SelectAll.CreateBlock<RandomSelectionBlock>();
+        block.NoParent = true;
+      }
+      else
+      {
+        block = _selection.CreateBlock<RandomSelectionBlock>();
+      }
+
       block.DocumentCount = (int) count_docs.Value;
       block.Calculate();
       Selection = block.RandomSelection;

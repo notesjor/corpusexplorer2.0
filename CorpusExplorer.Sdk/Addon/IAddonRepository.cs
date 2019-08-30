@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using Bcs.Addon.Interfaces;
+using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
@@ -58,6 +59,11 @@ namespace CorpusExplorer.Sdk.Addon
     ///   Externe Analysemodule für die GUI
     /// </summary>
     IEnumerable<IAddonView> AddonViews { get; }
+
+    /// <summary>
+    ///   Erlaubt den Export von Analysedaten in unterschiedliche Tabellenformate
+    /// </summary>
+    IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter { get; }
 
     /// <summary>
     ///   Funktionen die per Sideload zur Verfügung gestellt werden.

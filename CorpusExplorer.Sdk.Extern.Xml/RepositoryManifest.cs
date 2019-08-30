@@ -28,6 +28,7 @@ using CorpusExplorer.Sdk.Extern.Xml.PurlOrg;
 using CorpusExplorer.Sdk.Extern.Xml.SlashA;
 using CorpusExplorer.Sdk.Extern.Xml.Tiger;
 using CorpusExplorer.Sdk.Extern.Xml.Weblicht;
+using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
@@ -43,6 +44,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml
   {
     public override IEnumerable<AbstractAdditionalTagger> AddonAdditionalTagger => null;
     public override IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> AddonBackends => null;
+    public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter => null;
 
     /// <summary>
     ///   Liste mit Exportern die Projekte, Korpora und Schnappschüsse (alle IHydra) exportieren können

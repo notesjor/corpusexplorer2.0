@@ -1400,6 +1400,15 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bereinige Dokumente... ähnelt.
+        /// </summary>
+        public static string CleanDocuments {
+            get {
+                return ResourceManager.GetString("CleanDocuments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap clipboard_copy {

@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
+using CorpusExplorer.Sdk.Blocks.Similarity;
+using CorpusExplorer.Sdk.Blocks.Similarity.Abstract;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.CorpusExplorer;
 
@@ -10,54 +13,69 @@ namespace CorpusExplorer.Sdk.Blocks
   {
     public string LayerValue { get; set; }
     public string LayerDisplayname { get; set; } = "Wort";
-    public Dictionary<string, Dictionary<string, double>> CooccurrenceDuos { get; set; }
+    public Dictionary<string, double> CooccurrencesSimilarity { get; set; }
+    public AbstractSimilarity Similarity { get; set; } = new CosineMeasure();
 
     public override void Calculate()
     {
+      CooccurrencesSimilarity = new Dictionary<string, double>();
+      var lockSim = new object();
+
       if (string.IsNullOrEmpty(LayerValue))
         return;
 
-      CooccurrenceDuos = new Dictionary<string, Dictionary<string, double>>();
       var dic = GetDictionary();
       if (dic.Count == 0 || !dic.ContainsKey(LayerValue) || dic[LayerValue].Count < 1)
         return;
 
-      var keys = new HashSet<string>(dic[LayerValue].Select(x => x.Key));
-      var cetp = new CeDictionary(keys);
+      var orig = dic[LayerValue];
 
-      foreach (var key in keys)
+      Parallel.ForEach(dic, x =>
       {
-        if (!dic.ContainsKey(key))
-          continue;
+        if (x.Value == null || x.Value.Count == 0)
+          return;
 
-        var idxKey = cetp[key];
-        foreach (var cooc in dic[key].Where(x => keys.Contains(x.Key)))
-        {
-          var idxCoc = cetp[cooc.Key];
-          if (idxKey == idxCoc)
-            continue;
+        // Rufe Kookkurrenzen ab
+        var rawA = CleanDictionary(orig, x.Key);
+        var rawB = CleanDictionary(x.Value, LayerValue);
 
-          var a = idxKey > idxCoc ? key : cooc.Key;
-          var b = idxKey > idxCoc ? cooc.Key : key;
+        // Baue Vector-Dictionary
+        var dicV = new HashSet<string>();
+        foreach (var v in rawA)
+          dicV.Add(v.Key);
+        foreach (var v in rawB)
+          dicV.Add(v.Key);
+        var keyV = dicV.ToArray();
 
-          if (CooccurrenceDuos.ContainsKey(a))
-          {
-            if (CooccurrenceDuos[a].ContainsKey(b))
-            {
-              if (cooc.Value > CooccurrenceDuos[a][b])
-                CooccurrenceDuos[a][b] = cooc.Value;
-            }
-            else
-            {
-              CooccurrenceDuos[a].Add(b, cooc.Value);
-            }
-          }
-          else
-          {
-            CooccurrenceDuos.Add(a, new Dictionary<string, double> {{b, cooc.Value}});
-          }
-        }
+        // Erzeuge Vectoren
+        var vecA = MakeVector(rawA, keyV);
+        var vecB = MakeVector(rawB, keyV);
+
+        // Vergleiche Vectoren
+        var sim = Similarity.CalculateSimilarity(vecA, vecB);
+        lock (lockSim)
+          CooccurrencesSimilarity.Add(x.Key, sim);
+      });
+    }
+
+    private double[] MakeVector(Dictionary<string, double> rawValues, string[] keyV)
+    {
+      var res = new double[keyV.Length];
+      for (var i = 0; i < keyV.Length; i++)
+        res[i] = rawValues.ContainsKey(keyV[i]) ? rawValues[keyV[i]] : 0;
+      return res;
+    }
+
+    private Dictionary<string, double> CleanDictionary(Dictionary<string, double> dic, string ignore)
+    {
+      var res = new Dictionary<string, double>();
+      foreach (var d in dic)
+      {
+        if (d.Key != ignore)
+          res.Add(d.Key, d.Value);
       }
+
+      return res;
     }
 
     private Dictionary<string, Dictionary<string, double>> GetDictionary()

@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.DataTableWriter
@@ -12,7 +14,6 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
   public class HtmlTableWriter : AbstractTableWriter
   {
     private readonly Regex _r = new Regex(@"<[^>]*>");
-    private int _rowCount;
     public override string MimeType => "text/html";
 
     public override string TableWriterTag => "F:HTML";
@@ -32,13 +33,11 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       }
 
       WriteOutput("</tr>");
-
-      _rowCount = 0;
     }
 
     public override AbstractTableWriter Clone(Stream stream)
     {
-      return new HtmlTableWriter {OutputStream = stream};
+      return new HtmlTableWriter { OutputStream = stream, WriteTid = WriteTid };
     }
 
     protected override void WriteBody(DataTable table)
@@ -47,26 +46,14 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       foreach (DataColumn c in table.Columns)
         columns.Add(new KeyValuePair<string, Type>(c.ColumnName, c.DataType));
 
-      var tmp = new StringBuilder();
-      tmp.Append("<tr id=\"rid_{rid}\" class=\"r_{num}\">");
-      foreach (var c in columns)
-      {
-        var tag = c.Key.Replace(" ", "_");
-        tmp.Append($"<td class=\"cid_{tag} rid_{{rid}}\">{{{c.Key}}}</td>");
-      }
-
-      tmp.Append("</tr>");
-      var template = tmp.ToString();
-      tmp.Clear();
+      string template = GenerateTemplate(columns);
 
       var marks = columns.ToDictionary(x => x.Key, x => $"{{{x.Key}}}");
+      var wlock = new object();
 
-      var res = new StringBuilder();
-      foreach (DataRow row in table.Rows)
+      Parallel.ForEach(table.AsEnumerable(), Configuration.ParallelOptions, row =>
       {
-        tmp = new StringBuilder(template);
-        tmp.Replace("{num}", _rowCount % 2 == 0 ? "even" : "odd");
-        tmp.Replace("{rid}", _rowCount++.ToString());
+        var tmp = new StringBuilder(template);
 
         foreach (var column in columns)
           if (row[column.Key] == null)
@@ -77,12 +64,22 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
                           ? _r.Replace(row[column.Key].ToString(), string.Empty).Replace("<", string.Empty)
                               .Replace(">", string.Empty)
                           : row[column.Key].ToString().Replace(",", "."));
+        var line = tmp.ToString();
 
-        res.Append(tmp);
-        tmp.Clear();
-      }
+        lock (wlock)
+          WriteOutput(line);
+      });
+    }
 
-      WriteOutput(res.ToString());
+    private static string GenerateTemplate(List<KeyValuePair<string, Type>> columns)
+    {
+      var gen = new StringBuilder();
+      gen.Append("<tr>");
+      foreach (var c in columns)
+        gen.Append($"<td class=\"cid_{c.Key.Replace(" ", "_")}\">{{{c.Key}}}</td>");
+
+      gen.Append("</tr>");
+      return gen.ToString();
     }
 
     protected override void WriteFooter()

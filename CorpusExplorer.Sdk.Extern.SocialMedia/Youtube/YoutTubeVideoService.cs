@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Abstract;
 using Google.Apis.YouTube.v3;
+using WordPressPCL.Models;
 
 namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
 {
@@ -13,35 +14,54 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
     {
       var context = connection as YouTubeService;
       var serializer = new Newtonsoft.Json.JsonSerializer();
+      var max = 0;
+      var cnt = 0;
+      string page = null;
+
       foreach (var query in queries)
       {
-        var reqComments = context.CommentThreads.List(query);
-        var comments = reqComments.Execute();
-        if (comments == null)
-          continue;
-
-        foreach (var comment in comments.Items)
+        try
         {
-          using (var file = new StreamWriter(Path.Combine(outputPath, $"youtube_{query}_comment_{comment.Id}.json"), false, Encoding.UTF8))
-            serializer.Serialize(file, new YouTubeSearchService.YouTubeSearchServiceCommentThread
+          while (true)
+          {
+            var reqComments = context.CommentThreads.List("snippet");
+            reqComments.VideoId = query;
+            reqComments.Order = CommentThreadsResource.ListRequest.OrderEnum.Time;
+            reqComments.MaxResults = 100;
+            reqComments.TextFormat = CommentThreadsResource.ListRequest.TextFormatEnum.PlainText;
+            if (page != null)
+              reqComments.PageToken = page;
+
+            var comments = reqComments.Execute();
+            page = comments.NextPageToken;
+
+            if (comments?.Items == null || comments.Items.Count == 0)
+              break;
+
+            max += comments.Items.Count;
+
+            foreach (var comment in comments.Items)
             {
-              Published = comment.Snippet.TopLevelComment.Snippet.PublishedAt,
-              Id = comment.Id,
-              ReplyCount = comment.Snippet.TotalReplyCount,
-              UserId = comment.Snippet.TopLevelComment.Snippet.AuthorDisplayName,
-              LikeCount = comment.Snippet.TopLevelComment.Snippet.LikeCount,
-              Updated = comment.Snippet.TopLevelComment.Snippet.UpdatedAt,
-              Text = comment.Snippet.TopLevelComment.Snippet.TextDisplay,
-              Replies = comment.Replies?.Comments?.Select(c => new YouTubeSearchService.YouTubeSearchServiceComment
+              try
               {
-                Id = c.Id,
-                LikeCount = c.Snippet.LikeCount,
-                Published = c.Snippet.PublishedAt,
-                Text = c.Snippet.TextDisplay,
-                Updated = c.Snippet.UpdatedAt,
-                UserId = c.Snippet.AuthorDisplayName
-              }).ToArray()
-            });
+                PostStatusUpdate($"Suche Kommentare zu {query} -  {cnt + 1}/{max}...", cnt++, max);
+
+                var dir = Path.Combine(outputPath, query);
+                if (!Directory.Exists(dir))
+                  Directory.CreateDirectory(dir);
+
+                YouTubeTheadStorageHelper.Store(context, serializer, dir, comment);
+              }
+              catch
+              {
+                // ignore
+              }
+            }
+          }
+        }
+        catch
+        {
+          // ignore
         }
       }
     }

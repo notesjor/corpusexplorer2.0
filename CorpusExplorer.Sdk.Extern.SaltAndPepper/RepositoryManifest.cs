@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
+using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
@@ -12,7 +13,7 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
   {
     public override IEnumerable<AbstractAdditionalTagger> AddonAdditionalTagger => null;
     public override IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> AddonBackends => null;
-
+    public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter => null;
     public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters =>
       new Dictionary<string, AbstractExporter>
       {

@@ -19,6 +19,7 @@ using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Cache;
 using CorpusExplorer.Sdk.Model.Cache.Abstract;
 using CorpusExplorer.Sdk.Properties;
+using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Crawler;
@@ -51,6 +52,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     private static Dictionary<string, AbstractExporter> _addonExporters = new Dictionary<string, AbstractExporter>();
     private static Dictionary<string, AbstractImporter> _addonImporters = new Dictionary<string, AbstractImporter>();
     private static Dictionary<string, AbstractScraper> _addonScrapers = new Dictionary<string, AbstractScraper>();
+    private static Dictionary<string, AbstractTableWriter> _addonTableWriters = new Dictionary<string, AbstractTableWriter>();
     private static List<AbstractTagger> _addonTaggers = new List<AbstractTagger>();
     private static List<IAddonView> _addonViews = new List<IAddonView>();
     private static Encoding _encoding;
@@ -114,12 +116,48 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       }
     }
 
+    public static AbstractTableWriter GetTableWriter(string tableWriterTag)
+    {
+      if (tableWriterTag.StartsWith("F:"))
+      {
+        foreach (var x in _addonTableWriters.Where(x => x.Value.TableWriterTag == tableWriterTag))
+          return x.Value;
+
+        return _addonTableWriters.First().Value;
+      }
+
+      // ReSharper disable once InvertIf
+      if (tableWriterTag.StartsWith("FNT:"))
+      {
+        var f = tableWriterTag.Replace("FNT:", "F:");
+
+        AbstractTableWriter res = null;
+        foreach (var x in _addonTableWriters.Where(x => x.Value.TableWriterTag == f))
+          res = x.Value;
+
+        if (res == null)
+          res = _addonTableWriters.First().Value;
+
+        res.WriteTid = false;
+
+        return res;
+      }
+
+      return null;
+    }
+
     /// <summary>
     ///   Liste mit Scrapern die lokale Dateien (z. B. TXT, RTF, DOCX, PDF) in Korpusdokumente konvertieren.
     ///   Für Dateien OHNE Annotation.
     /// </summary>
     public static IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers =>
       _addonScrapers.OrderBy(x => x.Key);
+
+    /// <summary>
+    /// Export für Analysedaten im Tabellenformat
+    /// </summary>
+    public static IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter =>
+      _addonTableWriters.OrderBy(x => x.Key);
 
     /// <summary>
     ///   Tagger
@@ -152,7 +190,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
         try
         {
-          _encoding = Encoding.GetEncoding((int) GetSetting("Encoding (CodePage)", Encoding.UTF8.CodePage));
+          _encoding = Encoding.GetEncoding((int)GetSetting("Encoding (CodePage)", Encoding.UTF8.CodePage));
         }
         catch
         {
@@ -210,11 +248,11 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     public static string MyProjects { get; private set; }
 
     public static ParallelOptions ParallelOptions { get; set; } =
-      new ParallelOptions {MaxDegreeOfParallelism = Environment.ProcessorCount * 2};
+      new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount * 2 };
 
     public static bool ProtectMemoryOverflow
     {
-      get => (bool) GetSetting("RAM-Selbstschutz", true);
+      get => (bool)GetSetting("RAM-Selbstschutz", true);
       set => SetSetting("RAM-Selbstschutz", value);
     }
 
@@ -229,7 +267,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
         try
         {
-          _rightToLeftSupport = (bool) GetSetting("R/L-Support", false);
+          _rightToLeftSupport = (bool)GetSetting("R/L-Support", false);
         }
         catch
         {
@@ -345,7 +383,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     {
       try
       {
-        return File.Exists(alternativePath                                            ?? SettingsAppPath)
+        return File.Exists(alternativePath ?? SettingsAppPath)
                  ? Serializer.Deserialize<Dictionary<string, object>>(alternativePath ?? SettingsAppPath)
                  : new Dictionary<string, object>();
       }
@@ -362,6 +400,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       _addonTaggers.Clear();
       _addonAdditionalTaggers.Clear();
       _addonScrapers.Clear();
+      _addonTableWriters.Clear();
       _addonViews.Clear();
       _addonBackends.Clear();
       _addonConsoleActions.Clear();
@@ -647,7 +686,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
         // ignore
       }
 
-      ParallelOptions = new ParallelOptions {MaxDegreeOfParallelism = Environment.ProcessorCount * 2};
+      ParallelOptions = new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount * 2 };
 
       try // notwendig z. B. unter AZURE
       {
@@ -684,6 +723,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       _addonTaggers = new List<AbstractTagger>();
       _addonAdditionalTaggers = new List<AbstractAdditionalTagger>();
       _addonScrapers = new Dictionary<string, AbstractScraper>();
+      _addonTableWriters = new Dictionary<string, AbstractTableWriter>();
       _addonViews = new List<IAddonView>();
 
       // Hypen
@@ -761,6 +801,21 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
                     CustomAttributeFormatException($"EXPORTER - WRONG ENTRY FOR: {s3.Key} - {s3.Value.GetType().FullName}");
 
                 _addonExporters.Add(s3.Key, s3.Value);
+              }
+              catch (Exception ex)
+              {
+                InMemoryErrorConsole.Log(ex);
+              }
+
+          if (repo.AddonTableWriter != null)
+            foreach (var s3 in repo.AddonTableWriter.Where(s3 => !_addonTableWriters.ContainsKey(s3.Key)))
+              try
+              {
+                if (!s3.Key.Contains("|"))
+                  throw new
+                    CustomAttributeFormatException($"TABLEWRITER - WRONG ENTRY FOR: {s3.Key} - {s3.Value.GetType().FullName}");
+
+                _addonTableWriters.Add(s3.Key, s3.Value);
               }
               catch (Exception ex)
               {

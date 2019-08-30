@@ -3,6 +3,8 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm;
 using Telerik.WinControls.UI;
 
@@ -108,9 +110,14 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
     {
       try
       {
-        using (var wc = new WebClient())
-          wc.DownloadFile(url, "repository.tmp");
-        File.Move("repository.tmp", file);
+        using (var tf = new TemporaryFile(Configuration.TempPath))
+        {
+          using (var wc = new WebClient())
+            wc.DownloadFile(url, tf.Path);
+          if (File.Exists(file))
+            File.Delete(file);
+          File.Move(tf.Path, file);
+        }
       }
       catch
       {

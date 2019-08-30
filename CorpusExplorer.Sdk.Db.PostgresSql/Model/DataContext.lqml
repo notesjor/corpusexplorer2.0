@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database Name="cedata" EntityNamespace="CorpusExplorer.Sdk.Db.PostgreSql.Model.Data" ContextNamespace="CorpusExplorer.Sdk.Db.PostgreSql.Model.Data" Class="DataContext" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ed:Guid="ca09cb79-cd65-40fe-abff-dd37e39931e4" Provider="Devart.Data.PostgreSql.Linq.Provider.PgSqlDataProvider, Devart.Data.PostgreSql.Linq" Extended="true" xmlns="http://schemas.devart.com/linqconnect/mapping">
+  <Connection Mode="ConnectionString" ConnectionString="" Provider="Devart.Data.PostgreSql" />
+  <Table Name="&quot;main&quot;.Corpora" Member="Corpora">
+    <Type Name="Corpus" ed:Guid="cfc70d02-2ebf-48cc-a252-f326e31b4395">
+      <Column Name="ID" Type="System.Int32" DbType="integer NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="4f864e50-c75d-4918-a97b-540348347cdc" />
+      <Column Name="GUID" Type="System.Guid" DbType="uuid NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="c8faff9e-cdf3-4f9e-a570-9598f3efc9e3" />
+      <Column Name="Displayname" Type="System.String" DbType="text" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="d5e31383-8990-474a-a61f-b82ab5bde108" />
+      <Association Name="Corpus_CorpusMetadataEntry" ed:AssociationGuid="a5d69764-79c8-4689-8d1e-02fd91a60782" Member="CorpusMetadataEntries" ed:Guid="67ff2ce3-9edc-4e22-9114-14354b9cedd9" ThisKey="ID" OtherKey="CorpusID" Type="CorpusMetadataEntry" />
+      <Association Name="Corpus_Layer" ed:AssociationGuid="bcbc6a75-c6e4-4baf-9b67-6a94f3ed033a" Member="Layers" ed:Guid="b7dc6e57-a497-4a6e-9403-2668c1efbfd6" ThisKey="ID" OtherKey="CorpusID" Type="Layer" />
+      <Association Name="Corpus_Document" ed:AssociationGuid="0205f2bb-7ba1-475e-a631-b516306480ba" Member="Documents" ed:Guid="b70637a5-fc49-4f6a-9e2a-2393c8d019f2" ThisKey="ID" OtherKey="CorpusID" Type="Document" />
+    </Type>
+  </Table>
+  <Table Name="&quot;main&quot;.CorpusMetadataEntries" Member="CorpusMetadataEntries">
+    <Type Name="CorpusMetadataEntry" ed:Guid="1163496f-7ef1-4870-8b6e-ee3e70d75144">
+      <Column Name="CorpusID" Type="System.Int32" DbType="integer NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="bc143390-3c83-4a4a-bb28-9c6e7f144b57" />
+      <Column Name="Label" Type="System.String" DbType="text NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" MaxLength="250" ed:ValidateMaxLength="250" ed:ValidateRequired="true" ed:Guid="15dad1c2-d2f9-42c2-a516-a880328970d1" />
+      <Column Name="Value" Type="System.Byte[]" DbType="bytea" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="a53ed298-d1d3-41ae-8f8a-83947cc140b9" />
+      <Association Name="Corpus_CorpusMetadataEntry" ed:AssociationGuid="a5d69764-79c8-4689-8d1e-02fd91a60782" Member="Corpus" ed:Guid="f18a42ee-0538-46d9-a461-6f067cae410e" ThisKey="CorpusID" OtherKey="ID" Type="Corpus" DeleteRule="CASCADE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="&quot;main&quot;.Layers" Member="Layers">
+    <Type Name="Layer" ed:Guid="46400f2b-7b79-438d-a811-7c59e78c72b9">
+      <Column Name="ID" Type="System.Int32" DbType="integer NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="55a96963-3db0-4f28-b4f8-f71ef0e457e3" />
+      <Column Name="GUID" Type="System.Guid" DbType="uuid NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="8d6c3d20-3d8f-4d51-95eb-85b1436d65f0" />
+      <Column Name="CorpusID" Type="System.Int32" DbType="integer NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="6ad980b0-3b5f-4ef2-a010-5507ef817402" />
+      <Column Name="Displayname" Type="System.String" DbType="text" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="e9c3b24c-8e0f-4d3f-89ee-c77a5d0c581c" />
+      <Association Name="Corpus_Layer" ed:AssociationGuid="bcbc6a75-c6e4-4baf-9b67-6a94f3ed033a" Member="Corpus" ed:Guid="1c16ce5b-2fd5-4220-9c2a-68835b34c23f" ThisKey="CorpusID" OtherKey="ID" Type="Corpus" DeleteRule="CASCADE" IsForeignKey="true" />
+      <Association Name="Layer_LayerDictionaryEntry" ed:AssociationGuid="ece5cf24-6f3a-43a1-9a26-bd9d8b484739" Member="LayerDictionaryEntries" ed:Guid="38b261e3-87b6-4eb6-8d98-1eeb077ef93c" ThisKey="ID" OtherKey="LayerID" Type="LayerDictionaryEntry" />
+      <Association Name="Layer_LayerDocument" ed:AssociationGuid="ea241ae8-997d-4590-982a-24484a712534" Member="LayerDocuments" ed:Guid="20fb68d6-042a-4740-aa37-e9042bda2ec2" ThisKey="ID" OtherKey="LayerID" Type="LayerDocument" />
+    </Type>
+  </Table>
+  <Table Name="&quot;main&quot;.LayerDictionaryEntries" Member="LayerDictionaryEntries">
+    <Type Name="LayerDictionaryEntry" ed:Guid="13322dbd-0811-4047-9e60-ba77dfaf6b39">
+      <Column Name="LayerID" Type="System.Int32" DbType="integer NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="367b3964-75be-4f67-8d37-b765198057d7" />
+      <Column Name="&quot;Index&quot;" Member="Index" Type="System.Int32" DbType="integer NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="bbde43c1-5929-4774-89d6-c554107486b3" />
+      <Column Name="Value" Type="System.String" DbType="text NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="a3261d0c-b6cc-4874-98fb-c50675525a28" />
+      <Association Name="Layer_LayerDictionaryEntry" ed:AssociationGuid="ece5cf24-6f3a-43a1-9a26-bd9d8b484739" Member="Layer" ed:Guid="2bfccbb5-b187-4c11-8b33-16374376db28" ThisKey="LayerID" OtherKey="ID" Type="Layer" DeleteRule="CASCADE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="&quot;main&quot;.Documents" Member="Documents">
+    <Type Name="Document" ed:Guid="837bbc27-2f0d-4d87-a5b2-37422c54c0a8">
+      <Column Name="ID" Type="System.Int64" DbType="int8 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="2b7bcf82-3c17-4440-8422-64547bc46917" />
+      <Column Name="GUID" Type="System.Guid" DbType="uuid NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="7ada7c7d-666e-438b-af75-65e53cccad5e" />
+      <Column Name="CorpusID" Type="System.Int32" DbType="integer NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="16bc6beb-87b6-43d1-a2a9-0ac688fb3252" />
+      <Column Name="CountToken" Type="System.Int32" DbType="integer NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="31a7d701-e3d9-4846-a338-12945e74e14e" />
+      <Column Name="CountSentences" Type="System.Int32" DbType="integer NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="a8384210-d6a4-40cd-bfe3-55dd13470107" />
+      <Association Name="Corpus_Document" ed:AssociationGuid="0205f2bb-7ba1-475e-a631-b516306480ba" Member="Corpus" ed:Guid="b5ce23e2-01d7-407c-90a4-ed1d29318f23" ThisKey="CorpusID" OtherKey="ID" Type="Corpus" DeleteRule="CASCADE" IsForeignKey="true" />
+      <Association Name="Document_DocumentMetadataEntry" ed:AssociationGuid="517a5474-5eca-43f2-a602-0f16312b11c5" Member="DocumentMetadataEntries" ed:Guid="38f0c41a-4970-4746-9b50-f471e69addd4" ThisKey="ID" OtherKey="DocumentID" Type="DocumentMetadataEntry" />
+      <Association Name="Document_LayerDocument" ed:AssociationGuid="514921d7-6a2c-42c8-b2fc-91dd029a8bf4" Member="LayerDocuments" ed:Guid="0c9cd824-eec4-4413-9b08-6f1378bb696c" ThisKey="ID" OtherKey="DocumentID" Type="LayerDocument" />
+    </Type>
+  </Table>
+  <Table Name="&quot;main&quot;.LayerDocuments" Member="LayerDocuments">
+    <Type Name="LayerDocument" ed:Guid="40a51fd8-6eca-4673-95df-2e135f50eec1">
+      <Column Name="LayerID" Type="System.Int32" DbType="integer NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="f7da5602-1efb-4071-86c8-0f36735e0bc5" />
+      <Column Name="DocumentID" Type="System.Int64" DbType="integer NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="d440d4ff-6b1f-47b0-ba08-ea230b1e3942" />
+      <Column Name="Content" Type="System.Byte[]" DbType="bytea" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="1296116d-b52b-48f3-ab30-f57faa64ec3c" />
+      <Association Name="Layer_LayerDocument" ed:AssociationGuid="ea241ae8-997d-4590-982a-24484a712534" Member="Layer" ed:Guid="b6cdddde-def1-4175-90e5-a8ed99197221" ThisKey="LayerID" OtherKey="ID" Type="Layer" DeleteRule="CASCADE" IsForeignKey="true" />
+      <Association Name="Document_LayerDocument" ed:AssociationGuid="514921d7-6a2c-42c8-b2fc-91dd029a8bf4" Member="Document" ed:Guid="eda9b184-0bc8-421e-a44f-6ee8d66fec25" ThisKey="DocumentID" OtherKey="ID" Type="Document" DeleteRule="CASCADE" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="&quot;main&quot;.DocumentMetadataEntries" Member="DocumentMetadataEntries">
+    <Type Name="DocumentMetadataEntry" ed:Guid="7b933a9e-7c9a-4768-8db1-b12458f61aaf">
+      <Column Name="DocumentID" Type="System.Int64" DbType="integer NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="a9c74fea-733e-4b5e-a49f-6e73538d926c" />
+      <Column Name="Label" Type="System.String" DbType="text NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" MaxLength="250" ed:ValidateMaxLength="250" ed:ValidateRequired="true" ed:Guid="e01ff44e-1104-4020-a64c-4fb67ab3aaf1" />
+      <Column Name="Value" Type="System.Byte[]" DbType="bytea" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="6486b6c2-d0e5-4538-959e-2e6738673e29" />
+      <Association Name="Document_DocumentMetadataEntry" ed:AssociationGuid="517a5474-5eca-43f2-a602-0f16312b11c5" Member="Document" ed:Guid="6119b858-a3ca-4d26-aac1-a0b88eca33d6" ThisKey="DocumentID" OtherKey="ID" Type="Document" DeleteRule="CASCADE" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

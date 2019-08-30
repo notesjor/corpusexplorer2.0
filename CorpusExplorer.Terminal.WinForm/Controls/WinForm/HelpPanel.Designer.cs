@@ -41,6 +41,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       ((System.ComponentModel.ISupportInitialize)(this.btn_handson)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.btn_handbook)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.btn_online)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header1)).BeginInit();
       this.SuspendLayout();
       // 
       // flowLayoutPanel2
@@ -109,7 +110,9 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       ((System.ComponentModel.ISupportInitialize)(this.btn_handson)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.btn_handbook)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.btn_online)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.header1)).EndInit();
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 

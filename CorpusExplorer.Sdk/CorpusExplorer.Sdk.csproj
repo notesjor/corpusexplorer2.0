@@ -81,7 +81,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>mycert.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey2019.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <IntelliLockLocation>"C:\Program Files (x86)\Eziriz\IntelliLock\INTELLILOCK.exe"</IntelliLockLocation>
@@ -91,8 +91,8 @@
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=1.1.0.145, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpZipLib.1.1.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -103,8 +103,8 @@
     <Reference Include="Polenter.SharpSerializer, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.1\lib\netstandard1.0\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=6.2.5.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.2.5\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.2.10.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.2.10\lib\net45\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -273,7 +273,10 @@
     <Compile Include="Helper\AutoSplitBlockHelper.cs" />
     <Compile Include="Helper\AvailableAddonHelper.cs" />
     <Compile Include="Helper\DictionaryMergeHelper.cs" />
+    <Compile Include="Helper\DictionarySerializerHelper.cs" />
     <Compile Include="Helper\DynamicAddonLoader.cs" />
+    <Compile Include="Helper\EncodingFixer.cs" />
+    <Compile Include="Helper\IEnumerableStringSerializerHelper.cs" />
     <Compile Include="Helper\IEnumerableStatistics.cs" />
     <Compile Include="Helper\MetaDictionarySerializerHelper.cs" />
     <Compile Include="Helper\DictionaryToDataTableHelper.cs" />
@@ -300,6 +303,7 @@
     <Compile Include="Helper\TemplateTextGenerator.cs" />
     <Compile Include="Helper\TemporaryDirectory.cs" />
     <Compile Include="Helper\TemporaryFile.cs" />
+    <Compile Include="Helper\ThreadPoolHelper.cs" />
     <Compile Include="Helper\TypeEqualityComparer.cs" />
     <Compile Include="Helper\UniversalColor.cs" />
     <Compile Include="Helper\ValueMergeHelper.cs" />
@@ -322,6 +326,7 @@
     <Compile Include="Model\CorpusExplorer\FileSystem\FileSystemLayerHead.cs" />
     <Compile Include="Model\Delegates\HydraDelegate.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusCleaner.cs" />
+    <Compile Include="Utils\CorpusManipulation\CorpusNormalizer.cs" />
     <Compile Include="Utils\DataTableWriter\HtmlTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\SqlDataOnlyTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\SqlSchemaOnlyTableWriter.cs" />
@@ -330,6 +335,7 @@
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterConll.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCsv.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCsvMetadataOnly.cs" />
+    <Compile Include="Utils\DocumentProcessing\Exporter\ExporterHtmlPure.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterJson.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterPlaintext.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterPlaintextPure.cs" />
@@ -517,6 +523,7 @@
     <Compile Include="Utils\ReMapper\Abstract\AbstractReMapper.cs" />
     <Compile Include="Utils\ReMapper\ReMapperInline.cs" />
     <Compile Include="Utils\ReMapper\ReMapperOutline.cs" />
+    <Compile Include="Utils\ReMapper\ReMapperStandoff.cs" />
     <Compile Include="ViewModel\Abstract\AbstractCompareViewModel.cs" />
     <Compile Include="ViewModel\Abstract\AbstractOverTimeViewModel.cs" />
     <Compile Include="ViewModel\BurrowsDeltaViewModel.cs" />
@@ -664,8 +671,10 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="CorpusExplorer.Sdk.psproj" />
-    <None Include="CorpusExplorerNextSnKey.pfx" />
-    <None Include="mycert.pfx" />
+    <None Include="LICENSE.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="CorpusExplorerNextSnKey2019.pfx" />
     <None Include="package.nuspec">
       <SubType>Designer</SubType>
     </None>

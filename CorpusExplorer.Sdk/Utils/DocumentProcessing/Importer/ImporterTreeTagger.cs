@@ -18,9 +18,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
     private readonly LayerValueState _layerW = new LayerValueState("Wort", 0);
     private readonly object _layerLock = new object();
 
+    public HashSet<string> SentenceMarks = new HashSet<string> { "$.", ".", "SENT", "PON", "FS", "interp" };
+
     protected override IEnumerable<AbstractCorpusAdapter> Execute(string importFilePath)
     {
-      var sentenceMarks = new HashSet<string> {"$.", ".", "SENT", "PON", "FS", "interp"};
       var lines = FileIO.ReadLines(importFilePath, Configuration.Encoding);
 
       var docW = new List<string[]>();
@@ -34,7 +35,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
       foreach (var line in lines)
         try
         {
-          var split = line.Split(new[] {"\t"}, StringSplitOptions.RemoveEmptyEntries);
+          var split = line.Split(new[] {"\t"}, StringSplitOptions.None);
           if (split.Length != 3)
             continue;
 
@@ -42,11 +43,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
           senP.Add(split[1]);
           senL.Add(split[2]);
 
-          if (!sentenceMarks.Contains(split[1]))
+          if (!SentenceMarks.Contains(split[1]))
             continue;
 
           // Bei Satzende
-
           docW.Add(senW.ToArray());
           docP.Add(senP.ToArray());
           docL.Add(senL.ToArray());

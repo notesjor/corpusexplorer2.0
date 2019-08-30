@@ -8,6 +8,8 @@ using CorpusExplorer.Sdk.Extern.Plaintext.EasyHashtagSeparation;
 using CorpusExplorer.Sdk.Extern.Plaintext.Europarl;
 using CorpusExplorer.Sdk.Extern.Plaintext.LeipzigerWortschatz;
 using CorpusExplorer.Sdk.Extern.Plaintext.RawMailMsg;
+using CorpusExplorer.Sdk.Extern.Plaintext.Redewiedergabe;
+using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
@@ -24,7 +26,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
   {
     public override IEnumerable<AbstractAdditionalTagger> AddonAdditionalTagger => null;
     public override IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> AddonBackends => null;
-
+    public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter => null;
     /// <summary>
     ///   Liste mit Exportern die Projekte, Korpora und Schnappschüsse (alle IHydra) exportieren können
     /// </summary>
@@ -37,7 +39,8 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter =>
       new Dictionary<string, AbstractImporter>
       {
-        {"CLAN/Childes (*.cex)|*.cex", new ImporterClanChildes()}
+        {"CLAN/Childes (*.cex)|*.cex", new ImporterClanChildes()},
+        { "Projekt: http://www.redewiedergabe.de/ (*_metadata.tsv)|*_metadata.tsv", new RedewiedergabeImporter() }
       };
 
     /// <summary>

@@ -49,12 +49,11 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.SelectLayerValues
       {
         if (string.IsNullOrEmpty(value))
           return;
-        var proj = CorpusExplorerEcosystem.InitializeMinimal();
-        if (!new HashSet<string>(proj.LayerDisplaynames).Contains(value))
+        if (!new HashSet<string>(CorpusExplorerEcosystem.CurrentProject.LayerDisplaynames).Contains(value))
           return;
 
         _selectedLayerDisplayname = value;
-        _values = proj.GetLayerValues(value).ToArray();
+        _values = CorpusExplorerEcosystem.CurrentProject.GetLayerValues(value).ToArray();
         radAutoCompleteBox1.AutoCompleteDataSource = _values;
       }
     }

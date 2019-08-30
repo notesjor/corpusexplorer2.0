@@ -119,7 +119,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       {
         _guid = Guid.NewGuid(),
         _documentMetadata = documentMetadata ?? new Dictionary<Guid, Dictionary<string, object>>(),
-        _metadata = corpusMetadata           ?? new Dictionary<string, object>(),
+        _metadata = corpusMetadata ?? new Dictionary<string, object>(),
         _layers = new List<LayerAdapterWriteDirect>()
       };
     }
@@ -141,6 +141,9 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       return _metadata;
     }
 
+    public Dictionary<string, Dictionary<string, int>> GetDictionaryForNormalization() 
+      => _layers.ToDictionary(x => x.Displayname, x => x.ReciveRawLayerDictionary());
+
     public override int GetDocumentLengthInSentences(Guid documentGuid)
     {
       return _layers.FirstOrDefault(x => x.ContainsDocument(documentGuid))?[documentGuid]?.Length ?? 0;
@@ -161,12 +164,12 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     {
       var res = new Dictionary<string, HashSet<object>>();
       foreach (var x in _documentMetadata)
-      foreach (var o in x.Value)
-      {
-        if (!res.ContainsKey(o.Key))
-          res.Add(o.Key, new HashSet<object>());
-        res[o.Key].Add(o.Value);
-      }
+        foreach (var o in x.Value)
+        {
+          if (!res.ContainsKey(o.Key))
+            res.Add(o.Key, new HashSet<object>());
+          res[o.Key].Add(o.Value);
+        }
 
       return res;
     }
@@ -314,6 +317,34 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       }
     }
 
+    public Dictionary<Guid, long> GetFuriousIndex(string layerDisplayname)
+    {
+      long pos = 24; // 8 (SEDITION) + 16 (GUID-Korpus)
+      using (var ms = new MemoryStream())
+      {
+        MetaDictionarySerializerHelper.Serialize(ms, _metadata);
+        pos += ms.Length;
+      }
+
+      using (var ms = new MemoryStream())
+      {
+        MetaDictionarySerializerHelper.Serialize(ms, _documentMetadata);
+        pos += ms.Length;
+      }
+
+      foreach (var l in _layers)
+        if (l.Displayname == layerDisplayname)
+          return l.GetFuriousIndex(pos);
+        else
+          using (var ms = new MemoryStream())
+          {
+            l.Save(ms);
+            pos += ms.Length;
+          }
+
+      return null;
+    }
+
     public override void SetCorpusMetadata(string key, object value)
     {
       if (_metadata.ContainsKey(key))
@@ -388,7 +419,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       if (buffer.Length > 0)
         using (var ms = new MemoryStream(buffer))
         {
-          res._metadata = (Dictionary<string, object>) bf.Deserialize(ms);
+          res._metadata = (Dictionary<string, object>)bf.Deserialize(ms);
         }
 
       // Document Metadata.Length
@@ -401,7 +432,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       if (buffer.Length > 0)
         using (var ms = new MemoryStream(buffer))
         {
-          res._documentMetadata = (Dictionary<Guid, Dictionary<string, object>>) bf.Deserialize(ms);
+          res._documentMetadata = (Dictionary<Guid, Dictionary<string, object>>)bf.Deserialize(ms);
         }
 
       // Layer
@@ -453,8 +484,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       {
         var guids = new HashSet<Guid>();
         foreach (var l in res._layers)
-        foreach (var dsel in l.DocumentGuids)
-          guids.Add(dsel);
+          foreach (var dsel in l.DocumentGuids)
+            guids.Add(dsel);
 
         res._documentMetadata = guids.ToDictionary(x => x, x => new Dictionary<string, object>());
       }

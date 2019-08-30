@@ -6,7 +6,7 @@ using Google.Apis.YouTube.v3.Data;
 
 namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
 {
-  public class YoutubeAuthentication : AbstractAuthentication
+  public class YouTubeAuthentication : AbstractAuthentication
   {
     public override string ProviderName => "YouTube via API-Key";
 
@@ -27,7 +27,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
         return new YouTubeService(new BaseClientService.Initializer
         {
           ApplicationName = Settings["ApplicationName"]?.Trim(),
-          ApiKey = Settings["ApiKey"]?.Trim()
+          ApiKey = Settings["ApiKey"]?.Trim(), 
         });
       }
       catch

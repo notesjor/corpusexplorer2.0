@@ -56,7 +56,7 @@
       this.ihdPanel1.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.ihdPanel1, "ihdPanel1");
       this.ihdPanel1.IHDDescription = "Wählen Sie einen Tagger und konfigurieren Sie ihn für die automatische Annotation" +
-    "";
+    ".";
       this.ihdPanel1.IHDHeader = "Tagger-Optionen";
       this.ihdPanel1.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.tag_green1;
       this.ihdPanel1.Name = "ihdPanel1";

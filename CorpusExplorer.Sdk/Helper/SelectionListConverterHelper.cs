@@ -101,7 +101,7 @@ namespace CorpusExplorer.Sdk.Helper
         stb.Append($"#{c.Key}>{string.Join(">", c.Value.ToArray())}");
 
       foreach (var sub in selection.SubSelections)
-        stb.Append(ToListStream(sub));
+        stb.Append(ToListStream(selection.Guid.ToString(), sub));
 
       return stb.ToString();
     }

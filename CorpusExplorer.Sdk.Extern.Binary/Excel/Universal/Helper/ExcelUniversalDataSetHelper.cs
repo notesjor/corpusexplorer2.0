@@ -22,7 +22,7 @@ namespace CorpusExplorer.Sdk.Extern.Binary.Excel.Universal.Helper
             UseColumnDataType = true,
             ConfigureDataTable = tableReader => new ExcelDataTableConfiguration
             {
-              UseHeaderRow = true
+              UseHeaderRow = false
             }
           });
       }

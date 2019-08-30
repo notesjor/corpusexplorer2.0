@@ -14,11 +14,10 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
   public static class GuiModuleBuilder
   {
     private static IMainForm _dashboard;
-    private static GuiModelBuilderProjectRequestDelegate _getProject;
 
     public static void InitializeGuiModuleBuilder(IMainForm dashboard, GuiModelBuilderProjectRequestDelegate getProject)
     {
-      _getProject = getProject;
+      GuiModulePrototype.GetProjectDelegate = getProject;
       _dashboard = dashboard;
     }
 
@@ -68,7 +67,6 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
         Margin = new Padding(0),
         Padding = new Padding(0),
         Name = "Modul_" + header,
-        GetProjectDelegate = _getProject,
         ModulPage = tileClick,
         Dashboard = _dashboard
       };

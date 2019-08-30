@@ -16,6 +16,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
 {
   public abstract class AbstractTaggerOneWordPerLine : AbstractTagger
   {
+    private const string _guidKey = "GUID";
+
     private readonly Dictionary<string, AbstractLayerState> _layers =
       new Dictionary<string, AbstractLayerState>();
 
@@ -40,11 +42,13 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
 
     protected virtual string TaggerFileSeparator => "\r\n<ENDOFCORPUSEXPLORERFILE>\r\n";
 
-    protected virtual string[] TaggerValueSeparator => new[] {"\t"};
+    protected virtual string[] TaggerValueSeparator => new[] { "\t" };
 
     public override void Execute()
     {
       Initialize();
+
+      FixMissingGuid();
 
       var meta = ParseMetadata();
 
@@ -58,6 +62,23 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
                                           null));
     }
 
+    private void FixMissingGuid()
+    {
+      foreach (var i in Input)
+      {
+        if (i.ContainsKey(_guidKey))
+        {
+          var g = i[_guidKey];
+          if (g is string gs && Guid.TryParse(gs, out var guid))
+            i[_guidKey] = guid;
+          else
+            i[_guidKey] = Guid.NewGuid();
+        }
+        else
+          i[_guidKey] = Guid.NewGuid();
+      }
+    }
+
     protected LayerRangeState AddRangeLayer(string displayname)
     {
       var res = new LayerRangeState(displayname);
@@ -67,24 +88,27 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
 
     protected void AddValueLayer(string displayname, int valueIndex, int minimumLength = 1)
     {
-      var res = new LayerValueState(displayname, valueIndex) {MinimumDataLength = minimumLength};
+      var res = new LayerValueState(displayname, valueIndex) { MinimumDataLength = minimumLength };
       _layers.Add(displayname, res);
     }
 
     protected abstract string ExecuteTagger(string text);
 
-    protected string GenerateText(ref Dictionary<string, object>[] docs)
+    protected string GenerateText(ref Dictionary<string, object>[] docs, out Guid[] guids)
     {
       var stb = new StringBuilder();
+      var gsl = new List<Guid>();
 
-      foreach (var doc in docs)
+      foreach (var d in docs)
       {
-        var m = doc;
-        var t = m.Get("Text", string.Empty);
-        if (string.IsNullOrEmpty(t) || t.Length < TaggerContentLengthMin)
+        var doc = d;
+        var t = doc.Get("Text", string.Empty);
+        if (string.IsNullOrEmpty(t) || t.Length < 1)
           continue;
 
-        stb.Append(TextPreMergerCleanup(t, ref m));
+        gsl.Add((Guid)doc[_guidKey]);
+
+        stb.Append(TextPreMergerCleanup(t, ref doc));
         stb.Append(TaggerFileSeparator);
       }
 
@@ -100,6 +124,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
       }
 
       stb.Clear();
+      guids = gsl.ToArray();
       return TextPostTokenizerPreTaggerCleanup(text);
     }
 
@@ -152,7 +177,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
       var document = keys.ToDictionary(x => x, x => new List<int[]>());
       var values = keys.ToDictionary(x => x, x => 0);
 
-      var lines = text.Split(new[] {"\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries);
+      var lines = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
       foreach (var line in lines)
       {
         var entries = line.Split(TaggerValueSeparator, StringSplitOptions.RemoveEmptyEntries);
@@ -215,20 +240,14 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
 
     private Dictionary<Guid, Dictionary<string, object>> ParseMetadata()
     {
-      var meta = new ConcurrentDictionary<Guid, Dictionary<string, object>>();
+      var res = new Dictionary<Guid, Dictionary<string, object>>();
 
-      Parallel.ForEach(
-                       Input,
-                       Configuration.ParallelOptions,
-                       sdm =>
-                       {
-                         var dic = sdm.GetMetaDictionary().ToDictionary(entry => entry.Key, entry => entry.Value);
-                         var guid = sdm.Get("GUID", Guid.NewGuid());
-                         dic.Add("GUID", guid);
-                         meta.TryAdd(guid, dic);
-                       });
-
-      return meta.ToDictionary(x => x.Key, x => x.Value);
+      foreach (var sdm in Input)
+      {
+        res.Add((Guid)sdm[_guidKey], sdm.GetMetaDictionary().ToDictionary(entry => entry.Key, entry => entry.Value));
+      }
+      
+      return res;
     }
 
     private void StartTaggingProcess()
@@ -258,13 +277,12 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
                        Configuration.ParallelOptions,
                        i =>
                        {
-                         Dictionary<string, object>[] turn;
-                         if (!InternQueue.TryDequeue(out turn))
+                         if (!InternQueue.TryDequeue(out var turn))
                            return;
 
                          // TreeTagger
-                         var text = TextPostTaggerCleanup(ExecuteTagger(GenerateText(ref turn)));
-                         var tmp = text.Split(new[] {TaggerFileSeparator}, StringSplitOptions.RemoveEmptyEntries);
+                         var text = TextPostTaggerCleanup(ExecuteTagger(GenerateText(ref turn, out var guids)));
+                         var tmp = text.Split(new[] { TaggerFileSeparator }, StringSplitOptions.RemoveEmptyEntries);
                          // mkpt - maximal korrekt geparste texte
                          var correct = text.EndsWith(TaggerFileSeparator) ? tmp.Length : tmp.Length - 1;
 
@@ -280,7 +298,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
                                       {
                                         try
                                         {
-                                          ParseDocument(layerKeys, turn[j].Get("GUID", Guid.NewGuid()), ref tmp[j]);
+                                          ParseDocument(layerKeys, guids[j], ref tmp[j]);
                                           lock (@lock)
                                           {
                                             tmp[j] = null; // wichtig zu Error-Erkennung

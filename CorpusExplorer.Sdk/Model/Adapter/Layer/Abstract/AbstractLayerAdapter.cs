@@ -210,12 +210,18 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
     /// <param name="newDisplayname">Displayname des neuen LayerStates</param>
     /// <param name="valueIndex">Index des Layers</param>
     /// <param name="clearDictionary">Wenn true, wird das Dictionary des Layers nicht kopiert.</param>
+    /// <param name="clearDocument">Wenn true, wird das Dokument mit Sätzen/Token angelegt, die Token werden aber auf 0 gesetzt</param>
+    /// <param name="noDocuments">Noch restriktiver als clearDocument - wird dieser Wert auf <see langword="true"/>gesetzt, werden alle Dokumente verworfen.</param>
     /// <returns></returns>
-    public LayerValueState ToLayerState(string newDisplayname = null, int valueIndex = 0, bool clearDictionary = false)
+    public LayerValueState ToLayerState(string newDisplayname = null, int valueIndex = 0, bool clearDictionary = false, bool clearDocument = false, bool noDocuments = false)
     {
       return new LayerValueState(newDisplayname ?? Displayname, 0)
       {
-        Documents = GetDocumentDictionary().ToDictionary(x => x.Key, x => x.Value),
+        Documents = noDocuments   ? new Dictionary<Guid, int[][]>() :
+                    clearDocument ? GetDocumentDictionary()
+                                     .ToDictionary(x => x.Key,
+                                                   x => x.Value.Select(y => y.Select(z => 0).ToArray()).ToArray()) :
+                                    GetDocumentDictionary().ToDictionary(x => x.Key, x => x.Value),
         Cache = clearDictionary
                   ? new Dictionary<string, int>()
                   : GetValueDictionary()

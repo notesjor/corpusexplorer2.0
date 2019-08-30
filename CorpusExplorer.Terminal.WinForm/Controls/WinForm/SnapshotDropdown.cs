@@ -41,10 +41,9 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       radTreeView1.Nodes.Clear();
 
       var root = new RadTreeNode();
-      var proj = CorpusExplorerEcosystem.InitializeMinimal();
-      _current = proj.CurrentSelection;
+      _current = CorpusExplorerEcosystem.CurrentProject.CurrentSelection;
 
-      foreach (var selection in proj.Selections)
+      foreach (var selection in CorpusExplorerEcosystem.CurrentProject.Selections)
         BuildTree(selection, root);
 
       radTreeView1.Nodes.AddRange(root.Nodes);

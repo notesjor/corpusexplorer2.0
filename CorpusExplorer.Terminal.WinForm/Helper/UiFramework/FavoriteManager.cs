@@ -141,8 +141,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       foreach (var item in items)
         item.Click += (s, e) =>
         {
-          var proj = CorpusExplorerEcosystem.InitializeMinimal();
-          if (proj.CountCorpora == 0)
+          if (CorpusExplorerEcosystem.CurrentProject.CountCorpora == 0)
           {
             MessageBox.Show(Resources.Msg_YouNeedToLoadACorpus);
             return;

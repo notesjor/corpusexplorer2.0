@@ -434,7 +434,7 @@ namespace CorpusExplorer.Sdk.Model
     /// </returns>
     public IEnumerable<Guid> FindDocumentByMetadata(string exampleKey, object exampleValue)
     {
-      return FindDocumentByMetadata(new Dictionary<string, object> {{exampleKey, exampleValue}});
+      return FindDocumentByMetadata(new Dictionary<string, object> { { exampleKey, exampleValue } });
     }
 
     /// <summary>
@@ -642,12 +642,12 @@ namespace CorpusExplorer.Sdk.Model
       var res = new Dictionary<string, HashSet<object>>();
 
       foreach (var x in meta)
-      foreach (var y in x.Value)
-      {
-        if (!res.ContainsKey(y.Key))
-          res.Add(y.Key, new HashSet<object>());
-        res[y.Key].Add(y.Value);
-      }
+        foreach (var y in x.Value)
+        {
+          if (!res.ContainsKey(y.Key))
+            res.Add(y.Key, new HashSet<object>());
+          res[y.Key].Add(y.Value);
+        }
 
       return res;
     }
@@ -1046,6 +1046,7 @@ namespace CorpusExplorer.Sdk.Model
     /// <param name="project">Projekt</param>
     /// <param name="definition">Definierte Auswahl</param>
     /// <param name="displayname">Anzeigename der anstelle des automatisch generierten verwendet wird</param>
+    /// <param name="noParent">Setze keinen Parent-Schnappschuss</param>
     /// <param name="queriesForReproduction">Abfragen, die zur Generierung der Selection notwendig sind.</param>
     /// <returns>Seletion.</returns>
     public static Selection Create(
@@ -1053,6 +1054,7 @@ namespace CorpusExplorer.Sdk.Model
       Dictionary<Guid, HashSet<Guid>> definition,
       string displayname,
       Selection parent,
+      bool noParent,
       IEnumerable<AbstractFilterQuery> queriesForReproduction = null)
     {
       var date = DateTime.Now;
@@ -1068,14 +1070,17 @@ namespace CorpusExplorer.Sdk.Model
       res.Metadata.Add(Resources.Created, date);
       res.Metadata.Add(Resources.Label, res.Displayname);
 
-      parent?._subSelections.Add(res);
+      if (noParent)
+        project._selections.Add(res);
+      else
+        parent?._subSelections.Add(res);
 
       return res;
     }
 
-    public Selection Create(IEnumerable<Guid> guids, string displayname)
+    public Selection Create(IEnumerable<Guid> guids, string displayname, bool noParent)
     {
-      return Create(Project, DocumentGuidsToSelectionDictionary(guids), displayname, this);
+      return Create(Project, DocumentGuidsToSelectionDictionary(guids), displayname, this, noParent);
     }
 
     private Dictionary<Guid, HashSet<Guid>> DocumentGuidsToSelectionDictionary(IEnumerable<Guid> guids)
@@ -1090,15 +1095,15 @@ namespace CorpusExplorer.Sdk.Model
         if (dic.ContainsKey(csel))
           dic[csel].Add(guid);
         else
-          dic.Add(csel, new HashSet<Guid> {guid});
+          dic.Add(csel, new HashSet<Guid> { guid });
       }
 
       return dic;
     }
 
-    public Selection Create(Dictionary<Guid, HashSet<Guid>> definition, string displayName)
+    public Selection Create(Dictionary<Guid, HashSet<Guid>> definition, string displayName, bool noParent)
     {
-      return Create(Project, definition, displayName, this);
+      return Create(Project, definition, displayName, this, noParent);
     }
 
     /// <summary>
@@ -1106,14 +1111,15 @@ namespace CorpusExplorer.Sdk.Model
     /// </summary>
     /// <param name="queries">Queries</param>
     /// <param name="displayName">Überschreibt den automatisch generierten Anzeigenamen</param>
+    /// <param name="noParent">Erzeugt den Schnappschuss ohne Parent-Schnappschuss</param>
     /// <returns></returns>
-    public Selection Create(IEnumerable<AbstractFilterQuery> queries, string displayName)
+    public Selection Create(IEnumerable<AbstractFilterQuery> queries, string displayName, bool noParent)
     {
       if (queries == null)
         return null;
 
       var q = queries.ToArray();
-      return Create(Project, QueryFilter.SearchOnDocumentLevel(this, q), displayName, this, q);
+      return Create(Project, QueryFilter.SearchOnDocumentLevel(this, q), displayName, this, noParent);
     }
 
     /// <summary>
@@ -1212,7 +1218,7 @@ namespace CorpusExplorer.Sdk.Model
         T value;
         try
         {
-          value = (T) data;
+          value = (T)data;
         }
         catch
         {
@@ -1278,7 +1284,7 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns></returns>
     public int[][] HydraOptimization(AbstractCorpusAdapter corpus, Guid documentGuid, int[][] sentences)
     {
-      if (Queries        == null ||
+      if (Queries == null ||
           Queries.Length == 0)
         return sentences;
 
@@ -1304,7 +1310,7 @@ namespace CorpusExplorer.Sdk.Model
     {
       _subSelections.Clear();
 
-      var temp = Create(queries, Displayname);
+      var temp = Create(queries, Displayname, false);
       _selection = temp._selection;
     }
 

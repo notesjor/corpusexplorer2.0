@@ -36,7 +36,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>mycert.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey2019.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -50,6 +50,12 @@
     <Compile Include="Abstract\AbstractGenericJsonFormatScraper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryManifest.cs" />
+    <Compile Include="Speedy\Model\Property.cs" />
+    <Compile Include="Speedy\Model\Speedy.cs" />
+    <Compile Include="Speedy\SpeedyDataReader.cs" />
+    <Compile Include="Speedy\ExporterSpeedy.cs" />
+    <Compile Include="Speedy\ImporterSpeedy.cs" />
+    <Compile Include="Speedy\SpeedyScraper.cs" />
     <Compile Include="TwitterStatus\Model\Annotation.cs" />
     <Compile Include="TwitterStatus\Model\AspectRatio.cs" />
     <Compile Include="TwitterStatus\Model\Coordinates.cs" />
@@ -113,8 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="CorpusExplorerNextSnKey.pfx" />
-    <None Include="mycert.pfx" />
+    <None Include="CorpusExplorerNextSnKey2019.pfx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

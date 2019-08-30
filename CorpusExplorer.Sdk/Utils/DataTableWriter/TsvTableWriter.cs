@@ -1,6 +1,8 @@
 ﻿using System.Data;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.DataTableWriter
@@ -17,16 +19,21 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
 
     protected override void WriteBody(DataTable table)
     {
-      foreach (DataRow x in table.Rows)
-      {
-        var r = new string[table.Columns.Count];
-        for (var i = 0; i < table.Columns.Count; i++)
-          r[i] = x[i] == null   ? "" :
-                 x[i] is string ? EnsureValue(x[i].ToString()) :
-                                  x[i].ToString().Replace(",", ".");
+      var cols = table.Columns.Count;
+      var wlock = new object();
 
-        WriteOutput($"{string.Join("\t", r)}\r\n");
-      }
+      Parallel.ForEach(table.AsEnumerable(), Configuration.ParallelOptions, x =>
+          {
+            var r = new string[cols];
+            for (var i = 0; i < r.Length; i++)
+              r[i] = x[i] == null ? "" :
+                     x[i] is string ? EnsureValue(x[i].ToString()) :
+                                      x[i].ToString().Replace(",", ".");
+            var line = $"{string.Join("\t", r)}\r\n";
+
+            lock (wlock)
+              WriteOutput(line);
+          });
     }
 
     protected override void WriteFooter()
@@ -35,7 +42,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
 
     public override AbstractTableWriter Clone(Stream stream)
     {
-      return new TsvTableWriter {OutputStream = stream};
+      return new TsvTableWriter { OutputStream = stream, WriteTid = WriteTid };
     }
 
     private string EnsureValue(string value)

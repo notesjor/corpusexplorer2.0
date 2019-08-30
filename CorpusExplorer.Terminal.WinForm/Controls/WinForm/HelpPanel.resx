@@ -159,7 +159,7 @@
     <value>btn_video</value>
   </data>
   <data name="&gt;&gt;btn_video.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_video.Parent" xml:space="preserve">
     <value>flowLayoutPanel2</value>
@@ -206,7 +206,7 @@
     <value>btn_handson</value>
   </data>
   <data name="&gt;&gt;btn_handson.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_handson.Parent" xml:space="preserve">
     <value>flowLayoutPanel2</value>
@@ -256,7 +256,7 @@
     <value>btn_handbook</value>
   </data>
   <data name="&gt;&gt;btn_handbook.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_handbook.Parent" xml:space="preserve">
     <value>flowLayoutPanel2</value>
@@ -327,7 +327,7 @@
     <value>btn_online</value>
   </data>
   <data name="&gt;&gt;btn_online.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_online.Parent" xml:space="preserve">
     <value>flowLayoutPanel2</value>
@@ -336,13 +336,13 @@
     <value>3</value>
   </data>
   <data name="flowLayoutPanel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+    <value>Bottom</value>
   </data>
   <data name="flowLayoutPanel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 46</value>
+    <value>0, 56</value>
   </data>
   <data name="flowLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>525, 114</value>
+    <value>525, 113</value>
   </data>
   <data name="flowLayoutPanel2.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -372,16 +372,19 @@
     <value>4, 5, 4, 5</value>
   </data>
   <data name="header1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>525, 46</value>
+    <value>133, 48</value>
   </data>
   <data name="header1.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
+  </data>
+  <data name="header1.Text" xml:space="preserve">
+    <value>&lt;html&gt;&lt;span style="font-size:14.5pt"&gt;{HeaderHead}&lt;/span&gt;&lt;br/&gt;&lt;span style="font-size:11pt"&gt;{HeaderDescription}&lt;/span&gt;&lt;/html&gt;</value>
   </data>
   <data name="&gt;&gt;header1.Name" xml:space="preserve">
     <value>header1</value>
   </data>
   <data name="&gt;&gt;header1.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
   <data name="&gt;&gt;header1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -399,7 +402,7 @@
     <value>0, 160</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>525, 160</value>
+    <value>525, 169</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>HelpPanel</value>

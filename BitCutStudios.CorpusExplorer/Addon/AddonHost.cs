@@ -107,20 +107,13 @@ namespace Bcs.Addon
                 InMemoryErrorConsole.Log(ex);
               }
           }
-          catch (BadImageFormatException)
-          {
-            // ignore
-          }
-          catch (ReflectionTypeLoadException)
-          {
-            // ignore
-          }
           catch (Exception ex)
           {
-            // Hunspellx64 und Hunspellx86 werfen sonst sinnfreie Fehler
             if (file.Contains("Hunspellx"))
               continue;
             if (file.EndsWith("udpipe_csharp.dll"))
+              continue;
+            if(ex is BadImageFormatException)
               continue;
 
             InMemoryErrorConsole.Log(ex);

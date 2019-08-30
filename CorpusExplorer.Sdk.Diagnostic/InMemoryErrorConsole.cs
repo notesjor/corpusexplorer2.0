@@ -50,7 +50,7 @@ namespace CorpusExplorer.Sdk.Diagnostic
 
           if (_insightAllowed)
           {
-            _telemetryClient = new TelemetrieClient(_insigtId, "212.224.95.216", 8512, country, city);
+            _telemetryClient = new TelemetrieClient(_insigtId, "81.30.156.64", 8512, country, city);
           }
         }
       }

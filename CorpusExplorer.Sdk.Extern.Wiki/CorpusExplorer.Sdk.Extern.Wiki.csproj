@@ -31,8 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.11.4.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.11.4\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.11.12.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.12\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -65,6 +68,22 @@
     <Compile Include="Wikipedia\Serializer\WikipediaFullDumpSerializer.cs" />
     <Compile Include="Wikipedia\WikipediaCleanup.cs" />
     <Compile Include="Wikipedia\WikipediaScraper.cs" />
+    <Compile Include="Wiktionary\Model\Original\comment.cs" />
+    <Compile Include="Wiktionary\Model\Original\contributor.cs" />
+    <Compile Include="Wiktionary\Model\Original\ItemsChoiceType.cs" />
+    <Compile Include="Wiktionary\Model\Original\minor.cs" />
+    <Compile Include="Wiktionary\Model\Original\namespace.cs" />
+    <Compile Include="Wiktionary\Model\Original\namespaces.cs" />
+    <Compile Include="Wiktionary\Model\Original\page.cs" />
+    <Compile Include="Wiktionary\Model\Original\redirect.cs" />
+    <Compile Include="Wiktionary\Model\Original\revision.cs" />
+    <Compile Include="Wiktionary\Model\Original\mediawiki.cs" />
+    <Compile Include="Wiktionary\Model\Original\siteinfo.cs" />
+    <Compile Include="Wiktionary\Model\Original\text.cs" />
+    <Compile Include="Wiktionary\Model\Parsed\Form.cs" />
+    <Compile Include="Wiktionary\Model\Parsed\Entry.cs" />
+    <Compile Include="Wiktionary\Model\Parsed\Meaning.cs" />
+    <Compile Include="Wiktionary\WiktionaryParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj">

@@ -19,7 +19,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -346,6 +346,26 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties {
         internal static System.Drawing.Bitmap reddit_padlock_24px {
             get {
                 object obj = ResourceManager.GetObject("reddit_padlock_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rss_128px {
+            get {
+                object obj = ResourceManager.GetObject("rss@128px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rss_24px {
+            get {
+                object obj = ResourceManager.GetObject("rss@24px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

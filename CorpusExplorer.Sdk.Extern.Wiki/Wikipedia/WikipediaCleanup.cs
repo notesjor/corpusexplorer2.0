@@ -37,7 +37,7 @@ namespace CorpusExplorer.Sdk.Extern.Wiki.Wikipedia
         var doc = new HtmlDocument();
         doc.Load(fileOutput.Path, Configuration.Encoding);
 
-        return doc.DocumentNode.SelectNodes("/body").First().InnerText;
+        return doc.DocumentNode.SelectNodes("//body").First().InnerText;
       }
     }
 

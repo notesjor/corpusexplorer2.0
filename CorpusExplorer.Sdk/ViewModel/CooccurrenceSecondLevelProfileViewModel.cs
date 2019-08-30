@@ -10,19 +10,19 @@ namespace CorpusExplorer.Sdk.ViewModel
   {
     public string LayerValue { get; set; }
     public string LayerDisplayname { get; set; } = "Wort";
-    public Dictionary<string, Dictionary<string, double>> CooccurrenceDuos { get; set; }
+    public Dictionary<string, double> CooccurrencesSimilarity { get; set; }
 
     public DataTable GetDataTable()
     {
       var dt = new DataTable();
-      dt.Columns.Add($"{LayerDisplayname} (A)", typeof(string));
-      dt.Columns.Add($"{LayerDisplayname} (B)", typeof(string));
-      dt.Columns.Add("Signifikanz", typeof(double));
+      dt.Columns.Add(LayerDisplayname, typeof(string));
+      dt.Columns.Add("Ähnlichkeit", typeof(double));
 
       dt.BeginLoadData();
-      foreach (var duo in CooccurrenceDuos)
-      foreach (var part in duo.Value)
-        dt.Rows.Add(duo.Key, part.Key, part.Value);
+      foreach (var x in CooccurrencesSimilarity)
+      {
+        dt.Rows.Add(x.Key, x.Value);
+      }
       dt.EndLoadData();
 
       return dt;
@@ -35,7 +35,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       block.LayerDisplayname = LayerDisplayname;
       block.Calculate();
 
-      CooccurrenceDuos = block.CooccurrenceDuos;
+      CooccurrencesSimilarity = block.CooccurrencesSimilarity;
     }
 
     protected override bool Validate()

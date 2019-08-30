@@ -23,17 +23,11 @@ using CorpusExplorer.Sdk.Extern.FuzzyCloneDetection.ViewModel;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus;
-using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
-using CorpusExplorer.Sdk.Model.Extension;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Terminal;
 using CorpusExplorer.Sdk.Utils.CorpusManipulation;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Crawler;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger;
 using CorpusExplorer.Sdk.Utils.Filter;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
@@ -43,11 +37,9 @@ using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser;
 using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
 using CorpusExplorer.Terminal.WinForm.Forms.CloneDetection;
-using CorpusExplorer.Terminal.WinForm.Forms.CorpusError;
 using CorpusExplorer.Terminal.WinForm.Forms.Error;
 using CorpusExplorer.Terminal.WinForm.Forms.Insight;
 using CorpusExplorer.Terminal.WinForm.Forms.Interfaces;
-using CorpusExplorer.Terminal.WinForm.Forms.Scraper;
 using CorpusExplorer.Terminal.WinForm.Forms.Simple;
 using CorpusExplorer.Terminal.WinForm.Forms.Snapshot;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
@@ -109,7 +101,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     /// <summary>
     ///   Initializes a new instance of the <see cref="Dashboard" /> class.
     /// </summary>
-    public Dashboard(string[] args, bool quickMode)
+    public Dashboard(string[] args)
       : base(null)
     {
       Serializer.LogErrors = false;
@@ -205,17 +197,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       Corpus_LaodAvailabelCorpora();
       Serializer.LogErrors = true;
 
-      #region QuickMode
-
-      if (args != null && args.Length >= 2 && args[0] == "quick")
-      {
-        Hide();
-        QuickGui(args);
-        return;
-      }
-
-      #endregion
-
       #region Aktuelles und Neuigkeiten /UND/ InAppAddons
 
       //Aktuelles
@@ -263,7 +244,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       {
         // ignore
       }
-      
+
       #endregion
 
       Welcome.SplashClose();
@@ -287,51 +268,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         _currentView?.ViewModelClear();
         _currentView = value;
       }
-    }
-
-    private void AddCorpusToProject(AbstractCorpusAdapter corpus, bool autoReload)
-    {
-      if (corpus == null ||
-          corpus.CountDocuments == 0)
-      {
-        MessageBox.Show(
-                        Resources.Corpus_LoadingError,
-                        Resources.Corpus_LoadingErrorHead,
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-        return;
-      }
-
-      if (Project.ContainsCorpus(corpus.CorpusGuid))
-        return;
-
-      var selection = corpus.ToSelection();
-      var vm = new ValidateSelectionIntegrityViewModel { Selection = selection };
-      vm.Execute();
-
-      if (vm.HasError)
-      {
-        Processing.SplashClose();
-        var form = new CorpusErrorForm(vm);
-        form.ShowDialog();
-
-        if (form.ResultSelection != null)
-        {
-          corpus = form.ResultSelection.ToCorpus();
-          Processing.SplashClose();
-          if (MessageBox.Show("Möchten Sie das bereinigte Korpus speichern?", "Änderungen speichern?",
-                              MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            ExportSelectionAsCorpus(selection);
-          Processing.SplashShow("Korpus wird überarbeitet...");
-        }
-      }
-
-      Project.Add(corpus);
-
-      if (!autoReload)
-        return;
-
-      ReloadAll();
     }
 
     private void ReloadAll()
@@ -463,75 +399,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void corpus_start_import_Click(object sender, EventArgs e)
     {
-      var dic = Configuration.AddonImporters.ToArray();
-      var ofd = new OpenFileDialog
-      {
-        CheckFileExists = true,
-        CheckPathExists = true,
-        Multiselect = true,
-        Filter = string.Join("|", dic.Select(x => x.Key))
-      };
-      if (ofd.ShowDialog() != DialogResult.OK)
-        return;
-
-      corpus_start_import_Call(dic[ofd.FilterIndex - 1].Value, ofd.FileNames);
-    }
-
-    private void corpus_start_import_Call(AbstractImporter importer, IEnumerable<string> files)
-    {
-      IEnumerable<AbstractCorpusAdapter> corpora = null;
-      Processing.Invoke(
-                        Resources.Corpus_ImportIsRunning,
-                        () => { corpora = importer.Execute(files); });
-
-      if (corpora == null && files.Count() == 1)
-      {
-        MessageBox.Show(Resources.Corpus_ImportError);
-        return;
-      }
-
-      Processing.Invoke(
-                        Resources.Corpus_Loading,
-                        () =>
-                        {
-                          if (corpora != null)
-                            foreach (var corpus in corpora)
-                              AddCorpusToProject(corpus, false); // da false -> ReloadAll();
-                          ReloadAll();
-                        });
+      QuickMode.Import(Project);
+      ReloadAll();
     }
 
     private void corpus_start_local_Click(object sender, EventArgs e)
     {
-      var dic = Configuration.AddonScrapers.ToArray();
-      var ofd = new OpenFileDialog
-      {
-        CheckFileExists = true,
-        CheckPathExists = true,
-        Multiselect = true,
-        Filter = string.Join("|", dic.Select(x => x.Key))
-      };
-      if (ofd.ShowDialog() != DialogResult.OK)
-        return;
-
-      var files = ofd.FileNames;
-      // Warum auch immer der FilterIndex ist NICHT nullbasiert, daher -1 
-      var scraper = dic[ofd.FilterIndex - 1].Value;
-
-      corpus_start_local_Call(scraper, files);
-    }
-
-    private void corpus_start_local_Call(AbstractScraper scraper, IEnumerable<string> files)
-    {
-      Processing.Invoke(
-                        Resources.Corpus_Reading,
-                        () =>
-                        {
-                          foreach (var x in files)
-                            scraper.Input.Enqueue(x);
-                          scraper.Execute();
-                          ScrapDocumentsToCorpus(scraper.Output);
-                        });
+      QuickMode.Annotate(Project, false);
+      ReloadAll();
     }
 
     private void corpus_start_online_Click(object sender, EventArgs e)
@@ -581,6 +456,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                        Configuration.ParallelOptions,
                        c =>
                        {
+                         c.Queries = corpus_online_crawler_queries.Lines;
                          c.Execute();
                          lock (l)
                          {
@@ -594,7 +470,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       if (res.Count == 0)
         return;
 
-      ScrapDocumentsToCorpus(new ConcurrentQueue<Dictionary<string, object>>(res));
+      QuickMode.AnnotateProcessing(Project, new ConcurrentQueue<Dictionary<string, object>>(res));
+      ReloadAll();
     }
 
     private void CurrentSelectionChanged()
@@ -614,9 +491,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void Dashboard_FormClosing(object sender, FormClosingEventArgs e)
     {
-      if (QuickMode)
-        return;
-
       FavoriteManager.Save();
 
       var res = MessageBox.Show(
@@ -648,9 +522,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void Dashboard_Load(object sender, EventArgs e)
     {
-      if (QuickMode)
-        Close();
-
       if (DesignMode)
         return;
 
@@ -679,12 +550,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                           switch (ext)
                           {
                             case ".cec5":
-                              AddCorpusToProject(CorpusAdapterSingleFile.Create(path), true);
+                              QuickMode.AddCorpusToProject(Project, CorpusAdapterSingleFile.Create(path));
                               break;
                             case ".cec6":
-                              AddCorpusToProject(CorpusAdapterWriteDirect.Create(path), true);
+                              QuickMode.AddCorpusToProject(Project, CorpusAdapterWriteDirect.Create(path));
                               break;
                           }
+
+                          ReloadAll();
                         });
     }
 
@@ -714,17 +587,17 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                       // Video
                                       Resources.Help_Static_AdditionalInformation) // Weitere Informationen
                       .AddView(
-                               new FulltextAnnotation(),
+                               typeof(FulltextAnnotation),
                                Resources.layers1,
                                Resources.layers,
                                Resources.Fulltext_Annotate)
                       .AddView(
-                               new FulltextAnnotationSpeedup(),
+                               typeof(FulltextAnnotationSpeedup),
                                Resources.layers1,
                                Resources.layers,
                                Resources.Fulltext_SpeedAnnotate)
                       .AddView(
-                               new FulltextKwicSearch(),
+                               typeof(FulltextKwicSearch),
                                Resources.find1,
                                Resources.find,
                                "Texte suchen (KWIC)")
@@ -736,7 +609,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                               "RegEx-Suche (KWIC)")
                       */
                       .AddView(
-                               new FulltextKwicTree(),
+                               typeof(FulltextKwicTree),
                                Resources.find1,
                                Resources.find,
                                "Texte suchen (KWIT)");
@@ -758,12 +631,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                       // Video
                                       Resources.Help_Static_AdditionalInformation) // Weitere Informationen
                       .AddView(
-                               new TextCompare(),
+                               typeof(TextCompare),
                                Resources.history1,
                                Resources.history,
                                Resources.Textedition_CompareTexts)
                       .AddView(
-                               new TextSimilarity(),
+                               typeof(TextSimilarity),
                                Resources.documents1,
                                Resources.documents,
                                Resources.Textedition_TextSimilarity);
@@ -787,17 +660,17 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                       // Video
                                       Resources.Help_Static_AdditionalInformation) // Weitere Informationen
                       .AddView(
-                               new FrequencyGrid(),
+                               typeof(FrequencyGrid),
                                Resources.sheet_calculate_1,
                                Resources.sheet_calculate,
                                Resources.FrequncyAnalytics_Table)
                       .AddView(
-                               new FrequencyPivotGrid(),
+                               typeof(FrequencyPivotGrid),
                                Resources.table_pivot_1,
                                Resources.table_pivot,
                                Resources.FrequncyAnalytics_PivotTable)
                       .AddView(
-                               new CrossFrequencyGrid(),
+                               typeof(CrossFrequencyGrid),
                                Resources.table_show_hide,
                                Resources.table_show_hide1,
                                Resources.Frequency_Cross)
@@ -809,27 +682,27 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                         Resources.Frequency_LeftRight)
                       */
                       .AddView(
-                               new CollocateFrequency(),
+                               typeof(CollocateFrequency),
                                Resources.table_split_columns,
                                Resources.table_split_columns1,
                                Resources.Frequency_LeftRight)
                       .AddView(
-                               new FrequencySegments(),
+                               typeof(FrequencySegments),
                                Resources.documents1,
                                Resources.documents,
                                Resources.FrequncyAnalytics_Distribution)
                       .AddView(
-                               new KeywordGrid(),
+                               typeof(KeywordGrid),
                                Resources.table_key1,
                                Resources.table_key,
                                Resources.Keywordanalitics)
                       .AddView(
-                               new FrequencyOverTime(),
+                               typeof(FrequencyOverTime),
                                Resources.charts_color_3d,
                                Resources.charts_color,
                                Resources.SpcialFunctions_TimeFrequency)
                       .AddView(
-                               new CompareFrequency(),
+                               typeof(CompareFrequency),
                                Resources.camera_find,
                                Resources.camera_find1,
                                Resources.FrequncyAnalytics_CompareSnapshot);
@@ -851,43 +724,43 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                       // Video
                                       Resources.Help_Static_AdditionalInformation) // Weitere Informationen
                       .AddView(
-                               new NGramGrid(),
+                               typeof(NGramGrid),
                                Resources.sheet_calculate_1,
                                Resources.sheet_calculate,
                                Resources.Phrases_NgramTable)
                       .AddView(
-                               new NGramDiagram(),
+                               typeof(NGramDiagram),
                                Resources.diagram,
                                Resources.diagram1,
                                Resources.Phrases_NgramMindmap)
                       .AddView(
-                               new SkipgramGrid(),
+                               typeof(SkipgramGrid),
                                Resources.sheet_calculate_1,
                                Resources.sheet_calculate,
                                "Skipgram-Tabelle")
                       .AddView(
-                               new PhrasesLaboratory(),
+                               typeof(PhrasesLaboratory),
                                Resources.component1,
                                Resources.component,
                                Resources.Phrases_StrucGrammar,
                                true)
                       .AddView(
-                               new CooccurrenceMultiwordGrid(),
+                               typeof(CooccurrenceMultiwordGrid),
                                Resources.sheet_calculate_1,
                                Resources.sheet_calculate,
                                "Signifikante-NGramme")
                       .AddView(
-                               new CutOffPhraseGrid(),
+                               typeof(CutOffPhraseGrid),
                                Resources.clipboard_cut,
                                Resources.clipboard_cut1,
                                "CutOff-Phrasen")
                       .AddView(
-                               new PhrasesGrid(),
+                               typeof(PhrasesGrid),
                                Resources.sheet_calculate_1,
                                Resources.sheet_calculate,
                                Resources.Phrases_PhraseTable)
                       .AddView(
-                               new CompareNGram(),
+                               typeof(CompareNGram),
                                Resources.camera_find,
                                Resources.camera_find1,
                                Resources.Phrases_CompareSnapshot);
@@ -909,47 +782,47 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                       // Video
                                       Resources.Help_Static_AdditionalInformation) // Weitere Informationen
                       .AddView(
-                               new CooccurrenceGridSearch(),
+                               typeof(CooccurrenceGridSearch),
                                Resources.find1,
                                Resources.find,
                                "Abfrage")
                       .AddView(
-                               new CooccurrenceGrid(),
+                               typeof(CooccurrenceGrid),
                                Resources.sheet_calculate_1,
                                Resources.sheet_calculate,
                                Resources.Cooccurrences_Table)
                       .AddView(
-                               new CooccurrenceTagPie(),
+                               typeof(CooccurrenceTagPie),
                                Resources.cloud1,
                                Resources.cloud2,
                                Resources.Cooccurrences_Cloud)
                       .AddView(
-                               new CooccurrenceOverlappingGrid(),
+                               typeof(CooccurrenceOverlappingGrid),
                                Resources.select_table1,
                                Resources.select_table,
                                "Multi-Kookkurrenz")
                       .AddView(
-                               new CooccurrenceDiversity(),
+                               typeof(CooccurrenceDiversity),
                                Resources.table_split_rows_arrows,
                                Resources.table_split_rows_arrows1,
                                Resources.Cooccurrences_CompareTable)
                       .AddView(
-                               new CooccurrenceDiagram(),
+                               typeof(CooccurrenceDiagram),
                                Resources.diagram,
                                Resources.diagram1,
                                Resources.Cooccurrences_Mindmap)
                       .AddView(
-                               new CooccurrenceOverTime(),
+                               typeof(CooccurrenceOverTime),
                                Resources.charts_color_3d,
                                Resources.charts_color,
                                Resources.SpcialFunctions_TimeFrequency)
                       .AddView(
-                               new CooccurrenceDiversityOverTime(),
+                               typeof(CooccurrenceDiversityOverTime),
                                Resources.chart_column_2d_stacked_1001,
                                Resources.chart_column_2d_stacked_100,
                                "Zeitliche Kontrastierung")
                       .AddView(
-                               new CompareCooccurrence(),
+                               typeof(CompareCooccurrence),
                                Resources.camera_find,
                                Resources.camera_find1,
                                Resources.Cooccurrences_CompareSnapshot);
@@ -971,17 +844,17 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                       // Video
                                       Resources.Help_Static_AdditionalInformation) // Weitere Informationen
                       .AddView(
-                               new DisambigutionGrid(),
+                               typeof(DisambigutionGrid),
                                Resources.sheet_calculate_1,
                                Resources.sheet_calculate,
                                Resources.Disambigution_Table)
                       .AddView(
-                               new DisambigutionTree(),
+                               typeof(DisambigutionTree),
                                Resources.tree,
                                Resources.tree1,
                                Resources.Disambigution_Tree)
                       .AddView(
-                               new DisambigutionProfile(),
+                               typeof(DisambigutionProfile),
                                Resources.colors,
                                Resources.colors1,
                                Resources.Disambigution_Profile);
@@ -1003,27 +876,27 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                       // Video
                                       Resources.Help_Static_AdditionalInformation) // Weitere Informationen
                       .AddView(
-                               new CharacterNGramGrid(),
+                               typeof(CharacterNGramGrid),
                                Resources.sheet_calculate_1,
                                Resources.sheet_calculate,
                                Resources.NgramCharakter)
                       .AddView(
-                               new HyphenPivotGrid(),
+                               typeof(HyphenPivotGrid),
                                Resources.table_pivot_1,
                                Resources.table_pivot,
                                Resources.HyphenFrequency)
                       .AddView(
-                               new ReadingEasePivotGrid(),
+                               typeof(ReadingEasePivotGrid),
                                Resources.table_pivot_1,
                                Resources.table_pivot,
                                Resources.ComplexityReadingEase)
                       .AddView(
-                               new VocabularyComplexityPivotGrid(),
+                               typeof(VocabularyComplexityPivotGrid),
                                Resources.table_pivot_1,
                                Resources.table_pivot,
                                Resources.ComplexityVocabular)
                       .AddView(
-                               new CompareBasedOnBurrowsDelta(),
+                               typeof(CompareBasedOnBurrowsDelta),
                                Resources.table_pivot_1,
                                Resources.table_pivot,
                                "Burrows-Delta");
@@ -1058,37 +931,37 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                       // Video
                                       Resources.Help_Static_AdditionalInformation) // Weitere Informationen
                       .AddView(
-                               new CorpusDistributionGrid(),
+                               typeof(CorpusDistributionGrid),
                                Resources.sheet_calculate_1,
                                Resources.sheet_calculate,
                                Resources.CorpusDistribution_Table)
                       .AddView(
-                               new CorpusDistributionPivotGrid(),
+                               typeof(CorpusDistributionPivotGrid),
                                Resources.table_pivot_1,
                                Resources.table_pivot,
                                Resources.CorpusDistribution_PivotTable)
                       .AddView(
-                               new CorpusDistributionHeatmap(),
+                               typeof(CorpusDistributionHeatmap),
                                Resources.colors,
                                Resources.colors1,
                                Resources.CorpusDistribution_Heatmap)
                       .AddView(
-                               new EditMetadata(),
+                               typeof(EditMetadata),
                                Resources.tool_pencil,
                                Resources.tool_pencil,
                                Resources.CorpusDistribution_Edit)
                       .AddView(
-                               new CorpusFiniteStateMachine(),
+                               typeof(CorpusFiniteStateMachine),
                                Resources.diagram,
                                Resources.diagram1,
                                "Zustandsanalyse")
                       .AddView(
-                               new CorpusDistributionOverTime(),
+                               typeof(CorpusDistributionOverTime),
                                Resources.charts_color_3d,
                                Resources.charts_color,
                                Resources.SpcialFunctions_TimeFrequency)
                       .AddView(
-                               new CompareCorpusDistribution(),
+                               typeof(CompareCorpusDistribution),
                                Resources.camera_find,
                                Resources.camera_find1,
                                Resources.CorpusDistribution_CompareSnapshot);
@@ -1110,12 +983,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                       // Video
                                       Resources.Help_Static_AdditionalInformation) // Weitere Informationen
                       .AddView(
-                               new Html5DevLab(),
+                               typeof(Html5DevLab),
                                Resources.html_page_gear1,
                                Resources.html_page_gear,
                                "HTML5-Labor")
                       .AddView(
-                               new SentimentPivotGrid(),
+                               typeof(SentimentPivotGrid),
                                Resources.structure1,
                                Resources.structure,
                                "Sentiment Detection")
@@ -1127,22 +1000,22 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                         "Named Entity Recognition")
                       */
                       .AddView(
-                               new ChatView(),
+                               typeof(ChatView),
                                Resources.chat,
                                Resources.chat1,
                                Resources.SpcialFunctions_ChatView)
                       .AddView(
-                               new FrequencyMap(),
+                               typeof(FrequencyMap),
                                Resources.place,
                                Resources.place,
                                "Karte")
                       .AddView(
-                               new PaperLinguist(),
+                               typeof(PaperLinguist),
                                Resources.print1,
                                Resources.print,
                                "PaperLinguist")
                       .AddView(
-                               new TreeTaggerTrainerView(),
+                               typeof(TreeTaggerTrainerView),
                                Resources.database_access,
                                Resources.database_access1,
                                Resources.SpcialFunctions_TreeTaggerTrainer);
@@ -1564,23 +1437,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void page_analytics_snapshot_btn_snapshot_export_Click(object sender, EventArgs e)
     {
-      ExportSelectionAsCorpus(Project.CurrentSelection);
-    }
-
-    private static void ExportSelectionAsCorpus(Selection selection)
-    {
-      var dic = Configuration.AddonExporters.ToArray();
-      var sfd = new SaveFileDialog
-      {
-        CheckPathExists = true,
-        Filter = string.Join("|", dic.Select(x => x.Key))
-      };
-      if (sfd.ShowDialog() != DialogResult.OK)
-        return;
-
-      var exporter = dic[sfd.FilterIndex - 1].Value;
-
-      Processing.Invoke(Resources.GutDingWillWeileHaben, () => exporter.Export(selection, sfd.FileName));
+      QuickMode.Export(Project.CurrentSelection);
     }
 
     private void page_analytics_snapshot_btn_snapshot_invert_Click(object sender, EventArgs e)
@@ -1623,7 +1480,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         var sele = parent.DocumentGuids.Where(dsel => !dont.Contains(dsel));
         var name = Resources.Snapshot_CreateInvertSnapshotExtension + Project.CurrentSelection.Displayname;
 
-        parent.Create(sele, name);
+        parent.Create(sele, name, false);
         Selection_ReLoad();
       }
     }
@@ -1739,20 +1596,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       Selection_ReLoad();
     }
 
-    private void page_analytics_snapshot_btn_snapshot_save_Click(object sender, EventArgs e)
-    {
-      var sfd = new SaveFileDialog
-      {
-        CheckPathExists = true,
-        Filter = _snapshotFileExtension
-      };
-      if (sfd.ShowDialog() != DialogResult.OK)
-        return;
-
-      var model = Project.CurrentSelection.Queries.Where(query => !(query is FilterQueryCorpusComplete)).ToArray();
-      Serializer.SerializeXmlWithDotNet(model, sfd.FileName.Replace(".ceusd", "2.ceusd"));
-    }
-
     private Selection page_analytics_snapshot_btn_snapshot_settheory_GetSelectionB(string head, string description)
     {
       var available = Project.SelectionsRecursive;
@@ -1793,21 +1636,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       Selection_ReLoad();
     }
 
-    private void page_snapshot_context_edit_Click(object sender, EventArgs e)
-    {
-      page_analytics_snapshot_btn_snapshot_edit_Click(sender, e);
-    }
-
-    private void page_snapshot_context_remove_Click(object sender, EventArgs e)
-    {
-      page_analytics_snapshot_btn_snapshot_remove_Click(sender, e);
-    }
-
-    private void page_snapshot_context_sub_Click(object sender, EventArgs e)
-    {
-      page_analytics_snapshot_btn_snapshot_addsub_Click(sender, e);
-    }
-
     private void page_welcome_btn_projectname_Click(object sender, EventArgs e)
     {
       ProjectRename();
@@ -1831,10 +1659,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       ProjectNew();
       foreach (var corpus in files.Where(x => x.ToLower().EndsWith(".cec5")))
-        AddCorpusToProject(CorpusAdapterSingleFile.Create(corpus), false);
+        QuickMode.AddCorpusToProject(Project, CorpusAdapterSingleFile.Create(corpus));
 
       foreach (var corpus in files.Where(x => x.ToLower().EndsWith(".cec6")))
-        AddCorpusToProject(CorpusAdapterWriteDirect.Create(corpus), false);
+        QuickMode.AddCorpusToProject(Project, CorpusAdapterWriteDirect.Create(corpus));
 
       ReloadAll();
 
@@ -1917,60 +1745,15 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         Configuration.Reload3rdPartyAddons();
         corpus_online_crawler_list.Items.Clear();
         foreach (var c in Configuration.AddonCrawlers)
-          corpus_online_crawler_list.Items.Add(new ListViewDataItem(c.DisplayName) { Tag = c });
+          try
+          {
+            corpus_online_crawler_list.Items.Add(new ListViewDataItem(c.DisplayName) { Tag = c });
+          }
+          catch
+          {
+            // ignore
+          }
       });
-    }
-
-    private void ScrapDocumentProcessing(ConcurrentQueue<Dictionary<string, object>> docs)
-    {
-      var formScraper = new ShowScraperResults(docs);
-      if (formScraper.ShowDialog() != DialogResult.OK)
-        return;
-
-      var formTagger = new SelectTagger(new ClassicTreeTagger { LanguageSelected = Resources.German });
-      if (formTagger.ShowDialog() != DialogResult.OK)
-        return;
-
-      var formName = new SimpleTextInput(
-                                         Resources.Dashboard_EnterCorpusNameHead,
-                                         Resources.Dashboard_EnterCorpusNameDescription,
-                                         Resources.cabinet,
-                                         Resources.Dashboard_EnterCorpusNameNullText);
-      if (formName.ShowDialog() != DialogResult.OK)
-        return;
-
-      var tagger = formTagger.Tagger;
-      tagger.Input = formScraper.Documets;
-
-      Processing.Invoke(
-                        Resources.AnnotiereDokumente,
-                        () =>
-                        {
-                          tagger.Execute();
-                          while (tagger.Output.Count > 0)
-                          {
-                            if (!tagger.Output.TryDequeue(out var corpus))
-                              continue;
-
-                            corpus.CorpusDisplayname = formName.Result;
-                            corpus.Save(Path.Combine(Configuration.MyCorpora, formName.Result.EnsureFileName()));
-                            AddCorpusToProject(corpus, true);
-                          }
-                        });
-    }
-
-    private void ScrapDocumentsToCorpus(ConcurrentQueue<Dictionary<string, object>> docs)
-    {
-      Processing.Invoke(
-                        "Bereinige Dokumente...",
-                        () =>
-                        {
-                          var cleaner1 = new StandardCleanup { Input = docs };
-                          cleaner1.Execute();
-                          var cleaner2 = new RegexXmlMarkupCleanup { Input = cleaner1.Output };
-                          cleaner2.Execute();
-                          ScrapDocumentProcessing(cleaner2.Output);
-                        });
     }
 
     private void Selection_ReLoad()
@@ -2172,7 +1955,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void SelectionEditAddMetasplit(Selection parentSelection = null)
     {
-      var form = new AddMetasplitSnapshot(Project, parentSelection ?? Project.CurrentSelection);
+      var form = new AddMetasplitSnapshot(Project, parentSelection);
       if (form.ShowDialog() != DialogResult.OK)
         return;
       Project.CurrentSelection = form.Result;
@@ -2181,7 +1964,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void SelectionEditAddRandom(Selection parentSelection = null)
     {
-      var form = new AddRandomSnapshot(Project, parentSelection ?? Project.CurrentSelection);
+      var form = new AddRandomSnapshot(Project, parentSelection);
       if (form.ShowDialog() != DialogResult.OK)
         return;
       Project.CurrentSelection = form.Selection;
@@ -2632,106 +2415,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       RefreshFavorites();
 
       settings_list_favorites_lock = false;
-    }
-
-    #region QuickMode - Functions
-
-    private void QuickGui(string[] args)
-    {
-      Hide();
-      switch (args[1])
-      {
-        case "convert":
-          QuickGui_Convert(args);
-          break;
-        case "annotate":
-          QuickGui_Annotate(args);
-          break;
-      }
-
-      QuickMode = true;
-    }
-
-    /// <summary>
-    ///   Spezieller Modus, der es erlaubt, aus anderen Programmen bestimmte Funktionen der CE-GUI zu nutzen.
-    ///   QuickMode wird in Program.Main(string[] args) aktiviert und:
-    ///   Modi werden in Dashboard.QuickGui(string[] args) definiert.
-    /// </summary>
-    public bool QuickMode { get; set; }
-
-    private void QuickGui_Annotate(string[] args)
-    {
-      if (args.Length == 2)
-      {
-        corpus_start_local_Click(null, null);
-      }
-      else if (args.Length >= 4)
-      {
-        var scraper = Configuration.AddonScrapers.GetReflectedTypeNameDictionary()
-                                   .Where(x => x.Key == args[2])
-                                   .Select(x => x.Value)
-                                   .FirstOrDefault();
-        if (scraper == null)
-          return;
-
-        var files = args.ToList();
-        files.RemoveAt(0);
-        files.RemoveAt(0);
-        files.RemoveAt(0);
-        corpus_start_local_Call(scraper, files);
-      }
-      else
-      {
-        return;
-      }
-
-      ExportSelectionAsCorpus(Project.SelectAll);
-    }
-
-    private void QuickGui_Convert(string[] args)
-    {
-      if (args.Length == 2)
-      {
-        corpus_start_import_Click(null, null);
-      }
-      else if (args.Length >= 4)
-      {
-        var importer = Configuration.AddonImporters.GetReflectedTypeNameDictionary()
-                                    .Where(x => x.Key == args[2])
-                                    .Select(x => x.Value)
-                                    .FirstOrDefault();
-        if (importer == null)
-          return;
-
-        var files = args.ToList();
-        files.RemoveAt(0);
-        files.RemoveAt(0);
-        files.RemoveAt(0);
-        corpus_start_import_Call(importer, files);
-      }
-      else
-      {
-        return;
-      }
-
-      ExportSelectionAsCorpus(Project.SelectAll);
-    }
-
-    #endregion
-
-    private void corpus_start_download_Click(object sender, EventArgs e)
-    {
-      // ToDo
-
-      /*
-      Name
-      Speicherplatz
-      Dokumente
-      Sätze
-      Token
-      URL
-      Description
-      */
     }
   }
 }

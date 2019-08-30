@@ -24,7 +24,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
 
       foreach (var csel in hydra.CorporaAndDocumentGuids)
       {
-        var root = CombineAndEnsureDirectoryExsists(path, csel.ToString());
+        var root = CombineAndEnsureDirectoryExsists(path, csel.Key.ToString());
 
         // Erzeuge Index.xml (Guid > Dokumentnamen - Dictionary)
         using (var fs = new FileStream(Path.Combine(root, "doc.index.xml"), FileMode.Create, FileAccess.Write))

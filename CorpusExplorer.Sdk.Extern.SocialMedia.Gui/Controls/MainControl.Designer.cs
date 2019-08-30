@@ -33,14 +33,12 @@
       this.page_main_main = new Telerik.WinControls.UI.RadPageViewPage();
       this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
       this.btn_main_blogger = new CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton();
-      this.btn_main_facebook = new CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton();
-      this.btn_main_instagram = new CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton();
       this.btn_main_reddit = new CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton();
       this.btn_main_tumblr = new CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton();
       this.btn_main_twitter = new CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton();
       this.btn_main_wordpress = new CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton();
       this.btn_main_youtube = new CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton();
-      this.btn_main_forum = new CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton();
+      this.btn_main_feed = new CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton();
       this.btn_main_web = new CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceInformationButton();
       this.ihdPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
       this.page_main_blogger = new Telerik.WinControls.UI.RadPageViewPage();
@@ -48,18 +46,6 @@
       this.page_blogger_home = new Telerik.WinControls.UI.RadPageViewPage();
       this.serviceHome_blogger = new CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceHome();
       this.page_blogger_account = new Telerik.WinControls.UI.RadPageViewPage();
-      this.page_main_facebook = new Telerik.WinControls.UI.RadPageViewPage();
-      this.pages_facebook = new Telerik.WinControls.UI.RadPageView();
-      this.page_facebook_home = new Telerik.WinControls.UI.RadPageViewPage();
-      this.serviceHome_facebook = new CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceHome();
-      this.page_facebook_account = new Telerik.WinControls.UI.RadPageViewPage();
-      this.page_facebook_stream = new Telerik.WinControls.UI.RadPageViewPage();
-      this.page_main_instagram = new Telerik.WinControls.UI.RadPageViewPage();
-      this.pages_instagram = new Telerik.WinControls.UI.RadPageView();
-      this.page_instagram_home = new Telerik.WinControls.UI.RadPageViewPage();
-      this.serviceHome_instagram = new CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceHome();
-      this.page_instagram_account = new Telerik.WinControls.UI.RadPageViewPage();
-      this.page_instagram_stream = new Telerik.WinControls.UI.RadPageViewPage();
       this.page_main_reddit = new Telerik.WinControls.UI.RadPageViewPage();
       this.pages_reddit = new Telerik.WinControls.UI.RadPageView();
       this.page_reddit_home = new Telerik.WinControls.UI.RadPageViewPage();
@@ -92,8 +78,9 @@
       this.serviceHome_youtube = new CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.ServiceHome();
       this.page_youtube_account = new Telerik.WinControls.UI.RadPageViewPage();
       this.page_youtube_stream = new Telerik.WinControls.UI.RadPageViewPage();
-      this.page_main_forum = new Telerik.WinControls.UI.RadPageViewPage();
+      this.page_main_feed = new Telerik.WinControls.UI.RadPageViewPage();
       this.page_main_web = new Telerik.WinControls.UI.RadPageViewPage();
+      this.page_main_feed_request = new CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.EndpointRequestSimple();
       ((System.ComponentModel.ISupportInitialize)(this.pages_main)).BeginInit();
       this.pages_main.SuspendLayout();
       this.page_main_main.SuspendLayout();
@@ -102,14 +89,6 @@
       ((System.ComponentModel.ISupportInitialize)(this.pages_blogger)).BeginInit();
       this.pages_blogger.SuspendLayout();
       this.page_blogger_home.SuspendLayout();
-      this.page_main_facebook.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pages_facebook)).BeginInit();
-      this.pages_facebook.SuspendLayout();
-      this.page_facebook_home.SuspendLayout();
-      this.page_main_instagram.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pages_instagram)).BeginInit();
-      this.pages_instagram.SuspendLayout();
-      this.page_instagram_home.SuspendLayout();
       this.page_main_reddit.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pages_reddit)).BeginInit();
       this.pages_reddit.SuspendLayout();
@@ -130,24 +109,23 @@
       ((System.ComponentModel.ISupportInitialize)(this.pages_youtube)).BeginInit();
       this.pages_youtube.SuspendLayout();
       this.page_youtube_home.SuspendLayout();
+      this.page_main_feed.SuspendLayout();
       this.SuspendLayout();
       // 
       // pages_main
       // 
       this.pages_main.Controls.Add(this.page_main_main);
       this.pages_main.Controls.Add(this.page_main_blogger);
-      this.pages_main.Controls.Add(this.page_main_facebook);
-      this.pages_main.Controls.Add(this.page_main_instagram);
       this.pages_main.Controls.Add(this.page_main_reddit);
       this.pages_main.Controls.Add(this.page_main_tumblr);
       this.pages_main.Controls.Add(this.page_main_twitter);
       this.pages_main.Controls.Add(this.page_main_wordpress);
       this.pages_main.Controls.Add(this.page_main_youtube);
-      this.pages_main.Controls.Add(this.page_main_forum);
+      this.pages_main.Controls.Add(this.page_main_feed);
       this.pages_main.Controls.Add(this.page_main_web);
       resources.ApplyResources(this.pages_main, "pages_main");
       this.pages_main.Name = "pages_main";
-      this.pages_main.SelectedPage = this.page_main_main;
+      this.pages_main.SelectedPage = this.page_main_feed;
       this.pages_main.ViewMode = Telerik.WinControls.UI.PageViewMode.NavigationView;
       this.pages_main.SelectedPageChanging += new System.EventHandler<Telerik.WinControls.UI.RadPageViewCancelEventArgs>(this.pages_main_SelectedPageChanging);
       // 
@@ -163,14 +141,12 @@
       // flowLayoutPanel1
       // 
       this.flowLayoutPanel1.Controls.Add(this.btn_main_blogger);
-      this.flowLayoutPanel1.Controls.Add(this.btn_main_facebook);
-      this.flowLayoutPanel1.Controls.Add(this.btn_main_instagram);
       this.flowLayoutPanel1.Controls.Add(this.btn_main_reddit);
       this.flowLayoutPanel1.Controls.Add(this.btn_main_tumblr);
       this.flowLayoutPanel1.Controls.Add(this.btn_main_twitter);
       this.flowLayoutPanel1.Controls.Add(this.btn_main_wordpress);
       this.flowLayoutPanel1.Controls.Add(this.btn_main_youtube);
-      this.flowLayoutPanel1.Controls.Add(this.btn_main_forum);
+      this.flowLayoutPanel1.Controls.Add(this.btn_main_feed);
       this.flowLayoutPanel1.Controls.Add(this.btn_main_web);
       resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
       this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -183,24 +159,6 @@
     "squelle.</html>";
       resources.ApplyResources(this.btn_main_blogger, "btn_main_blogger");
       this.btn_main_blogger.Name = "btn_main_blogger";
-      // 
-      // btn_main_facebook
-      // 
-      this.btn_main_facebook.BackColor = System.Drawing.Color.White;
-      this.btn_main_facebook.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.facebook_padlock_128px;
-      this.btn_main_facebook.Label = "<html><strong>Facebook</strong><br/>In der aktuellen BETA-Version noch nicht verf" +
-    "ügbar.</html>";
-      resources.ApplyResources(this.btn_main_facebook, "btn_main_facebook");
-      this.btn_main_facebook.Name = "btn_main_facebook";
-      // 
-      // btn_main_instagram
-      // 
-      this.btn_main_instagram.BackColor = System.Drawing.Color.White;
-      this.btn_main_instagram.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.instagram_padlock_128px;
-      this.btn_main_instagram.Label = "<html><strong>Instagram</strong><br/>In der aktuellen BETA-Version noch nicht ver" +
-    "fügbar.</html>";
-      resources.ApplyResources(this.btn_main_instagram, "btn_main_instagram");
-      this.btn_main_instagram.Name = "btn_main_instagram";
       // 
       // btn_main_reddit
       // 
@@ -241,19 +199,19 @@
       // btn_main_youtube
       // 
       this.btn_main_youtube.BackColor = System.Drawing.Color.White;
-      this.btn_main_youtube.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.youtube_padlock_128px;
+      this.btn_main_youtube.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.youtube_128px;
       this.btn_main_youtube.Label = "<html><strong>YouTube</strong><br/>Video-Kommentare einfach sammeln.</html>";
       resources.ApplyResources(this.btn_main_youtube, "btn_main_youtube");
       this.btn_main_youtube.Name = "btn_main_youtube";
       // 
-      // btn_main_forum
+      // btn_main_feed
       // 
-      this.btn_main_forum.BackColor = System.Drawing.Color.White;
-      this.btn_main_forum.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.user_group_padlock_128px;
-      this.btn_main_forum.Label = "<html><strong>Online-Forum</strong><br/>In der aktuellen BETA-Version noch nicht " +
-    "verfügbar.</html>";
-      resources.ApplyResources(this.btn_main_forum, "btn_main_forum");
-      this.btn_main_forum.Name = "btn_main_forum";
+      this.btn_main_feed.BackColor = System.Drawing.Color.White;
+      this.btn_main_feed.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.rss_128px;
+      this.btn_main_feed.Label = "<html><strong>News-Feed</strong><br/>Extrahiert aus RSS/Atom-Feeds als Korpusquel" +
+    "le.</html>";
+      resources.ApplyResources(this.btn_main_feed, "btn_main_feed");
+      this.btn_main_feed.Name = "btn_main_feed";
       // 
       // btn_main_web
       // 
@@ -309,92 +267,6 @@
       // 
       resources.ApplyResources(this.page_blogger_account, "page_blogger_account");
       this.page_blogger_account.Name = "page_blogger_account";
-      // 
-      // page_main_facebook
-      // 
-      this.page_main_facebook.Controls.Add(this.pages_facebook);
-      this.page_main_facebook.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.facebook_padlock_24px;
-      this.page_main_facebook.ItemSize = new System.Drawing.SizeF(40F, 36F);
-      resources.ApplyResources(this.page_main_facebook, "page_main_facebook");
-      this.page_main_facebook.Name = "page_main_facebook";
-      // 
-      // pages_facebook
-      // 
-      this.pages_facebook.Controls.Add(this.page_facebook_home);
-      this.pages_facebook.Controls.Add(this.page_facebook_account);
-      this.pages_facebook.Controls.Add(this.page_facebook_stream);
-      resources.ApplyResources(this.pages_facebook, "pages_facebook");
-      this.pages_facebook.Name = "pages_facebook";
-      this.pages_facebook.SelectedPage = this.page_facebook_home;
-      // 
-      // page_facebook_home
-      // 
-      this.page_facebook_home.Controls.Add(this.serviceHome_facebook);
-      resources.ApplyResources(this.page_facebook_home, "page_facebook_home");
-      this.page_facebook_home.Name = "page_facebook_home";
-      // 
-      // serviceHome_facebook
-      // 
-      this.serviceHome_facebook.BackColor = System.Drawing.Color.White;
-      resources.ApplyResources(this.serviceHome_facebook, "serviceHome_facebook");
-      this.serviceHome_facebook.Name = "serviceHome_facebook";
-      this.serviceHome_facebook.PageView = this.pages_facebook;
-      this.serviceHome_facebook.ServiceName = "Facebook";
-      this.serviceHome_facebook.UrlCreateAccount = "https://de-de.facebook.com/login/";
-      this.serviceHome_facebook.UrlCreateApiKey = null;
-      // 
-      // page_facebook_account
-      // 
-      resources.ApplyResources(this.page_facebook_account, "page_facebook_account");
-      this.page_facebook_account.Name = "page_facebook_account";
-      // 
-      // page_facebook_stream
-      // 
-      resources.ApplyResources(this.page_facebook_stream, "page_facebook_stream");
-      this.page_facebook_stream.Name = "page_facebook_stream";
-      // 
-      // page_main_instagram
-      // 
-      this.page_main_instagram.Controls.Add(this.pages_instagram);
-      this.page_main_instagram.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.instagram_padlock_24px;
-      this.page_main_instagram.ItemSize = new System.Drawing.SizeF(40F, 36F);
-      resources.ApplyResources(this.page_main_instagram, "page_main_instagram");
-      this.page_main_instagram.Name = "page_main_instagram";
-      // 
-      // pages_instagram
-      // 
-      this.pages_instagram.Controls.Add(this.page_instagram_home);
-      this.pages_instagram.Controls.Add(this.page_instagram_account);
-      this.pages_instagram.Controls.Add(this.page_instagram_stream);
-      resources.ApplyResources(this.pages_instagram, "pages_instagram");
-      this.pages_instagram.Name = "pages_instagram";
-      this.pages_instagram.SelectedPage = this.page_instagram_home;
-      // 
-      // page_instagram_home
-      // 
-      this.page_instagram_home.Controls.Add(this.serviceHome_instagram);
-      resources.ApplyResources(this.page_instagram_home, "page_instagram_home");
-      this.page_instagram_home.Name = "page_instagram_home";
-      // 
-      // serviceHome_instagram
-      // 
-      this.serviceHome_instagram.BackColor = System.Drawing.Color.White;
-      resources.ApplyResources(this.serviceHome_instagram, "serviceHome_instagram");
-      this.serviceHome_instagram.Name = "serviceHome_instagram";
-      this.serviceHome_instagram.PageView = this.pages_instagram;
-      this.serviceHome_instagram.ServiceName = "instagram";
-      this.serviceHome_instagram.UrlCreateAccount = null;
-      this.serviceHome_instagram.UrlCreateApiKey = null;
-      // 
-      // page_instagram_account
-      // 
-      resources.ApplyResources(this.page_instagram_account, "page_instagram_account");
-      this.page_instagram_account.Name = "page_instagram_account";
-      // 
-      // page_instagram_stream
-      // 
-      resources.ApplyResources(this.page_instagram_stream, "page_instagram_stream");
-      this.page_instagram_stream.Name = "page_instagram_stream";
       // 
       // page_main_reddit
       // 
@@ -499,7 +371,7 @@
       this.pages_twitter.Controls.Add(this.page_twitter_images);
       resources.ApplyResources(this.pages_twitter, "pages_twitter");
       this.pages_twitter.Name = "pages_twitter";
-      this.pages_twitter.SelectedPage = this.page_twitter_home;
+      this.pages_twitter.SelectedPage = this.page_twitter_account;
       // 
       // page_twitter_home
       // 
@@ -583,7 +455,7 @@
       // page_main_youtube
       // 
       this.page_main_youtube.Controls.Add(this.pages_youtube);
-      this.page_main_youtube.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.youtube_padlock_24px;
+      this.page_main_youtube.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.youtube_24px;
       this.page_main_youtube.ItemSize = new System.Drawing.SizeF(40F, 36F);
       resources.ApplyResources(this.page_main_youtube, "page_main_youtube");
       this.page_main_youtube.Name = "page_main_youtube";
@@ -595,7 +467,7 @@
       this.pages_youtube.Controls.Add(this.page_youtube_stream);
       resources.ApplyResources(this.pages_youtube, "pages_youtube");
       this.pages_youtube.Name = "pages_youtube";
-      this.pages_youtube.SelectedPage = this.page_youtube_home;
+      this.pages_youtube.SelectedPage = this.page_youtube_stream;
       // 
       // page_youtube_home
       // 
@@ -615,20 +487,23 @@
       // 
       // page_youtube_account
       // 
+      this.page_youtube_account.ItemSize = new System.Drawing.SizeF(83F, 29F);
       resources.ApplyResources(this.page_youtube_account, "page_youtube_account");
       this.page_youtube_account.Name = "page_youtube_account";
       // 
       // page_youtube_stream
       // 
+      this.page_youtube_stream.ItemSize = new System.Drawing.SizeF(69F, 29F);
       resources.ApplyResources(this.page_youtube_stream, "page_youtube_stream");
       this.page_youtube_stream.Name = "page_youtube_stream";
       // 
-      // page_main_forum
+      // page_main_feed
       // 
-      this.page_main_forum.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.user_group_padlock_24px;
-      this.page_main_forum.ItemSize = new System.Drawing.SizeF(40F, 36F);
-      resources.ApplyResources(this.page_main_forum, "page_main_forum");
-      this.page_main_forum.Name = "page_main_forum";
+      this.page_main_feed.Controls.Add(this.page_main_feed_request);
+      this.page_main_feed.Image = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.rss_24px;
+      this.page_main_feed.ItemSize = new System.Drawing.SizeF(40F, 36F);
+      resources.ApplyResources(this.page_main_feed, "page_main_feed");
+      this.page_main_feed.Name = "page_main_feed";
       // 
       // page_main_web
       // 
@@ -636,6 +511,13 @@
       this.page_main_web.ItemSize = new System.Drawing.SizeF(40F, 36F);
       resources.ApplyResources(this.page_main_web, "page_main_web");
       this.page_main_web.Name = "page_main_web";
+      // 
+      // page_main_feed_request
+      // 
+      this.page_main_feed_request.Authentication = null;
+      this.page_main_feed_request.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this.page_main_feed_request, "page_main_feed_request");
+      this.page_main_feed_request.Name = "page_main_feed_request";
       // 
       // MainControl
       // 
@@ -651,14 +533,6 @@
       ((System.ComponentModel.ISupportInitialize)(this.pages_blogger)).EndInit();
       this.pages_blogger.ResumeLayout(false);
       this.page_blogger_home.ResumeLayout(false);
-      this.page_main_facebook.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.pages_facebook)).EndInit();
-      this.pages_facebook.ResumeLayout(false);
-      this.page_facebook_home.ResumeLayout(false);
-      this.page_main_instagram.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.pages_instagram)).EndInit();
-      this.pages_instagram.ResumeLayout(false);
-      this.page_instagram_home.ResumeLayout(false);
       this.page_main_reddit.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.pages_reddit)).EndInit();
       this.pages_reddit.ResumeLayout(false);
@@ -679,6 +553,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.pages_youtube)).EndInit();
       this.pages_youtube.ResumeLayout(false);
       this.page_youtube_home.ResumeLayout(false);
+      this.page_main_feed.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
@@ -688,8 +563,6 @@
     private Telerik.WinControls.UI.RadPageView pages_main;
     private Telerik.WinControls.UI.RadPageViewPage page_main_main;
     private Telerik.WinControls.UI.RadPageViewPage page_main_blogger;
-    private Telerik.WinControls.UI.RadPageViewPage page_main_facebook;
-    private Telerik.WinControls.UI.RadPageViewPage page_main_instagram;
     private Telerik.WinControls.UI.RadPageViewPage page_main_reddit;
     private Telerik.WinControls.UI.RadPageViewPage page_main_tumblr;
     private Telerik.WinControls.UI.RadPageViewPage page_main_twitter;
@@ -697,16 +570,13 @@
     private Telerik.WinControls.UI.RadPageViewPage page_main_youtube;
     private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     private ServiceInformationButton btn_main_blogger;
-    private ServiceInformationButton btn_main_facebook;
-    private ServiceInformationButton btn_main_instagram;
     private ServiceInformationButton btn_main_reddit;
     private ServiceInformationButton btn_main_tumblr;
     private ServiceInformationButton btn_main_twitter;
     private ServiceInformationButton btn_main_wordpress;
     private ServiceInformationButton btn_main_youtube;
-    private ServiceInformationButton btn_main_forum;
     private ServiceInformationButton btn_main_web;
-    private Telerik.WinControls.UI.RadPageViewPage page_main_forum;
+    private Telerik.WinControls.UI.RadPageViewPage page_main_feed;
     private Telerik.WinControls.UI.RadPageViewPage page_main_web;
     private CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel ihdPanel1;
     private Telerik.WinControls.UI.RadPageView pages_twitter;
@@ -717,16 +587,6 @@
     private Telerik.WinControls.UI.RadPageViewPage page_blogger_home;
     private ServiceHome serviceHome_blogger;
     private Telerik.WinControls.UI.RadPageViewPage page_blogger_account;
-    private Telerik.WinControls.UI.RadPageView pages_facebook;
-    private Telerik.WinControls.UI.RadPageViewPage page_facebook_home;
-    private ServiceHome serviceHome_facebook;
-    private Telerik.WinControls.UI.RadPageViewPage page_facebook_account;
-    private Telerik.WinControls.UI.RadPageViewPage page_facebook_stream;
-    private Telerik.WinControls.UI.RadPageView pages_instagram;
-    private Telerik.WinControls.UI.RadPageViewPage page_instagram_home;
-    private ServiceHome serviceHome_instagram;
-    private Telerik.WinControls.UI.RadPageViewPage page_instagram_account;
-    private Telerik.WinControls.UI.RadPageViewPage page_instagram_stream;
     private Telerik.WinControls.UI.RadPageView pages_reddit;
     private Telerik.WinControls.UI.RadPageViewPage page_reddit_home;
     private ServiceHome serviceHome_reddit;
@@ -750,5 +610,7 @@
     private Telerik.WinControls.UI.RadPageViewPage page_twitter_streaming;
     private Telerik.WinControls.UI.RadPageViewPage pages_wordpress_postsAndComments;
     private Telerik.WinControls.UI.RadPageViewPage page_twitter_images;
+    private ServiceInformationButton btn_main_feed;
+    private EndpointRequestSimple page_main_feed_request;
   }
 }

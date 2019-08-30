@@ -45,6 +45,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
 
       elementHost1.Child = editor_input;
       elementHost2.Child = editor_output;
+
+      editor_input.Text =
+        "<!doctype html>\r\n<html>\r\n\t<head>\r\n\t\t<meta charset=\"utf-8\">\r\n\t\t<style>\r\n\t\t\tp {color: black;}\r\n\t\t\t.red {color: red;}\r\n\t\t</style>\r\n\t</head>\r\n\t<body>\r\n\t\t<h1>CorpusExplorer</h1>\r\n\t\t<p>HTML5-Labor</p><p class=\"red\">Beispiel</p>\r\n\t\tDer aktuelle Schnappschuss hat: <div id=\"divT\"></div> Token!\r\n\t\t<script>\r\n\t\t\tvar data = /*CEC how-many-tokens */;\r\n\t\t\tdocument.getElementById(\"divT\").innerHTML = data[0][\"value\"]\r\n\t\t</script>\r\n\t</body>\r\n</html>";
     }
 
     // private void btn_export_html_Click(object sender, EventArgs e) { webHtml5LaboratoryVisualisation1.ExportHtml(); }
@@ -105,12 +108,19 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
     {
       try
       {
-        var html = Html5Scripter.Parse(Project.CurrentSelection,
-                                       TemplateTextGenerator.Generate(editor_input.Text, vars));
+        var html = Html5Scripter.Parse(Project.CurrentSelection, TemplateTextGenerator.Generate(editor_input.Text, vars));
         FileIO.Write(_file.Path, html);
+        editor_output.Text = html;
+      }
+      catch (Exception ex)
+      {
+        InMemoryErrorConsole.Log(ex);
+      }
+
+      try
+      {
         webHtml5LaboratoryVisualisation1.MainpageUrl = _file.Path;
         webHtml5LaboratoryVisualisation1.GoToMainpage();
-        editor_output.Text = html;
       }
       catch (Exception ex)
       {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Extern.TextSharp.PDF;
 using CorpusExplorer.Sdk.Helper;
@@ -16,25 +17,26 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.APAEK
 
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
-      var scraper = new TextSharpPdfScraper {Strategy = TextSharpPdfScraper.TextSharpPdfScraperStrategy.Simple};
+      var regexNum = new Regex(@"[0-9]$");
+      var scraper = new TextSharpPdfScraper { Strategy = TextSharpPdfScraper.TextSharpPdfScraperStrategy.Simple };
       scraper.Input.Enqueue(file);
       scraper.Execute();
       var pdf = scraper.Output.FirstOrDefault();
       if (pdf == null)
         return null;
 
-      var lines = ((string) pdf["Text"]).Split(new[] {"\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries);
+      var lines = ((string)pdf["Text"]).Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
       // META
-      var meta = new Dictionary<string, object> {{"Dateiname", Path.GetFileName(file)}};
+      var meta = new Dictionary<string, object>();
       string fach = "",
-        stundenthema = "",
-        datum = "",
-        schulform = "",
-        teilnehmer = "",
-        projektkontext = "",
-        transkribiertVon = "",
-        korrigiertDurch = "";
+             stundenthema = "",
+             datum = "",
+             schulform = "",
+             teilnehmer = "",
+             projektkontext = "",
+             transkribiertVon = "",
+             korrigiertDurch = "";
 
       var i = 0;
       for (; i < lines.Length; i++)
@@ -98,32 +100,40 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.APAEK
       for (; i < lines.Length; i++)
         try
         {
-          if (string.IsNullOrWhiteSpace(lines[i]) ||
-              lines[i].StartsWith("APAEK - Archiv für") ||
-              lines[i].StartsWith("URL des Datensatzes"))
+          if (string.IsNullOrWhiteSpace(lines[i]))
             continue;
 
           // Entferne: - = < > [ ]
           var line = lines[i]
-            .Replace("-", "")
-            .Replace("–", "")
-            .Replace("=", "")
-            .Replace("<", "[")
-            .Replace(">", "]")
-            //.Replace("[", "")
-            //.Replace("]", "")
-            .Trim();
-          if (line.Length > 2 &&
-              (line[0] == 'L' || line[0] == 'S' || line[0] == 'K') &&
-              line.Substring(1, 7 > line.Length ? line.Length - 1 : 7).Contains(':'))
+                    .Replace("-", "")
+                    .Replace("–", "")
+                    .Replace("=", "")
+                    .Replace("<", "[")
+                    .Replace(">", "]")
+                    //.Replace("[", "")
+                    //.Replace("]", "")
+                    .Trim();
+
+          while (regexNum.IsMatch(line))
+            line = line.Substring(0, line.Length - 1);
+
+          line = line.Trim();
+          if (line.ToUpper().StartsWith("APAEK") || line.ToUpper().StartsWith("URL"))
+            continue;
+          if (line.ToLower().StartsWith("zusätzliche informationen:"))
+            break;
+
+          if (line.Length > 2
+           && (line[0] == 'L' || line[0] == 'S' || line[0] == 'K' || line.ToLower().StartsWith("all:") ||
+               line.ToLower().StartsWith("alle:"))
+           && line.Substring(1, 7 > line.Length ? line.Length - 1 : 7).Contains(':'))
           {
             // Abschluss
             if (speaker != "")
-              NewEntry(ref meta, speaker, stb.ToString(), ref res, ref id);
+              NewEntry(ref meta, ref speaker, ref stb, ref res, ref id);
 
             // Neu erstellen
-            speaker = line.Substring(0, 8).Split(new[] {":"}, StringSplitOptions.RemoveEmptyEntries)[0]
-              .Trim();
+            speaker = line.Substring(0, 8).Split(new[] { ":" }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
             stb = new StringBuilder();
             stb.AppendLine(line.Replace($"{speaker}:", "").Trim());
 
@@ -143,7 +153,7 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.APAEK
           InMemoryErrorConsole.Log(ex);
         }
 
-      NewEntry(ref meta, speaker, stb.ToString(), ref res, ref id);
+      NewEntry(ref meta, ref speaker, ref stb, ref res, ref id);
 
       return res;
     }
@@ -171,10 +181,13 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.APAEK
       return content.Replace("  ", " ").Replace("...", ".").Replace("…", ".").Replace("„", "\"").Replace("“", "\"");
     }
 
-    private void NewEntry(ref Dictionary<string, object> meta, string speaker, string content,
+    private void NewEntry(ref Dictionary<string, object> meta, ref string speaker, ref StringBuilder content,
       ref List<Dictionary<string, object>> res, ref int id)
     {
-      var text = Clean(content);
+      var text = Clean(content.ToString());
+      content.Clear();
+      speaker = "";
+
       if (string.IsNullOrWhiteSpace(text))
         return;
 

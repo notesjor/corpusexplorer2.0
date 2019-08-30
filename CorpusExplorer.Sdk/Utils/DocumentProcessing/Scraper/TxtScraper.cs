@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.IO;
+using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 
@@ -21,7 +22,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper
         {
           {
             "Text",
-            File.ReadAllText(file, Configuration.Encoding)
+            FileIO.ReadText(file, Configuration.Encoding)
           },
           {
             "Titel", Path.GetFileNameWithoutExtension(file)

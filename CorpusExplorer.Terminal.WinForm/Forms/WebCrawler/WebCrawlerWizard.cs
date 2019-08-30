@@ -177,7 +177,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
     private void radWizard1_Finish(object sender, EventArgs e)
     {
       var mappings = GetMappings();
-      if (!mappings.ContainsKey("Text"))
+      if (!mappings.ContainsValue("Text"))
       {
         MessageBox.Show(Resources.SieBenötigenMindestensEinMappingMitDemKeyText);
         return;

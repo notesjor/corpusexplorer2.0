@@ -45,6 +45,23 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper
       }
     }
 
+    public virtual T Deserialize(MemoryStream ms)
+    {
+      try
+      {
+        T res;
+
+        var xml = new XmlSerializer(typeof(T));
+        res = xml.Deserialize(ms) as T;
+
+        return res;
+      }
+      catch (Exception ex)
+      {
+        return default(T);
+      }
+    }
+
     public bool Debug { get; set; } = false;
 
     public virtual void Serialize(T obj, string path)

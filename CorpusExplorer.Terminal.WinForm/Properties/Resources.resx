@@ -2951,4 +2951,7 @@ Nicht geeignet für Korpra mit mehr als 5 Mio. Token!</value>
   <data name="FileExtension_GraphML" xml:space="preserve">
     <value>GraphML (*.grapml)|*.graphml</value>
   </data>
+  <data name="CleanDocuments" xml:space="preserve">
+    <value>Bereinige Dokumente...</value>
+  </data>
 </root>

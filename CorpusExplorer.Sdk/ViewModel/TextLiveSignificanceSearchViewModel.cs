@@ -39,18 +39,21 @@ namespace CorpusExplorer.Sdk.ViewModel
       dt.Columns.Add("Post", typeof(string));
       dt.Columns.Add("Frequenz", typeof(int));
       dt.Columns.Add("Token", typeof(int));
+      dt.Columns.Add("Co-occurrences", typeof(string));
       dt.Columns.Add("SigToken", typeof(int));
       dt.Columns.Add("SigMax", typeof(double));
       dt.Columns.Add("SigSum", typeof(double));
       dt.Columns.Add("SigMed", typeof(double));
       dt.Columns.Add("SigRank", typeof(double));
+      dt.Columns.Add("CorpusGuid", typeof(string));
+      dt.Columns.Add("DocumentGuid", typeof(string));
 
       var data = GetUniqueData();
 
       dt.BeginLoadData();
       foreach (var d in data)
-        dt.Rows.Add(d.Pre, d.Match, d.Post, d.Count, d.Token, d.SignificantToken, d.SignificanceMax, d.SignificanceSum,
-                    d.SignificanceMed, d.SignificanceRank);
+        dt.Rows.Add(d.Pre, d.Match, d.Post, d.Count, d.Token, string.Join(" | ", d.FoundCooccurrences) , d.SignificantToken, d.SignificanceMax, d.SignificanceSum,
+                    d.SignificanceMed, d.SignificanceRank, d.CorpusGuid.ToString("N"), d.DocumentGuid.ToString("N"));
       dt.EndLoadData();
 
       return dt;
@@ -72,17 +75,18 @@ namespace CorpusExplorer.Sdk.ViewModel
     {
       var res = new Dictionary<string, SignificanceExtendedUniqueTextLiveSearchResultEntry>();
       foreach (var corpus in SearchResults)
-      foreach (var result in corpus.Value)
-      foreach (var sent in result.Value)
+      foreach (var document in corpus.Value)
+      foreach (var sent in document.Value)
       {
         if (sent.Value == null || sent.Value.Count == 0)
           continue;
 
         int token, stoken;
         double sigMax, sigSum, sigMed;
+        HashSet<string> cooc;
         var streamDoc =
-          RunHighlighting(Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key).ReduceDocumentToStreamDocument().ToArray(),
-                          out token, out stoken, out sigMax, out sigSum, out sigMed);
+          RunHighlighting(Selection.GetReadableDocumentSnippet(document.Key, "Wort", sent.Key, sent.Key).ReduceDocumentToStreamDocument().ToArray(),
+                          out token, out stoken, out sigMax, out sigSum, out sigMed, out cooc);
 
         var key = string.Join("|", streamDoc);
         if (!res.ContainsKey(key))
@@ -100,11 +104,14 @@ namespace CorpusExplorer.Sdk.ViewModel
                     SignificantToken = stoken,
                     SignificanceMax = sigMax,
                     SignificanceSum = sigSum,
-                    SignificanceMed = sigMed
+                    SignificanceMed = sigMed,
+                    CorpusGuid = corpus.Key,
+                    DocumentGuid = document.Key,
+                    FoundCooccurrences = cooc
                   });
         }
 
-        res[key].AddSentence(result.Key, sent.Key);
+        res[key].AddSentence(document.Key, sent.Key);
       }
 
       var sigTokenMax = res.Max(x => x.Value.SignificantToken);
@@ -125,10 +132,10 @@ namespace CorpusExplorer.Sdk.ViewModel
     }
 
     private string[] RunHighlighting(string[] streamDoc, out int token, out int stoken, out double sigMax,
-                                     out double sigSum, out double sigMed)
+                                     out double sigSum, out double sigMed, out HashSet<string> cooc)
     {
       var res = new List<string>();
-      var hsh = new HashSet<string>(); // Verhindert Kookkurrenz-Mehrfachnennung.
+      cooc = new HashSet<string>(); // Verhindert Kookkurrenz-Mehrfachnennung UND gibt die gefunden Kookkurrenzen zurück
       var med = new List<double>();
       token = streamDoc.Length;
       sigMax = 0;
@@ -140,9 +147,9 @@ namespace CorpusExplorer.Sdk.ViewModel
         if (_highlightCache.ContainsKey(w))
         {
           val = $"{HighlightStart}{w}{HighlightEnd}";
-          if (!hsh.Contains(w))
+          if (!cooc.Contains(w))
           {
-            hsh.Add(w);
+            cooc.Add(w);
             var sig = _highlightCache[w];
             if (sig > sigMax)
               sigMax = sig;
@@ -158,7 +165,7 @@ namespace CorpusExplorer.Sdk.ViewModel
         res.Add(val);
       }
 
-      stoken = hsh.Count;
+      stoken = cooc.Count;
       sigMed = med.Count == 0 ? 0 : med.GetMedian();
       return res.ToArray();
     }

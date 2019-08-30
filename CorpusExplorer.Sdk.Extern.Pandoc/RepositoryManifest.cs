@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Extern.Pandoc.Pandoc;
+using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
@@ -14,6 +15,7 @@ namespace CorpusExplorer.Sdk.Extern.Pandoc
     public override IEnumerable<AbstractAdditionalTagger> AddonAdditionalTagger => null;
     public override IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> AddonBackends => null;
     public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters => null;
+    public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter => null;
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter => null;
 
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers =>

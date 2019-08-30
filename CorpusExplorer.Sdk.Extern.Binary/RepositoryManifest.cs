@@ -5,6 +5,7 @@ using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Extern.Binary.Excel.Kidko;
 using CorpusExplorer.Sdk.Extern.Binary.Excel.Universal;
 using CorpusExplorer.Sdk.Extern.Binary.ListOfScrapDocuments;
+using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
@@ -25,7 +26,7 @@ namespace CorpusExplorer.Sdk.Extern.Binary
     ///   Liste mit Exportern die Projekte, Korpora und Schnappschüsse (alle IHydra) exportieren können
     /// </summary>
     public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters => null;
-
+    public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter => null;
     /// <summary>
     ///   Liste mit Scrapern die lokale Dateien bestehender Korpora importieren (z. B. XML, EXMERaLDA).
     ///   Für Dateien MIT Annotation.

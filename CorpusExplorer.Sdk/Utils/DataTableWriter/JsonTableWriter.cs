@@ -25,19 +25,10 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       foreach (DataColumn c in table.Columns)
         columns.Add(new KeyValuePair<string, Type>(c.ColumnName, c.DataType));
 
-      var tmp = new StringBuilder();
-      tmp.Append("{");
-      foreach (var c in columns)
-        tmp.Append(c.Value == typeof(string) ? $"\"{c.Key}\": \"{{{c.Key}}}\"," : $"\"{c.Key}\": {{{c.Key}}},");
-      tmp.Remove(tmp.Length - 1, 1);
-      tmp.Append("},");
-      var template = tmp.ToString();
-      tmp.Clear();
+      string template = GenerateTemplate(columns);
 
       var marks = columns.ToDictionary(x => x.Key, x => $"{{{x.Key}}}");
-
-      var stb = new StringBuilder();
-      var slo = new object();
+      var wlock = new object();
 
       Parallel.ForEach(table.AsEnumerable(), row =>
       {
@@ -51,16 +42,25 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
                         ? row[column.Key].ToString().Replace("\"", "\\\"")
                         : row[column.Key].ToString().Replace(",", "."));
 
-        lock (slo)
-        {
-          stb.Append(r);
-        }
+        var line = r.ToString();
+        lock (wlock)
+          WriteOutput(line);
       });
 
-      stb.Remove(stb.Length - 1, 1);
+      DeleteLastChars(1);
+    }
 
-      WriteOutput(stb.ToString());
-      WriteOutput(",");
+    private static string GenerateTemplate(List<KeyValuePair<string, Type>> columns)
+    {
+      var templateGen = new StringBuilder();
+      templateGen.Append("{");
+      foreach (var c in columns)
+        templateGen.Append(c.Value == typeof(string) ? $"\"{c.Key}\": \"{{{c.Key}}}\"," : $"\"{c.Key}\": {{{c.Key}}},");
+      templateGen.Remove(templateGen.Length - 1, 1);
+      templateGen.Append("},");
+      var template = templateGen.ToString();
+      templateGen.Clear();
+      return template;
     }
 
     protected override void WriteFooter()
@@ -71,7 +71,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
 
     public override AbstractTableWriter Clone(Stream stream)
     {
-      return new JsonTableWriter {OutputStream = stream};
+      return new JsonTableWriter { OutputStream = stream, WriteTid = WriteTid };
     }
   }
 }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Extern.NTextCat;
 using CorpusExplorer.Sdk.Extern.Plaintext.WET.Forms;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
@@ -22,14 +23,14 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET
 
     private const string HeaderTargetUri = "WARC-Target-URI:";
     private DomainFilter _filterDomain;
-    private LanguageFilter _filterLanguage;
 
     private readonly object _filterLock = new object();
     private bool _filterSet;
+    private string _filterLanguage;
 
     public override string DisplayName => "http://commoncrawl.org - WET";
 
-    public void InitializeFilter(LanguageFilter filterLanguage, DomainFilter filterDomain)
+    public void InitializeFilter(DomainFilter filterDomain, string filterLanguage = null)
     {
       lock (_filterLock)
       {
@@ -49,7 +50,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET
           form.ShowDialog();
 
           if (form.UseLanguageFilter)
-            _filterLanguage = new LanguageFilter(form.SelectedLanguage);
+            _filterLanguage = form.SelectedLanguage;
 
           if (form.UseDomainFilter)
             _filterDomain = new DomainFilter(form.SelectedDomains);
@@ -63,14 +64,10 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET
       if (_filterLanguage == null)
         return res;
 
-      var bag = new ConcurrentBag<Dictionary<string, object>>();
-      Parallel.ForEach(res, Configuration.ParallelOptions, entry =>
-      {
-        if (_filterLanguage.Match(entry["Text"] as string))
-          bag.Add(entry);
-      });
+      var cleaner = new NTextCatLanguageCleanup { Input = res };
+      cleaner.Execute();
 
-      return bag;
+      return cleaner.Output;
     }
 
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
@@ -83,7 +80,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET
           form.ShowDialog();
 
           if (form.UseLanguageFilter)
-            _filterLanguage = new LanguageFilter(form.SelectedLanguage);
+            _filterLanguage = form.SelectedLanguage;
 
           if (form.UseDomainFilter)
             _filterDomain = new DomainFilter(form.SelectedDomains);
@@ -92,7 +89,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET
         }
       }
 
-      List<Dictionary<string, object>> res;
+      ConcurrentQueue<Dictionary<string, object>> res;
       using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
       using (var bs = new BufferedStream(fs))
       {
@@ -102,17 +99,13 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET
       if (_filterLanguage == null)
         return res;
 
-      var bag = new ConcurrentBag<Dictionary<string, object>>();
-      Parallel.ForEach(res, Configuration.ParallelOptions, entry =>
-      {
-        if (_filterLanguage.Match(entry["Text"] as string))
-          bag.Add(entry);
-      });
+      var cleaner = new NTextCatLanguageCleanup { Input = res };
+      cleaner.Execute();
 
-      return bag;
+      return cleaner.Output;
     }
 
-    private List<Dictionary<string, object>> ExecuteExtraction(Stream fs)
+    private ConcurrentQueue<Dictionary<string, object>> ExecuteExtraction(Stream fs)
     {
       var lines = GetLines(fs);
 
@@ -125,7 +118,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET
           break;
       }
 
-      var res = new List<Dictionary<string, object>>();
+      var res = new ConcurrentQueue<Dictionary<string, object>>();
       var current = new Dictionary<string, object>();
       var stb = new StringBuilder();
       var head = true;
@@ -168,12 +161,12 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET
             if (_filterDomain == null)
             {
               current.Add("Text", stb.ToString());
-              res.Add(current);
+              res.Enqueue(current);
             }
             else if (_filterDomain.Match(current["Url"] as string))
             {
               current.Add("Text", stb.ToString());
-              res.Add(current);
+              res.Enqueue(current);
             }
 
             current = new Dictionary<string, object>();
@@ -196,7 +189,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET
       var buffer = new byte[fs.Length];
       fs.Read(buffer, 0, buffer.Length);
       return Configuration.Encoding.GetString(buffer)
-        .Split(new[] {"\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries);
+        .Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
     }
   }
 }

@@ -37,14 +37,14 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>mycert.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey2019.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.11.4.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.11.4\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.11.12.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.12\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=1.1.0.145, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpZipLib.1.1.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -137,7 +137,170 @@
     <Compile Include="EuroparlUds\Model\section.cs" />
     <Compile Include="EuroparlUds\Model\text.cs" />
     <Compile Include="EuroparlUds\Serializer\EuroParlUdsSerializer.cs" />
-    <Compile Include="FoLiA\Model\xml_xlink_folia.cs" />
+    <Compile Include="FoLiA\Model\alignment.cs" />
+    <Compile Include="FoLiA\Model\alignmentannotation.cs" />
+    <Compile Include="FoLiA\Model\alt.cs" />
+    <Compile Include="FoLiA\Model\alternativeannotation.cs" />
+    <Compile Include="FoLiA\Model\altlayers.cs" />
+    <Compile Include="FoLiA\Model\annotations.cs" />
+    <Compile Include="FoLiA\Model\annotator.cs" />
+    <Compile Include="FoLiA\Model\aref.cs" />
+    <Compile Include="FoLiA\Model\br.cs" />
+    <Compile Include="FoLiA\Model\caption.cs" />
+    <Compile Include="FoLiA\Model\cell.cs" />
+    <Compile Include="FoLiA\Model\chunk.cs" />
+    <Compile Include="FoLiA\Model\chunking.cs" />
+    <Compile Include="FoLiA\Model\chunkingannotation.cs" />
+    <Compile Include="FoLiA\Model\comment.cs" />
+    <Compile Include="FoLiA\Model\commentannotation.cs" />
+    <Compile Include="FoLiA\Model\complexalignment.cs" />
+    <Compile Include="FoLiA\Model\complexalignmentannotation.cs" />
+    <Compile Include="FoLiA\Model\complexalignments.cs" />
+    <Compile Include="FoLiA\Model\coreferenceannotation.cs" />
+    <Compile Include="FoLiA\Model\coreferencechain.cs" />
+    <Compile Include="FoLiA\Model\coreferencelink.cs" />
+    <Compile Include="FoLiA\Model\coreferences.cs" />
+    <Compile Include="FoLiA\Model\correction.cs" />
+    <Compile Include="FoLiA\Model\correctionannotation.cs" />
+    <Compile Include="FoLiA\Model\current.cs" />
+    <Compile Include="FoLiA\Model\def.cs" />
+    <Compile Include="FoLiA\Model\definitionannotation.cs" />
+    <Compile Include="FoLiA\Model\dep.cs" />
+    <Compile Include="FoLiA\Model\dependencies.cs" />
+    <Compile Include="FoLiA\Model\dependency.cs" />
+    <Compile Include="FoLiA\Model\dependencyannotation.cs" />
+    <Compile Include="FoLiA\Model\desc.cs" />
+    <Compile Include="FoLiA\Model\descriptionannotation.cs" />
+    <Compile Include="FoLiA\Model\div.cs" />
+    <Compile Include="FoLiA\Model\divisionannotation.cs" />
+    <Compile Include="FoLiA\Model\domain.cs" />
+    <Compile Include="FoLiA\Model\domainannotation.cs" />
+    <Compile Include="FoLiA\Model\entities.cs" />
+    <Compile Include="FoLiA\Model\entity.cs" />
+    <Compile Include="FoLiA\Model\entityannotation.cs" />
+    <Compile Include="FoLiA\Model\entry.cs" />
+    <Compile Include="FoLiA\Model\entryannotation.cs" />
+    <Compile Include="FoLiA\Model\errordetection.cs" />
+    <Compile Include="FoLiA\Model\errordetectionannotation.cs" />
+    <Compile Include="FoLiA\Model\event.cs" />
+    <Compile Include="FoLiA\Model\eventannotation.cs" />
+    <Compile Include="FoLiA\Model\ex.cs" />
+    <Compile Include="FoLiA\Model\exampleannotation.cs" />
+    <Compile Include="FoLiA\Model\external.cs" />
+    <Compile Include="FoLiA\Model\feat.cs" />
+    <Compile Include="FoLiA\Model\figure.cs" />
+    <Compile Include="FoLiA\Model\figureannotation.cs" />
+    <Compile Include="FoLiA\Model\gap.cs" />
+    <Compile Include="FoLiA\Model\gapannotation.cs" />
+    <Compile Include="FoLiA\Model\hd.cs" />
+    <Compile Include="FoLiA\Model\head.cs" />
+    <Compile Include="FoLiA\Model\headannotation.cs" />
+    <Compile Include="FoLiA\Model\hiddentokenannotation.cs" />
+    <Compile Include="FoLiA\Model\hiddenw.cs" />
+    <Compile Include="FoLiA\Model\hyphenationannotation.cs" />
+    <Compile Include="FoLiA\Model\item.cs" />
+    <Compile Include="FoLiA\Model\label.cs" />
+    <Compile Include="FoLiA\Model\lang.cs" />
+    <Compile Include="FoLiA\Model\langannotation.cs" />
+    <Compile Include="FoLiA\Model\lemma.cs" />
+    <Compile Include="FoLiA\Model\lemmaannotation.cs" />
+    <Compile Include="FoLiA\Model\linebreakannotation.cs" />
+    <Compile Include="FoLiA\Model\list.cs" />
+    <Compile Include="FoLiA\Model\listannotation.cs" />
+    <Compile Include="FoLiA\Model\listitem.cs" />
+    <Compile Include="FoLiA\Model\meta.cs" />
+    <Compile Include="FoLiA\Model\metadata.cs" />
+    <Compile Include="FoLiA\Model\metric.cs" />
+    <Compile Include="FoLiA\Model\metricannotation.cs" />
+    <Compile Include="FoLiA\Model\morpheme.cs" />
+    <Compile Include="FoLiA\Model\morphologicalannotation.cs" />
+    <Compile Include="FoLiA\Model\morphology.cs" />
+    <Compile Include="FoLiA\Model\new.cs" />
+    <Compile Include="FoLiA\Model\note.cs" />
+    <Compile Include="FoLiA\Model\noteannotation.cs" />
+    <Compile Include="FoLiA\Model\observation.cs" />
+    <Compile Include="FoLiA\Model\observationannotation.cs" />
+    <Compile Include="FoLiA\Model\observations.cs" />
+    <Compile Include="FoLiA\Model\original.cs" />
+    <Compile Include="FoLiA\Model\p.cs" />
+    <Compile Include="FoLiA\Model\paragraphannotation.cs" />
+    <Compile Include="FoLiA\Model\part.cs" />
+    <Compile Include="FoLiA\Model\partannotation.cs" />
+    <Compile Include="FoLiA\Model\ph.cs" />
+    <Compile Include="FoLiA\Model\phonannotation.cs" />
+    <Compile Include="FoLiA\Model\phoneme.cs" />
+    <Compile Include="FoLiA\Model\phonologicalannotation.cs" />
+    <Compile Include="FoLiA\Model\phonology.cs" />
+    <Compile Include="FoLiA\Model\pos.cs" />
+    <Compile Include="FoLiA\Model\posannotation.cs" />
+    <Compile Include="FoLiA\Model\predicate.cs" />
+    <Compile Include="FoLiA\Model\predicateannotation.cs" />
+    <Compile Include="FoLiA\Model\processor.cs" />
+    <Compile Include="FoLiA\Model\provenance.cs" />
+    <Compile Include="FoLiA\Model\quote.cs" />
+    <Compile Include="FoLiA\Model\quoteannotation.cs" />
+    <Compile Include="FoLiA\Model\rawcontentannotation.cs" />
+    <Compile Include="FoLiA\Model\ref.cs" />
+    <Compile Include="FoLiA\Model\referenceannotation.cs" />
+    <Compile Include="FoLiA\Model\rel.cs" />
+    <Compile Include="FoLiA\Model\relation.cs" />
+    <Compile Include="FoLiA\Model\relationannotation.cs" />
+    <Compile Include="FoLiA\Model\row.cs" />
+    <Compile Include="FoLiA\Model\s.cs" />
+    <Compile Include="FoLiA\Model\semrole.cs" />
+    <Compile Include="FoLiA\Model\semroleannotation.cs" />
+    <Compile Include="FoLiA\Model\semroles.cs" />
+    <Compile Include="FoLiA\Model\sense.cs" />
+    <Compile Include="FoLiA\Model\senseannotation.cs" />
+    <Compile Include="FoLiA\Model\sentenceannotation.cs" />
+    <Compile Include="FoLiA\Model\sentiment.cs" />
+    <Compile Include="FoLiA\Model\sentimentannotation.cs" />
+    <Compile Include="FoLiA\Model\sentiments.cs" />
+    <Compile Include="FoLiA\Model\source.cs" />
+    <Compile Include="FoLiA\Model\spanrelation.cs" />
+    <Compile Include="FoLiA\Model\spanrelationannotation.cs" />
+    <Compile Include="FoLiA\Model\spanrelations.cs" />
+    <Compile Include="FoLiA\Model\speech.cs" />
+    <Compile Include="FoLiA\Model\statement.cs" />
+    <Compile Include="FoLiA\Model\statementannotation.cs" />
+    <Compile Include="FoLiA\Model\statements.cs" />
+    <Compile Include="FoLiA\Model\str.cs" />
+    <Compile Include="FoLiA\Model\stringannotation.cs" />
+    <Compile Include="FoLiA\Model\styleannotation.cs" />
+    <Compile Include="FoLiA\Model\su.cs" />
+    <Compile Include="FoLiA\Model\subjectivity.cs" />
+    <Compile Include="FoLiA\Model\subjectivityannotation.cs" />
+    <Compile Include="FoLiA\Model\submetadata.cs" />
+    <Compile Include="FoLiA\Model\suggestion.cs" />
+    <Compile Include="FoLiA\Model\syntax.cs" />
+    <Compile Include="FoLiA\Model\syntaxannotation.cs" />
+    <Compile Include="FoLiA\Model\t.cs" />
+    <Compile Include="FoLiA\Model\table.cs" />
+    <Compile Include="FoLiA\Model\tableannotation.cs" />
+    <Compile Include="FoLiA\Model\tablehead.cs" />
+    <Compile Include="FoLiA\Model\target.cs" />
+    <Compile Include="FoLiA\Model\tcorrection.cs" />
+    <Compile Include="FoLiA\Model\term.cs" />
+    <Compile Include="FoLiA\Model\termannotation.cs" />
+    <Compile Include="FoLiA\Model\terror.cs" />
+    <Compile Include="FoLiA\Model\text.cs" />
+    <Compile Include="FoLiA\Model\textannotation.cs" />
+    <Compile Include="FoLiA\Model\tgap.cs" />
+    <Compile Include="FoLiA\Model\thbr.cs" />
+    <Compile Include="FoLiA\Model\timesegment.cs" />
+    <Compile Include="FoLiA\Model\timesegmentannotation.cs" />
+    <Compile Include="FoLiA\Model\timing.cs" />
+    <Compile Include="FoLiA\Model\tokenannotation.cs" />
+    <Compile Include="FoLiA\Model\tstr.cs" />
+    <Compile Include="FoLiA\Model\tstyle.cs" />
+    <Compile Include="FoLiA\Model\utt.cs" />
+    <Compile Include="FoLiA\Model\utteranceannotation.cs" />
+    <Compile Include="FoLiA\Model\w.cs" />
+    <Compile Include="FoLiA\Model\whitespace.cs" />
+    <Compile Include="FoLiA\Model\whitespaceannotation.cs" />
+    <Compile Include="FoLiA\Model\wref.cs" />
+    <Compile Include="FoLiA\Model\FoLiA.cs" />
+    <Compile Include="FoLiA\Model\xref.cs" />
     <Compile Include="Helper\XmlNodeHelper.cs" />
     <Compile Include="Catma\Parser\Abstract\AbstractCatmaRangeParser.cs" />
     <Compile Include="Catma\Parser\CatmaRangeParserFactory.cs" />
@@ -1050,8 +1213,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="CorpusExplorerNextSnKey.pfx" />
-    <None Include="mycert.pfx" />
+    <None Include="CorpusExplorerNextSnKey2019.pfx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

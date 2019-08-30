@@ -1,4 +1,9 @@
-﻿using CorpusExplorer.Sdk.Extern.SocialMedia.Blogger;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using CodeHollow.FeedReader;
+using CorpusExplorer.Sdk.Extern.SocialMedia.Blogger;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.Abstract;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Tumblr;
@@ -6,6 +11,8 @@ using CorpusExplorer.Sdk.Extern.SocialMedia.Twitter;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Wordpress;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Youtube;
 using CorpusExplorer.Terminal.WinForm.Helper;
+using HtmlAgilityPack;
+using Polenter.Serialization;
 using Telerik.WinControls.UI;
 
 namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
@@ -18,12 +25,13 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
       Load += (s, e) => pages_main.SelectedPage = page_main_main;
 
       pages_blogger.MakeHeaderInvisible();
-      pages_facebook.MakeHeaderInvisible();
-      pages_instagram.MakeHeaderInvisible();
+      //pages_facebook.MakeHeaderInvisible();
+      //pages_instagram.MakeHeaderInvisible();
       pages_reddit.MakeHeaderInvisible();
       pages_tumblr.MakeHeaderInvisible();
       pages_twitter.MakeHeaderInvisible();
       pages_wordpress.MakeHeaderInvisible();
+      pages_youtube.MakeHeaderInvisible();
 
       btn_main_blogger.OnClick += (s, e) => pages_main.SelectedPage = page_main_blogger;
       //btn_main_facebook.OnClick += (s, e) => pages_main.SelectedPage = page_main_facebook;
@@ -34,14 +42,13 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
       btn_main_twitter.OnClick += (s, e) => pages_main.SelectedPage = page_main_twitter;
       //btn_main_web.OnClick += (s, e) => pages_main.SelectedPage = page_main_web;
       //btn_main_wordpress.OnClick += (s, e) => pages_main.SelectedPage = page_main_wordpress;
-      //btn_main_youtube.OnClick += (s, e) => pages_main.SelectedPage = page_main_youtube;
+      btn_main_youtube.OnClick += (s, e) => pages_main.SelectedPage = page_main_youtube;
+      btn_main_feed.OnClick += (s, e) => pages_main.SelectedPage = page_main_feed;
 
       // BLOCK
       pages_main.SelectedPageChanging += (s, e) =>
       {
-        if (e.Page == page_main_facebook || e.Page == page_main_forum || e.Page == page_main_instagram ||
-            e.Page == page_main_reddit   || e.Page == page_main_web   || e.Page == page_main_youtube   ||
-            e.Page == page_main_wordpress)
+        if (e.Page == page_main_reddit   || e.Page == page_main_web  || e.Page == page_main_wordpress)
           e.Cancel = true;
       };
 
@@ -54,7 +61,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
       serviceHome_tumblr.Authentication = new TumblrAuthentication();
       serviceHome_twitter.Authentication = new TwitterAuthentication();
       // ToDo: serviceHome_wordpress.Authentication = new WordPressAuthentication();
-      serviceHome_youtube.Authentication = new YoutubeAuthentication();
+      serviceHome_youtube.Authentication = new YouTubeAuthentication();
 
       // (2) Endpoints müssen manuell (über diesen Code) eigefügt werden.
       serviceHome_blogger
@@ -121,6 +128,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
                     2,
                     new EndpointRequestSimple(),
                     new YouTubeSearchService());
+      page_main_feed_request.Execute += page_main_feed_request_Execute;
       // ToDo: Weitere Service hinzufügen
     }
 
@@ -132,5 +140,120 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
         return;
       rpv.SelectedPage = rpv.Pages[0];
     }
+
+    // TODO: Refactoring >>>>
+
+    private void page_main_feed_request_Execute(SocialMedia.Abstract.AbstractAuthentication auth, System.Collections.Generic.Dictionary<string, object> parameters)
+    {
+      var urls = parameters["queries"] as string[];
+      if(urls == null)
+        return;
+
+      foreach (var url in urls)
+      {
+        try
+        {
+          var html = new HtmlDocument();
+          using (var wc = new WebClient())
+            html.LoadHtml(wc.DownloadString(url));
+
+          var nodes = new List<HtmlNode>();
+          nodes.AddRange(html.DocumentNode.SelectNodes("//a"));
+          nodes.AddRange(html.DocumentNode.SelectNodes("//link"));
+
+          foreach (var node in nodes)
+          {
+            var href = node.GetAttributeValue("href", "").ToLower();
+            var points = 0;
+
+            if (node.GetAttributeValue("rel", "") == "alternate")
+              points++;
+
+            if (node.GetAttributeValue("type", "") == "application/rss+xml")
+              points++;
+
+            if (href.Contains("rss") || href.Contains("rdf") || href.Contains("atom") || href.Contains("feed"))
+              points++;
+
+            if (points >= 2)
+            {
+              if (href.StartsWith("/"))
+                href = url.Substring(0, url.Length - 1) + href;
+
+              if (!href.StartsWith("http:") && !href.StartsWith("https:"))
+                continue;
+
+              ProcessFeed(url);
+            }
+          }
+        }
+        catch
+        {
+          // ignore
+        }
+      }
+    }
+
+    private static void ProcessFeed(string url)
+    {
+      try
+      {
+        var task = FeedReader.ReadAsync(url);
+        task.Wait();
+        var feed = task.Result;
+        if (feed == null)
+          return;
+
+        var valid = feed.Items.Where(x => x.PublishingDate.HasValue).ToArray(); // ToArray() wichtig, um die Analyse durchzuführen
+        if (valid.Length == 0)
+          return;
+
+        foreach (var item in valid)
+          ProcessItem(item);
+
+      }
+      catch
+      {
+        // ignore
+      }
+    }
+
+    private static void ProcessItem(FeedItem item)
+    {
+      var fn = Guid.NewGuid().ToString("N");
+
+      try
+      {
+        var serializer = new SharpSerializer();
+        serializer.Serialize(item, GenerateFilePath(fileName: fn));
+      }
+      catch
+      {
+        // ignore
+      }
+
+      try
+      {
+        using (var wc = new WebClient())
+        {
+          var stream = wc.OpenRead(item.Link);
+          var size = Convert.ToInt64(wc.ResponseHeaders["Content-Length"]);
+          stream?.Close();
+          if (size < 500000)
+            wc.DownloadFile(item.Link, GenerateFilePath(fileName: fn, extension: ".html"));
+        }
+      }
+      catch
+      {
+        // ignore
+      }
+    }
+
+    private static string GenerateFilePath(string fileName, string extension = ".xml")
+    {
+      throw new NotImplementedException();
+    }
+
+    // <<<<< TODO: Refactoring ENDE
   }
 }

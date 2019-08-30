@@ -60,17 +60,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Diskursmonitor\Diskursmonitor.Sdk\Diskursmonitor.Sdk.csproj">
-      <Project>{49CCF7F2-04BC-4CE0-8A09-D594397602F3}</Project>
+    <ProjectReference Include="..\..\..\Diskursmonitor\Diskursmonitor.Sdk\Diskursmonitor.Sdk.csproj">
+      <Project>{49ccf7f2-04bc-4ce0-8a09-d594397602f3}</Project>
       <Name>Diskursmonitor.Sdk</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Kooperationsprojekte\TfresWebserver\TefresWebserver\TFRES.csproj">
-      <Project>{63F6B9F6-FF80-4764-BD45-109D549BF459}</Project>
-      <Name>TFRES</Name>
     </ProjectReference>
     <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.OpenThesaurus.Db\CorpusExplorer.Sdk.Extern.OpenThesaurus.Db.csproj">
       <Project>{777FFD26-F0C8-4E65-AB63-C4FF4FF84A03}</Project>
       <Name>CorpusExplorer.Sdk.Extern.OpenThesaurus.Db</Name>
+    </ProjectReference>
+    <ProjectReference Include="W:\Kooperationsprojekte\TfresWebserver\TefresWebserver\TFRES.csproj">
+      <Project>{63f6b9f6-ff80-4764-bd45-109d549bf459}</Project>
+      <Name>TFRES</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

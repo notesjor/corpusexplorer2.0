@@ -31,7 +31,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
       }
 
       Project = project;
-      RadControl.EnableDpiScaling = true;
+      //RadControl.EnableDpiScaling = true;
       InitializeComponent();
 
       Load += (sender, args) =>
@@ -65,7 +65,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
         // ignore
       }
 
-      RadControl.EnableDpiScaling = true;
+      //RadControl.EnableDpiScaling = true;
       InitializeComponent();
     }
 

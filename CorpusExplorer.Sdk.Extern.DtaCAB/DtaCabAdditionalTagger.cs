@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bcs.IO;
+using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model.Abstract;
@@ -30,44 +31,34 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
       return ApplyAnnoation(corpus, MakeWebRequests(MakeWebRequestClusters(GenerateDocs(corpus))));
     }
 
-    private IEnumerable<AbstractLayerState> ApplyAnnoation(AbstractCorpusAdapter corpus, List<KeyValuePair<Guid[], string>> makeWebRequests)
+    private IEnumerable<AbstractLayerState> ApplyAnnoation(AbstractCorpusAdapter corpus, Dictionary<Guid, string> documents)
     {
-      if (makeWebRequests == null)
+      if (documents == null)
         return null;
 
       var layer = corpus.GetLayers("Wort").FirstOrDefault()?.ToLayerState("DTA::CAB", 2, true);
       if (layer == null)
         return null;
 
-      if (makeWebRequests.All(x => string.IsNullOrEmpty(x.Value)))
+      if (documents.All(x => string.IsNullOrEmpty(x.Value)))
       {
         MessageBox.Show("Der DTA::CAB-Webservice scheint nicht erreichbar. Das können Sie tun:\n1. Überprüfen Sie ihre Internetverbindung.\n2. Überprüfen Sie, ob die Webseite http://www.deutschestextarchiv.de/demo/cab/ erreichbar ist.\n3. Kontaktieren Sie die Entwickler http://CorpusExplorer.de", "Fehler DTA::CAB-Webservice nicht verfügbar", MessageBoxButtons.OK);
         return null;
       }
 
       var error = false;
-      foreach (var webRequest in makeWebRequests)
+      foreach (var document in documents)
       {
-        if (string.IsNullOrEmpty(webRequest.Value))
+        if (string.IsNullOrEmpty(document.Value))
         {
           error = true;
           continue;
         }
 
-        var docs = webRequest.Value.Split(new[] { "\n\n" }, StringSplitOptions.RemoveEmptyEntries);
-        if (docs.Length != webRequest.Key.Length)
-        {
+        var doc = document.Value.Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Split(new[] { "\t" }, StringSplitOptions.None)).ToArray();
+
+        if (!layer.ChangeCompleteDocument(document.Key, doc, false))
           error = true;
-          continue;
-        }
-
-        for (int i = 0; i < docs.Length; i++)
-        {
-          var doc = docs[i].Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Split(new[] { "\t" }, StringSplitOptions.None)).ToArray();
-
-          if (!layer.ChangeCompleteDocument(webRequest.Key[i], doc, false))
-            error = true;
-        }
       }
 
       if (error)
@@ -76,13 +67,13 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
       return new[] { layer };
     }
 
-    private List<KeyValuePair<Guid[], string>> MakeWebRequests(List<KeyValuePair<Guid[], string>> clusters)
+    private Dictionary<Guid, string> MakeWebRequests(List<KeyValuePair<Guid[], string>> clusters)
     {
       if (clusters == null)
         return null;
 
       var cnt = 0;
-      var res = new List<KeyValuePair<Guid[], string>>();
+      var res = new Dictionary<Guid, string>();
       var ses = Guid.NewGuid().ToString("N");
 
       foreach (var cluster in clusters)
@@ -100,11 +91,24 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
           request.AddHeader("cache-control", "no-cache");
           request.AddHeader("Content-Type", "text/plain");
           request.AddParameter("undefined", cluster.Value, ParameterType.RequestBody);
-          res.Add(new KeyValuePair<Guid[], string>(cluster.Key, client.Execute(request).Content));
+
+          var text = client.Execute(request).Content;
+          if (string.IsNullOrEmpty(text))
+            throw new ArgumentNullException(nameof(text));
+
+          var split = text.Split(new[] { "\n\n\n" }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToArray();
+          if (split.Length != cluster.Key.Length)
+            throw new IndexOutOfRangeException();
+
+          for (var i = 0; i < split.Length; i++)
+            res.Add(cluster.Key[i], split[i]);
         }
-        catch
+        catch (Exception ex)
         {
-          res.Add(new KeyValuePair<Guid[], string>(cluster.Key, null));
+          InMemoryErrorConsole.Log(ex);
+
+          foreach (var guid in cluster.Key)
+            res.Add(guid, null);
         }
       }
 
@@ -153,7 +157,7 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
         return null;
 
       var sum = 0;
-      var docs = new Dictionary<Guid, string>();
+      var res = new Dictionary<Guid, string>();
       foreach (var dsel in corpus.DocumentGuids)
       {
         var doc = layer.GetReadableDocumentByGuid(dsel);
@@ -161,7 +165,10 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
 
         foreach (var s in doc)
         {
-          stb.Append(string.Join("\t", s));
+          var sent = s?.Select(x => x.Trim().Replace("\r", "").Replace("\n", "").Replace("\t", "")).ToArray();
+          if (sent == null || sent.Length < 0 || string.Join("", sent).Length < 1)
+            continue;
+          stb.Append(string.Join("\t", sent));
           stb.Append("\n");
         }
 
@@ -179,9 +186,9 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
           return null;
         }
 
-        docs.Add(dsel, stb.ToString());
+        res.Add(dsel, stb.ToString());
       }
-      return docs;
+      return res;
     }
 
     private void DisplayError(string message)

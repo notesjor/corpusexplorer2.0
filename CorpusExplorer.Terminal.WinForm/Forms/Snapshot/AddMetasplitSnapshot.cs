@@ -56,7 +56,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
     {
       _selection = selection;
       InitializeComponent();
-      drop_metaKey.DataSource = _selection.GetDocumentMetadataPrototypeOnlyProperties();
+      drop_metaKey.DataSource = selection == null ? project.SelectAll.GetDocumentMetadataPrototypeOnlyProperties() : selection.GetDocumentMetadataPrototypeOnlyProperties();
 
       drop_auto.SelectedIndex = 0;
       radPageView1.MakeHeaderInvisible();
@@ -72,8 +72,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
 
     private void AddRandomSnapshot_ButtonOkClick(object sender, EventArgs e)
     {
-      var blockGroup = _selection.CreateBlock<SelectionClusterBlock>();
+      var blockGroup = _selection == null ? Project.SelectAll.CreateBlock<SelectionClusterBlock>() : _selection.CreateBlock<SelectionClusterBlock>();
       blockGroup.MetadataKey = drop_metaKey.SelectedItem.Text;
+      blockGroup.NoParent = _selection == null;
       switch (drop_auto.SelectedIndex)
       {
         case 0:
@@ -83,7 +84,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
           if (drop_clusterFiller.SelectedIndex < 1)
             blockGroup.ClusterGenerator = new SelectionClusterGeneratorIntegerRange
             {
-              Ranges = (int) num_cluster.Value,
+              Ranges = (int)num_cluster.Value,
               AutoDetectMinMax = true
             };
           else
@@ -94,7 +95,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
           if (drop_clusterFiller.SelectedIndex < 1)
             blockGroup.ClusterGenerator = new SelectionClusterGeneratorDoubleRange
             {
-              Ranges = (int) num_cluster.Value,
+              Ranges = (int)num_cluster.Value,
               AutoDetectMinMax = true
             };
           else
@@ -109,7 +110,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
                 blockGroup.ClusterGenerator =
                   new SelectionClusterGeneratorDateTimeRange
                   {
-                    Ranges = (int) num_cluster.Value,
+                    Ranges = (int)num_cluster.Value,
                     AutoDetectMinMax = true
                   };
               else
@@ -117,7 +118,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
                   MakeComplexClusterGenerator(PredefinedGetOrderByValueDelegateDelegates.GetDateTime);
               break;
             default:
-              blockGroup.ClusterGenerator = (AbstractSelectionClusterGenerator) drop_dateTime.SelectedValue;
+              blockGroup.ClusterGenerator = (AbstractSelectionClusterGenerator)drop_dateTime.SelectedValue;
               break;
           }
 
@@ -136,7 +137,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
                  // .First() würde nur dazu führen, dass nur die erste Selection erzeugt wird.
                  var selections = (num_window.Value < 2
                                      ? blockGroup.GetSelectionClusters()
-                                     : blockGroup.GetSelectionClustersWindowed((int) num_window.Value)).ToArray();
+                                     : blockGroup.GetSelectionClustersWindowed((int)num_window.Value)).ToArray();
 
                  Result = selections.First();
                });
@@ -196,7 +197,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
         EnableAutoOrder = true,
         ClusterType = type,
         GetOrderByValue = func,
-        Ranges = (int) num_cluster.Value
+        Ranges = (int)num_cluster.Value
       };
     }
 

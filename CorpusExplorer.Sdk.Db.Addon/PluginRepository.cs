@@ -3,6 +3,7 @@ using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Backend;
 using CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter;
 using CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Importer;
+using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
@@ -14,7 +15,7 @@ namespace CorpusExplorer.Sdk.Db.ElasticSearch
   public class PluginRepository : AbstractAddonRepository
   {
     public override IEnumerable<AbstractAdditionalTagger> AddonAdditionalTagger => null;
-
+    public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter => null;
     public override IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> AddonBackends =>
       new Dictionary<string, AbstractCorpusBuilder>
       {

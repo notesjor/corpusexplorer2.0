@@ -32,7 +32,7 @@ namespace CorpusExplorer.Core.Utils.DocumentProcessing.Scraper.Abstract
           var reader = Activator.CreateInstance(typeof(T)) as T;
 
           if (reader is HtmlFormatProvider)
-            (reader as HtmlFormatProvider).ImportSettings = new HtmlImportSettings {ReplaceNonBreakingSpaces = true};
+            (reader as HtmlFormatProvider).ImportSettings = new HtmlImportSettings { ReplaceNonBreakingSpaces = true };
 
           if (reader == null)
             return null;

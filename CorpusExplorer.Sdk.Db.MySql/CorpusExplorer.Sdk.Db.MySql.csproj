@@ -31,22 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Devart.Data, Version=5.0.1878.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\Devart\dotConnect\MySQL\Devart.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Devart.Data.Linq, Version=4.8.1423.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\Devart\dotConnect\Linq\Devart.Data.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="Devart.Data.MySql, Version=8.10.1086.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\Devart\dotConnect\MySQL\Devart.Data.MySql.dll</HintPath>
-    </Reference>
-    <Reference Include="Devart.Data.MySql.Linq, Version=4.8.1423.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\Devart\dotConnect\Linq\Devart.Data.MySql.Linq.dll</HintPath>
-    </Reference>
+    <Reference Include="Devart.Data, Version=5.0.2194.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL" />
+    <Reference Include="Devart.Data.Linq, Version=4.9.1739.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL" />
+    <Reference Include="Devart.Data.MySql, Version=8.13.1402.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL" />
+    <Reference Include="Devart.Data.MySql.Linq, Version=4.9.1739.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -56,10 +44,16 @@
     <Compile Include="Adapter\CorpusAdapterLinqConnect.cs" />
     <Compile Include="Adapter\LayerAdapterLinqConnect.cs" />
     <Compile Include="Builder\CorpusBuilderMySql.cs" />
+    <Compile Include="Exporter\ExporterMySqlFullAccess.cs" />
     <Compile Include="Exporter\ExporterMysql.cs" />
     <Compile Include="Importer\ImporterMySql.cs" />
     <Compile Include="Model\DataContext.Designer.cs">
       <DependentUpon>DataContext.lqml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Model\FullAccessContext.Designer.cs">
+      <DependentUpon>FullAccessContext.lqml</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -78,6 +72,16 @@
       <Generator>DevartLinqToSqlGenerator</Generator>
       <LastGenOutput>DataContext.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Model\FullAccessContext.Diagram1.view">
+      <DependentUpon>FullAccessContext.lqml</DependentUpon>
+    </None>
+    <None Include="Model\FullAccessContext.edps">
+      <DependentUpon>FullAccessContext.lqml</DependentUpon>
+    </None>
+    <None Include="Model\FullAccessContext.lqml">
+      <Generator>DevartLinqToSqlGenerator</Generator>
+      <LastGenOutput>FullAccessContext.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
