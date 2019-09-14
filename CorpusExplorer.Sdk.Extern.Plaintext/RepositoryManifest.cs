@@ -6,6 +6,7 @@ using CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes;
 using CorpusExplorer.Sdk.Extern.Plaintext.ClarinContentSearch;
 using CorpusExplorer.Sdk.Extern.Plaintext.EasyHashtagSeparation;
 using CorpusExplorer.Sdk.Extern.Plaintext.Europarl;
+using CorpusExplorer.Sdk.Extern.Plaintext.KleineAnfrageDe;
 using CorpusExplorer.Sdk.Extern.Plaintext.LeipzigerWortschatz;
 using CorpusExplorer.Sdk.Extern.Plaintext.RawMailMsg;
 using CorpusExplorer.Sdk.Extern.Plaintext.Redewiedergabe;
@@ -40,7 +41,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
       new Dictionary<string, AbstractImporter>
       {
         {"CLAN/Childes (*.cex)|*.cex", new ImporterClanChildes()},
-        { "Projekt: http://www.redewiedergabe.de/ (*_metadata.tsv)|*_metadata.tsv", new RedewiedergabeImporter() }
+        { "Projekt: http://www.redewiedergabe.de/ (*_metadata.tsv)|*_metadata.tsv", new ImporterRedewiedergabe() }
       };
 
     /// <summary>
@@ -50,6 +51,10 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers =>
       new Dictionary<string, AbstractScraper>
       {
+        {
+          "kleineAnfrage.de SQL (*.sql)|*.sql",
+          new KleineanfrageDeScraper()
+        },
         {
           "CLARIN ContentSearch CSV-Export (*.csv)|*.csv",
           new ClarinContentSearchScraper()

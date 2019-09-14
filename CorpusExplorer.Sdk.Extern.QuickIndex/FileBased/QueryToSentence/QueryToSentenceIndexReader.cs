@@ -18,7 +18,7 @@ namespace CorpusExplorer.Sdk.Extern.QuickIndex.FileBased.QueryToSentence
 
     public static Dictionary<Guid, HashSet<int>> Search(string pathToCec6, int index)
     {
-      using (var fs = new FileStream(pathToCec6 + ".idx", FileMode.Open, FileAccess.Read))
+      using (var fs = new FileStream(pathToCec6 + ".idx", FileMode.Open, FileAccess.Read, FileShare.Read))
       {
         var fPosition = FindPosition(index, fs);
 
@@ -63,9 +63,9 @@ namespace CorpusExplorer.Sdk.Extern.QuickIndex.FileBased.QueryToSentence
       stream.Seek(-1 * bufferLong.Length, SeekOrigin.End);
       stream.Read(bufferLong, 0, bufferLong.Length);
 
-      var jmp = sizeof(int) + sizeof(long);
+      const int jmp = sizeof(int) + sizeof(long);
       var lpo = BitConverter.ToInt64(bufferLong, 0);
-      long fPosition = -1;
+      long fPosition;
 
       var now = index;
       var pos = lpo + (jmp * now);

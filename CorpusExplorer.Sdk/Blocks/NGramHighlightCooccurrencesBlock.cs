@@ -19,7 +19,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
     public int NGramSize { get; set; } = 5;
 
-    public Dictionary<KeyValuePair<string, byte>[], int> WeightedNgrams { get; set; }
+    public Dictionary<KeyValuePair<string, byte>[], double> WeightedNgrams { get; set; }
 
     /// <summary>
     ///   Soll die Hydra-Optimierung verwendet werden. In diesem Fall nur die Fundsätze und nicht das gesamte Dokument
@@ -42,7 +42,7 @@ namespace CorpusExplorer.Sdk.Blocks
       block2.Calculate();
       var dic = block2.CooccurrenceSignificance.CompleteDictionaryToFullDictionary();
 
-      WeightedNgrams = new Dictionary<KeyValuePair<string, byte>[], int>();
+      WeightedNgrams = new Dictionary<KeyValuePair<string, byte>[], double>();
 
       foreach (var ngram in block1.NGramFrequency)
       {

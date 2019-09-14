@@ -204,6 +204,8 @@ namespace CorpusExplorer.Core
         new NGramSelectedAction(),
         new CrossFrequencyAction(),
         new CooccurrenceAction(),
+        new CooccurrenceCrossAction(),
+        new CooccurrenceCrossFullAction(),
         new CooccurrenceProfileAction(),
         new CooccurrenceSelectedAction(),
         new PositionFrequencyAction(),

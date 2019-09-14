@@ -131,6 +131,7 @@
     <Compile Include="Blocks\ClusterMetadataByNgramBlock.cs" />
     <Compile Include="Blocks\ClusterMetadata\ClusterMetadataItem.cs" />
     <Compile Include="Blocks\CooccurrenceContextBlock.cs" />
+    <Compile Include="Blocks\CooccurrenceCrossBlock.cs" />
     <Compile Include="Blocks\CooccurrenceSecondLevelProfileBlock.cs" />
     <Compile Include="Blocks\CrossFrequencyDocumentBasedBlock.cs" />
     <Compile Include="Blocks\CutOffPhraseBlock.cs" />
@@ -531,6 +532,7 @@
     <Compile Include="ViewModel\ClusterMetadataByCooccurenceSelectiveViewModel.cs" />
     <Compile Include="ViewModel\ClusterMetadataByCooccurenceViewModel.cs" />
     <Compile Include="ViewModel\ClusterMetadataByNGramViewModel.cs" />
+    <Compile Include="ViewModel\CooccurrenceCrossViewModel.cs" />
     <Compile Include="ViewModel\CooccurrenceOverlappingViewModel.cs" />
     <Compile Include="ViewModel\CooccurrenceSecondLevelProfileViewModel.cs" />
     <Compile Include="ViewModel\CooccurrenceSelectiveViewModel.cs" />

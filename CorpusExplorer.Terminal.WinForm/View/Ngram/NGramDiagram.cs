@@ -53,7 +53,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
         return;
       var temp = _vm.TakeTopNGrams(int.Parse(txt_max.Text));
       var nodes = new Dictionary<string, NodeInfo>();
-      var conns = new Dictionary<string, Dictionary<string, int>>();
+      var conns = new Dictionary<string, Dictionary<string, double>>();
 
       foreach (var x in temp)
         for (var i = 0; i < x.Key.Length; i++)
@@ -86,7 +86,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
           }
           else
           {
-            conns.Add(x.Key[i], new Dictionary<string, int> {{x.Key[i + 1], x.Value}});
+            conns.Add(x.Key[i], new Dictionary<string, double> {{x.Key[i + 1], x.Value}});
           }
         }
 

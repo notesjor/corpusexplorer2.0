@@ -18,6 +18,11 @@ namespace CorpusExplorer.Sdk.Diagnostic
     private static string _insigtId;
     private static readonly int _max = 1000;
 
+    private static string _pathId = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                                                 @"CorpusExplorer\App\insight.id");
+    private static string _pathLo = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                                                 @"CorpusExplorer\App\insight.loc");
+
     private static readonly Queue<KeyValuePair<DateTime, Exception>> _queue =
       new Queue<KeyValuePair<DateTime, Exception>>();
 
@@ -41,10 +46,9 @@ namespace CorpusExplorer.Sdk.Diagnostic
     {
       try
       {
-        const string insigtFile = "insight.id";
-        if (File.Exists(insigtFile))
+        if (File.Exists(_pathId))
         {
-          _insigtId = File.ReadAllText(insigtFile);
+          _insigtId = File.ReadAllText(_pathId);
           _insightAllowed = !string.IsNullOrEmpty(_insigtId);
           GetLocation(out var country, out var city);
 
@@ -67,10 +71,9 @@ namespace CorpusExplorer.Sdk.Diagnostic
       city = "";
       try
       {
-        const string insigtFile = "insight.loc";
-        if (File.Exists(insigtFile))
+        if (File.Exists(_pathLo))
         {
-          var lines = File.ReadAllLines(insigtFile, Encoding.UTF8);
+          var lines = File.ReadAllLines(_pathLo, Encoding.UTF8);
           if (lines.Length < 2)
             return;
           country = lines[0];

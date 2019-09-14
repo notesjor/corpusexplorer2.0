@@ -11,7 +11,7 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Plaintext.Redewiedergabe
 {
-  public class RedewiedergabeImporter : AbstractImporterBase
+  public class ImporterRedewiedergabe : AbstractImporterBase
   {
     private Dictionary<string, Guid> _files = new Dictionary<string, Guid>();
 

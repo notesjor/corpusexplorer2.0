@@ -19,13 +19,13 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public int NGramSize { get; set; }
 
-    public Dictionary<KeyValuePair<string, byte>[], int> WeightedNgrams { get; set; }
+    public Dictionary<KeyValuePair<string, byte>[], double> WeightedNgrams { get; set; }
 
-    public Dictionary<string, KeyValuePair<string, int>> WeightedNgramsHtml
+    public Dictionary<string, KeyValuePair<string, double>> WeightedNgramsHtml
     {
       get
       {
-        var d1 = new Dictionary<string, int>();
+        var d1 = new Dictionary<string, double>();
         var d2 = new Dictionary<string, string>();
 
         foreach (var ngram in WeightedNgrams)
@@ -64,7 +64,7 @@ namespace CorpusExplorer.Sdk.ViewModel
           }
         }
 
-        return d1.ToDictionary(x => x.Key, x => new KeyValuePair<string, int>(d2[x.Key], x.Value));
+        return d1.ToDictionary(x => x.Key, x => new KeyValuePair<string, double>(d2[x.Key], x.Value));
       }
     }
 

@@ -21,25 +21,39 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.GridViewFunctions
       InitializeComponent();
     }
 
-    public string NewColumnName { get; private set; }
+    public string CalculateColumnName { get; private set; }
     public DataTable Output { get; private set; }
 
     private void PredefinedFunctions_ButtonOkClick(object sender, EventArgs e)
     {
-      foreach (var columnName in _columnNames)
+      if (string.IsNullOrEmpty(CalculateColumnName))
+        CalculateColumnName = _table.Columns[_table.Columns.Count - 1].ColumnName;
+
+      double sum;
+      var useInt = false;
+      try
       {
-        var sum = _table.Rows.Cast<DataRow>().Sum(row => (double) row[columnName]);
-        var fac = (double) drop_funcs.SelectedValue;
-
-        var res = columnName + " (relativ)";
-        _table.Columns.Add(res, typeof(double));
-
-        foreach (DataRow row in _table.Rows)
-          row[res] = (double) row[columnName] / sum * fac;
-
-        NewColumnName = res;
-        Output = _table;
+        sum = _table.Rows.Cast<DataRow>().Sum(row => (double)row[CalculateColumnName]);
       }
+      catch
+      {
+        sum = _table.Rows.Cast<DataRow>().Sum(row => (int)row[CalculateColumnName]);
+        useInt = true;
+      }
+
+      var col = CalculateColumnName + " (relativ)";
+      var fac = (double)drop_funcs.SelectedValue;
+      _table.Columns.Add(col, typeof(double));
+
+      if (useInt)
+        foreach (DataRow row in _table.Rows)
+          row[col] = (int)row[CalculateColumnName] / sum * fac;
+      else
+        foreach (DataRow row in _table.Rows)
+          row[col] = (double)row[CalculateColumnName] / sum * fac;
+
+      CalculateColumnName = col;
+      Output = _table;
     }
 
     private void PredefinedFunctions_Load(object sender, EventArgs e)

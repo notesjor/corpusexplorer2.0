@@ -141,7 +141,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       return _metadata;
     }
 
-    public Dictionary<string, Dictionary<string, int>> GetDictionaryForNormalization() 
+    public Dictionary<string, Dictionary<string, int>> GetDictionaryForNormalization()
       => _layers.ToDictionary(x => x.Displayname, x => x.ReciveRawLayerDictionary());
 
     public override int GetDocumentLengthInSentences(Guid documentGuid)
@@ -288,33 +288,47 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
 
     public override void Save(string path = null, bool useCompression = true)
     {
-      path = path.ForceFileExtension("cec6");
       _displayname = Path.GetFileNameWithoutExtension(path);
 
-      using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
-      using (var bs = new BufferedStream(fs))
+      if (useCompression)
       {
-        var buffer = Configuration.Encoding.GetBytes("SEDITION");
-        bs.Write(buffer, 0, buffer.Length);
-
-        // Corpus GUID
-        buffer = _guid.ToByteArray();
-        bs.Write(buffer, 0, buffer.Length);
-
-        // Corpus Metadata
-        MetaDictionarySerializerHelper.Serialize(bs, _metadata);
-
-        // Document Metadata
-        MetaDictionarySerializerHelper.Serialize(bs, _documentMetadata);
-
-        // Layer
-        foreach (var layer in _layers)
-          layer.Save(bs);
-
-        // Wenn man das Format erweitern wollte, dann muss man folgenden Trenner setzen:
-        // buffer = Guid.Empty.ToByteArray();
-        // fs.Write(buffer, 0, buffer.Length);
+        path = path.ForceFileExtension("cec6.gz");
+        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+        using (var gz = new GZipStream(fs, CompressionLevel.Fastest))
+        using (var bs = new BufferedStream(gz))
+          Save(bs);
       }
+      else
+      {
+        path = path.ForceFileExtension("cec6");
+        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+        using (var bs = new BufferedStream(fs))
+          Save(bs);
+      }
+    }
+
+    private void Save(Stream stream)
+    {
+      var buffer = Configuration.Encoding.GetBytes("SEDITION");
+      stream.Write(buffer, 0, buffer.Length);
+
+      // Corpus GUID
+      buffer = _guid.ToByteArray();
+      stream.Write(buffer, 0, buffer.Length);
+
+      // Corpus Metadata
+      MetaDictionarySerializerHelper.Serialize(stream, _metadata);
+
+      // Document Metadata
+      MetaDictionarySerializerHelper.Serialize(stream, _documentMetadata);
+
+      // Layer
+      foreach (var layer in _layers)
+        layer.Save(stream);
+
+      // Wenn man das Format erweitern wollte, dann muss man folgenden Trenner setzen:
+      // buffer = Guid.Empty.ToByteArray();
+      // fs.Write(buffer, 0, buffer.Length);
     }
 
     public Dictionary<Guid, long> GetFuriousIndex(string layerDisplayname)

@@ -12,7 +12,7 @@ namespace CorpusExplorer.Sdk.Blocks
   public class Ngram1LayerPatternBlock : AbstractSimple1LayerBlock
   {
     private readonly object _lock = new object();
-    public Dictionary<string, int> NGramFrequency { get; private set; }
+    public Dictionary<string, double> NGramFrequency { get; private set; }
     public string NGramPattern { get; set; } = "###";
     public int NGramPatternSize { get; set; } = 1;
     public Dictionary<string, string[]> NGramRaw { get; private set; }
@@ -107,7 +107,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
     protected override void CalculateInitProperties()
     {
-      NGramFrequency = new Dictionary<string, int>();
+      NGramFrequency = new Dictionary<string, double>();
       NGramRaw = new Dictionary<string, string[]>();
 
       if (NGramSize < 2)

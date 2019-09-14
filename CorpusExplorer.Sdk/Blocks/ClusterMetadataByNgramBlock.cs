@@ -8,7 +8,7 @@ using CorpusExplorer.Sdk.Model;
 namespace CorpusExplorer.Sdk.Blocks
 {
   [Serializable]
-  public class ClusterMetadataByNgramBlock : AbstractClusterMetadataBlock<Dictionary<string, int>>
+  public class ClusterMetadataByNgramBlock : AbstractClusterMetadataBlock<Dictionary<string, double>>
   {
     public int NGramMinFrequency { get; set; }
 
@@ -18,9 +18,9 @@ namespace CorpusExplorer.Sdk.Blocks
 
     public int NGramSize { get; set; }
 
-    protected override Dictionary<string, int> Join(Dictionary<string, int> a, Dictionary<string, int> b)
+    protected override Dictionary<string, double> Join(Dictionary<string, double> a, Dictionary<string, double> b)
     {
-      var res = new Dictionary<string, int>();
+      var res = new Dictionary<string, double>();
       foreach (var x in a)
         if (b.ContainsKey(x.Key))
           res.Add(x.Key, (x.Value + b[x.Key]) / 2);
@@ -35,14 +35,14 @@ namespace CorpusExplorer.Sdk.Blocks
     }
 
     protected override double CalculateDistance(
-      AbstractDistance similarityIndex, Dictionary<string, int> a, Dictionary<string, int> b)
+      AbstractDistance similarityIndex, Dictionary<string, double> a, Dictionary<string, double> b)
     {
       return similarityIndex.CalculateSimilarity(
-                                                 a.ToDictionary(x => x.Key, x => (double) x.Value),
-                                                 b.ToDictionary(x => x.Key, x => (double) x.Value));
+                                                 a.ToDictionary(x => x.Key, x => x.Value),
+                                                 b.ToDictionary(x => x.Key, x => x.Value));
     }
 
-    protected override Dictionary<string, int> CalculateValues(Selection selection)
+    protected override Dictionary<string, double> CalculateValues(Selection selection)
     {
       var block = selection.CreateBlock<Ngram1LayerPatternBlock>();
       block.NGramSize = NGramSize;

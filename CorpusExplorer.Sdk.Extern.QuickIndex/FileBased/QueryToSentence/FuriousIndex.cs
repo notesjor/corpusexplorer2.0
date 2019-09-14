@@ -6,16 +6,25 @@ using System.Text;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 
 namespace CorpusExplorer.Sdk.Extern.QuickIndex.FileBased.QueryToSentence
 {
   public static class FuriousIndex
   {
     /// <summary>
+    /// Erstellt einen neuen FuriousIndex
+    /// </summary>
+    /// <param name="pathToCec6">Pfad zur CEC6-Datei</param>
+    /// <param name="layerDisplayname">Layername</param>
+    public static void Create(string pathToCec6, string layerDisplayname = "Wort")
+      => QueryToSentenceIndexWriter.Create(pathToCec6, layerDisplayname, true, true);
+
+    /// <summary>
     /// Gibt einen Auszug (Satzbereich) aus einem Dokument zurück.
     /// </summary>
-    /// <param name="pathToCec6"></param>
-    /// <param name="guid"></param>
+    /// <param name="pathToCec6">Pfad zur CEC6-Datei</param>
+    /// <param name="guid">Document GUID</param>
     /// <returns></returns>
     public static IEnumerable<IEnumerable<string>> GetDocumentSnippet(string pathToCec6, Guid guid, IEnumerable<int> sentenceIndices)
     {
@@ -110,7 +119,7 @@ namespace CorpusExplorer.Sdk.Extern.QuickIndex.FileBased.QueryToSentence
     /// <returns>Dokument</returns>
     public static int[][] GetIndexDocument(string pathToCec6, long position)
     {
-      using (var fs = new FileStream(pathToCec6, FileMode.Open, FileAccess.Read))
+      using (var fs = new FileStream(pathToCec6, FileMode.Open, FileAccess.Read, FileShare.Read))
       {
         fs.Seek(position, SeekOrigin.Begin);
         return DocumentSerializerHelper.Deserialize(fs);

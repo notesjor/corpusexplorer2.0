@@ -162,11 +162,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
 
       if (_grid.SummaryRowsTop.Count == 0)
         return;
-      if (_grid.SummaryRowsTop[0].All(item => item.Name != func.NewColumnName))
+      if (_grid.SummaryRowsTop[0].All(item => item.Name != func.CalculateColumnName))
         _grid.SummaryRowsTop[0].Add(
                                     new GridViewSummaryItem
                                     {
-                                      Name = func.NewColumnName,
+                                      Name = func.CalculateColumnName,
                                       Aggregate = GridAggregateFunction.Sum
                                     });
     }

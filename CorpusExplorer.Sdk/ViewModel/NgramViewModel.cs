@@ -32,7 +32,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     /// <summary>
     ///   Gets or sets the n gram frequency.
     /// </summary>
-    public Dictionary<string, int> NGramFrequency { get; set; }
+    public Dictionary<string, double> NGramFrequency { get; set; }
 
     /// <summary>
     ///   Limitiert die Ausgabe von GetDataTable auf die TOP-N-Gramm Frequenzen. Wenn 0 - dann keine Limitierung.

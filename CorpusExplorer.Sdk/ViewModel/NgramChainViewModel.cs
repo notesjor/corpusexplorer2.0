@@ -35,7 +35,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     /// <summary>
     ///   Gets or sets the n gram frequency.
     /// </summary>
-    public Dictionary<string, int> NGramFrequency { get; set; }
+    public Dictionary<string, double> NGramFrequency { get; set; }
 
     public int NGramMaxResults { get; set; }
 
@@ -90,12 +90,12 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public string LayerDisplayname { get; set; }
 
-    public IEnumerable<KeyValuePair<string[], int>> TakeTopNGrams(int max)
+    public IEnumerable<KeyValuePair<string[], double>> TakeTopNGrams(int max)
     {
       return NGramFrequency
             .OrderByDescending(x => x.Value)
             .Take(max)
-            .Select(x => new KeyValuePair<string[], int>(NGramRaw[x.Key], x.Value));
+            .Select(x => new KeyValuePair<string[], double>(NGramRaw[x.Key], x.Value));
     }
 
     protected override void ExecuteAnalyse()

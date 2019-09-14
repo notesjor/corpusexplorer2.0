@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Ecosystem.Model;
@@ -23,8 +24,16 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
         columns.Add(new Tuple<string, string, Type>(column.ColumnName, column.ColumnName.Replace(" ", "_"), column.DataType));
 
       WriteTableInsert(columns);
-      var wlock = new object();
 
+      if (OutputStream.CanSeek)
+        WriteTableParallel(table, columns);
+      else
+        WriteTableSynchron(table, columns);
+    }
+
+    private void WriteTableParallel(DataTable table, List<Tuple<string, string, Type>> columns)
+    {
+      var wlock = new object();
       Parallel.ForEach(table.AsEnumerable(), Configuration.ParallelOptions, row =>
       {
         var stb = new StringBuilder();
@@ -45,7 +54,38 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
           WriteOutput(line);
       });
 
-      DeleteLastChars(2);
+      OutputStream.Seek(-2, SeekOrigin.End);
+      WriteOutput(";");
+    }
+
+    private void WriteTableSynchron(DataTable table, List<Tuple<string, string, Type>> columns)
+    {
+      var wlock = new object();
+      var rows = table.AsEnumerable().ToArray();
+      var last = rows.Length - 1;
+
+      for (var i = 0; i < rows.Length; i++)
+      {
+        var stb = new StringBuilder();
+        stb.Append("(");
+        foreach (var column in columns)
+          if (column.Item3 == typeof(DateTime))
+            stb.Append($"'{(DateTime)rows[i][column.Item1]:yyyy-MM-dd HH:mm:ss}', ");
+          else if (column.Item3 == typeof(string))
+            stb.Append($"\"{((string)rows[i][column.Item1]).Replace("\"", "''")}\", ");
+          else
+            stb.Append($"{rows[i][column.Item1].ToString().Replace(",", ".")}, ");
+        stb.Remove(stb.Length - 2, 2);
+        stb.Append("), ");
+
+        var line = stb.ToString();
+        if (i == last)
+          line = line.Substring(0, line.Length - 2);
+
+        lock (wlock)
+          WriteOutput(line);
+      }
+
       WriteOutput(";");
     }
 

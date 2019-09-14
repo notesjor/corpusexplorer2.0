@@ -21,13 +21,20 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
 
     protected override void WriteBody(DataTable table)
     {
-      var columns = new List<KeyValuePair<string, Type>>();
-      foreach (DataColumn c in table.Columns)
-        columns.Add(new KeyValuePair<string, Type>(c.ColumnName, c.DataType));
+      var columns = (from DataColumn c in table.Columns select new KeyValuePair<string, Type>(c.ColumnName, c.DataType)).ToArray();
 
-      string template = GenerateTemplate(columns);
+      var template = GenerateTemplate(columns);
 
       var marks = columns.ToDictionary(x => x.Key, x => $"{{{x.Key}}}");
+
+      if(OutputStream.CanSeek)
+      WriteBodyParallel(table, template, columns, marks);
+      else
+      WriteBodySynchron(table, template, columns, marks);
+    }
+
+    private void WriteBodyParallel(DataTable table, string template, KeyValuePair<string, Type>[] columns, Dictionary<string, string> marks)
+    {
       var wlock = new object();
 
       Parallel.ForEach(table.AsEnumerable(), row =>
@@ -47,10 +54,37 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
           WriteOutput(line);
       });
 
-      DeleteLastChars(1);
+      OutputStream.Seek(-1, SeekOrigin.End);
     }
 
-    private static string GenerateTemplate(List<KeyValuePair<string, Type>> columns)
+    private void WriteBodySynchron(DataTable table, string template, KeyValuePair<string, Type>[] columns, Dictionary<string, string> marks)
+    {
+      var wlock = new object();
+      var rows = table.AsEnumerable().ToArray();
+      var last = rows.Length - 1;
+      
+      for (var i = 0; i < rows.Length; i++)
+      {
+        var r = new StringBuilder(template);
+        foreach (var column in columns)
+          if (rows[i][column.Key] == null)
+            r.Replace(marks[column.Key], column.Value == typeof(string) ? string.Empty : "null");
+          else
+            r.Replace(marks[column.Key],
+                      column.Value == typeof(string)
+                        ? rows[i][column.Key].ToString().Replace("\"", "\\\"")
+                        : rows[i][column.Key].ToString().Replace(",", "."));
+
+        var line = r.ToString();
+        if (i == last)
+          line = line.Substring(0, line.Length - 1);
+
+        lock (wlock)
+          WriteOutput(line);
+      }
+    }
+
+    private static string GenerateTemplate(KeyValuePair<string, Type>[] columns)
     {
       var templateGen = new StringBuilder();
       templateGen.Append("{");

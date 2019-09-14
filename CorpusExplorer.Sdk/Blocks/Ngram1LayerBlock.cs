@@ -13,7 +13,7 @@ namespace CorpusExplorer.Sdk.Blocks
   {
     private readonly object _lock = new object();
 
-    public Dictionary<string, int> NGramFrequency { get; private set; }
+    public Dictionary<string, double> NGramFrequency { get; private set; }
     public Dictionary<string, string[]> NGramRaw { get; private set; }
 
     public int NGramSize { get; set; } = 3;
@@ -92,7 +92,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
     protected override void CalculateInitProperties()
     {
-      NGramFrequency = new Dictionary<string, int>();
+      NGramFrequency = new Dictionary<string, double>();
       NGramRaw = new Dictionary<string, string[]>();
 
       // Property FIX!

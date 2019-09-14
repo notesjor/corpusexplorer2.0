@@ -22,10 +22,16 @@ using CorpusExplorer.Sdk.Extern.Xml.FnhdC;
 using CorpusExplorer.Sdk.Extern.Xml.Folker;
 using CorpusExplorer.Sdk.Extern.Xml.Gutenberg;
 using CorpusExplorer.Sdk.Extern.Xml.LexisNexis;
+using CorpusExplorer.Sdk.Extern.Xml.Perseus;
+using CorpusExplorer.Sdk.Extern.Xml.Pmg;
 using CorpusExplorer.Sdk.Extern.Xml.PostgreSqlDump;
 using CorpusExplorer.Sdk.Extern.Xml.PureXml;
 using CorpusExplorer.Sdk.Extern.Xml.PurlOrg;
 using CorpusExplorer.Sdk.Extern.Xml.SlashA;
+using CorpusExplorer.Sdk.Extern.Xml.Talkbank;
+using CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds;
+using CorpusExplorer.Sdk.Extern.Xml.Tei.P5Cal2;
+using CorpusExplorer.Sdk.Extern.Xml.TextGrid;
 using CorpusExplorer.Sdk.Extern.Xml.Tiger;
 using CorpusExplorer.Sdk.Extern.Xml.Weblicht;
 using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
@@ -56,7 +62,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"DTA-TCF (*.tcf.xml)|*.tcf.xml", new ExporterDta()},
         {"DTA-TCF 2017 (*.tcf.xml)|*.tcf.xml", new ExporterDta2017()},
         {"WebLicht (*.xml)|*.xml", new ExporterWeblicht()},
-        {"AnnotationPro (*.ant)|*.ant", new ExporterAnnoationPro()}
+        {"AnnotationPro (*.ant)|*.ant", new ExporterAnnoationPro()},
+        {"DWDS TEI (*.xml)|*.xml", new ExporterDwdsTei() }
       };
 
     /// <summary>
@@ -84,16 +91,24 @@ namespace CorpusExplorer.Sdk.Extern.Xml
       new Dictionary<string, AbstractScraper>
       {
         {
+          "Perseus Digital Library (*.xml)|*.xml", 
+          new PerseusScraper()
+        },
+        {
+          "TEI P5 (*.xml)|*.xml",
+          new P5Cal2Scraper()
+        },
+        {
+          "DWDS TEI (*.xml)|*.xml",
+          new DwdsTeiScraper()
+        },
+        {
           "ALTO-XML 1.2 (*.xml)|*.xml",
           new Alto12Scraper()
         },
         {
           "CATMA 5.0 (*.xml)|*.xml",
           new CatmaScraper()
-        },
-        {
-          "PMG-XML (*.pmg; *.xml)|*.xml;*.pmg",
-          new GutenbergScraper()
         },
         {
           "Gutenberg 13 DVD (*.xml)|*.xml",
@@ -130,6 +145,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {
           "DocPlusXmlCorpus (*.dpxc)|*.dpxc",
           new DpxcScraper()
+        },
+        {
+          "PMG-XML (*.pmg; *.xml)|*.xml;*.pmg",
+          new PmgScraper()
         },
         {
           "D-Spin Slash/A (*.xml)|*.xml",
@@ -174,6 +193,14 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {
           "Europarl-UDS (*.xml)|*.xml",
           new EuroParlUdsScraper()
+        },
+        {
+          "TextGrid (*.xml)|*.xml",
+          new TextGridScraper()
+        },
+        {
+          "Talkbank XML (*.xml)|*.xml",
+          new TalkbankScraper()
         }
       };
 

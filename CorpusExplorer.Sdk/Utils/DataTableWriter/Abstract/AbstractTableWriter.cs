@@ -92,11 +92,6 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract
       OutputStream.Write(buffer, 0, buffer.Length);
     }
 
-    protected void DeleteLastChars(int num)
-    {
-      OutputStream.Seek(-1 * num, SeekOrigin.End);
-    }
-
     public void WriteDirectThroughStream(string line)
     {
       var buffer = Configuration.Encoding.GetBytes(line);

@@ -14,7 +14,7 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
   ///   The ce dictionary.
   /// </summary>
   [Serializable]
-  public sealed class CeDictionary : IEnumerable<KeyValuePair<int, string>>
+  public sealed class CeDictionary : IEnumerable<KeyValuePair<int, string>>, IDisposable
   {
     /// <summary>
     ///   The _d 1.
@@ -324,6 +324,12 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
         foreach (var entry in _d1.Where(entry => !_d2.ContainsKey(entry.Value)))
           _d2.Add(entry.Value, entry.Key);
       }
+    }
+
+    public void Dispose()
+    {
+      _d1.Clear();
+      _d2.Clear();
     }
   }
 }
