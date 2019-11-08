@@ -1,2 +1,2 @@
 ﻿db_mysql.zip
-C:\Projekte\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk.Db.MySql\bin\Release
+C:\Projekte\CorpusExplorerV2\CorpusExplorer\CorpusExplorer.Sdk.Db.MySql\bin\Release

@@ -415,7 +415,7 @@ namespace CorpusExplorer.Sdk.Helper
       }
     }
 
-    private static object DeserializeSharpSerializer(string path)
+    public static object DeserializeSharpSerializer(string path)
     {
       try
       {

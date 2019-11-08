@@ -1,2 +1,2 @@
 ﻿addon_dpxc.zip
-C:\Projekte\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Tool4.DocPlusEditor\bin\Release
+C:\Projekte\CorpusExplorerV2\CorpusExplorer\CorpusExplorer.Tool4.DocPlusEditor\bin\Release

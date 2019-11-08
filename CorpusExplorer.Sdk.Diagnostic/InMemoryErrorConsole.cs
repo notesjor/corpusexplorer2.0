@@ -60,6 +60,7 @@ namespace CorpusExplorer.Sdk.Diagnostic
       }
       catch
       {
+        // ignore
       }
 
       _insightChecked = true;
@@ -71,14 +72,14 @@ namespace CorpusExplorer.Sdk.Diagnostic
       city = "";
       try
       {
-        if (File.Exists(_pathLo))
-        {
-          var lines = File.ReadAllLines(_pathLo, Encoding.UTF8);
-          if (lines.Length < 2)
-            return;
-          country = lines[0];
-          city = lines[1];
-        }
+        if (!File.Exists(_pathLo)) 
+          return;
+
+        var lines = File.ReadAllLines(_pathLo, Encoding.UTF8);
+        if (lines.Length < 2)
+          return;
+        country = lines[0];
+        city = lines[1];
       }
       catch
       {
@@ -128,16 +129,9 @@ namespace CorpusExplorer.Sdk.Diagnostic
       foreach (var error in Errors)
         try
         {
-          if (error.Value.InnerException == null)
-            stb.AppendFormat("{0}\r\n{1}\r\n{2}\r\n---\r\n", error.Key, error.Value.Message, error.Value.StackTrace);
-          else
-            stb.AppendFormat(
-                             "{0}\r\n{1}\r\n>\t{3}\r\n{2}\r\n>\t{4}\r\n---\r\n",
-                             error.Key,
-                             error.Value.Message,
-                             error.Value.StackTrace,
-                             error.Value.InnerException.Message,
-                             error.Value.InnerException.StackTrace);
+          stb.AppendFormat(error.Value.InnerException == null
+                             ? $"{error.Key}\r\n{error.Value.GetType().Name}\r\n{error.Value.Message}\r\n{error.Value.StackTrace}\r\n---\r\n"
+                             : $"{error.Key}\r\n{error.Value.GetType().Name}\r\n{error.Value.Message}\r\n{error.Value.StackTrace}\r\n>>>\r\n{error.Value.InnerException.GetType().Name}\r\n{error.Value.InnerException.Message}\r\n>\t{error.Value.InnerException.StackTrace}\r\n---\r\n");
         }
         catch
         {

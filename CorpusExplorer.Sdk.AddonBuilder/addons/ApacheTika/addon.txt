@@ -1,2 +1,2 @@
 ﻿addon_tika.zip
-C:\Projekte\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk.Extern.Tika\bin\Release
+C:\Projekte\CorpusExplorerV2\CorpusExplorer\CorpusExplorer.Sdk.Extern.Tika\bin\Release

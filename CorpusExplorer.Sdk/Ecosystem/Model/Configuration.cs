@@ -488,31 +488,6 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     }
 
     /// <summary>
-    ///   Schreibt Daten (content) in eine temporäre Datei und gibt deren PFad
-    ///   zurück
-    /// </summary>
-    /// <param name="filename">
-    ///   Name der Datei (ohne Pfadangabe)
-    /// </param>
-    /// <param name="content">
-    ///   Inhalt
-    /// </param>
-    /// <returns>
-    ///   Pfad der Datei
-    /// </returns>
-    public static string WriteTempFile(string filename, string content)
-    {
-      var path = Path.Combine(TempPath, filename);
-      var buffer = Encoding.GetBytes(content);
-      using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
-      {
-        fs.Write(buffer, 0, buffer.Length);
-      }
-
-      return path;
-    }
-
-    /// <summary>
     ///   The initialize.
     /// </summary>
     internal static void Initialize(InitialOptionsEnum options, bool forceReInitialization = false,
@@ -528,60 +503,6 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
         Reload3rdPartyAddons(alternative3rdPartyPath);
 
       IsInitialized = true;
-    }
-
-    /// <summary>
-    ///   Bereinigt einen Dateinamen (OHNE PFAD)
-    /// </summary>
-    /// <param name="fileName">
-    ///   Dateiname (Bsp.: Kunden|Tabelle.csv)
-    /// </param>
-    /// <returns>
-    ///   Bereinigter Dateiname (Bsp.: KundenTabelle.csv)
-    /// </returns>
-    private static string CleanFilename(string fileName)
-    {
-      fileName =
-        fileName.Replace(@"\", string.Empty)
-                .Replace("/", string.Empty)
-                .Replace(":", string.Empty)
-                .Replace("*", string.Empty)
-                .Replace("?", string.Empty)
-                .Replace("\"", string.Empty)
-                .Replace("<", string.Empty)
-                .Replace(">", string.Empty)
-                .Replace("|", string.Empty);
-
-      var ext = Path.GetExtension(fileName);
-      fileName = Path.GetFileNameWithoutExtension(fileName);
-      if (string.IsNullOrEmpty(fileName))
-        return null;
-
-      if (fileName.Length > 120)
-        fileName = fileName.Substring(0, 120);
-
-      return Path.ChangeExtension(fileName, ext);
-    }
-
-    /// <summary>
-    ///   Bereinigt einen Pfad (OHNE DATEINAME)
-    /// </summary>
-    /// <param name="path">
-    ///   Pfad (Bsp.: C:/Ornder\Unterordner*\Unter|unterordner)
-    /// </param>
-    /// <returns>
-    ///   Bereinigter Pfad (Bsp.: C:\Ornder\Unterordner\Unterunterordner)
-    /// </returns>
-    private static string CleanPath(string path)
-    {
-      return
-        path.Replace("/", @"\")
-            .Replace("*", string.Empty)
-            .Replace("?", string.Empty)
-            .Replace("\"", string.Empty)
-            .Replace("<", string.Empty)
-            .Replace(">", string.Empty)
-            .Replace("|", string.Empty);
     }
 
     /// <summary>

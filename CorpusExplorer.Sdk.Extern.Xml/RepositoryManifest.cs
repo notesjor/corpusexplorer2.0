@@ -91,7 +91,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml
       new Dictionary<string, AbstractScraper>
       {
         {
-          "Perseus Digital Library (*.xml)|*.xml", 
+          "Perseus CTS-Service (*.xml)|*.xml", 
           new PerseusScraper()
         },
         {

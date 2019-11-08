@@ -14,7 +14,7 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
 
 namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
 {
-  public class CorpusAdapterWriteDirect : AbstractCorpusAdapter
+  public class CorpusAdapterWriteDirect : AbstractCorpusAdapter, IDisposable
   {
     private string _displayname = string.Empty;
     private Dictionary<Guid, Dictionary<string, object>> _documentMetadata;
@@ -286,13 +286,13 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       _documentMetadata = newMetadata;
     }
 
-    public override void Save(string path = null, bool useCompression = true)
+    public override void Save(string path = null, bool useCompression = false)
     {
       _displayname = Path.GetFileNameWithoutExtension(path);
 
       if (useCompression)
       {
-        path = path.ForceFileExtension("cec6.gz");
+        path = path.ForceFileExtension("cec6.gz").Replace(".cec6.cec6.gz", ".cec6.gz");
         using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
         using (var gz = new GZipStream(fs, CompressionLevel.Fastest))
         using (var bs = new BufferedStream(gz))
@@ -505,6 +505,22 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       }
 
       return res;
+    }
+
+    public void Dispose()
+    {
+      _displayname = null;
+      foreach (var meta in _documentMetadata)
+        meta.Value?.Clear();
+      _documentMetadata?.Clear();
+      _documentMetadata = null;
+      _guid = Guid.Empty;
+      _metadata?.Clear();
+      _metadata = null;
+      foreach (var layer in _layers)
+        layer?.Dispose();
+      _layers?.Clear();
+      _layers = null;
     }
   }
 }

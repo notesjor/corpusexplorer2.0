@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
@@ -11,11 +10,8 @@ using CorpusExplorer.Sdk.Model.Cache.Helper.Exception;
 
 namespace CorpusExplorer.Sdk.Blocks
 {
-  /// <summary>
-  ///   The frequency custom single layer block.
-  /// </summary>
   [Serializable]
-  public class Frequency1LayerOneOccurrenceBlock : AbstractSimple1LayerBlock
+  public class Frequency1LayerOneOccurrencePerDocument : AbstractSimple1LayerBlock
   {
     [NonSerialized] private readonly BlockCacheHelper _cache = new BlockCacheHelper();
 
@@ -24,7 +20,7 @@ namespace CorpusExplorer.Sdk.Blocks
     /// </summary>
     [NonSerialized] private object _lockFrequency;
 
-    public Frequency1LayerOneOccurrenceBlock()
+    public Frequency1LayerOneOccurrencePerDocument()
     {
       LayerDisplayname = "Wort";
     }
@@ -56,22 +52,17 @@ namespace CorpusExplorer.Sdk.Blocks
       Guid dsel,
       int[][] doc)
     {
+      var hash = new HashSet<string>();
       foreach (var s in doc)
-      {
-        var hash = new HashSet<string>();
-        foreach (var key in s.Select(w => layer[w]).Where(key => !hash.Contains(key)))
-        {
-          hash.Add(key);
+      foreach (var w in s)
+        hash.Add(layer[w]);
 
-          lock (_lockFrequency)
-          {
-            if (Frequency.ContainsKey(key))
-              Frequency[key]++;
-            else
-              Frequency.Add(key, 1);
-          }
-        }
-      }
+      lock (_lockFrequency)
+        foreach (var key in hash)
+          if (Frequency.ContainsKey(key))
+            Frequency[key]++;
+          else
+            Frequency.Add(key, 1);
     }
 
     /// <summary>

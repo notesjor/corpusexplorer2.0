@@ -124,7 +124,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
             case FilterQuerySingleLayerAnyMatch _:
               combo_query.SelectedValue = layer.Inverse ? _queries.ToArray()[4].Key : _queries.ToArray()[0].Key;
               break;
-            case FilterQuerySingleLayerAllInOnDocument _:
+            case FilterQuerySingleLayerAllInOneDocument _:
               combo_query.SelectedValue = _queries.ToArray()[1].Key;
               break;
             case FilterQuerySingleLayerAllInOneSentence _:
@@ -175,7 +175,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
         },
         {
           // 1
-          new FilterQuerySingleLayerAllInOnDocument
+          new FilterQuerySingleLayerAllInOneDocument
           {
             Inverse = false,
             LayerDisplayname = "Wort"

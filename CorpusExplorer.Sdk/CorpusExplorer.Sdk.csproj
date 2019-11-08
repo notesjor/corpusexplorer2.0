@@ -103,8 +103,8 @@
     <Reference Include="Polenter.SharpSerializer, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.1\lib\netstandard1.0\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=6.2.10.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.2.10\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.2.13.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.2.13\lib\net45\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -135,7 +135,10 @@
     <Compile Include="Blocks\CooccurrenceSecondLevelProfileBlock.cs" />
     <Compile Include="Blocks\CrossFrequencyDocumentBasedBlock.cs" />
     <Compile Include="Blocks\CutOffPhraseBlock.cs" />
+    <Compile Include="Blocks\EditDistantCalculationBlock.cs" />
+    <Compile Include="Blocks\Frequency1LayerOneOccurrencePerDocument.cs" />
     <Compile Include="Blocks\Helper\DoubleKeyDictionary.cs" />
+    <Compile Include="Blocks\KeywordPresetReferenceListBlock.cs" />
     <Compile Include="Blocks\MtldBlock.cs" />
     <Compile Include="Blocks\NamedEntityRecognitionBlock.cs" />
     <Compile Include="Blocks\CooccurrenceSelectiveBlock.cs" />
@@ -173,7 +176,7 @@
     <Compile Include="Blocks\DocumentContainsMetadataBlock.cs" />
     <Compile Include="Blocks\DocumentFrequenceDistributionBlock.cs" />
     <Compile Include="Blocks\DocumentFulltextBlock.cs" />
-    <Compile Include="Blocks\Frequency1LayerOneOccurrenceBlock.cs" />
+    <Compile Include="Blocks\Frequency1LayerOneOccurrencePerSentenceBlock.cs" />
     <Compile Include="Blocks\Frequency2LayerBlock.cs" />
     <Compile Include="Blocks\FrequencyMasterSlave2LayerBlock.cs" />
     <Compile Include="Blocks\FrequencyLeftRightBlock.cs" />
@@ -331,6 +334,7 @@
     <Compile Include="Utils\DataTableWriter\HtmlTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\SqlDataOnlyTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\SqlSchemaOnlyTableWriter.cs" />
+    <Compile Include="Utils\DataTableWriter\TsvRoundedTableWriter.cs" />
     <Compile Include="Utils\DocumentProcessing\Cleanup\RegexHyphenationCleanup.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCec6.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterConll.cs" />
@@ -452,6 +456,7 @@
     <Compile Include="Utils\Filter\Interface\IFilterQueryWithLayerValues.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMetaEndsWith.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMetaStartsWith.cs" />
+    <Compile Include="Utils\Filter\Queries\FilterQueryMultiLayerAll.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMultiLayerPhrase.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerAFollowedByBMatch.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerAFollowedByBSpanMatch.cs" />
@@ -486,7 +491,7 @@
     <Compile Include="Utils\Filter\Queries\FilterQueryMetaExactMatch.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMetaRegex.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerAllInOneSentence.cs" />
-    <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerAllInOnDocument.cs" />
+    <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerAllInOneDocument.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerAnyMatch.cs" />
     <Compile Include="Blocks\Cooccurrence\LogLikelihoodSignificance.cs" />
     <Compile Include="Blocks\Cooccurrence\ChiSquaredSignificance.cs" />
@@ -494,7 +499,7 @@
     <Compile Include="Blocks\Cooccurrence\PoissonSignificance.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMetaContainsCaseSensitive.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMetaContains.cs" />
-    <Compile Include="Utils\Filter\Queries\FilterQueryMultiLayer.cs" />
+    <Compile Include="Utils\Filter\Queries\FilterQueryMultiLayerAny.cs" />
     <Compile Include="Blocks\HyphenBlock.cs" />
     <Compile Include="Blocks\Measure\Abstract\IMeasure.cs" />
     <Compile Include="Blocks\MetadataCrossFrequency.cs" />
@@ -544,7 +549,9 @@
     <Compile Include="ViewModel\DocumentCloneDetectionViewModel.cs" />
     <Compile Include="ViewModel\CooccurrenceCompareViewModel.cs" />
     <Compile Include="ViewModel\DocumentMetadataViewModel.cs" />
+    <Compile Include="ViewModel\EditDistantCalculationViewModel.cs" />
     <Compile Include="ViewModel\Interfaces\IProvideNormalizedDataTable.cs" />
+    <Compile Include="ViewModel\KeywordPresetReferenceListViewModel.cs" />
     <Compile Include="ViewModel\MtldViewModel.cs" />
     <Compile Include="ViewModel\Ngram1LayerSelectiveViewModel.cs" />
     <Compile Include="ViewModel\NGramHighlightCooccurrencesViewModel.cs" />

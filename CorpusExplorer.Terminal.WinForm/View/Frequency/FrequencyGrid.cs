@@ -69,7 +69,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
             };
           case 2:
             var arr2 = _vm.LayerDisplaynames.ToArray();
-            return new FilterQueryMultiLayer
+            return new FilterQueryMultiLayerAll
             {
               Inverse = false,
               MultilayerValues = new Dictionary<string, string>
@@ -80,7 +80,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
             };
           case 3:
             var arr3 = _vm.LayerDisplaynames.ToArray();
-            return new FilterQueryMultiLayer
+            return new FilterQueryMultiLayerAll
             {
               Inverse = false,
               MultilayerValues = new Dictionary<string, string>
@@ -189,7 +189,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 
       CreateSelection(
                       radGridView1.SelectedRows.Select(
-                                                       row => new FilterQueryMultiLayer
+                                                       row => new FilterQueryMultiLayerAny
                                                        {
                                                          Inverse = false,
                                                          MultilayerValues = new Dictionary<string, string>

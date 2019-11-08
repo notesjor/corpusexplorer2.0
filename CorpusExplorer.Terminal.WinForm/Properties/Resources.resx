@@ -2954,4 +2954,7 @@ Nicht geeignet für Korpra mit mehr als 5 Mio. Token!</value>
   <data name="CleanDocuments" xml:space="preserve">
     <value>Bereinige Dokumente...</value>
   </data>
+  <data name="Filter_CEC6.GZ" xml:space="preserve">
+    <value>*.cec6.gz</value>
+  </data>
 </root>

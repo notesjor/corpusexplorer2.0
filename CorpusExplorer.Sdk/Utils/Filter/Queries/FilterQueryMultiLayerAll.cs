@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -9,8 +7,6 @@ using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 
-#endregion
-
 namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 {
   /// <summary>
@@ -18,16 +14,16 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
   /// </summary>
   [XmlRoot]
   [Serializable]
-  public class FilterQueryMultiLayer : AbstractFilterQuery
+  public class FilterQueryMultiLayerAll : AbstractFilterQuery
   {
     [XmlIgnore] [NonSerialized] private Dictionary<string, string> _multilayerValues;
 
     private KeyValuePair<string, string>[] _multilayerValuesSerialized;
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="FilterQueryMultiLayer" /> class.
+    ///   Initializes a new instance of the <see cref="FilterQueryMultiLayerAny" /> class.
     /// </summary>
-    public FilterQueryMultiLayer()
+    public FilterQueryMultiLayerAll()
     {
       MultilayerValues = new Dictionary<string, string>();
     }
@@ -64,7 +60,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// </returns>
     public override object Clone()
     {
-      return new FilterQueryMultiLayer
+      return new FilterQueryMultiLayerAny
       {
         Inverse = Inverse,
         MultilayerValues = MultilayerValues,
@@ -108,7 +104,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     protected override IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid)
     {
       var search = GetDictionary(corpus);
-      return search == null ? null : ExploreSentences(documentGuid, search).Select(x => x.Key);
+      return search == null ? null : ExploreSentences(documentGuid, search)?.Select(x => x.Key);
     }
 
     /// <summary>
@@ -163,7 +159,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     // ReSharper disable once ReturnTypeCanBeEnumerable.Local
     private static int[][] DictionaryToArray(Dictionary<int, List<int>> dictionary)
     {
-      return (from pair in dictionary from v in pair.Value select new[] {pair.Key, v}).ToArray();
+      return (from pair in dictionary from v in pair.Value select new[] { pair.Key, v }).ToArray();
     }
 
     /// <summary>
@@ -183,49 +179,37 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       IEnumerable<KeyValuePair<AbstractLayerAdapter, int>> search)
     {
       var res = new Dictionary<int, List<int>>();
-      var query = search.ToArray();
+      var query = search.ToList();
 
-      // Befüllen
-      var doc = query[0].Key[documentGuid];
+      var first = query.First();
+      query.RemoveAt(0);
+
+      var doc = first.Key[documentGuid];
       if (doc == null)
         return null;
 
+      var docs = query.Select(x => x.Key[documentGuid]).ToArray();
+
       for (var i = 0; i < doc.Length; i++)
-      {
-        if (doc[i] == null)
-          continue;
         for (var j = 0; j < doc[i].Length; j++)
-        {
-          if (doc[i][j] != query[0].Value)
-            continue;
+          if (doc[i][j] == first.Value)
+          {
+            if (docs.Where((t, k) => t[i][j] != query[k].Value).Any())
+              continue;
 
-          if (!res.ContainsKey(i))
-            res.Add(i, new List<int>());
-
-          res[i].Add(j);
-        }
-      }
-
-      // Ausradieren
-      foreach (var t1 in query)
-      {
-        doc = t1.Key[documentGuid];
-        if (doc == null)
-          return null;
-
-        // Bereinigen (nicht identische Werte)
-        var values = DictionaryToArray(res);
-        foreach (var value in values.Where(value => doc[value[0]][value[1]] != t1.Value))
-          res[value[0]].Remove(value[1]);
-
-        // Bereinigen (Leere Sätze)
-        var tmp = res.Select(x => x.Key).ToArray();
-        foreach (var t in tmp.Where(t => res[t].Count == 0))
-          res.Remove(t);
-      }
+            if (res.ContainsKey(i))
+              res[i].Add(j);
+            else
+              res.Add(i, new List<int> { j });
+          }
 
       return res;
     }
+
+    private Dictionary<Guid, List<KeyValuePair<AbstractLayerAdapter, int>>> _dicCache =
+      new Dictionary<Guid, List<KeyValuePair<AbstractLayerAdapter, int>>>();
+
+    private object _dicCacheLock = new object();
 
     /// <summary>
     ///   The get dictionary.
@@ -238,27 +222,41 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// </returns>
     private List<KeyValuePair<AbstractLayerAdapter, int>> GetDictionary(AbstractCorpusAdapter corpus)
     {
-      if (MultilayerValues.Count < 1)
-        return null;
-
-      var res = new List<KeyValuePair<AbstractLayerAdapter, int>>();
-      foreach (var layerValue in MultilayerValues)
+      lock (_dicCacheLock)
       {
-        var layers = corpus.GetLayers(layerValue.Key);
-        if (layers == null)
-          return null;
-
-        foreach (var layer in layers)
+        try
         {
-          var value = layer[layerValue.Value];
-          if (value == -1)
+          if (_dicCache.ContainsKey(corpus.CorpusGuid))
+            return _dicCache[corpus.CorpusGuid];
+
+          if (MultilayerValues.Count < 1)
             return null;
 
-          res.Add(new KeyValuePair<AbstractLayerAdapter, int>(layer, value));
+          var res = new List<KeyValuePair<AbstractLayerAdapter, int>>();
+          foreach (var layerValue in MultilayerValues)
+          {
+            var layers = corpus.GetLayers(layerValue.Key);
+            if (layers == null)
+              return null;
+
+            foreach (var layer in layers)
+            {
+              var value = layer[layerValue.Value];
+              if (value == -1)
+                return null;
+
+              res.Add(new KeyValuePair<AbstractLayerAdapter, int>(layer, value));
+            }
+          }
+
+          _dicCache[corpus.CorpusGuid] = res;
+          return res;
+        }
+        catch
+        {
+          return null;
         }
       }
-
-      return res;
     }
 
     [OnDeserialized]
@@ -282,60 +280,40 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
     private IEnumerable<int> SentenceIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      if (sentence < 0)
-        return null;
-
-      var search = GetDictionary(corpus).ToArray();
-      if (search.Length == 0)
-        return null;
-
-      var first = search[0];
-      if (!first.Key.ContainsDocument(documentGuid))
-        return null;
-
-      var doc = first.Key[documentGuid];
-      if (sentence >= doc.Length)
-        return null;
-
-      var sent = doc[sentence];
-
-      var test = new List<int>();
-      for (var i = 0; i < sent.Length; i++)
-        if (sent[i] == first.Value)
-          test.Add(i);
-
-      if (test.Count == 1)
-        return test;
-
-      for (var i = 1; i < search.Length; i++)
+      try
       {
-        var second = search[0];
-        if (!second.Key.ContainsDocument(documentGuid))
+        if (sentence < 0)
           return null;
 
-        var doc2 = second.Key[documentGuid];
-        if (sentence >= doc2.Length)
+        var search = GetDictionary(corpus).ToList();
+        if (search.Count == 0)
           return null;
 
-        var sent2 = doc2[sentence];
+        var first = search.First();
+        search.RemoveAt(0);
 
-        for (var j = 0; j < test.Count; j++)
-        {
-          if (test[j] >= sent2.Length)
-            continue;
+        var doc = first.Key[documentGuid][sentence];
+        if (doc == null)
+          return null;
 
-          if (sent2[test[j]] == second.Value)
-            continue;
+        var docs = search.Select(x => x.Key[documentGuid][sentence]).ToArray();
+        var res = new List<int>();
 
-          test.RemoveAt(j);
-          j--;
-        }
+        for (var j = 0; j < doc.Length; j++)
+          if (doc[j] == first.Value)
+          {
+            if (docs.Where((t, k) => t[j] != search[k].Value).Any())
+              continue;
 
-        if (test.Count == 1)
-          return test;
+            res.Add(j);
+          }
+
+        return res;
       }
-
-      return test;
+      catch
+      {
+        return null;
+      }
     }
   }
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database Name="main" EntityNamespace="MainContext" ContextNamespace="MainContext" Class="MainDataContext" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ed:Guid="44762f79-e6e4-400b-a960-d31ad45777be" Provider="Devart.Data.SQLite.Linq.Provider.SQLiteDataProvider, Devart.Data.SQLite.Linq" Extended="true" xmlns="http://schemas.devart.com/linqconnect/mapping">
+  <Connection Mode="ConnectionString" ConnectionString="Data Source=W:\OneMillionPostsCorpus\corpus.sqlite3" Provider="Devart.Data.SQLite" />
+  <Table Name="&quot;main&quot;.Posts" Member="Posts">
+    <Type Name="Post" ed:Guid="fd268046-1de4-4d4d-ad95-6fb330e9deae">
+      <Column Name="ID_Post" Member="IDPost" Type="System.Int64" AutoSync="OnInsert" DbType="INTEGER NOT NULL" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="e3b63a3e-b5e4-4463-b589-668402900920" />
+      <Column Name="ID_Parent_Post" Member="IDParentPost" Type="System.Int64" DbType="INTEGER" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="21753c70-8208-47bf-a22a-ccaa339a51e0" />
+      <Column Name="ID_Article" Member="IDArticle" Type="System.Int64" DbType="INTEGER NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="1f1b2c79-7db8-400a-ad7c-7a3906c681ef" />
+      <Column Name="ID_User" Member="IDUser" Type="System.Int64" DbType="INTEGER NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="fda9ad14-0f27-48f4-9f4e-a1b92abfad78" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="TIMESTAMP NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="d3c31aa4-86bd-4b0a-bce5-9dda69d492be" />
+      <Column Name="Status" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="d8172a9e-d241-4bda-8a5e-bb5f03fc5856" />
+      <Column Name="Headline" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="c732f2e1-b67c-4f7d-89c2-5a781c738c93" />
+      <Column Name="Body" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="8518e318-6ca9-4b60-9692-ad49a1f79a18" />
+      <Column Name="PositiveVotes" Type="System.Int64" DbType="INTEGER NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="ce452761-fa33-4b8f-9878-6e1bae55b85f" />
+      <Column Name="NegativeVotes" Type="System.Int64" DbType="INTEGER NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="9010afd6-804a-4391-88da-662a43c34a30" />
+      <Association Name="Post_Post" ed:AssociationGuid="138587e3-8fd4-47ae-bd7f-4b70ac292e37" Member="Posts" ed:Guid="757e7bcc-3b00-4f5d-8677-5c2d0c5d49af" ThisKey="IDPost" OtherKey="IDParentPost" Type="Post" />
+      <Association Name="Post_Post" ed:AssociationGuid="138587e3-8fd4-47ae-bd7f-4b70ac292e37" Member="ParentPost" ed:Guid="810de782-c13a-4ec1-a0b0-3137234490df" ThisKey="IDParentPost" OtherKey="IDPost" Type="Post" IsForeignKey="true" />
+      <Association Name="NewspaperStaff_Post" ed:AssociationGuid="2025a1da-da85-4115-8713-c1e298aa0a53" Member="NewspaperStaff" ed:Guid="704fb9fb-f94a-48a7-ace9-eee942f6086b" ThisKey="IDUser" OtherKey="IDUser" Type="NewspaperStaff" IsForeignKey="true" />
+      <Association Name="Article_Post" ed:AssociationGuid="4ce0bb26-843d-41fa-933a-a19d587951d3" Member="Article" ed:Guid="1bc0172a-60cc-4748-957b-b7087ebb785a" ThisKey="IDArticle" OtherKey="IDArticle" Type="Article" IsForeignKey="true" />
+      <Association Name="CrossValSplit_Post" ed:AssociationGuid="786537f7-caaf-45eb-8c6d-ec9fe4b8f3cb" Member="CrossValSplit" ed:Guid="c106ea9a-4c6a-4498-8b44-fb2e322f0d2a" ThisKey="IDPost" OtherKey="IDPost" Type="CrossValSplit" IsForeignKey="true" Cardinality="One" />
+      <Association Name="Post_AnnotationsConsolidated" ed:AssociationGuid="034ac312-163c-48b2-8737-5ccb972944de" Member="AnnotationsConsolidated" ed:Guid="9f9beb1f-8622-47f9-b8bf-bcbfdd45834d" ThisKey="IDPost" OtherKey="IDPost" Type="AnnotationsConsolidated" />
+      <Association Name="Post_Annotation" ed:AssociationGuid="48632992-8d71-4ecf-bc17-53bb4022c613" Member="Annotations" ed:Guid="40322420-3b51-4548-af5d-3379bee77bee" ThisKey="IDPost" OtherKey="IDPost" Type="Annotation" />
+    </Type>
+  </Table>
+  <Table Name="&quot;main&quot;.Annotations" Member="Annotations">
+    <Type Name="Annotation" ed:Guid="1900355c-cd3a-4e1e-95b5-97cb4365fae0">
+      <Column Name="ID_Post" Member="IDPost" Type="System.Int64" DbType="INTEGER NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="ee3fc1d6-2b7a-48ed-8dd1-6b03289afa30" />
+      <Column Name="ID_Annotator" Member="IDAnnotator" Type="System.Int64" DbType="INTEGER NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="4157fb44-e334-42fa-8b61-f6bf9b336d92" />
+      <Column Name="Category" Type="System.String" DbType="TEXT NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="4119dc92-97c3-477a-bb12-d860c2dd831f" />
+      <Column Name="Value" Type="System.Int64" DbType="INTEGER NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="1759e0e7-ad02-4735-91f3-95dbe2d4d639" />
+      <Association Name="Post_Annotation" ed:AssociationGuid="48632992-8d71-4ecf-bc17-53bb4022c613" Member="Post" ed:Guid="fa04b1fe-25e0-4124-ab0d-ae7d94571357" ThisKey="IDPost" OtherKey="IDPost" Type="Post" IsForeignKey="true" />
+      <Association Name="Category_Annotation" ed:AssociationGuid="1601c647-b3ca-4f1d-8025-87ae3563159e" Member="CategoryObject" ed:Guid="ca56bfdd-d1c7-4fc0-bb78-23bdd14c3839" ThisKey="Category" OtherKey="Name" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="&quot;main&quot;.Annotations_consolidated" Member="AnnotationsConsolidateds">
+    <Type Name="AnnotationsConsolidated" ed:Guid="2c30c8f6-de75-45bf-91ad-352a19168e00">
+      <Column Name="ID_Post" Member="IDPost" Type="System.Int64" DbType="INTEGER NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="7699f70e-10fe-40b5-86d6-ebc24d5df90f" />
+      <Column Name="Category" Type="System.String" DbType="TEXT NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="5cb197e7-0001-44d2-8969-473c9cf75a8c" />
+      <Column Name="Value" Type="System.Int64" DbType="INTEGER NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="32ed7166-e3f0-4ae0-981e-c7a4ddf23edf" />
+      <Association Name="Post_AnnotationsConsolidated" ed:AssociationGuid="034ac312-163c-48b2-8737-5ccb972944de" Member="Post" ed:Guid="29b3d2ab-3c94-473a-b3e5-b33ae6408ad4" ThisKey="IDPost" OtherKey="IDPost" Type="Post" IsForeignKey="true" />
+      <Association Name="Category_AnnotationsConsolidated" ed:AssociationGuid="b9f7d994-b567-4fef-a4df-0bd31c84f27a" Member="CategoryObject" ed:Guid="1eff517a-00cf-44de-8999-03caa02610f4" ThisKey="Category" OtherKey="Name" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="&quot;main&quot;.Articles" Member="Articles">
+    <Type Name="Article" ed:Guid="f1e75e5c-b2e4-4858-b1c6-666e458f1a66">
+      <Column Name="ID_Article" Member="IDArticle" Type="System.Int64" AutoSync="OnInsert" DbType="INTEGER NOT NULL" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="19eb1b16-e395-46a6-bda1-abea8552065c" />
+      <Column Name="Path" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="ca044777-9c81-4a59-8ebb-c32dfcb65ccc" />
+      <Column Name="publishingDate" Member="PublishingDate" Type="System.DateTime" DbType="TIMESTAMP NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="db3893aa-6c73-42a5-86f2-919441077260" />
+      <Column Name="Title" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="6163d03b-16d2-42cb-b54f-63166181ea8a" />
+      <Column Name="Body" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="ab0444f1-be8c-4671-b9be-01932654495f" />
+      <Association Name="Article_Post" ed:AssociationGuid="4ce0bb26-843d-41fa-933a-a19d587951d3" Member="Posts" ed:Guid="4b53dfd4-ea72-447e-8376-896e214b541e" ThisKey="IDArticle" OtherKey="IDArticle" Type="Post" />
+    </Type>
+  </Table>
+  <Table Name="&quot;main&quot;.CrossValSplit" Member="CrossValSplits">
+    <Type Name="CrossValSplit" ed:Guid="ddd47bf2-ae16-42d8-901c-f1ecef0580cb">
+      <Column Name="ID_Post" Member="IDPost" Type="System.Int64" DbType="INTEGER NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="7a703fee-2460-4861-a4d6-0c1ae9eff9e1" />
+      <Column Name="Category" Type="System.String" DbType="TEXT NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="2329f2be-d086-4349-b3f2-41919a2e479d" />
+      <Column Name="Fold" Type="System.Int64" DbType="INTEGER NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="a4460f61-7ada-4a69-9cd6-cfecb6735766" />
+      <Association Name="CrossValSplit_Post" ed:AssociationGuid="786537f7-caaf-45eb-8c6d-ec9fe4b8f3cb" Member="Post" ed:Guid="d943dfe9-93ab-4081-92c8-c5390cf075cb" ThisKey="IDPost" OtherKey="IDPost" Type="Post" Cardinality="One" />
+      <Association Name="Category_CrossValSplit" ed:AssociationGuid="181d9625-2c6c-48d4-b5a8-2e11bcdf8bd8" Member="CategoryObject" ed:Guid="2612c7f3-5364-4acb-93d5-834756dcb2e6" ThisKey="Category" OtherKey="Name" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="&quot;main&quot;.Categories" Member="Categories">
+    <Type Name="Category" ed:Guid="cdde5119-7bd6-4219-94d9-a627db4393a5">
+      <Column Name="Name" Type="System.String" DbType="TEXT NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="cc18b435-d190-4c9d-a360-ce45fc0e1d2a" />
+      <Column Name="Ord" Type="System.Int64" DbType="INTEGER" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="6e85d3d9-f458-4c7e-99c3-bc8193d5011b" />
+      <Association Name="Category_Annotation" ed:AssociationGuid="1601c647-b3ca-4f1d-8025-87ae3563159e" Member="Annotations" ed:Guid="4f2c04af-2fc3-4193-8a94-b4c02cf764e4" ThisKey="Name" OtherKey="Category" Type="Annotation" />
+      <Association Name="Category_AnnotationsConsolidated" ed:AssociationGuid="b9f7d994-b567-4fef-a4df-0bd31c84f27a" Member="AnnotationsConsolidateds" ed:Guid="9728bc0a-e207-4d26-a19e-f3ce9117b123" ThisKey="Name" OtherKey="Category" Type="AnnotationsConsolidated" />
+      <Association Name="Category_CrossValSplit" ed:AssociationGuid="181d9625-2c6c-48d4-b5a8-2e11bcdf8bd8" Member="CrossValSplits" ed:Guid="6277ba85-22ba-488a-93ef-d7a2654f772d" ThisKey="Name" OtherKey="Category" Type="CrossValSplit" />
+    </Type>
+  </Table>
+  <Table Name="&quot;main&quot;.Newspaper_Staff" Member="NewspaperStaffs">
+    <Type Name="NewspaperStaff" ed:Guid="8c92455f-abbd-4154-8c9f-72c97aaad577">
+      <Column Name="ID_User" Member="IDUser" Type="System.Int64" AutoSync="OnInsert" DbType="INTEGER NOT NULL" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="ca001d20-8b19-42b0-bec4-becc0fd11e02" />
+      <Association Name="NewspaperStaff_Post" ed:AssociationGuid="2025a1da-da85-4115-8713-c1e298aa0a53" Member="Posts" ed:Guid="a63ea2c3-5b2a-484d-beb4-28ff3521bc5e" ThisKey="IDUser" OtherKey="IDUser" Type="Post" />
+    </Type>
+  </Table>
+</Database>

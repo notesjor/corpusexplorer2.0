@@ -17,7 +17,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
   /// </summary>
   [XmlRoot]
   [Serializable]
-  public class FilterQuerySingleLayerAllInOnDocument : AbstractFilterQuerySingleLayer
+  public class FilterQuerySingleLayerAllInOneDocument : AbstractFilterQuerySingleLayer
   {
     /// <summary>
     ///   Gibt eine automatisch generierte Zusammenfassung des Inhalts/Bedeutung zurück.
@@ -43,7 +43,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// </returns>
     public override object Clone()
     {
-      return new FilterQuerySingleLayerAllInOnDocument
+      return new FilterQuerySingleLayerAllInOneDocument
       {
         Inverse = Inverse,
         LayerDisplayname = LayerDisplayname,

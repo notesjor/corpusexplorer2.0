@@ -221,7 +221,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
                     clearDocument ? GetDocumentDictionary()
                                      .ToDictionary(x => x.Key,
                                                    x => x.Value.Select(y => y.Select(z => 0).ToArray()).ToArray()) :
-                                    GetDocumentDictionary().ToDictionary(x => x.Key, x => x.Value),
+                                    GetDocumentDictionary(),
         Cache = clearDictionary
                   ? new Dictionary<string, int>()
                   : GetValueDictionary()

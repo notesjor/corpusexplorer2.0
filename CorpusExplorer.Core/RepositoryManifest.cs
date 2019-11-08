@@ -54,6 +54,7 @@ namespace CorpusExplorer.Core
       {"SQL-Query nur Schema (*.sql)|*.sql", new SqlSchemaOnlyTableWriter() },
       {"SQL-Query Schema und Daten (*.sql)|*.sql", new SqlTableWriter() },
       {"TSV-Tabelle (*.tsv)|*.tsv", new TsvTableWriter() },
+      {"TSV-Tabelle (gerundet) (*.tsv)|*.tsv", new TsvRoundedTableWriter() },
       {"XML-Dokument (*.xml)|*.xml", new XmlTableWriter() }
     };
 
@@ -120,6 +121,7 @@ namespace CorpusExplorer.Core
         {"XML-Export (*.xml)|*.xml", new ExporterXml()},
         {"TLV-XML-Export (*.xml)|*.xml", new ExporterTlv()},
         {"CorpusExplorer v6 (*.cec6)|*.cec6", new ExporterCec6()},
+        {"CorpusExplorer v6+GZIP (*.cec6.gz)|*.cec6.gz", new ExporterCec6 {UseCompression = true}},
         {"Plaintext-Export (*.txt)|*.txt", new ExporterPlaintext()},
         {"Plaintext-Export [Nur Wort-Layer] (*.txt)|*.txt", new ExporterPlaintextPure()},
         {"Einfacher HTML-Export [Nur Wort-Layer] (*.txt)|*.txt", new ExporterHtmlPure()},
@@ -218,6 +220,8 @@ namespace CorpusExplorer.Core
         new GetDocumentDisplaynamesAction(),
         new GetDocumentMetadataAction(),
         new NamedEntityAction(),
+        new EditDistanceAction(),
+        new KeywordAction(),
 
         new VocabularyComplexityAction(),
         new ReadingEaseAction(),

@@ -107,6 +107,20 @@ namespace Bcs.Addon
                 InMemoryErrorConsole.Log(ex);
               }
           }
+          catch (ReflectionTypeLoadException ex)
+          {
+            if (file.Contains("Hunspellx"))
+              continue;
+            if (file.EndsWith("udpipe_csharp.dll"))
+              continue;
+            if (ex is BadImageFormatException)
+              continue;
+
+            InMemoryErrorConsole.Log(file);
+            foreach (var x in ex.LoaderExceptions)
+              InMemoryErrorConsole.Log(x);
+            InMemoryErrorConsole.Log(ex);
+          }
           catch (Exception ex)
           {
             if (file.Contains("Hunspellx"))

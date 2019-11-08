@@ -20,6 +20,7 @@ namespace CorpusExplorer.Sdk.Blocks
   public class CooccurrenceBlock : AbstractBlock
   {
     [NonSerialized] private readonly BlockCacheHelper _cache = new BlockCacheHelper();
+    [NonSerialized] private CrossFrequencyBlock _block;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="CooccurrenceBlock" /> class.
@@ -37,7 +38,7 @@ namespace CorpusExplorer.Sdk.Blocks
     /// </summary>
     /// <value>The collocates frequency.</value>
     // ReSharper disable once MemberCanBePrivate.Global
-    public Dictionary<string, Dictionary<string, double>> CooccurrenceFrequency { get; private set; }
+    public Dictionary<string, Dictionary<string, double>> CooccurrenceFrequency => _block?.CooccurrencesFrequency;
 
     /// <summary>
     ///   Wort/Kollokator/Signifikanz-Wörterbuch
@@ -68,17 +69,16 @@ namespace CorpusExplorer.Sdk.Blocks
       if (_cache.AbortCalculation(new Dictionary<string, object> {{nameof(LayerDisplayname), LayerDisplayname}}))
         return;
 
-      var block = Selection.CreateBlock<CrossFrequencyBlock>();
-      block.LayerDisplayname = LayerDisplayname;
-      block.Calculate();
+      _block = Selection.CreateBlock<CrossFrequencyBlock>();
+      _block.LayerDisplayname = LayerDisplayname;
+      _block.Calculate();
 
       CountSentences = Selection.CountSentences;
-      CooccurrenceFrequency = block.CooccurrencesFrequency;
       CooccurrenceSignificance = new Dictionary<string, Dictionary<string, double>>();
       var @lock = new object();
 
       Parallel.ForEach(
-                       CooccurrenceFrequency,
+                       _block.CooccurrencesFrequency,
                        Configuration.ParallelOptions,
                        word =>
                        {
@@ -86,7 +86,7 @@ namespace CorpusExplorer.Sdk.Blocks
                          try
                          {
                            signi = Configuration.GetSignificance(
-                                                                 CooccurrenceFrequency[word.Key][word.Key],
+                                                                 _block.CooccurrencesFrequency[word.Key][word.Key],
                                                                  CountSentences);
                          }
                          catch
@@ -103,7 +103,7 @@ namespace CorpusExplorer.Sdk.Blocks
                              continue;
                            hsh.Add(collocate.Key);
 
-                           var val = signi.Calculate(CooccurrenceFrequency[collocate.Key][collocate.Key],
+                           var val = signi.Calculate(_block.CooccurrencesFrequency[collocate.Key][collocate.Key],
                                                      collocate.Value);
 
                            if (double.IsInfinity(val) || double.IsNaN(val) || val < Configuration.MinimumSignificance)

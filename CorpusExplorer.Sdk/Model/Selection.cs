@@ -29,7 +29,7 @@ namespace CorpusExplorer.Sdk.Model
   /// </summary>
   [XmlRoot]
   [Serializable]
-  public class Selection : CeObject, IHydra, IEnumerable<KeyValuePair<Guid, HashSet<Guid>>>, ICloneable
+  public class Selection : CeObject, IHydra, IEnumerable<KeyValuePair<Guid, HashSet<Guid>>>, ICloneable, IDisposable
   {
     /// <summary>
     ///   The _sub selections.
@@ -44,8 +44,6 @@ namespace CorpusExplorer.Sdk.Model
 
     [XmlIgnore] [NonSerialized] private int _countTokenMatches = -1;
 
-    [XmlIgnore] [NonSerialized] private Dictionary<Guid, Dictionary<string, object>> _documentMetadata;
-
     [XmlIgnore] [NonSerialized] private Project _project;
 
     /// <summary>
@@ -54,6 +52,7 @@ namespace CorpusExplorer.Sdk.Model
     [XmlIgnore] [NonSerialized] private Dictionary<Guid, HashSet<Guid>> _selection;
 
     [XmlArray] private KeyValuePair<Guid, HashSet<Guid>>[] _selectionSerialized;
+    [XmlIgnore] [NonSerialized] private IEnumerable<KeyValuePair<Guid, Dictionary<string, object>>> _documentMetadata;
 
     /// <summary>
     ///   Prevents a default instance of the <see cref="Selection" /> class from being created.
@@ -1464,5 +1463,18 @@ namespace CorpusExplorer.Sdk.Model
     /// <typeparam name="T">
     /// </typeparam>
     private delegate IEnumerable<T> ProxyRequestListDelegate<out T>(AbstractCorpusAdapter c);
+
+    public void Dispose()
+    {
+      _project = null;
+      
+      foreach (var s in _subSelections)
+        s.Dispose();
+      _subSelections.Clear();
+
+      foreach (var s in _selection)
+        s.Value.Clear();
+      _selection.Clear();
+    }
   }
 }

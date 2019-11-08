@@ -22,19 +22,29 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
   [XmlInclude(typeof(AbstractFilterQueryCompleteDocumentIndexing))]
   [XmlInclude(typeof(AbstractFilterQueryMeta))]
   [XmlInclude(typeof(AbstractFilterQuerySingleLayer))]
-  [XmlInclude(typeof(FilterQuerySingleLayerAllInOneSentence))]
-  [XmlInclude(typeof(FilterQuerySingleLayerAllInOnDocument))]
-  [XmlInclude(typeof(FilterQuerySingleLayerAllInSpanSentences))]
-  [XmlInclude(typeof(FilterQuerySingleLayerAnyMatch))]
-  [XmlInclude(typeof(FilterQuerySingleLayerAllInSpanWords))]
+  [XmlInclude(typeof(AbstractFilterQuerySingleLayerFulltext))]
   [XmlInclude(typeof(FilterQueryCorpusComplete))]
-  [XmlInclude(typeof(FilterQuerySingleLayerMarkedPhrase))]
-  [XmlInclude(typeof(FilterQueryMetaContainsCaseSensitive))]
   [XmlInclude(typeof(FilterQueryMetaContains))]
+  [XmlInclude(typeof(FilterQueryMetaContainsCaseSensitive))]
+  [XmlInclude(typeof(FilterQueryMetaEndsWith))]
+  [XmlInclude(typeof(FilterQueryMetaExactMatch))]
+  [XmlInclude(typeof(FilterQueryMetaExactMatchCaseSensitive))]
   [XmlInclude(typeof(FilterQueryMetaIsEmpty))]
   [XmlInclude(typeof(FilterQueryMetaRegex))]
-  [XmlInclude(typeof(FilterQueryMultiLayer))]
+  [XmlInclude(typeof(FilterQueryMetaStartsWith))]
+  [XmlInclude(typeof(FilterQueryMultiLayerAll))]
+  [XmlInclude(typeof(FilterQueryMultiLayerAny))]
+  [XmlInclude(typeof(FilterQueryMultiLayerPhrase))]
+  [XmlInclude(typeof(FilterQuerySingleLayerAllInExactSpanWords))]
+  [XmlInclude(typeof(FilterQuerySingleLayerAllInOneDocument))]
+  [XmlInclude(typeof(FilterQuerySingleLayerAllInOneSentence))]
+  [XmlInclude(typeof(FilterQuerySingleLayerAllInSpanSentences))]
+  [XmlInclude(typeof(FilterQuerySingleLayerAllInSpanWords))]
+  [XmlInclude(typeof(FilterQuerySingleLayerAnyMatch))]
   [XmlInclude(typeof(FilterQuerySingleLayerExactPhrase))]
+  [XmlInclude(typeof(FilterQuerySingleLayerMarkedPhrase))]
+  [XmlInclude(typeof(FilterQuerySingleLayerRegexFulltext))]
+  [XmlInclude(typeof(FilterQueryUnsupportedParserFeature))]
   [Serializable]
   public abstract class AbstractFilterQuery : IVerbalize, ICloneable
   {
@@ -168,6 +178,23 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     }
 
     /// <summary>
+    ///   Gibt die erste Übereinstimmung innerhalb eines Satze zurück
+    /// </summary>
+    /// <param name="corpus">
+    ///   Korpus
+    /// </param>
+    /// <param name="documentGuid">
+    ///   Dokument GUID
+    /// </param>
+    /// <param name="sentence">
+    ///   SatzID
+    /// </param>
+    /// <returns>
+    ///   Erste Übereinstimmung
+    /// </returns>
+    protected abstract int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence);
+
+    /// <summary>
     ///   Gibt eine Auflistung aller Sätze in allen Dokumenten aus, die durch diesen Query und durch dessen OrQueries
     ///   selektiert werden.
     /// </summary>
@@ -207,15 +234,35 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     /// <returns>Auflistung der Sätze (unsortiert).</returns>
     public HashSet<int> GetSentenceIndices(AbstractCorpusAdapter corpus, Guid documentGuid)
     {
-      var items = GetSentencesCall(corpus, documentGuid);
-      var res = items == null ? new HashSet<int>() : new HashSet<int>(items);
+      try
+      {
+        var items = GetSentencesCall(corpus, documentGuid);
+        var res = items == null ? new HashSet<int>() : new HashSet<int>(items);
 
-      foreach (
-        var x in
-        _orFilterQueries.Select(query => query.GetSentenceIndices(corpus, documentGuid)).SelectMany(temp => temp))
-        res.Add(x);
-      return res;
+        foreach (var x in _orFilterQueries.Select(query => query.GetSentenceIndices(corpus, documentGuid)).SelectMany(temp => temp)) 
+          res.Add(x);
+
+        return res;
+      }
+      catch
+      {
+        return new HashSet<int>();
+      }
     }
+
+    /// <summary>
+    ///   Gibt alle passenden Sätze zurück.
+    /// </summary>
+    /// <param name="corpus">
+    ///   Korpus
+    /// </param>
+    /// <param name="documentGuid">
+    ///   Dokument GUID
+    /// </param>
+    /// <returns>
+    ///   Satz Indices
+    /// </returns>
+    protected abstract IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid);
 
     /// <summary>
     ///   Gibt den ersten Wort-Index der Übereinstimmung zurück die das Query oder dessen OrQuery im gewähltem Korpus -
@@ -244,6 +291,19 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     }
 
     /// <summary>
+    ///   Gibt alle Wort-Index Übereinstimmungen zurück die das Query oder desseb OrQuery in gewählten Korpus - Dokument - Satz
+    ///   hat.
+    /// </summary>
+    /// <param name="corpus">Korpus der das Dokument enthält.</param>
+    /// <param name="documentGuid">GUID des Dokuments</param>
+    /// <param name="sentence">
+    ///   ID des Satzes der die FUnstelle enthalten soll. Alle validen Sätze können zuvor mit
+    ///   GetSentenceIndices() abgefragt werden.
+    /// </param>
+    /// <returns>Auflistung aller Vorkommen im Satz</returns>
+    public abstract IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence);
+
+    /// <summary>
     ///   The validate.
     /// </summary>
     /// <param name="corpus">
@@ -263,50 +323,6 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
       return (Inverse ? !ValidateCall(corpus, documentGuid) : ValidateCall(corpus, documentGuid))
           || OrFilterQueries.Any(query => query.Validate(corpus, documentGuid));
     }
-
-    /// <summary>
-    ///   Gibt die erste Übereinstimmung innerhalb eines Satze zurück
-    /// </summary>
-    /// <param name="corpus">
-    ///   Korpus
-    /// </param>
-    /// <param name="documentGuid">
-    ///   Dokument GUID
-    /// </param>
-    /// <param name="sentence">
-    ///   SatzID
-    /// </param>
-    /// <returns>
-    ///   Erste Übereinstimmung
-    /// </returns>
-    protected abstract int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence);
-
-    /// <summary>
-    ///   Gibt alle passenden Sätze zurück.
-    /// </summary>
-    /// <param name="corpus">
-    ///   Korpus
-    /// </param>
-    /// <param name="documentGuid">
-    ///   Dokument GUID
-    /// </param>
-    /// <returns>
-    ///   Satz Indices
-    /// </returns>
-    protected abstract IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid);
-
-    /// <summary>
-    ///   Gibt alle Wort-Index Übereinstimmungen zurück die das Query oder desseb OrQuery in gewählten Korpus - Dokument - Satz
-    ///   hat.
-    /// </summary>
-    /// <param name="corpus">Korpus der das Dokument enthält.</param>
-    /// <param name="documentGuid">GUID des Dokuments</param>
-    /// <param name="sentence">
-    ///   ID des Satzes der die FUnstelle enthalten soll. Alle validen Sätze können zuvor mit
-    ///   GetSentenceIndices() abgefragt werden.
-    /// </param>
-    /// <returns>Auflistung aller Vorkommen im Satz</returns>
-    public abstract IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence);
 
     /// <summary>
     ///   Passt das Dokument zum Suchausdruck?

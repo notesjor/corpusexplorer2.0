@@ -1,2 +1,2 @@
 ﻿addon_toxy.zip
-C:\Projekte\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk.Extern.Toxy\bin\Release
+C:\Projekte\CorpusExplorerV2\CorpusExplorer\CorpusExplorer.Sdk.Extern.Toxy\bin\Release

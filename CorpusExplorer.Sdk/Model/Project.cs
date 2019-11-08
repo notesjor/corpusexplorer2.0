@@ -4,6 +4,7 @@ using Bcs.IO;
 using CorpusExplorer.Sdk.Blocks.Cooccurrence;
 using CorpusExplorer.Sdk.Blocks.Measure.Abstract;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Model.Adapter.Corpus;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Model.Cache.Abstract;
@@ -1024,8 +1025,8 @@ namespace CorpusExplorer.Sdk.Model
       string overrideSelectionDisplayname,
       Selection parentSelection = null)
     {
-      var res = parentSelection == null 
-                  ? SelectAll.Create(queries, overrideSelectionDisplayname, true) 
+      var res = parentSelection == null
+                  ? SelectAll.Create(queries, overrideSelectionDisplayname, true)
                   : parentSelection.Create(queries, overrideSelectionDisplayname, false);
 
       OnSelectionCreated();
@@ -1062,8 +1063,8 @@ namespace CorpusExplorer.Sdk.Model
       string overrideSelectionDisplayname,
       Selection parentSelection = null)
     {
-      var res = parentSelection == null 
-                  ? SelectAll.Create(corpusAndDocumentGuids, overrideSelectionDisplayname, true) 
+      var res = parentSelection == null
+                  ? SelectAll.Create(corpusAndDocumentGuids, overrideSelectionDisplayname, true)
                   : parentSelection.Create(corpusAndDocumentGuids, overrideSelectionDisplayname, false);
 
       OnSelectionCreated();
@@ -1408,7 +1409,15 @@ namespace CorpusExplorer.Sdk.Model
 
     internal void Clear()
     {
-      _corpora.Clear();
+      if (_corpora != null)
+        foreach (var c in _corpora)
+          if (c is CorpusAdapterWriteDirect corpus)
+            corpus.Dispose();
+
+      _corpora?.Clear();
+      foreach (var s in _selections)
+        s.Dispose();
+
       _selections.Clear();
       _guid = Guid.NewGuid();
       _selectionAll = null;

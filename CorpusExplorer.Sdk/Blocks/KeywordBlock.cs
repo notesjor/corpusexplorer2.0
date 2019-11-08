@@ -44,8 +44,8 @@ namespace CorpusExplorer.Sdk.Blocks
           return;
 
         var dif = (x.Value - KeywordFrequencyReference[x.Key]) * 100d / KeywordFrequencyReference[x.Key];
-        var sig = Configuration.GetSignificance((int) KeywordFrequencyReference[x.Key], mult);
-        var val = sig.Calculate((int) x.Value, (int) Math.Abs(KeywordFrequencyReference[x.Key] - x.Value));
+        var sig = Configuration.GetSignificance((int)KeywordFrequencyReference[x.Key], mult);
+        var val = sig.Calculate((int)x.Value, (int)Math.Abs(KeywordFrequencyReference[x.Key] - x.Value));
 
         lock (@lock)
         {
@@ -57,7 +57,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
     private Dictionary<string, double> GetFrequency(Selection selection, double mult)
     {
-      var block = selection.CreateBlock<Frequency1LayerOneOccurrenceBlock>();
+      var block = selection.CreateBlock<Frequency1LayerOneOccurrencePerSentenceBlock>();
       block.LayerDisplayname = LayerDisplayname;
       block.Calculate();
 

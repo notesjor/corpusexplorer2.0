@@ -359,6 +359,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       var files = new List<string>();
       files.AddRange(Directory.GetFiles(Configuration.MyCorpora, Resources.Filter_CEC5));
       files.AddRange(Directory.GetFiles(Configuration.MyCorpora, Resources.Filter_CEC6));
+      files.AddRange(Directory.GetFiles(Configuration.MyCorpora, Resources.Filter_CEC6_GZ));
 
       if (files.Count == 0)
       {
@@ -553,6 +554,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                               QuickMode.AddCorpusToProject(Project, CorpusAdapterSingleFile.Create(path));
                               break;
                             case ".cec6":
+                            case ".cec6.gz":
                               QuickMode.AddCorpusToProject(Project, CorpusAdapterWriteDirect.Create(path));
                               break;
                           }

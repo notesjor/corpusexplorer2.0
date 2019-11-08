@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Interface;
+using CorpusExplorer.Sdk.Utils.Filter.Queries;
 
 #endregion
 
@@ -16,6 +17,12 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
   ///   The abstract single layer filter query.
   /// </summary>
   [XmlRoot]
+  [XmlInclude(typeof(FilterQuerySingleLayerAllInExactSpanWords))]
+  [XmlInclude(typeof(FilterQuerySingleLayerAllInOneDocument))]
+  [XmlInclude(typeof(FilterQuerySingleLayerAllInOneSentence))]
+  [XmlInclude(typeof(FilterQuerySingleLayerAllInSpanSentences))]
+  [XmlInclude(typeof(FilterQuerySingleLayerAllInSpanWords))]
+  [XmlInclude(typeof(FilterQuerySingleLayerAnyMatch))]
   [Serializable]
   public abstract class AbstractFilterQuerySingleLayer : AbstractFilterQuery, IFilterQueryWithLayerValues
   {

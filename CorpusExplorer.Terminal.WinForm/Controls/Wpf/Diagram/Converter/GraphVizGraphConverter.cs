@@ -17,7 +17,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter
       var cs = connections.ToArray();
       foreach (var connection in cs)
         if (connection.Content is TextBlock block)
-          stb.Append($"\t{Filter(connection.Source.Content)} -> {Filter(connection.Target.Content)} [ label=\"{block.Text}\" ];\r\n");
+          stb.Append($"\t{Filter(connection.Source.Content)} -> {Filter(connection.Target.Content)} [ label=\"{Filter(block.Text)}\" ];\r\n");
         else
           stb.Append($"\t{Filter(connection.Source.Content)} -> {Filter(connection.Target.Content)};\r\n");
 

@@ -128,7 +128,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Crawler
     {
       return new XpathWebCrawler
       {
-        Crawler = Serializer.Deserialize<HtmlSearchCrawler>(path),
+        Crawler = Serializer.DeserializeSharpSerializer(path) as HtmlSearchCrawler,
         _displayName = Path.GetFileNameWithoutExtension(path)
       };
     }

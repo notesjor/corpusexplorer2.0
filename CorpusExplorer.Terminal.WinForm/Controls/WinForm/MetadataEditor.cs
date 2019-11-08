@@ -39,29 +39,42 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
           if (value == null)
             return;
 
-          var store = new RadPropertyStore();
-          foreach (var x in value)
-            try
-            {
-              var item = new PropertyStoreItem(
-                                               x.Value.GetType(),
-                                               x.Key,
-                                               x.Value ?? Activator.CreateInstance(x.Value.GetType()));
+          SetupStore(value);
+          SetupStore(value);
+        }
+        catch
+        {
+          try
+          {
+            SetupStore(value);
+          }
+          catch
+          {
+            // ignore
+          }
+        }
+      }
+    }
 
-              store.Add(item);
-            }
-            catch
-            {
-              // ignore
-            }
+    private void SetupStore(Dictionary<string, object> value)
+    {
+      var store = new RadPropertyStore();
+      foreach (var x in value)
+        try
+        {
+          var item = new PropertyStoreItem(
+                                           x.Value.GetType(),
+                                           x.Key,
+                                           x.Value ?? Activator.CreateInstance(x.Value.GetType()));
 
-          property_meta.SelectedObject = store;
+          store.Add(item);
         }
         catch
         {
           // ignore
         }
-      }
+
+      property_meta.SelectedObject = store;
     }
 
     public event EventHandler NewProperty;

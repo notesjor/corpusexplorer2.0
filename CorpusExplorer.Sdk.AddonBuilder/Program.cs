@@ -59,7 +59,7 @@ namespace CorpusExplorer.Sdk.AddonBuilder
     private static string[] GetOriginalAppFiles()
     {
       var path =
-        @"C:\Projekte\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Terminal.WinForm\bin\Release";
+        @"C:\Projekte\CorpusExplorerV2\CorpusExplorer\CorpusExplorer.Sdk.AddonBuilder\bin\Release";
       var files = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
       for (var i = 0; i < files.Length; i++) files[i] = files[i].Replace(path, "").Replace(path + @"\", "");
 

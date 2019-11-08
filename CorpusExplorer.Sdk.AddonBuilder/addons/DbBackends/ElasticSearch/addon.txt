@@ -1,2 +1,2 @@
 ﻿db_elastic.zip
-C:\Projekte\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk.Db.Addon\bin\Release
+C:\Projekte\CorpusExplorerV2\CorpusExplorer\CorpusExplorer.Sdk.Db.Addon\bin\Release

@@ -101,7 +101,7 @@ namespace CorpusExplorer.Terminal.WebCrawler
       _outputPath = Path.Combine(
                                  Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
                                               "output"),
-                                 DateTime.Now.ToString("yyyy-MM-dd_hh-mm"));
+                                 DateTime.Now.ToString("yyyy-MM-dd_HH-mm"));
       if (!Directory.Exists(_outputPath))
         Directory.CreateDirectory(_outputPath);
     }

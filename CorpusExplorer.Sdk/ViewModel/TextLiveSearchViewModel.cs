@@ -100,35 +100,35 @@ namespace CorpusExplorer.Sdk.ViewModel
     {
       var res = new List<Tuple<Guid, Guid, int, string, string, string>>();
       foreach (var corpus in SearchResults)
-      foreach (var result in corpus.Value)
-      foreach (var sent in result.Value)
-      {
-        if (sent.Value == null || sent.Value.Count == 0)
-          continue;
+        foreach (var result in corpus.Value)
+          foreach (var sent in result.Value)
+          {
+            if (sent.Value == null || sent.Value.Count == 0)
+              continue;
 
-        var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key)
-                                 .ReduceDocumentToStreamDocument().ToArray();
-        if (EnableHighlighting)
-          streamDoc = RunHighlighting(streamDoc);
+            var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key)
+                                     .ReduceDocumentToStreamDocument().ToArray();
+            if (EnableHighlighting)
+              streamDoc = RunHighlighting(streamDoc);
 
-        var min = sent.Value.Min();
-        var max = sent.Value.Max();
-        res.Add(new Tuple<Guid, Guid, int, string, string, string>
-                  (
-                   corpus.Key,
-                   result.Key,
-                   sent.Key,
-                   EnableHighlighting
-                     ? $"{HighlightBodyStart}{streamDoc.SplitDocument(0, min)}{HighlightBodyEnd}"
-                     : streamDoc.SplitDocument(0, min),
-                   EnableHighlighting
-                     ? $"{HighlightBodyStart}{streamDoc.SplitDocument(min, max + 1)}{HighlightBodyEnd}"
-                     : streamDoc.SplitDocument(min, max + 1),
-                   EnableHighlighting
-                     ? $"{HighlightBodyStart}{streamDoc.SplitDocument(max + 1)}{HighlightBodyEnd}"
-                     : streamDoc.SplitDocument(max + 1)
-                  ));
-      }
+            var min = sent.Value.Min();
+            var max = sent.Value.Max();
+            res.Add(new Tuple<Guid, Guid, int, string, string, string>
+                      (
+                       corpus.Key,
+                       result.Key,
+                       sent.Key,
+                       EnableHighlighting
+                         ? $"{HighlightBodyStart}{streamDoc.SplitDocument(0, min)}{HighlightBodyEnd}"
+                         : streamDoc.SplitDocument(0, min),
+                       EnableHighlighting
+                         ? $"{HighlightBodyStart}{streamDoc.SplitDocument(min, max + 1)}{HighlightBodyEnd}"
+                         : streamDoc.SplitDocument(min, max + 1),
+                       EnableHighlighting
+                         ? $"{HighlightBodyStart}{streamDoc.SplitDocument(max + 1)}{HighlightBodyEnd}"
+                         : streamDoc.SplitDocument(max + 1)
+                      ));
+          }
 
       return res;
     }
@@ -150,41 +150,45 @@ namespace CorpusExplorer.Sdk.ViewModel
     public IEnumerable<UniqueTextLiveSearchResultEntry> GetUniqueData()
     {
       var res = new Dictionary<string, UniqueTextLiveSearchResultEntry>();
+
+      if (SearchResults == null)
+        return res.Values;
+
       foreach (var corpus in SearchResults)
-      foreach (var result in corpus.Value)
-      foreach (var sent in result.Value)
-      {
-        if (sent.Value == null || sent.Value.Count == 0)
-          continue;
+        foreach (var result in corpus.Value)
+          foreach (var sent in result.Value)
+          {
+            if (sent.Value == null || sent.Value.Count == 0)
+              continue;
 
-        var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key)
-                                 .ReduceDocumentToStreamDocument().ToArray();
-        if (EnableHighlighting)
-          streamDoc = RunHighlighting(streamDoc);
+            var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key)
+                                     .ReduceDocumentToStreamDocument().ToArray();
+            if (EnableHighlighting)
+              streamDoc = RunHighlighting(streamDoc);
 
-        var key = string.Join("|", streamDoc);
-        if (!res.ContainsKey(key))
-        {
-          var min = sent.Value.Min();
-          var max = sent.Value.Max();
-          res.Add(
-                  key,
-                  new UniqueTextLiveSearchResultEntry
-                  {
-                    Pre = EnableHighlighting
-                            ? $"{HighlightBodyStart}{streamDoc.SplitDocument(0, min)}{HighlightBodyEnd}"
-                            : streamDoc.SplitDocument(0, min),
-                    Match = EnableHighlighting
-                              ? $"{HighlightBodyStart}{streamDoc.SplitDocument(min, max + 1)}{HighlightBodyEnd}"
-                              : streamDoc.SplitDocument(min, max + 1),
-                    Post = EnableHighlighting
-                             ? $"{HighlightBodyStart}{streamDoc.SplitDocument(max + 1)}{HighlightBodyEnd}"
-                             : streamDoc.SplitDocument(max + 1)
-                  });
-        }
+            var key = string.Join("|", streamDoc);
+            if (!res.ContainsKey(key))
+            {
+              var min = sent.Value.Min();
+              var max = sent.Value.Max();
+              res.Add(
+                      key,
+                      new UniqueTextLiveSearchResultEntry
+                      {
+                        Pre = EnableHighlighting
+                                ? $"{HighlightBodyStart}{streamDoc.SplitDocument(0, min)}{HighlightBodyEnd}"
+                                : streamDoc.SplitDocument(0, min),
+                        Match = EnableHighlighting
+                                  ? $"{HighlightBodyStart}{streamDoc.SplitDocument(min, max + 1)}{HighlightBodyEnd}"
+                                  : streamDoc.SplitDocument(min, max + 1),
+                        Post = EnableHighlighting
+                                 ? $"{HighlightBodyStart}{streamDoc.SplitDocument(max + 1)}{HighlightBodyEnd}"
+                                 : streamDoc.SplitDocument(max + 1)
+                      });
+            }
 
-        res[key].AddSentence(result.Key, sent.Key);
-      }
+            res[key].AddSentence(result.Key, sent.Key);
+          }
 
       return res.Values;
     }
@@ -193,41 +197,41 @@ namespace CorpusExplorer.Sdk.ViewModel
     {
       var res = new Dictionary<string, UniqueTextLiveSearchCutOffPhraseResultEntry>();
       foreach (var corpus in SearchResults)
-      foreach (var result in corpus.Value)
-      foreach (var sent in result.Value)
-      {
-        if (sent.Value == null || sent.Value.Count == 0)
-          continue;
+        foreach (var result in corpus.Value)
+          foreach (var sent in result.Value)
+          {
+            if (sent.Value == null || sent.Value.Count == 0)
+              continue;
 
-        var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key)
-                                 .ReduceDocumentToStreamDocument().ToArray();
-        if (EnableHighlighting)
-          streamDoc = RunHighlighting(streamDoc);
+            var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key)
+                                     .ReduceDocumentToStreamDocument().ToArray();
+            if (EnableHighlighting)
+              streamDoc = RunHighlighting(streamDoc);
 
-        var key = string.Join("|", streamDoc);
-        if (!res.ContainsKey(key))
-        {
-          var min = sent.Value.Min();
-          var max = sent.Value.Max() + 1;
-          res.Add(
-                  key,
-                  new UniqueTextLiveSearchCutOffPhraseResultEntry
-                  {
-                    Pre = EnableHighlighting
-                            ? $"{HighlightBodyStart}{streamDoc.SplitDocument(0, min)}{HighlightBodyEnd}"
-                            : streamDoc.SplitDocument(0, min),
-                    Match = EnableHighlighting
-                              ? $"{HighlightBodyStart}{streamDoc.SplitDocument(min, max + 1)}{HighlightBodyEnd}"
-                              : streamDoc.SplitDocument(min, max),
-                    Post = EnableHighlighting
-                             ? $"{HighlightBodyStart}{streamDoc.SplitDocument(max + 1)}{HighlightBodyEnd}"
-                             : streamDoc.SplitDocument(max),
-                    Span = max - min - 2,
-                  });
-        }
+            var key = string.Join("|", streamDoc);
+            if (!res.ContainsKey(key))
+            {
+              var min = sent.Value.Min();
+              var max = sent.Value.Max() + 1;
+              res.Add(
+                      key,
+                      new UniqueTextLiveSearchCutOffPhraseResultEntry
+                      {
+                        Pre = EnableHighlighting
+                                ? $"{HighlightBodyStart}{streamDoc.SplitDocument(0, min)}{HighlightBodyEnd}"
+                                : streamDoc.SplitDocument(0, min),
+                        Match = EnableHighlighting
+                                  ? $"{HighlightBodyStart}{streamDoc.SplitDocument(min, max + 1)}{HighlightBodyEnd}"
+                                  : streamDoc.SplitDocument(min, max),
+                        Post = EnableHighlighting
+                                 ? $"{HighlightBodyStart}{streamDoc.SplitDocument(max + 1)}{HighlightBodyEnd}"
+                                 : streamDoc.SplitDocument(max),
+                        Span = max - min - 2,
+                      });
+            }
 
-        res[key].AddSentence(result.Key, sent.Key);
-      }
+            res[key].AddSentence(result.Key, sent.Key);
+          }
 
       return res.Values;
     }

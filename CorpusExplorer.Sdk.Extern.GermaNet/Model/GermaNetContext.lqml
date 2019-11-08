@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database Name="germanet13" EntityNamespace="Germanet13Context" ContextNamespace="Germanet13Context" Class="Germanet13DataContext" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ed:Guid="0cbc2049-287c-4a9b-b6f9-32d032fbcece" Provider="Devart.Data.PostgreSql.Linq.Provider.PgSqlDataProvider, Devart.Data.PostgreSql.Linq" Extended="true" xmlns="http://schemas.devart.com/linqconnect/mapping">
+  <Connection Mode="ConnectionString" ConnectionString="User Id=germanet;Password=germanet;Host=localhost;Database=germanet13;Persist Security Info=True;Initial Schema=public" Provider="Devart.Data.PostgreSql" />
+  <Table Name="public.lex_rel_type_table" Member="LexUnitConnectionTypes">
+    <Type Name="LexUnitConnectionType" ed:Guid="bdda448f-9c40-4d4e-b2aa-ec9f69610588">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" DefaultValue="nextval('lex_rel_type_table_id_seq'::regclass)" ed:ValidateRequired="true" ed:Guid="05f2b33e-5771-4526-918f-4f66e7d035c7" />
+      <Column Name="&quot;name&quot;" Member="Name" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="true" ed:Guid="ba90166a-4498-434e-be83-9e9e8dd37106" />
+      <Column Name="direction" Member="Direction" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="true" ed:Guid="2117e881-e793-46ab-86eb-b3324bc4e6cd" />
+      <Column Name="inverse" Member="Inverse" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="8b83515c-ca87-46f4-b77c-eed942cd63f3" />
+      <Association Name="LexUnitConnectionType_LexUnitConnection" ed:AssociationGuid="99381f88-8351-42a3-8690-a9d1ca80acc9" Member="LexUnitConnections" ed:Guid="85a3971f-0b05-400d-a1ce-786d7af1a067" ThisKey="Id" OtherKey="RelTypeId" Type="LexUnitConnection" />
+    </Type>
+  </Table>
+  <Table Name="public.con_rel_type_table" Member="SynsetConnectionTypes">
+    <Type Name="SynsetConnectionType" ed:Guid="88f1e160-a3b9-40e2-933c-6d39a731e68c">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" DefaultValue="nextval('con_rel_type_table_id_seq'::regclass)" ed:ValidateRequired="true" ed:Guid="c8edcbaf-4e07-4205-88ce-e9443e11cc62" />
+      <Column Name="&quot;name&quot;" Member="Name" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="true" ed:Guid="2152ab0c-a1e6-4a12-9f32-c0c2647543f3" />
+      <Column Name="direction" Member="Direction" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="true" ed:Guid="ea724377-f262-4ba4-9995-185e83de76b3" />
+      <Column Name="inverse" Member="Inverse" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="e2ff48cd-528c-4daf-bc58-8f6476929f90" />
+      <Column Name="transitive" Member="Transitive" Type="System.Boolean" DbType="BOOL NOT NULL" CanBeNull="false" UpdateCheck="Never" DefaultValue="false" ed:ValidateRequired="true" ed:Guid="305ff4bd-f3b0-4678-894b-4f7bd5fcd044" />
+      <Association Name="SynsetConnectionType_SynsetConnection" ed:AssociationGuid="f1c823ce-12e0-4d43-83a3-34fd6feca5f0" Member="SynsetConnections" ed:Guid="0f7f213b-15d1-4c1e-9a37-f495ea721169" ThisKey="Id" OtherKey="RelTypeId" Type="SynsetConnection" />
+    </Type>
+  </Table>
+  <Table Name="public.lex_rel_table" Member="LexUnitConnections">
+    <Type Name="LexUnitConnection" ed:Guid="6968d07b-9e70-4271-960b-69363a4d7858">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" DefaultValue="nextval('lex_rel_table_id_seq'::regclass)" ed:ValidateRequired="true" ed:Guid="2573ec07-180e-42ad-b03b-81e1f75266d8" />
+      <Column Name="rel_type_id" Member="RelTypeId" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="4c118698-4f9e-48cb-a86e-14803ebb3ca3" />
+      <Column Name="from_lex_unit_id" Member="FromLexUnitId" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="3807d748-0530-4e4e-b8a5-d72795484350" />
+      <Column Name="to_lex_unit_id" Member="ToLexUnitId" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="e65f9936-8257-4a48-a09c-0b0bb78ad2aa" />
+      <Association Name="LexUnitConnectionType_LexUnitConnection" ed:AssociationGuid="99381f88-8351-42a3-8690-a9d1ca80acc9" Member="LexUnitConnectionType" ed:Guid="b3f02ebc-5962-4ad8-ae20-6375b686ba5e" ThisKey="RelTypeId" OtherKey="Id" Type="LexUnitConnectionType" IsForeignKey="true" />
+      <Association Name="LexUnit_LexRel" ed:AssociationGuid="ec4c3948-e7c8-473a-bae2-b9268c33f814" Member="LexUnitFrom" ed:Guid="28c0a5b7-ab1f-4f28-b6b9-c5f04228385e" ThisKey="FromLexUnitId" OtherKey="Id" Type="LexUnit" IsForeignKey="true" />
+      <Association Name="LexUnit_LexRel1" ed:AssociationGuid="58301671-f55b-4306-8e73-514e48f3d525" Member="LexUnitTo" ed:Guid="2e36643d-19c8-46d9-b1c3-375c64517dc1" ThisKey="ToLexUnitId" OtherKey="Id" Type="LexUnit" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="public.ili_table" Member="WordNets">
+    <Type Name="WordNet" ed:Guid="1be1ea56-bbcc-451a-8733-504723e56898">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" DefaultValue="nextval('ili_table2_id_seq'::regclass)" ed:ValidateRequired="true" ed:Guid="13e42ebc-44a1-463b-a11a-29782922c780" />
+      <Column Name="gn_lex_unit_id" Member="GnLexUnitId" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="5c16a9a9-ee39-4f92-b41d-8dfbaac1f402" />
+      <Column Name="gn_old_sense" Member="GnOldSense" Type="System.Int32" DbType="INT4" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="b45ccdc7-b6e4-4c69-ae55-d08bbc092a86" />
+      <Column Name="ewn_relation" Member="EwnRelation" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="1eed0fbd-ca9b-456f-abc1-2fc67893abde" />
+      <Column Name="pwn_word" Member="PwnWord" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="147af49b-e78c-4837-a768-3683734150fb" />
+      <Column Name="pwn20_id" Member="Pwn20Id" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="683069cc-4cc2-42f8-9d2a-fb494993475f" />
+      <Column Name="pwn30_id" Member="Pwn30Id" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="8397f0f6-039f-4bed-a1b3-2ac706b6de73" />
+      <Column Name="&quot;source&quot;" Member="Source" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="bc57f5c9-4323-4295-8f30-f401cbfd73a0" />
+      <Column Name="pwn20_paraphrase" Member="Pwn20Paraphrase" Type="System.String" DbType="VARCHAR(1000)" CanBeNull="true" UpdateCheck="Never" MaxLength="1000" Unicode="true" ed:ValidateMaxLength="1000" ed:ValidateRequired="false" ed:Guid="743e2392-6704-4dd2-aa49-34ea4fac20a9" />
+      <Association Name="WordNet_LexUnit" ed:AssociationGuid="3f70eadf-659f-4502-9aa2-2cc04d5655b7" Member="LexUnit" ed:Guid="86493bc7-0695-440a-a8bb-c9ea1b2de11b" ThisKey="GnLexUnitId" OtherKey="Id" Type="LexUnit" />
+      <Association Name="WordNetCrossLingualRelation_WordNet" ed:AssociationGuid="92667f3d-fdde-44ad-9638-cd84e0e18747" Member="WordNetCrossLingualRelation" ed:Guid="41702c5b-a0ce-4865-b4d0-f9d182ccf62e" ThisKey="EwnRelation" OtherKey="Id" Type="WordNetCrossLingualRelation" IsForeignKey="true" />
+      <Association Name="WordNet_WordNetAlternativeTranslation" ed:AssociationGuid="9e7a1562-ac4a-4efc-b125-79a55cd9046d" Member="WordNetAlternativeTranslations" ed:Guid="4e8bf673-f836-43d9-a33f-c5e617ee6e28" ThisKey="Id" OtherKey="IliId" Type="WordNetAlternativeTranslation" />
+    </Type>
+  </Table>
+  <Table Name="public.ili_pwn20_synonym_table" Member="WordNetAlternativeTranslations">
+    <Type Name="WordNetAlternativeTranslation" ed:Guid="22a71e9d-af01-4994-9d21-11894bb4094c">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" DefaultValue="nextval('ili_pwn20_synonym_table2_id_seq'::regclass)" ed:ValidateRequired="true" ed:Guid="07c45829-c9b6-4772-8b36-d4080f068d5f" />
+      <Column Name="ili_id" Member="IliId" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="d36cb6b4-ff24-41f3-abeb-8cdc977d4962" />
+      <Column Name="pwn20_synonym" Member="Pwn20Synonym" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="true" ed:Guid="d42dba28-ab05-4b9a-aa85-c8972b8617c2" />
+      <Association Name="WordNet_WordNetAlternativeTranslation" ed:AssociationGuid="9e7a1562-ac4a-4efc-b125-79a55cd9046d" Member="WordNet" ed:Guid="00603545-5e8c-479a-b40c-7e08ee6f1d56" ThisKey="IliId" OtherKey="Id" Type="WordNet" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="public.compound_property_table" Member="CompoundProperties">
+    <Type Name="CompoundProperty" ed:Guid="6fd6c7a8-8ecb-416f-a9f3-f4a1c849d30f">
+      <Column Name="id" Member="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="8419b7a7-7740-46a3-a782-8f295972b6db" />
+      <Column Name="property" Member="Property" Type="System.String" DbType="VARCHAR(100)" CanBeNull="true" UpdateCheck="Never" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="false" ed:Guid="8a689c8f-2909-4a27-adb1-5c9e5b883305" />
+    </Type>
+  </Table>
+  <Table Name="public.ewn_rel_table" Member="WordNetCrossLingualRelations">
+    <Type Name="WordNetCrossLingualRelation" ed:Guid="9155e09f-72d3-4ac8-bc58-0032caffb009">
+      <Column Name="id" Member="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="81f6965f-5fa0-4926-949a-451baeaee3ef" />
+      <Column Name="&quot;name&quot;" Member="Name" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="true" ed:Guid="4ef605a6-a055-4f2d-8c7e-0e2a07c1b2be" />
+      <Association Name="WordNetCrossLingualRelation_WordNet" ed:AssociationGuid="92667f3d-fdde-44ad-9638-cd84e0e18747" Member="WordNet" ed:Guid="08652c91-66ff-4ddb-8a0e-f857853b7a1f" ThisKey="Id" OtherKey="EwnRelation" Type="WordNet" />
+    </Type>
+  </Table>
+  <Table Name="public.compound_category_table" Member="CompoundCategories">
+    <Type Name="CompoundCategory" ed:Guid="ccc7ab91-a4ab-4cf8-936b-4e1529973ec0">
+      <Column Name="id" Member="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="c672859d-4815-4b52-899c-8251ade5b9f6" />
+      <Column Name="category" Member="Category" Type="System.String" DbType="VARCHAR(100)" CanBeNull="true" UpdateCheck="Never" MaxLength="100" Unicode="true" ed:ValidateMaxLength="100" ed:ValidateRequired="false" ed:Guid="9057a02c-ac5a-4707-b76b-f2ed55963517" />
+    </Type>
+  </Table>
+  <Table Name="public.wkn_sense_table" Member="WikiSenses">
+    <Type Name="WikiSense" ed:Guid="21cb9685-a5e8-4e69-bc90-5c10e07d6988">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" DefaultValue="nextval('wkn_sense_table_id_seq'::regclass)" ed:ValidateRequired="true" ed:Guid="cce8eebe-8c80-4ecf-ba89-fd75279914d6" />
+      <Column Name="gn_lex_unit_id" Member="GnLexUnitId" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="04134aea-e7ee-4b08-9a38-d25198445431" />
+      <Column Name="wkn_word_entry_id" Member="WknWordEntryId" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="9bd75ce6-9b17-4cf3-85e7-d9c914f870df" />
+      <Column Name="wkn_sense_id" Member="WknSenseId" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="5c9249c2-1676-4999-81ea-dce3a4fd714c" />
+      <Column Name="wkn_gloss" Member="WknGloss" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="true" ed:Guid="74621f45-bd48-4cc7-8d84-3a15f18863d2" />
+      <Column Name="wkn_gloss_edited" Member="WknGlossEdited" Type="System.Boolean" DbType="BOOL NOT NULL" CanBeNull="false" UpdateCheck="Never" DefaultValue="false" ed:ValidateRequired="true" ed:Guid="8e8dfd24-634f-4992-a615-4c51411cf1dd" />
+      <Association Name="WikiSense_LexUnit" ed:AssociationGuid="2ce8ff23-f38d-4bb9-a7d6-a34f8ce799a3" Member="LexUnits" ed:Guid="d2236eb7-703a-4b23-8560-76f43525f9ee" ThisKey="GnLexUnitId" OtherKey="Id" Type="LexUnit" />
+    </Type>
+  </Table>
+  <Table Name="public.synset_table" Member="SynsetTables">
+    <Type Name="SynsetTable" ed:Guid="8a8bb1aa-11c2-4174-b1a0-b77dcfaed2f7">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" DefaultValue="nextval('synset_table_id_seq'::regclass)" ed:ValidateRequired="true" ed:Guid="307c5cb7-9a94-4fb6-b118-7573201ee6a8" />
+      <Column Name="word_class_id" Member="WordClassId" Type="System.Int32" DbType="INT4" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="e3729185-a8f9-4b21-a67e-46273060d94a" />
+      <Column Name="word_category_id" Member="WordCategoryId" Type="System.Int32" DbType="INT4" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="d1389533-30a4-4a1b-a654-c0a8cbbb3946" />
+      <Column Name="paraphrase" Member="Paraphrase" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="f5f672cd-ef9e-49a2-b9c7-e2d43ed1cf9e" />
+      <Column Name="&quot;comment&quot;" Member="Comment" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="a948b5ec-875e-4d7d-a40a-a47ab5f4e9da" />
+      <Association Name="SynsetTable_LexUnit" ed:AssociationGuid="7c116b0b-da25-4e0b-9467-174f897a371d" Member="LexUnits" ed:Guid="c2e53487-2f28-4cda-946e-57304febb8ba" ThisKey="Id" OtherKey="SynsetId" Type="LexUnit" />
+      <Association Name="WordCategory_SynsetTable" ed:AssociationGuid="86f51ec8-e99a-42a8-9ad8-5c7a48413de8" Member="WordCategory" ed:Guid="02b16627-d97c-4099-99e4-d1b848f1f0eb" ThisKey="WordCategoryId" OtherKey="Id" Type="WordCategory" IsForeignKey="true" />
+      <Association Name="WordClass_SynsetTable" ed:AssociationGuid="62cff8f8-bd50-4cd9-8859-1a5abe210aab" Member="WordClass" ed:Guid="08f09d49-2fa2-4eda-b52d-e8d958422ef3" ThisKey="WordClassId" OtherKey="Id" Type="WordClass" IsForeignKey="true" />
+      <Association Name="SynsetTable_SynsetConnection" ed:AssociationGuid="122ead7a-19a9-4a73-8dbc-6a99f86a9a68" Member="IncomingConnections" ed:Guid="a60a3403-5f16-4c21-b24f-7b7d16ceacbd" ThisKey="Id" OtherKey="FromSynsetId" Type="SynsetConnection" />
+      <Association Name="SynsetTable_SynsetConnection1" ed:AssociationGuid="82f1e8e7-4250-4332-a733-9c23f7697bcf" Member="OutgoingConnections" ed:Guid="937418ec-94e3-447b-b1b6-5648955a3d95" ThisKey="Id" OtherKey="ToSynsetId" Type="SynsetConnection" />
+    </Type>
+  </Table>
+  <Table Name="public.log_table" Member="LogTables">
+    <Type Name="LogTable" ed:Guid="9cfd1342-2835-4734-b63e-6610737aa8d1">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" DefaultValue="nextval('log_table_id_seq'::regclass)" ed:ValidateRequired="true" ed:Guid="5b0f21de-d20d-4807-8cca-45aaaac4212a" />
+      <Column Name="modifier" Member="Modifier" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" DefaultValue="&quot;&quot;current_user&quot;()&quot;" Unicode="true" ed:ValidateRequired="true" ed:Guid="723b443a-1b67-4119-9e38-46de54b750b9" />
+      <Column Name="mod_time" Member="ModTime" Type="System.DateTime" DbType="TIMESTAMP NOT NULL" CanBeNull="false" UpdateCheck="Never" DefaultValue="('now'::text)::timestamp without time zone" ed:ValidateRequired="true" ed:Guid="d4a57d0e-4732-4708-a9af-bf4a6f384a0d" />
+      <Column Name="modified_cell" Member="ModifiedCell" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="6483ee3b-b364-4b3d-986e-2c72471752bb" />
+      <Column Name="modified_object_id" Member="ModifiedObjectId" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="1c05896d-a641-4ea0-8095-ba74acedf38f" />
+      <Column Name="old_value" Member="OldValue" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="51b96355-8c9c-4711-87cf-370a5977e3b6" />
+      <Column Name="new_value" Member="NewValue" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="4663dbfb-5189-4202-9fbf-218863aa9d8a" />
+    </Type>
+  </Table>
+  <Table Name="public.id_generation_table" Member="IdGenerationTables">
+    <Type Name="IdGenerationTable" ed:Guid="ae63af39-e9e5-408c-8121-306d95727473">
+      <Column Name="generated_key" Member="GeneratedKey" Type="System.String" DbType="VARCHAR(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" MaxLength="50" Unicode="true" ed:ValidateMaxLength="50" ed:ValidateRequired="true" ed:Guid="880ed54f-1d77-4707-884d-bfd61cb0f5ff" />
+      <Column Name="generated_value" Member="GeneratedValue" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="668e3416-6abf-4f72-a17f-edfa0eb56825" />
+    </Type>
+  </Table>
+  <Table Name="public.log_cell_table" Member="LogCellTables">
+    <Type Name="LogCellTable" ed:Guid="02d9353d-4aad-4d1e-8380-4db9041b6c13">
+      <Column Name="id" Member="Id" Type="System.Int32" AutoSync="OnInsert" DbType="SERIAL NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="085d51df-df08-46db-9ad6-613c2b3c4f38" />
+      <Column Name="&quot;table_name&quot;" Member="TableName" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="true" ed:Guid="250cac42-2ce4-48d8-820a-cd94c0cbabd4" />
+      <Column Name="cell_name" Member="CellName" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="true" ed:Guid="9e22e5cc-9151-41c1-8830-d9d0947717c9" />
+    </Type>
+  </Table>
+  <Table Name="public.word_category_table" Member="WordCategories">
+    <Type Name="WordCategory" ed:Guid="7879db3b-5a1d-4436-accb-96aafdd241d9">
+      <Column Name="id" Member="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="122d13a9-f1ae-4700-b590-7e390ef9de37" />
+      <Column Name="word_category" Member="Name" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="true" ed:Guid="6e5975fb-1641-4b2d-a6d1-65753d018911" />
+      <Association Name="WordCategory_SynsetTable" ed:AssociationGuid="86f51ec8-e99a-42a8-9ad8-5c7a48413de8" Member="SynsetTables" ed:Guid="c7d14df2-6146-4c4f-8a91-2537948ea1fb" ThisKey="Id" OtherKey="WordCategoryId" Type="SynsetTable" />
+    </Type>
+  </Table>
+  <Table Name="public.word_class_table" Member="WordClasses">
+    <Type Name="WordClass" ed:Guid="0121e459-8958-4d3f-bf43-f360e242517a">
+      <Column Name="id" Member="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="ba2c1a86-ae18-4fd5-9cd3-e47936266c14" />
+      <Column Name="word_class" Member="Name" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="true" ed:Guid="ee037f05-6555-4549-8184-51decea3a036" />
+      <Association Name="WordClass_SynsetTable" ed:AssociationGuid="62cff8f8-bd50-4cd9-8859-1a5abe210aab" Member="SynsetTables" ed:Guid="448cb0a0-931d-4550-8e5d-c8195c37b7a2" ThisKey="Id" OtherKey="WordClassId" Type="SynsetTable" />
+    </Type>
+  </Table>
+  <Table Name="public.frame_table" Member="Frames">
+    <Type Name="Frame" ed:Guid="32513e29-f5d0-45ae-92ac-03af9231fc8e">
+      <Column Name="id" Member="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="0cba680f-5d66-4574-b859-dae2b1f37e7e" />
+      <Column Name="lex_unit_id" Member="LexUnitId" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="b9a1d371-3130-4eb1-a6fe-07f35858caeb" />
+      <Column Name="frame_type_id" Member="FrameTypeId" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="c52d586a-a662-46b5-8da0-851d2458e35e" />
+      <Association Name="FrameType_Frame" ed:AssociationGuid="0580b329-1068-426f-a4ef-68400ad28c07" Member="FrameType" ed:Guid="b71c3e61-6147-4a1e-80be-4df3c49e2a09" ThisKey="FrameTypeId" OtherKey="Id" Type="FrameType" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="LexUnit_Frame" ed:AssociationGuid="c4813349-1a55-40fc-a0fb-bc5b0a440864" Member="LexUnit" ed:Guid="73e3f23d-106b-48f5-95e1-6e607a83a07c" ThisKey="LexUnitId" OtherKey="Id" Type="LexUnit" DeleteRule="NO ACTION" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="public.compound_table" Member="Compounds">
+    <Type Name="Compound" ed:Guid="c2308aa0-00ab-4a5c-acec-9f19a545613f">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" DefaultValue="nextval('compound_table2_id_seq'::regclass)" ed:ValidateRequired="true" ed:Guid="98616e1b-6dfe-4c44-b3f6-9fa2a0fe9402" />
+      <Column Name="comp_property" Member="CompProperty" Type="System.Int32" DbType="INT4" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="11c2d110-3e16-4733-a8ea-b070b8a023a7" />
+      <Column Name="comp_lex_unit_id" Member="CompLexUnitId" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="8ef0e21d-36df-4cd9-b98c-3d8141e94d36" />
+      <Column Name="mod1_property" Member="Mod1PropertyId" Type="System.Int32" DbType="INT4" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="600bee8f-6ed1-40a0-b442-644485a0243c" />
+      <Column Name="mod1_category" Member="Mod1CategoryId" Type="System.Int32" DbType="INT4" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="d1e2fa81-8f6b-4d7d-93a6-678f5f1f0dc7" />
+      <Column Name="modifier1" Member="Modifier1" Type="System.String" DbType="VARCHAR(200)" CanBeNull="true" UpdateCheck="Never" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="381aee8e-7cf3-4c73-95c2-9f0fa561707a" />
+      <Column Name="mod1_lex_unit_id" Member="Mod1LexUnitId" Type="System.Int32" DbType="INT4" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="c8a97239-aced-47ba-9d55-27619d1081c6" />
+      <Column Name="mod2_category" Member="Mod2CategoryId" Type="System.Int32" DbType="INT4" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="19be485b-f7c7-4c61-9064-f713819c353f" />
+      <Column Name="modifier2" Member="Modifier2" Type="System.String" DbType="VARCHAR(200)" CanBeNull="true" UpdateCheck="Never" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="7ebc125d-fd50-4263-a6df-01ab4830ea64" />
+      <Column Name="mod2_lex_unit_id" Member="Mod2LexUnitId" Type="System.Int32" DbType="INT4" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="420f6497-d0cf-454e-8e5d-d732786e4470" />
+      <Column Name="head_property" Member="HeadProperty" Type="System.Int32" DbType="INT4" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="95cd8de5-cdb5-41df-91f5-b17297dde0ee" />
+      <Column Name="head" Member="Head" Type="System.String" DbType="VARCHAR(200)" CanBeNull="true" UpdateCheck="Never" MaxLength="200" Unicode="true" ed:ValidateMaxLength="200" ed:ValidateRequired="false" ed:Guid="e33147a6-aa1a-4867-aa2b-4a42b9aad0cb" />
+      <Column Name="head_lex_unit_id" Member="HeadLexUnitId" Type="System.Int32" DbType="INT4" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="3174c08d-ff68-408e-93b4-465b95748f79" />
+      <Column Name="mod2_property" Member="Mod2Property" Type="System.Int32" DbType="INT4" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="fc1ec271-7109-4ed9-967d-cdcee1977293" />
+      <Association Name="CompoundProperty_Compound" ed:AssociationGuid="e8cd38b1-2efa-49af-9fdb-141a6c032024" Member="Property" ed:Guid="3a14f70e-fa50-4030-a59e-a2f49115e67e" ThisKey="CompProperty" OtherKey="Id" Type="CompoundProperty" IsForeignKey="true" />
+      <Association Name="CompoundProperty_Compound1" ed:AssociationGuid="7d9517ce-4d86-4ec9-835e-6049e6b9413a" Member="Property_Mod1" ed:Guid="e67951ab-d52f-4d02-a734-28e642a409d5" ThisKey="Mod1PropertyId" OtherKey="Id" Type="CompoundProperty" IsForeignKey="true" />
+      <Association Name="CompoundProperty_Compound2" ed:AssociationGuid="b66f737b-83b6-4498-bc8b-4af44bab3d0d" Member="Property_Head" ed:Guid="f8f7322a-263a-4eb8-9766-ecb0705a7ff7" ThisKey="HeadProperty" OtherKey="Id" Type="CompoundProperty" IsForeignKey="true" />
+      <Association Name="CompoundCategory_Compound" ed:AssociationGuid="d163d1a5-fa87-4870-b12e-19423670a868" Member="Category_Mod1" ed:Guid="0b72db61-bba3-4ef6-b508-6e2b5c2b9a70" ThisKey="Mod1CategoryId" OtherKey="Id" Type="CompoundCategory" IsForeignKey="true" />
+      <Association Name="CompoundCategory_Compound1" ed:AssociationGuid="8fa88f15-1332-4a41-823a-169366c56dbe" Member="Category_Mod2" ed:Guid="ebfc0cf5-fe65-4b81-b6f4-57f4ee344171" ThisKey="Mod2CategoryId" OtherKey="Id" Type="CompoundCategory" IsForeignKey="true" />
+      <Association Name="LexUnit_Compound" ed:AssociationGuid="30aeed6c-c787-4cc0-9966-73da9e771b51" Member="LexUnit" ed:Guid="90f2f9da-8dbe-4237-b10a-4e13215aa3ef" ThisKey="CompLexUnitId" OtherKey="Id" Type="LexUnit" IsForeignKey="true" />
+      <Association Name="LexUnit_Compound1" ed:AssociationGuid="fe1f61dc-8ab8-495c-bb52-8e661dd84d6b" Member="LexUnit_Mod1" ed:Guid="7fd94eb7-cf6d-4959-8b47-f3ab9ba3593f" ThisKey="Mod1LexUnitId" OtherKey="Id" Type="LexUnit" IsForeignKey="true" />
+      <Association Name="LexUnit_Compound2" ed:AssociationGuid="7c936d7e-3b7e-41ed-9229-28103266f911" Member="LexUnit_Mod2" ed:Guid="57362490-390e-4bd3-b5fc-3c5b72c9fcd6" ThisKey="Mod2LexUnitId" OtherKey="Id" Type="LexUnit" IsForeignKey="true" />
+      <Association Name="LexUnit_Compound3" ed:AssociationGuid="709a2241-a288-495b-b6dc-2bf3f72eb430" Member="LexUnit_Head" ed:Guid="4c0173a3-f288-4fa6-b1f2-eaf6c0a5adb2" ThisKey="HeadLexUnitId" OtherKey="Id" Type="LexUnit" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="public.lex_unit_table" Member="LexUnits">
+    <Type Name="LexUnit" ed:Guid="367301e3-81a0-4498-8b36-8e34088759af">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" DefaultValue="nextval('lex_unit_table_id_seq'::regclass)" ed:ValidateRequired="true" ed:Guid="50b13b29-6d98-4df9-a428-522b478425d4" />
+      <Column Name="synset_id" Member="SynsetId" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="651c0f44-5b6b-4373-9fcb-ca2a20e7716f" />
+      <Column Name="orth_form" Member="OrthForm" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="true" ed:Guid="28a39600-ac49-4fab-b752-05cc7e16d6e0" />
+      <Column Name="&quot;source&quot;" Member="Source" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="true" ed:Guid="96fdd37a-a7e1-4c0c-a035-d0a5246c9b89" />
+      <Column Name="named_entity" Member="NamedEntity" Type="System.Boolean" DbType="BOOL NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="0ef20cce-fcbb-4bbf-9d50-059bd7673926" />
+      <Column Name="artificial" Member="Artificial" Type="System.Boolean" DbType="BOOL NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="8e9e7f52-3339-403f-837e-09880b362856" />
+      <Column Name="style_marking" Member="StyleMarking" Type="System.Boolean" DbType="BOOL NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="ec176721-5cb6-4e53-8bc1-50108882ce49" />
+      <Column Name="old_orth_form" Member="OldOrthForm" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="87813ffb-9b9d-47ec-a8ff-d03f88e69111" />
+      <Column Name="old_orth_var" Member="OldOrthVar" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="44bbbba5-89f2-4de7-842d-bc1720854db1" />
+      <Column Name="orth_var" Member="OrthVar" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="60180cb7-9984-456b-a2fe-a494fe12634c" />
+      <Column Name="&quot;comment&quot;" Member="Comment" Type="System.String" DbType="TEXT" CanBeNull="true" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="false" ed:Guid="d9617de0-8993-422c-97f9-62e7453e1514" />
+      <Association Name="LexUnit_LexRel" ed:AssociationGuid="ec4c3948-e7c8-473a-bae2-b9268c33f814" Member="IncomingConnections" ed:Guid="14b386f7-52e7-4cdb-8f87-4a7ab7ee3731" ThisKey="Id" OtherKey="FromLexUnitId" Type="LexUnitConnection" />
+      <Association Name="LexUnit_LexRel1" ed:AssociationGuid="58301671-f55b-4306-8e73-514e48f3d525" Member="OutgoingConnections" ed:Guid="c80f9e46-2829-4da1-8344-39552ec6e434" ThisKey="Id" OtherKey="ToLexUnitId" Type="LexUnitConnection" />
+      <Association Name="WordNet_LexUnit" ed:AssociationGuid="3f70eadf-659f-4502-9aa2-2cc04d5655b7" Member="WordNets" ed:Guid="8367f2f7-ae56-460e-b09d-62155cd9424a" ThisKey="Id" OtherKey="GnLexUnitId" Type="WordNet" IsForeignKey="true" />
+      <Association Name="WikiSense_LexUnit" ed:AssociationGuid="2ce8ff23-f38d-4bb9-a7d6-a34f8ce799a3" Member="WikiSense" ed:Guid="520ab6fb-1468-4b73-a02f-3792bb384086" ThisKey="Id" OtherKey="GnLexUnitId" Type="WikiSense" IsForeignKey="true" />
+      <Association Name="SynsetTable_LexUnit" ed:AssociationGuid="7c116b0b-da25-4e0b-9467-174f897a371d" Member="Synset" ed:Guid="0ca75084-6b95-4e3a-9596-aced7a92e052" ThisKey="SynsetId" OtherKey="Id" Type="SynsetTable" IsForeignKey="true" />
+      <Association Name="LexUnit_Frame" ed:AssociationGuid="c4813349-1a55-40fc-a0fb-bc5b0a440864" Member="Frames" ed:Guid="011a92d1-a4fc-42bf-9ece-02465ed3ba3d" ThisKey="Id" OtherKey="LexUnitId" Type="Frame" />
+      <Association Name="LexUnit_Compound" ed:AssociationGuid="30aeed6c-c787-4cc0-9966-73da9e771b51" Member="Compounds" ed:Guid="26502098-b2c3-4605-8768-3315cc229356" ThisKey="Id" OtherKey="CompLexUnitId" Type="Compound" />
+      <Association Name="LexUnit_Example" ed:AssociationGuid="8fae4b2a-56e0-4015-9c3d-beef04482b7f" Member="Examples" ed:Guid="ac9d2b97-c60e-4965-bb9b-145d980789ab" ThisKey="Id" OtherKey="LexUnitId" Type="Example" />
+    </Type>
+  </Table>
+  <Table Name="public.con_rel_table" Member="SynsetConnections">
+    <Type Name="SynsetConnection" ed:Guid="525c97c1-f0f4-412d-a036-04da427e12f9">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" DefaultValue="nextval('con_rel_table_id_seq'::regclass)" ed:ValidateRequired="true" ed:Guid="18cf6dfb-4475-433f-9e56-f08ee4ab38c8" />
+      <Column Name="rel_type_id" Member="RelTypeId" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="573ca8f3-b5b2-490c-b424-bc033bed5409" />
+      <Column Name="from_synset_id" Member="FromSynsetId" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="cac9a6a9-008d-4614-b618-56540e287c04" />
+      <Column Name="to_synset_id" Member="ToSynsetId" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="2246ace7-056b-4f7c-bcd3-9b0b510fd9a3" />
+      <Association Name="SynsetConnectionType_SynsetConnection" ed:AssociationGuid="f1c823ce-12e0-4d43-83a3-34fd6feca5f0" Member="SynsetConnectionType" ed:Guid="955bfaca-c351-4a2d-a0f7-f6ffd1d27fd5" ThisKey="RelTypeId" OtherKey="Id" Type="SynsetConnectionType" IsForeignKey="true" />
+      <Association Name="SynsetTable_SynsetConnection" ed:AssociationGuid="122ead7a-19a9-4a73-8dbc-6a99f86a9a68" Member="SynsetFrom" ed:Guid="665e8661-c001-49af-9fa1-23a95f7e7660" ThisKey="FromSynsetId" OtherKey="Id" Type="SynsetTable" IsForeignKey="true" />
+      <Association Name="SynsetTable_SynsetConnection1" ed:AssociationGuid="82f1e8e7-4250-4332-a733-9c23f7697bcf" Member="SynsetTo" ed:Guid="a4526f23-c5e8-4bb5-9fad-c7fef619ccf9" ThisKey="ToSynsetId" OtherKey="Id" Type="SynsetTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="public.example_table" Member="Examples">
+    <Type Name="Example" ed:Guid="9ddfaae1-ed90-47cd-8b50-e2089ab56dfc">
+      <Column Name="id" Member="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="5268ff8c-5e3a-4bd9-8006-66f4c8756d53" />
+      <Column Name="lex_unit_id" Member="LexUnitId" Type="System.Int32" DbType="INT4 NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="faf95dfa-ed28-4e95-9699-472fcd3af67a" />
+      <Column Name="text" Member="Text" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="true" ed:Guid="fa7660de-805c-4219-9307-e327baa34c25" />
+      <Column Name="frame_type_id" Member="FrameTypeId" Type="System.Int32" DbType="INT4" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="50326c5b-2ef5-4c5a-a65d-a6c072bf9be2" />
+      <Association Name="LexUnit_Example" ed:AssociationGuid="8fae4b2a-56e0-4015-9c3d-beef04482b7f" Member="LexUnit" ed:Guid="9224968e-6e90-44d9-aa11-e8baf477b06b" ThisKey="LexUnitId" OtherKey="Id" Type="LexUnit" DeleteRule="NO ACTION" IsForeignKey="true" />
+      <Association Name="FrameType_Example" ed:AssociationGuid="c936c1bb-e941-42c9-ab48-beecf306b0be" Member="FrameType" ed:Guid="e4bc6e92-85a6-455a-bb4b-591bd6b04ef4" ThisKey="FrameTypeId" OtherKey="Id" Type="FrameType" DeleteRule="NO ACTION" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="public.frame_type_table" Member="FrameTypes">
+    <Type Name="FrameType" ed:Guid="a15af314-3066-4ce8-9e2f-22543ea5701e">
+      <Column Name="id" Member="Id" Type="System.Int32" AutoSync="OnInsert" DbType="INT4 NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="ba4311fc-98a7-4eac-85a6-e04a5b3edae5" />
+      <Column Name="frame" Member="Frame" Type="System.String" DbType="TEXT NOT NULL" CanBeNull="false" UpdateCheck="Never" Unicode="true" ed:ValidateRequired="true" ed:Guid="1c781ee8-75ae-4f14-9f25-cae80d69ea06" />
+      <Association Name="FrameType_Frame" ed:AssociationGuid="0580b329-1068-426f-a4ef-68400ad28c07" Member="Frames" ed:Guid="864bef00-6a3f-4d6a-9756-e14a2076e3b9" ThisKey="Id" OtherKey="FrameTypeId" Type="Frame" />
+      <Association Name="FrameType_Example" ed:AssociationGuid="c936c1bb-e941-42c9-ab48-beecf306b0be" Member="Examples" ed:Guid="2ab5962d-70a6-491c-815d-81bd54538acc" ThisKey="Id" OtherKey="FrameTypeId" Type="Example" />
+    </Type>
+  </Table>
+</Database>

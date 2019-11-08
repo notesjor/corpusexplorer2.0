@@ -145,7 +145,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
                 LayerQueries = value.Split(new[] {" ", ";"}, StringSplitOptions.RemoveEmptyEntries)
               };
             case '-':
-              return new FilterQuerySingleLayerAllInOnDocument
+              return new FilterQuerySingleLayerAllInOneDocument
               {
                 Inverse = inverse,
                 LayerDisplayname = name,
@@ -286,7 +286,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
             case FilterQuerySingleLayerAnyMatch _:
               return
                 $"{inv}T~{q.LayerDisplayname}::{value}";
-            case FilterQuerySingleLayerAllInOnDocument _:
+            case FilterQuerySingleLayerAllInOneDocument _:
               return
                 $"{inv}T-{q.LayerDisplayname}::{value}";
             case FilterQuerySingleLayerAllInOneSentence _:

@@ -16,29 +16,31 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract
     {
       PreAction();
 
-      if (hydra is Project)
-        ((Project) hydra).ToCorpus(new TCB()).Save(path, false);
-      if (hydra is Selection)
-        ((Selection) hydra).ToCorpus(new TCB()).Save(path, false);
+      if (hydra is Project project)
+        project.ToCorpus(new TCB()).Save(path, UseCompression);
+      if (hydra is Selection selection)
+        selection.ToCorpus(new TCB()).Save(path, UseCompression);
 
       if (!(hydra is AbstractCorpusAdapter))
         return;
 
-      if (hydra is TCA)
+      if (hydra is TCA tca)
       {
-        ((TCA) hydra).Save(path, false);
+        tca.Save(path, UseCompression);
       }
       else
       {
         var merger = new CorpusMerger {CorpusBuilder = new TCB()};
         merger.Input((AbstractCorpusAdapter) hydra);
         merger.Execute();
-        merger.Output.FirstOrDefault()?.Save(path, false);
+        merger.Output.FirstOrDefault()?.Save(path, UseCompression);
       }
     }
 
     protected virtual void PreAction()
     {
     }
+
+    public bool UseCompression { get; set; } = false;
   }
 }

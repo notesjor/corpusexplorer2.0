@@ -45,7 +45,7 @@ namespace CorpusExplorer.Sdk.Blocks
       var a = blockA.SentenceCount;
       CooccurrenceFrequency = blockA.Frequency;
 
-      var blockB = Selection.CreateBlock<Frequency1LayerOneOccurrenceBlock>();
+      var blockB = Selection.CreateBlock<Frequency1LayerOneOccurrencePerSentenceBlock>();
       blockB.LayerDisplayname = LayerDisplayname;
       blockB.Calculate();
 

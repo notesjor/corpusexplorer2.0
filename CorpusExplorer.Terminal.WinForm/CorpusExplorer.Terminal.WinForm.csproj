@@ -141,18 +141,16 @@
   <PropertyGroup>
     <DelaySign>false</DelaySign>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="CodeHollow.FeedReader, Version=1.2.1.0, Culture=neutral, PublicKeyToken=66d870f2b3d70f48, processorArchitecture=MSIL">
       <HintPath>..\packages\CodeHollow.FeedReader.1.2.1\lib\net452\CodeHollow.FeedReader.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.11.12.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.11.12\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.11.16.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.16\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
-      <HintPath>..\packages\AvalonEdit.5.0.4\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <HintPath>..\packages\AvalonEdit.6.0.0\lib\net45\ICSharpCode.AvalonEdit.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -161,17 +159,17 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=6.2.10.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.2.10\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.2.13.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.2.13\lib\net45\PostSharp.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Patterns.Aggregation, Version=6.2.10.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Patterns.Aggregation.Redist.6.2.10\lib\net45\PostSharp.Patterns.Aggregation.dll</HintPath>
+    <Reference Include="PostSharp.Patterns.Aggregation, Version=6.2.13.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Aggregation.Redist.6.2.13\lib\net45\PostSharp.Patterns.Aggregation.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Patterns.Common, Version=6.2.10.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Patterns.Common.Redist.6.2.10\lib\net45\PostSharp.Patterns.Common.dll</HintPath>
+    <Reference Include="PostSharp.Patterns.Common, Version=6.2.13.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Common.Redist.6.2.13\lib\net45\PostSharp.Patterns.Common.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Patterns.Threading, Version=6.2.10.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Patterns.Threading.Redist.6.2.10\lib\net45\PostSharp.Patterns.Threading.dll</HintPath>
+    <Reference Include="PostSharp.Patterns.Threading, Version=6.2.13.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Threading.Redist.6.2.13\lib\net45\PostSharp.Patterns.Threading.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -195,145 +193,139 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Telerik.Documents.SpreadsheetStreaming, Version=2019.2.612.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
+    <Reference Include="Telerik.Documents.SpreadsheetStreaming, Version=2019.3.1021.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45.NoXaml\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.WinControls.dll</HintPath>
+    <Reference Include="Telerik.WinControls, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.3.1022.40\Telerik.WinControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.ChartView, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.WinControls.ChartView.dll</HintPath>
+    <Reference Include="Telerik.WinControls.ChartView, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.3.1022.40\Telerik.WinControls.ChartView.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.GridView, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.WinControls.GridView.dll</HintPath>
+    <Reference Include="Telerik.WinControls.GridView, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.3.1022.40\Telerik.WinControls.GridView.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.PivotGrid, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.WinControls.PivotGrid.dll</HintPath>
+    <Reference Include="Telerik.WinControls.PdfViewer, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.3.1022.40\Telerik.WinControls.PdfViewer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.RadChart, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.WinControls.RadChart.dll</HintPath>
+    <Reference Include="Telerik.WinControls.PivotGrid, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.3.1022.40\Telerik.WinControls.PivotGrid.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.RadMap, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.WinControls.RadMap.dll</HintPath>
+    <Reference Include="Telerik.WinControls.RadChart, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.3.1022.40\Telerik.WinControls.RadChart.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.RadMarkupEditor, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.WinControls.RadMarkupEditor.dll</HintPath>
+    <Reference Include="Telerik.WinControls.RadMarkupEditor, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.3.1022.40\Telerik.WinControls.RadMarkupEditor.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.RadSpreadsheet, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.WinControls.RadSpreadsheet.dll</HintPath>
+    <Reference Include="Telerik.WinControls.RichTextEditor, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.3.1022.40\Telerik.WinControls.RichTextEditor.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.RichTextEditor, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.WinControls.RichTextEditor.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.3.1022.40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.HighContrastBlack, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.WinControls.Themes.HighContrastBlack.dll</HintPath>
+    <Reference Include="Telerik.WinControls.UI, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.3.1022.40\Telerik.WinControls.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
+    <Reference Include="Telerik.WinControls.UI.Design, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.3.1022.40\Telerik.WinControls.UI.Design.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.WinControls.UI.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45.NoXaml\Telerik.Windows.Controls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI.Design, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.WinControls.UI.Design.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45.NoXaml\Telerik.Windows.Controls.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls, Version=2019.2.618.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWPF\2019.2.618.45\Telerik.Windows.Controls.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.DataVisualization, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45.NoXaml\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Data, Version=2019.2.618.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWPF\2019.2.618.45\Telerik.Windows.Controls.Data.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.Diagrams, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45.NoXaml\Telerik.Windows.Controls.Diagrams.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.DataVisualization, Version=2019.2.618.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWPF\2019.2.618.45\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.Diagrams.Extensions, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45.NoXaml\Telerik.Windows.Controls.Diagrams.Extensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Diagrams, Version=2019.2.618.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWPF\2019.2.618.45\Telerik.Windows.Controls.Diagrams.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45.NoXaml\Telerik.Windows.Controls.Input.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Diagrams.Extensions, Version=2019.2.618.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWPF\2019.2.618.45\Telerik.Windows.Controls.Diagrams.Extensions.dll</HintPath>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45.NoXaml\Telerik.Windows.Controls.Navigation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Input, Version=2019.2.618.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWPF\2019.2.618.45\Telerik.Windows.Controls.Input.dll</HintPath>
+    <Reference Include="Telerik.Windows.Data, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45.NoXaml\Telerik.Windows.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2019.2.618.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWPF\2019.2.618.45\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    <Reference Include="Telerik.Windows.Diagrams.Core, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45.NoXaml\Telerik.Windows.Diagrams.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Data, Version=2019.2.618.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWPF\2019.2.618.45\Telerik.Windows.Data.dll</HintPath>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2019.3.1021.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45.NoXaml\Telerik.Windows.Documents.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Diagrams.Core, Version=2019.2.618.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWPF\2019.2.618.45\Telerik.Windows.Diagrams.Core.dll</HintPath>
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2019.3.1021.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45.NoXaml\Telerik.Windows.Documents.Fixed.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Core, Version=2019.2.612.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.Windows.Documents.Core.dll</HintPath>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2019.3.1021.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45.NoXaml\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2019.2.612.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.Windows.Documents.Fixed.dll</HintPath>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2019.3.1021.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45.NoXaml\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2019.2.612.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf, Version=2019.3.1021.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45.NoXaml\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2019.2.612.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+    <Reference Include="Telerik.Windows.Themes.Windows8Touch, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\RCWPF\2019.3.1023.45.NoXaml\Telerik.Windows.Themes.Windows8Touch.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf, Version=2019.2.612.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
+    <Reference Include="Telerik.Windows.Zip, Version=2019.3.1021.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45.NoXaml\Telerik.Windows.Zip.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Themes.Windows8Touch">
-      <HintPath>W:\Telerik\Telerik UI for WPF R2 2019\Binaries.NoXaml\WPF45\Telerik.Windows.Themes.Windows8Touch.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Windows.Zip, Version=2019.2.612.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\Telerik.Windows.Zip.dll</HintPath>
+    <Reference Include="TelerikCommon, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.3.1022.40\TelerikCommon.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="TelerikCommon, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\TelerikCommon.dll</HintPath>
+    <Reference Include="TelerikData, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.3.1022.40\TelerikData.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="TelerikData, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\TelerikData.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="TelerikExport, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.2.618.40\TelerikExport.dll</HintPath>
+    <Reference Include="TelerikExport, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.3.1022.40\TelerikExport.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
     <Reference Include="WindowsFormsIntegration" />
-    <Reference Include="Telerik.Reporting, Version=13.1.19.618, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+    <Reference Include="Telerik.Reporting, Version=13.2.19.918, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
       <SpecificVersion>True</SpecificVersion>
     </Reference>
-    <Reference Include="Telerik.ReportViewer.WinForms, Version=13.1.19.618, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+    <Reference Include="Telerik.ReportViewer.WinForms, Version=13.2.19.918, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
       <SpecificVersion>True</SpecificVersion>
     </Reference>
   </ItemGroup>
@@ -1628,7 +1620,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.config" />
-    <None Include="app.manifest" />
     <None Include="CorpusExplorer.Terminal.WinForm.psproj" />
     <None Include="CorpusExplorerNextSnKey2019.pfx" />
     <None Include="LICENSE" />

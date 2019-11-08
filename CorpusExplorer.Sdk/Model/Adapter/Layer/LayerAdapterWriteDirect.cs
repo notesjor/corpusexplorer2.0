@@ -12,7 +12,7 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model.Abstract;
 
 namespace CorpusExplorer.Sdk.Model.Adapter.Layer
 {
-  public class LayerAdapterWriteDirect : AbstractLayerAdapter
+  public class LayerAdapterWriteDirect : AbstractLayerAdapter, IDisposable
   {
     private Dictionary<string, int> _dictionary;
     private Dictionary<Guid, int[][]> _documents;
@@ -30,6 +30,13 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
     {
       get => _documents.ContainsKey(guid) ? _documents[guid] : null;
       set => _documents[guid] = value;
+    }
+
+    public void Dispose()
+    {
+      _dictionary.Clear();
+      _documents.Clear();
+      _reverse.Clear();
     }
 
     public override IEnumerable<string> Values => _dictionary.Keys;

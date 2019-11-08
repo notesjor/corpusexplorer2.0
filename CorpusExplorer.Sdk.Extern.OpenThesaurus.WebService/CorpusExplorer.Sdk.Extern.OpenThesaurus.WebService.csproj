@@ -53,15 +53,21 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\LexicalReference.cs" />
+    <Compile Include="Model\LexicalResponse.cs" />
+    <Compile Include="OpenThesaurusService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="config.cnf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Diskursmonitor\Diskursmonitor.Sdk\Diskursmonitor.Sdk.csproj">
-      <Project>{49ccf7f2-04bc-4ce0-8a09-d594397602f3}</Project>
+      <Project>{49CCF7F2-04BC-4CE0-8A09-D594397602F3}</Project>
       <Name>Diskursmonitor.Sdk</Name>
     </ProjectReference>
     <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.OpenThesaurus.Db\CorpusExplorer.Sdk.Extern.OpenThesaurus.Db.csproj">

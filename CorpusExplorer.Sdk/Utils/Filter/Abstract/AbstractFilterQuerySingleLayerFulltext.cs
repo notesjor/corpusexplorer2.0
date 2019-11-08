@@ -4,11 +4,13 @@ using System.Linq;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
+using CorpusExplorer.Sdk.Utils.Filter.Queries;
 
 namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
 {
   [XmlRoot]
-  [Serializable]
+  [XmlInclude(typeof(FilterQuerySingleLayerRegexFulltext))]
+  [Serializable] 
   public abstract class AbstractFilterQuerySingleLayerFulltext : AbstractFilterQuery
   {
     /// <summary>

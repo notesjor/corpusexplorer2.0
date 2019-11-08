@@ -140,7 +140,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
                             output = corpus.CountDocuments;
 
                             corpus.CorpusDisplayname = formName.Result;
-                            corpus.Save(Path.Combine(Configuration.MyCorpora, formName.Result.EnsureFileName()));
+                            corpus.Save(Path.Combine(Configuration.MyCorpora, formName.Result.EnsureFileName()), false);
                             AddCorpusToProject(project, corpus);
                           }
                         });

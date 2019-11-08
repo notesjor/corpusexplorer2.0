@@ -6,6 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Properties;
+using CorpusExplorer.Sdk.Utils.Filter.Queries;
 
 #endregion
 
@@ -15,6 +16,16 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
   ///   The abstract meta filter query.
   /// </summary>
   [XmlRoot]
+  [XmlInclude(typeof(FilterQueryCorpusComplete))]
+  [XmlInclude(typeof(FilterQueryMetaContains))]
+  [XmlInclude(typeof(FilterQueryMetaContainsCaseSensitive))]
+  [XmlInclude(typeof(FilterQueryMetaEndsWith))]
+  [XmlInclude(typeof(FilterQueryMetaExactMatch))]
+  [XmlInclude(typeof(FilterQueryMetaExactMatchCaseSensitive))]
+  [XmlInclude(typeof(FilterQueryMetaIsEmpty))]
+  [XmlInclude(typeof(FilterQueryMetaRegex))]
+  [XmlInclude(typeof(FilterQueryMetaStartsWith))]
+  [XmlInclude(typeof(FilterQueryUnsupportedParserFeature))]
   [Serializable]
   public abstract class AbstractFilterQueryMeta : AbstractFilterQueryCompleteDocumentIndexing
   {
