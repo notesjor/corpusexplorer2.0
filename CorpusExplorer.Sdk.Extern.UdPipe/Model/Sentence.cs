@@ -1,5 +1,9 @@
+#region
+
 using System;
 using System.Runtime.InteropServices;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 {
@@ -107,6 +111,16 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       return ret;
     }
 
+    ~Sentence()
+    {
+      Dispose();
+    }
+
+    internal static HandleRef getCPtr(Sentence obj)
+    {
+      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+    }
+
     public bool getNewDoc()
     {
       var ret = udpipe_csharpPINVOKE.Sentence_getNewDoc(swigCPtr);
@@ -186,16 +200,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     public void unlinkAllNodes()
     {
       udpipe_csharpPINVOKE.Sentence_unlinkAllNodes(swigCPtr);
-    }
-
-    internal static HandleRef getCPtr(Sentence obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
-
-    ~Sentence()
-    {
-      Dispose();
     }
   }
 }

@@ -41,7 +41,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
       new Dictionary<string, AbstractImporter>
       {
         {"CLAN/Childes (*.cex)|*.cex", new ImporterClanChildes()},
-        { "Projekt: http://www.redewiedergabe.de/ (*_metadata.tsv)|*_metadata.tsv", new ImporterRedewiedergabe() }
+        { "Projekt: http://www.redewiedergabe.de/ (metadata.tsv)|metadata.tsv", new ImporterRedewiedergabe() }
       };
 
     /// <summary>

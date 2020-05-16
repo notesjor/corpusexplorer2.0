@@ -12,7 +12,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup
     public override string DisplayName 
       => "Regex Non-Latin Symbol Cleaner";
 
-    protected override string Execute(string input) 
+    protected override string Execute(string key, string input) 
       => _rulesRegex.Aggregate(input, (current, regex) => regex.Replace(current, string.Empty));
   }
 }

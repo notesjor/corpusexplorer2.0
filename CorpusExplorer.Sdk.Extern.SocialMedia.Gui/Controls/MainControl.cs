@@ -5,12 +5,12 @@ using System.Net;
 using CodeHollow.FeedReader;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Blogger;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.Abstract;
+using CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Helper;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Tumblr;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Twitter;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Wordpress;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Youtube;
-using CorpusExplorer.Terminal.WinForm.Helper;
 using HtmlAgilityPack;
 using Polenter.Serialization;
 using Telerik.WinControls.UI;
@@ -27,10 +27,8 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
       pages_blogger.MakeHeaderInvisible();
       //pages_facebook.MakeHeaderInvisible();
       //pages_instagram.MakeHeaderInvisible();
-      pages_reddit.MakeHeaderInvisible();
       pages_tumblr.MakeHeaderInvisible();
       pages_twitter.MakeHeaderInvisible();
-      pages_wordpress.MakeHeaderInvisible();
       pages_youtube.MakeHeaderInvisible();
 
       btn_main_blogger.OnClick += (s, e) => pages_main.SelectedPage = page_main_blogger;
@@ -48,7 +46,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
       // BLOCK
       pages_main.SelectedPageChanging += (s, e) =>
       {
-        if (e.Page == page_main_reddit   || e.Page == page_main_web  || e.Page == page_main_wordpress)
+        if (e.Page == page_main_web) // e.Page == page_main_reddit   || 
           e.Cancel = true;
       };
 
@@ -104,18 +102,6 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
                     3,
                     new EndpointRequestSimple(),
                     new TwitterStreamService());
-      serviceHome_wordpress
-       .AddEndpoint(Resources.wordpress_128px,
-                    "<html><strong>WordPress</strong><br/>Blogposts suchen und speichern.</html>",
-                    1,
-                    new EndpointRequestSimple(),
-                    new WordPressService {GetComments = false});
-      serviceHome_wordpress
-       .AddEndpoint(Resources.wordpress_128px,
-                    "<html><strong>WordPress</strong><br/>Blogposts inkl. Kommentare suchen und speichern.</html>",
-                    2,
-                    new EndpointRequestSimple(),
-                    new WordPressService {GetComments = true});
       serviceHome_youtube
        .AddEndpoint(Resources.youtube_128px,
                     "<html><strong>YouTube</strong><br/>Erfassen Sie alle Kommentare zu bestimmten Videos.</html>",

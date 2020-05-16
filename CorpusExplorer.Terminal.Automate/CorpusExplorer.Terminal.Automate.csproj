@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Terminal.Automate</RootNamespace>
     <AssemblyName>CorpusExplorer.Terminal.Automate</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -46,24 +46,24 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.WinControls, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.3.1022.40\Telerik.WinControls.dll</HintPath>
+    <Reference Include="Telerik.WinControls, Version=2020.2.512.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2020.2.512.40\Telerik.WinControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.GridView, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.3.1022.40\Telerik.WinControls.GridView.dll</HintPath>
+    <Reference Include="Telerik.WinControls.GridView, Version=2020.2.512.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2020.2.512.40\Telerik.WinControls.GridView.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.3.1022.40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2020.2.512.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2020.2.512.40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.3.1022.40\Telerik.WinControls.UI.dll</HintPath>
+    <Reference Include="Telerik.WinControls.UI, Version=2020.2.512.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2020.2.512.40\Telerik.WinControls.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="TelerikCommon, Version=2019.3.1022.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2019.3.1022.40\TelerikCommon.dll</HintPath>
+    <Reference Include="TelerikCommon, Version=2020.2.512.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2020.2.512.40\TelerikCommon.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -80,6 +80,13 @@
     </Compile>
     <Compile Include="ActionForm.Designer.cs">
       <DependentUpon>ActionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\DropSelectSearhHelper.cs" />
+    <Compile Include="QueryBuilderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QueryBuilderForm.Designer.cs">
+      <DependentUpon>QueryBuilderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="QueryForm.cs">
       <SubType>Form</SubType>
@@ -99,17 +106,21 @@
     <Compile Include="SessionForm.Designer.cs">
       <DependentUpon>SessionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BasicInformationForm.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BasicInformationForm.Designer.cs">
-      <DependentUpon>BasicInformationForm.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AbstractForm.resx">
       <DependentUpon>AbstractForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ActionForm.resx">
       <DependentUpon>ActionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="QueryBuilderForm.resx">
+      <DependentUpon>QueryBuilderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QueryForm.resx">
       <DependentUpon>QueryForm.cs</DependentUpon>
@@ -120,9 +131,8 @@
     <EmbeddedResource Include="SessionForm.resx">
       <DependentUpon>SessionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="BasicInformationForm.resx">
-      <DependentUpon>BasicInformationForm.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -152,6 +162,10 @@
   </ItemGroup>
   <ItemGroup>
     <!--sirinie -->
+    <ProjectReference Include="..\CorpusExplorer.Sdk\CorpusExplorer.Sdk.csproj">
+      <Project>{DC1B5A58-29DA-476D-89F8-E73A1DB11E52}</Project>
+      <Name>CorpusExplorer.Sdk</Name>
+    </ProjectReference>
     <ProjectReference Include="W:\Kooperationsprojekte\CorpusExplorer.Terminal.Console\CorpusExplorer.Terminal.Console.csproj">
       <Project>{77D277FA-CB8F-4619-90E8-4AF5BE6E9AC3}</Project>
       <Name>CorpusExplorer.Terminal.Console</Name>
@@ -178,6 +192,13 @@
   <ItemGroup>
     <None Include="Resources\info.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok_button.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

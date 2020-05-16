@@ -1,10 +1,9 @@
-﻿using System;
+﻿#region
+
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
@@ -14,30 +13,37 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.RawText;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.Abstract;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.LocatorStrategy;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.LocatorStrategy.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.DtaCAB
 {
   public class DtaCabTreeTagger : AbstractTagger
   {
     public override string DisplayName => "DTA::CAB + TreeTagger";
+
     public override string InstallationPath
     {
       get => "(NICHT WÄHLBAR - OPTIMIERTE VERSION)";
       set { }
     }
-    public override IEnumerable<string> LanguagesAvailabel => new[] { "Deutsch (Mittelhochdeutsch)" };
+
+    public override IEnumerable<string> LanguagesAvailabel => new[] {"Deutsch (Mittelhochdeutsch)"};
     public override string LanguageSelected { get; set; } = "Deutsch (Mittelhochdeutsch)";
+
+    private void DisplayError(string message)
+    {
+      MessageBox.Show(string.Format(DtaCabValidator.ErrorTemplate, message), "Fehler", MessageBoxButtons.OK);
+    }
 
     public override void Execute()
     {
       // Tokenisiere
       var tagRaw = new RawTextTagger();
       tagRaw.Input = Input;
-      tagRaw.DefineEndOfSentence(new[] { ".", "<s/>", "<s />", "!", ":", "?" });
+      tagRaw.DefineEndOfSentence(new[] {".", "<s/>", "<s />", "!", ":", "?"});
       tagRaw.Execute();
 
       AbstractCorpusAdapter corpus;
@@ -98,8 +104,8 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
       {
         var dic = new Dictionary<string, object>
         {
-          { "GUID", dsel },
-          { "Text", layer.GetReadableDocumentByGuid(dsel).ReduceDocumentToText() }
+          {"GUID", dsel},
+          {"Text", layer.GetReadableDocumentByGuid(dsel).ReduceDocumentToText()}
         };
         var met = corpus.GetDocumentMetadata(dsel);
         foreach (var x in met)
@@ -116,12 +122,7 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
         return;
 
       // Füge die Orignaldaten wieder an
-      Output.Enqueue(CorpusBuilder.Append(corpus, new[] { origL }));
-    }
-
-    private void DisplayError(string message)
-    {
-      MessageBox.Show(string.Format(DtaCabValidator.ErrorTemplate, message), "Fehler", MessageBoxButtons.OK);
+      Output.Enqueue(CorpusBuilder.Append(corpus, new[] {origL}));
     }
 
     private sealed class SimpleInternalTreeTagger : AbstractTreeTagger
@@ -137,8 +138,6 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
 
       public override string DisplayName => "TreeTagger (INTERN)";
 
-      protected override AbstractLocatorStrategy LocatorStrategy => null; // muss null sein
-
       public override string LanguageSelected
       {
         get => base.LanguageSelected;
@@ -148,6 +147,8 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
           Tokenizer = new HighSpeedSpaceTokenizer();
         }
       }
+
+      protected override AbstractLocatorStrategy LocatorStrategy => null; // muss null sein
 
       protected override string ExecuteTagger(string text)
       {

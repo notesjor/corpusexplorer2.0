@@ -88,12 +88,55 @@ namespace CorpusExplorer.Sdk.Helper
       return document.SelectMany(sent => sent);
     }
 
+    /// <summary>
+    /// Wandelt ein Snippet in einen String um und fügt der Ausgabe ein Highlight hinzu.
+    /// </summary>
+    /// <param name="document">Dokument oder Snippet</param>
+    /// <param name="sentenceSeparator">Wie sollen Sätze separiert werden?</param>
+    /// <param name="tokenSeparator">Wie sollen Token separiert werden?</param>
+    /// <param name="highlight">Wort die gehighlighted werden.</param>
+    /// <param name="highlightStart">Highlight Start-Tag</param>
+    /// <param name="highlightEnd">Highlight End-Tag</param>
+    /// <returns></returns>
+    public static string ReduceDocumentToText(this IEnumerable<IEnumerable<string>> document, IEnumerable<string> highlight,
+                                              string highlightStart = "<strong>", string highlightEnd = "</strong>",
+                                              string sentenceSeparator = "\r\n", string tokenSeparator = " ")
+    {
+      var h = new HashSet<string>(highlight);
+      return string.Join(sentenceSeparator, document.Select(s => string.Join(tokenSeparator, s.Select(w => h.Contains(w) ? $"{highlightStart}{w}{highlightEnd}" : w))));
+    }
+
+    /// <summary>
+    /// Wandelt einen Satz (Snippet) in einen String um und fügt der Ausgabe ein Highlight hinzu.
+    /// </summary>
+    /// <param name="sentence">Satz</param>
+    /// <param name="tokenSeparator">Wie sollen Token separiert werden?</param>
+    /// <returns></returns>
+    public static string ReduceSentenceToText(this IEnumerable<string> sentence, IEnumerable<string> highlight, string highlightStart = "<strong>", string highlightEnd = "</strong>", string tokenSeparator = " ")
+    {
+      var h = new HashSet<string>(highlight);
+      return string.Join(tokenSeparator, sentence.Select(w => h.Contains(w) ? $"{highlightStart}{w}{highlightEnd}" : w));
+    }
+
+    /// <summary>
+    /// Wandelt ein Snippet in einen String um.
+    /// </summary>
+    /// <param name="document">Dokument oder Snippet</param>
+    /// <param name="sentenceSeparator">Wie sollen Sätze separiert werden?</param>
+    /// <param name="tokenSeparator">Wie sollen Token separiert werden?</param>
+    /// <returns></returns>
     public static string ReduceDocumentToText(this IEnumerable<IEnumerable<string>> document,
                                               string sentenceSeparator = "\r\n", string tokenSeparator = " ")
     {
       return string.Join(sentenceSeparator, document.Select(s => string.Join(tokenSeparator, s)));
     }
 
+    /// <summary>
+    /// Wandelt einen Satz (Snippet) in einen String um.
+    /// </summary>
+    /// <param name="sentence">Satz</param>
+    /// <param name="tokenSeparator">Wie sollen Token separiert werden?</param>
+    /// <returns></returns>
     public static string ReduceSentenceToText(this IEnumerable<string> sentence, string tokenSeparator = " ")
     {
       return string.Join(tokenSeparator, sentence);

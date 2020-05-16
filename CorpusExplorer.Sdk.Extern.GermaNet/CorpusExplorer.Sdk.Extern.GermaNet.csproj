@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Sdk.Extern.GermaNet</RootNamespace>
     <AssemblyName>CorpusExplorer.Sdk.Extern.GermaNet</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -37,21 +37,21 @@
     <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey2019.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Devart.Data, Version=5.0.2070.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+    <Reference Include="Devart.Data, Version=5.0.2296.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\Devart\dotConnect\PostgreSQL\Devart.Data.dll</HintPath>
+      <HintPath>..\..\..\..\Program Files (x86)\Devart\dotConnect\PostgreSQL\Devart.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Devart.Data.Linq, Version=4.8.1615.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+    <Reference Include="Devart.Data.Linq, Version=4.9.1841.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\Devart\dotConnect\Linq\Devart.Data.Linq.dll</HintPath>
+      <HintPath>..\..\..\..\Program Files (x86)\Devart\dotConnect\Linq\Devart.Data.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="Devart.Data.PostgreSql, Version=7.11.1278.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+    <Reference Include="Devart.Data.PostgreSql, Version=7.15.1504.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\Devart\dotConnect\PostgreSQL\Devart.Data.PostgreSql.dll</HintPath>
+      <HintPath>..\..\..\..\Program Files (x86)\Devart\dotConnect\PostgreSQL\Devart.Data.PostgreSql.dll</HintPath>
     </Reference>
-    <Reference Include="Devart.Data.PostgreSql.Linq, Version=4.8.1615.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+    <Reference Include="Devart.Data.PostgreSql.Linq, Version=4.9.1841.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\Devart\dotConnect\Linq\Devart.Data.PostgreSql.Linq.dll</HintPath>
+      <HintPath>..\..\..\..\Program Files (x86)\Devart\dotConnect\Linq\Devart.Data.PostgreSql.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

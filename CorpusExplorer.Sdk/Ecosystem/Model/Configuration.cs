@@ -9,7 +9,6 @@ using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
-using Bcs.Addon;
 using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Blocks.Cooccurrence;
 using CorpusExplorer.Sdk.Blocks.Measure;
@@ -30,7 +29,11 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.CorpusExplorerV6;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
-using NHunspell;
+#if UNIVERSAL
+#else
+    using Bcs.Addon;
+    using NHunspell;
+#endif
 
 #endregion
 
@@ -54,7 +57,10 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     private static Dictionary<string, AbstractScraper> _addonScrapers = new Dictionary<string, AbstractScraper>();
     private static Dictionary<string, AbstractTableWriter> _addonTableWriters = new Dictionary<string, AbstractTableWriter>();
     private static List<AbstractTagger> _addonTaggers = new List<AbstractTagger>();
+#if UNIVERSAL
+#else
     private static List<IAddonView> _addonViews = new List<IAddonView>();
+#endif
     private static Encoding _encoding;
     private static bool? _rightToLeftSupport;
     private static ISignificance _significance = new PoissonSignificance();
@@ -164,10 +170,13 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// </summary>
     public static IEnumerable<AbstractTagger> AddonTaggers => _addonTaggers;
 
+#if UNIVERSAL
+#else
     /// <summary>
     ///   Externe Analysemodule.
     /// </summary>
     public static IEnumerable<IAddonView> AddonViews => _addonViews;
+#endif
 
     /// <summary>
     ///   Gets the app config path.
@@ -201,8 +210,8 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       }
       set
       {
-        _encoding = value;
-        SetSetting("Encoding (CodePage)", value.CodePage);
+        _encoding = value ?? Encoding.UTF8;
+        SetSetting("Encoding (CodePage)", _encoding.CodePage);
       }
     }
 
@@ -211,7 +220,11 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// </summary>
     public static string ExternAppPath { get; private set; }
 
+
+#if UNIVERSAL
+#else
     public static Hyphen Hyphen { get; set; }
+#endif
 
     public static bool IsInitialized { get; private set; }
 
@@ -401,7 +414,10 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       _addonAdditionalTaggers.Clear();
       _addonScrapers.Clear();
       _addonTableWriters.Clear();
-      _addonViews.Clear();
+#if UNIVERSAL
+#else
+    _addonViews.Clear();
+#endif
       _addonBackends.Clear();
       _addonConsoleActions.Clear();
       _addonSideLoadFeatures.Clear();
@@ -409,11 +425,14 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       var location = Path.GetDirectoryName(string.IsNullOrEmpty(alternativePath)
                                              ? Assembly.GetExecutingAssembly().Location
                                              : alternativePath);
+#if UNIVERSAL
+#else
       Load3RdPartyAddons(location);
 
       // Nur relevant, wenn USB/Pendrive oder DEBUG
       if (location != AppPath)
         Load3RdPartyAddons(AppPath);
+#endif
     }
 
     /// <summary>
@@ -645,6 +664,8 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       _addonAdditionalTaggers = new List<AbstractAdditionalTagger>();
       _addonScrapers = new Dictionary<string, AbstractScraper>();
       _addonTableWriters = new Dictionary<string, AbstractTableWriter>();
+#if UNIVERSAL
+#else
       _addonViews = new List<IAddonView>();
 
       // Hypen
@@ -664,10 +685,13 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
           // ignore
         }
       }
+#endif
 
       IsInitialized = true;
     }
 
+#if UNIVERSAL
+#else
     private static void Load3RdPartyAddons(string path)
     {
       if (string.IsNullOrEmpty(path))
@@ -841,5 +865,6 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
           InMemoryErrorConsole.Log(ex);
         }
     }
+#endif
   }
 }

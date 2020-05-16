@@ -18,6 +18,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.LocatorS
         {"Spanisch", "spanish-utf8.par"},
         {"Polnisch", "polish-utf8.par"},
         // {"Deutsch (Mittelhochdeutsch)", "middle-high-german.par"} -> DTA::CAB
+        {"Deutsch (gesprochene Sprache)", "german-spoken.par" }
       };
 
     public override IEnumerable<string> AvailableLanguages

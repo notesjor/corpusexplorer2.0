@@ -119,6 +119,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
                           radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
 
                           AddSummaryRow();
+                          ApplyFilterDelay();
                           AddChildTemplate(CreateChildTemplate);
                         });
     }

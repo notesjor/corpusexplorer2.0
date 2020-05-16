@@ -1,5 +1,9 @@
+#region
+
 using System;
 using System.Runtime.InteropServices;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 {
@@ -54,10 +58,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
     }
 
-    public bool occurred()
+    ~ProcessingError()
     {
-      var ret = udpipe_csharpPINVOKE.ProcessingError_occurred(swigCPtr);
-      return ret;
+      Dispose();
     }
 
     internal static HandleRef getCPtr(ProcessingError obj)
@@ -65,9 +68,10 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
     }
 
-    ~ProcessingError()
+    public bool occurred()
     {
-      Dispose();
+      var ret = udpipe_csharpPINVOKE.ProcessingError_occurred(swigCPtr);
+      return ret;
     }
   }
 }

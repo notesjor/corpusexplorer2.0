@@ -20,6 +20,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
     protected readonly GridException GridException =
       new GridException("Use InitializeGrid to set the default RadGridView");
 
+    private int _delay = 500;
     private DataTable _backup;
     protected RadGridView _grid;
 
@@ -34,6 +35,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
           _grid.ResetBindings();
         }
       };
+    }
+
+    protected void ApplyFilterDelay()
+    {
+      foreach (var column in _grid.Columns)
+        column.AutoFilterDelay = _delay;
     }
 
     protected void AddSummaryRow()
@@ -56,7 +63,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
         if (column.DataType == typeof(string))
           summaryRowItem.Add(
                              new GridViewHashSetSummaryItem
-                               {Name = column.Name, Aggregate = GridAggregateFunction.Last});
+                             { Name = column.Name, Aggregate = GridAggregateFunction.Last });
         else
           summaryRowItem.Add(
                              new GridViewSummaryItem
@@ -110,8 +117,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
       _grid.FilterDescriptors.Clear();
       var filter = new CompositeFilterDescriptor();
       foreach (var query in form.Result)
-      foreach (var p in properties)
-        filter.FilterDescriptors.Add(new FilterDescriptor(p, form.ResultFilterOperator, query));
+        foreach (var p in properties)
+          filter.FilterDescriptors.Add(new FilterDescriptor(p, form.ResultFilterOperator, query));
 
       filter.LogicalOperator = FilterLogicalOperator.Or;
       filter.NotOperator = !form.ResultSelectAll;

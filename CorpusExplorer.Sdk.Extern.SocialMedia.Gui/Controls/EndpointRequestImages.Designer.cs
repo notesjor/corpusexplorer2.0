@@ -37,7 +37,8 @@
       // 
       this.radTextBox1.AcceptsReturn = true;
       this.radTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radTextBox1.Location = new System.Drawing.Point(0, 73);
+      this.radTextBox1.Location = new System.Drawing.Point(0, 90);
+      this.radTextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.radTextBox1.Multiline = true;
       this.radTextBox1.Name = "radTextBox1";
       this.radTextBox1.NullText = "Geben Sie hier ihre Abfragen ein...";
@@ -45,7 +46,7 @@
       // 
       // 
       this.radTextBox1.RootElement.StretchVertically = true;
-      this.radTextBox1.Size = new System.Drawing.Size(830, 383);
+      this.radTextBox1.Size = new System.Drawing.Size(1107, 471);
       this.radTextBox1.TabIndex = 3;
       // 
       // ihdPanel1
@@ -57,17 +58,17 @@
       this.ihdPanel1.IHDHeader = "Bilder & Medien - Extraktion";
       this.ihdPanel1.IHDImage = global::CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties.Resources.image_download_128px;
       this.ihdPanel1.Location = new System.Drawing.Point(0, 0);
-      this.ihdPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.ihdPanel1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
       this.ihdPanel1.Name = "ihdPanel1";
-      this.ihdPanel1.Size = new System.Drawing.Size(830, 73);
+      this.ihdPanel1.Size = new System.Drawing.Size(1107, 90);
       this.ihdPanel1.TabIndex = 2;
       // 
       // EndpointRequestImages
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radTextBox1);
       this.Controls.Add(this.ihdPanel1);
+      this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
       this.Name = "EndpointRequestImages";
       this.Controls.SetChildIndex(this.ihdPanel1, 0);
       this.Controls.SetChildIndex(this.radTextBox1, 0);

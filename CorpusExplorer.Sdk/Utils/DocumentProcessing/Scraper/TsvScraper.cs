@@ -61,7 +61,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper
 
           res.Add(item);
         }
-        catch (Exception ex)
+        catch
         {
           // ignore
         }

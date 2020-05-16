@@ -112,7 +112,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
                                                 dic3.Add(x);
                                             }
 
-                                            if (check)
+                                            if (check && dic3.Count > 0)
                                               dic2.TryAdd(dsel, dic3);
                                           });
 
@@ -187,7 +187,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
                                               }
                                             }
 
-                                            if (check)
+                                            if (check && dic3 != null && dic3.Count > 0)
                                               dic2.TryAdd(dsel, dic3);
                                           });
 

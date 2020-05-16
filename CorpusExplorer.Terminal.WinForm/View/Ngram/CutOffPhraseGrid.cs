@@ -53,6 +53,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       UseParentCellForHighlighting = Resources.NGramm;
 
       AddSummaryRow();
+      ApplyFilterDelay();
     }
 
     private void BindData()

@@ -1,9 +1,13 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Enumerations;
 using Telerik.WinControls.UI;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.SaltAndPepper.Froms
 {

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using Hyldahl.Hashing.SpamSum;
 
 namespace CorpusExplorer.Sdk.Extern.FuzzyCloneDetection.Blocks

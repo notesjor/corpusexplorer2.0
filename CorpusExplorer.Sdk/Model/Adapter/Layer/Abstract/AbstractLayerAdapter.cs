@@ -215,7 +215,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
     /// <returns></returns>
     public LayerValueState ToLayerState(string newDisplayname = null, int valueIndex = 0, bool clearDictionary = false, bool clearDocument = false, bool noDocuments = false)
     {
-      return new LayerValueState(newDisplayname ?? Displayname, 0)
+      return new LayerValueState(newDisplayname ?? Displayname, valueIndex)
       {
         Documents = noDocuments   ? new Dictionary<Guid, int[][]>() :
                     clearDocument ? GetDocumentDictionary()

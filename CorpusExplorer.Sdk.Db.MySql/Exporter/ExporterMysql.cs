@@ -1,7 +1,11 @@
-﻿using CorpusExplorer.Sdk.Db.MySql.Builder;
+﻿#region
+
+using CorpusExplorer.Sdk.Db.MySql.Builder;
 using CorpusExplorer.Sdk.Model.Extension;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Db.MySql.Exporter
 {

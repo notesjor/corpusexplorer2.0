@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Sdk.Extern.TextSharp</RootNamespace>
     <AssemblyName>CorpusExplorer.Sdk.Extern.iTextSharp</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APAEK\ApaekScraper.cs" />
+    <Compile Include="PDF\TextSharpPdfSinglePageScraper.cs" />
     <Compile Include="PDF\TextSharpPdfScraper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryManifest.cs" />

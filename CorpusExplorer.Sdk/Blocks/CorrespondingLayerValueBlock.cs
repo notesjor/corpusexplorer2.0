@@ -36,7 +36,7 @@ namespace CorpusExplorer.Sdk.Blocks
           if (tmp.ContainsKey(key))
             tmp[key].Add(layer2[doc2[i][j]]);
           else
-            tmp.Add(key, new HashSet<string> {layer2[doc2[i][j]]});
+            tmp.Add(key, new HashSet<string> { layer2[doc2[i][j]] });
         }
       }
 

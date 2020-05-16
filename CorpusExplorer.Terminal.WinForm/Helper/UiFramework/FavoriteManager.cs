@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -171,17 +170,5 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
         };
       return items;
     }
-  }
-
-  [Serializable]
-  public class FavoriteManagerEntry
-  {
-    [NonSerialized] public RadPageViewPage Page;
-
-    public string Title { get; set; }
-    public Image Image { get; set; }
-    public string ModulePage { get; set; }
-    public bool IsPinned { get; set; }
-    public int Count { get; set; }
   }
 }

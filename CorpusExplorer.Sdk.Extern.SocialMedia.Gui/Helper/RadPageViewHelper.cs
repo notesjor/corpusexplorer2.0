@@ -2,7 +2,7 @@
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
-namespace CorpusExplorer.Terminal.WinForm.Helper
+namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Helper
 {
   public static class RadPageViewHelper
   {

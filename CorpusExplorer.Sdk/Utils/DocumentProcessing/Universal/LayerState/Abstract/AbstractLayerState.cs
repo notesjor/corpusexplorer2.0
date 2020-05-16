@@ -22,6 +22,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Universal.LayerState.Abstr
     public abstract bool AllowValueChange(string[] level1);
     public abstract int RequestIndex(string[] level1, int lastIndex);
 
+#if UNIVERSAL
+#else
     public LayerAdapterSingleFile ToSingleFileLayer()
     {
       var res = LayerAdapterSingleFile.Create(Documents, Cache, new Dictionary<string, object>(), Displayname);
@@ -29,6 +31,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Universal.LayerState.Abstr
       Cache = new Dictionary<string, int>();
       return res;
     }
+#endif
 
     protected int RequestIndex(string data)
     {

@@ -15,7 +15,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup
 
     public override string DisplayName => Resources.CorpusCleanup;
 
-    protected override string Execute(string input)
+    protected override string Execute(string key, string input)
     {
       return _r1.Replace(input, string.Empty);
     }

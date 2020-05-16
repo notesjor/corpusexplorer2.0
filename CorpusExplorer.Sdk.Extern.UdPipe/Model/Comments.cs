@@ -1,7 +1,11 @@
+#region
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 {
@@ -52,6 +56,40 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public bool IsSynchronized => false;
 
+    public void Add(string x)
+    {
+      udpipe_csharpPINVOKE.Comments_Add(swigCPtr, x);
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+    }
+
+    public void Clear()
+    {
+      udpipe_csharpPINVOKE.Comments_Clear(swigCPtr);
+    }
+
+    public bool Contains(string value)
+    {
+      var ret = udpipe_csharpPINVOKE.Comments_Contains(swigCPtr, value);
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
+    }
+
+    public void CopyTo(string[] array, int arrayIndex)
+    {
+      CopyTo(0, array, arrayIndex, Count);
+    }
+
+    public int Count => (int) size();
+
+    public bool IsReadOnly => false;
+
+    public bool Remove(string value)
+    {
+      var ret = udpipe_csharpPINVOKE.Comments_Remove(swigCPtr, value);
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
+    }
+
     public virtual void Dispose()
     {
       lock (this)
@@ -76,54 +114,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       return new CommentsEnumerator(this);
     }
 
-    public bool IsReadOnly => false;
-
-    public string this[int index]
-    {
-      get => getitem(index);
-      set => setitem(index, value);
-    }
-
-    public int Count => (int) size();
-
-    public void CopyTo(string[] array, int arrayIndex)
-    {
-      CopyTo(0, array, arrayIndex, Count);
-    }
-
     IEnumerator<string> IEnumerable<string>.GetEnumerator()
     {
       return new CommentsEnumerator(this);
-    }
-
-    public void Clear()
-    {
-      udpipe_csharpPINVOKE.Comments_Clear(swigCPtr);
-    }
-
-    public void Add(string x)
-    {
-      udpipe_csharpPINVOKE.Comments_Add(swigCPtr, x);
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-    }
-
-    public void Insert(int index, string x)
-    {
-      udpipe_csharpPINVOKE.Comments_Insert(swigCPtr, index, x);
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-    }
-
-    public void RemoveAt(int index)
-    {
-      udpipe_csharpPINVOKE.Comments_RemoveAt(swigCPtr, index);
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-    }
-
-    public bool Contains(string value)
-    {
-      var ret = udpipe_csharpPINVOKE.Comments_Contains(swigCPtr, value);
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
     }
 
     public int IndexOf(string value)
@@ -133,17 +126,34 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       return ret;
     }
 
-    public bool Remove(string value)
+    public void Insert(int index, string x)
     {
-      var ret = udpipe_csharpPINVOKE.Comments_Remove(swigCPtr, value);
+      udpipe_csharpPINVOKE.Comments_Insert(swigCPtr, index, x);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
+    }
+
+    public string this[int index]
+    {
+      get => getitem(index);
+      set => setitem(index, value);
+    }
+
+    public void RemoveAt(int index)
+    {
+      udpipe_csharpPINVOKE.Comments_RemoveAt(swigCPtr, index);
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
     }
 
     public void AddRange(Comments values)
     {
       udpipe_csharpPINVOKE.Comments_AddRange(swigCPtr, getCPtr(values));
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+    }
+
+    private uint capacity()
+    {
+      var ret = udpipe_csharpPINVOKE.Comments_capacity(swigCPtr);
+      return ret;
     }
 
     public void CopyTo(string[] array)
@@ -169,9 +179,33 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
         array.SetValue(getitemcopy(index + i), arrayIndex + i);
     }
 
+    ~Comments()
+    {
+      Dispose();
+    }
+
+    internal static HandleRef getCPtr(Comments obj)
+    {
+      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+    }
+
     public CommentsEnumerator GetEnumerator()
     {
       return new CommentsEnumerator(this);
+    }
+
+    private string getitem(int index)
+    {
+      var ret = udpipe_csharpPINVOKE.Comments_getitem(swigCPtr, index);
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
+    }
+
+    private string getitemcopy(int index)
+    {
+      var ret = udpipe_csharpPINVOKE.Comments_getitemcopy(swigCPtr, index);
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
     }
 
     public Comments GetRange(int index, int count)
@@ -209,6 +243,11 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       return ret;
     }
 
+    private void reserve(uint n)
+    {
+      udpipe_csharpPINVOKE.Comments_reserve(swigCPtr, n);
+    }
+
     public void Reverse()
     {
       udpipe_csharpPINVOKE.Comments_Reverse__SWIG_0(swigCPtr);
@@ -220,45 +259,15 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
     }
 
-    public void SetRange(int index, Comments values)
-    {
-      udpipe_csharpPINVOKE.Comments_SetRange(swigCPtr, index, getCPtr(values));
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-    }
-
-    internal static HandleRef getCPtr(Comments obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
-
-    private uint capacity()
-    {
-      var ret = udpipe_csharpPINVOKE.Comments_capacity(swigCPtr);
-      return ret;
-    }
-
-    private string getitem(int index)
-    {
-      var ret = udpipe_csharpPINVOKE.Comments_getitem(swigCPtr, index);
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    }
-
-    private string getitemcopy(int index)
-    {
-      var ret = udpipe_csharpPINVOKE.Comments_getitemcopy(swigCPtr, index);
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    }
-
-    private void reserve(uint n)
-    {
-      udpipe_csharpPINVOKE.Comments_reserve(swigCPtr, n);
-    }
-
     private void setitem(int index, string val)
     {
       udpipe_csharpPINVOKE.Comments_setitem(swigCPtr, index, val);
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+    }
+
+    public void SetRange(int index, Comments values)
+    {
+      udpipe_csharpPINVOKE.Comments_SetRange(swigCPtr, index, getCPtr(values));
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
     }
 
@@ -266,11 +275,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       var ret = udpipe_csharpPINVOKE.Comments_size(swigCPtr);
       return ret;
-    }
-
-    ~Comments()
-    {
-      Dispose();
     }
 
     // Type-safe enumerator
@@ -291,6 +295,12 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
         currentIndex = -1;
         currentObject = null;
         currentSize = collectionRef.Count;
+      }
+
+      public void Dispose()
+      {
+        currentIndex = -1;
+        currentObject = null;
       }
 
       // Type-unsafe IEnumerator.Current
@@ -333,12 +343,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
             throw new InvalidOperationException("Collection modified.");
           return (string) currentObject;
         }
-      }
-
-      public void Dispose()
-      {
-        currentIndex = -1;
-        currentObject = null;
       }
     }
   }

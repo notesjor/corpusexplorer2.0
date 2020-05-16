@@ -50,6 +50,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       radGridView1.ResetBindings();
 
       AddSummaryRow();
+      ApplyFilterDelay();
       AddChildTemplate();
 
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;

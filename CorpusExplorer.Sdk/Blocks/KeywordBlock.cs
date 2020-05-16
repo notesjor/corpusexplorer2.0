@@ -43,7 +43,7 @@ namespace CorpusExplorer.Sdk.Blocks
         if (!KeywordFrequencyReference.ContainsKey(x.Key))
           return;
 
-        var dif = (x.Value - KeywordFrequencyReference[x.Key]) * 100d / KeywordFrequencyReference[x.Key];
+        var dif = (x.Value - KeywordFrequencyReference[x.Key]) * mult / KeywordFrequencyReference[x.Key];
         var sig = Configuration.GetSignificance((int)KeywordFrequencyReference[x.Key], mult);
         var val = sig.Calculate((int)x.Value, (int)Math.Abs(KeywordFrequencyReference[x.Key] - x.Value));
 

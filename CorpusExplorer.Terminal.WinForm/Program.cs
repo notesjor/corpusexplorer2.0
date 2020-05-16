@@ -105,27 +105,49 @@ namespace CorpusExplorer.Terminal.WinForm
 
     private static bool AppQuickMode(string[] args)
     {
-      foreach (var arg in args)
+      if (args == null || args.Length == 0)
+        return false;
+
+      switch (args[0])
       {
-        switch (arg)
-        {
-          case "/?":
-          case "--help":
-            QuickMode.DisplayHelp();
+        case "help":
+        case "-h":
+        case "/?":
+        case "--help":
+          QuickMode.DisplayHelp();
+          return true;
+        case "--anno":
+          if (args.Length == 1)
+          {
+            QuickMode.Annotate(QuickMode.Initialize(), true, false);
             return true;
-          case "--anno":
-            QuickMode.Annotate(QuickMode.Initialize(), true);
+          }
+          if (args.Length > 2)
+          {
+            QuickMode.Annotate(QuickMode.Initialize(), args[1], QuickMode.GetFilesHelper(args), true, false);
             return true;
-          case "--conv":
-            QuickMode.Convert(QuickMode.Initialize());
+          }
+          return false;
+        case "--conv":
+          if (args.Length == 1)
+          {
+            QuickMode.Convert(QuickMode.Initialize(), false);
             return true;
-          case "--sreset":
-            QuickMode.SoftReset();
+          }
+
+          if (args.Length > 2)
+          {
+            QuickMode.Convert(QuickMode.Initialize(), args[1], QuickMode.GetFilesHelper(args), false);
             return true;
-          case "--hreset":
-            QuickMode.HardReset();
-            return true;
-        }
+          }
+          return false;
+        case "--reset":
+        case "--sreset":
+          QuickMode.SoftReset();
+          return true;
+        case "--hreset":
+          QuickMode.HardReset();
+          return true;
       }
 
       return false;
@@ -138,7 +160,7 @@ namespace CorpusExplorer.Terminal.WinForm
 
       foreach (var arg in args)
       {
-        if (!arg.StartsWith("--lang:")) 
+        if (!arg.StartsWith("--lang:"))
           continue;
 
         var lang = arg.Replace("--lang:", "");

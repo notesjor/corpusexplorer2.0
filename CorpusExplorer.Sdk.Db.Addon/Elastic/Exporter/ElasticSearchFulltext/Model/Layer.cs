@@ -1,4 +1,8 @@
+#region
+
 using Nest;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter.ElasticSearchFulltext.Model
 {

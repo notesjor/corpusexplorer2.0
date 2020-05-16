@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DomainModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="2.0.0.0" name="EntitiesModel" namespace="CorpusExplorer.Sdk.Db.QuickSearchDb" showPropertiesCompartment="true" xmlns="http://www.telerik.com/ORM">
+  <orm:orm name="EntitiesModel" backend="sqlite" xmlns:orm="http://tempuri.org/ORM">
+    <orm:namespace name="CorpusExplorer.Sdk.Db.QuickSearchDb" default="true">
+      <orm:class name="Corpus" use-default-mapping="true" uniqueId="cf8bc495-a24a-49f6-baa4-3d4e486a8857">
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:field name="_id" property="Id" uniqueId="d47d2814-71c8-42af-b5e6-c542b4dc1d50" type="System.UInt64">
+          <orm:column name="Id" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" backend-calculated="true" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_corpusMetadatas" property="CorpusMetadatas" behavior="readwrite" uniqueId="d7f443de-7dc9-4649-8d11-4eea57a0a3dc" type="CorpusExplorer.Sdk.Db.QuickSearchDb.CorpusMetadata">
+          <orm:collection element-class="CorpusExplorer.Sdk.Db.QuickSearchDb.CorpusMetadata" inverse-field="_corpus" order-by="" uniqueId="5f3884c2-daf8-4612-aaf8-bf51c3be0411" />
+        </orm:field>
+        <orm:field name="_documents" property="Documents" behavior="readwrite" uniqueId="c94e6831-62d5-4fcd-9c66-626a518cff38" type="CorpusExplorer.Sdk.Db.QuickSearchDb.Document">
+          <orm:collection element-class="CorpusExplorer.Sdk.Db.QuickSearchDb.Document" inverse-field="_corpus" order-by="" uniqueId="667c830a-a840-4ac1-abf3-4f6b8bc8eceb" />
+        </orm:field>
+        <orm:field name="_terms" property="Terms" behavior="readwrite" uniqueId="6ada356e-b725-4e2c-b528-14988a9e460e" type="CorpusExplorer.Sdk.Db.QuickSearchDb.Term">
+          <orm:collection element-class="CorpusExplorer.Sdk.Db.QuickSearchDb.Term" inverse-field="_corpus" order-by="" uniqueId="501bb8ec-fcc3-4846-8143-89c79fdefe8d" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="CorpusMetadata" use-default-mapping="true" uniqueId="67a4fd08-b4cf-420d-bcd6-6c7a708d7e96">
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:field name="_id" property="Id" uniqueId="2989633d-4d43-49d3-854a-799552421ba5" type="System.UInt64">
+          <orm:column name="Id" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" backend-calculated="true" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_name" property="Name" uniqueId="7351e01c-3d23-47d6-b010-f2757d034663" type="System.String">
+          <orm:column name="nme" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_value" property="Value" uniqueId="275ea6f1-6bf4-4b9d-b26e-a3c7b385686b" type="System.String">
+          <orm:column name="val" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_corpus" property="Corpus" behavior="readwrite" uniqueId="a708f0a2-44b8-43d0-8621-3a10ed269e67" type="CorpusExplorer.Sdk.Db.QuickSearchDb.Corpus">
+          <orm:reference uniqueId="5f3884c2-daf8-4612-aaf8-bf51c3be0411" association-name="CorpusMetadataHasCorpus" />
+        </orm:field>
+        <orm:index name="idx_CorpusMetadata_Id2">
+          <orm:columnMapping>
+            <orm:column name="Id2" sql-type="unsigned big int" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="Document" use-default-mapping="true" uniqueId="2c1331b8-117c-4580-892a-e8ffa101f6b3">
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:field name="_id" property="Id" uniqueId="f4150d94-f61e-4932-9e73-365fb4ae832f" type="System.UInt64">
+          <orm:column name="Id" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" backend-calculated="true" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_corpus" property="Corpus" behavior="readwrite" uniqueId="b4eec1d1-bc94-423b-8782-de729961b42f" type="CorpusExplorer.Sdk.Db.QuickSearchDb.Corpus">
+          <orm:reference uniqueId="667c830a-a840-4ac1-abf3-4f6b8bc8eceb" association-name="DocumentHasCorpus" />
+        </orm:field>
+        <orm:field name="_documentMetadatas" property="DocumentMetadatas" behavior="readwrite" uniqueId="20d3251a-f626-4f83-9951-f6fb363706c4" type="CorpusExplorer.Sdk.Db.QuickSearchDb.DocumentMetadata">
+          <orm:collection element-class="CorpusExplorer.Sdk.Db.QuickSearchDb.DocumentMetadata" inverse-field="_document" order-by="" uniqueId="36270656-bd10-43f8-94e3-04f21981f6c5" />
+        </orm:field>
+        <orm:field name="_documentTermRelations" property="DocumentTermRelations" behavior="readwrite" uniqueId="7aa1abe5-dde2-4ed9-95ff-0cfd7d298818" type="CorpusExplorer.Sdk.Db.QuickSearchDb.DocumentTermRelation">
+          <orm:collection element-class="CorpusExplorer.Sdk.Db.QuickSearchDb.DocumentTermRelation" inverse-field="_document" order-by="" uniqueId="d1dc768d-5690-4b53-9e17-ead53cca9b95" />
+        </orm:field>
+        <orm:index name="idx_Document_Id2">
+          <orm:columnMapping>
+            <orm:column name="Id2" sql-type="unsigned big int" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="DocumentMetadata" use-default-mapping="true" uniqueId="e9c82deb-0d9a-4c47-b069-8f1dcf1300be">
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:field name="_id" property="Id" uniqueId="1af981d5-eb55-41c3-a72b-220dea0547c0" type="System.UInt64">
+          <orm:column name="Id" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" backend-calculated="true" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_name" property="Name" uniqueId="f2fc50b7-5808-4231-b38d-76348b14d186" type="System.String">
+          <orm:column name="nme" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_value" property="Value" uniqueId="3d6fbc06-5c60-4bc7-a707-8d0c0d27b0b8" type="System.String">
+          <orm:column name="val" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_document" property="Document" behavior="readwrite" uniqueId="2979c1d5-4ff0-4979-8f33-a4ba05899de5" type="CorpusExplorer.Sdk.Db.QuickSearchDb.Document">
+          <orm:reference uniqueId="36270656-bd10-43f8-94e3-04f21981f6c5" association-name="DocumentMetadataHasDocument" />
+        </orm:field>
+        <orm:index name="idx_DocumentMetadata_Id2">
+          <orm:columnMapping>
+            <orm:column name="Id2" sql-type="unsigned big int" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="Term" use-default-mapping="true" uniqueId="3cfef92e-18ce-4481-bfc4-f6e0efd897da">
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:field name="_id" property="Id" uniqueId="f4e4a796-31b1-4a30-b8bb-e8050ec88a0d" type="System.UInt64">
+          <orm:column name="Id" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" backend-calculated="true" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_value" property="Value" uniqueId="0bb5b12e-7d7e-43e4-9bc1-7b777ac62e69" type="System.String">
+          <orm:column name="val" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_corpus" property="Corpus" behavior="readwrite" uniqueId="03910e8d-6545-4be3-b89b-da76c817b691" type="CorpusExplorer.Sdk.Db.QuickSearchDb.Corpus">
+          <orm:reference uniqueId="501bb8ec-fcc3-4846-8143-89c79fdefe8d" association-name="TermHasCorpus" />
+        </orm:field>
+        <orm:field name="_termMetadatas" property="TermMetadatas" behavior="readwrite" uniqueId="ba05792a-39a9-463c-984c-20f5c3a4efe3" type="CorpusExplorer.Sdk.Db.QuickSearchDb.TermMetadata">
+          <orm:collection element-class="CorpusExplorer.Sdk.Db.QuickSearchDb.TermMetadata" inverse-field="_term" order-by="" uniqueId="27bda7a9-e413-4366-8465-165a13cd3d55" />
+        </orm:field>
+        <orm:field name="_documentTermRelations" property="DocumentTermRelations" behavior="readwrite" uniqueId="be426404-4334-409e-abec-bc3970a7b71a" type="CorpusExplorer.Sdk.Db.QuickSearchDb.DocumentTermRelation">
+          <orm:collection element-class="CorpusExplorer.Sdk.Db.QuickSearchDb.DocumentTermRelation" inverse-field="_term" order-by="" uniqueId="a9ef471f-3efa-4286-a9bd-8784e74c1b78" />
+        </orm:field>
+        <orm:index name="idx_Term_Id2">
+          <orm:columnMapping>
+            <orm:column name="Id2" sql-type="unsigned big int" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="TermMetadata" use-default-mapping="true" uniqueId="9fde7afd-5236-4b2a-8f00-964d695a9cd1">
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:field name="_id" property="Id" uniqueId="d506a4c8-26c2-4287-bd69-eab0c010378a" type="System.UInt64">
+          <orm:column name="Id" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" backend-calculated="true" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_key" property="Key" uniqueId="c781e06f-21ac-44a8-a387-be5ccbc6a916" type="System.String">
+          <orm:column name="ky" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_value" property="Value" uniqueId="984f86a6-095e-487f-bc26-040f4f8e9fa6" type="System.String">
+          <orm:column name="val" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_term" property="Term" behavior="readwrite" uniqueId="da9f3a53-9c06-473b-b7bd-cbe198506fa9" type="CorpusExplorer.Sdk.Db.QuickSearchDb.Term">
+          <orm:reference uniqueId="27bda7a9-e413-4366-8465-165a13cd3d55" association-name="TermMetadataHasTerm" />
+        </orm:field>
+        <orm:index name="idx_TermMetadata_Id2">
+          <orm:columnMapping>
+            <orm:column name="Id2" sql-type="unsigned big int" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="DocumentTermRelation" use-default-mapping="true" uniqueId="f30920f9-238c-4dd4-ac7f-bb3c50ef3d57">
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:field name="_id" property="Id" uniqueId="bc81399b-21e6-4dff-9e7f-4b6b9b63e9f3" type="System.UInt64">
+          <orm:column name="Id" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" backend-calculated="true" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_frequncy" property="Frequncy" uniqueId="3839f498-8931-406b-9623-2ac6b40bd559" type="System.UInt32">
+          <orm:column name="Frequncy" sql-type="bigint" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.BigIntConverter+ToUInt32" ado-type="Int64" />
+        </orm:field>
+        <orm:field name="_document" property="Document" behavior="readwrite" uniqueId="80ea1ddb-1d96-47d3-98d4-382efb4deda4" type="CorpusExplorer.Sdk.Db.QuickSearchDb.Document">
+          <orm:reference uniqueId="d1dc768d-5690-4b53-9e17-ead53cca9b95" association-name="DocumentTermRelationHasDocument" />
+        </orm:field>
+        <orm:field name="_term" property="Term" behavior="readwrite" uniqueId="30d71000-be6e-4df1-9131-f071836e4e8d" type="CorpusExplorer.Sdk.Db.QuickSearchDb.Term">
+          <orm:reference uniqueId="a9ef471f-3efa-4286-a9bd-8784e74c1b78" association-name="DocumentTermRelationHasTerm" />
+        </orm:field>
+        <orm:index name="idx_DocumentTermRelation_Id2">
+          <orm:columnMapping>
+            <orm:column name="Id2" sql-type="unsigned big int" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:index name="idx_DocumentTermRelation_Id3">
+          <orm:columnMapping>
+            <orm:column name="Id3" sql-type="unsigned big int" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+    </orm:namespace>
+    <orm:schema schema="" />
+    <orm:relational-naming-settings>
+      <orm:source-strategy>Property</orm:source-strategy>
+      <orm:remove-camel-case>False</orm:remove-camel-case>
+    </orm:relational-naming-settings>
+  </orm:orm>
+  <ModelSettings xmlns="">
+    <SaveConnectionStringInAppConfig>false</SaveConnectionStringInAppConfig>
+    <NamingSettings>
+      <ClassRules>
+        <CaseMode>PascalCase</CaseMode>
+        <PluralizationMode>Singularize</PluralizationMode>
+      </ClassRules>
+      <FieldRules>
+        <AddPrefix>_</AddPrefix>
+        <CaseMode>CamelCase</CaseMode>
+      </FieldRules>
+      <PropertyRules>
+        <CaseMode>PascalCase</CaseMode>
+      </PropertyRules>
+      <NavigationPropertyRules />
+    </NamingSettings>
+    <CodeGenerationSettings>
+      <MappingDefinitionType>Xml</MappingDefinitionType>
+    </CodeGenerationSettings>
+    <SchemaUpdateSettings />
+    <BackendConfigurationSettings>
+      <BackendConfiguration>
+        <Backend>SQLite</Backend>
+        <ProviderName>System.Data.SQLite</ProviderName>
+      </BackendConfiguration>
+    </BackendConfigurationSettings>
+  </ModelSettings>
+  <Types>
+    <DomainClass Id="cf8bc495-a24a-49f6-baa4-3d4e486a8857" name="Corpus" namespace="CorpusExplorer.Sdk.Db.QuickSearchDb" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="d47d2814-71c8-42af-b5e6-c542b4dc1d50" name="Id" type="UInt64" label="Id : UInt64" identity="true" fieldName="_id" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="3b0da1ce-3379-4641-a747-ebe6541fc01a">
+          <NavigationalProperty Id="d7f443de-7dc9-4649-8d11-4eea57a0a3dc" name="CorpusMetadatas" type="IList&lt;CorpusMetadata&gt;" label="CorpusMetadatas : IList&lt;CorpusMetadata&gt;" nullable="true" kind="Persistent" fieldName="_corpusMetadatas" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="c47630c5-b38d-4a1b-af3c-bf21222a5fd3">
+          <NavigationalProperty Id="c94e6831-62d5-4fcd-9c66-626a518cff38" name="Documents" type="IList&lt;Document&gt;" label="Documents : IList&lt;Document&gt;" nullable="true" kind="Persistent" fieldName="_documents" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="831d9779-c6e5-44d6-af57-e6d23e7c0894">
+          <NavigationalProperty Id="6ada356e-b725-4e2c-b528-14988a9e460e" name="Terms" type="IList&lt;Term&gt;" label="Terms : IList&lt;Term&gt;" nullable="true" kind="Persistent" fieldName="_terms" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="67a4fd08-b4cf-420d-bcd6-6c7a708d7e96" name="CorpusMetadata" namespace="CorpusExplorer.Sdk.Db.QuickSearchDb" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="2989633d-4d43-49d3-854a-799552421ba5" name="Id" type="UInt64" label="Id : UInt64" identity="true" fieldName="_id" />
+      <Property Id="7351e01c-3d23-47d6-b010-f2757d034663" name="Name" label="Name : String" fieldName="_name" />
+      <Property Id="275ea6f1-6bf4-4b9d-b26e-a3c7b385686b" name="Value" label="Value : String" fieldName="_value" />
+      <AssociationTargets>
+        <Association Id="5f3884c2-daf8-4612-aaf8-bf51c3be0411" SourceMultiplicity="ZeroOne" name="CorpusMetadataHasCorpus">
+          <DomainClassMoniker name="/EntitiesModel/Corpus" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="bdcf9a16-1c23-41fd-a5ca-24994a4c05f9">
+              <NavigationalPropertyMoniker name="/EntitiesModel/Corpus/CorpusMetadatas" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="9d956e22-8b27-4117-ba61-8c72a8425986">
+              <NavigationalPropertyMoniker name="/EntitiesModel/CorpusMetadata/Corpus" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="b0182c7e-8e28-4e69-868c-270dfed96cb3">
+          <NavigationalProperty Id="a708f0a2-44b8-43d0-8621-3a10ed269e67" name="Corpus" type="Corpus" label="Corpus : Corpus" nullable="true" kind="Persistent" fieldName="_corpus" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="2c1331b8-117c-4580-892a-e8ffa101f6b3" name="Document" namespace="CorpusExplorer.Sdk.Db.QuickSearchDb" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="f4150d94-f61e-4932-9e73-365fb4ae832f" name="Id" type="UInt64" label="Id : UInt64" identity="true" fieldName="_id" />
+      <AssociationTargets>
+        <Association Id="667c830a-a840-4ac1-abf3-4f6b8bc8eceb" SourceMultiplicity="ZeroOne" name="DocumentHasCorpus">
+          <DomainClassMoniker name="/EntitiesModel/Corpus" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="bb7df6cb-0309-4f86-a663-52ee1d1dff46">
+              <NavigationalPropertyMoniker name="/EntitiesModel/Corpus/Documents" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="a0088092-873b-47e3-9c3a-14c655286c6e">
+              <NavigationalPropertyMoniker name="/EntitiesModel/Document/Corpus" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="ee1db62e-cb3c-4af3-8c85-467e1f9de2ad">
+          <NavigationalProperty Id="20d3251a-f626-4f83-9951-f6fb363706c4" name="DocumentMetadatas" type="IList&lt;DocumentMetadata&gt;" label="DocumentMetadatas : IList&lt;DocumentMetadata&gt;" nullable="true" kind="Persistent" fieldName="_documentMetadatas" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="6f7bba9f-ab57-4d9a-b7ed-c5f905e3e5ef">
+          <NavigationalProperty Id="b4eec1d1-bc94-423b-8782-de729961b42f" name="Corpus" type="Corpus" label="Corpus : Corpus" nullable="true" kind="Persistent" fieldName="_corpus" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="988bfdf3-e586-484c-ae65-937dbb399bdd">
+          <NavigationalProperty Id="7aa1abe5-dde2-4ed9-95ff-0cfd7d298818" name="DocumentTermRelations" type="IList&lt;DocumentTermRelation&gt;" label="DocumentTermRelations : IList&lt;DocumentTermRelation&gt;" nullable="true" kind="Persistent" fieldName="_documentTermRelations" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="e9c82deb-0d9a-4c47-b069-8f1dcf1300be" name="DocumentMetadata" namespace="CorpusExplorer.Sdk.Db.QuickSearchDb" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="1af981d5-eb55-41c3-a72b-220dea0547c0" name="Id" type="UInt64" label="Id : UInt64" identity="true" fieldName="_id" />
+      <Property Id="f2fc50b7-5808-4231-b38d-76348b14d186" name="Name" label="Name : String" fieldName="_name" />
+      <Property Id="3d6fbc06-5c60-4bc7-a707-8d0c0d27b0b8" name="Value" label="Value : String" fieldName="_value" />
+      <AssociationTargets>
+        <Association Id="36270656-bd10-43f8-94e3-04f21981f6c5" SourceMultiplicity="ZeroOne" name="DocumentMetadataHasDocument">
+          <DomainClassMoniker name="/EntitiesModel/Document" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="7db0c15a-9b7f-47af-a202-5d8a4df5e579">
+              <NavigationalPropertyMoniker name="/EntitiesModel/Document/DocumentMetadatas" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="63d47779-4cff-4022-a41e-c2f5c8a48a70">
+              <NavigationalPropertyMoniker name="/EntitiesModel/DocumentMetadata/Document" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="48712d58-a1ca-4677-9117-1a047251312b">
+          <NavigationalProperty Id="2979c1d5-4ff0-4979-8f33-a4ba05899de5" name="Document" type="Document" label="Document : Document" nullable="true" kind="Persistent" fieldName="_document" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="3cfef92e-18ce-4481-bfc4-f6e0efd897da" name="Term" namespace="CorpusExplorer.Sdk.Db.QuickSearchDb" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="f4e4a796-31b1-4a30-b8bb-e8050ec88a0d" name="Id" type="UInt64" label="Id : UInt64" identity="true" fieldName="_id" />
+      <Property Id="0bb5b12e-7d7e-43e4-9bc1-7b777ac62e69" name="Value" label="Value : String" fieldName="_value" />
+      <AssociationTargets>
+        <Association Id="501bb8ec-fcc3-4846-8143-89c79fdefe8d" SourceMultiplicity="ZeroOne" name="TermHasCorpus">
+          <DomainClassMoniker name="/EntitiesModel/Corpus" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="f294d09a-3b29-4127-9e92-480c22950968">
+              <NavigationalPropertyMoniker name="/EntitiesModel/Corpus/Terms" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="ce8a6862-e74d-4c8f-be57-602717e53338">
+              <NavigationalPropertyMoniker name="/EntitiesModel/Term/Corpus" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="0049038a-298e-4baa-9a2c-d8fd45d9dbb0">
+          <NavigationalProperty Id="ba05792a-39a9-463c-984c-20f5c3a4efe3" name="TermMetadatas" type="IList&lt;TermMetadata&gt;" label="TermMetadatas : IList&lt;TermMetadata&gt;" nullable="true" kind="Persistent" fieldName="_termMetadatas" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="e0530f33-cf8d-47d0-bd1a-4571647c6ddd">
+          <NavigationalProperty Id="03910e8d-6545-4be3-b89b-da76c817b691" name="Corpus" type="Corpus" label="Corpus : Corpus" nullable="true" kind="Persistent" fieldName="_corpus" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="6f241d89-0dac-4ec5-a05a-a16cb1c1b93a">
+          <NavigationalProperty Id="be426404-4334-409e-abec-bc3970a7b71a" name="DocumentTermRelations" type="IList&lt;DocumentTermRelation&gt;" label="DocumentTermRelations : IList&lt;DocumentTermRelation&gt;" nullable="true" kind="Persistent" fieldName="_documentTermRelations" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="9fde7afd-5236-4b2a-8f00-964d695a9cd1" name="TermMetadata" namespace="CorpusExplorer.Sdk.Db.QuickSearchDb" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="d506a4c8-26c2-4287-bd69-eab0c010378a" name="Id" type="UInt64" label="Id : UInt64" identity="true" fieldName="_id" />
+      <Property Id="c781e06f-21ac-44a8-a387-be5ccbc6a916" name="Key" label="Key : String" fieldName="_key" />
+      <Property Id="984f86a6-095e-487f-bc26-040f4f8e9fa6" name="Value" label="Value : String" fieldName="_value" />
+      <AssociationTargets>
+        <Association Id="27bda7a9-e413-4366-8465-165a13cd3d55" SourceMultiplicity="ZeroOne" name="TermMetadataHasTerm">
+          <DomainClassMoniker name="/EntitiesModel/Term" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="6ddb8146-005c-4e42-a921-ced3891728e5">
+              <NavigationalPropertyMoniker name="/EntitiesModel/Term/TermMetadatas" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="b706e781-c712-4a93-abf8-c45fcd44f343">
+              <NavigationalPropertyMoniker name="/EntitiesModel/TermMetadata/Term" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="20e14726-f8aa-45ca-8069-3534562c4f23">
+          <NavigationalProperty Id="da9f3a53-9c06-473b-b7bd-cbe198506fa9" name="Term" type="Term" label="Term : Term" nullable="true" kind="Persistent" fieldName="_term" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="f30920f9-238c-4dd4-ac7f-bb3c50ef3d57" name="DocumentTermRelation" namespace="CorpusExplorer.Sdk.Db.QuickSearchDb" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="bc81399b-21e6-4dff-9e7f-4b6b9b63e9f3" name="Id" type="UInt64" label="Id : UInt64" identity="true" fieldName="_id" />
+      <Property Id="3839f498-8931-406b-9623-2ac6b40bd559" name="Frequncy" type="UInt32" label="Frequncy : UInt32" fieldName="_frequncy" />
+      <AssociationTargets>
+        <Association Id="d1dc768d-5690-4b53-9e17-ead53cca9b95" SourceMultiplicity="ZeroOne" name="DocumentTermRelationHasDocument">
+          <DomainClassMoniker name="/EntitiesModel/Document" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="54aa3c67-c616-4f60-9a00-31b68c9ebc64">
+              <NavigationalPropertyMoniker name="/EntitiesModel/Document/DocumentTermRelations" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="fbc6216f-4ac5-4de5-b2e8-b8ada141b65f">
+              <NavigationalPropertyMoniker name="/EntitiesModel/DocumentTermRelation/Document" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="a9ef471f-3efa-4286-a9bd-8784e74c1b78" SourceMultiplicity="ZeroOne" name="DocumentTermRelationHasTerm">
+          <DomainClassMoniker name="/EntitiesModel/Term" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="e1373aeb-0405-47e6-aaeb-7ff048724141">
+              <NavigationalPropertyMoniker name="/EntitiesModel/Term/DocumentTermRelations" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="ace3020d-f2b9-46cb-a9d0-c92125658e4e">
+              <NavigationalPropertyMoniker name="/EntitiesModel/DocumentTermRelation/Term" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="ee3135e2-66c9-436f-829a-bbfa1a3102e0">
+          <NavigationalProperty Id="80ea1ddb-1d96-47d3-98d4-382efb4deda4" name="Document" type="Document" label="Document : Document" nullable="true" kind="Persistent" fieldName="_document" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="5587fbcc-edb2-4fb1-a7d8-8ba9ef9a236e">
+          <NavigationalProperty Id="30d71000-be6e-4df1-9131-f071836e4e8d" name="Term" type="Term" label="Term : Term" nullable="true" kind="Persistent" fieldName="_term" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+  </Types>
+  <domainContext>
+    <domainModelHasDomainContext Id="ac7e4cdc-88f2-444e-8247-807e67e955a2">
+      <domainContainer name="EntitiesModel" namespace="CorpusExplorer.Sdk.Db.QuickSearchDb" showPropertiesCompartment="true">
+        <entitySetProperty name="Corpus" namespace="CorpusExplorer.Sdk.Db.QuickSearchDb" type="Corpus" label="Corpus : IQueryable&lt;CorpusExplorer.Sdk.Db.QuickSearchDb.Corpus&gt;" />
+        <entitySetProperty name="CorpusMetadatas" namespace="CorpusExplorer.Sdk.Db.QuickSearchDb" type="CorpusMetadata" label="CorpusMetadatas : IQueryable&lt;CorpusExplorer.Sdk.Db.QuickSearchDb.CorpusMetadata&gt;" />
+        <entitySetProperty name="Documents" namespace="CorpusExplorer.Sdk.Db.QuickSearchDb" type="Document" label="Documents : IQueryable&lt;CorpusExplorer.Sdk.Db.QuickSearchDb.Document&gt;" />
+        <entitySetProperty name="DocumentMetadatas" namespace="CorpusExplorer.Sdk.Db.QuickSearchDb" type="DocumentMetadata" label="DocumentMetadatas : IQueryable&lt;CorpusExplorer.Sdk.Db.QuickSearchDb.DocumentMetadata&gt;" />
+        <entitySetProperty name="Terms" namespace="CorpusExplorer.Sdk.Db.QuickSearchDb" type="Term" label="Terms : IQueryable&lt;CorpusExplorer.Sdk.Db.QuickSearchDb.Term&gt;" />
+        <entitySetProperty name="TermMetadatas" namespace="CorpusExplorer.Sdk.Db.QuickSearchDb" type="TermMetadata" label="TermMetadatas : IQueryable&lt;CorpusExplorer.Sdk.Db.QuickSearchDb.TermMetadata&gt;" />
+        <entitySetProperty name="DocumentTermRelations" namespace="CorpusExplorer.Sdk.Db.QuickSearchDb" type="DocumentTermRelation" label="DocumentTermRelations : IQueryable&lt;CorpusExplorer.Sdk.Db.QuickSearchDb.DocumentTermRelation&gt;" />
+      </domainContainer>
+    </domainModelHasDomainContext>
+  </domainContext>
+</DomainModel>

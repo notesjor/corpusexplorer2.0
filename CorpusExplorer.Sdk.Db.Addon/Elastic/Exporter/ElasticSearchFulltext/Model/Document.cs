@@ -1,6 +1,10 @@
+#region
+
 using System;
 using System.Collections.Generic;
 using Nest;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter.ElasticSearchFulltext.Model
 {

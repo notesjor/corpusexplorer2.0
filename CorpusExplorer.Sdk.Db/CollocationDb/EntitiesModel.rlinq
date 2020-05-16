@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DomainModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="2.0.0.0" name="EntitiesModel" namespace="CorpusExplorer.Sdk.Db.CollocationDb" showPropertiesCompartment="true" xmlns="http://www.telerik.com/ORM">
+  <orm:orm name="EntitiesModel" backend="sqlite" xmlns:orm="http://tempuri.org/ORM">
+    <orm:namespace name="CorpusExplorer.Sdk.Db.CollocationDb" default="true">
+      <orm:class name="Term" use-default-mapping="true" uniqueId="f6a1d89e-6265-41da-b208-b500c4262f92">
+        <orm:identity>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:field name="_id" property="Id" uniqueId="24950ff4-6ffe-4dc3-848a-7415fea8916b" type="System.UInt64">
+          <orm:column name="Id" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_value" property="Value" uniqueId="0d1fd2e5-5acf-4ca9-9083-dd88303df39a" type="System.String">
+          <orm:column name="val" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_termRelations" property="TermRelations" behavior="readwrite" uniqueId="70b70465-7c77-460e-809c-f30edc962f50" type="CorpusExplorer.Sdk.Db.CollocationDb.TermRelation">
+          <orm:join-table uniqueId="796af2a3-a186-4f4f-9b7c-71585d5e03ce" association-name="TermHasTermRelation" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="TermRelation" use-default-mapping="true" uniqueId="014c220f-9362-4b96-9d00-a2f312796431">
+        <orm:identity>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:field name="_id" property="Id" uniqueId="9feaeaac-4333-46c4-bcc4-8b2cf55515cc" type="System.UInt64">
+          <orm:column name="Id" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_frequency" property="Frequency" uniqueId="6ee4b158-5cbe-4c7c-a4aa-016e90e2bae4" type="System.UInt32">
+          <orm:column name="Frequency" sql-type="bigint" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.BigIntConverter+ToUInt32" ado-type="Int64" />
+        </orm:field>
+        <orm:field name="_terms" property="Terms" behavior="readwrite" uniqueId="200e70a2-fafe-4208-a80e-a7de8ff14185" type="CorpusExplorer.Sdk.Db.CollocationDb.Term">
+          <orm:collection element-class="CorpusExplorer.Sdk.Db.CollocationDb.Term" inverse-field="_termRelations" order-by="" uniqueId="796af2a3-a186-4f4f-9b7c-71585d5e03ce" />
+        </orm:field>
+      </orm:class>
+    </orm:namespace>
+    <orm:schema schema="" />
+    <orm:relational-naming-settings>
+      <orm:source-strategy>Property</orm:source-strategy>
+      <orm:remove-camel-case>False</orm:remove-camel-case>
+    </orm:relational-naming-settings>
+  </orm:orm>
+  <ModelSettings xmlns="">
+    <SaveConnectionStringInAppConfig>false</SaveConnectionStringInAppConfig>
+    <NamingSettings>
+      <ClassRules>
+        <CaseMode>PascalCase</CaseMode>
+        <PluralizationMode>Singularize</PluralizationMode>
+      </ClassRules>
+      <FieldRules>
+        <AddPrefix>_</AddPrefix>
+        <CaseMode>CamelCase</CaseMode>
+      </FieldRules>
+      <PropertyRules>
+        <CaseMode>PascalCase</CaseMode>
+      </PropertyRules>
+      <NavigationPropertyRules />
+    </NamingSettings>
+    <CodeGenerationSettings>
+      <MappingDefinitionType>Xml</MappingDefinitionType>
+    </CodeGenerationSettings>
+    <SchemaUpdateSettings />
+    <BackendConfigurationSettings>
+      <BackendConfiguration>
+        <Backend>SQLite</Backend>
+        <ProviderName>System.Data.SQLite</ProviderName>
+      </BackendConfiguration>
+    </BackendConfigurationSettings>
+  </ModelSettings>
+  <Types>
+    <DomainClass Id="f6a1d89e-6265-41da-b208-b500c4262f92" name="Term" namespace="CorpusExplorer.Sdk.Db.CollocationDb" showPropertiesCompartment="true" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="24950ff4-6ffe-4dc3-848a-7415fea8916b" name="Id" type="UInt64" label="Id : UInt64" identity="true" fieldName="_id" />
+      <Property Id="0d1fd2e5-5acf-4ca9-9083-dd88303df39a" name="Value" label="Value : String" fieldName="_value" />
+      <AssociationTargets>
+        <Association Id="796af2a3-a186-4f4f-9b7c-71585d5e03ce" name="TermHasTermRelation">
+          <DomainClassMoniker name="/EntitiesModel/TermRelation" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="c7e1df15-1ac4-4058-b887-2232dc965178">
+              <NavigationalPropertyMoniker name="/EntitiesModel/TermRelation/Terms" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="7e67ea59-f1b2-4435-842b-61d64a8098c7">
+              <NavigationalPropertyMoniker name="/EntitiesModel/Term/TermRelations" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="a6fbfe69-349c-4129-aa63-c128ee76e669">
+          <NavigationalProperty Id="70b70465-7c77-460e-809c-f30edc962f50" name="TermRelations" type="IList&lt;TermRelation&gt;" label="TermRelations : IList&lt;TermRelation&gt;" nullable="true" kind="Persistent" fieldName="_termRelations" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="014c220f-9362-4b96-9d00-a2f312796431" name="TermRelation" namespace="CorpusExplorer.Sdk.Db.CollocationDb" showPropertiesCompartment="true" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="9feaeaac-4333-46c4-bcc4-8b2cf55515cc" name="Id" type="UInt64" label="Id : UInt64" identity="true" fieldName="_id" />
+      <Property Id="6ee4b158-5cbe-4c7c-a4aa-016e90e2bae4" name="Frequency" type="UInt32" label="Frequency : UInt32" fieldName="_frequency" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="1ff645d4-4b84-4696-ab19-ab5c39560718">
+          <NavigationalProperty Id="200e70a2-fafe-4208-a80e-a7de8ff14185" name="Terms" type="IList&lt;Term&gt;" label="Terms : IList&lt;Term&gt;" nullable="true" kind="Persistent" fieldName="_terms" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+  </Types>
+  <domainContext>
+    <domainModelHasDomainContext Id="1f6dbf91-7f72-4ed1-8b8e-9ffc87a8a4b9">
+      <domainContainer name="EntitiesModel" namespace="CorpusExplorer.Sdk.Db.CollocationDb" showPropertiesCompartment="true">
+        <entitySetProperty name="Terms" namespace="CorpusExplorer.Sdk.Db.CollocationDb" type="Term" label="Terms : IQueryable&lt;CorpusExplorer.Sdk.Db.CollocationDb.Term&gt;" />
+        <entitySetProperty name="TermRelations" namespace="CorpusExplorer.Sdk.Db.CollocationDb" type="TermRelation" label="TermRelations : IQueryable&lt;CorpusExplorer.Sdk.Db.CollocationDb.TermRelation&gt;" />
+      </domainContainer>
+    </domainModelHasDomainContext>
+  </domainContext>
+</DomainModel>

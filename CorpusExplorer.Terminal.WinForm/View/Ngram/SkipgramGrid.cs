@@ -44,6 +44,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
 
       AddSummaryRow();
+      ApplyFilterDelay();
       AddChildTemplate(
                        x => new FilterQuerySingleLayerAllInOneSentence
                        {

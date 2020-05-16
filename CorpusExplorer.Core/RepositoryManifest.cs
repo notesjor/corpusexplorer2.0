@@ -50,6 +50,7 @@ namespace CorpusExplorer.Core
       {"CSV-Tabelle (*.csv)|*.csv", new CsvTableWriter() },
       {"HTML-Dokument (*.html)|*.html", new HtmlTableWriter() },
       {"JSON-Dokument (*.json)|*.json", new JsonTableWriter() },
+      {"JSON-Dokument (gerundet) (*.json)|*.json", new JsonRoundedTableWriter() },
       {"SQL-Query nur Daten (*.sql)|*.sql", new SqlDataOnlyTableWriter() },
       {"SQL-Query nur Schema (*.sql)|*.sql", new SqlSchemaOnlyTableWriter() },
       {"SQL-Query Schema und Daten (*.sql)|*.sql", new SqlTableWriter() },
@@ -124,13 +125,16 @@ namespace CorpusExplorer.Core
         {"CorpusExplorer v6+GZIP (*.cec6.gz)|*.cec6.gz", new ExporterCec6 {UseCompression = true}},
         {"Plaintext-Export (*.txt)|*.txt", new ExporterPlaintext()},
         {"Plaintext-Export [Nur Wort-Layer] (*.txt)|*.txt", new ExporterPlaintextPure()},
+        {"Plaintext-Export [Nur Wort-Layer - Eine Datei] (*.txt)|*.txt", new ExporterPlaintextPureInOneFile()},
         {"Einfacher HTML-Export [Nur Wort-Layer] (*.txt)|*.txt", new ExporterHtmlPure()},
         {"CSV-Export [Nur Metadatan] (*.csv)|*.csv", new ExporterCsvMetadataOnly()},
         {"CSV-Export [Metadaten + Wort-Layer] (*.csv)|*.csv", new ExporterCsv()},
         {"Abfragen-Export [Nur für Schnappschüsse] (*.ceusd)|*.ceusd", new ExporterQuery()},
         {"CoNLL (*.conll)|*.conll", new ExporterConll()},
         {"TreeTagger (*.treetagger)|*.treetagger", new ExporterTreeTagger()},
-        {"TreeTagger + Satzgrenze (*.treetagger)|*.treetagger", new ExporterTreeTagger {UseSentenceTag = true}}
+        {"TreeTagger + Satzgrenze (*.treetagger)|*.treetagger", new ExporterTreeTagger {UseSentenceTag = true}},
+        {"CorpusWorkBench (*.cwb)|*.cwb", new ExporterCorpusWorkBench{UseSentenceTag = false}},
+        {"CorpusWorkBench + Satzgrenze (*.cwb)|*.cwb", new ExporterCorpusWorkBench {UseSentenceTag = true}}
       };
 
     /// <summary>
@@ -140,7 +144,7 @@ namespace CorpusExplorer.Core
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter =>
       new Dictionary<string, AbstractImporter>
       {
-        {"CorpusExplorer v6 (*.cec6)|*.cec6", new ImporterCec6()},
+        {"CorpusExplorer v6 (*.cec6, *.cec6.gz)|*.cec6;*.cec6.gz", new ImporterCec6()},
         {"CorpusExplorer v6 [STREAM] (*.cec6)|*.cec6", new ImporterCec6Stream()},
         {"TLV-XML (*.xml)|*.xml", new ImporterTlv()},
         {"CoNLL (*.conll)|*.conll", new ImporterConll()},
@@ -191,9 +195,11 @@ namespace CorpusExplorer.Core
 
         new DocumentCountAction(),
         new SentenceCountAction(),
+        new TokenListAction(),
         new TokenCountAction(),
         new LayerValuesAction(),
         new TypeCountAction(),
+        new DocumentHashAction(),
 
         new Frequency1SelectAction(),
         new Frequency1Action(),
@@ -202,6 +208,7 @@ namespace CorpusExplorer.Core
         new Frequency1RawAction(),
         new Frequency2RawAction(),
         new Frequency3RawAction(),
+        new CorrespondingValuesAction(),
         new NGramAction(),
         new NGramSelectedAction(),
         new CrossFrequencyAction(),
@@ -214,6 +221,8 @@ namespace CorpusExplorer.Core
         new StyleNgramAction(),
         new MetaAction(),
         new MetaDocumentAction(),
+        new MetaSelectedAction(),
+        new MetaSelectedDomainAction(),
         new MtldAction(),
         new VocdAction(),
         new GetDocumentAction(),

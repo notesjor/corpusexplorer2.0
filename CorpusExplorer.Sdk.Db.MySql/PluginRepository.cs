@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Db.MySql.Builder;
 using CorpusExplorer.Sdk.Db.MySql.Exporter;
@@ -10,23 +12,27 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
 
+#endregion
+
 namespace CorpusExplorer.Sdk.Db.MySql
 {
   public class PluginRepository : AbstractAddonRepository
   {
     public override IEnumerable<AbstractAdditionalTagger> AddonAdditionalTagger => null;
-    public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter => null;
+
     public override IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> AddonBackends =>
       new Dictionary<string, AbstractCorpusBuilder>
       {
         {"CorpusExplorer <-> MySQL", new CorpusBuilderMySql()}
       };
 
+    public override IEnumerable<IAction> AddonConsoleActions => null;
+
     public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters =>
       new Dictionary<string, AbstractExporter>
       {
         {"CorpusExplorer <-> MySQL (*.mysql)|*.mysql", new ExporterMysql()},
-        {"CorpusExplorer --> MySQL (*.db)|*.db", new ExporterMySqlFullAccess()},
+        {"CorpusExplorer --> MySQL (*.db)|*.db", new ExporterMySqlFullAccess()}
       };
 
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter =>
@@ -36,10 +42,10 @@ namespace CorpusExplorer.Sdk.Db.MySql
       };
 
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers => null;
-    public override IEnumerable<AbstractTagger> AddonTagger => null;
-    public override IEnumerable<IAction> AddonConsoleActions => null;
-    public override IEnumerable<IAddonView> AddonViews => null;
     public override IEnumerable<object> AddonSideloadFeature => null;
+    public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter => null;
+    public override IEnumerable<AbstractTagger> AddonTagger => null;
+    public override IEnumerable<IAddonView> AddonViews => null;
     public override string Guid => "CorpusExplorer.Sdk.Db.MySQL";
   }
 }

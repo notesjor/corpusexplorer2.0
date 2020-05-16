@@ -92,6 +92,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
 
                           radGridView1.DataSource = _table;
                           radGridView1.ResetBindings();
+                          ApplyFilterDelay();
                           radGridView1.BestFitColumns(BestFitColumnMode.HeaderCells);
                           radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
                         });

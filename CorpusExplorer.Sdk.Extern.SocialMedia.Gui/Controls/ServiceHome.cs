@@ -16,6 +16,8 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
   {
     private AbstractAuthentication _authentication;
 
+    [NonSerialized] private const string _serviceHelp = "<html>Für den Zugriff auf dieses soziale Netzwerk ist ein API-Schlüssel erforderlich. Diesen können Sie wie folgt beantragen:<br/><a href=\"UrlCreateAccount\">1. Erstellen Sie einen Nutzeraccount</a><br/><a href=\"UrlCreateApiKey\">2. Beantragen Sie einen API-Schlüssel</a><br/>3. Tragen Sie die Daten hier ein.</html>";
+
     [NonSerialized] private string[] _names;
 
     private string _serviceName;
@@ -47,7 +49,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
       set
       {
         _urlCreateAccount = value;
-        link_createAccount.Enabled = !string.IsNullOrEmpty(value);
+        ConfigureHelp();
       }
     }
 
@@ -57,8 +59,14 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls
       set
       {
         _urlCreateApiKey = value;
-        link_createApiKey.Enabled = !string.IsNullOrEmpty(value);
+        ConfigureHelp();
       }
+    }
+
+    private void ConfigureHelp()
+    {
+      ihdPanel1.IHDDeescribtion = _serviceHelp.Replace("UrlCreateAccount", UrlCreateAccount)
+                                              .Replace("UrlCreateApiKey", UrlCreateApiKey);
     }
 
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]

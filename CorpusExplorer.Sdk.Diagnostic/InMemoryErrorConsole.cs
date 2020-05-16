@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Threading;
 using OpenSourceTelemetrieClient;
 
 #endregion
@@ -23,6 +22,8 @@ namespace CorpusExplorer.Sdk.Diagnostic
     private static string _pathLo = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                                                  @"CorpusExplorer\App\insight.loc");
 
+    public static event OnLogEventHandler OnException;
+
     private static readonly Queue<KeyValuePair<DateTime, Exception>> _queue =
       new Queue<KeyValuePair<DateTime, Exception>>();
 
@@ -36,7 +37,7 @@ namespace CorpusExplorer.Sdk.Diagnostic
     {
       if (_insightAllowed)
       {
-        _telemetryClient.Flush().Wait();
+        _telemetryClient.Flush();
       }
 
       _queue.Clear();
@@ -87,11 +88,8 @@ namespace CorpusExplorer.Sdk.Diagnostic
       }
     }
 
-    // ReSharper disable once UnusedMember.Global
-    public static void Log(string message)
-    {
-      Log(new Exception(message));
-    }
+    public static void Log(string message) 
+      => Log(new Exception(message));
 
     public static void Log(Exception ex)
     {
@@ -105,6 +103,7 @@ namespace CorpusExplorer.Sdk.Diagnostic
       _queue.Enqueue(new KeyValuePair<DateTime, Exception>(DateTime.Now, ex));
 
       if (_insightAllowed) _telemetryClient.SendTelemetrie(ex);
+      OnException?.Invoke(ex);
     }
 
     public static void SendAppCrash(Exception ex)

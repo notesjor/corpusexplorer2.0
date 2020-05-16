@@ -1,0 +1,698 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;UNIVERSAL</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;UNIVERSAL</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="CorpusExplorer\SDK\Model\Extension\Obsolete\**" />
+    <EmbeddedResource Remove="CorpusExplorer\SDK\Model\Extension\Obsolete\**" />
+    <None Remove="CorpusExplorer\SDK\Model\Extension\Obsolete\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\BitCutStudios.CorpusExplorer\Crawler\Helper\CrawlerDictionaryExtension.cs" Link="Bcs\Crawler\Helper\CrawlerDictionaryExtension.cs" />
+    <Compile Include="..\BitCutStudios.CorpusExplorer\Crawler\HtmlCrawler.cs" Link="Bcs\Crawler\HtmlCrawler.cs" />
+    <Compile Include="..\BitCutStudios.CorpusExplorer\Crawler\HtmlMultipageCrawler.cs" Link="Bcs\Crawler\HtmlMultipageCrawler.cs" />
+    <Compile Include="..\BitCutStudios.CorpusExplorer\Crawler\HtmlPagedCrawler.cs" Link="Bcs\Crawler\HtmlPagedCrawler.cs" />
+    <Compile Include="..\BitCutStudios.CorpusExplorer\Crawler\HtmlSearchCrawler.cs" Link="Bcs\Crawler\HtmlSearchCrawler.cs" />
+    <Compile Include="..\BitCutStudios.CorpusExplorer\Crawler\HtmlStaticIndexCrawler.cs" Link="Bcs\Crawler\HtmlStaticIndexCrawler.cs" />
+    <Compile Include="..\BitCutStudios.CorpusExplorer\Crawler\HtmlStaticIndexCrawlerFilterLinks.cs" Link="Bcs\Crawler\HtmlStaticIndexCrawlerFilterLinks.cs" />
+    <Compile Include="..\BitCutStudios.CorpusExplorer\Crawler\Interface\ICrawler.cs" Link="Bcs\Crawler\Interface\ICrawler.cs" />
+    <Compile Include="..\BitCutStudios.CorpusExplorer\Crawler\PlaintextCrawler.cs" Link="Bcs\Crawler\PlaintextCrawler.cs" />
+    <Compile Include="..\BitCutStudios.CorpusExplorer\IO\FileIO.cs" Link="Bcs\IO\FileIO.cs" />
+    <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Cleanup\DomTreeAutoRankCleanup.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Cleanup\DomTreeAutoRankCleanup.cs" />
+    <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Cleanup\DomTreeRankCleanup.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Cleanup\DomTreeRankCleanup.cs" />
+    <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Cleanup\OnlyBodyTextCleanup.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Cleanup\OnlyBodyTextCleanup.cs" />
+    <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Scraper\Abstract\AbstractSimpleDocumentScraper.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Abstract\AbstractSimpleDocumentScraper.cs" />
+    <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Scraper\Cosmas\CosmasScraper.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Cosmas\CosmasScraper.cs" />
+    <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Scraper\Docx\SimpleDocxDocumentScraper.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Docx\SimpleDocxDocumentScraper.cs" />
+    <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Scraper\Html\SimpleHtmlDocumentScraper.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Html\SimpleHtmlDocumentScraper.cs" />
+    <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Scraper\Pdf\SimplePdfDocumentScraper.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Pdf\SimplePdfDocumentScraper.cs" />
+    <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Scraper\Rtf\SimpleRtfDocumentScraper.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Rtf\SimpleRtfDocumentScraper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk.Diagnostic\InMemoryErrorConsole.cs" Link="CorpusExplorer\SDK\Diagnostic\InMemoryErrorConsole.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk.Diagnostic\OnLogEventHandler.cs" Link="CorpusExplorer\SDK\Diagnostic\OnLogEventHandler.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk.Diagnostic\SafeExecute.cs" Link="CorpusExplorer\SDK\Diagnostic\SafeExecute.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk.Extern.QuickIndex\Indices\Cec6FileIndex.cs" Link="CorpusExplorer\SDK\Extern\QuickIndex\Indices\Cec6FileIndex.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk.Extern.QuickIndex\Indices\DictionaryIndex.cs" Link="CorpusExplorer\SDK\Extern\QuickIndex\Indices\DictionaryIndex.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk.Extern.QuickIndex\Indices\InverseIndex.cs" Link="CorpusExplorer\SDK\Extern\QuickIndex\Indices\InverseIndex.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk.Extern.QuickIndex\QuickIndex.cs" Link="CorpusExplorer\SDK\Extern\QuickIndex\QuickIndex.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Addon\IAction.cs" Link="CorpusExplorer\SDK\Addon\IAction.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Aspect\CacheAspect.cs" Link="CorpusExplorer\SDK\Aspect\CacheAspect.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Aspect\ErrorReportingAspect.cs" Link="CorpusExplorer\SDK\Aspect\ErrorReportingAspect.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Aspect\Model\Interfaces\ICache.cs" Link="CorpusExplorer\SDK\Aspect\Model\Interfaces\ICache.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Aspect\Model\StaticMemoryCache.cs" Link="CorpusExplorer\SDK\Aspect\Model\StaticMemoryCache.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Aspect\NamedSynchronizedLockAttribute.cs" Link="CorpusExplorer\SDK\Aspect\NamedSynchronizedLockAttribute.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Abstract\AbstractBlock.cs" Link="CorpusExplorer\SDK\Blocks\Abstract\AbstractBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Abstract\AbstractClusterMetadataBlock.cs" Link="CorpusExplorer\SDK\Blocks\Abstract\AbstractClusterMetadataBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Abstract\AbstractCompareSelectionBlock.cs" Link="CorpusExplorer\SDK\Blocks\Abstract\AbstractCompareSelectionBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Abstract\AbstractDocumentMetadataBlock.cs" Link="CorpusExplorer\SDK\Blocks\Abstract\AbstractDocumentMetadataBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Abstract\AbstractSimple1LayerBlock.cs" Link="CorpusExplorer\SDK\Blocks\Abstract\AbstractSimple1LayerBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Abstract\AbstractSimple2LayerBlock.cs" Link="CorpusExplorer\SDK\Blocks\Abstract\AbstractSimple2LayerBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Abstract\AbstractSimple3LayerBlock.cs" Link="CorpusExplorer\SDK\Blocks\Abstract\AbstractSimple3LayerBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\BurrowsDeltaBlock.cs" Link="CorpusExplorer\SDK\Blocks\BurrowsDeltaBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\ClusterMetadataByCooccurrenceBlock.cs" Link="CorpusExplorer\SDK\Blocks\ClusterMetadataByCooccurrenceBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\ClusterMetadataByCooccurrenceSelectiveBlock.cs" Link="CorpusExplorer\SDK\Blocks\ClusterMetadataByCooccurrenceSelectiveBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\ClusterMetadataByNgramBlock.cs" Link="CorpusExplorer\SDK\Blocks\ClusterMetadataByNgramBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\ClusterMetadata\ClusterMetadataItem.cs" Link="CorpusExplorer\SDK\Blocks\ClusterMetadata\ClusterMetadataItem.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\CooccurrenceBlock.cs" Link="CorpusExplorer\SDK\Blocks\CooccurrenceBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\CooccurrenceContextBlock.cs" Link="CorpusExplorer\SDK\Blocks\CooccurrenceContextBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\CooccurrenceCrossBlock.cs" Link="CorpusExplorer\SDK\Blocks\CooccurrenceCrossBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\CooccurrenceOverlappingBlock.cs" Link="CorpusExplorer\SDK\Blocks\CooccurrenceOverlappingBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\CooccurrencePolarisationBlock.cs" Link="CorpusExplorer\SDK\Blocks\CooccurrencePolarisationBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\CooccurrenceSecondLevelProfileBlock.cs" Link="CorpusExplorer\SDK\Blocks\CooccurrenceSecondLevelProfileBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\CooccurrenceSelectiveBlock.cs" Link="CorpusExplorer\SDK\Blocks\CooccurrenceSelectiveBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\CooccurrenceSpreadingBlock.cs" Link="CorpusExplorer\SDK\Blocks\CooccurrenceSpreadingBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Cooccurrence\ChiSquaredSignificance.cs" Link="CorpusExplorer\SDK\Blocks\Cooccurrence\ChiSquaredSignificance.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Cooccurrence\ISignificance.cs" Link="CorpusExplorer\SDK\Blocks\Cooccurrence\ISignificance.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Cooccurrence\LogLikelihoodSignificance.cs" Link="CorpusExplorer\SDK\Blocks\Cooccurrence\LogLikelihoodSignificance.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Cooccurrence\PoissonSignificance.cs" Link="CorpusExplorer\SDK\Blocks\Cooccurrence\PoissonSignificance.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\CorrespondingLayerValueBlock.cs" Link="CorpusExplorer\SDK\Blocks\CorrespondingLayerValueBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\CrossFrequencyBlock.cs" Link="CorpusExplorer\SDK\Blocks\CrossFrequencyBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\CrossFrequencyDocumentBasedBlock.cs" Link="CorpusExplorer\SDK\Blocks\CrossFrequencyDocumentBasedBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\CutOffPhraseBlock.cs" Link="CorpusExplorer\SDK\Blocks\CutOffPhraseBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DisambiguationBlock.cs" Link="CorpusExplorer\SDK\Blocks\DisambiguationBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Disambiguation\DisambiguationCluster.cs" Link="CorpusExplorer\SDK\Blocks\Disambiguation\DisambiguationCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Disambiguation\IDisambiguationCluster.cs" Link="CorpusExplorer\SDK\Blocks\Disambiguation\IDisambiguationCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DocumentBestSnippetBlock.cs" Link="CorpusExplorer\SDK\Blocks\DocumentBestSnippetBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DocumentCloneDetectionBlock.cs" Link="CorpusExplorer\SDK\Blocks\DocumentCloneDetectionBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DocumentCloneQuickDetectionBlock.cs" Link="CorpusExplorer\SDK\Blocks\DocumentCloneQuickDetectionBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DocumentContainsLayerValueBlock.cs" Link="CorpusExplorer\SDK\Blocks\DocumentContainsLayerValueBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DocumentContainsMetadataBlock.cs" Link="CorpusExplorer\SDK\Blocks\DocumentContainsMetadataBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DocumentFrequenceDistributionBlock.cs" Link="CorpusExplorer\SDK\Blocks\DocumentFrequenceDistributionBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DocumentFrequencyDictionaryBlock.cs" Link="CorpusExplorer\SDK\Blocks\DocumentFrequencyDictionaryBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DocumentFulltextBlock.cs" Link="CorpusExplorer\SDK\Blocks\DocumentFulltextBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DocumentHashBlock.cs" Link="CorpusExplorer\SDK\Blocks\DocumentHashBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DocumentMetadataFiniteStateMachineBlock.cs" Link="CorpusExplorer\SDK\Blocks\DocumentMetadataFiniteStateMachineBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DocumentMetadataWeightBlock.cs" Link="CorpusExplorer\SDK\Blocks\DocumentMetadataWeightBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DocumentQueryValueBlock.cs" Link="CorpusExplorer\SDK\Blocks\DocumentQueryValueBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DocumentQuickRankSearch.cs" Link="CorpusExplorer\SDK\Blocks\DocumentQuickRankSearch.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DocumentSimilarityBlock.cs" Link="CorpusExplorer\SDK\Blocks\DocumentSimilarityBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DocumentSizeBlock.cs" Link="CorpusExplorer\SDK\Blocks\DocumentSizeBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DocumentTermFrequencyBlock.cs" Link="CorpusExplorer\SDK\Blocks\DocumentTermFrequencyBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DocumentWordlistBlock.cs" Link="CorpusExplorer\SDK\Blocks\DocumentWordlistBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\DuplicateSentenceBlock.cs" Link="CorpusExplorer\SDK\Blocks\DuplicateSentenceBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\EditDistantCalculationBlock.cs" Link="CorpusExplorer\SDK\Blocks\EditDistantCalculationBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Flow\FlowNode.cs" Link="CorpusExplorer\SDK\Blocks\Flow\FlowNode.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Flow\FlowNodeDirection.cs" Link="CorpusExplorer\SDK\Blocks\Flow\FlowNodeDirection.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Frequency1LayerBlock.cs" Link="CorpusExplorer\SDK\Blocks\Frequency1LayerBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Frequency1LayerOneOccurrencePerDocument.cs" Link="CorpusExplorer\SDK\Blocks\Frequency1LayerOneOccurrencePerDocument.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Frequency1LayerOneOccurrencePerSentenceBlock.cs" Link="CorpusExplorer\SDK\Blocks\Frequency1LayerOneOccurrencePerSentenceBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Frequency2LayerBlock.cs" Link="CorpusExplorer\SDK\Blocks\Frequency2LayerBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Frequency3LayerBlock.cs" Link="CorpusExplorer\SDK\Blocks\Frequency3LayerBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\FrequencyLeftRightBlock.cs" Link="CorpusExplorer\SDK\Blocks\FrequencyLeftRightBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\FrequencyMasterSlave2LayerBlock.cs" Link="CorpusExplorer\SDK\Blocks\FrequencyMasterSlave2LayerBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\GroupDocuments\Abstract\AbstractGroupDocumentsComparer.cs" Link="CorpusExplorer\SDK\Blocks\GroupDocuments\Abstract\AbstractGroupDocumentsComparer.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\GroupDocuments\GroupDocumentsCompareDateTime.cs" Link="CorpusExplorer\SDK\Blocks\GroupDocuments\GroupDocumentsCompareDateTime.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\GroupDocuments\GroupDocumentsCompareDateTimeYearOnly.cs" Link="CorpusExplorer\SDK\Blocks\GroupDocuments\GroupDocumentsCompareDateTimeYearOnly.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\GroupDocuments\GroupDocumentsCompareDouble.cs" Link="CorpusExplorer\SDK\Blocks\GroupDocuments\GroupDocumentsCompareDouble.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\GroupDocuments\GroupDocumentsCompareInteger.cs" Link="CorpusExplorer\SDK\Blocks\GroupDocuments\GroupDocumentsCompareInteger.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Helper\DoubleKeyDictionary.cs" Link="CorpusExplorer\SDK\Blocks\Helper\DoubleKeyDictionary.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Interfaces\IUseHydraSentenceOptimization.cs" Link="CorpusExplorer\SDK\Blocks\Interfaces\IUseHydraSentenceOptimization.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Interfaces\IUseMemoryOverflowProtection.cs" Link="CorpusExplorer\SDK\Blocks\Interfaces\IUseMemoryOverflowProtection.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\InverseDocumentTermFrequencyBlock.cs" Link="CorpusExplorer\SDK\Blocks\InverseDocumentTermFrequencyBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\InverseDocumentVectorBlock.cs" Link="CorpusExplorer\SDK\Blocks\InverseDocumentVectorBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\KeywordBlock.cs" Link="CorpusExplorer\SDK\Blocks\KeywordBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\KeywordCompletePreCalculatedBlock.cs" Link="CorpusExplorer\SDK\Blocks\KeywordCompletePreCalculatedBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\KeywordPresetReferenceListBlock.cs" Link="CorpusExplorer\SDK\Blocks\KeywordPresetReferenceListBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Measure\Abstract\AbstractMeasure.cs" Link="CorpusExplorer\SDK\Blocks\Measure\Abstract\AbstractMeasure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Measure\Abstract\IMeasure.cs" Link="CorpusExplorer\SDK\Blocks\Measure\Abstract\IMeasure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Measure\BraunMeasure.cs" Link="CorpusExplorer\SDK\Blocks\Measure\BraunMeasure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Measure\DiceCoefficient.cs" Link="CorpusExplorer\SDK\Blocks\Measure\DiceCoefficient.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Measure\HamannMeasure.cs" Link="CorpusExplorer\SDK\Blocks\Measure\HamannMeasure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Measure\JaccardMeasure.cs" Link="CorpusExplorer\SDK\Blocks\Measure\JaccardMeasure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Measure\KappaMeasure.cs" Link="CorpusExplorer\SDK\Blocks\Measure\KappaMeasure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Measure\KulczynskiMeasure.cs" Link="CorpusExplorer\SDK\Blocks\Measure\KulczynskiMeasure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Measure\MCoefficientMeasure.cs" Link="CorpusExplorer\SDK\Blocks\Measure\MCoefficientMeasure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Measure\MutalInformation.cs" Link="CorpusExplorer\SDK\Blocks\Measure\MutalInformation.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Measure\OchiaiMeasure.cs" Link="CorpusExplorer\SDK\Blocks\Measure\OchiaiMeasure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Measure\PhiMeasure.cs" Link="CorpusExplorer\SDK\Blocks\Measure\PhiMeasure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Measure\RusselRaoMeasure.cs" Link="CorpusExplorer\SDK\Blocks\Measure\RusselRaoMeasure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Measure\SimpsonMeasure.cs" Link="CorpusExplorer\SDK\Blocks\Measure\SimpsonMeasure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Measure\SneathMeasure.cs" Link="CorpusExplorer\SDK\Blocks\Measure\SneathMeasure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Measure\TanimotoMeasure.cs" Link="CorpusExplorer\SDK\Blocks\Measure\TanimotoMeasure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Measure\YuleMeasure.cs" Link="CorpusExplorer\SDK\Blocks\Measure\YuleMeasure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\MetadataCategoriserBlock.cs" Link="CorpusExplorer\SDK\Blocks\MetadataCategoriserBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\MetadataCrossFrequency.cs" Link="CorpusExplorer\SDK\Blocks\MetadataCrossFrequency.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\MtldBlock.cs" Link="CorpusExplorer\SDK\Blocks\MtldBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Mtld\WeightingMode.cs" Link="CorpusExplorer\SDK\Blocks\Mtld\WeightingMode.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\NamedEntityRecognitionBlock.cs" Link="CorpusExplorer\SDK\Blocks\NamedEntityRecognitionBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\NamedEntityRecognition\Entity.cs" Link="CorpusExplorer\SDK\Blocks\NamedEntityRecognition\Entity.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\NamedEntityRecognition\Model.cs" Link="CorpusExplorer\SDK\Blocks\NamedEntityRecognition\Model.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\NamedEntityRecognition\Rule.cs" Link="CorpusExplorer\SDK\Blocks\NamedEntityRecognition\Rule.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Ngram1LayerBlock.cs" Link="CorpusExplorer\SDK\Blocks\Ngram1LayerBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Ngram1LayerIgnoreSentencesBlock.cs" Link="CorpusExplorer\SDK\Blocks\Ngram1LayerIgnoreSentencesBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Ngram1LayerPatternBlock.cs" Link="CorpusExplorer\SDK\Blocks\Ngram1LayerPatternBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Ngram1LayerPatternIgnoreSentencesBlock.cs" Link="CorpusExplorer\SDK\Blocks\Ngram1LayerPatternIgnoreSentencesBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Ngram1LayerSelectiveBlock.cs" Link="CorpusExplorer\SDK\Blocks\Ngram1LayerSelectiveBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\NGramHighlightCooccurrencesBlock.cs" Link="CorpusExplorer\SDK\Blocks\NGramHighlightCooccurrencesBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\NgramPhoneticBlock.cs" Link="CorpusExplorer\SDK\Blocks\NgramPhoneticBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\NormalizedSkipgramProbabilityBlock.cs" Link="CorpusExplorer\SDK\Blocks\NormalizedSkipgramProbabilityBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\OverTimeBlock.cs" Link="CorpusExplorer\SDK\Blocks\OverTimeBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\OverTime\OverTimeAggregationDelegate.cs" Link="CorpusExplorer\SDK\Blocks\OverTime\OverTimeAggregationDelegate.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\OverTime\OverTimeCalculateDelegate.cs" Link="CorpusExplorer\SDK\Blocks\OverTime\OverTimeCalculateDelegate.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Partition\Delegates\PartitionBlockAggregatioDelegate.cs" Link="CorpusExplorer\SDK\Blocks\Partition\Delegates\PartitionBlockAggregatioDelegate.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Partition\Delegates\PartitionBlockConfiguration.cs" Link="CorpusExplorer\SDK\Blocks\Partition\Delegates\PartitionBlockConfiguration.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Partition\Delegates\PartitionBlockMappingDelegate.cs" Link="CorpusExplorer\SDK\Blocks\Partition\Delegates\PartitionBlockMappingDelegate.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Partition\MakeAggregatedPartionBlock.cs" Link="CorpusExplorer\SDK\Blocks\Partition\MakeAggregatedPartionBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Partition\MakeMetadataDocumentPartionBlock.cs" Link="CorpusExplorer\SDK\Blocks\Partition\MakeMetadataDocumentPartionBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Partition\MakeSeparatedPartionBlock.cs" Link="CorpusExplorer\SDK\Blocks\Partition\MakeSeparatedPartionBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Partition\MakeSingleDocumentPartionBlock.cs" Link="CorpusExplorer\SDK\Blocks\Partition\MakeSingleDocumentPartionBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\PatternanalyticsBlock.cs" Link="CorpusExplorer\SDK\Blocks\PatternanalyticsBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\PhraseDiscovery\PhraseDiscoveryRule.cs" Link="CorpusExplorer\SDK\Blocks\PhraseDiscovery\PhraseDiscoveryRule.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\PhrasesBlock.cs" Link="CorpusExplorer\SDK\Blocks\PhrasesBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\PhrasesLaboratoryBlock.cs" Link="CorpusExplorer\SDK\Blocks\PhrasesLaboratoryBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\PhrasesLaboratory\Constituent.cs" Link="CorpusExplorer\SDK\Blocks\PhrasesLaboratory\Constituent.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\PhrasesLaboratory\GrammarRule\Abstract\AbstractGrammarRule.cs" Link="CorpusExplorer\SDK\Blocks\PhrasesLaboratory\GrammarRule\Abstract\AbstractGrammarRule.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\PhrasesLaboratory\GrammarRule\ExactGrammarRule.cs" Link="CorpusExplorer\SDK\Blocks\PhrasesLaboratory\GrammarRule\ExactGrammarRule.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\PhrasesLaboratory\GrammarRule\JoinAllGrammarRule.cs" Link="CorpusExplorer\SDK\Blocks\PhrasesLaboratory\GrammarRule\JoinAllGrammarRule.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\PhrasesLaboratory\PhraseGrammar.cs" Link="CorpusExplorer\SDK\Blocks\PhrasesLaboratory\PhraseGrammar.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\PositionFrequencyBlock.cs" Link="CorpusExplorer\SDK\Blocks\PositionFrequencyBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\RandomSelectionBlock.cs" Link="CorpusExplorer\SDK\Blocks\RandomSelectionBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\RandomSelectionClusterBlock.cs" Link="CorpusExplorer\SDK\Blocks\RandomSelectionClusterBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\RandomSelectionSplitBlock.cs" Link="CorpusExplorer\SDK\Blocks\RandomSelectionSplitBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\ReadingEase\AbstractReadingEaseIndex.cs" Link="CorpusExplorer\SDK\Blocks\ReadingEase\AbstractReadingEaseIndex.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\ReadingEase\FelschKincaidGradeIndex.cs" Link="CorpusExplorer\SDK\Blocks\ReadingEase\FelschKincaidGradeIndex.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\ReadingEase\FelschReadingEaseIndex.cs" Link="CorpusExplorer\SDK\Blocks\ReadingEase\FelschReadingEaseIndex.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\ReadingEase\GunningFogIndexIndex.cs" Link="CorpusExplorer\SDK\Blocks\ReadingEase\GunningFogIndexIndex.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\ReadingEase\SmogIndexIndex.cs" Link="CorpusExplorer\SDK\Blocks\ReadingEase\SmogIndexIndex.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\ReadingEase\WienerSachtextV1Index.cs" Link="CorpusExplorer\SDK\Blocks\ReadingEase\WienerSachtextV1Index.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\ReadingEase\WienerSachtextV2Index.cs" Link="CorpusExplorer\SDK\Blocks\ReadingEase\WienerSachtextV2Index.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\ReadingEase\WienerSachtextV3Index.cs" Link="CorpusExplorer\SDK\Blocks\ReadingEase\WienerSachtextV3Index.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\ReadingEase\WienerSachtextV4Index.cs" Link="CorpusExplorer\SDK\Blocks\ReadingEase\WienerSachtextV4Index.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionClusterBlock.cs" Link="CorpusExplorer\SDK\Blocks\SelectionClusterBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\Abstract\AbstractCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\Abstract\AbstractCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\Abstract\AbstractCountCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\Abstract\AbstractCountCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\Abstract\AbstractRangeCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\Abstract\AbstractRangeCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\DateTimeCenturyOnlyCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\DateTimeCenturyOnlyCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\DateTimeCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\DateTimeCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\DateTimeDecadeOnlyCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\DateTimeDecadeOnlyCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\DateTimeRangeCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\DateTimeRangeCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\DateTimeYearMonthDayHourMinuteOnlyCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\DateTimeYearMonthDayHourMinuteOnlyCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\DateTimeYearMonthDayHourOnlyCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\DateTimeYearMonthDayHourOnlyCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\DateTimeYearMonthDayOnlyCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\DateTimeYearMonthDayOnlyCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\DateTimeYearMonthOnlyCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\DateTimeYearMonthOnlyCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\DateTimeYearOnlyCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\DateTimeYearOnlyCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\DateTimeYearQuarterOnlyCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\DateTimeYearQuarterOnlyCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\DateTimeYearWeekOnlyCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\DateTimeYearWeekOnlyCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\DocumentCounterCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\DocumentCounterCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\DoubleCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\DoubleCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\DoubleRangeCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\DoubleRangeCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\Helper\ClusterToSelectionHelper.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\Helper\ClusterToSelectionHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\IntegerCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\IntegerCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\IntegerRangeCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\IntegerRangeCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\SentenceCounterCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\SentenceCounterCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\StringCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\StringCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Cluster\TokenCounterCluster.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\TokenCounterCluster.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\Abstract\AbstractSelectionClusterGenerator.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\Abstract\AbstractSelectionClusterGenerator.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\Abstract\AbstractSelectionClusterGeneratorRange.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\Abstract\AbstractSelectionClusterGeneratorRange.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\Abstract\AbstractSelectionClusterGeneratorValue.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\Abstract\AbstractSelectionClusterGeneratorValue.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\Counter\Abstract\AbstractCounterClusterType.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\Counter\Abstract\AbstractCounterClusterType.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\Counter\CounterClusterTypeDocument.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\Counter\CounterClusterTypeDocument.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\Counter\CounterClusterTypeSentence.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\Counter\CounterClusterTypeSentence.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\Counter\CounterClusterTypeToken.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\Counter\CounterClusterTypeToken.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\Counter\GetOrderByValueDelegate.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\Counter\GetOrderByValueDelegate.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\Counter\PredefinedGetOrderByValueDelegateDelegates.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\Counter\PredefinedGetOrderByValueDelegateDelegates.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorCounter.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorCounter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeCenturyOnlyValue.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeCenturyOnlyValue.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeDecadeOnlyValue.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeDecadeOnlyValue.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeRange.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeRange.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeValue.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeValue.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthDayHourMinuteOnlyValue.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthDayHourMinuteOnlyValue.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthDayHourOnlyValue.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthDayHourOnlyValue.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthDayOnlyValue.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthDayOnlyValue.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthOnlyValue.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthOnlyValue.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearOnlyValue.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearOnlyValue.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearQuarterOnlyValue.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearQuarterOnlyValue.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearWeekOnlyValue.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearWeekOnlyValue.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDoubleRange.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDoubleRange.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDoubleValue.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDoubleValue.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorIntegerRange.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorIntegerRange.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorIntegerValue.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorIntegerValue.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorRobustDateTimeValue.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorRobustDateTimeValue.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorStringValue.cs" Link="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\SelectionClusterGeneratorStringValue.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SentenceFrequenceDistributionBlock.cs" Link="CorpusExplorer\SDK\Blocks\SentenceFrequenceDistributionBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SentenceHashBlock.cs" Link="CorpusExplorer\SDK\Blocks\SentenceHashBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Similarity\Abstract\AbstractDistance.cs" Link="CorpusExplorer\SDK\Blocks\Similarity\Abstract\AbstractDistance.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Similarity\Abstract\AbstractSimilarity.cs" Link="CorpusExplorer\SDK\Blocks\Similarity\Abstract\AbstractSimilarity.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Similarity\ConvertDistanceToSimilarity.cs" Link="CorpusExplorer\SDK\Blocks\Similarity\ConvertDistanceToSimilarity.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Similarity\CosineMeasure.cs" Link="CorpusExplorer\SDK\Blocks\Similarity\CosineMeasure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Similarity\EuclideanDistance.cs" Link="CorpusExplorer\SDK\Blocks\Similarity\EuclideanDistance.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SortDocuments.cs" Link="CorpusExplorer\SDK\Blocks\SortDocuments.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SummarizerBlock.cs" Link="CorpusExplorer\SDK\Blocks\SummarizerBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\SyntagmaBlock.cs" Link="CorpusExplorer\SDK\Blocks\SyntagmaBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\TextLiveSearchBlock.cs" Link="CorpusExplorer\SDK\Blocks\TextLiveSearchBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\ValidateSelectionIntegrityBlock.cs" Link="CorpusExplorer\SDK\Blocks\ValidateSelectionIntegrityBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\VocabularyComplaxity\AbstractVocabularyComplexity.cs" Link="CorpusExplorer\SDK\Blocks\VocabularyComplaxity\AbstractVocabularyComplexity.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\VocabularyComplaxity\CalculationHelper\VocabularyComplexityMCalculationHelper.cs" Link="CorpusExplorer\SDK\Blocks\VocabularyComplaxity\CalculationHelper\VocabularyComplexityMCalculationHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\VocabularyComplaxity\CalculationHelper\VocabularyComplexityViCalculationHelper.cs" Link="CorpusExplorer\SDK\Blocks\VocabularyComplaxity\CalculationHelper\VocabularyComplexityViCalculationHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\VocabularyComplaxity\VocabularyComplexityByBrunet1978.cs" Link="CorpusExplorer\SDK\Blocks\VocabularyComplaxity\VocabularyComplexityByBrunet1978.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\VocabularyComplaxity\VocabularyComplexityByHonore1979.cs" Link="CorpusExplorer\SDK\Blocks\VocabularyComplaxity\VocabularyComplexityByHonore1979.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\VocabularyComplaxity\VocabularyComplexityBySichel1975.cs" Link="CorpusExplorer\SDK\Blocks\VocabularyComplaxity\VocabularyComplexityBySichel1975.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\VocabularyComplaxity\VocabularyComplexityByYule1938.cs" Link="CorpusExplorer\SDK\Blocks\VocabularyComplaxity\VocabularyComplexityByYule1938.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\VocabularyComplaxity\VocabularyComplexityCarrollsCorrectedTTR.cs" Link="CorpusExplorer\SDK\Blocks\VocabularyComplaxity\VocabularyComplexityCarrollsCorrectedTTR.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\VocabularyComplaxity\VocabularyComplexityGuiraud1954.cs" Link="CorpusExplorer\SDK\Blocks\VocabularyComplaxity\VocabularyComplexityGuiraud1954.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\VocabularyComplaxity\VocabularyComplexityHerdan1960.cs" Link="CorpusExplorer\SDK\Blocks\VocabularyComplaxity\VocabularyComplexityHerdan1960.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\VocabularyComplaxity\VocabularyComplexitySummersIndex.cs" Link="CorpusExplorer\SDK\Blocks\VocabularyComplaxity\VocabularyComplexitySummersIndex.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\VocabularyComplaxity\VocabularyComplexityTypeTokenRatio.cs" Link="CorpusExplorer\SDK\Blocks\VocabularyComplaxity\VocabularyComplexityTypeTokenRatio.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\VocabularyComplexityBlock.cs" Link="CorpusExplorer\SDK\Blocks\VocabularyComplexityBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\VocabularyComplexitySelectionBasedBlock.cs" Link="CorpusExplorer\SDK\Blocks\VocabularyComplexitySelectionBasedBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\VocdBlock.cs" Link="CorpusExplorer\SDK\Blocks\VocdBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\WordFlow\WordFlowModel.cs" Link="CorpusExplorer\SDK\Blocks\WordFlow\WordFlowModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\WordListBlock.cs" Link="CorpusExplorer\SDK\Blocks\WordListBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Ecosystem\CorpusExplorerEcosystem.cs" Link="CorpusExplorer\SDK\Ecosystem\CorpusExplorerEcosystem.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Ecosystem\Model\Configuration.cs" Link="CorpusExplorer\SDK\Ecosystem\Model\Configuration.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Ecosystem\Model\InitialOptionsEnum.cs" Link="CorpusExplorer\SDK\Ecosystem\Model\InitialOptionsEnum.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\AbstractThreadPoolItem.cs" Link="CorpusExplorer\SDK\Helper\AbstractThreadPoolItem.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\AutoSplitBlockHelper.cs" Link="CorpusExplorer\SDK\Helper\AutoSplitBlockHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\AvailableAddonHelper.cs" Link="CorpusExplorer\SDK\Helper\AvailableAddonHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\CopyDirectoryHelper.cs" Link="CorpusExplorer\SDK\Helper\CopyDirectoryHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\CorpusExplorerWebClient.cs" Link="CorpusExplorer\SDK\Helper\CorpusExplorerWebClient.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\DataTableExtension.cs" Link="CorpusExplorer\SDK\Helper\DataTableExtension.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\DateTimeHelper.cs" Link="CorpusExplorer\SDK\Helper\DateTimeHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\DictionaryExtension.cs" Link="CorpusExplorer\SDK\Helper\DictionaryExtension.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\DictionaryMergeHelper.cs" Link="CorpusExplorer\SDK\Helper\DictionaryMergeHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\DictionarySerializerHelper.cs" Link="CorpusExplorer\SDK\Helper\DictionarySerializerHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\DictionaryToDataTableHelper.cs" Link="CorpusExplorer\SDK\Helper\DictionaryToDataTableHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\DictionaryToTupleEnumerationHelper.cs" Link="CorpusExplorer\SDK\Helper\DictionaryToTupleEnumerationHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\DirectoryCopyHelper.cs" Link="CorpusExplorer\SDK\Helper\DirectoryCopyHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\DocumentHelper.cs" Link="CorpusExplorer\SDK\Helper\DocumentHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\DocumentSerializerHelper.cs" Link="CorpusExplorer\SDK\Helper\DocumentSerializerHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\DynamicAddonLoader.cs" Link="CorpusExplorer\SDK\Helper\DynamicAddonLoader.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\EncodingFixer.cs" Link="CorpusExplorer\SDK\Helper\EncodingFixer.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\EncodingHelper.cs" Link="CorpusExplorer\SDK\Helper\EncodingHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\GeoCoordinatesHelper.cs" Link="CorpusExplorer\SDK\Helper\GeoCoordinatesHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\HtmlCleanup.cs" Link="CorpusExplorer\SDK\Helper\HtmlCleanup.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\IEnumerableStatistics.cs" Link="CorpusExplorer\SDK\Helper\IEnumerableStatistics.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\IEnumerableStringSerializerHelper.cs" Link="CorpusExplorer\SDK\Helper\IEnumerableStringSerializerHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\IndexList.cs" Link="CorpusExplorer\SDK\Helper\IndexList.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\IntArrayCutter.cs" Link="CorpusExplorer\SDK\Helper\IntArrayCutter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\JsonToCsvHelper.cs" Link="CorpusExplorer\SDK\Helper\JsonToCsvHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\LayerIndexCacheHelper.cs" Link="CorpusExplorer\SDK\Helper\LayerIndexCacheHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\ListOptimized.cs" Link="CorpusExplorer\SDK\Helper\ListOptimized.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\ListOptimizedExtensions.cs" Link="CorpusExplorer\SDK\Helper\ListOptimizedExtensions.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\MetaDictionarySerializerHelper.cs" Link="CorpusExplorer\SDK\Helper\MetaDictionarySerializerHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\MultidimensionalDocumentExtension.cs" Link="CorpusExplorer\SDK\Helper\MultidimensionalDocumentExtension.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\ObjectCastHelper.cs" Link="CorpusExplorer\SDK\Helper\ObjectCastHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\PasswordHasher.cs" Link="CorpusExplorer\SDK\Helper\PasswordHasher.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\PathHelper.cs" Link="CorpusExplorer\SDK\Helper\PathHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\PathShortenerHelper.cs" Link="CorpusExplorer\SDK\Helper\PathShortenerHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\ProcessingDocumentSticher.cs" Link="CorpusExplorer\SDK\Helper\ProcessingDocumentSticher.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\ProjectJoiner.cs" Link="CorpusExplorer\SDK\Helper\ProjectJoiner.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\QueueExtension.cs" Link="CorpusExplorer\SDK\Helper\QueueExtension.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\ReadableDocumentHelper.cs" Link="CorpusExplorer\SDK\Helper\ReadableDocumentHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\SafeXmlSectionRemoveableHelper.cs" Link="CorpusExplorer\SDK\Helper\SafeXmlSectionRemoveableHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\SelectionEqualityComparer.cs" Link="CorpusExplorer\SDK\Helper\SelectionEqualityComparer.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\SelectionJoiner.cs" Link="CorpusExplorer\SDK\Helper\SelectionJoiner.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\SelectionListConverterHelper.cs" Link="CorpusExplorer\SDK\Helper\SelectionListConverterHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\SelectionParentHelper.cs" Link="CorpusExplorer\SDK\Helper\SelectionParentHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\SelectionToDataTableHelper.cs" Link="CorpusExplorer\SDK\Helper\SelectionToDataTableHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\Serializer.cs" Link="CorpusExplorer\SDK\Helper\Serializer.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\SimpleConfiguration.cs" Link="CorpusExplorer\SDK\Helper\SimpleConfiguration.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\StatisticHelper.cs" Link="CorpusExplorer\SDK\Helper\StatisticHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\StringArrayEqualityComparer.cs" Link="CorpusExplorer\SDK\Helper\StringArrayEqualityComparer.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\TaskExtension.cs" Link="CorpusExplorer\SDK\Helper\TaskExtension.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\TemplateTextGenerator.cs" Link="CorpusExplorer\SDK\Helper\TemplateTextGenerator.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\TemporaryDirectory.cs" Link="CorpusExplorer\SDK\Helper\TemporaryDirectory.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\TemporaryFile.cs" Link="CorpusExplorer\SDK\Helper\TemporaryFile.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\ThreadPoolHelper.cs" Link="CorpusExplorer\SDK\Helper\ThreadPoolHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\TypeEqualityComparer.cs" Link="CorpusExplorer\SDK\Helper\TypeEqualityComparer.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\UniversalColor.cs" Link="CorpusExplorer\SDK\Helper\UniversalColor.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\ValueMergeHelper.cs" Link="CorpusExplorer\SDK\Helper\ValueMergeHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\ZipHelper.cs" Link="CorpusExplorer\SDK\Helper\ZipHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Adapter\Corpus\Abstract\AbstractCorpusAdapter.cs" Link="CorpusExplorer\SDK\Model\Adapter\Corpus\Abstract\AbstractCorpusAdapter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Adapter\Corpus\CorpusAdapterWriteDirect.cs" Link="CorpusExplorer\SDK\Model\Adapter\Corpus\CorpusAdapterWriteDirect.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Adapter\Corpus\CorpusAdapterWriteIndirect.cs" Link="CorpusExplorer\SDK\Model\Adapter\Corpus\CorpusAdapterWriteIndirect.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Adapter\Layer\Abstract\AbstractLayerAdapter.cs" Link="CorpusExplorer\SDK\Model\Adapter\Layer\Abstract\AbstractLayerAdapter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Adapter\Layer\LayerAdapterWriteDirect.cs" Link="CorpusExplorer\SDK\Model\Adapter\Layer\LayerAdapterWriteDirect.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Adapter\Layer\LayerAdapterWriteIndirect.cs" Link="CorpusExplorer\SDK\Model\Adapter\Layer\LayerAdapterWriteIndirect.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Cache\Abstract\AbstractCacheStrategy.cs" Link="CorpusExplorer\SDK\Model\Cache\Abstract\AbstractCacheStrategy.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Cache\CacheStrategyClearCacheManually.cs" Link="CorpusExplorer\SDK\Model\Cache\CacheStrategyClearCacheManually.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Cache\CacheStrategyCurrentSelection.cs" Link="CorpusExplorer\SDK\Model\Cache\CacheStrategyCurrentSelection.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Cache\CacheStrategyDisableCaching.cs" Link="CorpusExplorer\SDK\Model\Cache\CacheStrategyDisableCaching.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Cache\Helper\BlockCacheHelper.cs" Link="CorpusExplorer\SDK\Model\Cache\Helper\BlockCacheHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Cache\Helper\Exception\BlockAlreadyCachedException.cs" Link="CorpusExplorer\SDK\Model\Cache\Helper\Exception\BlockAlreadyCachedException.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Concept.cs" Link="CorpusExplorer\SDK\Model\Concept.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\CorpusExplorer\CeDictionary.cs" Link="CorpusExplorer\SDK\Model\CorpusExplorer\CeDictionary.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\CorpusExplorer\CeObject.cs" Link="CorpusExplorer\SDK\Model\CorpusExplorer\CeObject.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\CorpusExplorer\CeTranscriptEntry.cs" Link="CorpusExplorer\SDK\Model\CorpusExplorer\CeTranscriptEntry.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\CorpusExplorer\CeTriple.cs" Link="CorpusExplorer\SDK\Model\CorpusExplorer\CeTriple.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\CorpusExplorer\FileSystem\FileSystemCorpusRoot.cs" Link="CorpusExplorer\SDK\Model\CorpusExplorer\FileSystem\FileSystemCorpusRoot.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\CorpusExplorer\FileSystem\FileSystemLayerHead.cs" Link="CorpusExplorer\SDK\Model\CorpusExplorer\FileSystem\FileSystemLayerHead.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Delegates\HydraDelegate.cs" Link="CorpusExplorer\SDK\Model\Delegates\HydraDelegate.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Extension\HydraConversionExtension.cs" Link="CorpusExplorer\SDK\Model\Extension\HydraConversionExtension.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Extension\ScraperDocumentExtension.cs" Link="CorpusExplorer\SDK\Model\Extension\ScraperDocumentExtension.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Interface\IHydra.cs" Link="CorpusExplorer\SDK\Model\Interface\IHydra.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Interface\IKarkinos.cs" Link="CorpusExplorer\SDK\Model\Interface\IKarkinos.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Interface\IVerbalize.cs" Link="CorpusExplorer\SDK\Model\Interface\IVerbalize.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Project.cs" Link="CorpusExplorer\SDK\Model\Project.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Model\Selection.cs" Link="CorpusExplorer\SDK\Model\Selection.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Terminal\TerminalController.cs" Link="CorpusExplorer\SDK\Terminal\TerminalController.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\CorpusManipulation\CorpusCleaner.cs" Link="CorpusExplorer\SDK\Utils\CorpusManipulation\CorpusCleaner.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\CorpusManipulation\CorpusMerger.cs" Link="CorpusExplorer\SDK\Utils\CorpusManipulation\CorpusMerger.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\CorpusManipulation\CorpusMergerQueryBased.cs" Link="CorpusExplorer\SDK\Utils\CorpusManipulation\CorpusMergerQueryBased.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\CorpusManipulation\CorpusNormalizer.cs" Link="CorpusExplorer\SDK\Utils\CorpusManipulation\CorpusNormalizer.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DataTableWriter\Abstract\AbstractTableWriter.cs" Link="CorpusExplorer\SDK\Utils\DataTableWriter\Abstract\AbstractTableWriter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DataTableWriter\CsvTableWriter.cs" Link="CorpusExplorer\SDK\Utils\DataTableWriter\CsvTableWriter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DataTableWriter\HtmlTableWriter.cs" Link="CorpusExplorer\SDK\Utils\DataTableWriter\HtmlTableWriter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DataTableWriter\JsonRoundedTableWriter.cs" Link="CorpusExplorer\SDK\Utils\DataTableWriter\JsonRoundedTableWriter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DataTableWriter\JsonTableWriter.cs" Link="CorpusExplorer\SDK\Utils\DataTableWriter\JsonTableWriter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DataTableWriter\SqlDataOnlyTableWriter.cs" Link="CorpusExplorer\SDK\Utils\DataTableWriter\SqlDataOnlyTableWriter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DataTableWriter\SqlSchemaOnlyTableWriter.cs" Link="CorpusExplorer\SDK\Utils\DataTableWriter\SqlSchemaOnlyTableWriter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DataTableWriter\SqlTableWriter.cs" Link="CorpusExplorer\SDK\Utils\DataTableWriter\SqlTableWriter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DataTableWriter\TsvRoundedTableWriter.cs" Link="CorpusExplorer\SDK\Utils\DataTableWriter\TsvRoundedTableWriter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DataTableWriter\TsvTableWriter.cs" Link="CorpusExplorer\SDK\Utils\DataTableWriter\TsvTableWriter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DataTableWriter\XmlTableWriter.cs" Link="CorpusExplorer\SDK\Utils\DataTableWriter\XmlTableWriter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Diff\Diff.cs" Link="CorpusExplorer\SDK\Utils\Diff\Diff.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Diff\DiffDelta.cs" Link="CorpusExplorer\SDK\Utils\Diff\DiffDelta.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Abstract\AbstractCorpusBuilder.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Abstract\AbstractCorpusBuilder.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Abstract\AbstractDocumentProcessingStep.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Abstract\AbstractDocumentProcessingStep.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Abstract\AbstractDocumentProcessingStepFull.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Abstract\AbstractDocumentProcessingStepFull.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Abstract\AbstractDocumentProcessingStepOutputOnly.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Abstract\AbstractDocumentProcessingStepOutputOnly.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Abstract\AbstractLightweightCorpusBuilder.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Abstract\AbstractLightweightCorpusBuilder.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Abstract\Model\Abstract\AbstractLayerState.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Abstract\Model\Abstract\AbstractLayerState.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Abstract\Model\LayerRangeState.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Abstract\Model\LayerRangeState.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Abstract\Model\LayerValueState.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Abstract\Model\LayerValueState.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Builder\CorpusBuilderWriteDirect.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Builder\CorpusBuilderWriteDirect.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Cleanup\Abstract\AbstractCleanup.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Cleanup\Abstract\AbstractCleanup.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Cleanup\RegexHyphenationCleanup.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Cleanup\RegexHyphenationCleanup.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Cleanup\RegexRemoveNonWesternCharsCleanup.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Cleanup\RegexRemoveNonWesternCharsCleanup.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Cleanup\RegexUltraCleanup.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Cleanup\RegexUltraCleanup.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Cleanup\RegexXmlMarkupCleanup.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Cleanup\RegexXmlMarkupCleanup.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Cleanup\StandardCleanup.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Cleanup\StandardCleanup.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Cluster\DocumentProcessingClusterBuilder.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Cluster\DocumentProcessingClusterBuilder.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Crawler\Abstract\AbstractCrawler.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Crawler\Abstract\AbstractCrawler.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Crawler\SimpleWebCrawler.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Crawler\SimpleWebCrawler.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Crawler\XpathWebCrawler.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Crawler\XpathWebCrawler.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exceptions\NotReadyException.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exceptions\NotReadyException.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exporter\Abstract\AbstractExporter.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\Abstract\AbstractExporter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exporter\Abstract\AbstractExporterSimpleGenericBase.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\Abstract\AbstractExporterSimpleGenericBase.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exporter\ExporterCec6.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\ExporterCec6.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exporter\ExporterConll.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\ExporterConll.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exporter\ExporterCsv.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\ExporterCsv.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exporter\ExporterCsvMetadataOnly.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\ExporterCsvMetadataOnly.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exporter\ExporterHtmlPure.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\ExporterHtmlPure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exporter\ExporterJson.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\ExporterJson.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exporter\ExporterPlaintext.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\ExporterPlaintext.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exporter\ExporterPlaintextPure.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\ExporterPlaintextPure.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exporter\ExporterPlaintextPureInOneFile.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\ExporterPlaintextPureInOneFile.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exporter\ExporterQuery.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\ExporterQuery.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exporter\ExporterTreeTagger.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\ExporterTreeTagger.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exporter\ExporterXml.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\ExporterXml.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exporter\Tlv\ExporterTlv.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\Tlv\ExporterTlv.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exporter\Tlv\Model\TlvEntry.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\Tlv\Model\TlvEntry.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Exporter\Tlv\TlvBuilder.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\Tlv\TlvBuilder.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Importer\Abstract\AbstractImporter.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Importer\Abstract\AbstractImporter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Importer\Abstract\AbstractImporterBase.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Importer\Abstract\AbstractImporterBase.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Importer\Abstract\AbstractImporterSimple3Steps.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Importer\Abstract\AbstractImporterSimple3Steps.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Importer\CorpusExplorerV6\ImporterCec6.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Importer\CorpusExplorerV6\ImporterCec6.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Importer\CorpusExplorerV6\ImporterCec6Stream.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Importer\CorpusExplorerV6\ImporterCec6Stream.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Importer\ImporterConll.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Importer\ImporterConll.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Importer\ImporterTlv.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Importer\ImporterTlv.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Importer\ImporterTreeTagger.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Importer\ImporterTreeTagger.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Scraper\Abstract\AbstractScraper.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Scraper\Abstract\AbstractScraper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Scraper\CsvScraper.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Scraper\CsvScraper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Scraper\TsvScraper.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Scraper\TsvScraper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Scraper\TxtScraper.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Scraper\TxtScraper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Scraper\Txt\CosmasScraper.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Scraper\Txt\CosmasScraper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Sentenizer\Abstract\AbstractSentenizer.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Sentenizer\Abstract\AbstractSentenizer.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Sentenizer\QuickSentenizer.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Sentenizer\QuickSentenizer.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\Abstract\AbstractAdditionalTagger.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\Abstract\AbstractAdditionalTagger.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\Abstract\AbstractTagger.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\Abstract\AbstractTagger.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\Abstract\AbstractTaggerOneWordPerLine.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\Abstract\AbstractTaggerOneWordPerLine.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\Abstract\AbstractTaggerWithUnderscore.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\Abstract\AbstractTaggerWithUnderscore.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\ConllTagger\Abstract\AbstractConllStyleTagger.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\ConllTagger\Abstract\AbstractConllStyleTagger.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\Helper\TaggerHelper.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\Helper\TaggerHelper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\RawText\AdditionalTsvValueTagger.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\RawText\AdditionalTsvValueTagger.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\RawText\RawTextTagger.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\RawText\RawTextTagger.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\Special\AdditionalTagger.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\Special\AdditionalTagger.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\Special\DocumentInMemoryAnalytics.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\Special\DocumentInMemoryAnalytics.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\TnTTagger\TnTLocator.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\TnTTagger\TnTLocator.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\TnTTagger\TnTTagger.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\TnTTagger\TnTTagger.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\TreeTagger\Abstract\AbstractTreeTagger.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\TreeTagger\Abstract\AbstractTreeTagger.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\TreeTagger\ClassicTreeTagger.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\TreeTagger\ClassicTreeTagger.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\TreeTagger\LocatorStrategy\Abstract\AbstractLocatorStrategy.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\TreeTagger\LocatorStrategy\Abstract\AbstractLocatorStrategy.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\TreeTagger\LocatorStrategy\LocatorStrategyBatchFile.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\TreeTagger\LocatorStrategy\LocatorStrategyBatchFile.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\TreeTagger\LocatorStrategy\LocatorStrategyNull.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\TreeTagger\LocatorStrategy\LocatorStrategyNull.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\TreeTagger\LocatorStrategy\LocatorStrategyParFile.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\TreeTagger\LocatorStrategy\LocatorStrategyParFile.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\TreeTagger\OwnTreeTagger.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\TreeTagger\OwnTreeTagger.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\TreeTagger\SimpleTreeTagger.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\TreeTagger\SimpleTreeTagger.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tagger\UDPipe\UdPipeExeTagger.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\UDPipe\UdPipeExeTagger.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tokenizer\Abstract\AbstractTokenizer.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tokenizer\Abstract\AbstractTokenizer.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tokenizer\HighSpeedGermanTokenizer.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tokenizer\HighSpeedGermanTokenizer.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tokenizer\HighSpeedGermanWikipediaTokenizer.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tokenizer\HighSpeedGermanWikipediaTokenizer.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tokenizer\HighSpeedSpaceTokenizer.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tokenizer\HighSpeedSpaceTokenizer.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\DocumentProcessing\Tokenizer\NoTokenizer.cs" Link="CorpusExplorer\SDK\Utils\DocumentProcessing\Tokenizer\NoTokenizer.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Abstract\AbstractFilterQuery.cs" Link="CorpusExplorer\SDK\Utils\Filter\Abstract\AbstractFilterQuery.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Abstract\AbstractFilterQueryCompleteDocumentIndexing.cs" Link="CorpusExplorer\SDK\Utils\Filter\Abstract\AbstractFilterQueryCompleteDocumentIndexing.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Abstract\AbstractFilterQueryMeta.cs" Link="CorpusExplorer\SDK\Utils\Filter\Abstract\AbstractFilterQueryMeta.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Abstract\AbstractFilterQuerySingleLayer.cs" Link="CorpusExplorer\SDK\Utils\Filter\Abstract\AbstractFilterQuerySingleLayer.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Abstract\AbstractFilterQuerySingleLayerFulltext.cs" Link="CorpusExplorer\SDK\Utils\Filter\Abstract\AbstractFilterQuerySingleLayerFulltext.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Interface\IFilterQueryWithLayerValues.cs" Link="CorpusExplorer\SDK\Utils\Filter\Interface\IFilterQueryWithLayerValues.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQueryCorpusComplete.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQueryCorpusComplete.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQueryMetaContains.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQueryMetaContains.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQueryMetaContainsCaseSensitive.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQueryMetaContainsCaseSensitive.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQueryMetaEndsWith.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQueryMetaEndsWith.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQueryMetaExactMatch.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQueryMetaExactMatch.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQueryMetaExactMatchCaseSensitive.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQueryMetaExactMatchCaseSensitive.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQueryMetaIsEmpty.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQueryMetaIsEmpty.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQueryMetaRegex.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQueryMetaRegex.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQueryMetaStartsWith.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQueryMetaStartsWith.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQueryMultiLayerAll.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQueryMultiLayerAll.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQueryMultiLayerAny.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQueryMultiLayerAny.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQueryMultiLayerPhrase.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQueryMultiLayerPhrase.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQuerySingleLayerAFollowedByBMatch.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQuerySingleLayerAFollowedByBMatch.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQuerySingleLayerAFollowedByBSpanMatch.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQuerySingleLayerAFollowedByBSpanMatch.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQuerySingleLayerAllInExactSpanWords.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQuerySingleLayerAllInExactSpanWords.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQuerySingleLayerAllInOneDocument.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQuerySingleLayerAllInOneDocument.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQuerySingleLayerAllInOneSentence.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQuerySingleLayerAllInOneSentence.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQuerySingleLayerAllInSpanSentences.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQuerySingleLayerAllInSpanSentences.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQuerySingleLayerAllInSpanWords.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQuerySingleLayerAllInSpanWords.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQuerySingleLayerAlternativePhrase.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQuerySingleLayerAlternativePhrase.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQuerySingleLayerAnyMatch.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQuerySingleLayerAnyMatch.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQuerySingleLayerExactPhrase.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQuerySingleLayerExactPhrase.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQuerySingleLayerFirstAndAnyOtherMatch.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQuerySingleLayerFirstAndAnyOtherMatch.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQuerySingleLayerFirstFollowedByAnyOtherMatch.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQuerySingleLayerFirstFollowedByAnyOtherMatch.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQuerySingleLayerMarkedPhrase.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQuerySingleLayerMarkedPhrase.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQuerySingleLayerRanked.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQuerySingleLayerRanked.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQuerySingleLayerRegex.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQuerySingleLayerRegex.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQuerySingleLayerRegexFulltext.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQuerySingleLayerRegexFulltext.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\Queries\FilterQueryUnsupportedParserFeature.cs" Link="CorpusExplorer\SDK\Utils\Filter\Queries\FilterQueryUnsupportedParserFeature.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\QueryFilter.cs" Link="CorpusExplorer\SDK\Utils\Filter\QueryFilter.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\Filter\QueryParser.cs" Link="CorpusExplorer\SDK\Utils\Filter\QueryParser.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\ReMapper\Abstract\AbstractReMapper.cs" Link="CorpusExplorer\SDK\Utils\ReMapper\Abstract\AbstractReMapper.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\ReMapper\ReMapperInline.cs" Link="CorpusExplorer\SDK\Utils\ReMapper\ReMapperInline.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\ReMapper\ReMapperOutline.cs" Link="CorpusExplorer\SDK\Utils\ReMapper\ReMapperOutline.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Utils\ReMapper\ReMapperStandoff.cs" Link="CorpusExplorer\SDK\Utils\ReMapper\ReMapperStandoff.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Abstract\AbstractCompareViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\Abstract\AbstractCompareViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Abstract\AbstractOverTimeViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\Abstract\AbstractOverTimeViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Abstract\AbstractViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\Abstract\AbstractViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\AnnotationViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\AnnotationViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\BurrowsDeltaViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\BurrowsDeltaViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\ClusterMetadataByBurrowsDeltaViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\ClusterMetadataByBurrowsDeltaViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\ClusterMetadataByCooccurenceSelectiveViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\ClusterMetadataByCooccurenceSelectiveViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\ClusterMetadataByCooccurenceViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\ClusterMetadataByCooccurenceViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\ClusterMetadataByNGramViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\ClusterMetadataByNGramViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CooccurrenceCompareViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CooccurrenceCompareViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CooccurrenceCrossViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CooccurrenceCrossViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CooccurrenceDiversityViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CooccurrenceDiversityViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CooccurrenceOverlappingViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CooccurrenceOverlappingViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CooccurrencePolarisationViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CooccurrencePolarisationViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CooccurrenceSecondLevelProfileViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CooccurrenceSecondLevelProfileViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CooccurrenceSelectiveViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CooccurrenceSelectiveViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CooccurrencesOverTimeViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CooccurrencesOverTimeViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CooccurrenceTimelineAnalyticViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CooccurrenceTimelineAnalyticViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CooccurrenceViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CooccurrenceViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CorpusFiniteStateMachineViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CorpusFiniteStateMachineViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CorpusWeightLimmitedOverTimeViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CorpusWeightLimmitedOverTimeViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CorpusWeightLimmitedViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CorpusWeightLimmitedViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CorpusWeightUnlimmitedCompareViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CorpusWeightUnlimmitedCompareViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CorpusWeightUnlimmitedViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CorpusWeightUnlimmitedViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CrossFrequencyOverTimeViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CrossFrequencyOverTimeViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CutOffPhraseViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CutOffPhraseViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DiffViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DiffViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DisambiguationCompareViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DisambiguationCompareViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DisambiguationViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DisambiguationViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DocumentCloneDetectionViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DocumentCloneDetectionViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DocumentGranulationViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DocumentGranulationViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DocumentGuidMetadataResolver.cs" Link="CorpusExplorer\SDK\ViewModel\DocumentGuidMetadataResolver.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DocumentHashViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DocumentHashViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DocumentMetadataViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DocumentMetadataViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DocumentSimilarityViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DocumentSimilarityViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DuplicatViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DuplicatViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\EditDistantCalculationViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\EditDistantCalculationViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\ExplorationViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\ExplorationViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Frequency1LayerViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\Frequency1LayerViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Frequency2LayerViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\Frequency2LayerViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Frequency3LayerViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\Frequency3LayerViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\FrequencyCompareViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\FrequencyCompareViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\FrequencyCrossViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\FrequencyCrossViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\FrequencyLeftRightViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\FrequencyLeftRightViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\FrequencyOverTimeViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\FrequencyOverTimeViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\FrequencyPivotViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\FrequencyPivotViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\FrequencyTimelineAggregatedAnalyticViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\FrequencyTimelineAggregatedAnalyticViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\FrequencyTimelineAnalyticViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\FrequencyTimelineAnalyticViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\FrequencyViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\FrequencyViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Interfaces\IProvideAggregatedDataItems.cs" Link="CorpusExplorer\SDK\ViewModel\Interfaces\IProvideAggregatedDataItems.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Interfaces\IProvideDataTable.cs" Link="CorpusExplorer\SDK\ViewModel\Interfaces\IProvideDataTable.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Interfaces\IProvideHtmlOutput.cs" Link="CorpusExplorer\SDK\ViewModel\Interfaces\IProvideHtmlOutput.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Interfaces\IProvideLayerDisplaynames.cs" Link="CorpusExplorer\SDK\ViewModel\Interfaces\IProvideLayerDisplaynames.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Interfaces\IProvideNormalizedDataTable.cs" Link="CorpusExplorer\SDK\ViewModel\Interfaces\IProvideNormalizedDataTable.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Interfaces\IUseSpecificLayer.cs" Link="CorpusExplorer\SDK\ViewModel\Interfaces\IUseSpecificLayer.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Interfaces\IViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\Interfaces\IViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\KeywordPresetReferenceListViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\KeywordPresetReferenceListViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\KeywordViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\KeywordViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\MtldViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\MtldViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\NamedEntityDetectionViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\NamedEntityDetectionViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Ngram1LayerSelectiveViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\Ngram1LayerSelectiveViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\NgramChainViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\NgramChainViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\NgramCompareViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\NgramCompareViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\NGramHighlightCooccurrencesViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\NGramHighlightCooccurrencesViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\NgramPhoneticViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\NgramPhoneticViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\NgramViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\NgramViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\NormalizedSkipgramProbabilityViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\NormalizedSkipgramProbabilityViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Phrases2ViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\Phrases2ViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\PhrasesLaboratoryViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\PhrasesLaboratoryViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\PhrasesViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\PhrasesViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\PositionFrequencyViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\PositionFrequencyViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\PosTagFilterViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\PosTagFilterViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\QuickInfoTextViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\QuickInfoTextViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\QuickInfoText\QuickInfoTextResult.cs" Link="CorpusExplorer\SDK\ViewModel\QuickInfoText\QuickInfoTextResult.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\QuickInfoTtrViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\QuickInfoTtrViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\QuickInfoViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\QuickInfoViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\TextFlowSearchViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\TextFlowSearchViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\TextLiveSearchViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\TextLiveSearchViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\TextLiveSearch\SignificanceExtendedUniqueTextLiveSearchResultEntry.cs" Link="CorpusExplorer\SDK\ViewModel\TextLiveSearch\SignificanceExtendedUniqueTextLiveSearchResultEntry.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\TextLiveSearch\UniqueTextLiveSearchCutOffPhraseResultEntry.cs" Link="CorpusExplorer\SDK\ViewModel\TextLiveSearch\UniqueTextLiveSearchCutOffPhraseResultEntry.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\TextLiveSearch\UniqueTextLiveSearchResultEntry.cs" Link="CorpusExplorer\SDK\ViewModel\TextLiveSearch\UniqueTextLiveSearchResultEntry.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\TextLiveSignificanceSearchViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\TextLiveSignificanceSearchViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\ValidateSelectionIntegrityViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\ValidateSelectionIntegrityViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\VocabularyComplexityViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\VocabularyComplexityViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\VocdViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\VocdViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\View\Html\Html5\Html5Builder.cs" Link="CorpusExplorer\SDK\View\Html\Html5\Html5Builder.cs" />
+    <Compile Include="W:\Kooperationsprojekte\OpenSourceTelemetrie\OpenSourceTelemetrieClient\TelemetrieClient.cs" Link="Ost\Client\TelemetrieClient.cs" />
+    <Compile Include="W:\Kooperationsprojekte\OpenSourceTelemetrie\OpenSourceTelemetrieData\Model\Abstract\AbstractEvent.cs" Link="Ost\Model\Abstract\AbstractEvent.cs" />
+    <Compile Include="W:\Kooperationsprojekte\OpenSourceTelemetrie\OpenSourceTelemetrieData\Model\Exceptions.cs" Link="Ost\Model\Exceptions.cs" />
+    <Compile Include="W:\Kooperationsprojekte\OpenSourceTelemetrie\OpenSourceTelemetrieData\Model\Metrics.cs" Link="Ost\Model\Metrics.cs" />
+    <Compile Include="W:\Kooperationsprojekte\OpenSourceTelemetrie\OpenSourceTelemetrieData\Model\PageView.cs" Link="Ost\Model\PageView.cs" />
+    <Compile Include="W:\Kooperationsprojekte\OpenSourceTelemetrie\OpenSourceTelemetrieData\Model\Types\Device.cs" Link="Ost\Model\Types\Device.cs" />
+    <Compile Include="W:\Kooperationsprojekte\OpenSourceTelemetrie\OpenSourceTelemetrieData\Model\Types\Exception.cs" Link="Ost\Model\Types\Exception.cs" />
+    <Compile Include="W:\Kooperationsprojekte\OpenSourceTelemetrie\OpenSourceTelemetrieData\Model\Types\Location.cs" Link="Ost\Model\Types\Location.cs" />
+    <Compile Include="W:\Kooperationsprojekte\OpenSourceTelemetrie\OpenSourceTelemetrieData\Model\Types\Metric.cs" Link="Ost\Model\Types\Metric.cs" />
+    <Compile Include="W:\Kooperationsprojekte\OpenSourceTelemetrie\OpenSourceTelemetrieData\Model\Types\ScreenResolution.cs" Link="Ost\Model\Types\ScreenResolution.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Bcs\Crawler\Interface\" />
+    <Folder Include="Bcs\Crawler\Helper\" />
+    <Folder Include="Bcs\IO\" />
+    <Folder Include="CorpusExplorer\Core\Utils\DocumentProcessing\Cleanup\" />
+    <Folder Include="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Abstract\" />
+    <Folder Include="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Cosmas\" />
+    <Folder Include="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Docx\" />
+    <Folder Include="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Html\" />
+    <Folder Include="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Pdf\" />
+    <Folder Include="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Rtf\" />
+    <Folder Include="CorpusExplorer\SDK\Addon\" />
+    <Folder Include="CorpusExplorer\SDK\Aspect\Model\Interfaces\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\ClusterMetadata\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\Cooccurrence\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\Disambiguation\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\Flow\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\GroupDocuments\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\Helper\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\Interfaces\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\Measure\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\Mtld\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\NamedEntityRecognition\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\OverTime\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\Partition\Delegates\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\PhraseDiscovery\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\PhrasesLaboratory\GrammarRule\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\ReadingEase\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\SelectionCluster\Cluster\Helper\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\SelectionCluster\Generator\Counter\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\Similarity\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\VocabularyComplaxity\CalculationHelper\" />
+    <Folder Include="CorpusExplorer\SDK\Blocks\WordFlow\" />
+    <Folder Include="CorpusExplorer\SDK\Diagnostic\" />
+    <Folder Include="CorpusExplorer\SDK\Ecosystem\Model\" />
+    <Folder Include="CorpusExplorer\SDK\Extern\QuickIndex\Indices\" />
+    <Folder Include="CorpusExplorer\SDK\Helper\" />
+    <Folder Include="CorpusExplorer\SDK\Model\Adapter\Corpus\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Model\Adapter\Layer\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Model\Cache\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Model\Cache\Helper\Exception\" />
+    <Folder Include="CorpusExplorer\SDK\Model\CorpusExplorer\FileSystem\" />
+    <Folder Include="CorpusExplorer\SDK\Model\Delegates\" />
+    <Folder Include="CorpusExplorer\SDK\Model\Extension\" />
+    <Folder Include="CorpusExplorer\SDK\Model\Interface\" />
+    <Folder Include="CorpusExplorer\SDK\Terminal\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\CorpusManipulation\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DataTableWriter\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\Diff\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Abstract\Model\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Builder\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Cleanup\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Cluster\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Crawler\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Exceptions\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Exporter\Tlv\Model\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Importer\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Importer\CorpusExplorerV6\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Scraper\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Scraper\Txt\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Sentenizer\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\ConllTagger\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\Helper\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\RawText\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\Special\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\TnTTagger\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\TreeTagger\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\TreeTagger\LocatorStrategy\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Tagger\UDPipe\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\DocumentProcessing\Tokenizer\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\Filter\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\Filter\Interface\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\Filter\Queries\" />
+    <Folder Include="CorpusExplorer\SDK\Utils\ReMapper\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\ViewModel\Abstract\" />
+    <Folder Include="CorpusExplorer\SDK\ViewModel\Interfaces\" />
+    <Folder Include="CorpusExplorer\SDK\ViewModel\QuickInfoText\" />
+    <Folder Include="CorpusExplorer\SDK\ViewModel\TextLiveSearch\" />
+    <Folder Include="CorpusExplorer\SDK\View\Html\Html5\" />
+    <Folder Include="Ost\Client\" />
+    <Folder Include="Ost\Model\Abstract\" />
+    <Folder Include="Ost\Model\Types\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.23" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="PostSharp" Version="6.6.7" />
+    <PackageReference Include="PostSharp.Redist" Version="6.6.7" />
+    <PackageReference Include="SharpSerializer" Version="3.0.1" />
+    <PackageReference Include="SharpZipLib" Version="1.2.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="Telerik.Documents.Core" Version="2020.1.212" />
+    <PackageReference Include="Telerik.Documents.Fixed" Version="2020.1.212" />
+    <PackageReference Include="Telerik.Documents.Flow" Version="2020.1.212" />
+    <PackageReference Include="Telerik.Documents.Flow.FormatProviders.Pdf" Version="2020.1.212" />
+    <PackageReference Include="Telerik.Windows.Zip" Version="2020.1.212" />
+  </ItemGroup>
+
+</Project>

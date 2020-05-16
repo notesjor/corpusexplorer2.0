@@ -1,5 +1,4 @@
-﻿#if !DEBUG
-using CorpusExplorer.Sdk.Aspect;
+﻿using CorpusExplorer.Sdk.Aspect;
 using PostSharp.Extensibility;
 
 [assembly:
@@ -10,4 +9,3 @@ using PostSharp.Extensibility;
     AttributeTargetMemberAttributes =
       MulticastAttributes.Private | MulticastAttributes.Protected | MulticastAttributes.Internal |
       MulticastAttributes.Public)]
-#endif

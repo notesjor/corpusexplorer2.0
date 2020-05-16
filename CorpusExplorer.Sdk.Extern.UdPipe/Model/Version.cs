@@ -1,5 +1,9 @@
+#region
+
 using System;
 using System.Runtime.InteropServices;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 {
@@ -90,14 +94,14 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       return ret;
     }
 
-    internal static HandleRef getCPtr(Version obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
-
     ~Version()
     {
       Dispose();
+    }
+
+    internal static HandleRef getCPtr(Version obj)
+    {
+      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
     }
   }
 }

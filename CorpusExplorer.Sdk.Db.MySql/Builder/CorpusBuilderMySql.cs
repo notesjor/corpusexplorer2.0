@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Db.Gui;
 using CorpusExplorer.Sdk.Db.LinqConnect.Model;
@@ -10,6 +12,8 @@ using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model.Abstract;
 
+#endregion
+
 namespace CorpusExplorer.Sdk.Db.MySql.Builder
 {
   public class CorpusBuilderMySql : AbstractCorpusBuilder
@@ -17,6 +21,16 @@ namespace CorpusExplorer.Sdk.Db.MySql.Builder
     public string CorpusDisplayname { get; set; } = "MySQL";
 
     public string SaveSettingsPath { get; set; }
+
+    private string CreateConnectionString(DbSettingsReader setting)
+    {
+      return CreateConnectionString(setting.Host, setting.Port, setting.DbName, setting.Username, setting.Password);
+    }
+
+    private string CreateConnectionString(string host, int port, string dbName, string user, string password)
+    {
+      return $"user id={user};password={password};host={host};port={port};database={dbName};persist security info=True";
+    }
 
     protected override AbstractCorpusAdapter CreateCorpus(
       Dictionary<Guid, Dictionary<string, object>> documentMetadata,
@@ -48,11 +62,5 @@ namespace CorpusExplorer.Sdk.Db.MySql.Builder
     {
       return LayerAdapterLinqConnect.Create(corpus, layer);
     }
-
-    private string CreateConnectionString(DbSettingsReader setting)
-      => CreateConnectionString(setting.Host, setting.Port, setting.DbName, setting.Username, setting.Password);
-
-    private string CreateConnectionString(string host, int port, string dbName, string user, string password)
-      => $"user id={user};password={password};host={host};port={port};database={dbName};persist security info=True";
   }
 }

@@ -1,5 +1,9 @@
+#region
+
 using System;
 using System.Runtime.InteropServices;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 {
@@ -69,6 +73,16 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
     }
 
+    ~Model()
+    {
+      Dispose();
+    }
+
+    internal static HandleRef getCPtr(Model obj)
+    {
+      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+    }
+
     public static Model load(string fname)
     {
       var cPtr = udpipe_csharpPINVOKE.Model_load(fname);
@@ -112,16 +126,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       var ret = udpipe_csharpPINVOKE.Model_tag__SWIG_1(swigCPtr, Sentence.getCPtr(s), options);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
-    }
-
-    internal static HandleRef getCPtr(Model obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
-
-    ~Model()
-    {
-      Dispose();
     }
   }
 }

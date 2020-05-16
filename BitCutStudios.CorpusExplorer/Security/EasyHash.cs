@@ -11,6 +11,34 @@ namespace Bcs.Security
   public static class EasyHash
   {
     /// <summary>
+    ///   Berechnet den Hashwert eines Datensatzes mithilfe eines beliebigen
+    ///   Hash-Algorithmuses
+    /// </summary>
+    /// <param name="data">Datensatz</param>
+    /// <param name="algo">Hash-Algorithmus</param>
+    /// <returns>
+    ///   Hashwert (Im Fehlerfall <see langword="null" /> siehe error.log)
+    /// </returns>
+    private static byte[] Compute(byte[] data, HashAlgorithm algo)
+    {
+      return algo.ComputeHash(data);
+    }
+
+    /// <summary>
+    ///   Berechnet den Hashwert eines Datensatzes mithilfe eines beliebigen
+    ///   Hash-Algorithmuses
+    /// </summary>
+    /// <param name="data">Datensatz</param>
+    /// <param name="algo">Hash-Algorithmus</param>
+    /// <returns>
+    ///   Hashwert (Im Fehlerfall <see langword="null" /> siehe error.log)
+    /// </returns>
+    private static byte[] Compute(string data, HashAlgorithm algo)
+    {
+      return Compute(Encoding.UTF8.GetBytes(data), algo);
+    }
+
+    /// <summary>
     ///   Berechnet den Hashwert eines Datensatzes mithilfe des MD5-Algorithmuses.
     /// </summary>
     /// <param name="data">Datensatz</param>
@@ -214,34 +242,6 @@ namespace Bcs.Security
     public static string ComputeSha512To64String(string data)
     {
       return ComputeTo64String(data, SHA512.Create());
-    }
-
-    /// <summary>
-    ///   Berechnet den Hashwert eines Datensatzes mithilfe eines beliebigen
-    ///   Hash-Algorithmuses
-    /// </summary>
-    /// <param name="data">Datensatz</param>
-    /// <param name="algo">Hash-Algorithmus</param>
-    /// <returns>
-    ///   Hashwert (Im Fehlerfall <see langword="null" /> siehe error.log)
-    /// </returns>
-    private static byte[] Compute(byte[] data, HashAlgorithm algo)
-    {
-      return algo.ComputeHash(data);
-    }
-
-    /// <summary>
-    ///   Berechnet den Hashwert eines Datensatzes mithilfe eines beliebigen
-    ///   Hash-Algorithmuses
-    /// </summary>
-    /// <param name="data">Datensatz</param>
-    /// <param name="algo">Hash-Algorithmus</param>
-    /// <returns>
-    ///   Hashwert (Im Fehlerfall <see langword="null" /> siehe error.log)
-    /// </returns>
-    private static byte[] Compute(string data, HashAlgorithm algo)
-    {
-      return Compute(Encoding.UTF8.GetBytes(data), algo);
     }
 
     /// <summary>

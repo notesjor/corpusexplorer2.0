@@ -3,6 +3,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Windows.Forms;
 #if LINUX
 #else
@@ -37,25 +38,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
     }
 
     public string MainpageUrl { get; set; }
-
-    /*
-    public void ExportHtml()
-    {
-      var sfd = new SaveFileDialog {Filter = Resources.FileExtension_HTML, CheckPathExists = true};
-      if (sfd.ShowDialog() == DialogResult.OK)
-        ExportHtml(sfd.FileName);
-    }
-
-    public void ExportHtml(string path)
-    {
-      InitializeBrowser();
-      var dir = Path.Combine(Path.GetDirectoryName(path), "assets");
-      if (!Directory.Exists(dir))
-        Directory.CreateDirectory(dir);
-      webBrowser1.Browser.SaveWebPage(path, dir, SavePageType.COMPLETE_HTML);
-    }
-    */
-
+    
     public void ExportImage()
     {
       var sfd = new SaveFileDialog {Filter = Resources.FileExtension_PNG, CheckPathExists = true};

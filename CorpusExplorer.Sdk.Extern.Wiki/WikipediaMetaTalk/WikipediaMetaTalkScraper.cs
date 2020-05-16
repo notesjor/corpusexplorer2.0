@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk.Model;
 using CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk.Serializer;
 using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
 

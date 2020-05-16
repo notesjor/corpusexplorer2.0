@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using com.sun.codemodel.@internal;
@@ -6,6 +8,8 @@ using com.sun.org.apache.xalan.@internal.xsltc.trax;
 using com.sun.org.glassfish.external.amx;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using TikaOnDotNet.TextExtraction;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.Tika
 {

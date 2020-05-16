@@ -824,7 +824,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup
 
     public override string DisplayName => Resources.StandardCleanup;
 
-    protected override string Execute(string input)
+    protected override string Execute(string key, string input)
     {
       return _dictionary.Aggregate(input, (current, entry) => current.Replace(entry.Key, entry.Value));
     }

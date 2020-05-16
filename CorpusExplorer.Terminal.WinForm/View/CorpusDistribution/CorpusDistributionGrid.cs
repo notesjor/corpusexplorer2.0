@@ -43,6 +43,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
 
       AddSummaryRow();
+      ApplyFilterDelay();
     }
 
     /// <summary>

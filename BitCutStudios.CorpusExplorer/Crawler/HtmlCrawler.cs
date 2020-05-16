@@ -143,45 +143,6 @@ namespace Bcs.Crawler
       return CrawlCall(doc);
     }
 
-    /// <summary>
-    ///   Sollte überschriebe werden, wenn eine andere Bereingung gewünscht ist als alle Werte (res) durch HtmlCleanup zu
-    ///   leiten.
-    /// </summary>
-    /// <param name="res">Daten</param>
-    /// <returns>Daten</returns>
-    /// <example>
-    ///   foreach (var r in res)
-    ///   {
-    ///   var keys = r.Keys;
-    ///   foreach (var key in keys)
-    ///   {
-    ///   r[key] = HtmlCleanup(r[key]);
-    ///   }
-    ///   }
-    ///   return res;
-    /// </example>
-    protected virtual Dictionary<string, object>[] HtmlCleanupChannel(Dictionary<string, object>[] res)
-    {
-      foreach (var r in res)
-      {
-        var keys = r.Keys.ToArray();
-        foreach (var key in keys)
-          r[key] = HtmlCleanup(r[key].ToString());
-      }
-
-      return res;
-    }
-
-    /// <summary>
-    ///   Sollte überschrieben werden, wenn es sich um ein HTML-Dokument handelt das mehrere Beiträge enthält.
-    /// </summary>
-    /// <param name="res">Daten</param>
-    /// <returns>Daten</returns>
-    protected virtual Dictionary<string, object>[] HtmlSplitChannel(Dictionary<string, object>[] res)
-    {
-      return res;
-    }
-
     private Dictionary<string, object>[] CrawlCall(HtmlDocument doc)
     {
       // Erezuge Stringbuilder
@@ -254,6 +215,45 @@ namespace Bcs.Crawler
         InitializeCriticals();
 
       return _criticals.Aggregate(html, (current, c) => current.Replace(c.Key, c.Value));
+    }
+
+    /// <summary>
+    ///   Sollte überschriebe werden, wenn eine andere Bereingung gewünscht ist als alle Werte (res) durch HtmlCleanup zu
+    ///   leiten.
+    /// </summary>
+    /// <param name="res">Daten</param>
+    /// <returns>Daten</returns>
+    /// <example>
+    ///   foreach (var r in res)
+    ///   {
+    ///   var keys = r.Keys;
+    ///   foreach (var key in keys)
+    ///   {
+    ///   r[key] = HtmlCleanup(r[key]);
+    ///   }
+    ///   }
+    ///   return res;
+    /// </example>
+    protected virtual Dictionary<string, object>[] HtmlCleanupChannel(Dictionary<string, object>[] res)
+    {
+      foreach (var r in res)
+      {
+        var keys = r.Keys.ToArray();
+        foreach (var key in keys)
+          r[key] = HtmlCleanup(r[key].ToString());
+      }
+
+      return res;
+    }
+
+    /// <summary>
+    ///   Sollte überschrieben werden, wenn es sich um ein HTML-Dokument handelt das mehrere Beiträge enthält.
+    /// </summary>
+    /// <param name="res">Daten</param>
+    /// <returns>Daten</returns>
+    protected virtual Dictionary<string, object>[] HtmlSplitChannel(Dictionary<string, object>[] res)
+    {
+      return res;
     }
 
     private void InitializeCriticals()

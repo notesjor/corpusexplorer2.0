@@ -1,7 +1,11 @@
+#region
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 {
@@ -52,6 +56,37 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public bool IsSynchronized => false;
 
+    public void Add(int x)
+    {
+      udpipe_csharpPINVOKE.Children_Add(swigCPtr, x);
+    }
+
+    public void Clear()
+    {
+      udpipe_csharpPINVOKE.Children_Clear(swigCPtr);
+    }
+
+    public bool Contains(int value)
+    {
+      var ret = udpipe_csharpPINVOKE.Children_Contains(swigCPtr, value);
+      return ret;
+    }
+
+    public void CopyTo(int[] array, int arrayIndex)
+    {
+      CopyTo(0, array, arrayIndex, Count);
+    }
+
+    public int Count => (int) size();
+
+    public bool IsReadOnly => false;
+
+    public bool Remove(int value)
+    {
+      var ret = udpipe_csharpPINVOKE.Children_Remove(swigCPtr, value);
+      return ret;
+    }
+
     public virtual void Dispose()
     {
       lock (this)
@@ -76,52 +111,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       return new ChildrenEnumerator(this);
     }
 
-    public bool IsReadOnly => false;
-
-    public int this[int index]
-    {
-      get => getitem(index);
-      set => setitem(index, value);
-    }
-
-    public int Count => (int) size();
-
-    public void CopyTo(int[] array, int arrayIndex)
-    {
-      CopyTo(0, array, arrayIndex, Count);
-    }
-
     IEnumerator<int> IEnumerable<int>.GetEnumerator()
     {
       return new ChildrenEnumerator(this);
-    }
-
-    public void Clear()
-    {
-      udpipe_csharpPINVOKE.Children_Clear(swigCPtr);
-    }
-
-    public void Add(int x)
-    {
-      udpipe_csharpPINVOKE.Children_Add(swigCPtr, x);
-    }
-
-    public void Insert(int index, int x)
-    {
-      udpipe_csharpPINVOKE.Children_Insert(swigCPtr, index, x);
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-    }
-
-    public void RemoveAt(int index)
-    {
-      udpipe_csharpPINVOKE.Children_RemoveAt(swigCPtr, index);
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-    }
-
-    public bool Contains(int value)
-    {
-      var ret = udpipe_csharpPINVOKE.Children_Contains(swigCPtr, value);
-      return ret;
     }
 
     public int IndexOf(int value)
@@ -130,16 +122,34 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       return ret;
     }
 
-    public bool Remove(int value)
+    public void Insert(int index, int x)
     {
-      var ret = udpipe_csharpPINVOKE.Children_Remove(swigCPtr, value);
-      return ret;
+      udpipe_csharpPINVOKE.Children_Insert(swigCPtr, index, x);
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+    }
+
+    public int this[int index]
+    {
+      get => getitem(index);
+      set => setitem(index, value);
+    }
+
+    public void RemoveAt(int index)
+    {
+      udpipe_csharpPINVOKE.Children_RemoveAt(swigCPtr, index);
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
     }
 
     public void AddRange(Children values)
     {
       udpipe_csharpPINVOKE.Children_AddRange(swigCPtr, getCPtr(values));
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+    }
+
+    private uint capacity()
+    {
+      var ret = udpipe_csharpPINVOKE.Children_capacity(swigCPtr);
+      return ret;
     }
 
     public void CopyTo(int[] array)
@@ -165,9 +175,33 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
         array.SetValue(getitemcopy(index + i), arrayIndex + i);
     }
 
+    ~Children()
+    {
+      Dispose();
+    }
+
+    internal static HandleRef getCPtr(Children obj)
+    {
+      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+    }
+
     public ChildrenEnumerator GetEnumerator()
     {
       return new ChildrenEnumerator(this);
+    }
+
+    private int getitem(int index)
+    {
+      var ret = udpipe_csharpPINVOKE.Children_getitem(swigCPtr, index);
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
+    }
+
+    private int getitemcopy(int index)
+    {
+      var ret = udpipe_csharpPINVOKE.Children_getitemcopy(swigCPtr, index);
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
     }
 
     public Children GetRange(int index, int count)
@@ -204,6 +238,11 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       return ret;
     }
 
+    private void reserve(uint n)
+    {
+      udpipe_csharpPINVOKE.Children_reserve(swigCPtr, n);
+    }
+
     public void Reverse()
     {
       udpipe_csharpPINVOKE.Children_Reverse__SWIG_0(swigCPtr);
@@ -215,45 +254,15 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
     }
 
-    public void SetRange(int index, Children values)
-    {
-      udpipe_csharpPINVOKE.Children_SetRange(swigCPtr, index, getCPtr(values));
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-    }
-
-    internal static HandleRef getCPtr(Children obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
-
-    private uint capacity()
-    {
-      var ret = udpipe_csharpPINVOKE.Children_capacity(swigCPtr);
-      return ret;
-    }
-
-    private int getitem(int index)
-    {
-      var ret = udpipe_csharpPINVOKE.Children_getitem(swigCPtr, index);
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    }
-
-    private int getitemcopy(int index)
-    {
-      var ret = udpipe_csharpPINVOKE.Children_getitemcopy(swigCPtr, index);
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    }
-
-    private void reserve(uint n)
-    {
-      udpipe_csharpPINVOKE.Children_reserve(swigCPtr, n);
-    }
-
     private void setitem(int index, int val)
     {
       udpipe_csharpPINVOKE.Children_setitem(swigCPtr, index, val);
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+    }
+
+    public void SetRange(int index, Children values)
+    {
+      udpipe_csharpPINVOKE.Children_SetRange(swigCPtr, index, getCPtr(values));
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
     }
 
@@ -261,11 +270,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       var ret = udpipe_csharpPINVOKE.Children_size(swigCPtr);
       return ret;
-    }
-
-    ~Children()
-    {
-      Dispose();
     }
 
     // Type-safe enumerator
@@ -286,6 +290,12 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
         currentIndex = -1;
         currentObject = null;
         currentSize = collectionRef.Count;
+      }
+
+      public void Dispose()
+      {
+        currentIndex = -1;
+        currentObject = null;
       }
 
       // Type-unsafe IEnumerator.Current
@@ -328,12 +338,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
             throw new InvalidOperationException("Collection modified.");
           return (int) currentObject;
         }
-      }
-
-      public void Dispose()
-      {
-        currentIndex = -1;
-        currentObject = null;
       }
     }
   }

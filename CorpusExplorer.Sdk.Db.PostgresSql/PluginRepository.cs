@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Db.PostgreSql.Builder;
 using CorpusExplorer.Sdk.Db.PostgreSql.Exporter;
@@ -9,6 +11,8 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Db.PostgreSql
 {
@@ -21,12 +25,14 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql
       {
         {"CorpusExplorer <-> PostgreSQL", new CorpusBuilderPostgreSql()}
       };
-    public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter => null;
+
+    public override IEnumerable<IAction> AddonConsoleActions => null;
+
     public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters =>
       new Dictionary<string, AbstractExporter>
       {
         {"CorpusExplorer <-> PostgreSQL (*.psql)|*.psql", new ExporterPostgreSql()},
-        {"CorpusExplorer --> PostgreSQL (*.db)|*.db", new ExporterPostgreSqlFullAccess()},
+        {"CorpusExplorer --> PostgreSQL (*.db)|*.db", new ExporterPostgreSqlFullAccess()}
       };
 
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter =>
@@ -36,10 +42,10 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql
       };
 
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers => null;
-    public override IEnumerable<AbstractTagger> AddonTagger => null;
-    public override IEnumerable<IAction> AddonConsoleActions => null;
-    public override IEnumerable<IAddonView> AddonViews => null;
     public override IEnumerable<object> AddonSideloadFeature => null;
+    public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter => null;
+    public override IEnumerable<AbstractTagger> AddonTagger => null;
+    public override IEnumerable<IAddonView> AddonViews => null;
     public override string Guid => "CorpusExplorer.Sdk.Db.PostgreSql";
   }
 }

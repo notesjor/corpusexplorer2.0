@@ -400,13 +400,13 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void corpus_start_import_Click(object sender, EventArgs e)
     {
-      QuickMode.Import(Project);
+      QuickMode.Import(Project, true);
       ReloadAll();
     }
 
     private void corpus_start_local_Click(object sender, EventArgs e)
     {
-      QuickMode.Annotate(Project, false);
+      QuickMode.Annotate(Project, false, true);
       ReloadAll();
     }
 
@@ -471,7 +471,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       if (res.Count == 0)
         return;
 
-      QuickMode.AnnotateProcessing(Project, new ConcurrentQueue<Dictionary<string, object>>(res));
+      QuickMode.Tagging(Project, new ConcurrentQueue<Dictionary<string, object>>(res), true);
       ReloadAll();
     }
 
@@ -551,11 +551,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                           switch (ext)
                           {
                             case ".cec5":
-                              QuickMode.AddCorpusToProject(Project, CorpusAdapterSingleFile.Create(path));
+                              QuickMode.AddCorpusToProject(Project, CorpusAdapterSingleFile.Create(path), true);
                               break;
                             case ".cec6":
                             case ".cec6.gz":
-                              QuickMode.AddCorpusToProject(Project, CorpusAdapterWriteDirect.Create(path));
+                              QuickMode.AddCorpusToProject(Project, CorpusAdapterWriteDirect.Create(path), true);
                               break;
                           }
 
@@ -1661,10 +1661,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       ProjectNew();
       foreach (var corpus in files.Where(x => x.ToLower().EndsWith(".cec5")))
-        QuickMode.AddCorpusToProject(Project, CorpusAdapterSingleFile.Create(corpus));
+        QuickMode.AddCorpusToProject(Project, CorpusAdapterSingleFile.Create(corpus), true);
 
       foreach (var corpus in files.Where(x => x.ToLower().EndsWith(".cec6")))
-        QuickMode.AddCorpusToProject(Project, CorpusAdapterWriteDirect.Create(corpus));
+        QuickMode.AddCorpusToProject(Project, CorpusAdapterWriteDirect.Create(corpus), true);
 
       ReloadAll();
 

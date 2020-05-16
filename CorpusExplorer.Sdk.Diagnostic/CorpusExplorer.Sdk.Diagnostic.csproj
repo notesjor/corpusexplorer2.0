@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Sdk.Diagnostic</RootNamespace>
     <AssemblyName>CorpusExplorer.Sdk.Diagnostic</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -41,19 +41,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="OpenSourceTelemetrieClient452">
-      <HintPath>..\..\..\..\Kooperationsprojekte\OpenSourceTelemetrie\OpenSourceTelemetrieClient452\bin\Release\OpenSourceTelemetrieClient452.dll</HintPath>
+    <Reference Include="OpenSourceTelemetrieClient452, Version=1.0.0.1, Culture=neutral, PublicKeyToken=886802316dee4012, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>W:\Kooperationsprojekte\OpenSourceTelemetrie\OpenSourceTelemetrieClient452\bin\Release\OpenSourceTelemetrieClient452.dll</HintPath>
     </Reference>
-    <Reference Include="OpenSourceTelemetrieData452">
-      <HintPath>..\..\..\..\Kooperationsprojekte\OpenSourceTelemetrie\OpenSourceTelemetrieClient452\bin\Release\OpenSourceTelemetrieData452.dll</HintPath>
+    <Reference Include="OpenSourceTelemetrieData452, Version=1.0.0.0, Culture=neutral, PublicKeyToken=886802316dee4012, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>W:\Kooperationsprojekte\OpenSourceTelemetrie\OpenSourceTelemetrieClient452\bin\Release\OpenSourceTelemetrieData452.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InMemoryErrorConsole.cs" />
+    <Compile Include="OnLogEventHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SafeExecute.cs" />
   </ItemGroup>

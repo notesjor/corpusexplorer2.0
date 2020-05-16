@@ -30,7 +30,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     public string IHDDeescribtion
     {
       get => radLabel2.Text;
-      set => radLabel2.Text = value;
+      set => radLabel2.Text = $"<html>{value.Replace("\n", "<br/>").Replace("\\n", "<br/>")}</html>";
     }
 
     /// <summary>

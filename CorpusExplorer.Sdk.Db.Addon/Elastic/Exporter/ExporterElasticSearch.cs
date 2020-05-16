@@ -1,4 +1,6 @@
-﻿using CorpusExplorer.Sdk.Db.Elastic;
+﻿#region
+
+using CorpusExplorer.Sdk.Db.Elastic;
 using CorpusExplorer.Sdk.Db.Elastic.Model.Context;
 using CorpusExplorer.Sdk.Db.Elastic.Sdk.Context;
 using CorpusExplorer.Sdk.Db.Gui;
@@ -6,6 +8,8 @@ using CorpusExplorer.Sdk.Model.Extension;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Utils.CorpusManipulation;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter
 {

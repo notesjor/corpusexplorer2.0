@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Sdk.Extern.MarMoT</RootNamespace>
     <AssemblyName>CorpusExplorer.Sdk.Extern.MarMoT</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -41,7 +41,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HighSpeedSpaceTokenizerWithSentenceDetection.cs" />
+    <Compile Include="SimpleSentenceDetection.cs" />
     <Compile Include="MarMoTTagger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryManifest.cs" />

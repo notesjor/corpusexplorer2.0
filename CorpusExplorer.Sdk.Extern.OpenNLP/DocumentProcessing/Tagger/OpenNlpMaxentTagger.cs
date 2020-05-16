@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Bcs.IO;
@@ -7,6 +9,8 @@ using CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger.Parameter;
 using CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tokenizer;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger
 {
@@ -69,7 +73,8 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger
               StartInfo =
               {
                 FileName = OpenNlpLocator.BatchFile,
-                Arguments = $"POSTagger {OpenNlpLocator.GetMaxentModel(LanguageSelected)} < {fileInput.Path} > {fileOutput.Path}",
+                Arguments =
+                  $"POSTagger {OpenNlpLocator.GetMaxentModel(LanguageSelected)} < {fileInput.Path} > {fileOutput.Path}",
                 CreateNoWindow = true,
                 WindowStyle = ProcessWindowStyle.Hidden
               }

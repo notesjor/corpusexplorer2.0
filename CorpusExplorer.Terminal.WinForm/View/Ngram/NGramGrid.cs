@@ -48,6 +48,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       UseParentCellForHighlighting = Resources.NGramm;
 
       AddSummaryRow();
+      ApplyFilterDelay();
       AddChildTemplate(
                        delegate(DataRowView x)
                        {

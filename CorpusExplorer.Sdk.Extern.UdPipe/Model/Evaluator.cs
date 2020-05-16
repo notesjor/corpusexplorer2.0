@@ -1,5 +1,9 @@
+#region
+
 using System;
 using System.Runtime.InteropServices;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 {
@@ -74,6 +78,16 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       return ret;
     }
 
+    ~Evaluator()
+    {
+      Dispose();
+    }
+
+    internal static HandleRef getCPtr(Evaluator obj)
+    {
+      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+    }
+
     public void setModel(Model m)
     {
       udpipe_csharpPINVOKE.Evaluator_setModel(swigCPtr, Model.getCPtr(m));
@@ -95,16 +109,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       udpipe_csharpPINVOKE.Evaluator_setTokenizer(swigCPtr, tokenizer);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-    }
-
-    internal static HandleRef getCPtr(Evaluator obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
-
-    ~Evaluator()
-    {
-      Dispose();
     }
   }
 }

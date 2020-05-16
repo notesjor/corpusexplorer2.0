@@ -83,14 +83,14 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     public static CorpusAdapterWriteDirect Create(string path)
     {
       if (path.EndsWith(".gz"))
-        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
+        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
         using (var gz = new GZipStream(fs, CompressionMode.Decompress))
         using (var bs = new BufferedStream(gz))
         {
           return Create(path, bs);
         }
       else
-        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
+        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
         using (var bs = new BufferedStream(fs))
         {
           return Create(path, bs);
@@ -293,7 +293,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       if (useCompression)
       {
         path = path.ForceFileExtension("cec6.gz").Replace(".cec6.cec6.gz", ".cec6.gz");
-        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Read))
         using (var gz = new GZipStream(fs, CompressionLevel.Fastest))
         using (var bs = new BufferedStream(gz))
           Save(bs);
@@ -301,7 +301,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       else
       {
         path = path.ForceFileExtension("cec6");
-        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Read))
         using (var bs = new BufferedStream(fs))
           Save(bs);
       }
@@ -331,6 +331,12 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       // fs.Write(buffer, 0, buffer.Length);
     }
 
+    public Dictionary<Guid, long> WriteFuriousIndex(string layerDisplayname, string path)
+    {
+      return (from l in _layers where l.Displayname == layerDisplayname select l.WriteFuriousIndex(path)).FirstOrDefault();
+    }
+
+    [Obsolete("Ersetzt durch WriteFuriousIndex im Zusammhang mit neuer Version von QuickIndex")]
     public Dictionary<Guid, long> GetFuriousIndex(string layerDisplayname)
     {
       long pos = 24; // 8 (SEDITION) + 16 (GUID-Korpus)

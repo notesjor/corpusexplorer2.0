@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,7 +19,7 @@ namespace CorpusExplorer.Terminal.Automate
     {
       _script = new cescript
       {
-        version = (decimal)1.0,
+        version = "1.0",
         head = new meta[0],
         sessions = new sessions { mode = "asynchron", session = new session[0] }
       };
@@ -32,8 +34,12 @@ namespace CorpusExplorer.Terminal.Automate
       }
     }
 
-    public void Save(string path)
+    public void Save(string path, string version, string sessionMode, KeyValuePair<string, string>[] metas)
     {
+      Version = version;
+      SessionMode = sessionMode;
+      Metas = metas;
+      
       using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
       {
         var se = new XmlSerializer(typeof(cescript));
@@ -41,43 +47,49 @@ namespace CorpusExplorer.Terminal.Automate
       }
     }
 
-    public void Execute(string path)
-    {
+    public void Execute(string path) =>
+      Process.Start(new ProcessStartInfo
+      {
+        FileName = "cec",
+        Arguments = $"FILE:\"{path}\""
+      })?.WaitForExit();
 
+    public void Add(session newSession)
+    {
+      _script.sessions.session = _script.sessions.session.Concat(new[] {newSession}).ToArray();
     }
 
-    public void LoadBasicInformation(out string version, 
-                                     out Dictionary<string, string> meta, 
-                                     out string sessionMode,
-                                     out string[] sessions)
+    public void Change(int pos, session session)
     {
-
+      _script.sessions.session[pos] = session;
     }
 
-    public void SaveBasicInformation(string version,
-                                     Dictionary<string, string> meta,
-                                     string sessionMode)
+    public void Delete(int pos)
     {
-
+      var list = new List<session>(_script.sessions.session);
+      list.RemoveAt(pos);
+      _script.sessions.session = list.ToArray();
     }
 
-    public void LoadSession(int sessionIndex,
-                            out string sessionOverride,
-                            out string sourcesProcessing,
-                            out string[] sources,
-                            out string[] queries, 
-                            out string actionsMode,
-                            out string[] actions)
-    {
+    public IEnumerable<string> List() 
+      => _script.sessions.session.Select(x => $"S {x.sources.Items.Length} ({x.sources.processing}) | Q {x.queries.Items.Length} ({x.queries.processing}) | A {x.actions.action.Length} ({x.actions.mode})");
 
+    public IEnumerable<KeyValuePair<string, string>> Metas
+    {
+      get => _script.head.Select(x => new KeyValuePair<string, string>(x.key, x.Value));
+      set => _script.head = value.Select(x => new meta {key = x.Key, Value = x.Value}).ToArray();
     }
 
-    public void SaveSession(int sessionIndex,
-                            string sessionOverride,
-                            string sourcesProcessing,
-                            string actionsMode)
+    public string Version
     {
+      get => _script.version;
+      set => _script.version = value;
+    }
 
+    public string SessionMode
+    {
+      get => _script.sessions.mode;
+      set => _script.sessions.mode = value;
     }
   }
 }

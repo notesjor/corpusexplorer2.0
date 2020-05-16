@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer;
 
 #endregion
 

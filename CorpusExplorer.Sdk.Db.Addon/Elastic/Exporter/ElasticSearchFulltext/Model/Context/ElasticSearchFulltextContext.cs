@@ -1,6 +1,10 @@
-﻿using CorpusExplorer.Sdk.Db.Elastic.Sdk.Context;
+﻿#region
+
+using CorpusExplorer.Sdk.Db.Elastic.Sdk.Context;
 using CorpusExplorer.Sdk.Diagnostic;
 using Elasticsearch.Net;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter.ElasticSearchFulltext.Model.Context
 {

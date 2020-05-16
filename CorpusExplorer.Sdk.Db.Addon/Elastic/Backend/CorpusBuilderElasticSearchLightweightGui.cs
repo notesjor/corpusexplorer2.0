@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Db.Elastic;
 using CorpusExplorer.Sdk.Db.Elastic.Model.Context;
@@ -6,6 +8,8 @@ using CorpusExplorer.Sdk.Db.Elastic.Sdk.Context;
 using CorpusExplorer.Sdk.Db.Gui;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Backend
 {

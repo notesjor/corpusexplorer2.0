@@ -1,8 +1,12 @@
 ﻿#region
 
+#region
+
 using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
+
+#endregion
 
 [assembly: CLSCompliant(false)]
 

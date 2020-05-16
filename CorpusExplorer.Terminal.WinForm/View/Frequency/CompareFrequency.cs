@@ -98,6 +98,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
                           radGridView1.ResetBindings();
                           radGridView1.BestFitColumns(BestFitColumnMode.HeaderCells);
                           radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+                          ApplyFilterDelay();
                         });
     }
 

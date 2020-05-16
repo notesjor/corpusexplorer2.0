@@ -41,7 +41,7 @@ namespace CorpusExplorer.Sdk.Extern.Wiki.Wikipedia
       }
     }
 
-    protected override string Execute(string input)
+    protected override string Execute(string key, string input)
     {
       return ExecuteInline(input);
     }

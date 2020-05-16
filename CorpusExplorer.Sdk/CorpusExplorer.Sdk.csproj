@@ -9,12 +9,13 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Sdk</RootNamespace>
     <AssemblyName>CorpusExplorer.Sdk</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <CodeContractsAssemblyMode>0</CodeContractsAssemblyMode>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <SonarQubeTestProject>False</SonarQubeTestProject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -95,7 +96,7 @@
       <HintPath>..\packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NHunspell, Version=1.2.5554.16953, Culture=neutral, PublicKeyToken=1ac793ea843b4366, processorArchitecture=MSIL">
       <HintPath>..\packages\NHunspell.1.2.5554.16953\lib\net\NHunspell.dll</HintPath>
@@ -103,8 +104,8 @@
     <Reference Include="Polenter.SharpSerializer, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.1\lib\netstandard1.0\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=6.2.13.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.2.13\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.6.7.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.6.7\lib\net45\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -135,9 +136,11 @@
     <Compile Include="Blocks\CooccurrenceSecondLevelProfileBlock.cs" />
     <Compile Include="Blocks\CrossFrequencyDocumentBasedBlock.cs" />
     <Compile Include="Blocks\CutOffPhraseBlock.cs" />
+    <Compile Include="Blocks\DocumentHashBlock.cs" />
     <Compile Include="Blocks\EditDistantCalculationBlock.cs" />
     <Compile Include="Blocks\Frequency1LayerOneOccurrencePerDocument.cs" />
     <Compile Include="Blocks\Helper\DoubleKeyDictionary.cs" />
+    <Compile Include="Blocks\KeywordCompletePreCalculatedBlock.cs" />
     <Compile Include="Blocks\KeywordPresetReferenceListBlock.cs" />
     <Compile Include="Blocks\MtldBlock.cs" />
     <Compile Include="Blocks\NamedEntityRecognitionBlock.cs" />
@@ -331,13 +334,16 @@
     <Compile Include="Model\Delegates\HydraDelegate.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusCleaner.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusNormalizer.cs" />
+    <Compile Include="Utils\CorpusManipulation\CorpusMergerQueryBased.cs" />
     <Compile Include="Utils\DataTableWriter\HtmlTableWriter.cs" />
+    <Compile Include="Utils\DataTableWriter\JsonRoundedTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\SqlDataOnlyTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\SqlSchemaOnlyTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\TsvRoundedTableWriter.cs" />
     <Compile Include="Utils\DocumentProcessing\Cleanup\RegexHyphenationCleanup.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCec6.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterConll.cs" />
+    <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCorpusWorkBench.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCsv.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCsvMetadataOnly.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterHtmlPure.cs" />
@@ -433,8 +439,8 @@
     <Compile Include="Utils\DocumentProcessing\Tagger\Abstract\AbstractTaggerWithUnderscore.cs" />
     <Compile Include="Utils\DocumentProcessing\Tagger\ConllTagger\Abstract\AbstractConllStyleTagger.cs" />
     <Compile Include="Utils\DocumentProcessing\Tagger\Helper\TaggerHelper.cs" />
-    <Compile Include="Utils\DocumentProcessing\Tagger\HighSpeedSpaceTokenizer.cs" />
-    <Compile Include="Utils\DocumentProcessing\Tagger\NoTokenizer.cs" />
+    <Compile Include="Utils\DocumentProcessing\Tokenizer\HighSpeedSpaceTokenizer.cs" />
+    <Compile Include="Utils\DocumentProcessing\Tokenizer\NoTokenizer.cs" />
     <Compile Include="Utils\DocumentProcessing\Tagger\RawText\AdditionalTsvValueTagger.cs" />
     <Compile Include="Utils\DocumentProcessing\Tagger\RawText\RawTextTagger.cs" />
     <Compile Include="Utils\DocumentProcessing\Tagger\Special\AdditionalTagger.cs" />
@@ -530,6 +536,10 @@
     <Compile Include="Utils\ReMapper\ReMapperInline.cs" />
     <Compile Include="Utils\ReMapper\ReMapperOutline.cs" />
     <Compile Include="Utils\ReMapper\ReMapperStandoff.cs" />
+    <Compile Include="Utils\WaitBehaviour\Abstract\AbstractWaitBehaviour.cs" />
+    <Compile Include="Utils\WaitBehaviour\WaitBehaviourLinux.cs" />
+    <Compile Include="Utils\WaitBehaviour\WaitBehaviourNone.cs" />
+    <Compile Include="Utils\WaitBehaviour\WaitBehaviourWindows.cs" />
     <Compile Include="ViewModel\Abstract\AbstractCompareViewModel.cs" />
     <Compile Include="ViewModel\Abstract\AbstractOverTimeViewModel.cs" />
     <Compile Include="ViewModel\BurrowsDeltaViewModel.cs" />
@@ -548,6 +558,7 @@
     <Compile Include="ViewModel\CutOffPhraseViewModel.cs" />
     <Compile Include="ViewModel\DocumentCloneDetectionViewModel.cs" />
     <Compile Include="ViewModel\CooccurrenceCompareViewModel.cs" />
+    <Compile Include="ViewModel\DocumentHashViewModel.cs" />
     <Compile Include="ViewModel\DocumentMetadataViewModel.cs" />
     <Compile Include="ViewModel\EditDistantCalculationViewModel.cs" />
     <Compile Include="ViewModel\Interfaces\IProvideNormalizedDataTable.cs" />

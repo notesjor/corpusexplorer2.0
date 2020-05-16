@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -14,6 +16,8 @@ using Devart.Data.Linq;
 using Corpus = CorpusExplorer.Sdk.Db.MySQL.Model.Corpus;
 using DataContext = CorpusExplorer.Sdk.Db.MySQL.Model.DataContext;
 using Layer = CorpusExplorer.Sdk.Db.MySQL.Model.Layer;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Db.MySql.Adapter
 {
@@ -36,6 +40,8 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
     }
 
     public override Guid CorpusGuid => _corpus.GUID;
+
+    internal int DbIndex => _corpus.ID;
 
     public override IEnumerable<Guid> DocumentGuids
       => new HashSet<Guid>(from x in _corpus.Documents select x.GUID);
@@ -66,8 +72,6 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
 
     public override bool UseCompression
       => false;
-
-    internal int DbIndex => _corpus.ID;
 
     public override void AddConcept(Concept concept)
     {

@@ -1,3 +1,5 @@
+#region
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,8 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model.Abstract;
 using Devart.Data.Linq;
 using DataContext = CorpusExplorer.Sdk.Db.MySQL.Model.DataContext;
 using Layer = CorpusExplorer.Sdk.Db.MySQL.Model.Layer;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Db.MySql.Adapter
 {
@@ -251,6 +255,11 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
       return res;
     }
 
+    protected override CeDictionary GetValueDictionary()
+    {
+      return new CeDictionary(ReciveRawLayerDictionary());
+    }
+
     public override Dictionary<string, int> ReciveRawLayerDictionary()
     {
       return _layer.LayerDictionaryEntries.ToDictionary(x => x.Value, x => x.Index);
@@ -261,6 +270,10 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
       return _layer.LayerDictionaryEntries.ToDictionary(x => x.Index, x => x.Value);
     }
 
+    public override void RefreshDictionaries()
+    {
+    }
+
     public override void ResetRawLayerDictionary(Dictionary<string, int> dictionary)
     {
       throw new NotImplementedException();
@@ -269,10 +282,6 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
     public override void ResetRawReverseLayerDictionary(Dictionary<int, string> reverse)
     {
       throw new NotImplementedException();
-    }
-
-    public override void RefreshDictionaries()
-    {
     }
 
     public override bool SetDocumentLayerValueMaskBySwitch(
@@ -405,11 +414,6 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
         return;
       _db.LayerDictionaryEntries.DeleteOnSubmit(v);
       _db.SubmitChanges();
-    }
-
-    protected override CeDictionary GetValueDictionary()
-    {
-      return new CeDictionary(ReciveRawLayerDictionary());
     }
 
     protected override IEnumerable<string> ValuesByRegex(string regEx)

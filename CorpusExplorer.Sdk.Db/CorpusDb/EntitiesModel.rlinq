@@ -1,0 +1,501 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DomainModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="2.0.0.0" name="CorpusExplorerModel" namespace="CorpusExplorer.Sdk.Db.CorpusDb" showPropertiesCompartment="true" xmlns="http://www.telerik.com/ORM">
+  <orm:orm name="CorpusExplorerModel" backend="sqlite" xmlns:orm="http://tempuri.org/ORM">
+    <orm:namespace name="CorpusExplorer.Sdk.Db.CorpusDb" default="true" />
+    <orm:schema schema="" />
+    <orm:namespace name="CorpusExplorer.Sdk.Db.SQLite">
+      <orm:class name="DocumentLayerIndex" update-schema="true" use-default-mapping="true" uniqueId="197f8aab-b41f-4558-a2a9-904f8a263c2b">
+        <orm:identity>
+          <orm:multiple-field>
+            <orm:single-field field-name="_sentenceIdx" />
+            <orm:single-field field-name="_wordIdx" />
+            <orm:single-field field-name="_documentId" />
+            <orm:single-field field-name="_layerId" />
+            <orm:single-field field-name="_layerIndexIdx" />
+          </orm:multiple-field>
+        </orm:identity>
+        <orm:field name="_sentenceIdx" property="SentenceIdx" uniqueId="6f8a8241-f45a-455e-b36c-b99cc1da39b1" type="System.Int32">
+          <orm:column name="SentenceIdx" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_wordIdx" property="WordIdx" uniqueId="6ea6bd0f-439d-4672-97af-39490726e964" type="System.Int32">
+          <orm:column name="WordIdx" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_documentId" property="DocumentId" uniqueId="750195f7-d8d8-4325-8a58-6624c1c018ea" type="System.UInt64">
+          <orm:column name="DocumentId" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_layerId" property="LayerId" uniqueId="b011b7ce-4d47-4c17-87dd-01fc3ef68a41" type="System.UInt64">
+          <orm:column name="LayerId" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_layerIndexIdx" property="LayerIndexIdx" uniqueId="1234fbe4-8281-4201-9af4-9c0337d72757" type="System.UInt64">
+          <orm:column name="LayerIndexIdx" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_document" property="Document" behavior="readwrite" uniqueId="9cac832d-651b-4dec-8df8-7a6d9118837b" type="CorpusExplorer.Sdk.Db.SQLite.Document">
+          <orm:reference uniqueId="87c15d8e-09f8-4fda-81ca-88c60380a055" association-name="DocumentLayerIndexHasDocument">
+            <orm:sharedfield name="_documentId" target-class="CorpusExplorer.Sdk.Db.SQLite.Document" target-field="_id" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_layer" property="Layer" behavior="readwrite" uniqueId="c7392c7e-2ef4-4013-8029-45e94699875a" type="CorpusExplorer.Sdk.Db.SQLite.Layer">
+          <orm:reference uniqueId="39674f39-499c-4b3c-af22-998964e9e080" association-name="DocumentLayerIndexHasLayer">
+            <orm:sharedfield name="_layerId" target-class="CorpusExplorer.Sdk.Db.SQLite.Layer" target-field="_id" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_layerIndex" property="LayerIndex" behavior="readwrite" uniqueId="3f4f6980-80a3-4a68-bd92-6a1a3f253a55" type="CorpusExplorer.Sdk.Db.SQLite.LayerIndex">
+          <orm:reference uniqueId="f1970087-c15c-45be-9f25-7d0f28efb831" association-name="DocumentLayerIndexHasLayerIndex">
+            <orm:sharedfield name="_layerId" target-class="CorpusExplorer.Sdk.Db.SQLite.LayerIndex" target-field="_layerId" />
+            <orm:sharedfield name="_layerIndexIdx" target-class="CorpusExplorer.Sdk.Db.SQLite.LayerIndex" target-field="_index" />
+          </orm:reference>
+        </orm:field>
+        <orm:index name="idx_DcmntLayerIndex_DocumentId">
+          <orm:columnMapping>
+            <orm:column name="DocumentId" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:index name="idx_DcmntLyrIndx_LyrIndxIdx_Ly">
+          <orm:columnMapping>
+            <orm:column name="LayerIndexIdx" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+          </orm:columnMapping>
+          <orm:columnMapping>
+            <orm:column name="LayerId" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:index name="idx_DocumentLayerIndex_LayerId">
+          <orm:columnMapping>
+            <orm:column name="LayerId" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="Document" update-schema="true" use-default-mapping="true" uniqueId="9161bb96-11e8-4600-a051-535e5d4225eb">
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:field name="_id" property="Id" uniqueId="54901e98-786f-4266-bb84-f567177763b1" type="System.UInt64">
+          <orm:column name="Id" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" backend-calculated="true" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_name" property="Name" uniqueId="5e115d8d-ee48-4992-9cc9-685d2ee77fe1" type="System.String">
+          <orm:column name="nme" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_corpus" property="Corpus" behavior="readwrite" uniqueId="8170cf6a-5352-40ed-abb0-fdcd670b2127" type="CorpusExplorer.Sdk.Db.SQLite.Corpus">
+          <orm:reference uniqueId="c97a7b7e-0dda-4a75-b6cf-33bb1f172173" association-name="DocumentHasCorpus" />
+        </orm:field>
+        <orm:field name="_documentLayerIndices" property="DocumentLayerIndices" behavior="readwrite" uniqueId="9b79344b-68e2-4948-9800-397eeca2cbbf" type="CorpusExplorer.Sdk.Db.SQLite.DocumentLayerIndex">
+          <orm:collection element-class="CorpusExplorer.Sdk.Db.SQLite.DocumentLayerIndex" inverse-field="_document" order-by="" uniqueId="87c15d8e-09f8-4fda-81ca-88c60380a055" />
+        </orm:field>
+        <orm:field name="_documentMetadatas" property="DocumentMetadatas" behavior="readwrite" uniqueId="550dbff6-96cf-401c-96f1-7637555b7f3a" type="CorpusExplorer.Sdk.Db.SQLite.DocumentMetadata">
+          <orm:collection element-class="CorpusExplorer.Sdk.Db.SQLite.DocumentMetadata" inverse-field="_document" order-by="" uniqueId="5b133672-6b7f-42f1-ad06-39bc0a0993fa" />
+        </orm:field>
+        <orm:index name="idx_Document_Id2">
+          <orm:columnMapping>
+            <orm:column name="Id2" sql-type="unsigned big int" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="Layer" update-schema="true" use-default-mapping="true" uniqueId="13ffea0b-2b09-4a85-bd1e-41392816d367">
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:field name="_id" property="Id" uniqueId="214a2d9e-5011-4ad1-beef-753b3f3db996" type="System.UInt64">
+          <orm:column name="Id" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" backend-calculated="true" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_name" property="Name" uniqueId="40ccbd3c-da25-4d40-a1a6-fb72610f6409" type="System.String">
+          <orm:column name="nme" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_corpus" property="Corpus" behavior="readwrite" uniqueId="542677b5-7038-47f5-818b-dcd0b8ada3cb" type="CorpusExplorer.Sdk.Db.SQLite.Corpus">
+          <orm:reference uniqueId="e8541b2b-f460-4bdb-827a-c899bbd58e17" association-name="LayerHasCorpus" />
+        </orm:field>
+        <orm:field name="_documentLayerIndices" property="DocumentLayerIndices" behavior="readwrite" uniqueId="0cce20e4-f19e-465a-b44c-4d8991aa45b6" type="CorpusExplorer.Sdk.Db.SQLite.DocumentLayerIndex">
+          <orm:collection element-class="CorpusExplorer.Sdk.Db.SQLite.DocumentLayerIndex" inverse-field="_layer" order-by="" uniqueId="39674f39-499c-4b3c-af22-998964e9e080" />
+        </orm:field>
+        <orm:field name="_layerIndices" property="LayerIndices" behavior="readwrite" uniqueId="ed8c317c-1143-4cde-97f3-aa710e1378e2" type="CorpusExplorer.Sdk.Db.SQLite.LayerIndex">
+          <orm:collection element-class="CorpusExplorer.Sdk.Db.SQLite.LayerIndex" inverse-field="_layer" order-by="" uniqueId="9d6660a8-5b8f-403b-8d1b-6be8ed09489f" />
+        </orm:field>
+        <orm:index name="idx_Layer_Id2">
+          <orm:columnMapping>
+            <orm:column name="Id2" sql-type="unsigned big int" nullable="true" length="0" scale="0" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="Corpus" update-schema="true" use-default-mapping="true" uniqueId="409dadd8-0d81-4063-95b3-32cd289e0a72">
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:field name="_id" property="Id" uniqueId="46fbbbb0-66f6-43f1-9f70-67f272d65bea" type="System.UInt64">
+          <orm:column name="Id" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" backend-calculated="true" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_name" property="Name" uniqueId="130bf073-9f5a-4d4a-8d22-a744bd335819" type="System.String">
+          <orm:column name="nme" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_documents" property="Documents" behavior="readwrite" uniqueId="da270367-c9c7-49cd-97f6-517d19c1e062" type="CorpusExplorer.Sdk.Db.SQLite.Document">
+          <orm:collection element-class="CorpusExplorer.Sdk.Db.SQLite.Document" inverse-field="_corpus" order-by="" uniqueId="c97a7b7e-0dda-4a75-b6cf-33bb1f172173" />
+        </orm:field>
+        <orm:field name="_layers" property="Layers" behavior="readwrite" uniqueId="72502b5d-ae1d-4b3e-b813-a101f8cc6d03" type="CorpusExplorer.Sdk.Db.SQLite.Layer">
+          <orm:collection element-class="CorpusExplorer.Sdk.Db.SQLite.Layer" inverse-field="_corpus" order-by="" uniqueId="e8541b2b-f460-4bdb-827a-c899bbd58e17" />
+        </orm:field>
+        <orm:field name="_corpusMetadatas" property="CorpusMetadatas" behavior="readwrite" uniqueId="b7aae905-75a2-4e61-984f-8f90b0c37a4a" type="CorpusExplorer.Sdk.Db.SQLite.CorpusMetadata">
+          <orm:collection element-class="CorpusExplorer.Sdk.Db.SQLite.CorpusMetadata" inverse-field="_corpus" order-by="" uniqueId="4c0637d4-b060-486d-9dba-27213bd51f86" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="DocumentMetadata" update-schema="true" use-default-mapping="true" uniqueId="bc6fed8f-28c3-44ba-bc41-af1855de53d1">
+        <orm:identity>
+          <orm:multiple-field>
+            <orm:single-field field-name="_documentId" />
+            <orm:single-field field-name="_name" />
+          </orm:multiple-field>
+        </orm:identity>
+        <orm:field name="_documentId" property="DocumentId" uniqueId="bdacf167-709d-4705-bb1c-d7a8960076f8" type="System.UInt64">
+          <orm:column name="DocumentId" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_name" property="Name" uniqueId="6eb58404-905e-4125-8711-89b8159a6ded" type="System.String">
+          <orm:column name="nme" sql-type="varchar" nullable="false" length="255" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_value" property="Value" uniqueId="3c6dd801-dcda-4814-81b3-9d1bac6a21cd" type="System.String">
+          <orm:column name="val" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_document" property="Document" behavior="readwrite" uniqueId="d57a337a-3656-4749-a4fb-7275407d5a7d" type="CorpusExplorer.Sdk.Db.SQLite.Document">
+          <orm:reference uniqueId="5b133672-6b7f-42f1-ad06-39bc0a0993fa" association-name="DocumentMetadataHasDocument">
+            <orm:sharedfield name="_documentId" target-class="CorpusExplorer.Sdk.Db.SQLite.Document" target-field="_id" />
+          </orm:reference>
+        </orm:field>
+        <orm:index name="idx_DcumentMetadata_DocumentId">
+          <orm:columnMapping>
+            <orm:column name="DocumentId" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="CorpusMetadata" update-schema="true" use-default-mapping="true" uniqueId="162eb3c6-3395-4c0e-9292-bf08b8ba5fac">
+        <orm:identity>
+          <orm:multiple-field>
+            <orm:single-field field-name="_corpusId" />
+            <orm:single-field field-name="_name" />
+          </orm:multiple-field>
+        </orm:identity>
+        <orm:field name="_corpusId" property="CorpusId" uniqueId="1aedd8c8-149c-4280-a7ff-fcd1e8136e4e" type="System.UInt64">
+          <orm:column name="CorpusId" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_name" property="Name" uniqueId="2398a998-ef96-4038-a728-93e7edf49444" type="System.String">
+          <orm:column name="nme" sql-type="varchar" nullable="false" length="255" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_value" property="Value" uniqueId="01707183-f3f9-4ea3-b2f4-d230362f3340" type="System.String">
+          <orm:column name="val" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_corpus" property="Corpus" behavior="readwrite" uniqueId="0277d45f-7ce4-4fdf-88c7-df1b033553ae" type="CorpusExplorer.Sdk.Db.SQLite.Corpus">
+          <orm:reference uniqueId="4c0637d4-b060-486d-9dba-27213bd51f86" association-name="CorpusMetadataHasCorpus">
+            <orm:sharedfield name="_corpusId" target-class="CorpusExplorer.Sdk.Db.SQLite.Corpus" target-field="_id" />
+          </orm:reference>
+        </orm:field>
+        <orm:index name="idx_CorpusMetadata_CorpusId">
+          <orm:columnMapping>
+            <orm:column name="CorpusId" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="LayerIndex" update-schema="true" use-default-mapping="true" uniqueId="045203c4-5c0e-4478-b274-ba713ac076c6">
+        <orm:identity>
+          <orm:multiple-field>
+            <orm:single-field field-name="_layerId" />
+            <orm:single-field field-name="_index" />
+          </orm:multiple-field>
+        </orm:identity>
+        <orm:field name="_layerId" property="LayerId" uniqueId="ff7d5595-b66d-4a66-9070-0867a5cdbd39" type="System.UInt64">
+          <orm:column name="LayerId" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_index" property="Index" uniqueId="34836311-be66-41de-bacf-a1287912e3c2" type="System.UInt64">
+          <orm:column name="indx" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+        </orm:field>
+        <orm:field name="_value" property="Value" uniqueId="6f2a2fb9-b3d8-42cb-834d-5b45d7caa6a1" type="System.String">
+          <orm:column name="val" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
+        <orm:field name="_layer" property="Layer" behavior="readwrite" uniqueId="72f1c0d0-2a4b-4f6c-a000-d9e6dcaa550c" type="CorpusExplorer.Sdk.Db.SQLite.Layer">
+          <orm:reference uniqueId="9d6660a8-5b8f-403b-8d1b-6be8ed09489f" association-name="LayerIndexHasLayer">
+            <orm:sharedfield name="_layerId" target-class="CorpusExplorer.Sdk.Db.SQLite.Layer" target-field="_id" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_documentLayerIndices" property="DocumentLayerIndices" behavior="readwrite" uniqueId="5710e5bb-25b5-49a3-9e08-1d93229e8acd" type="CorpusExplorer.Sdk.Db.SQLite.DocumentLayerIndex">
+          <orm:collection element-class="CorpusExplorer.Sdk.Db.SQLite.DocumentLayerIndex" inverse-field="_layerIndex" order-by="" uniqueId="f1970087-c15c-45be-9f25-7d0f28efb831" />
+        </orm:field>
+        <orm:index name="idx_LayerIndex_LayerId">
+          <orm:columnMapping>
+            <orm:column name="LayerId" sql-type="unsigned big int" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.UInt64Converter" ado-type="UInt64" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+    </orm:namespace>
+    <orm:relational-naming-settings>
+      <orm:remove-leading-underscore>False</orm:remove-leading-underscore>
+      <orm:source-strategy>Property</orm:source-strategy>
+      <orm:remove-camel-case>False</orm:remove-camel-case>
+    </orm:relational-naming-settings>
+  </orm:orm>
+  <ModelSettings xmlns="">
+    <AppConfigConnectionPropertyName>PrototypeConnection</AppConfigConnectionPropertyName>
+    <AppConfigConnectionString>data source=C:\Projekte\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk.Db\corpusPrototype.s3db</AppConfigConnectionString>
+    <NamingSettings>
+      <ClassRules>
+        <CaseMode>PascalCase</CaseMode>
+        <PluralizationMode>Singularize</PluralizationMode>
+      </ClassRules>
+      <FieldRules>
+        <AddPrefix>_</AddPrefix>
+        <CaseMode>CamelCase</CaseMode>
+      </FieldRules>
+      <PropertyRules>
+        <CaseMode>PascalCase</CaseMode>
+      </PropertyRules>
+      <NavigationPropertyRules />
+    </NamingSettings>
+    <CodeGenerationSettings>
+      <MappingDefinitionType>Xml</MappingDefinitionType>
+    </CodeGenerationSettings>
+    <SchemaUpdateSettings>
+      <ExecuteScript>true</ExecuteScript>
+      <DeploymentProject>CorpusExplorer.Sdk.Db</DeploymentProject>
+      <DeploymentDirectory>CorpusDb</DeploymentDirectory>
+      <UpdateDatabaseOperation>Migrate</UpdateDatabaseOperation>
+      <ShowAllTables>true</ShowAllTables>
+    </SchemaUpdateSettings>
+    <BackendConfigurationSettings>
+      <BackendConfiguration>
+        <Backend>SQLite</Backend>
+        <ProviderName>System.Data.SQLite</ProviderName>
+        <Logging>
+          <MetricStoreSnapshotInterval>0</MetricStoreSnapshotInterval>
+        </Logging>
+      </BackendConfiguration>
+    </BackendConfigurationSettings>
+  </ModelSettings>
+  <Types>
+    <DomainClass Id="197f8aab-b41f-4558-a2a9-904f8a263c2b" name="DocumentLayerIndex" namespace="CorpusExplorer.Sdk.Db.SQLite" showPropertiesCompartment="true" updateSchema="true" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="6f8a8241-f45a-455e-b36c-b99cc1da39b1" name="SentenceIdx" type="Int32" label="SentenceIdx : Int32" identity="true" fieldName="_sentenceIdx" />
+      <Property Id="6ea6bd0f-439d-4672-97af-39490726e964" name="WordIdx" type="Int32" label="WordIdx : Int32" identity="true" fieldName="_wordIdx" />
+      <Property Id="750195f7-d8d8-4325-8a58-6624c1c018ea" name="DocumentId" type="UInt64" label="DocumentId : UInt64" identity="true" fieldName="_documentId" />
+      <Property Id="b011b7ce-4d47-4c17-87dd-01fc3ef68a41" name="LayerId" type="UInt64" label="LayerId : UInt64" identity="true" fieldName="_layerId" />
+      <Property Id="1234fbe4-8281-4201-9af4-9c0337d72757" name="LayerIndexIdx" type="UInt64" label="LayerIndexIdx : UInt64" identity="true" fieldName="_layerIndexIdx" />
+      <AssociationTargets>
+        <Association Id="87c15d8e-09f8-4fda-81ca-88c60380a055" SourceMultiplicity="ZeroOne" name="DocumentLayerIndexHasDocument">
+          <DomainClassMoniker name="/CorpusExplorerModel/Document" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="47d511d5-cc14-4022-bb8e-f4b54ea7ef0c">
+              <NavigationalPropertyMoniker name="/CorpusExplorerModel/Document/DocumentLayerIndices" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="0b5cbe19-76af-42bd-a603-458161b4ddd9">
+              <NavigationalPropertyMoniker name="/CorpusExplorerModel/DocumentLayerIndex/Document" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="39674f39-499c-4b3c-af22-998964e9e080" SourceMultiplicity="ZeroOne" name="DocumentLayerIndexHasLayer">
+          <DomainClassMoniker name="/CorpusExplorerModel/Layer" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="b3a0c8ab-b54f-48ec-adb8-32851d546074">
+              <NavigationalPropertyMoniker name="/CorpusExplorerModel/Layer/DocumentLayerIndices" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="c6dec874-ecd1-40f4-9590-7cfc4cd3e9ad">
+              <NavigationalPropertyMoniker name="/CorpusExplorerModel/DocumentLayerIndex/Layer" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="f1970087-c15c-45be-9f25-7d0f28efb831" SourceMultiplicity="ZeroOne" name="DocumentLayerIndexHasLayerIndex">
+          <DomainClassMoniker name="/CorpusExplorerModel/LayerIndex" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="b0c326a3-8cd6-4f2c-8f74-936286e809ba">
+              <NavigationalPropertyMoniker name="/CorpusExplorerModel/LayerIndex/DocumentLayerIndices" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="9472ed62-b226-40f0-89d4-faaa25997983">
+              <NavigationalPropertyMoniker name="/CorpusExplorerModel/DocumentLayerIndex/LayerIndex" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="53ed069e-d7fa-446d-adfc-e47af39cbbfb">
+          <NavigationalProperty Id="9cac832d-651b-4dec-8df8-7a6d9118837b" name="Document" type="Document" label="Document : Document" nullable="true" kind="Persistent" fieldName="_document" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="bfdeca66-78dc-4fee-ab0d-39ee28cc93a7">
+          <NavigationalProperty Id="c7392c7e-2ef4-4013-8029-45e94699875a" name="Layer" type="Layer" label="Layer : Layer" nullable="true" kind="Persistent" fieldName="_layer" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="d5ebb9a9-a189-4872-a097-34b46582f6be">
+          <NavigationalProperty Id="3f4f6980-80a3-4a68-bd92-6a1a3f253a55" name="LayerIndex" type="LayerIndex" label="LayerIndex : LayerIndex" nullable="true" kind="Persistent" fieldName="_layerIndex" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="9161bb96-11e8-4600-a051-535e5d4225eb" name="Document" namespace="CorpusExplorer.Sdk.Db.SQLite" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" updateSchema="true" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="54901e98-786f-4266-bb84-f567177763b1" name="Id" type="UInt64" label="Id : UInt64" identity="true" fieldName="_id" />
+      <Property Id="5e115d8d-ee48-4992-9cc9-685d2ee77fe1" name="Name" label="Name : String" fieldName="_name" />
+      <AssociationTargets>
+        <Association Id="c97a7b7e-0dda-4a75-b6cf-33bb1f172173" SourceMultiplicity="ZeroOne" name="DocumentHasCorpus">
+          <DomainClassMoniker name="/CorpusExplorerModel/Corpus" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="c9857dc6-5abd-4f74-9692-c62084513d2d">
+              <NavigationalPropertyMoniker name="/CorpusExplorerModel/Corpus/Documents" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="4475a5b5-b8ba-44e4-b082-f4e6d2c7fb42">
+              <NavigationalPropertyMoniker name="/CorpusExplorerModel/Document/Corpus" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="dedc5f21-0e91-4a56-94ed-4d53744c4d45">
+          <NavigationalProperty Id="8170cf6a-5352-40ed-abb0-fdcd670b2127" name="Corpus" type="Corpus" label="Corpus : Corpus" nullable="true" kind="Persistent" fieldName="_corpus" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="a83c00c3-9bd4-4ce9-88e6-a5e24ec5110e">
+          <NavigationalProperty Id="9b79344b-68e2-4948-9800-397eeca2cbbf" name="DocumentLayerIndices" type="IList&lt;DocumentLayerIndex&gt;" label="DocumentLayerIndices : IList&lt;DocumentLayerIndex&gt;" nullable="true" kind="Persistent" fieldName="_documentLayerIndices" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="80b30709-a3f7-4a48-9e18-040551328f58">
+          <NavigationalProperty Id="550dbff6-96cf-401c-96f1-7637555b7f3a" name="DocumentMetadatas" type="IList&lt;DocumentMetadata&gt;" label="DocumentMetadatas : IList&lt;DocumentMetadata&gt;" nullable="true" kind="Persistent" fieldName="_documentMetadatas" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="13ffea0b-2b09-4a85-bd1e-41392816d367" name="Layer" namespace="CorpusExplorer.Sdk.Db.SQLite" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" updateSchema="true" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="214a2d9e-5011-4ad1-beef-753b3f3db996" name="Id" type="UInt64" label="Id : UInt64" identity="true" fieldName="_id" />
+      <Property Id="40ccbd3c-da25-4d40-a1a6-fb72610f6409" name="Name" label="Name : String" fieldName="_name" />
+      <AssociationTargets>
+        <Association Id="e8541b2b-f460-4bdb-827a-c899bbd58e17" SourceMultiplicity="ZeroOne" name="LayerHasCorpus">
+          <DomainClassMoniker name="/CorpusExplorerModel/Corpus" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="219f7f81-0497-4f20-8436-24d99cdf707b">
+              <NavigationalPropertyMoniker name="/CorpusExplorerModel/Corpus/Layers" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="ea5a1f8b-7415-4901-af05-1a0914daaf60">
+              <NavigationalPropertyMoniker name="/CorpusExplorerModel/Layer/Corpus" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="76c456e5-e280-4a02-adea-3558ffd00384">
+          <NavigationalProperty Id="542677b5-7038-47f5-818b-dcd0b8ada3cb" name="Corpus" type="Corpus" label="Corpus : Corpus" nullable="true" kind="Persistent" fieldName="_corpus" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="9029e267-0019-41f1-97da-2fe56392a8a7">
+          <NavigationalProperty Id="0cce20e4-f19e-465a-b44c-4d8991aa45b6" name="DocumentLayerIndices" type="IList&lt;DocumentLayerIndex&gt;" label="DocumentLayerIndices : IList&lt;DocumentLayerIndex&gt;" nullable="true" kind="Persistent" fieldName="_documentLayerIndices" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="ca652cef-525a-44da-b954-4971635c6a53">
+          <NavigationalProperty Id="ed8c317c-1143-4cde-97f3-aa710e1378e2" name="LayerIndices" type="IList&lt;LayerIndex&gt;" label="LayerIndices : IList&lt;LayerIndex&gt;" nullable="true" kind="Persistent" fieldName="_layerIndices" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="409dadd8-0d81-4063-95b3-32cd289e0a72" name="Corpus" namespace="CorpusExplorer.Sdk.Db.SQLite" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" updateSchema="true" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="46fbbbb0-66f6-43f1-9f70-67f272d65bea" name="Id" type="UInt64" label="Id : UInt64" identity="true" fieldName="_id" />
+      <Property Id="130bf073-9f5a-4d4a-8d22-a744bd335819" name="Name" label="Name : String" fieldName="_name" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="a0a50bec-5ddc-444d-bf3e-763fb5857404">
+          <NavigationalProperty Id="da270367-c9c7-49cd-97f6-517d19c1e062" name="Documents" type="IList&lt;Document&gt;" label="Documents : IList&lt;Document&gt;" nullable="true" kind="Persistent" fieldName="_documents" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="03574141-930e-484c-8746-fecf53f99146">
+          <NavigationalProperty Id="72502b5d-ae1d-4b3e-b813-a101f8cc6d03" name="Layers" type="IList&lt;Layer&gt;" label="Layers : IList&lt;Layer&gt;" nullable="true" kind="Persistent" fieldName="_layers" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="1b8af2bb-ddef-4030-8951-0cf1bb79543f">
+          <NavigationalProperty Id="b7aae905-75a2-4e61-984f-8f90b0c37a4a" name="CorpusMetadatas" type="IList&lt;CorpusMetadata&gt;" label="CorpusMetadatas : IList&lt;CorpusMetadata&gt;" nullable="true" kind="Persistent" fieldName="_corpusMetadatas" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="bc6fed8f-28c3-44ba-bc41-af1855de53d1" name="DocumentMetadata" namespace="CorpusExplorer.Sdk.Db.SQLite" showPropertiesCompartment="true" updateSchema="true" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="bdacf167-709d-4705-bb1c-d7a8960076f8" name="DocumentId" type="UInt64" label="DocumentId : UInt64" identity="true" fieldName="_documentId" />
+      <Property Id="6eb58404-905e-4125-8711-89b8159a6ded" name="Name" label="Name : String" identity="true" fieldName="_name" />
+      <Property Id="3c6dd801-dcda-4814-81b3-9d1bac6a21cd" name="Value" label="Value : String" fieldName="_value" />
+      <AssociationTargets>
+        <Association Id="5b133672-6b7f-42f1-ad06-39bc0a0993fa" SourceMultiplicity="ZeroOne" name="DocumentMetadataHasDocument">
+          <DomainClassMoniker name="/CorpusExplorerModel/Document" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="ee1757cd-9463-4fb7-b740-0a1b95dfaa3d">
+              <NavigationalPropertyMoniker name="/CorpusExplorerModel/Document/DocumentMetadatas" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="ed9d74cc-4bb8-4104-b46f-020b834e5052">
+              <NavigationalPropertyMoniker name="/CorpusExplorerModel/DocumentMetadata/Document" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="0b13f0e5-c321-4407-8c53-984b1925fa6d">
+          <NavigationalProperty Id="d57a337a-3656-4749-a4fb-7275407d5a7d" name="Document" type="Document" label="Document : Document" nullable="true" kind="Persistent" fieldName="_document" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="162eb3c6-3395-4c0e-9292-bf08b8ba5fac" name="CorpusMetadata" namespace="CorpusExplorer.Sdk.Db.SQLite" showPropertiesCompartment="true" updateSchema="true" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="1aedd8c8-149c-4280-a7ff-fcd1e8136e4e" name="CorpusId" type="UInt64" label="CorpusId : UInt64" identity="true" fieldName="_corpusId" />
+      <Property Id="2398a998-ef96-4038-a728-93e7edf49444" name="Name" label="Name : String" identity="true" fieldName="_name" />
+      <Property Id="01707183-f3f9-4ea3-b2f4-d230362f3340" name="Value" label="Value : String" fieldName="_value" />
+      <AssociationTargets>
+        <Association Id="4c0637d4-b060-486d-9dba-27213bd51f86" SourceMultiplicity="ZeroOne" name="CorpusMetadataHasCorpus">
+          <DomainClassMoniker name="/CorpusExplorerModel/Corpus" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="cd7cc624-9386-4f19-888c-6c7e9ba65227">
+              <NavigationalPropertyMoniker name="/CorpusExplorerModel/Corpus/CorpusMetadatas" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="b609ee2c-5713-4da7-aacf-6d5e12dd9734">
+              <NavigationalPropertyMoniker name="/CorpusExplorerModel/CorpusMetadata/Corpus" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="4a19c6b6-c962-43aa-bf49-2763ded6813d">
+          <NavigationalProperty Id="0277d45f-7ce4-4fdf-88c7-df1b033553ae" name="Corpus" type="Corpus" label="Corpus : Corpus" nullable="true" kind="Persistent" fieldName="_corpus" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="045203c4-5c0e-4478-b274-ba713ac076c6" name="LayerIndex" namespace="CorpusExplorer.Sdk.Db.SQLite" showPropertiesCompartment="true" updateSchema="true" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="ff7d5595-b66d-4a66-9070-0867a5cdbd39" name="LayerId" type="UInt64" label="LayerId : UInt64" identity="true" fieldName="_layerId" />
+      <Property Id="34836311-be66-41de-bacf-a1287912e3c2" name="Index" type="UInt64" label="Index : UInt64" identity="true" fieldName="_index" />
+      <Property Id="6f2a2fb9-b3d8-42cb-834d-5b45d7caa6a1" name="Value" label="Value : String" fieldName="_value" />
+      <AssociationTargets>
+        <Association Id="9d6660a8-5b8f-403b-8d1b-6be8ed09489f" SourceMultiplicity="ZeroOne" name="LayerIndexHasLayer">
+          <DomainClassMoniker name="/CorpusExplorerModel/Layer" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="31afba19-9950-460e-b4c7-c97b77ddee58">
+              <NavigationalPropertyMoniker name="/CorpusExplorerModel/Layer/LayerIndices" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="64368ff2-e858-4146-a03b-f74550a37e2a">
+              <NavigationalPropertyMoniker name="/CorpusExplorerModel/LayerIndex/Layer" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="29583151-9d88-48c9-9695-026d3709cf9f">
+          <NavigationalProperty Id="72f1c0d0-2a4b-4f6c-a000-d9e6dcaa550c" name="Layer" type="Layer" label="Layer : Layer" nullable="true" kind="Persistent" fieldName="_layer" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="fd6a11c3-d993-4b90-969e-a39b3adba89d">
+          <NavigationalProperty Id="5710e5bb-25b5-49a3-9e08-1d93229e8acd" name="DocumentLayerIndices" type="IList&lt;DocumentLayerIndex&gt;" label="DocumentLayerIndices : IList&lt;DocumentLayerIndex&gt;" nullable="true" kind="Persistent" fieldName="_documentLayerIndices" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+  </Types>
+  <domainContext>
+    <domainModelHasDomainContext Id="bd042e4f-4d84-4ee3-83f8-93134e0825f9">
+      <domainContainer name="CorpusExplorerModel" namespace="CorpusExplorer.Sdk.Db.CorpusDb" showPropertiesCompartment="true">
+        <entitySetProperty name="DocumentLayerIndices" namespace="CorpusExplorer.Sdk.Db.SQLite" type="DocumentLayerIndex" label="DocumentLayerIndices : IQueryable&lt;CorpusExplorer.Sdk.Db.SQLite.DocumentLayerIndex&gt;" />
+        <entitySetProperty name="Documents" namespace="CorpusExplorer.Sdk.Db.SQLite" type="Document" label="Documents : IQueryable&lt;CorpusExplorer.Sdk.Db.SQLite.Document&gt;" />
+        <entitySetProperty name="Layers" namespace="CorpusExplorer.Sdk.Db.SQLite" type="Layer" label="Layers : IQueryable&lt;CorpusExplorer.Sdk.Db.SQLite.Layer&gt;" />
+        <entitySetProperty name="Corpus" namespace="CorpusExplorer.Sdk.Db.SQLite" type="Corpus" label="Corpus : IQueryable&lt;CorpusExplorer.Sdk.Db.SQLite.Corpus&gt;" />
+        <entitySetProperty name="DocumentMetadatas" namespace="CorpusExplorer.Sdk.Db.SQLite" type="DocumentMetadata" label="DocumentMetadatas : IQueryable&lt;CorpusExplorer.Sdk.Db.SQLite.DocumentMetadata&gt;" />
+        <entitySetProperty name="CorpusMetadatas" namespace="CorpusExplorer.Sdk.Db.SQLite" type="CorpusMetadata" label="CorpusMetadatas : IQueryable&lt;CorpusExplorer.Sdk.Db.SQLite.CorpusMetadata&gt;" />
+        <entitySetProperty name="LayerIndices" namespace="CorpusExplorer.Sdk.Db.SQLite" type="LayerIndex" label="LayerIndices : IQueryable&lt;CorpusExplorer.Sdk.Db.SQLite.LayerIndex&gt;" />
+      </domainContainer>
+    </domainModelHasDomainContext>
+  </domainContext>
+</DomainModel>

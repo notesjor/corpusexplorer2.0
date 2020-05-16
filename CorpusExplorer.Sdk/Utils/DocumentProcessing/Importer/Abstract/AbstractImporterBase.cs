@@ -104,6 +104,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
       }
     }
 
+    protected string ConvertToSingleLineOfText(IEnumerable<string> lines) 
+      => lines == null ? string.Empty : string.Join("\r\n", lines).Trim();
+
     private void EnsureLayer(string layerName)
     {
       if (!Layers.ContainsKey(layerName))

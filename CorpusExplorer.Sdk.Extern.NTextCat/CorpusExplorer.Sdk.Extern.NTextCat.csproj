@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Sdk.Extern.NTextCat</RootNamespace>
     <AssemblyName>CorpusExplorer.Sdk.Extern.NTextCat</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -30,15 +30,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey2019.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IvanAkcheurov.Commons, Version=0.2.1.30, Culture=neutral, PublicKeyToken=a61413de1d13f8fc, processorArchitecture=MSIL">
-      <HintPath>..\packages\NTextCat.0.2.1.30\lib\net40\IvanAkcheurov.Commons.dll</HintPath>
-    </Reference>
-    <Reference Include="IvanAkcheurov.NClassify, Version=0.2.1.30, Culture=neutral, PublicKeyToken=a61413de1d13f8fc, processorArchitecture=MSIL">
-      <HintPath>..\packages\NTextCat.0.2.1.30\lib\net40\IvanAkcheurov.NClassify.dll</HintPath>
-    </Reference>
-    <Reference Include="NTextCat, Version=0.2.1.30, Culture=neutral, PublicKeyToken=a61413de1d13f8fc, processorArchitecture=MSIL">
-      <HintPath>..\packages\NTextCat.0.2.1.30\lib\net40\NTextCat.dll</HintPath>
+    <Reference Include="NTextCat, Version=0.3.65.0, Culture=neutral, PublicKeyToken=a61413de1d13f8fc, processorArchitecture=MSIL">
+      <HintPath>..\packages\NTextCat.0.3.65\lib\netstandard2.0\NTextCat.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -64,7 +64,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="CorpusExplorerNextSnKey2019.pfx" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Core14.profile.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

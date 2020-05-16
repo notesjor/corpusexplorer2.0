@@ -1,5 +1,9 @@
+#region
+
 using System;
 using System.Runtime.InteropServices;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 {
@@ -178,14 +182,14 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
     }
 
-    internal static HandleRef getCPtr(Word obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
-
     ~Word()
     {
       Dispose();
+    }
+
+    internal static HandleRef getCPtr(Word obj)
+    {
+      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
     }
   }
 }

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Sdk.Extern.FuzzyCloneDetection</RootNamespace>
     <AssemblyName>CorpusExplorer.Sdk.Extern.FuzzyCloneDetection</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -39,11 +39,16 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Action\DocumentRollingHashAction.cs" />
+    <Compile Include="AddonRepository.cs" />
     <Compile Include="Blocks\DocumentCloneFuzzyDetectionBlock.cs" />
+    <Compile Include="Blocks\DocumentRollingHashBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\DocumentFuzzyCloneDetectionViewModel.cs" />
+    <Compile Include="ViewModel\DocumentRollingHashViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CorpusExplorer.Sdk\CorpusExplorer.Sdk.csproj">
@@ -59,5 +64,6 @@
     <None Include="app.config" />
     <None Include="CorpusExplorerNextSnKey2019.pfx" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

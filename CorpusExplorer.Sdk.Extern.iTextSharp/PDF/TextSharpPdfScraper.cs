@@ -41,11 +41,11 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.PDF
 
         output.AppendLine(strategy.GetResultantText());
 
-        var res = new Dictionary<string, object> {{"Text", output.ToString()}, {"Datei", file}};
+        var res = new Dictionary<string, object> { { "Text", output.ToString() }, { "Datei", file } };
         foreach (var info in reader.Info.Where(info => !res.ContainsKey(info.Key)))
           res.Add(info.Key, info.Value);
 
-        return new[] {res};
+        return new[] { res };
       }
     }
   }

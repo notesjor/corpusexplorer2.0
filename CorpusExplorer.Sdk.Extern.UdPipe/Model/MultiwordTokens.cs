@@ -1,7 +1,11 @@
+#region
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 {
@@ -105,6 +109,12 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
     }
 
+    private uint capacity()
+    {
+      var ret = udpipe_csharpPINVOKE.MultiwordTokens_capacity(swigCPtr);
+      return ret;
+    }
+
     public void Clear()
     {
       udpipe_csharpPINVOKE.MultiwordTokens_Clear(swigCPtr);
@@ -138,9 +148,33 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
         array.SetValue(getitemcopy(index + i), arrayIndex + i);
     }
 
+    ~MultiwordTokens()
+    {
+      Dispose();
+    }
+
+    internal static HandleRef getCPtr(MultiwordTokens obj)
+    {
+      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+    }
+
     public MultiwordTokensEnumerator GetEnumerator()
     {
       return new MultiwordTokensEnumerator(this);
+    }
+
+    private MultiwordToken getitem(int index)
+    {
+      var ret = new MultiwordToken(udpipe_csharpPINVOKE.MultiwordTokens_getitem(swigCPtr, index), false);
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
+    }
+
+    private MultiwordToken getitemcopy(int index)
+    {
+      var ret = new MultiwordToken(udpipe_csharpPINVOKE.MultiwordTokens_getitemcopy(swigCPtr, index), true);
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
     }
 
     public MultiwordTokens GetRange(int index, int count)
@@ -183,6 +217,11 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       return ret;
     }
 
+    private void reserve(uint n)
+    {
+      udpipe_csharpPINVOKE.MultiwordTokens_reserve(swigCPtr, n);
+    }
+
     public void Reverse()
     {
       udpipe_csharpPINVOKE.MultiwordTokens_Reverse__SWIG_0(swigCPtr);
@@ -194,45 +233,15 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
     }
 
-    public void SetRange(int index, MultiwordTokens values)
-    {
-      udpipe_csharpPINVOKE.MultiwordTokens_SetRange(swigCPtr, index, getCPtr(values));
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-    }
-
-    internal static HandleRef getCPtr(MultiwordTokens obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
-
-    private uint capacity()
-    {
-      var ret = udpipe_csharpPINVOKE.MultiwordTokens_capacity(swigCPtr);
-      return ret;
-    }
-
-    private MultiwordToken getitem(int index)
-    {
-      var ret = new MultiwordToken(udpipe_csharpPINVOKE.MultiwordTokens_getitem(swigCPtr, index), false);
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    }
-
-    private MultiwordToken getitemcopy(int index)
-    {
-      var ret = new MultiwordToken(udpipe_csharpPINVOKE.MultiwordTokens_getitemcopy(swigCPtr, index), true);
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    }
-
-    private void reserve(uint n)
-    {
-      udpipe_csharpPINVOKE.MultiwordTokens_reserve(swigCPtr, n);
-    }
-
     private void setitem(int index, MultiwordToken val)
     {
       udpipe_csharpPINVOKE.MultiwordTokens_setitem(swigCPtr, index, MultiwordToken.getCPtr(val));
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+    }
+
+    public void SetRange(int index, MultiwordTokens values)
+    {
+      udpipe_csharpPINVOKE.MultiwordTokens_SetRange(swigCPtr, index, getCPtr(values));
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
     }
 
@@ -240,11 +249,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       var ret = udpipe_csharpPINVOKE.MultiwordTokens_size(swigCPtr);
       return ret;
-    }
-
-    ~MultiwordTokens()
-    {
-      Dispose();
     }
 
     // Type-safe enumerator
@@ -265,6 +269,12 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
         currentIndex = -1;
         currentObject = null;
         currentSize = collectionRef.Count;
+      }
+
+      public void Dispose()
+      {
+        currentIndex = -1;
+        currentObject = null;
       }
 
       // Type-unsafe IEnumerator.Current
@@ -307,12 +317,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
             throw new InvalidOperationException("Collection modified.");
           return (MultiwordToken) currentObject;
         }
-      }
-
-      public void Dispose()
-      {
-        currentIndex = -1;
-        currentObject = null;
       }
     }
   }

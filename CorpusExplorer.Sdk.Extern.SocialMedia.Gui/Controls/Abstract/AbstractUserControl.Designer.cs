@@ -33,11 +33,11 @@
       // 
       // AbstractUserControl
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.BackColor = System.Drawing.Color.White;
+      this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
       this.Name = "AbstractUserControl";
-      this.Size = new System.Drawing.Size(830, 520);
+      this.Size = new System.Drawing.Size(1107, 640);
       this.ResumeLayout(false);
 
     }

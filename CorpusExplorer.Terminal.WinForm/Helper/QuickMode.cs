@@ -32,12 +32,22 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
 {
   public static class QuickMode
   {
+    /// <summary>
+    /// Erzeugt ein neues Projekt
+    /// </summary>
+    /// <returns></returns>
     public static Project Initialize()
     {
       return CorpusExplorerEcosystem.Initialize().Project;
     }
 
-    public static void Annotate(Project project, bool showSaveFileDialog)
+    /// <summary>
+    /// Annotiert beliebige Dokumente. Ein Dialog zur Auswahl von Dateien und Dateitypen wird angezeigt.
+    /// </summary>
+    /// <param name="project">Prijekt (kann mittels QuickMode.Initialize() erzeugt werden)</param>
+    /// <param name="showSaveFileDialog">Soll ein Dialog zum Speichern des Korpus angezeigt werden?</param>
+    /// <param name="checkErrors">Soll das annotierte Korpus auf Fehler geprüft werden?</param>
+    public static void Annotate(Project project, bool showSaveFileDialog, bool checkErrors = true)
     {
       var dic = Configuration.AddonScrapers.ToArray();
       var ofd = new OpenFileDialog
@@ -50,13 +60,21 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       if (ofd.ShowDialog() != DialogResult.OK)
         return;
 
-      AnnotatePreProcessing(project, dic[ofd.FilterIndex - 1].Value, ofd.FileNames);
+      AnnotatePreProcessing(project, dic[ofd.FilterIndex - 1].Value, ofd.FileNames, checkErrors);
 
       if (showSaveFileDialog)
         Export(project);
     }
 
-    public static void Annotate(Project project, string knownScraperName, string[] files, bool showSaveFileDialog)
+    /// <summary>
+    /// Annotiert beliebige Dokumente.
+    /// </summary>
+    /// <param name="project">Prijekt (kann mittels QuickMode.Initialize() erzeugt werden)</param>
+    /// <param name="knownScraperName">Name des Scrapers (Dateiformat)</param>
+    /// <param name="files">Liste mit Dateien.</param>
+    /// <param name="showSaveFileDialog">Soll ein Dialog zum Speichern des Korpus angezeigt werden?</param>
+    /// <param name="checkErrors">Soll das annotierte Korpus auf Fehler geprüft werden?</param>
+    public static void Annotate(Project project, string knownScraperName, string[] files, bool showSaveFileDialog, bool checkErrors = true)
     {
       var scraper = Configuration.AddonScrapers.GetReflectedTypeNameDictionary()
                                  .Where(x => x.Key == knownScraperName)
@@ -65,13 +83,13 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       if (scraper == null)
         return;
 
-      AnnotatePreProcessing(project, scraper, files);
+      AnnotatePreProcessing(project, scraper, files, checkErrors);
 
       if (showSaveFileDialog)
         Export(project);
     }
 
-    public static void AnnotatePreProcessing(Project project, AbstractScraper scraper, IEnumerable<string> files)
+    private static void AnnotatePreProcessing(Project project, AbstractScraper scraper, IEnumerable<string> files, bool checkErrors)
     {
       var time = DateTime.Now;
 
@@ -99,10 +117,16 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
         { "SCRAPE (files)", files.Count() }
       });
 
-      AnnotateProcessing(project, cleaner2?.Output);
+      Tagging(project, cleaner2?.Output, checkErrors);
     }
 
-    public static void AnnotateProcessing(Project project, ConcurrentQueue<Dictionary<string, object>> docs)
+    /// <summary>
+    /// Taggt bereits extrahierte und bereinigte Dokumente
+    /// </summary>
+    /// <param name="project">Prijekt (kann mittels QuickMode.Initialize() erzeugt werden)</param>
+    /// <param name="docs">Bereits extrahierte und bereinigte Dokumente</param>
+    /// <param name="checkErrors">Soll das annotierte Korpus auf Fehler geprüft werden?</param>
+    public static void Tagging(Project project, ConcurrentQueue<Dictionary<string, object>> docs, bool checkErrors = true)
     {
       var formScraper = new ShowScraperResults(docs);
       if (formScraper.ShowDialog() != DialogResult.OK)
@@ -141,7 +165,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
 
                             corpus.CorpusDisplayname = formName.Result;
                             corpus.Save(Path.Combine(Configuration.MyCorpora, formName.Result.EnsureFileName()), false);
-                            AddCorpusToProject(project, corpus);
+                            AddCorpusToProject(project, corpus, checkErrors);
                           }
                         });
 
@@ -155,7 +179,13 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       });
     }
 
-    public static void AddCorpusToProject(Project project, AbstractCorpusAdapter corpus)
+    /// <summary>
+    /// Fügt einem Projekt ein neues Korpus hinzu.
+    /// </summary>
+    /// <param name="project">Prijekt (kann mittels QuickMode.Initialize() erzeugt werden)</param>
+    /// <param name="corpus"></param>
+    /// <param name="checkErrors">Soll das annotierte Korpus auf Fehler geprüft werden?</param>
+    public static void AddCorpusToProject(Project project, AbstractCorpusAdapter corpus, bool checkErrors)
     {
       if (corpus == null ||
           corpus.CountDocuments == 0)
@@ -175,7 +205,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       var vm = new ValidateSelectionIntegrityViewModel { Selection = selection };
       vm.Execute();
 
-      if (vm.HasError)
+      if (checkErrors && vm.HasError)
       {
         Processing.SplashClose();
         var form = new CorpusErrorForm(vm);
@@ -195,13 +225,25 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       project.Add(corpus);
     }
 
-    public static void Convert(Project project)
+    /// <summary>
+    /// Konvertiert Korpora in ein neues Korpus
+    /// </summary>
+    /// <param name="project">Prijekt (kann mittels QuickMode.Initialize() erzeugt werden)</param>
+    /// <param name="checkErrors">Soll das annotierte Korpus auf Fehler geprüft werden?</param>
+    public static void Convert(Project project, bool checkErrors)
     {
-      Import(project);
+      Import(project, checkErrors);
       Export(project);
     }
 
-    public static void Convert(Project project, string knownImporterName, string[] files)
+    /// <summary>
+    /// Konvertiert Korpora in ein neues Korpus
+    /// </summary>
+    /// <param name="project">Prijekt (kann mittels QuickMode.Initialize() erzeugt werden)</param>
+    /// <param name="knownImporterName">Name des Importers (Dateiformat)</param>
+    /// <param name="files">Liste mit Dateien.</param>
+    /// <param name="checkErrors">Soll das annotierte Korpus auf Fehler geprüft werden?</param>
+    public static void Convert(Project project, string knownImporterName, string[] files, bool checkErrors)
     {
       var importer = Configuration.AddonImporters.GetReflectedTypeNameDictionary()
                                   .Where(x => x.Key == knownImporterName)
@@ -210,12 +252,17 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       if (importer == null)
         return;
 
-      Import(project, importer, files);
+      Import(project, importer, files, checkErrors);
 
       Export(project);
     }
 
-    public static void Import(Project project)
+    /// <summary>
+    /// Importiert bestehende Korpora in das Projekt
+    /// </summary>
+    /// <param name="project">Prijekt (kann mittels QuickMode.Initialize() erzeugt werden)</param>
+    /// <param name="checkErrors">Soll das annotierte Korpus auf Fehler geprüft werden?</param>
+    public static void Import(Project project, bool checkErrors)
     {
       var dic = Configuration.AddonImporters.ToArray();
       var ofd = new OpenFileDialog
@@ -228,10 +275,17 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       if (ofd.ShowDialog() != DialogResult.OK)
         return;
 
-      Import(project, dic[ofd.FilterIndex - 1].Value, ofd.FileNames);
+      Import(project, dic[ofd.FilterIndex - 1].Value, ofd.FileNames, checkErrors);
     }
 
-    public static void Import(Project project, AbstractImporter importer, IEnumerable<string> files)
+    /// <summary>
+    /// Importiert bestehende Korpora in das Projekt
+    /// </summary>
+    /// <param name="project">Prijekt (kann mittels QuickMode.Initialize() erzeugt werden)</param>
+    /// <param name="importer"></param>
+    /// <param name="files">Liste mit Dateien.</param>
+    /// <param name="checkErrors">Soll das annotierte Korpus auf Fehler geprüft werden?</param>
+    private static void Import(Project project, AbstractImporter importer, IEnumerable<string> files, bool checkErrors)
     {
       var time = DateTime.Now;
       IEnumerable<AbstractCorpusAdapter> corpora = null;
@@ -250,7 +304,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
                         {
                           if (corpora != null)
                             foreach (var corpus in corpora)
-                              AddCorpusToProject(project, corpus);
+                              AddCorpusToProject(project, corpus, checkErrors);
                         });
 
       InMemoryErrorConsole.TrackEvent(new Dictionary<string, double>
@@ -261,8 +315,16 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       });
     }
 
+    /// <summary>
+    /// Exportiert alle Korpora eines Projekts in ein neues Korpus.
+    /// </summary>
+    /// <param name="project">Projekt</param>
     public static void Export(Project project) => Export(project.SelectAll);
 
+    /// <summary>
+    /// Exportiert einen Schnappschuss.
+    /// </summary>
+    /// <param name="selection">Schnappschuss</param>
     public static void Export(Selection selection)
     {
       var dic = Configuration.AddonExporters.ToArray();
@@ -286,6 +348,10 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       });
     }
 
+    /// <summary>
+    /// Setzt den CorpusExplorer weich zurück.
+    /// Löscht nur die Anwendungsdaten.
+    /// </summary>
     public static void SoftReset()
     {
       try
@@ -305,11 +371,21 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       }
     }
 
+    /// <summary>
+    /// Setzt den CorpusExplorer hart zurück.
+    /// Löscht dabei die Anwendungsdaten und alle Add-ons.
+    /// </summary>
     public static void HardReset()
     {
       try
       {
         File.Delete(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "update.info"));
+
+        var dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CorpusExplorer\\Meine Erweiterungen");
+        if (Directory.Exists(dir))
+          Directory.Delete(dir, true);
+        Directory.CreateDirectory(dir);
+
         MessageBox.Show("Der CorpusExplorer wurde erfolgreich zurückgesetzt (hard reset). Bitte starten Sie den CorpusExplorer erneut und installieren Sie das Update.",
                         "..:: CorpusExplorer - QuickMode ::..",
                         MessageBoxButtons.OK,
@@ -321,6 +397,9 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       }
     }
 
+    /// <summary>
+    /// Zeigt die Hilfe zum QuickMode an.
+    /// </summary>
     public static void DisplayHelp()
     {
       var message = string.Join("\n", new[]
@@ -333,6 +412,35 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       });
 
       MessageBox.Show(message, "..:: CorpusExplorer - QuickMode ::..", MessageBoxButtons.OK, MessageBoxIcon.Information);
+    }
+
+
+    /// <summary>
+    /// Liest Kommandozeilenargumente ab der 2-Position aus.
+    /// Prüft ob es sich um eine Datei oder eine 
+    /// </summary>
+    /// <param name="args"></param>
+    /// <returns></returns>
+    public static string[] GetFilesHelper(string[] args)
+    {
+      var res = new List<string>();
+      for (var i = 2; i < args.Length; i++)
+      {
+        try
+        {
+          var attr = File.GetAttributes(args[i]);
+          if (attr.HasFlag(FileAttributes.Directory))
+            res.AddRange(Directory.GetFiles(args[i], "*.*", SearchOption.TopDirectoryOnly));
+          else
+            res.Add(args[i]);
+        }
+        catch
+        {
+          // ignore
+        }
+      }
+
+      return res.ToArray();
     }
   }
 }

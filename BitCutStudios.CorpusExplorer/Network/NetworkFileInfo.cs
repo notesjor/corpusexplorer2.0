@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿#region
+
+using System.Net;
+
+#endregion
 
 namespace Bcs.Network
 {
@@ -12,11 +12,13 @@ namespace Bcs.Network
     {
       try
       {
-        var req = System.Net.WebRequest.Create(url);
+        var req = WebRequest.Create(url);
         req.Method = "HEAD";
         using (var resp = req.GetResponse())
-          if (long.TryParse(resp.Headers.Get("Content-Length"), out long ContentLength))
+        {
+          if (long.TryParse(resp.Headers.Get("Content-Length"), out var ContentLength))
             return ContentLength;
+        }
       }
       catch
       {

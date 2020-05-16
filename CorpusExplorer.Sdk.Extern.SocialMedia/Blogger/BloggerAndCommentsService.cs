@@ -19,14 +19,12 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Blogger
 
       var cnt = 1;
       var sum = 0;
-      var date = DateTime.Now;
       var serializer = new NetDataContractSerializer();
       foreach (var blogId in queries)
       {
         while (true)
         {
           var reqBlog = context.Posts.List(blogId);
-          reqBlog.EndDate = date;
           var resBlog = reqBlog.Execute();
           if (resBlog.Items == null || resBlog.Items.Count == 0)
             break;
@@ -49,8 +47,6 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Blogger
             var reqCom = context.Comments.List(blogId, item.Id);
             // ToDo
 
-            if (item.Published.HasValue && item.Published.Value < date)
-              date = item.Published.Value;
           }
         }
       }

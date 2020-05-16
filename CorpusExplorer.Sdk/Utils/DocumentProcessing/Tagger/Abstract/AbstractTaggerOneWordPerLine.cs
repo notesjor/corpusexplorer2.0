@@ -10,6 +10,7 @@ using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Extension;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract

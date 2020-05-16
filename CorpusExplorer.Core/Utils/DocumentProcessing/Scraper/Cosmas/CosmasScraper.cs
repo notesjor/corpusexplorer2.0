@@ -90,7 +90,7 @@ namespace CorpusExplorer.Core.Utils.DocumentProcessing.Scraper.Cosmas
             if (inline is Run r)
               list.Add(r);
         }
-        catch (Exception ex)
+        catch
         {
           // ignore
         }

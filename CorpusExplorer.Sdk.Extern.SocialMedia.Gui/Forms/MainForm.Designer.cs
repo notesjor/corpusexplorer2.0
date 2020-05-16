@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.mainControl1 = new CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.MainControl();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
@@ -37,22 +38,24 @@
       this.mainControl1.BackColor = System.Drawing.Color.White;
       this.mainControl1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.mainControl1.Location = new System.Drawing.Point(0, 0);
+      this.mainControl1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
       this.mainControl1.Name = "mainControl1";
-      this.mainControl1.Size = new System.Drawing.Size(822, 501);
+      this.mainControl1.Size = new System.Drawing.Size(1101, 643);
       this.mainControl1.TabIndex = 0;
       // 
       // MainForm
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(822, 501);
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+      this.ClientSize = new System.Drawing.Size(1101, 643);
       this.Controls.Add(this.mainControl1);
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+      this.Margin = new System.Windows.Forms.Padding(4);
       this.Name = "MainForm";
       // 
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
-      this.Text = "MainForm";
+      this.Text = "SSMDL - Siegener Social Media Data Lake";
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
       this.ResumeLayout(false);
 

@@ -42,7 +42,7 @@
       // 
       // pictureBox1
       // 
-      this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
       this.pictureBox1.Location = new System.Drawing.Point(3, 3);
       this.pictureBox1.Name = "pictureBox1";
       this.pictureBox1.Size = new System.Drawing.Size(48, 58);
@@ -81,6 +81,7 @@
       this.radLabel2.Size = new System.Drawing.Size(310, 30);
       this.radLabel2.TabIndex = 1;
       this.radLabel2.Text = "{IHDDESCRIPTION} ";
+      this.radLabel2.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
       this.radLabel2.UseMnemonic = false;
       // 
       // radLabel1

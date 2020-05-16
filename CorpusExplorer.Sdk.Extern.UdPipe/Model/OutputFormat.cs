@@ -1,5 +1,9 @@
+#region
+
 using System;
 using System.Runtime.InteropServices;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 {
@@ -78,10 +82,20 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
     }
 
+    ~OutputFormat()
+    {
+      Dispose();
+    }
+
     public virtual string finishDocument()
     {
       var ret = udpipe_csharpPINVOKE.OutputFormat_finishDocument(swigCPtr);
       return ret;
+    }
+
+    internal static HandleRef getCPtr(OutputFormat obj)
+    {
+      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
     }
 
     public static OutputFormat newConlluOutputFormat(string options)
@@ -187,16 +201,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       var ret = udpipe_csharpPINVOKE.OutputFormat_writeSentence(swigCPtr, Sentence.getCPtr(s));
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
-    }
-
-    internal static HandleRef getCPtr(OutputFormat obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
-
-    ~OutputFormat()
-    {
-      Dispose();
     }
   }
 }

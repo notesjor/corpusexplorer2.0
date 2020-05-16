@@ -38,6 +38,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.StyleMetrics
       BindData();
 
       AddSummaryRow();
+      ApplyFilterDelay();
     }
 
     private void BindData()

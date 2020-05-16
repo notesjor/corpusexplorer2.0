@@ -103,6 +103,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
                           radGridView1.ResetBindings();
                           radGridView1.BestFitColumns(BestFitColumnMode.HeaderCells);
                           radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+                          ApplyFilterDelay();
                         });
     }
 

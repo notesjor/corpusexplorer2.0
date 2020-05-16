@@ -44,6 +44,7 @@
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
+      this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "AbstractForm";
       this.ThemeName = "TelerikMetroTouch";
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();

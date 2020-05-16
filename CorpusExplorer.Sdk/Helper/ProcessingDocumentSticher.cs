@@ -2,10 +2,8 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CorpusExplorer.Core.DocumentProcessing.Tokenizer;
 using CorpusExplorer.Sdk.Model.Extension;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer.Abstract;
 
 namespace CorpusExplorer.Sdk.Helper

@@ -22,12 +22,6 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     }
 
     /// <summary>
-    ///   Gets or sets the layer displayname.
-    /// </summary>
-    [XmlAttribute("layer")]
-    public string LayerDisplayname { get; set; }
-
-    /// <summary>
     ///   Gets or sets the layer queries.
     /// </summary>
     public string RegexQuery { get; set; }

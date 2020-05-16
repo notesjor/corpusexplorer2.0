@@ -1,10 +1,14 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using ICSharpCode.SharpZipLib.Zip;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.AddonBuilder
 {
@@ -59,7 +63,7 @@ namespace CorpusExplorer.Sdk.AddonBuilder
     private static string[] GetOriginalAppFiles()
     {
       var path =
-        @"C:\Projekte\CorpusExplorerV2\CorpusExplorer\CorpusExplorer.Sdk.AddonBuilder\bin\Release";
+        @"C:\Projekte\CorpusExplorerV2\CorpusExplorer\CorpusExplorer.Terminal.WinForm\bin\Release";
       var files = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
       for (var i = 0; i < files.Length; i++) files[i] = files[i].Replace(path, "").Replace(path + @"\", "");
 
@@ -100,7 +104,7 @@ namespace CorpusExplorer.Sdk.AddonBuilder
         var addonOutput = CreateOutputDir(output, addonName);
         CopyAddonTemplate(addon, addonOutput, zipName);
         ProduceZipPackage(filesToZip, releaseDir, addonOutput, zipName);
-        Console.WriteLine("OK!");
+        Console.WriteLine("...OK!");
       }
     }
 

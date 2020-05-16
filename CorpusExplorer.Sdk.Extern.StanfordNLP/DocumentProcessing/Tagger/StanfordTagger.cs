@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -7,6 +9,8 @@ using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
 {
@@ -50,6 +54,17 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
       set { }
     }
 
+    private string JavaLocation
+    {
+      get
+      {
+        var bin = LocateJava(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
+        return !string.IsNullOrEmpty(bin)
+                 ? bin
+                 : LocateJava(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86));
+      }
+    }
+
     public override IEnumerable<string> LanguagesAvailabel
     {
       get { return _languages.Select(x => x.Key); }
@@ -63,17 +78,6 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
         if (!_languages.ContainsKey(value))
           throw new NotSupportedException("LanguageSelected-value is not in List of LanguagesAvailabel");
         _languageSelected = value;
-      }
-    }
-
-    private string JavaLocation
-    {
-      get
-      {
-        var bin = LocateJava(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles));
-        return !string.IsNullOrEmpty(bin)
-                 ? bin
-                 : LocateJava(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86));
       }
     }
 
@@ -129,6 +133,16 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
       return data.Length > 1 && data[1] == "$.";
     }
 
+    private static string LocateJava(string getFolderPath)
+    {
+      var paths = Directory.GetDirectories(getFolderPath, "Java");
+      return paths.Length == 0
+               ? null
+               : paths.Select(path => Directory.GetDirectories(path, "jre*"))
+                      .Select(versions => versions.Length == 0 ? null : Path.Combine(versions[0], @"bin\java.exe"))
+                      .FirstOrDefault();
+    }
+
     protected override string TextPostTaggerCleanup(string text)
     {
       if (string.IsNullOrEmpty(text))
@@ -154,16 +168,6 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
       }
 
       return base.TextPostTaggerCleanup(string.Join(TaggerFileSeparator, res) + TaggerFileSeparator);
-    }
-
-    private static string LocateJava(string getFolderPath)
-    {
-      var paths = Directory.GetDirectories(getFolderPath, "Java");
-      return paths.Length == 0
-               ? null
-               : paths.Select(path => Directory.GetDirectories(path, "jre*"))
-                      .Select(versions => versions.Length == 0 ? null : Path.Combine(versions[0], @"bin\java.exe"))
-                      .FirstOrDefault();
     }
   }
 }

@@ -2,12 +2,12 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
-    <PublishUrlHistory>C:\Projekte\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk.Extern.SocialMedia.Gui\publish\|C:\publish\SSMM\|publish\</PublishUrlHistory>
-    <InstallUrlHistory>http://www.bitcutstudios.com/products/ssmm/</InstallUrlHistory>
-    <SupportUrlHistory>http://corpusexplorer.de</SupportUrlHistory>
-    <UpdateUrlHistory />
+    <PublishUrlHistory>C:\Projekte\CorpusExplorerV2\CorpusExplorer\CorpusExplorer.Sdk.Extern.SocialMedia.Gui\publish\|C:\Projekte\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk.Extern.SocialMedia.Gui\publish\|C:\publish\SSMM\|publish\</PublishUrlHistory>
+    <InstallUrlHistory>http://bitcutstudios.com/products/ssmdl/|http://www.bitcutstudios.com/products/ssmdl/|http://www.bitcutstudios.com/products/ssmm/</InstallUrlHistory>
+    <SupportUrlHistory>https://diskurslinguistik.net/forschung/software/ssmdl|http://corpusexplorer.de</SupportUrlHistory>
+    <UpdateUrlHistory>http://www.bitcutstudios.com/products/ssmdl/|http://www.bitcutstudios.com/products/ssmm/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
-    <ErrorReportUrlHistory>http://corpusexplorer.de</ErrorReportUrlHistory>
+    <ErrorReportUrlHistory>https://diskurslinguistik.net/forschung/software/ssmdl|http://corpusexplorer.de</ErrorReportUrlHistory>
     <FallbackCulture>de-DE</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>

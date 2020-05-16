@@ -117,7 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="radCollapsiblePanel3.HeaderText" xml:space="preserve">
-    <value>&lt;html&gt;&lt;span style="color: #0000ff"&gt;&amp;lt;action &lt;/span&gt;&lt;span style="color: #ff0000"&gt;mode&lt;/span&gt;&lt;span style="color: #000000"&gt;="...mode..." &lt;span style="color: #ff0000"&gt;type&lt;/span&gt;&lt;span style="color: #000000"&gt;="...type..."&lt;span style="color: #0000ff"&gt;&amp;gt;&amp;lt;output &lt;span style="color: #000000"&gt;...&lt;/span&gt;&lt;/span&gt;&amp;nbsp;&lt;span style="color: #0000ff"&gt;&amp;gt;&amp;lt;arguments&amp;gt;&lt;span style="color: #000000"&gt;...&lt;span style="color: #0000ff"&gt;&amp;lt;/arguments&amp;gt;&amp;lt;/action&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/html&gt;</value>
-  </data>
 </root>

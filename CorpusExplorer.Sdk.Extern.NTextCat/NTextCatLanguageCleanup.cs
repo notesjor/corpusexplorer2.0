@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup.Abstract;
@@ -32,6 +29,6 @@ namespace CorpusExplorer.Sdk.Extern.NTextCat
 
     public override string DisplayName => "NTextCat";
 
-    protected override string Execute(string input) => Match(input) ? input : null;
+    protected override string Execute(string key, string input) => Match(input) ? input : null;
   }
 }

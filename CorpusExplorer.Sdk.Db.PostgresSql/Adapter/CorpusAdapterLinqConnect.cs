@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -14,6 +16,8 @@ using Devart.Data.Linq;
 using Corpus = CorpusExplorer.Sdk.Db.PostgreSql.Model.Data.Corpus;
 using DataContext = CorpusExplorer.Sdk.Db.PostgreSql.Model.Data.DataContext;
 using Layer = CorpusExplorer.Sdk.Db.PostgreSql.Model.Data.Layer;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Db.PostgreSql.Adapter
 {
@@ -37,6 +41,8 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql.Adapter
 
     public override Guid CorpusGuid => _corpus.GUID;
 
+    internal int DbIndex => _corpus.ID;
+
     public override IEnumerable<Guid> DocumentGuids
       => new HashSet<Guid>(from x in _corpus.Documents select x.GUID);
 
@@ -47,13 +53,13 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql.Adapter
                                                                                      .DeserializeValue(y.Value)));
 
     public override Guid FirstDocument
-      => Enumerable.FirstOrDefault<Document>(_corpus.Documents).GUID;
+      => _corpus.Documents.FirstOrDefault().GUID;
 
     public override IEnumerable<string> LayerDisplaynames
       => from x in _corpus.Layers select x.Displayname;
 
     public override IEnumerable<KeyValuePair<Guid, string>> LayerGuidAndDisplaynames
-      => _corpus.Layers.ToDictionary<Layer, Guid, string>(x => x.GUID, x => x.Displayname);
+      => _corpus.Layers.ToDictionary(x => x.GUID, x => x.Displayname);
 
     public override IEnumerable<Guid> LayerGuids
       => from x in _corpus.Layers select x.GUID;
@@ -67,8 +73,6 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql.Adapter
     public override bool UseCompression
       => false;
 
-    internal int DbIndex => _corpus.ID;
-
     public override void AddConcept(Concept concept)
     {
       // TODO: Konzepte werden von LinqConnect aktuell nicht unterstützt
@@ -81,7 +85,7 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql.Adapter
 
     public override bool ContainsDocument(Guid documentGuid)
     {
-      return Enumerable.Any<Document>((from x in _corpus.Documents select x), x => x.GUID == documentGuid);
+      return (from x in _corpus.Documents select x).Any(x => x.GUID == documentGuid);
     }
 
     public override bool ContainsLayer(Guid layerGuid)
@@ -187,9 +191,9 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql.Adapter
     public override IEnumerable<Guid> FindDocumentByMetadata(Dictionary<string, object> example)
     {
       return from doc in _corpus.Documents
-             let meta = Enumerable.Where<DocumentMetadataEntry>(doc.DocumentMetadataEntries, x => example.ContainsKey(x.Label)).ToArray()
+             let meta = doc.DocumentMetadataEntries.Where(x => example.ContainsKey(x.Label)).ToArray()
              where meta.Length == example.Count
-             where Enumerable.All<DocumentMetadataEntry>(meta, entry => example.ContainsKey(entry.Label) && example[entry.Label] == entry.Value)
+             where meta.All(entry => example.ContainsKey(entry.Label) && example[entry.Label] == entry.Value)
              select doc.GUID;
     }
 
@@ -205,12 +209,12 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql.Adapter
 
     public override int GetDocumentLengthInSentences(Guid documentGuid)
     {
-      return Enumerable.FirstOrDefault<int>((from x in _corpus.Documents where x.GUID == documentGuid select x.CountSentences));
+      return (from x in _corpus.Documents where x.GUID == documentGuid select x.CountSentences).FirstOrDefault();
     }
 
     public override int GetDocumentLengthInWords(Guid documentGuid)
     {
-      return Enumerable.FirstOrDefault<int>((from x in _corpus.Documents where x.GUID == documentGuid select x.CountToken));
+      return (from x in _corpus.Documents where x.GUID == documentGuid select x.CountToken).FirstOrDefault();
     }
 
     public override Dictionary<string, object> GetDocumentMetadata(Guid documentGuid)
@@ -305,7 +309,7 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql.Adapter
       return GetReadableDocument(
                                  documentGuid,
                                  (from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID)
-                                .FirstOrDefault<Guid>());
+                                .FirstOrDefault());
     }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, Guid layerGuid)
@@ -319,7 +323,7 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql.Adapter
       int start,
       int stop)
     {
-      return GetLayer((from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID).FirstOrDefault<Guid>())
+      return GetLayer((from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID).FirstOrDefault())
        .GetReadableDocumentByGuid(documentGuid);
     }
 
@@ -344,7 +348,7 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql.Adapter
       var layer =
         GetLayer(
                  (from x in _corpus.Layers where x.Displayname == layerDisplaynameOriginal select x.GUID)
-                .FirstOrDefault<Guid>());
+                .FirstOrDefault());
       var nguid = layer.Copy().Guid;
       var nlayer = (from x in _corpus.Layers where x.GUID == nguid select x).FirstOrDefault();
       nlayer.Displayname = layerDisplaynameCopy;
@@ -448,7 +452,7 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql.Adapter
       return SetDocumentLayerValueMask(
                                        documentGuid,
                                        (from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID)
-                                      .FirstOrDefault<Guid>(),
+                                      .FirstOrDefault(),
                                        sentenceIndex,
                                        wordIndex,
                                        layerValue);
@@ -456,7 +460,7 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql.Adapter
 
     public override void SetDocumentMetadata(Guid documentGuid, Dictionary<string, object> metadata)
     {
-      var doc = Enumerable.FirstOrDefault<Document>((from x in _corpus.Documents where x.GUID == documentGuid select x));
+      var doc = (from x in _corpus.Documents where x.GUID == documentGuid select x).FirstOrDefault();
       if (doc == null)
         return;
 
@@ -485,7 +489,8 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql.Adapter
 
       foreach (var document in _corpus.Documents)
       {
-        var exsits = Enumerable.FirstOrDefault<DocumentMetadataEntry>((from y in document.DocumentMetadataEntries where y.Label == metadataKey select y));
+        var exsits = (from y in document.DocumentMetadataEntries where y.Label == metadataKey select y)
+         .FirstOrDefault();
         if (exsits != null)
           _db.DocumentMetadataEntries.InsertOnSubmit(
                                                      new DocumentMetadataEntry

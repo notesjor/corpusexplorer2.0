@@ -1,6 +1,10 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger.Parameter
 {

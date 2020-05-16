@@ -119,5 +119,28 @@ namespace CorpusExplorer.Sdk.Helper
     {
       return CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(dt, rule, firstWeekday);
     }
+
+    /// <summary>
+    /// Gets the first day of a week
+    /// </summary>
+    /// <param name="year"></param>
+    /// <param name="week"></param>
+    /// <returns></returns>
+    public static DateTime FirstDateOfWeek(int year, int week)
+    {
+      var baseDate = new DateTime(year, 1, 1);
+      var offset = DayOfWeek.Thursday - baseDate.DayOfWeek;
+
+      var firstThursday = baseDate.AddDays(offset);
+      var cal = CultureInfo.CurrentCulture.Calendar;
+      var firstWeek = cal.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+      var weekNum = week;
+      if (firstWeek == 1)
+        weekNum -= 1;
+
+      var result = firstThursday.AddDays(weekNum * 7);
+      return result.AddDays(-3);
+    }
   }
 }

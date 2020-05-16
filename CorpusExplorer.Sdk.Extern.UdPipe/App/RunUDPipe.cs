@@ -1,6 +1,10 @@
+#region
+
 using System;
 using System.Text;
 using CorpusExplorer.Sdk.Extern.UdPipe.Model;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.App
 {

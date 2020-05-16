@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>CorpusExplorer.Sdk.Extern.OpenThesaurus.WebService</RootNamespace>
     <AssemblyName>CorpusExplorer.Sdk.Extern.OpenThesaurus.WebService</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -49,11 +49,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Program Files (x86)\Devart\dotConnect\Linq\Devart.Data.MySql.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.OpenApi, Version=1.1.4.0, Culture=neutral, PublicKeyToken=3f5743946376f042, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.OpenApi.1.1.4\lib\net46\Microsoft.OpenApi.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\LexicalReference.cs" />
+    <Compile Include="Model\LexicalRequest.cs" />
     <Compile Include="Model\LexicalResponse.cs" />
     <Compile Include="OpenThesaurusService.cs" />
     <Compile Include="Program.cs" />
@@ -64,6 +68,7 @@
     <None Include="config.cnf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Diskursmonitor\Diskursmonitor.Sdk\Diskursmonitor.Sdk.csproj">
@@ -73,6 +78,10 @@
     <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.OpenThesaurus.Db\CorpusExplorer.Sdk.Extern.OpenThesaurus.Db.csproj">
       <Project>{777FFD26-F0C8-4E65-AB63-C4FF4FF84A03}</Project>
       <Name>CorpusExplorer.Sdk.Extern.OpenThesaurus.Db</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk\CorpusExplorer.Sdk.csproj">
+      <Project>{DC1B5A58-29DA-476D-89F8-E73A1DB11E52}</Project>
+      <Name>CorpusExplorer.Sdk</Name>
     </ProjectReference>
     <ProjectReference Include="W:\Kooperationsprojekte\TfresWebserver\TefresWebserver\TFRES.csproj">
       <Project>{63f6b9f6-ff80-4764-bd45-109d549bf459}</Project>

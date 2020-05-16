@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Bcs.IO;
@@ -6,7 +8,10 @@ using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.ConllTagger.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.MarMoT
 {
@@ -75,6 +80,12 @@ namespace CorpusExplorer.Sdk.Extern.MarMoT
 
     public AbstractTokenizer Tokenizer { get; set; } = new HighSpeedSpaceTokenizer();
 
+    private string DetectSentence(string text)
+    {
+      return _endings.Aggregate(text,
+                                (current, ending) => current.Replace($"\r\n{ending}\r\n", $"\r\n{ending}\r\n\r\n"));
+    }
+
     protected override string ExecuteTagger(string text)
     {
       using (var fileOutput = new TemporaryFile(Configuration.TempPath))
@@ -118,12 +129,6 @@ namespace CorpusExplorer.Sdk.Extern.MarMoT
     protected override string TextPreTaggerCleanup(string text)
     {
       return DetectSentence(Tokenizer.Execute(text));
-    }
-
-    private string DetectSentence(string text)
-    {
-      return _endings.Aggregate(text,
-                                (current, ending) => current.Replace($"\r\n{ending}\r\n", $"\r\n{ending}\r\n\r\n"));
     }
   }
 }

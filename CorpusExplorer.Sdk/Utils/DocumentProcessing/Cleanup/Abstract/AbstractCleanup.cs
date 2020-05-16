@@ -46,7 +46,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup.Abstract
                            if (text.GetType() != typeof(string) || string.IsNullOrWhiteSpace(text))
                              continue;
 
-                           text = Execute(text);
+                           text = Execute(key, text);
 
                            // Schütze vor fehlerhafte Bereinigung - nehme im Fehlerfall den Orignaltext
                            if (string.IsNullOrWhiteSpace(text))
@@ -65,6 +65,6 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup.Abstract
       }
     }
 
-    protected abstract string Execute(string input);
+    protected abstract string Execute(string key, string input);
   }
 }

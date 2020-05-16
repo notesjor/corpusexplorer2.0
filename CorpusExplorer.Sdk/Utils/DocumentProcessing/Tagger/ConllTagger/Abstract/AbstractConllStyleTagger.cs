@@ -169,7 +169,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.ConllTagger.Abstrac
                              TextPostTaggerCleanup(ExecuteTagger(TextPreTaggerCleanup(doc["Text"] as string)));
                            ParseDocument(layerKeys, doc.Get("GUID", Guid.NewGuid()), ref parsedDoc);
                          }
-                         catch (Exception ex)
+                         catch
                          {
                            // ignore
                          }

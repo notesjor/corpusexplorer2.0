@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Extern.Xml.AltoXml._1._2;
 using CorpusExplorer.Sdk.Extern.Xml.AnnotationPro;
+using CorpusExplorer.Sdk.Extern.Xml.Bawe;
+using CorpusExplorer.Sdk.Extern.Xml.Bnc.Serializer;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Drucksachen;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle;
 using CorpusExplorer.Sdk.Extern.Xml.Catma;
@@ -21,18 +23,23 @@ using CorpusExplorer.Sdk.Extern.Xml.Exmaralda;
 using CorpusExplorer.Sdk.Extern.Xml.FnhdC;
 using CorpusExplorer.Sdk.Extern.Xml.Folker;
 using CorpusExplorer.Sdk.Extern.Xml.Gutenberg;
+using CorpusExplorer.Sdk.Extern.Xml.Ids;
 using CorpusExplorer.Sdk.Extern.Xml.LexisNexis;
 using CorpusExplorer.Sdk.Extern.Xml.Perseus;
 using CorpusExplorer.Sdk.Extern.Xml.Pmg;
 using CorpusExplorer.Sdk.Extern.Xml.PostgreSqlDump;
 using CorpusExplorer.Sdk.Extern.Xml.PureXml;
 using CorpusExplorer.Sdk.Extern.Xml.PurlOrg;
+using CorpusExplorer.Sdk.Extern.Xml.Shakespeare;
 using CorpusExplorer.Sdk.Extern.Xml.SlashA;
 using CorpusExplorer.Sdk.Extern.Xml.Talkbank;
 using CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds;
 using CorpusExplorer.Sdk.Extern.Xml.Tei.P5Cal2;
 using CorpusExplorer.Sdk.Extern.Xml.TextGrid;
 using CorpusExplorer.Sdk.Extern.Xml.Tiger;
+using CorpusExplorer.Sdk.Extern.Xml.Tiger.Importer;
+using CorpusExplorer.Sdk.Extern.Xml.Tiger.Scraper;
+using CorpusExplorer.Sdk.Extern.Xml.Txm;
 using CorpusExplorer.Sdk.Extern.Xml.Weblicht;
 using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
@@ -63,7 +70,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"DTA-TCF 2017 (*.tcf.xml)|*.tcf.xml", new ExporterDta2017()},
         {"WebLicht (*.xml)|*.xml", new ExporterWeblicht()},
         {"AnnotationPro (*.ant)|*.ant", new ExporterAnnoationPro()},
-        {"DWDS TEI (*.xml)|*.xml", new ExporterDwdsTei() }
+        {"DWDS TEI (*.xml)|*.xml", new ExporterDwdsTei() },
+        {"TXM TEI-XML (*.xml)|*.xml", new ExporterTxm() }
       };
 
     /// <summary>
@@ -81,6 +89,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"CoraXML 1.0 (*.xml)|*.xml", new ImporterCoraXml10()},
         {"CoraXML 0.8 (*.xml)|*.xml", new ImporterCoraXml08()},
         {"FnhdC (*.xml)|*.xml", new ImporterFnhdC()},
+        {"BNC TEI (*.xml)|*.xml", new ImporterBnc() },
+        {"TXM TEI-XML (*.xml)|*.xml", new ImporterTxm() },
+        {"TiGER-XML (*.xml)|*.xml", new TigerImporter() },
       };
 
     /// <summary>
@@ -91,7 +102,19 @@ namespace CorpusExplorer.Sdk.Extern.Xml
       new Dictionary<string, AbstractScraper>
       {
         {
-          "Perseus CTS-Service (*.xml)|*.xml", 
+          "IDS-Mannheim I5-Korpora (*.xml)|*.xml",
+          new IdsScraper()
+        },
+        {
+          "Shakespeare Drama-XML (*.xml)|*.xml",
+          new ShakespeareScraper()
+        },
+        {
+          "BAWE TEI-P4 (*.xml)|*.xml",
+          new BaweScraper()
+        },
+        {
+          "Perseus CTS-Service (*.xml)|*.xml",
           new PerseusScraper()
         },
         {
@@ -125,6 +148,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {
           "TiGER-XML (*.xml)|*.xml",
           new TigerScraper()
+        },
+        {
+          "TXM TEI-XML (*.xml)|*.xml",
+          new TxmScraper()
         },
         {
           "EXMERaLDA-Basic (*.exb)|*.exb",

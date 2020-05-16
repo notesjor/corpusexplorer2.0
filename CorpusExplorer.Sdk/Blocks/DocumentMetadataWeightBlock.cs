@@ -77,7 +77,7 @@ namespace CorpusExplorer.Sdk.Blocks
       double types = data.Sum(v => v.Value[1]);
       double docs = data.Sum(v => v.Value[2]);
 
-      return data.ToDictionary(x => x.Key, x => new[] {x.Value[0] / tokens, x.Value[1] / types, x.Value[2] / docs});
+      return data.ToDictionary(x => x.Key, x => new[] { x.Value[0] / tokens, x.Value[1] / types, x.Value[2] / docs });
     }
 
     /// <summary>
@@ -107,26 +107,26 @@ namespace CorpusExplorer.Sdk.Blocks
       var res = new Dictionary<string, Dictionary<string, int[]>>();
 
       foreach (var a in cA)
-      foreach (var b in cB)
-      {
-        var docA = MetaDataDictionary[categoryA][a];
-        var docB = MetaDataDictionary[categoryB][b];
-
-        var cross = docA.Where(docB.Contains);
-        var results = new[] {0, 0, 0};
-
-        foreach (var values in from guid in cross where DocumentSize.ContainsKey(guid) select DocumentSize[guid])
+        foreach (var b in cB)
         {
-          results[0] += values[0];
-          results[1] += values[1];
-          results[2]++;
-        }
+          var docA = MetaDataDictionary[categoryA][a];
+          var docB = MetaDataDictionary[categoryB][b];
 
-        if (res.ContainsKey(a))
-          res[a].Add(b, results);
-        else
-          res.Add(a, new Dictionary<string, int[]> {{b, results}});
-      }
+          var cross = docA.Where(docB.Contains);
+          var results = new[] { 0, 0, 0 };
+
+          foreach (var values in from guid in cross where DocumentSize.ContainsKey(guid) select DocumentSize[guid])
+          {
+            results[0] += values[0];
+            results[1] += values[1];
+            results[2]++;
+          }
+
+          if (res.ContainsKey(a))
+            res[a].Add(b, results);
+          else
+            res.Add(a, new Dictionary<string, int[]> { { b, results } });
+        }
 
       return res;
     }
@@ -155,7 +155,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
       foreach (var x in MetaDataDictionary[category])
       {
-        var sumA = new[] {0, 0, 0};
+        var sumA = new[] { 0, 0, 0 };
         foreach (var guid in x.Value)
         {
           sumA[0] += DocumentSize[guid][0];
@@ -187,7 +187,7 @@ namespace CorpusExplorer.Sdk.Blocks
         var xDic = new Dictionary<string, double[]>();
         foreach (var y in x.Value)
         {
-          var yArr = new double[] {0, 0, 0};
+          var yArr = new double[] { 0, 0, 0 };
           foreach (var val in y.Value.Select(z => DocumentSize[z]))
           {
             yArr[0] += val[0];
@@ -202,6 +202,57 @@ namespace CorpusExplorer.Sdk.Blocks
       }
 
       return res;
+    }
+
+    /// <summary>
+    ///   Gibt ein aggergiertes Dictionary zurück das alle Metawerte enthält.
+    ///   Aus Performancegründen wird empfohlen die überladene Version dieser Funktion zu nutzen (GetAggregatedSize(categoryA,
+    ///   categoryB))
+    /// </summary>
+    /// <returns>
+    ///   Dictionary.Key = Wert Gruppe A / Dictionary.Value.Key = Wert Gruppe B / Dictionary.Value.Value [0] = token /
+    ///   [1] = type / [2] = Dokumente
+    /// </returns>
+    public Dictionary<string, Dictionary<string, double[]>> GetUrlShrinkedAggregatedSize()
+    {
+      var res = new Dictionary<string, Dictionary<string, double[]>>();
+
+      foreach (var x in MetaDataDictionary)
+      {
+        var xDic = new Dictionary<string, double[]>();
+        foreach (var y in x.Value)
+        {
+          var yArr = new double[] { 0, 0, 0 };
+          foreach (var val in y.Value.Select(z => DocumentSize[z]))
+          {
+            yArr[0] += val[0];
+            yArr[1] += val[1];
+            yArr[2]++;
+          }
+
+          var key = UrlShrink(y.Key);
+
+          if (xDic.ContainsKey(key))
+            xDic[key] = new[] { xDic[key][0] + yArr[0], xDic[key][1] + yArr[1], xDic[key][2] + yArr[2] };
+          else
+            xDic.Add(key, yArr);
+        }
+
+        res.Add(x.Key, xDic);
+      }
+
+      return res;
+    }
+
+    private string UrlShrink(string value)
+    {
+      if (!value.StartsWith("http"))
+        return value;
+
+      value = value.Replace("https://", "").Replace("http://", "");
+      var idx = value.IndexOf("/");
+
+      return idx == -1 ? value : value.Substring(0, idx);
     }
 
     /// <summary>
@@ -231,7 +282,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
       lock (_lockDocument)
       {
-        DocumentSize.Add(dsel, new[] {(int) _token[dsel], _types[dsel]});
+        DocumentSize.Add(dsel, new[] { (int)_token[dsel], _types[dsel] });
       }
 
       lock (_lockMetadata)
@@ -249,11 +300,11 @@ namespace CorpusExplorer.Sdk.Blocks
               if (MetaDataDictionary[meta.Key].ContainsKey(key))
                 MetaDataDictionary[meta.Key][key].Add(dsel);
               else
-                MetaDataDictionary[meta.Key].Add(key, new HashSet<Guid> {dsel});
+                MetaDataDictionary[meta.Key].Add(key, new HashSet<Guid> { dsel });
             else
               MetaDataDictionary.Add(
                                      meta.Key,
-                                     new Dictionary<string, HashSet<Guid>> {{key, new HashSet<Guid> {dsel}}});
+                                     new Dictionary<string, HashSet<Guid>> { { key, new HashSet<Guid> { dsel } } });
           }
           catch
           {

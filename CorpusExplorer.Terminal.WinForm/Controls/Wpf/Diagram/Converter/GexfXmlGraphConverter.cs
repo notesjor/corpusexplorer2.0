@@ -19,10 +19,13 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter
 
       foreach (var node in shapes)
       {
-        if (dic.ContainsKey(node.Content.ToString()))
+        var key = Filter(node.Content.ToString());
+        if (key == null)
           continue;
 
-        var key = Filter(node.Content.ToString());
+        if (dic.ContainsKey(key))
+          continue;
+
         var idx = dic.Count;
         dic.Add(key, idx);
 
@@ -32,18 +35,20 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter
       stb.Append("</nodes><edges>");
 
       var cnt = 0;
-      foreach (
-        var connection in
-        connections.Where(
-                          connection =>
-                            dic.ContainsKey(connection.Source.Content.ToString()) &&
-                            dic.ContainsKey(connection.Target.Content.ToString())))
-        stb.AppendFormat(
-                         "<edge id=\"{0}\" source=\"{1}\" target=\"{2}\" weight=\"{3}\" />",
-                         cnt++,
-                         dic[connection.Source.Content.ToString()],
-                         dic[connection.Target.Content.ToString()],
-                         System.Convert.ToSingle((double)((RadDiagramConnection)connection).Tag).ToString().Replace(",", "."));
+      foreach (var connection in connections)
+      {
+        var k1 = Filter(connection.Source.Content.ToString());
+        var k2 = Filter(connection.Target.Content.ToString());
+        if (k1 == null || k2 == null)
+          continue;
+
+        if (dic.ContainsKey(k1) && dic.ContainsKey(k2))
+          stb.AppendFormat("<edge id=\"{0}\" source=\"{1}\" target=\"{2}\" weight=\"{3}\" />",
+                           cnt++,
+                           dic[k1],
+                           dic[k2],
+                           System.Convert.ToSingle((double)((RadDiagramConnection)connection).Tag).ToString().Replace(",", "."));
+      }
 
       stb.Append("</edges></graph></gexf>");
       return stb.ToString();
@@ -51,7 +56,14 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter
 
     private string Filter(object content)
     {
-      return content.ToString().Replace("\"", "''").Replace("&", "&amp;");
+      try
+      {
+        return content.ToString().Replace("\"", "''").Replace("&", "&amp;");
+      }
+      catch
+      {
+        return null;
+      }
     }
   }
 }

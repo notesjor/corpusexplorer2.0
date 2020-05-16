@@ -1,5 +1,9 @@
+#region
+
 using System;
 using System.Runtime.InteropServices;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 {
@@ -55,6 +59,16 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
     }
 
+    ~Trainer()
+    {
+      Dispose();
+    }
+
+    internal static HandleRef getCPtr(Trainer obj)
+    {
+      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+    }
+
     public static string train(string method, Sentences train, Sentences heldout, string tokenizer, string tagger,
                                string parser, ProcessingError error)
     {
@@ -72,16 +86,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
                                                            Sentences.getCPtr(heldout), tokenizer, tagger, parser);
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
       return ret;
-    }
-
-    internal static HandleRef getCPtr(Trainer obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
-
-    ~Trainer()
-    {
-      Dispose();
     }
   }
 }

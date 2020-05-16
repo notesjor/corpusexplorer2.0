@@ -1,5 +1,9 @@
+#region
+
 using System;
 using System.Runtime.InteropServices;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 {
@@ -76,6 +80,22 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
         GC.SuppressFinalize(this);
       }
+    }
+
+    ~InputFormat()
+    {
+      Dispose();
+    }
+
+    internal static HandleRef getCPtr(InputFormat obj)
+    {
+      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+    }
+
+    internal static HandleRef getCPtrAndDisown(InputFormat obj)
+    {
+      if (obj != null) obj.swigCMemOwn = false;
+      return getCPtr(obj);
     }
 
     public static InputFormat newConlluInputFormat(string options)
@@ -182,22 +202,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     public virtual void setText(string text)
     {
       udpipe_csharpPINVOKE.InputFormat_setText(swigCPtr, text);
-    }
-
-    internal static HandleRef getCPtr(InputFormat obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
-
-    internal static HandleRef getCPtrAndDisown(InputFormat obj)
-    {
-      if (obj != null) obj.swigCMemOwn = false;
-      return getCPtr(obj);
-    }
-
-    ~InputFormat()
-    {
-      Dispose();
     }
   }
 }

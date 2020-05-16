@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 using System.Xml.Serialization;
+using CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk.Model;
 
 // 
 // Dieser Quellcode wurde automatisch generiert von xsd, Version=4.6.1055.0.

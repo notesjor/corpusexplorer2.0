@@ -59,6 +59,13 @@ namespace Bcs.Addon
     /// </summary>
     public IHostWindow Window { get; }
 
+    private static string GetDirectoryPath(string directory)
+    {
+      return string.IsNullOrEmpty(directory)
+               ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+               : directory;
+    }
+
     /// <summary>
     ///   Sucht in einem Verzeichnis nach Dateien die Addon
     ///   enthalten
@@ -127,7 +134,7 @@ namespace Bcs.Addon
               continue;
             if (file.EndsWith("udpipe_csharp.dll"))
               continue;
-            if(ex is BadImageFormatException)
+            if (ex is BadImageFormatException)
               continue;
 
             InMemoryErrorConsole.Log(ex);
@@ -171,13 +178,6 @@ namespace Bcs.Addon
       catch
       {
       }
-    }
-
-    private static string GetDirectoryPath(string directory)
-    {
-      return string.IsNullOrEmpty(directory)
-               ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-               : directory;
     }
   }
 }

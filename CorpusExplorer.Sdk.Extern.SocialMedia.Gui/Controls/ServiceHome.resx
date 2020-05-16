@@ -117,4 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ihdPanel1.IHDDeescribtion" xml:space="preserve">
+    <value>&lt;html&gt;&lt;html&gt;Für den Zugriff auf dieses soziale Netzwerk ist ein API-Schlüssel erforderlich. Diesen können Sie wie folgt beantragen:&lt;br/&gt;&lt;a href="UrlCreateAccount"&gt;1. Erstellen Sie einen Nutzeraccount&lt;/a&gt;&lt;br/&gt;&lt;a href="UrlCreateApiKey"&gt;2. Beantragen Sie einen API-Schlüssel&lt;/a&gt;&lt;br/&gt;3. Tragen Sie die Daten hier ein.&lt;/html&gt;&lt;/html&gt;</value>
+  </data>
+  <data name="ihdPanel2.IHDDeescribtion" xml:space="preserve">
+    <value>&lt;html&gt;&lt;html&gt;Folgende Abfragen stehen Ihnen für dieses Netzwerk zur Verfügung.&lt;br/&gt;Bitte beachten Sie:&lt;br/&gt;- Die Nutzung ist nur für die zivile Forschung zulässig&lt;br/&gt;- Die Anzahl der Zugriffe ist i. d. R. begrenzt&lt;br/&gt;- Zuwiederhandlung können zu Account-Sperrung führen&lt;/html&gt;&lt;/html&gt;</value>
+  </data>
 </root>

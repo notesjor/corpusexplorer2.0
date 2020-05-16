@@ -49,6 +49,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       radGridView1.ResetBindings();
 
       AddSummaryRow();
+      ApplyFilterDelay();
       AddChildTemplate(SetFilter);
 
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;

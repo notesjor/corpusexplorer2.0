@@ -9,6 +9,7 @@ using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.LocatorStrategy;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.LocatorStrategy.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer;
 
 namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger
 {

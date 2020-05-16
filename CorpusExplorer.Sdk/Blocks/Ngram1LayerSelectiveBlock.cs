@@ -18,7 +18,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
     public override void Calculate()
     {
-      var query = new FilterQuerySingleLayerExactPhrase
+      var query = new FilterQuerySingleLayerAnyMatch
       {
         LayerDisplayname = LayerDisplayname,
         LayerQueries = LayerQueries

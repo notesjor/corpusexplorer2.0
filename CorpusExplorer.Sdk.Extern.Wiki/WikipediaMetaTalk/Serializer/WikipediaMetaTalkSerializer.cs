@@ -1,4 +1,5 @@
-﻿using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+﻿using CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk.Model;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
 
 namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk.Serializer
 {

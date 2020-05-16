@@ -67,17 +67,17 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
       var doc = _documents[documentGuid];
       var dic = new Dictionary<string, int>();
       foreach (var s in doc)
-      foreach (var w in s)
-      {
-        var k = _reverse[w];
-        if (!dic.ContainsKey(k))
-          dic.Add(k, w);
-      }
+        foreach (var w in s)
+        {
+          var k = _reverse[w];
+          if (!dic.ContainsKey(k))
+            dic.Add(k, w);
+        }
 
       var res = new LayerAdapterWriteDirect
       {
         _guid = Guid.NewGuid(),
-        _documents = new Dictionary<Guid, int[][]> {{documentGuid, doc}},
+        _documents = new Dictionary<Guid, int[][]> { { documentGuid, doc } },
         _dictionary = dic,
         Displayname = Displayname
       };
@@ -192,8 +192,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
         return null;
 
       start = start < 0 ? 0 : start;
-      stop = stop   >= doc.Length ? doc.Length - 1 : stop;
-      stop = stop   <= start ? start           + 1 : stop;
+      stop = stop >= doc.Length ? doc.Length - 1 : stop;
+      stop = stop <= start ? start + 1 : stop;
 
       var res = new List<IEnumerable<string>>();
       for (var i = start; i < stop; i++)
@@ -365,7 +365,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
 
       // Dictionary
       DictionarySerializerHelper.Serialize(_dictionary, fs);
-      
+
       // Documents
       foreach (var document in _documents)
       {
@@ -390,6 +390,19 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
       fs.Write(buffer, 0, buffer.Length);
     }
 
+    internal Dictionary<Guid, long> WriteFuriousIndex(string path)
+    {
+      var res = new Dictionary<Guid, long>();
+      using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Read))
+        foreach (var document in _documents)
+        {
+          res.Add(document.Key, fs.Position);
+          DocumentSerializerHelper.Serialize(fs, document.Value);
+        }
+      return res;
+    }
+
+    [Obsolete("Ersetzt durch WriteFuriousIndex im Zusammhang mit neuer Version von QuickIndex")]
     internal Dictionary<Guid, long> GetFuriousIndex(long pos)
     {
       pos += 16; // GUID

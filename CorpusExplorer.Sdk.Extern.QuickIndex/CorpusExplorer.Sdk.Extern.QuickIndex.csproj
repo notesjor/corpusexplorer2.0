@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Sdk.Extern.QuickIndex</RootNamespace>
     <AssemblyName>CorpusExplorer.Sdk.Extern.QuickIndex</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -41,15 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileBased\QueryToSentence\FuriousIndex.cs" />
-    <Compile Include="FileBased\QueryToSentence\QueryToSentenceIndexWriter.cs" />
-    <Compile Include="FileBased\QueryToSentence\QueryToSentenceIndexReader.cs" />
-    <Compile Include="Helper\FileNameHelper.cs" />
+    <Compile Include="Indices\DictionaryIndex.cs" />
+    <Compile Include="Indices\InverseIndex.cs" />
+    <Compile Include="Indices\Cec6FileIndex.cs" />
+    <Compile Include="QuickIndex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FolderBased\QueryToDocument\QueryToDocumentIndexFactory.cs" />
-    <Compile Include="FolderBased\QueryToDocument\QueryToDocumentIndex.cs" />
-    <Compile Include="FolderBased\QueryToSentence\QueryToSentenceIndexFactory.cs" />
-    <Compile Include="FolderBased\QueryToSentence\QueryToSentenceIndex.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -61,5 +57,6 @@
       <Name>CorpusExplorer.Sdk</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

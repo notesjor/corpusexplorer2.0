@@ -1,9 +1,13 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Extern.UdPipe.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.ConllTagger.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Tagger
 {
@@ -17,31 +21,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Tagger
       AddValueLayer("Wort", 1);
       AddValueLayer("Lemma", 2);
       AddValueLayer("POS", 4);
-    }
-
-    public override string DisplayName => "UDPipe";
-
-    public override string InstallationPath
-    {
-      get => "(NICHT WÄHLBAR - OPTIMIERTE VERSION)";
-      set { }
-    }
-
-    public override IEnumerable<string> LanguagesAvailabel => _languagesAvailable.Keys;
-
-    public override string LanguageSelected
-    {
-      get => _languageSelected;
-      set
-      {
-        if (value == _languageSelected)
-          return;
-
-        _languageSelected = value;
-        _model = Model.Model.load(
-                                  Configuration
-                                   .GetDependencyPath($"UDPipe/Models/{_languagesAvailable[_languageSelected]}.udpipe"));
-      }
     }
 
     private Dictionary<string, string> _languagesAvailable => new Dictionary<string, string>
@@ -115,6 +94,31 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Tagger
       {"Vietnamesisch", "Vietnamese"},
       {"Weißrussisch", "Belarusian"}
     };
+
+    public override string DisplayName => "UDPipe";
+
+    public override string InstallationPath
+    {
+      get => "(NICHT WÄHLBAR - OPTIMIERTE VERSION)";
+      set { }
+    }
+
+    public override IEnumerable<string> LanguagesAvailabel => _languagesAvailable.Keys;
+
+    public override string LanguageSelected
+    {
+      get => _languageSelected;
+      set
+      {
+        if (value == _languageSelected)
+          return;
+
+        _languageSelected = value;
+        _model = Model.Model.load(
+                                  Configuration
+                                   .GetDependencyPath($"UDPipe/Models/{_languagesAvailable[_languageSelected]}.udpipe"));
+      }
+    }
 
     protected override string ExecuteTagger(string text)
     {

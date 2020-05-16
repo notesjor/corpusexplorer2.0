@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Xml.Serialization;
 
-namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
+namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk.Model
 {
   /// <remarks />
   [GeneratedCode("xsd", "4.6.1055.0")]

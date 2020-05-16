@@ -26,8 +26,8 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Sdk.Context
       _settings.DefaultIndex(index);
       _client = new ElasticClient(_settings);
 
-      if (!_client.IndexExists(index).Exists)
-        _client.CreateIndex(index);
+      if (!_client.Indices.Exists(index).Exists)
+        _client.Indices.Create(index);
     }
 
     private ElasticSearchContextBase()

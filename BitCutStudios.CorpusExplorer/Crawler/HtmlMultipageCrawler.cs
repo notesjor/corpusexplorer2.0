@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using Bcs.Crawler.Interface;
 using HtmlAgilityPack;
+
+#endregion
 
 namespace Bcs.Crawler
 {
@@ -11,7 +15,6 @@ namespace Bcs.Crawler
     public HtmlCrawler Crawler { get; set; }
 
     public string DocumentSeperatorXPath { get; set; }
-    public string Url { get; set; }
 
     public Dictionary<string, object>[] Crawl()
     {
@@ -40,5 +43,7 @@ namespace Bcs.Crawler
 
       return res.ToArray();
     }
+
+    public string Url { get; set; }
   }
 }

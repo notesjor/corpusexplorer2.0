@@ -1,5 +1,9 @@
+#region
+
 using System;
 using System.Runtime.InteropServices;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 {
@@ -81,6 +85,16 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
     }
 
+    ~Token()
+    {
+      Dispose();
+    }
+
+    internal static HandleRef getCPtr(Token obj)
+    {
+      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+    }
+
     public bool getSpaceAfter()
     {
       var ret = udpipe_csharpPINVOKE.Token_getSpaceAfter(swigCPtr);
@@ -149,16 +163,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     public void setTokenRange(uint start, uint end)
     {
       udpipe_csharpPINVOKE.Token_setTokenRange(swigCPtr, start, end);
-    }
-
-    internal static HandleRef getCPtr(Token obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
-
-    ~Token()
-    {
-      Dispose();
     }
   }
 }

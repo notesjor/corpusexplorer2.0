@@ -27,10 +27,10 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
 
       var marks = columns.ToDictionary(x => x.Key, x => $"{{{x.Key}}}");
 
-      if(OutputStream.CanSeek)
-      WriteBodyParallel(table, template, columns, marks);
+      if (OutputStream.CanSeek)
+        WriteBodyParallel(table, template, columns, marks);
       else
-      WriteBodySynchron(table, template, columns, marks);
+        WriteBodySynchron(table, template, columns, marks);
     }
 
     private void WriteBodyParallel(DataTable table, string template, KeyValuePair<string, Type>[] columns, Dictionary<string, string> marks)
@@ -44,17 +44,14 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
           if (row[column.Key] == null)
             r.Replace(marks[column.Key], column.Value == typeof(string) ? string.Empty : "null");
           else
-            r.Replace(marks[column.Key],
-                      column.Value == typeof(string)
-                        ? row[column.Key].ToString().Replace("\"", "\\\"")
-                        : row[column.Key].ToString().Replace(",", "."));
+            r.Replace(marks[column.Key], Clean(row[column.Key]));
 
         var line = r.ToString();
         lock (wlock)
           WriteOutput(line);
       });
 
-      OutputStream.Seek(-1, SeekOrigin.End);
+      OutputStream.Position--;
     }
 
     private void WriteBodySynchron(DataTable table, string template, KeyValuePair<string, Type>[] columns, Dictionary<string, string> marks)
@@ -62,7 +59,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       var wlock = new object();
       var rows = table.AsEnumerable().ToArray();
       var last = rows.Length - 1;
-      
+
       for (var i = 0; i < rows.Length; i++)
       {
         var r = new StringBuilder(template);
@@ -70,10 +67,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
           if (rows[i][column.Key] == null)
             r.Replace(marks[column.Key], column.Value == typeof(string) ? string.Empty : "null");
           else
-            r.Replace(marks[column.Key],
-                      column.Value == typeof(string)
-                        ? rows[i][column.Key].ToString().Replace("\"", "\\\"")
-                        : rows[i][column.Key].ToString().Replace(",", "."));
+            r.Replace(marks[column.Key], Clean(rows[i][column.Key]));
 
         var line = r.ToString();
         if (i == last)
@@ -81,6 +75,17 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
 
         lock (wlock)
           WriteOutput(line);
+      }
+    }
+
+    private static string Clean(object input)
+    {
+      switch (input)
+      {
+        case string s:
+          return s.Replace("\"", "\\\"").Replace("\r", " ").Replace("\n", " ").Replace("\t", " ").Replace("  ", " ").Replace("  ", " ");
+        default:
+          return input.ToString();
       }
     }
 
@@ -99,7 +104,6 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
 
     protected override void WriteFooter()
     {
-      OutputStream.Seek(-1, SeekOrigin.End);
       WriteOutput("]");
     }
 

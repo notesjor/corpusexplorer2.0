@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
@@ -6,6 +8,8 @@ using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
 {
@@ -93,7 +97,7 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
               Arguments = javaArguments,
               CreateNoWindow = false,
               WindowStyle = ProcessWindowStyle.Hidden,
-              WorkingDirectory = pepperPath,
+              WorkingDirectory = pepperPath
             }
         };
         pepper.Start();

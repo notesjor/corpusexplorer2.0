@@ -47,6 +47,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     {
       radGridView1.DataSource = _vm.GetDataTable();
       radGridView1.ResetBindings();
+      ApplyFilterDelay();
       radGridView1.Columns[0].DisableHTMLRendering = false;
       radGridView1.Columns[2].IsVisible = false;
     }

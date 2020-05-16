@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using CorpusExplorer.Sdk.Ecosystem;
 
 namespace CorpusExplorer.Terminal.Automate
 {
@@ -12,9 +13,11 @@ namespace CorpusExplorer.Terminal.Automate
     [STAThread]
     static void Main()
     {
+      CorpusExplorerEcosystem.InitializeMinimal();
+
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new BasicInformationForm());
+      Application.Run(new MainForm());
     }
   }
 }

@@ -1,7 +1,11 @@
+#region
+
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 {
@@ -1334,7 +1338,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       public delegate void ExceptionDelegate(string message);
 
       private static readonly ExceptionDelegate applicationDelegate = SetPendingApplicationException;
-
       private static readonly ExceptionDelegate arithmeticDelegate = SetPendingArithmeticException;
       private static readonly ExceptionDelegate divideByZeroDelegate = SetPendingDivideByZeroException;
       private static readonly ExceptionDelegate indexOutOfRangeDelegate = SetPendingIndexOutOfRangeException;
@@ -1372,26 +1375,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
                                                              argumentNullDelegate,
                                                              argumentOutOfRangeDelegate);
       }
-
-      [DllImport("udpipe_csharp", EntryPoint = "SWIGRegisterExceptionCallbacks_udpipe_csharp")]
-      public static extern void SWIGRegisterExceptionCallbacks_udpipe_csharp(
-        ExceptionDelegate applicationDelegate,
-        ExceptionDelegate arithmeticDelegate,
-        ExceptionDelegate divideByZeroDelegate,
-        ExceptionDelegate indexOutOfRangeDelegate,
-        ExceptionDelegate invalidCastDelegate,
-        ExceptionDelegate invalidOperationDelegate,
-        ExceptionDelegate ioDelegate,
-        ExceptionDelegate nullReferenceDelegate,
-        ExceptionDelegate outOfMemoryDelegate,
-        ExceptionDelegate overflowDelegate,
-        ExceptionDelegate systemExceptionDelegate);
-
-      [DllImport("udpipe_csharp", EntryPoint = "SWIGRegisterExceptionArgumentCallbacks_udpipe_csharp")]
-      public static extern void SWIGRegisterExceptionCallbacksArgument_udpipe_csharp(
-        ExceptionArgumentDelegate argumentDelegate,
-        ExceptionArgumentDelegate argumentNullDelegate,
-        ExceptionArgumentDelegate argumentOutOfRangeDelegate);
 
       private static void SetPendingApplicationException(string message)
       {
@@ -1466,6 +1449,26 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       {
         SWIGPendingException.Set(new SystemException(message, SWIGPendingException.Retrieve()));
       }
+
+      [DllImport("udpipe_csharp", EntryPoint = "SWIGRegisterExceptionCallbacks_udpipe_csharp")]
+      public static extern void SWIGRegisterExceptionCallbacks_udpipe_csharp(
+        ExceptionDelegate applicationDelegate,
+        ExceptionDelegate arithmeticDelegate,
+        ExceptionDelegate divideByZeroDelegate,
+        ExceptionDelegate indexOutOfRangeDelegate,
+        ExceptionDelegate invalidCastDelegate,
+        ExceptionDelegate invalidOperationDelegate,
+        ExceptionDelegate ioDelegate,
+        ExceptionDelegate nullReferenceDelegate,
+        ExceptionDelegate outOfMemoryDelegate,
+        ExceptionDelegate overflowDelegate,
+        ExceptionDelegate systemExceptionDelegate);
+
+      [DllImport("udpipe_csharp", EntryPoint = "SWIGRegisterExceptionArgumentCallbacks_udpipe_csharp")]
+      public static extern void SWIGRegisterExceptionCallbacksArgument_udpipe_csharp(
+        ExceptionArgumentDelegate argumentDelegate,
+        ExceptionArgumentDelegate argumentNullDelegate,
+        ExceptionArgumentDelegate argumentOutOfRangeDelegate);
     }
 
     public class SWIGPendingException
@@ -1530,18 +1533,32 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
         SWIGRegisterStringCallback_udpipe_csharp(stringDelegate);
       }
 
-      [DllImport("udpipe_csharp", EntryPoint = "SWIGRegisterStringCallback_udpipe_csharp")]
-      public static extern void SWIGRegisterStringCallback_udpipe_csharp(SWIGStringDelegate stringDelegate);
-
       private static string CreateString(string cString)
       {
         return cString;
       }
+
+      [DllImport("udpipe_csharp", EntryPoint = "SWIGRegisterStringCallback_udpipe_csharp")]
+      public static extern void SWIGRegisterStringCallback_udpipe_csharp(SWIGStringDelegate stringDelegate);
     }
 
     public class UTF8Marshaler : ICustomMarshaler
     {
       private static UTF8Marshaler static_instance;
+
+      public void CleanUpManagedData(object managedObj)
+      {
+      }
+
+      public void CleanUpNativeData(IntPtr pNativeData)
+      {
+        Marshal.FreeHGlobal(pNativeData);
+      }
+
+      public int GetNativeDataSize()
+      {
+        return -1;
+      }
 
       public IntPtr MarshalManagedToNative(object managedObj)
       {
@@ -1572,20 +1589,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
         Marshal.Copy(pNativeData, strbuf, 0, length);
         var data = Encoding.UTF8.GetString(strbuf);
         return data;
-      }
-
-      public void CleanUpNativeData(IntPtr pNativeData)
-      {
-        Marshal.FreeHGlobal(pNativeData);
-      }
-
-      public void CleanUpManagedData(object managedObj)
-      {
-      }
-
-      public int GetNativeDataSize()
-      {
-        return -1;
       }
 
       public static ICustomMarshaler GetInstance(string cookie)

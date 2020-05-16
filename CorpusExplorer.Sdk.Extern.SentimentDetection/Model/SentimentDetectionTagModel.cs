@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 
 namespace CorpusExplorer.Sdk.Extern.SentimentDetection.Model
@@ -16,7 +17,7 @@ namespace CorpusExplorer.Sdk.Extern.SentimentDetection.Model
 
     public Dictionary<string, Dictionary<string, double>> Data => _data ?? RawData;
 
-    public Dictionary<string, Dictionary<string, double>> RawData { get; private set; }
+    private Dictionary<string, Dictionary<string, double>> RawData { get; set; }
 
     public static SentimentDetectionTagModel Create(Dictionary<string, Dictionary<string, double>> data)
     {
@@ -71,7 +72,9 @@ namespace CorpusExplorer.Sdk.Extern.SentimentDetection.Model
 
     public void Compile(IEnumerable<string> layerValues)
     {
-      var values = layerValues.ToArray();
+      var values = new HashSet<string>(layerValues);
+      var prefixes = new Dictionary<string, KeyValuePair<string, double>>();
+      var postfixes = new Dictionary<string, KeyValuePair<string, double>>();
       _data = new Dictionary<string, Dictionary<string, double>>();
 
       foreach (var c in RawData)
@@ -79,18 +82,81 @@ namespace CorpusExplorer.Sdk.Extern.SentimentDetection.Model
         _data.Add(c.Key, new Dictionary<string, double>());
         foreach (var v in c.Value)
         {
-          IEnumerable<string> items;
-          if (v.Key.StartsWith("*"))
-            items = values.Where(x => x.EndsWith(v.Key.Substring(1)));
-          else if (v.Key.EndsWith("*"))
-            items = values.Where(x => x.StartsWith(v.Key.Substring(0, v.Key.Length - 1)));
-          else
-            items = new[] { v.Key };
-          foreach (var item in items)
-            if (!_data[c.Key].ContainsKey(item))
-              _data[c.Key].Add(item, v.Value);
+          if (v.Key.EndsWith("*"))
+          {
+            var prefix = v.Key.Substring(0, v.Key.Length - 1);
+            if (!prefixes.ContainsKey(prefix))
+              prefixes.Add(prefix, new KeyValuePair<string, double>(c.Key, v.Value));
+          }
+          else if (v.Key.StartsWith("*"))
+          {
+            var postfix = v.Key.Substring(1);
+            if (!postfixes.ContainsKey(postfix))
+              postfixes.Add(postfix, new KeyValuePair<string, double>(c.Key, v.Value));
+          }
+          else if (values.Contains(v.Key) && !_data[c.Key].ContainsKey(v.Key))
+            _data[c.Key].Add(v.Key, v.Value);
         }
       }
+
+      var l = new object();
+      int min, max;
+      try
+      {
+        min = prefixes.Keys.Min(x => x.Length);
+        max = prefixes.Keys.Max(x => x.Length);
+        Parallel.ForEach(values, v =>
+        {
+          for (var i = min; i < max; i++)
+          {
+            if (v.Length < i)
+              return;
+
+            var key = v.Substring(0, i);
+            if (!prefixes.ContainsKey(key))
+              return;
+
+            lock (l)
+              if (!_data[prefixes[key].Key].ContainsKey(v))
+                _data[prefixes[key].Key].Add(v, prefixes[key].Value);
+          }
+        });
+      }
+      catch
+      {
+        // ignore
+      }
+
+      try
+      {
+        min = postfixes.Keys.Min(x => x.Length);
+        max = postfixes.Keys.Max(x => x.Length);
+        Parallel.ForEach(values, v =>
+        {
+          for (var i = min; i < max; i++)
+          {
+            if (v.Length < i)
+              return;
+
+            var key = v.Substring(v.Length - i);
+            if (!postfixes.ContainsKey(key))
+              return;
+
+            lock (l)
+              if (!_data[postfixes[key].Key].ContainsKey(v))
+                _data[postfixes[key].Key].Add(v, postfixes[key].Value);
+          }
+        });
+      }
+      catch
+      {
+        // ignorieren
+      }
+
+      values.Clear();
+      prefixes.Clear();
+      postfixes.Clear();
+      GC.Collect();
     }
   }
 }

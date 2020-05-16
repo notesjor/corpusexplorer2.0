@@ -78,6 +78,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
                                                 .Merge(x[wordBag1.ResultSelectedLayerDisplayname].ToString(),
                                                        wordBag1.ResultQueries)
                                            });
+                          ApplyFilterDelay();
                         });
     }
 

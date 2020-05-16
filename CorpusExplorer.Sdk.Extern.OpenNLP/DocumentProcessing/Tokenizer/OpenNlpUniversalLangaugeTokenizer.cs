@@ -1,3 +1,5 @@
+#region
+
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -6,6 +8,8 @@ using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger.Parameter;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tokenizer
 {

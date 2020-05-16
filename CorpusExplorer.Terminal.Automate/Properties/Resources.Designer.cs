@@ -63,10 +63,56 @@ namespace CorpusExplorer.Terminal.Automate.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add_button {
+            get {
+                object obj = ResourceManager.GetObject("add_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap close_window {
             get {
                 object obj = ResourceManager.GetObject("close_window", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Möchten Sie die Änderungen wirklich verwerfen? Alle Änderungen gehen verloren. ähnelt.
+        /// </summary>
+        internal static string DialogChangesAbortMessage {
+            get {
+                return ResourceManager.GetString("DialogChangesAbortMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Änderungen verwerfen? ähnelt.
+        /// </summary>
+        internal static string DialogChangesAbortMessageHead {
+            get {
+                return ResourceManager.GetString("DialogChangesAbortMessageHead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Möchten Sie die Änderungen abschließen und übernehmen? ähnelt.
+        /// </summary>
+        internal static string DialogChangesAcceptedMessage {
+            get {
+                return ResourceManager.GetString("DialogChangesAcceptedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Änderungen übernehmen? ähnelt.
+        /// </summary>
+        internal static string DialogChangesAcceptedMessageHead {
+            get {
+                return ResourceManager.GetString("DialogChangesAcceptedMessageHead", resourceCulture);
             }
         }
         
@@ -101,11 +147,30 @@ namespace CorpusExplorer.Terminal.Automate.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die CorpusExplorerConsole XML-{0}-Fragment (*.cecx_{0}_f)|*.cecx_{0}_f ähnelt.
+        /// </summary>
+        internal static string FragmentFileFilterTemplate {
+            get {
+                return ResourceManager.GetString("FragmentFileFilterTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap info {
             get {
                 object obj = ResourceManager.GetObject("info", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ok_button {
+            get {
+                object obj = ResourceManager.GetObject("ok_button", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

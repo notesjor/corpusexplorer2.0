@@ -42,6 +42,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       radGridView1.ResetBindings();
 
       AddSummaryRow();
+      ApplyFilterDelay();
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
 
       var pre = radGridView1.Columns["Pre"];

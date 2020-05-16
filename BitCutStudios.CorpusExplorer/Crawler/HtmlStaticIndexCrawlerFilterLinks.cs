@@ -1,8 +1,12 @@
+#region
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Bcs.Crawler.Interface;
 using HtmlAgilityPack;
+
+#endregion
 
 namespace Bcs.Crawler
 {

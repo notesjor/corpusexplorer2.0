@@ -103,6 +103,16 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap button_circle_right {
+            get {
+                object obj = ResourceManager.GetObject("button_circle_right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap button_green_arrow_left {
             get {
                 object obj = ResourceManager.GetObject("button_green_arrow_left", resourceCulture);
@@ -156,6 +166,16 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties {
         internal static System.Drawing.Bitmap facebook_padlock_24px {
             get {
                 object obj = ResourceManager.GetObject("facebook_padlock_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap find {
+            get {
+                object obj = ResourceManager.GetObject("find", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -353,6 +373,16 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap refresh {
+            get {
+                object obj = ResourceManager.GetObject("refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap rss_128px {
             get {
                 object obj = ResourceManager.GetObject("rss@128px", resourceCulture);
@@ -386,6 +416,16 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Properties {
         internal static System.Drawing.Bitmap servers_cloud {
             get {
                 object obj = ResourceManager.GetObject("servers-cloud", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SSMDL {
+            get {
+                object obj = ResourceManager.GetObject("SSMDL", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

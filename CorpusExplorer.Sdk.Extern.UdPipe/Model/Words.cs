@@ -1,7 +1,11 @@
+#region
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 {
@@ -103,6 +107,12 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
     }
 
+    private uint capacity()
+    {
+      var ret = udpipe_csharpPINVOKE.Words_capacity(swigCPtr);
+      return ret;
+    }
+
     public void Clear()
     {
       udpipe_csharpPINVOKE.Words_Clear(swigCPtr);
@@ -136,9 +146,33 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
         array.SetValue(getitemcopy(index + i), arrayIndex + i);
     }
 
+    ~Words()
+    {
+      Dispose();
+    }
+
+    internal static HandleRef getCPtr(Words obj)
+    {
+      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+    }
+
     public WordsEnumerator GetEnumerator()
     {
       return new WordsEnumerator(this);
+    }
+
+    private Word getitem(int index)
+    {
+      var ret = new Word(udpipe_csharpPINVOKE.Words_getitem(swigCPtr, index), false);
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
+    }
+
+    private Word getitemcopy(int index)
+    {
+      var ret = new Word(udpipe_csharpPINVOKE.Words_getitemcopy(swigCPtr, index), true);
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+      return ret;
     }
 
     public Words GetRange(int index, int count)
@@ -181,6 +215,11 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       return ret;
     }
 
+    private void reserve(uint n)
+    {
+      udpipe_csharpPINVOKE.Words_reserve(swigCPtr, n);
+    }
+
     public void Reverse()
     {
       udpipe_csharpPINVOKE.Words_Reverse__SWIG_0(swigCPtr);
@@ -192,45 +231,15 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
     }
 
-    public void SetRange(int index, Words values)
-    {
-      udpipe_csharpPINVOKE.Words_SetRange(swigCPtr, index, getCPtr(values));
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-    }
-
-    internal static HandleRef getCPtr(Words obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
-
-    private uint capacity()
-    {
-      var ret = udpipe_csharpPINVOKE.Words_capacity(swigCPtr);
-      return ret;
-    }
-
-    private Word getitem(int index)
-    {
-      var ret = new Word(udpipe_csharpPINVOKE.Words_getitem(swigCPtr, index), false);
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    }
-
-    private Word getitemcopy(int index)
-    {
-      var ret = new Word(udpipe_csharpPINVOKE.Words_getitemcopy(swigCPtr, index), true);
-      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    }
-
-    private void reserve(uint n)
-    {
-      udpipe_csharpPINVOKE.Words_reserve(swigCPtr, n);
-    }
-
     private void setitem(int index, Word val)
     {
       udpipe_csharpPINVOKE.Words_setitem(swigCPtr, index, Word.getCPtr(val));
+      if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
+    }
+
+    public void SetRange(int index, Words values)
+    {
+      udpipe_csharpPINVOKE.Words_SetRange(swigCPtr, index, getCPtr(values));
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
     }
 
@@ -238,11 +247,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
       var ret = udpipe_csharpPINVOKE.Words_size(swigCPtr);
       return ret;
-    }
-
-    ~Words()
-    {
-      Dispose();
     }
 
     // Type-safe enumerator
@@ -263,6 +267,12 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
         currentIndex = -1;
         currentObject = null;
         currentSize = collectionRef.Count;
+      }
+
+      public void Dispose()
+      {
+        currentIndex = -1;
+        currentObject = null;
       }
 
       // Type-unsafe IEnumerator.Current
@@ -305,12 +315,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
             throw new InvalidOperationException("Collection modified.");
           return (Word) currentObject;
         }
-      }
-
-      public void Dispose()
-      {
-        currentIndex = -1;
-        currentObject = null;
       }
     }
   }

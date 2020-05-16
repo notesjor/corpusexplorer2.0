@@ -124,27 +124,22 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Model.Context
 
     public Corpus GetCorpus(Guid guid)
     {
-      return _client.Get<Corpus>(new GetRequest<Corpus>("corpusexplorer", "corpus", guid)).Source;
+      return _client.Get<Corpus>(new GetRequest<Corpus>("corpus", guid)).Source;
     }
 
     public Document GetDocument(Guid guid)
     {
-      return _client.Get<Document>(new GetRequest<Document>("corpusexplorer", "document", guid)).Source;
+      return _client.Get<Document>(new GetRequest<Document>("document", guid)).Source;
     }
 
     public Layer GetLayer(Guid guid)
     {
-      return _client.Get<Layer>(new GetRequest<Layer>("corpusexplorer", "layer", guid)).Source;
+      return _client.Get<Layer>(new GetRequest<Layer>("layer", guid)).Source;
     }
 
     public LayerDocument GetLayerDocument(Guid documentGuid, Guid layerGuid)
     {
-      return
-        _client.Get<LayerDocument>(
-                                   new GetRequest<LayerDocument>(
-                                                                 "corpusexplorer",
-                                                                 "layerdocument",
-                                                                 string.Concat(documentGuid, ".", layerGuid))).Source;
+      return _client.Get<LayerDocument>(new GetRequest<LayerDocument>("layerdocument", string.Concat(documentGuid, ".", layerGuid))).Source;
     }
 
     public void Update(Layer layer)

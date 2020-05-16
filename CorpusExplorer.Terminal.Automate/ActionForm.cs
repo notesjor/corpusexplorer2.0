@@ -6,6 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Helper;
+using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
+using CorpusExplorer.Terminal.Automate.Helper;
+using CorpusExplorer.Terminal.Automate.Properties;
+using CorpusExplorer.Terminal.Console.Xml.Model;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -13,39 +20,84 @@ namespace CorpusExplorer.Terminal.Automate
 {
   public partial class ActionForm : AbstractForm
   {
-    public ActionForm()
+    private Dictionary<string, AbstractTableWriter> _outputAction;
+    private Dictionary<string, AbstractExporter> _outputExporter;
+
+    public ActionForm(action action = null)
     {
       InitializeComponent();
+      LoadDropDownOptions();
+      Result = action;
     }
 
-    private void grid_sessions_CellFormatting(object sender, CellFormattingEventArgs e)
+    private void LoadDropDownOptions()
     {
-      if (e.CellElement is GridCommandCellElement cmdCell)
-        cmdCell.CommandButton.ImageAlignment = ContentAlignment.MiddleCenter;
+      drop_actionType.Items.AddRange(Configuration.AddonConsoleActions.Select(x => new RadListDataItem(x.Action)));
+      _outputAction = Configuration.AddonTableWriter.GetReflectedTypeNameDictionary();
+      _outputExporter = Configuration.AddonExporters.GetReflectedTypeNameDictionary();
     }
 
-    private void info_session_Click(object sender, EventArgs e)
-      =>
-        MessageBox.Show("Der Knoten <session> definiert eine Analyse-Session. Quellen (sources) stehen nur innerhalb der Session zur Verfügung - ebenso Schnappschüsse (queries). Analysen (actions) können a/synchron darauf zugreifen.",
-                        "<session>",
-                        MessageBoxButtons.OK);
+    public action Result
+    {
+      get
+      {
+        throw new NotImplementedException();
+      }
+      private set
+      {
+        drop_actionType.SelectValue(value.type);
+        drop_outputFormat.SelectValue(value.output.format);
+        txt_outputPath.Text = value.output.Value;
+        throw new NotImplementedException();
+        /*
+        foreach (var VARIABLE in COLLECTION)
+        {
+          
+        }
+        */
+      }
+    }
 
-    private void info_sources_Click(object sender, EventArgs e)
-      =>
-        MessageBox.Show("<sources> können Korpora per <annotate> oder <import> erstellen. Das Attribut \"processing\" erlaubt drei Modi: none = normal, merge = alle Quellen werden zusammengefasst, loop = die Quellen werden nacheinander geladen und bearbeitet.",
-                        "<sources>",
-                        MessageBoxButtons.OK);
+    private void btn_ok_Click(object sender, EventArgs e)
+    {
+      if (MessageBox.Show(Resources.DialogChangesAcceptedMessage, Resources.DialogChangesAcceptedMessageHead, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+        return;
+      DialogResult = DialogResult.OK;
+      Close();
+    }
 
-    private void info_queries_Click(object sender, EventArgs e)
-      =>
-        MessageBox.Show("<queries> sind Abfragen auf die Gesamtmenge (sources - siehe auch processing-Modi).",
-                        "<queries>",
-                        MessageBoxButtons.OK);
+    private void btn_abort_Click(object sender, EventArgs e)
+    {
+      if (MessageBox.Show(Resources.DialogChangesAbortMessage, Resources.DialogChangesAbortMessageHead, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) != DialogResult.Yes)
+        return;
+      DialogResult = DialogResult.Abort;
+      Close();
+    }
 
-    private void info_actions_Click(object sender, EventArgs e)
-      =>
-        MessageBox.Show("<actions> sind die Aktionen/Analysen die auf Basis der Schnappschüsse (queries) ausgeführt werden.",
-                        "<actions>",
-                        MessageBoxButtons.OK);
+    private void btn_outputPath_Click(object sender, EventArgs e)
+    {
+      var sfd = new SaveFileDialog();
+      if (sfd.ShowDialog() == DialogResult.OK)
+        txt_outputPath.Text = sfd.FileName;
+    }
+
+    private void switch_cluster_ValueChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void drop_actionType_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+    {
+      if (drop_actionType.SelectedItem.Text == "query" || drop_actionType.SelectedItem.Text == "convert")
+      {
+        drop_outputFormat.Items.Clear();
+        drop_outputFormat.Items.AddRange(_outputExporter.Select(x => new RadListDataItem(x.Key)));
+      }
+      else
+      {
+        drop_outputFormat.Items.Clear();
+        drop_outputFormat.Items.AddRange(_outputAction.Select(x => new RadListDataItem(x.Key)));
+      }
+    }
   }
 }

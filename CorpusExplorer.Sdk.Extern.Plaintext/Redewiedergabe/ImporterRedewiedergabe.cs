@@ -17,7 +17,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.Redewiedergabe
 
     protected override void ExecuteCall(string path)
     {
-      if (!path.ToLower().EndsWith("_metadata.tsv"))
+      if (!path.ToLower().EndsWith("metadata.tsv"))
         return;
 
       ReadMetaData(path);
@@ -137,14 +137,14 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.Redewiedergabe
     private void ReadMetaData(string path)
     {
       var lines = FileIO.ReadLines(path, Configuration.Encoding, stringSplitOptions: StringSplitOptions.RemoveEmptyEntries);
-      if (lines == null || lines.Length == 0 || lines[0] != "file\tyear\tdecade\tsource\ttitle\tauthor\tfictional\ttext_type") // siehe unten: if (split.Length != 8)
+      if (lines == null || lines.Length == 0 || lines[0] != "file\torig_filename\tyear\tdecade\tsource\ttitle\tauthor\tfictional\ttext_type\tnarrative\tcabtokens\tdialect\tperspective\tquotes") // siehe unten: if (split.Length != 14)
         return;
 
       _files = new Dictionary<string, Guid>();
       for (var i = 1; i < lines.Length; i++)
       {
         var split = lines[i].Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
-        if (split.Length != 8) // siehe oben: if (... lines[0] != "file\tyear\tdecade\tsource\ttitle\tauthor\tfictional\ttext_type")
+        if (split.Length != 14) // siehe oben: if (... lines[0] != "file\torig_filename\tyear\tdecade\tsource\ttitle\tauthor\tfictional\ttext_type\tnarrative\tcabtokens\tdialect\tperspective\tquotes")
           continue;
 
         if (!split[0].EndsWith(".tsv"))
@@ -156,13 +156,18 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.Redewiedergabe
         AddDocumentMetadata(guid, new Dictionary<string, object>
         {
           { "Datei", split[0] },
-          { "Jahr", int.Parse(split[1])  },
-          { "Dekade", int.Parse(split[2])  },
-          { "Quelle", split[3] },
-          { "Titel", split[4] },
-          { "Autor", split[5] },
-          { "Fiktional?", split[6] == "yes" },
-          { "Textsorte", split[7] },
+          { "Jahr", int.Parse(split[2])  },
+          { "Dekade", int.Parse(split[3])  },
+          { "Quelle", split[4] },
+          { "Titel", split[5] },
+          { "Autor", split[6] },
+          { "Fiktional?", split[7] == "yes" },
+          { "Textsorte", split[8] },
+          { "Narrative", split[9] },
+          { "CAB-Tokens", split[10] },
+          { "Dialekt", split[11] },
+          { "Perspektive", split[12] },
+          { "Anführungszeichen", split[13] },
         });
       }
     }
