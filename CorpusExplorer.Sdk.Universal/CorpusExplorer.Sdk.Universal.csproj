@@ -3,7 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace />
+	<PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;UNIVERSAL</DefineConstants>
@@ -688,11 +695,11 @@
     <PackageReference Include="SharpSerializer" Version="3.0.1" />
     <PackageReference Include="SharpZipLib" Version="1.2.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="Telerik.Documents.Core" Version="2020.1.212" />
-    <PackageReference Include="Telerik.Documents.Fixed" Version="2020.1.212" />
-    <PackageReference Include="Telerik.Documents.Flow" Version="2020.1.212" />
-    <PackageReference Include="Telerik.Documents.Flow.FormatProviders.Pdf" Version="2020.1.212" />
-    <PackageReference Include="Telerik.Windows.Zip" Version="2020.1.212" />
+    <PackageReference Include="Telerik.Documents.Core" Version="2020.2.615" />
+    <PackageReference Include="Telerik.Documents.Fixed" Version="2020.2.615" />
+    <PackageReference Include="Telerik.Documents.Flow" Version="2020.2.615" />
+    <PackageReference Include="Telerik.Documents.Flow.FormatProviders.Pdf" Version="2020.2.615" />
+    <PackageReference Include="Telerik.Windows.Zip" Version="2020.2.615" />
   </ItemGroup>
 
 </Project>
