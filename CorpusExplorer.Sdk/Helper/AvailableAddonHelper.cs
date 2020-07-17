@@ -1,39 +1,58 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace CorpusExplorer.Sdk.Helper
 {
   public static class AvailableAddonHelper
   {
-    public static Dictionary<string, T> GetReflectedTypeNameDictionary<T>(this IEnumerable<KeyValuePair<string, T>> dic)
+    /// <summary>
+    /// Gibt eine Auflistung mit verfügbaren Typennamen zurück (Addons).
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="dic">Addon-Quelle</param>
+    /// <param name="ignoreInName">Ignoriere folgenden Namensbestandteile (z. B. Scraper)</param>
+    /// <returns>Auflistung als string</returns>
+    public static IEnumerable<string> GetReflectedTypeNameList<T>(this IEnumerable<KeyValuePair<string, T>> dic, string ignoreInName)
+      => dic == null
+           ? (IEnumerable<string>) new List<string>()
+           : string.IsNullOrWhiteSpace(ignoreInName)
+             ? new HashSet<string>(dic.Select(x => x.Value.GetType().Name))
+             : new HashSet<string>(dic.Select(x => x.Value.GetType().Name.Replace(ignoreInName, string.Empty)));
+
+    /// <summary>
+    /// Gibt eine Auflistung mit verfügbaren Typennamen zurück (Addons).
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="enumerable">Addon-Quelle</param>
+    /// <param name="ignoreInName">Ignoriere folgenden Namensbestandteile (z. B. Scraper)</param>
+    /// <returns>Auflistung als string</returns>
+    public static IEnumerable<string> GetReflectedTypeNameList<T>(this IEnumerable<T> enumerable, string ignoreInName)
+      => enumerable == null
+           ? (IEnumerable<string>) new List<string>()
+           : string.IsNullOrWhiteSpace(ignoreInName)
+             ? new HashSet<string>(enumerable.Select(x => x.GetType().Name))
+             : new HashSet<string>(enumerable.Select(x => x.GetType().Name.Replace(ignoreInName, string.Empty)));
+
+
+    public static T GetReflectedType<T>(this IEnumerable<KeyValuePair<string, T>> dic, string typeName, string ignoreInName) where T : class
     {
-      var dictionary = new Dictionary<string, T>();
       if (dic == null)
-        return dictionary;
+        return null;
 
-      foreach (var pair in dic)
-      {
-        var key = pair.Value.GetType().Name;
-        if (!dictionary.ContainsKey(key))
-          dictionary.Add(key, pair.Value);
-      }
+      typeName = typeName.Replace(ignoreInName, string.Empty);
 
-      return dictionary;
+      return (from pair in dic where typeName == pair.Value.GetType().Name.Replace(ignoreInName, string.Empty) select pair.Value).FirstOrDefault();
     }
 
-    public static Dictionary<string, T> GetReflectedTypeNameDictionary<T>(this IEnumerable<T> enumerable)
+
+    public static T GetReflectedType<T>(this IEnumerable<T> enumerable, string typeName, string ignoreInName) where T : class
     {
-      var dictionary = new Dictionary<string, T>();
       if (enumerable == null)
-        return dictionary;
+        return null;
 
-      foreach (var unknown in enumerable)
-      {
-        var key = unknown.GetType().Name;
-        if (!dictionary.ContainsKey(key))
-          dictionary.Add(key, unknown);
-      }
+      typeName = typeName.Replace(ignoreInName, string.Empty);
 
-      return dictionary;
+      return enumerable.FirstOrDefault(unknown => typeName == unknown.GetType().Name.Replace(ignoreInName, string.Empty));
     }
   }
 }

@@ -128,7 +128,7 @@
     <value>radPanel1</value>
   </data>
   <data name="&gt;&gt;radPanel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2020.2.616.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radPanel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -137,32 +137,45 @@
     <value>2</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="elementHost1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="webHtml5Visualisation1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="elementHost1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="webHtml5Visualisation1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="elementHost1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="webHtml5Visualisation1.Size" type="System.Drawing.Size, System.Drawing">
     <value>530, 369</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="elementHost1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="webHtml5Visualisation1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="elementHost1.Text" xml:space="preserve">
-    <value>elementHost1</value>
+  <data name="webHtml5Visualisation1.TemplateVars" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAPcBbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1u
+        ZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5XSxbU3lzdGVtLlN0cmluZywgbXNj
+        b3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdh
+        NWM1NjE5MzRlMDg5XV0sIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwg
+        UHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OQwDAAAAmgFtc2NvcmxpYiwgVmVyc2lvbj00LjAu
+        MC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODldXSwgbXNj
+        b3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdh
+        NWM1NjE5MzRlMDg5BQEAAAA2U3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuRGljdGlvbmFyeWAyW1tT
+        eXN0ZW0uU3RyaW5nAwAAAAdWZXJzaW9uCENvbXBhcmVyCEhhc2hTaXplAAQACENTeXN0ZW0uQ29sbGVj
+        dGlvbnMuR2VuZXJpYy5HZW5lcmljRXF1YWxpdHlDb21wYXJlcmAxW1tTeXN0ZW0uU3RyaW5nAwAAAAgC
+        AAAAAAAAAAkEAAAAAAAAAAUEAAAAQ1N5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljLkdlbmVyaWNFcXVh
+        bGl0eUNvbXBhcmVyYDFbW1N5c3RlbS5TdHJpbmcAAAAAAwAAAAs=
+</value>
   </data>
-  <data name="&gt;&gt;elementHost1.Name" xml:space="preserve">
-    <value>elementHost1</value>
+  <data name="&gt;&gt;webHtml5Visualisation1.Name" xml:space="preserve">
+    <value>webHtml5Visualisation1</value>
   </data>
-  <data name="&gt;&gt;elementHost1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Integration.ElementHost, WindowsFormsIntegration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</value>
+  <data name="&gt;&gt;webHtml5Visualisation1.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser.WebHtml5Visualisation, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
-  <data name="&gt;&gt;elementHost1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;webHtml5Visualisation1.Parent" xml:space="preserve">
     <value>splitPanel1</value>
   </data>
-  <data name="&gt;&gt;elementHost1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;webHtml5Visualisation1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="splitPanel1.Location" type="System.Drawing.Point, System.Drawing">
@@ -181,7 +194,7 @@
     <value>splitPanel1</value>
   </data>
   <data name="&gt;&gt;splitPanel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2020.2.616.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;splitPanel1.Parent" xml:space="preserve">
     <value>radSplitContainer1</value>
@@ -211,7 +224,7 @@
     <value>metadataEditor1</value>
   </data>
   <data name="&gt;&gt;metadataEditor1.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.MetadataEditor, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.MetadataEditor, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
   <data name="&gt;&gt;metadataEditor1.Parent" xml:space="preserve">
     <value>splitPanel2</value>
@@ -235,7 +248,7 @@
     <value>splitPanel2</value>
   </data>
   <data name="&gt;&gt;splitPanel2.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2020.2.616.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;splitPanel2.Parent" xml:space="preserve">
     <value>radSplitContainer1</value>
@@ -259,7 +272,7 @@
     <value>radSplitContainer1</value>
   </data>
   <data name="&gt;&gt;radSplitContainer1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2020.2.616.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radSplitContainer1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -272,24 +285,6 @@
   </data>
   <data name="radCommandBar1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
-  </data>
-  <data name="radCommandBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>781, 44</value>
-  </data>
-  <data name="radCommandBar1.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;radCommandBar1.Name" xml:space="preserve">
-    <value>radCommandBar1</value>
-  </data>
-  <data name="&gt;&gt;radCommandBar1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadCommandBar, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
-  </data>
-  <data name="&gt;&gt;radCommandBar1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;radCommandBar1.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="commandBarStripElement1.DisplayName" xml:space="preserve">
     <value>commandBarStripElement1</value>
@@ -327,6 +322,24 @@
   <data name="btn_clipboard.Text" xml:space="preserve">
     <value>Kopiere Text in die Zwischenablage</value>
   </data>
+  <data name="radCommandBar1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>781, 44</value>
+  </data>
+  <data name="radCommandBar1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;radCommandBar1.Name" xml:space="preserve">
+    <value>radCommandBar1</value>
+  </data>
+  <data name="&gt;&gt;radCommandBar1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadCommandBar, Telerik.WinControls.UI, Version=2020.2.616.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radCommandBar1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radCommandBar1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -336,64 +349,58 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Schnelle Volltextansicht</value>
   </data>
-  <data name="&gt;&gt;wpfTagger1.Name" xml:space="preserve">
-    <value>wpfTagger1</value>
-  </data>
-  <data name="&gt;&gt;wpfTagger1.Type" xml:space="preserve">
-    <value>WindowsFormsIntegration.Design.HostedComponent, WindowsFormsIntegration.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="&gt;&gt;commandBarRowElement1.Name" xml:space="preserve">
     <value>commandBarRowElement1</value>
   </data>
   <data name="&gt;&gt;commandBarRowElement1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarRowElement, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarRowElement, Telerik.WinControls.UI, Version=2020.2.616.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarStripElement1.Name" xml:space="preserve">
     <value>commandBarStripElement1</value>
   </data>
   <data name="&gt;&gt;commandBarStripElement1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarStripElement, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarStripElement, Telerik.WinControls.UI, Version=2020.2.616.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_prev.Name" xml:space="preserve">
     <value>btn_prev</value>
   </data>
   <data name="&gt;&gt;btn_prev.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2020.2.616.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;lbl_index.Name" xml:space="preserve">
     <value>lbl_index</value>
   </data>
   <data name="&gt;&gt;lbl_index.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarLabel, Telerik.WinControls.UI, Version=2020.2.616.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_next.Name" xml:space="preserve">
     <value>btn_next</value>
   </data>
   <data name="&gt;&gt;btn_next.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2020.2.616.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarSeparator1.Name" xml:space="preserve">
     <value>commandBarSeparator1</value>
   </data>
   <data name="&gt;&gt;commandBarSeparator1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarSeparator, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarSeparator, Telerik.WinControls.UI, Version=2020.2.616.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_export.Name" xml:space="preserve">
     <value>btn_export</value>
   </data>
   <data name="&gt;&gt;btn_export.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2020.2.616.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_clipboard.Name" xml:space="preserve">
     <value>btn_clipboard</value>
   </data>
   <data name="&gt;&gt;btn_clipboard.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2020.2.616.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>SimpleTextView</value>
+    <value>SimpleTextView2</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Forms.Simple.Abstract.AbstractMetadata, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+    <value>CorpusExplorer.Terminal.WinForm.Forms.Simple.Abstract.AbstractMetadata, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
 </root>

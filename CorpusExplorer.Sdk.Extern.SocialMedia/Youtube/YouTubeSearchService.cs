@@ -22,7 +22,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
       public string Title { get; set; }
       public string Description { get; set; }
       public string Author { get; set; }
-      public DateTime? Published { get; set; }
+      public string Published { get; set; }
     }
 
     public class YouTubeSearchServiceCommentThread : YouTubeSearchServiceComment
@@ -35,9 +35,9 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
     {
       public string Id { get; set; }
       public string UserId { get; set; }
-      public DateTime? Published { get; set; }
+      public string Published { get; set; }
       public long? LikeCount { get; set; }
-      public DateTime? Updated { get; set; }
+      public string Updated { get; set; }
       public string Text { get; set; }
     }
 

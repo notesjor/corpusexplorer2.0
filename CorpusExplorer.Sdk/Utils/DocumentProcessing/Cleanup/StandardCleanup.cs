@@ -828,5 +828,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup
     {
       return _dictionary.Aggregate(input, (current, entry) => current.Replace(entry.Key, entry.Value));
     }
+
+    public string Bypass(string text)
+    {
+      return _dictionary.Aggregate(text, (current, entry) => current.Replace(entry.Key, entry.Value));
+    }
   }
 }

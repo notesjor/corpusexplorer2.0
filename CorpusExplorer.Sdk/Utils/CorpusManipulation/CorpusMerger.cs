@@ -11,6 +11,8 @@ using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 // ReSharper disable All
 
@@ -64,6 +66,9 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
 
     public void Input(AbstractCorpusAdapter corpus)
     {
+      if (corpus == null)
+        return;
+
       // concepts
       if (corpus.Concepts != null && corpus.Concepts.Count() > 0)
         _concepts.AddRange(corpus.Concepts);
@@ -108,12 +113,31 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
       var merger = new CorpusMerger();
       merger.CorpusBuilder = builder ?? new CorpusBuilderWriteDirect();
       foreach (var corpus in corpora)
-      {
         merger.Input(corpus);
-      }
 
       merger.Execute();
       return merger.Output.FirstOrDefault();
     }
+
+    public static AbstractCorpusAdapter Merge(
+      string[] files,
+      AbstractImporter importer,
+      AbstractCorpusBuilder builder = null)
+    {
+      var merger = new CorpusMerger();
+      merger.CorpusBuilder = builder ?? new CorpusBuilderWriteDirect();
+      foreach (var file in files)
+        merger.Input(importer.Execute(new []{ file }).FirstOrDefault());
+
+      merger.Execute();
+      return merger.Output.FirstOrDefault();
+    }
+
+    public static void Merge(
+      string[] files,
+      AbstractImporter importer,
+      AbstractExporter exporter,
+      string exportPath) =>
+      exporter.Export(Merge(files, importer, new CorpusBuilderWriteDirect()), exportPath);
   }
 }

@@ -43,7 +43,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup.Abstract
                            var text = doc.Get(key, string.Empty);
 
                            // Nur Bereingung von Text zulassen, DateTime und andere Typen müssen via Scraper definiert/berinigt werden.
-                           if (text.GetType() != typeof(string) || string.IsNullOrWhiteSpace(text))
+                           if (text?.GetType() != typeof(string) || string.IsNullOrWhiteSpace(text))
                              continue;
 
                            text = Execute(key, text);

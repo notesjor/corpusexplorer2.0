@@ -113,7 +113,7 @@ namespace CorpusExplorer.Sdk.Diagnostic
         if (!_insightChecked)
           InsightSetup();
 
-        _telemetryClient.SendPublicCrashReport(ex);
+        _telemetryClient?.SendPublicCrashReport(ex);
       }
       catch
       {

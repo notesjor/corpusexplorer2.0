@@ -11,6 +11,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dpxc.Model
   [Serializable]
   public class DocPlusCorpus
   {
+    [OptionalField]
     private Dictionary<string, Type> _metadataSchema;
 
     public DocPlusCorpus()
@@ -86,6 +87,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dpxc.Model
       }
     }
 
+    [NonSerialized]
     private Dictionary<Type, object> _defaultValues = new Dictionary<Type, object>
     {
       {typeof(string), string.Empty},

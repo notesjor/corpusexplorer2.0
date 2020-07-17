@@ -82,6 +82,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
     #endregion
 
     private IHDPanel ihdPanel1;
-    private Telerik.WinControls.UI.RadTextBox radTextBox1;
-  }
+        protected Telerik.WinControls.UI.RadTextBox radTextBox1;
+    }
 }

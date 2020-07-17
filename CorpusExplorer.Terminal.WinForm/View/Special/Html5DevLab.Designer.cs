@@ -49,10 +49,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       this.radSplitContainer2 = new Telerik.WinControls.UI.RadSplitContainer();
       this.splitPanel3 = new Telerik.WinControls.UI.SplitPanel();
       this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
-      this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+      this.editor_input = new Telerik.WinControls.UI.RadSyntaxEditor();
       this.splitPanel4 = new Telerik.WinControls.UI.SplitPanel();
       this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
-      this.elementHost2 = new System.Windows.Forms.Integration.ElementHost();
+      this.editor_output = new Telerik.WinControls.UI.RadSyntaxEditor();
       this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
       this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
       this.webHtml5LaboratoryVisualisation1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser.WebHtml5LaboratoryVisualisation();
@@ -68,10 +68,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       this.splitPanel3.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
       this.radGroupBox1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.editor_input)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.splitPanel4)).BeginInit();
       this.splitPanel4.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
       this.radGroupBox2.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.editor_output)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
       this.splitPanel2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
@@ -111,17 +113,17 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       // 
       // btn_load
       // 
+      this.btn_load.AutoToolTip = true;
       resources.ApplyResources(this.btn_load, "btn_load");
       this.btn_load.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.folder_open;
-      this.btn_load.AutoToolTip = true;
       this.btn_load.Name = "btn_load";
       this.btn_load.Click += new System.EventHandler(this.btn_load_Click);
       // 
       // btn_save
       // 
+      this.btn_save.AutoToolTip = true;
       resources.ApplyResources(this.btn_save, "btn_save");
       this.btn_save.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save;
-      this.btn_save.AutoToolTip = true;
       this.btn_save.Name = "btn_save";
       this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
       // 
@@ -133,9 +135,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       // 
       // btn_refresh
       // 
+      this.btn_refresh.AutoToolTip = true;
       resources.ApplyResources(this.btn_refresh, "btn_refresh");
       this.btn_refresh.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.refresh;
-      this.btn_refresh.AutoToolTip = true;
       this.btn_refresh.Name = "btn_refresh";
       this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
       // 
@@ -147,32 +149,32 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       // 
       // btn_print
       // 
+      this.btn_print.AutoToolTip = true;
       resources.ApplyResources(this.btn_print, "btn_print");
       this.btn_print.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.print;
-      this.btn_print.AutoToolTip = true;
       this.btn_print.Name = "btn_print";
       this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
       // 
       // btn_export_html
       // 
+      this.btn_export_html.AutoToolTip = true;
       resources.ApplyResources(this.btn_export_html, "btn_export_html");
       this.btn_export_html.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
-      this.btn_export_html.AutoToolTip = true;
       this.btn_export_html.Name = "btn_export_html";
       // 
       // btn_export_pdf
       // 
+      this.btn_export_pdf.AutoToolTip = true;
       resources.ApplyResources(this.btn_export_pdf, "btn_export_pdf");
       this.btn_export_pdf.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_pdf;
-      this.btn_export_pdf.AutoToolTip = true;
       this.btn_export_pdf.Name = "btn_export_pdf";
       this.btn_export_pdf.Click += new System.EventHandler(this.btn_export_pdf_Click);
       // 
       // btn_export_image
       // 
+      this.btn_export_image.AutoToolTip = true;
       resources.ApplyResources(this.btn_export_image, "btn_export_image");
       this.btn_export_image.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.image_save;
-      this.btn_export_image.AutoToolTip = true;
       this.btn_export_image.Name = "btn_export_image";
       this.btn_export_image.Click += new System.EventHandler(this.btn_export_image_Click);
       // 
@@ -184,9 +186,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       // 
       // btn_help
       // 
+      this.btn_help.AutoToolTip = true;
       resources.ApplyResources(this.btn_help, "btn_help");
       this.btn_help.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.health;
-      this.btn_help.AutoToolTip = true;
       this.btn_help.Name = "btn_help";
       this.btn_help.Click += new System.EventHandler(this.btn_help_Click);
       // 
@@ -241,15 +243,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       // radGroupBox1
       // 
       this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-      this.radGroupBox1.Controls.Add(this.elementHost1);
+      this.radGroupBox1.Controls.Add(this.editor_input);
       resources.ApplyResources(this.radGroupBox1, "radGroupBox1");
       this.radGroupBox1.Name = "radGroupBox1";
       // 
-      // elementHost1
+      // editor_input
       // 
-      resources.ApplyResources(this.elementHost1, "elementHost1");
-      this.elementHost1.Name = "elementHost1";
-      this.elementHost1.Child = null;
+      resources.ApplyResources(this.editor_input, "editor_input");
+      this.editor_input.Name = "editor_input";
       // 
       // splitPanel4
       // 
@@ -265,15 +266,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       // radGroupBox2
       // 
       this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-      this.radGroupBox2.Controls.Add(this.elementHost2);
+      this.radGroupBox2.Controls.Add(this.editor_output);
       resources.ApplyResources(this.radGroupBox2, "radGroupBox2");
       this.radGroupBox2.Name = "radGroupBox2";
       // 
-      // elementHost2
+      // editor_output
       // 
-      resources.ApplyResources(this.elementHost2, "elementHost2");
-      this.elementHost2.Name = "elementHost2";
-      this.elementHost2.Child = null;
+      resources.ApplyResources(this.editor_output, "editor_output");
+      this.editor_output.Name = "editor_output";
       // 
       // splitPanel2
       // 
@@ -324,10 +324,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       this.splitPanel3.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
       this.radGroupBox1.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.editor_input)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.splitPanel4)).EndInit();
       this.splitPanel4.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
       this.radGroupBox2.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.editor_output)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
       this.splitPanel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
@@ -363,8 +365,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
     private Telerik.WinControls.UI.CommandBarButton btn_save;
     private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator3;
     private Telerik.WinControls.UI.CommandBarButton btn_export_image;
-    private System.Windows.Forms.Integration.ElementHost elementHost1;
-    private System.Windows.Forms.Integration.ElementHost elementHost2;
     private System.Windows.Forms.Timer timer1;
-  }
+        private Telerik.WinControls.UI.RadSyntaxEditor editor_input;
+        private Telerik.WinControls.UI.RadSyntaxEditor editor_output;
+    }
 }

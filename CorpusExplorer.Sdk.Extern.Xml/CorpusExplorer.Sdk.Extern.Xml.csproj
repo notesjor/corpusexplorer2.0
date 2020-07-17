@@ -40,8 +40,8 @@
     <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey2019.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.11.23.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.11.23\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.11.24.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.24\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -247,9 +247,75 @@
     <Compile Include="BundestagOpenAccess\Drucksachen\BundestagDrucksachenScraper.cs" />
     <Compile Include="BundestagOpenAccess\Drucksachen\Model\DOKUMENT.cs" />
     <Compile Include="BundestagOpenAccess\Drucksachen\Serializer\BundestagDrucksachenSerializer.cs" />
-    <Compile Include="BundestagOpenAccess\Plenarprotokolle\BundestagPlenarprotokolleScraper.cs" />
-    <Compile Include="BundestagOpenAccess\Plenarprotokolle\Model\DOKUMENT.cs" />
-    <Compile Include="BundestagOpenAccess\Plenarprotokolle\Serializer\BundestagPlenarprotokolleSerializer.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v1\BundestagPlenarprotokolleScraper.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v1\Model\DOKUMENT.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v1\Serializer\BundestagPlenarprotokolleSerializer.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\BundestagDtdPlenarprotokolleScraper.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\a.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\anlage.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\anlagen.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\anlagentext.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\anlagentitel.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\aTyp.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\dbtplenarprotokoll.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\CAlign.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\caption.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\col.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\colAlign.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\colgroup.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\colValign.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\datum.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\dbtplenarprotokollHerausgeber.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\dbtplenarprotokollIssn.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\dbtplenarprotokollSitzungort.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\dbtplenarprotokollStatus.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\dbtplenarprotokollVertrieb.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\Extension\ivzblockExtension.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\Extension\ivzeintragExtension.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\fussnote.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\inhaltsverzeichnis.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\ItemsChoiceType.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\ItemsChoiceType1.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\ItemsChoiceType2.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\ItemsChoiceType3.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\ivzblock.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\ivzeintrag.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\ivzeintraginhalt.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\kommentar.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\kopfdaten.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\name.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\p.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\plenarprotokollnummer.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\rede.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\redeRedeart.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\redner.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\rednerliste.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\rolle.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\Scope.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\sitzungsbeginn.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\sitzungsende.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\sitzungstitel.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\sitzungsverlauf.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\table.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\tagesordnungspunkt.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\TAlign.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\tbody.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\td.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\tdNowrap.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\tfoot.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\TFrame.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\th.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\thead.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\thNowrap.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\toptitel.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\tr.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\TRules.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\veranstaltungsdaten.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\vorspann.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\xref.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\xrefReftype.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\zitat.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Serializer\BundestagPlenarprotokolleSerializer.cs" />
     <Compile Include="Catma\ImporterCatma.cs" />
     <Compile Include="Catma\CatmaScraper.cs" />
     <Compile Include="EuroparlUds\EuroParlUdsScraper.cs" />
@@ -1082,7 +1148,7 @@
     <Compile Include="Tiger\Importer\Model\terminals.cs" />
     <Compile Include="Tiger\Importer\Model\corpus.cs" />
     <Compile Include="Tiger\Importer\Serializer\TigerSerializer.cs" />
-    <Compile Include="Tiger\Importer\TigerImporter.cs" />
+    <Compile Include="Tiger\Importer\ImporterTiger.cs" />
     <Compile Include="Tiger\Scraper\Model\annotationType.cs" />
     <Compile Include="Tiger\Scraper\Model\corpus.cs" />
     <Compile Include="Tiger\Scraper\Model\edgeType.cs" />

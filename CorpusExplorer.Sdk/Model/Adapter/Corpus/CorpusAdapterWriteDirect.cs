@@ -4,6 +4,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
@@ -290,21 +291,29 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     {
       _displayname = Path.GetFileNameWithoutExtension(path);
 
+      path = useCompression
+               ? path.ForceFileExtension("cec6.gz").Replace(".cec6.cec6.gz", ".cec6.gz")
+               : path.ForceFileExtension("cec6");
+
       if (useCompression)
-      {
-        path = path.ForceFileExtension("cec6.gz").Replace(".cec6.cec6.gz", ".cec6.gz");
-        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Read))
-        using (var gz = new GZipStream(fs, CompressionLevel.Fastest))
-        using (var bs = new BufferedStream(gz))
-          Save(bs);
-      }
+        SaveCompressed(path);
       else
-      {
-        path = path.ForceFileExtension("cec6");
-        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Read))
-        using (var bs = new BufferedStream(fs))
-          Save(bs);
-      }
+        SaveUncompressed(path);
+    }
+
+    private void SaveCompressed(string path)
+    {
+      using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+      using (var gz = new GZipStream(fs, CompressionLevel.Fastest))
+      using (var bs = new BufferedStream(gz))
+        Save(bs);
+    }
+
+    private void SaveUncompressed(string path)
+    {
+      using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+      using (var bs = new BufferedStream(fs))
+        Save(bs);
     }
 
     private void Save(Stream stream)

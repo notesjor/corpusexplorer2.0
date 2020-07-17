@@ -164,7 +164,8 @@ namespace CorpusExplorer.Core
         {"Nur Text (*.docx; *.doc)|*.docx;*.doc", new SimpleDocxDocumentScraper()},
         {"Nur Text (*.rtf)|*.rtf", new SimpleRtfDocumentScraper()},
         {"Nur Text (*.html)|*.htm;*.html", new SimpleHtmlDocumentScraper()},
-        {"Nur Text (*.pdf)|*.pdf", new SimplePdfDocumentScraper()}
+        {"Nur Text (*.pdf)|*.pdf", new SimplePdfDocumentScraper()},
+        {"Nur Text - Re-Annotation (*.cec6, *.cec6.gz)|*.cec6;*.cec6.gz", new Cec6Scraper()},
       };
 
     /// <summary>

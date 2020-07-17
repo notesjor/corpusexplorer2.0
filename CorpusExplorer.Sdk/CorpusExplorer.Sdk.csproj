@@ -104,8 +104,8 @@
     <Reference Include="Polenter.SharpSerializer, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.1\lib\netstandard1.0\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=6.6.7.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.6.7\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.6.11.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.6.11\lib\net45\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -127,6 +127,7 @@
     <Compile Include="Addon\AbstractOnDemandAddon.cs" />
     <Compile Include="Aspect\CacheAspect.cs" />
     <Compile Include="Blocks\Abstract\AbstractClusterMetadataBlock.cs" />
+    <Compile Include="Blocks\Abstract\AbstractLayerValueBlock.cs" />
     <Compile Include="Blocks\ClusterMetadataByCooccurrenceBlock.cs" />
     <Compile Include="Blocks\ClusterMetadataByCooccurrenceSelectiveBlock.cs" />
     <Compile Include="Blocks\ClusterMetadataByNgramBlock.cs" />
@@ -429,6 +430,7 @@
     <Compile Include="Utils\DocumentProcessing\Importer\ImporterConll.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\ImporterTlv.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\ImporterTreeTagger.cs" />
+    <Compile Include="Utils\DocumentProcessing\Scraper\Cec6Scraper.cs" />
     <Compile Include="Utils\DocumentProcessing\Scraper\CsvScraper.cs" />
     <Compile Include="Utils\DocumentProcessing\Scraper\TsvScraper.cs" />
     <Compile Include="Utils\DocumentProcessing\Scraper\TxtScraper.cs" />

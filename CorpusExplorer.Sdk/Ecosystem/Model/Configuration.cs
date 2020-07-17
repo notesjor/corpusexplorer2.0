@@ -126,15 +126,24 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     {
       if (tableWriterTag.StartsWith("F:"))
       {
+        GetTableWriterAdditionalPath(tableWriterTag, out tableWriterTag, out var path);
+
         foreach (var x in _addonTableWriters.Where(x => x.Value.TableWriterTag == tableWriterTag))
           return x.Value;
 
-        return _addonTableWriters.First().Value;
+        var res=  _addonTableWriters.First().Value;
+        if (path == null)
+          return res;
+
+        res.OutputStream = new FileStream(path, FileMode.Create, FileAccess.Write);
+        return res;
       }
 
       // ReSharper disable once InvertIf
       if (tableWriterTag.StartsWith("FNT:"))
       {
+        GetTableWriterAdditionalPath(tableWriterTag, out tableWriterTag, out var path);
+
         var f = tableWriterTag.Replace("FNT:", "F:");
 
         AbstractTableWriter res = null;
@@ -145,11 +154,29 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
           res = _addonTableWriters.First().Value;
 
         res.WriteTid = false;
+        if (path == null)
+          return res;
 
+        res.OutputStream = new FileStream(path, FileMode.Create, FileAccess.Write);
         return res;
       }
 
       return null;
+    }
+
+    public static void GetTableWriterAdditionalPath(string tableWriterTag, out string tag, out string path)
+    {
+      if (tableWriterTag.Contains("#"))
+      {
+        var split = tableWriterTag.Split('#');
+        tag = split[0];
+        path = split[1];
+      }
+      else
+      {
+        tag = tableWriterTag;
+        path = null;
+      }
     }
 
     /// <summary>

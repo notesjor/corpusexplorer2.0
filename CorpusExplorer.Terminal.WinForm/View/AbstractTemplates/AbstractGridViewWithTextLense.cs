@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.Simple;
+using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.Properties;
 using Telerik.WinControls.UI;
 
@@ -113,12 +114,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
       if (!(sender is GridCommandCellElement cell))
         return;
 
+      Processing.SplashShow("Suche passende Belege...");
       var vm = GetViewModel<QuickInfoTextViewModel>();
       vm.Documents = cell.RowElement.RowInfo.Cells["Info"].Value as IEnumerable<KeyValuePair<Guid, int>>;
       vm.Execute();
 
       var form = new SimpleTextView(vm.QuickDocumentInfoResults, Project);
       form.NewProperty += (o, a) => { vm.SetNewDocumentMetadata((KeyValuePair<string, Type>) o); };
+      Processing.SplashClose();
 
       if (form.ShowDialog() == DialogResult.OK)
         foreach (var doc in form.Documents)

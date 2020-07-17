@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 
@@ -41,6 +43,13 @@ namespace CorpusExplorer.Sdk.View.Html.Html5
       }
     }
 
+    public static string QuickHtmlPage(string html)
+    {
+      var builder = new Html5Builder();
+      FileIO.Write(builder.WebserverIndexPath, html, Encoding.UTF8);
+      return builder.WebserverIndexUrl;
+    }
+    
     public string WebserverIndexPath => Path.Combine(WebserverRoot, "index.html");
 
     public string WebserverIndexUrl => WebserverIndexPath.Replace("\\", "/").Replace(@"\", "/");

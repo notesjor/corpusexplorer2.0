@@ -69,17 +69,14 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
     /// <summary>
     /// Annotiert beliebige Dokumente.
     /// </summary>
-    /// <param name="project">Prijekt (kann mittels QuickMode.Initialize() erzeugt werden)</param>
+    /// <param name="project">Projekt (kann mittels QuickMode.Initialize() erzeugt werden)</param>
     /// <param name="knownScraperName">Name des Scrapers (Dateiformat)</param>
     /// <param name="files">Liste mit Dateien.</param>
     /// <param name="showSaveFileDialog">Soll ein Dialog zum Speichern des Korpus angezeigt werden?</param>
     /// <param name="checkErrors">Soll das annotierte Korpus auf Fehler geprüft werden?</param>
     public static void Annotate(Project project, string knownScraperName, string[] files, bool showSaveFileDialog, bool checkErrors = true)
     {
-      var scraper = Configuration.AddonScrapers.GetReflectedTypeNameDictionary()
-                                 .Where(x => x.Key == knownScraperName)
-                                 .Select(x => x.Value)
-                                 .FirstOrDefault();
+      var scraper = Configuration.AddonScrapers.GetReflectedType(knownScraperName, "Scraper");
       if (scraper == null)
         return;
 
@@ -136,11 +133,12 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       if (formTagger.ShowDialog() != DialogResult.OK)
         return;
 
-      var formName = new SimpleTextInput(
+      var formName = new SimpleTextInputValidation(
                                          Resources.Dashboard_EnterCorpusNameHead,
                                          Resources.Dashboard_EnterCorpusNameDescription,
                                          Resources.cabinet,
-                                         Resources.Dashboard_EnterCorpusNameNullText);
+                                         Resources.Dashboard_EnterCorpusNameNullText,
+                                         CorpusNameCheck);
       if (formName.ShowDialog() != DialogResult.OK)
         return;
 
@@ -164,8 +162,25 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
                             output = corpus.CountDocuments;
 
                             corpus.CorpusDisplayname = formName.Result;
-                            corpus.Save(Path.Combine(Configuration.MyCorpora, formName.Result.EnsureFileName()), false);
                             AddCorpusToProject(project, corpus, checkErrors);
+
+                            try
+                            {
+                              corpus.Save(Path.Combine(Configuration.MyCorpora, formName.Result.EnsureFileName()),
+                                          false);
+                            }
+                            catch (FileNotFoundException ex)
+                            {
+                              try
+                              {
+                                MessageBox.Show("Der CorpusExplorer hat festgestellt, dass der Windows Defender die Korpusverarbeitung blockiert.\nLösungen:\n1) Deaktivieren Sie den 'Überwachten Ordnerzugriff' ganz oder selektiv für den Ordner 'Dokumente\\CorpusExplorer'.\n2) Im folgenden Schritt können Sie das Korpus außerhalb (in einem anderen Ordner) speichern.");
+                                Export(corpus.ToSelection());
+                              }
+                              catch
+                              {
+                                // ignore
+                              }
+                            }
                           }
                         });
 
@@ -177,6 +192,21 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
         { "TAGGING (docs - IN)", input },
         { "TAGGING (docs - OUT)", output }
       });
+    }
+
+    private static string CorpusNameCheck(string arg)
+    {
+      if (string.IsNullOrWhiteSpace(arg))
+        return Resources.QuickMode_CorpusNameCheck_Warn_NoName;
+
+      var chars = Path.GetInvalidFileNameChars();
+      if (chars.Any(x => arg.Contains(x)))
+        return Resources.InvalidPathChars;
+
+      if (File.Exists(Path.Combine(Configuration.MyCorpora, arg + ".cec6")))
+        return Resources.QuickMode_CorpusNameCheck_Warn_AlreadyExsits;
+
+      return null;
     }
 
     /// <summary>
@@ -245,10 +275,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
     /// <param name="checkErrors">Soll das annotierte Korpus auf Fehler geprüft werden?</param>
     public static void Convert(Project project, string knownImporterName, string[] files, bool checkErrors)
     {
-      var importer = Configuration.AddonImporters.GetReflectedTypeNameDictionary()
-                                  .Where(x => x.Key == knownImporterName)
-                                  .Select(x => x.Value)
-                                  .FirstOrDefault();
+      var importer = Configuration.AddonImporters.GetReflectedType(knownImporterName, "Importer");
       if (importer == null)
         return;
 

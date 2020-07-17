@@ -30,8 +30,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimpleTextView));
-      this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-      this.wpfTagger1 = new CorpusExplorer.Terminal.WinForm.Controls.Wpf.Tagger.WpfTagger();
       this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
       this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
       this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
@@ -45,6 +43,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_export = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_clipboard = new Telerik.WinControls.UI.CommandBarButton();
+      this.webHtml5Visualisation1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser.WebHtml5Visualisation();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
       this.radSplitContainer1.SuspendLayout();
@@ -60,12 +59,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       // 
       resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
-      // elementHost1
-      // 
-      resources.ApplyResources(this.elementHost1, "elementHost1");
-      this.elementHost1.Name = "elementHost1";
-      this.elementHost1.Child = this.wpfTagger1;
-      // 
       // radSplitContainer1
       // 
       this.radSplitContainer1.Controls.Add(this.splitPanel1);
@@ -80,7 +73,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       // 
       // splitPanel1
       // 
-      this.splitPanel1.Controls.Add(this.elementHost1);
+      this.splitPanel1.Controls.Add(this.webHtml5Visualisation1);
       resources.ApplyResources(this.splitPanel1, "splitPanel1");
       this.splitPanel1.Name = "splitPanel1";
       // 
@@ -108,6 +101,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       // 
       this.metadataEditor1.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.metadataEditor1, "metadataEditor1");
+      this.metadataEditor1.Metadata = null;
       this.metadataEditor1.Name = "metadataEditor1";
       // 
       // radCommandBar1
@@ -175,14 +169,22 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       this.btn_clipboard.Name = "btn_clipboard";
       this.btn_clipboard.Click += new System.EventHandler(this.btn_clipboard_Click);
       // 
-      // SimpleTextView
+      // webHtml5Visualisation1
+      // 
+      this.webHtml5Visualisation1.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this.webHtml5Visualisation1, "webHtml5Visualisation1");
+      this.webHtml5Visualisation1.MainpageUrl = null;
+      this.webHtml5Visualisation1.Name = "webHtml5Visualisation1";
+      this.webHtml5Visualisation1.TemplateVars = ((System.Collections.Generic.Dictionary<string, string>)(resources.GetObject("webHtml5Visualisation1.TemplateVars")));
+      // 
+      // SimpleTextView2
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       resources.ApplyResources(this, "$this");
       this.Controls.Add(this.radSplitContainer1);
       this.Controls.Add(this.radCommandBar1);
       this.DisplayAbort = true;
-      this.Name = "SimpleTextView";
+      this.Name = "SimpleTextView2";
       // 
       // 
       // 
@@ -205,8 +207,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
     }
 
     #endregion
-    private System.Windows.Forms.Integration.ElementHost elementHost1;
-    private Controls.Wpf.Tagger.WpfTagger wpfTagger1;
     private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
     private Telerik.WinControls.UI.SplitPanel splitPanel1;
     private Telerik.WinControls.UI.SplitPanel splitPanel2;
@@ -220,5 +220,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
     private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator1;
     private Telerik.WinControls.UI.CommandBarButton btn_export;
     private Telerik.WinControls.UI.CommandBarButton btn_clipboard;
-  }
+        private Controls.WinForm.Webbrowser.WebHtml5Visualisation webHtml5Visualisation1;
+    }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using CefSharp;
@@ -21,7 +23,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Gui
       CorpusExplorerEcosystem.Initialize();
 
       var settings = new CefSettings();
-      settings.BrowserSubprocessPath = @"x86\CefSharp.BrowserSubprocess.exe";
+      settings.BrowserSubprocessPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"x86\CefSharp.BrowserSubprocess.exe");
 
       Cef.Initialize(settings, performDependencyCheck: false, browserProcessHandler: null);
       

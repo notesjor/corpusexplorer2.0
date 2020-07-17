@@ -9,6 +9,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
 {
   public partial class SimpleTextInput : AbstractDialog
   {
+    protected SimpleTextInput()
+    {
+      InitializeComponent();
+    }
+
     public SimpleTextInput(string header, string description, Image image, string nullText)
     {
       InitializeComponent();

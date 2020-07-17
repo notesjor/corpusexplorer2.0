@@ -26,6 +26,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper
           },
           {
             "Titel", Path.GetFileNameWithoutExtension(file)
+          },
+          {
+            "Datei",
+            file
           }
         }
       };

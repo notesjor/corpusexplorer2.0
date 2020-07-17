@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
+using CorpusExplorer.Sdk.View.Html.Html5;
 #if LINUX
 #else
 using CefSharp;
@@ -71,7 +72,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
     public void LoadHtml(string html)
     {
       InitializeBrowser();
-      webBrowser1.LoadHtml(html);
+      webBrowser1.Load(Html5Builder.QuickHtmlPage(html));
     }
 
     public void Print()

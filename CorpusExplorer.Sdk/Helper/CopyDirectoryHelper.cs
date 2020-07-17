@@ -8,7 +8,7 @@ using System.IO;
 
 namespace CorpusExplorer.Sdk.Helper
 {
-  public class CopyDirectoryHelper
+  public static class CopyDirectoryHelper
   {
     public static void Copy(string sourceDirName, string destDirName, bool copySubDirs)
     {
@@ -27,7 +27,7 @@ namespace CorpusExplorer.Sdk.Helper
       foreach (var file in dir.GetFiles())
       {
         var temppath = Path.Combine(destDirName, file.Name);
-        file.CopyTo(temppath, false);
+        file.CopyTo(temppath, true);
       }
 
       // If copying subdirectories, copy them and their contents to new location.

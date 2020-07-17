@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using CorpusExplorer.Sdk.Db.RocksDb;
 using CorpusExplorer.Sdk.Extern.QuickIndexRocks.Indices;
 using CorpusExplorer.Sdk.Helper;
@@ -31,21 +32,17 @@ namespace CorpusExplorer.Sdk.Extern.QuickIndexRocks
     /// <param name="layerDisplayname">Layer für den der QuickIndex gelöscht werden soll.</param>
     public QuickIndex(string pathToCec6, string layerDisplayname = "Wort")
     {
+      // Erstelle QuickIndex falls er nicht exsistiert.
       if (!Directory.Exists($"{pathToCec6}_{layerDisplayname}.idxmrRDB"))
+      {
         Create(pathToCec6, layerDisplayname);
+        Dispose(); // Beende Verbindung (vorerst)
+      }
 
       PathToCec6 = pathToCec6;
       LayerDisplayname = layerDisplayname;
 
-      try
-      {
-        Read(pathToCec6, layerDisplayname);
-      }
-      catch
-      {
-        Create(pathToCec6, layerDisplayname);
-        Read(pathToCec6, layerDisplayname);
-      }
+      Read(pathToCec6, layerDisplayname); // Baue ReadOnly-Verbindung auf.
     }
 
     private void Read(string pathToCec6, string layerDisplayname)
@@ -62,24 +59,37 @@ namespace CorpusExplorer.Sdk.Extern.QuickIndexRocks
     public string LayerDisplayname { get; }
 
     /// <summary>
-    /// Löscht einen bestehende QuickIndex
+    /// Löscht einen bestehende QuickIndex (QuickIndex wird zuvor autom. beendet Dispose() - falls nötig)
     /// </summary>
-    /// <param name="pathToCec6">Pfad zur CEC6-Datei. Muss bereits exsistieren. Die CEC6-Datei beleibt erhalten.</param>
-    /// <param name="layerDisplayname">Layer für den der QuickIndex gelöscht werden soll.</param>
-    public static void Delete(string pathToCec6, string layerDisplayname)
+    public void Delete()
     {
-      if (Directory.Exists($"{pathToCec6}_{layerDisplayname}.idxmrRDB"))
-        Directory.Delete($"{pathToCec6}_{layerDisplayname}.idxmrRDB", true);
-      if (File.Exists($"{pathToCec6}_{layerDisplayname}.idx"))
-        File.Delete($"{pathToCec6}_{layerDisplayname}.idx");
-      if (File.Exists($"{pathToCec6}_{layerDisplayname}.fif"))
-        File.Delete($"{pathToCec6}_{layerDisplayname}.fif");
-      if (File.Exists($"{pathToCec6}_{layerDisplayname}.fi"))
-        File.Delete($"{pathToCec6}_{layerDisplayname}.fi");
-      if (Directory.Exists($"{pathToCec6}_{layerDisplayname}.dicRDB"))
-        Directory.Delete($"{pathToCec6}_{layerDisplayname}.dicRDB", true);
-      if (Directory.Exists($"{pathToCec6}_{layerDisplayname}.dicrRDB"))
-        Directory.Delete($"{pathToCec6}_{layerDisplayname}.dicrRDB", true);
+      var trycount = 5;
+
+      while (trycount >= 0)
+      {
+        try
+        {
+          Dispose();
+          if (Directory.Exists($"{PathToCec6}_{LayerDisplayname}.idxmrRDB"))
+            Directory.Delete($"{PathToCec6}_{LayerDisplayname}.idxmrRDB", true);
+          if (File.Exists($"{PathToCec6}_{LayerDisplayname}.idx"))
+            File.Delete($"{PathToCec6}_{LayerDisplayname}.idx");
+          if (File.Exists($"{PathToCec6}_{LayerDisplayname}.fif"))
+            File.Delete($"{PathToCec6}_{LayerDisplayname}.fif");
+          if (File.Exists($"{PathToCec6}_{LayerDisplayname}.fi"))
+            File.Delete($"{PathToCec6}_{LayerDisplayname}.fi");
+          if (Directory.Exists($"{PathToCec6}_{LayerDisplayname}.dicRDB"))
+            Directory.Delete($"{PathToCec6}_{LayerDisplayname}.dicRDB", true);
+          if (Directory.Exists($"{PathToCec6}_{LayerDisplayname}.dicrRDB"))
+            Directory.Delete($"{PathToCec6}_{LayerDisplayname}.dicrRDB", true);
+          break;
+        }
+        catch
+        {
+          trycount--;
+          Thread.Sleep(1000);
+        }
+      }
     }
 
     /// <summary>
@@ -332,7 +342,7 @@ namespace CorpusExplorer.Sdk.Extern.QuickIndexRocks
       _dic?.Dispose();
       _dicRes?.Dispose();
       _meta?.Dispose();
-      _fixRes.Clear();
+      _fixRes?.Clear();
       GC.Collect();
     }
   }

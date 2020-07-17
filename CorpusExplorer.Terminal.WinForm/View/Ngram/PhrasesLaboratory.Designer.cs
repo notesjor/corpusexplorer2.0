@@ -152,9 +152,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       // btn_sentence_prev
       // 
+      this.btn_sentence_prev.AutoToolTip = true;
       resources.ApplyResources(this.btn_sentence_prev, "btn_sentence_prev");
       this.btn_sentence_prev.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_left;
-      this.btn_sentence_prev.AutoToolTip = true;
       this.btn_sentence_prev.Name = "btn_sentence_prev";
       this.btn_sentence_prev.Click += new System.EventHandler(this.btn_sentence_prev_Click);
       // 
@@ -167,9 +167,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       // btn_sentence_next
       // 
+      this.btn_sentence_next.AutoToolTip = true;
       resources.ApplyResources(this.btn_sentence_next, "btn_sentence_next");
       this.btn_sentence_next.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
-      this.btn_sentence_next.AutoToolTip = true;
       this.btn_sentence_next.Name = "btn_sentence_next";
       this.btn_sentence_next.Click += new System.EventHandler(this.btn_sentence_next_Click);
       // 
@@ -338,6 +338,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       // 
       // 
+      this.radGridView3.MasterTemplate.AllowDeleteRow = false;
+      this.radGridView3.MasterTemplate.AllowEditRow = false;
+      this.radGridView3.MasterTemplate.EnableFiltering = true;
       this.radGridView3.MasterTemplate.ViewDefinition = tableViewDefinition3;
       this.radGridView3.Name = "radGridView3";
       // 
@@ -373,25 +376,25 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       // btn_rules_new
       // 
+      this.btn_rules_new.AutoToolTip = true;
       resources.ApplyResources(this.btn_rules_new, "btn_rules_new");
       this.btn_rules_new.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.document;
-      this.btn_rules_new.AutoToolTip = true;
       this.btn_rules_new.Name = "btn_rules_new";
       this.btn_rules_new.Click += new System.EventHandler(this.btn_rules_new_Click);
       // 
       // btn_rules_load
       // 
+      this.btn_rules_load.AutoToolTip = true;
       resources.ApplyResources(this.btn_rules_load, "btn_rules_load");
       this.btn_rules_load.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.folder_open;
-      this.btn_rules_load.AutoToolTip = true;
       this.btn_rules_load.Name = "btn_rules_load";
       this.btn_rules_load.Click += new System.EventHandler(this.btn_rules_load_Click);
       // 
       // btn_rules_save
       // 
+      this.btn_rules_save.AutoToolTip = true;
       resources.ApplyResources(this.btn_rules_save, "btn_rules_save");
       this.btn_rules_save.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save;
-      this.btn_rules_save.AutoToolTip = true;
       this.btn_rules_save.Name = "btn_rules_save";
       this.btn_rules_save.Click += new System.EventHandler(this.btn_rules_save_Click);
       // 

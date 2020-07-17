@@ -2007,6 +2007,24 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Das Projekt exsistiert bereits ähnelt.
+        /// </summary>
+        public static string Dashboard_ProjectRenameCheck_Warn_AlreadyExsits {
+            get {
+                return ResourceManager.GetString("Dashboard_ProjectRenameCheck_Warn_AlreadyExsits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ein Projektname ist erforderlich. ähnelt.
+        /// </summary>
+        public static string Dashboard_ProjectRenameCheck_Warn_NoName {
+            get {
+                return ResourceManager.GetString("Dashboard_ProjectRenameCheck_Warn_NoName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Das Projekt wurde NICHT gespeichert, da kein Name vergeben wurde. ähnelt.
         /// </summary>
         public static string Dashboard_ProjectSave_Error {
@@ -2084,6 +2102,24 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         public static string Dashboard_Successfull {
             get {
                 return ResourceManager.GetString("Dashboard_Successfull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Es existiert bereits ein Schnappschuss mit diesem Namen. ähnelt.
+        /// </summary>
+        public static string Dashboard_Warn_Snapshotname_AlreadyExsists {
+            get {
+                return ResourceManager.GetString("Dashboard_Warn_Snapshotname_AlreadyExsists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ein leerer Name führt zu leicht übersehbaren Schnappschüssen. ähnelt.
+        /// </summary>
+        public static string Dashboard_Warn_Snapshotname_NoName {
+            get {
+                return ResourceManager.GetString("Dashboard_Warn_Snapshotname_NoName", resourceCulture);
             }
         }
         
@@ -4639,6 +4675,15 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Die folgenden Zeichen sind nicht zulässig: \ / : * ? &quot; &lt; &gt; | ähnelt.
+        /// </summary>
+        public static string InvalidPathChars {
+            get {
+                return ResourceManager.GetString("InvalidPathChars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Invertieren ähnelt.
         /// </summary>
         public static string Invertieren {
@@ -6279,6 +6324,24 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         public static string Query {
             get {
                 return ResourceManager.GetString("Query", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ein anderes Korpus trägt bereits diesen Namen. ähnelt.
+        /// </summary>
+        public static string QuickMode_CorpusNameCheck_Warn_AlreadyExsits {
+            get {
+                return ResourceManager.GetString("QuickMode_CorpusNameCheck_Warn_AlreadyExsits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Der Korpusname sollte nicht leer sein. ähnelt.
+        /// </summary>
+        public static string QuickMode_CorpusNameCheck_Warn_NoName {
+            get {
+                return ResourceManager.GetString("QuickMode_CorpusNameCheck_Warn_NoName", resourceCulture);
             }
         }
         
@@ -8442,6 +8505,16 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         public static string WählenUndKonfigurierenSieDenTaggerFürDieAutomatischeAnnotationDerTexte {
             get {
                 return ResourceManager.GetString("WählenUndKonfigurierenSieDenTaggerFürDieAutomatischeAnnotationDerTexte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap warning {
+            get {
+                object obj = ResourceManager.GetObject("warning", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

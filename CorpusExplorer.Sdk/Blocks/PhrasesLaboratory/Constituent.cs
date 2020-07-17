@@ -62,9 +62,40 @@ namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory
       if (res.ContainsKey(Label))
         res[Label].Add(string.Join(" ", items), 1);
       else
-        res.Add(Label, new Dictionary<string, double> {{string.Join(" ", items), 1}});
+        res.Add(Label, new Dictionary<string, double> { { string.Join(" ", items), 1 } });
 
       return res;
+    }
+
+    public Dictionary<string, double> GetRecursiveChildFrequency(string separator = " ")
+    {
+      if (!Childs.Any())
+        return new Dictionary<string, double> { { Label, 1 } };
+
+      var dicI = new Dictionary<string, double>();
+      var dicO = new Dictionary<string, double>();
+
+      foreach (var child in Childs)
+      {
+        dicI = dicO.ToDictionary(x => x.Key, x => x.Value);
+        dicO.Clear();
+
+        var add = child.GetRecursiveChildFrequency(separator);
+        if (dicI.Count == 0)
+          dicO = add;
+        else
+          foreach (var x in add)
+            foreach (var y in dicI)
+            {
+              var key = $"{y.Key}{separator}{x.Key}";
+              if (dicO.ContainsKey(key))
+                dicO[key] = x.Value;
+              else
+                dicO.Add(key, x.Value);
+            }
+      }
+
+      return dicO;
     }
   }
 }

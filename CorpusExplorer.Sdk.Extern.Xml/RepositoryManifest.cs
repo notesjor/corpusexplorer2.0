@@ -8,6 +8,8 @@ using CorpusExplorer.Sdk.Extern.Xml.Bawe;
 using CorpusExplorer.Sdk.Extern.Xml.Bnc.Serializer;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Drucksachen;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle;
+using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle.v1;
+using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle.v2;
 using CorpusExplorer.Sdk.Extern.Xml.Catma;
 using CorpusExplorer.Sdk.Extern.Xml.CoraXml._0._8;
 using CorpusExplorer.Sdk.Extern.Xml.CoraXml._1._0;
@@ -91,7 +93,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"FnhdC (*.xml)|*.xml", new ImporterFnhdC()},
         {"BNC TEI (*.xml)|*.xml", new ImporterBnc() },
         {"TXM TEI-XML (*.xml)|*.xml", new ImporterTxm() },
-        {"TiGER-XML (*.xml)|*.xml", new TigerImporter() },
+        {"TiGER-XML (*.xml)|*.xml", new ImporterTiger() },
       };
 
     /// <summary>
@@ -202,8 +204,12 @@ namespace CorpusExplorer.Sdk.Extern.Xml
           new DigitalPlatoScraper()
         },
         {
-          "Bundestag OpenAccess Plenarprotokolle (*.xml)|*.xml",
+          "Bundestag OpenAccess Plenarprotokolle (1-18 Legislaturperiode) (*.xml)|*.xml",
           new BundestagPlenarprotokolleScraper()
+        },
+        {
+          "Bundestag OpenAccess Plenarprotokolle (ab 19. Legislaturperiode) (*.xml)|*.xml",
+          new BundestagDtdPlenarprotokolleScraper()
         },
         {
           "Bundestag OpenAccess Drucksachen (*.xml)|*.xml",

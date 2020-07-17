@@ -128,7 +128,7 @@
     <value>radPanel1</value>
   </data>
   <data name="&gt;&gt;radPanel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2020.2.512.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radPanel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -160,7 +160,7 @@
     <value>ihdPanel1</value>
   </data>
   <data name="&gt;&gt;ihdPanel1.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
   <data name="&gt;&gt;ihdPanel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -175,7 +175,7 @@
     <value>5, 69</value>
   </data>
   <data name="radTextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>477, 32</value>
+    <value>477, 37</value>
   </data>
   <data name="radTextBox1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -184,7 +184,7 @@
     <value>radTextBox1</value>
   </data>
   <data name="&gt;&gt;radTextBox1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2020.2.512.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radTextBox1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -208,6 +208,6 @@
     <value>SimpleTextInput</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Forms.Abstract.AbstractDialog, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+    <value>CorpusExplorer.Terminal.WinForm.Forms.Abstract.AbstractDialog, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
 </root>

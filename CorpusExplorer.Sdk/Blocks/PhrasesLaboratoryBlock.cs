@@ -44,15 +44,16 @@ namespace CorpusExplorer.Sdk.Blocks
       var res = new Dictionary<string, Dictionary<string, double>>();
       foreach (var c in GetParsedConstituent())
       {
-        var key2 = string.Join(separator, c.Childs.Select(x => x.Label));
+        var freq = c.GetRecursiveChildFrequency().ToArray();
 
-        if (res.ContainsKey(c.Label))
-          if (res[c.Label].ContainsKey(key2))
-            res[c.Label][key2]++;
+        foreach (var key2 in freq)
+          if (res.ContainsKey(c.Label))
+            if (res[c.Label].ContainsKey(key2.Key))
+              res[c.Label][key2.Key] += key2.Value;
+            else
+              res[c.Label].Add(key2.Key, key2.Value);
           else
-            res[c.Label].Add(key2, 1);
-        else
-          res.Add(c.Label, new Dictionary<string, double> {{key2, 1}});
+            res.Add(c.Label, new Dictionary<string, double> { { key2.Key, key2.Value } });
       }
 
       return res;
@@ -102,8 +103,8 @@ namespace CorpusExplorer.Sdk.Blocks
       AbstractLayerAdapter layer2,
       int[][] doc2)
     {
-      if (doc1        == null ||
-          doc2        == null ||
+      if (doc1 == null ||
+          doc2 == null ||
           doc1.Length != doc2.Length)
         return;
 
@@ -115,8 +116,8 @@ namespace CorpusExplorer.Sdk.Blocks
                    Configuration.ParallelOptions,
                    i =>
                    {
-                     if (doc1[i]        == null ||
-                         doc2[i]        == null ||
+                     if (doc1[i] == null ||
+                         doc2[i] == null ||
                          doc1[i].Length != doc2[i].Length)
                        return;
 

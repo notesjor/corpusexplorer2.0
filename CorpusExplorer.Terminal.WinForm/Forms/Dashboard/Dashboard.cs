@@ -270,6 +270,32 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       }
     }
 
+    private bool? _enableCorpusChecks;
+    public bool EnableCorpusChecks
+    {
+      get
+      {
+        if (_enableCorpusChecks.HasValue)
+          return _enableCorpusChecks.Value;
+
+        try
+        {
+          _enableCorpusChecks = (bool)Configuration.GetSetting("CEC6-Validation?", false);
+        }
+        catch
+        {
+          _enableCorpusChecks = false;
+        }
+
+        return _enableCorpusChecks.Value;
+      }
+      set
+      {
+        _enableCorpusChecks = value;
+        Configuration.SetSetting("CEC6-Validation?", _enableCorpusChecks.Value);
+      }
+    }
+
     private void ReloadAll()
     {
       Corpora_ReLoad();
@@ -279,12 +305,24 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private string AskForSelectionDisplayname()
     {
-      var form = new SimpleTextInput(
+      var form = new SimpleTextInputValidation(
                                      Resources.SchnappschussErstellen,
                                      Resources.GebenSieDemNeuenSchnappschussEinenNamen,
                                      Resources.camera,
-                                     Resources.NameHierEintragen);
+                                     Resources.NameHierEintragen,
+                                     AskForSelectionDisplaynameCheck);
       return form.ShowDialog() != DialogResult.OK ? "" : form.Result;
+    }
+
+    private string AskForSelectionDisplaynameCheck(string arg)
+    {
+      if (string.IsNullOrWhiteSpace(arg))
+        return Resources.Dashboard_Warn_Snapshotname_NoName;
+
+      if (Project.SelectionsRecursive.Any(x => x.Displayname == arg))
+        return Resources.Dashboard_Warn_Snapshotname_AlreadyExsists;
+
+      return null;
     }
 
     private void btn_settings_load_Click(object sender, EventArgs e)
@@ -400,13 +438,13 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void corpus_start_import_Click(object sender, EventArgs e)
     {
-      QuickMode.Import(Project, true);
+      QuickMode.Import(Project, EnableCorpusChecks);
       ReloadAll();
     }
 
     private void corpus_start_local_Click(object sender, EventArgs e)
     {
-      QuickMode.Annotate(Project, false, true);
+      QuickMode.Annotate(Project, false, EnableCorpusChecks);
       ReloadAll();
     }
 
@@ -471,7 +509,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       if (res.Count == 0)
         return;
 
-      QuickMode.Tagging(Project, new ConcurrentQueue<Dictionary<string, object>>(res), true);
+      QuickMode.Tagging(Project, new ConcurrentQueue<Dictionary<string, object>>(res), EnableCorpusChecks);
       ReloadAll();
     }
 
@@ -551,11 +589,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                           switch (ext)
                           {
                             case ".cec5":
-                              QuickMode.AddCorpusToProject(Project, CorpusAdapterSingleFile.Create(path), true);
+                              QuickMode.AddCorpusToProject(Project, CorpusAdapterSingleFile.Create(path), EnableCorpusChecks);
                               break;
                             case ".cec6":
                             case ".cec6.gz":
-                              QuickMode.AddCorpusToProject(Project, CorpusAdapterWriteDirect.Create(path), true);
+                              QuickMode.AddCorpusToProject(Project, CorpusAdapterWriteDirect.Create(path), EnableCorpusChecks);
                               break;
                           }
 
@@ -1512,11 +1550,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       if (ofd.ShowDialog() != DialogResult.OK)
         return;
 
-      var form = new SimpleTextInput(
+      var form = new SimpleTextInputValidation(
                                      Resources.SchnappschussErstellen,
                                      Resources.GebenSieDemNeuenSchnappschussEinenNamen,
                                      Resources.camera,
-                                     Resources.NameHierEintragen);
+                                     Resources.NameHierEintragen,
+                                     AskForSelectionDisplaynameCheck);
       if (form.ShowDialog() != DialogResult.OK)
         return;
 
@@ -1661,10 +1700,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       ProjectNew();
       foreach (var corpus in files.Where(x => x.ToLower().EndsWith(".cec5")))
-        QuickMode.AddCorpusToProject(Project, CorpusAdapterSingleFile.Create(corpus), true);
+        QuickMode.AddCorpusToProject(Project, CorpusAdapterSingleFile.Create(corpus), EnableCorpusChecks);
 
       foreach (var corpus in files.Where(x => x.ToLower().EndsWith(".cec6")))
-        QuickMode.AddCorpusToProject(Project, CorpusAdapterWriteDirect.Create(corpus), true);
+        QuickMode.AddCorpusToProject(Project, CorpusAdapterWriteDirect.Create(corpus), EnableCorpusChecks);
 
       ReloadAll();
 
@@ -1716,11 +1755,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private bool ProjectRename()
     {
-      var form = new SimpleTextInput(
-                                     Resources.ProjectName,
-                                     Resources.ProjectNameSet,
-                                     Resources.rename,
-                                     Resources.ProjectNameSetHead);
+      var form = new SimpleTextInputValidation(
+                                               Resources.ProjectName,
+                                               Resources.ProjectNameSet,
+                                               Resources.rename,
+                                               Resources.ProjectNameSetHead,
+                                               ProjectRenameCheck);
       if (form.ShowDialog() != DialogResult.OK)
         return false;
       if (string.IsNullOrEmpty(form.Result))
@@ -1728,6 +1768,21 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       Project.Displayname = form.Result;
       page_welcome_btn_projectname.ShowCheckmark = true;
       return true;
+    }
+
+    private string ProjectRenameCheck(string arg)
+    {
+      if (string.IsNullOrWhiteSpace(arg))
+        return Resources.Dashboard_ProjectRenameCheck_Warn_NoName;
+
+      var chars = Path.GetInvalidFileNameChars();
+      if (chars.Any(x => arg.Contains(x)))
+        return Resources.InvalidPathChars;
+
+      if (File.Exists(Path.Combine(Configuration.MyProjects, arg + ".proj5")))
+        return Resources.Dashboard_ProjectRenameCheck_Warn_AlreadyExsits;
+
+      return null;
     }
 
     private void RealoadInsightSettings()
@@ -2143,6 +2198,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     [NamedSynchronizedLock("Settings")]
     private void Settings_Initialize()
     {
+      Configuration.GetSetting("CEC6-Validation?", true);
       _significanceMessures =
         Configuration.GetSideloadFeature<ISignificance>().ToDictionary(x => x.Label, x => x).ToArray();
 
@@ -2274,33 +2330,32 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void settings_tool_mergeCorpora_Click(object sender, EventArgs e)
     {
+      var importer = Configuration.AddonImporters.ToArray();
       var ofd = new OpenFileDialog
       {
-        Filter = Resources.FileExteions_CEC5,
         CheckFileExists = true,
-        Multiselect = true
+        CheckPathExists = true,
+        Multiselect = true,
+        Filter = string.Join("|", importer.Select(x => x.Key))
       };
-
-      if (ofd.ShowDialog() != DialogResult.OK ||
-          ofd.FileNames.Length < 2)
+      if (ofd.ShowDialog() != DialogResult.OK)
         return;
+      var import = importer[ofd.FilterIndex - 1].Value;
 
+      var exporter = Configuration.AddonExporters.ToArray();
       var sfd = new SaveFileDialog
       {
-        Filter = Resources.FileExteions_CEC6,
-        CheckPathExists = true
+        Filter = string.Join("|", exporter.Select(x => x.Key))
       };
-
       if (sfd.ShowDialog() != DialogResult.OK)
         return;
+      var export = exporter[sfd.FilterIndex - 1].Value;
 
       Processing.Invoke(
                         Resources.GutDingWillWeileHaben,
                         () =>
                         {
-                          CorpusMerger.Merge(ofd.FileNames.Select(CorpusAdapterWriteDirect.Create),
-                                             new CorpusBuilderWriteDirect())
-                                     ?.Save(sfd.FileName);
+                          CorpusMerger.Merge(ofd.FileNames, import, export, sfd.FileName);
                         });
     }
 
@@ -2417,6 +2472,17 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       RefreshFavorites();
 
       settings_list_favorites_lock = false;
+    }
+
+    private void snapshot_edit_displayname_TextChanged(object sender, EventArgs e)
+    {
+      if (string.IsNullOrWhiteSpace(snapshot_edit_displayname.Text))
+        warnBox1.Display(Resources.Dashboard_Warn_Snapshotname_NoName);
+      
+      if (Project.SelectionsRecursive.Any(x=> x.Displayname == snapshot_edit_displayname.Text))
+        warnBox1.Display(Resources.Dashboard_Warn_Snapshotname_AlreadyExsists);
+
+      warnBox1.Display(null);
     }
   }
 }

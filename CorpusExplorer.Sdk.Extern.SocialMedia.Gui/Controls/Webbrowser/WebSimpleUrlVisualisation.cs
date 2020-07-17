@@ -9,6 +9,8 @@ using CorpusExplorer.Sdk.Extern.SocialMedia.Gui.Controls.Webbrowser;
 #else
 using CefSharp;
 using CefSharp.WinForms;
+using CorpusExplorer.Sdk.View.Html.Html5;
+
 #endif
 
 #endregion
@@ -88,7 +90,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
     public void LoadHtml(string html)
     {
       InitializeBrowser();
-      webBrowser1.LoadHtml(html);
+      webBrowser1.Load(Html5Builder.QuickHtmlPage(html));
     }
 
     public void Print()

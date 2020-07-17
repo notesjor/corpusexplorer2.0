@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey2019.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="RocksDbNative, Version=6.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RocksDbNative.6.2.2\lib\net45\RocksDbNative.dll</HintPath>
@@ -58,6 +64,7 @@
     <Compile Include="QuickIndex.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CorpusExplorerNextSnKey2019.pfx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
