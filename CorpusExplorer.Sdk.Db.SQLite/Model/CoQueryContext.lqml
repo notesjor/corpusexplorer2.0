@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database Name="main" EntityNamespace="CorpusExplorer.Sdk.Db.SqLite.Model.CoQuery" ContextNamespace="CorpusExplorer.Sdk.Db.SqLite.Model.CoQuery" Class="CoQueryDataContext" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ed:Guid="b602b4d2-419c-4121-ae85-8be8cccbac79" Provider="Devart.Data.SQLite.Linq.Provider.SQLiteDataProvider, Devart.Data.SQLite.Linq" Extended="true" xmlns="http://schemas.devart.com/linqconnect/mapping">
+  <Connection Mode="ConnectionString" ConnectionString="Data Source=C:\Users\Jan\AppData\Roaming\Coquery\connections\Default\databases\coq_alice.db" Provider="Devart.Data.SQLite" />
+  <Table Name="&quot;main&quot;.Lexicon" Member="Lexicons">
+    <Type Name="Lexicon" ed:Guid="b742c333-07e5-4b79-af89-e544c93f0ef2">
+      <Column Name="WordId" Type="System.Int32" DbType="INT NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="cfff3953-4dd3-4a22-9160-ebc6c1919da2" />
+      <Column Name="Lemma" Type="System.String" DbType="VARCHAR NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="1024" ed:ValidateMaxLength="1024" ed:ValidateRequired="true" ed:Guid="b136fe78-4097-487f-ab50-5953baf22859" />
+      <Column Name="POS" Type="System.String" DbType="VARCHAR NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="128" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="7f2c2860-de9d-4333-ac09-96b49da8ed14" />
+      <Column Name="Word" Type="System.String" DbType="VARCHAR NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="1024" ed:ValidateMaxLength="1024" ed:ValidateRequired="true" ed:Guid="c9309faa-6df4-444f-9d31-7fdf2c1d1253" />
+      <Association Name="Corpus_Lexicon" ed:AssociationGuid="620d4198-7bce-4de9-aeca-9d04c615dc8a" Member="Corpus" ed:Guid="f0e9a6da-fd48-4983-ae06-31566d366195" ThisKey="WordId" OtherKey="WordId" Type="Corpus" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="&quot;main&quot;.Files" Member="Files">
+    <Type Name="File" ed:Guid="b407dcfd-3b81-4583-a19e-dc9ad9ca926e">
+      <Column Name="FileId" Type="System.Int32" DbType="INT NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="762afd75-4489-4cb4-b16d-d4841c58ec13" />
+      <Column Name="Filename" Type="System.String" DbType="VARCHAR NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="1024" ed:ValidateMaxLength="1024" ed:ValidateRequired="true" ed:Guid="8e8951d7-c207-410c-8f33-38d1f303d013" />
+      <Column Name="Path" Type="System.String" DbType="VARCHAR NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="4048" ed:ValidateMaxLength="4048" ed:ValidateRequired="true" ed:Guid="72c777b9-7739-4033-b9d6-2d84783af734" />
+      <Association Name="File_Corpus" ed:AssociationGuid="925303be-6ace-43d2-a6c1-6388a5780c3d" Member="Corpora" ed:Guid="aea0bbfe-8490-4e92-a830-81748cca04e3" ThisKey="FileId" OtherKey="FileId" Type="Corpus" />
+    </Type>
+  </Table>
+  <Table Name="&quot;main&quot;.Corpus" Member="Corpora">
+    <Type Name="Corpus" ed:Guid="bc5d952a-220a-4e00-ac87-9dda5d8d81ed">
+      <Column Name="ID" Type="System.Int64" DbType="BIGINT NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="ded3c745-407b-436d-8853-661c77398db3" />
+      <Column Name="Sentence_Id" Member="SentenceId" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="d4447cdd-1655-4f9b-bdda-34ec2bd09230" />
+      <Column Name="WordId" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="15e662ac-b111-45c6-9c2a-4e631bfb2440" />
+      <Column Name="FileId" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="99b12050-301f-45bb-8a5e-d342ff171845" />
+      <Association Name="Corpus_Lexicon" ed:AssociationGuid="620d4198-7bce-4de9-aeca-9d04c615dc8a" Member="Lexicons" ed:Guid="3c184c9e-4091-4db9-bd36-5f4c52642b34" ThisKey="WordId" OtherKey="WordId" Type="Lexicon" />
+      <Association Name="File_Corpus" ed:AssociationGuid="925303be-6ace-43d2-a6c1-6388a5780c3d" Member="File" ed:Guid="7076e2aa-6742-4975-aa0a-58e4035cb90c" ThisKey="FileId" OtherKey="FileId" Type="File" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

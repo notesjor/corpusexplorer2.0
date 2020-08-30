@@ -56,7 +56,6 @@ XDepencies
 *.bin
 *.key
 *.pfx
-*.pfx
 *.cex
 *.exe
 *.zip
@@ -68,7 +67,6 @@ testdata
 *.sdmodel
 TestResults
 CorpusExplorer/.vs/*
-*.sqlite
 XDependencies
 pandoc
 *.png

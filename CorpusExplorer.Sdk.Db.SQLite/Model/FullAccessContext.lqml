@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database Name="Data" EntityNamespace="CorpusExplorer.Sdk.Db.SQLite.Model.FullAccess" ContextNamespace="CorpusExplorer.Sdk.Db.SQLite.Model.FullAccess" Class="FullAccessContext" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ed:Guid="c13ae603-6b6f-42bf-b1ae-8de8f663a58a" Extended="true" xmlns="http://schemas.devart.com/linqconnect/mapping">
+  <Connection Mode="ConnectionString" ConnectionString="" Provider="" />
+  <Table Name="Corpora" Member="Corpora">
+    <Type Name="Corpus" ed:Guid="25a4abcc-50cc-4c30-839e-a9d11d3f6b1b">
+      <Column Name="ID" Type="System.Int32" DbType="integer NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="e00b0d85-a406-4a9f-a342-bce0419a0d98" />
+      <Column Name="GUID" Type="System.Guid" DbType="guid NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="adc1e14a-25f9-49e6-92bd-bb08131270d4" />
+      <Column Name="Displayname" Type="System.String" DbType="text" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="903316d4-704a-4e6e-91d3-a2cc542c1369" />
+      <Association Name="Corpus_CorpusMetadata" ed:AssociationGuid="87ff23ed-7f43-43dc-8ef2-3e5fd5eafdfc" Member="CorpusMetadatas" ed:Guid="f91e4de7-fede-42cc-8cbb-ac4faa8e6708" ThisKey="ID" OtherKey="CorpusID" Type="CorpusMetadata" />
+      <Association Name="Corpus_Document" ed:AssociationGuid="accca4af-ab47-494b-848a-830eb5696389" Member="Documents" ed:Guid="3329e4e4-7075-4f03-a43e-02da3fdd8add" ThisKey="ID" OtherKey="CorpusID" Type="Document" />
+    </Type>
+  </Table>
+  <Table Name="CorpusMetadatas" Member="CorpusMetadatas">
+    <Type Name="CorpusMetadata" ed:Guid="c77365ec-5058-4366-9bec-322a0e58d490">
+      <Column Name="CorpusID" Type="System.Int32" DbType="integer NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="849392fc-11e4-42fa-85df-a34f70b570bc" />
+      <Column Name="Label" Type="System.String" DbType="text NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="9d2845ca-1e17-4181-8296-ab3c27629d58" />
+      <Column Name="Value" Type="System.String" DbType="text" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="5ef7e929-8a68-44a4-91b2-122fd3540b03" />
+      <Association Name="Corpus_CorpusMetadata" ed:AssociationGuid="87ff23ed-7f43-43dc-8ef2-3e5fd5eafdfc" Member="Corpus" ed:Guid="12104f52-7bf8-4f01-8353-a3c712cdb6a9" ThisKey="CorpusID" OtherKey="ID" Type="Corpus" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Documents" Member="Documents">
+    <Type Name="Document" ed:Guid="a4f9ac5e-d715-440c-825c-6eead72d435a">
+      <Column Name="ID" Type="System.Int32" DbType="integer NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="e5f56fe9-9101-4e4b-9a57-83c56acd7f3e" />
+      <Column Name="GUID" Type="System.Guid" DbType="guid NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="f6195ad1-9b59-4e07-93f8-b1f0e1bffca4" />
+      <Column Name="CorpusID" Type="System.Int32" DbType="integer NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="7f9dc4d1-5413-46f7-af2b-c4fc7a944aa0" />
+      <Association Name="Corpus_Document" ed:AssociationGuid="accca4af-ab47-494b-848a-830eb5696389" Member="Corpus" ed:Guid="ffa04b12-312d-4c90-a8de-1de4f1a5b34c" ThisKey="CorpusID" OtherKey="ID" Type="Corpus" IsForeignKey="true" />
+      <Association Name="Document_DocumentMetadata" ed:AssociationGuid="745d9a7c-5390-4155-9fe7-1acf508ab7a6" Member="DocumentMetadatas" ed:Guid="267f432d-c6f1-4470-a5d8-a6f2d2f2ebc3" ThisKey="ID" OtherKey="DocumentID" Type="DocumentMetadata" />
+      <Association Name="Document_Token" ed:AssociationGuid="818e9f2f-1312-4675-a25b-4eb1dfcfd262" Member="Tokens" ed:Guid="04e1ea82-bff3-4ed0-ac08-e8233ccb04f8" ThisKey="ID" OtherKey="DocumentID" Type="Token" />
+    </Type>
+  </Table>
+  <Table Name="DocumentMetadatas" Member="DocumentMetadatas">
+    <Type Name="DocumentMetadata" ed:Guid="7dd8fbec-1982-431c-8d22-a32edf4bd53e">
+      <Column Name="DocumentID" Type="System.Int32" DbType="integer NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="e93fd632-08ba-40cd-a9f7-0eb58fbc09cc" />
+      <Column Name="Label" Type="System.String" DbType="text NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="40420ee4-3f11-4d71-b8c0-e3f2b609e533" />
+      <Column Name="Value" Type="System.String" DbType="text" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="0f39fcf3-2544-404b-81ce-87f540e2f9a8" />
+      <Association Name="Document_DocumentMetadata" ed:AssociationGuid="745d9a7c-5390-4155-9fe7-1acf508ab7a6" Member="Document" ed:Guid="3115a256-4e43-4a6c-8c3b-d5b7fe6da1d7" ThisKey="DocumentID" OtherKey="ID" Type="Document" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Tokens" Member="Tokens">
+    <Type Name="Token" ed:Guid="edf86a63-6da0-4679-90d5-adb90ea35ea3">
+      <Column Name="ID" Type="System.UInt64" DbType="integer NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="d377279e-d3b6-46b1-be8c-f2d213c8c69f" />
+      <Column Name="DocumentID" Type="System.Int32" DbType="integer NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="e896b70e-d12d-4fbd-a68f-1782e7432f67" />
+      <Column Name="TokenIndex" Type="System.Int32" DbType="integer NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="a5aa9d7f-e144-434b-9cd8-3039596780cb" />
+      <Association Name="Token_Annotation" ed:AssociationGuid="e372f13b-7f7f-4fea-a0e0-029d04cee9fe" Member="Annotations" ed:Guid="415c8fb7-f782-47db-b1a6-ddd3c30e79e0" ThisKey="ID" OtherKey="TokenID" Type="Annotation" />
+      <Association Name="Document_Token" ed:AssociationGuid="818e9f2f-1312-4675-a25b-4eb1dfcfd262" Member="Document" ed:Guid="e4c3f7b7-7e4d-4324-9ee3-82a912767fc0" ThisKey="DocumentID" OtherKey="ID" Type="Document" IsForeignKey="true" />
+      <Association Name="Token_AnnotationSpan" ed:AssociationGuid="c9d649aa-c233-4eec-9aa3-49dd44b9e11d" Member="AnnotationSpanStarts" ed:Guid="1383221c-a83b-425d-83b4-5b961f95fde8" ThisKey="ID" OtherKey="TokenStartID" Type="AnnotationSpan" />
+      <Association Name="Token_AnnotationSpan1" ed:AssociationGuid="cfd59922-9332-4a38-a26c-700ff44ed0c4" Member="AnnotationSpanEnds" ed:Guid="d15363a6-aa42-4d62-a30d-a5ba058e6c34" ThisKey="ID" OtherKey="TokenEndID" Type="AnnotationSpan" />
+    </Type>
+  </Table>
+  <Table Name="Annotations" Member="Annotations">
+    <Type Name="Annotation" ed:Guid="c1828595-92d4-4d32-b75f-5a8827796c68">
+      <Column Name="ID" Type="System.UInt64" DbType="integer NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="ba831015-43b6-4415-8b25-892949221502" />
+      <Column Name="TokenID" Type="System.UInt64" DbType="integer NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="9b1436bf-de73-4c95-9343-7e8cb5452a33" />
+      <Column Name="LayerValueID" Type="System.UInt64" DbType="integer NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="85f5290e-b610-41c2-9611-90c485d0fe45" />
+      <Association Name="Token_Annotation" ed:AssociationGuid="e372f13b-7f7f-4fea-a0e0-029d04cee9fe" Member="Token" ed:Guid="8d9a9f76-a285-44c2-843a-3ec3d346335b" ThisKey="TokenID" OtherKey="ID" Type="Token" IsForeignKey="true" />
+      <Association Name="LayerValue_Annotation" ed:AssociationGuid="c9a00fc3-59ff-4b29-85a8-2046becf40ed" Member="LayerValue" ed:Guid="2bb77226-368e-4d99-b7cd-2d9043ae2185" ThisKey="LayerValueID" OtherKey="ID" Type="LayerValue" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Layers" Member="Layers">
+    <Type Name="Layer" ed:Guid="8ffbd042-3d8c-4143-85c5-860aa9d909d0">
+      <Column Name="ID" Type="System.Int32" DbType="integer NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="2f9026ad-ef0e-4b3d-b6a3-aef21119529a" />
+      <Column Name="GUID" Type="System.Guid" DbType="guid NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="d153ef62-1129-4590-a1b9-80dcb16551eb" />
+      <Column Name="Displayname" Type="System.String" DbType="text NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="614f2282-8c51-4c40-87fd-c7fc49469d74" />
+      <Association Name="Layer_LayerValue" ed:AssociationGuid="793b75ff-035b-40fd-937f-dc4cd84b1207" Member="LayerValues" ed:Guid="70983345-c052-4484-9b01-11c00f7d2373" ThisKey="ID" OtherKey="LayerID" Type="LayerValue" />
+    </Type>
+  </Table>
+  <Table Name="LayerValues" Member="LayerValues">
+    <Type Name="LayerValue" ed:Guid="a1de7dca-10a2-4d12-b260-b08b34e5bbf8">
+      <Column Name="ID" Type="System.UInt64" DbType="integer NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="627208c5-46e4-4f0b-a929-0641b148be8e" />
+      <Column Name="LayerID" Type="System.Int32" DbType="integer NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="3a254c91-a0ee-46cd-b3f9-eb550f0c54e6" />
+      <Column Name="Value" Type="System.String" DbType="text" CanBeNull="true" UpdateCheck="Never" ed:ValidateRequired="false" ed:Guid="8eb4be36-f7bb-4be1-97ab-5c83b68b6aa4" />
+      <Association Name="LayerValue_Annotation" ed:AssociationGuid="c9a00fc3-59ff-4b29-85a8-2046becf40ed" Member="Annotations" ed:Guid="3c49a963-49d3-46ac-a2d1-e947519c4cea" ThisKey="ID" OtherKey="LayerValueID" Type="Annotation" />
+      <Association Name="Layer_LayerValue" ed:AssociationGuid="793b75ff-035b-40fd-937f-dc4cd84b1207" Member="Layer" ed:Guid="9afe9922-e650-4175-b869-ddf5dc77c2a1" ThisKey="LayerID" OtherKey="ID" Type="Layer" IsForeignKey="true" />
+      <Association Name="LayerValue_AnnotationSpan" ed:AssociationGuid="5946bff0-6b93-454f-a4c5-991b123d8e78" Member="AnnotationSpans" ed:Guid="aba4dc6c-bb1e-4ade-92d5-e13f38e3e626" ThisKey="ID" OtherKey="LayerValueID" Type="AnnotationSpan" />
+    </Type>
+  </Table>
+  <Table Name="AnnotationSpans" Member="AnnotationSpans">
+    <Type Name="AnnotationSpan" ed:Guid="baf62479-9c54-41a0-a793-af94a6079880">
+      <Column Name="ID" Type="System.UInt64" DbType="integer NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" ed:ValidateRequired="true" ed:Guid="88ea3c58-2c74-4ea1-87ea-f9ecf201353d" />
+      <Column Name="TokenStartID" Type="System.UInt64" DbType="integer NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="57143b46-f169-4675-8fcb-0bb8ab249f26" />
+      <Column Name="TokenEndID" Type="System.UInt64" DbType="integer NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="fcf64592-cdd7-4183-be1f-8a4b21a40164" />
+      <Column Name="LayerValueID" Type="System.UInt64" DbType="integer NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="df07af6c-64d7-4afd-a08a-458607caa0ae" />
+      <Association Name="Token_AnnotationSpan" ed:AssociationGuid="c9d649aa-c233-4eec-9aa3-49dd44b9e11d" Member="TokenStart" ed:Guid="35e96bee-9491-4a40-bda9-637b29ee93cc" ThisKey="TokenStartID" OtherKey="ID" Type="Token" IsForeignKey="true" />
+      <Association Name="Token_AnnotationSpan1" ed:AssociationGuid="cfd59922-9332-4a38-a26c-700ff44ed0c4" Member="TokenEnd" ed:Guid="e84e2cc2-95a6-49dd-a4cc-a7143593ba4f" ThisKey="TokenEndID" OtherKey="ID" Type="Token" IsForeignKey="true" />
+      <Association Name="LayerValue_AnnotationSpan" ed:AssociationGuid="5946bff0-6b93-454f-a4c5-991b123d8e78" Member="LayerValue" ed:Guid="e9100a19-2189-4f4a-a9f3-fb869e87faf1" ThisKey="LayerValueID" OtherKey="ID" Type="LayerValue" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
