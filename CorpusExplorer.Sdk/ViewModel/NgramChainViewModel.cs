@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
@@ -110,7 +111,7 @@ namespace CorpusExplorer.Sdk.ViewModel
         block.Calculate();
 
         NGramFrequency = block.NGramFrequency;
-        NGramRaw = block.NGramRaw;
+        NGramRaw = block.NGramFrequency.ToDictionary(x=>x.Key, x=>x.Key.Split(new []{ " "}, StringSplitOptions.None));
       }
       else
       {
@@ -120,7 +121,7 @@ namespace CorpusExplorer.Sdk.ViewModel
         block.Calculate();
 
         NGramFrequency = block.NGramFrequency;
-        NGramRaw = block.NGramRaw;
+        NGramRaw = block.NGramFrequency.ToDictionary(x => x.Key, x => x.Key.Split(new[] { " " }, StringSplitOptions.None));
       }
     }
 

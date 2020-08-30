@@ -95,6 +95,10 @@ namespace CorpusExplorer.Sdk.ViewModel.Abstract
 
     public DateTime[][] GetClusters(int clusters)
     {
+      // FastLane: Falls gleich oder mehr Cluster als Datumsanagaben gewünscht werden.
+      if (clusters >= DateTimeValues.Count())
+        return DateTimeDocuments.Select(x => new[] { x.Key }).ToArray();
+
       var min = ClusterMaxDateTime;
       var max = ClusterMinDateTime;
 

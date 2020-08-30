@@ -78,7 +78,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>D1D54BF642388FCD74B00B701A1E0AE4551FCB3F</ManifestCertificateThumbprint>
@@ -102,11 +102,11 @@
     <Reference Include="HtmlAgilityPack, Version=1.11.24.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.11.24\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="LinqToTwitter.AspNet, Version=4.2.1.41314, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\linqtotwitter.4.2.1\lib\net45\LinqToTwitter.AspNet.dll</HintPath>
+    <Reference Include="LinqToTwitter.AspNetStd, Version=5.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\linqtotwitter.5.1.2\lib\netstandard2.0\LinqToTwitter.AspNetStd.dll</HintPath>
     </Reference>
-    <Reference Include="LinqToTwitter.net, Version=4.2.1.41313, Culture=neutral, PublicKeyToken=957107be965c25d9, processorArchitecture=MSIL">
-      <HintPath>..\packages\linqtotwitter.4.2.1\lib\net45\LinqToTwitter.net.dll</HintPath>
+    <Reference Include="LinqToTwitter.netstandard, Version=5.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\linqtotwitter.5.1.2\lib\netstandard2.0\LinqToTwitter.netstandard.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -496,7 +496,6 @@
     <EmbeddedResource Include="Forms\WebCrawler\XpathBrowser.resx">
       <DependentUpon>XpathBrowser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

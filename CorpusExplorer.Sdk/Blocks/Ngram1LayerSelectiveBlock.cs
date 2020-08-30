@@ -11,7 +11,6 @@ namespace CorpusExplorer.Sdk.Blocks
   public class Ngram1LayerSelectiveBlock : AbstractBlock
   {
     public Dictionary<string, int> NGramFrequency { get; private set; }
-    public Dictionary<string, string[]> NGramRaw { get; private set; }
     public IEnumerable<string> LayerQueries { get; set; }
     public string LayerDisplayname { get; set; } = "Wort";
     public int NGramSize { get; set; } = 3;
@@ -23,10 +22,9 @@ namespace CorpusExplorer.Sdk.Blocks
         LayerDisplayname = LayerDisplayname,
         LayerQueries = LayerQueries
       };
-      var selection = Selection.CreateTemporary(new[] {query});
+      var selection = Selection.CreateTemporary(new[] { query });
 
       NGramFrequency = new Dictionary<string, int>();
-      NGramRaw = new Dictionary<string, string[]>();
 
       // Property FIX!
       if (NGramSize < 1)
@@ -86,18 +84,11 @@ namespace CorpusExplorer.Sdk.Blocks
           }
 
           lock (resLock)
-          {
             foreach (var x in dic)
               if (NGramFrequency.ContainsKey(x.Key))
-              {
-                NGramFrequency[x.Key]++;
-              }
+                NGramFrequency[x.Key] += x.Value;
               else
-              {
                 NGramFrequency.Add(x.Key, x.Value);
-                NGramRaw.Add(x.Key, raw[x.Key]);
-              }
-          }
         });
       });
     }

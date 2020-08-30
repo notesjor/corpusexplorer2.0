@@ -491,6 +491,12 @@ namespace CorpusExplorer.Sdk.Model
       return corpus == null ? defaultValue : corpus.GetDocumentMetadata(documentGuid, metaKey, defaultValue);
     }
 
+    public string GetDocumentMetadata(Guid documentGuid, string metaKey, string defaultValue)
+    {
+      var corpus = ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid));
+      return corpus == null ? defaultValue : corpus.GetDocumentMetadata(documentGuid, metaKey, defaultValue);
+    }
+
     public Dictionary<Guid, T> GetDocumentMetadata<T>(string metaKey, T defaultValue)
     {
       var l = new object();
@@ -994,6 +1000,21 @@ namespace CorpusExplorer.Sdk.Model
     }
 
     /// <summary>
+    ///   Fügt dem Projekt ein neues Korpus hinzu.
+    ///   Läd ein Korpus direkt in den Speicher.
+    /// </summary>
+    /// <param name="corpus">
+    ///   Neues Korpus.
+    /// </param>
+    private void AddOnLoad(AbstractCorpusAdapter corpus)
+    {
+      if (ContainsCorpus(corpus.CorpusGuid))
+        return;
+
+      _corpora.Add(corpus);
+    }
+
+    /// <summary>
     ///   The create.
     /// </summary>
     /// <param name="displayName">
@@ -1169,7 +1190,7 @@ namespace CorpusExplorer.Sdk.Model
               .Invoke(null, new object[] { entry[2] }) as AbstractCorpusAdapter;
         if (corpus == null || corpus.CorpusGuid != tguid)
           continue;
-        res.Add(corpus);
+        res.AddOnLoad(corpus);
       }
 
       i++;

@@ -35,8 +35,10 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       this.btn_go = new Telerik.WinControls.UI.RadButton();
       this.btn_selectLayer = new Telerik.WinControls.UI.RadButton();
       this.cmb_values = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.SelectLayerValues.SelectLayerValuesControl();
+      this.btn_queryBuilder = new Telerik.WinControls.UI.RadButton();
       ((System.ComponentModel.ISupportInitialize)(this.btn_go)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.btn_selectLayer)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_queryBuilder)).BeginInit();
       this.SuspendLayout();
       // 
       // btn_go
@@ -64,16 +66,26 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       this.cmb_values.SelectedLayerDisplayname = null;
       this.toolTip1.SetToolTip(this.cmb_values, resources.GetString("cmb_values.ToolTip"));
       // 
+      // btn_queryBuilder
+      // 
+      resources.ApplyResources(this.btn_queryBuilder, "btn_queryBuilder");
+      this.btn_queryBuilder.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.shopping3;
+      this.btn_queryBuilder.Name = "btn_queryBuilder";
+      this.toolTip1.SetToolTip(this.btn_queryBuilder, resources.GetString("btn_queryBuilder.ToolTip"));
+      this.btn_queryBuilder.Click += new System.EventHandler(this.btn_queryBuilder_Click);
+      // 
       // WordBag
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.cmb_values);
+      this.Controls.Add(this.btn_queryBuilder);
       this.Controls.Add(this.btn_selectLayer);
       this.Controls.Add(this.btn_go);
       this.Name = "WordBag";
       resources.ApplyResources(this, "$this");
       ((System.ComponentModel.ISupportInitialize)(this.btn_go)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.btn_selectLayer)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_queryBuilder)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -83,5 +95,6 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     private Telerik.WinControls.UI.RadButton btn_go;
     private Telerik.WinControls.UI.RadButton btn_selectLayer;
     private SelectLayerValues.SelectLayerValuesControl cmb_values;
+    private Telerik.WinControls.UI.RadButton btn_queryBuilder;
   }
 }

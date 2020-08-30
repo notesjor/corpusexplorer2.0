@@ -31,8 +31,8 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
 #if UNIVERSAL
 #else
-    using Bcs.Addon;
-    using NHunspell;
+using Bcs.Addon;
+using NHunspell;
 #endif
 
 #endregion
@@ -128,14 +128,15 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       {
         GetTableWriterAdditionalPath(tableWriterTag, out tableWriterTag, out var path);
 
-        foreach (var x in _addonTableWriters.Where(x => x.Value.TableWriterTag == tableWriterTag))
-          return x.Value;
+        var res = _addonTableWriters.Where(x => x.Value.TableWriterTag == tableWriterTag)
+                                    .Select(x => x.Value)
+                                    .FirstOrDefault() ?? _addonTableWriters.First().Value;
 
-        var res=  _addonTableWriters.First().Value;
         if (path == null)
           return res;
 
         res.OutputStream = new FileStream(path, FileMode.Create, FileAccess.Write);
+        res.Path = path;
         return res;
       }
 
@@ -146,18 +147,16 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
         var f = tableWriterTag.Replace("FNT:", "F:");
 
-        AbstractTableWriter res = null;
-        foreach (var x in _addonTableWriters.Where(x => x.Value.TableWriterTag == f))
-          res = x.Value;
-
-        if (res == null)
-          res = _addonTableWriters.First().Value;
+        var res = _addonTableWriters.Where(x => x.Value.TableWriterTag == tableWriterTag)
+                                    .Select(x => x.Value)
+                                    .FirstOrDefault() ?? _addonTableWriters.First().Value;
 
         res.WriteTid = false;
         if (path == null)
           return res;
 
         res.OutputStream = new FileStream(path, FileMode.Create, FileAccess.Write);
+        res.Path = path;
         return res;
       }
 
@@ -443,7 +442,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       _addonTableWriters.Clear();
 #if UNIVERSAL
 #else
-    _addonViews.Clear();
+      _addonViews.Clear();
 #endif
       _addonBackends.Clear();
       _addonConsoleActions.Clear();
@@ -519,7 +518,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// </param>
     public static void SetSetting(string settingName, object value)
     {
-      var obj = GetSettings();
+      var obj = GetSettings() ?? new Dictionary<string, object>();
       if (obj.ContainsKey(settingName))
         obj[settingName] = value;
       else
@@ -530,7 +529,14 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
     public static void SetSettings(Dictionary<string, object> settings, string alternativePath = null)
     {
-      Serializer.Serialize(settings, alternativePath ?? SettingsAppPath, true);
+      try
+      {
+        Serializer.Serialize(settings, alternativePath ?? SettingsAppPath, true);
+      }
+      catch
+      {
+        // ignore
+      }
     }
 
     /// <summary>

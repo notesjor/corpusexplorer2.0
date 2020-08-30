@@ -384,9 +384,27 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
       if (meta == null || !meta.ContainsKey(metaKey))
         return defaultValue;
       var data = meta[metaKey];
-      if (data is T)
-        return (T) data;
+      if (data is T obj)
+        return obj;
+
       return defaultValue;
+    }
+
+    public string GetDocumentMetadata(Guid documentGuid, string metaKey, string defaultValue)
+    {
+      var meta = GetDocumentMetadata(documentGuid);
+      if (meta == null || !meta.ContainsKey(metaKey))
+        return defaultValue;
+      var data = meta[metaKey];
+      switch (data)
+      {
+        case null:
+          return defaultValue;
+        case string obj:
+          return obj;
+        default:
+          return data.ToString();
+      }
     }
 
     public Dictionary<Guid, T> GetDocumentMetadata<T>(string metaKey, T defaultValue)

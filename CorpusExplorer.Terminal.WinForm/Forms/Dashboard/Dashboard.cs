@@ -26,7 +26,7 @@ using CorpusExplorer.Sdk.Model.Adapter.Corpus;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Terminal;
 using CorpusExplorer.Sdk.Utils.CorpusManipulation;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
+using CorpusExplorer.Terminal.WinForm.Forms.CorpusError;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Crawler;
 using CorpusExplorer.Sdk.Utils.Filter;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
@@ -1729,6 +1729,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void ProjectLoad(string path)
     {
+      Processing.SplashShow(Resources.Dashboard_ProjectLoad);
+
       _terminal.ProjectLoad(path);
       Project = _terminal.Project;
       Project.SelectionCreated += ProjectModelChanges;
@@ -1738,6 +1740,25 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       Selection_ReLoad();
       Settings_ReLoad();
       page_welcome_btn_projectname.ShowCheckmark = true;
+
+      var vm = new ValidateSelectionIntegrityViewModel { Selection = Project.SelectAll };
+      vm.Execute();
+      if (vm.HasError)
+      {
+        Processing.SplashClose();
+        var form = new CorpusErrorForm(vm);
+        form.ShowDialog();
+
+        if (form.ResultSelection != null)
+        {
+          Processing.SplashClose();
+          if (MessageBox.Show("Möchten Sie das bereinigte Korpus speichern?", "Änderungen speichern?",
+                              MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            QuickMode.Export(form.ResultSelection);
+          Processing.SplashShow("Korpus wird überarbeitet...");
+        }
+      }
+      Processing.SplashClose();
     }
 
     private void ProjectModelChanges()

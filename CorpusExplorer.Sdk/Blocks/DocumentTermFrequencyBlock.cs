@@ -14,9 +14,12 @@ namespace CorpusExplorer.Sdk.Blocks
     public DocumentTermFrequencyBlock()
     {
       LayerDisplayname = "Wort";
+      MetadataKey = "GUID";
     }
 
-    public Dictionary<string, int> DocumentTermFrequency { get; set; }
+    public string MetadataKey { get; set; }
+
+    public Dictionary<string, Dictionary<string, double>> DocumentTermFrequency { get; set; }
 
     protected override void CalculateCall(
       AbstractCorpusAdapter corpus,
@@ -24,15 +27,37 @@ namespace CorpusExplorer.Sdk.Blocks
       Guid dsel,
       int[][] doc)
     {
-      var hash = new HashSet<int>(from s in doc from w in s select w).Select(x => layer[x]).ToArray();
+      var res = new Dictionary<string, double>();
+      var sum = 0;
+      foreach (var s in doc)
+      {
+        foreach (var w in s)
+        {
+          var key = layer[w];
+          if (res.ContainsKey(key))
+            res[key]++;
+          else
+            res.Add(key, 1);
+        }
+
+        sum += s.Length;
+      }
+
+      var k = corpus.GetDocumentMetadata(dsel, MetadataKey, string.Empty);
+      var v = res.ToDictionary(x => x.Key, x => x.Value / sum);
 
       lock (_lockDocumentTermFrequency)
       {
-        foreach (var x in hash)
-          if (DocumentTermFrequency.ContainsKey(x))
-            DocumentTermFrequency[x]++;
-          else
-            DocumentTermFrequency.Add(x, 1);
+        if (DocumentTermFrequency.ContainsKey(k))
+          foreach (var x in v)
+          {
+            if (DocumentTermFrequency[k].ContainsKey(x.Key))
+              DocumentTermFrequency[k][x.Key] += x.Value;
+            else
+              DocumentTermFrequency[k].Add(x.Key, x.Value);
+          }
+        else
+          DocumentTermFrequency.Add(k, v);
       }
     }
 
@@ -46,7 +71,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
     protected override void CalculateInitProperties()
     {
-      DocumentTermFrequency = new Dictionary<string, int>();
+      DocumentTermFrequency = new Dictionary<string, Dictionary<string, double>>();
     }
   }
 }

@@ -32,23 +32,11 @@ namespace CorpusExplorer.Sdk.Blocks
       var stream = layer.ConvertToReadableDocument(doc).ReduceDocumentToStreamDocument().ToArray();
       var ngram = new string[NGramSize];
 
-      if (Configuration.RightToLeftSupport)
-        for (var i = stream.Length; i > NGramSize; i--)
+      var max = stream.Length - NGramSize + 1;
+        for (var i = 0; i < max; i++)
         {
           for (var j = 0; j < NGramSize; j++)
-            ngram[j] = stream[i + j];
-
-          var key = string.Join(" ", ngram);
-          if (dic.ContainsKey(key))
-            dic[key]++;
-          else
-            dic.Add(key, 1);
-        }
-      else
-        for (var i = 0; i < stream.Length - NGramSize; i++)
-        {
-          for (var j = 0; j < NGramSize; j++)
-            ngram[j] = stream[i + j];
+            ngram[j] = stream[i + j]?.Replace(" ", string.Empty);
 
           var key = string.Join(" ", ngram);
           if (dic.ContainsKey(key))
@@ -58,13 +46,11 @@ namespace CorpusExplorer.Sdk.Blocks
         }
 
       lock (_lock)
-      {
         foreach (var x in dic)
           if (NGramFrequency.ContainsKey(x.Key))
-            NGramFrequency[x.Key]++;
+            NGramFrequency[x.Key] += x.Value;
           else
             NGramFrequency.Add(x.Key, x.Value);
-      }
     }
 
     protected override void CalculateCleanup()

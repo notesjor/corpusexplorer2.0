@@ -245,7 +245,13 @@ namespace CorpusExplorer.Core
         new KwicFirstAnyFilterAction(),
         new KwicNamedEntityAction(),
         new KwicSignificantFilterAction(),
-        new KwitFilterAction(),
+        new KwitAction(),
+        new KwitSelectAction(), 
+
+        new DocumentTermFrequencyAction(),
+        new InverseDocumentFrequencyAction(),
+        new TermFrequencyInverseDocumentFrequencyAction(),
+        new DocumentSimilarityAction(), 
 
         new ClusterAction(),
         new ConvertAction(),

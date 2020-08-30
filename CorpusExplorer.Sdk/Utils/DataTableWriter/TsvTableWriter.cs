@@ -11,6 +11,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
   {
     public override string TableWriterTag => "F:TSV";
     public override string MimeType => "text/tab-separated-values";
+    public override string Description => "tab separated values";
 
     protected override void WriteHead(DataTable table)
     {

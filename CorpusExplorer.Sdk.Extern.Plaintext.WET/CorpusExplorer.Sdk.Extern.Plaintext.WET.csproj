@@ -295,7 +295,6 @@
     <EmbeddedResource Include="Forms\LanguageSelectionForm.resx">
       <DependentUpon>LanguageSelectionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Core14.profile.xml" />

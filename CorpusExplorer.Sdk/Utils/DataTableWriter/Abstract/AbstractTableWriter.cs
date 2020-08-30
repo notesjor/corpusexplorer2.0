@@ -21,7 +21,11 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract
 
     public abstract string TableWriterTag { get; }
 
+    public abstract string Description { get; }
+
     public abstract string MimeType { get; }
+
+    public string Path { get; set; }
 
     public void Destroy(bool closeStream = true)
     {

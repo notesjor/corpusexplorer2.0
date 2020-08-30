@@ -17,6 +17,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
 
     public override string TableWriterTag => "F:XML";
     public override string MimeType => "application/xml";
+    public override string Description => "XML-document";
 
     protected override void WriteHead(DataTable table)
     {

@@ -49,6 +49,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.SelectLayerValues
       {
         if (string.IsNullOrEmpty(value))
           return;
+        if (CorpusExplorerEcosystem.CurrentProject == null)
+          return;
         if (!new HashSet<string>(CorpusExplorerEcosystem.CurrentProject.LayerDisplaynames).Contains(value))
           return;
 
@@ -57,6 +59,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.SelectLayerValues
         radAutoCompleteBox1.AutoCompleteDataSource = _values;
       }
     }
+
+    public IEnumerable<string> AllLayerValues => _values;
 
     private void OnLoad(object sender, EventArgs e)
     {

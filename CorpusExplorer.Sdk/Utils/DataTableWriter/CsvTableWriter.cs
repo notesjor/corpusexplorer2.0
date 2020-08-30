@@ -11,6 +11,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
   {
     public override string TableWriterTag => "F:CSV";
     public override string MimeType => "text/csv";
+    public override string Description => "comma separated values";
 
     protected override void WriteHead(DataTable table)
     {

@@ -2007,6 +2007,15 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Lade Projekt... ähnelt.
+        /// </summary>
+        public static string Dashboard_ProjectLoad {
+            get {
+                return ResourceManager.GetString("Dashboard_ProjectLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Das Projekt exsistiert bereits ähnelt.
         /// </summary>
         public static string Dashboard_ProjectRenameCheck_Warn_AlreadyExsits {
@@ -6845,6 +6854,26 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         public static System.Drawing.Bitmap shopping1 {
             get {
                 object obj = ResourceManager.GetObject("shopping1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap shopping2 {
+            get {
+                object obj = ResourceManager.GetObject("shopping2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap shopping3 {
+            get {
+                object obj = ResourceManager.GetObject("shopping3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -14,6 +15,37 @@ namespace CorpusExplorer.Sdk.Helper
 {
   public static class DataTableExtension
   {
+    public static DataTable ReplaceColumn(this DataTable dataTable, string documentGuidColumnName, Dictionary<Guid, object> getDocumentMetadata)
+    {
+      return ReplaceColumn(dataTable, documentGuidColumnName, (x) =>
+      {
+        switch (x)
+        {
+          case Guid guid:
+            return getDocumentMetadata.ContainsKey(guid) ? getDocumentMetadata[guid] : null;
+          case string str:
+          {
+            var parsed = Guid.Parse(str);
+            return getDocumentMetadata.ContainsKey(parsed) ? getDocumentMetadata[parsed] : null;
+          }
+          default:
+            return null;
+        }
+      });
+    }
+
+    public static DataTable ReplaceColumn(this DataTable dataTable, string columnName, Func<object, object> func)
+    {
+      dataTable.BeginLoadData();
+
+      var column = dataTable.Columns[columnName];
+      foreach (DataRow row in dataTable.Rows)
+        row[column] = func(row[column]);
+
+      dataTable.EndLoadData();
+      return dataTable;
+    }
+
     public static DataTable NormalizeDataTable(
       this DataTable dataTable,
       string columnNameToNormalize,
@@ -23,10 +55,10 @@ namespace CorpusExplorer.Sdk.Helper
       if (!dataTable.Columns.Contains(columnNameToNormalize))
         return dataTable;
 
-      var sum = dataTable.Rows.Cast<DataRow>().Sum(row => (double) row[columnNameToNormalize]);
+      var sum = dataTable.Rows.Cast<DataRow>().Sum(row => (double)row[columnNameToNormalize]);
 
       foreach (DataRow row in dataTable.Rows)
-        row[columnNameToNormalize] = Math.Round((double) row[columnNameToNormalize] / sum * denominator, round);
+        row[columnNameToNormalize] = Math.Round((double)row[columnNameToNormalize] / sum * denominator, round);
 
       return dataTable;
     }
@@ -76,7 +108,7 @@ namespace CorpusExplorer.Sdk.Helper
     {
       using (var ms = new MemoryStream())
       {
-        var tableWriter = new TsvTableWriter {OutputStream = ms};
+        var tableWriter = new TsvTableWriter { OutputStream = ms };
         tableWriter.WriteTable(dt);
         tableWriter.Destroy(false);
         return Configuration.Encoding.GetString(ms.GetBuffer());
@@ -87,7 +119,7 @@ namespace CorpusExplorer.Sdk.Helper
     {
       using (var ms = new MemoryStream())
       {
-        var tableWriter = new CsvTableWriter {OutputStream = ms};
+        var tableWriter = new CsvTableWriter { OutputStream = ms };
         tableWriter.WriteTable(dt);
         tableWriter.Destroy(false);
         return Configuration.Encoding.GetString(ms.GetBuffer());
@@ -98,7 +130,7 @@ namespace CorpusExplorer.Sdk.Helper
     {
       using (var ms = new MemoryStream())
       {
-        var tableWriter = new HtmlTableWriter {OutputStream = ms};
+        var tableWriter = new HtmlTableWriter { OutputStream = ms };
         tableWriter.WriteTable(dt);
         tableWriter.Destroy(false);
         return Configuration.Encoding.GetString(ms.GetBuffer());
@@ -109,7 +141,7 @@ namespace CorpusExplorer.Sdk.Helper
     {
       using (var ms = new MemoryStream())
       {
-        var tableWriter = new JsonTableWriter {OutputStream = ms};
+        var tableWriter = new JsonTableWriter { OutputStream = ms };
         tableWriter.WriteTable(dt);
         tableWriter.Destroy(false);
         return Configuration.Encoding.GetString(ms.GetBuffer());
@@ -120,7 +152,7 @@ namespace CorpusExplorer.Sdk.Helper
     {
       using (var ms = new MemoryStream())
       {
-        var tableWriter = new XmlTableWriter {OutputStream = ms};
+        var tableWriter = new XmlTableWriter { OutputStream = ms };
         tableWriter.WriteTable(dt);
         tableWriter.Destroy(false);
         return Configuration.Encoding.GetString(ms.GetBuffer());

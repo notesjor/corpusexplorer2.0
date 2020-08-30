@@ -126,8 +126,6 @@
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\Helper\DoubleKeyDictionary.cs" Link="CorpusExplorer\SDK\Blocks\Helper\DoubleKeyDictionary.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\Interfaces\IUseHydraSentenceOptimization.cs" Link="CorpusExplorer\SDK\Blocks\Interfaces\IUseHydraSentenceOptimization.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\Interfaces\IUseMemoryOverflowProtection.cs" Link="CorpusExplorer\SDK\Blocks\Interfaces\IUseMemoryOverflowProtection.cs" />
-    <Compile Include="..\CorpusExplorer.Sdk\Blocks\InverseDocumentTermFrequencyBlock.cs" Link="CorpusExplorer\SDK\Blocks\InverseDocumentTermFrequencyBlock.cs" />
-    <Compile Include="..\CorpusExplorer.Sdk\Blocks\InverseDocumentVectorBlock.cs" Link="CorpusExplorer\SDK\Blocks\InverseDocumentVectorBlock.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\KeywordBlock.cs" Link="CorpusExplorer\SDK\Blocks\KeywordBlock.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\KeywordCompletePreCalculatedBlock.cs" Link="CorpusExplorer\SDK\Blocks\KeywordCompletePreCalculatedBlock.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\KeywordPresetReferenceListBlock.cs" Link="CorpusExplorer\SDK\Blocks\KeywordPresetReferenceListBlock.cs" />

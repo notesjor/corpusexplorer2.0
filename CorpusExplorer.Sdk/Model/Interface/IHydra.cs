@@ -348,6 +348,15 @@ namespace CorpusExplorer.Sdk.Model.Interface
     T GetDocumentMetadata<T>(Guid documentGuid, string metaKey, T defaultValue);
 
     /// <summary>
+    ///   Fragt eine bestimmte Meta-Eigenschaft (metaKey) eines bestimmten Dokuments (documentGuid) ab.
+    ///   Die Rückgabe wird im Gegensatz zu Generic-Version (siehe Überladung) immer in string konvertiert.
+    /// </summary>
+    /// <param name="documentGuid">documentGUID</param>
+    /// <param name="metaKey">Eigenschaft</param>
+    /// <param name="defaultValue">Standardrückgabewert</param>
+    string GetDocumentMetadata(Guid documentGuid, string metaKey, string defaultValue);
+
+    /// <summary>
     ///   Führt eine tiefe Analyse der Dokumentmetadaten durch gibt alle verfügbaren Metabezeichnungen sowie die dazugehörigen
     ///   einmaligen Werte zurück.
     /// </summary>

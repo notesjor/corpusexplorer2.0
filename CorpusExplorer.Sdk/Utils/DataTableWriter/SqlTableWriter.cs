@@ -13,6 +13,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
   {
     public override string TableWriterTag => "F:SQL";
     public override string MimeType => "application/sql";
+    public override string Description => "SQL (schema + data)";
 
     public override void WriteTable(DataTable table)
     {
@@ -35,8 +36,6 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
     }
 
     public override AbstractTableWriter Clone(Stream stream)
-    {
-      return new SqlTableWriter { OutputStream = stream, WriteTid = WriteTid };
-    }
+      => new SqlTableWriter { OutputStream = stream, WriteTid = WriteTid };
   }
 }

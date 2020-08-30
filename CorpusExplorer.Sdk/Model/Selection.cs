@@ -1,17 +1,7 @@
-﻿using System.Xml.Serialization;
-using CorpusExplorer.Sdk.Ecosystem.Model;
-using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
-using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
-using CorpusExplorer.Sdk.Properties;
+﻿#region
 
 #region
 
-using CorpusExplorer.Sdk.Blocks.Abstract;
-using CorpusExplorer.Sdk.Helper;
-using CorpusExplorer.Sdk.Model.CorpusExplorer;
-using CorpusExplorer.Sdk.Model.Interface;
-using CorpusExplorer.Sdk.Utils.Filter;
-using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using System;
 using System.Collections;
 using System.Collections.Concurrent;
@@ -19,6 +9,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+using CorpusExplorer.Sdk.Blocks.Abstract;
+using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Helper;
+using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
+using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
+using CorpusExplorer.Sdk.Model.Interface;
+using CorpusExplorer.Sdk.Properties;
+using CorpusExplorer.Sdk.Utils.Filter;
+using CorpusExplorer.Sdk.Utils.Filter.Abstract;
+
+#endregion
 
 #endregion
 
@@ -43,6 +46,7 @@ namespace CorpusExplorer.Sdk.Model
     [XmlIgnore] [NonSerialized] private int _countToken = -1;
 
     [XmlIgnore] [NonSerialized] private int _countTokenMatches = -1;
+    [XmlIgnore] [NonSerialized] private IEnumerable<KeyValuePair<Guid, Dictionary<string, object>>> _documentMetadata;
 
     [XmlIgnore] [NonSerialized] private Project _project;
 
@@ -52,13 +56,67 @@ namespace CorpusExplorer.Sdk.Model
     [XmlIgnore] [NonSerialized] private Dictionary<Guid, HashSet<Guid>> _selection;
 
     [XmlArray] private KeyValuePair<Guid, HashSet<Guid>>[] _selectionSerialized;
-    [XmlIgnore] [NonSerialized] private IEnumerable<KeyValuePair<Guid, Dictionary<string, object>>> _documentMetadata;
 
     /// <summary>
     ///   Prevents a default instance of the <see cref="Selection" /> class from being created.
     /// </summary>
     private Selection()
     {
+    }
+
+    [XmlIgnore]
+    public int CountSentenceMatches
+    {
+      get
+      {
+        if (_countSentenceMatches > -1)
+          return _countSentenceMatches;
+
+        if (Queries == null || Queries.Length == 0)
+        {
+          _countSentenceMatches = CountSentences; // Falls keine Queries gesetzt, selektiere alles
+        }
+        else
+        {
+          _countSentenceMatches = 0;
+
+          foreach (var q in Queries)
+          {
+            var matches = q.GetSentenceAndWordIndices(this);
+            _countSentenceMatches += matches.SelectMany(x => x.Value).SelectMany(x => x.Value).Count();
+          }
+        }
+
+        return _countSentenceMatches;
+      }
+    }
+
+    [XmlIgnore]
+    public int CountTokenMatches
+    {
+      get
+      {
+        if (_countTokenMatches > -1)
+          return _countTokenMatches;
+
+        if (Queries == null || Queries.Length == 0)
+        {
+          _countTokenMatches = CountToken; // Falls keine Queries gesetzt, selektiere alles
+        }
+        else
+        {
+          _countTokenMatches = 0;
+
+          foreach (var q in Queries)
+          {
+            var matches = q.GetSentenceAndWordIndices(this);
+            _countTokenMatches += matches.SelectMany(x => x.Value).SelectMany(x => x.Value).SelectMany(x => x.Value)
+                                         .Count();
+          }
+        }
+
+        return _countTokenMatches;
+      }
     }
 
     /// <summary>
@@ -94,6 +152,19 @@ namespace CorpusExplorer.Sdk.Model
     }
 
     [XmlIgnore]
+    public bool IsEmpty => _selection == null || _selection.Count == 0 || _selection.Sum(pair => pair.Value.Count) == 0;
+
+    /// <summary>
+    ///   Gets or sets the project.
+    /// </summary>
+    [XmlIgnore]
+    internal Project Project
+    {
+      get => _project;
+      set => _project = value;
+    }
+
+    [XmlIgnore]
     public AbstractFilterQuery[] Queries { get; internal set; }
 
     /// <summary>
@@ -109,74 +180,6 @@ namespace CorpusExplorer.Sdk.Model
     /// </summary>
     [XmlElement]
     public string Verbal => Displayname;
-
-    /// <summary>
-    ///   Gets or sets the project.
-    /// </summary>
-    [XmlIgnore]
-    internal Project Project
-    {
-      get => _project;
-      set => _project = value;
-    }
-
-    [XmlIgnore]
-    public bool IsEmpty => _selection == null || _selection.Count == 0 || _selection.Sum(pair => pair.Value.Count) == 0;
-
-    [XmlIgnore]
-    public int CountTokenMatches
-    {
-      get
-      {
-        if (_countTokenMatches > -1)
-          return _countTokenMatches;
-
-        if (Queries == null || Queries.Length == 0)
-        {
-          _countTokenMatches = CountToken; // Falls keine Queries gesetzt, selektiere alles
-        }
-        else
-        {
-          _countTokenMatches = 0;
-
-          foreach (var q in Queries)
-          {
-            var matches = q.GetSentenceAndWordIndices(this);
-            _countTokenMatches += matches.SelectMany(x => x.Value).SelectMany(x => x.Value).SelectMany(x => x.Value)
-                                         .Count();
-          }
-        }
-
-        return _countTokenMatches;
-      }
-    }
-
-    [XmlIgnore]
-    public int CountSentenceMatches
-    {
-      get
-      {
-        if (_countSentenceMatches > -1)
-          return _countSentenceMatches;
-
-        if (Queries == null || Queries.Length == 0)
-        {
-          _countSentenceMatches = CountSentences; // Falls keine Queries gesetzt, selektiere alles
-        }
-        else
-        {
-          _countSentenceMatches = 0;
-
-          foreach (var q in Queries)
-          {
-            var matches = q.GetSentenceAndWordIndices(this);
-            _countSentenceMatches += matches.SelectMany(x => x.Value).SelectMany(x => x.Value).Count();
-          }
-        }
-
-        return _countSentenceMatches;
-      }
-    }
 
     /// <summary>
     ///   Erstellt ein neues Objekt, das eine Kopie der aktuellen Instanz darstellt.
@@ -200,16 +203,26 @@ namespace CorpusExplorer.Sdk.Model
       return res;
     }
 
+    public void Dispose()
+    {
+      _project = null;
+
+      foreach (var s in _subSelections)
+        s.Dispose();
+      _subSelections.Clear();
+
+      foreach (var s in _selection)
+        s.Value.Clear();
+      _selection.Clear();
+    }
+
     /// <summary>
     ///   Gibt einen Enumerator zurück, der eine Auflistung durchläuft.
     /// </summary>
     /// <returns>
     ///   Ein <see cref="T:System.Collections.IEnumerator" />-Objekt, das zum Durchlaufen der Auflistung verwendet werden kann.
     /// </returns>
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-      return GetEnumerator();
-    }
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
     /// <summary>
     ///   Gibt einen Enumerator zurück, der die Auflistung durchläuft.
@@ -218,10 +231,7 @@ namespace CorpusExplorer.Sdk.Model
     ///   Ein <see cref="T:System.Collections.Generic.IEnumerator`1" />, der zum Durchlaufen der Auflistung verwendet werden
     ///   kann.
     /// </returns>
-    public IEnumerator<KeyValuePair<Guid, HashSet<Guid>>> GetEnumerator()
-    {
-      return _selection.GetEnumerator();
-    }
+    public IEnumerator<KeyValuePair<Guid, HashSet<Guid>>> GetEnumerator() => _selection.GetEnumerator();
 
     /// <summary>
     ///   The contains corpus.
@@ -232,10 +242,7 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns>
     ///   The <see cref="bool" />.
     /// </returns>
-    public bool ContainsCorpus(Guid corpusGuid)
-    {
-      return _selection.ContainsKey(corpusGuid);
-    }
+    public bool ContainsCorpus(Guid corpusGuid) => _selection.ContainsKey(corpusGuid);
 
     /// <summary>
     ///   The contains document.
@@ -289,7 +296,8 @@ namespace CorpusExplorer.Sdk.Model
     ///   Auflistung aller Corpora per GUID
     /// </summary>
     [XmlIgnore]
-    public IEnumerable<Guid> CorporaGuids => _selection.Select(x => x.Key);
+    public IEnumerable<Guid> CorporaGuids
+      => _selection.Select(x => x.Key);
 
     /// <summary>
     ///   Gets the corpora guids and displaynames.
@@ -302,13 +310,15 @@ namespace CorpusExplorer.Sdk.Model
     ///   Gets the count corpora.
     /// </summary>
     [XmlIgnore]
-    public int CountCorpora => _selection.Count;
+    public int CountCorpora
+      => _selection.Count;
 
     /// <summary>
     ///   Gets the count documents.
     /// </summary>
     [XmlIgnore]
-    public int CountDocuments => _selection.Sum(pair => pair.Value.Count);
+    public int CountDocuments
+      => _selection.Sum(pair => pair.Value.Count);
 
     [XmlIgnore]
     public int CountSentences
@@ -377,13 +387,15 @@ namespace CorpusExplorer.Sdk.Model
     /// <summary>
     ///   Gets the document guids and titles.
     /// </summary>
-    IEnumerable<KeyValuePair<Guid, string>> IHydra.DocumentGuidAndDisplaynames => DocumentGuidsAndDisplaynames;
+    IEnumerable<KeyValuePair<Guid, string>> IHydra.DocumentGuidAndDisplaynames
+      => DocumentGuidsAndDisplaynames;
 
     /// <summary>
     ///   Gets the document guids.
     /// </summary>
     [XmlIgnore]
-    public IEnumerable<Guid> DocumentGuids => _selection.SelectMany(c => c.Value);
+    public IEnumerable<Guid> DocumentGuids
+      => _selection.SelectMany(c => c.Value);
 
     /// <summary>
     ///   Gets the document metadata.
@@ -414,10 +426,8 @@ namespace CorpusExplorer.Sdk.Model
       }
     }
 
-    public AbstractLayerAdapter ExportDocumentLayer(Guid documentGuid, string layerDisplayname)
-    {
-      return ContainsDocument(documentGuid) ? Project.ExportDocumentLayer(documentGuid, layerDisplayname) : null;
-    }
+    public AbstractLayerAdapter ExportDocumentLayer(Guid documentGuid, string layerDisplayname) =>
+      ContainsDocument(documentGuid) ? Project.ExportDocumentLayer(documentGuid, layerDisplayname) : null;
 
     /// <summary>
     ///   The find document guid.
@@ -431,10 +441,8 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns>
     ///   The <see cref="IEnumerable{T}" />.
     /// </returns>
-    public IEnumerable<Guid> FindDocumentByMetadata(string exampleKey, object exampleValue)
-    {
-      return FindDocumentByMetadata(new Dictionary<string, object> { { exampleKey, exampleValue } });
-    }
+    public IEnumerable<Guid> FindDocumentByMetadata(string exampleKey, object exampleValue) =>
+      FindDocumentByMetadata(new Dictionary<string, object> {{exampleKey, exampleValue}});
 
     /// <summary>
     ///   The find document guid.
@@ -456,13 +464,15 @@ namespace CorpusExplorer.Sdk.Model
     ///   Gets the first corpus.
     /// </summary>
     [XmlIgnore]
-    public Guid FirstCorpus => _selection.FirstOrDefault().Key;
+    public Guid FirstCorpus
+      => _selection.FirstOrDefault().Key;
 
     /// <summary>
     ///   Gets the first document.
     /// </summary>
     [XmlIgnore]
-    public Guid FirstDocument => _selection.FirstOrDefault().Value.FirstOrDefault();
+    public Guid FirstDocument
+      => _selection.FirstOrDefault().Value.FirstOrDefault();
 
     /// <summary>
     ///   The get corpora by displayname.
@@ -489,16 +499,12 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns>
     ///   Korpus-Objekt
     /// </returns>
-    public AbstractCorpusAdapter GetCorpus(Guid guid)
-    {
-      return Project.GetCorpus(guid);
-    }
+    public AbstractCorpusAdapter GetCorpus(Guid guid) => Project.GetCorpus(guid);
 
     public Guid GetCorpusGuidOfDocument(Guid documentGuid)
     {
-      foreach (var csel in _selection)
-        if (csel.Value.Contains(documentGuid))
-          return csel.Key;
+      foreach (var csel in _selection.Where(csel => csel.Value.Contains(documentGuid)))
+        return csel.Key;
       return Guid.Empty;
     }
 
@@ -517,15 +523,11 @@ namespace CorpusExplorer.Sdk.Model
       return key == Guid.Empty ? null : Project.GetCorpus(key);
     }
 
-    public int[][] GetDocument(Guid documentGuid, Guid layerGuid)
-    {
-      return GetCorpusOfDocument(documentGuid)?.GetDocument(documentGuid, layerGuid);
-    }
+    public int[][] GetDocument(Guid documentGuid, Guid layerGuid) =>
+      GetCorpusOfDocument(documentGuid)?.GetDocument(documentGuid, layerGuid);
 
-    public int[][] GetDocument(Guid documentGuid, string layerDisplayname)
-    {
-      return GetCorpusOfDocument(documentGuid)?.GetDocument(documentGuid, layerDisplayname);
-    }
+    public int[][] GetDocument(Guid documentGuid, string layerDisplayname) =>
+      GetCorpusOfDocument(documentGuid)?.GetDocument(documentGuid, layerDisplayname);
 
     /// <summary>
     ///   The get document title.
@@ -536,10 +538,8 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns>
     ///   The <see cref="IEnumerable{T}" />.
     /// </returns>
-    public IEnumerable<string> GetDocumentDisplayname(IEnumerable<Guid> documentGuids)
-    {
-      return documentGuids.Select(GetDocumentDisplayname);
-    }
+    public IEnumerable<string> GetDocumentDisplayname(IEnumerable<Guid> documentGuids) =>
+      documentGuids.Select(GetDocumentDisplayname);
 
     /// <summary>
     ///   The get document title.
@@ -550,36 +550,26 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns>
     ///   The <see cref="string" />.
     /// </returns>
-    public string GetDocumentDisplayname(Guid documentGuid)
-    {
-      return Project.GetDocumentDisplayname(documentGuid);
-    }
+    public string GetDocumentDisplayname(Guid documentGuid) => Project.GetDocumentDisplayname(documentGuid);
 
     public IEnumerable<IEnumerable<bool>> GetDocumentLayerValueMask(
       Guid documentGuid,
       string layerDisplayname,
-      string layerValue)
-    {
-      return Project.GetDocumentLayerValueMask(documentGuid, layerDisplayname, layerValue);
-    }
+      string layerValue) =>
+      Project.GetDocumentLayerValueMask(documentGuid, layerDisplayname, layerValue);
 
     public IEnumerable<IEnumerable<bool>> GetDocumentLayerValueMask(
       Guid documentGuid,
       Guid layerGuid,
-      string layerValue)
-    {
-      return Project.GetDocumentLayerValueMask(documentGuid, layerGuid, layerValue);
-    }
+      string layerValue) =>
+      Project.GetDocumentLayerValueMask(documentGuid, layerGuid, layerValue);
 
     /// <summary>
     ///   Gibt die Anzahl der Sätze in einem Dokument zurück.
     /// </summary>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    public int GetDocumentLengthInSentences(Guid documentGuid)
-    {
-      return Project.GetDocumentLengthInSentences(documentGuid);
-    }
+    public int GetDocumentLengthInSentences(Guid documentGuid) => Project.GetDocumentLengthInSentences(documentGuid);
 
     /// <summary>
     ///   Gibt die Anzahl der Sätze in einem Dokument zurück.
@@ -587,25 +577,18 @@ namespace CorpusExplorer.Sdk.Model
     /// <param name="corpusGuid">Korpus GUID in dem das Dokument enthalten sein muss</param>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    public int GetDocumentLengthInSentences(Guid corpusGuid, Guid documentGuid)
-    {
-      return Project.GetDocumentLengthInSentences(corpusGuid, documentGuid);
-    }
+    public int GetDocumentLengthInSentences(Guid corpusGuid, Guid documentGuid) =>
+      Project.GetDocumentLengthInSentences(corpusGuid, documentGuid);
 
     /// <summary>
     ///   Gibt die Anzahl der Worte in einem Dokument zurück.
     /// </summary>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    public int GetDocumentLengthInWords(Guid documentGuid)
-    {
-      return Project.GetDocumentLengthInWords(documentGuid);
-    }
+    public int GetDocumentLengthInWords(Guid documentGuid) => Project.GetDocumentLengthInWords(documentGuid);
 
-    public int GetDocumentLengthInWords(Guid corpusGuid, Guid documentGuid)
-    {
-      return Project.GetDocumentLengthInWords(corpusGuid, documentGuid);
-    }
+    public int GetDocumentLengthInWords(Guid corpusGuid, Guid documentGuid) =>
+      Project.GetDocumentLengthInWords(corpusGuid, documentGuid);
 
     /// <summary>
     ///   The get document metadata.
@@ -616,20 +599,17 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns>
     ///   The <see cref="Dictionary{TKey,TValue}" />.
     /// </returns>
-    public Dictionary<string, object> GetDocumentMetadata(Guid documentGuid)
-    {
-      return Project.GetDocumentMetadata(documentGuid);
-    }
+    public Dictionary<string, object> GetDocumentMetadata(Guid documentGuid) =>
+      Project.GetDocumentMetadata(documentGuid);
 
-    public T GetDocumentMetadata<T>(Guid documentGuid, string metaKey, T defaultValue)
-    {
-      return Project.GetDocumentMetadata(documentGuid, metaKey, defaultValue);
-    }
+    public T GetDocumentMetadata<T>(Guid documentGuid, string metaKey, T defaultValue) =>
+      Project.GetDocumentMetadata(documentGuid, metaKey, defaultValue);
 
-    public Dictionary<Guid, T> GetDocumentMetadata<T>(string metaKey, T defaultValue)
-    {
-      return Project.GetDocumentMetadata(metaKey, defaultValue);
-    }
+    public string GetDocumentMetadata(Guid documentGuid, string metaKey, string defaultValue) =>
+      Project.GetDocumentMetadata(documentGuid, metaKey, defaultValue);
+
+    public Dictionary<Guid, T> GetDocumentMetadata<T>(string metaKey, T defaultValue) =>
+      Project.GetDocumentMetadata(metaKey, defaultValue);
 
     /// <summary>
     ///   Führt eine tiefe Analyse der Dokumentmetadaten durch.
@@ -641,12 +621,12 @@ namespace CorpusExplorer.Sdk.Model
       var res = new Dictionary<string, HashSet<object>>();
 
       foreach (var x in meta)
-        foreach (var y in x.Value)
-        {
-          if (!res.ContainsKey(y.Key))
-            res.Add(y.Key, new HashSet<object>());
-          res[y.Key].Add(y.Value);
-        }
+      foreach (var y in x.Value)
+      {
+        if (!res.ContainsKey(y.Key))
+          res.Add(y.Key, new HashSet<object>());
+        res[y.Key].Add(y.Value);
+      }
 
       return res;
     }
@@ -686,10 +666,8 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns>
     ///   The <see cref="AbstractCorpusAdapter" />.
     /// </returns>
-    public AbstractCorpusAdapter GetFirstCorpusByDisplayname(string displayname)
-    {
-      return _selection.Count == 0 ? null : Project.GetCorpus(_selection.FirstOrDefault().Key);
-    }
+    public AbstractCorpusAdapter GetFirstCorpusByDisplayname(string displayname) =>
+      _selection.Count == 0 ? null : Project.GetCorpus(_selection.FirstOrDefault().Key);
 
     /// <summary>
     ///   The get layer by guid.
@@ -700,20 +678,15 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns>
     ///   The <see cref="AbstractLayerAdapter" />.
     /// </returns>
-    public AbstractLayerAdapter GetLayer(Guid layerGuid)
-    {
-      return Project.GetLayer(layerGuid);
-    }
+    public AbstractLayerAdapter GetLayer(Guid layerGuid) => Project.GetLayer(layerGuid);
 
     /// <summary>
     ///   Gibt eine Auflistung aller Layer zurück die dieses Dokument enthalten
     /// </summary>
     /// <param name="documentGuid">Guid des Dokuments</param>
     /// <returns>Auflistung</returns>
-    public IEnumerable<KeyValuePair<Guid, string>> GetLayerGuidAndDisplaynamesOfDocument(Guid documentGuid)
-    {
-      return Project.GetLayerGuidAndDisplaynamesOfDocument(documentGuid);
-    }
+    public IEnumerable<KeyValuePair<Guid, string>> GetLayerGuidAndDisplaynamesOfDocument(Guid documentGuid) =>
+      Project.GetLayerGuidAndDisplaynamesOfDocument(documentGuid);
 
     /// <summary>
     ///   The get layer of document.
@@ -727,14 +700,12 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns>
     ///   The <see cref="AbstractLayerAdapter" />.
     /// </returns>
-    public AbstractLayerAdapter GetLayerOfDocument(Guid documentGuid, string layerDisplayname)
-    {
-      return (from csel in _selection
-              select Project.GetCorpus(csel.Key)
-              into corpus
-              where corpus != null && corpus.ContainsDocument(documentGuid)
-              select corpus.GetLayerOfDocument(documentGuid, layerDisplayname)).FirstOrDefault();
-    }
+    public AbstractLayerAdapter GetLayerOfDocument(Guid documentGuid, string layerDisplayname) =>
+      (from csel in _selection
+       select Project.GetCorpus(csel.Key)
+       into corpus
+       where corpus != null && corpus.ContainsDocument(documentGuid)
+       select corpus.GetLayerOfDocument(documentGuid, layerDisplayname)).FirstOrDefault();
 
     /// <summary>
     ///   The get layers by displayname.
@@ -763,14 +734,12 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns>
     ///   The <see cref="IEnumerable{T}" />.
     /// </returns>
-    public IEnumerable<AbstractLayerAdapter> GetLayersOfDocument(Guid documentGuid)
-    {
-      return (from csel in _selection
-              select Project.GetCorpus(csel.Key)
-              into corpus
-              where corpus != null && corpus.ContainsDocument(documentGuid)
-              select corpus.GetLayersOfDocument(documentGuid)).FirstOrDefault();
-    }
+    public IEnumerable<AbstractLayerAdapter> GetLayersOfDocument(Guid documentGuid) =>
+      (from csel in _selection
+       select Project.GetCorpus(csel.Key)
+       into corpus
+       where corpus != null && corpus.ContainsDocument(documentGuid)
+       select corpus.GetLayersOfDocument(documentGuid)).FirstOrDefault();
 
     /// <summary>
     ///   Gibt die Layerwerte aller Layer zurück die mit dem angegebenen LayerDisplayname bezeichnet sind.
@@ -797,10 +766,7 @@ namespace CorpusExplorer.Sdk.Model
     /// </summary>
     /// <param name="layerGuid">Guid des Layers</param>
     /// <returns>Layerwerte</returns>
-    public IEnumerable<string> GetLayerValues(Guid layerGuid)
-    {
-      return Project.GetLayerValues(layerGuid);
-    }
+    public IEnumerable<string> GetLayerValues(Guid layerGuid) => Project.GetLayerValues(layerGuid);
 
     /// <summary>
     ///   The get readable document.
@@ -814,15 +780,11 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns>
     ///   The <see cref="IEnumerable" />.
     /// </returns>
-    public IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, string layerDisplayname)
-    {
-      return Project.GetReadableDocument(documentGuid, layerDisplayname);
-    }
+    public IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, string layerDisplayname) =>
+      Project.GetReadableDocument(documentGuid, layerDisplayname);
 
-    public IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, Guid layerGuid)
-    {
-      return Project.GetReadableDocument(documentGuid, layerGuid);
-    }
+    public IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, Guid layerGuid) =>
+      Project.GetReadableDocument(documentGuid, layerGuid);
 
     /// <summary>
     ///   The get readable document snippet.
@@ -846,10 +808,8 @@ namespace CorpusExplorer.Sdk.Model
       Guid documentGuid,
       string layerDisplayname,
       int start,
-      int stop)
-    {
-      return Project.GetReadableDocumentSnippet(documentGuid, layerDisplayname, start, stop);
-    }
+      int stop) =>
+      Project.GetReadableDocumentSnippet(documentGuid, layerDisplayname, start, stop);
 
     /// <summary>
     ///   The get readable multilayer document by guid.
@@ -860,10 +820,8 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns>
     ///   The <see cref="Dictionary{TKey,TValue}" />.
     /// </returns>
-    public Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(Guid documentGuid)
-    {
-      return Project.GetReadableMultilayerDocument(documentGuid);
-    }
+    public Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(Guid documentGuid) =>
+      Project.GetReadableMultilayerDocument(documentGuid);
 
     /// <summary>
     ///   The get readable multilayer document by guid.
@@ -875,10 +833,8 @@ namespace CorpusExplorer.Sdk.Model
     ///   The <see cref="Dictionary{TKey,TValue}" />.
     /// </returns>
     public Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(
-      Guid documentGuid, int start, int stop)
-    {
-      return Project.GetReadableMultilayerDocument(documentGuid, start, stop);
-    }
+      Guid documentGuid, int start, int stop) =>
+      Project.GetReadableMultilayerDocument(documentGuid, start, stop);
 
     /// <summary>
     ///   Layers the copy.
@@ -988,10 +944,8 @@ namespace CorpusExplorer.Sdk.Model
       Guid layerGuid,
       int sentenceIndex,
       int wordIndex,
-      string layerValue)
-    {
-      return Project.SetDocumentLayerValueMask(documentGuid, layerGuid, sentenceIndex, wordIndex, layerValue);
-    }
+      string layerValue) =>
+      Project.SetDocumentLayerValueMask(documentGuid, layerGuid, sentenceIndex, wordIndex, layerValue);
 
     /// <summary>
     ///   Switch für die angegebene Position im Text für einen bestimmten Layerwert.
@@ -1010,10 +964,8 @@ namespace CorpusExplorer.Sdk.Model
       string layerDisplayname,
       int sentenceIndex,
       int wordIndex,
-      string layerValue)
-    {
-      return Project.SetDocumentLayerValueMask(documentGuid, layerDisplayname, sentenceIndex, wordIndex, layerValue);
-    }
+      string layerValue) =>
+      Project.SetDocumentLayerValueMask(documentGuid, layerDisplayname, sentenceIndex, wordIndex, layerValue);
 
     /// <summary>
     ///   The set document metadata.
@@ -1077,33 +1029,11 @@ namespace CorpusExplorer.Sdk.Model
       return res;
     }
 
-    public Selection Create(IEnumerable<Guid> guids, string displayname, bool noParent)
-    {
-      return Create(Project, DocumentGuidsToSelectionDictionary(guids), displayname, this, noParent);
-    }
+    public Selection Create(IEnumerable<Guid> guids, string displayname, bool noParent) =>
+      Create(Project, DocumentGuidsToSelectionDictionary(guids), displayname, this, noParent);
 
-    private Dictionary<Guid, HashSet<Guid>> DocumentGuidsToSelectionDictionary(IEnumerable<Guid> guids)
-    {
-      var dic = new Dictionary<Guid, HashSet<Guid>>();
-      foreach (var guid in guids)
-      {
-        var csel = GetCorpusGuidOfDocument(guid);
-        if (csel == Guid.Empty)
-          continue;
-
-        if (dic.ContainsKey(csel))
-          dic[csel].Add(guid);
-        else
-          dic.Add(csel, new HashSet<Guid> { guid });
-      }
-
-      return dic;
-    }
-
-    public Selection Create(Dictionary<Guid, HashSet<Guid>> definition, string displayName, bool noParent)
-    {
-      return Create(Project, definition, displayName, this, noParent);
-    }
+    public Selection Create(Dictionary<Guid, HashSet<Guid>> definition, string displayName, bool noParent) =>
+      Create(Project, definition, displayName, this, noParent);
 
     /// <summary>
     ///   Erzeugt eine neue Unterauswahl.
@@ -1130,26 +1060,20 @@ namespace CorpusExplorer.Sdk.Model
     ///   The <see cref="T" />.
     /// </returns>
     public T CreateBlock<T>()
-      where T : AbstractBlock
-    {
-      return Configuration.Cache.CreateBlock(this, typeof(T)) as T;
-    }
+      where T : AbstractBlock =>
+      Configuration.Cache.CreateBlock(this, typeof(T)) as T;
 
-    public Selection CreateTemporary(Dictionary<Guid, HashSet<Guid>> definition)
-    {
-      return new Selection
+    public Selection CreateTemporary(Dictionary<Guid, HashSet<Guid>> definition) =>
+      new Selection
       {
         _guid = Guid.NewGuid(),
         _selection = definition,
         Displayname = Resources.TemporarySelection,
         Project = Project
       };
-    }
 
-    public Selection CreateTemporary(IEnumerable<Guid> definition)
-    {
-      return CreateTemporary(DocumentGuidsToSelectionDictionary(definition));
-    }
+    public Selection CreateTemporary(IEnumerable<Guid> definition) =>
+      CreateTemporary(DocumentGuidsToSelectionDictionary(definition));
 
     public Selection CreateTemporary(IEnumerable<AbstractFilterQuery> queries)
     {
@@ -1162,6 +1086,90 @@ namespace CorpusExplorer.Sdk.Model
 
       return res;
     }
+
+    private Dictionary<Guid, HashSet<Guid>> DocumentGuidsToSelectionDictionary(IEnumerable<Guid> guids)
+    {
+      var dic = new Dictionary<Guid, HashSet<Guid>>();
+      foreach (var guid in guids)
+      {
+        var csel = GetCorpusGuidOfDocument(guid);
+        if (csel == Guid.Empty)
+          continue;
+
+        if (dic.ContainsKey(csel))
+          dic[csel].Add(guid);
+        else
+          dic.Add(csel, new HashSet<Guid> {guid});
+      }
+
+      return dic;
+    }
+
+    public Dictionary<Guid, object> GetCorporaMetaData(string metadataKey)
+    {
+      return _selection.ToDictionary(c => c.Key, c => GetCorpus(c.Key).GetCorpusMetadata(metadataKey));
+    }
+
+    public Dictionary<Guid, T> GetCorporaMetaData<T>(string metadataKey)
+    {
+      var dictionary = new Dictionary<Guid, T>();
+      foreach (var pair in _selection)
+      {
+        var data = GetCorpus(pair.Key).GetCorpusMetadata(metadataKey);
+        T value;
+        try
+        {
+          value = (T) data;
+        }
+        catch
+        {
+          value = default;
+        }
+
+        dictionary.Add(pair.Key, value);
+      }
+
+      return dictionary;
+    }
+
+    public Dictionary<Guid, IEnumerable<KeyValuePair<string, object>>> GetCorporaMetaData()
+    {
+      return _selection.ToDictionary(c => c.Key, c => GetCorpus(c.Key).GetCorpusMetadata());
+    }
+
+    public IEnumerable<KeyValuePair<string, object>> GetCorpusMetaData(Guid corpusGuid) =>
+      _selection.ContainsKey(corpusGuid) ? GetCorpus(corpusGuid).GetCorpusMetadata() : null;
+
+    public Guid GetDocumentGuid(int index)
+    {
+      return _selection.SelectMany(c => c.Value).ToArray()[index];
+    }
+
+    public Dictionary<string, Type> GetDocumentMetadataPrototypeOnlyPropertiesAndTypes()
+    {
+      var input = GetDocumentMetadataPrototype();
+      var res = new Dictionary<string, Type>();
+
+      foreach (var p in input)
+      {
+        var temp = new Dictionary<Type, int>();
+
+        foreach (var o in p.Value)
+        {
+          var t = o.GetType();
+          if (temp.ContainsKey(t))
+            temp[t]++;
+          else
+            temp.Add(t, 1);
+        }
+
+        res.Add(p.Key, temp.OrderByDescending(x => x.Value).First().Key);
+      }
+
+      return res;
+    }
+
+    public Project GetParentProject() => _project;
 
     public Dictionary<Guid, int[]> GetSelectedSentences()
     {
@@ -1203,77 +1211,6 @@ namespace CorpusExplorer.Sdk.Model
       return res;
     }
 
-    public Dictionary<Guid, object> GetCorporaMetaData(string metadataKey)
-    {
-      return _selection.ToDictionary(c => c.Key, c => GetCorpus(c.Key).GetCorpusMetadata(metadataKey));
-    }
-
-    public Dictionary<Guid, T> GetCorporaMetaData<T>(string metadataKey)
-    {
-      var dictionary = new Dictionary<Guid, T>();
-      foreach (var pair in _selection)
-      {
-        var data = GetCorpus(pair.Key).GetCorpusMetadata(metadataKey);
-        T value;
-        try
-        {
-          value = (T)data;
-        }
-        catch
-        {
-          value = default(T);
-        }
-
-        dictionary.Add(pair.Key, value);
-      }
-
-      return dictionary;
-    }
-
-    public Dictionary<Guid, IEnumerable<KeyValuePair<string, object>>> GetCorporaMetaData()
-    {
-      return _selection.ToDictionary(c => c.Key, c => GetCorpus(c.Key).GetCorpusMetadata());
-    }
-
-    public IEnumerable<KeyValuePair<string, object>> GetCorpusMetaData(Guid corpusGuid)
-    {
-      return _selection.ContainsKey(corpusGuid) ? GetCorpus(corpusGuid).GetCorpusMetadata() : null;
-    }
-
-    public Guid GetDocumentGuid(int index)
-    {
-      return _selection.SelectMany(c => c.Value).ToArray()[index];
-    }
-
-    public Dictionary<string, Type> GetDocumentMetadataPrototypeOnlyPropertiesAndTypes()
-    {
-      var input = GetDocumentMetadataPrototype();
-      var res = new Dictionary<string, Type>();
-
-      foreach (var p in input)
-      {
-        var temp = new Dictionary<Type, int>();
-
-        foreach (var o in p.Value)
-        {
-          var t = o.GetType();
-          if (temp.ContainsKey(t))
-            temp[t]++;
-          else
-            temp.Add(t, 1);
-        }
-
-        res.Add(p.Key, temp.OrderByDescending(x => x.Value).First().Key);
-      }
-
-      return res;
-    }
-
-    public Project GetParentProject()
-    {
-      return _project;
-    }
-
     /// <summary>
     ///   Virtualisiert
     /// </summary>
@@ -1283,7 +1220,7 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns></returns>
     public int[][] HydraOptimization(AbstractCorpusAdapter corpus, Guid documentGuid, int[][] sentences)
     {
-      if (Queries == null ||
+      if (Queries        == null ||
           Queries.Length == 0)
         return sentences;
 
@@ -1293,63 +1230,6 @@ namespace CorpusExplorer.Sdk.Model
         indices.Add(i);
 
       return sentences.Where((t, i) => indices.Contains(i)).ToArray();
-    }
-
-    public void RemoveSelection(Selection selection)
-    {
-      _subSelections.Remove(selection);
-    }
-
-    /// <summary>
-    ///   Verändert die Auswahl.
-    ///   Achtung: Dabei werden alle Blöcke und Unterselektionen gelöscht.
-    /// </summary>
-    /// <param name="queries">Queries</param>
-    public void Reselect(IEnumerable<AbstractFilterQuery> queries)
-    {
-      _subSelections.Clear();
-
-      var temp = Create(queries, Displayname, false);
-      _selection = temp._selection;
-    }
-
-    public Dictionary<Guid, HashSet<Guid>> ToDictionary()
-    {
-      var res = new Dictionary<Guid, HashSet<Guid>>();
-      foreach (var csel in _selection)
-      {
-        var hs = new HashSet<Guid>();
-        foreach (var dsel in csel.Value)
-          hs.Add(dsel);
-        res.Add(csel.Key, hs);
-      }
-
-      return res;
-    }
-
-    /// <summary>
-    ///   The remove.
-    /// </summary>
-    /// <param name="corpusGuid">
-    ///   The corpus guid.
-    /// </param>
-    internal void Remove(Guid corpusGuid)
-    {
-      _selection.Remove(corpusGuid);
-    }
-
-    /// <summary>
-    ///   The remove.
-    /// </summary>
-    /// <param name="corpusGuid">
-    ///   The corpus guid.
-    /// </param>
-    /// <param name="documentGuid">
-    ///   The document guid.
-    /// </param>
-    internal void Remove(Guid corpusGuid, Guid documentGuid)
-    {
-      _selection[corpusGuid].Remove(documentGuid);
     }
 
     [OnDeserialized]
@@ -1443,6 +1323,63 @@ namespace CorpusExplorer.Sdk.Model
     }
 
     /// <summary>
+    ///   The remove.
+    /// </summary>
+    /// <param name="corpusGuid">
+    ///   The corpus guid.
+    /// </param>
+    internal void Remove(Guid corpusGuid)
+    {
+      _selection.Remove(corpusGuid);
+    }
+
+    /// <summary>
+    ///   The remove.
+    /// </summary>
+    /// <param name="corpusGuid">
+    ///   The corpus guid.
+    /// </param>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    internal void Remove(Guid corpusGuid, Guid documentGuid)
+    {
+      _selection[corpusGuid].Remove(documentGuid);
+    }
+
+    public void RemoveSelection(Selection selection)
+    {
+      _subSelections.Remove(selection);
+    }
+
+    /// <summary>
+    ///   Verändert die Auswahl.
+    ///   Achtung: Dabei werden alle Blöcke und Unterselektionen gelöscht.
+    /// </summary>
+    /// <param name="queries">Queries</param>
+    public void Reselect(IEnumerable<AbstractFilterQuery> queries)
+    {
+      _subSelections.Clear();
+
+      var temp = Create(queries, Displayname, false);
+      _selection = temp._selection;
+    }
+
+    public Dictionary<Guid, HashSet<Guid>> ToDictionary()
+    {
+      var res = new Dictionary<Guid, HashSet<Guid>>();
+      foreach (var csel in _selection)
+      {
+        var hs = new HashSet<Guid>();
+        foreach (var dsel in csel.Value)
+          hs.Add(dsel);
+        res.Add(csel.Key, hs);
+      }
+
+      return res;
+    }
+
+    /// <summary>
     ///   The proxy request dictionary delegate.
     /// </summary>
     /// <param name="c">
@@ -1463,18 +1400,5 @@ namespace CorpusExplorer.Sdk.Model
     /// <typeparam name="T">
     /// </typeparam>
     private delegate IEnumerable<T> ProxyRequestListDelegate<out T>(AbstractCorpusAdapter c);
-
-    public void Dispose()
-    {
-      _project = null;
-      
-      foreach (var s in _subSelections)
-        s.Dispose();
-      _subSelections.Clear();
-
-      foreach (var s in _selection)
-        s.Value.Clear();
-      _selection.Clear();
-    }
   }
 }

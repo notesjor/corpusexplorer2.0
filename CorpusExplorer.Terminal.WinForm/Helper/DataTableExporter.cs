@@ -28,9 +28,29 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
         {"SQL (*.sql)|*.sql", (grid, path) => ExportWithDataTableWriter(grid, new SqlTableWriter(), path)}
       }.ToArray();
 
+    private static readonly KeyValuePair<string, ExportDirectDelegate>[] _exportFormatsDirect =
+      new Dictionary<string, ExportDirectDelegate>
+      {
+        {"TSV (*.tsv)|*.tsv", (dt, path) => ExportWithDataTableWriter(new TsvTableWriter(), path, dt)},
+        {"CSV (*.csv)|*.csv", (dt, path) => ExportWithDataTableWriter(new CsvTableWriter(), path, dt)},
+        {"JSON (*.json)|*.json", (dt, path) => ExportWithDataTableWriter(new JsonTableWriter(), path, dt)},
+        {"XML (*.xml)|*.xml", (dt, path) => ExportWithDataTableWriter(new XmlTableWriter(), path, dt)},
+        {"SQL (*.sql)|*.sql", (dt, path) => ExportWithDataTableWriter(new SqlTableWriter(), path, dt)}
+      }.ToArray();
+
     public static void Export(DataTable dataTable)
     {
-      Export(new RadGridView {DataSource = dataTable});
+      var sfd = new SaveFileDialog
+      {
+        Filter = string.Join("|", _exportFormats.Select(x => x.Key)),
+        CheckPathExists = true
+      };
+
+      if (sfd.ShowDialog() != DialogResult.OK)
+        return;
+
+      Processing.Invoke("Daten werden exportiert...",
+                        () => { _exportFormatsDirect[sfd.FilterIndex - 1].Value(dataTable, sfd.FileName); });
     }
 
     public static void Export(RadPivotGrid pivot)
@@ -81,6 +101,11 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
         res.Rows.Add(cna.Select(n => row.Cells[n].Value).ToArray());
       res.EndLoadData();
 
+      ExportWithDataTableWriter(tableWriter, path, res);
+    }
+
+    private static void ExportWithDataTableWriter(AbstractTableWriter tableWriter, string path, DataTable res)
+    {
       using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
       {
         tableWriter.OutputStream = fs;
@@ -126,5 +151,6 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
     }
 
     private delegate void ExportDelegate(RadGridView grid, string path);
+    private delegate void ExportDirectDelegate(DataTable dt, string path);
   }
 }

@@ -231,24 +231,27 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       if (project.ContainsCorpus(corpus.CorpusGuid))
         return;
 
+      var name = corpus.CorpusDisplayname;
       var selection = corpus.ToSelection();
-      var vm = new ValidateSelectionIntegrityViewModel { Selection = selection };
-      vm.Execute();
 
-      if (checkErrors && vm.HasError)
+      if (checkErrors)
       {
-        Processing.SplashClose();
-        var form = new CorpusErrorForm(vm);
-        form.ShowDialog();
-
-        if (form.ResultSelection != null)
+        var vm = new ValidateSelectionIntegrityViewModel { Selection = selection };
+        vm.Execute();
+        if (vm.HasError)
         {
-          corpus = form.ResultSelection.ToCorpus();
           Processing.SplashClose();
-          if (MessageBox.Show("Möchten Sie das bereinigte Korpus speichern?", "Änderungen speichern?",
-                              MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            Export(selection);
-          Processing.SplashShow("Korpus wird überarbeitet...");
+          var form = new CorpusErrorForm(vm);
+          form.ShowDialog();
+
+          if (form.ResultSelection != null)
+          {
+            Processing.SplashClose();
+            if (MessageBox.Show("Möchten Sie das bereinigte Korpus speichern?", "Änderungen speichern?",
+                                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+              Export(form.ResultSelection);
+            Processing.SplashShow("Korpus wird überarbeitet...");
+          }
         }
       }
 
@@ -388,8 +391,8 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
         Thread.Sleep(200);
         FileIO.Write(path, lines.Where(line => !line.ToLower().Contains("corpusexplorer/app.zip|")).ToArray(), Encoding.UTF8);
         MessageBox.Show("Der CorpusExplorer wurde erfolgreich zurückgesetzt (soft reset). Bitte starten Sie den CorpusExplorer erneut und installieren Sie das Update.",
-                        "..:: CorpusExplorer - QuickMode ::..", 
-                        MessageBoxButtons.OK, 
+                        "..:: CorpusExplorer - QuickMode ::..",
+                        MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
       }
       catch

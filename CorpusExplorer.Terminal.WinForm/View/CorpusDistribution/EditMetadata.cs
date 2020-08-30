@@ -27,7 +27,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
 
     private void btn_export_Click(object sender, EventArgs e)
     {
-      var sfd = new SaveFileDialog {Filter = "CSV-Datei (*.csv)|*.csv"};
+      var sfd = new SaveFileDialog {Filter = "TSV-Datei (*.tsv)|*.tsv" };
       if (sfd.ShowDialog() != DialogResult.OK)
         return;
       _vm.Export(sfd.FileName);
@@ -35,7 +35,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
 
     private void btn_import_Click(object sender, EventArgs e)
     {
-      var ofd = new OpenFileDialog {Filter = "CSV-Datei (*.csv)|*.csv"};
+      var ofd = new OpenFileDialog {Filter = "TSV-Datei (*.tsv)|*.tsv"};
       if (ofd.ShowDialog() != DialogResult.OK)
         return;
       _vm.Import(ofd.FileName);

@@ -14,7 +14,7 @@ namespace CorpusExplorer.Sdk.Ecosystem
   public static class CorpusExplorerEcosystem
   {
     public static TerminalController CurrentTerminalController { get;private set; }
-    public static Project CurrentProject => CurrentTerminalController.Project;
+    public static Project CurrentProject => CurrentTerminalController?.Project;
 
     /// <summary>
     ///   Initialisiert ein vollständiges CorpusExplorer-Ökosystem.

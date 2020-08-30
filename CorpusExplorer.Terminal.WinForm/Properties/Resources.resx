@@ -123,6 +123,9 @@
   <data name="VerfügbareAnalysemodule" xml:space="preserve">
     <value>Verfügbare Analysemodule</value>
   </data>
+  <data name="Lexikon" xml:space="preserve">
+    <value>Lexikon</value>
+  </data>
   <data name="DefinedLayersCountMussImBereich1Bis3Liegen" xml:space="preserve">
     <value>definedLayers.Count muss im Bereich 1 bis 3 liegen.</value>
   </data>
@@ -154,9 +157,6 @@
   <data name="ErgebnissFilter" xml:space="preserve">
     <value>Ergebniss-Filter</value>
   </data>
-  <data name="CleanDocuments" xml:space="preserve">
-    <value>Bereinige Dokumente...</value>
-  </data>
   <data name="paragraph_align_justified" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\paragraph_align_justified.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -174,6 +174,9 @@
   </data>
   <data name="GebenSieHierEinenSinnvollenNamenFürDenSchnappschussEin" xml:space="preserve">
     <value>Geben Sie hier einen sinnvollen Namen für den Schnappschuss ein...</value>
+  </data>
+  <data name="ShowScraperResults_IgnoreText" xml:space="preserve">
+    <value>Text ignorieren?</value>
   </data>
   <data name="SpcialFunctions_ChatView" xml:space="preserve">
     <value>Chat-Ansicht</value>
@@ -201,9 +204,6 @@
   </data>
   <data name="find" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\find.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="health" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\health.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Help_Static_HandsOnLab" xml:space="preserve">
     <value>http://www.bitcut.de/products/corpusexplorer/help/praktische_ubungen.html</value>
@@ -264,8 +264,8 @@ auf dieses Fenster</value>
   <data name="select_table" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\select_table.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="thermometer-user" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\thermometer-user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="archive-download@48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\archive-download@48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="IchHabSEiligWebCrawlerAbbrechen" xml:space="preserve">
     <value>Ich hab's eilig - WebCrawler abbrechen!</value>
@@ -342,9 +342,6 @@ auf dieses Fenster</value>
   <data name="view_large_icons1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\view_large_icons1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Neu" xml:space="preserve">
-    <value>Neu</value>
-  </data>
   <data name="ExportiereAlsHTML" xml:space="preserve">
     <value>Exportiere als HTML</value>
   </data>
@@ -411,6 +408,9 @@ auf dieses Fenster</value>
   <data name="save_theme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save_theme.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Dashboard_ProjectRenameCheck_Warn_AlreadyExsits" xml:space="preserve">
+    <value>Das Projekt exsistiert bereits</value>
+  </data>
   <data name="SortierenInAbsteigendeReihenfolge" xml:space="preserve">
     <value>Sortieren in absteigende Reihenfolge</value>
   </data>
@@ -446,6 +446,9 @@ auf dieses Fenster</value>
   </data>
   <data name="FulltextAnnotation_MaxHighlightLimmit" xml:space="preserve">
     <value>Sie können maximal {0} Hervorhebungen vornehmen. Bitte wählen Sie eine andere Hervorhebung ab, um diesen Wert hervorzuheben.</value>
+  </data>
+  <data name="DefiniertDurchSchnappschuss" xml:space="preserve">
+    <value>Definiert durch Schnappschuss</value>
   </data>
   <data name="Dashboard_RamCleanup" xml:space="preserve">
     <value>Speicher erfolgreich bereinigt!</value>
@@ -525,11 +528,8 @@ auf dieses Fenster</value>
   <data name="comment" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\comment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Project_CreateNew" xml:space="preserve">
-    <value>Möchten Sie wirklich ein neues Projekt erstellen?</value>
-  </data>
-  <data name="AlleTexteEinesKorpus" xml:space="preserve">
-    <value>Alle Texte eines Korpus</value>
+  <data name="FürDenSuchbegriffExisitierenKeineSignifikantenKookkurrenzen" xml:space="preserve">
+    <value>Für den Suchbegriff exisitieren keine signifikanten Kookkurrenzen.</value>
   </data>
   <data name="TextDP" xml:space="preserve">
     <value>Text:</value>
@@ -596,6 +596,9 @@ auf dieses Fenster</value>
   </data>
   <data name="PleaseInstallUpdate" xml:space="preserve">
     <value>&lt;html&gt;Bitte installieren Sie das Update so bald wie möglich,&lt;br/&gt;um die neusten Funktionen nutzen zu können.&lt;/html&gt;</value>
+  </data>
+  <data name="LayerDP" xml:space="preserve">
+    <value>Layer:</value>
   </data>
   <data name="redo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\redo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -699,9 +702,6 @@ auf dieses Fenster</value>
   <data name="dashes-update" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dashes-update.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="group_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\group_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="folder_action_close" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\folder_action_close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -725,6 +725,9 @@ auf dieses Fenster</value>
   </data>
   <data name="Dashboard_SnapshotErrorNoDocumentsHead" xml:space="preserve">
     <value>Leerer Schnappschuss</value>
+  </data>
+  <data name="ProfilVon0" xml:space="preserve">
+    <value>Profil von: {0}</value>
   </data>
   <data name="FulltextAnnotation_RenameLayer_Head" xml:space="preserve">
     <value>Layernamen ändern</value>
@@ -761,9 +764,6 @@ auf dieses Fenster</value>
   </data>
   <data name="find1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\find1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_3KorpusakquiseKonfigurierenUndStarten" xml:space="preserve">
-    <value>3. Korpusakquise konfigurieren und starten</value>
   </data>
   <data name="Auswahl" xml:space="preserve">
     <value>Auswahl:</value>
@@ -819,6 +819,9 @@ auf dieses Fenster</value>
   <data name="MinimumFilterSignifikanz" xml:space="preserve">
     <value>Minimum-Filter (Signifikanz)</value>
   </data>
+  <data name="shopping2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shopping2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="SpalteRechtsFixieren" xml:space="preserve">
     <value>Spalte rechts fixieren</value>
   </data>
@@ -834,8 +837,11 @@ auf dieses Fenster</value>
   <data name="Ändern" xml:space="preserve">
     <value>Ändern</value>
   </data>
-  <data name="user_group1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\user_group1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Dashboard_ProjectLoad" xml:space="preserve">
+    <value>Lade Projekt...</value>
+  </data>
+  <data name="AlleTexteEinesKorpus" xml:space="preserve">
+    <value>Alle Texte eines Korpus</value>
   </data>
   <data name="notes_text" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\notes_text.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -920,9 +926,6 @@ auf dieses Fenster</value>
   </data>
   <data name="piece" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\piece.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="export_text" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\export_text.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Projekt" xml:space="preserve">
     <value>Projekt</value>
@@ -1092,9 +1095,6 @@ auf dieses Fenster</value>
   <data name="MetadatenAnzeigen" xml:space="preserve">
     <value>Metadaten anzeigen</value>
   </data>
-  <data name="Polarisation" xml:space="preserve">
-    <value>Polarisation</value>
-  </data>
   <data name="KurzesEinstiegsvideo" xml:space="preserve">
     <value>Kurzes Einstiegsvideo</value>
   </data>
@@ -1115,9 +1115,6 @@ auf dieses Fenster</value>
   </data>
   <data name="Drucken" xml:space="preserve">
     <value>Drucken</value>
-  </data>
-  <data name="archive-download@48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\archive-download@48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="colors" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\colors.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1285,8 +1282,8 @@ Zeigt die Startseite an</value>
   <data name="chat-error" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chat-error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ZufälligenSchnappschussErzeugen" xml:space="preserve">
-    <value>Zufälligen Schnappschuss erzeugen</value>
+  <data name="Neu" xml:space="preserve">
+    <value>Neu</value>
   </data>
   <data name="Project_CreateNewHead" xml:space="preserve">
     <value>Neues Projekt?</value>
@@ -1387,6 +1384,9 @@ Korpusakquise</value>
   </data>
   <data name="ZeigZeilenDie" xml:space="preserve">
     <value>Zeig Zeilen die:</value>
+  </data>
+  <data name="Zwischen" xml:space="preserve">
+    <value>Zwischen</value>
   </data>
   <data name="AlleAuswählen" xml:space="preserve">
     <value>Alle auswählen</value>
@@ -1499,11 +1499,11 @@ Korpusakquise</value>
   <data name="Dashboard_ProjectSave_Projekt_Saved" xml:space="preserve">
     <value>Projekt erfolgreich gespeichert!</value>
   </data>
+  <data name="_2LayerAuswählen" xml:space="preserve">
+    <value>2. Layer auswählen</value>
+  </data>
   <data name="NeueAnalyseStarten" xml:space="preserve">
     <value>Neue Analyse starten</value>
-  </data>
-  <data name="EndetMit" xml:space="preserve">
-    <value>Endet mit</value>
   </data>
   <data name="NichtBestandteilVon" xml:space="preserve">
     <value>Nicht Bestandteil von</value>
@@ -1562,8 +1562,8 @@ Korpusakquise</value>
   <data name="CorpusDistribution_Description" xml:space="preserve">
     <value>Ermitteln Sie die Einflussfaktoren, die aktuell im Schnappschuss/Korpus wirken.</value>
   </data>
-  <data name="paragraph_align_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\paragraph_align_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="FileExtension_XML" xml:space="preserve">
+    <value>XML-Datei (*.xml)|*.xml</value>
   </data>
   <data name="FixierungDerZeileAufheben" xml:space="preserve">
     <value>Fixierung der Zeile aufheben</value>
@@ -1577,8 +1577,8 @@ Korpusakquise</value>
   <data name="IndividuelleFunktionen" xml:space="preserve">
     <value>Individuelle Funktionen</value>
   </data>
-  <data name="ProfilVon0" xml:space="preserve">
-    <value>Profil von: {0}</value>
+  <data name="Dashboard_Warn_Snapshotname_AlreadyExsists" xml:space="preserve">
+    <value>Es existiert bereits ein Schnappschuss mit diesem Namen.</value>
   </data>
   <data name="AlternativenXMPPJabberServer" xml:space="preserve">
     <value>Alternativen XMPP/Jabber-Server</value>
@@ -1655,11 +1655,17 @@ Korpusakquise</value>
   <data name="NeuenSchnappschussErstellen" xml:space="preserve">
     <value>Neuen Schnappschuss erstellen</value>
   </data>
+  <data name="WählenUndKonfigurierenSieDenTaggerFürDieAutomatischeAnnotationDerTexte" xml:space="preserve">
+    <value>Wählen und konfigurieren Sie den Tagger für die automatische Annotation der Texte</value>
+  </data>
   <data name="Cooccurrences" xml:space="preserve">
     <value>Kookkurrenzen</value>
   </data>
   <data name="Disambiguierung" xml:space="preserve">
     <value>Disambiguierung</value>
+  </data>
+  <data name="InvalidPathChars" xml:space="preserve">
+    <value>Die folgenden Zeichen sind nicht zulässig: \ / : * ? " &lt; &gt; |</value>
   </data>
   <data name="Match" xml:space="preserve">
     <value>Match</value>
@@ -1727,8 +1733,8 @@ Korpusakquise</value>
   <data name="Snapshot_ExportTo_XML" xml:space="preserve">
     <value>Schnappschuss wird nach XML exportiert...</value>
   </data>
-  <data name="ShowScraperResults_IgnoreText" xml:space="preserve">
-    <value>Text ignorieren?</value>
+  <data name="select_table1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\select_table1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PointPointToCorpus" xml:space="preserve">
     <value>... Korpus</value>
@@ -1778,9 +1784,6 @@ Korpusakquise</value>
   <data name="Finden" xml:space="preserve">
     <value>Finden</value>
   </data>
-  <data name="FulltextAnnotationSpeedup_CopyLayer" xml:space="preserve">
-    <value>Layer kopieren</value>
-  </data>
   <data name="calculator" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\calculator.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1829,11 +1832,14 @@ Korpusakquise</value>
   <data name="Projekteinstellungen" xml:space="preserve">
     <value>Projekteinstellungen</value>
   </data>
+  <data name="user_group1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user_group1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Corpus_ImportError" xml:space="preserve">
     <value>Der Import war leider nicht erfolgreich. Überprüfen Sie bitte ob Sie den richtigen Importer gewählt haben und stellen Sie sicher, dass der Importer zur Dateiversion passt. Besuchen Sie ggf. die Produktwebseite um nach der neusten Version zu suchen.</value>
   </data>
-  <data name="Corpus_ImportComplete" xml:space="preserve">
-    <value>Das Korpus wurde importiert. Möchten Sie das importierte Korpus speichern? - WENN NEIN: müssen Sie jedesmal das Korpus erneut importieren.</value>
+  <data name="export_text" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\export_text.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Wortkorb" xml:space="preserve">
     <value>Wortkorb</value>
@@ -1910,6 +1916,12 @@ Korpusakquise</value>
   <data name="IhrPasswort" xml:space="preserve">
     <value>Ihr Passwort</value>
   </data>
+  <data name="Corpus_ImportComplete" xml:space="preserve">
+    <value>Das Korpus wurde importiert. Möchten Sie das importierte Korpus speichern? - WENN NEIN: müssen Sie jedesmal das Korpus erneut importieren.</value>
+  </data>
+  <data name="Dashboard_ProjectRenameCheck_Warn_NoName" xml:space="preserve">
+    <value>Ein Projektname ist erforderlich.</value>
+  </data>
   <data name="tree1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tree1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1985,8 +1997,8 @@ Korpusakquise</value>
   <data name="FunktionAuswählen" xml:space="preserve">
     <value>Funktion auswählen...</value>
   </data>
-  <data name="_2LayerAuswählen" xml:space="preserve">
-    <value>2. Layer auswählen</value>
+  <data name="paragraph_align_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\paragraph_align_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sheet_calculate_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\images\sheet_calculate_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -2048,11 +2060,8 @@ Korpusakquise</value>
   <data name="Post" xml:space="preserve">
     <value>Post</value>
   </data>
-  <data name="Snapshot_NoInputAvailable" xml:space="preserve">
-    <value>Keine Werteingabe möglich</value>
-  </data>
-  <data name="select_table1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\select_table1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="QuickMode_CorpusNameCheck_Warn_NoName" xml:space="preserve">
+    <value>Der Korpusname sollte nicht leer sein.</value>
   </data>
   <data name="Snapshot_GreenValueHint" xml:space="preserve">
     <value>&lt;html&gt;&lt;strong&gt;Hinweis:&lt;/strong&gt; Erst wenn ein Wert grün hinterlegt ist, wird er verwendet.&lt;/html&gt;</value>
@@ -2084,8 +2093,8 @@ Korpusakquise</value>
   <data name="NeuStarten" xml:space="preserve">
     <value>Neu starten?</value>
   </data>
-  <data name="DefiniertDurchSchnappschuss" xml:space="preserve">
-    <value>Definiert durch Schnappschuss</value>
+  <data name="Snapshot_NoInputAvailable" xml:space="preserve">
+    <value>Keine Werteingabe möglich</value>
   </data>
   <data name="FulltextAnnotation_DeleteLayerValue_ChangeLayerValue" xml:space="preserve">
     <value>Layerwert ändern.</value>
@@ -2096,16 +2105,16 @@ Korpusakquise</value>
   <data name="Auswählen" xml:space="preserve">
     <value>Auswählen</value>
   </data>
-  <data name="WenigerAls" xml:space="preserve">
-    <value>Weniger als</value>
+  <data name="ZufälligenSchnappschussErzeugen" xml:space="preserve">
+    <value>Zufälligen Schnappschuss erzeugen</value>
   </data>
   <data name="FürDieKorpusakquiseSollEinExtraProgrammErstelltWerdenDamitKannDerAkquiseprozessAufAnderePCsServerAusgelagertWerden" xml:space="preserve">
     <value>Für die Korpusakquise soll ein extra Programm
 erstellt werden. Damit kann der Akquiseprozess
 auf andere PCs/Server ausgelagert werden.</value>
   </data>
-  <data name="Multiwordtable" xml:space="preserve">
-    <value>Mehrwort Tabelle</value>
+  <data name="EndetMit" xml:space="preserve">
+    <value>Endet mit</value>
   </data>
   <data name="SucheFundstellen" xml:space="preserve">
     <value>Suche Fundstellen...</value>
@@ -2245,6 +2254,9 @@ auf andere PCs/Server ausgelagert werden.</value>
   <data name="TextLinks" xml:space="preserve">
     <value>Text (links):</value>
   </data>
+  <data name="WenigerAls" xml:space="preserve">
+    <value>Weniger als</value>
+  </data>
   <data name="Disambigution_Description" xml:space="preserve">
     <value>Anaysieren Sie semantischen Ähnlichkeiten und Unterschiede.</value>
   </data>
@@ -2338,11 +2350,20 @@ auf andere PCs/Server ausgelagert werden.</value>
   <data name="AnzeigelayerDP" xml:space="preserve">
     <value>Anzeigelayer:</value>
   </data>
+  <data name="Disambigution_Tree" xml:space="preserve">
+    <value>Cluster-Baum</value>
+  </data>
   <data name="character_font_highlight_color" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\character_font_highlight_color.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Ask_CompressCorpus_Head" xml:space="preserve">
+    <value>Korpus komprimieren</value>
+  </data>
   <data name="FrequncyAnalytics_Description" xml:space="preserve">
     <value>Werten Sie Frequenzen und die daraus resultierende Verteilungen aus.</value>
+  </data>
+  <data name="ChiTestFürKleineTextmengen" xml:space="preserve">
+    <value>Chi²-Test (für kleine Textmengen)</value>
   </data>
   <data name="internet_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\internet_green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -2377,14 +2398,17 @@ auf andere PCs/Server ausgelagert werden.</value>
   <data name="Fulltext_Search" xml:space="preserve">
     <value>Texte suchen</value>
   </data>
-  <data name="Lexikon" xml:space="preserve">
-    <value>Lexikon</value>
+  <data name="Query" xml:space="preserve">
+    <value>Abfrage</value>
   </data>
   <data name="Frequency_LeftRight" xml:space="preserve">
     <value>Links-/Rechts-Frequenz</value>
   </data>
   <data name="form_design" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\form_design.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BaumLayout" xml:space="preserve">
+    <value>Baum-Layout</value>
   </data>
   <data name="KorporaHauptseite" xml:space="preserve">
     <value>Korpora Hauptseite</value>
@@ -2434,8 +2458,8 @@ auf andere PCs/Server ausgelagert werden.</value>
   <data name="Cooccurrences_Cloud" xml:space="preserve">
     <value>Als Wolke</value>
   </data>
-  <data name="BaumLayout" xml:space="preserve">
-    <value>Baum-Layout</value>
+  <data name="_3KorpusakquiseKonfigurierenUndStarten" xml:space="preserve">
+    <value>3. Korpusakquise konfigurieren und starten</value>
   </data>
   <data name="Snapshot_Condition_AllValues" xml:space="preserve">
     <value>Gemeinsames Vorkommen aller Werte in einem Dokument</value>
@@ -2458,8 +2482,8 @@ auf andere PCs/Server ausgelagert werden.</value>
   <data name="DokumentAlsXMLDatei" xml:space="preserve">
     <value>Dokument als XML-Datei</value>
   </data>
-  <data name="Query" xml:space="preserve">
-    <value>Abfrage</value>
+  <data name="thermometer-user" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\thermometer-user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FügeEineNeueBedingungHinzu" xml:space="preserve">
     <value>Füge eine neue Bedingung hinzu</value>
@@ -2527,8 +2551,8 @@ auf andere PCs/Server ausgelagert werden.</value>
   <data name="gear" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_1VerfügbareCrawler" xml:space="preserve">
-    <value>1. Verfügbare Crawler</value>
+  <data name="FulltextAnnotationSpeedup_CopyLayer" xml:space="preserve">
+    <value>Layer kopieren</value>
   </data>
   <data name="LogLikelihoodFürGroßeTextmengen" xml:space="preserve">
     <value>Log-Likelihood (für große Textmengen)</value>
@@ -2551,14 +2575,17 @@ auf andere PCs/Server ausgelagert werden.</value>
   <data name="Satz" xml:space="preserve">
     <value>Satz:</value>
   </data>
-  <data name="Zwischen" xml:space="preserve">
-    <value>Zwischen</value>
+  <data name="Help_Static_YoutubeChannel" xml:space="preserve">
+    <value>https://www.youtube.com/user/notesJOR</value>
+  </data>
+  <data name="Project_CreateNew" xml:space="preserve">
+    <value>Möchten Sie wirklich ein neues Projekt erstellen?</value>
   </data>
   <data name="Farben" xml:space="preserve">
     <value>Farben</value>
   </data>
-  <data name="Disambigution_Tree" xml:space="preserve">
-    <value>Cluster-Baum</value>
+  <data name="CleanDocuments" xml:space="preserve">
+    <value>Bereinige Dokumente...</value>
   </data>
   <data name="BestehendesKorpusLaden" xml:space="preserve">
     <value>Bestehendes Korpus laden</value>
@@ -2593,9 +2620,6 @@ auf andere PCs/Server ausgelagert werden.</value>
   <data name="FrequncyAnalytics_PivotTable" xml:space="preserve">
     <value>Pivot Tabelle</value>
   </data>
-  <data name="FileExtension_XML" xml:space="preserve">
-    <value>XML-Datei (*.xml)|*.xml</value>
-  </data>
   <data name="character_font_highlight_color_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\images\character_font_highlight_color_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -2608,8 +2632,8 @@ auf andere PCs/Server ausgelagert werden.</value>
   <data name="history" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\history.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Ask_CompressCorpus_Head" xml:space="preserve">
-    <value>Korpus komprimieren</value>
+  <data name="health" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\health.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="home1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\home1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -2641,8 +2665,8 @@ auf andere PCs/Server ausgelagert werden.</value>
   <data name="Komplexität" xml:space="preserve">
     <value>Komplexität</value>
   </data>
-  <data name="ChiTestFürKleineTextmengen" xml:space="preserve">
-    <value>Chi²-Test (für kleine Textmengen)</value>
+  <data name="cabinet1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cabinet1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FileExtension_GraphML" xml:space="preserve">
     <value>GraphML (*.grapml)|*.graphml</value>
@@ -2652,6 +2676,9 @@ auf andere PCs/Server ausgelagert werden.</value>
   </data>
   <data name="SollDerWebCrawlingProzessWirklichAbgebrochenWerdenDasKorpusIstSomitNichtVollständig" xml:space="preserve">
     <value>Soll der WebCrawling-Prozess wirklich abgebrochen werden? - Das Korpus ist somit nicht vollständig!</value>
+  </data>
+  <data name="Dashboard_Warn_Snapshotname_NoName" xml:space="preserve">
+    <value>Ein leerer Name führt zu leicht übersehbaren Schnappschüssen.</value>
   </data>
   <data name="VerfügbareLayer" xml:space="preserve">
     <value>Verfügbare Layer</value>
@@ -2703,6 +2730,9 @@ auf andere PCs/Server ausgelagert werden.</value>
   </data>
   <data name="colors1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\colors1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Multiwordtable" xml:space="preserve">
+    <value>Mehrwort Tabelle</value>
   </data>
   <data name="action_play" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\action_play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -2837,8 +2867,8 @@ Nicht geeignet für Korpra mit mehr als 5 Mio. Token!</value>
   <data name="_4XPathMappings" xml:space="preserve">
     <value>4. XPath-Mappings</value>
   </data>
-  <data name="WählenUndKonfigurierenSieDenTaggerFürDieAutomatischeAnnotationDerTexte" xml:space="preserve">
-    <value>Wählen und konfigurieren Sie den Tagger für die automatische Annotation der Texte</value>
+  <data name="XPath" xml:space="preserve">
+    <value>XPath</value>
   </data>
   <data name="Titel" xml:space="preserve">
     <value>Titel</value>
@@ -2858,8 +2888,8 @@ Nicht geeignet für Korpra mit mehr als 5 Mio. Token!</value>
   <data name="_2Layer" xml:space="preserve">
     <value>2. Layer</value>
   </data>
-  <data name="Help_Static_YoutubeChannel" xml:space="preserve">
-    <value>https://www.youtube.com/user/notesJOR</value>
+  <data name="_1VerfügbareCrawler" xml:space="preserve">
+    <value>1. Verfügbare Crawler</value>
   </data>
   <data name="VordefinierteFunktionen" xml:space="preserve">
     <value>Vordefinierte Funktionen</value>
@@ -2885,8 +2915,8 @@ Nicht geeignet für Korpra mit mehr als 5 Mio. Token!</value>
   <data name="Alle" xml:space="preserve">
     <value>Alle</value>
   </data>
-  <data name="LayerDP" xml:space="preserve">
-    <value>Layer:</value>
+  <data name="group_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\group_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="save_theme1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save_theme1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -2912,8 +2942,8 @@ Nicht geeignet für Korpra mit mehr als 5 Mio. Token!</value>
   <data name="MetadatenDP" xml:space="preserve">
     <value>Metadaten:</value>
   </data>
-  <data name="FürDenSuchbegriffExisitierenKeineSignifikantenKookkurrenzen" xml:space="preserve">
-    <value>Für den Suchbegriff exisitieren keine signifikanten Kookkurrenzen.</value>
+  <data name="QuickMode_CorpusNameCheck_Warn_AlreadyExsits" xml:space="preserve">
+    <value>Ein anderes Korpus trägt bereits diesen Namen.</value>
   </data>
   <data name="FulltextAnnotation_DeleteLayer" xml:space="preserve">
     <value>Sie haben den Layer {0} zum löschen ausgewählt. Wenn Sie die Aktion bestätigen, dann werden alle Layer mit diesem Namen im gesamten Projekt gelöscht. Sind Sie sicher, dass Sie das wollen?</value>
@@ -2921,8 +2951,8 @@ Nicht geeignet für Korpra mit mehr als 5 Mio. Token!</value>
   <data name="FileExteions_ForHydraExport" xml:space="preserve">
     <value>XML-Datei (*.xml)|*.xml|DSpin-XML (*.xml)|*.xml|JSON-Datei (*.json)|*.json|AnnotationPro (*.ant)|*.ant</value>
   </data>
-  <data name="XPath" xml:space="preserve">
-    <value>XPath</value>
+  <data name="warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HungryBetty" xml:space="preserve">
     <value>HungryBetty</value>
@@ -2945,8 +2975,8 @@ Nicht geeignet für Korpra mit mehr als 5 Mio. Token!</value>
   <data name="SpalteFixieren" xml:space="preserve">
     <value>Spalte fixieren</value>
   </data>
-  <data name="cabinet1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cabinet1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Polarisation" xml:space="preserve">
+    <value>Polarisation</value>
   </data>
   <data name="Analyse" xml:space="preserve">
     <value>Analyse</value>
@@ -2957,28 +2987,7 @@ Nicht geeignet für Korpra mit mehr als 5 Mio. Token!</value>
   <data name="settheory_difference1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settheory_difference1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Dashboard_Warn_Snapshotname_AlreadyExsists" xml:space="preserve">
-    <value>Es existiert bereits ein Schnappschuss mit diesem Namen.</value>
-  </data>
-  <data name="Dashboard_Warn_Snapshotname_NoName" xml:space="preserve">
-    <value>Ein leerer Name führt zu leicht übersehbaren Schnappschüssen.</value>
-  </data>
-  <data name="Dashboard_ProjectRenameCheck_Warn_AlreadyExsits" xml:space="preserve">
-    <value>Das Projekt exsistiert bereits</value>
-  </data>
-  <data name="InvalidPathChars" xml:space="preserve">
-    <value>Die folgenden Zeichen sind nicht zulässig: \ / : * ? &quot; &lt; &gt; |</value>
-  </data>
-  <data name="Dashboard_ProjectRenameCheck_Warn_NoName" xml:space="preserve">
-    <value>Ein Projektname ist erforderlich.</value>
-  </data>
-  <data name="QuickMode_CorpusNameCheck_Warn_NoName" xml:space="preserve">
-    <value>Der Korpusname sollte nicht leer sein.</value>
-  </data>
-  <data name="QuickMode_CorpusNameCheck_Warn_AlreadyExsits" xml:space="preserve">
-    <value>Ein anderes Korpus trägt bereits diesen Namen.</value>
+  <data name="shopping3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shopping3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -14,6 +14,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
   {
     public override string TableWriterTag => "F:SQLDATA";
     public override string MimeType => "application/sql";
+    public override string Description => "SQL (data only)";
 
     public override void WriteTable(DataTable table)
     {
@@ -42,7 +43,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
           if (column.Item3 == typeof(DateTime))
             stb.Append($"'{(DateTime)row[column.Item1]:yyyy-MM-dd HH:mm:ss}', ");
           else if (column.Item3 == typeof(string))
-            stb.Append($"\"{((string)row[column.Item1]).Replace("\"", "''")}\", ");
+            stb.Append($"'{((string)row[column.Item1]).Replace("'", "\"")}', ");
           else
             stb.Append($"{row[column.Item1].ToString().Replace(",", ".")}, ");
         stb.Remove(stb.Length - 2, 2);
@@ -72,7 +73,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
           if (column.Item3 == typeof(DateTime))
             stb.Append($"'{(DateTime)rows[i][column.Item1]:yyyy-MM-dd HH:mm:ss}', ");
           else if (column.Item3 == typeof(string))
-            stb.Append($"\"{((string)rows[i][column.Item1]).Replace("\"", "''")}\", ");
+            stb.Append($"'{((string)rows[i][column.Item1]).Replace("'", "\"")}', ");
           else
             stb.Append($"{rows[i][column.Item1].ToString().Replace(",", ".")}, ");
         stb.Remove(stb.Length - 2, 2);
@@ -91,9 +92,9 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
 
     private void WriteTableInsert(List<Tuple<string, string, Type>> columns)
     {
-      var stb = new StringBuilder("INSERT INTO CorpusExplorer\r\n(");
+      var stb = new StringBuilder("INSERT INTO CorpusExplorer (");
       foreach (var column in columns)
-        stb.Append($"{column.Item2}, ");
+        stb.Append($"'{column.Item2}', ");
       stb.Remove(stb.Length - 2, 2);
       stb.Append(")\r\nVALUES\r\n");
       WriteOutput(stb.ToString());

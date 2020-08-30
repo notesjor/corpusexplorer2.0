@@ -15,7 +15,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
   {
     private readonly Regex _r = new Regex(@"<[^>]*>");
     public override string MimeType => "text/html";
-
+    public override string Description => "HTML5-document";
     public override string TableWriterTag => "F:HTML";
 
     protected override void WriteHead(DataTable table)

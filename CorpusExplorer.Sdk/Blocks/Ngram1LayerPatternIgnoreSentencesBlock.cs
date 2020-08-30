@@ -29,53 +29,32 @@ namespace CorpusExplorer.Sdk.Blocks
       var stream = layer.ConvertToReadableDocument(doc).ReduceDocumentToStreamDocument().ToArray();
       var ngram = new string[NGramSize];
 
-      if (Configuration.RightToLeftSupport)
-        for (var i = NGramSize; i > NGramSize; i--)
+      var max = stream.Length - NGramSize + 1;
+      for (var i = 0; i < max; i++)
+      {
+        for (var j = 0; j < NGramSize; j++)
+          ngram[j] = stream[i + j]?.Replace(" ", string.Empty);
+
+        var queue = new Queue<string[]>();
+        queue.Enqueue(ngram);
+        var gens = Mutate(queue, 0);
+
+        foreach (var gen in gens)
         {
-          for (var j = 0; j < NGramSize; j++)
-            ngram[j] = stream[i + j];
-
-          var queue = new Queue<string[]>();
-          queue.Enqueue(ngram);
-          var gens = Mutate(queue, 0);
-
-          foreach (var gen in gens)
-          {
-            var key = string.Join(" ", gen);
-            if (dic.ContainsKey(key))
-              dic[key]++;
-            else
-              dic.Add(key, 1);
-          }
+          var key = string.Join(" ", gen);
+          if (dic.ContainsKey(key))
+            dic[key]++;
+          else
+            dic.Add(key, 1);
         }
-      else
-        for (var i = 0; i < stream.Length - NGramSize; i++)
-        {
-          for (var j = 0; j < NGramSize; j++)
-            ngram[j] = stream[i + j];
-
-          var queue = new Queue<string[]>();
-          queue.Enqueue(ngram);
-          var gens = Mutate(queue, 0);
-
-          foreach (var gen in gens)
-          {
-            var key = string.Join(" ", gen);
-            if (dic.ContainsKey(key))
-              dic[key]++;
-            else
-              dic.Add(key, 1);
-          }
-        }
+      }
 
       lock (_lock)
-      {
         foreach (var x in dic)
           if (NGramFrequency.ContainsKey(x.Key))
-            NGramFrequency[x.Key]++;
+            NGramFrequency[x.Key] += x.Value;
           else
             NGramFrequency.Add(x.Key, x.Value);
-      }
     }
 
     protected override void CalculateCleanup()
@@ -113,7 +92,7 @@ namespace CorpusExplorer.Sdk.Blocks
             if (x[i] == NGramPattern)
               continue;
 
-            var ngen = (string[]) x.Clone();
+            var ngen = (string[])x.Clone();
             ngen[i] = NGramPattern;
             res.Enqueue(ngen);
           }

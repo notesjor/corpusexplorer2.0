@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
@@ -33,7 +34,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     private void Analyse()
     {
       _vm = GetViewModel<CooccurrenceOverlappingViewModel>();
-      txt_query.AutoCompleteDataSource = _vm.LayerValues;
     }
 
     /// <summary>
@@ -108,9 +108,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
                         "Berechne Multi-Kookkurrenzen...",
                         () =>
                         {
-                          _vm.LayerQueries = txt_query.Items.Select(x => x.Text);
-                          if (SelectedLayerDisplaynames != null)
-                            _vm.LayerDisplayname = SelectedLayerDisplaynames[0];
+                          _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
+                          _vm.LayerQueries = wordBag1.ResultQueries;
                           if (!_vm.Execute())
                             return;
                           radGridView1.DataSource = _vm.GetDataTable();
@@ -128,28 +127,29 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     {
       CreateSelection(
                       radGridView1.SelectedRows.Select(
-                                                       row => new FilterQuerySingleLayerAllInOneSentence
+                                                       delegate (GridViewRowInfo row)
                                                        {
-                                                         LayerDisplayname = "Wort",
-                                                         Inverse = false,
-                                                         LayerQueries =
-                                                           new[]
-                                                           {
-                                                             txt_query.Text,
-                                                             row.Cells[Resources.Kookkurrenz].Value.ToString()
-                                                           }
+                                                         var queries = new List<string> { row.Cells[Resources.Kookkurrenz].ToString() };
+                                                         queries.AddRange(wordBag1.ResultQueries);
+
+                                                         return new FilterQuerySingleLayerFirstAndAnyOtherMatch
+                                                         {
+                                                           LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname,
+                                                           Inverse = false,
+                                                           LayerQueries = queries
+                                                         };
                                                        }));
     }
 
     private AbstractFilterQuery CreateChildTemplate(DataRowView row)
     {
-      var queries = txt_query.Items.Select(x => x.Text).ToList();
-      queries.Add(row[Resources.Kookkurrenz].ToString());
+      var queries = new List<string> { row[Resources.Kookkurrenz].ToString() };
+      queries.AddRange(wordBag1.ResultQueries);
 
-      return new FilterQuerySingleLayerAllInOneSentence
+      return new FilterQuerySingleLayerFirstAndAnyOtherMatch
       {
         Inverse = false,
-        LayerDisplayname = "Wort",
+        LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname,
         LayerQueries = queries
       };
     }
@@ -176,23 +176,5 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     {
       RegexFunction();
     }
-
-    /*
-    private void btn_posFilter_Click(object sender, EventArgs e)
-    {
-      var form = new PosFilter(Project.CurrentSelection);
-      form.ShowDialog();
-
-      var filter = form.Result;
-      if (filter == ((CooccurrenceViewModel)_vm).Filter)
-        return;
-
-      ((CooccurrenceViewModel)_vm).Filter = filter;
-      radGridView1.DataSource = _vm.Search(txt_query.Items.Select(x => x.Text)).ToDataTable(Resources.Kookkurrenz, Resources.Signifikanz);
-      radGridView1.ResetBindings();
-
-      btn_posFilter.CheckState = filter == null ? CheckState.Unchecked : CheckState.Checked;
-    }
-    */
   }
 }

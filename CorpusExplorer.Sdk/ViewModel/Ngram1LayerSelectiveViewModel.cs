@@ -20,7 +20,6 @@ namespace CorpusExplorer.Sdk.ViewModel
     public int NGramMinFrequency { get; set; } = 0;
 
     public Dictionary<string, int> NGramFrequency { get; private set; }
-    public Dictionary<string, string[]> NGramRaw { get; private set; }
     public IEnumerable<string> LayerQueries { get; set; }
     public string LayerDisplayname { get; set; } = "Wort";
     public int NGramSize { get; set; } = 3;
@@ -51,7 +50,6 @@ namespace CorpusExplorer.Sdk.ViewModel
       block.Calculate();
 
       NGramFrequency = block.NGramFrequency;
-      NGramRaw = block.NGramRaw;
     }
 
     protected override bool Validate()

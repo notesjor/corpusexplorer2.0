@@ -22,19 +22,15 @@ namespace CorpusExplorer.Sdk.ViewModel
     /// </summary>
     public NgramCompareViewModel()
     {
-      NGramSize = 5;
       LayerDisplayname = "Wort";
-      NGramMaxResults = 1000;
     }
 
-    public int NGramMaxResults { get; set; }
-
-    public int NGramPatternSize { get; set; }
+    public int NGramPatternSize { get; set; } = 0;
 
     /// <summary>
     ///   Gets or sets the n gram size.
     /// </summary>
-    public int NGramSize { get; set; }
+    public int NGramSize { get; set; } = 5;
 
     /// <summary>
     ///   Gibt eine Datentabelle zur�ck
@@ -51,24 +47,26 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     protected override void ExecuteAnalyse()
     {
-      var blockA = Selection.CreateBlock<Ngram1LayerBlock>();
+      var blockA = Selection.CreateBlock<Ngram1LayerPatternBlock>();
       blockA.NGramSize = NGramSize;
+      blockA.NGramPatternSize = NGramPatternSize;
       blockA.LayerDisplayname = LayerDisplayname;
       blockA.Calculate();
 
-      var blockB = SelectionToCompare.CreateBlock<Ngram1LayerBlock>();
+      var blockB = SelectionToCompare.CreateBlock<Ngram1LayerPatternBlock>();
       blockB.NGramSize = NGramSize;
+      blockB.NGramPatternSize = NGramPatternSize;
       blockB.LayerDisplayname = LayerDisplayname;
       blockB.Calculate();
 
       _dataTable = new DataTable();
       _dataTable.Columns.Add(Resources.NGram, typeof(string));
       _dataTable.Columns.Add(Resources.Frequeny1, typeof(double));
-      _dataTable.Columns.Add(Resources.Frequeny1 + " (relativ)", typeof(double));
       _dataTable.Columns.Add(Resources.Frequeny2, typeof(double));
-      _dataTable.Columns.Add(Resources.Frequeny2 + " (relativ)", typeof(double));
       _dataTable.Columns.Add(Resources.FrequenyD12, typeof(double));
-      _dataTable.Columns.Add(Resources.Significance, typeof(double));
+      _dataTable.Columns.Add(Resources.Frequeny1 + Resources.relativ, typeof(double));
+      _dataTable.Columns.Add(Resources.Frequeny2 + Resources.relativ, typeof(double));
+      _dataTable.Columns.Add(Resources.FrequenyD12 + Resources.relativ, typeof(double));
 
       GenerateDataTable(blockA.NGramFrequency,
                         blockB.NGramFrequency);
@@ -87,17 +85,17 @@ namespace CorpusExplorer.Sdk.ViewModel
       public double F2 { get; set; }
       public double F2Rel { get; set; }
       public double F12 { get; set; }
-      public double Signi { get; set; }
+      public double F12Rel { get; set; }
 
-      public Entry(string ngram, double f1, double f1Rel, double f2, double f2Rel, double f12, double signi)
+      public Entry(string ngram, double f1, double f1Rel, double f2, double f2Rel)
       {
         NGram = ngram;
         F1 = f1;
-        F1Rel = f1Rel;
         F2 = f2;
+        F1Rel = f1Rel;
         F2Rel = f2Rel;
-        F12 = f12;
-        Signi = signi;
+        F12 = Math.Abs(f1 - f2);
+        F12Rel = Math.Abs(f1Rel - f2Rel);
       }
     }
 
@@ -107,69 +105,26 @@ namespace CorpusExplorer.Sdk.ViewModel
       var bN = b.GetNormalizedDictionary(1000000);
 
       var data = new List<Entry>();
-      var sum = 0d; // Summe aller Frequenzen aus den gemergten Dictionarys
 
       foreach (var x in a)
       {
         if (b.ContainsKey(x.Key))
         {
-          data.Add(new Entry(x.Key, x.Value, aN[x.Key], b[x.Key], bN[x.Key], Math.Abs(x.Value - b[x.Key]), 0d));
-          sum += b[x.Key];
+          data.Add(new Entry(x.Key, x.Value, aN[x.Key], b[x.Key], bN[x.Key]));
           b.Remove(x.Key);
         }
         else
         {
-          data.Add(new Entry(x.Key, x.Value, aN[x.Key], 0d, 0d, x.Value, -1d));
+          data.Add(new Entry(x.Key, x.Value, aN[x.Key], 0d, 0d));
         }
-
-        sum += x.Value;
       }
 
-      foreach (var x in b)
-      {
-        data.Add(new Entry(x.Key, 0d, 0d, x.Value, bN[x.Key], x.Value, -1d));
-        sum += x.Value;
-      }
-
-      // Signifikanz
-      Parallel.For(0, data.Count, Configuration.ParallelOptions, (i) =>
-      {
-        var x = data[i];
-        if (x.Signi < 0)
-          return;
-
-        var m = Math.Abs(x.F1 - x.F2);
-        var am = x.F1 - m;
-        var bm = x.F2 - m;
-        x.Signi = Configuration.GetSignificance(am, sum).Calculate(bm, m);
-        data[i] = x;
-      });
+      data.AddRange(b.Select(x => new Entry(x.Key, 0d, 0d, x.Value, bN[x.Key])));
 
       _dataTable.BeginLoadData();
       foreach (var x in data)
-        _dataTable.Rows.Add(x.NGram, x.F1, x.F1Rel, x.F2, x.F2Rel, x.F12, x.Signi);
+        _dataTable.Rows.Add(x.NGram, x.F1, x.F2, x.F12, x.F1Rel, x.F2Rel, x.F12Rel);
       _dataTable.EndLoadData();
-    }
-
-    private Dictionary<string, double> GetNGramTable(Selection selection)
-    {
-      if (NGramPatternSize > 0)
-      {
-        var block = selection.CreateBlock<Ngram1LayerPatternBlock>();
-        block.NGramSize = NGramSize;
-        block.NGramPatternSize = NGramPatternSize;
-        block.LayerDisplayname = LayerDisplayname;
-        block.Calculate();
-        return block.NGramFrequency.ToDictionary(x => x.Key, x => (double)x.Value);
-      }
-      else
-      {
-        var block = selection.CreateBlock<Ngram1LayerBlock>();
-        block.NGramSize = NGramSize;
-        block.LayerDisplayname = LayerDisplayname;
-        block.Calculate();
-        return block.NGramFrequency.ToDictionary(x => x.Key, x => (double)x.Value);
-      }
     }
   }
 }

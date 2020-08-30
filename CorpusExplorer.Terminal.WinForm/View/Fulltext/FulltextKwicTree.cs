@@ -30,7 +30,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     {
       InitializeComponent();
       wpfDiagram1 = new WpfDiagram
-        {VerticalAlignment = VerticalAlignment.Stretch, HorizontalAlignment = HorizontalAlignment.Stretch};
+      { VerticalAlignment = VerticalAlignment.Stretch, HorizontalAlignment = HorizontalAlignment.Stretch };
       elementHost1.Child = wpfDiagram1;
       ShowView += OnShowView;
     }
@@ -42,7 +42,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
                         () =>
                         {
                           _vm.LayerQueryPhrase = wordBag1.ResultQueries;
-                          _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
+                          _vm.Layer1Displayname = wordBag1.ResultSelectedLayerDisplayname;
+                          _vm.Layer2Displayname = "Wort";
                           _vm.HighlightCooccurrences = highlight;
                           _vm.Execute();
 
@@ -97,7 +98,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
                           wpfDiagram1.CallAddNodes(post);
                           wpfDiagram1.CallColorizeNodes(post, new UniversalColor(180, 200, 255));
 
-                          wpfDiagram1.CallColorizeNodes(new[] {string.Join(" ", _vm.LayerQueryPhrase)},
+                          wpfDiagram1.CallColorizeNodes(new[] { string.Join(" ", _vm.LayerQueryPhrase) },
                                                         new UniversalColor(180, 255, 200));
 
                           wpfDiagram1.CallAddConnections(_vm.BranchPre.RecursiveConnections(false));
@@ -125,7 +126,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
     private void commandBarButton2_Click(object sender, EventArgs e)
     {
-      var sfd = new SaveFileDialog {Filter = Resources.FileExtension_CEDG, CheckPathExists = true};
+      var sfd = new SaveFileDialog { Filter = Resources.FileExtension_CEDG, CheckPathExists = true };
       if (sfd.ShowDialog() != DialogResult.OK)
         return;
 
@@ -134,7 +135,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
     private void commandBarButton3_Click(object sender, EventArgs e)
     {
-      var ofd = new OpenFileDialog {Filter = Resources.FileExtension_CEDG, CheckFileExists = true};
+      var ofd = new OpenFileDialog { Filter = Resources.FileExtension_CEDG, CheckFileExists = true };
       if (ofd.ShowDialog() != DialogResult.OK)
         return;
 
@@ -143,7 +144,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
     private void Export(AbstractGraphConverter type, string filter)
     {
-      var sfd = new SaveFileDialog {Filter = filter, CheckPathExists = true};
+      var sfd = new SaveFileDialog { Filter = filter, CheckPathExists = true };
       if (sfd.ShowDialog() != DialogResult.OK)
         return;
       FileIO.Write(sfd.FileName, wpfDiagram1.CallExport(type), Configuration.Encoding);

@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
+using HtmlAgilityPack;
+using VersOne.Epub;
 
 namespace CorpusExplorer.Sdk.Extern.Epub
 {
@@ -11,20 +14,18 @@ namespace CorpusExplorer.Sdk.Extern.Epub
     {
       try
       {
-        var epub = new eBdb.EpubReader.Epub(file);
+        var epub = EpubReader.ReadBook(file);
         return new[]
         {
           new Dictionary<string, object>
           {
-            {"Text", epub.GetContentAsPlainText()},
-            {"Autoren", epub.Contributer != null ? string.Join("; ", epub.Contributer) : ""},
-            {"Herausgeber", epub.Publisher != null ? string.Join("; ", epub.Publisher) : ""},
-            {"Beschreibung", epub.Description != null ? string.Join(" ", epub.Description) : ""},
-            {"Titel", epub.Title != null ? string.Join(" ", epub.Title) : ""},
-            {"Betreff", epub.Subject != null ? string.Join(" ", epub.Subject) : ""},
-            {"Ersteller", epub.Creator != null ? string.Join(" ", epub.Creator) : ""},
-            {"Quelle", epub.Source != null ? string.Join(" ", epub.Source) : ""},
-            {"UUID", epub.UUID}
+            {"Text", GetText(epub)},
+            {"Autoren", 
+              epub.AuthorList == null ?
+                epub.Author :
+                string.Join("; ", epub.AuthorList)},
+            {"Titel", epub.Title},
+            {"Dateiname", file}
           }
         };
       }
@@ -32,6 +33,20 @@ namespace CorpusExplorer.Sdk.Extern.Epub
       {
         return null;
       }
+    }
+
+    private string GetText(EpubBook epub)
+    {
+      var stb = new StringBuilder();
+
+      foreach (var textContentFile in epub.ReadingOrder)
+      {
+        var doc = new HtmlDocument();
+        doc.LoadHtml(textContentFile.Content);
+        stb.AppendLine(doc.DocumentNode.SelectSingleNode("//body").InnerText);
+      }
+
+      return stb.ToString();
     }
   }
 }

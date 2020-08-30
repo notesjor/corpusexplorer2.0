@@ -432,4 +432,7 @@
   <data name="Frequency_Relativ" xml:space="preserve">
     <value>Frequenz (relativ)</value>
   </data>
+  <data name="relativ" xml:space="preserve">
+    <value> (relativ)</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
@@ -49,23 +50,37 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
 
       Parallel.ForEach(Selection, Configuration.ParallelOptions, csel =>
       {
-        var corpus = Selection.GetCorpus(csel.Key);
-
-        var layer = corpus?.GetLayers(LayerDisplayname)?.FirstOrDefault();
-        if (layer == null)
-          return;
-
-        Parallel.ForEach(csel.Value, Configuration.ParallelOptions, dsel =>
+        try
         {
-          if (!layer.ContainsDocument(dsel))
+          var corpus = Selection.GetCorpus(csel.Key);
+
+          var layer = corpus?.GetLayers(LayerDisplayname)?.FirstOrDefault();
+          if (layer == null)
             return;
 
-          var doc = layer[dsel];
-          if (doc == null)
-            return;
+          Parallel.ForEach(csel.Value, Configuration.ParallelOptions, dsel =>
+          {
+            try
+            {
+              if (!layer.ContainsDocument(dsel))
+                return;
 
-          CalculateCall(corpus, layer, dsel, doc);
-        });
+              var doc = layer[dsel];
+              if (doc == null)
+                return;
+
+              CalculateCall(corpus, layer, dsel, doc);
+            }
+            catch (Exception ex)
+            {
+              InMemoryErrorConsole.Log(ex);
+            }
+          });
+        }
+        catch (Exception ex)
+        {
+          InMemoryErrorConsole.Log(ex);
+        }
       });
 
       CalculateCleanup();

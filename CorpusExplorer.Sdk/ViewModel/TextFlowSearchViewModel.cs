@@ -20,7 +20,8 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public bool HighlightCooccurrences { get; set; }
 
-    public string LayerDisplayname { get; set; } = "Wort";
+    public string Layer1Displayname { get; set; } = "Wort";
+    public string Layer2Displayname { get; set; } = "Wort";
     public IEnumerable<string> LayerQueryPhrase { get; set; }
 
     public IEnumerable<string> DiscoveredNodes
@@ -75,7 +76,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       var block = Selection.CreateBlock<TextLiveSearchBlock>();
       block.LayerQueries = new[]
       {
-        new FilterQuerySingleLayerExactPhrase {LayerDisplayname = LayerDisplayname, LayerQueries = LayerQueryPhrase}
+        new FilterQuerySingleLayerExactPhrase {LayerDisplayname = Layer1Displayname, LayerQueries = LayerQueryPhrase}
       };
       block.Calculate();
 
@@ -86,7 +87,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       foreach (var d in c.Value)
       foreach (var s in d.Value)
       {
-        var sent = Selection.GetReadableDocumentSnippet(d.Key, "Wort", s.Key, s.Key)
+        var sent = Selection.GetReadableDocumentSnippet(d.Key, Layer2Displayname, s.Key, s.Key)
                             .ReduceDocumentToStreamDocument().ToArray();
 
         if (sent.Length > 200)

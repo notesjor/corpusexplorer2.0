@@ -145,13 +145,13 @@
     <value>btn_go</value>
   </data>
   <data name="&gt;&gt;btn_go.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2020.2.616.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_go.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn_go.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="btn_selectLayer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Left</value>
@@ -175,13 +175,13 @@
     <value>btn_selectLayer</value>
   </data>
   <data name="&gt;&gt;btn_selectLayer.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2020.2.616.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_selectLayer.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn_selectLayer.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="cmb_values.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -190,13 +190,13 @@
     <value>Segoe UI, 11pt</value>
   </data>
   <data name="cmb_values.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 0</value>
+    <value>72, 0</value>
   </data>
   <data name="cmb_values.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 8, 5, 6</value>
   </data>
   <data name="cmb_values.Size" type="System.Drawing.Size, System.Drawing">
-    <value>341, 36</value>
+    <value>305, 36</value>
   </data>
   <data name="cmb_values.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -208,13 +208,43 @@
     <value>cmb_values</value>
   </data>
   <data name="&gt;&gt;cmb_values.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.SelectLayerValues.SelectLayerValuesControl, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.SelectLayerValues.SelectLayerValuesControl, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
   <data name="&gt;&gt;cmb_values.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cmb_values.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="btn_queryBuilder.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="btn_queryBuilder.ImageAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="btn_queryBuilder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 0</value>
+  </data>
+  <data name="btn_queryBuilder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 36</value>
+  </data>
+  <data name="btn_queryBuilder.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="btn_queryBuilder.ToolTip" xml:space="preserve">
+    <value>Komplexe Abfrage erstellen</value>
+  </data>
+  <data name="&gt;&gt;btn_queryBuilder.Name" xml:space="preserve">
+    <value>btn_queryBuilder</value>
+  </data>
+  <data name="&gt;&gt;btn_queryBuilder.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2020.2.616.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_queryBuilder.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btn_queryBuilder.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -232,6 +262,6 @@
     <value>WordBag</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.Abstract.AbstractUserControl, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.Abstract.AbstractUserControl, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
 </root>

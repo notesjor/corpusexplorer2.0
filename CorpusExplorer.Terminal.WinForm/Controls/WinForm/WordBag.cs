@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Forms;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Abstract;
 using CorpusExplorer.Terminal.WinForm.Forms.SelectLayer;
+using CorpusExplorer.Terminal.WinForm.Forms.WordBag;
 using CorpusExplorer.Terminal.WinForm.Properties;
+using MessageBox = System.Windows.MessageBox;
 
 namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
 {
@@ -64,9 +67,13 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
         return;
 
       ResultSelectedLayerDisplayname = form.ResultSelectedLayer1Displayname;
-      SelectedLayerChanged?.Invoke(this, null);
     }
 
-    public event EventHandler SelectedLayerChanged;
+    private void btn_queryBuilder_Click(object sender, EventArgs e)
+    {
+      var form = new WordBagBuilder(cmb_values.AllLayerValues);
+      if (form.ShowDialog() == DialogResult.OK)
+        cmb_values.ResultQueries = form.Result;
+    }
   }
 }

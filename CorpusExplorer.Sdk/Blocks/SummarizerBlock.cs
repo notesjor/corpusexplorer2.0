@@ -96,10 +96,11 @@ namespace CorpusExplorer.Sdk.Blocks
     {
       DocumentSummarizes = new Dictionary<Guid, string>();
 
-      var block = Selection.CreateBlock<InverseDocumentVectorBlock>();
+      var block = Selection.CreateBlock<TermDocumentMatrixBlock>();
       block.LayerDisplayname = LayerDisplayname;
+      block.MetadataKey = "GUID";
       block.Calculate();
-      _idtdf = block.InverseDocumentVector;
+      _idtdf = block.TermDocumentMatrix.ToDictionary(x=> Guid.Parse(x.Key), x=>x.Value);
     }
   }
 }

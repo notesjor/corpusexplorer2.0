@@ -30,25 +30,25 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TextSimilarity));
-      this.tree_results = new Telerik.WinControls.UI.RadTreeView();
+      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
       this.commandBarLabel1 = new Telerik.WinControls.UI.CommandBarLabel();
       this.combo_meta = new Telerik.WinControls.UI.CommandBarDropDownList();
-      this.commandBarLabel2 = new Telerik.WinControls.UI.CommandBarLabel();
-      this.txt_searchQuery = new Telerik.WinControls.UI.CommandBarTextBox();
-      ((System.ComponentModel.ISupportInitialize)(this.tree_results)).BeginInit();
+      this.btn_go = new Telerik.WinControls.UI.CommandBarButton();
+      this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
+      this.clearPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
+      this.txt_query = new Telerik.WinControls.UI.RadTextBox();
+      this.btn_search = new Telerik.WinControls.UI.RadButton();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.clearPanel1)).BeginInit();
+      this.clearPanel1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.txt_query)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_search)).BeginInit();
       this.SuspendLayout();
-      // 
-      // tree_results
-      // 
-      resources.ApplyResources(this.tree_results, "tree_results");
-      this.tree_results.ItemHeight = 40;
-      this.tree_results.Name = "tree_results";
-      this.tree_results.NodeMouseClick += new Telerik.WinControls.UI.RadTreeView.TreeViewEventHandler(this.tree_results_NodeMouseClick);
-      this.tree_results.NodesNeeded += new Telerik.WinControls.UI.NodesNeededEventHandler(this.tree_results_NodesNeeded);
       // 
       // radCommandBar1
       // 
@@ -70,8 +70,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.commandBarLabel1,
             this.combo_meta,
-            this.commandBarLabel2,
-            this.txt_searchQuery});
+            this.btn_go});
       this.commandBarStripElement1.Name = "commandBarStripElement1";
       // 
       // commandBarLabel1
@@ -88,31 +87,58 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
       this.combo_meta.MinSize = new System.Drawing.Size(200, 22);
       this.combo_meta.Name = "combo_meta";
       this.combo_meta.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.BitteAuswählen;
-      this.combo_meta.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.combo_meta_SelectedIndexChanged);
       // 
-      // commandBarLabel2
+      // btn_go
       // 
-      resources.ApplyResources(this.commandBarLabel2, "commandBarLabel2");
-      this.commandBarLabel2.Name = "commandBarLabel2";
-      this.commandBarLabel2.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Suche;
+      resources.ApplyResources(this.btn_go, "btn_go");
+      this.btn_go.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
+      this.btn_go.Name = "btn_go";
+      this.btn_go.Click += new System.EventHandler(this.btn_go_Click);
       // 
-      // txt_searchQuery
+      // radGridView1
       // 
-      resources.ApplyResources(this.txt_searchQuery, "txt_searchQuery");
-      this.txt_searchQuery.MinSize = new System.Drawing.Size(200, 0);
-      this.txt_searchQuery.Name = "txt_searchQuery";
-      this.txt_searchQuery.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.SuchbegriffHierEingeben;
-      this.txt_searchQuery.TextChanged += new System.EventHandler(this.txt_searchQuery_TextChanged);
+      resources.ApplyResources(this.radGridView1, "radGridView1");
+      // 
+      // 
+      // 
+      this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
+      this.radGridView1.Name = "radGridView1";
+      // 
+      // clearPanel1
+      // 
+      this.clearPanel1.Controls.Add(this.txt_query);
+      this.clearPanel1.Controls.Add(this.btn_search);
+      resources.ApplyResources(this.clearPanel1, "clearPanel1");
+      this.clearPanel1.Name = "clearPanel1";
+      // 
+      // txt_query
+      // 
+      resources.ApplyResources(this.txt_query, "txt_query");
+      this.txt_query.Name = "txt_query";
+      // 
+      // btn_search
+      // 
+      resources.ApplyResources(this.btn_search, "btn_search");
+      this.btn_search.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
+      this.btn_search.Name = "btn_search";
+      this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
       // 
       // TextSimilarity
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.Controls.Add(this.tree_results);
+      this.Controls.Add(this.radGridView1);
+      this.Controls.Add(this.clearPanel1);
       this.Controls.Add(this.radCommandBar1);
       this.Name = "TextSimilarity";
       this.ShowView += new System.EventHandler(this.TextSimilarityPage_ShowVisualisation);
-      ((System.ComponentModel.ISupportInitialize)(this.tree_results)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.clearPanel1)).EndInit();
+      this.clearPanel1.ResumeLayout(false);
+      this.clearPanel1.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.txt_query)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_search)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -125,8 +151,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
     private Telerik.WinControls.UI.CommandBarStripElement commandBarStripElement1;
     private Telerik.WinControls.UI.CommandBarLabel commandBarLabel1;
     private Telerik.WinControls.UI.CommandBarDropDownList combo_meta;
-    private Telerik.WinControls.UI.CommandBarLabel commandBarLabel2;
-    private Telerik.WinControls.UI.CommandBarTextBox txt_searchQuery;
-    private Telerik.WinControls.UI.RadTreeView tree_results;
+    private Telerik.WinControls.UI.CommandBarButton btn_go;
+    private Telerik.WinControls.UI.RadGridView radGridView1;
+    private Controls.WinForm.ClearPanel clearPanel1;
+    private Telerik.WinControls.UI.RadTextBox txt_query;
+    private Telerik.WinControls.UI.RadButton btn_search;
   }
 }

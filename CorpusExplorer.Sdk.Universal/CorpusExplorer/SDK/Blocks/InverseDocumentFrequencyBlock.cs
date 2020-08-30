@@ -5,7 +5,7 @@ using CorpusExplorer.Sdk.Blocks.Abstract;
 
 namespace CorpusExplorer.Sdk.Blocks
 {
-  public class InverseDocumentTermFrequencyBlock : AbstractBlock
+  public class InverseDocumentFrequencyBlock : AbstractBlock
   {
     public Dictionary<string, double> InverseDocumentTermFrequency { get; private set; }
 
@@ -17,8 +17,15 @@ namespace CorpusExplorer.Sdk.Blocks
       block.LayerDisplayname = LayerDisplayname;
       block.Calculate();
 
+      InverseDocumentTermFrequency = new Dictionary<string, double>();
+      foreach (var x in block.DocumentTermFrequency.SelectMany(dsel => dsel.Value))
+        if (InverseDocumentTermFrequency.ContainsKey(x.Key))
+          InverseDocumentTermFrequency[x.Key]++;
+        else
+          InverseDocumentTermFrequency.Add(x.Key, 1);
+
       double n = Selection.CountDocuments;
-      InverseDocumentTermFrequency = block.DocumentTermFrequency.ToDictionary(x => x.Key, x => Math.Log(n / x.Value));
+      InverseDocumentTermFrequency = InverseDocumentTermFrequency.ToDictionary(x => x.Key, x => Math.Log(n / x.Value));
     }
   }
 }

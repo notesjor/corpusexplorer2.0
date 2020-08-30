@@ -76,7 +76,7 @@ namespace CorpusExplorer.Sdk.Helper
       // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
       CultureInfo.GetCultures(CultureTypes.AllCultures).FirstOrDefault(ci =>
                                                                          DateTime.TryParse(dateTimeString, ci,
-                                                                                           DateTimeStyles.None,
+                                                                                           DateTimeStyles.AssumeLocal,
                                                                                            out dateTime));
       return dateTime;
     }

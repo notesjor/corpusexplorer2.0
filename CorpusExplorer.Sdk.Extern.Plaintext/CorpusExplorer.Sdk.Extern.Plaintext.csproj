@@ -41,14 +41,14 @@
       <HintPath>..\packages\HtmlAgilityPack.1.11.24\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MsgReader, Version=3.7.26.0, Culture=neutral, PublicKeyToken=3ba01cf3434959fa, processorArchitecture=MSIL">
-      <HintPath>..\packages\MsgReader.3.7.26\lib\net45\MsgReader.dll</HintPath>
+    <Reference Include="MsgReader, Version=3.7.28.0, Culture=neutral, PublicKeyToken=3ba01cf3434959fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\MsgReader.3.7.28\lib\net45\MsgReader.dll</HintPath>
     </Reference>
-    <Reference Include="OpenMcdf, Version=2.2.1.4, Culture=neutral, PublicKeyToken=fdbb1629d7c00800, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenMcdf.2.2.1.4\lib\net40\OpenMcdf.dll</HintPath>
+    <Reference Include="OpenMcdf, Version=2.2.1.5, Culture=neutral, PublicKeyToken=fdbb1629d7c00800, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenMcdf.2.2.1.6\lib\net40\OpenMcdf.dll</HintPath>
     </Reference>
     <Reference Include="RtfPipe, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b1b83b274d7d862f, processorArchitecture=MSIL">
-      <HintPath>..\packages\MsgReader.3.7.26\lib\net45\RtfPipe.dll</HintPath>
+      <HintPath>..\packages\MsgReader.3.7.28\lib\net45\RtfPipe.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

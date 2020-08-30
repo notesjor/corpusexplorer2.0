@@ -13,6 +13,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
   {
     public override string TableWriterTag => "F:JSON";
     public override string MimeType => "application/json";
+    public override string Description => "JavaScript Object Notation (JSON)";
 
     protected override void WriteHead(DataTable table)
     {

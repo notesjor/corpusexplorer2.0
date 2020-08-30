@@ -11,10 +11,9 @@ namespace CorpusExplorer.Sdk.Blocks
   [Serializable]
   public class Ngram1LayerBlock : AbstractSimple1LayerBlock
   {
-    private readonly object _lock = new object();
+    private object _lock = new object();
 
     public Dictionary<string, double> NGramFrequency { get; private set; }
-    public Dictionary<string, string[]> NGramRaw { get; private set; }
 
     public int NGramSize { get; set; } = 3;
 
@@ -25,61 +24,33 @@ namespace CorpusExplorer.Sdk.Blocks
       int[][] doc)
     {
       var dic = new Dictionary<string, int>();
-      var raw = new Dictionary<string, string[]>();
       var sentences = layer.ConvertToReadableDocument(doc).Select(x => x.ToArray()).ToArray();
 
-      if (Configuration.RightToLeftSupport)
-        for (var s = sentences.Length - 1; s > -1; s--)
-        for (var i = sentences[s].Length; i > NGramSize; i--)
+      foreach (var sentence in sentences)
+      {
+        var max = sentence.Length - NGramSize + 1;
+
+        for (var i = 0; i < max; i++)
         {
           var ngram = new string[NGramSize];
           for (var j = 0; j < NGramSize; j++)
-            ngram[j] = sentences[s][i + j];
+            ngram[j] = sentence[i + j]?.Replace(" ", string.Empty);
 
           var key = string.Join(" ", ngram);
-          if (dic.ContainsKey(key))
-          {
-            dic[key]++;
-          }
-          else
-          {
-            dic.Add(key, 1);
-            raw.Add(key, ngram);
-          }
-        }
-      else
-        foreach (var sentence in sentences)
-          for (var i = 0; i < sentence.Length - NGramSize; i++)
-          {
-            var ngram = new string[NGramSize];
-            for (var j = 0; j < NGramSize; j++)
-              ngram[j] = sentence[i + j];
 
-            var key = string.Join(" ", ngram);
-            if (dic.ContainsKey(key))
-            {
-              dic[key]++;
-            }
-            else
-            {
-              dic.Add(key, 1);
-              raw.Add(key, ngram);
-            }
-          }
+          if (dic.ContainsKey(key))
+            dic[key]++;
+          else
+            dic.Add(key, 1);
+        }
+      }
 
       lock (_lock)
-      {
         foreach (var x in dic)
           if (NGramFrequency.ContainsKey(x.Key))
-          {
-            NGramFrequency[x.Key]++;
-          }
+            NGramFrequency[x.Key] += x.Value;
           else
-          {
             NGramFrequency.Add(x.Key, x.Value);
-            NGramRaw.Add(x.Key, raw[x.Key]);
-          }
-      }
     }
 
     protected override void CalculateCleanup()
@@ -93,7 +64,6 @@ namespace CorpusExplorer.Sdk.Blocks
     protected override void CalculateInitProperties()
     {
       NGramFrequency = new Dictionary<string, double>();
-      NGramRaw = new Dictionary<string, string[]>();
 
       // Property FIX!
 
