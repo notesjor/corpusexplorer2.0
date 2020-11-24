@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v2.5 NT  - http://www.xmlspy.com -->
+<!-- MAJOR CHANGE IN Version 1.1. !!!! : remade 04-03-2002 -->
+<!-- (Reason: Appropriate implementation of interlinear text requires more flexible format) -->
+<!-- element <tier-format> is now simply a collection of elements <property> -->
+<!-- the old format (until 1.0.1) is still supported, but jexmaralda will always write the new format -->
+<!-- the attributes that were obligatory in 1.2. are now implied -->
+<!-- the only required attribute now is "tierref" -->
+<!-- attributes until 1.0.1 have the following correspondances in 1.1. -->
+<!-- attribute "style-name"	becomes <property name="font:style>" -->
+<!-- attribute "size"	becomes <property name="font:size>" -->
+<!-- attribute "alignment-name"	becomes <property name="text:alignment>" -->
+<!-- attribute "textcolor-name"	becomes <property name="font:color>" -->
+<!-- attribute "bgcolor-name"	becomes <property name="bg:color>" -->
+<!-- the fontname, which was encoded in the PCDATA before, will now be the value of <property name="font:name"> -->
+<!-- colors may either be encoded using the given names or using a string of the form #RxxGxxBxx -->
+<!-- where the xx represent the red/green/blue values in hexadecimal (!!) numbers (this is the much preferred way...) -->
+<!-- Version 1.1.1. -->
+<!-- Changes on 06-June-2002 -->
+<!-- addtional element "timeline-item-format" -->
+<!-- (specifying how to display timeline items, i.e. how many digits after comma, numbering or not etc.) -->
+<!-- Version 1.2.5. -->
+<!-- Changes on 24-July-2003 -->
+<!-- replaced attribute names of type "font:name" -->
+<!-- to attribute names of type "font-name". This is to avoid collisions with namespace conventions in XML -->
+<!-- Changes on 25-August-2003 -->
+<!-- added attribute "row-height-calculation" (possible values: 'Generous', 'Fixed' and 'Miserly') -->
+<!-- Changes on 08-Oct-2003 -->
+<!-- added attribute 'fixed-row-height (forgotten in Version 1.2.5.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="tierformat-table">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="referenced-file"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="timeline-item-format"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="tier-format"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="referenced-file">
+    <xs:complexType>
+      <xs:attribute name="url" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Added in version 1.1.1. -->
+  <xs:element name="timeline-item-format">
+    <xs:complexType>
+      <xs:attribute name="show-every-nth-numbering"/>
+      <xs:attribute name="show-every-nth-absolute"/>
+      <xs:attribute name="absolute-time-format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="decimal"/>
+            <xs:enumeration value="time"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="miliseconds-digits"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="tier-format">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="property"/>
+      </xs:sequence>
+      <xs:attribute name="tierref" use="required" type="xs:ID"/>
+      <xs:attribute name="style-name">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Plain"/>
+            <xs:enumeration value="Bold"/>
+            <xs:enumeration value="Italic"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="size">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+            <xs:enumeration value="3"/>
+            <xs:enumeration value="4"/>
+            <xs:enumeration value="5"/>
+            <xs:enumeration value="6"/>
+            <xs:enumeration value="7"/>
+            <xs:enumeration value="8"/>
+            <xs:enumeration value="9"/>
+            <xs:enumeration value="10"/>
+            <xs:enumeration value="11"/>
+            <xs:enumeration value="12"/>
+            <xs:enumeration value="13"/>
+            <xs:enumeration value="14"/>
+            <xs:enumeration value="15"/>
+            <xs:enumeration value="16"/>
+            <xs:enumeration value="17"/>
+            <xs:enumeration value="18"/>
+            <xs:enumeration value="19"/>
+            <xs:enumeration value="20"/>
+            <xs:enumeration value="21"/>
+            <xs:enumeration value="22"/>
+            <xs:enumeration value="23"/>
+            <xs:enumeration value="24"/>
+            <xs:enumeration value="25"/>
+            <xs:enumeration value="26"/>
+            <xs:enumeration value="27"/>
+            <xs:enumeration value="28"/>
+            <xs:enumeration value="29"/>
+            <xs:enumeration value="30"/>
+            <xs:enumeration value="31"/>
+            <xs:enumeration value="32"/>
+            <xs:enumeration value="33"/>
+            <xs:enumeration value="34"/>
+            <xs:enumeration value="35"/>
+            <xs:enumeration value="36"/>
+            <xs:enumeration value="37"/>
+            <xs:enumeration value="38"/>
+            <xs:enumeration value="39"/>
+            <xs:enumeration value="40"/>
+            <xs:enumeration value="41"/>
+            <xs:enumeration value="42"/>
+            <xs:enumeration value="43"/>
+            <xs:enumeration value="44"/>
+            <xs:enumeration value="45"/>
+            <xs:enumeration value="46"/>
+            <xs:enumeration value="47"/>
+            <xs:enumeration value="48"/>
+            <xs:enumeration value="72"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="alignment-name">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Left"/>
+            <xs:enumeration value="Right"/>
+            <xs:enumeration value="Center"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="textcolor-name">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="white"/>
+            <xs:enumeration value="lightGray"/>
+            <xs:enumeration value="darkGray"/>
+            <xs:enumeration value="black"/>
+            <xs:enumeration value="red"/>
+            <xs:enumeration value="pink"/>
+            <xs:enumeration value="orange"/>
+            <xs:enumeration value="yellow"/>
+            <xs:enumeration value="green"/>
+            <xs:enumeration value="magenta"/>
+            <xs:enumeration value="cyan"/>
+            <xs:enumeration value="blue"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="bgcolor-name">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="white"/>
+            <xs:enumeration value="lightGray"/>
+            <xs:enumeration value="darkGray"/>
+            <xs:enumeration value="black"/>
+            <xs:enumeration value="red"/>
+            <xs:enumeration value="pink"/>
+            <xs:enumeration value="orange"/>
+            <xs:enumeration value="yellow"/>
+            <xs:enumeration value="green"/>
+            <xs:enumeration value="magenta"/>
+            <xs:enumeration value="cyan"/>
+            <xs:enumeration value="blue"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="property">
+    <xs:complexType mixed="true">
+      <xs:attribute name="name" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="font-color"/>
+            <xs:enumeration value="bg-color"/>
+            <xs:enumeration value="font-size"/>
+            <xs:enumeration value="font-name"/>
+            <xs:enumeration value="font-face"/>
+            <xs:enumeration value="chunk-border"/>
+            <xs:enumeration value="chunk-border-color"/>
+            <xs:enumeration value="chunk-border-style"/>
+            <xs:enumeration value="text-alignment"/>
+            <xs:enumeration value="row-height-calculation"/>
+            <xs:enumeration value="fixed-row-height"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+<!-- Changed in version 1.2.5. -->

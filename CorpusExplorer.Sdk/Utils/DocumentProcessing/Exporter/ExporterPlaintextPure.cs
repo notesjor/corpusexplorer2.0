@@ -50,7 +50,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
           // Gebe die Layerdaten des Dokuments aus
           FileIO.Write(
                        Path.Combine(root, $"{dsel:N}.text.txt"),
-                       layer.GetReadableDocumentByGuid(dsel).ConvertToPlainText(),
+                       layer.GetReadableDocumentByGuid(dsel).ReduceDocumentToText(),
                        Configuration.Encoding);
         }
       }

@@ -53,7 +53,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     {
       if (string.IsNullOrEmpty(layerDisplayname))
         layerDisplayname = "Wort";
-      return Selection.GetReadableDocument(documentGuid, layerDisplayname).ConvertToText();
+      return Selection.GetReadableDocument(documentGuid, layerDisplayname).ReduceDocumentToText();
     }
 
     protected override void ExecuteAnalyse()

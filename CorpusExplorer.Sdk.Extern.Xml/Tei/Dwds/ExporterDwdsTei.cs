@@ -25,7 +25,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds
         if (!layer.ContainsDocument(dsel))
           continue;
 
-        var doc = layer.GetReadableDocumentByGuid(dsel)?.ConvertToText();
+        var doc = layer.GetReadableDocumentByGuid(dsel)?.ReduceDocumentToText();
         if (doc == null)
           continue;
 

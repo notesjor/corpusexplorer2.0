@@ -45,7 +45,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
     private void btn_clipboard_Click(object sender, EventArgs e)
     {
-      Clipboard.SetText(_vmAnnotation.GetDocument().ConvertToPlainText());
+      Clipboard.SetText(_vmAnnotation.GetDocument().ReduceDocumentToText());
     }
 
     private void btn_export_Click(object sender, EventArgs e)

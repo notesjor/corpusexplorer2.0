@@ -47,7 +47,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
 
     private void btn_clipboard_Click(object sender, EventArgs e)
     {
-      Clipboard.SetText(_docs[Index].Text.ConvertToPlainText());
+      Clipboard.SetText(_docs[Index].Text.ReduceDocumentToText());
     }
 
     private void btn_export_Click(object sender, EventArgs e)

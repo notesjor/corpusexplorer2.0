@@ -73,8 +73,8 @@ namespace CorpusExplorer.Sdk.Blocks
                                     if (docB == null)
                                       return;
 
-                                    var small = docA.ReduceToSingleDimension().ToArray();
-                                    var big = docB.ReduceToSingleDimension().ToArray();
+                                    var small = docA.Reduce().ToArray();
+                                    var big = docB.Reduce().ToArray();
 
                                     if (small.Length > big.Length)
                                     {

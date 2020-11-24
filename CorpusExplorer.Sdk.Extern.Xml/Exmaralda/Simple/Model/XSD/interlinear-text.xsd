@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://tempuri.org/interlinear-text" elementFormDefault="qualified" targetNamespace="http://tempuri.org/interlinear-text" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="formats">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="format" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="format">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="property" />
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="property">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="name" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="font-name" />
+                <xs:enumeration value="font-face" />
+                <xs:enumeration value="font-size" />
+                <xs:enumeration value="font-color" />
+                <xs:enumeration value="bg-color" />
+                <xs:enumeration value="text-alignment" />
+                <xs:enumeration value="frame" />
+                <xs:enumeration value="chunk-border" />
+                <xs:enumeration value="chunk-border-color" />
+                <xs:enumeration value="chunk-border-style" />
+                <xs:enumeration value="row-height-calculation" />
+                <xs:enumeration value="fixed-row-height" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="interlinear-text">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" ref="ud-information" />
+        <xs:element ref="formats" />
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="line" />
+          <xs:element ref="it-bundle" />
+          <xs:element ref="page-break" />
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="formatref" type="xs:IDREF" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="line">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" ref="ud-information" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="anchor" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="run" />
+      </xs:sequence>
+      <xs:attribute name="formatref" type="xs:IDREF" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="it-bundle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" ref="ud-information" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="anchor" />
+        <xs:element ref="sync-points" />
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="it-line" />
+          <xs:element minOccurs="0" maxOccurs="1" ref="frame-end" />
+        </xs:sequence>
+      </xs:sequence>
+      <xs:attribute name="formatref" type="xs:IDREF" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sync-points">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" ref="ud-information" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="sync-point" />
+      </xs:sequence>
+      <xs:attribute name="formatref" type="xs:IDREF" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sync-point">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="id" type="xs:string" use="required" />
+          <xs:attribute name="offset" type="xs:string" />
+          <xs:attribute name="formatref" type="xs:IDREF" />
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="it-line">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" ref="ud-information" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="it-label" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="it-chunk" />
+      </xs:sequence>
+      <xs:attribute name="breaktype" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="NB_TIME" />
+            <xs:enumeration value="NB_NOTIME" />
+            <xs:enumeration value="NB_DEP" />
+            <xs:enumeration value="NB_LNK" />
+            <xs:enumeration value="B" />
+            <xs:enumeration value="IMG" />
+            <xs:enumeration value="OTH" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="formatref" type="xs:IDREF" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="it-label">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" ref="ud-information" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="link" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="run" />
+      </xs:sequence>
+      <xs:attribute name="formatref" type="xs:IDREF" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="it-chunk">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" ref="ud-information" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="link" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="run" />
+      </xs:sequence>
+      <xs:attribute name="start-sync" type="xs:string" use="required" />
+      <xs:attribute name="end-sync" type="xs:string" />
+      <xs:attribute name="formatref" type="xs:IDREF" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="link">
+    <xs:complexType>
+      <xs:attribute name="url" type="xs:string" use="required" />
+      <xs:attribute name="type">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="aud" />
+            <xs:enumeration value="vid" />
+            <xs:enumeration value="img" />
+            <xs:enumeration value="txt" />
+            <xs:enumeration value="oth" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="anchor" type="xs:string" />
+  <xs:element name="run">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="formatref" type="xs:IDREF" />
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="page-break">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="frame-end">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="ud-information">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ud-attribute" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ud-attribute">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="name" type="xs:string" use="required" />
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

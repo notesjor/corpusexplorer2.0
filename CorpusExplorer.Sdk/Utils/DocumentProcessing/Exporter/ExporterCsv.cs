@@ -36,7 +36,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
             values.Add(string.Empty);
           }
 
-        values.Add(hydra.GetReadableDocument(x.Key, "Wort").ConvertToPlainText());
+        values.Add(hydra.GetReadableDocument(x.Key, "Wort").ReduceDocumentToText(" "));
         stb.Append($"{string.Join(ValueSeparator, values)}{LineSeparator}");
       }
 

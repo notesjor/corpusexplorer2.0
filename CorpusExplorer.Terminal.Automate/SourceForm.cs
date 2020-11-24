@@ -42,17 +42,17 @@ namespace CorpusExplorer.Terminal.Automate
 
     private void LoadDropDownOptions()
     {
-      _scrapers = Configuration.AddonScrapers.GetReflectedTypeNameDictionary();
-      _taggers = Configuration.AddonTaggers.GetReflectedTypeNameDictionary();
+      _scrapers = Configuration.AddonScrapers.Convert();
+      _taggers = Configuration.AddonTaggers.ToDictionary(x => x.DisplayName, x => x);
       anno_drop_tagger.Items.AddRange(_taggers.Keys.Select(x => new RadListDataItem(x)));
-      _importers = Configuration.AddonImporters.GetReflectedTypeNameDictionary();
+      _importers = Configuration.AddonImporters.Convert();
     }
 
     public object Result
     {
       get =>
         drop_starttag.SelectedItem.Text == "annotate"
-          ? (object) new annotate
+          ? (object)new annotate
           {
             type = drop_type.SelectedItem.Text,
             language = anno_drop_language.SelectedItem.Text,
@@ -86,8 +86,8 @@ namespace CorpusExplorer.Terminal.Automate
 
     private object[] GetSources()
     {
-      var res = grid_files.Rows.Select(row => new file {Value = row.Cells[0].Value.ToString()}).Cast<object>().ToList();
-      res.AddRange(grid_directories.Rows.Select(row => new directory {Value = row.Cells[0].Value.ToString(), filter = row.Cells[1].Value.ToString()}));
+      var res = grid_files.Rows.Select(row => new file { Value = row.Cells[0].Value.ToString() }).Cast<object>().ToList();
+      res.AddRange(grid_directories.Rows.Select(row => new directory { Value = row.Cells[0].Value.ToString(), filter = row.Cells[1].Value.ToString() }));
       return res.ToArray();
     }
 
@@ -148,7 +148,7 @@ namespace CorpusExplorer.Terminal.Automate
     private void anno_drop_tagger_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
     {
       anno_drop_language.Items.Clear();
-      if(!_taggers.ContainsKey(anno_drop_tagger.SelectedItem.Text))
+      if (!_taggers.ContainsKey(anno_drop_tagger.SelectedItem.Text))
         return;
       anno_drop_language.Items.AddRange(_taggers[anno_drop_tagger.SelectedItem.Text]
                                        .LanguagesAvailabel.Select(x => new RadListDataItem(x)));

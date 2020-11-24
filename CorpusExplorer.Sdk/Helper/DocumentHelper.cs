@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 
 #endregion
 
@@ -143,6 +144,17 @@ namespace CorpusExplorer.Sdk.Helper
     }
 
     /// <summary>
+    /// Wandelt einen Satz (Snippet) in einen String um.
+    /// </summary>
+    /// <param name="sentence">Satz</param>
+    /// <param name="tokenSeparator">Wie sollen Token separiert werden?</param>
+    /// <returns></returns>
+    public static string ReduceSentenceToText(this IEnumerable<int> sentence, AbstractLayerAdapter layer, string tokenSeparator = " ")
+    {
+      return string.Join(tokenSeparator, sentence.Select(x => layer[x]));
+    }
+
+    /// <summary>
     ///   Reduziert ein Dokument so, das es eine Auflistung von Sätzen darstellt.
     /// </summary>
     /// <param name="document">The document.</param>
@@ -183,5 +195,20 @@ namespace CorpusExplorer.Sdk.Helper
 
       return string.Concat(list).Trim();
     }
+
+    public static string Improve(this string text)
+      => text.Replace(" . ", ". ")
+             .Replace(" : ", ": ")
+             .Replace(" ; ", "; ")
+             .Replace(" , ", ", ")
+             .Replace(" ! ", "! ")
+             .Replace(" ? ", "? ")
+             .Replace(" ) ", ") ")
+             .Replace(" ] ", "] ")
+             .Replace(" [ ", " [")
+             .Replace(" ( ", " (");
+
+    public static IEnumerable<int> Reduce(this IEnumerable<IEnumerable<int>> document)
+      => document.SelectMany(s => s);
   }
 }

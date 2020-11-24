@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using CorpusExplorer.Sdk.Extern.Xml.Bnc.Extension;
 using CorpusExplorer.Sdk.Extern.Xml.Bnc.Model;
+using CorpusExplorer.Sdk.Extern.Xml.Bnc.Serializer;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 using HtmlAgilityPack;
 
-namespace CorpusExplorer.Sdk.Extern.Xml.Bnc.Serializer
+namespace CorpusExplorer.Sdk.Extern.Xml.Bnc
 {
   public class ImporterBnc : AbstractImporterSimple3Steps<bncDoc>
   {

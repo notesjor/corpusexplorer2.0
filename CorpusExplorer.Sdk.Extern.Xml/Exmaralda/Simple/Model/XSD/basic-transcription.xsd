@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Version 0 -->
+<!-- created 11-April-2001 -->
+<!-- by Thomas Schmidt -->
+<!-- thomas.schmidt@uni-hamburg.de -->
+<!-- Version 1 -->
+<!-- changes on 11-October-2001 -->
+<!-- ELEMENT <event> can now optionally have attributes "medium" and "url", ELEMENT <link> -->
+<!-- thus becoming obsolete (it will however, be retained for a while for backwards compatibility) -->
+<!-- ELEMENT <languages-used> is no longer required to have at least one child element <language>, i.e. -->
+<!-- it can now be empty -->
+<!-- ELEMENT <tier> can now optionally have a child element <ud-tier-information> for user-defined attribute-value pairs -->
+<!-- giving additional information about that tier (this is for compatibility with TASX) -->
+<!-- Version 1.0.1. -->
+<!-- changes on 25-January-2002 -->
+<!-- ELEMENT <event> can now optionally have child elements <ud-information> for user-defined attribute-value pairs -->
+<!--  giving additional information about that event (this is for compatibility with TASX and for user extended functionality) -->
+<!-- ELEMENT <link> no longer supported -->
+<!-- Version 1.1.1. -->
+<!-- changes on 06-June-2002 -->
+<!-- ELEMENT tli can now have an additional attribute 'type' (this is to be able to keep interpolated values from others) -->
+<!-- changes on 25-June-2002 -->
+<!-- ATTRIBUTE lang in language is no longer from namespace -->
+<!-- changes on 31-July-2002 -->
+<!-- ATTRIBUTE speaker of ELEMENT tier is no longer required, it is implied (tiers may well NOT be assignable to a speaker) -->
+<!-- Version 1.2.5. -->
+<!-- changes on 28-August-2003 -->
+<!-- ELEMENT tier can now optionally contain an ATTRIBUTE display-name -->
+<!-- changes on 11-November-2004 -->
+<!-- added optional ATTRIBUTE bookmark for timeline-items -->
+<!-- changes on 21-November-2007 -->
+<!-- added optional ATTRIBUTE Id for basic-transcription -->
+<!-- Version 1.4. -->
+<!-- changes on 06-October-2008 -->
+<!-- basic transcription can now optionally include a tierformat-table element -->
+<!-- there can be more than one referenced file -->
+<!-- ************ Top level element ************ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="basic-transcription">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="head"/>
+        <xs:element ref="basic-body"/>
+        <xs:element minOccurs="0" ref="tierformat-table"/>
+      </xs:sequence>
+      <xs:attribute name="Id"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- ********************************************** -->
+  <!-- ************ Head (same for all transcriptions ************ -->
+  <xs:element name="head">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="meta-information"/>
+        <xs:element ref="speakertable"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************ -->
+  <xs:element name="meta-information">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="project-name"/>
+        <xs:element ref="transcription-name"/>
+        <xs:element maxOccurs="unbounded" ref="referenced-file"/>
+        <xs:element ref="ud-meta-information"/>
+        <xs:element ref="comment"/>
+        <xs:element ref="transcription-convention"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="project-name" type="xs:string"/>
+  <xs:element name="transcription-name" type="xs:string"/>
+  <xs:element name="referenced-file">
+    <xs:complexType>
+      <xs:attribute name="url" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ud-meta-information">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ud-information"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="comment" type="xs:string"/>
+  <xs:element name="transcription-convention" type="xs:string"/>
+  <xs:element name="ud-information">
+    <xs:complexType mixed="true">
+      <xs:attribute name="attribute-name" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************ -->
+  <!-- ************************************ -->
+  <xs:element name="speakertable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="speaker"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="speaker">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="abbreviation"/>
+        <xs:element ref="sex"/>
+        <xs:element ref="languages-used"/>
+        <xs:element ref="l1"/>
+        <xs:element ref="l2"/>
+        <xs:element ref="ud-speaker-information"/>
+        <xs:element ref="comment"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="abbreviation" type="xs:string"/>
+  <xs:element name="sex">
+    <xs:complexType>
+      <xs:attribute name="value" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="m"/>
+            <xs:enumeration value="f"/>
+            <xs:enumeration value="u"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- Version 0 was: <!ELEMENT languages-used (language+)> -->
+  <xs:element name="languages-used">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="language"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- CHANGED IN VERSION 1 !!! -->
+  <xs:element name="l1">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="language"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="l2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="language"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="language">
+    <xs:complexType>
+      <xs:attribute name="lang" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Version 1.1. was: <!ATTLIST language xml:lang NMTOKEN #REQUIRED> -->
+  <xs:element name="ud-speaker-information">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ud-information"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************ -->
+  <!-- ************ ************************************** ************ -->
+  <!-- ************ Body (different for all transcriptions) ************ -->
+  <xs:element name="basic-body">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="common-timeline"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="tier"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- ************************************ -->
+  <xs:element name="common-timeline">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="tli"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="tli">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:ID"/>
+      <xs:attribute name="time"/>
+      <xs:attribute name="type">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="unsp"/>
+            <xs:enumeration value="user"/>
+            <xs:enumeration value="appl"/>
+            <xs:enumeration value="intp"/>
+            <xs:enumeration value="othr"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="bookmark"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- attribute 'type' added in version 1.1.1. -->
+  <!-- ************************************ -->
+  <!-- ************************************ -->
+  <!-- Version 0 was: <!ELEMENT tier (event* | link*)> -->
+  <!--  Version 1 was: <!ELEMENT tier (ud-tier-information?, (event* | link*))> -->
+  <xs:element name="tier">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="ud-tier-information"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="event"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:ID"/>
+      <xs:attribute name="speaker" type="xs:IDREF"/>
+      <xs:attribute name="category" use="required"/>
+      <xs:attribute name="display-name"/>
+      <xs:attribute name="type" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="t"/>
+            <xs:enumeration value="d"/>
+            <xs:enumeration value="a"/>
+            <xs:enumeration value="l"/>
+            <xs:enumeration value="u"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- CHANGED IN VERSION 1.1. !!! -->
+  <!-- CHANGED IN VERSION 1.2. !!! -->
+  <xs:element name="ud-tier-information">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ud-information"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- ADDED IN VERSION 1.1. !!! -->
+  <!-- CHANGED IN VERSION 1.2.5. !!! -->
+  <!-- CHANGED IN VERSION 1.1.2. !!! -->
+  <!-- was: speaker IDREF #REQUIRED -->
+  <!-- Version 1.1. was: <!ELEMENT event (#PCDATA)> -->
+  <xs:element name="event">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ud-information"/>
+      </xs:sequence>
+      <xs:attribute name="start" use="required" type="xs:IDREF"/>
+      <xs:attribute name="end" use="required" type="xs:IDREF"/>
+      <xs:attribute name="medium">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="aud"/>
+            <xs:enumeration value="vid"/>
+            <xs:enumeration value="img"/>
+            <xs:enumeration value="txt"/>
+            <xs:enumeration value="oth"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="url"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- CHANGED IN VERSION 1.2. !!! -->
+  <!--
+    Version 1.0. was: <!ATTLIST event
+    				    start IDREF #REQUIRED
+    end IDREF #REQUIRED
+    				>
+  -->
+  <!-- CHANGED IN VERSION 1.1. !!! -->
+  <!-- ELEMENT <link> becomes obsolete in version 1.1. -->
+  <!-- COMMENTED OUT IN VERSION 1.2. !!! -->
+  <!--
+    
+    <!ELEMENT link (#PCDATA)>
+    <!ATTLIST link
+    	start IDREF #REQUIRED
+    	end IDREF #REQUIRED
+    	medium (aud | vid | img | txt | oth) #REQUIRED
+    	url CDATA #REQUIRED
+    >
+  -->
+  <!-- ****************************************************** -->
+  <!-- ************ ADDED FOR VERSION 1.4 ************ -->
+  <!-- ****************************************************** -->
+  <!-- MAJOR CHANGE IN Version 1.1. !!!! : remade 04-03-2002 -->
+  <!-- (Reason: Appropriate implementation of interlinear text requires more flexible format) -->
+  <!-- element <tier-format> is now simply a collection of elements <property> -->
+  <!-- the old format (until 1.0.1) is still supported, but jexmaralda will always write the new format -->
+  <!-- the attributes that were obligatory in 1.2. are now implied -->
+  <!-- the only required attribute now is "tierref" -->
+  <!-- attributes until 1.0.1 have the following correspondances in 1.1. -->
+  <!-- attribute "style-name"	becomes <property name="font:style>" -->
+  <!-- attribute "size"	becomes <property name="font:size>" -->
+  <!-- attribute "alignment-name"	becomes <property name="text:alignment>" -->
+  <!-- attribute "textcolor-name"	becomes <property name="font:color>" -->
+  <!-- attribute "bgcolor-name"	becomes <property name="bg:color>" -->
+  <!-- the fontname, which was encoded in the PCDATA before, will now be the value of <property name="font:name"> -->
+  <!-- colors may either be encoded using the given names or using a string of the form #RxxGxxBxx -->
+  <!-- where the xx represent the red/green/blue values in hexadecimal (!!) numbers (this is the much preferred way...) -->
+  <!-- Version 1.1.1. -->
+  <!-- Changes on 06-June-2002 -->
+  <!-- addtional element "timeline-item-format" -->
+  <!-- (specifying how to display timeline items, i.e. how many digits after comma, numbering or not etc.) -->
+  <!-- Version 1.2.5. -->
+  <!-- Changes on 24-July-2003 -->
+  <!-- replaced attribute names of type "font:name" -->
+  <!-- to attribute names of type "font-name". This is to avoid collisions with namespace conventions in XML -->
+  <!-- Changes on 25-August-2003 -->
+  <!-- added attribute "row-height-calculation" (possible values: 'Generous', 'Fixed' and 'Miserly') -->
+  <!-- Changes on 08-Oct-2003 -->
+  <!-- added attribute 'fixed-row-height (forgotten in Version 1.2.5.) -->
+  <xs:element name="tierformat-table">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="referenced-file"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="timeline-item-format"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="tier-format"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- Added in version 1.1.1. -->
+  <xs:element name="timeline-item-format">
+    <xs:complexType>
+      <xs:attribute name="show-every-nth-numbering"/>
+      <xs:attribute name="show-every-nth-absolute"/>
+      <xs:attribute name="absolute-time-format">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="decimal"/>
+            <xs:enumeration value="time"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="miliseconds-digits"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="tier-format">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="property"/>
+      </xs:sequence>
+      <xs:attribute name="tierref" use="required"/>
+      <xs:attribute name="style-name">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Plain"/>
+            <xs:enumeration value="Bold"/>
+            <xs:enumeration value="Italic"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="size">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+            <xs:enumeration value="3"/>
+            <xs:enumeration value="4"/>
+            <xs:enumeration value="5"/>
+            <xs:enumeration value="6"/>
+            <xs:enumeration value="7"/>
+            <xs:enumeration value="8"/>
+            <xs:enumeration value="9"/>
+            <xs:enumeration value="10"/>
+            <xs:enumeration value="11"/>
+            <xs:enumeration value="12"/>
+            <xs:enumeration value="13"/>
+            <xs:enumeration value="14"/>
+            <xs:enumeration value="15"/>
+            <xs:enumeration value="16"/>
+            <xs:enumeration value="17"/>
+            <xs:enumeration value="18"/>
+            <xs:enumeration value="19"/>
+            <xs:enumeration value="20"/>
+            <xs:enumeration value="21"/>
+            <xs:enumeration value="22"/>
+            <xs:enumeration value="23"/>
+            <xs:enumeration value="24"/>
+            <xs:enumeration value="25"/>
+            <xs:enumeration value="26"/>
+            <xs:enumeration value="27"/>
+            <xs:enumeration value="28"/>
+            <xs:enumeration value="29"/>
+            <xs:enumeration value="30"/>
+            <xs:enumeration value="31"/>
+            <xs:enumeration value="32"/>
+            <xs:enumeration value="33"/>
+            <xs:enumeration value="34"/>
+            <xs:enumeration value="35"/>
+            <xs:enumeration value="36"/>
+            <xs:enumeration value="37"/>
+            <xs:enumeration value="38"/>
+            <xs:enumeration value="39"/>
+            <xs:enumeration value="40"/>
+            <xs:enumeration value="41"/>
+            <xs:enumeration value="42"/>
+            <xs:enumeration value="43"/>
+            <xs:enumeration value="44"/>
+            <xs:enumeration value="45"/>
+            <xs:enumeration value="46"/>
+            <xs:enumeration value="47"/>
+            <xs:enumeration value="48"/>
+            <xs:enumeration value="72"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="alignment-name">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Left"/>
+            <xs:enumeration value="Right"/>
+            <xs:enumeration value="Center"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="textcolor-name">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="white"/>
+            <xs:enumeration value="lightGray"/>
+            <xs:enumeration value="darkGray"/>
+            <xs:enumeration value="black"/>
+            <xs:enumeration value="red"/>
+            <xs:enumeration value="pink"/>
+            <xs:enumeration value="orange"/>
+            <xs:enumeration value="yellow"/>
+            <xs:enumeration value="green"/>
+            <xs:enumeration value="magenta"/>
+            <xs:enumeration value="cyan"/>
+            <xs:enumeration value="blue"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="bgcolor-name">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="white"/>
+            <xs:enumeration value="lightGray"/>
+            <xs:enumeration value="darkGray"/>
+            <xs:enumeration value="black"/>
+            <xs:enumeration value="red"/>
+            <xs:enumeration value="pink"/>
+            <xs:enumeration value="orange"/>
+            <xs:enumeration value="yellow"/>
+            <xs:enumeration value="green"/>
+            <xs:enumeration value="magenta"/>
+            <xs:enumeration value="cyan"/>
+            <xs:enumeration value="blue"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="property">
+    <xs:complexType mixed="true">
+      <xs:attribute name="name" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="font-color"/>
+            <xs:enumeration value="bg-color"/>
+            <xs:enumeration value="font-size"/>
+            <xs:enumeration value="font-name"/>
+            <xs:enumeration value="font-face"/>
+            <xs:enumeration value="chunk-border"/>
+            <xs:enumeration value="chunk-border-color"/>
+            <xs:enumeration value="chunk-border-style"/>
+            <xs:enumeration value="text-alignment"/>
+            <xs:enumeration value="row-height-calculation"/>
+            <xs:enumeration value="fixed-row-height"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+<!-- Changed in version 1.2.5. -->

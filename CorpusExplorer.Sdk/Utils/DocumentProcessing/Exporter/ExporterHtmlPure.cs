@@ -45,7 +45,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
           stb.AppendLine("<html><head/><body>");
 
           stb.AppendLine(SerializeDictionary(hydra.GetDocumentMetadata(dsel)));
-          stb.AppendLine(layer.GetReadableDocumentByGuid(dsel).ConvertToPlainText());
+          stb.AppendLine(layer.GetReadableDocumentByGuid(dsel).ReduceDocumentToText());
 
           stb.AppendLine("</body></html>");
 

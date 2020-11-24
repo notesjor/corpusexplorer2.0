@@ -23,7 +23,7 @@ namespace CorpusExplorer.Sdk.Blocks
       Parallel.For(0, dsel.Length, i =>
       {
         var a = Selection.GetDocument(dsel[i], LayerDisplayname)?
-                         .ReduceToSingleDimension()
+                         .Reduce()
                          .ToArray();
         if (a == null)
           return;
@@ -31,7 +31,7 @@ namespace CorpusExplorer.Sdk.Blocks
         Parallel.For(i + 1, dsel.Length, j =>
         {
           var b = Selection.GetDocument(dsel[j], LayerDisplayname)?
-                           .ReduceToSingleDimension()
+                           .Reduce()
                            .ToArray();
           if (b == null)
             return;

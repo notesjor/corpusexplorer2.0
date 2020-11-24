@@ -33,8 +33,8 @@ namespace CorpusExplorer.Terminal.Automate
     private void LoadDropDownOptions()
     {
       drop_actionType.Items.AddRange(Configuration.AddonConsoleActions.Select(x => new RadListDataItem(x.Action)));
-      _outputAction = Configuration.AddonTableWriter.GetReflectedTypeNameDictionary();
-      _outputExporter = Configuration.AddonExporters.GetReflectedTypeNameDictionary();
+      _outputAction = Configuration.AddonTableWriter.ToDictionary(x => x.Value.TableWriterTag.Replace("F:", ""), x => x.Value);
+      _outputExporter = Configuration.AddonExporters.Convert();
     }
 
     public action Result

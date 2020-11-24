@@ -32,7 +32,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
           if (!layer.ContainsDocument(dsel))
             continue;
 
-          stb.AppendLine(layer.GetReadableDocumentByGuid(dsel).ConvertToPlainText());
+          stb.AppendLine(layer.GetReadableDocumentByGuid(dsel).ReduceDocumentToText(" "));
         }
       }
 

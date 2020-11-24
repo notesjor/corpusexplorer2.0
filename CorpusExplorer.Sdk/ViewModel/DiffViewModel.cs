@@ -168,14 +168,14 @@ namespace CorpusExplorer.Sdk.ViewModel
                     ? Selection.GetLayerOfDocument(DocumentBGuid, LayerDisplayname)
                     : Selection.GetLayerOfDocument(DocumentAGuid, LayerDisplayname);
 
-      return layer == null ? null : array.ConvertToText(layer);
+      return layer == null ? null : array.ReduceSentenceToText(layer);
     }
 
     private int[] ReciveDocumentAsArray(Guid guid)
     {
       return
         Selection.GetDocument(guid, LayerDisplayname)?
-                 .ReduceToSingleDimension()
+                 .Reduce()
                  .ToArray();
     }
   }

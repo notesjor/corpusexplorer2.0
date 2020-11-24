@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Changes for version 1.2.5. -->
+<!-- top-level element must have attribute 'name' -->
+<!-- charset can contain element 'comment' -->
+<!-- transitions can contain element 'comment' -->
+<!-- transitions can contain element 'forbidden' -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="fsm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="char-set"/>
+        <xs:element ref="start-state"/>
+        <xs:element ref="end-state"/>
+        <xs:element maxOccurs="unbounded" ref="transitions"/>
+      </xs:sequence>
+      <xs:attribute name="name" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Change Version 1.2.5. -->
+  <!-- Change Version 1.2.5. -->
+  <xs:element name="char-set">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="comment"/>
+        <xs:element maxOccurs="unbounded" ref="char"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Added Version 1.2.5. -->
+  <xs:element name="comment" type="xs:string"/>
+  <xs:element name="char" type="xs:string"/>
+  <xs:element name="start-state">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:IDREF"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="end-state">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:IDREF"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Change Version 1.2.5. -->
+  <xs:element name="transitions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="comment"/>
+        <xs:element minOccurs="0" ref="forbidden"/>
+        <xs:element maxOccurs="unbounded" ref="transition"/>
+      </xs:sequence>
+      <xs:attribute name="source" use="required" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Added Version 1.2.5. -->
+  <xs:element name="forbidden" type="xs:string"/>
+  <xs:element name="transition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:element ref="input-char-set"/>
+          <xs:element ref="input-char"/>
+          <xs:element ref="input-other"/>
+          <xs:element ref="input-end"/>
+        </xs:choice>
+        <xs:element ref="target"/>
+        <xs:element minOccurs="0" ref="output"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="input-char" type="xs:string"/>
+  <xs:element name="input-char-set">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:IDREF"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="input-other">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="input-end">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="target">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:IDREF"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="output">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="prefix"/>
+        <xs:element minOccurs="0" ref="suffix"/>
+      </xs:sequence>
+      <xs:attribute name="oo" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="yes"/>
+            <xs:enumeration value="no"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="prefix" type="xs:string"/>
+  <xs:element name="suffix" type="xs:string"/>
+</xs:schema>

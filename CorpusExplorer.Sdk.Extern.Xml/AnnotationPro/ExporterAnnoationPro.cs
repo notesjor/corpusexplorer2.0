@@ -73,7 +73,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.AnnotationPro
         IsMarker = segmentPrototyp.IsMarker,
         IsSelected = segmentPrototyp.IsSelected,
         Marker = segmentPrototyp.Marker,
-        Label = layer.GetReadableDocumentByGuid(documentGuid).ConvertToText(),
+        Label = layer.GetReadableDocumentByGuid(documentGuid).ReduceDocumentToText(),
         Language = segmentPrototyp.Language,
         Name = segmentPrototyp.Name,
         Parameter1 = segmentPrototyp.Parameter1,

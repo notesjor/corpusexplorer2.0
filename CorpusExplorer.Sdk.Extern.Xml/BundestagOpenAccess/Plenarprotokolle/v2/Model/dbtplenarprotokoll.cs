@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 using System.Xml.Serialization;
+using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle.v2.Model;
 
 // 
 // Dieser Quellcode wurde automatisch generiert von xsd, Version=4.8.3928.0.
