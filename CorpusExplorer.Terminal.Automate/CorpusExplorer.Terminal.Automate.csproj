@@ -90,71 +90,89 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractForm.cs">
+    <Compile Include="Controls\AutoSplit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AutoSplit.Designer.cs">
+      <DependentUpon>AutoSplit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Abstract\AbstractForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbstractForm.Designer.cs">
+    <Compile Include="Forms\Abstract\AbstractForm.Designer.cs">
       <DependentUpon>AbstractForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AutomateViewModel.cs" />
-    <Compile Include="ActionForm.cs">
+    <Compile Include="Forms\ClusterAssistant.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ActionForm.Designer.cs">
+    <Compile Include="Forms\ClusterAssistant.Designer.cs">
+      <DependentUpon>ClusterAssistant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ActionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ActionForm.Designer.cs">
       <DependentUpon>ActionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Abstract\AbstractControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Abstract\AbstractControl.Designer.cs">
+      <DependentUpon>AbstractControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\AddonRepositoryEntriesToDictionaryHelper.cs" />
     <Compile Include="Helper\DropSelectSearhHelper.cs" />
-    <Compile Include="QueryBuilderForm.cs">
+    <Compile Include="Forms\QueryBuilderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QueryBuilderForm.Designer.cs">
+    <Compile Include="Forms\QueryBuilderForm.Designer.cs">
       <DependentUpon>QueryBuilderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="QueryForm.cs">
+    <Compile Include="Forms\SourceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QueryForm.Designer.cs">
-      <DependentUpon>QueryForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SourceForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SourceForm.Designer.cs">
+    <Compile Include="Forms\SourceForm.Designer.cs">
       <DependentUpon>SourceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SessionForm.cs">
+    <Compile Include="Forms\SessionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SessionForm.Designer.cs">
+    <Compile Include="Forms\SessionForm.Designer.cs">
       <DependentUpon>SessionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AbstractForm.resx">
+    <EmbeddedResource Include="Controls\AutoSplit.resx">
+      <DependentUpon>AutoSplit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Abstract\AbstractForm.resx">
       <DependentUpon>AbstractForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ActionForm.resx">
+    <EmbeddedResource Include="Forms\ClusterAssistant.resx">
+      <DependentUpon>ClusterAssistant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ActionForm.resx">
       <DependentUpon>ActionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Abstract\AbstractControl.resx">
+      <DependentUpon>AbstractControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="QueryBuilderForm.resx">
+    <EmbeddedResource Include="Forms\QueryBuilderForm.resx">
       <DependentUpon>QueryBuilderForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QueryForm.resx">
-      <DependentUpon>QueryForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SourceForm.resx">
+    <EmbeddedResource Include="Forms\SourceForm.resx">
       <DependentUpon>SourceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SessionForm.resx">
+    <EmbeddedResource Include="Forms\SessionForm.resx">
       <DependentUpon>SessionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Program.cs" />
@@ -244,6 +262,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ok_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\magic_wand.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

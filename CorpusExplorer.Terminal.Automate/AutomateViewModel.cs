@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 using CorpusExplorer.Terminal.Console.Xml.Model;
 
@@ -14,6 +10,11 @@ namespace CorpusExplorer.Terminal.Automate
   public class AutomateViewModel
   {
     private cescript _script;
+
+    public AutomateViewModel()
+    {
+      New();
+    }
 
     public void New()
     {
@@ -72,7 +73,7 @@ namespace CorpusExplorer.Terminal.Automate
     }
 
     public IEnumerable<string> List() 
-      => _script.sessions.session.Select(x => $"S {x.sources.Items.Length} ({x.sources.processing}) | Q {x.queries.Items.Length} ({x.queries.processing}) | A {x.actions.action.Length} ({x.actions.mode})");
+      => _script.sessions.session?.Select(x => $"Sources (mode=\"{x.sources?.processing}\"): {x.sources?.Items?.Length} | Queries: {x.queries?.Items?.Length} | Actions (mode=\"{x.actions?.mode}\"): {x.actions?.action?.Length}");
 
     public IEnumerable<KeyValuePair<string, string>> Metas
     {
@@ -90,6 +91,11 @@ namespace CorpusExplorer.Terminal.Automate
     {
       get => _script.sessions.mode;
       set => _script.sessions.mode = value;
+    }
+
+    public session Get(int index)
+    {
+      return _script.sessions.session[index];
     }
   }
 }

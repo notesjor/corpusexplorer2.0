@@ -13,7 +13,7 @@ namespace CorpusExplorer.Terminal.Automate
     [STAThread]
     static void Main()
     {
-      CorpusExplorerEcosystem.InitializeMinimal();
+      CorpusExplorerEcosystem.Initialize();
 
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);

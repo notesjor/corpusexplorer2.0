@@ -12,6 +12,8 @@ using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle.v1;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle.v2;
 using CorpusExplorer.Sdk.Extern.Xml.Catma;
+using CorpusExplorer.Sdk.Extern.Xml.Catma._5._0;
+using CorpusExplorer.Sdk.Extern.Xml.Catma._6._0;
 using CorpusExplorer.Sdk.Extern.Xml.CoraXml._0._8;
 using CorpusExplorer.Sdk.Extern.Xml.CoraXml._1._0;
 using CorpusExplorer.Sdk.Extern.Xml.Dewac;
@@ -75,7 +77,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"WebLicht (*.xml)|*.xml", new ExporterWeblicht()},
         {"AnnotationPro (*.ant)|*.ant", new ExporterAnnoationPro()},
         {"DWDS TEI (*.xml)|*.xml", new ExporterDwdsTei() },
-        {"TXM TEI-XML (*.xml)|*.xml", new ExporterTxm() }
+        {"TXM TEI-XML (*.xml)|*.xml", new ExporterTxm() },
+        {"CATMA 6 (*.xml/*.txt)|*", new ExporterCatma() },
       };
 
     /// <summary>
