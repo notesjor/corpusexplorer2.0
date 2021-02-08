@@ -237,34 +237,34 @@
   <data name="&gt;&gt;modul_viewstates.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="ihd_home.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="_headHome.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
-  <data name="ihd_home.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="_headHome.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 12pt</value>
   </data>
-  <data name="ihd_home.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_headHome.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="ihd_home.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="_headHome.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
   </data>
-  <data name="ihd_home.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_headHome.Size" type="System.Drawing.Size, System.Drawing">
     <value>671, 55</value>
   </data>
-  <data name="ihd_home.TabIndex" type="System.Int32, mscorlib">
+  <data name="_headHome.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;ihd_home.Name" xml:space="preserve">
-    <value>ihd_home</value>
+  <data name="&gt;&gt;_headHome.Name" xml:space="preserve">
+    <value>_headHome</value>
   </data>
-  <data name="&gt;&gt;ihd_home.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+  <data name="&gt;&gt;_headHome.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.HeadPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
   </data>
-  <data name="&gt;&gt;ihd_home.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_headHome.Parent" xml:space="preserve">
     <value>page_HOME</value>
   </data>
-  <data name="&gt;&gt;ihd_home.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_headHome.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="page_HOME.Location" type="System.Drawing.Point, System.Drawing">

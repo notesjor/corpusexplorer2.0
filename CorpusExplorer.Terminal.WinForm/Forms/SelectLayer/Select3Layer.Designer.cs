@@ -44,7 +44,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
       // 
       this.layerSettings1.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.layerSettings1, "layerSettings1");
-      this.layerSettings1.Header = "Layer 1";
+      this.layerSettings1.Header = "1. Layer";
       this.layerSettings1.IsLayerOptional = false;
       this.layerSettings1.Name = "layerSettings1";
       // 
@@ -52,16 +52,16 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
       // 
       this.layerSettings2.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.layerSettings2, "layerSettings2");
-      this.layerSettings2.Header = "Layer 2";
-      this.layerSettings2.IsLayerOptional = true;
+      this.layerSettings2.Header = "2. Layer";
+      this.layerSettings2.IsLayerOptional = false;
       this.layerSettings2.Name = "layerSettings2";
       // 
       // layerSettings3
       // 
       this.layerSettings3.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.layerSettings3, "layerSettings3");
-      this.layerSettings3.Header = "Layer 3";
-      this.layerSettings3.IsLayerOptional = true;
+      this.layerSettings3.Header = "3. Layer";
+      this.layerSettings3.IsLayerOptional = false;
       this.layerSettings3.Name = "layerSettings3";
       // 
       // Select3Layer
@@ -78,7 +78,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
       // 
       this.RootElement.ApplyShapeToControl = true;
       this.ButtonOkClick += new System.EventHandler(this.Form_ButtonOkClick);
-      this.Controls.SetChildIndex(this.header1, 0);
+      this.Controls.SetChildIndex(this.headPanel1, 0);
       this.Controls.SetChildIndex(this.radPanel1, 0);
       this.Controls.SetChildIndex(this.layerSettings1, 0);
       this.Controls.SetChildIndex(this.layerSettings2, 0);

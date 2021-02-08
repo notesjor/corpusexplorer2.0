@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
+using CorpusExplorer.Terminal.WinForm.Forms.WordBag.Operator;
+using CorpusExplorer.Terminal.WinForm.Forms.WordBag.Operator.Abstract;
 
 namespace CorpusExplorer.Terminal.WinForm.Forms.WordBag
 {
@@ -22,6 +17,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WordBag
       InitializeComponent();
 
       _tokens = tokens.ToArray();
+      txt_results.AutoCompleteDataSource = _tokens;
 
       _operators = new Dictionary<string, AbstractWordBagBuilderOperator>
       {
@@ -59,105 +55,5 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WordBag
     }
 
     public IEnumerable<string> Result => txt_results.Text.Split(';');
-
-    #region Operators
-
-    private abstract class AbstractWordBagBuilderOperator
-    {
-      public abstract void Initialize(string query);
-      public abstract bool IsMatch(string token);
-    }
-
-    private class WordBagBuilderOperatorStartsWith : AbstractWordBagBuilderOperator
-    {
-      private string _query;
-
-      public override void Initialize(string query) 
-        => _query = query.ToLower();
-
-      public override bool IsMatch(string token) 
-        => token.ToLower().StartsWith(_query);
-    }
-
-    private class WordBagBuilderOperatorStartsWithCaseSensitive : AbstractWordBagBuilderOperator
-    {
-      private string _query;
-
-      public override void Initialize(string query) 
-        => _query = query;
-
-      public override bool IsMatch(string token) 
-        => token.StartsWith(_query);
-    }
-
-    private class WordBagBuilderOperatorEndsWith : AbstractWordBagBuilderOperator
-    {
-      private string _query;
-
-      public override void Initialize(string query) 
-        => _query = query.ToLower();
-
-      public override bool IsMatch(string token) 
-        => token.ToLower().EndsWith(_query);
-    }
-
-    private class WordBagBuilderOperatorEndsWithCaseSensitive : AbstractWordBagBuilderOperator
-    {
-      private string _query;
-
-      public override void Initialize(string query) => _query = query;
-
-      public override bool IsMatch(string token) 
-        => token.EndsWith(_query);
-    }
-
-    private class WordBagBuilderOperatorContains : AbstractWordBagBuilderOperator
-    {
-      private string _queryS;
-      private string _queryE;
-
-      public override void Initialize(string query)
-      {
-        query = query.ToLower();
-        var split = query.Split('*');
-        _queryS = split.First();
-        _queryE = split.Last();
-      }
-
-      public override bool IsMatch(string token)
-      {
-        token = token.ToLower();
-        return token.StartsWith(_queryS) && token.EndsWith(_queryE);
-      }
-    }
-
-    private class WordBagBuilderOperatorContainsCaseSensitive : AbstractWordBagBuilderOperator
-    {
-      private string _queryS;
-      private string _queryE;
-
-      public override void Initialize(string query)
-      {
-        var split = query.Split('*');
-        _queryS = split.First();
-        _queryE = split.Last();
-      }
-
-      public override bool IsMatch(string token) 
-        => token.StartsWith(_queryS) && token.EndsWith(_queryE);
-    }
-
-    private class WordBagBuilderOperatorRegex : AbstractWordBagBuilderOperator
-    {
-      private Regex _query;
-
-      public override void Initialize(string query)
-        => _query = new Regex(query);
-
-      public override bool IsMatch(string token)
-        => _query.IsMatch(token);
-    }
-
-    #endregion
   }
 }

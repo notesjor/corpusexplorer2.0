@@ -29,7 +29,7 @@
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CloneDetectionAlgorithm));
-      this.ihdPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
+      this._headPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HeadPanel();
       this.radRadioButton1 = new Telerik.WinControls.UI.RadRadioButton();
       this.radRadioButton2 = new Telerik.WinControls.UI.RadRadioButton();
       this.radRadioButton3 = new Telerik.WinControls.UI.RadRadioButton();
@@ -44,14 +44,14 @@
       // 
       resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
-      // ihdPanel1
+      // _headPanel1
       // 
-      this.ihdPanel1.BackColor = System.Drawing.Color.White;
-      resources.ApplyResources(this.ihdPanel1, "ihdPanel1");
-      this.ihdPanel1.IHDDescription = "Schließt identische Dokumente aus einem Schnappschuss aus.";
-      this.ihdPanel1.IHDHeader = "Clone-Detection";
-      this.ihdPanel1.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.module_warn1;
-      this.ihdPanel1.Name = "ihdPanel1";
+      this._headPanel1.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this._headPanel1, "_headPanel1");
+      this._headPanel1.HeadPanelDescription = "Schließt identische Dokumente aus einem Schnappschuss aus.";
+      this._headPanel1.HeadPanelTitle = "Clone-Detection";
+      this._headPanel1.HeadPanelImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.module_warn1;
+      this._headPanel1.Name = "_headPanel1";
       // 
       // radRadioButton1
       // 
@@ -79,7 +79,7 @@
       this.Controls.Add(this.radRadioButton3);
       this.Controls.Add(this.radRadioButton2);
       this.Controls.Add(this.radRadioButton1);
-      this.Controls.Add(this.ihdPanel1);
+      this.Controls.Add(this._headPanel1);
       this.DisplayAbort = true;
       this.Name = "CloneDetectionAlgorithm";
       // 
@@ -87,7 +87,7 @@
       // 
       this.RootElement.ApplyShapeToControl = true;
       this.Controls.SetChildIndex(this.radPanel1, 0);
-      this.Controls.SetChildIndex(this.ihdPanel1, 0);
+      this.Controls.SetChildIndex(this._headPanel1, 0);
       this.Controls.SetChildIndex(this.radRadioButton1, 0);
       this.Controls.SetChildIndex(this.radRadioButton2, 0);
       this.Controls.SetChildIndex(this.radRadioButton3, 0);
@@ -103,7 +103,7 @@
 
     #endregion
 
-    private Controls.WinForm.IHDPanel ihdPanel1;
+    private Controls.WinForm.HeadPanel _headPanel1;
     private Telerik.WinControls.UI.RadRadioButton radRadioButton1;
     private Telerik.WinControls.UI.RadRadioButton radRadioButton2;
     private Telerik.WinControls.UI.RadRadioButton radRadioButton3;

@@ -1,3 +1,5 @@
+using CorpusExplorer.Terminal.WinForm.Controls.WinForm;
+
 namespace CorpusExplorer.Terminal.WinForm.Forms.RegEx
 {
   partial class RegExForm
@@ -43,12 +45,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.RegEx
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
       // 
-      // header1
+      // headPanel1
       // 
-      this.header1.HeaderDescription = "Wählen Sie aus, auf welche Spalte der Reguläre Ausdruck (RegEx) angewendet werden" +
-    " soll.";
-      this.header1.HeaderHead = "RegEx auf Spalte anwenden...";
-      resources.ApplyResources(this.header1, "header1");
+      this.headPanel1.HeadPanelDescription = "Wählen Sie alle Werte eines Layers mittels RegEx aus.";
+      this.headPanel1.HeadPanelImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter64;
+      this.headPanel1.HeadPanelTitle = "Layer RegEx-Abfrage";
       // 
       // radPanel1
       // 
@@ -96,7 +97,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.RegEx
       // 
       this.RootElement.ApplyShapeToControl = true;
       this.ButtonOkClick += new System.EventHandler(this.Form_ButtonOkClick);
-      this.Controls.SetChildIndex(this.header1, 0);
+      this.Controls.SetChildIndex(this.headPanel1, 0);
       this.Controls.SetChildIndex(this.radPanel1, 0);
       this.Controls.SetChildIndex(this.radGroupBox2, 0);
       this.Controls.SetChildIndex(this.radGroupBox1, 0);

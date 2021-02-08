@@ -53,7 +53,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
                        {
                          Inverse = false,
                          LayerDisplayname = SelectedLayerDisplaynames.Last(),
-                         LayerQueries = new[] {x[Resources.ZeichenketteWortform].ToString()}
+                         LayerQueries = new[] { x[Resources.ZeichenketteWortform].ToString() }
                        });
 
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
@@ -171,6 +171,16 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
     private void btn_regex_Click(object sender, EventArgs e)
     {
       RegexFunction();
+    }
+
+    private void btn_posFilter_Click(object sender, EventArgs e)
+    {
+      var form = new PosFilter(Project.CurrentSelection, _vm.LayerDisplayname) { ShowAllOption = false };
+      form.ShowDialog();
+
+      _vm.CorrespondingLayerValueFilter = form.Result;
+      radGridView1.DataSource = _vm.GetDataTable();
+      radGridView1.ResetBindings();
     }
   }
 }

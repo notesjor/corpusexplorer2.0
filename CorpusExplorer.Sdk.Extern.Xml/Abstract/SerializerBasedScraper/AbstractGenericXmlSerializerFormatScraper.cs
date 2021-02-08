@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
+using HtmlAgilityPack;
 
 #endregion
 
@@ -32,11 +33,14 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper
       }
     }
 
-    protected string GetInnerPlaintext<T>(T node)
+    protected HtmlDocument SubNodeToHtml<T>(T node)
     {
       var html = new HtmlAgilityPack.HtmlDocument();
       html.LoadHtml(SerializeSubNode(node));
-      return html.DocumentNode.InnerText;
+      return html;
     }
+
+    protected string GetInnerPlaintext<T>(T node) 
+      => SubNodeToHtml(node).DocumentNode.InnerText;
   }
 }

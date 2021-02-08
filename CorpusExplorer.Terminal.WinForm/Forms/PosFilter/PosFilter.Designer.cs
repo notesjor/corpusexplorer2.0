@@ -1,4 +1,4 @@
-﻿namespace CorpusExplorer.Terminal.WinForm.Forms.PosFilter
+namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
 {
   partial class PosFilter
   {
@@ -29,50 +29,151 @@
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PosFilter));
-      this.ihdPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
-      this.radCheckedListBox1 = new Telerik.WinControls.UI.RadCheckedListBox();
+      this.layerSettings1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.LayerSettings();
+      this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
+      this.txt_results = new Telerik.WinControls.UI.RadAutoCompleteBox();
+      this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
+      this.txt_query = new Telerik.WinControls.UI.RadTextBox();
+      this.btn_go = new Telerik.WinControls.UI.RadButton();
+      this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+      this.drop_operator = new Telerik.WinControls.UI.RadDropDownList();
+      this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
+      this.chk_all = new Telerik.WinControls.UI.RadCheckBox();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.radCheckedListBox1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
+      this.radGroupBox3.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.txt_results)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
+      this.radGroupBox2.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.txt_query)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_go)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
+      this.radGroupBox1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.drop_operator)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
+      this.radGroupBox4.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.chk_all)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
+      // 
+      // headPanel1
+      // 
+      this.headPanel1.HeadPanelDescription = "Nutzen Sie korrespondierende Werte zum Filtern";
+      this.headPanel1.HeadPanelImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter64;
+      this.headPanel1.HeadPanelTitle = "Layer-Filter";
+      resources.ApplyResources(this.headPanel1, "headPanel1");
       // 
       // radPanel1
       // 
       resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
-      // ihdPanel1
+      // layerSettings1
       // 
-      this.ihdPanel1.BackColor = System.Drawing.Color.White;
-      resources.ApplyResources(this.ihdPanel1, "ihdPanel1");
-      this.ihdPanel1.IHDDescription = "Wählen Sie die gewünschten POS-Tags aus...";
-      this.ihdPanel1.IHDHeader = "POS-Filter";
-      this.ihdPanel1.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.tag_green1;
-      this.ihdPanel1.Name = "ihdPanel1";
+      this.layerSettings1.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this.layerSettings1, "layerSettings1");
+      this.layerSettings1.Header = "1. Layer (korrespondierend)";
+      this.layerSettings1.IsLayerOptional = false;
+      this.layerSettings1.Name = "layerSettings1";
+      this.layerSettings1.SlectedLayerChanged += new System.EventHandler(this.layerSettings1_SlectedLayerChanged);
       // 
-      // radCheckedListBox1
+      // radGroupBox3
       // 
-      resources.ApplyResources(this.radCheckedListBox1, "radCheckedListBox1");
-      this.radCheckedListBox1.GroupItemSize = new System.Drawing.Size(200, 40);
-      this.radCheckedListBox1.ItemSize = new System.Drawing.Size(200, 40);
-      this.radCheckedListBox1.Name = "radCheckedListBox1";
+      this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+      this.radGroupBox3.Controls.Add(this.txt_results);
+      resources.ApplyResources(this.radGroupBox3, "radGroupBox3");
+      this.radGroupBox3.Name = "radGroupBox3";
+      // 
+      // txt_results
+      // 
+      resources.ApplyResources(this.txt_results, "txt_results");
+      this.txt_results.Multiline = true;
+      this.txt_results.Name = "txt_results";
+      this.txt_results.ShowClearButton = true;
+      // 
+      // radGroupBox2
+      // 
+      this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+      this.radGroupBox2.Controls.Add(this.txt_query);
+      this.radGroupBox2.Controls.Add(this.btn_go);
+      resources.ApplyResources(this.radGroupBox2, "radGroupBox2");
+      this.radGroupBox2.Name = "radGroupBox2";
+      // 
+      // txt_query
+      // 
+      resources.ApplyResources(this.txt_query, "txt_query");
+      this.txt_query.Name = "txt_query";
+      // 
+      // btn_go
+      // 
+      resources.ApplyResources(this.btn_go, "btn_go");
+      this.btn_go.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
+      this.btn_go.Name = "btn_go";
+      this.btn_go.Click += new System.EventHandler(this.btn_go_Click);
+      // 
+      // radGroupBox1
+      // 
+      this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+      this.radGroupBox1.Controls.Add(this.drop_operator);
+      resources.ApplyResources(this.radGroupBox1, "radGroupBox1");
+      this.radGroupBox1.Name = "radGroupBox1";
+      // 
+      // drop_operator
+      // 
+      resources.ApplyResources(this.drop_operator, "drop_operator");
+      this.drop_operator.Name = "drop_operator";
+      // 
+      // radGroupBox4
+      // 
+      this.radGroupBox4.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+      this.radGroupBox4.Controls.Add(this.chk_all);
+      resources.ApplyResources(this.radGroupBox4, "radGroupBox4");
+      this.radGroupBox4.Name = "radGroupBox4";
+      // 
+      // chk_all
+      // 
+      resources.ApplyResources(this.chk_all, "chk_all");
+      this.chk_all.Name = "chk_all";
       // 
       // PosFilter
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       resources.ApplyResources(this, "$this");
-      this.Controls.Add(this.radCheckedListBox1);
-      this.Controls.Add(this.ihdPanel1);
+      this.Controls.Add(this.radGroupBox4);
+      this.Controls.Add(this.radGroupBox3);
+      this.Controls.Add(this.radGroupBox2);
+      this.Controls.Add(this.radGroupBox1);
+      this.Controls.Add(this.layerSettings1);
       this.DisplayAbort = true;
       this.Name = "PosFilter";
       // 
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
+      this.ButtonOkClick += new System.EventHandler(this.PosFilter_ButtonOkClick);
+      this.Load += new System.EventHandler(this.PosFilter_Load);
+      this.Controls.SetChildIndex(this.headPanel1, 0);
+      this.Controls.SetChildIndex(this.layerSettings1, 0);
+      this.Controls.SetChildIndex(this.radGroupBox1, 0);
+      this.Controls.SetChildIndex(this.radGroupBox2, 0);
+      this.Controls.SetChildIndex(this.radGroupBox3, 0);
       this.Controls.SetChildIndex(this.radPanel1, 0);
-      this.Controls.SetChildIndex(this.ihdPanel1, 0);
-      this.Controls.SetChildIndex(this.radCheckedListBox1, 0);
+      this.Controls.SetChildIndex(this.radGroupBox4, 0);
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.radCheckedListBox1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
+      this.radGroupBox3.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.txt_results)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
+      this.radGroupBox2.ResumeLayout(false);
+      this.radGroupBox2.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.txt_query)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_go)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
+      this.radGroupBox1.ResumeLayout(false);
+      this.radGroupBox1.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.drop_operator)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).EndInit();
+      this.radGroupBox4.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.chk_all)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
       this.ResumeLayout(false);
 
@@ -80,7 +181,15 @@
 
     #endregion
 
-    private Controls.WinForm.IHDPanel ihdPanel1;
-    private Telerik.WinControls.UI.RadCheckedListBox radCheckedListBox1;
+    private Controls.WinForm.LayerSettings layerSettings1;
+    private Telerik.WinControls.UI.RadGroupBox radGroupBox3;
+    private Telerik.WinControls.UI.RadAutoCompleteBox txt_results;
+    private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
+    private Telerik.WinControls.UI.RadTextBox txt_query;
+    private Telerik.WinControls.UI.RadButton btn_go;
+    private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
+    private Telerik.WinControls.UI.RadDropDownList drop_operator;
+    private Telerik.WinControls.UI.RadGroupBox radGroupBox4;
+    private Telerik.WinControls.UI.RadCheckBox chk_all;
   }
 }

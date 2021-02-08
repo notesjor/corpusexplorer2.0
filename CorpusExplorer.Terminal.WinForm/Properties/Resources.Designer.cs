@@ -1668,6 +1668,26 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap corpus_dpxc {
+            get {
+                object obj = ResourceManager.GetObject("corpus-dpxc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap corpus_dpxc48 {
+            get {
+                object obj = ResourceManager.GetObject("corpus-dpxc48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Lade bereits verfügbares Korpus. ähnelt.
         /// </summary>
         public static string Corpus_ExsistingLoading {
@@ -2284,6 +2304,16 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap design {
+            get {
+                object obj = ResourceManager.GetObject("design", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Details ähnelt.
         /// </summary>
         public static string Details {
@@ -2541,6 +2571,26 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         public static System.Drawing.Bitmap document_acrobat {
             get {
                 object obj = ResourceManager.GetObject("document_acrobat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap document_header_footer_show {
+            get {
+                object obj = ResourceManager.GetObject("document_header_footer_show", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap document_header_footer_show1 {
+            get {
+                object obj = ResourceManager.GetObject("document_header_footer_show1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -3321,6 +3371,16 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap filter_pos {
+            get {
+                object obj = ResourceManager.GetObject("filter-pos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap filter_regex {
             get {
                 object obj = ResourceManager.GetObject("filter-regex", resourceCulture);
@@ -3334,6 +3394,16 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         public static System.Drawing.Bitmap filter_settings {
             get {
                 object obj = ResourceManager.GetObject("filter-settings", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap filter64 {
+            get {
+                object obj = ResourceManager.GetObject("filter64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -8350,6 +8420,46 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         public static System.Drawing.Bitmap user_group1 {
             get {
                 object obj = ResourceManager.GetObject("user_group1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap user_symbol_green_stats {
+            get {
+                object obj = ResourceManager.GetObject("user_symbol_green-stats", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap user_symbol_green_stats1 {
+            get {
+                object obj = ResourceManager.GetObject("user_symbol_green-stats1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap user_symbol_purple_stats {
+            get {
+                object obj = ResourceManager.GetObject("user_symbol_purple-stats", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap user_symbol_purple_stats1 {
+            get {
+                object obj = ResourceManager.GetObject("user_symbol_purple-stats1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

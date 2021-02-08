@@ -31,7 +31,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer.Abstract
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AbstractSelectLayer));
-      this.header1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header();
+      this.headPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HeadPanel();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
@@ -40,19 +40,20 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer.Abstract
       // 
       resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
-      // header1
+      // headPanel1
       // 
-      this.header1.BackColor = System.Drawing.Color.White;
-      resources.ApplyResources(this.header1, "header1");
-      this.header1.HeaderDescription = "In diesem Dialog können Sie die Layerkonfiguration anpassen.";
-      this.header1.HeaderHead = "Layer auswählen";
-      this.header1.Name = "header1";
+      this.headPanel1.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this.headPanel1, "headPanel1");
+      this.headPanel1.HeadPanelDescription = "Wählen Sie die gewünschten Layer aus.";
+      this.headPanel1.HeadPanelImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers1;
+      this.headPanel1.HeadPanelTitle = "Layer auswählen";
+      this.headPanel1.Name = "headPanel1";
       // 
       // AbstractSelectLayer
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       resources.ApplyResources(this, "$this");
-      this.Controls.Add(this.header1);
+      this.Controls.Add(this.headPanel1);
       this.DisplayAbort = true;
       this.Name = "AbstractSelectLayer";
       // 
@@ -60,7 +61,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer.Abstract
       // 
       this.RootElement.ApplyShapeToControl = true;
       this.Controls.SetChildIndex(this.radPanel1, 0);
-      this.Controls.SetChildIndex(this.header1, 0);
+      this.Controls.SetChildIndex(this.headPanel1, 0);
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
       this.ResumeLayout(false);
@@ -69,6 +70,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer.Abstract
 
     #endregion
 
-    protected Header header1;
+    public HeadPanel headPanel1;
   }
 }

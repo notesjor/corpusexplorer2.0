@@ -435,4 +435,7 @@
   <data name="relativ" xml:space="preserve">
     <value> (relativ)</value>
   </data>
+  <data name="FilterTSV" xml:space="preserve">
+    <value>TSV-Datei (*.tsv)|*.tsv</value>
+  </data>
 </root>

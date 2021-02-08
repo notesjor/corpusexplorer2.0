@@ -13,7 +13,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
 
     public static Color[] ToWinFormColor(this UniversalColor[] colors)
     {
-      return colors.Select(color => color.ToWinFormColor()).ToArray();
+      return colors.Select(color => ToWinFormColor(color)).ToArray();
     }
 
     public static System.Windows.Media.Color ToWpfColor(this UniversalColor color)
@@ -23,7 +23,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
 
     public static System.Windows.Media.Color[] ToWpfColor(this UniversalColor[] colors)
     {
-      return colors.Select(color => color.ToWpfColor()).ToArray();
+      return colors.Select(color => ToWpfColor(color)).ToArray();
     }
   }
 }

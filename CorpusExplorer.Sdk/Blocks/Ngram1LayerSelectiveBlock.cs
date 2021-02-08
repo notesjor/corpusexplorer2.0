@@ -10,7 +10,7 @@ namespace CorpusExplorer.Sdk.Blocks
   [Serializable]
   public class Ngram1LayerSelectiveBlock : AbstractBlock
   {
-    public Dictionary<string, int> NGramFrequency { get; private set; }
+    public Dictionary<string, double> NGramFrequency { get; private set; }
     public IEnumerable<string> LayerQueries { get; set; }
     public string LayerDisplayname { get; set; } = "Wort";
     public int NGramSize { get; set; } = 3;
@@ -24,7 +24,10 @@ namespace CorpusExplorer.Sdk.Blocks
       };
       var selection = Selection.CreateTemporary(new[] { query });
 
-      NGramFrequency = new Dictionary<string, int>();
+      NGramFrequency = new Dictionary<string, double>();
+
+      if (selection.CountDocuments == 0)
+        return;
 
       // Property FIX!
       if (NGramSize < 1)
@@ -32,64 +35,25 @@ namespace CorpusExplorer.Sdk.Blocks
       if (NGramSize > 99)
         NGramSize = 99;
 
-      var resLock = new object();
+      var sub = selection.CreateBlock<Ngram1LayerBlock>();
+      sub.NGramSize = NGramSize;
+      sub.LayerDisplayname = LayerDisplayname;
+      sub.Calculate();
 
-      Parallel.ForEach(selection, csel =>
+      var @lock = new object();
+      var filter = new HashSet<string>(LayerQueries);
+
+      Parallel.ForEach(sub.NGramFrequency, ngram =>
       {
-        var corpus = selection.GetCorpus(csel.Key);
-        var layer = corpus?.GetLayers(LayerDisplayname).FirstOrDefault();
-        if (layer == null)
+        var split = ngram.Key.Split(' ');
+        if (!split.Any(s => filter.Contains(s))) 
           return;
 
-        Parallel.ForEach(csel.Value, dsel =>
-        {
-          var sentences = query.GetSentenceIndices(corpus, dsel);
-          var dic = new Dictionary<string, int>();
-          var raw = new Dictionary<string, string[]>();
-
-          foreach (var sentence in sentences)
-          {
-            var indices = query.GetWordIndices(corpus, dsel, sentence);
-            var sent = layer.GetReadableDocumentSnippetByGuid(dsel, sentence, sentence).First().ToArray();
-
-            foreach (var index in indices)
-            {
-              var min = index - NGramSize;
-              var max = index + NGramSize;
-
-              // min/max - FIX
-              if (min < 0)
-                min = 0;
-              if (max >= sent.Length)
-                max = sent.Length - 1;
-
-              for (var i = min; i < max - NGramSize; i++)
-              {
-                var ngram = new string[NGramSize];
-                for (var j = 0; j < NGramSize; j++)
-                  ngram[j] = sent[i + j];
-
-                var key = string.Join(@" ", ngram);
-                if (dic.ContainsKey(key))
-                {
-                  dic[key]++;
-                }
-                else
-                {
-                  dic.Add(key, 1);
-                  raw.Add(key, ngram);
-                }
-              }
-            }
-          }
-
-          lock (resLock)
-            foreach (var x in dic)
-              if (NGramFrequency.ContainsKey(x.Key))
-                NGramFrequency[x.Key] += x.Value;
-              else
-                NGramFrequency.Add(x.Key, x.Value);
-        });
+        lock (@lock)
+          if (NGramFrequency.ContainsKey(ngram.Key))
+            NGramFrequency[ngram.Key] += ngram.Value;
+          else
+            NGramFrequency.Add(ngram.Key, ngram.Value);
       });
     }
   }

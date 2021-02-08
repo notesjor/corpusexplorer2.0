@@ -9,6 +9,7 @@ using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter.Abstract;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Model;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Helper;
+using CorpusExplorer.Terminal.WinForm.Helper;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Diagrams;
 using Telerik.Windows.Diagrams.Core;
@@ -142,7 +143,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
           Geometry = ShapeFactory.GetShapeGeometry(shape == Shape.Rectangle
                                                      ? CommonShapeType.RectangleShape
                                                      : CommonShapeType.EllipseShape),
-          Background = new SolidColorBrush(color.ToWpfColor())
+          Background = new SolidColorBrush(UniversalColorExtension.ToWpfColor(color))
         };
         newItems.Add(item);
         _nodes.Add(node, item);
@@ -215,21 +216,21 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
       Brush brush;
       if (color2 == null)
       {
-        brush = new SolidColorBrush(color1.ToWpfColor());
+        brush = new SolidColorBrush(UniversalColorExtension.ToWpfColor(color1));
       }
       else
       {
         brush = new LinearGradientBrush();
         if (color3 == null)
         {
-          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(color1.ToWpfColor(), 0));
-          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(color2.ToWpfColor(), 1));
+          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(UniversalColorExtension.ToWpfColor(color1), 0));
+          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(UniversalColorExtension.ToWpfColor(color2), 1));
         }
         else
         {
-          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(color1.ToWpfColor(), 0));
-          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(color2.ToWpfColor(), 0.5));
-          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(color3.ToWpfColor(), 1));
+          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(UniversalColorExtension.ToWpfColor(color1), 0));
+          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(UniversalColorExtension.ToWpfColor(color2), 0.5));
+          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(UniversalColorExtension.ToWpfColor(color3), 1));
         }
       }
 

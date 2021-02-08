@@ -21,13 +21,13 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
         using (var file = new StreamWriter(path, false, Encoding.UTF8))
           serializer.Serialize(file, new YouTubeSearchService.YouTubeSearchServiceCommentThread
           {
-            Published = comment.Snippet.TopLevelComment.Snippet.PublishedAt,
+            Published = comment.Snippet.TopLevelComment.Snippet.PublishedAt ?? DateTime.MinValue,
             Id = comment.Id,
             ParentId = comment.Id,
             ReplyCount = comment.Snippet.TotalReplyCount,
             UserId = comment.Snippet.TopLevelComment.Snippet.AuthorDisplayName,
             LikeCount = comment.Snippet.TopLevelComment.Snippet.LikeCount,
-            Updated = comment.Snippet.TopLevelComment.Snippet.UpdatedAt,
+            Updated = comment.Snippet.TopLevelComment.Snippet.UpdatedAt ?? DateTime.MinValue,
             Text = comment.Snippet.TopLevelComment.Snippet.TextDisplay
           });
 
@@ -75,11 +75,11 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
                                            Encoding.UTF8))
           serializer.Serialize(file, new YouTubeSearchService.YouTubeSearchServiceCommentThread
           {
-            Published = comment.Snippet.PublishedAt,
+            Published = comment.Snippet.PublishedAt ?? DateTime.MinValue,
             Id = comment.Id,
             UserId = comment.Snippet.AuthorDisplayName,
             LikeCount = comment.Snippet.LikeCount,
-            Updated = comment.Snippet.UpdatedAt,
+            Updated = comment.Snippet.UpdatedAt ?? DateTime.MinValue,
             Text = comment.Snippet.TextDisplay,
             ParentId = comment.Snippet.ParentId
           });

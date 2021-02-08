@@ -30,6 +30,8 @@ using CorpusExplorer.Sdk.Extern.Xml.FnhdC;
 using CorpusExplorer.Sdk.Extern.Xml.Folker;
 using CorpusExplorer.Sdk.Extern.Xml.Gutenberg;
 using CorpusExplorer.Sdk.Extern.Xml.Ids;
+using CorpusExplorer.Sdk.Extern.Xml.Ids.I5Xml;
+using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP;
 using CorpusExplorer.Sdk.Extern.Xml.LexisNexis;
 using CorpusExplorer.Sdk.Extern.Xml.Perseus;
 using CorpusExplorer.Sdk.Extern.Xml.Pmg;
@@ -99,7 +101,12 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"BNC TEI (*.xml)|*.xml", new ImporterBnc() },
         {"TXM TEI-XML (*.xml)|*.xml", new ImporterTxm() },
         {"TiGER-XML (*.xml)|*.xml", new ImporterTiger() },
-      };
+        {"IDS KorAP - inkl. aller Tagger (*.zip)|*.zip", new ImporterKorap()},
+        {"IDS KorAP - nur CoreNLP (*.zip)|*.zip", new ImporterKorapOnlyCoreNlp()},
+        {"IDS KorAP - nur MarMoT (*.zip)|*.zip", new ImporterKorapOnlyMarmot()},
+        {"IDS KorAP - nur MALT (*.zip)|*.zip", new ImporterKorapOnlyMalt()},
+        {"IDS KorAP - nur OpenNLP (*.zip)|*.zip", new ImporterKorapOnlyOpenNlp()},
+        {"IDS KorAP - nur TreeTagger (*.zip)|*.zip", new ImporterKorapOnlyTreeTagger()},};
 
     /// <summary>
     ///   Liste mit Scrapern die lokale Dateien (z. B. TXT, RTF, DOCX, PDF) in Korpusdokumente konvertieren.
@@ -109,8 +116,12 @@ namespace CorpusExplorer.Sdk.Extern.Xml
       new Dictionary<string, AbstractScraper>
       {
         {
-          "IDS-Mannheim I5-Korpora (*.xml)|*.xml",
+          "IDS I5-Korpora (*.i5.xml)|*.i5.xml",
           new IdsScraper()
+        },
+        {
+          "IDS KorAP (*.zip)|*.zip",
+          new KorapScraper()
         },
         {
           "Shakespeare Drama-XML (*.xml)|*.xml",

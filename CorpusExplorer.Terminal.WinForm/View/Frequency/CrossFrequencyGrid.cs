@@ -171,5 +171,15 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
     {
       RegexFunction();
     }
+
+    private void btn_posFilter_Click(object sender, EventArgs e)
+    {
+      var form = new PosFilter(Project.CurrentSelection, _vm.LayerDisplayname);
+      form.ShowDialog();
+
+      _vm.CorrespondingLayerValueFilter = form.Result;
+      radGridView1.DataSource = _vm.GetDataTable();
+      radGridView1.ResetBindings();
+    }
   }
 }

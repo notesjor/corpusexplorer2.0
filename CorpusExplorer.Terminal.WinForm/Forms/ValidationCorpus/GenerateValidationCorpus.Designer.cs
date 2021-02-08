@@ -29,7 +29,7 @@
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GenerateValidationCorpus));
-      this.ihdPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
+      this._headPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HeadPanel();
       this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
       this.txt_c = new Telerik.WinControls.UI.RadTextBox();
       this.txt_b = new Telerik.WinControls.UI.RadTextBox();
@@ -73,14 +73,14 @@
       // 
       resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
-      // ihdPanel1
+      // _headPanel1
       // 
-      this.ihdPanel1.BackColor = System.Drawing.Color.White;
-      resources.ApplyResources(this.ihdPanel1, "ihdPanel1");
-      this.ihdPanel1.IHDDescription = "Damit der CorpusExplorer keine Blackbox für Sie ist.";
-      this.ihdPanel1.IHDHeader = "Überprüfen Sie den CorpusExplorer";
-      this.ihdPanel1.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.test_properties;
-      this.ihdPanel1.Name = "ihdPanel1";
+      this._headPanel1.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this._headPanel1, "_headPanel1");
+      this._headPanel1.HeadPanelDescription = "Damit der CorpusExplorer keine Blackbox für Sie ist.";
+      this._headPanel1.HeadPanelTitle = "Überprüfen Sie den CorpusExplorer";
+      this._headPanel1.HeadPanelImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.test_properties;
+      this._headPanel1.Name = "_headPanel1";
       // 
       // radGroupBox1
       // 
@@ -281,14 +281,14 @@
       this.Controls.Add(this.radGroupBox3);
       this.Controls.Add(this.radGroupBox2);
       this.Controls.Add(this.radGroupBox1);
-      this.Controls.Add(this.ihdPanel1);
+      this.Controls.Add(this._headPanel1);
       this.DisplayAbort = true;
       this.Name = "GenerateValidationCorpus";
       // 
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
-      this.Controls.SetChildIndex(this.ihdPanel1, 0);
+      this.Controls.SetChildIndex(this._headPanel1, 0);
       this.Controls.SetChildIndex(this.radGroupBox1, 0);
       this.Controls.SetChildIndex(this.radGroupBox2, 0);
       this.Controls.SetChildIndex(this.radPanel1, 0);
@@ -322,7 +322,7 @@
 
     #endregion
 
-    private Controls.WinForm.IHDPanel ihdPanel1;
+    private Controls.WinForm.HeadPanel _headPanel1;
     private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
     private Telerik.WinControls.UI.RadTextBox txt_c;
     private Telerik.WinControls.UI.RadTextBox txt_b;

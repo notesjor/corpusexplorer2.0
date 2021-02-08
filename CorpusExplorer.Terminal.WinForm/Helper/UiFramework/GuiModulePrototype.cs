@@ -44,9 +44,9 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       InitializeComponent();
       Pages.GetChildAt(0).GetChildAt(0).Visibility = ElementVisibility.Collapsed;
 
-      ihd_home.IHDImage = iconBig;
-      ihd_home.IHDHeader = header;
-      ihd_home.IHDDescription = description;
+      _headHome.HeadPanelImage = iconBig;
+      _headHome.HeadPanelTitle = header;
+      _headHome.HeadPanelDescription = description;
 
       helpPanel1.HelpHandbookUrl = urlHandbook;
       helpPanel1.HelpHandsonlabUrl = urlHandsOnLab;

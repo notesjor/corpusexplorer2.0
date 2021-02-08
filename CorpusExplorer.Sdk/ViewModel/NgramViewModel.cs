@@ -1,8 +1,10 @@
 ﻿#region
 
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
@@ -15,7 +17,7 @@ namespace CorpusExplorer.Sdk.ViewModel
   /// <summary>
   ///   The ngram view model.
   /// </summary>
-  public class NgramViewModel : AbstractViewModel, IUseSpecificLayer, IProvideDataTable
+  public class NgramViewModel : AbstractViewModel, IUseSpecificLayer, IProvideDataTable, IProvideCorrespondingLayerValueFilter
   {
     /// <summary>
     ///   Initializes a new instance of the <see cref="NgramViewModel" /> class.
@@ -74,9 +76,26 @@ namespace CorpusExplorer.Sdk.ViewModel
                    : NGramFrequency.OrderByDescending(x => x.Value).Take(NGramMaxResults);
 
       res.BeginLoadData();
-      foreach (var pair in data)
-        if (pair.Value >= NGramMinFrequency)
-          res.Rows.Add(pair.Key, pair.Value);
+      var @lock = new object();
+
+      Parallel.ForEach(data, x =>
+      {
+        if (x.Value < NGramMinFrequency)
+          return;
+
+        if (CorrespondingLayerValueFilter == null)
+          lock (@lock)
+            res.Rows.Add(x.Key, x.Value);
+        else
+        {
+          var tokens = x.Key.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+          if (!CorrespondingLayerValueFilter.CustomFilter(tokens))
+            return;
+
+          lock (@lock)
+            res.Rows.Add(x.Key, x.Value);
+        }
+      });
       res.EndLoadData();
 
       return res;
@@ -116,5 +135,7 @@ namespace CorpusExplorer.Sdk.ViewModel
              !string.IsNullOrEmpty(LayerDisplayname)
           && NGramPatternSize < NGramSize && NGramSize > 0;
     }
+
+    public CorrespondingLayerValueFilterViewModel CorrespondingLayerValueFilter { get; set; }
   }
 }

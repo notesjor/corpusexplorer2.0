@@ -33,7 +33,7 @@
     }
 
     /// <remarks/>
-    [System.Xml.Serialization.XmlAttribute]
+    [System.Xml.Serialization.XmlAttribute("xml:id")]
     public string id
     {
       get { return this.idField; }

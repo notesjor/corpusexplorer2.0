@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="radCommandBar1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="radCommandBar1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="commandBarStripElement1.DisplayName" xml:space="preserve">
+    <value>commandBarStripElement1</value>
+  </data>
+  <data name="btn_function.DisplayName" xml:space="preserve">
+    <value>commandBarButton1</value>
+  </data>
+  <data name="btn_function.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="btn_calc.DisplayName" xml:space="preserve">
+    <value>commandBarButton2</value>
+  </data>
+  <data name="btn_calc.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="btn_filter.DisplayName" xml:space="preserve">
+    <value>commandBarButton1</value>
+  </data>
+  <data name="btn_filter.Text" xml:space="preserve">
+    <value>Filterliste</value>
+  </data>
+  <data name="btn_filter.ToolTipText" xml:space="preserve">
+    <value>Filterliste</value>
+  </data>
+  <data name="btn_filterEditor.DisplayName" xml:space="preserve">
+    <value>commandBarButton1</value>
+  </data>
+  <data name="btn_filterEditor.Text" xml:space="preserve">
+    <value>Filtereditor</value>
+  </data>
+  <data name="btn_filterEditor.ToolTipText" xml:space="preserve">
+    <value>Filtereditor</value>
+  </data>
+  <data name="btn_regex.DisplayName" xml:space="preserve">
+    <value>commandBarButton1</value>
+  </data>
+  <data name="btn_regex.Text" xml:space="preserve">
+    <value>RegEx-Suche</value>
+  </data>
+  <data name="btn_regex.ToolTipText" xml:space="preserve">
+    <value>RegEx-Suche</value>
+  </data>
+  <data name="btn_layers.DisplayName" xml:space="preserve">
+    <value>commandBarButton1</value>
+  </data>
+  <data name="btn_layers.Text" xml:space="preserve">
+    <value>Layer auswählen</value>
+  </data>
+  <data name="btn_layers.ToolTipText" xml:space="preserve">
+    <value>Layer auswählen</value>
+  </data>
+  <data name="commandBarSeparator1.DisplayName" xml:space="preserve">
+    <value>commandBarSeparator1</value>
+  </data>
+  <data name="btn_csvExport.DisplayName" xml:space="preserve">
+    <value>commandBarButton3</value>
+  </data>
+  <data name="btn_csvExport.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="btn_print.DisplayName" xml:space="preserve">
+    <value>commandBarButton4</value>
+  </data>
+  <data name="btn_print.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="commandBarSeparator2.DisplayName" xml:space="preserve">
+    <value>commandBarSeparator2</value>
+  </data>
+  <data name="btn_snapshot_create.DisplayName" xml:space="preserve">
+    <value>commandBarButton1</value>
+  </data>
+  <data name="commandBarStripElement2.DisplayName" xml:space="preserve">
+    <value>commandBarStripElement2</value>
+  </data>
+  <data name="commandBarLabel1.DisplayName" xml:space="preserve">
+    <value>commandBarLabel1</value>
+  </data>
+  <data name="commandBarLabel1.Text" xml:space="preserve">
+    <value>Metaangabe:</value>
+  </data>
+  <data name="cmb_meta.DisplayName" xml:space="preserve">
+    <value>commandBarDropDownList1</value>
+  </data>
+  <data name="cmb_meta.NullText" xml:space="preserve">
+    <value>Bitte auswählen...</value>
+  </data>
+  <data name="cmb_meta.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btn_run.DisplayName" xml:space="preserve">
+    <value>commandBarButton1</value>
+  </data>
+  <data name="btn_run.Text" xml:space="preserve">
+    <value>Ausführen</value>
+  </data>
+  <data name="radCommandBar1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>780, 85</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="radCommandBar1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radCommandBar1.Name" xml:space="preserve">
+    <value>radCommandBar1</value>
+  </data>
+  <data name="&gt;&gt;radCommandBar1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadCommandBar, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radCommandBar1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radCommandBar1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radGridView1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="radGridView1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 85</value>
+  </data>
+  <data name="radGridView1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>780, 315</value>
+  </data>
+  <data name="radGridView1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;radGridView1.Name" xml:space="preserve">
+    <value>radGridView1</value>
+  </data>
+  <data name="&gt;&gt;radGridView1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGridView, Telerik.WinControls.GridView, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGridView1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radGridView1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="&gt;&gt;commandBarRowElement1.Name" xml:space="preserve">
+    <value>commandBarRowElement1</value>
+  </data>
+  <data name="&gt;&gt;commandBarRowElement1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarRowElement, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarStripElement1.Name" xml:space="preserve">
+    <value>commandBarStripElement1</value>
+  </data>
+  <data name="&gt;&gt;commandBarStripElement1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarStripElement, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_function.Name" xml:space="preserve">
+    <value>btn_function</value>
+  </data>
+  <data name="&gt;&gt;btn_function.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_calc.Name" xml:space="preserve">
+    <value>btn_calc</value>
+  </data>
+  <data name="&gt;&gt;btn_calc.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_filter.Name" xml:space="preserve">
+    <value>btn_filter</value>
+  </data>
+  <data name="&gt;&gt;btn_filter.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_filterEditor.Name" xml:space="preserve">
+    <value>btn_filterEditor</value>
+  </data>
+  <data name="&gt;&gt;btn_filterEditor.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_regex.Name" xml:space="preserve">
+    <value>btn_regex</value>
+  </data>
+  <data name="&gt;&gt;btn_regex.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_layers.Name" xml:space="preserve">
+    <value>btn_layers</value>
+  </data>
+  <data name="&gt;&gt;btn_layers.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarSeparator1.Name" xml:space="preserve">
+    <value>commandBarSeparator1</value>
+  </data>
+  <data name="&gt;&gt;commandBarSeparator1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarSeparator, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_csvExport.Name" xml:space="preserve">
+    <value>btn_csvExport</value>
+  </data>
+  <data name="&gt;&gt;btn_csvExport.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_print.Name" xml:space="preserve">
+    <value>btn_print</value>
+  </data>
+  <data name="&gt;&gt;btn_print.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarSeparator2.Name" xml:space="preserve">
+    <value>commandBarSeparator2</value>
+  </data>
+  <data name="&gt;&gt;commandBarSeparator2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarSeparator, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_snapshot_create.Name" xml:space="preserve">
+    <value>btn_snapshot_create</value>
+  </data>
+  <data name="&gt;&gt;btn_snapshot_create.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarRowElement2.Name" xml:space="preserve">
+    <value>commandBarRowElement2</value>
+  </data>
+  <data name="&gt;&gt;commandBarRowElement2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarRowElement, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarStripElement2.Name" xml:space="preserve">
+    <value>commandBarStripElement2</value>
+  </data>
+  <data name="&gt;&gt;commandBarStripElement2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarStripElement, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarLabel1.Name" xml:space="preserve">
+    <value>commandBarLabel1</value>
+  </data>
+  <data name="&gt;&gt;commandBarLabel1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarLabel, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;cmb_meta.Name" xml:space="preserve">
+    <value>cmb_meta</value>
+  </data>
+  <data name="&gt;&gt;cmb_meta.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarDropDownList, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_run.Name" xml:space="preserve">
+    <value>btn_run</value>
+  </data>
+  <data name="&gt;&gt;btn_run.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MtldGrid</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.View.AbstractTemplates.AbstractGridView, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
+  </data>
+</root>

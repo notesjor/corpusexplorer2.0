@@ -5,6 +5,7 @@ using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
+using CorpusExplorer.Terminal.WinForm.Forms.SelectLayer;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.View.AbstractTemplates;
 using Telerik.WinControls.UI;
@@ -100,6 +101,16 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
     private void btn_regex_Click(object sender, EventArgs e)
     {
       RegexFunction();
+    }
+
+    private void btn_posFilter_Click(object sender, EventArgs e)
+    {
+      var form = new PosFilter(Project.CurrentSelection, _vm.LayerDisplayname) { ShowAllOption = false };
+      form.ShowDialog();
+
+      _vm.CorrespondingLayerValueFilter = form.Result;
+      radGridView1.DataSource = _vm.GetDataTable();
+      radGridView1.ResetBindings();
     }
   }
 }

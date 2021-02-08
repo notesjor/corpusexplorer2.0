@@ -5,7 +5,6 @@ using System.Linq;
 using System.Windows.Forms;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
-using CorpusExplorer.Terminal.WinForm.Forms.PosFilter;
 using CorpusExplorer.Terminal.WinForm.Forms.SelectLayer;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.Properties;
@@ -115,18 +114,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
 
     private void btn_posFilter_Click(object sender, EventArgs e)
     {
-      var form = new PosFilter(Project.CurrentSelection);
+      var form = new PosFilter(Project.CurrentSelection, _vm.LayerDisplayname);
       form.ShowDialog();
 
-      var filter = form.Result;
-      if (filter == _vm.Filter)
-        return;
-
-      _vm.Filter = filter;
+      _vm.CorrespondingLayerValueFilter = form.Result;
       radGridView1.DataSource = _vm.GetDataTable();
       radGridView1.ResetBindings();
-
-      btn_posFilter.CheckState = filter == null ? CheckState.Unchecked : CheckState.Checked;
     }
 
     /// <summary>

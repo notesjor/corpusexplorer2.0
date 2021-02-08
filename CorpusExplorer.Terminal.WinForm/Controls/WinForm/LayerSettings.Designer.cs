@@ -50,6 +50,7 @@
       // 
       resources.ApplyResources(this.cmb_names, "cmb_names");
       this.cmb_names.Name = "cmb_names";
+      this.cmb_names.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.cmb_names_SelectedIndexChanged);
       // 
       // chk_active
       // 
@@ -57,6 +58,7 @@
       resources.ApplyResources(this.chk_active, "chk_active");
       this.chk_active.Name = "chk_active";
       this.chk_active.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
+      this.chk_active.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chk_active_ToggleStateChanged);
       this.chk_active.CheckStateChanged += new System.EventHandler(this.chk_active_CheckStateChanged);
       // 
       // LayerSettings

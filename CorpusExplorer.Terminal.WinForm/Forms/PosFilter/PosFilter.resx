@@ -118,93 +118,345 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="headPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>554, 56</value>
+  </data>
+  <data name="&gt;&gt;headPanel1.Name" xml:space="preserve">
+    <value>headPanel1</value>
+  </data>
+  <data name="&gt;&gt;headPanel1.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.HeadPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
+  </data>
+  <data name="&gt;&gt;headPanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;headPanel1.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
   <data name="radPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 447</value>
+    <value>0, 482</value>
   </data>
   <data name="radPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 38</value>
+    <value>554, 38</value>
   </data>
   <data name="&gt;&gt;radPanel1.Name" xml:space="preserve">
     <value>radPanel1</value>
   </data>
   <data name="&gt;&gt;radPanel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radPanel1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;radPanel1.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ihdPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="layerSettings1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
-  <data name="ihdPanel1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 12pt</value>
+  <data name="layerSettings1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 11pt</value>
   </data>
-  <data name="ihdPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="layerSettings1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 56</value>
   </data>
-  <data name="ihdPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="ihdPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 64</value>
+  <data name="layerSettings1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>554, 62</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ihdPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;ihdPanel1.Name" xml:space="preserve">
-    <value>ihdPanel1</value>
-  </data>
-  <data name="&gt;&gt;ihdPanel1.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
-  </data>
-  <data name="&gt;&gt;ihdPanel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;ihdPanel1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="radCheckedListBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="radCheckedListBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 64</value>
-  </data>
-  <data name="radCheckedListBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 383</value>
-  </data>
-  <data name="radCheckedListBox1.TabIndex" type="System.Int32, mscorlib">
+  <data name="layerSettings1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;radCheckedListBox1.Name" xml:space="preserve">
-    <value>radCheckedListBox1</value>
+  <data name="&gt;&gt;layerSettings1.Name" xml:space="preserve">
+    <value>layerSettings1</value>
   </data>
-  <data name="&gt;&gt;radCheckedListBox1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadCheckedListBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  <data name="&gt;&gt;layerSettings1.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.LayerSettings, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
-  <data name="&gt;&gt;radCheckedListBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;layerSettings1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;radCheckedListBox1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;layerSettings1.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="txt_results.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="txt_results.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="txt_results.Size" type="System.Drawing.Size, System.Drawing">
+    <value>544, 111</value>
+  </data>
+  <data name="txt_results.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txt_results.Name" xml:space="preserve">
+    <value>txt_results</value>
+  </data>
+  <data name="&gt;&gt;txt_results.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadAutoCompleteBox, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;txt_results.Parent" xml:space="preserve">
+    <value>radGroupBox3</value>
+  </data>
+  <data name="&gt;&gt;txt_results.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radGroupBox3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radGroupBox3.HeaderText" xml:space="preserve">
+    <value>4. Ergebnisse kontrollieren...</value>
+  </data>
+  <data name="radGroupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 252</value>
+  </data>
+  <data name="radGroupBox3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>554, 141</value>
+  </data>
+  <data name="radGroupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="radGroupBox3.Text" xml:space="preserve">
+    <value>4. Ergebnisse kontrollieren...</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox3.Name" xml:space="preserve">
+    <value>radGroupBox3</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox3.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox3.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="txt_query.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="txt_query.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="txt_query.NullText" xml:space="preserve">
+    <value>Suchabfrage hier eingeben</value>
+  </data>
+  <data name="txt_query.Size" type="System.Drawing.Size, System.Drawing">
+    <value>507, 37</value>
+  </data>
+  <data name="txt_query.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txt_query.Name" xml:space="preserve">
+    <value>txt_query</value>
+  </data>
+  <data name="&gt;&gt;txt_query.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;txt_query.Parent" xml:space="preserve">
+    <value>radGroupBox2</value>
+  </data>
+  <data name="&gt;&gt;txt_query.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btn_go.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="btn_go.ImageAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="btn_go.Location" type="System.Drawing.Point, System.Drawing">
+    <value>512, 25</value>
+  </data>
+  <data name="btn_go.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 37</value>
+  </data>
+  <data name="btn_go.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;btn_go.Name" xml:space="preserve">
+    <value>btn_go</value>
+  </data>
+  <data name="&gt;&gt;btn_go.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_go.Parent" xml:space="preserve">
+    <value>radGroupBox2</value>
+  </data>
+  <data name="&gt;&gt;btn_go.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radGroupBox2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radGroupBox2.HeaderText" xml:space="preserve">
+    <value>3. Suchabfrage...</value>
+  </data>
+  <data name="radGroupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 185</value>
+  </data>
+  <data name="radGroupBox2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>554, 67</value>
+  </data>
+  <data name="radGroupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="radGroupBox2.Text" xml:space="preserve">
+    <value>3. Suchabfrage...</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox2.Name" xml:space="preserve">
+    <value>radGroupBox2</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="drop_operator.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="drop_operator.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="drop_operator.NullText" xml:space="preserve">
+    <value>Bitte auswählen...</value>
+  </data>
+  <data name="drop_operator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>544, 32</value>
+  </data>
+  <data name="drop_operator.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;drop_operator.Name" xml:space="preserve">
+    <value>drop_operator</value>
+  </data>
+  <data name="&gt;&gt;drop_operator.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;drop_operator.Parent" xml:space="preserve">
+    <value>radGroupBox1</value>
+  </data>
+  <data name="&gt;&gt;drop_operator.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radGroupBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radGroupBox1.HeaderText" xml:space="preserve">
+    <value>2. Operator auswählen...</value>
+  </data>
+  <data name="radGroupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 118</value>
+  </data>
+  <data name="radGroupBox1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>554, 67</value>
+  </data>
+  <data name="radGroupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="radGroupBox1.Text" xml:space="preserve">
+    <value>2. Operator auswählen...</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox1.Name" xml:space="preserve">
+    <value>radGroupBox1</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="chk_all.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="chk_all.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="chk_all.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="chk_all.Size" type="System.Drawing.Size, System.Drawing">
+    <value>544, 37</value>
+  </data>
+  <data name="chk_all.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="chk_all.Text" xml:space="preserve">
+    <value>Alle Werte müssen mit dem Filter korrespondieren</value>
+  </data>
+  <data name="&gt;&gt;chk_all.Name" xml:space="preserve">
+    <value>chk_all</value>
+  </data>
+  <data name="&gt;&gt;chk_all.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadCheckBox, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;chk_all.Parent" xml:space="preserve">
+    <value>radGroupBox4</value>
+  </data>
+  <data name="&gt;&gt;chk_all.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radGroupBox4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="radGroupBox4.HeaderText" xml:space="preserve">
+    <value>5. Alle Werte überprüfen?</value>
+  </data>
+  <data name="radGroupBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 393</value>
+  </data>
+  <data name="radGroupBox4.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 25, 5, 5</value>
+  </data>
+  <data name="radGroupBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>554, 67</value>
+  </data>
+  <data name="radGroupBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="radGroupBox4.Text" xml:space="preserve">
+    <value>5. Alle Werte überprüfen?</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox4.Name" xml:space="preserve">
+    <value>radGroupBox4</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox4.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;radGroupBox4.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>456, 485</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>POS-Filter</value>
+    <value>554, 520</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>PosFilter</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Forms.Abstract.AbstractDialog, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+    <value>CorpusExplorer.Terminal.WinForm.Forms.SelectLayer.Abstract.AbstractSelectLayer, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
 </root>

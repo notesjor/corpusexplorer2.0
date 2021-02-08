@@ -37,7 +37,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     public MapSwitch()
     {
       InitializeComponent();
-      radPageView1.MakeHeaderInvisible();
+      RadPageViewHelper.MakeHeaderInvisible(radPageView1);
       ShowVectorMap();
 
       elementHost1.Child = _mapR;

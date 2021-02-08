@@ -29,7 +29,7 @@
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaperLinguist));
-      this.ihdPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
+      this._headPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HeadPanel();
       this.chk_overview_analy_corpusDistribution = new Telerik.WinControls.UI.RadCheckBox();
       this.chk_overview_analy_frequency = new Telerik.WinControls.UI.RadCheckBox();
       this.num_overview_analy_corpusDistribution = new Telerik.WinControls.UI.RadSpinEditor();
@@ -62,14 +62,14 @@
       ((System.ComponentModel.ISupportInitialize)(this.btn_execute)).BeginInit();
       this.SuspendLayout();
       // 
-      // ihdPanel1
+      // _headPanel1
       // 
-      this.ihdPanel1.BackColor = System.Drawing.Color.White;
-      resources.ApplyResources(this.ihdPanel1, "ihdPanel1");
-      this.ihdPanel1.IHDDescription = "Alle Auswertungen des CorpusExplorers in einem Ausdruck";
-      this.ihdPanel1.IHDHeader = "Ich ♥ das gedruckte Wort";
-      this.ihdPanel1.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.print1;
-      this.ihdPanel1.Name = "ihdPanel1";
+      this._headPanel1.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this._headPanel1, "_headPanel1");
+      this._headPanel1.HeadPanelDescription = "Alle Auswertungen des CorpusExplorers in einem Ausdruck";
+      this._headPanel1.HeadPanelTitle = "Ich ♥ das gedruckte Wort";
+      this._headPanel1.HeadPanelImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.print1;
+      this._headPanel1.Name = "_headPanel1";
       // 
       // chk_overview_analy_corpusDistribution
       // 
@@ -241,7 +241,7 @@
       this.Controls.Add(this.btn_execute);
       this.Controls.Add(this.radGroupBox3);
       this.Controls.Add(this.radGroupBox1);
-      this.Controls.Add(this.ihdPanel1);
+      this.Controls.Add(this._headPanel1);
       this.Name = "PaperLinguist";
       resources.ApplyResources(this, "$this");
       ((System.ComponentModel.ISupportInitialize)(this.chk_overview_analy_corpusDistribution)).EndInit();
@@ -268,7 +268,7 @@
 
     #endregion
 
-    private Controls.WinForm.IHDPanel ihdPanel1;
+    private Controls.WinForm.HeadPanel _headPanel1;
     private Telerik.WinControls.UI.RadCheckBox chk_overview_analy_corpusDistribution;
     private Telerik.WinControls.UI.RadCheckBox chk_overview_analy_frequency;
     private Telerik.WinControls.UI.RadSpinEditor num_overview_analy_corpusDistribution;

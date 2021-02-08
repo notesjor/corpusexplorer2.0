@@ -32,7 +32,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShowScraperResults));
-      this.ihdPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
+      this._headPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HeadPanel();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
@@ -45,6 +45,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
       this.metadataEditor1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.MetadataEditor();
       this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
       this.txt_text = new Telerik.WinControls.UI.RadTextBox();
+      this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
+      this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
+      this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
@@ -52,6 +55,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
       this.radGroupBox2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.txt_text)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
+      this.radSplitContainer1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
+      this.splitPanel1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
+      this.splitPanel2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
       // 
@@ -59,15 +68,15 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
       // 
       resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
-      // ihdPanel1
+      // _headPanel1
       // 
-      this.ihdPanel1.BackColor = System.Drawing.Color.White;
-      resources.ApplyResources(this.ihdPanel1, "ihdPanel1");
-      this.ihdPanel1.IHDDescription = "Folgende Dokumente und Dokumentmetadaten wurden in den von Ihnen ausgewählten Dat" +
+      this._headPanel1.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this._headPanel1, "_headPanel1");
+      this._headPanel1.HeadPanelDescription = "Folgende Dokumente und Dokumentmetadaten wurden in den von Ihnen ausgewählten Dat" +
     "eien entdeckt.";
-      this.ihdPanel1.IHDHeader = "Gefundene Dokumente";
-      this.ihdPanel1.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.cabinet;
-      this.ihdPanel1.Name = "ihdPanel1";
+      this._headPanel1.HeadPanelTitle = "Gefundene Dokumente";
+      this._headPanel1.HeadPanelImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.cabinet;
+      this._headPanel1.Name = "_headPanel1";
       // 
       // radCommandBar1
       // 
@@ -130,7 +139,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
       // commandBarHostItem1
       // 
       this.commandBarHostItem1.Name = "commandBarHostItem1";
-      resources.ApplyResources(this.commandBarHostItem1, "commandBarHostItem1");
       // 
       // radGroupBox1
       // 
@@ -145,6 +153,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
       // 
       this.metadataEditor1.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.metadataEditor1, "metadataEditor1");
+      this.metadataEditor1.Metadata = null;
       this.metadataEditor1.Name = "metadataEditor1";
       // 
       // radGroupBox2
@@ -164,14 +173,51 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
       this.txt_text.Name = "txt_text";
       this.txt_text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
       // 
+      // radSplitContainer1
+      // 
+      this.radSplitContainer1.Controls.Add(this.splitPanel1);
+      this.radSplitContainer1.Controls.Add(this.splitPanel2);
+      resources.ApplyResources(this.radSplitContainer1, "radSplitContainer1");
+      this.radSplitContainer1.Name = "radSplitContainer1";
+      // 
+      // 
+      // 
+      this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
+      this.radSplitContainer1.TabStop = false;
+      // 
+      // splitPanel1
+      // 
+      this.splitPanel1.Controls.Add(this.radGroupBox2);
+      resources.ApplyResources(this.splitPanel1, "splitPanel1");
+      this.splitPanel1.Name = "splitPanel1";
+      // 
+      // 
+      // 
+      this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
+      this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.1450617F, 0F);
+      this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(94, 0);
+      this.splitPanel1.TabStop = false;
+      // 
+      // splitPanel2
+      // 
+      this.splitPanel2.Controls.Add(this.radGroupBox1);
+      resources.ApplyResources(this.splitPanel2, "splitPanel2");
+      this.splitPanel2.Name = "splitPanel2";
+      // 
+      // 
+      // 
+      this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
+      this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.1450617F, 0F);
+      this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(-94, 0);
+      this.splitPanel2.TabStop = false;
+      // 
       // ShowScraperResults
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       resources.ApplyResources(this, "$this");
-      this.Controls.Add(this.radGroupBox2);
-      this.Controls.Add(this.radGroupBox1);
+      this.Controls.Add(this.radSplitContainer1);
       this.Controls.Add(this.radCommandBar1);
-      this.Controls.Add(this.ihdPanel1);
+      this.Controls.Add(this._headPanel1);
       this.DisplayAbort = true;
       this.Name = "ShowScraperResults";
       // 
@@ -179,10 +225,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
       // 
       this.RootElement.ApplyShapeToControl = true;
       this.Controls.SetChildIndex(this.radPanel1, 0);
-      this.Controls.SetChildIndex(this.ihdPanel1, 0);
+      this.Controls.SetChildIndex(this._headPanel1, 0);
       this.Controls.SetChildIndex(this.radCommandBar1, 0);
-      this.Controls.SetChildIndex(this.radGroupBox1, 0);
-      this.Controls.SetChildIndex(this.radGroupBox2, 0);
+      this.Controls.SetChildIndex(this.radSplitContainer1, 0);
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
@@ -190,6 +235,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
       this.radGroupBox2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.txt_text)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
+      this.radSplitContainer1.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
+      this.splitPanel1.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
+      this.splitPanel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
@@ -198,7 +249,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
 
     #endregion
 
-    private IHDPanel ihdPanel1;
+    private HeadPanel _headPanel1;
     private Telerik.WinControls.UI.RadCommandBar radCommandBar1;
     private Telerik.WinControls.UI.CommandBarRowElement commandBarRowElement1;
     private Telerik.WinControls.UI.CommandBarStripElement commandBarStripElement1;
@@ -211,5 +262,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Scraper
     private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator1;
     private Telerik.WinControls.UI.CommandBarHostItem commandBarHostItem1;
     private MetadataEditor metadataEditor1;
+    private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
+    private Telerik.WinControls.UI.SplitPanel splitPanel1;
+    private Telerik.WinControls.UI.SplitPanel splitPanel2;
   }
 }

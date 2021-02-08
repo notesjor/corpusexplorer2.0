@@ -117,22 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="header1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>397, 74</value>
+  <data name="&gt;&gt;headPanel1.Name" xml:space="preserve">
+    <value>headPanel1</value>
   </data>
-  <data name="&gt;&gt;header1.Name" xml:space="preserve">
-    <value>header1</value>
+  <data name="&gt;&gt;headPanel1.Type" xml:space="preserve">
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.HeadPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
-  <data name="&gt;&gt;header1.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
-  </data>
-  <data name="&gt;&gt;header1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;headPanel1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;header1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;headPanel1.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="radPanel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 262</value>
   </data>
@@ -140,7 +137,7 @@
     <value>radPanel1</value>
   </data>
   <data name="&gt;&gt;radPanel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radPanel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -156,7 +153,7 @@
     <value>5, 25</value>
   </data>
   <data name="txt_regex.Size" type="System.Drawing.Size, System.Drawing">
-    <value>387, 97</value>
+    <value>387, 115</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="txt_regex.TabIndex" type="System.Int32, mscorlib">
@@ -166,7 +163,7 @@
     <value>txt_regex</value>
   </data>
   <data name="&gt;&gt;txt_regex.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;txt_regex.Parent" xml:space="preserve">
     <value>radGroupBox1</value>
@@ -181,13 +178,13 @@
     <value>Regulärer Ausdruck</value>
   </data>
   <data name="radGroupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 135</value>
+    <value>0, 117</value>
   </data>
   <data name="radGroupBox1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 25, 5, 5</value>
   </data>
   <data name="radGroupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>397, 127</value>
+    <value>397, 145</value>
   </data>
   <data name="radGroupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -199,7 +196,7 @@
     <value>radGroupBox1</value>
   </data>
   <data name="&gt;&gt;radGroupBox1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -217,7 +214,7 @@
     <value>Bitte auswählen...</value>
   </data>
   <data name="radDropDownList1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>387, 32</value>
+    <value>387, 31</value>
   </data>
   <data name="radDropDownList1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -226,7 +223,7 @@
     <value>radDropDownList1</value>
   </data>
   <data name="&gt;&gt;radDropDownList1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radDropDownList1.Parent" xml:space="preserve">
     <value>radGroupBox2</value>
@@ -241,7 +238,7 @@
     <value>Spalte</value>
   </data>
   <data name="radGroupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 74</value>
+    <value>0, 56</value>
   </data>
   <data name="radGroupBox2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 25, 5, 5</value>
@@ -259,7 +256,7 @@
     <value>radGroupBox2</value>
   </data>
   <data name="&gt;&gt;radGroupBox2.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2019.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox2.Parent" xml:space="preserve">
     <value>$this</value>
@@ -280,6 +277,6 @@
     <value>RegExForm</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Forms.SelectLayer.Abstract.AbstractSelectLayer, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+    <value>CorpusExplorer.Terminal.WinForm.Forms.SelectLayer.Abstract.AbstractSelectLayer, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
 </root>

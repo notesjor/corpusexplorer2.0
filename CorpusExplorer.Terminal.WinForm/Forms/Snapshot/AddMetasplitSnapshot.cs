@@ -59,7 +59,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       drop_metaKey.DataSource = selection == null ? project.SelectAll.GetDocumentMetadataPrototypeOnlyProperties() : selection.GetDocumentMetadataPrototypeOnlyProperties();
 
       drop_auto.SelectedIndex = 0;
-      radPageView1.MakeHeaderInvisible();
+
+      RadPageViewHelper.MakeHeaderInvisible(radPageView1);
       radPageView1.SelectedPage = page_none;
 
       DictionaryBindingHelper.BindDictionary(_baseGenerators, drop_auto);

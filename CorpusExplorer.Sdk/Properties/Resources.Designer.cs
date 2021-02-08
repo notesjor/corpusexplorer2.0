@@ -376,6 +376,15 @@ namespace CorpusExplorer.Sdk.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die TSV-Datei (*.tsv)|*.tsv ähnelt.
+        /// </summary>
+        internal static string FilterTSV {
+            get {
+                return ResourceManager.GetString("FilterTSV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Finde korrespondierende Werte ähnelt.
         /// </summary>
         internal static string FindCorrespondingValues {

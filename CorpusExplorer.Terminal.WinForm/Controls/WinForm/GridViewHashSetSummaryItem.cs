@@ -21,7 +21,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
           return 0;
 
         foreach (var x in template.ChildRows)
-          _hashSet.Add(x.Cells[Name].Value.ToString());
+          if (x.Cells[Name].Value != null)
+            _hashSet.Add(x.Cells[Name].Value.ToString());
 
         return _hashSet.Count;
       }

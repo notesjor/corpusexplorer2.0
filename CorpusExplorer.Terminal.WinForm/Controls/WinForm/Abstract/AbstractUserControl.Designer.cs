@@ -1,4 +1,5 @@
-﻿namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Abstract
+﻿
+namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Abstract
 {
   partial class AbstractUserControl
   {
@@ -13,9 +14,9 @@
     /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
     protected override void Dispose(bool disposing)
     {
-      if (disposing && (this.components != null))
+      if (disposing && (components != null))
       {
-        this.components.Dispose();
+        components.Dispose();
       }
       base.Dispose(disposing);
     }

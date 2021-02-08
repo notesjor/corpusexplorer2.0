@@ -29,7 +29,7 @@
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewMetadataDialog));
-      this.ihdPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
+      this._headPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HeadPanel();
       this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
       this.txt_propertyName = new Telerik.WinControls.UI.RadTextBox();
       this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
@@ -48,15 +48,15 @@
       // 
       resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
-      // ihdPanel1
+      // _headPanel1
       // 
-      this.ihdPanel1.BackColor = System.Drawing.Color.White;
-      resources.ApplyResources(this.ihdPanel1, "ihdPanel1");
-      this.ihdPanel1.IHDDescription = "Fügen Sie Projektweit eine neue Metaangabe hinzu.";
-      this.ihdPanel1.IHDHeader = "Neue Metaangabe";
-      this.ihdPanel1.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.tag_green1;
-      this.ihdPanel1.Name = "ihdPanel1";
-      this.ihdPanel1.Tag = "";
+      this._headPanel1.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this._headPanel1, "_headPanel1");
+      this._headPanel1.HeadPanelDescription = "Fügen Sie Projektweit eine neue Metaangabe hinzu.";
+      this._headPanel1.HeadPanelTitle = "Neue Metaangabe";
+      this._headPanel1.HeadPanelImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.tag_green1;
+      this._headPanel1.Name = "_headPanel1";
+      this._headPanel1.Tag = "";
       // 
       // radGroupBox1
       // 
@@ -88,14 +88,14 @@
       resources.ApplyResources(this, "$this");
       this.Controls.Add(this.radGroupBox2);
       this.Controls.Add(this.radGroupBox1);
-      this.Controls.Add(this.ihdPanel1);
+      this.Controls.Add(this._headPanel1);
       this.DisplayAbort = true;
       this.Name = "NewMetadataDialog";
       // 
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
-      this.Controls.SetChildIndex(this.ihdPanel1, 0);
+      this.Controls.SetChildIndex(this._headPanel1, 0);
       this.Controls.SetChildIndex(this.radGroupBox1, 0);
       this.Controls.SetChildIndex(this.radGroupBox2, 0);
       this.Controls.SetChildIndex(this.radPanel1, 0);
@@ -115,7 +115,7 @@
 
     #endregion
 
-    private IHDPanel ihdPanel1;
+    private HeadPanel _headPanel1;
     private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
     private Telerik.WinControls.UI.RadTextBox txt_propertyName;
     private Telerik.WinControls.UI.RadGroupBox radGroupBox2;

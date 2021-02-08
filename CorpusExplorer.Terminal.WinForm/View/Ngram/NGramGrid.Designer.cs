@@ -38,6 +38,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       this.btn_filterlist = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_filtereditor = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_regex = new Telerik.WinControls.UI.CommandBarButton();
+      this.btn_posfilter = new Telerik.WinControls.UI.CommandBarButton();
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_csvExport = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_print = new Telerik.WinControls.UI.CommandBarButton();
@@ -81,6 +82,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
             this.btn_filterlist,
             this.btn_filtereditor,
             this.btn_regex,
+            this.btn_posfilter,
             this.commandBarSeparator1,
             this.btn_csvExport,
             this.btn_print,
@@ -90,43 +92,50 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       // btn_function
       // 
+      this.btn_function.AutoToolTip = true;
       resources.ApplyResources(this.btn_function, "btn_function");
       this.btn_function.Image = ((System.Drawing.Image)(resources.GetObject("btn_function.Image")));
-      this.btn_function.AutoToolTip = true;
       this.btn_function.Name = "btn_function";
       this.btn_function.Click += new System.EventHandler(this.btn_function_Click);
       // 
       // btn_calc
       // 
+      this.btn_calc.AutoToolTip = true;
       resources.ApplyResources(this.btn_calc, "btn_calc");
       this.btn_calc.Image = ((System.Drawing.Image)(resources.GetObject("btn_calc.Image")));
-      this.btn_calc.AutoToolTip = true;
       this.btn_calc.Name = "btn_calc";
       this.btn_calc.Click += new System.EventHandler(this.btn_calc_Click);
       // 
       // btn_filterlist
       // 
+      this.btn_filterlist.AutoToolTip = true;
       resources.ApplyResources(this.btn_filterlist, "btn_filterlist");
       this.btn_filterlist.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_list;
-      this.btn_filterlist.AutoToolTip = true;
       this.btn_filterlist.Name = "btn_filterlist";
       this.btn_filterlist.Click += new System.EventHandler(this.btn_filterlist_Click);
       // 
       // btn_filtereditor
       // 
+      this.btn_filtereditor.AutoToolTip = true;
       resources.ApplyResources(this.btn_filtereditor, "btn_filtereditor");
       this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
-      this.btn_filtereditor.AutoToolTip = true;
       this.btn_filtereditor.Name = "btn_filtereditor";
       this.btn_filtereditor.Click += new System.EventHandler(this.btn_filtereditor_Click);
       // 
       // btn_regex
       // 
+      this.btn_regex.AutoToolTip = true;
       resources.ApplyResources(this.btn_regex, "btn_regex");
       this.btn_regex.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_regex;
-      this.btn_regex.AutoToolTip = true;
       this.btn_regex.Name = "btn_regex";
       this.btn_regex.Click += new System.EventHandler(this.btn_regex_Click);
+      // 
+      // btn_posfilter
+      // 
+      resources.ApplyResources(this.btn_posfilter, "btn_posfilter");
+      this.btn_posfilter.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_pos;
+      this.btn_posfilter.Name = "btn_posfilter";
+      this.btn_posfilter.Click += new System.EventHandler(this.btn_posFilter_Click);
       // 
       // commandBarSeparator1
       // 
@@ -138,17 +147,17 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       // btn_csvExport
       // 
+      this.btn_csvExport.AutoToolTip = true;
       resources.ApplyResources(this.btn_csvExport, "btn_csvExport");
       this.btn_csvExport.Image = ((System.Drawing.Image)(resources.GetObject("btn_csvExport.Image")));
-      this.btn_csvExport.AutoToolTip = true;
       this.btn_csvExport.Name = "btn_csvExport";
       this.btn_csvExport.Click += new System.EventHandler(this.btn_csvExport_Click);
       // 
       // btn_print
       // 
+      this.btn_print.AutoToolTip = true;
       resources.ApplyResources(this.btn_print, "btn_print");
       this.btn_print.Image = ((System.Drawing.Image)(resources.GetObject("btn_print.Image")));
-      this.btn_print.AutoToolTip = true;
       this.btn_print.Name = "btn_print";
       this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
       // 
@@ -162,9 +171,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       // btn_snapshot_create
       // 
+      this.btn_snapshot_create.AutoToolTip = true;
       resources.ApplyResources(this.btn_snapshot_create, "btn_snapshot_create");
       this.btn_snapshot_create.Image = ((System.Drawing.Image)(resources.GetObject("btn_snapshot_create.Image")));
-      this.btn_snapshot_create.AutoToolTip = true;
       this.btn_snapshot_create.Name = "btn_snapshot_create";
       this.btn_snapshot_create.Click += new System.EventHandler(this.btn_snapshot_create_Click);
       // 
@@ -189,9 +198,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       // btn_layer
       // 
+      this.btn_layer.AutoToolTip = true;
       resources.ApplyResources(this.btn_layer, "btn_layer");
       this.btn_layer.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers;
-      this.btn_layer.AutoToolTip = true;
       this.btn_layer.Name = "btn_layer";
       this.btn_layer.Click += new System.EventHandler(this.btn_layer_Click);
       // 
@@ -221,9 +230,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       // 
       this.btn_run.AccessibleDescription = "commandBarButton1";
       this.btn_run.AccessibleName = "commandBarButton1";
+      this.btn_run.AutoToolTip = true;
       resources.ApplyResources(this.btn_run, "btn_run");
       this.btn_run.Image = ((System.Drawing.Image)(resources.GetObject("btn_run.Image")));
-      this.btn_run.AutoToolTip = true;
       this.btn_run.Name = "btn_run";
       this.btn_run.Click += new System.EventHandler(this.btn_execute_Click);
       // 
@@ -280,5 +289,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     private Telerik.WinControls.UI.CommandBarButton btn_filtereditor;
     private Telerik.WinControls.UI.CommandBarButton btn_layer;
     private Telerik.WinControls.UI.CommandBarButton btn_regex;
+    private Telerik.WinControls.UI.CommandBarButton btn_posfilter;
   }
 }

@@ -8,12 +8,13 @@ using CorpusExplorer.Sdk.ViewModel.Interfaces;
 
 namespace CorpusExplorer.Sdk.ViewModel
 {
-  public class PositionFrequencyViewModel : AbstractViewModel, IProvideDataTable
+  public class PositionFrequencyViewModel : AbstractViewModel, IProvideDataTable, IProvideCorrespondingLayerValueFilter
   {
     public string[] LayerQueries { get; set; }
     public string LayerDisplayname { get; set; } = "Wort";
 
     public Dictionary<string, Tuple<int, int, int[], int[], int, int, int>> Positions { get; set; }
+    public CorrespondingLayerValueFilterViewModel CorrespondingLayerValueFilter { get; set; }
 
     public DataTable GetDataTable()
     {
@@ -35,6 +36,10 @@ namespace CorpusExplorer.Sdk.ViewModel
 
       foreach (var position in Positions)
       {
+        if(CorrespondingLayerValueFilter != null)
+          if (!CorrespondingLayerValueFilter.CustomFilter(position.Key))
+            continue;
+
         var row = new List<object> {position.Key, position.Value.Item1, position.Value.Item2};
         row.AddRange(position.Value.Item3.Select(x => (object) x));
         row.AddRange(position.Value.Item4.Select(x => (object) x));

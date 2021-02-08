@@ -18,9 +18,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
     {
       InitializeComponent();
       Text = header;
-      ihdPanel1.IHDHeader = header;
-      ihdPanel1.IHDDescription = description;
-      ihdPanel1.IHDImage = image;
+      _headPanel1.HeadPanelTitle = header;
+      _headPanel1.HeadPanelDescription = description;
+      _headPanel1.HeadPanelImage = image;
       radTextBox1.NullText = nullText;
     }
 

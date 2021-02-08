@@ -165,7 +165,7 @@ namespace CorpusExplorer.Core
         {"Nur Text (*.rtf)|*.rtf", new SimpleRtfDocumentScraper()},
         {"Nur Text (*.html)|*.htm;*.html", new SimpleHtmlDocumentScraper()},
         {"Nur Text (*.pdf)|*.pdf", new SimplePdfDocumentScraper()},
-        {"Nur Text - Re-Annotation (*.cec6, *.cec6.gz)|*.cec6;*.cec6.gz", new Cec6Scraper()},
+        {"Nur Text - Re-Annotation (*.cec5, *.cec6, *.cec6.gz)|*.cec5;*.cec6;*.cec6.gz", new Cec6Scraper()},
       };
 
     /// <summary>
@@ -232,6 +232,7 @@ namespace CorpusExplorer.Core
         new NamedEntityAction(),
         new EditDistanceAction(),
         new KeywordAction(),
+        new DispersionAction(),
 
         new VocabularyComplexityAction(),
         new ReadingEaseAction(),

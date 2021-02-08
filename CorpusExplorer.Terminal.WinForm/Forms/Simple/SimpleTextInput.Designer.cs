@@ -31,7 +31,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimpleTextInput));
-      this.ihdPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
+      this._headPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HeadPanel();
       this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
@@ -42,14 +42,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       // 
       resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
-      // ihdPanel1
+      // _headPanel1
       // 
-      this.ihdPanel1.BackColor = System.Drawing.Color.White;
-      resources.ApplyResources(this.ihdPanel1, "ihdPanel1");
-      this.ihdPanel1.IHDDescription = "{IHDDESCRIPTION}";
-      this.ihdPanel1.IHDHeader = "{IHDHEADER}";
-      this.ihdPanel1.IHDImage = null;
-      this.ihdPanel1.Name = "ihdPanel1";
+      this._headPanel1.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this._headPanel1, "_headPanel1");
+      this._headPanel1.HeadPanelDescription = "{IHDDESCRIPTION}";
+      this._headPanel1.HeadPanelTitle = "{IHDHEADER}";
+      this._headPanel1.HeadPanelImage = null;
+      this._headPanel1.Name = "_headPanel1";
       // 
       // radTextBox1
       // 
@@ -61,7 +61,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       resources.ApplyResources(this, "$this");
       this.Controls.Add(this.radTextBox1);
-      this.Controls.Add(this.ihdPanel1);
+      this.Controls.Add(this._headPanel1);
       this.DisplayAbort = true;
       this.Name = "SimpleTextInput";
       // 
@@ -69,7 +69,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       // 
       this.RootElement.ApplyShapeToControl = true;
       this.Controls.SetChildIndex(this.radPanel1, 0);
-      this.Controls.SetChildIndex(this.ihdPanel1, 0);
+      this.Controls.SetChildIndex(this._headPanel1, 0);
       this.Controls.SetChildIndex(this.radTextBox1, 0);
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
@@ -81,7 +81,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
 
     #endregion
 
-    private IHDPanel ihdPanel1;
+    private HeadPanel _headPanel1;
         protected Telerik.WinControls.UI.RadTextBox radTextBox1;
     }
 }

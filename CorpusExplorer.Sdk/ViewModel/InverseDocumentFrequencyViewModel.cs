@@ -9,21 +9,25 @@ namespace CorpusExplorer.Sdk.ViewModel
 {
   public class InverseDocumentFrequencyViewModel : AbstractViewModel, IProvideDataTable
   {
+    private InverseDocumentTermFrequencyBlock _block;
     public string LayerDisplayname { get; set; } = "Wort";
 
     public string MetadataKey { get; set; } = "GUID";
 
     protected override void ExecuteAnalyse()
     {
-      var block = Selection.CreateBlock<InverseDocumentFrequencyBlock>();
-      block.LayerDisplayname = LayerDisplayname;
-      block.MetadataKey = MetadataKey;
+      _block = Selection.CreateBlock<InverseDocumentTermFrequencyBlock>();
+      _block.LayerDisplayname = LayerDisplayname;
+      _block.MetadataKey = MetadataKey;
 
-      block.Calculate();
-      InverseDocumentTermFrequency = block.InverseDocumentTermFrequency;
+      _block.Calculate();
     }
 
-    public Dictionary<string, double> InverseDocumentTermFrequency { get; set; }
+    public Dictionary<string, Dictionary<string, double>> InverseDocumentTermFrequency
+      => _block.InverseDocumentTermFrequency;
+
+    public Dictionary<string, double> InverseDocumentTermFrequencyReduced
+      => _block.InverseDocumentTermFrequencyReduced;
 
     protected override bool Validate() => !string.IsNullOrWhiteSpace(LayerDisplayname);
 
@@ -34,7 +38,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       dt.Columns.Add(Resources.Frequency, typeof(double));
 
       dt.BeginLoadData();
-      foreach (var x in InverseDocumentTermFrequency)
+      foreach (var x in InverseDocumentTermFrequencyReduced)
         dt.Rows.Add(x.Key, x.Value);
       dt.EndLoadData();
 

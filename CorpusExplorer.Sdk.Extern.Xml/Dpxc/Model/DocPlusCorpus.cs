@@ -87,29 +87,41 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dpxc.Model
       }
     }
 
-    [NonSerialized]
-    private Dictionary<Type, object> _defaultValues = new Dictionary<Type, object>
-    {
-      {typeof(string), string.Empty},
-      {typeof(DateTime), DateTime.MinValue},
-      {typeof(int), 0},
-      {typeof(double), 0d},
-      {typeof(bool), false}
-    };
-
-    private object GetDefaultValue(Type type)
-    {
-      return _defaultValues.ContainsKey(type) ? _defaultValues[type] : string.Empty;
-    }
-
     public void AddDocument()
-      => Documents.Add(MetadataSchema.ToDictionary(x => x.Key, x => GetDefaultValue(x.Value)));
+    {
+      var dic = new Dictionary<string, object>();
+      foreach (var pair in MetadataSchema)
+      {
+        try
+        {
+          dic.Add(pair.Key, pair.Value == typeof(DateTime) ? DateTime.MinValue : Activator.CreateInstance(pair.Value));
+        }
+        catch
+        {
+          dic.Add(pair.Key, string.Empty);
+        }
+      }
+
+      Documents.Add(dic);
+    }
 
     public void ApplyMetadataSchema()
     {
       foreach (var doc in Documents)
-        foreach (var x in MetadataSchema.Where(x => !doc.ContainsKey(x.Key)))
-          doc.Add(x.Key, GetDefaultValue(x.Value));
+      foreach (var x in MetadataSchema.Where(x => !doc.ContainsKey(x.Key)))
+      {
+        if(x.Value == typeof(DateTime))
+          doc.Add(x.Key, DateTime.MinValue);
+        else
+          try
+          {
+            doc.Add(x.Key, Activator.CreateInstance(x.Value));
+          }
+          catch
+          {
+            doc.Add(x.Key, string.Empty);
+          }
+      }
     }
   }
 }

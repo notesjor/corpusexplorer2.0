@@ -34,7 +34,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
               {"Id", obj.Id},
               {"Likes", obj.LikeCount},
               {"ParentId", obj.ParentId},
-              {"Datum", obj.Published ?? string.Empty},
+              {"Datum", obj.Published},
               {"Antworten", obj.ReplyCount},
               {"Text", obj.Text},
               {"Datum (aktualisiert)", obj.Updated},

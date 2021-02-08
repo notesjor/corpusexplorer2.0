@@ -15,12 +15,13 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Catma._6._0
 {
   public class ExporterCatma : AbstractExporter
   {
+    private int _maxValues = 100;
+
     public override void Export(IHydra hydra, string path)
     {
       if (!Directory.Exists(path))
         Directory.CreateDirectory(path);
 
-      var catma = hydra.Layers.ToDictionary(layer => layer.Displayname, layer => layer.Values.ToDictionary(v => v, v => Guid.NewGuid()));
       var dt = $"{DateTime.Now:yyyy-MM-ddTHH:mm:ss}.000+0000";
 
       Parallel.ForEach(hydra.DocumentGuids, Configuration.ParallelOptions, dsel =>
@@ -66,36 +67,59 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Catma._6._0
             }
           };
 
-          xml.teiHeader.encodingDesc.fsdDecl =
-            (from key in layer.Keys
-             let hashset = new HashSet<string>(layer[key].SelectMany(s => s))
-             select new fsdDecl
-             {
-               id = $"CATMA_{Guid.NewGuid():D}".ToUpper(),
-               n = $"{key} {dt}",
-               fsDecl = (from x in hashset
-                         let id = $"CATMA_{catma[key][x]}".ToUpper()
-                         select new fsDecl
-                         {
-                           fsDescr = x,
-                           n = dt,
-                           type = id,
-                           id = id,
-                           fDecl = new[]
-                           {
-                             new fDecl
-                             {
-                               id = $"CATMA_{Guid.NewGuid():D}".ToUpper(), name = "catma_markupauthor",
-                               vRange = new vRange {vColl = new[] {"CorpusExplorer"}}
-                             },
-                             new fDecl
-                             {
-                               id = $"CATMA_{Guid.NewGuid():D}".ToUpper(), name = "catma_displaycolor",
-                               vRange = new vRange {vColl = new[] {"-11381262"}}
-                             },
-                           }
-                         }).ToArray()
-             }).ToArray();
+          var layers = new List<fDecl>
+          {
+            new fDecl
+            {
+              id = $"CATMA_{Guid.NewGuid():D}".ToUpper(),
+              name = "catma_markupauthor",
+              vRange = new vRange
+              {
+                vColl = new []{"CorpusExplorer"}
+              }
+            },
+            new fDecl
+            {
+              id = $"CATMA_{Guid.NewGuid():D}".ToUpper(),
+              name = "catma_displaycolor",
+              vRange = new vRange
+              {
+                vColl = new []{ "-5311554" }
+              }
+            }
+          };
+          var layerGuids = new Dictionary<string, string>();
+          foreach (var key in layer.Keys)
+          {
+            layerGuids.Add(key, $"CATMA_{Guid.NewGuid():D}".ToUpper());
+            var hashset = new HashSet<string>(layer[key].SelectMany(s => s));
+            layers.Add(new fDecl
+            {
+              id = layerGuids[key],
+              name = key,
+              vRange = new vRange
+              {
+                vColl = hashset.Count > _maxValues ? new string[0] : hashset.ToArray()
+              }
+            });
+          }
+
+          var annoId = $"CATMA_{Guid.NewGuid():D}".ToUpper();
+          xml.teiHeader.encodingDesc.fsdDecl = new[]{ new fsdDecl
+          {
+            id = $"CATMA_{Guid.NewGuid():D}".ToUpper(),
+            n = $"CorpusExplorerTags {dt}",
+            fsDecl = new []
+            {
+              new fsDecl
+              {
+                fsDescr = "CorpusExplorer",
+                id = annoId,
+                fDecl = layers.ToArray(),
+                type = annoId
+              }
+            }
+          } };
 
           var pos = 0;
           var fss = new List<fs>();
@@ -125,20 +149,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Catma._6._0
                   }
                 });
 
-                foreach (var l in layer)
+                var items = new List<f>{
+                  new f { name = "catma_markupauthor", @string = "CorpusExplorer" },
+                  new f { name = "catma_displaycolor", @string = "-11381262" }
+                };
+                items.AddRange(layer.Select(l => new f { name = l.Key, @string = l.Value[i][j] }));
+
+                fss.Add(new fs
                 {
-                  fss.Add(new fs
-                  {
-                    id = anaBase,
-                    type = $"CATMA_{catma[l.Key][l.Value[i][j]]:D}".ToUpper(),
-                    f = new[]
-                    {
-                      new f { name = "catma_markupauthor", @string = "CorpusExplorer" },
-                      new f { name = "catma_displaycolor", @string = "-11381262" },
-                      new f { name = l.Key, @string = l.Value[i][j] },
-                    }
-                  });
-                }
+                  id = anaBase,
+                  type = annoId,
+                  f = items.ToArray()
+                });
 
                 fs.Write(spc, 0, spc.Length);
                 pos++;

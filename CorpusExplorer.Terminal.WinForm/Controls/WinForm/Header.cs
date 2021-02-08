@@ -42,7 +42,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
 
     private void RefreshText()
     {
-      Text = $"<html><span style=\"font-size:14.5pt\">{HeaderHead}</span><br/><span style=\"font-size:11pt\">{HeaderDescription}</span></html>";
+      Text = $"<html><span style=\"font-family: segoe ui light; font-size:14.5pt\">{HeaderHead}</span><br/><span style=\"font-family: segoe ui; font-size:11pt\">{HeaderDescription}</span></html>";
     }
   }
 }

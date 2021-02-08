@@ -38,7 +38,8 @@ namespace CorpusExplorer.Sdk.ViewModel
         if (!TypeTokenRatio.ContainsKey(x.Key) || !Diversity.ContainsKey(x.Key))
           continue;
 
-        dt.Rows.Add(TypeTokenRatio[x.Key][0],
+        dt.Rows.Add(x.Key,
+                    TypeTokenRatio[x.Key][0],
                     TypeTokenRatio[x.Key][1],
                     TypeTokenRatio[x.Key][2],
                     Diversity[x.Key],

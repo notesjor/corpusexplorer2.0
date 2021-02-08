@@ -29,7 +29,7 @@
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdditionalTagger));
-      this.ihdPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
+      this._headPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HeadPanel();
       this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
       this.combo_tagger = new Telerik.WinControls.UI.RadDropDownList();
       this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
@@ -51,15 +51,15 @@
       // 
       resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
-      // ihdPanel1
+      // _headPanel1
       // 
-      this.ihdPanel1.BackColor = System.Drawing.Color.White;
-      resources.ApplyResources(this.ihdPanel1, "ihdPanel1");
-      this.ihdPanel1.IHDDescription = "Wählen Sie einen Tagger und konfigurieren Sie ihn für die automatische Annotation" +
+      this._headPanel1.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this._headPanel1, "_headPanel1");
+      this._headPanel1.HeadPanelDescription = "Wählen Sie einen Tagger und konfigurieren Sie ihn für die automatische Annotation" +
     ".";
-      this.ihdPanel1.IHDHeader = "Tagger-Optionen";
-      this.ihdPanel1.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.tag_green1;
-      this.ihdPanel1.Name = "ihdPanel1";
+      this._headPanel1.HeadPanelTitle = "Tagger-Optionen";
+      this._headPanel1.HeadPanelImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.tag_green1;
+      this._headPanel1.Name = "_headPanel1";
       // 
       // radGroupBox1
       // 
@@ -106,7 +106,7 @@
       this.Controls.Add(this.radLabel1);
       this.Controls.Add(this.radGroupBox3);
       this.Controls.Add(this.radGroupBox1);
-      this.Controls.Add(this.ihdPanel1);
+      this.Controls.Add(this._headPanel1);
       this.DisplayAbort = true;
       this.Name = "AdditionalTagger";
       // 
@@ -114,7 +114,7 @@
       // 
       this.RootElement.ApplyShapeToControl = true;
       this.Controls.SetChildIndex(this.radPanel1, 0);
-      this.Controls.SetChildIndex(this.ihdPanel1, 0);
+      this.Controls.SetChildIndex(this._headPanel1, 0);
       this.Controls.SetChildIndex(this.radGroupBox1, 0);
       this.Controls.SetChildIndex(this.radGroupBox3, 0);
       this.Controls.SetChildIndex(this.radLabel1, 0);
@@ -134,7 +134,7 @@
 
     #endregion
 
-    private Controls.WinForm.IHDPanel ihdPanel1;
+    private Controls.WinForm.HeadPanel _headPanel1;
     private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
     private Telerik.WinControls.UI.RadDropDownList combo_tagger;
     private Telerik.WinControls.UI.RadGroupBox radGroupBox3;

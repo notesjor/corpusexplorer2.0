@@ -29,7 +29,7 @@
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CorpusErrorForm));
-      this.ihdPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
+      this._headPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HeadPanel();
       this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
       this.page_sentenceError = new Telerik.WinControls.UI.RadPageViewPage();
       this.grp_senteceError = new Telerik.WinControls.UI.RadGroupBox();
@@ -74,14 +74,14 @@
       // 
       resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
-      // ihdPanel1
+      // _headPanel1
       // 
-      this.ihdPanel1.BackColor = System.Drawing.Color.White;
-      resources.ApplyResources(this.ihdPanel1, "ihdPanel1");
-      this.ihdPanel1.IHDDescription = "Im Folgenden werden alle Probleme inkl. Lösungsmöglichkeit aufgelistet.";
-      this.ihdPanel1.IHDHeader = "Kein Grund zur Panik...";
-      this.ihdPanel1.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.cabinet_warn1;
-      this.ihdPanel1.Name = "ihdPanel1";
+      this._headPanel1.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this._headPanel1, "_headPanel1");
+      this._headPanel1.HeadPanelDescription = "Im Folgenden werden alle Probleme inkl. Lösungsmöglichkeit aufgelistet.";
+      this._headPanel1.HeadPanelTitle = "Kein Grund zur Panik...";
+      this._headPanel1.HeadPanelImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.cabinet_warn1;
+      this._headPanel1.Name = "_headPanel1";
       // 
       // radPageView1
       // 
@@ -222,7 +222,7 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       resources.ApplyResources(this, "$this");
       this.Controls.Add(this.radPageView1);
-      this.Controls.Add(this.ihdPanel1);
+      this.Controls.Add(this._headPanel1);
       this.DisplayAbort = true;
       this.Name = "CorpusErrorForm";
       // 
@@ -232,7 +232,7 @@
       this.ButtonAbortClick += new System.EventHandler(this.CorpusErrorForm_ButtonAbortClick);
       this.ButtonOkClick += new System.EventHandler(this.CorpusErrorForm_ButtonOkClick);
       this.Controls.SetChildIndex(this.radPanel1, 0);
-      this.Controls.SetChildIndex(this.ihdPanel1, 0);
+      this.Controls.SetChildIndex(this._headPanel1, 0);
       this.Controls.SetChildIndex(this.radPageView1, 0);
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).EndInit();
@@ -262,7 +262,7 @@
 
     #endregion
 
-    private Controls.WinForm.IHDPanel ihdPanel1;
+    private Controls.WinForm.HeadPanel _headPanel1;
     private Telerik.WinControls.UI.RadPageView radPageView1;
     private Telerik.WinControls.UI.RadPageViewPage page_sentenceError;
     private Telerik.WinControls.UI.RadPageViewPage page_diffLayer;

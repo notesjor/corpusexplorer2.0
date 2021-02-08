@@ -45,6 +45,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       this.commandBarSeparator2 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_snapshot_new = new Telerik.WinControls.UI.CommandBarButton();
       this.wordBag1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WordBag();
+      this.btn_posFilter = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
@@ -78,7 +79,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
-      resources.ApplyResources(this.commandBarRowElement1, "commandBarRowElement1");
       this.commandBarRowElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
       this.commandBarRowElement1.UseCompatibleTextRendering = false;
       // 
@@ -96,6 +96,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
             this.btn_filterlist,
             this.btn_filtereditor,
             this.btn_regex,
+            this.btn_posFilter,
             this.commandBarSeparator1,
             this.btn_csvExport,
             this.btn_print,
@@ -113,10 +114,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       // 
       // btn_function
       // 
+      this.btn_function.AutoToolTip = true;
       this.btn_function.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
       resources.ApplyResources(this.btn_function, "btn_function");
       this.btn_function.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.magic_wand;
-      this.btn_function.AutoToolTip = true;
       this.btn_function.Name = "btn_function";
       this.btn_function.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.VordefinierteFunktionen;
       this.btn_function.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -126,10 +127,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       // 
       // btn_calc
       // 
+      this.btn_calc.AutoToolTip = true;
       this.btn_calc.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
       resources.ApplyResources(this.btn_calc, "btn_calc");
       this.btn_calc.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.calculator;
-      this.btn_calc.AutoToolTip = true;
       this.btn_calc.Name = "btn_calc";
       this.btn_calc.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.EigeneFunktionenBerechnungen;
       this.btn_calc.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -139,10 +140,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       // 
       // btn_filterlist
       // 
+      this.btn_filterlist.AutoToolTip = true;
       this.btn_filterlist.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
       resources.ApplyResources(this.btn_filterlist, "btn_filterlist");
       this.btn_filterlist.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_list;
-      this.btn_filterlist.AutoToolTip = true;
       this.btn_filterlist.Name = "btn_filterlist";
       this.btn_filterlist.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
       this.btn_filterlist.UseCompatibleTextRendering = false;
@@ -150,10 +151,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       // 
       // btn_filtereditor
       // 
+      this.btn_filtereditor.AutoToolTip = true;
       this.btn_filtereditor.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
       resources.ApplyResources(this.btn_filtereditor, "btn_filtereditor");
       this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
-      this.btn_filtereditor.AutoToolTip = true;
       this.btn_filtereditor.Name = "btn_filtereditor";
       this.btn_filtereditor.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
       this.btn_filtereditor.UseCompatibleTextRendering = false;
@@ -161,9 +162,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       // 
       // btn_regex
       // 
+      this.btn_regex.AutoToolTip = true;
       resources.ApplyResources(this.btn_regex, "btn_regex");
       this.btn_regex.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_regex;
-      this.btn_regex.AutoToolTip = true;
       this.btn_regex.Name = "btn_regex";
       this.btn_regex.Click += new System.EventHandler(this.btn_regex_Click);
       // 
@@ -180,10 +181,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       // 
       // btn_csvExport
       // 
+      this.btn_csvExport.AutoToolTip = true;
       this.btn_csvExport.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
       resources.ApplyResources(this.btn_csvExport, "btn_csvExport");
       this.btn_csvExport.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
-      this.btn_csvExport.AutoToolTip = true;
       this.btn_csvExport.Name = "btn_csvExport";
       this.btn_csvExport.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.CSVExport;
       this.btn_csvExport.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -193,10 +194,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       // 
       // btn_print
       // 
+      this.btn_print.AutoToolTip = true;
       this.btn_print.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
       resources.ApplyResources(this.btn_print, "btn_print");
       this.btn_print.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.print;
-      this.btn_print.AutoToolTip = true;
       this.btn_print.Name = "btn_print";
       this.btn_print.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Drucken;
       this.btn_print.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -212,9 +213,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       // 
       // btn_snapshot_new
       // 
+      this.btn_snapshot_new.AutoToolTip = true;
       resources.ApplyResources(this.btn_snapshot_new, "btn_snapshot_new");
       this.btn_snapshot_new.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.camera_add;
-      this.btn_snapshot_new.AutoToolTip = true;
       this.btn_snapshot_new.Name = "btn_snapshot_new";
       this.btn_snapshot_new.Click += new System.EventHandler(this.btn_snapshot_new_Click);
       // 
@@ -226,6 +227,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       this.wordBag1.ResultQueries = new string[0];
       this.wordBag1.ResultSelectedLayerDisplayname = null;
       this.wordBag1.ExecuteButtonClicked += new System.EventHandler(this.wordBag1_ExecuteButtonClicked);
+      // 
+      // btn_posFilter
+      // 
+      resources.ApplyResources(this.btn_posFilter, "btn_posFilter");
+      this.btn_posFilter.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_pos;
+      this.btn_posFilter.Name = "btn_posFilter";
+      this.btn_posFilter.Click += new System.EventHandler(this.btn_posFilter_Click);
       // 
       // CollocateFrequency
       // 
@@ -259,5 +267,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
     private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator2;
     private Telerik.WinControls.UI.CommandBarButton btn_snapshot_new;
     private Telerik.WinControls.UI.CommandBarButton btn_regex;
+    private Telerik.WinControls.UI.CommandBarButton btn_posFilter;
   }
 }

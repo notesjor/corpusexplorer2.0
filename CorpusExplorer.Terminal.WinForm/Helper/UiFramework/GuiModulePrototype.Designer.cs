@@ -38,7 +38,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       this.page_HOME = new Telerik.WinControls.UI.RadPageViewPage();
       this.helpPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HelpPanel();
       this.modul_viewstates = new Telerik.WinControls.UI.RadPanorama();
-      this.ihd_home = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
+      this._headHome = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HeadPanel();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       this.radPanel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.btn_home)).BeginInit();
@@ -82,7 +82,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       // 
       this.page_HOME.Controls.Add(this.helpPanel1);
       this.page_HOME.Controls.Add(this.modul_viewstates);
-      this.page_HOME.Controls.Add(this.ihd_home);
+      this.page_HOME.Controls.Add(this._headHome);
       this.page_HOME.ItemSize = new System.Drawing.SizeF(57F, 29F);
       resources.ApplyResources(this.page_HOME, "page_HOME");
       this.page_HOME.Name = "page_HOME";
@@ -111,14 +111,14 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       this.modul_viewstates.ScrollBarThickness = 20;
       this.modul_viewstates.ScrollingBackground = true;
       // 
-      // ihd_home
+      // _headHome
       // 
-      this.ihd_home.BackColor = System.Drawing.Color.White;
-      resources.ApplyResources(this.ihd_home, "ihd_home");
-      this.ihd_home.IHDDescription = "{IHDDESCRIPTION}";
-      this.ihd_home.IHDHeader = "{IHDHEADER}";
-      this.ihd_home.IHDImage = null;
-      this.ihd_home.Name = "ihd_home";
+      this._headHome.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this._headHome, "_headHome");
+      this._headHome.HeadPanelDescription = "{IHDDESCRIPTION}";
+      this._headHome.HeadPanelTitle = "{IHDHEADER}";
+      this._headHome.HeadPanelImage = null;
+      this._headHome.Name = "_headHome";
       // 
       // GuiModulePrototype
       // 
@@ -145,7 +145,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
     protected Telerik.WinControls.UI.RadPageView Pages;
     private Telerik.WinControls.UI.RadButton btn_home;
     protected Telerik.WinControls.UI.RadPageViewPage page_HOME;
-    protected IHDPanel ihd_home;
+    protected HeadPanel _headHome;
     private Telerik.WinControls.UI.RadPanorama modul_viewstates;
     private HelpPanel helpPanel1;
   }

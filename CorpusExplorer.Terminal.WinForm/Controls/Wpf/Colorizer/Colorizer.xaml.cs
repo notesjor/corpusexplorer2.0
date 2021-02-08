@@ -41,7 +41,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Colorizer
                                                                   }
                                                                  ));
 
-      btn_img.Source = Properties.Resources.color_fill2.ConvertToImageSource();
+      btn_img.Source = UiFixHelper.ConvertToImageSource(Properties.Resources.color_fill2);
     }
 
     public LinearGradientBrush Colors

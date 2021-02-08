@@ -183,5 +183,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     {
       RegexFunction();
     }
+
+    private void btn_posFilter_Click(object sender, EventArgs e)
+    {
+      var form = new PosFilter(Project.CurrentSelection, _vm.LayerDisplayname);
+      form.ShowDialog();
+
+      _vm.CorrespondingLayerValueFilter = form.Result;
+      BindData();
+    }
   }
 }

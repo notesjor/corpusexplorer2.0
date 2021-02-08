@@ -104,8 +104,8 @@
     <Reference Include="Polenter.SharpSerializer, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.1\lib\netstandard1.0\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=6.7.12.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.7.12\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.8.8.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.8.8\lib\net45\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -142,6 +142,7 @@
     <Compile Include="Blocks\CooccurrenceContextBlock.cs" />
     <Compile Include="Blocks\CooccurrenceCrossBlock.cs" />
     <Compile Include="Blocks\CooccurrenceSecondLevelProfileBlock.cs" />
+    <Compile Include="Blocks\CorrespondingLayerValueFilterBlock.cs" />
     <Compile Include="Blocks\CrossFrequencyDocumentBasedBlock.cs" />
     <Compile Include="Blocks\CutOffPhraseBlock.cs" />
     <Compile Include="Blocks\DocumentHashBlock.cs" />
@@ -149,8 +150,10 @@
     <Compile Include="Blocks\DocumentTermFrequencyBlock.cs" />
     <Compile Include="Blocks\EditDistantCalculationBlock.cs" />
     <Compile Include="Blocks\Frequency1LayerOneOccurrencePerDocument.cs" />
+    <Compile Include="Blocks\Frequency1LayerOnlyMatchSentenceBlock.cs" />
+    <Compile Include="Blocks\Frequency1LayerOnlyMatchSentenceOneOccurrenceBlock.cs" />
     <Compile Include="Blocks\Helper\DoubleKeyDictionary.cs" />
-    <Compile Include="Blocks\InverseDocumentFrequencyBlock.cs" />
+    <Compile Include="Blocks\InverseDocumentTermFrequencyBlock.cs" />
     <Compile Include="Blocks\KeywordCompletePreCalculatedBlock.cs" />
     <Compile Include="Blocks\KeywordPresetReferenceListBlock.cs" />
     <Compile Include="Blocks\MtldBlock.cs" />
@@ -549,6 +552,10 @@
     <Compile Include="Utils\WaitBehaviour\WaitBehaviourLinux.cs" />
     <Compile Include="Utils\WaitBehaviour\WaitBehaviourNone.cs" />
     <Compile Include="Utils\WaitBehaviour\WaitBehaviourWindows.cs" />
+    <Compile Include="Utils\ZipFileIndex\ZipDirectoryEntry.cs" />
+    <Compile Include="Utils\ZipFileIndex\ZipFileEntry.cs" />
+    <Compile Include="Utils\ZipFileIndex\ZipFileEntryExtractionDelegate.cs" />
+    <Compile Include="Utils\ZipFileIndex\ZipFileIndex.cs" />
     <Compile Include="ViewModel\Abstract\AbstractCompareViewModel.cs" />
     <Compile Include="ViewModel\Abstract\AbstractOverTimeViewModel.cs" />
     <Compile Include="ViewModel\BurrowsDeltaViewModel.cs" />
@@ -563,8 +570,10 @@
     <Compile Include="ViewModel\CooccurrencesOverTimeViewModel.cs" />
     <Compile Include="ViewModel\CorpusFiniteStateMachineViewModel.cs" />
     <Compile Include="ViewModel\CorpusWeightLimmitedOverTimeViewModel.cs" />
-    <Compile Include="ViewModel\CrossFrequencyOverTimeViewModel.cs" />
+    <Compile Include="ViewModel\CorrespondingLayerValueFilterViewModel.cs" />
+    <Compile Include="ViewModel\FrequencyCrossFrequencyOverTimeViewModel.cs" />
     <Compile Include="ViewModel\CutOffPhraseViewModel.cs" />
+    <Compile Include="ViewModel\DispersionViewModel.cs" />
     <Compile Include="ViewModel\DocumentCloneDetectionViewModel.cs" />
     <Compile Include="ViewModel\CooccurrenceCompareViewModel.cs" />
     <Compile Include="ViewModel\DocumentHashViewModel.cs" />
@@ -572,6 +581,7 @@
     <Compile Include="ViewModel\DocumentSimilarityViewModel.cs" />
     <Compile Include="ViewModel\DocumentTermFrequencyViewModel.cs" />
     <Compile Include="ViewModel\EditDistantCalculationViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IProvideCorrespondingLayerValueFilter.cs" />
     <Compile Include="ViewModel\Interfaces\IProvideNormalizedDataTable.cs" />
     <Compile Include="ViewModel\InverseDocumentFrequencyViewModel.cs" />
     <Compile Include="ViewModel\KeywordPresetReferenceListViewModel.cs" />

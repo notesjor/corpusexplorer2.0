@@ -2,8 +2,11 @@
 
 using System;
 using System.IO;
+using System.Text;
 using System.Xml.Serialization;
 using Bcs.IO;
+using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper.Delegates;
 
 #endregion
 
@@ -14,36 +17,41 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper
   {
     public virtual T Deserialize(string path)
     {
-      try
+      var retryCount = 1000;
+      var retry = false;
+      do
       {
-        DeserializePreValidation(path);
-        T res;
-
-        if (Debug)
+        try
         {
-          using (var reader = new StringReader(FileIO.ReadText(path)))
+          DeserializePreValidation(path);
+          T res;
+
+          using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+          using (var bs = new BufferedStream(fs))
+          using (var read = new StreamReader(bs, Configuration.Encoding))
           {
-            var serializer = new XmlSerializer(typeof(T));
-            return (T)serializer.Deserialize(reader);
+            var xml = new XmlSerializer(typeof(T));
+            res = xml.Deserialize(read) as T;
+          }
+
+          DeserializePostValidation(res, path);
+
+          return res;
+        }
+        catch (Exception ex)
+        {
+          if (OnException != null)
+          {
+            retry = OnException.Invoke(path, ex);
+            retryCount--;
           }
         }
+      } while (retry && retryCount > 0);
 
-        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-        using (var bs = new BufferedStream(fs))
-        {
-          var xml = new XmlSerializer(typeof(T));
-          res = xml.Deserialize(bs) as T;
-        }
-
-        DeserializePostValidation(res, path);
-
-        return res;
-      }
-      catch (Exception ex)
-      {
-        return default(T);
-      }
+      return default(T);
     }
+
+    public event ExceptionDelegate OnException;
 
     public virtual T Deserialize(MemoryStream ms)
     {
@@ -61,8 +69,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper
         return default(T);
       }
     }
-
-    public bool Debug { get; set; } = false;
 
     public virtual void Serialize(T obj, string path)
     {

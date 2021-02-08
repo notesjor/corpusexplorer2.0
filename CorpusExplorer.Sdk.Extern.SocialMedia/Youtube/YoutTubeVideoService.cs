@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Abstract;
+using Google.Apis.Util;
 using Google.Apis.YouTube.v3;
 using WordPressPCL.Models;
 
@@ -17,18 +18,19 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
       var max = 0;
       var cnt = 0;
       string page = null;
-
+      
       foreach (var query in queries)
       {
         try
         {
           while (true)
           {
-            var reqComments = context.CommentThreads.List("snippet");
+            var reqComments = context.CommentThreads.List(new Repeatable<string>(new[] {"snippet"}));
             reqComments.VideoId = query;
             reqComments.Order = CommentThreadsResource.ListRequest.OrderEnum.Time;
-            reqComments.MaxResults = 100;
+            reqComments.MaxResults = 50;
             reqComments.TextFormat = CommentThreadsResource.ListRequest.TextFormatEnum.PlainText;
+            reqComments.Key = context.ApiKey;
             if (page != null)
               reqComments.PageToken = page;
 

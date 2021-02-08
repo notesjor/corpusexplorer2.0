@@ -68,6 +68,7 @@ using Telerik.WinControls.UI;
 using Telerik.WinControls.UI.Localization;
 using ArrowDirection = Telerik.WinControls.ArrowDirection;
 using PositionChangedEventArgs = Telerik.WinControls.UI.Data.PositionChangedEventArgs;
+using VocdGrid = CorpusExplorer.Terminal.WinForm.View.StyleMetrics.VocdGrid;
 
 #endregion
 
@@ -134,12 +135,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       page_welcome_btn_analytics.ImageCheckmark = Resources.image_brightness;
       ((RadDropDownButtonElement)corpus_start_add.RootElement.Children[0]).ActionButton.TextWrap = true;
 
-      pages_main.MakeHeaderInvisible();
-      pages_corpora.MakeHeaderInvisible();
-      pages_analytics.MakeHeaderInvisible();
-      pages_standardanalytics.MakeHeaderInvisible();
-      pages_snapshot.MakeHeaderInvisible();
-      pages_3rdParty.MakeHeaderInvisible();
+      RadPageViewHelper.MakeHeaderInvisible(pages_main);
+      RadPageViewHelper.MakeHeaderInvisible(pages_corpora);
+      RadPageViewHelper.MakeHeaderInvisible(pages_analytics);
+      RadPageViewHelper.MakeHeaderInvisible(pages_standardanalytics);
+      RadPageViewHelper.MakeHeaderInvisible(pages_snapshot);
+      RadPageViewHelper.MakeHeaderInvisible(pages_3rdParty);
 
       main_mainmenu_corpus.Layout.ArrowPrimitive.Direction = ArrowDirection.Down;
       main_mainmenu_analytics.Layout.ArrowPrimitive.Direction = ArrowDirection.Down;
@@ -726,6 +727,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                Resources.table_split_columns,
                                Resources.table_split_columns1,
                                Resources.Frequency_LeftRight)
+                     .AddView(
+                              typeof(DispersionGrid),
+                              Resources.document_header_footer_show,
+                              Resources.document_header_footer_show1,
+                              "Dispersion")
                       .AddView(
                                typeof(FrequencySegments),
                                Resources.documents1,
@@ -935,6 +941,16 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                Resources.table_pivot_1,
                                Resources.table_pivot,
                                Resources.ComplexityVocabular)
+                      .AddView(
+                               typeof(VocdGrid),
+                               Resources.user_symbol_green_stats1,
+                               Resources.user_symbol_green_stats,
+                               "VOC-D")
+                      .AddView(
+                               typeof(MtldGrid),
+                               Resources.user_symbol_purple_stats1,
+                               Resources.user_symbol_purple_stats,
+                               "MTLD")
                       .AddView(
                                typeof(CompareBasedOnBurrowsDelta),
                                Resources.table_pivot_1,
@@ -2504,6 +2520,20 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         warnBox1.Display(Resources.Dashboard_Warn_Snapshotname_AlreadyExsists);
 
       warnBox1.Display(null);
+    }
+
+    private void corpus_start_dpxc_Click(object sender, EventArgs e)
+    {
+      Hide();
+      try
+      {
+        Process.Start("dpxc-editor.exe")?.WaitForExit();
+      }
+      catch
+      {
+        // ignore
+      }
+      Show();
     }
   }
 }

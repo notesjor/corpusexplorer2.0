@@ -147,7 +147,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // btn_posFilter
       // 
       resources.ApplyResources(this.btn_posFilter, "btn_posFilter");
-      this.btn_posFilter.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.tag_green;
+      this.btn_posFilter.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_pos;
       this.btn_posFilter.Name = "btn_posFilter";
       this.btn_posFilter.Click += new System.EventHandler(this.btn_posFilter_Click);
       // 

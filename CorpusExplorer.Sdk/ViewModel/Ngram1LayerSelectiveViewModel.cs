@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
@@ -19,7 +21,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     /// <value>The n gram minimum frequency.</value>
     public int NGramMinFrequency { get; set; } = 0;
 
-    public Dictionary<string, int> NGramFrequency { get; private set; }
+    public Dictionary<string, double> NGramFrequency { get; private set; }
     public IEnumerable<string> LayerQueries { get; set; }
     public string LayerDisplayname { get; set; } = "Wort";
     public int NGramSize { get; set; } = 3;
@@ -31,12 +33,11 @@ namespace CorpusExplorer.Sdk.ViewModel
     {
       var dt = new DataTable();
       dt.Columns.Add(Resources.NGram, typeof(string));
-      dt.Columns.Add(Resources.Frequency, typeof(int));
-
+      dt.Columns.Add(Resources.Frequency, typeof(double));
+      
       dt.BeginLoadData();
-      foreach (var x in NGramFrequency)
-        if (x.Value >= NGramMinFrequency)
-          dt.Rows.Add(x.Key, x.Value);
+      foreach (var x in NGramFrequency.Where(x => !(x.Value < NGramMinFrequency)))
+        dt.Rows.Add(x.Key, x.Value);
       dt.EndLoadData();
       return dt;
     }

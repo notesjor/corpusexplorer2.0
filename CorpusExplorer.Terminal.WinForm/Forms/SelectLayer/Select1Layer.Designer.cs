@@ -40,9 +40,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
       // 
       // layerSettings1
       // 
-      this.layerSettings1.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.layerSettings1, "layerSettings1");
-      this.layerSettings1.Header = "Layer 1";
+      this.layerSettings1.Header = "Layer";
       this.layerSettings1.IsLayerOptional = false;
       this.layerSettings1.Name = "layerSettings1";
       // 
@@ -58,7 +57,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
       // 
       this.RootElement.ApplyShapeToControl = true;
       this.ButtonOkClick += new System.EventHandler(this.Form_ButtonOkClick);
-      this.Controls.SetChildIndex(this.header1, 0);
+      this.Controls.SetChildIndex(this.headPanel1, 0);
       this.Controls.SetChildIndex(this.radPanel1, 0);
       this.Controls.SetChildIndex(this.layerSettings1, 0);
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();

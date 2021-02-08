@@ -26,10 +26,11 @@ namespace CorpusExplorer.Sdk.Blocks
       tf.MetadataKey = MetadataKey;
       tf.Calculate();
 
-      var idf = Selection.CreateBlock<InverseDocumentFrequencyBlock>();
+      var idf = Selection.CreateBlock<InverseDocumentTermFrequencyBlock>();
       idf.LayerDisplayname = LayerDisplayname;
       idf.MetadataKey = MetadataKey;
       idf.Calculate();
+      var idfDic = idf.InverseDocumentTermFrequencyReduced;
 
       lock (_lockInverseDocumentVector)
         TermDocumentMatrix = new Dictionary<string, Dictionary<string, double>>();
@@ -39,9 +40,13 @@ namespace CorpusExplorer.Sdk.Blocks
         var m = new Dictionary<string, double>();
         foreach (var x in dsel.Value)
         {
-          var v = x.Value * idf.InverseDocumentTermFrequency[x.Key];
+          if (!idfDic.ContainsKey(x.Key))
+            continue;
+
+          var v = x.Value * idfDic[x.Key];
           if (v < MinimumInversDocumentFrequency)
             continue;
+
           m.Add(x.Key, v);
         }
 

@@ -406,7 +406,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       try
       {
         var obj = GetSettings();
-        if (obj.ContainsKey(settingName))
+        if (obj != null && obj.ContainsKey(settingName))
           return obj[settingName];
 
         SetSetting(settingName, defaultValue);

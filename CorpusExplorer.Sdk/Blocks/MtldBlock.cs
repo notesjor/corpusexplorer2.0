@@ -99,7 +99,7 @@ namespace CorpusExplorer.Sdk.Blocks
               UseShellExecute = false,
               RedirectStandardOutput = true,
               RedirectStandardError = true,
-              CreateNoWindow = false,
+              CreateNoWindow = true,
               StandardOutputEncoding = Configuration.Encoding,
               WindowStyle = ProcessWindowStyle.Hidden
             }

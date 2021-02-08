@@ -7,7 +7,7 @@ using CorpusExplorer.Sdk.ViewModel.Interfaces;
 
 namespace CorpusExplorer.Sdk.ViewModel
 {
-  public class FrequencyLeftRightViewModel : AbstractViewModel, IProvideDataTable
+  public class FrequencyLeftRightViewModel : AbstractViewModel, IProvideDataTable, IProvideCorrespondingLayerValueFilter
   {
     public Dictionary<string, Dictionary<string, int>> FrequencyLeft { get; set; }
     public Dictionary<string, Dictionary<string, int>> FrequencyRight { get; set; }
@@ -21,7 +21,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     public DataTable GetDataTable()
     {
       var res = new DataTable();
-      res.Columns.Add("Wort", typeof(string));
+      res.Columns.Add(LayerDisplayname, typeof(string));
       res.Columns.Add("Partner", typeof(string));
       res.Columns.Add("Richtung", typeof(string));
       res.Columns.Add(Resources.Frequency, typeof(int));
@@ -29,17 +29,29 @@ namespace CorpusExplorer.Sdk.ViewModel
       res.BeginLoadData();
 
       foreach (var x in FrequencyLeft)
-      foreach (var y in x.Value)
-        res.Rows.Add(
-                     x.Key,
-                     y.Key,
-                     FrequencyRight.ContainsKey(x.Key) && FrequencyRight[x.Key].ContainsKey(y.Key) ? "L/R" : "L",
-                     y.Value);
+        foreach (var y in x.Value)
+        {
+          if (CorrespondingLayerValueFilter == null)
+            res.Rows.Add(
+                         x.Key,
+                         y.Key,
+                         FrequencyRight.ContainsKey(x.Key) && FrequencyRight[x.Key].ContainsKey(y.Key) ? "L/R" : "L",
+                         y.Value);
+          else
+          {
+            if (CorrespondingLayerValueFilter.CustomFilter(x.Key))
+              res.Rows.Add(
+                           x.Key,
+                           y.Key,
+                           FrequencyRight.ContainsKey(x.Key) && FrequencyRight[x.Key].ContainsKey(y.Key) ? "L/R" : "L",
+                           y.Value);
+          }
+        }
 
       foreach (var x in FrequencyRight)
-      foreach (var y in x.Value)
-        if (!(FrequencyLeft.ContainsKey(x.Key) && FrequencyLeft[x.Key].ContainsKey(y.Key)))
-          res.Rows.Add(x.Key, y.Key, "R", y.Value);
+        foreach (var y in x.Value)
+          if (!(FrequencyLeft.ContainsKey(x.Key) && FrequencyLeft[x.Key].ContainsKey(y.Key)))
+            res.Rows.Add(x.Key, y.Key, "R", y.Value);
 
       res.EndLoadData();
 
@@ -60,5 +72,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     {
       return true;
     }
+
+    public CorrespondingLayerValueFilterViewModel CorrespondingLayerValueFilter { get; set; }
   }
 }

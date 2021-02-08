@@ -31,7 +31,7 @@
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilterListFunction));
       Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
       Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
-      this.ihdPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.IHDPanel();
+      this._headPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HeadPanel();
       this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
       this.drop_case = new Telerik.WinControls.UI.RadDropDownList();
       this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
@@ -51,14 +51,14 @@
       // 
       resources.ApplyResources(this.radPanel1, "radPanel1");
       // 
-      // ihdPanel1
+      // _headPanel1
       // 
-      this.ihdPanel1.BackColor = System.Drawing.Color.White;
-      resources.ApplyResources(this.ihdPanel1, "ihdPanel1");
-      this.ihdPanel1.IHDDescription = "Geben Sie pro Zeile nur einen Begriff ein. Bestätigen Sie dann mit OK. ";
-      this.ihdPanel1.IHDHeader = "Sehen Sie nur das, was Sie sehen wollen...";
-      this.ihdPanel1.IHDImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_list1;
-      this.ihdPanel1.Name = "ihdPanel1";
+      this._headPanel1.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this._headPanel1, "_headPanel1");
+      this._headPanel1.HeadPanelDescription = "Geben Sie pro Zeile nur einen Begriff ein. Bestätigen Sie dann mit OK. ";
+      this._headPanel1.HeadPanelTitle = "Sehen Sie nur das, was Sie sehen wollen...";
+      this._headPanel1.HeadPanelImage = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_list1;
+      this._headPanel1.Name = "_headPanel1";
       // 
       // radTextBox1
       // 
@@ -104,7 +104,7 @@
       this.Controls.Add(this.radTextBox1);
       this.Controls.Add(this.radGroupBox1);
       this.Controls.Add(this.drop_case);
-      this.Controls.Add(this.ihdPanel1);
+      this.Controls.Add(this._headPanel1);
       this.DisplayAbort = true;
       this.Name = "FilterListFunction";
       // 
@@ -114,7 +114,7 @@
       this.ButtonOkClick += new System.EventHandler(this.FilterListFunction_ButtonOkClick);
       this.Load += new System.EventHandler(this.FilterListFunction_Load);
       this.Controls.SetChildIndex(this.radPanel1, 0);
-      this.Controls.SetChildIndex(this.ihdPanel1, 0);
+      this.Controls.SetChildIndex(this._headPanel1, 0);
       this.Controls.SetChildIndex(this.drop_case, 0);
       this.Controls.SetChildIndex(this.radGroupBox1, 0);
       this.Controls.SetChildIndex(this.radTextBox1, 0);
@@ -134,7 +134,7 @@
 
     #endregion
 
-    private Controls.WinForm.IHDPanel ihdPanel1;
+    private Controls.WinForm.HeadPanel _headPanel1;
     private Telerik.WinControls.UI.RadTextBox radTextBox1;
     private Telerik.WinControls.UI.RadDropDownList drop_case;
     private Telerik.WinControls.UI.RadGroupBox radGroupBox1;

@@ -18,7 +18,8 @@ namespace CorpusExplorer.Sdk.ViewModel
   /// </summary>
   public class CooccurrenceViewModel
     : AbstractViewModel,
-      IProvideDataTable
+      IProvideDataTable,
+      IProvideCorrespondingLayerValueFilter
   {
     public CooccurrenceViewModel()
     {
@@ -99,7 +100,7 @@ namespace CorpusExplorer.Sdk.ViewModel
             continue;
           }
 
-          res.Add(x.Key, new[] {FrequencyDictionary[query][x.Key], x.Value});
+          res.Add(x.Key, new[] { FrequencyDictionary[query][x.Key], x.Value });
         }
       }
 
@@ -110,7 +111,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 
         foreach (var query in hsh)
           if (x.Value.ContainsKey(query) && !res.ContainsKey(x.Key))
-            res.Add(x.Key, new[] {FrequencyDictionary[x.Key][query], x.Value[query]});
+            res.Add(x.Key, new[] { FrequencyDictionary[x.Key][query], x.Value[query] });
       }
 
       return res;
@@ -136,7 +137,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       Dictionary<string, Dictionary<string, double>> fdf)
     {
       var res = new DataTable();
-      res.Columns.Add(Resources.StringLabel, typeof(string));
+      res.Columns.Add(LayerDisplayname, typeof(string));
       res.Columns.Add(Resources.Cooccurrence, typeof(string));
       res.Columns.Add(Resources.Frequency, typeof(double));
       res.Columns.Add(Resources.Significance, typeof(double));
@@ -144,15 +145,18 @@ namespace CorpusExplorer.Sdk.ViewModel
       if (sdf == null || fdf == null)
         return res;
 
-      res.BeginLoadData();
-      foreach (var sd in sdf)
-      {
-        if (!fdf.ContainsKey(sd.Key))
-          continue;
+      CorrespondingLayerValueFilter?.DataTableFilterInit(ref res, new[] { LayerDisplayname, Resources.Cooccurrence });
 
-        foreach (var se in sd.Value.Where(se => fdf[sd.Key].ContainsKey(se.Key)))
-          if (se.Value >= CooccurrenceMinSignificance && fdf[sd.Key][se.Key] >= CooccurrenceMinFrequency)
-            res.Rows.Add(sd.Key, se.Key, fdf[sd.Key][se.Key], se.Value);
+      res.BeginLoadData();
+      foreach (var data in from sd in sdf where fdf.ContainsKey(sd.Key) from se in sd.Value.Where(se => fdf[sd.Key].ContainsKey(se.Key)) where se.Value >= CooccurrenceMinSignificance && fdf[sd.Key][se.Key] >= CooccurrenceMinFrequency select new object[] { sd.Key, se.Key, fdf[sd.Key][se.Key], se.Value })
+      {
+        if (CorrespondingLayerValueFilter == null)
+          res.Rows.Add(data);
+        else
+        {
+          if (CorrespondingLayerValueFilter.DataTableFilter(data))
+            res.Rows.Add(data);
+        }
       }
 
       res.EndLoadData();
@@ -184,11 +188,13 @@ namespace CorpusExplorer.Sdk.ViewModel
             if (nsdf.ContainsKey(x.Key))
               nsdf[x.Key].Add(y.Key, y.Value);
             else
-              nsdf.Add(x.Key, new Dictionary<string, double> {{y.Key, y.Value}});
+              nsdf.Add(x.Key, new Dictionary<string, double> { { y.Key, y.Value } });
           }
 
       // Erzeuge DataTable
       return BuildDataTable(nsdf, fdf);
     }
+
+    public CorrespondingLayerValueFilterViewModel CorrespondingLayerValueFilter { get; set; }
   }
 }

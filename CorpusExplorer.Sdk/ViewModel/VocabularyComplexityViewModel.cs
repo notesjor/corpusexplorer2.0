@@ -54,6 +54,27 @@ namespace CorpusExplorer.Sdk.ViewModel
       return res;
     }
 
+    /// <summary>
+    ///   Gibt eine einfache Datentabelle ohne Metadaten zurück
+    /// </summary>
+    /// <returns>Datentabelle</returns>
+    public DataTable GetDataTableSimple()
+    {
+      var res = new DataTable();
+      res.Columns.Add(Resources.Index, typeof(string));
+      res.Columns.Add(Resources.DokumentGUID, typeof(string));
+      res.Columns.Add(Resources.Wert, typeof(double));
+
+      res.BeginLoadData();
+
+      foreach (var x in ComplexityValues)
+        foreach (var y in x.Value)
+          res.Rows.Add(x.Key, y.Key.ToString(), y.Value);
+
+      res.EndLoadData();
+      return res;
+    }
+
     protected override void ExecuteAnalyse()
     {
       var block = Selection.CreateBlock<VocabularyComplexityBlock>();

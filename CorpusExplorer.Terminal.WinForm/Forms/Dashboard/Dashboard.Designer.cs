@@ -51,6 +51,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.corpus_start_local = new Telerik.WinControls.UI.RadButton();
       this.corpus_start_import = new Telerik.WinControls.UI.RadButton();
       this.corpus_start_online = new Telerik.WinControls.UI.RadButton();
+      this.corpus_start_dpxc = new Telerik.WinControls.UI.RadButton();
       this.header3 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header();
       this.radScrollablePanel5 = new Telerik.WinControls.UI.RadScrollablePanel();
       this.helpPanel3 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.HelpPanel();
@@ -188,6 +189,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.snapshot_edit_dropdown_fulltext = new Telerik.WinControls.UI.RadButton();
       this.snapshot_edit_dropdown_corpus = new Telerik.WinControls.UI.RadButton();
       this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+      this.warnBox1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WarnBox();
       this.snapshot_edit_displayname = new Telerik.WinControls.UI.RadTextBox();
       this.header11 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header();
       this.clearPanel3 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
@@ -231,6 +233,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.main_mainmenu_corpus_files = new Telerik.WinControls.UI.RadMenuItem();
       this.main_mainmenu_corpus_import = new Telerik.WinControls.UI.RadMenuItem();
       this.main_mainmenu_corpus_online = new Telerik.WinControls.UI.RadMenuItem();
+      this.main_mainmenu_corpus_dpxc = new Telerik.WinControls.UI.RadMenuItem();
       this.main_mainmenu_snapshot = new Telerik.WinControls.UI.RadMenuItem();
       this.main_mainmenu_snapshot_overview = new Telerik.WinControls.UI.RadMenuItem();
       this.radMenuSeparatorItem4 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
@@ -248,7 +251,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radMenuSeparatorItem5 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
       this.main_mainmenu_analytics_favorite = new Telerik.WinControls.UI.RadMenuItem();
       this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
-      this.warnBox1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WarnBox();
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel3)).BeginInit();
       this.radScrollablePanel3.PanelContainer.SuspendLayout();
       this.radScrollablePanel3.SuspendLayout();
@@ -262,6 +264,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_local)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_import)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_online)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.corpus_start_dpxc)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.header3)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel5)).BeginInit();
       this.radScrollablePanel5.PanelContainer.SuspendLayout();
@@ -551,6 +554,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.flowLayoutPanel5.Controls.Add(this.corpus_start_local);
       this.flowLayoutPanel5.Controls.Add(this.corpus_start_import);
       this.flowLayoutPanel5.Controls.Add(this.corpus_start_online);
+      this.flowLayoutPanel5.Controls.Add(this.corpus_start_dpxc);
       resources.ApplyResources(this.flowLayoutPanel5, "flowLayoutPanel5");
       this.flowLayoutPanel5.Name = "flowLayoutPanel5";
       // 
@@ -590,6 +594,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.corpus_start_online.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.OnlineKorpusAkquirieren;
       this.corpus_start_online.TextWrap = true;
       this.corpus_start_online.Click += new System.EventHandler(this.corpus_start_online_Click);
+      // 
+      // corpus_start_dpxc
+      // 
+      this.corpus_start_dpxc.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.corpus_dpxc48;
+      resources.ApplyResources(this.corpus_start_dpxc, "corpus_start_dpxc");
+      this.corpus_start_dpxc.Name = "corpus_start_dpxc";
+      this.corpus_start_dpxc.TextWrap = true;
+      this.corpus_start_dpxc.Click += new System.EventHandler(this.corpus_start_dpxc_Click);
       // 
       // header3
       // 
@@ -703,14 +715,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // radPanel10
       // 
-      this.radPanel10.Controls.Add(this.clearPanel6);
       this.radPanel10.Controls.Add(this.page_analytics_snapshot_btn_snapshot_invert);
-      this.radPanel10.Controls.Add(this.clearPanel1);
       this.radPanel10.Controls.Add(this.page_analytics_snapshot_btn_snapshot_reduceBfromA);
       this.radPanel10.Controls.Add(this.page_analytics_snapshot_btn_snapshot_join);
-      this.radPanel10.Controls.Add(this.clearPanel2);
       this.radPanel10.Controls.Add(this.page_analytics_snapshot_btn_snapshot_union);
       this.radPanel10.Controls.Add(this.page_analytics_snapshot_btn_snapshot_diff);
+      this.radPanel10.Controls.Add(this.clearPanel6);
+      this.radPanel10.Controls.Add(this.clearPanel1);
+      this.radPanel10.Controls.Add(this.clearPanel2);
       this.radPanel10.Controls.Add(this.panel1);
       resources.ApplyResources(this.radPanel10, "radPanel10");
       this.radPanel10.Name = "radPanel10";
@@ -770,11 +782,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       this.panel1.Controls.Add(this.page_analytics_snapshot_btn_snapshot_export);
       this.panel1.Controls.Add(this.page_analytics_snapshot_btn_snapshot_load);
-      this.panel1.Controls.Add(this.clearPanel11);
       this.panel1.Controls.Add(this.page_analytics_snapshot_btn_snapshot_remove);
       this.panel1.Controls.Add(this.page_analytics_snapshot_btn_snapshot_edit);
-      this.panel1.Controls.Add(this.clearPanel10);
       this.panel1.Controls.Add(this.page_analytics_snapshot_btn_snapshot_clonedetection);
+      this.panel1.Controls.Add(this.clearPanel11);
+      this.panel1.Controls.Add(this.clearPanel10);
       this.panel1.Controls.Add(this.clearPanel5);
       this.panel1.Controls.Add(this.page_analytics_snapshot_btn_snapshot_mask);
       this.panel1.Controls.Add(this.page_analytics_snapshot_btn_snapshot_add);
@@ -849,10 +861,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((Telerik.WinControls.UI.RadDropDownButtonElement)(this.page_analytics_snapshot_btn_snapshot_mask.GetChildAt(0))).Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Eingrenzen;
       ((Telerik.WinControls.UI.RadDropDownButtonElement)(this.page_analytics_snapshot_btn_snapshot_mask.GetChildAt(0))).Padding = ((System.Windows.Forms.Padding)(resources.GetObject("resource.Padding")));
       ((Telerik.WinControls.UI.RadDropDownButtonElement)(this.page_analytics_snapshot_btn_snapshot_mask.GetChildAt(0))).CanFocus = true;
-      ((Telerik.WinControls.UI.RadArrowButtonElement)(this.page_analytics_snapshot_btn_snapshot_mask.GetChildAt(0).GetChildAt(1).GetChildAt(0))).Padding = ((System.Windows.Forms.Padding)(resources.GetObject("resource.Padding1")));
-      ((Telerik.WinControls.Primitives.ImagePrimitive)(this.page_analytics_snapshot_btn_snapshot_mask.GetChildAt(0).GetChildAt(1).GetChildAt(0).GetChildAt(4))).Padding = ((System.Windows.Forms.Padding)(resources.GetObject("resource.Padding2")));
-      ((Telerik.WinControls.Primitives.ImagePrimitive)(this.page_analytics_snapshot_btn_snapshot_mask.GetChildAt(0).GetChildAt(1).GetChildAt(0).GetChildAt(4))).Margin = ((System.Windows.Forms.Padding)(resources.GetObject("resource.Margin")));
-      ((Telerik.WinControls.Primitives.ImagePrimitive)(this.page_analytics_snapshot_btn_snapshot_mask.GetChildAt(0).GetChildAt(1).GetChildAt(1).GetChildAt(1).GetChildAt(0))).Padding = ((System.Windows.Forms.Padding)(resources.GetObject("resource.Padding3")));
       // 
       // page_analytics_snapshot_btn_snapshot_mask_individual
       // 
@@ -891,12 +899,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((Telerik.WinControls.UI.RadDropDownButtonElement)(this.page_analytics_snapshot_btn_snapshot_add.GetChildAt(0))).TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
       ((Telerik.WinControls.UI.RadDropDownButtonElement)(this.page_analytics_snapshot_btn_snapshot_add.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
       ((Telerik.WinControls.UI.RadDropDownButtonElement)(this.page_analytics_snapshot_btn_snapshot_add.GetChildAt(0))).Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Neu;
-      ((Telerik.WinControls.UI.RadDropDownButtonElement)(this.page_analytics_snapshot_btn_snapshot_add.GetChildAt(0))).Padding = ((System.Windows.Forms.Padding)(resources.GetObject("resource.Padding4")));
+      ((Telerik.WinControls.UI.RadDropDownButtonElement)(this.page_analytics_snapshot_btn_snapshot_add.GetChildAt(0))).Padding = ((System.Windows.Forms.Padding)(resources.GetObject("resource.Padding1")));
       ((Telerik.WinControls.UI.RadDropDownButtonElement)(this.page_analytics_snapshot_btn_snapshot_add.GetChildAt(0))).CanFocus = true;
-      ((Telerik.WinControls.UI.RadArrowButtonElement)(this.page_analytics_snapshot_btn_snapshot_add.GetChildAt(0).GetChildAt(1).GetChildAt(0))).Padding = ((System.Windows.Forms.Padding)(resources.GetObject("resource.Padding5")));
-      ((Telerik.WinControls.Primitives.ImagePrimitive)(this.page_analytics_snapshot_btn_snapshot_add.GetChildAt(0).GetChildAt(1).GetChildAt(0).GetChildAt(4))).Padding = ((System.Windows.Forms.Padding)(resources.GetObject("resource.Padding6")));
-      ((Telerik.WinControls.Primitives.ImagePrimitive)(this.page_analytics_snapshot_btn_snapshot_add.GetChildAt(0).GetChildAt(1).GetChildAt(0).GetChildAt(4))).Margin = ((System.Windows.Forms.Padding)(resources.GetObject("resource.Margin1")));
-      ((Telerik.WinControls.Primitives.ImagePrimitive)(this.page_analytics_snapshot_btn_snapshot_add.GetChildAt(0).GetChildAt(1).GetChildAt(1).GetChildAt(1).GetChildAt(0))).Padding = ((System.Windows.Forms.Padding)(resources.GetObject("resource.Padding7")));
       // 
       // page_analytics_snapshot_btn_snapshot_add_individual
       // 
@@ -1739,7 +1743,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // 
       this.pages_main.RootElement.MinSize = new System.Drawing.Size(576, 445);
-      this.pages_main.SelectedPage = this.page_snapshot;
+      this.pages_main.SelectedPage = this.page_corpus;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).ItemFitMode = Telerik.WinControls.UI.StripViewItemFitMode.Fill;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
@@ -1750,7 +1754,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_main.GetChildAt(0).GetChildAt(1))).BorderLeftWidth = 0F;
       ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_main.GetChildAt(0).GetChildAt(1))).BorderRightWidth = 0F;
       ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_main.GetChildAt(0).GetChildAt(1))).BorderBottomWidth = 0F;
-      ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_main.GetChildAt(0).GetChildAt(1))).Padding = ((System.Windows.Forms.Padding)(resources.GetObject("resource.Padding9")));
       ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_main.GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
       // 
       // page_welcome
@@ -1785,6 +1788,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // page_corpus_start
       // 
       this.page_corpus_start.Controls.Add(this.radScrollablePanel3);
+      this.page_corpus_start.ItemSize = new System.Drawing.SizeF(97F, 29F);
       resources.ApplyResources(this.page_corpus_start, "page_corpus_start");
       this.page_corpus_start.Name = "page_corpus_start";
       // 
@@ -1792,6 +1796,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       this.page_corpus_online.Controls.Add(this.radSplitContainer1);
       this.page_corpus_online.Controls.Add(this.header5);
+      this.page_corpus_online.ItemSize = new System.Drawing.SizeF(97F, 29F);
       resources.ApplyResources(this.page_corpus_online, "page_corpus_online");
       this.page_corpus_online.Name = "page_corpus_online";
       // 
@@ -1936,7 +1941,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // page_snapshot_home
       // 
       this.page_snapshot_home.Controls.Add(this.radScrollablePanel5);
-      this.page_snapshot_home.ItemSize = new System.Drawing.SizeF(85F, 29F);
       resources.ApplyResources(this.page_snapshot_home, "page_snapshot_home");
       this.page_snapshot_home.Name = "page_snapshot_home";
       // 
@@ -1946,7 +1950,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_snapshot_edit.Controls.Add(this.radGroupBox1);
       this.page_snapshot_edit.Controls.Add(this.header11);
       this.page_snapshot_edit.Controls.Add(this.clearPanel3);
-      this.page_snapshot_edit.ItemSize = new System.Drawing.SizeF(85F, 29F);
       resources.ApplyResources(this.page_snapshot_edit, "page_snapshot_edit");
       this.page_snapshot_edit.Name = "page_snapshot_edit";
       // 
@@ -1994,6 +1997,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radGroupBox1.Controls.Add(this.snapshot_edit_displayname);
       resources.ApplyResources(this.radGroupBox1, "radGroupBox1");
       this.radGroupBox1.Name = "radGroupBox1";
+      // 
+      // warnBox1
+      // 
+      this.warnBox1.BackColor = System.Drawing.Color.White;
+      resources.ApplyResources(this.warnBox1, "warnBox1");
+      this.warnBox1.Name = "warnBox1";
       // 
       // snapshot_edit_displayname
       // 
@@ -2083,7 +2092,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.pages_standardanalytics.Name = "pages_standardanalytics";
       this.pages_standardanalytics.SelectedPage = this.page_standardanalytics_weight;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_standardanalytics.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll;
-      ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_standardanalytics.GetChildAt(0).GetChildAt(1))).Padding = ((System.Windows.Forms.Padding)(resources.GetObject("resource.Padding8")));
+      ((Telerik.WinControls.UI.RadPageViewContentAreaElement)(this.pages_standardanalytics.GetChildAt(0).GetChildAt(1))).Padding = ((System.Windows.Forms.Padding)(resources.GetObject("resource.Padding2")));
       // 
       // page_standardanalytics_search
       // 
@@ -2247,14 +2256,16 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // main_mainmenu_corpus
       // 
-      resources.ApplyResources(this.main_mainmenu_corpus, "main_mainmenu_corpus");
+      this.main_mainmenu_corpus.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.cabinet1;
       this.main_mainmenu_corpus.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.main_mainmenu_corpus_overview,
             this.radMenuSeparatorItem3,
             this.main_mainmenu_corpus_load,
             this.main_mainmenu_corpus_files,
             this.main_mainmenu_corpus_import,
-            this.main_mainmenu_corpus_online});
+            this.main_mainmenu_corpus_online,
+            this.main_mainmenu_corpus_dpxc});
+      resources.ApplyResources(this.main_mainmenu_corpus, "main_mainmenu_corpus");
       this.main_mainmenu_corpus.Name = "main_mainmenu_corpus";
       // 
       // main_mainmenu_corpus_overview
@@ -2301,6 +2312,13 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.main_mainmenu_corpus_online.Name = "main_mainmenu_corpus_online";
       this.main_mainmenu_corpus_online.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.OnlineKorpusAkquirieren;
       this.main_mainmenu_corpus_online.Click += new System.EventHandler(this.corpus_start_online_Click);
+      // 
+      // main_mainmenu_corpus_dpxc
+      // 
+      this.main_mainmenu_corpus_dpxc.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.design;
+      this.main_mainmenu_corpus_dpxc.Name = "main_mainmenu_corpus_dpxc";
+      resources.ApplyResources(this.main_mainmenu_corpus_dpxc, "main_mainmenu_corpus_dpxc");
+      this.main_mainmenu_corpus_dpxc.Click += new System.EventHandler(this.corpus_start_dpxc_Click);
       // 
       // main_mainmenu_snapshot
       // 
@@ -2441,12 +2459,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radMenu1.Name = "radMenu1";
       this.radMenu1.ThemeName = "TelerikMetroTouch";
       // 
-      // warnBox1
-      // 
-      this.warnBox1.BackColor = System.Drawing.Color.White;
-      resources.ApplyResources(this.warnBox1, "warnBox1");
-      this.warnBox1.Name = "warnBox1";
-      // 
       // Dashboard
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2474,6 +2486,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_local)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_import)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.corpus_start_online)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.corpus_start_dpxc)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.header3)).EndInit();
       this.radScrollablePanel5.PanelContainer.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel5)).EndInit();
@@ -2877,5 +2890,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     private RadScrollablePanel radScrollablePanel9;
     private Header header14;
         private WarnBox warnBox1;
-    }
+    private RadButton corpus_start_dpxc;
+    private RadMenuItem main_mainmenu_corpus_dpxc;
+  }
 }

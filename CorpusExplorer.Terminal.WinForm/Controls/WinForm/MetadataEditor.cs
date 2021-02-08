@@ -62,10 +62,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       foreach (var x in value)
         try
         {
-          var item = new PropertyStoreItem(
-                                           x.Value.GetType(),
-                                           x.Key,
-                                           x.Value ?? Activator.CreateInstance(x.Value.GetType()));
+          var val = x.Value ?? "";
+          var item = new PropertyStoreItem(val.GetType(), x.Key, val);
 
           store.Add(item);
         }

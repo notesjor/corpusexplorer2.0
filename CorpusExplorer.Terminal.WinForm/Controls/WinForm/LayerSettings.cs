@@ -16,8 +16,15 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     public LayerSettings()
     {
       InitializeComponent();
-      _names = CorpusExplorerEcosystem.CurrentProject.LayerDisplaynames.ToList();
-      cmb_names.Items.AddRange(_names);
+      try
+      {
+        _names = CorpusExplorerEcosystem.CurrentProject.LayerDisplaynames.ToList();
+        cmb_names.Items.AddRange(_names);
+      }
+      catch
+      {
+        // ignore 
+      }
     }
 
     public string Header
@@ -53,6 +60,25 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     private void chk_active_CheckStateChanged(object sender, EventArgs e)
     {
       cmb_names.Enabled = chk_active.Checked;
+    }
+
+    public event EventHandler SlectedLayerChanged;
+
+    private void cmb_names_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+    {
+      SlectedLayerChanged?.Invoke(sender, e);
+    }
+
+    private void chk_active_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
+    {
+      SlectedLayerChanged?.Invoke(sender, null);
+    }
+
+    public void RemoveLayerFromSelection(string layerDisplayname)
+    {
+      _names.Remove(layerDisplayname);
+      cmb_names.Items.Clear();
+      cmb_names.Items.AddRange(_names);
     }
   }
 }

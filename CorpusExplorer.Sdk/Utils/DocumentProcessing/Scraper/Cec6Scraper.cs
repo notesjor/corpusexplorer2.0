@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus;
+using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper
@@ -12,7 +13,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper
     {
       var res = new List<Dictionary<string, object>>();
 
-      var corpus = CorpusAdapterSingleFile.Create(file);
+      AbstractCorpusAdapter corpus = CorpusAdapterWriteDirect.Create(file) as AbstractCorpusAdapter ?? CorpusAdapterSingleFile.Create(file);
       foreach (var guid in corpus.DocumentGuids)
       {
         var doc = corpus.GetDocumentMetadata(guid);
