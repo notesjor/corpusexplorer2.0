@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CorpusExplorer.Sdk.Extern.Xml.Bnc.Extension;
 using CorpusExplorer.Sdk.Extern.Xml.Bnc.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Bnc.Serializer;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 using HtmlAgilityPack;
 
@@ -17,7 +17,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Bnc
     protected override bncDoc ImportStep_1_ReadFile(string path)
     {
       _path = path;
-      return new BncSerializer().Deserialize(path);
+      return XmlSerializerHelper.Deserialize<bncDoc>(path);
     }
 
     protected override void ImportStep_2_ImportMetadata(Guid documentGuid, ref bncDoc data)
@@ -97,10 +97,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Bnc
         docC.Add(nsentC.ToArray());
       }
 
-      AddDocumet("Wort", documentGuid, docW.ToArray());
-      AddDocumet("Lemma", documentGuid, docL.ToArray());
-      AddDocumet("POS", documentGuid, docP.ToArray());
-      AddDocumet("C5", documentGuid, docC.ToArray());
+      AddDocument("Wort", documentGuid, docW.ToArray());
+      AddDocument("Lemma", documentGuid, docL.ToArray());
+      AddDocument("POS", documentGuid, docP.ToArray());
+      AddDocument("C5", documentGuid, docC.ToArray());
     }
   }
 }

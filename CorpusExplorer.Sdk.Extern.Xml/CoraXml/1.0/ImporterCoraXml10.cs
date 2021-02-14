@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Extern.Xml.CoraXml._1._0.Extension;
 using CorpusExplorer.Sdk.Extern.Xml.CoraXml._1._0.Model;
-using CorpusExplorer.Sdk.Extern.Xml.CoraXml._1._0.Serializer;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.CoraXml._1._0
@@ -15,7 +13,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.CoraXml._1._0
   {
     protected override void ExecuteCall(string path)
     {
-      var doc = new CoraXml10Serializer().Deserialize(path);
+      var doc = XmlSerializerHelper.Deserialize<text>(path);
       var dsel = Guid.NewGuid();
 
       GetMetadata(path, doc, dsel);
@@ -83,12 +81,12 @@ namespace CorpusExplorer.Sdk.Extern.Xml.CoraXml._1._0
         sInflClass.Add(cInflClass.ToArray());
       }
 
-      AddDocumet("Wort", dsel, sWort.ToArray());
-      AddDocumet("Norm", dsel, sNorm.ToArray());
-      AddDocumet("Lemma", dsel, sLemma.ToArray());
-      AddDocumet("POS", dsel, sPos.ToArray());
-      AddDocumet("INFL", dsel, sInfl.ToArray());
-      AddDocumet("INFL-CLASS", dsel, sInflClass.ToArray());
+      AddDocument("Wort", dsel, sWort.ToArray());
+      AddDocument("Norm", dsel, sNorm.ToArray());
+      AddDocument("Lemma", dsel, sLemma.ToArray());
+      AddDocument("POS", dsel, sPos.ToArray());
+      AddDocument("INFL", dsel, sInfl.ToArray());
+      AddDocument("INFL-CLASS", dsel, sInflClass.ToArray());
     }
 
     private void GetMetadata(string path, text doc, Guid dsel)

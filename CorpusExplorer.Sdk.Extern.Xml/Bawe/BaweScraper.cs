@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.Bawe.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Bawe.Serializer;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using HtmlAgilityPack;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Bawe
 {
-  public class BaweScraper : AbstractGenericXmlSerializerFormatScraper<TEI2>
+  public class BaweScraper : AbstractXmlScraper
   {
     public override string DisplayName => "BAWE";
-    protected override AbstractGenericSerializer<TEI2> Serializer => new BaweSerializer();
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, TEI2 model)
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
+      var model = XmlSerializerHelper.Deserialize<TEI2>(file);
       var doc = new Dictionary<string, object>();
       ParsePTags(ref doc, model.teiHeader?.fileDesc?.sourceDesc?.p);
       ParsePTags(ref doc, model.teiHeader?.profileDesc?.particDesc?.person?.p);

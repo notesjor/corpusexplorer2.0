@@ -1,19 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Pmg.Extension;
 using CorpusExplorer.Sdk.Extern.Xml.Pmg.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Pmg.Serializer;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Pmg
 {
-  public class PmgScraper : AbstractGenericXmlSerializerFormatScraper<artikelliste>
+  public class PmgScraper : AbstractXmlScraper
   {
     public override string DisplayName => "PMG-XML";
-    protected override AbstractGenericSerializer<artikelliste> Serializer => new PmgSerializer();
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, artikelliste model)
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
+      var model = XmlSerializerHelper.Deserialize<artikelliste>(file);
       return from artikel in model.artikel
         where artikel != null
         select new Dictionary<string, object>

@@ -6,7 +6,6 @@ using CorpusExplorer.Sdk.Extern.Xml.AltoXml._1._2;
 using CorpusExplorer.Sdk.Extern.Xml.AnnotationPro;
 using CorpusExplorer.Sdk.Extern.Xml.Bawe;
 using CorpusExplorer.Sdk.Extern.Xml.Bnc;
-using CorpusExplorer.Sdk.Extern.Xml.Bnc.Serializer;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Drucksachen;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle.v1;
@@ -28,6 +27,8 @@ using CorpusExplorer.Sdk.Extern.Xml.Exmaralda;
 using CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Simple;
 using CorpusExplorer.Sdk.Extern.Xml.FnhdC;
 using CorpusExplorer.Sdk.Extern.Xml.Folker;
+using CorpusExplorer.Sdk.Extern.Xml.Folker.Flk;
+using CorpusExplorer.Sdk.Extern.Xml.Folker.Fln;
 using CorpusExplorer.Sdk.Extern.Xml.Gutenberg;
 using CorpusExplorer.Sdk.Extern.Xml.Ids;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.I5Xml;
@@ -101,6 +102,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"BNC TEI (*.xml)|*.xml", new ImporterBnc() },
         {"TXM TEI-XML (*.xml)|*.xml", new ImporterTxm() },
         {"TiGER-XML (*.xml)|*.xml", new ImporterTiger() },
+        {"FOLKER / OrthoNormal (*.xml)|*.fln", new ImporterFolkerFln() },
         {"IDS KorAP - inkl. aller Tagger (*.zip)|*.zip", new ImporterKorap()},
         {"IDS KorAP - nur CoreNLP (*.zip)|*.zip", new ImporterKorapOnlyCoreNlp()},
         {"IDS KorAP - nur MarMoT (*.zip)|*.zip", new ImporterKorapOnlyMarmot()},
@@ -182,6 +184,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {
           "FOLKER-Transkript (*.flk)|*.flk",
           new FolkerScraper()
+        },
+        {
+          "FOLKER / OrthoNormal (*.fln)|*.fln",
+          new FolkerFlnScraper()
         },
         {
           "AnnotationPro (*.ant)|*.ant",

@@ -6,7 +6,6 @@ using System.Text;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
-using ICSharpCode.SharpZipLib.Zip;
 
 namespace CorpusExplorer.Sdk.Helper
 {
@@ -151,8 +150,7 @@ namespace CorpusExplorer.Sdk.Helper
             wc.DownloadFile(Url, tempFile);
           }
 
-          var zip = new FastZip();
-          zip.ExtractZip(tempFile, Configuration.DependencyPath, null);
+          ZipHelper.Uncompress(tempFile, Configuration.DependencyPath);
 
           RegisterInUpdateInfo();
 

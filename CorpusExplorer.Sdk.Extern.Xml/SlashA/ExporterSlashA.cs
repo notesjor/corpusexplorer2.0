@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.SlashA.Model;
-using CorpusExplorer.Sdk.Extern.Xml.SlashA.Serializer;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 
@@ -33,13 +33,12 @@ namespace CorpusExplorer.Sdk.Extern.Xml.SlashA
 
     public override void Export(IHydra hydra, string path)
     {
-      var xml = new SlashASerializer();
       var i = 0;
 
       foreach (var guid in hydra.DocumentGuids)
         try
         {
-          xml.Serialize(GetDSpin(hydra, guid, i++), Path.Combine(path, guid + ".xml"));
+          XmlSerializerHelper.Serialize(GetDSpin(hydra, guid, i++), Path.Combine(path, guid + ".xml"));
         }
         catch
         {

@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf.Serializer;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 
@@ -33,13 +33,12 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf
       if (!Directory.Exists(path))
         Directory.CreateDirectory(path);
 
-      var xml = new DtaSerializer();
       var i = 0;
 
       foreach (var guid in hydra.DocumentGuids)
         try
         {
-          xml.Serialize(GetDSpin(hydra, guid, i++), Path.Combine(path, guid + ".tcf.xml"));
+          XmlSerializerHelper.Serialize<DSpin>(GetDSpin(hydra, guid, i++), Path.Combine(path, guid + ".tcf.xml"));
         }
         catch
         {

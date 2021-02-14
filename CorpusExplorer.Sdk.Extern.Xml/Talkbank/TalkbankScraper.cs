@@ -3,23 +3,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Talkbank.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Talkbank.Serializer;
 
 #endregion
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Talkbank
 {
   // ReSharper disable once UnusedMember.Global
-  public class TalkbankScraper : AbstractGenericXmlSerializerFormatScraper<CHAT>
+  public class TalkbankScraper : AbstractXmlScraper
   {
     public override string DisplayName => "Talkbank-XML";
 
-    protected override AbstractGenericSerializer<CHAT> Serializer => new TalkbankSerializer();
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, CHAT model)
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
+      var model = XmlSerializerHelper.Deserialize<CHAT>(file);
       /*
        * Interessant für Importer
        * 

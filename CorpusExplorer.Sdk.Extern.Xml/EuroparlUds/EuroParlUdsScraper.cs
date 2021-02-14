@@ -2,13 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
-using CorpusExplorer.Sdk.Extern.Xml.EuroparlUds.Extension;
-using CorpusExplorer.Sdk.Extern.Xml.EuroparlUds.Model;
-using CorpusExplorer.Sdk.Extern.Xml.EuroparlUds.Serializer;
 using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;

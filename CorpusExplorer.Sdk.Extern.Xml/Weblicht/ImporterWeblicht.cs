@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Weblicht.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Weblicht.Serializer;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
@@ -16,8 +16,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
     /// <returns>Gibt (ein) Objekt(e) zurück die dem Korpus entsprechen.</returns>
     protected override DSpin ImportStep_1_ReadFile(string path)
     {
-      var serializer = new WeblichtSerializer();
-      return serializer.Deserialize(path);
+      return XmlSerializerHelper.Deserialize<DSpin>(path);
     }
 
     /// <summary>
@@ -78,7 +77,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
     {
       var doc =
         token.Select(s => s.Select(t => dictionary.ContainsKey(t) ? dictionary[t] : string.Empty).ToArray()).ToArray();
-      AddDocumet(layerDisplayname, documentGuid, ConvertToLayer(layerDisplayname, doc));
+      AddDocument(layerDisplayname, documentGuid, ConvertToLayer(layerDisplayname, doc));
     }
 
     private string[][] GetSentenceStructure(DSpin dspin)

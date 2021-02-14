@@ -118,14 +118,14 @@ namespace CorpusExplorer.Sdk.Extern.Xml.FnhdC
         sTem.Add(cTem.ToArray());
       }
 
-      AddDocumet("Wort", dsel, sWor.ToArray());
-      AddDocumet("POS", dsel, sPos.ToArray());
-      AddDocumet("Lemma", dsel, sLem.ToArray());
-      AddDocumet("Form", dsel, sFor.ToArray());
-      AddDocumet("Person", dsel, sPer.ToArray());
-      AddDocumet("Numerus", dsel, sNum.ToArray());
-      AddDocumet("Modus", dsel, sMod.ToArray());
-      AddDocumet("Tempus", dsel, sTem.ToArray());
+      AddDocument("Wort", dsel, sWor.ToArray());
+      AddDocument("POS", dsel, sPos.ToArray());
+      AddDocument("Lemma", dsel, sLem.ToArray());
+      AddDocument("Form", dsel, sFor.ToArray());
+      AddDocument("Person", dsel, sPer.ToArray());
+      AddDocument("Numerus", dsel, sNum.ToArray());
+      AddDocument("Modus", dsel, sMod.ToArray());
+      AddDocument("Tempus", dsel, sTem.ToArray());
     }
 
     private Dictionary<string, object> GetMetadata(XmlNode node)

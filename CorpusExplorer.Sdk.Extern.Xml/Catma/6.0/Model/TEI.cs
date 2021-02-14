@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 using System.Xml.Serialization;
+using CorpusExplorer.Sdk.Extern.Xml.Catma._6._0.Model;
 
 // 
 // Dieser Quellcode wurde automatisch generiert von xsd, Version=4.8.3928.0.

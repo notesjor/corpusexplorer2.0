@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Tei.P5Cal2.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Tei.P5Cal2.Model.Extension;
-using CorpusExplorer.Sdk.Extern.Xml.Tei.P5Cal2.Serializer;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using HtmlAgilityPack;
@@ -17,15 +15,13 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.P5Cal2
   {
     public override string DisplayName => "TEI-P5 (based on CAL2)";
 
-    private Cal2TeiSerializer _single = new Cal2TeiSerializer();
-    private Cal2TeiCorpusSerializer _corpus = new Cal2TeiCorpusSerializer();
     public bool ScrapeText { get; set; } = true;
 
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
       try
       {
-        var doc = _single.Deserialize(file);
+        var doc = XmlSerializerHelper.Deserialize<TEI>(file);
         if (doc == null)
           throw new NullReferenceException();
         return Scrape(new[] { doc });
@@ -34,7 +30,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.P5Cal2
       {
         try
         {
-          return Scrape(_corpus.Deserialize(file).TEI);
+          return Scrape(XmlSerializerHelper.Deserialize<teiCorpus>(file).TEI);
         }
         catch
         {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Serializer;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017
@@ -16,8 +16,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017
     /// <returns>Gibt (ein) Objekt(e) zurück die dem Korpus entsprechen.</returns>
     protected override DSpin ImportStep_1_ReadFile(string path)
     {
-      var serializer = new Dta2017Serializer();
-      return serializer.Deserialize(path);
+      return XmlSerializerHelper.Deserialize<DSpin>(path);
     }
 
     /// <summary>
@@ -176,7 +175,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017
     {
       var doc =
         token.Select(s => s.Select(t => dictionary.ContainsKey(t) ? dictionary[t] : string.Empty).ToArray()).ToArray();
-      AddDocumet(layerDisplayname, documentGuid, ConvertToLayer(layerDisplayname, doc));
+      AddDocument(layerDisplayname, documentGuid, ConvertToLayer(layerDisplayname, doc));
     }
 
     private string[][] GetSentenceStructure(DSpin dspin)

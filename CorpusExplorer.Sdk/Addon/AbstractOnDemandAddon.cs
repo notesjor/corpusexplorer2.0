@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using ICSharpCode.SharpZipLib.Zip;
+using CorpusExplorer.Sdk.Helper;
 
 namespace CorpusExplorer.Sdk.Addon
 {
@@ -44,8 +40,7 @@ namespace CorpusExplorer.Sdk.Addon
       if (!Directory.Exists(appPath))
         appPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-      var zip = new FastZip();
-      zip.ExtractZip(tempFile, appPath, null);
+      ZipHelper.Uncompress(tempFile, appPath);
     }
 
     private class CorpusExplorerWebClient : WebClient

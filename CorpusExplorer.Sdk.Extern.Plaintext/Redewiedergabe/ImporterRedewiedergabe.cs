@@ -120,16 +120,16 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.Redewiedergabe
 
         if (dWord.Count > 0)
         {
-          AddDocumet("Wort", file.Value, dWord.ToArray());
-          AddDocumet("Normiert", file.Value, dNWord.ToArray());
-          AddDocumet("Lemma", file.Value, dLemma.ToArray());
-          AddDocumet("POS", file.Value, dPos.ToArray());
-          AddDocumet("POS (erweitert)", file.Value, dRPos.ToArray());
-          AddDocumet("STWR", file.Value, dStwr.ToArray());
-          AddDocumet("Frame", file.Value, dFrame.ToArray());
-          AddDocumet("Sprecher", file.Value, dSpeaker.ToArray());
-          AddDocumet("INTEXPR", file.Value, dIntexpr.ToArray());
-          AddDocumet("Notiz", file.Value, dNote.ToArray());
+          AddDocument("Wort", file.Value, dWord.ToArray());
+          AddDocument("Normiert", file.Value, dNWord.ToArray());
+          AddDocument("Lemma", file.Value, dLemma.ToArray());
+          AddDocument("POS", file.Value, dPos.ToArray());
+          AddDocument("POS (erweitert)", file.Value, dRPos.ToArray());
+          AddDocument("STWR", file.Value, dStwr.ToArray());
+          AddDocument("Frame", file.Value, dFrame.ToArray());
+          AddDocument("Sprecher", file.Value, dSpeaker.ToArray());
+          AddDocument("INTEXPR", file.Value, dIntexpr.ToArray());
+          AddDocument("Notiz", file.Value, dNote.ToArray());
         }
       }
     }

@@ -61,7 +61,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
         }
 
       foreach (var doc in docs)
-        AddDocumet(doc.Key, documentGuid, doc.Value.ToArray());
+        AddDocument(doc.Key, documentGuid, doc.Value.ToArray());
     }
   }
 }

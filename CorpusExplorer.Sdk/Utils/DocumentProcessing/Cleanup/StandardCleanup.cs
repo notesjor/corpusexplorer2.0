@@ -12,7 +12,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup
 {
   public class StandardCleanup : AbstractCleanup
   {
-    private readonly Dictionary<string, string> _dictionary = new Dictionary<string, string>
+    protected readonly Dictionary<string, string> _dictionary = new Dictionary<string, string>
     {
       {"&quot;", "\""},
       {"&amp;", "&"},
@@ -817,9 +817,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup
       {"»", "\""},
       {"„", "\""},
       {"“", "\""},
-      {"‘", "'"},
-      {"’", "'"},
-      {"‚", "'"}
+      {"‘", "\""},
+      {"’", "\""},
+      {"‚", "\""},
     };
 
     public override string DisplayName => Resources.StandardCleanup;
@@ -829,7 +829,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup
       return _dictionary.Aggregate(input, (current, entry) => current.Replace(entry.Key, entry.Value));
     }
 
-    public string Bypass(string text)
+    public virtual string Bypass(string text)
     {
       return _dictionary.Aggregate(text, (current, entry) => current.Replace(entry.Key, entry.Value));
     }

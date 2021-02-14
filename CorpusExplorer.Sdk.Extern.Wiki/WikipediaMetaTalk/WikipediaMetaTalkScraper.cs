@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
 using CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk.Model;
-using CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk.Serializer;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 
 namespace CorpusExplorer.Sdk.Extern.Wiki.WikipediaMetaTalk
 {
-  public class WikipediaMetaTalkScraper : AbstractGenericXmlSerializerFormatScraper<page>
+  public class WikipediaMetaTalkScraper : AbstractXmlScraper
   {
     public override string DisplayName => "Wikipedia-Meta-DUMP";
-    protected override AbstractGenericSerializer<page> Serializer => new WikipediaMetaTalkSerializer();
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, page model)
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
+      var model = XmlSerializerHelper.Deserialize<page>(file);
       var text = model.revision.comment.Text == null
                    ? null
                    : string.Join("\r\n", model.revision.comment.Text);

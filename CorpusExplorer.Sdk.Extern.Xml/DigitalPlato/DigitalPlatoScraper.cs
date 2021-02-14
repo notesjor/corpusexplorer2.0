@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.XmlDocumentBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.DigitalPlato
 {
-  public class DigitalPlatoScraper : AbstractXmlDocumentScraper
+  public class DigitalPlatoScraper : AbstractExtendedXmlScraper
   {
     public override string DisplayName => "Digital-Plato.org";
 

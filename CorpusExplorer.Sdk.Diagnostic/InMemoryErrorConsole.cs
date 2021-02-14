@@ -24,12 +24,20 @@ namespace CorpusExplorer.Sdk.Diagnostic
 
     public static event OnLogEventHandler OnException;
 
-    private static readonly Queue<KeyValuePair<DateTime, Exception>> _queue =
-      new Queue<KeyValuePair<DateTime, Exception>>();
+    private static readonly Queue<KeyValuePair<DateTime, Exception>> _queue = new Queue<KeyValuePair<DateTime, Exception>>();
+
+    private static object _lockQueue = new object();
 
     private static TelemetrieClient _telemetryClient;
 
-    public static IEnumerable<KeyValuePair<DateTime, Exception>> Errors => _queue;
+    public static IEnumerable<KeyValuePair<DateTime, Exception>> Errors
+    {
+      get
+      {
+        lock (_lockQueue)
+          return _queue;
+      }
+    }
 
     public static bool ShowErrorConsoleOnAppCrash => !_insightAllowed;
 
@@ -40,7 +48,8 @@ namespace CorpusExplorer.Sdk.Diagnostic
         _telemetryClient.Flush();
       }
 
-      _queue.Clear();
+      lock (_lockQueue)
+        _queue.Clear();
     }
 
     public static void InsightSetup()
@@ -73,7 +82,7 @@ namespace CorpusExplorer.Sdk.Diagnostic
       city = "";
       try
       {
-        if (!File.Exists(_pathLo)) 
+        if (!File.Exists(_pathLo))
           return;
 
         var lines = File.ReadAllLines(_pathLo, Encoding.UTF8);
@@ -88,7 +97,7 @@ namespace CorpusExplorer.Sdk.Diagnostic
       }
     }
 
-    public static void Log(string message) 
+    public static void Log(string message)
       => Log(new Exception(message));
 
     public static void Log(Exception ex)
@@ -96,11 +105,13 @@ namespace CorpusExplorer.Sdk.Diagnostic
       if (!_insightChecked)
         InsightSetup();
 
-      // ReSharper disable once PossibleNullReferenceException
-      while (_queue.Count > _max)
-        _queue.Dequeue();
+      lock (_lockQueue)
+      {
+        while (_queue.Count > _max)
+          _queue.Dequeue();
 
-      _queue.Enqueue(new KeyValuePair<DateTime, Exception>(DateTime.Now, ex));
+        _queue.Enqueue(new KeyValuePair<DateTime, Exception>(DateTime.Now, ex));
+      }
 
       if (_insightAllowed) _telemetryClient.SendTelemetrie(ex);
       OnException?.Invoke(ex);

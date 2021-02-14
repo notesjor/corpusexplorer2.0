@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Weblicht.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Weblicht.Serializer;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
@@ -32,7 +32,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
       if (!Directory.Exists(path))
         Directory.CreateDirectory(path);
 
-      var xml = new WeblichtSerializer();
       var i = 0;
 
       foreach (var guid in hydra.DocumentGuids)
@@ -41,12 +40,12 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
           string text;
           using (var ms = new MemoryStream())
           {
-            xml.Serialize(GetDSpin(hydra, guid, i++), ms);
-            text = Configuration.Encoding.GetString(ms.ToArray());
+            XmlSerializerHelper.Serialize(GetDSpin(hydra, guid, i++), ms);
+            var lines = Configuration.Encoding.GetString(ms.ToArray())
+                                     .Split(new[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+            lines[1] = GetDspinMetadata(hydra.GetDocumentMetadata(guid));
+            text = string.Join("\r\n", lines);
           }
-
-          text = text.Replace("<D-Spin xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" version=\"0.4\" xmlns=\"http://www.dspin.de/data\">",
-                              GetDspinMetadata(hydra.GetDocumentMetadata(guid)));
 
           FileIO.Write(Path.Combine(path, guid + ".xml"), text, Configuration.Encoding);
         }

@@ -56,7 +56,6 @@
     <Compile Include="WikipediaMetaTalk\Model\revision.cs" />
     <Compile Include="WikipediaMetaTalk\Model\siteinfo.cs" />
     <Compile Include="WikipediaMetaTalk\Model\text.cs" />
-    <Compile Include="WikipediaMetaTalk\Serializer\WikipediaMetaTalkSerializer.cs" />
     <Compile Include="WikipediaMetaTalk\WikipediaMetaTalkScraper.cs" />
     <Compile Include="Wikipedia\Model\contributor.cs" />
     <Compile Include="Wikipedia\Model\ItemsChoiceType.cs" />
@@ -65,7 +64,6 @@
     <Compile Include="Wikipedia\Model\redirect.cs" />
     <Compile Include="Wikipedia\Model\revision.cs" />
     <Compile Include="Wikipedia\Model\text.cs" />
-    <Compile Include="Wikipedia\Serializer\WikipediaFullDumpSerializer.cs" />
     <Compile Include="Wikipedia\WikipediaCleanup.cs" />
     <Compile Include="Wikipedia\WikipediaScraper.cs" />
     <Compile Include="Wiktionary\Model\Original\comment.cs" />

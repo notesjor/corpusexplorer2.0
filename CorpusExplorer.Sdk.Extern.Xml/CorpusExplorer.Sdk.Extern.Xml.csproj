@@ -43,21 +43,17 @@
     <Reference Include="HtmlAgilityPack, Version=1.11.30.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.11.30\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.1.9, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpZipLib.1.3.1\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\SerializerBasedScraper\AbstractGenericSerializer.cs" />
-    <Compile Include="Abstract\SerializerBasedScraper\AbstractGenericXmlSerializerFormatScraper.cs" />
-    <Compile Include="Abstract\SerializerBasedScraper\AbstractGenericZipSerializer.cs" />
-    <Compile Include="Abstract\SerializerBasedScraper\Delegates\ExceptionDelegate.cs" />
-    <Compile Include="Abstract\XmlDocumentBasedScraper\AbstractHtmlXmlDocumentScraper.cs" />
-    <Compile Include="Abstract\XmlDocumentBasedScraper\AbstractXmlDocumentScraper.cs" />
+    <Compile Include="Abstract\AbstractExtendedXmlScraper.cs" />
+    <Compile Include="Abstract\AbstractXmlScraper.cs" />
+    <Compile Include="Abstract\AbstractHtmlScraper.cs" />
     <Compile Include="AltoXml\1.2\Alto12Scraper.cs" />
     <Compile Include="AltoXml\1.2\Model\alto.cs" />
     <Compile Include="AltoXml\1.2\Model\BottomMargin.cs" />
@@ -84,7 +80,6 @@
     <Compile Include="AltoXml\1.2\Model\TextLine.cs" />
     <Compile Include="AltoXml\1.2\Model\TextStyle.cs" />
     <Compile Include="AltoXml\1.2\Model\TopMargin.cs" />
-    <Compile Include="AltoXml\1.2\Serializer\Alto12Serializer.cs" />
     <Compile Include="AnnotationPro\ExporterAnnoationPro.cs" />
     <Compile Include="AnnotationPro\AnnotationProScraper.cs" />
     <Compile Include="AnnotationPro\Model\AnnotationSystemDataSet.cs" />
@@ -92,7 +87,6 @@
     <Compile Include="AnnotationPro\Model\Configuration.cs" />
     <Compile Include="AnnotationPro\Model\Layer.cs" />
     <Compile Include="AnnotationPro\Model\Segment.cs" />
-    <Compile Include="AnnotationPro\Serializer\AnnotationProSerializer.cs" />
     <Compile Include="Bawe\BaweScraper.cs" />
     <Compile Include="Bawe\Model\availability.cs" />
     <Compile Include="Bawe\Model\back.cs" />
@@ -140,7 +134,6 @@
     <Compile Include="Bawe\Model\titlePage.cs" />
     <Compile Include="Bawe\Model\titlePart.cs" />
     <Compile Include="Bawe\Model\titleStmt.cs" />
-    <Compile Include="Bawe\Serializer\BaweSerializer.cs" />
     <Compile Include="Bnc\Extension\biblExtension.cs" />
     <Compile Include="Bnc\Extension\imprintExtension.cs" />
     <Compile Include="Bnc\Extension\sourceDescExtension.cs" />
@@ -214,7 +207,6 @@
     <Compile Include="Bnc\Model\wtext.cs" />
     <Compile Include="Bnc\Model\bncDoc.cs" />
     <Compile Include="Bnc\ImporterBnc.cs" />
-    <Compile Include="Bnc\Serializer\BncSerializer.cs" />
     <Compile Include="Brown\Model\address.cs" />
     <Compile Include="Brown\Model\availability.cs" />
     <Compile Include="Brown\Model\body.cs" />
@@ -247,10 +239,8 @@
     <Compile Include="BundestagOpenAccess\Cleaner\BundestagsCleanerHelper.cs" />
     <Compile Include="BundestagOpenAccess\Drucksachen\BundestagDrucksachenScraper.cs" />
     <Compile Include="BundestagOpenAccess\Drucksachen\Model\DOKUMENT.cs" />
-    <Compile Include="BundestagOpenAccess\Drucksachen\Serializer\BundestagDrucksachenSerializer.cs" />
     <Compile Include="BundestagOpenAccess\Plenarprotokolle\v1\BundestagPlenarprotokolleScraper.cs" />
     <Compile Include="BundestagOpenAccess\Plenarprotokolle\v1\Model\DOKUMENT.cs" />
-    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v1\Serializer\BundestagPlenarprotokolleSerializer.cs" />
     <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\BundestagDtdPlenarprotokolleScraper.cs" />
     <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\a.cs" />
     <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\anlage.cs" />
@@ -316,7 +306,6 @@
     <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\xref.cs" />
     <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\xrefReftype.cs" />
     <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\zitat.cs" />
-    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Serializer\BundestagPlenarprotokolleSerializer.cs" />
     <Compile Include="Catma\5.0\ImporterCatma.cs" />
     <Compile Include="Catma\5.0\CatmaScraper.cs" />
     <Compile Include="Catma\6.0\ExporterCatma.cs" />
@@ -426,7 +415,6 @@
     <Compile Include="EuroparlUds\Model\p.cs" />
     <Compile Include="EuroparlUds\Model\section.cs" />
     <Compile Include="EuroparlUds\Model\text.cs" />
-    <Compile Include="EuroparlUds\Serializer\EuroParlUdsSerializer.cs" />
     <Compile Include="Exmaralda\Complex\Model\basicbody.cs" />
     <Compile Include="Exmaralda\Complex\Model\commontimeline.cs" />
     <Compile Include="Exmaralda\Complex\Model\event.cs" />
@@ -615,6 +603,24 @@
     <Compile Include="FoLiA\Model\wref.cs" />
     <Compile Include="FoLiA\Model\FoLiA.cs" />
     <Compile Include="FoLiA\Model\xref.cs" />
+    <Compile Include="Folker\Fln\ImporterFolkerFln.cs" />
+    <Compile Include="Folker\Fln\FolkerFlnScraper.cs" />
+    <Compile Include="Folker\Fln\Model\alternative.cs" />
+    <Compile Include="Folker\Fln\Model\breathe.cs" />
+    <Compile Include="Folker\Fln\Model\contribution.cs" />
+    <Compile Include="Folker\Fln\Model\head.cs" />
+    <Compile Include="Folker\Fln\Model\nonphonological.cs" />
+    <Compile Include="Folker\Fln\Model\pause.cs" />
+    <Compile Include="Folker\Fln\Model\recording.cs" />
+    <Compile Include="Folker\Fln\Model\folkertranscription.cs" />
+    <Compile Include="Folker\Fln\Model\speaker.cs" />
+    <Compile Include="Folker\Fln\Model\speakers.cs" />
+    <Compile Include="Folker\Fln\Model\time.cs" />
+    <Compile Include="Folker\Fln\Model\timeline.cs" />
+    <Compile Include="Folker\Fln\Model\timepoint.cs" />
+    <Compile Include="Folker\Fln\Model\uncertain.cs" />
+    <Compile Include="Folker\Fln\Model\w.cs" />
+    <Compile Include="Helper\XmlSerializerHelper.cs" />
     <Compile Include="Helper\XmlNodeHelper.cs" />
     <Compile Include="Catma\5.0\Parser\Abstract\AbstractCatmaRangeParser.cs" />
     <Compile Include="Catma\5.0\Parser\CatmaRangeParserFactory.cs" />
@@ -644,7 +650,6 @@
     <Compile Include="CoraXml\0.8\Model\text.cs" />
     <Compile Include="CoraXml\0.8\Model\shifttags.cs" />
     <Compile Include="CoraXml\0.8\Model\token.cs" />
-    <Compile Include="CoraXml\0.8\Serializer\CoraXml08Serializer.cs" />
     <Compile Include="CoraXml\1.0\ImporterCoraXml10.cs" />
     <Compile Include="CoraXml\1.0\Model\column.cs" />
     <Compile Include="CoraXml\1.0\Model\comment.cs" />
@@ -671,7 +676,6 @@
     <Compile Include="CoraXml\1.0\Model\token_type.cs" />
     <Compile Include="CoraXml\1.0\Model\tok_anno.cs" />
     <Compile Include="CoraXml\1.0\Model\tok_dipl.cs" />
-    <Compile Include="CoraXml\1.0\Serializer\CoraXml10Serializer.cs" />
     <Compile Include="DigitalPlato\DigitalPlatoScraper.cs" />
     <Compile Include="DigitalPlato\Model\ab.cs" />
     <Compile Include="DigitalPlato\Model\foreign.cs" />
@@ -686,6 +690,7 @@
     <Compile Include="FnhdC\ImporterFnhdC.cs" />
     <Compile Include="Helper\HtmlAgilityPackHelper.cs" />
     <Compile Include="Helper\TextHelper.cs" />
+    <Compile Include="Ids\Exceptions\IdsException.cs" />
     <Compile Include="Ids\I5Xml\IdsScraper.cs" />
     <Compile Include="Ids\I5Xml\Model\analytic.cs" />
     <Compile Include="Ids\I5Xml\Model\autoSignature.cs" />
@@ -792,7 +797,6 @@
     <Compile Include="Ids\I5Xml\Model\idsCorpus.cs" />
     <Compile Include="Ids\I5Xml\Model\xptr.cs" />
     <Compile Include="Ids\I5Xml\Model\xtitle.cs" />
-    <Compile Include="Ids\I5Xml\Serializer\IdsSerializer.cs" />
     <Compile Include="Ids\KorAP\ImporterKorapOnlyCoreNlp.cs" />
     <Compile Include="Ids\KorAP\ImporterKorap.cs" />
     <Compile Include="Ids\KorAP\ImporterKorapOnlyMalt.cs" />
@@ -919,15 +923,6 @@
     <Compile Include="Ids\KorAP\Model\TaggerFeature\Morpho\spanList.cs" />
     <Compile Include="Ids\KorAP\Model\Virtual\Token.cs" />
     <Compile Include="Ids\KorAP\Model\Virtual\TokenReference.cs" />
-    <Compile Include="Ids\KorAP\Serializer\AnnoBase\Structure\AnnoBaseStructureSerializer.cs" />
-    <Compile Include="Ids\KorAP\Serializer\AnnoBase\Tokens\AnnoBaseTokensSerializer.cs" />
-    <Compile Include="Ids\KorAP\Serializer\Root\RootSerializer.cs" />
-    <Compile Include="Ids\KorAP\Serializer\SubSub\Data\SubSubDataSerializer.cs" />
-    <Compile Include="Ids\KorAP\Serializer\SubSub\Head\SubSubHeadSerializer.cs" />
-    <Compile Include="Ids\KorAP\Serializer\Sub\SubSerializer.cs" />
-    <Compile Include="Ids\KorAP\Serializer\TaggerFeature\TaggerFeatureDependencySerializer.cs" />
-    <Compile Include="Ids\KorAP\Serializer\TaggerFeature\TaggerFeatureMorphoSerializer.cs" />
-    <Compile Include="Ids\KorAP\Serializer\TaggerFeature\TaggerFeatureConstituencySerializer.cs" />
     <Compile Include="JeanPaulLetter\Extension\CorrespActionExtension.cs" />
     <Compile Include="Dta\Basisformat\Model\ab.cs" />
     <Compile Include="Dta\Basisformat\Model\abbr.cs" />
@@ -1054,7 +1049,6 @@
     <Compile Include="Dta\Basisformat\Model\typeDesc.cs" />
     <Compile Include="Dta\Basisformat\Model\unclear.cs" />
     <Compile Include="Dta\Basisformat\Model\TEI.cs" />
-    <Compile Include="Dta\Basisformat\Serializer\DtaBasisformatSerializer.cs" />
     <Compile Include="Dta\Tcf2017\ExporterDta2017.cs" />
     <Compile Include="Dta\Tcf2017\ImporterDta2017.cs" />
     <Compile Include="Dta\Tcf2017\Dta2017Scraper.cs" />
@@ -1123,7 +1117,6 @@
     <Compile Include="Dta\Tcf2017\Model\tokens.cs" />
     <Compile Include="Dta\Tcf2017\Model\typeDesc.cs" />
     <Compile Include="Dta\Tcf2017\Model\typeDesc1.cs" />
-    <Compile Include="Dta\Tcf2017\Serializer\Dta2017Serializer.cs" />
     <Compile Include="Dta\Tcf\ExporterDta.cs" />
     <Compile Include="Dta\Tcf\DtaScraper.cs" />
     <Compile Include="Dta\Tcf\ImporterDta.cs" />
@@ -1272,7 +1265,6 @@
     <Compile Include="JeanPaulLetter\Model\title.cs" />
     <Compile Include="JeanPaulLetter\Model\titleStmt.cs" />
     <Compile Include="JeanPaulLetter\Model\trailer.cs" />
-    <Compile Include="JeanPaulLetter\Serializer\JeanPaulLetterSerializer.cs" />
     <Compile Include="LexisNexis\NexisComScraper.cs" />
     <Compile Include="Perseus\PerseusScraper.cs" />
     <Compile Include="Perseus\Model\argument.cs" />
@@ -1315,19 +1307,16 @@
     <Compile Include="Pmg\Model\titelliste.cs" />
     <Compile Include="Pmg\Model\tr.cs" />
     <Compile Include="Pmg\PmgScraper.cs" />
-    <Compile Include="Pmg\Serializer\PmgSerializer.cs" />
     <Compile Include="PostgreSqlDump\Model\column.cs" />
     <Compile Include="PostgreSqlDump\Model\header.cs" />
     <Compile Include="PostgreSqlDump\Model\data.cs" />
     <Compile Include="PostgreSqlDump\Model\records.cs" />
     <Compile Include="PostgreSqlDump\Model\row.cs" />
     <Compile Include="PostgreSqlDump\PostgreSqlDumpScraper.cs" />
-    <Compile Include="PostgreSqlDump\Serializer\PostgreSqlDumpSerializer.cs" />
     <Compile Include="PureXml\PureXmlTextScraper.cs" />
     <Compile Include="PurlOrg\Model\collection.cs" />
     <Compile Include="PurlOrg\Model\text.cs" />
     <Compile Include="PurlOrg\PurlOrgScraper.cs" />
-    <Compile Include="PurlOrg\Serializer\PurlOrgSerializer.cs" />
     <Compile Include="Shakespeare\Model\act.cs" />
     <Compile Include="Shakespeare\Model\endMatter.cs" />
     <Compile Include="Shakespeare\Model\foreign.cs" />
@@ -1340,7 +1329,6 @@
     <Compile Include="Shakespeare\Model\text.cs" />
     <Compile Include="Shakespeare\Model\stage.cs" />
     <Compile Include="Shakespeare\Model\u.cs" />
-    <Compile Include="Shakespeare\Serializer\ShakespeareSerializer.cs" />
     <Compile Include="Shakespeare\ShakespeareScraper.cs" />
     <Compile Include="Tei\Dwds\ExporterDwdsTei.cs" />
     <Compile Include="Tei\Dwds\Model\availability.cs" />
@@ -1371,7 +1359,6 @@
     <Compile Include="Tei\Dwds\Model\text.cs" />
     <Compile Include="Tei\Dwds\Model\title.cs" />
     <Compile Include="Tei\Dwds\Model\titleStmt.cs" />
-    <Compile Include="Tei\Dwds\Serializer\DwdsTeiSerializer.cs" />
     <Compile Include="Tei\Dwds\DwdsTeiScraper.cs" />
     <Compile Include="Tei\P5Cal2\Model\address.cs" />
     <Compile Include="Tei\P5Cal2\Model\analytic.cs" />
@@ -1429,8 +1416,6 @@
     <Compile Include="Tei\P5Cal2\Model\title.cs" />
     <Compile Include="Tei\P5Cal2\Model\titleStmt.cs" />
     <Compile Include="Tei\P5Cal2\P5Cal2Scraper.cs" />
-    <Compile Include="Tei\P5Cal2\Serializer\Cal2TeiCorpusSerializer.cs" />
-    <Compile Include="Tei\P5Cal2\Serializer\Cal2TeiSerializer.cs" />
     <Compile Include="TextGrid\TextGridScraper.cs" />
     <Compile Include="Tiger\Importer\Model\body.cs" />
     <Compile Include="Tiger\Importer\Model\edge.cs" />
@@ -1442,7 +1427,6 @@
     <Compile Include="Tiger\Importer\Model\t.cs" />
     <Compile Include="Tiger\Importer\Model\terminals.cs" />
     <Compile Include="Tiger\Importer\Model\corpus.cs" />
-    <Compile Include="Tiger\Importer\Serializer\TigerSerializer.cs" />
     <Compile Include="Tiger\Importer\ImporterTiger.cs" />
     <Compile Include="Tiger\Scraper\Model\annotationType.cs" />
     <Compile Include="Tiger\Scraper\Model\corpus.cs" />
@@ -1490,7 +1474,6 @@
     <Compile Include="Txm\Model\title.cs" />
     <Compile Include="Txm\Model\TEI.cs" />
     <Compile Include="Txm\Model\w.cs" />
-    <Compile Include="Txm\Serializer\TxmSerializer.cs" />
     <Compile Include="Txm\TxmScraper.cs" />
     <Compile Include="Weblicht\Model\DSpin.cs" />
     <Compile Include="Weblicht\Model\lemma.cs" />
@@ -1502,7 +1485,6 @@
     <Compile Include="Weblicht\Model\TextCorpus.cs" />
     <Compile Include="Weblicht\Model\token.cs" />
     <Compile Include="Weblicht\Model\tokens.cs" />
-    <Compile Include="Weblicht\Serializer\WeblichtSerializer.cs" />
     <Compile Include="Dewac\ImporterDewac.cs" />
     <Compile Include="DortmunderChatKorpus\DortmunderChatKorpusScraper.cs" />
     <Compile Include="DortmunderChatKorpus\Extension\MessageBodyExtension.cs" />
@@ -1524,7 +1506,6 @@
     <Compile Include="DortmunderChatKorpus\Model\record.cs" />
     <Compile Include="DortmunderChatKorpus\Model\revision.cs" />
     <Compile Include="DortmunderChatKorpus\Model\revisionHistory.cs" />
-    <Compile Include="DortmunderChatKorpus\Serializer\DortmunderChatKorpusSerializer.cs" />
     <Compile Include="Dpxc\DpxcScraper.cs" />
     <Compile Include="Dpxc\Model\DocPlusCorpus.cs" />
     <Compile Include="SlashA\Model\calculated.cs" />
@@ -1551,7 +1532,6 @@
     <Compile Include="SlashA\Model\vistola.cs" />
     <Compile Include="SlashA\Model\window.cs" />
     <Compile Include="SlashA\Model\written.cs" />
-    <Compile Include="Dta\Tcf\Serializer\DtaSerializer.cs" />
     <Compile Include="Exmaralda\Simple\ExmaraldaExbScraper.cs" />
     <Compile Include="Exmaralda\Simple\Extension\CommunicationTypeExtension.cs" />
     <Compile Include="Exmaralda\Simple\Extension\CorpusDataExtension.cs" />
@@ -1561,13 +1541,11 @@
     <Compile Include="Exmaralda\Simple\Extension\PersonTypeExtension.cs" />
     <Compile Include="Exmaralda\Simple\Extension\SegmentationExtension.cs" />
     <Compile Include="Exmaralda\Simple\Extension\SettingTypeExtension.cs" />
-    <Compile Include="Exmaralda\Simple\Serializer\ExmaraldaExbSerializer.cs" />
-    <Compile Include="Exmaralda\Simple\Serializer\ExmaraldaExsSerializer.cs" />
     <Compile Include="Exmaralda\Simple\Model\basicbody.cs" />
     <Compile Include="Exmaralda\Simple\Model\basictranscription.cs" />
-    <Compile Include="Folker\Extension\ContributionExtension.cs" />
-    <Compile Include="Folker\Extension\WExtension.cs" />
-    <Compile Include="Folker\Extension\PhraseExtension.cs" />
+    <Compile Include="Folker\Flk\Extension\ContributionExtension.cs" />
+    <Compile Include="Folker\Flk\Extension\WExtension.cs" />
+    <Compile Include="Folker\Flk\Extension\PhraseExtension.cs" />
     <Compile Include="Exmaralda\Simple\Model\Corpus.cs" />
     <Compile Include="Exmaralda\Simple\Model\annotation.cs" />
     <Compile Include="Exmaralda\Simple\Model\AnnotationType.cs" />
@@ -1682,33 +1660,31 @@
     <Compile Include="Exmaralda\Simple\Model\udmetainformation.cs" />
     <Compile Include="Exmaralda\Simple\Model\udspeakerinformation.cs" />
     <Compile Include="Exmaralda\Simple\Model\unicodekeyboard.cs" />
-    <Compile Include="Folker\FolkerScraper.cs" />
-    <Compile Include="Folker\Serializer\FolkerSerializer.cs" />
-    <Compile Include="Folker\Model\alternative.cs" />
-    <Compile Include="Folker\Model\breathe.cs" />
-    <Compile Include="Folker\Model\breatheType.cs" />
-    <Compile Include="Folker\Model\contribution.cs" />
-    <Compile Include="Folker\Model\contributionUnparsed.cs" />
-    <Compile Include="Folker\Model\folkertranscription.cs" />
-    <Compile Include="Folker\Model\lengthening.cs" />
-    <Compile Include="Folker\Model\nonphonological.cs" />
-    <Compile Include="Folker\Model\pause.cs" />
-    <Compile Include="Folker\Model\phrase.cs" />
-    <Compile Include="Folker\Model\phraseBoundaryintonation.cs" />
-    <Compile Include="Folker\Model\phraseType.cs" />
-    <Compile Include="Folker\Model\recording.cs" />
-    <Compile Include="Folker\Model\segment.cs" />
-    <Compile Include="Folker\Model\speaker.cs" />
-    <Compile Include="Folker\Model\speakers.cs" />
-    <Compile Include="Folker\Model\stress.cs" />
-    <Compile Include="Folker\Model\time.cs" />
-    <Compile Include="Folker\Model\timeline.cs" />
-    <Compile Include="Folker\Model\timepoint.cs" />
-    <Compile Include="Folker\Model\uncertain.cs" />
-    <Compile Include="Folker\Model\w.cs" />
-    <Compile Include="Folker\Model\wTransition.cs" />
+    <Compile Include="Folker\Flk\FolkerScraper.cs" />
+    <Compile Include="Folker\Flk\Model\alternative.cs" />
+    <Compile Include="Folker\Flk\Model\breathe.cs" />
+    <Compile Include="Folker\Flk\Model\breatheType.cs" />
+    <Compile Include="Folker\Flk\Model\contribution.cs" />
+    <Compile Include="Folker\Flk\Model\contributionUnparsed.cs" />
+    <Compile Include="Folker\Flk\Model\folkertranscription.cs" />
+    <Compile Include="Folker\Flk\Model\lengthening.cs" />
+    <Compile Include="Folker\Flk\Model\nonphonological.cs" />
+    <Compile Include="Folker\Flk\Model\pause.cs" />
+    <Compile Include="Folker\Flk\Model\phrase.cs" />
+    <Compile Include="Folker\Flk\Model\phraseBoundaryintonation.cs" />
+    <Compile Include="Folker\Flk\Model\phraseType.cs" />
+    <Compile Include="Folker\Flk\Model\recording.cs" />
+    <Compile Include="Folker\Flk\Model\segment.cs" />
+    <Compile Include="Folker\Flk\Model\speaker.cs" />
+    <Compile Include="Folker\Flk\Model\speakers.cs" />
+    <Compile Include="Folker\Flk\Model\stress.cs" />
+    <Compile Include="Folker\Flk\Model\time.cs" />
+    <Compile Include="Folker\Flk\Model\timeline.cs" />
+    <Compile Include="Folker\Flk\Model\timepoint.cs" />
+    <Compile Include="Folker\Flk\Model\uncertain.cs" />
+    <Compile Include="Folker\Flk\Model\w.cs" />
+    <Compile Include="Folker\Flk\Model\wTransition.cs" />
     <Compile Include="Gutenberg\GutenbergScraper.cs" />
-    <Compile Include="Helper\ZipHelper.cs" />
     <Compile Include="RepositoryManifest.cs" />
     <Compile Include="Weblicht\ExporterWeblicht.cs" />
     <Compile Include="Weblicht\ImporterWeblicht.cs" />
@@ -1719,7 +1695,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SlashA\Serializer\SlashASerializer.cs" />
     <Compile Include="SlashA\ExporterSlashA.cs" />
     <Compile Include="SlashA\SlashAScraper.cs" />
     <Compile Include="Talkbank\Extension\AnnotationTypeExtension.cs" />
@@ -1835,11 +1810,9 @@
     <Compile Include="Talkbank\Model\wordTypeFormType.cs" />
     <Compile Include="Talkbank\Model\wordTypeType.cs" />
     <Compile Include="Talkbank\Model\wordTypeUntranscribed.cs" />
-    <Compile Include="Talkbank\Serializer\TalkbankSerializer.cs" />
     <Compile Include="Talkbank\TalkbankScraper.cs" />
     <Compile Include="Tiger\Scraper\Extension\CorpusExtension.cs" />
     <Compile Include="Tiger\Scraper\Extension\SubcorpusExtension.cs" />
-    <Compile Include="Tiger\Scraper\Serializer\TigerSerializer.cs" />
     <Compile Include="Tiger\Scraper\TigerScraper.cs" />
   </ItemGroup>
   <ItemGroup>

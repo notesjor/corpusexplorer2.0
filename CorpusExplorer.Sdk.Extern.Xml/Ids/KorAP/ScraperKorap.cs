@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
+using CorpusExplorer.Sdk.Extern.Xml.Ids.Exceptions;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.Model.Root;
-using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.Serializer.Root;
-using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.Serializer.Sub;
-using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.Serializer.SubSub.Data;
-using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.Serializer.SubSub.Head;
+using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.Model.SubSub.Data;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.ZipFileIndex;
 
@@ -16,12 +13,19 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
 {
   public class KorapScraper : AbstractScraper
   {
-    private RootSerializer _rootSerializer = new RootSerializer();
-    private SubSerializer _subSerializer = new SubSerializer();
-    private SubSubHeadSerializer _subSubHeadSerializer = new SubSubHeadSerializer();
-    private SubSubDataSerializer _subSubDataSerializer = new SubSubDataSerializer();
-
     public override string DisplayName => "KorAP-XML Scraper";
+
+    public bool Debug { get; set; } = false;
+    private object _lockDebug = new object();
+    private List<Exception> _debug = new List<Exception>();
+    public IEnumerable<Exception> DebugLog
+    {
+      get
+      {
+        lock (_lockDebug)
+          return _debug;
+      }
+    }
 
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
@@ -35,20 +39,20 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       if (root.ZipFiles[0].NameFile != "header.xml")
         return null;
 
-      var header = GetZipHeader(root);
+      var header = GetZipHeader(root, file);
       if (header == null)
         return null;
 
       foreach (var dir in root.ZipDirectories)
       {
-        var dTitle = GetSubCorpusName(dir);
+        var dTitle = GetSubCorpusName(dir, file);
 
         foreach (var doc in dir.ZipDirectories)
         {
-          var text = GetText(doc.ZipFiles.FirstOrDefault(x => x.NameFile == "data.xml"));
+          var text = GetText(doc.ZipFiles.FirstOrDefault(x => x.NameFile == "data.xml"), file, doc.NamePath);
           if (string.IsNullOrEmpty(text))
             continue;
-          var meta = GetMetadata(doc.NamePath, header, dTitle, doc.ZipFiles.FirstOrDefault(x => x.NameFile == "header.xml"));
+          var meta = GetMetadata(file, doc.NamePath, header, dTitle, doc.ZipFiles.FirstOrDefault(x => x.NameFile == "header.xml"));
           meta.Add("Text", text);
           res.Add(meta);
         }
@@ -57,36 +61,55 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       return res;
     }
 
-    private string GetText(ZipFileEntry zip)
+    private string GetText(ZipFileEntry zip, string path, string zipPath)
     {
-      string res = null;
-      zip.Extract(ms =>
+      try
       {
-        res = _subSubDataSerializer.Deserialize(ms)?.text;
-      });
-      return res;
+        string res = null;
+        zip.Read(ms => { res = XmlSerializerHelper.Deserialize<raw_text>(ms)?.text; });
+        return res;
+      }
+      catch (Exception ex)
+      {
+        // ReSharper disable once InvertIf
+        if (Debug)
+          lock (_lockDebug)
+            _debug.Add(new IdsException(path, zipPath + "/data.xml", ex));
+        return null;
+      }
     }
 
-    private Dictionary<string, object> GetMetadata(string zipPath, idsHeader corpusHeader, string dTitle, ZipFileEntry entry)
+    private Dictionary<string, object> GetMetadata(string path, string zipPath, idsHeader corpusHeader, string dTitle, ZipFileEntry entry)
     {
       if (entry == null)
         return new Dictionary<string, object>();
 
       var res = new Dictionary<string, object>();
-      entry.Extract(ms =>
+      res.Add("Korpus", corpusHeader?.fileDesc?.titleStmt?.ctitle);
+      res.Add("Sprache", corpusHeader?.profileDesc?.langUsage?.language?.id);
+      res.Add("Taxonomy", GetTaxonomy(corpusHeader?.encodingDesc?.classDecl?.taxonomy));
+      res.Add("Dokumentebene", dTitle);
+      res.Add("ZipPath", zipPath);
+
+      entry.Read(ms =>
       {
-        var meta = _subSubHeadSerializer.Deserialize(ms);
-        res.Add("Korpus", corpusHeader?.fileDesc?.titleStmt?.ctitle);
-        res.Add("Sprache", corpusHeader?.profileDesc?.langUsage?.language?.id);
-        res.Add("Taxonomy", GetTaxonomy(corpusHeader?.encodingDesc?.classDecl?.taxonomy));
-        res.Add("Dokumentebene", dTitle);
-        res.Add("Sigle", meta?.fileDesc?.titleStmt?.textSigle);
-        res.Add("Titel", meta?.fileDesc?.titleStmt?.textSigle);
-        res.Add("Titel (D)", meta?.fileDesc?.titleStmt?.ttitle);
-        res.Add("Textsorte", meta?.profileDesc?.textDesc?.textType);
-        res.Add("Referenz", Reduce(meta?.fileDesc?.sourceDesc?.reference?.FirstOrDefault(x => x.type == "complete")?.Text));
-        res.Add("Datum", GetDate(meta?.fileDesc?.sourceDesc?.biblStruct?.monogr?.imprint?.pubDate));
-        res.Add("ZipPath", zipPath);
+        try
+        {
+          var meta = XmlSerializerHelper.Deserialize<Model.SubSub.Head.idsHeader>(ms);
+
+          res.Add("Sigle", meta?.fileDesc?.titleStmt?.textSigle);
+          res.Add("Titel", meta?.fileDesc?.titleStmt?.textSigle);
+          res.Add("Titel (D)", meta?.fileDesc?.titleStmt?.ttitle);
+          res.Add("Textsorte", meta?.profileDesc?.textDesc?.textType);
+          res.Add("Referenz", Reduce(meta?.fileDesc?.sourceDesc?.reference?.FirstOrDefault(x => x.type == "complete")?.Text));
+          res.Add("Datum", GetDate(meta?.fileDesc?.sourceDesc?.biblStruct?.monogr?.imprint?.pubDate));
+        }
+        catch (Exception ex)
+        {
+          if (Debug)
+            lock (_lockDebug)
+              _debug.Add(new IdsException(path, zipPath + "/header.xml", ex));
+        }
       });
       return res;
     }
@@ -115,28 +138,39 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
     private string Reduce(string[] text)
       => text == null ? "" : string.Join(" ", text);
 
-    private string GetSubCorpusName(ZipDirectoryEntry dir)
+    private string GetSubCorpusName(ZipDirectoryEntry dir, string path)
     {
-      var dTitle = string.Empty;
-      dir.ZipFiles[0].Extract(ms =>
+      var res = string.Empty;
+      dir.ZipFiles[0].Read(ms =>
       {
         try
         {
-          var sub = _subSerializer.Deserialize(ms);
-          dTitle = sub.fileDesc.titleStmt.dtitle;
+          var sub = XmlSerializerHelper.Deserialize<Model.Sub.idsHeader>(ms);
+          res = sub.fileDesc.titleStmt.dtitle;
         }
-        catch
+        catch (Exception ex)
         {
-          // ignore
+          if (Debug)
+            lock (_lockDebug)
+              _debug.Add(new IdsException(path, dir.ZipFiles[0].NamePath, ex));
         }
       });
-      return dTitle;
+      return res;
     }
 
-    private idsHeader GetZipHeader(ZipDirectoryEntry root)
+    private idsHeader GetZipHeader(ZipDirectoryEntry root, string path)
     {
-      Model.Root.idsHeader header = null;
-      root.ZipFiles[0].Extract((ms) => { header = _rootSerializer.Deserialize(ms); });
+      idsHeader header = null;
+      try
+      {
+        root.ZipFiles[0].Read((ms) => { header = XmlSerializerHelper.Deserialize<idsHeader>(ms); });
+      }
+      catch (Exception ex)
+      {
+        if (Debug)
+          lock (_lockDebug)
+            _debug.Add(new IdsException(path, root.ZipFiles[0].NamePath, ex));
+      }
       return header;
     }
   }

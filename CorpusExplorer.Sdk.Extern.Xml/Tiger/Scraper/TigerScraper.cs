@@ -3,22 +3,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Tiger.Scraper.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Tiger.Scraper.Serializer;
 
 #endregion
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Tiger.Scraper
 {
-  public sealed class TigerScraper : AbstractGenericXmlSerializerFormatScraper<corpus>
+  public sealed class TigerScraper : AbstractXmlScraper
   {
     public override string DisplayName => "TiGER-XML (*.xml)";
 
-    protected override AbstractGenericSerializer<corpus> Serializer => new TigerSerializer();
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, corpus model)
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
+      var model = XmlSerializerHelper.Deserialize<corpus>(file);
       var dic = new Dictionary<string, object>();
 
       if (model.head?.meta != null)

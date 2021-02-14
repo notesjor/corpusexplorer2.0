@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Serializer;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
@@ -17,8 +17,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds
       var layer = hydra.GetLayers("Wort").FirstOrDefault();
       if (layer == null)
         return;
-
-      var serializer = new DwdsTeiSerializer();
 
       foreach (var dsel in hydra.DocumentGuids)
       {
@@ -93,7 +91,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds
           }
         };
 
-        serializer.Serialize(tei, Path.Combine(path, dsel.ToString("N") + ".xml"));
+        XmlSerializerHelper.Serialize(tei, Path.Combine(path, dsel.ToString("N") + ".xml"));
       }
     }
 

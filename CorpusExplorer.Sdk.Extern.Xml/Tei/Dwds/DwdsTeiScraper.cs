@@ -1,26 +1,19 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Xml.Serialization;
-using CorpusExplorer.Sdk.Ecosystem.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds.Serializer;
-using HtmlAgilityPack;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds
 {
-  public class DwdsTeiScraper : AbstractGenericXmlSerializerFormatScraper<TEI>
+  public class DwdsTeiScraper : AbstractXmlScraper
   {
     public override string DisplayName => "SimpleBlog TEI-XML";
 
-    protected override AbstractGenericSerializer<TEI> Serializer => new DwdsTeiSerializer();
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, TEI model)
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
+      var model = XmlSerializerHelper.Deserialize<TEI>(file);
       var helper = new HtmlAgilityPackHelper(file);
 
       return new[]

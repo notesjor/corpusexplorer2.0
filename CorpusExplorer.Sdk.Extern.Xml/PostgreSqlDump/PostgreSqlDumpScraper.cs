@@ -1,19 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.PostgreSqlDump.Model;
-using CorpusExplorer.Sdk.Extern.Xml.PostgreSqlDump.Serializer;
 using CorpusExplorer.Sdk.Helper;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.PostgreSqlDump
 {
-  public class PostgreSqlDumpScraper : AbstractGenericXmlSerializerFormatScraper<data>
+  public class PostgreSqlDumpScraper : AbstractXmlScraper
   {
     public override string DisplayName => "PostgreSQL";
-    protected override AbstractGenericSerializer<data> Serializer { get; } = new PostgreSqlDumpSerializer();
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, data model)
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
+      var model = XmlSerializerHelper.Deserialize<data>(file);
       var res = new List<Dictionary<string, object>>();
       var types = new Dictionary<string, byte>();
 

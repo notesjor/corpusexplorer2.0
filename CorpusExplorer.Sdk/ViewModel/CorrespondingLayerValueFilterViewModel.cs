@@ -36,7 +36,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     /// </summary>
     /// <param name="tokens">Liste beliebiger Token</param>
     /// <returns>Filter ok?</returns>
-    public bool CustomFilter(string[] tokens)
+    public bool CustomFilter(params string[] tokens)
     {
       if (AnyMatch)
       {

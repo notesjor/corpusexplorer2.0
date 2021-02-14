@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.XmlDocumentBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Helper;
 using HtmlAgilityPack;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle.v2
 {
-  public class BundestagDtdPlenarprotokolleScraper : AbstractHtmlXmlDocumentScraper
+  public class BundestagDtdPlenarprotokolleScraper : AbstractHtmlScraper
   {
     public override string DisplayName { get; } = "Bundestag Plenarprotokolle (DTD ab Wahlperiode 19)";
     protected override IEnumerable<Dictionary<string, object>> Execute(string file, HtmlDocument xmlDoc)

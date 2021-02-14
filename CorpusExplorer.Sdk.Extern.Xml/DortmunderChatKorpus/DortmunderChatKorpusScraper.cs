@@ -2,22 +2,21 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus.Model;
-using CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus.Serializer;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 
 #endregion
 
 namespace CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus
 {
-  public sealed class DortmunderChatKorpusScraper : AbstractGenericXmlSerializerFormatScraper<logfile>
+  public sealed class DortmunderChatKorpusScraper : AbstractXmlScraper
   {
     public override string DisplayName => "Dortmunder Chat Korpus";
 
-    protected override AbstractGenericSerializer<logfile> Serializer => new DortmunderChatKorpusSerializer();
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, logfile model)
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
+      var model = XmlSerializerHelper.Deserialize<logfile>(file);
       return
         model.body.Select(
           message =>

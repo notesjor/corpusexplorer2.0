@@ -4,59 +4,56 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.I5Xml.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Ids.I5Xml.Serializer;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.Model;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Ids.I5Xml
 {
-  public class IdsScraper : AbstractGenericXmlSerializerFormatScraper<idsCorpus>
+  public class IdsScraper : AbstractXmlScraper
   {
     public override string DisplayName => "IDS-Korpus";
-
-    protected override AbstractGenericSerializer<idsCorpus> Serializer
+    
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
-      get
+      idsCorpus model = null;
+      bool retry = false;
+
+      do
       {
-        var res = new IdsSerializer();
-        res.OnException += ResOnOnException;
-        return res;
-      }
-    }
+        try
+        {
+          model = XmlSerializerHelper.Deserialize<idsCorpus>(file);
+          break;
+        }
+        catch (InvalidOperationException ex)
+        {
+          if (!(ex.InnerException is XmlException))
+            break;
+          if (retry)
+            break;
 
-    private bool ResOnOnException(string path, Exception ex)
-    {
-      if (!(ex is InvalidOperationException) || !(ex.InnerException is XmlException iex))
-        return false;
+          if (!File.Exists(file  + ".bak"))
+            File.Copy(file, file + ".bak");
 
-      if (!File.Exists(path + ".bak"))
-        File.Copy(path, path + ".bak");
+          var cleanup = new ExtendedStandardCleanup();
 
-      using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-      using (var reader = new StreamReader(fs, Encoding.UTF8))
-      using (var tmp = new FileStream(path + ".fix", FileMode.Create, FileAccess.Write))
-      using (var writer = new StreamWriter(tmp, Encoding.UTF8))
-      {
-        for (int i = 0; i < iex.LineNumber - 1; i++)
-          writer.WriteLine(reader.ReadLine());
+          var tmp = cleanup.Bypass(File.ReadAllText(file, Encoding.GetEncoding("iso-8859-1")));
+          File.WriteAllText(file, tmp, Encoding.UTF8);
 
-        var line = reader.ReadLine();
-        var nline = line.Substring(0, iex.LinePosition - 2) + line.Substring(line.IndexOf(';', iex.LinePosition) + 1);
-        writer.WriteLine(nline);
+          retry = true;
+        }
+        catch
+        {
+          retry = false;
+        }
+      } while (retry);
 
-        while (!reader.EndOfStream)
-          writer.WriteLine(reader.ReadLine());
-      }
-
-      File.Delete(path);
-      File.Move(path + ".fix", path);
-
-      return true;
-    }
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, idsCorpus model)
-    {
+      if (model == null)
+        return null;
+      
       var list = new List<Dictionary<string, object>>();
 
       var pK = new Dictionary<string, object>();

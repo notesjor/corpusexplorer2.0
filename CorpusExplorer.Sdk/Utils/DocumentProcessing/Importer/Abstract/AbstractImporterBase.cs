@@ -53,7 +53,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
       }
     }
 
-    protected void AddDocumet(string layerName, Guid documentGuid, string[][] document)
+    protected void AddDocument(string layerName, Guid documentGuid, string[][] document)
     {
       lock (_layerLock)
       {
@@ -62,7 +62,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
       }
     }
 
-    protected void AddDocumet(string layerName, Guid documentGuid, int[][] document)
+    protected void AddDocument(string layerName, Guid documentGuid, int[][] document)
     {
       lock (_layerLock)
       {

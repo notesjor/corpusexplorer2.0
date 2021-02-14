@@ -1,19 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.PurlOrg.Model;
-using CorpusExplorer.Sdk.Extern.Xml.PurlOrg.Serializer;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.PurlOrg
 {
-  public class PurlOrgScraper : AbstractGenericXmlSerializerFormatScraper<collection>
+  public class PurlOrgScraper : AbstractXmlScraper
   {
     public override string DisplayName => "purl.org Corpora";
 
-    protected override AbstractGenericSerializer<collection> Serializer => new PurlOrgSerializer();
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, collection model)
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
+      var model = XmlSerializerHelper.Deserialize<collection>(file);
       return
         model.text.Select(
           text =>

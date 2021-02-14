@@ -88,9 +88,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dewac
         lDoc.Add(lSent.ToArray());
       }
 
-      AddDocumet("Wort", guid, wDoc.ToArray());
-      AddDocumet("POS", guid, pDoc.ToArray());
-      AddDocumet("Lemma", guid, lDoc.ToArray());
+      AddDocument("Wort", guid, wDoc.ToArray());
+      AddDocument("POS", guid, pDoc.ToArray());
+      AddDocument("Lemma", guid, lDoc.ToArray());
     }
   }
 }

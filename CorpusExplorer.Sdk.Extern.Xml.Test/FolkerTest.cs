@@ -1,8 +1,8 @@
 #region
 
 using System;
-using CorpusExplorer.Sdk.Extern.Xml.Folker.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Folker.Serializer;
+using CorpusExplorer.Sdk.Extern.Xml.Folker.Flk.Model;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #endregion
@@ -15,8 +15,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Test
     [TestMethod]
     public void DeserializeTest()
     {
-      var serializer = new FolkerSerializer();
-      var folker = serializer.Deserialize("testdata/syntax_examples.flk");
+      var folker = XmlSerializerHelper.Deserialize<folkertranscription>("testdata/syntax_examples.flk");
 
       Assert.IsNotNull(folker.speakers);
       Assert.AreEqual(2, folker.speakers.Length);

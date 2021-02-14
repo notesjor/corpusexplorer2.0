@@ -1,7 +1,7 @@
 #region
 
 using CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus.Model;
-using CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus.Serializer;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #endregion
@@ -14,13 +14,12 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Test
     [TestMethod]
     public void SerializeTest()
     {
-      var serializer = new DortmunderChatKorpusSerializer();
-      var log1 = serializer.Deserialize("testdata/DortmundCK_test.xml");
+      var log1 = XmlSerializerHelper.Deserialize<logfile>("testdata/DortmundCK_test.xml");
 
       ValidateLogfile(log1);
 
-      serializer.Serialize(log1, "testdata/DortmundCK_test_output.xml");
-      var log2 = serializer.Deserialize("testdata/DortmundCK_test_output.xml");
+      XmlSerializerHelper.Serialize(log1, "testdata/DortmundCK_test_output.xml");
+      var log2 = XmlSerializerHelper.Deserialize<logfile>("testdata/DortmundCK_test_output.xml");
 
       ValidateLogfile(log2);
 

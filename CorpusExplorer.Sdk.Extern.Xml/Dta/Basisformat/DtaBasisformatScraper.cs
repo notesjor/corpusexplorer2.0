@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using CorpusExplorer.Sdk.Ecosystem.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat.Serializer;
 using CorpusExplorer.Sdk.Extern.Xml.Helper;
-using HtmlAgilityPack;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat
 {
-  public class DtaBasisformatScraper : AbstractGenericXmlSerializerFormatScraper<TEI>
+  public class DtaBasisformatScraper : AbstractXmlScraper
   {
     public override string DisplayName => "DTA-Basisformat";
-    protected override AbstractGenericSerializer<TEI> Serializer => new DtaBasisformatSerializer();
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, TEI model)
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
+      var model = XmlSerializerHelper.Deserialize<TEI>(file);
       var helper = new HtmlAgilityPackHelper(file);
       helper.RemoveNodes(new[] {"//pb", "//fw", "//table", "//figure", "//note"});
 

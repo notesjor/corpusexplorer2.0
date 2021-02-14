@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.XmlDocumentBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using HtmlAgilityPack;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Shakespeare
 {
-  public class ShakespeareScraper : AbstractHtmlXmlDocumentScraper
+  public class ShakespeareScraper : AbstractHtmlScraper
   {
     public override string DisplayName => "Shakespeare";
 

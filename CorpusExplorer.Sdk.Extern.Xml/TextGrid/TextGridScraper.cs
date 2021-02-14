@@ -2,11 +2,11 @@
 using System.IO;
 using System.Linq;
 using System.Xml;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.XmlDocumentBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.TextGrid
 {
-  public class TextGridScraper : AbstractXmlDocumentScraper
+  public class TextGridScraper : AbstractExtendedXmlScraper
   {
     public override string DisplayName => "TextGrid";
 

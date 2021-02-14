@@ -3,22 +3,21 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Simple.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Simple.Serializer;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 
 #endregion
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Simple
 {
-  public sealed class ExmaraldaExbScraper : AbstractGenericXmlSerializerFormatScraper<basictranscription>
+  public sealed class ExmaraldaExbScraper : AbstractXmlScraper
   {
     public override string DisplayName => "EXMERaLDA-*.EXB";
 
-    protected override AbstractGenericSerializer<basictranscription> Serializer => new ExmaraldaExbSerializer();
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, basictranscription model)
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
+      var model = XmlSerializerHelper.Deserialize<basictranscription>(file);
       var res = new List<Dictionary<string, object>>();
       foreach (var tier in model.basicbody.tier)
         res.AddRange(tier.@event.Select((e, i) => new Dictionary<string, object>

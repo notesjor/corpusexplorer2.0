@@ -64,22 +64,22 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radPanel8 = new Telerik.WinControls.UI.RadPanel();
       this.page_analytics_snapshot_list_snapshots = new Telerik.WinControls.UI.RadTreeView();
       this.radPanel10 = new Telerik.WinControls.UI.RadPanel();
-      this.clearPanel6 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
       this.page_analytics_snapshot_btn_snapshot_invert = new Telerik.WinControls.UI.RadButton();
-      this.clearPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
       this.page_analytics_snapshot_btn_snapshot_reduceBfromA = new Telerik.WinControls.UI.RadButton();
       this.page_analytics_snapshot_btn_snapshot_join = new Telerik.WinControls.UI.RadButton();
-      this.clearPanel2 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
       this.page_analytics_snapshot_btn_snapshot_union = new Telerik.WinControls.UI.RadButton();
       this.page_analytics_snapshot_btn_snapshot_diff = new Telerik.WinControls.UI.RadButton();
+      this.clearPanel6 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
+      this.clearPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
+      this.clearPanel2 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
       this.panel1 = new System.Windows.Forms.Panel();
       this.page_analytics_snapshot_btn_snapshot_export = new Telerik.WinControls.UI.RadButton();
       this.page_analytics_snapshot_btn_snapshot_load = new Telerik.WinControls.UI.RadButton();
-      this.clearPanel11 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
       this.page_analytics_snapshot_btn_snapshot_remove = new Telerik.WinControls.UI.RadButton();
       this.page_analytics_snapshot_btn_snapshot_edit = new Telerik.WinControls.UI.RadButton();
-      this.clearPanel10 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
       this.page_analytics_snapshot_btn_snapshot_clonedetection = new Telerik.WinControls.UI.RadButton();
+      this.clearPanel11 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
+      this.clearPanel10 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
       this.clearPanel5 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
       this.page_analytics_snapshot_btn_snapshot_mask = new Telerik.WinControls.UI.RadDropDownButton();
       this.page_analytics_snapshot_btn_snapshot_mask_individual = new Telerik.WinControls.UI.RadMenuItem();
@@ -276,22 +276,22 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_list_snapshots)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel10)).BeginInit();
       this.radPanel10.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel6)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_invert)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_reduceBfromA)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_join)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_union)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_diff)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.clearPanel6)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.clearPanel1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.clearPanel2)).BeginInit();
       this.panel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_export)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_load)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel11)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_remove)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_edit)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel10)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_clonedetection)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.clearPanel11)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.clearPanel10)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.clearPanel5)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_mask)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_add)).BeginInit();
@@ -727,11 +727,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       resources.ApplyResources(this.radPanel10, "radPanel10");
       this.radPanel10.Name = "radPanel10";
       // 
-      // clearPanel6
-      // 
-      resources.ApplyResources(this.clearPanel6, "clearPanel6");
-      this.clearPanel6.Name = "clearPanel6";
-      // 
       // page_analytics_snapshot_btn_snapshot_invert
       // 
       resources.ApplyResources(this.page_analytics_snapshot_btn_snapshot_invert, "page_analytics_snapshot_btn_snapshot_invert");
@@ -739,11 +734,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_analytics_snapshot_btn_snapshot_invert.Name = "page_analytics_snapshot_btn_snapshot_invert";
       this.page_analytics_snapshot_btn_snapshot_invert.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Invertieren;
       this.page_analytics_snapshot_btn_snapshot_invert.Click += new System.EventHandler(this.page_analytics_snapshot_btn_snapshot_invert_Click);
-      // 
-      // clearPanel1
-      // 
-      resources.ApplyResources(this.clearPanel1, "clearPanel1");
-      this.clearPanel1.Name = "clearPanel1";
       // 
       // page_analytics_snapshot_btn_snapshot_reduceBfromA
       // 
@@ -759,11 +749,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_analytics_snapshot_btn_snapshot_join.Name = "page_analytics_snapshot_btn_snapshot_join";
       this.page_analytics_snapshot_btn_snapshot_join.Click += new System.EventHandler(this.page_analytics_snapshot_btn_snapshot_join_Click);
       // 
-      // clearPanel2
-      // 
-      resources.ApplyResources(this.clearPanel2, "clearPanel2");
-      this.clearPanel2.Name = "clearPanel2";
-      // 
       // page_analytics_snapshot_btn_snapshot_union
       // 
       resources.ApplyResources(this.page_analytics_snapshot_btn_snapshot_union, "page_analytics_snapshot_btn_snapshot_union");
@@ -777,6 +762,21 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_analytics_snapshot_btn_snapshot_diff.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.settheory_difference;
       this.page_analytics_snapshot_btn_snapshot_diff.Name = "page_analytics_snapshot_btn_snapshot_diff";
       this.page_analytics_snapshot_btn_snapshot_diff.Click += new System.EventHandler(this.page_analytics_snapshot_btn_snapshot_diff_Click);
+      // 
+      // clearPanel6
+      // 
+      resources.ApplyResources(this.clearPanel6, "clearPanel6");
+      this.clearPanel6.Name = "clearPanel6";
+      // 
+      // clearPanel1
+      // 
+      resources.ApplyResources(this.clearPanel1, "clearPanel1");
+      this.clearPanel1.Name = "clearPanel1";
+      // 
+      // clearPanel2
+      // 
+      resources.ApplyResources(this.clearPanel2, "clearPanel2");
+      this.clearPanel2.Name = "clearPanel2";
       // 
       // panel1
       // 
@@ -807,11 +807,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_analytics_snapshot_btn_snapshot_load.Name = "page_analytics_snapshot_btn_snapshot_load";
       this.page_analytics_snapshot_btn_snapshot_load.Click += new System.EventHandler(this.page_analytics_snapshot_btn_snapshot_load_Click);
       // 
-      // clearPanel11
-      // 
-      resources.ApplyResources(this.clearPanel11, "clearPanel11");
-      this.clearPanel11.Name = "clearPanel11";
-      // 
       // page_analytics_snapshot_btn_snapshot_remove
       // 
       resources.ApplyResources(this.page_analytics_snapshot_btn_snapshot_remove, "page_analytics_snapshot_btn_snapshot_remove");
@@ -826,17 +821,22 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_analytics_snapshot_btn_snapshot_edit.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Bearbeiten;
       this.page_analytics_snapshot_btn_snapshot_edit.Click += new System.EventHandler(this.page_analytics_snapshot_btn_snapshot_edit_Click);
       // 
-      // clearPanel10
-      // 
-      resources.ApplyResources(this.clearPanel10, "clearPanel10");
-      this.clearPanel10.Name = "clearPanel10";
-      // 
       // page_analytics_snapshot_btn_snapshot_clonedetection
       // 
       resources.ApplyResources(this.page_analytics_snapshot_btn_snapshot_clonedetection, "page_analytics_snapshot_btn_snapshot_clonedetection");
       this.page_analytics_snapshot_btn_snapshot_clonedetection.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.module_warn;
       this.page_analytics_snapshot_btn_snapshot_clonedetection.Name = "page_analytics_snapshot_btn_snapshot_clonedetection";
       this.page_analytics_snapshot_btn_snapshot_clonedetection.Click += new System.EventHandler(this.page_analytics_snapshot_btn_snapshot_clonedetection_Click);
+      // 
+      // clearPanel11
+      // 
+      resources.ApplyResources(this.clearPanel11, "clearPanel11");
+      this.clearPanel11.Name = "clearPanel11";
+      // 
+      // clearPanel10
+      // 
+      resources.ApplyResources(this.clearPanel10, "clearPanel10");
+      this.clearPanel10.Name = "clearPanel10";
       // 
       // clearPanel5
       // 
@@ -2498,22 +2498,22 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_list_snapshots)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel10)).EndInit();
       this.radPanel10.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel6)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_invert)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_reduceBfromA)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_join)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel2)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_union)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_diff)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.clearPanel6)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.clearPanel1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.clearPanel2)).EndInit();
       this.panel1.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_export)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_load)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel11)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_remove)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_edit)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.clearPanel10)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_clonedetection)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.clearPanel11)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.clearPanel10)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.clearPanel5)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_mask)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.page_analytics_snapshot_btn_snapshot_add)).EndInit();

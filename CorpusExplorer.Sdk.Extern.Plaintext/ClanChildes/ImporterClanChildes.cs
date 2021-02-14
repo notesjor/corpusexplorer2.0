@@ -747,13 +747,13 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
       if (layerWord == null)
         return;
 
-      AddDocumet("Wort", dguid, new[] {layerWord});
-      AddDocumet("Lemma", dguid, new[] {layerLemma});
-      AddDocumet("Lemma-Info", dguid, new[] {layerLemmaInfo});
-      AddDocumet("POS", dguid, new[] {layerPos});
-      AddDocumet("POS-Info", dguid, new[] {layerPosInfo});
-      AddDocumet("POS-Person", dguid, new[] {layerPosPerson});
-      AddDocumet("@-Kategorie", dguid, new[] {layerCategory});
+      AddDocument("Wort", dguid, new[] {layerWord});
+      AddDocument("Lemma", dguid, new[] {layerLemma});
+      AddDocument("Lemma-Info", dguid, new[] {layerLemmaInfo});
+      AddDocument("POS", dguid, new[] {layerPos});
+      AddDocument("POS-Info", dguid, new[] {layerPosInfo});
+      AddDocument("POS-Person", dguid, new[] {layerPosPerson});
+      AddDocument("@-Kategorie", dguid, new[] {layerCategory});
       AddDocumentMetadata(
         dguid,
         GenerateDictionary(

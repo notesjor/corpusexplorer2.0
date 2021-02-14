@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Txm.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Txm.Serializer;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 
@@ -14,7 +14,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Txm
     private object _templateLock = new object();
     private int _docCount = 0;
     private object _docCountLock = new object();
-    private TxmSerializer _serialier = new TxmSerializer();
 
     public override void Export(IHydra hydra, string path)
     {
@@ -71,7 +70,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Txm
               }
             }
           };
-          _serialier.Serialize(tei, Path.Combine(path, $"{id:D5}.xml"));
+          XmlSerializerHelper.Serialize(tei, Path.Combine(path, $"{id:D5}.xml"));
         }
       }
     }

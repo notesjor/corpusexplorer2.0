@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Tiger.Importer.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Tiger.Importer.Serializer;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Tiger.Importer
@@ -10,7 +10,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tiger.Importer
   {
     protected override corpus ImportStep_1_ReadFile(string path)
     {
-      return new TigerSerializer().Deserialize(path);
+      return XmlSerializerHelper.Deserialize<corpus>(path);
     }
 
     protected override void ImportStep_2_ImportMetadata(Guid documentGuid, ref corpus data)
@@ -95,14 +95,14 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Tiger.Importer
         sEdgeC.Add(Trim(tEdgeC));
       }
 
-      AddDocumet("Wort", documentGuid, sWord.ToArray());
-      AddDocumet("Lemma", documentGuid, sLemma.ToArray());
-      AddDocumet("POS", documentGuid, sPos.ToArray());
-      AddDocumet("Morph", documentGuid, sMorph.ToArray());
-      AddDocumet("Phrase", documentGuid, sPhrase.ToArray());
-      AddDocumet("Phrase (Info)", documentGuid, sEdge.ToArray());
-      AddDocumet("Phrase*", documentGuid, sPhraseC.ToArray());
-      AddDocumet("Phrase* (Info)", documentGuid, sEdgeC.ToArray());
+      AddDocument("Wort", documentGuid, sWord.ToArray());
+      AddDocument("Lemma", documentGuid, sLemma.ToArray());
+      AddDocument("POS", documentGuid, sPos.ToArray());
+      AddDocument("Morph", documentGuid, sMorph.ToArray());
+      AddDocument("Phrase", documentGuid, sPhrase.ToArray());
+      AddDocument("Phrase (Info)", documentGuid, sEdge.ToArray());
+      AddDocument("Phrase*", documentGuid, sPhraseC.ToArray());
+      AddDocument("Phrase* (Info)", documentGuid, sEdgeC.ToArray());
     }
 
     private string[] Trim(string[] arr)

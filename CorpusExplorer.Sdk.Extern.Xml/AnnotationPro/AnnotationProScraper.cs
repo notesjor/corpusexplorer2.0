@@ -1,20 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.AnnotationPro.Model;
-using CorpusExplorer.Sdk.Extern.Xml.AnnotationPro.Serializer;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
+using CorpusExplorer.Sdk.Utils.ZipFileIndex;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.AnnotationPro
 {
-  public sealed class AnnotationProScraper : AbstractGenericXmlSerializerFormatScraper<AnnotationSystemDataSet>
+  public sealed class AnnotationProScraper : AbstractXmlScraper
   {
     public override string DisplayName => "AnnotationPro";
 
-    protected override AbstractGenericSerializer<AnnotationSystemDataSet> Serializer => new AnnotationProSerializer();
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, AnnotationSystemDataSet model)
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
-      var guid = model.Layer.Where(layer => layer.Name == "Text").Select(layer => layer.Id).FirstOrDefault();
+      AnnotationSystemDataSet model = null;
+      var zipFile = new ZipFileIndex(file);
+      zipFile.ZipDirectoryRoot.ZipFiles.FirstOrDefault(x => x.NameFile == "annotation.xml")?.Read(ms =>
+      {
+        model = XmlSerializerHelper.Deserialize<AnnotationSystemDataSet>(ms);
+      });
+
+      var guid = model?.Layer.Where(layer => layer.Name == "Text").Select(layer => layer.Id).FirstOrDefault();
       if (guid == null)
         return null;
 

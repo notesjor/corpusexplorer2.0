@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Text;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Properties;
@@ -10,7 +11,7 @@ using CorpusExplorer.Sdk.ViewModel.Interfaces;
 
 namespace CorpusExplorer.Sdk.ViewModel
 {
-  public class KeywordPresetReferenceListViewModel : AbstractViewModel, IProvideDataTable
+  public class KeywordPresetReferenceListViewModel : AbstractViewModel, IProvideDataTable, IProvideCorrespondingLayerValueFilter
   {
     public string LayerDisplayname { get; set; } = "Wort";
 
@@ -36,11 +37,12 @@ namespace CorpusExplorer.Sdk.ViewModel
       res.Columns.Add(Resources.Significance, typeof(double));
 
       res.BeginLoadData();
-      foreach (var pair in KeywordDiff)
-        if (KeywordFrequencyCurrent.ContainsKey(pair.Key) && KeywordFrequencyReference.ContainsKey(pair.Key) &&
-            KeywordSignificance.ContainsKey(pair.Key))
-          res.Rows.Add(pair.Key, KeywordFrequencyCurrent[pair.Key], KeywordFrequencyReference[pair.Key], pair.Value,
-                       KeywordSignificance[pair.Key]);
+      foreach (var pair in KeywordDiff.Where(pair => KeywordFrequencyCurrent.ContainsKey(pair.Key) && KeywordFrequencyReference.ContainsKey(pair.Key) && KeywordSignificance.ContainsKey(pair.Key)))
+        if(CorrespondingLayerValueFilter == null)
+          res.Rows.Add(pair.Key, KeywordFrequencyCurrent[pair.Key], KeywordFrequencyReference[pair.Key], pair.Value, KeywordSignificance[pair.Key]);
+        else if(CorrespondingLayerValueFilter.CustomFilter(pair.Key))
+          res.Rows.Add(pair.Key, KeywordFrequencyCurrent[pair.Key], KeywordFrequencyReference[pair.Key], pair.Value, KeywordSignificance[pair.Key]);
+
       res.EndLoadData();
 
       return res;
@@ -85,5 +87,7 @@ namespace CorpusExplorer.Sdk.ViewModel
         }
       }
     }
+
+    public CorrespondingLayerValueFilterViewModel CorrespondingLayerValueFilter { get; set; }
   }
 }

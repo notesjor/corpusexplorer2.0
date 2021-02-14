@@ -1,19 +1,18 @@
 ﻿using System.Collections.Generic;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Cleaner;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Drucksachen.Model;
-using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Drucksachen.Serializer;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Helper;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Drucksachen
 {
-  public class BundestagDrucksachenScraper : AbstractGenericXmlSerializerFormatScraper<DOKUMENT>
+  public class BundestagDrucksachenScraper : AbstractXmlScraper
   {
     public override string DisplayName => "Bundestag Drucksachen";
-    protected override AbstractGenericSerializer<DOKUMENT> Serializer => new BundestagDrucksachenSerializer();
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, DOKUMENT model)
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
+      var model = XmlSerializerHelper.Deserialize<DOKUMENT>(file);
       return new[]
       {
         new Dictionary<string, object>

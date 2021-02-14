@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Txm.Extension;
-using CorpusExplorer.Sdk.Extern.Xml.Txm.Serializer;
-using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
+using CorpusExplorer.Sdk.Extern.Xml.Txm.Model;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Txm
 {
@@ -15,7 +13,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Txm
     public override string DisplayName => "TEI-TXM";
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
-      var tei = (new TxmSerializer()).Deserialize(file);
+      var tei = XmlSerializerHelper.Deserialize<TEI>(file);
       return new[]
       {
         new Dictionary<string, object>

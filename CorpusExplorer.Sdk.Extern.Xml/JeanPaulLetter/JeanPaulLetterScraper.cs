@@ -1,26 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using CorpusExplorer.Sdk.Ecosystem.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.JeanPaulLetter.Extension;
 using CorpusExplorer.Sdk.Extern.Xml.JeanPaulLetter.Model;
-using CorpusExplorer.Sdk.Extern.Xml.JeanPaulLetter.Serializer;
-using HtmlAgilityPack;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.JeanPaulLetter
 {
-  public class JeanPaulLetterScraper : AbstractGenericXmlSerializerFormatScraper<TEI>
+  public class JeanPaulLetterScraper : AbstractXmlScraper
   {
     private const string JoinMark = " | ";
     public override string DisplayName => "Jean Paul Edition";
-    protected override AbstractGenericSerializer<TEI> Serializer => new JeanPaulLetterSerializer();
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, TEI model)
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
+      var model = XmlSerializerHelper.Deserialize<TEI>(file);
       var helper = new HtmlAgilityPackHelper(file);
       helper.RemoveNodes(new[] { "//note", "//lb", "//dateline", "//div[@type=\"comment\"]" });
 

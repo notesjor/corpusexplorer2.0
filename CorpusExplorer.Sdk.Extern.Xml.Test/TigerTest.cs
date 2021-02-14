@@ -1,9 +1,9 @@
 #region
 
 using System.Linq;
-using CorpusExplorer.Sdk.Extern.Xml.Tiger.Extension;
-using CorpusExplorer.Sdk.Extern.Xml.Tiger.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Tiger.Serializer;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
+using CorpusExplorer.Sdk.Extern.Xml.Tiger.Scraper.Extension;
+using CorpusExplorer.Sdk.Extern.Xml.Tiger.Scraper.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #endregion
@@ -16,9 +16,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Test
     [TestMethod]
     public void TigerSerializerTest()
     {
-      var serializer = new TigerSerializer();
-
-      var obj1 = serializer.Deserialize("testdata/tiger_sample.xml");
+      var obj1 = XmlSerializerHelper.Deserialize<corpus>("testdata/tiger_sample.xml");
       ValidateObject(obj1);
     }
 

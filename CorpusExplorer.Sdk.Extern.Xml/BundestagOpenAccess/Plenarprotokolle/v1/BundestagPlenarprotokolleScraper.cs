@@ -1,19 +1,18 @@
 ﻿using System.Collections.Generic;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Cleaner;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle.Model;
-using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle.v1.Serializer;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Helper;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle.v1
 {
-  public class BundestagPlenarprotokolleScraper : AbstractGenericXmlSerializerFormatScraper<DOKUMENT>
+  public class BundestagPlenarprotokolleScraper : AbstractXmlScraper
   {
     public override string DisplayName => "Bundestag Plenarprotokolle";
-    protected override AbstractGenericSerializer<DOKUMENT> Serializer => new BundestagPlenarprotokolleSerializer();
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, DOKUMENT model)
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
+      var model = XmlSerializerHelper.Deserialize<DOKUMENT>(file);
       return new[]
       {
         new Dictionary<string, object>

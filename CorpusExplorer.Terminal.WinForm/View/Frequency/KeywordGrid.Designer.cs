@@ -47,6 +47,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       this.commandBarHostItem1 = new Telerik.WinControls.UI.CommandBarHostItem();
       this.btn_ok = new Telerik.WinControls.UI.CommandBarButton();
       this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
+      this.btn_posFilter = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
@@ -79,6 +80,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
             this.btn_filterlist,
             this.btn_filtereditor,
             this.btn_regex,
+            this.btn_posFilter,
             this.btn_layer,
             this.commandBarSeparator1,
             this.btn_csvExport,
@@ -93,9 +95,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       // 
       // btn_calc
       // 
+      this.btn_calc.AutoToolTip = true;
       resources.ApplyResources(this.btn_calc, "btn_calc");
       this.btn_calc.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.calculator;
-      this.btn_calc.AutoToolTip = true;
       this.btn_calc.Name = "btn_calc";
       this.btn_calc.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.EigeneFunktionenBerechnungen;
       this.btn_calc.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.EigeneFunktionenBerechnungen;
@@ -103,33 +105,33 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       // 
       // btn_filterlist
       // 
+      this.btn_filterlist.AutoToolTip = true;
       resources.ApplyResources(this.btn_filterlist, "btn_filterlist");
       this.btn_filterlist.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_list;
-      this.btn_filterlist.AutoToolTip = true;
       this.btn_filterlist.Name = "btn_filterlist";
       this.btn_filterlist.Click += new System.EventHandler(this.btn_filterlist_Click);
       // 
       // btn_filtereditor
       // 
+      this.btn_filtereditor.AutoToolTip = true;
       resources.ApplyResources(this.btn_filtereditor, "btn_filtereditor");
       this.btn_filtereditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
-      this.btn_filtereditor.AutoToolTip = true;
       this.btn_filtereditor.Name = "btn_filtereditor";
       this.btn_filtereditor.Click += new System.EventHandler(this.btn_filtereditor_Click);
       // 
       // btn_regex
       // 
+      this.btn_regex.AutoToolTip = true;
       resources.ApplyResources(this.btn_regex, "btn_regex");
       this.btn_regex.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_regex;
-      this.btn_regex.AutoToolTip = true;
       this.btn_regex.Name = "btn_regex";
       this.btn_regex.Click += new System.EventHandler(this.btn_regex_Click);
       // 
       // btn_layer
       // 
+      this.btn_layer.AutoToolTip = true;
       resources.ApplyResources(this.btn_layer, "btn_layer");
       this.btn_layer.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers;
-      this.btn_layer.AutoToolTip = true;
       this.btn_layer.Name = "btn_layer";
       this.btn_layer.Click += new System.EventHandler(this.btn_layer_Click);
       // 
@@ -143,9 +145,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       // 
       // btn_csvExport
       // 
+      this.btn_csvExport.AutoToolTip = true;
       resources.ApplyResources(this.btn_csvExport, "btn_csvExport");
       this.btn_csvExport.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
-      this.btn_csvExport.AutoToolTip = true;
       this.btn_csvExport.Name = "btn_csvExport";
       this.btn_csvExport.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.CSVExport;
       this.btn_csvExport.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.CSVExport;
@@ -153,9 +155,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       // 
       // btn_print
       // 
+      this.btn_print.AutoToolTip = true;
       resources.ApplyResources(this.btn_print, "btn_print");
       this.btn_print.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.print;
-      this.btn_print.AutoToolTip = true;
       this.btn_print.Name = "btn_print";
       this.btn_print.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Drucken;
       this.btn_print.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Drucken;
@@ -188,15 +190,15 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       this.commandBarHostItem1.Bounds = new System.Drawing.Rectangle(0, 0, 253, 38);
       this.commandBarHostItem1.MinSize = new System.Drawing.Size(250, 36);
       this.commandBarHostItem1.Name = "commandBarHostItem1";
-      resources.ApplyResources(this.commandBarHostItem1, "commandBarHostItem1");
       // 
       // btn_ok
       // 
+      this.btn_ok.AutoToolTip = true;
       resources.ApplyResources(this.btn_ok, "btn_ok");
       this.btn_ok.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
-      this.btn_ok.AutoToolTip = true;
       this.btn_ok.Name = "btn_ok";
       this.btn_ok.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.VergleichStarten;
+      this.btn_ok.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.VergleichStarten;
       this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
       // 
       // radGridView1
@@ -212,6 +214,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       this.radGridView1.MasterTemplate.MultiSelect = true;
       this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
+      // 
+      // btn_posFilter
+      // 
+      resources.ApplyResources(this.btn_posFilter, "btn_posFilter");
+      this.btn_posFilter.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_pos;
+      this.btn_posFilter.Name = "btn_posFilter";
+      this.btn_posFilter.Click += new System.EventHandler(this.btn_posFilter_Click);
       // 
       // KeywordGrid
       // 
@@ -246,5 +255,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
     private Telerik.WinControls.UI.CommandBarButton btn_layer;
     private Telerik.WinControls.UI.CommandBarHostItem commandBarHostItem1;
     private Telerik.WinControls.UI.CommandBarButton btn_regex;
+    private Telerik.WinControls.UI.CommandBarButton btn_posFilter;
   }
 }

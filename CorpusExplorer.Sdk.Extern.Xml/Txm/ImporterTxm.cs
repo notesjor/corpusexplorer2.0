@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Txm.Extension;
 using CorpusExplorer.Sdk.Extern.Xml.Txm.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Txm.Serializer;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Txm
@@ -12,7 +12,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Txm
   {
     protected override TEI ImportStep_1_ReadFile(string path)
     {
-      return (new TxmSerializer()).Deserialize(path);
+      return XmlSerializerHelper.Deserialize<TEI>(path);
     }
 
     protected override void ImportStep_2_ImportMetadata(Guid documentGuid, ref TEI data)
@@ -49,9 +49,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Txm
           senP.Clear();
         }
 
-      AddDocumet("Wort", documentGuid, txtW.ToArray());
-      AddDocumet("Lemma", documentGuid, txtL.ToArray());
-      AddDocumet("POS", documentGuid, txtP.ToArray());
+      AddDocument("Wort", documentGuid, txtW.ToArray());
+      AddDocument("Lemma", documentGuid, txtL.ToArray());
+      AddDocument("POS", documentGuid, txtP.ToArray());
     }
   }
 }

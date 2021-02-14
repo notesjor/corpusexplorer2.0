@@ -259,7 +259,14 @@ namespace CorpusExplorer.Core
         new QueryAction(),
 
         new ClusterListAction(),
-        new QueryListAction()
+        new QueryListAction(),
+
+        new CooccurrenceCorrespondingAction(),
+        new CrossFrequencyCorrespondingAction(),
+        new DispersionCorrespondingAction(),
+        new KeywordCorrespondingAction(),
+        new NGramCorrespondingAction(),
+        new PositionFrequencyAction(),
       };
 
     /// <summary>

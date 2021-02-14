@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using CorpusExplorer.Sdk.Extern.Xml.CoraXml._0._8.Extension;
 using CorpusExplorer.Sdk.Extern.Xml.CoraXml._0._8.Model;
-using CorpusExplorer.Sdk.Extern.Xml.CoraXml._0._8.Serializer;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.CoraXml._0._8
@@ -13,7 +13,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.CoraXml._0._8
   {
     protected override void ExecuteCall(string path)
     {
-      var doc = new CoraXml08Serializer().Deserialize(path);
+      var doc = XmlSerializerHelper.Deserialize<text>(path);
       var dsel = Guid.NewGuid();
 
       GetMetadata(path, doc, dsel);
@@ -67,11 +67,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.CoraXml._0._8
         sMorph.Add(cMorph.ToArray());
       }
 
-      AddDocumet("Wort", dsel, sWort.ToArray());
-      AddDocumet("Lemma (S)", dsel, sLemmaS.ToArray());
-      AddDocumet("Lemma", dsel, sLemma.ToArray());
-      AddDocumet("POS", dsel, sPos.ToArray());
-      AddDocumet("MORPH", dsel, sMorph.ToArray());
+      AddDocument("Wort", dsel, sWort.ToArray());
+      AddDocument("Lemma (S)", dsel, sLemmaS.ToArray());
+      AddDocument("Lemma", dsel, sLemma.ToArray());
+      AddDocument("POS", dsel, sPos.ToArray());
+      AddDocument("MORPH", dsel, sMorph.ToArray());
     }
 
     private void GetMetadata(string path, text doc, Guid dsel)

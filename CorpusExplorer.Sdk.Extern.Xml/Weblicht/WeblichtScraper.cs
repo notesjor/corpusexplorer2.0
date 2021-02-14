@@ -4,23 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Weblicht.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Weblicht.Serializer;
 
 #endregion
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
 {
   // ReSharper disable once UnusedMember.Global
-  public class WeblichtScraper : AbstractGenericXmlSerializerFormatScraper<DSpin>
+  public class WeblichtScraper : AbstractXmlScraper
   {
     public override string DisplayName => "Weblicht-XML";
 
-    protected override AbstractGenericSerializer<DSpin> Serializer => new WeblichtSerializer();
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, DSpin model)
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
+      var model = XmlSerializerHelper.Deserialize<DSpin>(file);
       var corpus = model.TextCorpus;
       var tokens = corpus.tokens.ToDictionary(t => t.ID, t => t.Text);
       var stb = new StringBuilder();

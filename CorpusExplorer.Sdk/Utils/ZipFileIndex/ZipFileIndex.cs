@@ -1,43 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
-using ICSharpCode.SharpZipLib.Zip;
 
 namespace CorpusExplorer.Sdk.Utils.ZipFileIndex
 {
-  public class ZipFileIndex
+  public class ZipFileIndex : IDisposable
   {
-    protected internal string _path;
+    private FileStream _fs;
+    private ZipArchive _zip;
     private ZipDirectoryEntry _root = new ZipDirectoryEntry();
 
-    public ZipFileIndex(string path)
+    public ZipFileIndex(string path, FileMode mode = FileMode.Open, FileAccess access = FileAccess.Read, FileShare share = FileShare.Read)
     {
-      _path = path;
+      Path = path;
 
-      using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
-      using (var zip = new ZipFile(fs))
-        foreach (ZipEntry entry in zip)
-        {
-          try
-          {
-            if (!entry.IsFile)
-              continue;
+      var zipMode = GetZipMode(mode, access);
+      _fs = new FileStream(path, mode, zipMode == ZipArchiveMode.Update ? FileAccess.ReadWrite : access, share);
+      _zip = new ZipArchive(_fs, zipMode, true);
+      
+      foreach (var entry in _zip.Entries)
+        AddEntry(entry);
+    }
 
-            var index = entry.Name.LastIndexOf("/");
-            if (index == -1)
-              continue;
+    public string Path { get; set; }
 
-            var zpath = entry.Name.Substring(0, index).Split(new[] { "/" }, StringSplitOptions.RemoveEmptyEntries);
-            var zfile = entry.Name.Substring(index + 1);
+    private void AddEntry(ZipArchiveEntry entry)
+    {
+      try
+      {
+        var zpath = entry.FullName.Replace(entry.Name, "")
+                         .Split(new[] {"/"}, StringSplitOptions.RemoveEmptyEntries);
+        var zfile = entry.Name;
 
-            BuildPath(entry.Name, zpath, zfile, 0, ref _root);
-          }
-          catch
-          {
-            // ignore
-          }
-        }
+        BuildPath(entry.FullName, zpath, zfile, 0, ref _root);
+      }
+      catch
+      {
+        // ignore
+      }
+    }
+
+    private ZipArchiveMode GetZipMode(FileMode mode, FileAccess access)
+    {
+      // ReSharper disable once ConvertIfStatementToSwitchStatement
+      if (mode == FileMode.Open)
+        return access == FileAccess.Read ? ZipArchiveMode.Read : ZipArchiveMode.Update;
+      if (mode == FileMode.Create)
+        return ZipArchiveMode.Create;
+      return ZipArchiveMode.Read;
     }
 
     private void BuildPath(string path, string[] zpath, string name, int i, ref ZipDirectoryEntry entry)
@@ -69,15 +81,15 @@ namespace CorpusExplorer.Sdk.Utils.ZipFileIndex
 
     public ZipDirectoryEntry ZipDirectoryRoot => _root;
 
-    public void Extract(string zipPath, ZipFileEntryExtractionDelegate func)
+    public void Read(string zipPath, ZipFileEntryDelegate func)
     {
-      var file = GetZipFileEntry(zipPath);
+      var file = _zip.GetEntry(zipPath);
       if (file == null)
         return;
 
       try
       {
-        file.Extract(func);
+        func(file.Open());
       }
       catch
       {
@@ -85,45 +97,63 @@ namespace CorpusExplorer.Sdk.Utils.ZipFileIndex
       }
     }
 
-    public void Extract(string zipPath, ZipFileEntryExtractionStreamDelegate func)
+    public bool Delete(string zipPath)
     {
-      var file = GetZipFileEntry(zipPath);
+      var file = _zip.GetEntry(zipPath);
       if (file == null)
-        return;
+        return false;
 
       try
       {
-        file.Extract(func);
+        file.Delete();
+        return true;
       }
       catch
       {
-        // ignore
+        return false;
       }
     }
 
-    public ZipFileEntry GetZipFileEntry(string zipPath)
-      => GetZipFileEntry(ZipDirectoryRoot, zipPath.Split(new[] { "/" }, StringSplitOptions.RemoveEmptyEntries), 0);
-
-    private ZipFileEntry GetZipFileEntry(ZipDirectoryEntry root, string[] zipPath, int i)
+    public bool Update(string zipPath, ZipFileEntryDelegate func)
     {
-      if (i + 1 == zipPath.Length)
-        return root.ZipFiles.FirstOrDefault(x => x.NameFile == zipPath[i]);
+      var file = _zip.GetEntry(zipPath);
+      if (file == null)
+        return false;
 
-      var dir = root.ZipDirectories.FirstOrDefault(x => x.NameDirectory == zipPath[i]);
-      return dir == null ? null : GetZipFileEntry(dir, zipPath, i + 1);
+      try
+      {
+        file.Delete();
+        return Create(zipPath, func);
+      }
+      catch
+      {
+        return false;
+      }
     }
 
-    public ZipDirectoryEntry GetZipDirectoryEntry(string zipPath) 
-      => GetZipDirectoryEntry(ZipDirectoryRoot, zipPath.Split(new[] {"/"}, StringSplitOptions.RemoveEmptyEntries), 0);
-
-    private ZipDirectoryEntry GetZipDirectoryEntry(ZipDirectoryEntry root, string[] zipPath, int i)
+    public bool Create(string zipPath, ZipFileEntryDelegate func)
     {
-      var dir = root.ZipDirectories.FirstOrDefault(x => x.NameDirectory == zipPath[i]);
-      if (dir == null)
-        return null;
+      var file = _zip.GetEntry(zipPath);
+      if (file != null)
+        return false;
 
-      i += 1;
-      return i == zipPath.Length ? dir : GetZipDirectoryEntry(dir, zipPath, i);
+      try
+      {
+        var entry = _zip.CreateEntry(zipPath);
+        func(entry.Open());
+        AddEntry(entry);
+        return true;
+      }
+      catch
+      {
+        return false;
+      }
+    }
+
+    public void Dispose()
+    {
+      _zip?.Dispose();
+      _fs?.Dispose();
     }
   }
 }

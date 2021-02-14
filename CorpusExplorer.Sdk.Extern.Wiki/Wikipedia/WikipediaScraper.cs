@@ -4,27 +4,21 @@ using System;
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Extern.Wiki.Wikipedia.Model;
-using CorpusExplorer.Sdk.Extern.Wiki.Wikipedia.Serializer;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 
 #endregion
 
 namespace CorpusExplorer.Sdk.Extern.Wiki.Wikipedia
 {
-  public sealed class WikipediaScraper : AbstractGenericXmlSerializerFormatScraper<page>
+  public sealed class WikipediaScraper : AbstractXmlScraper
   {
     private readonly WikipediaCleanup _integratedWikiSyntaxCleanup = new WikipediaCleanup();
     public override string DisplayName => "Wikipedia-DUMP";
 
-    protected override AbstractGenericSerializer<page> Serializer => new WikipediaFullDumpSerializer();
-
-    public IEnumerable<Dictionary<string, object>> ScrapDocumentsInline(page model)
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
-      return ScrapDocuments(null, model);
-    }
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, page model)
-    {
+      var model = XmlSerializerHelper.Deserialize<page>(file);
       try
       {
         if (model.redirect == null &&

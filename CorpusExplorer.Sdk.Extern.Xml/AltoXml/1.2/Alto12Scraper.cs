@@ -3,27 +3,26 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using CorpusExplorer.Sdk.Extern.Xml.Abstract.SerializerBasedScraper;
+using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.AltoXml._1._2.Model;
-using CorpusExplorer.Sdk.Extern.Xml.AltoXml._1._2.Serializer;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Helper;
 using HtmlAgilityPack;
 using String = CorpusExplorer.Sdk.Extern.Xml.AltoXml._1._2.Model.String;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.AltoXml._1._2
 {
-  public class Alto12Scraper : AbstractGenericXmlSerializerFormatScraper<alto>
+  public class Alto12Scraper : AbstractXmlScraper
   {
     public override string DisplayName => "ALTO-XML (v 1.2)";
-    protected override AbstractGenericSerializer<alto> Serializer => new Alto12Serializer();
-
-    protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(string file, alto model)
+    
+    protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
       var dic = new Dictionary<string, object> { { "ID", Path.GetFileNameWithoutExtension(file).Replace("-ALTO", "") } };
       if (file.EndsWith("-ALTO.xml") && File.Exists(file.Replace("-ALTO.xml", "-METS.xml")))
         GetMetsMetadata(file, ref dic);
 
-      ExtractText(model, ref dic);
+      ExtractText(XmlSerializerHelper.Deserialize<alto>(file), ref dic);
 
       return new[] { dic };
     }

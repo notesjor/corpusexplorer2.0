@@ -1,4 +1,4 @@
-﻿namespace CorpusExplorer.Sdk.Extern.Xml.Catma._6._0
+﻿namespace CorpusExplorer.Sdk.Extern.Xml.Catma._6._0.Model
 {
   /// <remarks/>
   [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
