@@ -12,7 +12,7 @@ namespace CorpusExplorer.Sdk.Blocks.NamedEntityRecognition
 {
   [XmlRoot]
   [Serializable]
-  public class Model
+  public class NamedEntityRecognitionModel
   {
     [XmlAttribute]
     public string Displayname { get; set; }
@@ -20,12 +20,12 @@ namespace CorpusExplorer.Sdk.Blocks.NamedEntityRecognition
     [XmlArray]
     public Entity[] Entities { get; set; }
 
-    public static Model Load(string path)
+    public static NamedEntityRecognitionModel Load(string path)
     {
-      return path.EndsWith(".cner") ? Serializer.Deserialize<Model>(path) : CompileModel(path);
+      return path.EndsWith(".cner") ? Serializer.Deserialize<NamedEntityRecognitionModel>(path) : CompileModel(path);
     }
 
-    private static Model CompileModel(string path)
+    private static NamedEntityRecognitionModel CompileModel(string path)
     {
       var lines = FileIO.ReadLines(path, Configuration.Encoding);
       var entities = new List<Entity>();
@@ -68,7 +68,7 @@ namespace CorpusExplorer.Sdk.Blocks.NamedEntityRecognition
         entities.Add(entity);
       }
 
-      return new Model {Displayname = Path.GetFileNameWithoutExtension(path), Entities = entities.ToArray()};
+      return new NamedEntityRecognitionModel {Displayname = Path.GetFileNameWithoutExtension(path), Entities = entities.ToArray()};
     }
 
     private static Rule NewRule(double rank, AbstractFilterQuery query)

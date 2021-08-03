@@ -53,7 +53,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
       this.layerSettings2.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.layerSettings2, "layerSettings2");
       this.layerSettings2.Header = "2. Layer";
-      this.layerSettings2.IsLayerOptional = false;
+      this.layerSettings2.IsLayerOptional = true;
       this.layerSettings2.Name = "layerSettings2";
       // 
       // layerSettings3
@@ -61,7 +61,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
       this.layerSettings3.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.layerSettings3, "layerSettings3");
       this.layerSettings3.Header = "3. Layer";
-      this.layerSettings3.IsLayerOptional = false;
+      this.layerSettings3.IsLayerOptional = true;
       this.layerSettings3.Name = "layerSettings3";
       // 
       // Select3Layer

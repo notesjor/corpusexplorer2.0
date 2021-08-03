@@ -56,7 +56,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       return res.ToList();
     }
 
-    public int GetSentenceMax(Guid documentGuid)
+    public long GetSentenceMax(Guid documentGuid)
     {
       return Selection.GetDocumentLengthInSentences(documentGuid);
     }

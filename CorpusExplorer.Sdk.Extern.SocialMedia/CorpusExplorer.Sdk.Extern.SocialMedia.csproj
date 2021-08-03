@@ -40,9 +40,18 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey2019.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Linux%29|AnyCPU'">
+    <OutputPath>bin\Debug %28Linux%29\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
-      <HintPath>..\packages\Portable.BouncyCastle.1.8.9\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.10.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.10\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="CodeHollow.FeedReader, Version=1.2.1.0, Culture=neutral, PublicKeyToken=66d870f2b3d70f48, processorArchitecture=MSIL">
       <HintPath>..\packages\CodeHollow.FeedReader.1.2.1\lib\net452\CodeHollow.FeedReader.dll</HintPath>
@@ -56,29 +65,29 @@
     <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
       <HintPath>..\packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis, Version=1.49.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.1.49.0\lib\net45\Google.Apis.dll</HintPath>
+    <Reference Include="Google.Apis, Version=1.53.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.53.0\lib\net45\Google.Apis.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.Auth, Version=1.49.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Auth.1.49.0\lib\net45\Google.Apis.Auth.dll</HintPath>
+    <Reference Include="Google.Apis.Auth, Version=1.53.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.53.0\lib\net461\Google.Apis.Auth.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.49.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Auth.1.49.0\lib\net45\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.53.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.53.0\lib\net461\Google.Apis.Auth.PlatformServices.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.Blogger.v3, Version=1.49.0.2200, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Blogger.v3.1.49.0.2200\lib\net45\Google.Apis.Blogger.v3.dll</HintPath>
+    <Reference Include="Google.Apis.Blogger.v3, Version=1.53.0.2249, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Blogger.v3.1.53.0.2249\lib\net45\Google.Apis.Blogger.v3.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.Core, Version=1.49.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Core.1.49.0\lib\net45\Google.Apis.Core.dll</HintPath>
+    <Reference Include="Google.Apis.Core, Version=1.53.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.53.0\lib\net45\Google.Apis.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.PlatformServices, Version=1.49.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.1.49.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.53.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.53.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.YouTube.v3, Version=1.49.0.2225, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.YouTube.v3.1.49.0.2225\lib\net45\Google.Apis.YouTube.v3.dll</HintPath>
+    <Reference Include="Google.Apis.YouTube.v3, Version=1.53.0.2378, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.YouTube.v3.1.53.0.2378\lib\net45\Google.Apis.YouTube.v3.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.11.30.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.11.30\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.11.34.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.34\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="InstaSharp, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\InstaSharp.2.0.6\lib\netstandard1.2\InstaSharp.dll</HintPath>
@@ -98,8 +107,8 @@
     <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.5.0.0\lib\net461\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=5.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.5.0.1\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=5.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.5.0.2\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
@@ -116,17 +125,17 @@
     <Reference Include="Microsoft.Extensions.Options, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Options.5.0.0\lib\net461\Microsoft.Extensions.Options.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Primitives, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Primitives.5.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=5.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.5.0.1\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Polenter.SharpSerializer, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.1\lib\net452\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
+    <Reference Include="RestSharp, Version=106.12.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.12.0\lib\net452\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="SshNet.Security.Cryptography, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2fa9220ff3eadda4, processorArchitecture=MSIL">
       <HintPath>..\packages\Cataurus.SshNet.Security.Cryptography.1.74.20200707.1\lib\netstandard2.0\SshNet.Security.Cryptography.dll</HintPath>

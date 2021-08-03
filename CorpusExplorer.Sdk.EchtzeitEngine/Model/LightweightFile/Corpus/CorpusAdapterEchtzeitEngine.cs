@@ -126,12 +126,12 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Corpus
       return _corpus.Metadata;
     }
 
-    public override int GetDocumentLengthInSentences(Guid documentGuid)
+    public override long GetDocumentLengthInSentences(Guid documentGuid)
     {
       return documentGuid == _corpus.Guid ? _layers.FirstOrDefault().Value._layer.Document.Length : 0;
     }
 
-    public override int GetDocumentLengthInWords(Guid documentGuid)
+    public override long GetDocumentLengthInWords(Guid documentGuid)
     {
       return documentGuid == _corpus.Guid ? _layers.FirstOrDefault().Value._layer.Document.Sum(s => s.Length) : 0;
     }

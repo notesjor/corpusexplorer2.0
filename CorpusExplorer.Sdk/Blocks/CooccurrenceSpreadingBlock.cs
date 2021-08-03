@@ -29,7 +29,7 @@ namespace CorpusExplorer.Sdk.Blocks
     ///   Frequenz Suchwort
     /// </summary>
     /// <value>The count sentences.</value>
-    public int CountSentences { get; set; }
+    public long CountSentences { get; set; }
 
     /// <summary>
     ///   Gets or sets the layer displayname.

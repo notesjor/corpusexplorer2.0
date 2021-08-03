@@ -40,6 +40,15 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey2019.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Linux%29|AnyCPU'">
+    <OutputPath>bin\Debug %28Linux%29\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="RocksDbNative, Version=6.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RocksDbNative.6.2.2\lib\net45\RocksDbNative.dll</HintPath>
@@ -64,6 +73,7 @@
     <Compile Include="QuickIndex.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="CorpusExplorerNextSnKey2019.pfx" />
     <None Include="packages.config" />
   </ItemGroup>

@@ -14,7 +14,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract
   {
     public override void Export(IHydra hydra, string path)
     {
-      PreAction();
+      PreAction(path);
 
       if (hydra is Project project)
         project.ToCorpus(new TCB()).Save(path, UseCompression);
@@ -37,7 +37,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract
       }
     }
 
-    protected virtual void PreAction()
+    protected virtual void PreAction(string path)
     {
     }
 

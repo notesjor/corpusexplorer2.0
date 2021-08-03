@@ -138,7 +138,7 @@
     <value>lbl_version</value>
   </data>
   <data name="&gt;&gt;lbl_version.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2021.2.511.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;lbl_version.Parent" xml:space="preserve">
     <value>$this</value>
@@ -153,19 +153,19 @@
     <value>146, 35</value>
   </data>
   <data name="radLabel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>422, 61</value>
+    <value>426, 61</value>
   </data>
   <data name="radLabel3.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
   <data name="radLabel3.Text" xml:space="preserve">
-    <value>&lt;html&gt;Ein korpuslinguistisches Werkzeug zum anfassen und ausprobieren.&lt;br /&gt;Informationen und Hilfe finden Sie auf der Programmwebseite:&lt;br /&gt;&lt;a href="http://www.corpusexplorer.de/"&gt;http://www.CorpusExplorer.de&lt;/a&gt;&lt;/html&gt;</value>
+    <value>&lt;html&gt;Ein korpuslinguistisches Werkzeug zum Anfassen und Ausprobieren.&lt;br /&gt;Informationen und Hilfe finden Sie auf der Programmwebseite:&lt;br /&gt;&lt;a href="http://www.corpusexplorer.de/"&gt;http://www.CorpusExplorer.de&lt;/a&gt;&lt;/html&gt;</value>
   </data>
   <data name="&gt;&gt;radLabel3.Name" xml:space="preserve">
     <value>radLabel3</value>
   </data>
   <data name="&gt;&gt;radLabel3.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2021.2.511.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel3.Parent" xml:space="preserve">
     <value>$this</value>
@@ -192,7 +192,7 @@
     <value>radLabel2</value>
   </data>
   <data name="&gt;&gt;radLabel2.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2021.2.511.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel2.Parent" xml:space="preserve">
     <value>$this</value>
@@ -253,7 +253,7 @@
     <value>radLabel1</value>
   </data>
   <data name="&gt;&gt;radLabel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2021.2.511.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -280,7 +280,7 @@
     <value>radWaitingBar1</value>
   </data>
   <data name="&gt;&gt;radWaitingBar1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadWaitingBar, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadWaitingBar, Telerik.WinControls.UI, Version=2021.2.511.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radWaitingBar1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -861,6 +861,6 @@
     <value>WelcomeForm</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Forms.Abstract.AbstractForm, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+    <value>CorpusExplorer.Terminal.WinForm.Forms.Abstract.AbstractForm, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
 </root>

@@ -197,6 +197,7 @@ namespace CorpusExplorer.Core
         new DocumentCountAction(),
         new SentenceCountAction(),
         new TokenListAction(),
+        new TokenListSelectAction(),
         new TokenCountAction(),
         new LayerValuesAction(),
         new TypeCountAction(),
@@ -235,7 +236,6 @@ namespace CorpusExplorer.Core
         new DispersionAction(),
 
         new VocabularyComplexityAction(),
-        new ReadingEaseAction(),
         new StyleBurrowsDeltaAction(),
         new DisambiguationeAction(),
 

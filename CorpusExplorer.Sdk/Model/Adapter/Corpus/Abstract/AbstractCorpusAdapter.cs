@@ -108,13 +108,13 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     ///   Gets the count sentences.
     /// </summary>
     /// <value>The count sentences.</value>
-    public int CountSentences => DocumentGuids.Sum(GetDocumentLengthInSentences);
+    public long CountSentences => DocumentGuids.Sum(GetDocumentLengthInSentences);
 
     /// <summary>
     ///   Gets the count token.
     /// </summary>
     /// <value>The count token.</value>
-    public int CountToken
+    public long CountToken
     {
       get
       {
@@ -336,7 +336,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     /// </summary>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    public abstract int GetDocumentLengthInSentences(Guid documentGuid);
+    public abstract long GetDocumentLengthInSentences(Guid documentGuid);
 
     /// <summary>
     ///   Gibt die Anzahl der Sätze in einem Dokument zurück.
@@ -344,7 +344,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     /// <param name="corpusGuid">Korpus GUID in dem das Dokument enthalten sein muss</param>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    public int GetDocumentLengthInSentences(Guid corpusGuid, Guid documentGuid)
+    public long GetDocumentLengthInSentences(Guid corpusGuid, Guid documentGuid)
     {
       return corpusGuid != CorpusGuid ? -1 : GetDocumentLengthInSentences(documentGuid);
     }
@@ -354,7 +354,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     /// </summary>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    public abstract int GetDocumentLengthInWords(Guid documentGuid);
+    public abstract long GetDocumentLengthInWords(Guid documentGuid);
 
     /// <summary>
     ///   Gibt die Anzahl der Worte in einem Dokument zurück.
@@ -362,7 +362,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     /// <param name="corpusGuid">Korpus GUID</param>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    public int GetDocumentLengthInWords(Guid corpusGuid, Guid documentGuid)
+    public long GetDocumentLengthInWords(Guid corpusGuid, Guid documentGuid)
     {
       return corpusGuid != CorpusGuid ? -1 : GetDocumentLengthInWords(documentGuid);
     }

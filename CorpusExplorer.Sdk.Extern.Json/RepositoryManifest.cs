@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
+using CorpusExplorer.Sdk.Extern.Json.SimpleStandoff;
 using CorpusExplorer.Sdk.Extern.Json.Speedy;
 using CorpusExplorer.Sdk.Extern.Json.TwitterStatus;
 using CorpusExplorer.Sdk.Extern.Json.TwitterStream;
@@ -46,7 +47,11 @@ namespace CorpusExplorer.Sdk.Extern.Json
         {
           "SPEEDy/CODEX (*.json)|*.json",
           new ImporterSpeedy()
-        }
+        },
+        {
+          "JSON Stand-Off Universal (*.json)|*.json",
+          new SimpleJsonStandoffImporter()
+        },
       };
 
     /// <summary>
@@ -75,6 +80,10 @@ namespace CorpusExplorer.Sdk.Extern.Json
         {
           "WordPress JSON (*.json)|*.json",
           new WordpressScraper()
+        },
+        {
+          "JSON Stand-Off Universal (*.json)|*.json",
+          new SimpleJsonStandoffScraper()
         },
       };
 

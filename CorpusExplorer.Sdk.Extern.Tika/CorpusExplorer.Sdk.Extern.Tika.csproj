@@ -36,6 +36,15 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey2019.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Linux%29|AnyCPU'">
+    <OutputPath>bin\Debug %28Linux%29\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="IKVM.AWT.WinForms, Version=8.1.5717.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <HintPath>..\packages\IKVM.8.1.5717.0\lib\IKVM.AWT.WinForms.dll</HintPath>

@@ -14,7 +14,7 @@ namespace CorpusExplorer.Sdk.Blocks
   {
     private readonly object _lock = new object();
 
-    public Dictionary<string, Dictionary<string, int>> MetadataDistribution { get; set; }
+    public Dictionary<string, Dictionary<string, long>> MetadataDistribution { get; set; }
     public string MetadataKey1 { get; set; }
     public string MetadataKey2 { get; set; }
 
@@ -47,7 +47,7 @@ namespace CorpusExplorer.Sdk.Blocks
           else
             MetadataDistribution[k1].Add(k1, Selection.GetDocumentLengthInWords(dsel));
         else
-          MetadataDistribution.Add(k1, new Dictionary<string, int> {{k2, Selection.GetDocumentLengthInWords(dsel)}});
+          MetadataDistribution.Add(k1, new Dictionary<string, long> {{k2, Selection.GetDocumentLengthInWords(dsel)}});
       }
     }
 
@@ -72,7 +72,7 @@ namespace CorpusExplorer.Sdk.Blocks
     /// </summary>
     protected override void CalculateInitProperties()
     {
-      MetadataDistribution = new Dictionary<string, Dictionary<string, int>>();
+      MetadataDistribution = new Dictionary<string, Dictionary<string, long>>();
 
       if (MetadataKey1 == null)
         MetadataKey1 = string.Empty;

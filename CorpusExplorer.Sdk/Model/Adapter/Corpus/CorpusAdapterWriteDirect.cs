@@ -145,12 +145,12 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     public Dictionary<string, Dictionary<string, int>> GetDictionaryForNormalization()
       => _layers.ToDictionary(x => x.Displayname, x => x.ReciveRawLayerDictionary());
 
-    public override int GetDocumentLengthInSentences(Guid documentGuid)
+    public override long GetDocumentLengthInSentences(Guid documentGuid)
     {
       return _layers.FirstOrDefault(x => x.ContainsDocument(documentGuid))?[documentGuid]?.Length ?? 0;
     }
 
-    public override int GetDocumentLengthInWords(Guid documentGuid)
+    public override long GetDocumentLengthInWords(Guid documentGuid)
     {
       return _layers.FirstOrDefault(x => x.ContainsDocument(documentGuid))?[documentGuid]?.SelectMany(s => s).Count()
           ?? 0;

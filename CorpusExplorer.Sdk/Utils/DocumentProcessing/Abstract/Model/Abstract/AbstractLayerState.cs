@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model.Abstract
 {
-  public abstract class AbstractLayerState
+  public abstract class AbstractLayerState : IDisposable
   {
     protected readonly object CacheLock = new object();
 
@@ -74,6 +74,12 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model.Abstract
         Cache.Add(data, res);
         return res;
       }
+    }
+
+    public void Dispose()
+    {
+      Cache.Clear();
+      Documents.Clear();
     }
   }
 }

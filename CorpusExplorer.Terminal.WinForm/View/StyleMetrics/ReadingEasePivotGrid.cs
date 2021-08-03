@@ -2,6 +2,7 @@
 
 using System;
 using System.Windows.Forms;
+using CorpusExplorer.Sdk.Extern.NHunspell.ViewModel;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.Helper;

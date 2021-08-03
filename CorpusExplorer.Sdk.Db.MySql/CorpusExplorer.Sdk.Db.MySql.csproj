@@ -30,11 +30,32 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Linux%29|AnyCPU'">
+    <OutputPath>bin\Debug %28Linux%29\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Devart.Data, Version=5.0.2194.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL" />
-    <Reference Include="Devart.Data.Linq, Version=4.9.1739.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL" />
-    <Reference Include="Devart.Data.MySql, Version=8.13.1402.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL" />
-    <Reference Include="Devart.Data.MySql.Linq, Version=4.9.1739.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL" />
+    <Reference Include="Devart.Data, Version=5.0.2697.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\Devart\dotConnect\MySQL\Devart.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data.Linq, Version=4.9.2242.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\Devart\dotConnect\Linq\Devart.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data.MySql, Version=8.19.1905.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\Devart\dotConnect\MySQL\Devart.Data.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data.MySql.Linq, Version=4.9.2242.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\Devart\dotConnect\Linq\Devart.Data.MySql.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />

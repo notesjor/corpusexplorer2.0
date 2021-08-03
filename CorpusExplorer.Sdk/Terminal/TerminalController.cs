@@ -14,6 +14,9 @@ namespace CorpusExplorer.Sdk.Terminal
   /// </summary>
   public class TerminalController
   {
+    private object _projectLock = new object();
+    private Project _project = null;
+
     /// <summary>
     ///   Initializes a new instance of the <see cref="TerminalController" /> class.
     /// </summary>
@@ -26,7 +29,19 @@ namespace CorpusExplorer.Sdk.Terminal
     /// <summary>
     ///   Gets or sets the project.
     /// </summary>
-    public Project Project { get; set; }
+    public Project Project
+    {
+      get
+      {
+        lock (_projectLock)
+          return _project;
+      }
+      private set
+      {
+        lock (_projectLock)
+          _project = value;
+      }
+    }
 
     public string ProjectPath { get; private set; }
 
@@ -56,16 +71,21 @@ namespace CorpusExplorer.Sdk.Terminal
     ///   project = terminal.Project;
     /// }
     /// </example>
-    public void ProjectNew(bool clearOldProject = true)
+    public Project ProjectNew(bool clearOldProject = true, bool invokeGarbageCollector = true)
     {
-      if (clearOldProject && Project != null)
+      lock (_projectLock)
       {
-        Project.Clear();
-        GC.Collect();
-      }
+        if (clearOldProject && _project != null)
+        {
+          _project.Clear();
+          if (invokeGarbageCollector)
+            GC.Collect();
+        }
 
-      Project = Project.Create();
-      ProjectPath = null;
+        _project = Project.Create();
+        ProjectPath = null;
+        return _project;
+      }
     }
 
     /// <summary>
@@ -78,7 +98,8 @@ namespace CorpusExplorer.Sdk.Terminal
       if (string.IsNullOrEmpty(path))
         path = Path.Combine(Configuration.MyProjects, Project.Displayname + ".proj5");
 
-      Project.Save(path);
+      lock (_projectLock)
+        _project.Save(path);
     }
   }
 }

@@ -202,7 +202,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     /// </summary>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    public override int GetDocumentLengthInSentences(Guid documentGuid)
+    public override long GetDocumentLengthInSentences(Guid documentGuid)
     {
       return _corpus.GetDocumentLengthInSentences(documentGuid);
     }
@@ -212,7 +212,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     /// </summary>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    public override int GetDocumentLengthInWords(Guid documentGuid)
+    public override long GetDocumentLengthInWords(Guid documentGuid)
     {
       return _corpus.GetDocumentLengthInWords(documentGuid);
     }

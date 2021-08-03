@@ -134,6 +134,9 @@
   <data name="commandBarButton2.Text" xml:space="preserve">
     <value>Model laden</value>
   </data>
+  <data name="commandBarButton2.ToolTipText" xml:space="preserve">
+    <value>Model laden</value>
+  </data>
   <data name="commandBarSeparator1.DisplayName" xml:space="preserve">
     <value>commandBarSeparator1</value>
   </data>
@@ -144,7 +147,7 @@
     <value>Das Modell ist: LEER</value>
   </data>
   <data name="radCommandBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>780, 44</value>
+    <value>780, 69</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="radCommandBar1.TabIndex" type="System.Int32, mscorlib">
@@ -154,7 +157,7 @@
     <value>radCommandBar1</value>
   </data>
   <data name="&gt;&gt;radCommandBar1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadCommandBar, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadCommandBar, Telerik.WinControls.UI, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radCommandBar1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -169,7 +172,7 @@
     <value>0, 0</value>
   </data>
   <data name="radPivotGrid1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>442, 356</value>
+    <value>442, 331</value>
   </data>
   <data name="radPivotGrid1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -178,7 +181,7 @@
     <value>radPivotGrid1</value>
   </data>
   <data name="&gt;&gt;radPivotGrid1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPivotGrid, Telerik.WinControls.PivotGrid, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPivotGrid, Telerik.WinControls.PivotGrid, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radPivotGrid1.Parent" xml:space="preserve">
     <value>splitPanel1</value>
@@ -196,7 +199,7 @@
     <value>225, 305</value>
   </data>
   <data name="radPivotFieldList1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>334, 356</value>
+    <value>334, 331</value>
   </data>
   <data name="radPivotFieldList1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -205,7 +208,7 @@
     <value>radPivotFieldList1</value>
   </data>
   <data name="&gt;&gt;radPivotFieldList1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPivotFieldList, Telerik.WinControls.PivotGrid, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPivotFieldList, Telerik.WinControls.PivotGrid, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radPivotFieldList1.Parent" xml:space="preserve">
     <value>splitPanel2</value>
@@ -217,7 +220,7 @@
     <value>0, 0</value>
   </data>
   <data name="splitPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>442, 356</value>
+    <value>442, 331</value>
   </data>
   <data name="splitPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -229,7 +232,7 @@
     <value>splitPanel1</value>
   </data>
   <data name="&gt;&gt;splitPanel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;splitPanel1.Parent" xml:space="preserve">
     <value>radSplitContainer1</value>
@@ -241,7 +244,7 @@
     <value>446, 0</value>
   </data>
   <data name="splitPanel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>334, 356</value>
+    <value>334, 331</value>
   </data>
   <data name="splitPanel2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -253,7 +256,7 @@
     <value>splitPanel2</value>
   </data>
   <data name="&gt;&gt;splitPanel2.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;splitPanel2.Parent" xml:space="preserve">
     <value>radSplitContainer1</value>
@@ -265,10 +268,10 @@
     <value>Fill</value>
   </data>
   <data name="radSplitContainer1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 44</value>
+    <value>0, 69</value>
   </data>
   <data name="radSplitContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>780, 356</value>
+    <value>780, 331</value>
   </data>
   <data name="radSplitContainer1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -277,7 +280,7 @@
     <value>radSplitContainer1</value>
   </data>
   <data name="&gt;&gt;radSplitContainer1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radSplitContainer1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -292,36 +295,36 @@
     <value>commandBarRowElement1</value>
   </data>
   <data name="&gt;&gt;commandBarRowElement1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarRowElement, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarRowElement, Telerik.WinControls.UI, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarStripElement1.Name" xml:space="preserve">
     <value>commandBarStripElement1</value>
   </data>
   <data name="&gt;&gt;commandBarStripElement1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarStripElement, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarStripElement, Telerik.WinControls.UI, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarButton2.Name" xml:space="preserve">
     <value>commandBarButton2</value>
   </data>
   <data name="&gt;&gt;commandBarButton2.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarSeparator1.Name" xml:space="preserve">
     <value>commandBarSeparator1</value>
   </data>
   <data name="&gt;&gt;commandBarSeparator1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarSeparator, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarSeparator, Telerik.WinControls.UI, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarLabel1.Name" xml:space="preserve">
     <value>commandBarLabel1</value>
   </data>
   <data name="&gt;&gt;commandBarLabel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarLabel, Telerik.WinControls.UI, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>SentimentPivotGrid</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Helper.UiFramework.AbstractView, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+    <value>CorpusExplorer.Terminal.WinForm.Helper.UiFramework.AbstractView, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
 </root>

@@ -46,15 +46,16 @@
       // 
       this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
       this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      this.radCommandBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(580, 44);
+      this.radCommandBar1.Size = new System.Drawing.Size(824, 36);
       this.radCommandBar1.TabIndex = 0;
       // 
       // commandBarRowElement1
       // 
-      this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.MinSize = new System.Drawing.Size(19, 20);
       this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
@@ -66,6 +67,8 @@
             this.btn_ok,
             this.btn_abort});
       this.commandBarStripElement1.Name = "commandBarStripElement1";
+      this.commandBarStripElement1.OverflowMenuMaxSize = new System.Drawing.Size(202, 0);
+      this.commandBarStripElement1.OverflowMenuMinSize = new System.Drawing.Size(38, 20);
       // 
       // btn_ok
       // 
@@ -86,14 +89,16 @@
       // radScrollablePanel1
       // 
       this.radScrollablePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radScrollablePanel1.Location = new System.Drawing.Point(0, 44);
+      this.radScrollablePanel1.Location = new System.Drawing.Point(0, 36);
+      this.radScrollablePanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radScrollablePanel1.Name = "radScrollablePanel1";
       // 
       // radScrollablePanel1.PanelContainer
       // 
       this.radScrollablePanel1.PanelContainer.Controls.Add(this.autoSplit1);
-      this.radScrollablePanel1.PanelContainer.Size = new System.Drawing.Size(578, 297);
-      this.radScrollablePanel1.Size = new System.Drawing.Size(580, 299);
+      this.radScrollablePanel1.PanelContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.radScrollablePanel1.PanelContainer.Size = new System.Drawing.Size(822, 452);
+      this.radScrollablePanel1.Size = new System.Drawing.Size(824, 454);
       this.radScrollablePanel1.TabIndex = 5;
       // 
       // autoSplit1
@@ -101,24 +106,23 @@
       this.autoSplit1.BackColor = System.Drawing.Color.White;
       this.autoSplit1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.autoSplit1.Location = new System.Drawing.Point(0, 0);
+      this.autoSplit1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.autoSplit1.Name = "autoSplit1";
-      this.autoSplit1.Size = new System.Drawing.Size(578, 297);
+      this.autoSplit1.Size = new System.Drawing.Size(822, 452);
       this.autoSplit1.TabIndex = 0;
       // 
       // ClusterAssistant
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(580, 343);
+      this.ClientSize = new System.Drawing.Size(824, 490);
       this.Controls.Add(this.radScrollablePanel1);
       this.Controls.Add(this.radCommandBar1);
-      this.Margin = new System.Windows.Forms.Padding(4);
       this.Name = "ClusterAssistant";
       // 
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
-      this.Text = "CorpusExplorerConsole (CEC) - Visueller Skript Editor (VSE)";
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).EndInit();
       this.radScrollablePanel1.PanelContainer.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel1)).EndInit();

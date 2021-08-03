@@ -7,7 +7,7 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract
   {
     private readonly object _counterLock = new object();
     private object _centralValue;
-    private int _counter;
+    private long _counter;
 
     public AbstractCountCluster(Selection selection, string displayname)
     {
@@ -19,7 +19,7 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract
     public override object CentralValue => _centralValue;
     public override string Displayname { get; }
 
-    public int Max { get; set; } = 0;
+    public long Max { get; set; } = 0;
 
     protected Selection Selection { get; set; }
 
@@ -44,7 +44,7 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract
       }
     }
 
-    protected abstract bool CanAdd(Guid documentGuid, int counter, int max);
-    protected abstract int Count(Guid documentGuid);
+    protected abstract bool CanAdd(Guid documentGuid, long counter, long max);
+    protected abstract long Count(Guid documentGuid);
   }
 }

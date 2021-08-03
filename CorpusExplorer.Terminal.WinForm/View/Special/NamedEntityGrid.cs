@@ -254,7 +254,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
 
       Processing.Invoke("Suche nach Entitäten...", () =>
       {
-        _vm.Model = form.Model;
+        _vm.Model = form.GetModel<Sdk.Blocks.NamedEntityRecognition.NamedEntityRecognitionModel>();
 
         if (!_vm.Execute())
           return;

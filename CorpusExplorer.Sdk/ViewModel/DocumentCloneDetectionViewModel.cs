@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
+using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
 
 namespace CorpusExplorer.Sdk.ViewModel
@@ -19,12 +20,12 @@ namespace CorpusExplorer.Sdk.ViewModel
     /// <summary>
     ///   Generates the clean selection.
     /// </summary>
-    public void GenerateCleanSelection()
+    public Selection GenerateCleanSelection()
     {
       if (!_done)
         Execute();
 
-      Selection.Create(IndividualDocuments, $"{Selection.Displayname} (CLEAN)", false);
+      return Selection.Create(IndividualDocuments, $"{Selection.Displayname} (CLEAN)", false);
     }
 
     protected override void ExecuteAnalyse()

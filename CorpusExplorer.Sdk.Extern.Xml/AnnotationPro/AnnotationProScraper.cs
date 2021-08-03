@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.AnnotationPro.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Helper;
-using CorpusExplorer.Sdk.Utils.ZipFileIndex;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.AnnotationPro
 {
@@ -14,12 +15,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.AnnotationPro
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
       AnnotationSystemDataSet model = null;
-      var zipFile = new ZipFileIndex(file);
-      zipFile.ZipDirectoryRoot.ZipFiles.FirstOrDefault(x => x.NameFile == "annotation.xml")?.Read(ms =>
-      {
-        model = XmlSerializerHelper.Deserialize<AnnotationSystemDataSet>(ms);
-      });
-
+      using(var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
+      using (var zip = new ZipArchive(fs))
+        model = XmlSerializerHelper.Deserialize<AnnotationSystemDataSet>(zip.GetEntry("annotation.xml").Open());
+      
       var guid = model?.Layer.Where(layer => layer.Name == "Text").Select(layer => layer.Id).FirstOrDefault();
       if (guid == null)
         return null;

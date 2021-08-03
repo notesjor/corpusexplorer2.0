@@ -36,6 +36,15 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey2019.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Linux%29|AnyCPU'">
+    <OutputPath>bin\Debug %28Linux%29\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="NTextCat, Version=0.3.65.0, Culture=neutral, PublicKeyToken=a61413de1d13f8fc, processorArchitecture=MSIL">
       <HintPath>..\packages\NTextCat.0.3.65\lib\netstandard2.0\NTextCat.dll</HintPath>
@@ -64,6 +73,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="CorpusExplorerNextSnKey2019.pfx" />
     <None Include="packages.config" />
   </ItemGroup>

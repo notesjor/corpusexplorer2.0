@@ -1,0 +1,2 @@
+﻿addon_RFTagger.zip
+C:\Projekte\CorpusExplorerV2\CorpusExplorer\CorpusExplorer.Sdk.Extern.RFTagger\bin\Release

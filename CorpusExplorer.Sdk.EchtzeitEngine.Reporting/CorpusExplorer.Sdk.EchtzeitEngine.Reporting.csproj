@@ -36,34 +36,43 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey2019.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Linux%29|AnyCPU'">
+    <OutputPath>bin\Debug %28Linux%29\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="Telerik.Reporting, Version=15.0.21.120, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>W:\Telerik\Telerik Reporting R1 2021\Bin\Telerik.Reporting.dll</HintPath>
+    <Reference Include="Telerik.Reporting, Version=15.1.21.616, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <HintPath>W:\Telerik\Telerik Reporting R2 2021\bin\Telerik.Reporting.dll</HintPath>
+      <SpecificVersion>True</SpecificVersion>
     </Reference>
-    <Reference Include="Telerik.ReportViewer.WinForms, Version=15.0.21.120, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>W:\Telerik\Telerik Reporting R1 2021\Bin\Telerik.ReportViewer.WinForms.dll</HintPath>
+    <Reference Include="Telerik.ReportViewer.WinForms, Version=15.1.21.616, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <HintPath>W:\Telerik\Telerik Reporting R2 2021\bin\Telerik.ReportViewer.WinForms.dll</HintPath>
+      <SpecificVersion>True</SpecificVersion>
     </Reference>
-    <Reference Include="Telerik.WinControls, Version=2021.1.204.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2021.1.204.40\Telerik.WinControls.dll</HintPath>
+    <Reference Include="Telerik.WinControls, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2021.2.615.40\Telerik.WinControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2021.1.204.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2021.1.204.40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2021.2.615.40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI, Version=2021.1.204.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2021.1.204.40\Telerik.WinControls.UI.dll</HintPath>
+    <Reference Include="Telerik.WinControls.UI, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2021.2.615.40\Telerik.WinControls.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="TelerikCommon, Version=2021.1.204.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2021.1.204.40\TelerikCommon.dll</HintPath>
+    <Reference Include="TelerikCommon, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2021.2.615.40\TelerikCommon.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

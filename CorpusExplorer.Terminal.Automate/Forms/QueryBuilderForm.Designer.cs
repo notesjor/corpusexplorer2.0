@@ -168,15 +168,16 @@
       // 
       this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
       this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      this.radCommandBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(1046, 44);
+      this.radCommandBar1.Size = new System.Drawing.Size(824, 36);
       this.radCommandBar1.TabIndex = 0;
       // 
       // commandBarRowElement1
       // 
-      this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.MinSize = new System.Drawing.Size(19, 20);
       this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
@@ -188,6 +189,8 @@
             this.btn_ok,
             this.btn_abort});
       this.commandBarStripElement1.Name = "commandBarStripElement1";
+      this.commandBarStripElement1.OverflowMenuMaxSize = new System.Drawing.Size(202, 0);
+      this.commandBarStripElement1.OverflowMenuMinSize = new System.Drawing.Size(38, 20);
       // 
       // btn_ok
       // 
@@ -206,7 +209,8 @@
       // radScrollablePanel1
       // 
       this.radScrollablePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radScrollablePanel1.Location = new System.Drawing.Point(0, 44);
+      this.radScrollablePanel1.Location = new System.Drawing.Point(0, 36);
+      this.radScrollablePanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radScrollablePanel1.Name = "radScrollablePanel1";
       // 
       // radScrollablePanel1.PanelContainer
@@ -214,8 +218,9 @@
       this.radScrollablePanel1.PanelContainer.Controls.Add(this.pages_options);
       this.radScrollablePanel1.PanelContainer.Controls.Add(this.panel1);
       this.radScrollablePanel1.PanelContainer.Controls.Add(this.radGroupBox1);
-      this.radScrollablePanel1.PanelContainer.Size = new System.Drawing.Size(1044, 684);
-      this.radScrollablePanel1.Size = new System.Drawing.Size(1046, 686);
+      this.radScrollablePanel1.PanelContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.radScrollablePanel1.PanelContainer.Size = new System.Drawing.Size(822, 452);
+      this.radScrollablePanel1.Size = new System.Drawing.Size(824, 454);
       this.radScrollablePanel1.TabIndex = 5;
       // 
       // pages_options
@@ -227,10 +232,11 @@
       this.pages_options.Controls.Add(this.page_listBuilder);
       this.pages_options.Controls.Add(this.page_group);
       this.pages_options.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.pages_options.Location = new System.Drawing.Point(0, 170);
+      this.pages_options.Location = new System.Drawing.Point(0, 138);
+      this.pages_options.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.pages_options.Name = "pages_options";
       this.pages_options.SelectedPage = this.page_group;
-      this.pages_options.Size = new System.Drawing.Size(1044, 514);
+      this.pages_options.Size = new System.Drawing.Size(822, 314);
       this.pages_options.TabIndex = 2;
       this.pages_options.ViewMode = Telerik.WinControls.UI.PageViewMode.Backstage;
       this.pages_options.SelectedPageChanged += new System.EventHandler(this.pages_options_SelectedPageChanged);
@@ -238,10 +244,11 @@
       // page_meta
       // 
       this.page_meta.Controls.Add(this.panel2);
-      this.page_meta.ItemSize = new System.Drawing.SizeF(88F, 44F);
-      this.page_meta.Location = new System.Drawing.Point(205, 4);
+      this.page_meta.ItemSize = new System.Drawing.SizeF(69F, 36F);
+      this.page_meta.Location = new System.Drawing.Point(152, 2);
+      this.page_meta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.page_meta.Name = "page_meta";
-      this.page_meta.Size = new System.Drawing.Size(835, 506);
+      this.page_meta.Size = new System.Drawing.Size(628, 413);
       this.page_meta.Text = "Metadaten";
       // 
       // panel2
@@ -251,9 +258,10 @@
       this.panel2.Controls.Add(this.radGroupBox3);
       this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
       this.panel2.Location = new System.Drawing.Point(0, 0);
+      this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.panel2.Name = "panel2";
-      this.panel2.Padding = new System.Windows.Forms.Padding(5);
-      this.panel2.Size = new System.Drawing.Size(835, 506);
+      this.panel2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.panel2.Size = new System.Drawing.Size(628, 413);
       this.panel2.TabIndex = 0;
       // 
       // radGroupBox10
@@ -262,20 +270,22 @@
       this.radGroupBox10.Controls.Add(this.meta_txt_value);
       this.radGroupBox10.Dock = System.Windows.Forms.DockStyle.Top;
       this.radGroupBox10.HeaderText = "Wert";
-      this.radGroupBox10.Location = new System.Drawing.Point(5, 145);
+      this.radGroupBox10.Location = new System.Drawing.Point(4, 118);
+      this.radGroupBox10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radGroupBox10.Name = "radGroupBox10";
-      this.radGroupBox10.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox10.Size = new System.Drawing.Size(825, 70);
+      this.radGroupBox10.Padding = new System.Windows.Forms.Padding(4, 20, 4, 4);
+      this.radGroupBox10.Size = new System.Drawing.Size(620, 57);
       this.radGroupBox10.TabIndex = 2;
       this.radGroupBox10.Text = "Wert";
       // 
       // meta_txt_value
       // 
       this.meta_txt_value.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.meta_txt_value.Location = new System.Drawing.Point(5, 25);
+      this.meta_txt_value.Location = new System.Drawing.Point(4, 20);
+      this.meta_txt_value.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.meta_txt_value.Name = "meta_txt_value";
       this.meta_txt_value.NullText = "Geben Sie einen Wert ein...";
-      this.meta_txt_value.Size = new System.Drawing.Size(815, 40);
+      this.meta_txt_value.Size = new System.Drawing.Size(612, 26);
       this.meta_txt_value.TabIndex = 2;
       this.meta_txt_value.TextChanged += new System.EventHandler(this.refreshlive_textbox);
       // 
@@ -285,16 +295,20 @@
       this.radGroupBox2.Controls.Add(this.meta_drop_operator);
       this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Top;
       this.radGroupBox2.HeaderText = "Operator";
-      this.radGroupBox2.Location = new System.Drawing.Point(5, 75);
+      this.radGroupBox2.Location = new System.Drawing.Point(4, 61);
+      this.radGroupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radGroupBox2.Name = "radGroupBox2";
-      this.radGroupBox2.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox2.Size = new System.Drawing.Size(825, 70);
+      this.radGroupBox2.Padding = new System.Windows.Forms.Padding(4, 20, 4, 4);
+      this.radGroupBox2.Size = new System.Drawing.Size(620, 57);
       this.radGroupBox2.TabIndex = 0;
       this.radGroupBox2.Text = "Operator";
       // 
       // meta_drop_operator
       // 
       this.meta_drop_operator.Dock = System.Windows.Forms.DockStyle.Top;
+      this.meta_drop_operator.DropDownAnimationEnabled = true;
+      this.meta_drop_operator.DropDownHeight = 80;
+      this.meta_drop_operator.ItemHeight = 27;
       radListDataItem1.Text = "? = Übergbener Wert wird als Regex-Ausdruck interpretiert";
       radListDataItem2.Text = "! = Meta-Angabe muss leer sein";
       radListDataItem3.Text = ". = Meta-Angabe muss diesen Wert enthalten";
@@ -307,10 +321,11 @@
       this.meta_drop_operator.Items.Add(radListDataItem4);
       this.meta_drop_operator.Items.Add(radListDataItem5);
       this.meta_drop_operator.Items.Add(radListDataItem6);
-      this.meta_drop_operator.Location = new System.Drawing.Point(5, 25);
+      this.meta_drop_operator.Location = new System.Drawing.Point(4, 20);
+      this.meta_drop_operator.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.meta_drop_operator.Name = "meta_drop_operator";
       this.meta_drop_operator.NullText = "Bitte Operator auswählen...";
-      this.meta_drop_operator.Size = new System.Drawing.Size(815, 32);
+      this.meta_drop_operator.Size = new System.Drawing.Size(612, 27);
       this.meta_drop_operator.TabIndex = 0;
       this.meta_drop_operator.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.refreshlive_dropdown);
       // 
@@ -320,30 +335,33 @@
       this.radGroupBox3.Controls.Add(this.meta_txt_label);
       this.radGroupBox3.Dock = System.Windows.Forms.DockStyle.Top;
       this.radGroupBox3.HeaderText = "Meta-Angabe";
-      this.radGroupBox3.Location = new System.Drawing.Point(5, 5);
+      this.radGroupBox3.Location = new System.Drawing.Point(4, 4);
+      this.radGroupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radGroupBox3.Name = "radGroupBox3";
-      this.radGroupBox3.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox3.Size = new System.Drawing.Size(825, 70);
+      this.radGroupBox3.Padding = new System.Windows.Forms.Padding(4, 20, 4, 4);
+      this.radGroupBox3.Size = new System.Drawing.Size(620, 57);
       this.radGroupBox3.TabIndex = 1;
       this.radGroupBox3.Text = "Meta-Angabe";
       // 
       // meta_txt_label
       // 
       this.meta_txt_label.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.meta_txt_label.Location = new System.Drawing.Point(5, 25);
+      this.meta_txt_label.Location = new System.Drawing.Point(4, 20);
+      this.meta_txt_label.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.meta_txt_label.Name = "meta_txt_label";
       this.meta_txt_label.NullText = "Hier bitte den Namen der Meta-Angabe eintragen...";
-      this.meta_txt_label.Size = new System.Drawing.Size(815, 40);
+      this.meta_txt_label.Size = new System.Drawing.Size(612, 26);
       this.meta_txt_label.TabIndex = 2;
       this.meta_txt_label.TextChanged += new System.EventHandler(this.refreshlive_textbox);
       // 
       // page_fulltext
       // 
       this.page_fulltext.Controls.Add(this.panel3);
-      this.page_fulltext.ItemSize = new System.Drawing.SizeF(88F, 44F);
-      this.page_fulltext.Location = new System.Drawing.Point(205, 4);
+      this.page_fulltext.ItemSize = new System.Drawing.SizeF(69F, 36F);
+      this.page_fulltext.Location = new System.Drawing.Point(154, 3);
+      this.page_fulltext.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.page_fulltext.Name = "page_fulltext";
-      this.page_fulltext.Size = new System.Drawing.Size(835, 506);
+      this.page_fulltext.Size = new System.Drawing.Size(626, 411);
       this.page_fulltext.Text = "Volltext";
       // 
       // panel3
@@ -353,9 +371,10 @@
       this.panel3.Controls.Add(this.radGroupBox4);
       this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
       this.panel3.Location = new System.Drawing.Point(0, 0);
+      this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.panel3.Name = "panel3";
-      this.panel3.Padding = new System.Windows.Forms.Padding(5);
-      this.panel3.Size = new System.Drawing.Size(835, 506);
+      this.panel3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.panel3.Size = new System.Drawing.Size(626, 411);
       this.panel3.TabIndex = 1;
       // 
       // radGroupBox7
@@ -365,10 +384,11 @@
       this.radGroupBox7.Controls.Add(this.fulltext_txt_values);
       this.radGroupBox7.Dock = System.Windows.Forms.DockStyle.Top;
       this.radGroupBox7.HeaderText = "Werte / Token";
-      this.radGroupBox7.Location = new System.Drawing.Point(5, 145);
+      this.radGroupBox7.Location = new System.Drawing.Point(4, 118);
+      this.radGroupBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radGroupBox7.Name = "radGroupBox7";
-      this.radGroupBox7.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox7.Size = new System.Drawing.Size(825, 86);
+      this.radGroupBox7.Padding = new System.Windows.Forms.Padding(4, 20, 4, 4);
+      this.radGroupBox7.Size = new System.Drawing.Size(618, 70);
       this.radGroupBox7.TabIndex = 2;
       this.radGroupBox7.Text = "Werte / Token";
       // 
@@ -376,9 +396,10 @@
       // 
       this.radLabel2.AutoSize = false;
       this.radLabel2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radLabel2.Location = new System.Drawing.Point(5, 57);
+      this.radLabel2.Location = new System.Drawing.Point(4, 52);
+      this.radLabel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radLabel2.Name = "radLabel2";
-      this.radLabel2.Size = new System.Drawing.Size(815, 24);
+      this.radLabel2.Size = new System.Drawing.Size(610, 14);
       this.radLabel2.TabIndex = 1;
       this.radLabel2.Text = "<html>Hinweis: Achten Sie darauf, dass alle Werte mit einem Semikolon abgeschloss" +
     "en (bzw. getrennt) werden.</html>";
@@ -387,10 +408,11 @@
       // fulltext_txt_values
       // 
       this.fulltext_txt_values.Dock = System.Windows.Forms.DockStyle.Top;
-      this.fulltext_txt_values.Location = new System.Drawing.Point(5, 25);
+      this.fulltext_txt_values.Location = new System.Drawing.Point(4, 20);
+      this.fulltext_txt_values.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.fulltext_txt_values.Name = "fulltext_txt_values";
       this.fulltext_txt_values.NullText = "Hier bitte die Token eintragen...";
-      this.fulltext_txt_values.Size = new System.Drawing.Size(815, 32);
+      this.fulltext_txt_values.Size = new System.Drawing.Size(610, 32);
       this.fulltext_txt_values.TabIndex = 0;
       this.fulltext_txt_values.TextChanged += new System.EventHandler(this.refreshlive_textbox);
       // 
@@ -400,16 +422,19 @@
       this.radGroupBox5.Controls.Add(this.fulltext_drop_operator);
       this.radGroupBox5.Dock = System.Windows.Forms.DockStyle.Top;
       this.radGroupBox5.HeaderText = "Operator";
-      this.radGroupBox5.Location = new System.Drawing.Point(5, 75);
+      this.radGroupBox5.Location = new System.Drawing.Point(4, 61);
+      this.radGroupBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radGroupBox5.Name = "radGroupBox5";
-      this.radGroupBox5.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox5.Size = new System.Drawing.Size(825, 70);
+      this.radGroupBox5.Padding = new System.Windows.Forms.Padding(4, 20, 4, 4);
+      this.radGroupBox5.Size = new System.Drawing.Size(618, 57);
       this.radGroupBox5.TabIndex = 0;
       this.radGroupBox5.Text = "Operator";
       // 
       // fulltext_drop_operator
       // 
       this.fulltext_drop_operator.Dock = System.Windows.Forms.DockStyle.Top;
+      this.fulltext_drop_operator.DropDownAnimationEnabled = true;
+      this.fulltext_drop_operator.DropDownHeight = 80;
       radListDataItem7.Text = "~ = Mindestens ein Wert aus der Liste muss im Dokument vorkommen";
       radListDataItem8.Text = "- = Alle Werte aus der Liste müssen im Dokument vorkommen";
       radListDataItem9.Text = "= = Alle Werte aus der Liste müssen in einem Satz vorkommen";
@@ -418,10 +443,11 @@
       this.fulltext_drop_operator.Items.Add(radListDataItem8);
       this.fulltext_drop_operator.Items.Add(radListDataItem9);
       this.fulltext_drop_operator.Items.Add(radListDataItem10);
-      this.fulltext_drop_operator.Location = new System.Drawing.Point(5, 25);
+      this.fulltext_drop_operator.Location = new System.Drawing.Point(4, 20);
+      this.fulltext_drop_operator.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.fulltext_drop_operator.Name = "fulltext_drop_operator";
       this.fulltext_drop_operator.NullText = "Bitte Operator auswählen...";
-      this.fulltext_drop_operator.Size = new System.Drawing.Size(815, 0);
+      this.fulltext_drop_operator.Size = new System.Drawing.Size(610, 0);
       this.fulltext_drop_operator.TabIndex = 0;
       this.fulltext_drop_operator.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.refreshlive_dropdown);
       // 
@@ -431,20 +457,22 @@
       this.radGroupBox4.Controls.Add(this.fulltext_txt_layer);
       this.radGroupBox4.Dock = System.Windows.Forms.DockStyle.Top;
       this.radGroupBox4.HeaderText = "Layer";
-      this.radGroupBox4.Location = new System.Drawing.Point(5, 5);
+      this.radGroupBox4.Location = new System.Drawing.Point(4, 4);
+      this.radGroupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radGroupBox4.Name = "radGroupBox4";
-      this.radGroupBox4.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox4.Size = new System.Drawing.Size(825, 70);
+      this.radGroupBox4.Padding = new System.Windows.Forms.Padding(4, 20, 4, 4);
+      this.radGroupBox4.Size = new System.Drawing.Size(618, 57);
       this.radGroupBox4.TabIndex = 1;
       this.radGroupBox4.Text = "Layer";
       // 
       // fulltext_txt_layer
       // 
       this.fulltext_txt_layer.Dock = System.Windows.Forms.DockStyle.Top;
-      this.fulltext_txt_layer.Location = new System.Drawing.Point(5, 25);
+      this.fulltext_txt_layer.Location = new System.Drawing.Point(4, 20);
+      this.fulltext_txt_layer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.fulltext_txt_layer.Name = "fulltext_txt_layer";
       this.fulltext_txt_layer.NullText = "Bitte hier den Namen des abzufragenden Layers eintragen...";
-      this.fulltext_txt_layer.Size = new System.Drawing.Size(815, 32);
+      this.fulltext_txt_layer.Size = new System.Drawing.Size(610, 32);
       this.fulltext_txt_layer.TabIndex = 0;
       this.fulltext_txt_layer.Text = "Wort";
       this.fulltext_txt_layer.TextChanged += new System.EventHandler(this.refreshlive_textbox);
@@ -452,10 +480,11 @@
       // page_random
       // 
       this.page_random.Controls.Add(this.panel4);
-      this.page_random.ItemSize = new System.Drawing.SizeF(88F, 44F);
-      this.page_random.Location = new System.Drawing.Point(205, 4);
+      this.page_random.ItemSize = new System.Drawing.SizeF(69F, 36F);
+      this.page_random.Location = new System.Drawing.Point(154, 3);
+      this.page_random.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.page_random.Name = "page_random";
-      this.page_random.Size = new System.Drawing.Size(835, 506);
+      this.page_random.Size = new System.Drawing.Size(626, 411);
       this.page_random.Text = "Zufall";
       // 
       // panel4
@@ -463,9 +492,10 @@
       this.panel4.Controls.Add(this.radGroupBox6);
       this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
       this.panel4.Location = new System.Drawing.Point(0, 0);
+      this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.panel4.Name = "panel4";
-      this.panel4.Padding = new System.Windows.Forms.Padding(5);
-      this.panel4.Size = new System.Drawing.Size(835, 506);
+      this.panel4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.panel4.Size = new System.Drawing.Size(626, 411);
       this.panel4.TabIndex = 1;
       // 
       // radGroupBox6
@@ -474,30 +504,33 @@
       this.radGroupBox6.Controls.Add(this.random_txt_value);
       this.radGroupBox6.Dock = System.Windows.Forms.DockStyle.Top;
       this.radGroupBox6.HeaderText = "Zufällig zu ziehende Texte";
-      this.radGroupBox6.Location = new System.Drawing.Point(5, 5);
+      this.radGroupBox6.Location = new System.Drawing.Point(4, 4);
+      this.radGroupBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radGroupBox6.Name = "radGroupBox6";
-      this.radGroupBox6.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox6.Size = new System.Drawing.Size(825, 70);
+      this.radGroupBox6.Padding = new System.Windows.Forms.Padding(4, 20, 4, 4);
+      this.radGroupBox6.Size = new System.Drawing.Size(618, 57);
       this.radGroupBox6.TabIndex = 1;
       this.radGroupBox6.Text = "Zufällig zu ziehende Texte";
       // 
       // random_txt_value
       // 
       this.random_txt_value.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.random_txt_value.Location = new System.Drawing.Point(5, 25);
+      this.random_txt_value.Location = new System.Drawing.Point(4, 20);
+      this.random_txt_value.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.random_txt_value.Name = "random_txt_value";
       this.random_txt_value.NullText = "Geben Sie einen Wert ein...";
-      this.random_txt_value.Size = new System.Drawing.Size(815, 40);
+      this.random_txt_value.Size = new System.Drawing.Size(610, 33);
       this.random_txt_value.TabIndex = 2;
       this.random_txt_value.TextChanged += new System.EventHandler(this.refreshlive_textbox);
       // 
       // page_autosplit
       // 
       this.page_autosplit.Controls.Add(this.panel5);
-      this.page_autosplit.ItemSize = new System.Drawing.SizeF(88F, 44F);
-      this.page_autosplit.Location = new System.Drawing.Point(205, 4);
+      this.page_autosplit.ItemSize = new System.Drawing.SizeF(69F, 36F);
+      this.page_autosplit.Location = new System.Drawing.Point(154, 3);
+      this.page_autosplit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.page_autosplit.Name = "page_autosplit";
-      this.page_autosplit.Size = new System.Drawing.Size(835, 506);
+      this.page_autosplit.Size = new System.Drawing.Size(626, 411);
       this.page_autosplit.Text = "AutoSplit";
       // 
       // panel5
@@ -505,18 +538,20 @@
       this.panel5.Controls.Add(this.autoSplit1);
       this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
       this.panel5.Location = new System.Drawing.Point(0, 0);
+      this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.panel5.Name = "panel5";
-      this.panel5.Padding = new System.Windows.Forms.Padding(5);
-      this.panel5.Size = new System.Drawing.Size(835, 506);
+      this.panel5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+      this.panel5.Size = new System.Drawing.Size(626, 411);
       this.panel5.TabIndex = 1;
       // 
       // autoSplit1
       // 
       this.autoSplit1.BackColor = System.Drawing.Color.White;
       this.autoSplit1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.autoSplit1.Location = new System.Drawing.Point(5, 5);
+      this.autoSplit1.Location = new System.Drawing.Point(4, 4);
+      this.autoSplit1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.autoSplit1.Name = "autoSplit1";
-      this.autoSplit1.Size = new System.Drawing.Size(825, 496);
+      this.autoSplit1.Size = new System.Drawing.Size(618, 403);
       this.autoSplit1.TabIndex = 0;
       this.autoSplit1.DataChanged += new System.EventHandler(this.refreshlive_autosplit);
       // 
@@ -524,10 +559,11 @@
       // 
       this.page_listBuilder.Controls.Add(this.radGroupBox8);
       this.page_listBuilder.Controls.Add(this.list_prefix);
-      this.page_listBuilder.ItemSize = new System.Drawing.SizeF(88F, 44F);
-      this.page_listBuilder.Location = new System.Drawing.Point(205, 4);
+      this.page_listBuilder.ItemSize = new System.Drawing.SizeF(69F, 36F);
+      this.page_listBuilder.Location = new System.Drawing.Point(154, 3);
+      this.page_listBuilder.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.page_listBuilder.Name = "page_listBuilder";
-      this.page_listBuilder.Size = new System.Drawing.Size(835, 506);
+      this.page_listBuilder.Size = new System.Drawing.Size(626, 411);
       this.page_listBuilder.Text = "Liste";
       // 
       // radGroupBox8
@@ -536,17 +572,19 @@
       this.radGroupBox8.Controls.Add(this.list_grid_values);
       this.radGroupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
       this.radGroupBox8.HeaderText = "Abzufragende Werte";
-      this.radGroupBox8.Location = new System.Drawing.Point(0, 70);
+      this.radGroupBox8.Location = new System.Drawing.Point(0, 57);
+      this.radGroupBox8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radGroupBox8.Name = "radGroupBox8";
-      this.radGroupBox8.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox8.Size = new System.Drawing.Size(835, 436);
+      this.radGroupBox8.Padding = new System.Windows.Forms.Padding(4, 20, 4, 4);
+      this.radGroupBox8.Size = new System.Drawing.Size(626, 354);
       this.radGroupBox8.TabIndex = 3;
       this.radGroupBox8.Text = "Abzufragende Werte";
       // 
       // list_grid_values
       // 
       this.list_grid_values.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.list_grid_values.Location = new System.Drawing.Point(5, 25);
+      this.list_grid_values.Location = new System.Drawing.Point(4, 20);
+      this.list_grid_values.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       // 
       // 
       // 
@@ -554,13 +592,13 @@
       this.list_grid_values.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
       gridViewTextBoxColumn1.HeaderText = "value";
       gridViewTextBoxColumn1.Name = "value";
-      gridViewTextBoxColumn1.Width = 804;
+      gridViewTextBoxColumn1.Width = 603;
       this.list_grid_values.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1});
       this.list_grid_values.MasterTemplate.EnableGrouping = false;
       this.list_grid_values.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.list_grid_values.Name = "list_grid_values";
-      this.list_grid_values.Size = new System.Drawing.Size(825, 406);
+      this.list_grid_values.Size = new System.Drawing.Size(618, 330);
       this.list_grid_values.TabIndex = 3;
       // 
       // list_prefix
@@ -570,19 +608,21 @@
       this.list_prefix.Dock = System.Windows.Forms.DockStyle.Top;
       this.list_prefix.HeaderText = "Query Prefix";
       this.list_prefix.Location = new System.Drawing.Point(0, 0);
+      this.list_prefix.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.list_prefix.Name = "list_prefix";
-      this.list_prefix.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.list_prefix.Size = new System.Drawing.Size(835, 70);
+      this.list_prefix.Padding = new System.Windows.Forms.Padding(4, 20, 4, 4);
+      this.list_prefix.Size = new System.Drawing.Size(626, 57);
       this.list_prefix.TabIndex = 2;
       this.list_prefix.Text = "Query Prefix";
       // 
       // list_txt_prefix
       // 
       this.list_txt_prefix.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.list_txt_prefix.Location = new System.Drawing.Point(5, 25);
+      this.list_txt_prefix.Location = new System.Drawing.Point(4, 20);
+      this.list_txt_prefix.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.list_txt_prefix.Name = "list_txt_prefix";
       this.list_txt_prefix.NullText = "Hier bitte den Namen der Meta-Angabe eintragen...";
-      this.list_txt_prefix.Size = new System.Drawing.Size(825, 40);
+      this.list_txt_prefix.Size = new System.Drawing.Size(618, 33);
       this.list_txt_prefix.TabIndex = 3;
       // 
       // page_group
@@ -590,10 +630,11 @@
       this.page_group.Controls.Add(this.radGroupBox12);
       this.page_group.Controls.Add(this.radGroupBox11);
       this.page_group.Controls.Add(this.radGroupBox9);
-      this.page_group.ItemSize = new System.Drawing.SizeF(88F, 44F);
-      this.page_group.Location = new System.Drawing.Point(205, 4);
+      this.page_group.ItemSize = new System.Drawing.SizeF(69F, 36F);
+      this.page_group.Location = new System.Drawing.Point(153, 3);
+      this.page_group.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.page_group.Name = "page_group";
-      this.page_group.Size = new System.Drawing.Size(835, 506);
+      this.page_group.Size = new System.Drawing.Size(666, 308);
       this.page_group.Text = "Gruppe";
       // 
       // radGroupBox12
@@ -602,17 +643,19 @@
       this.radGroupBox12.Controls.Add(this.group_grid_queries);
       this.radGroupBox12.Dock = System.Windows.Forms.DockStyle.Fill;
       this.radGroupBox12.HeaderText = "Abfragen (bitte selbst überprüfen)";
-      this.radGroupBox12.Location = new System.Drawing.Point(0, 140);
+      this.radGroupBox12.Location = new System.Drawing.Point(0, 114);
+      this.radGroupBox12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radGroupBox12.Name = "radGroupBox12";
-      this.radGroupBox12.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox12.Size = new System.Drawing.Size(835, 366);
+      this.radGroupBox12.Padding = new System.Windows.Forms.Padding(4, 20, 4, 4);
+      this.radGroupBox12.Size = new System.Drawing.Size(666, 194);
       this.radGroupBox12.TabIndex = 5;
       this.radGroupBox12.Text = "Abfragen (bitte selbst überprüfen)";
       // 
       // group_grid_queries
       // 
       this.group_grid_queries.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.group_grid_queries.Location = new System.Drawing.Point(5, 25);
+      this.group_grid_queries.Location = new System.Drawing.Point(4, 20);
+      this.group_grid_queries.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       // 
       // 
       // 
@@ -620,13 +663,13 @@
       this.group_grid_queries.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
       gridViewTextBoxColumn2.HeaderText = "query";
       gridViewTextBoxColumn2.Name = "query";
-      gridViewTextBoxColumn2.Width = 804;
+      gridViewTextBoxColumn2.Width = 643;
       this.group_grid_queries.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn2});
       this.group_grid_queries.MasterTemplate.EnableGrouping = false;
       this.group_grid_queries.MasterTemplate.ViewDefinition = tableViewDefinition2;
       this.group_grid_queries.Name = "group_grid_queries";
-      this.group_grid_queries.Size = new System.Drawing.Size(825, 336);
+      this.group_grid_queries.Size = new System.Drawing.Size(658, 170);
       this.group_grid_queries.TabIndex = 3;
       // 
       // radGroupBox11
@@ -635,24 +678,29 @@
       this.radGroupBox11.Controls.Add(this.group_drop_operator);
       this.radGroupBox11.Dock = System.Windows.Forms.DockStyle.Top;
       this.radGroupBox11.HeaderText = "Operator";
-      this.radGroupBox11.Location = new System.Drawing.Point(0, 70);
+      this.radGroupBox11.Location = new System.Drawing.Point(0, 57);
+      this.radGroupBox11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radGroupBox11.Name = "radGroupBox11";
-      this.radGroupBox11.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox11.Size = new System.Drawing.Size(835, 70);
+      this.radGroupBox11.Padding = new System.Windows.Forms.Padding(4, 20, 4, 4);
+      this.radGroupBox11.Size = new System.Drawing.Size(666, 57);
       this.radGroupBox11.TabIndex = 4;
       this.radGroupBox11.Text = "Operator";
       // 
       // group_drop_operator
       // 
       this.group_drop_operator.Dock = System.Windows.Forms.DockStyle.Top;
+      this.group_drop_operator.DropDownAnimationEnabled = true;
+      this.group_drop_operator.DropDownHeight = 80;
+      this.group_drop_operator.ItemHeight = 27;
       radListDataItem11.Text = "or";
       radListDataItem12.Text = "and";
       this.group_drop_operator.Items.Add(radListDataItem11);
       this.group_drop_operator.Items.Add(radListDataItem12);
-      this.group_drop_operator.Location = new System.Drawing.Point(5, 25);
+      this.group_drop_operator.Location = new System.Drawing.Point(4, 20);
+      this.group_drop_operator.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.group_drop_operator.Name = "group_drop_operator";
       this.group_drop_operator.NullText = "Bitte Operator auswählen...";
-      this.group_drop_operator.Size = new System.Drawing.Size(825, 32);
+      this.group_drop_operator.Size = new System.Drawing.Size(658, 27);
       this.group_drop_operator.TabIndex = 0;
       // 
       // radGroupBox9
@@ -662,28 +710,31 @@
       this.radGroupBox9.Dock = System.Windows.Forms.DockStyle.Top;
       this.radGroupBox9.HeaderText = "Query Prefix";
       this.radGroupBox9.Location = new System.Drawing.Point(0, 0);
+      this.radGroupBox9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radGroupBox9.Name = "radGroupBox9";
-      this.radGroupBox9.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox9.Size = new System.Drawing.Size(835, 70);
+      this.radGroupBox9.Padding = new System.Windows.Forms.Padding(4, 20, 4, 4);
+      this.radGroupBox9.Size = new System.Drawing.Size(666, 57);
       this.radGroupBox9.TabIndex = 3;
       this.radGroupBox9.Text = "Query Prefix";
       // 
       // group_txt_prefix
       // 
       this.group_txt_prefix.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.group_txt_prefix.Location = new System.Drawing.Point(5, 25);
+      this.group_txt_prefix.Location = new System.Drawing.Point(4, 20);
+      this.group_txt_prefix.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.group_txt_prefix.Name = "group_txt_prefix";
       this.group_txt_prefix.NullText = "Hier bitte den Namen der Meta-Angabe eintragen...";
-      this.group_txt_prefix.Size = new System.Drawing.Size(825, 40);
+      this.group_txt_prefix.Size = new System.Drawing.Size(658, 26);
       this.group_txt_prefix.TabIndex = 3;
       // 
       // panel1
       // 
       this.panel1.Controls.Add(this.txt_livePreview);
       this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.panel1.Location = new System.Drawing.Point(0, 70);
+      this.panel1.Location = new System.Drawing.Point(0, 57);
+      this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(1044, 100);
+      this.panel1.Size = new System.Drawing.Size(822, 81);
       this.panel1.TabIndex = 0;
       // 
       // txt_livePreview
@@ -692,13 +743,14 @@
       this.txt_livePreview.Font = new System.Drawing.Font("Segoe UI", 24F);
       this.txt_livePreview.IsReadOnly = true;
       this.txt_livePreview.Location = new System.Drawing.Point(0, 0);
+      this.txt_livePreview.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.txt_livePreview.Name = "txt_livePreview";
-      this.txt_livePreview.Size = new System.Drawing.Size(1044, 100);
+      this.txt_livePreview.Size = new System.Drawing.Size(822, 81);
       this.txt_livePreview.TabIndex = 0;
       this.txt_livePreview.Text = "<? Bitte Eingaben (s. u.) vervollständigen ?>";
       this.txt_livePreview.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
       ((Telerik.WinControls.UI.TextBoxViewElement)(this.txt_livePreview.GetChildAt(0).GetChildAt(0))).Font = new System.Drawing.Font("Segoe UI", 24F);
-      ((Telerik.WinControls.UI.TextBoxViewElement)(this.txt_livePreview.GetChildAt(0).GetChildAt(0))).Padding = new System.Windows.Forms.Padding(2, 23, 2, 2);
+      ((Telerik.WinControls.UI.TextBoxViewElement)(this.txt_livePreview.GetChildAt(0).GetChildAt(0))).Padding = new System.Windows.Forms.Padding(2, 19, 2, 2);
       // 
       // radGroupBox1
       // 
@@ -710,34 +762,40 @@
       this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Top;
       this.radGroupBox1.HeaderText = "Abfrage";
       this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
+      this.radGroupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radGroupBox1.Name = "radGroupBox1";
-      this.radGroupBox1.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox1.Size = new System.Drawing.Size(1044, 70);
+      this.radGroupBox1.Padding = new System.Windows.Forms.Padding(4, 20, 4, 4);
+      this.radGroupBox1.Size = new System.Drawing.Size(822, 57);
       this.radGroupBox1.TabIndex = 1;
       this.radGroupBox1.Text = "Abfrage";
       // 
       // query_txt_name
       // 
       this.query_txt_name.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.query_txt_name.Location = new System.Drawing.Point(5, 25);
+      this.query_txt_name.Location = new System.Drawing.Point(4, 20);
+      this.query_txt_name.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.query_txt_name.Name = "query_txt_name";
       this.query_txt_name.NullText = "Gebene Sie der Abfrage einen Namen...";
-      this.query_txt_name.Size = new System.Drawing.Size(423, 40);
+      this.query_txt_name.Size = new System.Drawing.Size(407, 26);
       this.query_txt_name.TabIndex = 1;
       // 
       // radLabel1
       // 
       this.radLabel1.AutoSize = false;
       this.radLabel1.Dock = System.Windows.Forms.DockStyle.Right;
-      this.radLabel1.Location = new System.Drawing.Point(428, 25);
+      this.radLabel1.Location = new System.Drawing.Point(411, 20);
+      this.radLabel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radLabel1.Name = "radLabel1";
-      this.radLabel1.Size = new System.Drawing.Size(108, 40);
+      this.radLabel1.Size = new System.Drawing.Size(81, 33);
       this.radLabel1.TabIndex = 3;
       this.radLabel1.Text = "Abgeleitet von:";
       // 
       // query_drop_parent
       // 
       this.query_drop_parent.Dock = System.Windows.Forms.DockStyle.Right;
+      this.query_drop_parent.DropDownAnimationEnabled = true;
+      this.query_drop_parent.DropDownHeight = 60;
+      this.query_drop_parent.ItemHeight = 20;
       radListDataItem13.Text = "~ = Mindestens ein Wert aus der Liste muss im Dokument vorkommen";
       radListDataItem14.Text = "- = Alle Werte aus der Liste müssen im Dokument vorkommen";
       radListDataItem15.Text = "= = Alle Werte aus der Liste müssen in einem Satz vorkommen";
@@ -746,31 +804,32 @@
       this.query_drop_parent.Items.Add(radListDataItem14);
       this.query_drop_parent.Items.Add(radListDataItem15);
       this.query_drop_parent.Items.Add(radListDataItem16);
-      this.query_drop_parent.Location = new System.Drawing.Point(536, 25);
-      this.query_drop_parent.MinimumSize = new System.Drawing.Size(0, 37);
+      this.query_drop_parent.Location = new System.Drawing.Point(492, 20);
+      this.query_drop_parent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.query_drop_parent.MinimumSize = new System.Drawing.Size(0, 20);
       this.query_drop_parent.Name = "query_drop_parent";
       this.query_drop_parent.NullText = "Übergeordneter Query?...";
-      this.query_drop_parent.Size = new System.Drawing.Size(329, 40);
+      this.query_drop_parent.Size = new System.Drawing.Size(185, 23);
       this.query_drop_parent.TabIndex = 2;
       // 
       // query_check_invert
       // 
       this.query_check_invert.Dock = System.Windows.Forms.DockStyle.Right;
-      this.query_check_invert.Location = new System.Drawing.Point(865, 25);
+      this.query_check_invert.Location = new System.Drawing.Point(677, 20);
+      this.query_check_invert.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.query_check_invert.Name = "query_check_invert";
-      this.query_check_invert.Padding = new System.Windows.Forms.Padding(5, 7, 0, 0);
-      this.query_check_invert.Size = new System.Drawing.Size(174, 40);
+      this.query_check_invert.Padding = new System.Windows.Forms.Padding(4, 6, 0, 0);
+      this.query_check_invert.Size = new System.Drawing.Size(141, 25);
       this.query_check_invert.TabIndex = 0;
       this.query_check_invert.Text = "Abfrage invertieren?";
       // 
       // QueryBuilderForm
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1046, 730);
+      this.ClientSize = new System.Drawing.Size(824, 490);
       this.Controls.Add(this.radScrollablePanel1);
       this.Controls.Add(this.radCommandBar1);
-      this.Margin = new System.Windows.Forms.Padding(4);
       this.Name = "QueryBuilderForm";
       // 
       // 

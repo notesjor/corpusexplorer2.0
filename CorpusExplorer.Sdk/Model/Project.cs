@@ -237,13 +237,13 @@ namespace CorpusExplorer.Sdk.Model
     ///   Gets the count sentences.
     /// </summary>
     /// <value>The count sentences.</value>
-    public int CountSentences => SelectAll?.CountSentences ?? 0;
+    public long CountSentences => SelectAll?.CountSentences ?? 0;
 
     /// <summary>
     ///   Gets the count token.
     /// </summary>
     /// <value>The count token.</value>
-    public int CountToken => SelectAll?.CountToken ?? 0;
+    public long CountToken => SelectAll?.CountToken ?? 0;
 
     /// <summary>
     ///   Gets the document titles.
@@ -430,7 +430,7 @@ namespace CorpusExplorer.Sdk.Model
     /// </summary>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    public int GetDocumentLengthInSentences(Guid documentGuid)
+    public long GetDocumentLengthInSentences(Guid documentGuid)
     {
       var corpus = GetCorpusOfDocument(documentGuid);
       return corpus.GetDocumentLengthInSentences(documentGuid);
@@ -442,7 +442,7 @@ namespace CorpusExplorer.Sdk.Model
     /// <param name="corpusGuid">Korpus GUID in dem das Dokument enthalten sein muss</param>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    public int GetDocumentLengthInSentences(Guid corpusGuid, Guid documentGuid)
+    public long GetDocumentLengthInSentences(Guid corpusGuid, Guid documentGuid)
     {
       var corpus = GetCorpus(corpusGuid);
       return corpus?.GetDocumentLengthInSentences(documentGuid) ?? -1;
@@ -453,7 +453,7 @@ namespace CorpusExplorer.Sdk.Model
     /// </summary>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    public int GetDocumentLengthInWords(Guid documentGuid)
+    public long GetDocumentLengthInWords(Guid documentGuid)
     {
       var corpus = GetCorpusOfDocument(documentGuid);
       return corpus.GetDocumentLengthInWords(documentGuid);
@@ -465,7 +465,7 @@ namespace CorpusExplorer.Sdk.Model
     /// <param name="corpusGuid">Korpus GUID</param>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    public int GetDocumentLengthInWords(Guid corpusGuid, Guid documentGuid)
+    public long GetDocumentLengthInWords(Guid corpusGuid, Guid documentGuid)
     {
       var corpus = GetCorpus(corpusGuid);
       return corpus?.GetDocumentLengthInWords(documentGuid) ?? -1;
@@ -1271,7 +1271,7 @@ namespace CorpusExplorer.Sdk.Model
     /// <value>The on model changes.</value>
     public event HydraDelegate SelectionCreated;
 
-    internal int GetDocumentLengthInSentences(Dictionary<Guid, HashSet<Guid>> selectionDefinition)
+    internal long GetDocumentLengthInSentences(Dictionary<Guid, HashSet<Guid>> selectionDefinition)
     {
       return (from csel in selectionDefinition
               let corpus = GetCorpus(csel.Key)
@@ -1434,12 +1434,12 @@ namespace CorpusExplorer.Sdk.Model
         foreach (var c in _corpora)
           if (c is CorpusAdapterWriteDirect corpus)
             corpus.Dispose();
-
       _corpora?.Clear();
+
       foreach (var s in _selections)
         s.Dispose();
-
       _selections.Clear();
+
       _guid = Guid.NewGuid();
       _selectionAll = null;
       _currentSelection = null;

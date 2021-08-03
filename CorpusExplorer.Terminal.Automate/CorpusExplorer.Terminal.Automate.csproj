@@ -57,6 +57,27 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Linux%29|x86'">
+    <OutputPath>bin\x86\Debug %28Linux%29\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Linux%29|AnyCPU'">
+    <OutputPath>bin\Debug %28Linux%29\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -68,24 +89,24 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.WinControls, Version=2021.1.204.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2021.1.204.40\Telerik.WinControls.dll</HintPath>
+    <Reference Include="Telerik.WinControls, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2021.2.615.40\Telerik.WinControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.GridView, Version=2021.1.204.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2021.1.204.40\Telerik.WinControls.GridView.dll</HintPath>
+    <Reference Include="Telerik.WinControls.GridView, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2021.2.615.40\Telerik.WinControls.GridView.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2021.1.204.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2021.1.204.40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2021.2.615.40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI, Version=2021.1.204.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2021.1.204.40\Telerik.WinControls.UI.dll</HintPath>
+    <Reference Include="Telerik.WinControls.UI, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2021.2.615.40\Telerik.WinControls.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="TelerikCommon, Version=2021.1.204.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2021.1.204.40\TelerikCommon.dll</HintPath>
+    <Reference Include="TelerikCommon, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2021.2.615.40\TelerikCommon.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

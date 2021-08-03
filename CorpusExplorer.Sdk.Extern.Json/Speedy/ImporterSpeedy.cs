@@ -54,12 +54,12 @@ namespace CorpusExplorer.Sdk.Extern.Json.Speedy
             continue;
           }
 
-          var pos = (from x in idxs where x.Item4 >= a.StartIndex && x.Item3 <= a.EndIndex select x).ToArray();
+          var pos = (from x in idxs where x.TextCharFrom >= a.StartIndex && x.TextCharTo <= a.EndIndex select x).ToArray();
           if (pos.Length == 0)
             continue;
 
           foreach (var x in pos)
-            aDoc[x.Item1][x.Item2] = a.Value ?? "";
+            aDoc[x.SentenceIndex][x.TokenIndex] = a.Value ?? "";
         }
 
         aLayer.ChangeCompleteDocument(fDoc.Key, aDoc);

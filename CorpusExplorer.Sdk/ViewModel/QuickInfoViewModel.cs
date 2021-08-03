@@ -13,7 +13,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     public int CounterCorpora { get; private set; }
     public int CounterDocuments { get; private set; }
     public int CounterLayers { get; private set; }
-    public int CounterTokens { get; private set; }
+    public long CounterTokens { get; private set; }
 
     /// <summary>
     ///   The analyse.

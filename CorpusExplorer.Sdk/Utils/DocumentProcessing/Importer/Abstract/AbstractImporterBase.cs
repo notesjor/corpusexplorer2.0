@@ -10,7 +10,7 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
 
 namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
 {
-  public abstract class AbstractImporterBase : AbstractImporter
+  public abstract class AbstractImporterBase : AbstractImporter, IDisposable
   {
     private readonly object _metaLock = new object();
     private readonly object _layerLock = new object();
@@ -168,6 +168,18 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
         GC.Collect();
         GC.WaitForPendingFinalizers();
       }
+    }
+
+    public virtual void Dispose()
+    {
+      Concepts.Clear();
+      CorpusMetadata.Clear();
+      foreach(var x in DocumentMetadata)
+        x.Value.Clear();
+      DocumentMetadata.Clear();
+      foreach(var x in Layers)
+        x.Value.Dispose();
+      Layers.Clear();
     }
   }
 }

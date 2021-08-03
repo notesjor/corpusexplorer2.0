@@ -60,7 +60,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
           new ClarinContentSearchScraper()
         },
         {
-          "EasyHashtag Plaintext (*.ehp)|*.ehp",
+          "EasyHashtag Plaintext (*.ehp, *.txt)|*.ehp;*.txt",
           new EasyHashtagSeparationScraper()
         },
         {

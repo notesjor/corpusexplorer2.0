@@ -48,13 +48,13 @@ namespace CorpusExplorer.Sdk.Model.Interface
     ///   Gets the count sentences.
     /// </summary>
     /// <value>The count sentences.</value>
-    int CountSentences { get; }
+    long CountSentences { get; }
 
     /// <summary>
     ///   Gets the count token.
     /// </summary>
     /// <value>The count token.</value>
-    int CountToken { get; }
+    long CountToken { get; }
 
     /// <summary>
     ///   Gets the document titles.
@@ -287,7 +287,7 @@ namespace CorpusExplorer.Sdk.Model.Interface
     /// </summary>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    int GetDocumentLengthInSentences(Guid documentGuid);
+    long GetDocumentLengthInSentences(Guid documentGuid);
 
     /// <summary>
     ///   Gibt die Anzahl der Sätze in einem Dokument zurück.
@@ -295,14 +295,14 @@ namespace CorpusExplorer.Sdk.Model.Interface
     /// <param name="corpusGuid">Korpus GUID in dem das Dokument enthalten sein muss</param>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    int GetDocumentLengthInSentences(Guid corpusGuid, Guid documentGuid);
+    long GetDocumentLengthInSentences(Guid corpusGuid, Guid documentGuid);
 
     /// <summary>
     ///   Gibt die Anzahl der Worte in einem Dokument zurück.
     /// </summary>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    int GetDocumentLengthInWords(Guid documentGuid);
+    long GetDocumentLengthInWords(Guid documentGuid);
 
     /// <summary>
     ///   Gibt die Anzahl der Worte in einem Dokument zurück.
@@ -310,7 +310,7 @@ namespace CorpusExplorer.Sdk.Model.Interface
     /// <param name="corpusGuid">Korpus GUID in dem das Dokument enthalten sein muss</param>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    int GetDocumentLengthInWords(Guid corpusGuid, Guid documentGuid);
+    long GetDocumentLengthInWords(Guid corpusGuid, Guid documentGuid);
 
     /// <summary>
     ///   Gibt die Metadaten aller Dokumente zurück, die dem metaKey entsprechen

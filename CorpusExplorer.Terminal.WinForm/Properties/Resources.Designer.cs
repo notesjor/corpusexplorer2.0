@@ -3286,6 +3286,15 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die TSV-Datei (*.tsv)|*.tsv ähnelt.
+        /// </summary>
+        public static string FileExtension_TSV {
+            get {
+                return ResourceManager.GetString("FileExtension_TSV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die TXT-Datei (*.txt)|*.txt ähnelt.
         /// </summary>
         public static string FileExtension_TXT {

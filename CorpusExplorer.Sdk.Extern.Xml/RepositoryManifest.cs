@@ -102,13 +102,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"BNC TEI (*.xml)|*.xml", new ImporterBnc() },
         {"TXM TEI-XML (*.xml)|*.xml", new ImporterTxm() },
         {"TiGER-XML (*.xml)|*.xml", new ImporterTiger() },
-        {"FOLKER / OrthoNormal (*.xml)|*.fln", new ImporterFolkerFln() },
-        {"IDS KorAP - inkl. aller Tagger (*.zip)|*.zip", new ImporterKorap()},
-        {"IDS KorAP - nur CoreNLP (*.zip)|*.zip", new ImporterKorapOnlyCoreNlp()},
-        {"IDS KorAP - nur MarMoT (*.zip)|*.zip", new ImporterKorapOnlyMarmot()},
-        {"IDS KorAP - nur MALT (*.zip)|*.zip", new ImporterKorapOnlyMalt()},
-        {"IDS KorAP - nur OpenNLP (*.zip)|*.zip", new ImporterKorapOnlyOpenNlp()},
-        {"IDS KorAP - nur TreeTagger (*.zip)|*.zip", new ImporterKorapOnlyTreeTagger()},};
+        {"FOLKER / OrthoNormal (*.fln)|*.fln", new ImporterFolkerFln() },
+        {"IDS KorAP (*.zip)|*.zip", new ImporterKorap()}
+      };
 
     /// <summary>
     ///   Liste mit Scrapern die lokale Dateien (z. B. TXT, RTF, DOCX, PDF) in Korpusdokumente konvertieren.

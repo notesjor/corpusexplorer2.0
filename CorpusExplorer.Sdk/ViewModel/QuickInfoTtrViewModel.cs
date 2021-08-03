@@ -11,7 +11,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     public int CounterCorpora { get; private set; }
     public int CounterDocuments { get; private set; }
     public int CounterLayers { get; private set; }
-    public int CounterTokens { get; private set; }
+    public long CounterTokens { get; private set; }
     public int CounterTypes { get; private set; }
     public double CounterTypeTokenRatio { get; private set; }
     public string LayerDisplayname { get; set; } = "Wort";

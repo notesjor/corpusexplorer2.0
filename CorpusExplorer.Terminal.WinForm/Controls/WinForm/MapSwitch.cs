@@ -77,6 +77,9 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     public void SetData(Dictionary<string, double> data)
     {
       _data = data;
+      _mapT.SetAllCountryBackground(new SolidColorBrush(Colors.White));
+      _mapR.SetAllCountryBackground(new SolidColorBrush(Colors.Black));
+
       var max = data.Max(x => x.Value);
       var palette = _colorizer.GetValueGradientColorizer(0, 1);
       foreach (var d in data)

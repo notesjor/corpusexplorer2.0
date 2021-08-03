@@ -32,7 +32,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       var form = new MapConfiguration(_data);
       form.ShowDialog();
 
-      _data = form.Data;
+      _data = form.GetModel<string[][]>();
       if (_data == null)
         return;
 

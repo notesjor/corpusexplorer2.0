@@ -31,9 +31,19 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Linux%29|AnyCPU'">
+    <OutputPath>bin\Debug %28Linux%29\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.1.9, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpZipLib.1.3.1\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.2.10, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.3.2\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -71,6 +81,10 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="addons\Pandoc\pandoc.manifest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="addons\RFTagger\RFTagger.manifest">
+      <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="addons\SaltAndPepper\SaltAndPepper.manifest">
@@ -117,6 +131,9 @@
     <Content Include="addons\Pandoc\addon.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="addons\RFTagger\addon.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="addons\SaltAndPepper\addon.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -130,5 +147,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

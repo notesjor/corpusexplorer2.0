@@ -44,7 +44,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
       this.layerSettings1.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.layerSettings1, "layerSettings1");
       this.layerSettings1.Header = "1. Layer";
-      this.layerSettings1.IsLayerOptional = true;
+      this.layerSettings1.IsLayerOptional = false;
       this.layerSettings1.Name = "layerSettings1";
       // 
       // layerSettings2

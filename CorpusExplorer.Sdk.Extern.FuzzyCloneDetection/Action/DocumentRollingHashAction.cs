@@ -16,7 +16,7 @@ namespace CorpusExplorer.Sdk.Extern.FuzzyCloneDetection.Action
     public string Description => "hash-roll [LAYER] - calculates a rolling hashsum for all documents in [LAYER].";
     public void Execute(Selection selection, string[] args, AbstractTableWriter writer)
     {
-      var vm = new DocumentRollingHashViewModel();
+      var vm = new DocumentRollingHashViewModel { Selection = selection };
       if (args.Length == 1)
         vm.LayerDisplayname = args[0];
       vm.Execute();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using CorpusExplorer.Sdk.Extern.Xml.AnnotationPro.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Helper;
@@ -8,7 +9,6 @@ using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
-using CorpusExplorer.Sdk.Utils.ZipFileIndex;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.AnnotationPro
 {
@@ -17,11 +17,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.AnnotationPro
     public override void Export(IHydra hydra, string path)
     {
       AnnotationSystemDataSet ant = null;
-      var zipFile = new ZipFileIndex(path);
-      zipFile.ZipDirectoryRoot.ZipFiles.FirstOrDefault(x => x.NameFile == "annotation.xml")?.Read(ms =>
-      {
-        ant = XmlSerializerHelper.Deserialize<AnnotationSystemDataSet>(ms);
-      });
+      using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+      using (var zip = new ZipArchive(fs))
+        ant = XmlSerializerHelper.Deserialize<AnnotationSystemDataSet>(zip.GetEntry("annotation.xml").Open());
+
       if (ant == null)
         return;
 
@@ -62,15 +61,13 @@ namespace CorpusExplorer.Sdk.Extern.Xml.AnnotationPro
       if (dir == null)
         throw new DirectoryNotFoundException();
 
-      var nFile = Path.Combine(dir, Path.GetFileNameWithoutExtension(path) + ".mod.ant");
-      File.Copy(path, nFile, true);
+      var nFile = Path.Combine(dir, Path.GetFileNameWithoutExtension(path) + ".bak.ant");
+      if (!File.Exists(nFile))
+        File.Copy(path, nFile, false);
 
-      using (var outZip = new ZipFileIndex(nFile, FileMode.Open, FileAccess.Write, FileShare.None))
-        outZip.Update("annotation.xml", ms =>
-        {
-          XmlSerializerHelper.Serialize(ant, ms);
-        });
-
+      using (var fs = new FileStream(path, FileMode.Open, FileAccess.ReadWrite))
+      using (var zip = new ZipArchive(fs, ZipArchiveMode.Update))
+        XmlSerializerHelper.Serialize(ant, zip.GetEntry("annotation.xml").Open());
     }
 
     private static Segment BuildSegment(Segment segmentPrototyp, Guid documentGuid, AbstractLayerAdapter layer)

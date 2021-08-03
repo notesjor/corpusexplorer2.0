@@ -55,7 +55,46 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
     protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      throw new NotImplementedException();
+      KeyValuePair<Guid, int>[] query;
+      HashSet<Guid> layers;
+
+      if (!GetSpecificQuery(corpus, out query, out layers)) // ist null, wenn das Korpus nicht alle Layer enthält
+        return -1;
+
+      var mult = corpus.GetMultilayerDocument(documentGuid, layers);
+      var first = mult.First();
+
+      if (Configuration.RightToLeftSupport)
+      {
+        for (var j = first.Value[sentence].Length - query.Length; j >= 0; j--)
+        {
+          var match = true;
+          for (var k = query.Length - 1; k >= 0; k--)
+          {
+            if (query[k].Value == mult[query[k].Key][sentence][j - k])
+              continue;
+            match = false;
+            break;
+          }
+
+          if (!match)
+            continue;
+          return j;
+        }
+
+        return -1;
+      }
+      else
+      {
+        for (var j = 0; j < first.Value[sentence].Length - query.Length; j++)
+        {
+          if (query.Where((t, k) => t.Value != mult[t.Key][sentence][j + k]).Any())
+            continue;
+          return j;
+        }
+
+        return -1;
+      }
     }
 
     protected override IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid)

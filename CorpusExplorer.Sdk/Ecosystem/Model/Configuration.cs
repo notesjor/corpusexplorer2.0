@@ -32,7 +32,6 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
 #if UNIVERSAL
 #else
 using Bcs.Addon;
-using NHunspell;
 #endif
 
 #endregion
@@ -147,7 +146,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
         var f = tableWriterTag.Replace("FNT:", "F:");
 
-        var res = _addonTableWriters.Where(x => x.Value.TableWriterTag == tableWriterTag)
+        var res = _addonTableWriters.Where(x => x.Value.TableWriterTag == f)
                                     .Select(x => x.Value)
                                     .FirstOrDefault() ?? _addonTableWriters.First().Value;
 
@@ -245,12 +244,6 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     ///   Gets the extern app path.
     /// </summary>
     public static string ExternAppPath { get; private set; }
-
-
-#if UNIVERSAL
-#else
-    public static Hyphen Hyphen { get; set; }
-#endif
 
     public static bool IsInitialized { get; private set; }
 
@@ -448,11 +441,22 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       _addonConsoleActions.Clear();
       _addonSideLoadFeatures.Clear();
 
-      var location = Path.GetDirectoryName(string.IsNullOrEmpty(alternativePath)
-                                             ? Assembly.GetExecutingAssembly().Location
-                                             : alternativePath);
+      string location = null;
+      try
+      {
+        location = Path.GetDirectoryName(string.IsNullOrEmpty(alternativePath)
+                                           ? Assembly.GetExecutingAssembly().Location
+                                           : alternativePath);
+      }
+      catch
+      {
+        // ignore
+      }
 #if UNIVERSAL
 #else
+      if (location == null)
+        return;
+
       Load3RdPartyAddons(location);
 
       // Nur relevant, wenn USB/Pendrive oder DEBUG
@@ -700,24 +704,6 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 #if UNIVERSAL
 #else
       _addonViews = new List<IAddonView>();
-
-      // Hypen
-      try
-      {
-        Hyphen.NativeDllPath = AppPath;
-        Hyphen = new Hyphen(GetDependencyPath(@"NHunspell\hyphenation\hyph_de_DE.dic"));
-      }
-      catch
-      {
-        try
-        {
-          Hyphen = new Hyphen();
-        }
-        catch
-        {
-          // ignore
-        }
-      }
 #endif
 
       IsInitialized = true;

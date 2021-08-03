@@ -7,7 +7,7 @@ namespace CorpusExplorer.Sdk.Blocks
 {
   public class NamedEntityRecognitionBlock : AbstractBlock
   {
-    public NamedEntityRecognition.Model Model { get; set; }
+    public NamedEntityRecognition.NamedEntityRecognitionModel Model { get; set; }
 
     public Dictionary<Entity, HashSet<Guid>> DetectedEntities { get; set; }
 

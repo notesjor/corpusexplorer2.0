@@ -25,7 +25,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       Layer1FilterValueResults = block.Layer1FilterValueResults;
     }
 
-    public HashSet<string> Layer1FilterValueResults { get; private set; }
+    public HashSet<string> Layer1FilterValueResults { get; private set; } = new HashSet<string>();
     /// <summary>
     /// Wenn true, reicht es, wenn eine token aus tokens einen CorrespondendLayerValue beinhaltet - ansonsten müssen alle tokens correspondieren.
     /// </summary>

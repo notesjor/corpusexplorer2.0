@@ -61,7 +61,7 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
                                                                         _concepts));
     }
 
-    public int CurrentCountToken { get; set; } = 0;
+    public long CurrentCountToken { get; set; } = 0;
     public int CurrentCountDocuments { get; set; } = 0;
 
     public void Input(AbstractCorpusAdapter corpus)

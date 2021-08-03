@@ -162,13 +162,13 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
       return _corpus.Metadata;
     }
 
-    public override int GetDocumentLengthInSentences(Guid documentGuid)
+    public override long GetDocumentLengthInSentences(Guid documentGuid)
     {
       return (int)
         (from x in _corpus.Documents where x == documentGuid select _db.GetDocument(x).SentenceCount).FirstOrDefault();
     }
 
-    public override int GetDocumentLengthInWords(Guid documentGuid)
+    public override long GetDocumentLengthInWords(Guid documentGuid)
     {
       return (int) (from x in _corpus.Documents where x == documentGuid select _db.GetDocument(x).TokenCount)
        .FirstOrDefault();

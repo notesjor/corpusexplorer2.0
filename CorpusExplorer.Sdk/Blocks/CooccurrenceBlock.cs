@@ -54,7 +54,7 @@ namespace CorpusExplorer.Sdk.Blocks
     /// </summary>
     /// <value>The count sentences.</value>
     // ReSharper disable once MemberCanBePrivate.Global
-    public int CountSentences { get; private set; }
+    public long CountSentences { get; private set; }
 
     /// <summary>
     ///   Gets or sets the layer displayname.

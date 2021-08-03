@@ -75,9 +75,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       // 
       // commandBarButton2
       // 
+      this.commandBarButton2.AutoToolTip = true;
       resources.ApplyResources(this.commandBarButton2, "commandBarButton2");
       this.commandBarButton2.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.structure;
-      this.commandBarButton2.AutoToolTip = true;
       this.commandBarButton2.Name = "commandBarButton2";
       this.commandBarButton2.Click += new System.EventHandler(this.commandBarButton2_Click);
       // 

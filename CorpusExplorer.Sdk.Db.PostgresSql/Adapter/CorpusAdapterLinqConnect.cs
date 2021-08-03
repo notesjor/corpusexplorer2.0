@@ -207,12 +207,12 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql.Adapter
       return _corpus.CorpusMetadataEntries.ToDictionary(x => x.Label, x => ValueSerializer.DeserializeValue(x.Value));
     }
 
-    public override int GetDocumentLengthInSentences(Guid documentGuid)
+    public override long GetDocumentLengthInSentences(Guid documentGuid)
     {
       return (from x in _corpus.Documents where x.GUID == documentGuid select x.CountSentences).FirstOrDefault();
     }
 
-    public override int GetDocumentLengthInWords(Guid documentGuid)
+    public override long GetDocumentLengthInWords(Guid documentGuid)
     {
       return (from x in _corpus.Documents where x.GUID == documentGuid select x.CountToken).FirstOrDefault();
     }

@@ -5,6 +5,7 @@ using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
+using CorpusExplorer.Sdk.Utils.ReMapper.Model;
 
 namespace CorpusExplorer.Sdk.Utils.ReMapper.Abstract
 {
@@ -69,8 +70,8 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper.Abstract
     ///   im originalText (Start) / Position im originalText (Stop))
     /// </param>
     /// <returns></returns>
-    protected abstract string ApplyAnnotation(Tuple<AbstractLayerAdapter, int[][]>[] layers, string originalText,
-                                              Tuple<int, int, int, int>[] annotationPositions);
+    protected abstract string ApplyAnnotation(IEnumerable<KeyValuePair<AbstractLayerAdapter, int[][]>> layers, string originalText,
+                                              List<ReMapperEntry> annotationPositions);
 
     /// <summary>
     ///   Findet die zu annotierenden Positionen im Originaltext
@@ -87,7 +88,7 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper.Abstract
                               select corpus.GetLayerOfDocument(documentGuid, name)
                               into layer
                               where layer != null
-                              select new Tuple<AbstractLayerAdapter, int[][]>(layer, layer[documentGuid])).ToArray(),
+                              select new KeyValuePair<AbstractLayerAdapter, int[][]>(layer, layer[documentGuid])).ToArray(),
                              originalText,
                              FindPositions(corpus, documentGuid, originalText));
     }
@@ -99,10 +100,10 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper.Abstract
     /// <param name="documentGuid">DocumentGUID</param>
     /// <param name="originalText">Originaltext (muss mit dem Inhalt von Korpus/DocumentGuid übereinstimmen)</param>
     /// <returns>Tuple-Aufbau: SatzID / WortID / Position im originalText (Start) / Position im originalText (Stop)</returns>
-    private Tuple<int, int, int, int>[] FindPositions(AbstractCorpusAdapter corpus, Guid documentGuid,
+    private List<ReMapperEntry> FindPositions(AbstractCorpusAdapter corpus, Guid documentGuid,
                                                       string originalText)
     {
-      var res = new List<Tuple<int, int, int, int>>();
+      var res = new List<ReMapperEntry>();
 
       var wlayer = corpus.GetLayers("Wort").First();
       var wdoc = wlayer[documentGuid];
@@ -115,12 +116,18 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper.Abstract
         var current = originalText.IndexOf(word, last);
         var end = current + word.Length;
 
-        res.Add(new Tuple<int, int, int, int>(i, j, current, end));
+        res.Add(new ReMapperEntry
+        {
+          SentenceIndex = i, 
+          TokenIndex = j, 
+          TextCharFrom = current, 
+          TextCharTo = end
+        });
 
         last = end;
       }
 
-      return res.ToArray();
+      return res;
     }
   }
 }

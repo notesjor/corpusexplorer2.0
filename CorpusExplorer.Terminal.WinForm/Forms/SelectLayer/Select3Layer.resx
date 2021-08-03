@@ -137,7 +137,7 @@
     <value>radPanel1</value>
   </data>
   <data name="&gt;&gt;radPanel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2021.1.122.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadPanel, Telerik.WinControls.UI, Version=2021.1.223.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radPanel1.Parent" xml:space="preserve">
     <value>$this</value>

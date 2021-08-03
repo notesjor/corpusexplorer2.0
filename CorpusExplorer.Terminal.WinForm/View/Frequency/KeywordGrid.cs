@@ -142,7 +142,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 
     private void btn_posFilter_Click(object sender, EventArgs e)
     {
-      var form = new PosFilter(Project.CurrentSelection, _vm.LayerDisplayname);
+      var form = new PosFilter(Project.CurrentSelection, _vm.LayerDisplayname) { ShowAllOption = false };
       form.ShowDialog();
 
       _vm.CorrespondingLayerValueFilter = form.Result;

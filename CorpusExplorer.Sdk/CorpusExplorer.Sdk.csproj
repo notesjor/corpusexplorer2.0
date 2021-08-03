@@ -91,18 +91,25 @@
   <PropertyGroup>
     <DelaySign>false</DelaySign>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug %28Linux%29|AnyCPU'">
+    <OutputPath>bin\Debug %28Linux%29\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\CorpusExplorer.Sdk.XML</DocumentationFile>
+    <Optimize>false</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="NHunspell, Version=1.2.5554.16953, Culture=neutral, PublicKeyToken=1ac793ea843b4366, processorArchitecture=MSIL">
-      <HintPath>..\packages\NHunspell.1.2.5554.16953\lib\net\NHunspell.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Polenter.SharpSerializer, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.1\lib\netstandard1.0\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=6.8.8.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.8.8\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.9.7.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.9.7\lib\net45\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -168,7 +175,7 @@
     <Compile Include="Blocks\CooccurrenceOverlappingBlock.cs" />
     <Compile Include="Blocks\Mtld\WeightingMode.cs" />
     <Compile Include="Blocks\NamedEntityRecognition\Entity.cs" />
-    <Compile Include="Blocks\NamedEntityRecognition\Model.cs" />
+    <Compile Include="Blocks\NamedEntityRecognition\NamedEntityRecognitionModel.cs" />
     <Compile Include="Blocks\NamedEntityRecognition\Rule.cs" />
     <Compile Include="Blocks\Ngram1LayerBlock.cs" />
     <Compile Include="Blocks\Ngram1LayerPatternBlock.cs" />
@@ -196,8 +203,6 @@
     <Compile Include="Blocks\GroupDocuments\GroupDocumentsCompareDateTimeYearOnly.cs" />
     <Compile Include="Blocks\GroupDocuments\GroupDocumentsCompareDouble.cs" />
     <Compile Include="Blocks\GroupDocuments\GroupDocumentsCompareInteger.cs" />
-    <Compile Include="Blocks\HyphenDocumentWordFrequencyBlock.cs" />
-    <Compile Include="Blocks\HyphenWordFrequencyBlock.cs" />
     <Compile Include="Blocks\Interfaces\IUseMemoryOverflowProtection.cs" />
     <Compile Include="Blocks\KeywordBlock.cs" />
     <Compile Include="Blocks\OverTime\OverTimeAggregationDelegate.cs" />
@@ -214,6 +219,7 @@
     <Compile Include="Blocks\PhrasesLaboratory\PhraseGrammar.cs" />
     <Compile Include="Blocks\PositionFrequencyBlock.cs" />
     <Compile Include="Blocks\RandomSelectionClusterBlock.cs" />
+    <Compile Include="Blocks\RankedCooccurrenceKwicBlock.cs" />
     <Compile Include="Blocks\SelectionClusterBlock.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\Abstract\AbstractCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\Abstract\AbstractCountCluster.cs" />
@@ -283,7 +289,6 @@
     <Compile Include="Blocks\VocabularyComplexitySelectionBasedBlock.cs" />
     <Compile Include="Blocks\VocdBlock.cs" />
     <Compile Include="Blocks\WordFlow\WordFlowModel.cs" />
-    <Compile Include="Blocks\WordHyphenResolverBlock.cs" />
     <Compile Include="Blocks\WordListBlock.cs" />
     <Compile Include="Ecosystem\Model\InitialOptionsEnum.cs" />
     <Compile Include="GlobalSuppressions.cs" />
@@ -517,11 +522,9 @@
     <Compile Include="Utils\Filter\Queries\FilterQueryMetaContainsCaseSensitive.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMetaContains.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMultiLayerAny.cs" />
-    <Compile Include="Blocks\HyphenBlock.cs" />
     <Compile Include="Blocks\Measure\Abstract\IMeasure.cs" />
     <Compile Include="Blocks\MetadataCrossFrequency.cs" />
     <Compile Include="Blocks\Ngram1LayerIgnoreSentencesBlock.cs" />
-    <Compile Include="Blocks\ReadingEaseBlock.cs" />
     <Compile Include="Blocks\ReadingEase\AbstractReadingEaseIndex.cs" />
     <Compile Include="Blocks\ReadingEase\FelschKincaidGradeIndex.cs" />
     <Compile Include="Blocks\ReadingEase\FelschReadingEaseIndex.cs" />
@@ -544,17 +547,15 @@
     <Compile Include="Helper\DictionaryExtension.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerExactPhrase.cs" />
     <Compile Include="Utils\ReMapper\Abstract\AbstractReMapper.cs" />
+    <Compile Include="Utils\ReMapper\Model\ReMapperEntry.cs" />
     <Compile Include="Utils\ReMapper\ReMapperInline.cs" />
+    <Compile Include="Utils\ReMapper\ReMapperInlineAttributes.cs" />
     <Compile Include="Utils\ReMapper\ReMapperOutline.cs" />
     <Compile Include="Utils\ReMapper\ReMapperStandoff.cs" />
     <Compile Include="Utils\WaitBehaviour\Abstract\AbstractWaitBehaviour.cs" />
     <Compile Include="Utils\WaitBehaviour\WaitBehaviourLinux.cs" />
     <Compile Include="Utils\WaitBehaviour\WaitBehaviourNone.cs" />
     <Compile Include="Utils\WaitBehaviour\WaitBehaviourWindows.cs" />
-    <Compile Include="Utils\ZipFileIndex\ZipDirectoryEntry.cs" />
-    <Compile Include="Utils\ZipFileIndex\ZipFileEntry.cs" />
-    <Compile Include="Utils\ZipFileIndex\ZipFileEntryDelegate.cs" />
-    <Compile Include="Utils\ZipFileIndex\ZipFileIndex.cs" />
     <Compile Include="ViewModel\Abstract\AbstractCompareViewModel.cs" />
     <Compile Include="ViewModel\Abstract\AbstractOverTimeViewModel.cs" />
     <Compile Include="ViewModel\BurrowsDeltaViewModel.cs" />
@@ -670,7 +671,6 @@
     <Compile Include="ViewModel\CooccurrenceTimelineAnalyticViewModel.cs" />
     <Compile Include="ViewModel\FrequencyTimelineAnalyticViewModel.cs" />
     <Compile Include="ViewModel\FrequencyViewModel.cs" />
-    <Compile Include="ViewModel\HyphenWordFrequencyViewModel.cs" />
     <Compile Include="ViewModel\Interfaces\IProvideAggregatedDataItems.cs" />
     <Compile Include="ViewModel\Interfaces\IProvideDataTable.cs" />
     <Compile Include="ViewModel\Interfaces\IProvideHtmlOutput.cs" />
@@ -694,7 +694,6 @@
     <Compile Include="ViewModel\QuickInfoText\QuickInfoTextResult.cs" />
     <Compile Include="ViewModel\QuickInfoTtrViewModel.cs" />
     <Compile Include="ViewModel\QuickInfoViewModel.cs" />
-    <Compile Include="ViewModel\ReadingEaseViewModel.cs" />
     <Compile Include="ViewModel\TermDocumentMatrixViewModel.cs" />
     <Compile Include="ViewModel\TextFlowSearchViewModel.cs" />
     <Compile Include="ViewModel\TextFlowSearchWithRangeSelectionViewModel.cs" />
@@ -740,12 +739,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Hunspellx64.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Hunspellx86.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Content Include="Utils\Diff\Quellenvermerk.txt" />
   </ItemGroup>
   <ItemGroup />

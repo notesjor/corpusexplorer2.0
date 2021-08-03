@@ -80,6 +80,7 @@
       this.panel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radCollapsiblePanel1)).BeginInit();
       this.radCollapsiblePanel1.PanelContainer.SuspendLayout();
+      this.radCollapsiblePanel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.grid_headMeta)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.grid_headMeta.MasterTemplate)).BeginInit();
       this.panel2.SuspendLayout();
@@ -102,6 +103,7 @@
       this.panel6.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radCollapsiblePanel2)).BeginInit();
       this.radCollapsiblePanel2.PanelContainer.SuspendLayout();
+      this.radCollapsiblePanel2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.grid_sessions)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.grid_sessions.MasterTemplate)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.btn_session_add)).BeginInit();
@@ -117,15 +119,16 @@
       // 
       this.radCommandBar1.Dock = System.Windows.Forms.DockStyle.Top;
       this.radCommandBar1.Location = new System.Drawing.Point(0, 0);
+      this.radCommandBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(1046, 44);
+      this.radCommandBar1.Size = new System.Drawing.Size(824, 36);
       this.radCommandBar1.TabIndex = 0;
       // 
       // commandBarRowElement1
       // 
-      this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.MinSize = new System.Drawing.Size(19, 20);
       this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
@@ -140,6 +143,8 @@
             this.commandBarSeparator1,
             this.btn_script_execute});
       this.commandBarStripElement1.Name = "commandBarStripElement1";
+      this.commandBarStripElement1.OverflowMenuMaxSize = new System.Drawing.Size(202, 0);
+      this.commandBarStripElement1.OverflowMenuMinSize = new System.Drawing.Size(38, 20);
       // 
       // btn_script_new
       // 
@@ -183,30 +188,35 @@
       // 
       this.panel1.Controls.Add(this.radCollapsiblePanel1);
       this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.panel1.Location = new System.Drawing.Point(0, 64);
+      this.panel1.Location = new System.Drawing.Point(0, 52);
+      this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.panel1.Name = "panel1";
-      this.panel1.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-      this.panel1.Size = new System.Drawing.Size(1044, 200);
+      this.panel1.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+      this.panel1.Size = new System.Drawing.Size(786, 162);
       this.panel1.TabIndex = 1;
       // 
       // radCollapsiblePanel1
       // 
       this.radCollapsiblePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.radCollapsiblePanel1.HeaderText = resources.GetString("radCollapsiblePanel1.HeaderText");
-      this.radCollapsiblePanel1.Location = new System.Drawing.Point(40, 0);
+      this.radCollapsiblePanel1.Location = new System.Drawing.Point(30, 0);
+      this.radCollapsiblePanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radCollapsiblePanel1.Name = "radCollapsiblePanel1";
+      this.radCollapsiblePanel1.OwnerBoundsCache = new System.Drawing.Rectangle(30, 0, 753, 162);
       // 
       // radCollapsiblePanel1.PanelContainer
       // 
       this.radCollapsiblePanel1.PanelContainer.Controls.Add(this.grid_headMeta);
-      this.radCollapsiblePanel1.PanelContainer.Size = new System.Drawing.Size(1002, 164);
-      this.radCollapsiblePanel1.Size = new System.Drawing.Size(1004, 200);
+      this.radCollapsiblePanel1.PanelContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.radCollapsiblePanel1.PanelContainer.Size = new System.Drawing.Size(754, 132);
+      this.radCollapsiblePanel1.Size = new System.Drawing.Size(756, 162);
       this.radCollapsiblePanel1.TabIndex = 5;
       // 
       // grid_headMeta
       // 
       this.grid_headMeta.Dock = System.Windows.Forms.DockStyle.Fill;
       this.grid_headMeta.Location = new System.Drawing.Point(0, 0);
+      this.grid_headMeta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       // 
       // 
       // 
@@ -214,17 +224,17 @@
       this.grid_headMeta.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
       gridViewTextBoxColumn1.HeaderText = "key";
       gridViewTextBoxColumn1.Name = "key";
-      gridViewTextBoxColumn1.Width = 490;
+      gridViewTextBoxColumn1.Width = 369;
       gridViewTextBoxColumn2.HeaderText = "value";
       gridViewTextBoxColumn2.Name = "value";
-      gridViewTextBoxColumn2.Width = 492;
+      gridViewTextBoxColumn2.Width = 371;
       this.grid_headMeta.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2});
       this.grid_headMeta.MasterTemplate.EnableGrouping = false;
       this.grid_headMeta.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.grid_headMeta.Name = "grid_headMeta";
-      this.grid_headMeta.Size = new System.Drawing.Size(1002, 164);
+      this.grid_headMeta.Size = new System.Drawing.Size(754, 132);
       this.grid_headMeta.TabIndex = 1;
       this.grid_headMeta.CellEndEdit += new Telerik.WinControls.UI.GridViewCellEventHandler(this.grid_headMeta_CellEndEdit);
       // 
@@ -233,10 +243,11 @@
       this.panel2.Controls.Add(this.info_head);
       this.panel2.Controls.Add(this.radLabel3);
       this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-      this.panel2.Location = new System.Drawing.Point(0, 32);
+      this.panel2.Location = new System.Drawing.Point(0, 26);
+      this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.panel2.Name = "panel2";
-      this.panel2.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-      this.panel2.Size = new System.Drawing.Size(1044, 32);
+      this.panel2.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+      this.panel2.Size = new System.Drawing.Size(786, 26);
       this.panel2.TabIndex = 2;
       // 
       // info_head
@@ -244,9 +255,10 @@
       this.info_head.Cursor = System.Windows.Forms.Cursors.Hand;
       this.info_head.Dock = System.Windows.Forms.DockStyle.Left;
       this.info_head.Image = global::CorpusExplorer.Terminal.Automate.Properties.Resources.info;
-      this.info_head.Location = new System.Drawing.Point(90, 0);
+      this.info_head.Location = new System.Drawing.Point(72, 0);
+      this.info_head.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.info_head.Name = "info_head";
-      this.info_head.Size = new System.Drawing.Size(32, 32);
+      this.info_head.Size = new System.Drawing.Size(24, 26);
       this.info_head.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
       this.info_head.TabIndex = 4;
       this.info_head.TabStop = false;
@@ -256,9 +268,10 @@
       // 
       this.radLabel3.Dock = System.Windows.Forms.DockStyle.Left;
       this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 14F);
-      this.radLabel3.Location = new System.Drawing.Point(20, 0);
+      this.radLabel3.Location = new System.Drawing.Point(15, 0);
+      this.radLabel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radLabel3.Name = "radLabel3";
-      this.radLabel3.Size = new System.Drawing.Size(70, 32);
+      this.radLabel3.Size = new System.Drawing.Size(57, 23);
       this.radLabel3.TabIndex = 2;
       this.radLabel3.Text = "<html><span style=\"color: #0000ff\">&lt;head&gt;</span></html>";
       // 
@@ -270,8 +283,9 @@
       this.panel3.Controls.Add(this.radLabel6);
       this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
       this.panel3.Location = new System.Drawing.Point(0, 0);
+      this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.panel3.Name = "panel3";
-      this.panel3.Size = new System.Drawing.Size(1044, 32);
+      this.panel3.Size = new System.Drawing.Size(786, 26);
       this.panel3.TabIndex = 3;
       // 
       // info_cescript
@@ -279,9 +293,10 @@
       this.info_cescript.Cursor = System.Windows.Forms.Cursors.Hand;
       this.info_cescript.Dock = System.Windows.Forms.DockStyle.Left;
       this.info_cescript.Image = global::CorpusExplorer.Terminal.Automate.Properties.Resources.info;
-      this.info_cescript.Location = new System.Drawing.Point(267, 0);
+      this.info_cescript.Location = new System.Drawing.Point(214, 0);
+      this.info_cescript.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.info_cescript.Name = "info_cescript";
-      this.info_cescript.Size = new System.Drawing.Size(32, 32);
+      this.info_cescript.Size = new System.Drawing.Size(24, 26);
       this.info_cescript.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
       this.info_cescript.TabIndex = 3;
       this.info_cescript.TabStop = false;
@@ -291,24 +306,30 @@
       // 
       this.radLabel5.Dock = System.Windows.Forms.DockStyle.Left;
       this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 14F);
-      this.radLabel5.Location = new System.Drawing.Point(242, 0);
+      this.radLabel5.Location = new System.Drawing.Point(193, 0);
+      this.radLabel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radLabel5.Name = "radLabel5";
-      this.radLabel5.Size = new System.Drawing.Size(25, 32);
+      this.radLabel5.Size = new System.Drawing.Size(21, 23);
       this.radLabel5.TabIndex = 2;
       this.radLabel5.Text = "<html>\"<span style=\"color: #0000ff\">&gt;</span></html>";
       // 
       // drop_version
       // 
       this.drop_version.Dock = System.Windows.Forms.DockStyle.Left;
+      this.drop_version.DropDownAnimationEnabled = true;
+      this.drop_version.DropDownHeight = 80;
+      this.drop_version.ItemHeight = 27;
+      radListDataItem1.Selected = true;
       radListDataItem1.Text = "1.0";
       radListDataItem2.Text = "0.9";
       radListDataItem3.Text = "0.5";
       this.drop_version.Items.Add(radListDataItem1);
       this.drop_version.Items.Add(radListDataItem2);
       this.drop_version.Items.Add(radListDataItem3);
-      this.drop_version.Location = new System.Drawing.Point(172, 0);
+      this.drop_version.Location = new System.Drawing.Point(141, 0);
+      this.drop_version.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.drop_version.Name = "drop_version";
-      this.drop_version.Size = new System.Drawing.Size(70, 32);
+      this.drop_version.Size = new System.Drawing.Size(52, 27);
       this.drop_version.TabIndex = 1;
       this.drop_version.Text = "1.0";
       // 
@@ -317,8 +338,9 @@
       this.radLabel6.Dock = System.Windows.Forms.DockStyle.Left;
       this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 14F);
       this.radLabel6.Location = new System.Drawing.Point(0, 0);
+      this.radLabel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radLabel6.Name = "radLabel6";
-      this.radLabel6.Size = new System.Drawing.Size(172, 32);
+      this.radLabel6.Size = new System.Drawing.Size(141, 23);
       this.radLabel6.TabIndex = 0;
       this.radLabel6.Text = "<html><span style=\"color: #0000ff\">&lt;cescript</span> <span style=\"color: #ff000" +
     "0\">version</span>=\"</html>";
@@ -327,9 +349,10 @@
       // 
       this.panel4.Controls.Add(this.radLabel7);
       this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-      this.panel4.Location = new System.Drawing.Point(0, 264);
+      this.panel4.Location = new System.Drawing.Point(0, 214);
+      this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.panel4.Name = "panel4";
-      this.panel4.Size = new System.Drawing.Size(1044, 32);
+      this.panel4.Size = new System.Drawing.Size(786, 26);
       this.panel4.TabIndex = 4;
       // 
       // radLabel7
@@ -337,16 +360,18 @@
       this.radLabel7.Dock = System.Windows.Forms.DockStyle.Left;
       this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 14F);
       this.radLabel7.Location = new System.Drawing.Point(0, 0);
+      this.radLabel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radLabel7.Name = "radLabel7";
-      this.radLabel7.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-      this.radLabel7.Size = new System.Drawing.Size(97, 32);
+      this.radLabel7.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+      this.radLabel7.Size = new System.Drawing.Size(78, 23);
       this.radLabel7.TabIndex = 2;
       this.radLabel7.Text = "<html><span style=\"color: #0000ff\">&lt;/head&gt;</span></html>";
       // 
       // radScrollablePanel1
       // 
       this.radScrollablePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radScrollablePanel1.Location = new System.Drawing.Point(0, 44);
+      this.radScrollablePanel1.Location = new System.Drawing.Point(0, 36);
+      this.radScrollablePanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radScrollablePanel1.Name = "radScrollablePanel1";
       // 
       // radScrollablePanel1.PanelContainer
@@ -359,17 +384,19 @@
       this.radScrollablePanel1.PanelContainer.Controls.Add(this.panel1);
       this.radScrollablePanel1.PanelContainer.Controls.Add(this.panel2);
       this.radScrollablePanel1.PanelContainer.Controls.Add(this.panel3);
-      this.radScrollablePanel1.PanelContainer.Size = new System.Drawing.Size(1044, 684);
-      this.radScrollablePanel1.Size = new System.Drawing.Size(1046, 686);
+      this.radScrollablePanel1.PanelContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.radScrollablePanel1.PanelContainer.Size = new System.Drawing.Size(786, 452);
+      this.radScrollablePanel1.Size = new System.Drawing.Size(824, 454);
       this.radScrollablePanel1.TabIndex = 5;
       // 
       // panel8
       // 
       this.panel8.Controls.Add(this.radLabel11);
       this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-      this.panel8.Location = new System.Drawing.Point(0, 560);
+      this.panel8.Location = new System.Drawing.Point(0, 454);
+      this.panel8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.panel8.Name = "panel8";
-      this.panel8.Size = new System.Drawing.Size(1044, 32);
+      this.panel8.Size = new System.Drawing.Size(786, 26);
       this.panel8.TabIndex = 8;
       // 
       // radLabel11
@@ -377,8 +404,9 @@
       this.radLabel11.Dock = System.Windows.Forms.DockStyle.Left;
       this.radLabel11.Font = new System.Drawing.Font("Segoe UI", 14F);
       this.radLabel11.Location = new System.Drawing.Point(0, 0);
+      this.radLabel11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radLabel11.Name = "radLabel11";
-      this.radLabel11.Size = new System.Drawing.Size(100, 32);
+      this.radLabel11.Size = new System.Drawing.Size(82, 23);
       this.radLabel11.TabIndex = 2;
       this.radLabel11.Text = "<html><span style=\"color: #0000ff\">&lt;/cescript&gt;</span></html>";
       // 
@@ -386,19 +414,21 @@
       // 
       this.panel7.Controls.Add(this.radLabel9);
       this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-      this.panel7.Location = new System.Drawing.Point(0, 528);
+      this.panel7.Location = new System.Drawing.Point(0, 428);
+      this.panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.panel7.Name = "panel7";
-      this.panel7.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-      this.panel7.Size = new System.Drawing.Size(1044, 32);
+      this.panel7.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+      this.panel7.Size = new System.Drawing.Size(786, 26);
       this.panel7.TabIndex = 7;
       // 
       // radLabel9
       // 
       this.radLabel9.Dock = System.Windows.Forms.DockStyle.Left;
       this.radLabel9.Font = new System.Drawing.Font("Segoe UI", 14F);
-      this.radLabel9.Location = new System.Drawing.Point(20, 0);
+      this.radLabel9.Location = new System.Drawing.Point(15, 0);
+      this.radLabel9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radLabel9.Name = "radLabel9";
-      this.radLabel9.Size = new System.Drawing.Size(104, 32);
+      this.radLabel9.Size = new System.Drawing.Size(85, 23);
       this.radLabel9.TabIndex = 2;
       this.radLabel9.Text = "<html><span style=\"color: #0000ff\">&lt;/sessions&gt;</span></html>";
       // 
@@ -406,10 +436,11 @@
       // 
       this.panel6.Controls.Add(this.radCollapsiblePanel2);
       this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-      this.panel6.Location = new System.Drawing.Point(0, 328);
+      this.panel6.Location = new System.Drawing.Point(0, 266);
+      this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.panel6.Name = "panel6";
-      this.panel6.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-      this.panel6.Size = new System.Drawing.Size(1044, 200);
+      this.panel6.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+      this.panel6.Size = new System.Drawing.Size(786, 162);
       this.panel6.TabIndex = 6;
       // 
       // radCollapsiblePanel2
@@ -417,21 +448,25 @@
       this.radCollapsiblePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
       this.radCollapsiblePanel2.HeaderText = "<html><span style=\"color: #0000ff\">&lt;session&gt;</span><span style=\"color: #ff0" +
     "000\">...</span><span style=\"color: #0000ff\">&lt;/session&gt;</span></html>";
-      this.radCollapsiblePanel2.Location = new System.Drawing.Point(40, 0);
+      this.radCollapsiblePanel2.Location = new System.Drawing.Point(30, 0);
+      this.radCollapsiblePanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radCollapsiblePanel2.Name = "radCollapsiblePanel2";
+      this.radCollapsiblePanel2.OwnerBoundsCache = new System.Drawing.Rectangle(30, 0, 753, 162);
       // 
       // radCollapsiblePanel2.PanelContainer
       // 
       this.radCollapsiblePanel2.PanelContainer.Controls.Add(this.grid_sessions);
       this.radCollapsiblePanel2.PanelContainer.Controls.Add(this.btn_session_add);
-      this.radCollapsiblePanel2.PanelContainer.Size = new System.Drawing.Size(1002, 164);
-      this.radCollapsiblePanel2.Size = new System.Drawing.Size(1004, 200);
+      this.radCollapsiblePanel2.PanelContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+      this.radCollapsiblePanel2.PanelContainer.Size = new System.Drawing.Size(754, 132);
+      this.radCollapsiblePanel2.Size = new System.Drawing.Size(756, 162);
       this.radCollapsiblePanel2.TabIndex = 6;
       // 
       // grid_sessions
       // 
       this.grid_sessions.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.grid_sessions.Location = new System.Drawing.Point(0, 32);
+      this.grid_sessions.Location = new System.Drawing.Point(0, 26);
+      this.grid_sessions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       // 
       // 
       // 
@@ -440,17 +475,17 @@
       this.grid_sessions.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
       gridViewTextBoxColumn3.HeaderText = "ID: Info";
       gridViewTextBoxColumn3.Name = "id";
-      gridViewTextBoxColumn3.Width = 827;
+      gridViewTextBoxColumn3.Width = 624;
       gridViewCommandColumn1.HeaderText = "Bearbeiten";
       gridViewCommandColumn1.Image = global::CorpusExplorer.Terminal.Automate.Properties.Resources.tool_pencil;
-      gridViewCommandColumn1.MinWidth = 78;
+      gridViewCommandColumn1.MinWidth = 58;
       gridViewCommandColumn1.Name = "edit";
-      gridViewCommandColumn1.Width = 78;
+      gridViewCommandColumn1.Width = 58;
       gridViewCommandColumn2.HeaderText = "Löschen";
       gridViewCommandColumn2.Image = global::CorpusExplorer.Terminal.Automate.Properties.Resources.close_window;
-      gridViewCommandColumn2.MinWidth = 78;
+      gridViewCommandColumn2.MinWidth = 58;
       gridViewCommandColumn2.Name = "delete";
-      gridViewCommandColumn2.Width = 78;
+      gridViewCommandColumn2.Width = 59;
       this.grid_sessions.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn3,
             gridViewCommandColumn1,
@@ -459,7 +494,7 @@
       this.grid_sessions.MasterTemplate.ViewDefinition = tableViewDefinition2;
       this.grid_sessions.Name = "grid_sessions";
       this.grid_sessions.ReadOnly = true;
-      this.grid_sessions.Size = new System.Drawing.Size(1002, 132);
+      this.grid_sessions.Size = new System.Drawing.Size(754, 106);
       this.grid_sessions.TabIndex = 2;
       this.grid_sessions.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.grid_sessions_CellFormatting);
       this.grid_sessions.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.grid_sessions_CommandCellClick);
@@ -470,8 +505,9 @@
       this.btn_session_add.Image = global::CorpusExplorer.Terminal.Automate.Properties.Resources.add_button;
       this.btn_session_add.ImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
       this.btn_session_add.Location = new System.Drawing.Point(0, 0);
+      this.btn_session_add.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.btn_session_add.Name = "btn_session_add";
-      this.btn_session_add.Size = new System.Drawing.Size(1002, 32);
+      this.btn_session_add.Size = new System.Drawing.Size(754, 26);
       this.btn_session_add.TabIndex = 3;
       this.btn_session_add.Text = "Neue Session erstellen";
       this.btn_session_add.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -485,10 +521,11 @@
       this.panel5.Controls.Add(this.drop_sessionMode);
       this.panel5.Controls.Add(this.radLabel1);
       this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-      this.panel5.Location = new System.Drawing.Point(0, 296);
+      this.panel5.Location = new System.Drawing.Point(0, 240);
+      this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.panel5.Name = "panel5";
-      this.panel5.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-      this.panel5.Size = new System.Drawing.Size(1044, 32);
+      this.panel5.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+      this.panel5.Size = new System.Drawing.Size(786, 26);
       this.panel5.TabIndex = 5;
       // 
       // info_sessions
@@ -496,9 +533,10 @@
       this.info_sessions.Cursor = System.Windows.Forms.Cursors.Hand;
       this.info_sessions.Dock = System.Windows.Forms.DockStyle.Left;
       this.info_sessions.Image = global::CorpusExplorer.Terminal.Automate.Properties.Resources.info;
-      this.info_sessions.Location = new System.Drawing.Point(335, 0);
+      this.info_sessions.Location = new System.Drawing.Point(264, 0);
+      this.info_sessions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.info_sessions.Name = "info_sessions";
-      this.info_sessions.Size = new System.Drawing.Size(32, 32);
+      this.info_sessions.Size = new System.Drawing.Size(24, 26);
       this.info_sessions.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
       this.info_sessions.TabIndex = 5;
       this.info_sessions.TabStop = false;
@@ -508,22 +546,28 @@
       // 
       this.radLabel2.Dock = System.Windows.Forms.DockStyle.Left;
       this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 14F);
-      this.radLabel2.Location = new System.Drawing.Point(310, 0);
+      this.radLabel2.Location = new System.Drawing.Point(243, 0);
+      this.radLabel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radLabel2.Name = "radLabel2";
-      this.radLabel2.Size = new System.Drawing.Size(25, 32);
+      this.radLabel2.Size = new System.Drawing.Size(21, 23);
       this.radLabel2.TabIndex = 4;
       this.radLabel2.Text = "<html>\"<span style=\"color: #0000ff\">&gt;</span></html>";
       // 
       // drop_sessionMode
       // 
       this.drop_sessionMode.Dock = System.Windows.Forms.DockStyle.Left;
+      this.drop_sessionMode.DropDownAnimationEnabled = true;
+      this.drop_sessionMode.DropDownHeight = 80;
+      this.drop_sessionMode.ItemHeight = 27;
+      radListDataItem4.Selected = true;
       radListDataItem4.Text = "asynchron";
       radListDataItem5.Text = "synchron";
       this.drop_sessionMode.Items.Add(radListDataItem4);
       this.drop_sessionMode.Items.Add(radListDataItem5);
-      this.drop_sessionMode.Location = new System.Drawing.Point(179, 0);
+      this.drop_sessionMode.Location = new System.Drawing.Point(145, 0);
+      this.drop_sessionMode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.drop_sessionMode.Name = "drop_sessionMode";
-      this.drop_sessionMode.Size = new System.Drawing.Size(131, 32);
+      this.drop_sessionMode.Size = new System.Drawing.Size(98, 27);
       this.drop_sessionMode.TabIndex = 3;
       this.drop_sessionMode.Text = "asynchron";
       // 
@@ -531,31 +575,31 @@
       // 
       this.radLabel1.Dock = System.Windows.Forms.DockStyle.Left;
       this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 14F);
-      this.radLabel1.Location = new System.Drawing.Point(20, 0);
+      this.radLabel1.Location = new System.Drawing.Point(15, 0);
+      this.radLabel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
       this.radLabel1.Name = "radLabel1";
-      this.radLabel1.Size = new System.Drawing.Size(159, 32);
+      this.radLabel1.Size = new System.Drawing.Size(130, 23);
       this.radLabel1.TabIndex = 2;
       this.radLabel1.Text = "<html><span style=\"color: #0000ff\">&lt;sessions </span><span style=\"color: #ff000" +
     "0\">mode</span><span style=\"color: #000000\">=\"</span></html>";
       // 
       // MainForm
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1046, 730);
+      this.ClientSize = new System.Drawing.Size(824, 490);
       this.Controls.Add(this.radScrollablePanel1);
       this.Controls.Add(this.radCommandBar1);
-      this.Margin = new System.Windows.Forms.Padding(4);
       this.Name = "MainForm";
       // 
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
-      this.Text = "CorpusExplorerConsole (CEC) - Visueller Skript Editor (VSE)";
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).EndInit();
       this.panel1.ResumeLayout(false);
       this.radCollapsiblePanel1.PanelContainer.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radCollapsiblePanel1)).EndInit();
+      this.radCollapsiblePanel1.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.grid_headMeta.MasterTemplate)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.grid_headMeta)).EndInit();
       this.panel2.ResumeLayout(false);
@@ -583,6 +627,7 @@
       this.panel6.ResumeLayout(false);
       this.radCollapsiblePanel2.PanelContainer.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radCollapsiblePanel2)).EndInit();
+      this.radCollapsiblePanel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.grid_sessions.MasterTemplate)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.grid_sessions)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.btn_session_add)).EndInit();

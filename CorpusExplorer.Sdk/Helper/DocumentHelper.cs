@@ -90,6 +90,17 @@ namespace CorpusExplorer.Sdk.Helper
     }
 
     /// <summary>
+    ///   Reduziert ein Dokument so, das es nur noch der gewählte Satz übrigbleibt.
+    /// </summary>
+    /// <param name="document">Dokument</param>
+    /// <param name="sentenceId">SatzId</param>
+    /// <returns>Wort für Wort</returns>
+    public static IEnumerable<string> ReduceToSentence(this IEnumerable<IEnumerable<string>> document, int sentenceId)
+    {
+      return document.Skip(sentenceId).Take(1).SelectMany(x => x);
+    }
+
+    /// <summary>
     /// Wandelt ein Snippet in einen String um und fügt der Ausgabe ein Highlight hinzu.
     /// </summary>
     /// <param name="document">Dokument oder Snippet</param>

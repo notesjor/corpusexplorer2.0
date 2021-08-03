@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Xml.Serialization;
+using CorpusExplorer.Sdk.Extern.Xml.FoLiA.Model;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Dpxc.Model
 {
@@ -122,6 +123,30 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dpxc.Model
             doc.Add(x.Key, string.Empty);
           }
       }
+    }
+
+    public void ReloadSchema()
+    {
+      // init - ohne Text
+      var newSchema = Documents.First().Where(entry => entry.Key != "Text").ToDictionary<KeyValuePair<string, object>, string, Type>(entry => entry.Key, entry => null);
+      // befülle mit ersten NULL-Wert
+      var keys = newSchema.Keys.ToArray();
+      foreach (var doc in Documents)
+      {
+        foreach (var key in keys)
+        {
+          if (newSchema[key] != null)
+            continue;
+          if (doc.ContainsKey(key) && doc[key] != null)
+            newSchema[key] = doc[key].GetType();
+        }
+      }
+      // Wenn Rest - setze Type == string
+      foreach (var key in keys)
+        if (newSchema[key] == null)
+          newSchema[key] = typeof(string);
+
+      _metadataSchema = newSchema;
     }
   }
 }

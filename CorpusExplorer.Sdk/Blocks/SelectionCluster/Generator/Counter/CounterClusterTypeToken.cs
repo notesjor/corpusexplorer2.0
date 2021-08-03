@@ -12,7 +12,7 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Counter
     public override int BaseSum(Selection selection)
     {
       Selection = selection;
-      return selection.CountToken;
+      return (int) selection.CountToken;
     }
 
     public override AbstractCluster NewCluster(string displayname, int max, bool acceptAll)

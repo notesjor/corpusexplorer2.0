@@ -13,7 +13,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 {
   public class NamedEntityDetectionViewModel : AbstractViewModel, IProvideDataTable
   {
-    public Blocks.NamedEntityRecognition.Model Model { get; set; }
+    public Blocks.NamedEntityRecognition.NamedEntityRecognitionModel Model { get; set; }
 
     public Dictionary<Entity, HashSet<Guid>> DetectedEntities { get; set; }
 

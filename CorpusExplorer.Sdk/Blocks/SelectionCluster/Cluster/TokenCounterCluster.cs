@@ -10,12 +10,12 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
     {
     }
 
-    protected override bool CanAdd(Guid documentGuid, int counter, int max)
+    protected override bool CanAdd(Guid documentGuid, long counter, long max)
     {
       return AcceptAll || counter < max;
     }
 
-    protected override int Count(Guid documentGuid)
+    protected override long Count(Guid documentGuid)
     {
       return Selection.GetDocumentLengthInWords(documentGuid);
     }

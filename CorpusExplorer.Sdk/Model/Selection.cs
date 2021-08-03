@@ -39,13 +39,13 @@ namespace CorpusExplorer.Sdk.Model
     /// </summary>
     [XmlArray] private readonly List<Selection> _subSelections = new List<Selection>();
 
-    [XmlIgnore] [NonSerialized] private int _countSentenceMatches = -1;
+    [XmlIgnore] [NonSerialized] private long _countSentenceMatches = -1;
 
-    [XmlIgnore] [NonSerialized] private int _countSentences = -1;
+    [XmlIgnore] [NonSerialized] private long _countSentences = -1;
 
-    [XmlIgnore] [NonSerialized] private int _countToken = -1;
+    [XmlIgnore] [NonSerialized] private long _countToken = -1;
 
-    [XmlIgnore] [NonSerialized] private int _countTokenMatches = -1;
+    [XmlIgnore] [NonSerialized] private long _countTokenMatches = -1;
     [XmlIgnore] [NonSerialized] private IEnumerable<KeyValuePair<Guid, Dictionary<string, object>>> _documentMetadata;
 
     [XmlIgnore] [NonSerialized] private Project _project;
@@ -65,7 +65,7 @@ namespace CorpusExplorer.Sdk.Model
     }
 
     [XmlIgnore]
-    public int CountSentenceMatches
+    public long CountSentenceMatches
     {
       get
       {
@@ -92,7 +92,7 @@ namespace CorpusExplorer.Sdk.Model
     }
 
     [XmlIgnore]
-    public int CountTokenMatches
+    public long CountTokenMatches
     {
       get
       {
@@ -321,7 +321,7 @@ namespace CorpusExplorer.Sdk.Model
       => _selection.Sum(pair => pair.Value.Count);
 
     [XmlIgnore]
-    public int CountSentences
+    public long CountSentences
     {
       get
       {
@@ -344,7 +344,7 @@ namespace CorpusExplorer.Sdk.Model
     }
 
     [XmlIgnore]
-    public int CountToken
+    public long CountToken
     {
       get
       {
@@ -569,7 +569,7 @@ namespace CorpusExplorer.Sdk.Model
     /// </summary>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    public int GetDocumentLengthInSentences(Guid documentGuid) => Project.GetDocumentLengthInSentences(documentGuid);
+    public long GetDocumentLengthInSentences(Guid documentGuid) => Project.GetDocumentLengthInSentences(documentGuid);
 
     /// <summary>
     ///   Gibt die Anzahl der Sätze in einem Dokument zurück.
@@ -577,7 +577,7 @@ namespace CorpusExplorer.Sdk.Model
     /// <param name="corpusGuid">Korpus GUID in dem das Dokument enthalten sein muss</param>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    public int GetDocumentLengthInSentences(Guid corpusGuid, Guid documentGuid) =>
+    public long GetDocumentLengthInSentences(Guid corpusGuid, Guid documentGuid) =>
       Project.GetDocumentLengthInSentences(corpusGuid, documentGuid);
 
     /// <summary>
@@ -585,9 +585,9 @@ namespace CorpusExplorer.Sdk.Model
     /// </summary>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>System.Int32.</returns>
-    public int GetDocumentLengthInWords(Guid documentGuid) => Project.GetDocumentLengthInWords(documentGuid);
+    public long GetDocumentLengthInWords(Guid documentGuid) => Project.GetDocumentLengthInWords(documentGuid);
 
-    public int GetDocumentLengthInWords(Guid corpusGuid, Guid documentGuid) =>
+    public long GetDocumentLengthInWords(Guid corpusGuid, Guid documentGuid) =>
       Project.GetDocumentLengthInWords(corpusGuid, documentGuid);
 
     /// <summary>

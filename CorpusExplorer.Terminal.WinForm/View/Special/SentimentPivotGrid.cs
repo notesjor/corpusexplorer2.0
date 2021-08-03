@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using CorpusExplorer.Sdk.Extern.SentimentDetection.Model;
 using CorpusExplorer.Sdk.Extern.SentimentDetection.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.SentimentDetection;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
@@ -32,7 +33,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
 
       Processing.Invoke("Sentiment Detection läuft...", () =>
       {
-        _vm.Model = form.Model;
+        _vm.Model = form.GetModel<SentimentDetectionTagModel>();
 
         if (!_vm.Execute())
           return;

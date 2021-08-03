@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using CorpusExplorer.Terminal.Console.Xml.Extensions;
 using CorpusExplorer.Terminal.Console.Xml.Model;
 
 namespace CorpusExplorer.Terminal.Automate
@@ -77,7 +78,7 @@ namespace CorpusExplorer.Terminal.Automate
 
     public IEnumerable<KeyValuePair<string, string>> Metas
     {
-      get => _script.head.Select(x => new KeyValuePair<string, string>(x.key, x.Value));
+      get => _script.head.meta().Select(x => new KeyValuePair<string, string>(x.key, x.Value));
       set => _script.head = value.Select(x => new meta {key = x.Key, Value = x.Value}).ToArray();
     }
 

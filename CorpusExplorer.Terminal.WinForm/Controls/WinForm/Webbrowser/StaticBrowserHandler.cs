@@ -39,7 +39,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
         TabIndex = 0,
         BrowserSettings = new BrowserSettings
         {
-          WebSecurity = CefState.Disabled,
+          // WebSecurity = CefState.Disabled,
           FileAccessFromFileUrls = CefState.Enabled,
           UniversalAccessFromFileUrls = CefState.Enabled
         }
@@ -60,7 +60,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
       };
       settings.CefCommandLineArgs.Add("enable-media-stream", "1");
 
-      CefSharpSettings.LegacyJavascriptBindingEnabled = true;
+      //CefSharpSettings.LegacyJavascriptBindingEnabled = true;
       CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
 
       Cef.EnableHighDPISupport();

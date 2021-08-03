@@ -13,7 +13,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
   {
     private string _label;
     private readonly string[] _numberLabels = {"", "Tsd. ", "Mio. ", "Mrd. "};
-    private int _value;
+    private long _value;
 
     public BigNumber()
     {
@@ -28,7 +28,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       set => txt_label.Text = _label = value;
     }
 
-    public int Value
+    public long Value
     {
       get => _value;
       set

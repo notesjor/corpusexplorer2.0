@@ -16,7 +16,7 @@ namespace CorpusExplorer.Sdk.Blocks
     /// <summary>
     /// Gibt alle Layer1Values zurück, die eine Übereistimmung (anderer Layer) mit Layer2ValueFilter haben.
     /// </summary>
-    public HashSet<string> Layer1FilterValueResults { get; set; }
+    public HashSet<string> Layer1FilterValueResults { get; set; } = new HashSet<string>();
     public HashSet<string> Layer2ValueFilters { get; set; } = new HashSet<string>();
 
     protected override void CalculateCall(

@@ -1,11 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace />
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey2019.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   
   <ItemGroup>
@@ -40,12 +42,6 @@
     <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Cleanup\DomTreeAutoRankCleanup.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Cleanup\DomTreeAutoRankCleanup.cs" />
     <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Cleanup\DomTreeRankCleanup.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Cleanup\DomTreeRankCleanup.cs" />
     <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Cleanup\OnlyBodyTextCleanup.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Cleanup\OnlyBodyTextCleanup.cs" />
-    <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Scraper\Abstract\AbstractSimpleDocumentScraper.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Abstract\AbstractSimpleDocumentScraper.cs" />
-    <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Scraper\Cosmas\CosmasScraper.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Cosmas\CosmasScraper.cs" />
-    <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Scraper\Docx\SimpleDocxDocumentScraper.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Docx\SimpleDocxDocumentScraper.cs" />
-    <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Scraper\Html\SimpleHtmlDocumentScraper.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Html\SimpleHtmlDocumentScraper.cs" />
-    <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Scraper\Pdf\SimplePdfDocumentScraper.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Pdf\SimplePdfDocumentScraper.cs" />
-    <Compile Include="..\CorpusExplorer.Core\Utils\DocumentProcessing\Scraper\Rtf\SimpleRtfDocumentScraper.cs" Link="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Rtf\SimpleRtfDocumentScraper.cs" />
     <Compile Include="..\CorpusExplorer.Sdk.Diagnostic\InMemoryErrorConsole.cs" Link="CorpusExplorer\SDK\Diagnostic\InMemoryErrorConsole.cs" />
     <Compile Include="..\CorpusExplorer.Sdk.Diagnostic\OnLogEventHandler.cs" Link="CorpusExplorer\SDK\Diagnostic\OnLogEventHandler.cs" />
     <Compile Include="..\CorpusExplorer.Sdk.Diagnostic\SafeExecute.cs" Link="CorpusExplorer\SDK\Diagnostic\SafeExecute.cs" />
@@ -84,6 +80,7 @@
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\Cooccurrence\LogLikelihoodSignificance.cs" Link="CorpusExplorer\SDK\Blocks\Cooccurrence\LogLikelihoodSignificance.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\Cooccurrence\PoissonSignificance.cs" Link="CorpusExplorer\SDK\Blocks\Cooccurrence\PoissonSignificance.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\CorrespondingLayerValueBlock.cs" Link="CorpusExplorer\SDK\Blocks\CorrespondingLayerValueBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\CorrespondingLayerValueFilterBlock.cs" Link="CorpusExplorer\SDK\Blocks\CorrespondingLayerValueFilterBlock.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\CrossFrequencyBlock.cs" Link="CorpusExplorer\SDK\Blocks\CrossFrequencyBlock.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\CrossFrequencyDocumentBasedBlock.cs" Link="CorpusExplorer\SDK\Blocks\CrossFrequencyDocumentBasedBlock.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\CutOffPhraseBlock.cs" Link="CorpusExplorer\SDK\Blocks\CutOffPhraseBlock.cs" />
@@ -114,6 +111,8 @@
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\Frequency1LayerBlock.cs" Link="CorpusExplorer\SDK\Blocks\Frequency1LayerBlock.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\Frequency1LayerOneOccurrencePerDocument.cs" Link="CorpusExplorer\SDK\Blocks\Frequency1LayerOneOccurrencePerDocument.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\Frequency1LayerOneOccurrencePerSentenceBlock.cs" Link="CorpusExplorer\SDK\Blocks\Frequency1LayerOneOccurrencePerSentenceBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Frequency1LayerOnlyMatchSentenceBlock.cs" Link="CorpusExplorer\SDK\Blocks\Frequency1LayerOnlyMatchSentenceBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\Frequency1LayerOnlyMatchSentenceOneOccurrenceBlock.cs" Link="CorpusExplorer\SDK\Blocks\Frequency1LayerOnlyMatchSentenceOneOccurrenceBlock.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\Frequency2LayerBlock.cs" Link="CorpusExplorer\SDK\Blocks\Frequency2LayerBlock.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\Frequency3LayerBlock.cs" Link="CorpusExplorer\SDK\Blocks\Frequency3LayerBlock.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\FrequencyLeftRightBlock.cs" Link="CorpusExplorer\SDK\Blocks\FrequencyLeftRightBlock.cs" />
@@ -126,6 +125,7 @@
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\Helper\DoubleKeyDictionary.cs" Link="CorpusExplorer\SDK\Blocks\Helper\DoubleKeyDictionary.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\Interfaces\IUseHydraSentenceOptimization.cs" Link="CorpusExplorer\SDK\Blocks\Interfaces\IUseHydraSentenceOptimization.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\Interfaces\IUseMemoryOverflowProtection.cs" Link="CorpusExplorer\SDK\Blocks\Interfaces\IUseMemoryOverflowProtection.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\InverseDocumentTermFrequencyBlock.cs" Link="CorpusExplorer\SDK\Blocks\InverseDocumentTermFrequencyBlock.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\KeywordBlock.cs" Link="CorpusExplorer\SDK\Blocks\KeywordBlock.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\KeywordCompletePreCalculatedBlock.cs" Link="CorpusExplorer\SDK\Blocks\KeywordCompletePreCalculatedBlock.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\KeywordPresetReferenceListBlock.cs" Link="CorpusExplorer\SDK\Blocks\KeywordPresetReferenceListBlock.cs" />
@@ -255,6 +255,7 @@
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\SortDocuments.cs" Link="CorpusExplorer\SDK\Blocks\SortDocuments.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\SummarizerBlock.cs" Link="CorpusExplorer\SDK\Blocks\SummarizerBlock.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\SyntagmaBlock.cs" Link="CorpusExplorer\SDK\Blocks\SyntagmaBlock.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Blocks\TermDocumentMatrixBlock.cs" Link="CorpusExplorer\SDK\Blocks\TermDocumentMatrixBlock.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\TextLiveSearchBlock.cs" Link="CorpusExplorer\SDK\Blocks\TextLiveSearchBlock.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\ValidateSelectionIntegrityBlock.cs" Link="CorpusExplorer\SDK\Blocks\ValidateSelectionIntegrityBlock.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Blocks\VocabularyComplaxity\AbstractVocabularyComplexity.cs" Link="CorpusExplorer\SDK\Blocks\VocabularyComplaxity\AbstractVocabularyComplexity.cs" />
@@ -314,7 +315,6 @@
     <Compile Include="..\CorpusExplorer.Sdk\Helper\ProcessingDocumentSticher.cs" Link="CorpusExplorer\SDK\Helper\ProcessingDocumentSticher.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Helper\ProjectJoiner.cs" Link="CorpusExplorer\SDK\Helper\ProjectJoiner.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Helper\QueueExtension.cs" Link="CorpusExplorer\SDK\Helper\QueueExtension.cs" />
-    <Compile Include="..\CorpusExplorer.Sdk\Helper\ReadableDocumentHelper.cs" Link="CorpusExplorer\SDK\Helper\ReadableDocumentHelper.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Helper\SafeXmlSectionRemoveableHelper.cs" Link="CorpusExplorer\SDK\Helper\SafeXmlSectionRemoveableHelper.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Helper\SelectionEqualityComparer.cs" Link="CorpusExplorer\SDK\Helper\SelectionEqualityComparer.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\Helper\SelectionJoiner.cs" Link="CorpusExplorer\SDK\Helper\SelectionJoiner.cs" />
@@ -522,17 +522,19 @@
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CorpusWeightLimmitedViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CorpusWeightLimmitedViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CorpusWeightUnlimmitedCompareViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CorpusWeightUnlimmitedCompareViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CorpusWeightUnlimmitedViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CorpusWeightUnlimmitedViewModel.cs" />
-    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CrossFrequencyOverTimeViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CrossFrequencyOverTimeViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CorrespondingLayerValueFilterViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CorrespondingLayerValueFilterViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\CutOffPhraseViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\CutOffPhraseViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DiffViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DiffViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DisambiguationCompareViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DisambiguationCompareViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DisambiguationViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DisambiguationViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DispersionViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DispersionViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DocumentCloneDetectionViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DocumentCloneDetectionViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DocumentGranulationViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DocumentGranulationViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DocumentGuidMetadataResolver.cs" Link="CorpusExplorer\SDK\ViewModel\DocumentGuidMetadataResolver.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DocumentHashViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DocumentHashViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DocumentMetadataViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DocumentMetadataViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DocumentSimilarityViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DocumentSimilarityViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DocumentTermFrequencyViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DocumentTermFrequencyViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\DuplicatViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\DuplicatViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\EditDistantCalculationViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\EditDistantCalculationViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\ExplorationViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\ExplorationViewModel.cs" />
@@ -540,6 +542,7 @@
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Frequency2LayerViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\Frequency2LayerViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Frequency3LayerViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\Frequency3LayerViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\FrequencyCompareViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\FrequencyCompareViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\FrequencyCrossFrequencyOverTimeViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\FrequencyCrossFrequencyOverTimeViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\FrequencyCrossViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\FrequencyCrossViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\FrequencyLeftRightViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\FrequencyLeftRightViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\FrequencyOverTimeViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\FrequencyOverTimeViewModel.cs" />
@@ -548,12 +551,14 @@
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\FrequencyTimelineAnalyticViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\FrequencyTimelineAnalyticViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\FrequencyViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\FrequencyViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Interfaces\IProvideAggregatedDataItems.cs" Link="CorpusExplorer\SDK\ViewModel\Interfaces\IProvideAggregatedDataItems.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Interfaces\IProvideCorrespondingLayerValueFilter.cs" Link="CorpusExplorer\SDK\ViewModel\Interfaces\IProvideCorrespondingLayerValueFilter.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Interfaces\IProvideDataTable.cs" Link="CorpusExplorer\SDK\ViewModel\Interfaces\IProvideDataTable.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Interfaces\IProvideHtmlOutput.cs" Link="CorpusExplorer\SDK\ViewModel\Interfaces\IProvideHtmlOutput.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Interfaces\IProvideLayerDisplaynames.cs" Link="CorpusExplorer\SDK\ViewModel\Interfaces\IProvideLayerDisplaynames.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Interfaces\IProvideNormalizedDataTable.cs" Link="CorpusExplorer\SDK\ViewModel\Interfaces\IProvideNormalizedDataTable.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Interfaces\IUseSpecificLayer.cs" Link="CorpusExplorer\SDK\ViewModel\Interfaces\IUseSpecificLayer.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\Interfaces\IViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\Interfaces\IViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\InverseDocumentFrequencyViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\InverseDocumentFrequencyViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\KeywordPresetReferenceListViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\KeywordPresetReferenceListViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\KeywordViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\KeywordViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\MtldViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\MtldViewModel.cs" />
@@ -574,7 +579,9 @@
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\QuickInfoText\QuickInfoTextResult.cs" Link="CorpusExplorer\SDK\ViewModel\QuickInfoText\QuickInfoTextResult.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\QuickInfoTtrViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\QuickInfoTtrViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\QuickInfoViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\QuickInfoViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\TermDocumentMatrixViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\TermDocumentMatrixViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\TextFlowSearchViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\TextFlowSearchViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\ViewModel\TextFlowSearchWithRangeSelectionViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\TextFlowSearchWithRangeSelectionViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\TextLiveSearchViewModel.cs" Link="CorpusExplorer\SDK\ViewModel\TextLiveSearchViewModel.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\TextLiveSearch\SignificanceExtendedUniqueTextLiveSearchResultEntry.cs" Link="CorpusExplorer\SDK\ViewModel\TextLiveSearch\SignificanceExtendedUniqueTextLiveSearchResultEntry.cs" />
     <Compile Include="..\CorpusExplorer.Sdk\ViewModel\TextLiveSearch\UniqueTextLiveSearchCutOffPhraseResultEntry.cs" Link="CorpusExplorer\SDK\ViewModel\TextLiveSearch\UniqueTextLiveSearchCutOffPhraseResultEntry.cs" />
@@ -601,12 +608,6 @@
     <Folder Include="Bcs\Crawler\Helper\" />
     <Folder Include="Bcs\IO\" />
     <Folder Include="CorpusExplorer\Core\Utils\DocumentProcessing\Cleanup\" />
-    <Folder Include="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Abstract\" />
-    <Folder Include="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Cosmas\" />
-    <Folder Include="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Docx\" />
-    <Folder Include="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Html\" />
-    <Folder Include="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Pdf\" />
-    <Folder Include="CorpusExplorer\Core\Utils\DocumentProcessing\Scraper\Rtf\" />
     <Folder Include="CorpusExplorer\SDK\Addon\" />
     <Folder Include="CorpusExplorer\SDK\Aspect\Model\Interfaces\" />
     <Folder Include="CorpusExplorer\SDK\Blocks\Abstract\" />
@@ -691,13 +692,7 @@
     <PackageReference Include="PostSharp" Version="6.6.11" />
     <PackageReference Include="PostSharp.Redist" Version="6.6.11" />
     <PackageReference Include="SharpSerializer" Version="3.0.1" />
-    <PackageReference Include="SharpZipLib" Version="1.2.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="Telerik.Documents.Core" Version="2020.2.615" />
-    <PackageReference Include="Telerik.Documents.Fixed" Version="2020.2.615" />
-    <PackageReference Include="Telerik.Documents.Flow" Version="2020.2.615" />
-    <PackageReference Include="Telerik.Documents.Flow.FormatProviders.Pdf" Version="2020.2.615" />
-    <PackageReference Include="Telerik.Windows.Zip" Version="2020.2.615" />
   </ItemGroup>
 
 </Project>

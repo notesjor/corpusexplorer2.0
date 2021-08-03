@@ -5,6 +5,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
@@ -88,6 +89,7 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
             _metaDocs.Add(meta.Key, meta.Value);
 
       // layers
+      var @lock = new object();
       foreach (var layer in corpus.Layers)
         if (_layers.ContainsKey(layer.Displayname))
           Parallel.ForEach(
@@ -95,12 +97,18 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
                            Configuration.ParallelOptions,
                            dsel =>
                            {
-                             _layers[layer.Displayname]
-                              .AddCompleteDocument(
-                                                   dsel,
-                                                   layer.GetReadableDocumentByGuid(dsel)
-                                                        .Select(s => s.ToArray())
-                                                        .ToArray());
+                             try
+                             {
+                               var doc = layer.GetReadableDocumentByGuid(dsel)
+                                              .Select(s => s.ToArray())
+                                              .ToArray();
+                               lock (@lock)
+                                 _layers[layer.Displayname].AddCompleteDocument(dsel, doc);
+                             }
+                             catch (Exception ex)
+                             {
+                               InMemoryErrorConsole.Log(ex);
+                             }
                            });
         else
           _layers.Add(layer.Displayname, layer.ToLayerState());
@@ -127,7 +135,7 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
       var merger = new CorpusMerger();
       merger.CorpusBuilder = builder ?? new CorpusBuilderWriteDirect();
       foreach (var file in files)
-        merger.Input(importer.Execute(new []{ file }).FirstOrDefault());
+        merger.Input(importer.Execute(new[] { file }).FirstOrDefault());
 
       merger.Execute();
       return merger.Output.FirstOrDefault();

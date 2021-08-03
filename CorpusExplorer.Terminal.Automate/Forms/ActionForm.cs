@@ -73,6 +73,8 @@ namespace CorpusExplorer.Terminal.Automate
         drop_actionType.SelectValue(value.type);
         drop_outputFormat.SelectValue(value.output.format);
         txt_outputPath.Text = value.output.Value;
+
+        
         throw new NotImplementedException();
         /*
         foreach (var VARIABLE in COLLECTION)

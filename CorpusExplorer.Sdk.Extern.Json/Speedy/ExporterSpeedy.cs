@@ -11,6 +11,7 @@ using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Sdk.Utils.ReMapper;
+using CorpusExplorer.Sdk.Utils.ReMapper.Model;
 using Newtonsoft.Json;
 
 namespace CorpusExplorer.Sdk.Extern.Json.Speedy
@@ -60,7 +61,7 @@ namespace CorpusExplorer.Sdk.Extern.Json.Speedy
       return text.Replace("  ", " ");
     }
 
-    private IList<Property> GetProperties(IEnumerable<Tuple<int, int, int, int>> idxs,
+    private IList<Property> GetProperties(IEnumerable<ReMapperEntry> idxs,
                                           IEnumerable<AbstractLayerAdapter> layers, Guid dsel)
     {
       var wLayer = (from x in layers where x.Displayname == "Wort" select x).FirstOrDefault();
@@ -82,7 +83,7 @@ namespace CorpusExplorer.Sdk.Extern.Json.Speedy
         string current = null;
         foreach (var idx in idxs)
         {
-          var value = layer[doc[idx.Item1][idx.Item2]];
+          var value = layer[doc[idx.SentenceIndex][idx.TokenIndex]];
           if (current != value)
           {
             if (value == "-null-") // -null- für SPEEDy-ReExport - muss auch im Importer geändert werden.
@@ -106,15 +107,15 @@ namespace CorpusExplorer.Sdk.Extern.Json.Speedy
             {
               Index = res.Count,
               Guid = Guid.NewGuid().ToString(),
-              Text = wLayer[doc[idx.Item1][idx.Item2]],
-              StartIndex = idx.Item3,
-              EndIndex = idx.Item4 + 1,
+              Text = wLayer[doc[idx.SentenceIndex][idx.TokenIndex]],
+              StartIndex = idx.TextCharFrom,
+              EndIndex = idx.TextCharTo + 1,
               Type = layer.Displayname,
               UserGuid = _ceGuid,
               Value = value
             };
           else
-            pro.EndIndex = idx.Item4 + 1;
+            pro.EndIndex = idx.TextCharTo + 1;
         }
         if (pro != null)
           res.Add(pro);
