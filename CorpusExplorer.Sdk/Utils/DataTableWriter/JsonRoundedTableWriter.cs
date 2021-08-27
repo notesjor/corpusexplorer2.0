@@ -112,9 +112,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       WriteOutput("]");
     }
 
-    public override AbstractTableWriter Clone(Stream stream)
-    {
-      return new JsonTableWriter { OutputStream = stream, WriteTid = WriteTid };
-    }
+    public override AbstractTableWriter Clone(Stream stream) 
+      => new JsonTableWriter { OutputStream = stream, WriteTid = WriteTid, Path = Path };
   }
 }

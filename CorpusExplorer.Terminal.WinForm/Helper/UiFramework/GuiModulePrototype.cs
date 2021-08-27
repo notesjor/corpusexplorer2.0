@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -27,6 +28,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
     private readonly string _header;
     private RadMenuItem _topMenu;
     private RadTileElement _topTile;
+    private List<EventHandler<EventArgs>> _eventViews = new List<EventHandler<EventArgs>>();
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="GuiModulePrototype" /> class.
@@ -87,8 +89,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
         var page = AddView_AddPage(view, label);
         Pages.Pages.Add(page);
 
-        AddView_AddMenuItem1(view, iconLow, page);
-        AddView_AddMenuItem2(view, iconLow, page);
+        AddView_AddMenuItem(view, iconLow, page);
         AddView_AddTile(view, iconHeigh, isBeta, page);
 
         FavoriteManager.InitializeView($"{_header} > {label}", iconLow, view.GetType().ToString(), page);
@@ -99,6 +100,82 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       }
 
       return this;
+    }
+
+    public GuiModulePrototype AddView(
+      EventHandler<EventArgs> eventHandler,
+      Bitmap iconHeigh, 
+      Bitmap iconLow, 
+      string label,
+      string functionName,
+      bool isBeta = false)
+    {
+      try
+      {
+        _eventViews.Add(eventHandler);
+        AddView_AddMenuItem(label, iconLow, eventHandler, functionName);
+        AddView_AddTile(label, iconHeigh, isBeta, eventHandler, functionName);
+
+        // ToDo: FavoriteManager.InitializeView($"{_header} > {label}", iconLow, view.GetType().ToString(), page);
+      }
+      catch (Exception ex)
+      {
+        InMemoryErrorConsole.Log(ex);
+      }
+
+      return this;
+    }
+
+    private void AddView_AddTile(string label, Image iconHeigh, bool isBeta, EventHandler<EventArgs> eventHandler, string functionName)
+    {
+      var tile = new RadTileElement
+      {
+        Text = label,
+        Tag = eventHandler,
+        Column = modul_viewstates.Items.Count,
+        Row = 0,
+        Image = iconHeigh,
+        UseMnemonic = false,
+        Font = new Font("Segoe UI Light", 10),
+        TextAlignment = ContentAlignment.BottomCenter,
+        BackColor = Color.White,
+        BorderColor = Color.DarkSeaGreen,
+        ForeColor = Color.Black,
+        TextWrap = true
+      };
+      if (isBeta)
+        tile.BackgroundImage = Resources.beta;
+
+      tile.Click += (sender, args) =>
+      {
+        var p = (RadPageViewPage)((RadTileElement)sender).Tag;
+        Pages.SelectedPage = p;
+        InMemoryErrorConsole.TrackPageView($"page_mod_{functionName}");
+        //ToDo: FavoriteManager.CountPage(view.ToString());
+        Execute(p);
+      };
+      modul_viewstates.Items.Add(tile);
+    }
+
+    private void AddView_AddMenuItem(string label, Image iconLow, EventHandler<EventArgs> eventHandler, string functionName)
+    {
+      var item = new RadMenuItem(label) { Tag = eventHandler, Image = iconLow };
+      item.Click += (sender, args) =>
+      {
+        var e = (EventHandler<EventArgs>)((RadMenuItem)sender).Tag;
+
+        if (Project              == null ||
+            Project.CountCorpora == 0)
+        {
+          MessageBox.Show(Resources.PleaseLoadACorpus);
+          return;
+        }
+
+        e(null, null);
+        InMemoryErrorConsole.TrackPageView($"page_mod_{functionName}");
+        //ToDo: FavoriteManager.CountPage(view.ToString());
+      };
+      _topMenu.Items.Add(item);
     }
 
     private void AddView_AddTile(Type view, Image iconHeigh, bool isBeta, RadPageViewPage page)
@@ -132,10 +209,10 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       modul_viewstates.Items.Add(tile);
     }
 
-    private void AddView_AddMenuItem2(Type view, Image iconLow, RadPageViewPage page)
+    private void AddView_AddMenuItem(Type view, Image iconLow, RadPageViewPage page)
     {
-      var menuItem2 = new RadMenuItem(page.Text) {Tag = page, Image = iconLow};
-      menuItem2.Click += (sender, args) =>
+      var item = new RadMenuItem(page.Text) {Tag = page, Image = iconLow};
+      item.Click += (sender, args) =>
       {
         var p = (RadPageViewPage) ((RadMenuItem) sender).Tag;
 
@@ -152,32 +229,9 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
         FavoriteManager.CountPage(view.ToString());
         Execute(p);
       };
-      _topMenu.Items.Add(menuItem2);
+      _topMenu.Items.Add(item);
     }
-
-    private void AddView_AddMenuItem1(Type view, Image iconLow, RadPageViewPage page)
-    {
-      var menuItem1 = new RadMenuItem(page.Text) {Tag = page, Image = iconLow};
-
-      menuItem1.Click += (sender, args) =>
-      {
-        var p = (RadPageViewPage) ((RadMenuItem) sender).Tag;
-
-        if (Project              == null ||
-            Project.CountCorpora == 0)
-        {
-          MessageBox.Show(Resources.PleaseLoadACorpus);
-          return;
-        }
-
-        ModulPage(null, null);
-        Pages.SelectedPage = p;
-        InMemoryErrorConsole.TrackPageView($"page_mod_{view}");
-        FavoriteManager.CountPage(view.ToString());
-        Execute(p);
-      };
-    }
-
+    
     private static RadPageViewPage AddView_AddPage(Type type, string label)
     {
       var page = new RadPageViewPage

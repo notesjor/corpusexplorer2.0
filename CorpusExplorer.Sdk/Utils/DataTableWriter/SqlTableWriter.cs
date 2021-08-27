@@ -15,20 +15,17 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
     public override string MimeType => "application/sql";
     public override string Description => "SQL (schema + data)";
 
-    public override void WriteTable(DataTable table)
+    protected override void WriteHead(DataTable table)
     {
       var head = new SqlSchemaOnlyTableWriter { OutputStream = OutputStream, WriteTid = WriteTid };
       head.WriteTable(table);
-      var data = new SqlDataOnlyTableWriter { OutputStream = OutputStream, WriteTid = WriteTid };
-      data.WriteTable(table);
-    }
-
-    protected override void WriteHead(DataTable table)
-    {
     }
 
     protected override void WriteBody(DataTable table)
     {
+
+      var data = new SqlDataOnlyTableWriter { OutputStream = OutputStream, WriteTid = WriteTid };
+      data.WriteTable(table);
     }
 
     protected override void WriteFooter()
@@ -36,6 +33,6 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
     }
 
     public override AbstractTableWriter Clone(Stream stream)
-      => new SqlTableWriter { OutputStream = stream, WriteTid = WriteTid };
+      => new SqlTableWriter { OutputStream = stream, WriteTid = WriteTid, Path = Path };
   }
 }

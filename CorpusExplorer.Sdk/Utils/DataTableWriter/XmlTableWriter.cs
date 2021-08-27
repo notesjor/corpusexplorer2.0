@@ -68,9 +68,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
     }
 
     public override AbstractTableWriter Clone(Stream stream)
-    {
-      return new XmlTableWriter { OutputStream = stream, WriteTid = WriteTid };
-    }
+      => new XmlTableWriter { OutputStream = stream, WriteTid = WriteTid, Path = Path };
 
     protected override void WriteFooter()
     {

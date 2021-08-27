@@ -27,10 +27,39 @@ namespace CorpusExplorer.Terminal.Automate
     private Dictionary<string, AbstractTagger> _taggers;
     private Dictionary<string, AbstractImporter> _importers;
 
+    private Validator<RadGridView> _validator;
+
     public SourceForm()
     {
       InitializeComponent();
       LoadDropDownOptions();
+      drop_starttag.SelectedIndex = 1;
+      drop_starttag.SelectedIndex = 0;
+
+      _validator = new Validator<RadGridView>
+      {
+        Rules = new List<Validator<RadGridView>.ValidatorRule<RadGridView>>
+        {
+          new Validator<RadGridView>.ValidatorRule<RadGridView>()
+          {
+            Control = grid_directories,
+            ErrorMessage = "Bitte löschen Sie den leeren Verzeichniseintrag.",
+            ValidationFunction = grid =>
+            {
+              return grid.Rows.All(row => !string.IsNullOrWhiteSpace(row.Cells[0].Value.ToString()) || string.IsNullOrWhiteSpace(row.Cells[1].Value.ToString()));
+            }
+          },
+          new Validator<RadGridView>.ValidatorRule<RadGridView>()
+          {
+            Control = grid_directories,
+            ErrorMessage = "Sie müssen für alle Verzeichnisse einen Filter setzen - z. B. *.txt",
+            ValidationFunction = grid =>
+            {
+              return grid.Rows.All(row => string.IsNullOrWhiteSpace(row.Cells[0].Value.ToString()) || !string.IsNullOrWhiteSpace(row.Cells[1].Value.ToString()));
+            }
+          }
+        }
+      };
     }
 
     public SourceForm(object data)
@@ -47,7 +76,6 @@ namespace CorpusExplorer.Terminal.Automate
       _importers = Configuration.AddonImporters.Convert();
 
       anno_drop_tagger.Items.AddRange(_taggers.Keys.Select(x => new RadListDataItem(x)));
-      drop_starttag.SelectedIndex = 0;
     }
 
     public object Result
@@ -119,7 +147,13 @@ namespace CorpusExplorer.Terminal.Automate
 
     private void btn_ok_Click(object sender, EventArgs e)
     {
-      if (MessageBox.Show(Resources.DialogChangesAcceptedMessage, Resources.DialogChangesAcceptedMessageHead, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+      if (!_validator.Validate())
+      {
+        MessageBox.Show(_validator.SimpleErrorMessage());
+        return;
+      }
+
+      if (MessageBox.Show(Resources.DialogChangesAcceptedMessage, Resources.DialogChangesAcceptedMessageHead, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) != DialogResult.Yes)
         return;
       DialogResult = DialogResult.OK;
       Close();
@@ -127,7 +161,7 @@ namespace CorpusExplorer.Terminal.Automate
 
     private void btn_abort_Click(object sender, EventArgs e)
     {
-      if (MessageBox.Show(Resources.DialogChangesAbortMessage, Resources.DialogChangesAbortMessageHead, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) != DialogResult.Yes)
+      if (MessageBox.Show(Resources.DialogChangesAbortMessage, Resources.DialogChangesAbortMessageHead, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
         return;
       DialogResult = DialogResult.Abort;
       Close();
@@ -147,12 +181,14 @@ namespace CorpusExplorer.Terminal.Automate
       {
         drop_type.Items.Clear();
         drop_type.Items.AddRange(_scrapers.Select(x => new RadListDataItem(x.Key) { Tag = x.Value.GetType().Name }));
+        anno_drop_tagger.SelectedIndex = 0;
       }
       else
       {
         drop_type.Items.Clear();
         drop_type.Items.AddRange(_importers.Select(x => new RadListDataItem(x.Key) { Tag = x.Value.GetType().Name }));
       }
+      drop_type.SelectedIndex = 0;
     }
 
     private void anno_drop_tagger_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
@@ -162,6 +198,7 @@ namespace CorpusExplorer.Terminal.Automate
         return;
       anno_drop_language.Items.AddRange(_taggers[anno_drop_tagger.SelectedItem.Text]
                                        .LanguagesAvailabel.Select(x => new RadListDataItem(x)));
+      anno_drop_language.SelectedIndex = 0;
     }
 
     private void grid_directories_Click(object sender, EventArgs e)

@@ -131,6 +131,9 @@
         AAAASUVORK5CYII=
 </value>
   </data>
+  <data name="info1.DisplayText" xml:space="preserve">
+    <value>Sie können unannotiertes Korpusmaterial annotieren oder bestehende Korpora importieren. Davon abhängig sind die auswählbaren Optionen.\nHinweis: Wenn Sie das Skript unter Linux/MacOS nutzen, sollten Sie nur mit 'import' arbeiten.</value>
+  </data>
   <data name="btn_add_files.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAaJJREFUSEtj

@@ -44,9 +44,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
     }
 
     public override AbstractTableWriter Clone(Stream stream)
-    {
-      return new TsvTableWriter { OutputStream = stream, WriteTid = WriteTid };
-    }
+      => new TsvTableWriter { OutputStream = stream, WriteTid = WriteTid, Path = Path };
 
     private string EnsureValue(string value)
     {

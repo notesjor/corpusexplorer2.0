@@ -35,10 +35,8 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       WriteOutput("</tr>");
     }
 
-    public override AbstractTableWriter Clone(Stream stream)
-    {
-      return new HtmlTableWriter { OutputStream = stream, WriteTid = WriteTid };
-    }
+    public override AbstractTableWriter Clone(Stream stream) 
+      => new HtmlTableWriter { OutputStream = stream, WriteTid = WriteTid, Path = Path };
 
     protected override void WriteBody(DataTable table)
     {

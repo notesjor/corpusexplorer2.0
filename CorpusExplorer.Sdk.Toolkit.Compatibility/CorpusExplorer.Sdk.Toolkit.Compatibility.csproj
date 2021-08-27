@@ -47,9 +47,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CorpusExplorer.Sdk.Data">
-      <HintPath>..\..\..\CorpusExplorer\jor.sdk.treetagger\bin\Release\CorpusExplorer.Sdk.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -83,6 +80,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Compatibility\CorpusExplorer.Sdk.Compatibility.csproj">
+      <Project>{21058c32-9567-4842-97d2-c1e6c401fce2}</Project>
+      <Name>CorpusExplorer.Sdk.Compatibility</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CorpusExplorer.Sdk\CorpusExplorer.Sdk.csproj">
       <Project>{dc1b5a58-29da-476d-89f8-e73a1db11e52}</Project>
       <Name>CorpusExplorer.Sdk</Name>

@@ -2983,6 +2983,16 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap execute1 {
+            get {
+                object obj = ResourceManager.GetObject("execute1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Existierendes Korpus laden ähnelt.
         /// </summary>
         public static string ExistierendesKorpusLaden {

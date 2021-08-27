@@ -13,6 +13,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
     public override string TableWriterTag => "F:SQLSCHEMA";
     public override string MimeType => "application/sql";
     public override string Description => "SQL (schema only)";
+    public string TableName { get; set; } = "CorpusExplorer";
 
     public override void WriteTable(DataTable table)
     {
@@ -22,7 +23,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
                      select new Tuple<string, string, Type>(column.ColumnName, column.ColumnName.Replace(" ", "_"),
                                                             column.DataType)).ToList();
 
-      var stb = new StringBuilder("CREATE TABLE IF NOT EXISTS CorpusExplorer (");
+      var stb = new StringBuilder($"CREATE TABLE IF NOT EXISTS {TableName} (");
       foreach (var column in columns)
         stb.Append($"'{column.Item2}' {GetSqlType(column.Item3)},");
 
@@ -50,10 +51,8 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
     {
     }
 
-    public override AbstractTableWriter Clone(Stream stream)
-    {
-      return new SqlSchemaOnlyTableWriter { OutputStream = stream, WriteTid = WriteTid };
-    }
+    public override AbstractTableWriter Clone(Stream stream) 
+      => new SqlSchemaOnlyTableWriter { OutputStream = stream, WriteTid = WriteTid, TableName = TableName, Path = Path };
 
     private string GetSqlType(Type type)
     {

@@ -24,26 +24,9 @@ namespace CorpusExplorer.Terminal.Automate
         cmdCell.CommandButton.ImageAlignment = ContentAlignment.MiddleCenter;
     }
 
-    private void info_cescript_Click(object sender, EventArgs e)
-      =>
-        MessageBox.Show("Der Knoten <cescript> ist der Root-Knoten. Er beinhaltet Meta-Informationen und Sessions. Über das Attribut \"version\" können Sie die Version einstellen. Verwenden Sie am besten immer die aktuellste Version.",
-                        "<cescript>",
-                        MessageBoxButtons.OK);
-
-    private void info_head_Click(object sender, EventArgs e)
-      =>
-        MessageBox.Show("Im Knoten <head> können Meta-Daten gespeichert werden. Diese haben für das Skript keine funktionalen Eigenschaften. Vielmehr können Sie damit Informationen zum Projekthintergrund hinterlegen.",
-                        "<meta>",
-                        MessageBoxButtons.OK);
-
-    private void info_sessions_Click(object sender, EventArgs e)
-      =>
-        MessageBox.Show("Im Knoten <sessions> werden die Analyse-Sessions gebündelt. Diese können synchron oder asynchron ausgeführt werden (siehe Attribut 'mode'). Bearbeiten Sie eine Session, um weitere Informationen anzuzeigen.",
-                        "<sessions>",
-                        MessageBoxButtons.OK);
-
     private void btn_session_add_Click(object sender, EventArgs e)
     {
+      Hide();
       var form = new SessionForm();
       if (form.ShowDialog() == DialogResult.OK)
       {
@@ -52,6 +35,7 @@ namespace CorpusExplorer.Terminal.Automate
 
       PersistUi();
       ReloadUi();
+      Show();
     }
 
     private void btn_script_new_Click(object sender, EventArgs e)
@@ -154,8 +138,12 @@ namespace CorpusExplorer.Terminal.Automate
     {
       if (e.ColumnIndex == 1)
       {
+        Hide();
         var form = new SessionForm(_vm.Get(e.RowIndex));
-        if (form.ShowDialog() != DialogResult.OK)
+        var res = form.ShowDialog();
+        Show();
+
+        if (res != DialogResult.OK)
           return;
 
         _vm.Change(e.RowIndex, form.Result);

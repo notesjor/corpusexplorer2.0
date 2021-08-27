@@ -163,4 +163,7 @@
         MvgEt9HFm8fUFiwUHYQxmIYWvINVeAl34QIcSNWW5AN/AeOTIpZ0Poh9AAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="info2.DisplayText" xml:space="preserve">
+    <value>&lt;html&gt;Quellen können auf folgende Arten verarbeitet werden:&lt;br/&gt;- merge = Betrachte alle Quellen als ein Korpus&lt;br/&gt;- loop = Durchlaufe einzelne Dateien als separate Korpora&lt;br/&gt;- sub-dir-loop = Durchlaufe einzelne Ordner als separate Korpora&lt;br/&gt;- parallel-loop = Wie loop - nur asynchron&lt;br/&gt;- parallel-sub-dir-loop = Wie sub-dir-loop - nur asynchron&lt;/html&gt;</value>
+  </data>
 </root>

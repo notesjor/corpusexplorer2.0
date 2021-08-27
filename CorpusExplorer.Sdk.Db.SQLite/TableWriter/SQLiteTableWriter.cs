@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using System.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Utils.DataTableWriter;
 using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
@@ -16,11 +15,11 @@ namespace CorpusExplorer.Sdk.Db.SQLite.TableWriter
     protected override void WriteHead(DataTable table)
     {
       if (string.IsNullOrWhiteSpace(Path))
-        throw new InvalidDataException("SQLite benötigt einen FileStream, um zu funktionieren.");
+        throw new System.IO.InvalidDataException("SQLite benötigt einen FileStream, um zu funktionieren.");
 
       OutputStream.Close();
-      if (File.Exists(Path))
-        File.Delete(Path);
+      if (System.IO.File.Exists(Path))
+        System.IO.File.Delete(Path);
 
       string query;
 
@@ -28,21 +27,21 @@ namespace CorpusExplorer.Sdk.Db.SQLite.TableWriter
       {
         connection.Open();
 
-        using (var ms = new MemoryStream())
+        using (var ms = new System.IO.MemoryStream())
         {
           var head = new SqlSchemaOnlyTableWriter { OutputStream = ms, WriteTid = WriteTid }; 
           head.WriteTable(table);
-          ms.Seek(0, SeekOrigin.Begin);
+          ms.Seek(0, System.IO.SeekOrigin.Begin);
           query = Configuration.Encoding.GetString(ms.ToArray());
         }
         var command = new SQLiteCommand(query, connection);
         command.ExecuteNonQuery();
 
-        using (var ms = new MemoryStream())
+        using (var ms = new System.IO.MemoryStream())
         {
           var data = new SqlDataOnlyTableWriter { OutputStream = ms, WriteTid = WriteTid };
           data.WriteTable(table);
-          ms.Seek(0, SeekOrigin.Begin);
+          ms.Seek(0, System.IO.SeekOrigin.Begin);
           query = Configuration.Encoding.GetString(ms.ToArray());
         }
         command = new SQLiteCommand(query, connection);
@@ -60,7 +59,7 @@ namespace CorpusExplorer.Sdk.Db.SQLite.TableWriter
     {
     }
 
-    public override AbstractTableWriter Clone(Stream stream)
-      => new SQLiteTableWriter { OutputStream = stream, WriteTid = WriteTid };
+    public override AbstractTableWriter Clone(System.IO.Stream stream) 
+      => new SQLiteTableWriter { OutputStream = stream, WriteTid = WriteTid, Path = Path };
   }
 }

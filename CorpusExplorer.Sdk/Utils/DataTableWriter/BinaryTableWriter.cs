@@ -101,7 +101,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
 
     public override AbstractTableWriter Clone(Stream stream)
     {
-      return new CsvTableWriter { OutputStream = stream, WriteTid = WriteTid };
+      return new CsvTableWriter { OutputStream = stream, WriteTid = WriteTid, Path = Path};
     }
   }
 }

@@ -50,11 +50,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
                        x => new FilterQuerySingleLayerAllInOneSentence
                        {
                          Inverse = false,
-                         LayerDisplayname = "Wort",
+                         LayerDisplayname = _vm.LayerDisplayname,
                          LayerQueries =
                            new[]
                            {
-                             x[Resources.Zeichenkette].ToString(),
+                             _vm.LayerDisplayname,
                              x[Resources.Kookkurrenz].ToString()
                            }
                        });

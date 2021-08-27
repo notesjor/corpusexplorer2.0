@@ -1074,7 +1074,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                typeof(TreeTaggerTrainerView),
                                Resources.database_access,
                                Resources.database_access1,
-                               Resources.SpcialFunctions_TreeTaggerTrainer);
+                               Resources.SpcialFunctions_TreeTaggerTrainer)
+                     .AddView(
+                              settings_tool_scriptEditor_Click,
+                              Resources.execute1,
+                              Resources.execute,
+                              "Abfragen automatisieren",
+                              "call_cec-ui",
+                              true);
 
       // Notwendig um abschließend die 3rd-Party Views im Menü anzuzeigen.
       main_mainmenu_analytics.Items.Add(_addonMenuItem);
@@ -2528,6 +2535,21 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       try
       {
         Process.Start("dpxc-editor.exe")?.WaitForExit();
+      }
+      catch
+      {
+        // ignore
+      }
+      Show();
+    }
+
+    private void settings_tool_scriptEditor_Click(object sender, EventArgs e)
+    {
+      Hide();
+      try
+      {
+        var process = Process.Start("cec-ui");
+        process?.WaitForExit();
       }
       catch
       {

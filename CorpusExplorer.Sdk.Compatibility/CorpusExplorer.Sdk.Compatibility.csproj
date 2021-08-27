@@ -47,14 +47,41 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CorpusExplorer.Sdk.Data">
-      <HintPath>..\..\..\CorpusExplorer\jor.sdk.treetagger\bin\Release\CorpusExplorer.Sdk.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ce1CompatibilityControler.cs" />
+    <Compile Include="CorpusExplorerV1\Helper\CeEnviroment.cs" />
+    <Compile Include="CorpusExplorerV1\Helper\HelperStatistik.cs" />
+    <Compile Include="CorpusExplorerV1\Helper\ListOptimized.cs" />
+    <Compile Include="CorpusExplorerV1\Helper\ListOptimizedExtensions.cs" />
+    <Compile Include="CorpusExplorerV1\Helper\Serializer.cs" />
+    <Compile Include="CorpusExplorerV1\Model\ArbeitsLayer.cs" />
+    <Compile Include="CorpusExplorerV1\Model\Extensions\Layer\StaticLayerLimmitExtension.cs" />
+    <Compile Include="CorpusExplorerV1\Model\GenerateGroupsFromMetadataEntry.cs" />
+    <Compile Include="CorpusExplorerV1\Model\Layer.cs" />
+    <Compile Include="CorpusExplorerV1\Model\Layer2.cs" />
+    <Compile Include="CorpusExplorerV1\Model\MetaDatenExtensionGroupCompareDelegate.cs" />
+    <Compile Include="CorpusExplorerV1\Model\MetaDatenExtensionGroupInitDelegate.cs" />
+    <Compile Include="CorpusExplorerV1\Model\MetaInformationen\AbstrakterMetaEintrag.cs" />
+    <Compile Include="CorpusExplorerV1\Model\MetaInformationen\IAbstrakterMetaEintrag.cs" />
+    <Compile Include="CorpusExplorerV1\Model\MetaInformationen\MetaEintragDatum.cs" />
+    <Compile Include="CorpusExplorerV1\Model\MetaInformationen\MetaEintragGeoKoordinaten.cs" />
+    <Compile Include="CorpusExplorerV1\Model\MetaInformationen\MetaEintragText.cs" />
+    <Compile Include="CorpusExplorerV1\Model\MetaInformationen\MetaEintragZahl.cs" />
+    <Compile Include="CorpusExplorerV1\Model\MultiLayer.cs" />
+    <Compile Include="CorpusExplorerV1\Model\Profil\KiItem.cs" />
+    <Compile Include="CorpusExplorerV1\Model\Profil\VerwandtschaftsProfilEinfach.cs" />
+    <Compile Include="CorpusExplorerV1\Model\Profil\VerwandtschaftsProfilLemma.cs" />
+    <Compile Include="CorpusExplorerV1\Model\Profil\VerwandtschaftsProfilLemmaPos.cs" />
+    <Compile Include="CorpusExplorerV1\Model\Projekt.cs" />
+    <Compile Include="CorpusExplorerV1\Model\Statistik\Signifikanz\ISignifikanz.cs" />
+    <Compile Include="CorpusExplorerV1\Model\Statistik\Signifikanz\PoissonSignifikanz.cs" />
+    <Compile Include="CorpusExplorerV1\Model\Synonym\SynonymBuch.cs" />
+    <Compile Include="CorpusExplorerV1\Model\Synonym\SynonymBuchEintrag.cs" />
+    <Compile Include="CorpusExplorerV1\Model\Synonym\SynonymBuchEintragWertigkeit.cs" />
     <Compile Include="ImporterCorpusExplorerV1toV5.cs" />
     <Compile Include="RepositoryManifest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,6 +100,7 @@
     <None Include="app.config" />
     <None Include="CorpusExplorerNextSnKey2019.pfx" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

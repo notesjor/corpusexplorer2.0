@@ -22,7 +22,19 @@ namespace CorpusExplorer.Terminal.Automate
       _script = new cescript
       {
         version = "1.0",
-        head = new meta[0],
+        head = new []
+        {
+          new meta
+          {
+            key = "Projektname",
+            Value = ""
+          },
+          new meta
+          {
+            key = "Kurzbeschreibung",
+            Value = ""
+          },
+        },
         sessions = new sessions { mode = "asynchron", session = new session[0] }
       };
     }
@@ -41,7 +53,7 @@ namespace CorpusExplorer.Terminal.Automate
       Version = version;
       SessionMode = sessionMode;
       Metas = metas;
-      
+
       using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
       {
         var se = new XmlSerializer(typeof(cescript));
@@ -58,7 +70,12 @@ namespace CorpusExplorer.Terminal.Automate
 
     public void Add(session newSession)
     {
-      _script.sessions.session = _script.sessions.session.Concat(new[] {newSession}).ToArray();
+      if (_script.sessions == null)
+        _script.sessions = new sessions();
+
+      _script.sessions.session = _script.sessions.session == null 
+                                   ? new[] { newSession } 
+                                   : _script.sessions.session.Concat(new[] { newSession }).ToArray();
     }
 
     public void Change(int pos, session session)
@@ -73,13 +90,13 @@ namespace CorpusExplorer.Terminal.Automate
       _script.sessions.session = list.ToArray();
     }
 
-    public IEnumerable<string> List() 
-      => _script.sessions.session?.Select(x => $"Sources (mode=\"{x.sources?.processing}\"): {x.sources?.Items?.Length} | Queries: {x.queries?.Items?.Length} | Actions (mode=\"{x.actions?.mode}\"): {x.actions?.action?.Length}");
+    public IEnumerable<string> List()
+      => _script.sessions?.session?.Select(x => $"Sources (mode=\"{x.sources?.processing}\"): {x.sources?.Items?.Length} | Queries: {x.queries?.Items?.Length} | Actions (mode=\"{x.actions?.mode}\"): {x.actions?.action?.Length}");
 
     public IEnumerable<KeyValuePair<string, string>> Metas
     {
       get => _script.head.meta().Select(x => new KeyValuePair<string, string>(x.key, x.Value));
-      set => _script.head = value.Select(x => new meta {key = x.Key, Value = x.Value}).ToArray();
+      set => _script.head = value.Select(x => new meta { key = x.Key, Value = x.Value }).ToArray();
     }
 
     public string Version

@@ -123,7 +123,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       return new FilterQuerySingleLayerFirstAndAnyOtherMatch
       {
         Inverse = false,
-        LayerDisplayname = "Wort",
+        LayerDisplayname = _vm.LayerDisplayname,
         LayerQueries = queries
       };
     }

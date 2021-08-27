@@ -62,7 +62,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
                            return new FilterQuerySingleLayerFirstAndAnyOtherMatch
                            {
                              Inverse = false,
-                             LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname,
+                             LayerDisplayname = _vm.LayerDisplayname,
                              LayerQueries = bag
                            };
                          }
@@ -85,7 +85,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
                              or.Add(new FilterQuerySingleLayerFirstAndAnyOtherMatch
                              {
                                Inverse = false,
-                               LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname,
+                               LayerDisplayname = _vm.LayerDisplayname,
                                LayerQueries = bag.ToArray()
                              });
                            }
@@ -93,7 +93,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
                            return new FilterQuerySingleLayerFirstAndAnyOtherMatch
                            {
                              Inverse = false,
-                             LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname,
+                             LayerDisplayname = _vm.LayerDisplayname,
                              LayerQueries = bag.ToArray(),
                              OrFilterQueries = or
                            };

@@ -73,7 +73,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
                                            x => new FilterQuerySingleLayerFirstAndAnyOtherMatch
                                            {
                                              Inverse = false,
-                                             LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname,
+                                             LayerDisplayname = _vm.LayerDisplayname,
                                              LayerQueries =
                                                ValueMergeHelper
                                                 .Merge(x[wordBag1.ResultSelectedLayerDisplayname].ToString(),

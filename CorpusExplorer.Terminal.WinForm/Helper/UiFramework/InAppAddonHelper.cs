@@ -19,12 +19,20 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       var items = ReadCorpusRepository("repository_corpora.manifest");
       for (var i = items.Length - 1; i > -1; i--)
       {
-        var x = items[i];
-        panel.Controls.Add(new AddonCorpusInstallState(x.Label, x.Size, x.Documents, x.Sentences, x.Token, x.Layer, x.Url, x.Description)
+        try
         {
-          Padding = new System.Windows.Forms.Padding(3, 5, 2, 5),
-          Dock = System.Windows.Forms.DockStyle.Left
-        });
+          var x = items[i];
+          panel.Controls.Add(new AddonCorpusInstallState(x.Label, x.Size, x.Documents, x.Sentences, x.Token, x.Layer,
+                                                         x.Url, x.Description)
+          {
+            Padding = new System.Windows.Forms.Padding(3, 5, 2, 5),
+            Dock = System.Windows.Forms.DockStyle.Left
+          });
+        }
+        catch (Exception ex)
+        {
+          // ignore
+        }
       }
     }
 
@@ -65,7 +73,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
 
     private static RepositoryCorpusEntry[] ReadCorpusRepository(string file)
     {
-      var lines = File.ReadAllLines(file, Encoding.UTF8);
+      var lines = File.ReadAllLines(Path.Combine(Configuration.AppPath, file), Encoding.UTF8);
 
       return (from line in lines
               select line.Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries)
@@ -110,13 +118,14 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
     {
       try
       {
+        var dest = Path.Combine(Configuration.AppPath, file);
         using (var tf = new TemporaryFile(Configuration.TempPath))
         {
           using (var wc = new WebClient())
             wc.DownloadFile(url, tf.Path);
-          if (File.Exists(file))
-            File.Delete(file);
-          File.Move(tf.Path, file);
+          if (File.Exists(dest))
+            File.Delete(dest);
+          File.Move(tf.Path, dest);
         }
       }
       catch

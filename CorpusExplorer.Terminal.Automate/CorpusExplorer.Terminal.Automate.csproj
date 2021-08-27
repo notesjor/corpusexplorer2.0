@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Terminal.Automate</RootNamespace>
-    <AssemblyName>CorpusExplorer.Terminal.Automate</AssemblyName>
+    <AssemblyName>cec-ui</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -79,8 +79,11 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AnalysisServices.AdomdClient, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -94,8 +97,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Telerik.WinControls.GridView, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2021.2.615.40\Telerik.WinControls.GridView.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>W:\Telerik\Telerik UI for WinForms R2 2021\Bin40\Telerik.WinControls.GridView.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWF\2021.2.615.40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
@@ -109,13 +112,14 @@
       <HintPath>..\lib\RCWF\2021.2.615.40\TelerikCommon.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="TelerikData, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\AutoSplit.cs">
+    <Compile Include="Controls\Info.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\AutoSplit.Designer.cs">
-      <DependentUpon>AutoSplit.cs</DependentUpon>
+    <Compile Include="Controls\Info.Designer.cs">
+      <DependentUpon>Info.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Abstract\AbstractForm.cs">
       <SubType>Form</SubType>
@@ -124,12 +128,6 @@
       <DependentUpon>AbstractForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AutomateViewModel.cs" />
-    <Compile Include="Forms\ClusterAssistant.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ClusterAssistant.Designer.cs">
-      <DependentUpon>ClusterAssistant.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\ActionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,8 +140,14 @@
     <Compile Include="Controls\Abstract\AbstractControl.Designer.cs">
       <DependentUpon>AbstractControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AutoSplitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AutoSplitForm.Designer.cs">
+      <DependentUpon>AutoSplitForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helper\AddonRepositoryEntriesToDictionaryHelper.cs" />
-    <Compile Include="Helper\DropSelectSearhHelper.cs" />
+    <Compile Include="Helper\DropSelectSearchHelper.cs" />
     <Compile Include="Forms\QueryBuilderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,20 +172,20 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Controls\AutoSplit.resx">
-      <DependentUpon>AutoSplit.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\Info.resx">
+      <DependentUpon>Info.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Abstract\AbstractForm.resx">
       <DependentUpon>AbstractForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ClusterAssistant.resx">
-      <DependentUpon>ClusterAssistant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ActionForm.resx">
       <DependentUpon>ActionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Abstract\AbstractControl.resx">
       <DependentUpon>AbstractControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AutoSplitForm.resx">
+      <DependentUpon>AutoSplitForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Forms\QueryBuilderForm.resx">
@@ -196,6 +200,8 @@
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="Helper\QueryNameHelper.cs" />
+    <Compile Include="Helper\Validator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -286,6 +292,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\magic_wand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_full.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\green_empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\green_full.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\red_empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\red_full.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yellow_empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yellow_full.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

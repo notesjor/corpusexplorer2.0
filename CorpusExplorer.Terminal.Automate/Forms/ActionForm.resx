@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="info6.DisplayText" xml:space="preserve">
+    <value>&lt;html&gt;Für die Dateinamen können Sie folgende Muster nutzen:&lt;br/&gt;- {script} - Dateiname des Skripts&lt;br/&gt;- {corpus} - Korpusname&lt;br/&gt;- {selection} - Name der für den Query vergeben wurde&lt;br/&gt;- {action} - Name des Action 'type'&lt;br/&gt;- {all} - Kombination aus allen oberen Elementen&lt;/html&gt;</value>
+  </data>
 </root>

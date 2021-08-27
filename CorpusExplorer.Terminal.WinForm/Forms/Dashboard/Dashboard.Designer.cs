@@ -34,7 +34,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
-      Telerik.WinControls.UI.ListViewDataItem listViewDataItem1 = new Telerik.WinControls.UI.ListViewDataItem("<html><strong>Hinweis:</strong> \"Aktuelles und Neuigkeiten\" können nur bei besteh" +
+      Telerik.WinControls.UI.ListViewDataItem listViewDataItem2 = new Telerik.WinControls.UI.ListViewDataItem("<html><strong>Hinweis:</strong> \"Aktuelles und Neuigkeiten\" können nur bei besteh" +
         "ender Internetverbindung angeziegt werden.</html>");
       this.radScrollablePanel3 = new Telerik.WinControls.UI.RadScrollablePanel();
       this.radScrollablePanel9 = new Telerik.WinControls.UI.RadScrollablePanel();
@@ -137,6 +137,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.settings_tool_testCorpus = new Telerik.WinControls.UI.RadButton();
       this.settings_tool_eraseCache = new Telerik.WinControls.UI.RadButton();
       this.settings_tool_errorconsole = new Telerik.WinControls.UI.RadButton();
+      this.settings_tool_scriptEditor = new Telerik.WinControls.UI.RadButton();
       this.splitPanel6 = new Telerik.WinControls.UI.SplitPanel();
       this.radGroupBox9 = new Telerik.WinControls.UI.RadGroupBox();
       this.settings_list_favorites = new Telerik.WinControls.UI.RadCheckedListBox();
@@ -358,6 +359,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.settings_tool_testCorpus)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_tool_eraseCache)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_tool_errorconsole)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_scriptEditor)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.splitPanel6)).BeginInit();
       this.splitPanel6.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox9)).BeginInit();
@@ -510,7 +512,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       resources.ApplyResources(this.page_corpus_start_quickinfo_corpora, "page_corpus_start_quickinfo_corpora");
       this.page_corpus_start_quickinfo_corpora.Label = "Korpora";
       this.page_corpus_start_quickinfo_corpora.Name = "page_corpus_start_quickinfo_corpora";
-      this.page_corpus_start_quickinfo_corpora.Value = 0;
+      this.page_corpus_start_quickinfo_corpora.Value = ((long)(0));
       this.page_corpus_start_quickinfo_corpora.ValueAutoCut = true;
       // 
       // page_corpus_start_quickinfo_texts
@@ -519,7 +521,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       resources.ApplyResources(this.page_corpus_start_quickinfo_texts, "page_corpus_start_quickinfo_texts");
       this.page_corpus_start_quickinfo_texts.Label = "Dokumente";
       this.page_corpus_start_quickinfo_texts.Name = "page_corpus_start_quickinfo_texts";
-      this.page_corpus_start_quickinfo_texts.Value = 0;
+      this.page_corpus_start_quickinfo_texts.Value = ((long)(0));
       this.page_corpus_start_quickinfo_texts.ValueAutoCut = true;
       // 
       // page_corpus_start_quickinfo_layers
@@ -528,7 +530,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       resources.ApplyResources(this.page_corpus_start_quickinfo_layers, "page_corpus_start_quickinfo_layers");
       this.page_corpus_start_quickinfo_layers.Label = "Layer";
       this.page_corpus_start_quickinfo_layers.Name = "page_corpus_start_quickinfo_layers";
-      this.page_corpus_start_quickinfo_layers.Value = 0;
+      this.page_corpus_start_quickinfo_layers.Value = ((long)(0));
       this.page_corpus_start_quickinfo_layers.ValueAutoCut = true;
       // 
       // page_corpus_start_quickinfo_tokens
@@ -537,7 +539,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       resources.ApplyResources(this.page_corpus_start_quickinfo_tokens, "page_corpus_start_quickinfo_tokens");
       this.page_corpus_start_quickinfo_tokens.Label = "Token";
       this.page_corpus_start_quickinfo_tokens.Name = "page_corpus_start_quickinfo_tokens";
-      this.page_corpus_start_quickinfo_tokens.Value = 0;
+      this.page_corpus_start_quickinfo_tokens.Value = ((long)(0));
       this.page_corpus_start_quickinfo_tokens.ValueAutoCut = true;
       // 
       // header4
@@ -656,7 +658,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       resources.ApplyResources(this.page_snapshot_start_quickinfo_corpora, "page_snapshot_start_quickinfo_corpora");
       this.page_snapshot_start_quickinfo_corpora.Label = "Korpora";
       this.page_snapshot_start_quickinfo_corpora.Name = "page_snapshot_start_quickinfo_corpora";
-      this.page_snapshot_start_quickinfo_corpora.Value = 0;
+      this.page_snapshot_start_quickinfo_corpora.Value = ((long)(0));
       this.page_snapshot_start_quickinfo_corpora.ValueAutoCut = true;
       // 
       // page_snapshot_start_quickinfo_texts
@@ -665,7 +667,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       resources.ApplyResources(this.page_snapshot_start_quickinfo_texts, "page_snapshot_start_quickinfo_texts");
       this.page_snapshot_start_quickinfo_texts.Label = "Dokumente";
       this.page_snapshot_start_quickinfo_texts.Name = "page_snapshot_start_quickinfo_texts";
-      this.page_snapshot_start_quickinfo_texts.Value = 0;
+      this.page_snapshot_start_quickinfo_texts.Value = ((long)(0));
       this.page_snapshot_start_quickinfo_texts.ValueAutoCut = true;
       // 
       // page_snapshot_start_quickinfo_layers
@@ -674,7 +676,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       resources.ApplyResources(this.page_snapshot_start_quickinfo_layers, "page_snapshot_start_quickinfo_layers");
       this.page_snapshot_start_quickinfo_layers.Label = "Layer";
       this.page_snapshot_start_quickinfo_layers.Name = "page_snapshot_start_quickinfo_layers";
-      this.page_snapshot_start_quickinfo_layers.Value = 0;
+      this.page_snapshot_start_quickinfo_layers.Value = ((long)(0));
       this.page_snapshot_start_quickinfo_layers.ValueAutoCut = true;
       // 
       // page_snapshot_start_quickinfo_tokens
@@ -683,7 +685,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       resources.ApplyResources(this.page_snapshot_start_quickinfo_tokens, "page_snapshot_start_quickinfo_tokens");
       this.page_snapshot_start_quickinfo_tokens.Label = "Token";
       this.page_snapshot_start_quickinfo_tokens.Name = "page_snapshot_start_quickinfo_tokens";
-      this.page_snapshot_start_quickinfo_tokens.Value = 0;
+      this.page_snapshot_start_quickinfo_tokens.Value = ((long)(0));
       this.page_snapshot_start_quickinfo_tokens.ValueAutoCut = true;
       // 
       // header12
@@ -1259,6 +1261,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.settings_drop_signifikanz.AutoCompleteDisplayMember = null;
       this.settings_drop_signifikanz.AutoCompleteValueMember = null;
       resources.ApplyResources(this.settings_drop_signifikanz, "settings_drop_signifikanz");
+      this.settings_drop_signifikanz.DropDownAnimationEnabled = true;
       this.settings_drop_signifikanz.Name = "settings_drop_signifikanz";
       this.settings_drop_signifikanz.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.settings_drop_signifikanz_SelectedIndexChanged);
       // 
@@ -1344,6 +1347,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radScrollablePanel6.PanelContainer.Controls.Add(this.settings_tool_testCorpus);
       this.radScrollablePanel6.PanelContainer.Controls.Add(this.settings_tool_eraseCache);
       this.radScrollablePanel6.PanelContainer.Controls.Add(this.settings_tool_errorconsole);
+      this.radScrollablePanel6.PanelContainer.Controls.Add(this.settings_tool_scriptEditor);
       resources.ApplyResources(this.radScrollablePanel6.PanelContainer, "radScrollablePanel6.PanelContainer");
       // 
       // settings_tool_totalReset
@@ -1498,6 +1502,23 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_errorconsole.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Segoe UI", 9F);
       ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_errorconsole.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = ((System.Drawing.ContentAlignment)(resources.GetObject("resource.Alignment8")));
       // 
+      // settings_tool_scriptEditor
+      // 
+      resources.ApplyResources(this.settings_tool_scriptEditor, "settings_tool_scriptEditor");
+      this.settings_tool_scriptEditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.execute1;
+      this.settings_tool_scriptEditor.Name = "settings_tool_scriptEditor";
+      this.settings_tool_scriptEditor.TextWrap = true;
+      this.settings_tool_scriptEditor.Click += new System.EventHandler(this.settings_tool_scriptEditor_Click);
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_scriptEditor.GetChildAt(0))).Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.execute1;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_scriptEditor.GetChildAt(0))).TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_scriptEditor.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_scriptEditor.GetChildAt(0))).TextAlignment = ((System.Drawing.ContentAlignment)(resources.GetObject("resource.TextAlignment8")));
+      ((Telerik.WinControls.UI.RadButtonElement)(this.settings_tool_scriptEditor.GetChildAt(0))).Text = resources.GetString("resource.Text9");
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_scriptEditor.GetChildAt(0).GetChildAt(1).GetChildAt(1))).TextWrap = ((bool)(resources.GetObject("resource.TextWrap9")));
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_scriptEditor.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = true;
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_scriptEditor.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Segoe UI", 9F);
+      ((Telerik.WinControls.Primitives.TextPrimitive)(this.settings_tool_scriptEditor.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = ((System.Drawing.ContentAlignment)(resources.GetObject("resource.Alignment9")));
+      // 
       // splitPanel6
       // 
       this.splitPanel6.Controls.Add(this.radGroupBox9);
@@ -1626,10 +1647,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radListView1.AllowRemove = false;
       resources.ApplyResources(this.radListView1, "radListView1");
       this.radListView1.GroupItemSize = new System.Drawing.Size(200, 40);
-      listViewDataItem1.Text = "<html><strong>Hinweis:</strong> \"Aktuelles und Neuigkeiten\" können nur bei besteh" +
+      listViewDataItem2.Text = "<html><strong>Hinweis:</strong> \"Aktuelles und Neuigkeiten\" können nur bei besteh" +
     "ender Internetverbindung angeziegt werden.</html>";
       this.radListView1.Items.AddRange(new Telerik.WinControls.UI.ListViewDataItem[] {
-            listViewDataItem1});
+            listViewDataItem2});
       this.radListView1.ItemSize = new System.Drawing.Size(200, 40);
       this.radListView1.Name = "radListView1";
       this.radListView1.ItemMouseClick += new Telerik.WinControls.UI.ListViewItemEventHandler(this.OpenRssFeedItemClick);
@@ -1743,7 +1764,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // 
       this.pages_main.RootElement.MinSize = new System.Drawing.Size(576, 445);
-      this.pages_main.SelectedPage = this.page_corpus;
+      this.pages_main.SelectedPage = this.page_settings;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).ItemFitMode = Telerik.WinControls.UI.StripViewItemFitMode.Fill;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
@@ -1782,13 +1803,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_corpora.GetChildAt(0))).ItemFitMode = Telerik.WinControls.UI.StripViewItemFitMode.None;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_corpora.GetChildAt(0))).ItemSizeMode = Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_corpora.GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
-      ((Telerik.WinControls.UI.RadPageViewLabelElement)(this.pages_corpora.GetChildAt(0).GetChildAt(2))).Text = resources.GetString("resource.Text9");
+      ((Telerik.WinControls.UI.RadPageViewLabelElement)(this.pages_corpora.GetChildAt(0).GetChildAt(2))).Text = resources.GetString("resource.Text10");
       ((Telerik.WinControls.UI.RadPageViewLabelElement)(this.pages_corpora.GetChildAt(0).GetChildAt(2))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
       // 
       // page_corpus_start
       // 
       this.page_corpus_start.Controls.Add(this.radScrollablePanel3);
-      this.page_corpus_start.ItemSize = new System.Drawing.SizeF(97F, 29F);
       resources.ApplyResources(this.page_corpus_start, "page_corpus_start");
       this.page_corpus_start.Name = "page_corpus_start";
       // 
@@ -1796,7 +1816,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       this.page_corpus_online.Controls.Add(this.radSplitContainer1);
       this.page_corpus_online.Controls.Add(this.header5);
-      this.page_corpus_online.ItemSize = new System.Drawing.SizeF(97F, 29F);
       resources.ApplyResources(this.page_corpus_online, "page_corpus_online");
       this.page_corpus_online.Name = "page_corpus_online";
       // 
@@ -2584,6 +2603,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       ((System.ComponentModel.ISupportInitialize)(this.settings_tool_testCorpus)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_tool_eraseCache)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.settings_tool_errorconsole)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.settings_tool_scriptEditor)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.splitPanel6)).EndInit();
       this.splitPanel6.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radGroupBox9)).EndInit();
@@ -2892,5 +2912,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         private WarnBox warnBox1;
     private RadButton corpus_start_dpxc;
     private RadMenuItem main_mainmenu_corpus_dpxc;
+    private RadButton settings_tool_scriptEditor;
   }
 }

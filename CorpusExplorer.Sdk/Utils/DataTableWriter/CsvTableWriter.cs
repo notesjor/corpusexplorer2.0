@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,8 +28,10 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
       {
         var r = new string[cols];
         for (var i = 0; i < r.Length; i++)
-          r[i] = x[i] == null ? "\"\"" :
-                 x[i] is string ? $"\"{EnsureValue(x[i].ToString())}\"" : x[i].ToString().Replace(",", ".");
+          r[i] = x[i] == null     ? "\"\"" :
+                 x[i] is string   ? $"\"{EnsureValue(x[i].ToString())}\"" :
+                 x[i] is DateTime ? $"\"{((DateTime)x[i]):yyyy-MM-ddTHH:mm:ss}\"" :
+                                    x[i].ToString().Replace(",", ".");
         var line = $"{string.Join(";", r)}\r\n";
 
         lock (wlock)
@@ -42,7 +45,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
 
     public override AbstractTableWriter Clone(Stream stream)
     {
-      return new CsvTableWriter { OutputStream = stream, WriteTid = WriteTid };
+      return new CsvTableWriter { OutputStream = stream, WriteTid = WriteTid, Path = Path };
     }
 
     private string EnsureValue(string value)

@@ -67,7 +67,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_layer_addValue_Click(object sender, EventArgs e)
     {
       var node = tree.SelectedNode;
-      if (node        == null ||
+      if (node == null ||
           node.Parent != null)
         return; // muss != null sein um zu überprüfen ob es sich um den Layernode handelt
 
@@ -86,7 +86,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_layer_export_Click(object sender, EventArgs e)
     {
       var node = tree.SelectedNode;
-      if (node        == null ||
+      if (node == null ||
           node.Parent != null)
         return; // muss != null sein um zu überprüfen ob es sich um den Layernode handelt
 
@@ -96,7 +96,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_layer_import_Click(object sender, EventArgs e)
     {
       var node = tree.SelectedNode;
-      if (node        == null ||
+      if (node == null ||
           node.Parent != null)
         return; // muss != null sein um zu überprüfen ob es sich um den Layernode handelt
     }
@@ -118,7 +118,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_layer_remove_Click(object sender, EventArgs e)
     {
       var node = tree.SelectedNode;
-      if (node        == null ||
+      if (node == null ||
           node.Parent != null)
         return; // muss != null sein um zu überprüfen ob es sich um den Layernode handelt
 
@@ -139,11 +139,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_layer_rename_Click(object sender, EventArgs e)
     {
       var node = tree.SelectedNode;
-      if (node        == null ||
+      if (node == null ||
           node.Parent != null)
         return; // muss != null sein um zu überprüfen ob es sich um den Layernode handelt
 
-      if (node.Text == "Wort"  ||
+      if (node.Text == "Wort" ||
           node.Text == "Lemma" ||
           node.Text == "POS")
         MessageBox.Show(
@@ -207,7 +207,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private void btn_showMeta_Click(object sender, EventArgs e)
     {
       var form = new SimpleMetadata(_vmAnnotation.DocumentMetadata);
-      form.NewProperty += (o, a) => { _vmAnnotation.SetNewDocumentMetadata((KeyValuePair<string, Type>) o); };
+      form.NewProperty += (o, a) => { _vmAnnotation.SetNewDocumentMetadata((KeyValuePair<string, Type>)o); };
 
       if (form.ShowDialog() == DialogResult.OK)
         _vmAnnotation.DocumentMetadata = form.DocumentMetadata;
@@ -223,7 +223,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
         var c = _colors[i];
         _coloredNodes[i].BackColor = c;
         tagger1.SetItemColor(
-                             _vmAnnotation.GetLayerValueMask((Guid) _coloredNodes[i].Parent.Tag, _coloredNodes[i].Text),
+                             _vmAnnotation.GetLayerValueMask((Guid)_coloredNodes[i].Parent.Tag, _coloredNodes[i].Text),
                              System.Windows.Media.Color.FromArgb(c.A, c.R, c.G, c.B), _coloredNodes[i].Text);
       }
     }
@@ -254,7 +254,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
         return;
 
       // Wähle Dokument im ViewModel aus
-      _vmAnnotation.SelectDocument((Guid) drop_selecteddocument.Items[index].Value);
+      _vmAnnotation.SelectDocument((Guid)drop_selecteddocument.Items[index].Value);
 
       // Setze Text
       tagger1.Text = _vmAnnotation.GetDocument();
@@ -262,13 +262,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
       // Erstelle Layer - Nodes
       var nodes = new List<RadTreeNode>();
-      var layers = _vmAnnotation.Layers;
-      foreach (var layer in layers)
+      foreach (var layer in _vmAnnotation.Layers.OrderBy(x => x.Value))
       {
-        var node = new RadTreeNode(layer.Value) {CheckType = CheckType.None, Tag = layer.Key, ContextMenu = menu_layer};
-        var values = _vmAnnotation.GetLayerValues(layer.Key);
-
-        foreach (var sub in values)
+        var node = new RadTreeNode(layer.Value) { CheckType = CheckType.None, Tag = layer.Key, ContextMenu = menu_layer };
+        foreach (var sub in _vmAnnotation.GetLayerValues(layer.Key).OrderBy(x => x))
           node.Nodes.Add(
                          new RadTreeNode(sub)
                          {
@@ -343,7 +340,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
           _coloredNodes.Remove(e.Node);
 
         if (_coloredNodes.Count > 0 &&
-            _annotationNode     == e.Node)
+            _annotationNode == e.Node)
           SetAnnotationNode(_coloredNodes.Last());
 
         SetNodeHighlight(e.Node, false, Color.White);

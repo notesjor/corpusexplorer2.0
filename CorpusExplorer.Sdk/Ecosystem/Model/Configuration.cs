@@ -18,6 +18,7 @@ using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Cache;
 using CorpusExplorer.Sdk.Model.Cache.Abstract;
 using CorpusExplorer.Sdk.Properties;
+using CorpusExplorer.Sdk.Utils.DataTableWriter;
 using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
@@ -129,7 +130,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
         var res = _addonTableWriters.Where(x => x.Value.TableWriterTag == tableWriterTag)
                                     .Select(x => x.Value)
-                                    .FirstOrDefault() ?? _addonTableWriters.First().Value;
+                                    .FirstOrDefault() ?? new TsvTableWriter();
 
         if (path == null)
           return res;

@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using CorpusExplorer.Terminal.Automate.Helper;
 using CorpusExplorer.Terminal.Automate.Properties;
 using CorpusExplorer.Terminal.Console.Xml.Extensions;
 using CorpusExplorer.Terminal.Console.Xml.Model;
@@ -17,6 +18,7 @@ namespace CorpusExplorer.Terminal.Automate
     {
       InitResult();
       InitializeComponent();
+      drop_sourcesProcessing.SelectedIndex = 0;
       if (session != null)
         Result = session;
     }
@@ -61,49 +63,35 @@ namespace CorpusExplorer.Terminal.Automate
       }
     }
 
-    private void info_session_Click(object sender, EventArgs e)
-      =>
-        MessageBox.Show("Der Knoten <session> definiert eine Analyse-Session. Quellen (sources) stehen nur innerhalb der Session zur Verfügung - ebenso Schnappschüsse (queries). Analysen (actions) können a/synchron darauf zugreifen.",
-                        "<session>",
-                        MessageBoxButtons.OK);
-
-    private void info_sources_Click(object sender, EventArgs e)
-      =>
-        MessageBox.Show("<sources> können Korpora per <annotate> oder <import> erstellen. Das Attribut \"processing\" erlaubt drei Modi: none = normal, merge = alle Quellen werden zusammengefasst, loop = die Quellen werden nacheinander geladen und bearbeitet.",
-                        "<sources>",
-                        MessageBoxButtons.OK);
-
-    private void info_queries_Click(object sender, EventArgs e)
-      =>
-        MessageBox.Show("<queries> sind Abfragen auf die Gesamtmenge (sources - siehe auch processing-Modi).",
-                        "<queries>",
-                        MessageBoxButtons.OK);
-
-    private void info_actions_Click(object sender, EventArgs e)
-      =>
-        MessageBox.Show("<actions> sind die Aktionen/Analysen die auf Basis der Schnappschüsse (queries) ausgeführt werden.",
-                        "<actions>",
-                        MessageBoxButtons.OK);
-
     private void btn_source_add_Click(object sender, EventArgs e)
     {
+      Hide();
       var form = new SourceForm();
       if (form.ShowDialog() != DialogResult.OK)
+      {
+        Show();
         return;
+      }
 
       _result.sources.Items = _result.sources.Items.Concat(new[] { form.Result }).ToArray();
       ReloadUi();
+      Show();
     }
 
     private void grid_sources_CommandCellClick(object sender, GridViewCellEventArgs e)
     {
       if (e.ColumnIndex == 1)
       {
+        Hide();
         var form = new SourceForm(_result.sources.Items[e.RowIndex]);
         if (form.ShowDialog() != DialogResult.OK)
+        {
+          Show();
           return;
+        }
 
         _result.sources.Items[e.RowIndex] = form.Result;
+        Show();
       }
       else if (e.ColumnIndex == 2)
       {
@@ -121,23 +109,48 @@ namespace CorpusExplorer.Terminal.Automate
 
     private void btn_query_add_Click(object sender, EventArgs e)
     {
+      Hide();
       var form = new QueryBuilderForm(_result.queries.GetNames());
       if (form.ShowDialog() != DialogResult.OK)
+      {
+        Show();
         return;
+      }
 
-      _result.queries.Items = _result.queries.Items.Concat(new[] { form.Result }).ToArray();
+      if (_result.queries?.Items == null)
+        _result.queries = new queries { Items = new[] { form.Result } };
+      else
+        _result.queries.Items = _result.queries.Items.Concat(new[] { form.Result }).ToArray();
+
       ReloadUi();
+      Show();
     }
 
     private void grid_queries_CommandCellClick(object sender, GridViewCellEventArgs e)
     {
       if (e.ColumnIndex == 1)
       {
+        Hide();
+
+        var oldName = QueryNameHelper.GetName(_result.queries.Items[e.RowIndex]);
+
         var form = new QueryBuilderForm(_result.queries.GetNames(), _result.queries.Items[e.RowIndex]);
         if (form.ShowDialog() != DialogResult.OK)
+        {
+          Show();
           return;
+        }
 
-        _result.queries.Items[e.RowIndex] = form.Result;
+        var res = form.Result;
+        _result.queries.Items[e.RowIndex] = res;
+        var newName = QueryNameHelper.GetName(res);
+
+        if (oldName != newName)
+          foreach(var a in _result.actions.action)
+            if (a.query == oldName)
+              a.query = newName;
+
+        Show();
       }
       else if (e.ColumnIndex == 2)
       {
@@ -155,23 +168,33 @@ namespace CorpusExplorer.Terminal.Automate
 
     private void btn_action_add_Click(object sender, EventArgs e)
     {
+      Hide();
       var form = new ActionForm(_result.queries.GetNames());
       if (form.ShowDialog() != DialogResult.OK)
+      {
+        Show();
         return;
+      }
 
       _result.actions.action = _result.actions.action.Concat(new[] { form.Result }).ToArray();
       ReloadUi();
+      Show();
     }
 
     private void grid_actions_CommandCellClick(object sender, GridViewCellEventArgs e)
     {
       if (e.ColumnIndex == 1)
       {
+        Hide();
         var form = new ActionForm(_result.queries.GetNames(), _result.actions.action[e.RowIndex]);
         if (form.ShowDialog() != DialogResult.OK)
+        {
+          Show();
           return;
+        }
 
         _result.actions.action[e.RowIndex] = form.Result;
+        Show();
       }
       else if (e.ColumnIndex == 2)
       {
@@ -189,7 +212,7 @@ namespace CorpusExplorer.Terminal.Automate
 
     private void btn_ok_Click(object sender, EventArgs e)
     {
-      if (MessageBox.Show(Resources.DialogChangesAcceptedMessage, Resources.DialogChangesAcceptedMessageHead, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+      if (MessageBox.Show(Resources.DialogChangesAcceptedMessage, Resources.DialogChangesAcceptedMessageHead, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) != DialogResult.Yes)
         return;
       DialogResult = DialogResult.OK;
       Close();
@@ -197,7 +220,7 @@ namespace CorpusExplorer.Terminal.Automate
 
     private void btn_abort_Click(object sender, EventArgs e)
     {
-      if (MessageBox.Show(Resources.DialogChangesAbortMessage, Resources.DialogChangesAbortMessageHead, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) != DialogResult.Yes)
+      if (MessageBox.Show(Resources.DialogChangesAbortMessage, Resources.DialogChangesAbortMessageHead, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
         return;
       DialogResult = DialogResult.Abort;
       Close();
@@ -205,6 +228,8 @@ namespace CorpusExplorer.Terminal.Automate
 
     private void ReloadUi()
     {
+      // override
+      drop_sessionOverride.SelectedIndex = _result.@override ? 1 : 0;
       // Dropdowns 
       for (var i = 0; i < drop_sessionOverride.Items.Count; i++)
         if (drop_sessionOverride.Items[i].Text == _result.@override.ToString())

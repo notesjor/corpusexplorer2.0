@@ -15,6 +15,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
     public override string TableWriterTag => "F:SQLDATA";
     public override string MimeType => "application/sql";
     public override string Description => "SQL (data only)";
+    public string TableName { get; set; } = "CorpusExplorer";
 
     public override void WriteTable(DataTable table)
     {
@@ -92,7 +93,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
 
     private void WriteTableInsert(List<Tuple<string, string, Type>> columns)
     {
-      var stb = new StringBuilder("INSERT INTO CorpusExplorer (");
+      var stb = new StringBuilder($"INSERT INTO {TableName} (");
       foreach (var column in columns)
         stb.Append($"'{column.Item2}', ");
       stb.Remove(stb.Length - 2, 2);
@@ -112,9 +113,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
     {
     }
 
-    public override AbstractTableWriter Clone(Stream stream)
-    {
-      return new SqlDataOnlyTableWriter { OutputStream = stream, WriteTid = WriteTid };
-    }
+    public override AbstractTableWriter Clone(Stream stream) 
+      => new SqlDataOnlyTableWriter { OutputStream = stream, WriteTid = WriteTid, TableName = TableName, Path = Path };
   }
 }
