@@ -433,7 +433,7 @@
     <value>Segoe UI, 11pt</value>
   </data>
   <data name="header3.HeaderDescription" xml:space="preserve">
-    <value>Der CorpusExplorer kann mit einer ganzen Reihe an Textdaten gespeißt werden. Sie können über "Korpus akquirieren" eine automatisierte Onlinesuche in Gang setzen. Ein bestehendes "Korpus importieren" oder "Dokumente annotieren".</value>
+    <value>Der CorpusExplorer kann mit einer ganzen Reihe an Textdaten gespeist werden. Sie können über "Korpus akquirieren" eine automatisierte Onlinesuche in Gang setzen. Ein bestehendes "Korpus importieren" oder "Dokumente annotieren".</value>
   </data>
   <data name="header3.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
