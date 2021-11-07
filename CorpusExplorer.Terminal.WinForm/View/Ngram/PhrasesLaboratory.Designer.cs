@@ -225,7 +225,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       this.radPageView1.Controls.Add(this.radPageViewPage3);
       resources.ApplyResources(this.radPageView1, "radPageView1");
       this.radPageView1.Name = "radPageView1";
-      this.radPageView1.SelectedPage = this.radPageViewPage1;
+      this.radPageView1.SelectedPage = this.radPageViewPage3;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
       // 
       // radPageViewPage1

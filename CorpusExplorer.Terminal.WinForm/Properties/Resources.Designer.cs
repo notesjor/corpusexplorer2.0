@@ -3251,6 +3251,15 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die JPEG-Bild (*.jpeg)|*.jpeg ähnelt.
+        /// </summary>
+        public static string FileExtension_JPEG {
+            get {
+                return ResourceManager.GetString("FileExtension_JPEG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Fehlerprotokoll (*.log)|*.log ähnelt.
         /// </summary>
         public static string FileExtension_LOG {

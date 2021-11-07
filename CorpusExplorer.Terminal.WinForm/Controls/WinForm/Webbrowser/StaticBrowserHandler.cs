@@ -37,12 +37,13 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
         Location = new Point(0, 0),
         Name = $"webBrowser{_browser.Count + 1}",
         TabIndex = 0,
-        BrowserSettings = new BrowserSettings
+        /*BrowserSettings = new BrowserSettings
         {
           // WebSecurity = CefState.Disabled,
-          FileAccessFromFileUrls = CefState.Enabled,
-          UniversalAccessFromFileUrls = CefState.Enabled
-        }
+          //FileAccessFromFileUrls = CefState.Enabled,
+          //UniversalAccessFromFileUrls = CefState.Enabled, 
+          
+        }*/
       };
       _browser.Add(res);
       return res;

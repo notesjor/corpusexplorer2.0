@@ -40,6 +40,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
       this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
       this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
+      this.commandBarSeparator2 = new Telerik.WinControls.UI.CommandBarSeparator();
+      this.btn_load = new Telerik.WinControls.UI.CommandBarButton();
+      this.btn_save = new Telerik.WinControls.UI.CommandBarButton();
+      this.btn_export = new Telerik.WinControls.UI.CommandBarButton();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radPivotGrid1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
@@ -70,7 +74,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       this.commandBarStripElement1.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
             this.commandBarButton2,
             this.commandBarSeparator1,
-            this.commandBarLabel1});
+            this.commandBarLabel1,
+            this.commandBarSeparator2,
+            this.btn_load,
+            this.btn_save,
+            this.btn_export});
       this.commandBarStripElement1.Name = "commandBarStripElement1";
       // 
       // commandBarButton2
@@ -141,6 +149,33 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(-54, 0);
       this.splitPanel2.TabStop = false;
       // 
+      // commandBarSeparator2
+      // 
+      resources.ApplyResources(this.commandBarSeparator2, "commandBarSeparator2");
+      this.commandBarSeparator2.Name = "commandBarSeparator2";
+      this.commandBarSeparator2.VisibleInOverflowMenu = false;
+      // 
+      // btn_load
+      // 
+      resources.ApplyResources(this.btn_load, "btn_load");
+      this.btn_load.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.folder_open;
+      this.btn_load.Name = "btn_load";
+      this.btn_load.Click += new System.EventHandler(this.btn_load_Click);
+      // 
+      // btn_save
+      // 
+      resources.ApplyResources(this.btn_save, "btn_save");
+      this.btn_save.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save;
+      this.btn_save.Name = "btn_save";
+      this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
+      // 
+      // btn_export
+      // 
+      resources.ApplyResources(this.btn_export, "btn_export");
+      this.btn_export.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_spreadsheet;
+      this.btn_export.Name = "btn_export";
+      this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
+      // 
       // SentimentPivotGrid
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -173,5 +208,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
     private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
     private Telerik.WinControls.UI.SplitPanel splitPanel1;
     private Telerik.WinControls.UI.SplitPanel splitPanel2;
+    private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator2;
+    private Telerik.WinControls.UI.CommandBarButton btn_load;
+    private Telerik.WinControls.UI.CommandBarButton btn_save;
+    private Telerik.WinControls.UI.CommandBarButton btn_export;
   }
 }

@@ -108,8 +108,8 @@
     <Reference Include="Polenter.SharpSerializer, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.1\lib\netstandard1.0\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=6.9.8.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.9.8\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.9.11.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.9.11\lib\net45\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -351,6 +351,7 @@
     <Compile Include="Utils\CorpusManipulation\CorpusNormalizer.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusMergerQueryBased.cs" />
     <Compile Include="Utils\DataTableWriter\BinaryTableWriter.cs" />
+    <Compile Include="Utils\DataTableWriter\HtmlTableSnippetWriter.cs" />
     <Compile Include="Utils\DataTableWriter\HtmlTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\JsonRoundedTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\SqlDataOnlyTableWriter.cs" />

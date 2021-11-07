@@ -36,7 +36,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       ConfigureEditor(editor_input);
       ConfigureEditor(editor_output);
 
-      SetText(editor_input, "<!doctype html>\r\n<html>\r\n\t<head>\r\n\t\t<meta charset=\"utf-8\">\r\n\t\t<style>\r\n\t\t\tp {color: black;}\r\n\t\t\t.red {color: red;}\r\n\t\t</style>\r\n\t</head>\r\n\t<body>\r\n\t\t<h1>CorpusExplorer</h1>\r\n\t\t<p>HTML5-Labor</p><p class=\"red\">Beispiel</p>\r\n\t\tDer aktuelle Schnappschuss hat: <div id=\"divT\"></div> Token!\r\n\t\t<script>\r\n\t\t\tvar data = /*CEC how-many-tokens */;\r\n\t\t\tdocument.getElementById(\"divT\").innerHTML = data[0][\"value\"]\r\n\t\t</script>\r\n\t</body>\r\n</html>");
+      SetText(editor_input, "<!doctype html>\r\n<html>\r\n\t<head>\r\n\t\t<meta charset=\"utf-8\">\r\n\t\t<style>\r\n\t\t\tp {color: black;}\r\n\t\t\t.red {color: red;}\r\n\t\t</style>\r\n\t</head>\r\n\t<body>\r\n\t\t<h1>CorpusExplorer</h1>\r\n\t\t<p>HTML5-Labor</p><p class=\"red\">Beispiel</p>\r\n\t\tDer aktuelle Schnappschuss umfasst: \r\n\t\t/*CEC FNT:HTML basic-information */;\r\n\t</body>\r\n</html>");
     }
 
     private void SetText(RadSyntaxEditor editor, string text)

@@ -147,11 +147,12 @@ namespace CorpusExplorer.Terminal.Automate
 
     private void btn_ok_Click(object sender, EventArgs e)
     {
-      if (!_validator.Validate())
-      {
-        MessageBox.Show(_validator.SimpleErrorMessage());
-        return;
-      }
+      if (_validator != null)
+        if (!_validator.Validate())
+        {
+          MessageBox.Show(_validator.SimpleErrorMessage());
+          return;
+        }
 
       if (MessageBox.Show(Resources.DialogChangesAcceptedMessage, Resources.DialogChangesAcceptedMessageHead, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) != DialogResult.Yes)
         return;

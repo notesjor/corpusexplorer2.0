@@ -49,6 +49,7 @@ namespace CorpusExplorer.Core
     {
       {"CSV-Tabelle (*.csv)|*.csv", new CsvTableWriter() },
       {"HTML-Dokument (*.html)|*.html", new HtmlTableWriter() },
+      {"HTML-Tabelle (*.html)|*.html", new HtmlTableSnippetWriter() },
       {"JSON-Dokument (*.json)|*.json", new JsonTableWriter() },
       {"JSON-Dokument (gerundet) (*.json)|*.json", new JsonRoundedTableWriter() },
       {"SQL-Query nur Daten (*.sql)|*.sql", new SqlDataOnlyTableWriter() },

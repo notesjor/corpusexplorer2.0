@@ -98,6 +98,18 @@
       this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
       this.drop_sourcesProcessing = new Telerik.WinControls.UI.RadDropDownList();
       this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
+      this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+      this.panel_parallel_sources = new System.Windows.Forms.Panel();
+      this.info5 = new CorpusExplorer.Terminal.Automate.Controls.Info();
+      this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
+      this.txt_parallel_sources = new Telerik.WinControls.UI.RadTextBox();
+      this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
+      this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
+      this.panel_parallel_actions = new System.Windows.Forms.Panel();
+      this.info6 = new CorpusExplorer.Terminal.Automate.Controls.Info();
+      this.radLabel18 = new Telerik.WinControls.UI.RadLabel();
+      this.txt_parallel_actions = new Telerik.WinControls.UI.RadTextBox();
+      this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       this.panel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radCollapsiblePanel1)).BeginInit();
@@ -149,6 +161,16 @@
       ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.drop_sourcesProcessing)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+      this.panel_parallel_sources.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txt_parallel_sources)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
+      this.panel_parallel_actions.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txt_parallel_actions)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
       // 
@@ -160,7 +182,7 @@
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
             this.commandBarRowElement1});
-      this.radCommandBar1.Size = new System.Drawing.Size(1101, 69);
+      this.radCommandBar1.Size = new System.Drawing.Size(1101, 44);
       this.radCommandBar1.TabIndex = 0;
       // 
       // commandBarRowElement1
@@ -204,7 +226,7 @@
       this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.panel1.Name = "panel1";
       this.panel1.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-      this.panel1.Size = new System.Drawing.Size(1063, 199);
+      this.panel1.Size = new System.Drawing.Size(1099, 199);
       this.panel1.TabIndex = 1;
       // 
       // radCollapsiblePanel1
@@ -222,8 +244,8 @@
       this.radCollapsiblePanel1.PanelContainer.Controls.Add(this.grid_sources);
       this.radCollapsiblePanel1.PanelContainer.Controls.Add(this.btn_source_add);
       this.radCollapsiblePanel1.PanelContainer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-      this.radCollapsiblePanel1.PanelContainer.Size = new System.Drawing.Size(1021, 163);
-      this.radCollapsiblePanel1.Size = new System.Drawing.Size(1023, 199);
+      this.radCollapsiblePanel1.PanelContainer.Size = new System.Drawing.Size(1057, 163);
+      this.radCollapsiblePanel1.Size = new System.Drawing.Size(1059, 199);
       this.radCollapsiblePanel1.TabIndex = 5;
       // 
       // grid_sources
@@ -239,17 +261,17 @@
       this.grid_sources.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
       gridViewTextBoxColumn1.HeaderText = "ID: Info";
       gridViewTextBoxColumn1.Name = "id";
-      gridViewTextBoxColumn1.Width = 838;
+      gridViewTextBoxColumn1.Width = 868;
       gridViewCommandColumn1.HeaderText = "Bearbeiten";
       gridViewCommandColumn1.Image = global::CorpusExplorer.Terminal.Automate.Properties.Resources.tool_pencil;
       gridViewCommandColumn1.MinWidth = 77;
       gridViewCommandColumn1.Name = "edit";
-      gridViewCommandColumn1.Width = 81;
+      gridViewCommandColumn1.Width = 84;
       gridViewCommandColumn2.HeaderText = "Löschen";
       gridViewCommandColumn2.Image = global::CorpusExplorer.Terminal.Automate.Properties.Resources.close_window;
       gridViewCommandColumn2.MinWidth = 77;
       gridViewCommandColumn2.Name = "delete";
-      gridViewCommandColumn2.Width = 83;
+      gridViewCommandColumn2.Width = 86;
       this.grid_sources.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewCommandColumn1,
@@ -257,7 +279,7 @@
       this.grid_sources.MasterTemplate.EnableGrouping = false;
       this.grid_sources.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.grid_sources.Name = "grid_sources";
-      this.grid_sources.Size = new System.Drawing.Size(1021, 124);
+      this.grid_sources.Size = new System.Drawing.Size(1057, 124);
       this.grid_sources.TabIndex = 3;
       this.grid_sources.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.grid_CellFormatting);
       this.grid_sources.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.grid_sources_CommandCellClick);
@@ -270,7 +292,7 @@
       this.btn_source_add.Location = new System.Drawing.Point(0, 0);
       this.btn_source_add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.btn_source_add.Name = "btn_source_add";
-      this.btn_source_add.Size = new System.Drawing.Size(1021, 39);
+      this.btn_source_add.Size = new System.Drawing.Size(1057, 39);
       this.btn_source_add.TabIndex = 4;
       this.btn_source_add.Text = "Neue Source/Korpus hinzufügen (annotate/import)";
       this.btn_source_add.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -288,7 +310,7 @@
       this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.panel2.Name = "panel2";
       this.panel2.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-      this.panel2.Size = new System.Drawing.Size(1063, 32);
+      this.panel2.Size = new System.Drawing.Size(1099, 32);
       this.panel2.TabIndex = 2;
       // 
       // info1
@@ -349,7 +371,7 @@
       this.panel3.Location = new System.Drawing.Point(0, 0);
       this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.panel3.Name = "panel3";
-      this.panel3.Size = new System.Drawing.Size(1063, 32);
+      this.panel3.Size = new System.Drawing.Size(1099, 32);
       this.panel3.TabIndex = 3;
       // 
       // radLabel5
@@ -371,7 +393,7 @@
       this.panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.panel4.Name = "panel4";
       this.panel4.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-      this.panel4.Size = new System.Drawing.Size(1063, 32);
+      this.panel4.Size = new System.Drawing.Size(1099, 32);
       this.panel4.TabIndex = 4;
       // 
       // radLabel7
@@ -389,7 +411,7 @@
       // radScrollablePanel1
       // 
       this.radScrollablePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radScrollablePanel1.Location = new System.Drawing.Point(0, 69);
+      this.radScrollablePanel1.Location = new System.Drawing.Point(0, 44);
       this.radScrollablePanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.radScrollablePanel1.Name = "radScrollablePanel1";
       // 
@@ -409,8 +431,8 @@
       this.radScrollablePanel1.PanelContainer.Controls.Add(this.panel2);
       this.radScrollablePanel1.PanelContainer.Controls.Add(this.panel3);
       this.radScrollablePanel1.PanelContainer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-      this.radScrollablePanel1.PanelContainer.Size = new System.Drawing.Size(1063, 908);
-      this.radScrollablePanel1.Size = new System.Drawing.Size(1101, 910);
+      this.radScrollablePanel1.PanelContainer.Size = new System.Drawing.Size(1099, 933);
+      this.radScrollablePanel1.Size = new System.Drawing.Size(1101, 935);
       this.radScrollablePanel1.TabIndex = 5;
       // 
       // panel8
@@ -420,7 +442,7 @@
       this.panel8.Location = new System.Drawing.Point(0, 885);
       this.panel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.panel8.Name = "panel8";
-      this.panel8.Size = new System.Drawing.Size(1063, 32);
+      this.panel8.Size = new System.Drawing.Size(1099, 32);
       this.panel8.TabIndex = 8;
       // 
       // radLabel11
@@ -442,7 +464,7 @@
       this.panel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.panel7.Name = "panel7";
       this.panel7.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-      this.panel7.Size = new System.Drawing.Size(1063, 32);
+      this.panel7.Size = new System.Drawing.Size(1099, 32);
       this.panel7.TabIndex = 7;
       // 
       // radLabel9
@@ -464,7 +486,7 @@
       this.panel11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.panel11.Name = "panel11";
       this.panel11.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-      this.panel11.Size = new System.Drawing.Size(1063, 32);
+      this.panel11.Size = new System.Drawing.Size(1099, 32);
       this.panel11.TabIndex = 13;
       // 
       // radLabel12
@@ -486,7 +508,7 @@
       this.panel12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.panel12.Name = "panel12";
       this.panel12.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-      this.panel12.Size = new System.Drawing.Size(1063, 199);
+      this.panel12.Size = new System.Drawing.Size(1099, 199);
       this.panel12.TabIndex = 12;
       // 
       // radCollapsiblePanel3
@@ -503,8 +525,8 @@
       this.radCollapsiblePanel3.PanelContainer.Controls.Add(this.grid_actions);
       this.radCollapsiblePanel3.PanelContainer.Controls.Add(this.btn_action_add);
       this.radCollapsiblePanel3.PanelContainer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-      this.radCollapsiblePanel3.PanelContainer.Size = new System.Drawing.Size(1021, 163);
-      this.radCollapsiblePanel3.Size = new System.Drawing.Size(1023, 199);
+      this.radCollapsiblePanel3.PanelContainer.Size = new System.Drawing.Size(1057, 163);
+      this.radCollapsiblePanel3.Size = new System.Drawing.Size(1059, 199);
       this.radCollapsiblePanel3.TabIndex = 6;
       // 
       // grid_actions
@@ -520,17 +542,17 @@
       this.grid_actions.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
       gridViewTextBoxColumn2.HeaderText = "ID: Info";
       gridViewTextBoxColumn2.Name = "id";
-      gridViewTextBoxColumn2.Width = 838;
+      gridViewTextBoxColumn2.Width = 868;
       gridViewCommandColumn3.HeaderText = "Bearbeiten";
       gridViewCommandColumn3.Image = global::CorpusExplorer.Terminal.Automate.Properties.Resources.tool_pencil;
       gridViewCommandColumn3.MinWidth = 77;
       gridViewCommandColumn3.Name = "edit";
-      gridViewCommandColumn3.Width = 81;
+      gridViewCommandColumn3.Width = 84;
       gridViewCommandColumn4.HeaderText = "Löschen";
       gridViewCommandColumn4.Image = global::CorpusExplorer.Terminal.Automate.Properties.Resources.close_window;
       gridViewCommandColumn4.MinWidth = 77;
       gridViewCommandColumn4.Name = "delete";
-      gridViewCommandColumn4.Width = 83;
+      gridViewCommandColumn4.Width = 86;
       this.grid_actions.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn2,
             gridViewCommandColumn3,
@@ -538,7 +560,7 @@
       this.grid_actions.MasterTemplate.EnableGrouping = false;
       this.grid_actions.MasterTemplate.ViewDefinition = tableViewDefinition2;
       this.grid_actions.Name = "grid_actions";
-      this.grid_actions.Size = new System.Drawing.Size(1021, 124);
+      this.grid_actions.Size = new System.Drawing.Size(1057, 124);
       this.grid_actions.TabIndex = 2;
       this.grid_actions.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.grid_CellFormatting);
       this.grid_actions.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.grid_actions_CommandCellClick);
@@ -551,7 +573,7 @@
       this.btn_action_add.Location = new System.Drawing.Point(0, 0);
       this.btn_action_add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.btn_action_add.Name = "btn_action_add";
-      this.btn_action_add.Size = new System.Drawing.Size(1021, 39);
+      this.btn_action_add.Size = new System.Drawing.Size(1057, 39);
       this.btn_action_add.TabIndex = 5;
       this.btn_action_add.Text = "Neue Action/Analyse hinzufügen";
       this.btn_action_add.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -560,6 +582,8 @@
       // 
       // panel13
       // 
+      this.panel13.Controls.Add(this.radLabel17);
+      this.panel13.Controls.Add(this.panel_parallel_actions);
       this.panel13.Controls.Add(this.info4);
       this.panel13.Controls.Add(this.radLabel13);
       this.panel13.Controls.Add(this.drop_actionsMode);
@@ -569,7 +593,7 @@
       this.panel13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.panel13.Name = "panel13";
       this.panel13.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-      this.panel13.Size = new System.Drawing.Size(1063, 32);
+      this.panel13.Size = new System.Drawing.Size(1099, 32);
       this.panel13.TabIndex = 11;
       // 
       // info4
@@ -577,7 +601,7 @@
       this.info4.BackColor = System.Drawing.Color.White;
       this.info4.DisplayText = "Actions übernehmen die eigentliche Arbeit. ";
       this.info4.Dock = System.Windows.Forms.DockStyle.Left;
-      this.info4.Location = new System.Drawing.Point(346, 0);
+      this.info4.Location = new System.Drawing.Point(332, 0);
       this.info4.Name = "info4";
       this.info4.Size = new System.Drawing.Size(32, 32);
       this.info4.TabIndex = 6;
@@ -589,9 +613,9 @@
       this.radLabel13.Location = new System.Drawing.Point(321, 0);
       this.radLabel13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.radLabel13.Name = "radLabel13";
-      this.radLabel13.Size = new System.Drawing.Size(25, 32);
+      this.radLabel13.Size = new System.Drawing.Size(11, 27);
       this.radLabel13.TabIndex = 4;
-      this.radLabel13.Text = "<html>\"<span style=\"color: #0000ff\">&gt;</span></html>";
+      this.radLabel13.Text = "<html>\"</html>";
       // 
       // drop_actionsMode
       // 
@@ -610,6 +634,7 @@
       this.drop_actionsMode.Size = new System.Drawing.Size(131, 32);
       this.drop_actionsMode.TabIndex = 3;
       this.drop_actionsMode.Text = "asynchron";
+      this.drop_actionsMode.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.drop_actionsMode_SelectedIndexChanged);
       // 
       // radLabel14
       // 
@@ -618,7 +643,7 @@
       this.radLabel14.Location = new System.Drawing.Point(40, 0);
       this.radLabel14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.radLabel14.Name = "radLabel14";
-      this.radLabel14.Size = new System.Drawing.Size(150, 32);
+      this.radLabel14.Size = new System.Drawing.Size(150, 27);
       this.radLabel14.TabIndex = 2;
       this.radLabel14.Text = "<html><span style=\"color: #0000ff\">&lt;actions </span><span style=\"color: #ff0000" +
     "\">mode</span><span style=\"color: #000000\">=\"</span></html>";
@@ -631,7 +656,7 @@
       this.panel10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.panel10.Name = "panel10";
       this.panel10.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-      this.panel10.Size = new System.Drawing.Size(1063, 32);
+      this.panel10.Size = new System.Drawing.Size(1099, 32);
       this.panel10.TabIndex = 10;
       // 
       // radLabel8
@@ -653,7 +678,7 @@
       this.panel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.panel6.Name = "panel6";
       this.panel6.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-      this.panel6.Size = new System.Drawing.Size(1063, 199);
+      this.panel6.Size = new System.Drawing.Size(1099, 199);
       this.panel6.TabIndex = 6;
       // 
       // radCollapsiblePanel2
@@ -671,8 +696,8 @@
       this.radCollapsiblePanel2.PanelContainer.Controls.Add(this.grid_queries);
       this.radCollapsiblePanel2.PanelContainer.Controls.Add(this.btn_query_add);
       this.radCollapsiblePanel2.PanelContainer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-      this.radCollapsiblePanel2.PanelContainer.Size = new System.Drawing.Size(1021, 163);
-      this.radCollapsiblePanel2.Size = new System.Drawing.Size(1023, 199);
+      this.radCollapsiblePanel2.PanelContainer.Size = new System.Drawing.Size(1057, 163);
+      this.radCollapsiblePanel2.Size = new System.Drawing.Size(1059, 199);
       this.radCollapsiblePanel2.TabIndex = 6;
       // 
       // grid_queries
@@ -688,17 +713,17 @@
       this.grid_queries.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
       gridViewTextBoxColumn3.HeaderText = "ID: Info";
       gridViewTextBoxColumn3.Name = "id";
-      gridViewTextBoxColumn3.Width = 838;
+      gridViewTextBoxColumn3.Width = 868;
       gridViewCommandColumn5.HeaderText = "Bearbeiten";
       gridViewCommandColumn5.Image = global::CorpusExplorer.Terminal.Automate.Properties.Resources.tool_pencil;
       gridViewCommandColumn5.MinWidth = 77;
       gridViewCommandColumn5.Name = "edit";
-      gridViewCommandColumn5.Width = 81;
+      gridViewCommandColumn5.Width = 84;
       gridViewCommandColumn6.HeaderText = "Löschen";
       gridViewCommandColumn6.Image = global::CorpusExplorer.Terminal.Automate.Properties.Resources.close_window;
       gridViewCommandColumn6.MinWidth = 77;
       gridViewCommandColumn6.Name = "delete";
-      gridViewCommandColumn6.Width = 83;
+      gridViewCommandColumn6.Width = 86;
       this.grid_queries.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn3,
             gridViewCommandColumn5,
@@ -706,7 +731,7 @@
       this.grid_queries.MasterTemplate.EnableGrouping = false;
       this.grid_queries.MasterTemplate.ViewDefinition = tableViewDefinition3;
       this.grid_queries.Name = "grid_queries";
-      this.grid_queries.Size = new System.Drawing.Size(1021, 124);
+      this.grid_queries.Size = new System.Drawing.Size(1057, 124);
       this.grid_queries.TabIndex = 3;
       this.grid_queries.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.grid_CellFormatting);
       this.grid_queries.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.grid_queries_CommandCellClick);
@@ -719,7 +744,7 @@
       this.btn_query_add.Location = new System.Drawing.Point(0, 0);
       this.btn_query_add.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.btn_query_add.Name = "btn_query_add";
-      this.btn_query_add.Size = new System.Drawing.Size(1021, 39);
+      this.btn_query_add.Size = new System.Drawing.Size(1057, 39);
       this.btn_query_add.TabIndex = 5;
       this.btn_query_add.Text = "Neuen Query/Schnappschuss hinzufügen (query/queryBuilder/queryGroup)";
       this.btn_query_add.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
@@ -735,7 +760,7 @@
       this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.panel5.Name = "panel5";
       this.panel5.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-      this.panel5.Size = new System.Drawing.Size(1063, 32);
+      this.panel5.Size = new System.Drawing.Size(1099, 32);
       this.panel5.TabIndex = 5;
       // 
       // info3
@@ -761,6 +786,8 @@
       // 
       // panel9
       // 
+      this.panel9.Controls.Add(this.radLabel1);
+      this.panel9.Controls.Add(this.panel_parallel_sources);
       this.panel9.Controls.Add(this.info2);
       this.panel9.Controls.Add(this.radLabel10);
       this.panel9.Controls.Add(this.drop_sourcesProcessing);
@@ -770,7 +797,7 @@
       this.panel9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.panel9.Name = "panel9";
       this.panel9.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-      this.panel9.Size = new System.Drawing.Size(1063, 32);
+      this.panel9.Size = new System.Drawing.Size(1099, 32);
       this.panel9.TabIndex = 9;
       // 
       // info2
@@ -778,7 +805,7 @@
       this.info2.BackColor = System.Drawing.Color.White;
       this.info2.DisplayText = resources.GetString("info2.DisplayText");
       this.info2.Dock = System.Windows.Forms.DockStyle.Left;
-      this.info2.Location = new System.Drawing.Point(516, 0);
+      this.info2.Location = new System.Drawing.Point(502, 0);
       this.info2.Name = "info2";
       this.info2.Size = new System.Drawing.Size(32, 32);
       this.info2.TabIndex = 10;
@@ -790,9 +817,9 @@
       this.radLabel10.Location = new System.Drawing.Point(491, 0);
       this.radLabel10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.radLabel10.Name = "radLabel10";
-      this.radLabel10.Size = new System.Drawing.Size(25, 32);
+      this.radLabel10.Size = new System.Drawing.Size(11, 27);
       this.radLabel10.TabIndex = 8;
-      this.radLabel10.Text = "<html>\"<span style=\"color: #0000ff\">&gt;</span></html>";
+      this.radLabel10.Text = "<html>\"</html>";
       // 
       // drop_sourcesProcessing
       // 
@@ -815,6 +842,7 @@
       this.drop_sourcesProcessing.Name = "drop_sourcesProcessing";
       this.drop_sourcesProcessing.Size = new System.Drawing.Size(257, 32);
       this.drop_sourcesProcessing.TabIndex = 7;
+      this.drop_sourcesProcessing.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.drop_sourcesProcessing_SelectedIndexChanged);
       // 
       // radLabel6
       // 
@@ -824,10 +852,152 @@
       this.radLabel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.radLabel6.Name = "radLabel6";
       this.radLabel6.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-      this.radLabel6.Size = new System.Drawing.Size(214, 32);
+      this.radLabel6.Size = new System.Drawing.Size(214, 27);
       this.radLabel6.TabIndex = 2;
       this.radLabel6.Text = "<html><span style=\"color: #0000ff\">&lt;sources </span><span style=\"color: #ff0000" +
     "\">processing</span><span style=\"color: #000000\">=\"</span></html>";
+      // 
+      // radLabel1
+      // 
+      this.radLabel1.Dock = System.Windows.Forms.DockStyle.Left;
+      this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 14F);
+      this.radLabel1.Location = new System.Drawing.Point(709, 0);
+      this.radLabel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+      this.radLabel1.Name = "radLabel1";
+      this.radLabel1.Size = new System.Drawing.Size(16, 27);
+      this.radLabel1.TabIndex = 12;
+      this.radLabel1.Text = "<html><span style=\"color: #0000ff\">&gt;</span></html>";
+      // 
+      // panel_parallel_sources
+      // 
+      this.panel_parallel_sources.Controls.Add(this.info5);
+      this.panel_parallel_sources.Controls.Add(this.radLabel15);
+      this.panel_parallel_sources.Controls.Add(this.txt_parallel_sources);
+      this.panel_parallel_sources.Controls.Add(this.radLabel16);
+      this.panel_parallel_sources.Dock = System.Windows.Forms.DockStyle.Left;
+      this.panel_parallel_sources.Location = new System.Drawing.Point(534, 0);
+      this.panel_parallel_sources.Name = "panel_parallel_sources";
+      this.panel_parallel_sources.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+      this.panel_parallel_sources.Size = new System.Drawing.Size(175, 32);
+      this.panel_parallel_sources.TabIndex = 11;
+      // 
+      // info5
+      // 
+      this.info5.BackColor = System.Drawing.Color.White;
+      this.info5.DisplayText = resources.GetString("info5.DisplayText");
+      this.info5.Dock = System.Windows.Forms.DockStyle.Left;
+      this.info5.Location = new System.Drawing.Point(143, 0);
+      this.info5.Name = "info5";
+      this.info5.Size = new System.Drawing.Size(32, 32);
+      this.info5.TabIndex = 7;
+      // 
+      // radLabel15
+      // 
+      this.radLabel15.Dock = System.Windows.Forms.DockStyle.Left;
+      this.radLabel15.Font = new System.Drawing.Font("Segoe UI", 14F);
+      this.radLabel15.Location = new System.Drawing.Point(132, 0);
+      this.radLabel15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+      this.radLabel15.Name = "radLabel15";
+      this.radLabel15.Size = new System.Drawing.Size(11, 32);
+      this.radLabel15.TabIndex = 5;
+      this.radLabel15.Text = "<html>\"</html>";
+      // 
+      // txt_parallel_sources
+      // 
+      this.txt_parallel_sources.Dock = System.Windows.Forms.DockStyle.Left;
+      this.txt_parallel_sources.Font = new System.Drawing.Font("Segoe UI", 11F);
+      this.txt_parallel_sources.Location = new System.Drawing.Point(94, 0);
+      this.txt_parallel_sources.Name = "txt_parallel_sources";
+      this.txt_parallel_sources.NullText = "0";
+      this.txt_parallel_sources.Size = new System.Drawing.Size(38, 32);
+      this.txt_parallel_sources.TabIndex = 4;
+      this.txt_parallel_sources.Text = "0";
+      this.txt_parallel_sources.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.txt_parallel_sources.TextChanged += new System.EventHandler(this.txt_parallel_sources_TextChanged);
+      // 
+      // radLabel16
+      // 
+      this.radLabel16.Dock = System.Windows.Forms.DockStyle.Left;
+      this.radLabel16.Font = new System.Drawing.Font("Segoe UI", 14F);
+      this.radLabel16.Location = new System.Drawing.Point(10, 0);
+      this.radLabel16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+      this.radLabel16.Name = "radLabel16";
+      this.radLabel16.Size = new System.Drawing.Size(84, 32);
+      this.radLabel16.TabIndex = 3;
+      this.radLabel16.Text = "<html><span style=\"color: #0000ff\"></span><span style=\"color: #ff0000\">parallel</" +
+    "span><span style=\"color: #000000\">=\"</span></html>";
+      // 
+      // radLabel17
+      // 
+      this.radLabel17.Dock = System.Windows.Forms.DockStyle.Left;
+      this.radLabel17.Font = new System.Drawing.Font("Segoe UI", 14F);
+      this.radLabel17.Location = new System.Drawing.Point(539, 0);
+      this.radLabel17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+      this.radLabel17.Name = "radLabel17";
+      this.radLabel17.Size = new System.Drawing.Size(16, 27);
+      this.radLabel17.TabIndex = 11;
+      this.radLabel17.Text = "<html><span style=\"color: #0000ff\">&gt;</span></html>";
+      // 
+      // panel_parallel_actions
+      // 
+      this.panel_parallel_actions.Controls.Add(this.info6);
+      this.panel_parallel_actions.Controls.Add(this.radLabel18);
+      this.panel_parallel_actions.Controls.Add(this.txt_parallel_actions);
+      this.panel_parallel_actions.Controls.Add(this.radLabel19);
+      this.panel_parallel_actions.Dock = System.Windows.Forms.DockStyle.Left;
+      this.panel_parallel_actions.Location = new System.Drawing.Point(364, 0);
+      this.panel_parallel_actions.Name = "panel_parallel_actions";
+      this.panel_parallel_actions.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+      this.panel_parallel_actions.Size = new System.Drawing.Size(175, 32);
+      this.panel_parallel_actions.TabIndex = 10;
+      // 
+      // info6
+      // 
+      this.info6.BackColor = System.Drawing.Color.White;
+      this.info6.DisplayText = "Wenn Sie den asynchron-mode aktiviert haben, können Sie hier die maximale Anzahl " +
+    "an Threads festlegen. Bei 0 nutzt der CorpusExplorer alle verfügbaren Ressourcen" +
+    " vollständig aus.";
+      this.info6.Dock = System.Windows.Forms.DockStyle.Left;
+      this.info6.Location = new System.Drawing.Point(143, 0);
+      this.info6.Name = "info6";
+      this.info6.Size = new System.Drawing.Size(32, 32);
+      this.info6.TabIndex = 7;
+      // 
+      // radLabel18
+      // 
+      this.radLabel18.Dock = System.Windows.Forms.DockStyle.Left;
+      this.radLabel18.Font = new System.Drawing.Font("Segoe UI", 14F);
+      this.radLabel18.Location = new System.Drawing.Point(132, 0);
+      this.radLabel18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+      this.radLabel18.Name = "radLabel18";
+      this.radLabel18.Size = new System.Drawing.Size(11, 32);
+      this.radLabel18.TabIndex = 5;
+      this.radLabel18.Text = "<html>\"</html>";
+      // 
+      // txt_parallel_actions
+      // 
+      this.txt_parallel_actions.Dock = System.Windows.Forms.DockStyle.Left;
+      this.txt_parallel_actions.Font = new System.Drawing.Font("Segoe UI", 11F);
+      this.txt_parallel_actions.Location = new System.Drawing.Point(94, 0);
+      this.txt_parallel_actions.Name = "txt_parallel_actions";
+      this.txt_parallel_actions.NullText = "0";
+      this.txt_parallel_actions.Size = new System.Drawing.Size(38, 32);
+      this.txt_parallel_actions.TabIndex = 4;
+      this.txt_parallel_actions.Text = "0";
+      this.txt_parallel_actions.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.txt_parallel_actions.TextChanged += new System.EventHandler(this.txt_parallel_actions_TextChanged);
+      // 
+      // radLabel19
+      // 
+      this.radLabel19.Dock = System.Windows.Forms.DockStyle.Left;
+      this.radLabel19.Font = new System.Drawing.Font("Segoe UI", 14F);
+      this.radLabel19.Location = new System.Drawing.Point(10, 0);
+      this.radLabel19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+      this.radLabel19.Name = "radLabel19";
+      this.radLabel19.Size = new System.Drawing.Size(84, 32);
+      this.radLabel19.TabIndex = 3;
+      this.radLabel19.Text = "<html><span style=\"color: #0000ff\"></span><span style=\"color: #ff0000\">parallel</" +
+    "span><span style=\"color: #000000\">=\"</span></html>";
       // 
       // SessionForm
       // 
@@ -902,6 +1072,18 @@
       ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.drop_sourcesProcessing)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+      this.panel_parallel_sources.ResumeLayout(false);
+      this.panel_parallel_sources.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txt_parallel_sources)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
+      this.panel_parallel_actions.ResumeLayout(false);
+      this.panel_parallel_actions.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txt_parallel_actions)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
@@ -958,5 +1140,17 @@
     private Controls.Info info4;
     private Controls.Info info3;
     private Controls.Info info2;
+    private Telerik.WinControls.UI.RadLabel radLabel17;
+    private System.Windows.Forms.Panel panel_parallel_actions;
+    private Controls.Info info6;
+    private Telerik.WinControls.UI.RadLabel radLabel18;
+    private Telerik.WinControls.UI.RadTextBox txt_parallel_actions;
+    private Telerik.WinControls.UI.RadLabel radLabel19;
+    private Telerik.WinControls.UI.RadLabel radLabel1;
+    private System.Windows.Forms.Panel panel_parallel_sources;
+    private Controls.Info info5;
+    private Telerik.WinControls.UI.RadLabel radLabel15;
+    private Telerik.WinControls.UI.RadTextBox txt_parallel_sources;
+    private Telerik.WinControls.UI.RadLabel radLabel16;
   }
 }

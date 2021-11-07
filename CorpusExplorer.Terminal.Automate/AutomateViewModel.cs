@@ -91,7 +91,7 @@ namespace CorpusExplorer.Terminal.Automate
     }
 
     public IEnumerable<string> List()
-      => _script.sessions?.session?.Select(x => $"Sources (mode=\"{x.sources?.processing}\"): {x.sources?.Items?.Length} | Queries: {x.queries?.Items?.Length} | Actions (mode=\"{x.actions?.mode}\"): {x.actions?.action?.Length}");
+      => _script.sessions?.session?.Select(x => $"Sources (mode=\"{x.sources?.processing}\"): {x.sources?.Items?.Length} | Queries: {x.queries?.Length} | Actions (mode=\"{x.actions?.mode}\"): {x.actions?.action?.Length}");
 
     public IEnumerable<KeyValuePair<string, string>> Metas
     {
@@ -109,6 +109,12 @@ namespace CorpusExplorer.Terminal.Automate
     {
       get => _script.sessions.mode;
       set => _script.sessions.mode = value;
+    }
+
+    public string Parallel
+    {
+      get => _script.sessions.parallel;
+      set => _script.sessions.parallel = value;
     }
 
     public session Get(int index)

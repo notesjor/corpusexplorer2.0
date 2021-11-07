@@ -11,7 +11,31 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Insight
     private const string _askForPermissionFlag = "insight.no";
     private const string _insightId = "insight.id";
 
-    public static bool AskForPermission => !File.Exists(_askForPermissionFlag);
+    public static bool AskForPermission
+    {
+      get
+      {
+        if (File.Exists(_insightId))
+          return false;
+
+        if (!File.Exists(_askForPermissionFlag))
+          return true;
+
+        try
+        {
+          if ((new FileInfo(_askForPermissionFlag)).CreationTime.AddDays(90) >= DateTime.Now) 
+            return false;
+
+          File.Delete(_askForPermissionFlag);
+          return true;
+
+        }
+        catch
+        {
+          return false;
+        }
+      }
+    }
 
     public static string InsightId => FileIO.ReadText(_insightId);
 

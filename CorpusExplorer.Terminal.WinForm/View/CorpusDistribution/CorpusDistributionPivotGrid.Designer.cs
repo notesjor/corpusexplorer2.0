@@ -124,25 +124,25 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       // 
       // btn_load
       // 
+      this.btn_load.AutoToolTip = true;
       resources.ApplyResources(this.btn_load, "btn_load");
       this.btn_load.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.folder_open;
-      this.btn_load.AutoToolTip = true;
       this.btn_load.Name = "btn_load";
       this.btn_load.Click += new System.EventHandler(this.btn_load_Click);
       // 
       // btn_save
       // 
+      this.btn_save.AutoToolTip = true;
       resources.ApplyResources(this.btn_save, "btn_save");
       this.btn_save.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.save;
-      this.btn_save.AutoToolTip = true;
       this.btn_save.Name = "btn_save";
       this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
       // 
       // btn_export
       // 
+      this.btn_export.AutoToolTip = true;
       resources.ApplyResources(this.btn_export, "btn_export");
       this.btn_export.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_spreadsheet;
-      this.btn_export.AutoToolTip = true;
       this.btn_export.Name = "btn_export";
       this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
       // 

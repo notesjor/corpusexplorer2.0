@@ -42,6 +42,8 @@ namespace CorpusExplorer.Terminal.Automate
       query_drop_parent.Items.AddRange(_uniqueQueryNames);
       query_drop_parent.SelectedIndex = -1;
 
+      _liveQueryPreview = Preview_Meta;
+      _resultBuild = Build_Meta;
       pages_options.SelectedPage = page_meta;
       panel_fullMode.Visible = true;
 
@@ -124,11 +126,12 @@ namespace CorpusExplorer.Terminal.Automate
 
     private void btn_ok_Click(object sender, EventArgs e)
     {
-      if (!_validatorBasic.Validate(_additionalValidator))
-      {
-        MessageBox.Show(_validatorBasic.SimpleErrorMessage());
-        return;
-      }
+      if (_validatorBasic != null)
+        if (!_validatorBasic.Validate(_additionalValidator))
+        {
+          MessageBox.Show(_validatorBasic.SimpleErrorMessage());
+          return;
+        }
 
       if (MessageBox.Show(Resources.DialogChangesAcceptedMessage, Resources.DialogChangesAcceptedMessageHead, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) != DialogResult.Yes)
         return;
@@ -249,7 +252,7 @@ namespace CorpusExplorer.Terminal.Automate
 
     private string Preview_Random()
       => $"XR::{random_txt_value.Text}";
-    
+
     private string Preview_ListBuilder()
     {
       return "<queryBuilder> ... </queryBuilder>";

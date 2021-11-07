@@ -7,6 +7,8 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper
 {
   public class ReMapperStandoff
   {
+    public int ThrowExceptionAfterAlignmentErrors { get; set; } = -1;
+
     /// <summary>
     /// Durchsucht einen text und ordnet der text-Position ein Token aus doc zu.
     /// </summary>
@@ -52,7 +54,7 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper
     public List<ReMapperEntry> ExtractAlignment(string text, string[][] doc)
     {
       var res = new List<ReMapperEntry>();
-      var idx = 0;
+      var last = 0;
 
       for (var i = 0; i < doc.Length; i++)
       {
@@ -60,9 +62,16 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper
         {
           var t = doc[i][j];
 
-          idx = text.IndexOf(t, idx);
+          var idx = text.IndexOf(t, last);
           if (idx == -1)
-            throw new Exception("ReMapperStandoff - AlignmentException");
+          {
+            if (ThrowExceptionAfterAlignmentErrors > 0)
+              ThrowExceptionAfterAlignmentErrors--;
+            else if (ThrowExceptionAfterAlignmentErrors == 0)
+              throw new Exception("ReMapperStandoff - AlignmentException");
+            else // == -1
+              continue;
+          }
 
           res.Add(new ReMapperEntry
           {
@@ -71,7 +80,7 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper
             TextCharFrom = idx,
             TextCharTo = idx + t.Length - 1
           });
-          idx += t.Length;
+          last += t.Length;
         }
       }
 

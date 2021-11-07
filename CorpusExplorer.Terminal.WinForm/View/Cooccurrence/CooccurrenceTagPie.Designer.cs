@@ -93,25 +93,25 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // 
       // commandBarButton1
       // 
+      this.commandBarButton1.AutoToolTip = true;
       resources.ApplyResources(this.commandBarButton1, "commandBarButton1");
       this.commandBarButton1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.image;
-      this.commandBarButton1.AutoToolTip = true;
       this.commandBarButton1.Name = "commandBarButton1";
       this.commandBarButton1.Click += new System.EventHandler(this.commandBarButton3_Click);
       // 
       // commandBarButton2
       // 
+      this.commandBarButton2.AutoToolTip = true;
       resources.ApplyResources(this.commandBarButton2, "commandBarButton2");
       this.commandBarButton2.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_pdf;
-      this.commandBarButton2.AutoToolTip = true;
       this.commandBarButton2.Name = "commandBarButton2";
       this.commandBarButton2.Click += new System.EventHandler(this.commandBarButton4_Click);
       // 
       // commandBarButton3
       // 
+      this.commandBarButton3.AutoToolTip = true;
       resources.ApplyResources(this.commandBarButton3, "commandBarButton3");
       this.commandBarButton3.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.print;
-      this.commandBarButton3.AutoToolTip = true;
       this.commandBarButton3.Name = "commandBarButton3";
       this.commandBarButton3.Click += new System.EventHandler(this.commandBarButton1_Click);
       // 

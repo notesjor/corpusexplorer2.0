@@ -102,6 +102,11 @@ namespace CorpusExplorer.Sdk.Diagnostic
 
     public static void Log(Exception ex)
     {
+#if DEBUG
+      Console.WriteLine(ex.Message);
+      Console.WriteLine(ex.StackTrace);
+#endif
+
       if (!_insightChecked)
         InsightSetup();
 

@@ -34,10 +34,7 @@ namespace CorpusExplorer.Terminal.Automate
         },
         @override = false,
         overrideSpecified = false,
-        queries = new queries
-        {
-          Items = new object[0]
-        },
+        queries = new object[0],
         sources = new sources
         {
           Items = new object[0],
@@ -117,10 +114,10 @@ namespace CorpusExplorer.Terminal.Automate
         return;
       }
 
-      if (_result.queries?.Items == null)
-        _result.queries = new queries { Items = new[] { form.Result } };
+      if (_result.queries == null)
+        _result.queries = new [] { form.Result } ;
       else
-        _result.queries.Items = _result.queries.Items.Concat(new[] { form.Result }).ToArray();
+        _result.queries = _result.queries.Concat(new[] { form.Result }).ToArray();
 
       ReloadUi();
       Show();
@@ -132,9 +129,9 @@ namespace CorpusExplorer.Terminal.Automate
       {
         Hide();
 
-        var oldName = QueryNameHelper.GetName(_result.queries.Items[e.RowIndex]);
+        var oldName = QueryNameHelper.GetName(_result.queries[e.RowIndex]);
 
-        var form = new QueryBuilderForm(_result.queries.GetNames(), _result.queries.Items[e.RowIndex]);
+        var form = new QueryBuilderForm(_result.queries.GetNames(), _result.queries[e.RowIndex]);
         if (form.ShowDialog() != DialogResult.OK)
         {
           Show();
@@ -142,7 +139,7 @@ namespace CorpusExplorer.Terminal.Automate
         }
 
         var res = form.Result;
-        _result.queries.Items[e.RowIndex] = res;
+        _result.queries[e.RowIndex] = res;
         var newName = QueryNameHelper.GetName(res);
 
         if (oldName != newName)
@@ -159,9 +156,9 @@ namespace CorpusExplorer.Terminal.Automate
                             MessageBoxButtons.YesNo) == DialogResult.No)
           return;
 
-        var list = _result.queries.Items.ToList();
+        var list = _result.queries.ToList();
         list.RemoveAt(e.RowIndex);
-        _result.queries.Items = list.ToArray();
+        _result.queries = list.ToArray();
       }
       ReloadUi();
     }
@@ -295,12 +292,34 @@ namespace CorpusExplorer.Terminal.Automate
         // ignore
       }
 
+      txt_parallel_actions.Text = _result.actions.parallel;
+      txt_parallel_sources.Text = _result.sources.parallel;
     }
 
     private void grid_CellFormatting(object sender, CellFormattingEventArgs e)
     {
       if (e.CellElement is GridCommandCellElement cmdCell)
         cmdCell.CommandButton.ImageAlignment = ContentAlignment.MiddleCenter;
+    }
+
+    private void drop_sourcesProcessing_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+    {
+      panel_parallel_sources.Visible = drop_sourcesProcessing.SelectedIndex > 2;
+    }
+
+    private void drop_actionsMode_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+    {
+      panel_parallel_actions.Visible = drop_actionsMode.SelectedIndex == 0;
+    }
+
+    private void txt_parallel_sources_TextChanged(object sender, EventArgs e)
+    {
+      _result.sources.parallel = txt_parallel_sources.Text;
+    }
+
+    private void txt_parallel_actions_TextChanged(object sender, EventArgs e)
+    {
+      _result.actions.parallel = txt_parallel_actions.Text;
     }
   }
 }

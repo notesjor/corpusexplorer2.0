@@ -146,6 +146,30 @@
   <data name="commandBarLabel1.Text" xml:space="preserve">
     <value>Das Modell ist: LEER</value>
   </data>
+  <data name="commandBarSeparator2.DisplayName" xml:space="preserve">
+    <value>commandBarSeparator2</value>
+  </data>
+  <data name="commandBarSeparator2.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btn_load.DisplayName" xml:space="preserve">
+    <value>commandBarButton1</value>
+  </data>
+  <data name="btn_load.Text" xml:space="preserve">
+    <value>Laden</value>
+  </data>
+  <data name="btn_save.DisplayName" xml:space="preserve">
+    <value>commandBarButton3</value>
+  </data>
+  <data name="btn_save.Text" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="btn_export.DisplayName" xml:space="preserve">
+    <value>commandBarButton4</value>
+  </data>
+  <data name="btn_export.Text" xml:space="preserve">
+    <value>Exportieren</value>
+  </data>
   <data name="radCommandBar1.Size" type="System.Drawing.Size, System.Drawing">
     <value>780, 69</value>
   </data>
@@ -320,6 +344,30 @@
   </data>
   <data name="&gt;&gt;commandBarLabel1.Type" xml:space="preserve">
     <value>Telerik.WinControls.UI.CommandBarLabel, Telerik.WinControls.UI, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarSeparator2.Name" xml:space="preserve">
+    <value>commandBarSeparator2</value>
+  </data>
+  <data name="&gt;&gt;commandBarSeparator2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarSeparator, Telerik.WinControls.UI, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_load.Name" xml:space="preserve">
+    <value>btn_load</value>
+  </data>
+  <data name="&gt;&gt;btn_load.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_save.Name" xml:space="preserve">
+    <value>btn_save</value>
+  </data>
+  <data name="&gt;&gt;btn_save.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;btn_export.Name" xml:space="preserve">
+    <value>btn_export</value>
+  </data>
+  <data name="&gt;&gt;btn_export.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.2.615.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>SentimentPivotGrid</value>

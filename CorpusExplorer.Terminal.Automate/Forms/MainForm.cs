@@ -126,6 +126,8 @@ namespace CorpusExplorer.Terminal.Automate
       {
         // ignore
       }
+
+      txt_parallel.Text = _vm.Parallel;
     }
 
     private void grid_headMeta_CellEndEdit(object sender, GridViewCellEventArgs e)
@@ -150,7 +152,7 @@ namespace CorpusExplorer.Terminal.Automate
       }
       else if (e.ColumnIndex == 2)
       {
-        if (MessageBox.Show("Möchten Sie diese Session wirklich löschen?", 
+        if (MessageBox.Show("Möchten Sie diese Session wirklich löschen?",
                             "Session löschen?",
                             MessageBoxButtons.YesNo) == DialogResult.No)
           return;
@@ -158,6 +160,16 @@ namespace CorpusExplorer.Terminal.Automate
         _vm.Delete(e.RowIndex);
       }
       ReloadUi();
+    }
+
+    private void drop_sessionMode_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+    {
+      panel_parallel.Visible = drop_sessionMode.SelectedIndex == 0;
+    }
+
+    private void txt_parallel_TextChanged(object sender, EventArgs e)
+    {
+      _vm.Parallel = txt_parallel.Text;
     }
   }
 }

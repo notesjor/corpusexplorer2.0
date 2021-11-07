@@ -1261,6 +1261,9 @@ Zeigt die Startseite an</value>
   <data name="FileExtension_PNG" xml:space="preserve">
     <value>PNG-Bild (*.png)|*.png</value>
   </data>
+  <data name="FileExtension_JPEG" xml:space="preserve">
+    <value>JPEG-Bild (*.jpeg)|*.jpeg</value>
+  </data>
   <data name="FulltextAnnotation_NewLayerNullText" xml:space="preserve">
     <value>Layername hier eingeben</value>
   </data>

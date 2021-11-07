@@ -113,9 +113,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       }
 
       stb.AppendLine("</p></body></html>");
-#if UNIVERSAL
-      webHtml5Visualisation1.LoadHtml(stb.ToString());
+#if LINUX
+      
 #else
+      webHtml5Visualisation1.LoadHtml(stb.ToString());
 #endif
 
       RefreshMetadata(_docs[Index].DocumentMetadata);

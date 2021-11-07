@@ -91,6 +91,8 @@ namespace CorpusExplorer.Sdk.Extern.Json.SimpleStandoff
           try
           {
             var matches = alignment.Where(x => x.TextCharFrom >= a.From && x.TextCharTo <= a.To).Select(x=> alignment.IndexOf(x)).ToArray();
+            if(matches == null || matches.Length == 0)
+              continue;
             var min = matches.Min(x => x);
             var max = matches.Max(x => x);
 

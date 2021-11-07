@@ -5,7 +5,9 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
+using CefSharp.DevTools.Page;
 using CorpusExplorer.Sdk.View.Html.Html5;
+using System.Threading.Tasks;
 #if LINUX
 #else
 using CefSharp;
@@ -36,28 +38,40 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
     public WebSimpleUrlVisualisation()
     {
       InitializeComponent();
+      webBrowser1 = new ChromiumWebBrowser { Size = Size, Dock = DockStyle.Fill };
+
+      Controls.Add(webBrowser1);
     }
 
     public string MainpageUrl { get; set; }
-    
+
     public void ExportImage()
     {
-      var sfd = new SaveFileDialog {Filter = Resources.FileExtension_PNG, CheckPathExists = true};
+      var sfd = new SaveFileDialog { Filter = Resources.FileExtension_JPEG, CheckPathExists = true };
       if (sfd.ShowDialog() == DialogResult.OK)
         ExportImage(sfd.FileName);
     }
 
+    private Task _exportImageTask;
+
     public void ExportImage(string path)
     {
-      InitializeBrowser();
-      var bitmap = new Bitmap(webBrowser1.Width, webBrowser1.Height);
-      webBrowser1.DrawToBitmap(bitmap, new Rectangle(new Point(0, 0), webBrowser1.Size));
-      bitmap.Save(path, ImageFormat.Png);
+      _exportImageTask = new Task(async () =>
+      {
+        using (var devToolsClient = webBrowser1.GetDevToolsClient())
+        {
+          var task = devToolsClient.Page.CaptureScreenshotAsync(CaptureScreenshotFormat.Jpeg, 100, captureBeyondViewport: true);
+          var res = await task;
+
+          File.WriteAllBytes(path, res.Data);
+        }
+      });
+      _exportImageTask.Start();
     }
 
     public void ExportPdf()
     {
-      var sfd = new SaveFileDialog {Filter = Resources.FileExtension_PDF, CheckPathExists = true};
+      var sfd = new SaveFileDialog { Filter = Resources.FileExtension_PDF, CheckPathExists = true };
       if (sfd.ShowDialog() == DialogResult.OK)
         ExportPdf(sfd.FileName);
     }
