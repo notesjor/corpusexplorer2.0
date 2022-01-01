@@ -442,7 +442,7 @@ namespace CorpusExplorer.Sdk.Model
     ///   The <see cref="IEnumerable{T}" />.
     /// </returns>
     public IEnumerable<Guid> FindDocumentByMetadata(string exampleKey, object exampleValue) =>
-      FindDocumentByMetadata(new Dictionary<string, object> {{exampleKey, exampleValue}});
+      FindDocumentByMetadata(new Dictionary<string, object> { { exampleKey, exampleValue } });
 
     /// <summary>
     ///   The find document guid.
@@ -621,12 +621,12 @@ namespace CorpusExplorer.Sdk.Model
       var res = new Dictionary<string, HashSet<object>>();
 
       foreach (var x in meta)
-      foreach (var y in x.Value)
-      {
-        if (!res.ContainsKey(y.Key))
-          res.Add(y.Key, new HashSet<object>());
-        res[y.Key].Add(y.Value);
-      }
+        foreach (var y in x.Value)
+        {
+          if (!res.ContainsKey(y.Key))
+            res.Add(y.Key, new HashSet<object>());
+          res[y.Key].Add(y.Value);
+        }
 
       return res;
     }
@@ -978,6 +978,7 @@ namespace CorpusExplorer.Sdk.Model
     /// </param>
     public void SetDocumentMetadata(Guid documentGuid, Dictionary<string, object> metadata)
     {
+      _documentMetadata = null;
       Project.SetDocumentMetadata(documentGuid, metadata);
     }
 
@@ -988,6 +989,7 @@ namespace CorpusExplorer.Sdk.Model
     /// <param name="type">Typ für die neue Metaangabe</param>
     public void SetNewDocumentMetadata(string metadataKey, Type type)
     {
+      _documentMetadata = null;
       Project.SetNewDocumentMetadata(metadataKey, type);
     }
 
@@ -1048,7 +1050,7 @@ namespace CorpusExplorer.Sdk.Model
         return null;
 
       var q = queries.ToArray();
-      return Create(Project, QueryFilter.SearchOnDocumentLevel(this, q), displayName, this, noParent);
+      return Create(Project, QuickQuery.SearchOnDocumentLevel(this, q), displayName, this, noParent);
     }
 
     /// <summary>
@@ -1081,7 +1083,7 @@ namespace CorpusExplorer.Sdk.Model
         return null;
 
       var q = queries.ToArray();
-      var res = CreateTemporary(QueryFilter.SearchOnDocumentLevel(this, q));
+      var res = CreateTemporary(QuickQuery.SearchOnDocumentLevel(this, q));
       res.Queries = q;
 
       return res;
@@ -1099,7 +1101,7 @@ namespace CorpusExplorer.Sdk.Model
         if (dic.ContainsKey(csel))
           dic[csel].Add(guid);
         else
-          dic.Add(csel, new HashSet<Guid> {guid});
+          dic.Add(csel, new HashSet<Guid> { guid });
       }
 
       return dic;
@@ -1119,7 +1121,7 @@ namespace CorpusExplorer.Sdk.Model
         T value;
         try
         {
-          value = (T) data;
+          value = (T)data;
         }
         catch
         {
@@ -1220,7 +1222,7 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns></returns>
     public int[][] HydraOptimization(AbstractCorpusAdapter corpus, Guid documentGuid, int[][] sentences)
     {
-      if (Queries        == null ||
+      if (Queries == null ||
           Queries.Length == 0)
         return sentences;
 

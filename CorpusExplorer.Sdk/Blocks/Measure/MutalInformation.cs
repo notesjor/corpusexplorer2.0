@@ -13,9 +13,7 @@ namespace CorpusExplorer.Sdk.Blocks.Measure
   [Serializable]
   public sealed class MutalInformation : AbstractMeasure
   {
-    public override double Calculate(double k, double k0, double ki, double kj, double kij)
-    {
-      return Math.Log(k * kij / (ki * kj));
-    }
+    public override double Calculate(double k, double k0, double ki, double kj, double kij) =>
+      Math.Log(k * kij / (ki * kj));
   }
 }

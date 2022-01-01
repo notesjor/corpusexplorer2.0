@@ -14,20 +14,14 @@ namespace Bcs.Network
     {
       try
       {
-        var httpWebRequest = (HttpWebRequest) WebRequest.Create(url);
+        var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
         httpWebRequest.ContentType = contentType;
         httpWebRequest.Method = method;
 
-        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-        {
-          streamWriter.Write(jsonData);
-        }
+        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream())) streamWriter.Write(jsonData);
 
-        var httpResponse = (HttpWebResponse) httpWebRequest.GetResponse();
-        using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-        {
-          return streamReader.ReadToEnd();
-        }
+        var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+        using (var streamReader = new StreamReader(httpResponse.GetResponseStream())) return streamReader.ReadToEnd();
       }
       catch
       {

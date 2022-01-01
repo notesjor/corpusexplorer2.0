@@ -63,10 +63,7 @@ namespace Bcs.Security
         ms.Read(buffer, 0, buffer.Length);
       }
 
-      using (var sha = new SHA1Managed())
-      {
-        buffer = sha.ComputeHash(buffer);
-      }
+      using (var sha = new SHA1Managed()) buffer = sha.ComputeHash(buffer);
 
       if (!check.VerifyHash(buffer, CryptoConfig.MapNameToOID("SHA1"), bufferC))
         throw new InvalidDataException("The SHA1-Hash is not valid");
@@ -113,10 +110,7 @@ namespace Bcs.Security
       buffer = new byte[ms.Length];
       ms.Read(buffer, 0, buffer.Length);
       ms.Close();
-      using (var sha = new SHA1Managed())
-      {
-        buffer = sha.ComputeHash(buffer);
-      }
+      using (var sha = new SHA1Managed()) buffer = sha.ComputeHash(buffer);
 
       stb.Append(Convert.ToBase64String(sign.SignHash(buffer, CryptoConfig.MapNameToOID("SHA1"))));
 

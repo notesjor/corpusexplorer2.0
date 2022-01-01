@@ -17,10 +17,7 @@ namespace Bcs.IO
     /// <returns>
     ///   Dateigröße
     /// </returns>
-    private static long GetFileSize(string file)
-    {
-      return new FileInfo(file).Length;
-    }
+    private static long GetFileSize(string file) => new FileInfo(file).Length;
 
     /// <summary>
     ///   String der die Größe der Datei lesbar für den Nutzer angiebt
@@ -30,10 +27,7 @@ namespace Bcs.IO
     ///   SizeString
     /// </returns>
     // ReSharper disable once UnusedMember.Global
-    public static string GetSizeString(string file)
-    {
-      return GetSizeString(GetFileSize(file));
-    }
+    public static string GetSizeString(string file) => GetSizeString(GetFileSize(file));
 
     /// <summary>
     ///   Wandelt den Long-Wert der die Größe der Datei angiebt in eine für den
@@ -45,7 +39,7 @@ namespace Bcs.IO
     /// </returns>
     private static string GetSizeString(long size)
     {
-      string[] suffix = {"B", "KB", "MB", "GB", "TB", "PB", "EB"};
+      string[] suffix = { "B", "KB", "MB", "GB", "TB", "PB", "EB" };
 
       var i = 0;
       double calc = size;

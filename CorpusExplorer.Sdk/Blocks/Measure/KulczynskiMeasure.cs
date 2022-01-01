@@ -13,9 +13,6 @@ namespace CorpusExplorer.Sdk.Blocks.Measure
   [Serializable]
   public sealed class KulczynskiMeasure : AbstractMeasure
   {
-    public override double Calculate(double k, double k0, double ki, double kj, double kij)
-    {
-      return kij / (ki + kj);
-    }
+    public override double Calculate(double k, double k0, double ki, double kj, double kij) => kij / (ki + kj);
   }
 }

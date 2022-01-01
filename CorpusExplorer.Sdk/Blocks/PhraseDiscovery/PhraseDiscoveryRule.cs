@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.PhraseDiscovery
 {

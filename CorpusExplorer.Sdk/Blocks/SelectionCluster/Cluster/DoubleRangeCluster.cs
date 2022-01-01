@@ -1,6 +1,10 @@
+#region
+
 using System;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
 using CorpusExplorer.Sdk.Helper;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {

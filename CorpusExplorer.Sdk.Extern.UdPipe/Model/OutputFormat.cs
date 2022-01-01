@@ -93,10 +93,8 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       return ret;
     }
 
-    internal static HandleRef getCPtr(OutputFormat obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
+    internal static HandleRef getCPtr(OutputFormat obj) =>
+      obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
 
     public static OutputFormat newConlluOutputFormat(string options)
     {

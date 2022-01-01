@@ -13,9 +13,7 @@ namespace CorpusExplorer.Sdk.Blocks.Measure
   [Serializable]
   public sealed class OchiaiMeasure : AbstractMeasure
   {
-    public override double Calculate(double k, double k0, double ki, double kj, double kij)
-    {
-      return kij / Math.Sqrt((kij + ki) * (kij + kj));
-    }
+    public override double Calculate(double k, double k0, double ki, double kj, double kij) =>
+      kij / Math.Sqrt((kij + ki) * (kij + kj));
   }
 }

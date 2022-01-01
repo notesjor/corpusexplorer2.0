@@ -15,19 +15,10 @@
     public static int MaxSingleTextLength => 1000000;
     public static int MaxTotalDocuments => 1000;
 
-    public static bool RuleCorpus(int documentCount)
-    {
-      return documentCount <= MaxTotalDocuments;
-    }
+    public static bool RuleCorpus(int documentCount) => documentCount <= MaxTotalDocuments;
 
-    public static bool RuleCorpusLength(int allDocumentsLength)
-    {
-      return allDocumentsLength <= MaxCorpusLength;
-    }
+    public static bool RuleCorpusLength(int allDocumentsLength) => allDocumentsLength <= MaxCorpusLength;
 
-    public static bool RuleSingleTextLength(int textLength)
-    {
-      return textLength <= MaxSingleTextLength;
-    }
+    public static bool RuleSingleTextLength(int textLength) => textLength <= MaxSingleTextLength;
   }
 }

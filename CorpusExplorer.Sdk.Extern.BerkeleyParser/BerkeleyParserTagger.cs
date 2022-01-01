@@ -15,11 +15,11 @@ namespace CorpusExplorer.Sdk.Extern.BerkeleyParser
   {
     private readonly Dictionary<string, string> _languagesAvailable = new Dictionary<string, string>
     {
-      {"Bulgarisch", "bul_sm5.gr"},
-      {"Chinesisch", "chn_sm5.gr"},
-      {"Deutsch", "ger_sm5.gr"},
-      {"Englisch", "eng_sm6.gr"},
-      {"Französisch", "fra_sm5.gr"}
+      { "Bulgarisch", "bul_sm5.gr" },
+      { "Chinesisch", "chn_sm5.gr" },
+      { "Deutsch", "ger_sm5.gr" },
+      { "Englisch", "eng_sm6.gr" },
+      { "Französisch", "fra_sm5.gr" }
     };
 
     private bool _chinese;

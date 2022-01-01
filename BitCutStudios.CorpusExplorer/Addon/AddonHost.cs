@@ -59,12 +59,10 @@ namespace Bcs.Addon
     /// </summary>
     public IHostWindow Window { get; }
 
-    private static string GetDirectoryPath(string directory)
-    {
-      return string.IsNullOrEmpty(directory)
-               ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-               : directory;
-    }
+    private static string GetDirectoryPath(string directory) =>
+      string.IsNullOrEmpty(directory)
+        ? Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+        : directory;
 
     /// <summary>
     ///   Sucht in einem Verzeichnis nach Dateien die Addon
@@ -146,7 +144,7 @@ namespace Bcs.Addon
         InMemoryErrorConsole.Log(ex);
       }
 
-      addons.Sort((x, y) => (byte) x.LoadPriority - (byte) y.LoadPriority);
+      addons.Sort((x, y) => (byte)x.LoadPriority - (byte)y.LoadPriority);
       _addons = addons;
     }
 
@@ -158,7 +156,7 @@ namespace Bcs.Addon
     {
       try
       {
-        _addons.Sort((x, y) => (byte) y.LoadPriority - (byte) x.LoadPriority);
+        _addons.Sort((x, y) => (byte)y.LoadPriority - (byte)x.LoadPriority);
 
         var ts = _addons.Select(addon =>
         {

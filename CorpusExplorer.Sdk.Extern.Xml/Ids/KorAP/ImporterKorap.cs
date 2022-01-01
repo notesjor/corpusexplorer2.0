@@ -160,7 +160,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
         try
         {
           IEnumerable<HtmlNode> spans = null;
-          Model.TaggerFeature.Dependency.layer layer = null;
           try
           {
             var xml = new HtmlDocument();

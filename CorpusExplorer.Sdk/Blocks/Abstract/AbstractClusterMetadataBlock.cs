@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -10,6 +12,8 @@ using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract;
 using CorpusExplorer.Sdk.Blocks.Similarity;
 using CorpusExplorer.Sdk.Blocks.Similarity.Abstract;
 using CorpusExplorer.Sdk.Model;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.Abstract
 {
@@ -23,6 +27,8 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
     ///   Gets or sets the layer displayname.
     /// </summary>
     public string LayerDisplayname { get; set; } = "Wort";
+
+    public string MetadataKey { get; set; } = "Autor";
 
     /// <summary>
     ///   Wurzel-Cluster
@@ -46,9 +52,63 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
     /// <summary>
     ///   Gets or sets the similarity index.
     /// </summary>
-    public AbstractDistance SimilarityIndex { get; set; } = new EuclideanDistance();
+    public AbstractDistance SimilarityIndex { get; set; } = new DistanceEuclidean();
 
-    public string MetadataKey { get; set; } = "Autor";
+    /// <summary>
+    ///   Funktion die aufgerufen wird, wenn eine Berechnung durchgeführt werden soll.
+    /// </summary>
+    public override void Calculate()
+    {
+      if (string.IsNullOrEmpty(LayerDisplayname))
+        return;
+
+      _clusters = CalculateClusterValues();
+    }
+
+    private List<ClusterMetadataItem> CalculateClusterValues()
+    {
+      var blockGroup = Selection.CreateBlock<SelectionClusterBlock>();
+      blockGroup.ClusterGenerator = SelectionClusterGenerator;
+      blockGroup.MetadataKey = MetadataKey;
+      blockGroup.Calculate();
+
+      var res = new Dictionary<string, T>();
+      var loc = new object();
+
+      var clusters = blockGroup.GetTemporarySelectionClusters();
+      Parallel.ForEach(clusters, cluster =>
+      {
+        try
+        {
+          var values = CalculateValues(cluster);
+
+          lock (loc)
+            if (!res.ContainsKey(cluster.Displayname))
+              res.Add(cluster.Displayname, values);
+        }
+        catch
+        {
+          // ignore
+        }
+      });
+
+      return res.Select(x => new ClusterMetadataItem(x.Key, x.Value)).ToList();
+    }
+
+    protected abstract double CalculateDistance(AbstractDistance similarityIndex, T cA, T cB);
+
+    private DoubleKeyDictionary<double> CalculateDistances()
+    {
+      var cvalues = new DoubleKeyDictionary<double>();
+      // Prefill
+      for (var i = 0; i < _clusters.Count; i++)
+      for (var j = i + 1; j < _clusters.Count; j++)
+        cvalues.Add(
+                    _clusters[i].Label,
+                    _clusters[j].Label,
+                    CalculateDistance(SimilarityIndex, (T)_clusters[i].Data, (T)_clusters[j].Data));
+      return cvalues;
+    }
 
     private ClusterMetadataItem CalculateRootCluster()
     {
@@ -87,7 +147,7 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
           cvalues.Add(
                       c.Label,
                       ncluster.Label,
-                      CalculateDistance(SimilarityIndex, (T) c.Data, (T) ncluster.Data));
+                      CalculateDistance(SimilarityIndex, (T)c.Data, (T)ncluster.Data));
         _clusters.Add(ncluster); // Einfügen darf erst nach dem Vergleich erfolgen
       }
 
@@ -97,38 +157,7 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
       return res;
     }
 
-    private DoubleKeyDictionary<double> CalculateDistances()
-    {
-      var cvalues = new DoubleKeyDictionary<double>();
-      // Prefill
-      for (var i = 0; i < _clusters.Count; i++)
-      for (var j = i + 1; j < _clusters.Count; j++)
-        cvalues.Add(
-                    _clusters[i].Label,
-                    _clusters[j].Label,
-                    CalculateDistance(SimilarityIndex, (T) _clusters[i].Data, (T) _clusters[j].Data));
-      return cvalues;
-    }
-
-    public DataTable GetDataTable()
-    {
-      var dic = CalculateDistances();
-      var keys = dic.Keys;
-
-      var dt = new DataTable();
-      dt.Columns.Add($"{MetadataKey} (A)", typeof(string));
-      dt.Columns.Add($"{MetadataKey} (B)", typeof(string));
-      dt.Columns.Add("value", typeof(double));
-
-      dt.BeginLoadData();
-      foreach (var k1 in keys)
-      foreach (var k2 in keys)
-        if (dic.ContainsKeyCombination(k1, k2))
-          dt.Rows.Add(k1, k2, dic[k1, k2]);
-      dt.EndLoadData();
-
-      return dt;
-    }
+    protected abstract T CalculateValues(Selection selection);
 
     public DataTable GetCrossDataTable()
     {
@@ -160,58 +189,29 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
       return dt;
     }
 
-    /// <summary>
-    ///   Funktion die aufgerufen wird, wenn eine Berechnung durchgeführt werden soll.
-    /// </summary>
-    public override void Calculate()
+    public DataTable GetDataTable()
     {
-      if (string.IsNullOrEmpty(LayerDisplayname))
-        return;
+      var dic = CalculateDistances();
+      var keys = dic.Keys;
 
-      _clusters = CalculateClusterValues();
-    }
+      var dt = new DataTable();
+      dt.Columns.Add($"{MetadataKey} (A)", typeof(string));
+      dt.Columns.Add($"{MetadataKey} (B)", typeof(string));
+      dt.Columns.Add("value", typeof(double));
 
-    private ClusterMetadataItem JoinCluster(ClusterMetadataItem cA, ClusterMetadataItem cB, double similarity)
-    {
-      return new ClusterMetadataItem(cA, cB, $"({cA.Label}|{cB.Label})", Join((T) cA.Data, (T) cB.Data), similarity);
+      dt.BeginLoadData();
+      foreach (var k1 in keys)
+      foreach (var k2 in keys)
+        if (dic.ContainsKeyCombination(k1, k2))
+          dt.Rows.Add(k1, k2, dic[k1, k2]);
+      dt.EndLoadData();
+
+      return dt;
     }
 
     protected abstract T Join(T a, T b);
 
-    protected abstract double CalculateDistance(AbstractDistance similarityIndex, T cA, T cB);
-
-    private List<ClusterMetadataItem> CalculateClusterValues()
-    {
-      var blockGroup = Selection.CreateBlock<SelectionClusterBlock>();
-      blockGroup.ClusterGenerator = SelectionClusterGenerator;
-      blockGroup.MetadataKey = MetadataKey;
-      blockGroup.Calculate();
-
-      var res = new Dictionary<string, T>();
-      var loc = new object();
-
-      var clusters = blockGroup.GetTemporarySelectionClusters();
-      Parallel.ForEach(clusters, cluster =>
-      {
-        try
-        {
-          var values = CalculateValues(cluster);
-
-          lock (loc)
-          {
-            if (!res.ContainsKey(cluster.Displayname))
-              res.Add(cluster.Displayname, values);
-          }
-        }
-        catch
-        {
-          // ignore
-        }
-      });
-
-      return res.Select(x => new ClusterMetadataItem(x.Key, x.Value)).ToList();
-    }
-
-    protected abstract T CalculateValues(Selection selection);
+    private ClusterMetadataItem JoinCluster(ClusterMetadataItem cA, ClusterMetadataItem cB, double similarity) =>
+      new ClusterMetadataItem(cA, cB, $"({cA.Label}|{cB.Label})", Join((T)cA.Data, (T)cB.Data), similarity);
   }
 }

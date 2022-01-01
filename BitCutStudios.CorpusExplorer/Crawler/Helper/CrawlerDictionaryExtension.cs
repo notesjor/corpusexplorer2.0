@@ -16,17 +16,11 @@ namespace Bcs.Crawler.Helper
       string hash;
       var bytes = GetBytes(document);
 
-      using (var md5 = MD5.Create())
-      {
-        hash = Convert.ToBase64String(md5.ComputeHash(bytes));
-      }
+      using (var md5 = MD5.Create()) hash = Convert.ToBase64String(md5.ComputeHash(bytes));
 
       hash += "|";
 
-      using (var sha1 = SHA1.Create())
-      {
-        hash += Convert.ToBase64String(sha1.ComputeHash(bytes));
-      }
+      using (var sha1 = SHA1.Create()) hash += Convert.ToBase64String(sha1.ComputeHash(bytes));
 
       return hash;
     }

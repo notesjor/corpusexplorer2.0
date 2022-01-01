@@ -101,36 +101,29 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
       var rules = data.Rules;
 
       var sentenceMarks = new HashSet<string> {".", "!", "?", ",", ";", "+", "#"};
-
-      Guid dguid;
-      string comment, speaker, mod, action, sentenceEnd, parallelSpeech, inSentenceComment, original, speakerError;
-      string[] category;
-      bool[] isValid;
-      int[] layerWord, layerPos, layerPosInfo, layerPosPerson, layerLemma, layerLemmaInfo, layerCategory;
-
       string lineUtterance = null;
-      int lineNumberUtterance = 0;
+      var lineNumberUtterance = 0;
 
       RestAllValues(
-        out dguid,
-        out comment,
-        out speaker,
-        out mod,
-        out action,
-        out sentenceEnd,
-        out parallelSpeech,
-        out inSentenceComment,
-        out original,
-        out speakerError,
-        out category,
-        out isValid,
-        out layerWord,
-        out layerPos,
-        out layerPosInfo,
-        out layerPosPerson,
-        out layerLemma,
-        out layerLemmaInfo,
-        out layerCategory);
+        out var dguid,
+        out var comment,
+        out var speaker,
+        out var mod,
+        out var action,
+        out var sentenceEnd,
+        out var parallelSpeech,
+        out var inSentenceComment,
+        out var original,
+        out var speakerError,
+        out var category,
+        out var isValid,
+        out var layerWord,
+        out var layerPos,
+        out var layerPosInfo,
+        out var layerPosPerson,
+        out var layerLemma,
+        out var layerLemmaInfo,
+        out var layerCategory);
 
       // Zeile für Zeile einlesen
       string[] text = null;
@@ -771,8 +764,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
 
     private void WordsPatch(int i, ref string[] words)
     {
-      int pre, post;
-      var fixes = BuildFixes(words, i, out pre, out post);
+      var fixes = BuildFixes(words, i, out var pre, out var post);
 
       var nWords = new List<string>();
       for (var j = 0; j < pre; j++)

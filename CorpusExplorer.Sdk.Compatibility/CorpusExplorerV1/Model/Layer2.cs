@@ -192,7 +192,7 @@ namespace CorpusExplorer.Sdk.Data.Model
       if (string.IsNullOrEmpty(layerName) || dokumente == null || daten == null)
         return null;
 
-      return new Layer2 {_daten = daten, _dokumente = dokumente, LayerName = layerName};
+      return new Layer2 { _daten = daten, _dokumente = dokumente, LayerName = layerName };
     }
 
     /// <summary>
@@ -232,13 +232,11 @@ namespace CorpusExplorer.Sdk.Data.Model
       foreach (var doc in a._dokumente)
       {
         var array = doc.Value.Clone() as int[][];
-        for (int i = 0; i < array.Length; i++)
-        {
+        // ReSharper disable once ForCanBeConvertedToForeach
+        for (var i = 0; i < array.Length; i++)
           for (var j = 0; j < array[i].Length; j++)
-          {
             array[i][j] = transA[array[i][j]];
-          }
-        }
+
         dicR.Add(doc.Key, array);
       }
     }

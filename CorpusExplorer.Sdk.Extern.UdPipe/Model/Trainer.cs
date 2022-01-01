@@ -64,10 +64,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       Dispose();
     }
 
-    internal static HandleRef getCPtr(Trainer obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
+    internal static HandleRef getCPtr(Trainer obj) => obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
 
     public static string train(string method, Sentences train, Sentences heldout, string tokenizer, string tagger,
                                string parser, ProcessingError error)

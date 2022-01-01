@@ -1,5 +1,9 @@
+#region
+
 using System;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {
@@ -26,7 +30,7 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
     {
       try
       {
-        var test = (DateTime) obj;
+        var test = (DateTime)obj;
         if (test.Year < _min || test.Year > _max)
           return false;
         Add(documentGuid);

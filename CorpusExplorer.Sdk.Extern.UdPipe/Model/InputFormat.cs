@@ -87,10 +87,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       Dispose();
     }
 
-    internal static HandleRef getCPtr(InputFormat obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
+    internal static HandleRef getCPtr(InputFormat obj) => obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
 
     internal static HandleRef getCPtrAndDisown(InputFormat obj)
     {

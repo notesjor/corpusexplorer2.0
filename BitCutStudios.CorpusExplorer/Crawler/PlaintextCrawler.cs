@@ -29,10 +29,8 @@ namespace Bcs.Crawler
         // ReSharper disable once NotResolvedInText
         throw new ArgumentNullException("Url");
 
-      using (var wc = new WebClient {Encoding = Encoding.UTF8})
-      {
-        return new[] {new Dictionary<string, object> {{"Text", wc.DownloadString(Url)}}};
-      }
+      using (var wc = new WebClient { Encoding = Encoding.UTF8 })
+        return new[] { new Dictionary<string, object> { { "Text", wc.DownloadString(Url) } } };
     }
 
     /// <summary>

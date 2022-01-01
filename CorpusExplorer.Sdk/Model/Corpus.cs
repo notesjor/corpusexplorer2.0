@@ -211,8 +211,7 @@ namespace CorpusExplorer.Sdk.Model
     public string GetDocumentDisplayname(Guid guid)
     {
       var meta = GetDocumentMetadata(guid);
-      object value;
-      return meta != null && meta.TryGetValue(Resources.Title, out value)
+      return meta != null && meta.TryGetValue(Resources.Title, out var value)
                ? value.ToString()
                : string.Format(Resources.NoTitle, guid.ToString(Resources.N));
     }
@@ -325,8 +324,7 @@ namespace CorpusExplorer.Sdk.Model
 
       foreach (var meta in _documentMetadata.SelectMany(doc => doc.Value))
       {
-        HashSet<object> value;
-        if (!res.TryGetValue(meta.Key, out value))
+        if (!res.TryGetValue(meta.Key, out var value))
         {
           res.Add(meta.Key, new HashSet<object> {meta.Value});
         }

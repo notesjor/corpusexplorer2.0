@@ -1,6 +1,10 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract
 {

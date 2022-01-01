@@ -28,14 +28,14 @@
     /// </summary>
     private void InitializeComponent()
     {
-      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SourceForm));
-      Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
-      Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
-      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+      Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
+      Telerik.WinControls.UI.RadListDataItem radListDataItem4 = new Telerik.WinControls.UI.RadListDataItem();
+      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
@@ -46,6 +46,7 @@
       this.grid_directories = new Telerik.WinControls.UI.RadGridView();
       this.btn_add_directories = new Telerik.WinControls.UI.RadButton();
       this.panel2 = new System.Windows.Forms.Panel();
+      this.info1 = new CorpusExplorer.Terminal.Automate.Controls.Info();
       this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
       this.anno_drop_language = new Telerik.WinControls.UI.RadDropDownList();
       this.anno_lbl_language = new Telerik.WinControls.UI.RadLabel();
@@ -66,7 +67,6 @@
       this.radCollapsiblePanel2 = new Telerik.WinControls.UI.RadCollapsiblePanel();
       this.grid_files = new Telerik.WinControls.UI.RadGridView();
       this.btn_add_files = new Telerik.WinControls.UI.RadButton();
-      this.info1 = new CorpusExplorer.Terminal.Automate.Controls.Info();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       this.panel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radCollapsiblePanel1)).BeginInit();
@@ -186,24 +186,24 @@
       // 
       // 
       // 
+      this.grid_directories.MasterTemplate.AddNewRowPosition = Telerik.WinControls.UI.SystemRowPosition.Bottom;
       this.grid_directories.MasterTemplate.AllowDragToGroup = false;
       this.grid_directories.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-      gridViewTextBoxColumn1.HeaderText = "directory";
-      gridViewTextBoxColumn1.MinWidth = 800;
-      gridViewTextBoxColumn1.Name = "directory";
-      gridViewTextBoxColumn1.Width = 1152;
-      gridViewTextBoxColumn2.HeaderText = "filter";
-      gridViewTextBoxColumn2.Name = "filter";
-      gridViewTextBoxColumn2.Width = 258;
+      gridViewTextBoxColumn4.HeaderText = "directory";
+      gridViewTextBoxColumn4.MinWidth = 800;
+      gridViewTextBoxColumn4.Name = "directory";
+      gridViewTextBoxColumn4.Width = 1152;
+      gridViewTextBoxColumn5.HeaderText = "filter";
+      gridViewTextBoxColumn5.Name = "filter";
+      gridViewTextBoxColumn5.Width = 258;
       this.grid_directories.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2});
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5});
       this.grid_directories.MasterTemplate.EnableGrouping = false;
-      this.grid_directories.MasterTemplate.ViewDefinition = tableViewDefinition1;
+      this.grid_directories.MasterTemplate.ViewDefinition = tableViewDefinition3;
       this.grid_directories.Name = "grid_directories";
       this.grid_directories.Size = new System.Drawing.Size(1430, 124);
       this.grid_directories.TabIndex = 3;
-      this.grid_directories.Click += new System.EventHandler(this.grid_directories_Click);
       // 
       // btn_add_directories
       // 
@@ -218,7 +218,7 @@
       this.btn_add_directories.Text = "Ordner auswählen";
       this.btn_add_directories.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
       this.btn_add_directories.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-      this.btn_add_directories.Click += new System.EventHandler(this.grid_directories_Click);
+      this.btn_add_directories.Click += new System.EventHandler(this.btn_add_directories_Click);
       // 
       // panel2
       // 
@@ -239,6 +239,16 @@
       this.panel2.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
       this.panel2.Size = new System.Drawing.Size(1472, 32);
       this.panel2.TabIndex = 2;
+      // 
+      // info1
+      // 
+      this.info1.BackColor = System.Drawing.Color.White;
+      this.info1.DisplayText = resources.GetString("info1.DisplayText");
+      this.info1.Dock = System.Windows.Forms.DockStyle.Left;
+      this.info1.Location = new System.Drawing.Point(1132, 0);
+      this.info1.Name = "info1";
+      this.info1.Size = new System.Drawing.Size(32, 32);
+      this.info1.TabIndex = 14;
       // 
       // radLabel4
       // 
@@ -332,11 +342,11 @@
       this.drop_starttag.DropDownAnimationEnabled = true;
       this.drop_starttag.DropDownHeight = 107;
       this.drop_starttag.ItemHeight = 36;
-      radListDataItem1.Selected = true;
-      radListDataItem1.Text = "annotate";
-      radListDataItem2.Text = "import";
-      this.drop_starttag.Items.Add(radListDataItem1);
-      this.drop_starttag.Items.Add(radListDataItem2);
+      radListDataItem3.Selected = true;
+      radListDataItem3.Text = "annotate";
+      radListDataItem4.Text = "import";
+      this.drop_starttag.Items.Add(radListDataItem3);
+      this.drop_starttag.Items.Add(radListDataItem4);
       this.drop_starttag.Location = new System.Drawing.Point(36, 0);
       this.drop_starttag.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.drop_starttag.Name = "drop_starttag";
@@ -477,19 +487,19 @@
       // 
       // 
       // 
+      this.grid_files.MasterTemplate.AddNewRowPosition = Telerik.WinControls.UI.SystemRowPosition.Bottom;
       this.grid_files.MasterTemplate.AllowDragToGroup = false;
       this.grid_files.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-      gridViewTextBoxColumn3.HeaderText = "file";
-      gridViewTextBoxColumn3.Name = "file";
-      gridViewTextBoxColumn3.Width = 1409;
+      gridViewTextBoxColumn6.HeaderText = "file";
+      gridViewTextBoxColumn6.Name = "file";
+      gridViewTextBoxColumn6.Width = 1409;
       this.grid_files.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn3});
+            gridViewTextBoxColumn6});
       this.grid_files.MasterTemplate.EnableGrouping = false;
-      this.grid_files.MasterTemplate.ViewDefinition = tableViewDefinition2;
+      this.grid_files.MasterTemplate.ViewDefinition = tableViewDefinition4;
       this.grid_files.Name = "grid_files";
       this.grid_files.Size = new System.Drawing.Size(1430, 124);
       this.grid_files.TabIndex = 3;
-      this.grid_files.Click += new System.EventHandler(this.grid_files_Click);
       // 
       // btn_add_files
       // 
@@ -504,17 +514,7 @@
       this.btn_add_files.Text = "Datei(en) auswählen";
       this.btn_add_files.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
       this.btn_add_files.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-      this.btn_add_files.Click += new System.EventHandler(this.grid_files_Click);
-      // 
-      // info1
-      // 
-      this.info1.BackColor = System.Drawing.Color.White;
-      this.info1.DisplayText = resources.GetString("info1.DisplayText");
-      this.info1.Dock = System.Windows.Forms.DockStyle.Left;
-      this.info1.Location = new System.Drawing.Point(1132, 0);
-      this.info1.Name = "info1";
-      this.info1.Size = new System.Drawing.Size(32, 32);
-      this.info1.TabIndex = 14;
+      this.btn_add_files.Click += new System.EventHandler(this.btn_add_files_Click);
       // 
       // SourceForm
       // 

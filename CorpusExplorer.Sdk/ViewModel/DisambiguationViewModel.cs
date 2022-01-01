@@ -32,7 +32,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       DataTableLevel = 1;
       LayerQuery = "";
       MinimumSignificance = 0.8d;
-      SimilarityIndex = new EuclideanDistance();
+      SimilarityIndex = new DistanceEuclidean();
     }
 
     public int DataTableLevel { get; set; }

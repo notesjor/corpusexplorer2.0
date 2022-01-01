@@ -83,7 +83,7 @@ namespace CorpusExplorer.Core
         new VocabularyComplexityTypeTokenRatio(),
 
         new CosineMeasure(),
-        new EuclideanDistance(),
+        new DistanceEuclidean(),
 
         new ChiSquaredSignificance(),
         new LogLikelihoodSignificance(),
@@ -134,8 +134,8 @@ namespace CorpusExplorer.Core
         {"CoNLL (*.conll)|*.conll", new ExporterConll()},
         {"TreeTagger (*.treetagger)|*.treetagger", new ExporterTreeTagger()},
         {"TreeTagger + Satzgrenze (*.treetagger)|*.treetagger", new ExporterTreeTagger {UseSentenceTag = true}},
-        {"CorpusWorkBench (*.cwb)|*.cwb", new ExporterCorpusWorkBench{UseSentenceTag = false}},
-        {"CorpusWorkBench + Satzgrenze (*.cwb)|*.cwb", new ExporterCorpusWorkBench {UseSentenceTag = true}}
+        {"CorpusWorkBench (*.vrt)|*.vrt", new ExporterCorpusWorkBench{UseSentenceTag = false}},
+        {"CorpusWorkBench + Satzgrenze (*.vrt)|*.vrt", new ExporterCorpusWorkBench {UseSentenceTag = true}}
       };
 
     /// <summary>
@@ -149,7 +149,8 @@ namespace CorpusExplorer.Core
         {"CorpusExplorer v6 [STREAM] (*.cec6)|*.cec6", new ImporterCec6Stream()},
         {"TLV-XML (*.xml)|*.xml", new ImporterTlv()},
         {"CoNLL (*.conll)|*.conll", new ImporterConll()},
-        {"TreeTagger (*.txt)|*.txt", new ImporterTreeTagger()}
+        {"TreeTagger (*.txt)|*.txt", new ImporterTreeTagger()},
+        {"CorpusWorkBench VRT (*.vrt)|*.vrt", new ImporterCorpusWorkBench()}
       };
 
     /// <summary>
@@ -192,82 +193,89 @@ namespace CorpusExplorer.Core
       new IAction[]
       {
         new BasicInformationAction(),
-        new LayerNamesAction(),
-        new MetaCategoriesAction(),
-
-        new DocumentCountAction(),
-        new SentenceCountAction(),
-        new TokenListAction(),
-        new TokenListSelectAction(),
-        new TokenCountAction(),
-        new LayerValuesAction(),
-        new TypeCountAction(),
-        new DocumentHashAction(),
-
-        new Frequency1SelectAction(),
-        new Frequency1Action(),
-        new Frequency2Action(),
-        new Frequency3Action(),
-        new Frequency1RawAction(),
-        new Frequency2RawAction(),
-        new Frequency3RawAction(),
-        new CorrespondingValuesAction(),
-        new NGramAction(),
-        new NGramSelectedAction(),
-        new CrossFrequencyAction(),
+        
+        new ClusterAction(),
+        new ClusterListAction(),
+        new ConvertAction(),
         new CooccurrenceAction(),
+        new CooccurrenceCorrespondingAction(),
         new CooccurrenceCrossAction(),
         new CooccurrenceCrossFullAction(),
         new CooccurrenceProfileAction(),
         new CooccurrenceSelectedAction(),
-        new PositionFrequencyAction(),
-        new StyleNgramAction(),
-        new MetaAction(),
-        new MetaDocumentAction(),
-        new MetaSelectedAction(),
-        new MetaSelectedDomainAction(),
-        new MtldAction(),
-        new VocdAction(),
+        new CorrespondingValuesAction(),
+        new CrossFrequencyAction(),
+        new CrossFrequencyCorrespondingAction(),
+
+        new DisambiguationeAction(),
+        new DispersionAction(),
+        new DispersionCorrespondingAction(),
+        new DocumentCountAction(),
+        new DocumentHashAction(),
+        new DocumentSimilarityAction(),
+        new DocumentTermFrequencyAction(),
+
+        new EditDistanceAction(),
+        
+        new Frequency1Action(),
+        new Frequency1RawAction(),
+        new Frequency1SelectAction(),
+        new Frequency2Action(),
+        new Frequency2RawAction(),
+        new Frequency3Action(),
+        new Frequency3RawAction(),
+
         new GetDocumentAction(),
         new GetDocumentDisplaynamesAction(),
         new GetDocumentMetadataAction(),
-        new NamedEntityAction(),
-        new EditDistanceAction(),
+
+        new InverseDocumentFrequencyAction(),
+
         new KeywordAction(),
-        new DispersionAction(),
-
-        new VocabularyComplexityAction(),
-        new StyleBurrowsDeltaAction(),
-        new DisambiguationeAction(),
-
-        new KwicAnyFilterAction(),
+        new KeywordCorrespondingAction(),
         new KwicAllInDocumentFilterAction(),
         new KwicAllInSentenceFilterAction(),
+        new KwicAnyFilterAction(),
         new KwicExactPhraseFilterAction(),
         new KwicFirstAnyFilterAction(),
         new KwicNamedEntityAction(),
         new KwicSignificantFilterAction(),
         new KwitAction(),
-        new KwitSelectAction(), 
+        new KwitSelectAction(),
 
-        new DocumentTermFrequencyAction(),
-        new InverseDocumentFrequencyAction(),
-        new TermFrequencyInverseDocumentFrequencyAction(),
-        new DocumentSimilarityAction(), 
+        new LayerNamesAction(),
+        new LayerValuesAction(),
 
-        new ClusterAction(),
-        new ConvertAction(),
+        new MetaAction(),
+        new MetaCategoriesAction(),
+        new MetaDocumentAction(),
+        new MetaSelectedAction(),
+        new MetaSelectedDomainAction(),
+        new MtldAction(),
+
+        new NamedEntityAction(),
+        new NGramAction(),
+        new NGramCorrespondingAction(),
+        new NGramSelectedAction(),
+
+        new PositionFrequencyAction(),
+        new PositionFrequencyCorrespondingAction(),
+
         new QueryAction(),
-
-        new ClusterListAction(),
         new QueryListAction(),
 
-        new CooccurrenceCorrespondingAction(),
-        new CrossFrequencyCorrespondingAction(),
-        new DispersionCorrespondingAction(),
-        new KeywordCorrespondingAction(),
-        new NGramCorrespondingAction(),
-        new PositionFrequencyAction(),
+        new SentenceCountAction(),
+        new StyleBurrowsDeltaAction(),
+        new StyleNgramAction(),
+
+        new TermFrequencyInverseDocumentFrequencyAction(),
+        new TokenCountAction(),
+        new TokenListAction(),
+        new TokenListSelectAction(),
+        new TypeCountAction(),
+
+        new VocabularyComplexityAction(),
+        new VocdAction(),
       };
 
     /// <summary>

@@ -1,7 +1,11 @@
+#region
+
 using System;
 using System.Globalization;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
 using CorpusExplorer.Sdk.Helper;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {
@@ -9,10 +13,7 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
   {
     private readonly double _value;
 
-    public DoubleCluster(double value)
-    {
-      _value = value;
-    }
+    public DoubleCluster(double value) => _value = value;
 
     public override object CentralValue => _value;
 

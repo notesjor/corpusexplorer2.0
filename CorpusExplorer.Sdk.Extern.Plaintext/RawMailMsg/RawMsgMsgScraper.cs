@@ -20,7 +20,6 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.RawMailMsg
   {
     private readonly StandardCleanup _cleanup = new StandardCleanup();
     private readonly object _cleanupLock = new object();
-    private string _tempPath;
 
     public override string DisplayName => "Easy MSG E-Mail";
 

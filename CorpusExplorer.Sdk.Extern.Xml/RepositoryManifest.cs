@@ -34,6 +34,7 @@ using CorpusExplorer.Sdk.Extern.Xml.Ids;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.I5Xml;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP;
 using CorpusExplorer.Sdk.Extern.Xml.LexisNexis;
+using CorpusExplorer.Sdk.Extern.Xml.Opus;
 using CorpusExplorer.Sdk.Extern.Xml.Perseus;
 using CorpusExplorer.Sdk.Extern.Xml.Pmg;
 using CorpusExplorer.Sdk.Extern.Xml.PostgreSqlDump;
@@ -82,6 +83,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"DWDS TEI (*.xml)|*.xml", new ExporterDwdsTei() },
         {"TXM TEI-XML (*.xml)|*.xml", new ExporterTxm() },
         {"CATMA 6 (*.xml/*.txt)|*", new ExporterCatma() },
+        {"XCES-XML (https://opus.nlpl.eu/) (*.xml)|*.xml", new ExporterOpusXces() },
       };
 
     /// <summary>
@@ -103,7 +105,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"TXM TEI-XML (*.xml)|*.xml", new ImporterTxm() },
         {"TiGER-XML (*.xml)|*.xml", new ImporterTiger() },
         {"FOLKER / OrthoNormal (*.fln)|*.fln", new ImporterFolkerFln() },
-        {"IDS KorAP (*.zip)|*.zip", new ImporterKorap()}
+        {"IDS KorAP (*.zip)|*.zip", new ImporterKorap()},
+        {"XCES-XML (https://opus.nlpl.eu/) (*.xml)|*.xml", new ImporterOpusXces()}
       };
 
     /// <summary>

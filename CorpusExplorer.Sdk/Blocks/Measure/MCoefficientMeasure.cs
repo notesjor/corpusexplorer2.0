@@ -13,9 +13,7 @@ namespace CorpusExplorer.Sdk.Blocks.Measure
   [Serializable]
   public sealed class MCoefficientMeasure : AbstractMeasure
   {
-    public override double Calculate(double k, double k0, double ki, double kj, double kij)
-    {
-      return (k0 + kij) / GetP(k0, ki, kj, kij);
-    }
+    public override double Calculate(double k, double k0, double ki, double kj, double kij) =>
+      (k0 + kij) / GetP(k0, ki, kj, kij);
   }
 }

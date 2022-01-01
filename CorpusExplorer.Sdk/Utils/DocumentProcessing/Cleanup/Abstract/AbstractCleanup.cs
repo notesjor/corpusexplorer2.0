@@ -25,8 +25,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup.Abstract
                      Configuration.ParallelOptions,
                      i =>
                      {
-                       Dictionary<string, object> doc;
-                       if (!Input.TryDequeue(out doc))
+                       if (!Input.TryDequeue(out var doc))
                          return;
                        if (doc?.Keys == null)
                          return;

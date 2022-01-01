@@ -1428,7 +1428,7 @@ namespace CorpusExplorer.Sdk.Model
     /// </typeparam>
     private delegate IEnumerable<T> ProxyRequestListDelegate<out T>(AbstractCorpusAdapter c);
 
-    internal void Clear()
+    public void Clear()
     {
       if (_corpora != null)
         foreach (var c in _corpora)

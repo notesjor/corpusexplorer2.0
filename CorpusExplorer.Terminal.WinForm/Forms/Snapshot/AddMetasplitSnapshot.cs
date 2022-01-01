@@ -60,7 +60,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
 
       drop_auto.SelectedIndex = 0;
 
-      RadPageViewHelper.MakeHeaderInvisible(radPageView1);
+      radPageView1.MakeHeaderInvisible();
       radPageView1.SelectedPage = page_none;
 
       DictionaryBindingHelper.BindDictionary(_baseGenerators, drop_auto);

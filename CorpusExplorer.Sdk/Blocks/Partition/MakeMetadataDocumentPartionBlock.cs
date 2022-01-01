@@ -1,10 +1,14 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.Partition.Delegates;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.Partition
 {
@@ -41,10 +45,7 @@ namespace CorpusExplorer.Sdk.Blocks.Partition
                        Configuration.ParallelOptions,
                        meta =>
                        {
-                         lock (@lock)
-                         {
-                           OutputPartition.Add(meta.Key, new Dictionary<string, Guid[]>());
-                         }
+                         lock (@lock) OutputPartition.Add(meta.Key, new Dictionary<string, Guid[]>());
 
                          Parallel.ForEach(
                                           meta.Value,
@@ -69,7 +70,6 @@ namespace CorpusExplorer.Sdk.Blocks.Partition
                                                          .ToString(); // obj?.ToString() führt hier nicht zum gewünschten Ergebnis!
 
                                             lock (@lock)
-                                            {
                                               if (OutputPartition[meta.Key].ContainsKey(key))
                                               {
                                                 var temp = new HashSet<Guid>(OutputPartition[meta.Key][key]);
@@ -81,7 +81,6 @@ namespace CorpusExplorer.Sdk.Blocks.Partition
                                               {
                                                 OutputPartition[meta.Key].Add(key, guids);
                                               }
-                                            }
                                           });
                        });
     }

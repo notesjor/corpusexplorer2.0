@@ -44,8 +44,9 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
           lock (dlock)
             doc = state.Documents[dsel];
 
-          for (int i = 0; i < doc.Length; i++)
-            for (int j = 0; j < doc[i].Length; j++)
+          // ReSharper disable once ForCanBeConvertedToForeach
+          for (var i = 0; i < doc.Length; i++)
+            for (var j = 0; j < doc[i].Length; j++)
               doc[i][j] = fixes[doc[i][j]];
 
           lock(dlock)

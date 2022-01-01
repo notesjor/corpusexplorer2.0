@@ -16,7 +16,7 @@ namespace CorpusExplorer.Sdk.Extern.Python.JusText
 {
   public class JusTextCleanup : AbstractCleanup
   {
-    private readonly string[] _germanPostFilter = {"Cookie", "Datenschutz", "zustimmen"};
+    private readonly string[] _germanPostFilter = { "Cookie", "Datenschutz", "zustimmen" };
 
     public JusTextCleanup()
     {
@@ -38,7 +38,6 @@ namespace CorpusExplorer.Sdk.Extern.Python.JusText
     {
       using (var iF = new TemporaryFile(Configuration.TempPath))
       using (var oF = new TemporaryFile(Configuration.TempPath))
-      {
         try
         {
           FileIO.Write(iF.Path, input, Encoding.UTF8);
@@ -52,12 +51,11 @@ namespace CorpusExplorer.Sdk.Extern.Python.JusText
         {
           return input;
         }
-      }
     }
 
     private string GermanPostFilter(string text)
     {
-      var ps = text.Split(new[] {"<p> "}, StringSplitOptions.RemoveEmptyEntries);
+      var ps = text.Split(new[] { "<p> " }, StringSplitOptions.RemoveEmptyEntries);
       var res = new List<string>();
 
       foreach (var p in ps)

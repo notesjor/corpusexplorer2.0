@@ -148,9 +148,8 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud
 
     protected override void OnMouseMove(MouseEventArgs e)
     {
-      LayoutItem nextItemUnderMouse;
       var mousePositionRelativeToControl = PointToClient(new Point(MousePosition.X, MousePosition.Y));
-      TryGetItemAtLocation(mousePositionRelativeToControl, out nextItemUnderMouse);
+      TryGetItemAtLocation(mousePositionRelativeToControl, out var nextItemUnderMouse);
       if (nextItemUnderMouse != m_ItemUderMouse)
       {
         if (nextItemUnderMouse != null)

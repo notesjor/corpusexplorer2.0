@@ -18,7 +18,7 @@ namespace CorpusExplorer.Sdk.Extern.Toxy
     {
       try
       {
-        var context = new ParserContext(file) {Encoding = Configuration.Encoding};
+        var context = new ParserContext(file) { Encoding = Configuration.Encoding };
         var parser = ParserFactory.CreateDom(context);
         var doc = parser.Parse();
 
@@ -26,13 +26,13 @@ namespace CorpusExplorer.Sdk.Extern.Toxy
         foreach (var x in doc.Root.Attributes.Where(x => !res.ContainsKey(x.Name) && x.Name != "Text"))
           res.Add(x.Name, x.Value);
         res.Add("Text", doc.Root.Text);
-        return new[] {res};
+        return new[] { res };
       }
       catch
       {
         try
         {
-          var context = new ParserContext(file) {Encoding = Configuration.Encoding};
+          var context = new ParserContext(file) { Encoding = Configuration.Encoding };
           var parser = ParserFactory.CreateDocument(context);
           var doc = parser.Parse();
 
@@ -40,9 +40,9 @@ namespace CorpusExplorer.Sdk.Extern.Toxy
           {
             new Dictionary<string, object>
             {
-              {"Header", doc.Header},
-              {"Footer", doc.Footer},
-              {"Text", string.Join(" ", doc.Paragraphs.Select(paragraph => paragraph.Text))}
+              { "Header", doc.Header },
+              { "Footer", doc.Footer },
+              { "Text", string.Join(" ", doc.Paragraphs.Select(paragraph => paragraph.Text)) }
             }
           };
         }
@@ -50,7 +50,7 @@ namespace CorpusExplorer.Sdk.Extern.Toxy
         {
           try
           {
-            var context = new ParserContext(file) {Encoding = Configuration.Encoding};
+            var context = new ParserContext(file) { Encoding = Configuration.Encoding };
             var parser = ParserFactory.CreateText(context);
             var doc = parser.Parse();
 
@@ -58,7 +58,7 @@ namespace CorpusExplorer.Sdk.Extern.Toxy
             {
               new Dictionary<string, object>
               {
-                {"Text", doc}
+                { "Text", doc }
               }
             };
           }

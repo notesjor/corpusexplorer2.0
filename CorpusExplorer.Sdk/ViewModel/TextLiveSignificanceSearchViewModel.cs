@@ -76,17 +76,11 @@ namespace CorpusExplorer.Sdk.ViewModel
       var res = new Dictionary<string, SignificanceExtendedUniqueTextLiveSearchResultEntry>();
       foreach (var corpus in SearchResults)
       foreach (var document in corpus.Value)
-      foreach (var sent in document.Value)
+      foreach (var sent in document.Value.Where(sent => sent.Value != null && sent.Value.Count != 0))
       {
-        if (sent.Value == null || sent.Value.Count == 0)
-          continue;
-
-        int token, stoken;
-        double sigMax, sigSum, sigMed;
-        HashSet<string> cooc;
         var streamDoc =
           RunHighlighting(Selection.GetReadableDocumentSnippet(document.Key, "Wort", sent.Key, sent.Key).ReduceDocumentToStreamDocument().ToArray(),
-                          out token, out stoken, out sigMax, out sigSum, out sigMed, out cooc);
+                          out var token, out var stoken, out var sigMax, out var sigSum, out var sigMed, out var cooc);
 
         var key = string.Join("|", streamDoc);
         if (!res.ContainsKey(key))

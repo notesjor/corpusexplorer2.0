@@ -40,6 +40,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
         return;
       _vm.Import(ofd.FileName);
       DocumentMetadataVisualisation_ShowVisualisation(null, null);
+
+      _vm.Execute();
+      radGridView1.Columns.Clear();
+      radGridView1.DataSource = _vm.DataTable;
+      radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
     }
 
     private void btn_meta_add_Click(object sender, EventArgs e)

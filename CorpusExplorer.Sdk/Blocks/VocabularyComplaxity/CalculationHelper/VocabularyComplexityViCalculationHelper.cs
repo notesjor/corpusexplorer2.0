@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using System.Linq;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.VocabularyComplaxity.CalculationHelper
 {
@@ -7,7 +11,7 @@ namespace CorpusExplorer.Sdk.Blocks.VocabularyComplaxity.CalculationHelper
   {
     public static double GetVi(Dictionary<string, double> tabelle, int i)
     {
-      return tabelle.Count(x => (int) x.Value == i);
+      return tabelle.Count(x => (int)x.Value == i);
     }
   }
 }

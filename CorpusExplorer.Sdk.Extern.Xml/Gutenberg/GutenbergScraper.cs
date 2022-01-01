@@ -54,9 +54,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Gutenberg
             if (attrN.Value == "year" ||
                 attrN.Value == "firstpub")
             {
-              int year;
               var stry = attrC.Value;
-              if (int.TryParse(stry, out year))
+              if (int.TryParse(stry, out var year))
                 res.Add(attrN.Value, year);
               else
                 res.Add(attrN.Value, stry);

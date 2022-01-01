@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 
 namespace CorpusExplorer.Sdk.Extern.Json.SimpleStandoff
 {
-  public class SimpleJsonStandoffImporter : AbstractImporterBase
+  public class ImporterSimpleJsonStandoff : AbstractImporterBase
   {
     public AbstractTokenizer Tokenizer { get; set; } = new HighSpeedSpaceTokenizer();
     public AbstractSentenizer Sentenizer { get; set; } = new QuickSentenizer();

@@ -40,10 +40,7 @@ namespace Bcs.Security
     {
       byte[] hash;
       var res = new RijndaelManaged();
-      using (var sha = SHA512.Create())
-      {
-        hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
-      }
+      using (var sha = SHA512.Create()) hash = sha.ComputeHash(Encoding.ASCII.GetBytes(password));
 
       var buffer = new byte[32];
       for (var i = 0; i < 32; i++)
@@ -77,15 +74,9 @@ namespace Bcs.Security
     public static void GenerateRsa(string privateKeyFile, string publicKeyFile)
     {
       var prov = new RSACryptoServiceProvider();
-      using (var stw = new StreamWriter(privateKeyFile))
-      {
-        stw.Write(prov.ToXmlString(true));
-      }
+      using (var stw = new StreamWriter(privateKeyFile)) stw.Write(prov.ToXmlString(true));
 
-      using (var stw = new StreamWriter(publicKeyFile))
-      {
-        stw.Write(prov.ToXmlString(false));
-      }
+      using (var stw = new StreamWriter(publicKeyFile)) stw.Write(prov.ToXmlString(false));
     }
   }
 }

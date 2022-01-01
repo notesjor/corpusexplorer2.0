@@ -23,7 +23,7 @@ namespace CorpusExplorer.Sdk.Db.ElasticSearch
     public override IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> AddonBackends =>
       new Dictionary<string, AbstractCorpusBuilder>
       {
-        {"CorpusExplorer <-> ElasticSearch", new CorpusBuilderElasticSearchLightweightGui()}
+        { "CorpusExplorer <-> ElasticSearch", new CorpusBuilderElasticSearchLightweightGui() }
       };
 
     public override IEnumerable<IAction> AddonConsoleActions => null;
@@ -31,14 +31,14 @@ namespace CorpusExplorer.Sdk.Db.ElasticSearch
     public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters =>
       new Dictionary<string, AbstractExporter>
       {
-        {"CorpusExplorer <-> ElasticSearch (*.elastic)|*.elastic", new ExporterElasticSearch()},
-        {"CorpusExplorer >>> ElasticSearch (Kein CE-Reimport möglich)|*.elastic", new ExporterElasticSearchFulltext()}
+        { "CorpusExplorer <-> ElasticSearch (*.elastic)|*.elastic", new ExporterElasticSearch() },
+        { "CorpusExplorer >>> ElasticSearch (Kein CE-Reimport möglich)|*.elastic", new ExporterElasticSearchFulltext() }
       };
 
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter =>
       new Dictionary<string, AbstractImporter>
       {
-        {"CorpusExplorer <-> Elasticsearch (*.elastic)|*.elastic", new ImporterElasticSearch()}
+        { "CorpusExplorer <-> Elasticsearch (*.elastic)|*.elastic", new ImporterElasticSearch() }
       };
 
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers => null;

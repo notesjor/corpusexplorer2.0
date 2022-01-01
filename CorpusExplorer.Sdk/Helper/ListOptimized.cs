@@ -181,11 +181,8 @@ namespace CorpusExplorer.Sdk.Helper
     /// <returns>
     ///   The <see cref="int" />.
     /// </returns>
-    public int IndexOf(T item)
-    {
-      int res;
-      return _dic.TryGetValue(item, out res) ? res : -1;
-    }
+    public int IndexOf(T item) 
+      => _dic.TryGetValue(item, out var res) ? res : -1;
 
     /// <summary>
     ///   The insert.
@@ -201,7 +198,7 @@ namespace CorpusExplorer.Sdk.Helper
       _list.Insert(index, item);
 
       for (var i = index + 1; i < _list.Count; i++)
-        _dic[_list[i]] = _dic[_list[i]] + 1;
+        _dic[_list[i]] += 1;
     }
 
     /// <summary>

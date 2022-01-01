@@ -138,10 +138,9 @@ namespace CorpusExplorer.Sdk.ViewModel
       {
         var entry = meta[metaLabel];
 
-        if (entry is DateTime)
-          key = ((DateTime) entry).ToString("yyyy-MM-dd");
-        else
-          key = entry.ToString();
+        key = entry is DateTime dt 
+                ? dt.ToString("yyyy-MM-dd") 
+                : entry.ToString();
       }
       catch
       {

@@ -24,10 +24,8 @@ namespace Bcs.Security
     /// <returns>
     ///   Output String (Encoding.Default)
     /// </returns>
-    public static string DecodeRsa(RSACryptoServiceProvider prov, string data)
-    {
-      return Encoding.Default.GetString(DecodeRsa(prov, Convert.FromBase64String(data)));
-    }
+    public static string DecodeRsa(RSACryptoServiceProvider prov, string data) =>
+      Encoding.Default.GetString(DecodeRsa(prov, Convert.FromBase64String(data)));
 
     /// <summary>
     ///   Liest von einem mit einem asymetrisch Schlüssel verschlüsseltem Stream
@@ -54,10 +52,7 @@ namespace Bcs.Security
     /// <returns>
     ///   Output Data
     /// </returns>
-    internal static byte[] DecodeRsa(RSACryptoServiceProvider prov, byte[] data)
-    {
-      return prov.Decrypt(data, false);
-    }
+    internal static byte[] DecodeRsa(RSACryptoServiceProvider prov, byte[] data) => prov.Decrypt(data, false);
 
     /// <summary>
     ///   Liest von einem Stream, verschlüsselt dessen Daten und gibt diese als
@@ -84,10 +79,8 @@ namespace Bcs.Security
     /// <returns>
     ///   Output String (Base64)
     /// </returns>
-    public static string EncodeRsa(RSACryptoServiceProvider prov, string data)
-    {
-      return Convert.ToBase64String(EncodeRsa(prov, Encoding.Default.GetBytes(data)));
-    }
+    public static string EncodeRsa(RSACryptoServiceProvider prov, string data) =>
+      Convert.ToBase64String(EncodeRsa(prov, Encoding.Default.GetBytes(data)));
 
     /// <summary>
     ///   Encode with RSA
@@ -97,10 +90,7 @@ namespace Bcs.Security
     /// <returns>
     ///   Output Data
     /// </returns>
-    public static byte[] EncodeRsa(RSACryptoServiceProvider prov, byte[] data)
-    {
-      return prov.Encrypt(data, false);
-    }
+    public static byte[] EncodeRsa(RSACryptoServiceProvider prov, byte[] data) => prov.Encrypt(data, false);
 
     /// <summary>
     ///   Load a RSA-Provider from a XML-File
@@ -112,10 +102,7 @@ namespace Bcs.Security
     public static RSACryptoServiceProvider ReadRsaFromFile(string path)
     {
       var res = new RSACryptoServiceProvider();
-      using (var str = new StreamReader(path))
-      {
-        res.FromXmlString(str.ReadToEnd());
-      }
+      using (var str = new StreamReader(path)) res.FromXmlString(str.ReadToEnd());
 
       return res;
     }
@@ -142,10 +129,8 @@ namespace Bcs.Security
     /// <returns>
     ///   Hash
     /// </returns>
-    public static byte[] SignData(RSACryptoServiceProvider prov, byte[] data)
-    {
-      return prov.SignData(data, new SHA1CryptoServiceProvider());
-    }
+    public static byte[] SignData(RSACryptoServiceProvider prov, byte[] data) =>
+      prov.SignData(data, new SHA1CryptoServiceProvider());
 
     /// <summary>
     ///   Signiert den String
@@ -155,10 +140,8 @@ namespace Bcs.Security
     /// <returns>
     ///   Hash
     /// </returns>
-    public static string SignData(RSACryptoServiceProvider prov, string data)
-    {
-      return Convert.ToBase64String(SignData(prov, Encoding.UTF8.GetBytes(data)));
-    }
+    public static string SignData(RSACryptoServiceProvider prov, string data) =>
+      Convert.ToBase64String(SignData(prov, Encoding.UTF8.GetBytes(data)));
 
     /// <summary>
     ///   De/Encrpyt with Rijndael
@@ -168,10 +151,8 @@ namespace Bcs.Security
     /// <returns>
     ///   Output
     /// </returns>
-    public static byte[] UseRijndael(ICryptoTransform trans, byte[] data)
-    {
-      return trans.TransformFinalBlock(data, 0, data.Length);
-    }
+    public static byte[] UseRijndael(ICryptoTransform trans, byte[] data) =>
+      trans.TransformFinalBlock(data, 0, data.Length);
 
     /// <summary>
     ///   Liest von einem Stream, verschlüsselt dessen Daten und gibt diese als
@@ -198,10 +179,8 @@ namespace Bcs.Security
     /// <returns>
     ///   Output
     /// </returns>
-    public static string UseRijndael(ICryptoTransform trans, string data)
-    {
-      return Convert.ToBase64String(UseRijndael(trans, Convert.FromBase64String(data)));
-    }
+    public static string UseRijndael(ICryptoTransform trans, string data) =>
+      Convert.ToBase64String(UseRijndael(trans, Convert.FromBase64String(data)));
 
     /// <summary>
     ///   Überprüft ob die Daten mit dem Hash signiert wurde.
@@ -212,10 +191,8 @@ namespace Bcs.Security
     /// <returns>
     ///   Signiert?
     /// </returns>
-    public static bool VerifyData(RSACryptoServiceProvider prov, byte[] data, byte[] hash)
-    {
-      return prov.VerifyData(data, new SHA1CryptoServiceProvider(), hash);
-    }
+    public static bool VerifyData(RSACryptoServiceProvider prov, byte[] data, byte[] hash) =>
+      prov.VerifyData(data, new SHA1CryptoServiceProvider(), hash);
 
     /// <summary>
     ///   Überprüft ob der String mit dem Hash signiert wurde.
@@ -226,9 +203,7 @@ namespace Bcs.Security
     /// <returns>
     ///   Signiert?
     /// </returns>
-    public static bool VerifyData(RSACryptoServiceProvider prov, string data, string hash)
-    {
-      return VerifyData(prov, Encoding.UTF8.GetBytes(data), Convert.FromBase64String(hash));
-    }
+    public static bool VerifyData(RSACryptoServiceProvider prov, string data, string hash) =>
+      VerifyData(prov, Encoding.UTF8.GetBytes(data), Convert.FromBase64String(hash));
   }
 }

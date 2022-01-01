@@ -24,51 +24,51 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
       {
         {
           "ANNIS XML (*.xml)|*.xml",
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Annis}
+          new ExporterSaltAndPepper { Module = ExporterSaltAndPepper.PepperOutputModule.Annis }
         },
         {
           "DOT (*.dot)|*.dot",
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Dot}
+          new ExporterSaltAndPepper { Module = ExporterSaltAndPepper.PepperOutputModule.Dot }
         },
         {
           "GraphANNO (*.xml)|*.xml",
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.GraphAnno}
+          new ExporterSaltAndPepper { Module = ExporterSaltAndPepper.PepperOutputModule.GraphAnno }
         },
         {
           "MMAX2 (*.mmax2)|*.mmax2",
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Mmax2}
+          new ExporterSaltAndPepper { Module = ExporterSaltAndPepper.PepperOutputModule.Mmax2 }
         },
         {
           "Paula (*.xml)|*.xml",
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Paula}
+          new ExporterSaltAndPepper { Module = ExporterSaltAndPepper.PepperOutputModule.Paula }
         },
         {
           "PennTreebank (*.xml)|*.xml",
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.PennTreebank}
+          new ExporterSaltAndPepper { Module = ExporterSaltAndPepper.PepperOutputModule.PennTreebank }
         },
         {
           "RelANNIS (*.xml)|*.xml",
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.RelAnnis}
+          new ExporterSaltAndPepper { Module = ExporterSaltAndPepper.PepperOutputModule.RelAnnis }
         },
         {
           "SaltInfo (*.html)|*.html",
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.SaltInfo}
+          new ExporterSaltAndPepper { Module = ExporterSaltAndPepper.PepperOutputModule.SaltInfo }
         },
         {
           "SaltXML (*.xml)|*.xml",
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.SaltXml}
+          new ExporterSaltAndPepper { Module = ExporterSaltAndPepper.PepperOutputModule.SaltXml }
         },
         {
           "Tcf (*.tcf)|*.tcf",
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Tcf}
+          new ExporterSaltAndPepper { Module = ExporterSaltAndPepper.PepperOutputModule.Tcf }
         },
         {
           "Text (*.txt)|*.txt",
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.Text}
+          new ExporterSaltAndPepper { Module = ExporterSaltAndPepper.PepperOutputModule.Text }
         },
         {
           "TreeTagger (*.txt)|*.txt",
-          new ExporterSaltAndPepper {Module = ExporterSaltAndPepper.PepperOutputModule.TreeTagger}
+          new ExporterSaltAndPepper { Module = ExporterSaltAndPepper.PepperOutputModule.TreeTagger }
         }
       };
 
@@ -77,102 +77,107 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
       {
         {
           "Aldt XML 1.0 (*.xml)|*.xml",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Aldt10}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Aldt10 }
         },
         {
           "Aldt XML 1.5 (*.xml)|*.xml",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Aldt15}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Aldt15 }
         },
         {
-          "CoNLL (*.conll)|*.conll", new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Conll}
+          "CoNLL (*.conll)|*.conll",
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Conll }
         },
         {
-          "CoraXML (*.xml)|*.xml", new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.CoraXml}
+          "CoraXML (*.xml)|*.xml",
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.CoraXml }
         },
         {
           "EXMARaLDA (*.exs)|*.exs",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Exmaralda}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Exmaralda }
         },
         {
           "Elan (*.xml)|*.xml",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Elan}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Elan }
         },
         {
-          "GATE 2.0 (*.xml)|*.xml", new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Gate20}
+          "GATE 2.0 (*.xml)|*.xml",
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Gate20 }
         },
         {
-          "GATE 3.0 (*.xml)|*.xml", new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Gate30}
+          "GATE 3.0 (*.xml)|*.xml",
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Gate30 }
         },
         {
           "Generic-XML (*.xml)|*.xml",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.GenericXml}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.GenericXml }
         },
         {
           "Graf (*.xml)|*.xml",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Graf}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Graf }
         },
         {
-          "MMAX2 (*.mmax2)|*.mmax2", new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Mmax2}
+          "MMAX2 (*.mmax2)|*.mmax2",
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Mmax2 }
         },
         {
           "Paula (*.xml)|*.xml",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Paula}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Paula }
         },
         {
           "PennTreebank (*.xml)|*.xml",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.PennTreebank}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.PennTreebank }
         },
         {
           "RST (*.rst)|*.rst",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Rst}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Rst }
         },
         {
           "SaltXml (*.xml; *.salt)|*.xml;*.salt",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.SaltXml}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.SaltXml }
         },
         {
           "TCF (*.tcf)|*.tcf",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Tcf}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Tcf }
         },
         {
           "TEI-XML (*.xml)|*.xml",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Tei}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Tei }
         },
         {
           "Tiger-XML (*.xml)|*.xml",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Tiger1}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Tiger1 }
         },
         {
           "Tiger2-XML (*.xml)|*.xml",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Tiger2}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Tiger2 }
         },
         {
           "Uam (*.xml)|*.xml",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Uam}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Uam }
         },
         {
           "Excel (*.xls)|*.xls",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Spreadsheet1}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Spreadsheet1 }
         },
         {
           "Excel (*.xlsx)|*.xlsx",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Spreadsheet2}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Spreadsheet2 }
         },
         {
           "Toolbox-XML (*.toolbox-xml)|*.toolbox-xml",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Toolbox}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Toolbox }
         },
         {
           "TreeTagger (*.txt)|*.txt",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.TreeTagger}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.TreeTagger }
         },
         {
           "WebannoTSV (*.tsv)|*.tsv",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.WebannoTsv}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.WebannoTsv }
         },
         {
           "Wolof (*.wolof)|*.wolof",
-          new ImporterSaltAndPepper {Module = ImporterSaltAndPepper.PepperImportModule.Wolof}
+          new ImporterSaltAndPepper { Module = ImporterSaltAndPepper.PepperImportModule.Wolof }
         }
       };
 

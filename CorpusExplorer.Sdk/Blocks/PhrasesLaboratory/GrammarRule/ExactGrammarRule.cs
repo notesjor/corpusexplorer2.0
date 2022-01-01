@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks.PhrasesLaboratory.GrammarRule.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory.GrammarRule
 {
@@ -28,7 +32,7 @@ namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory.GrammarRule
       set
       {
         _body = value;
-        _matches = _body.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
+        _matches = _body.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
         _isRecursiv = _matches.Any(match => match == Label);
       }
     }
@@ -41,7 +45,7 @@ namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory.GrammarRule
         return null;
 
       var match = true;
-      var items = new List<Constituent> {constituents[index]};
+      var items = new List<Constituent> { constituents[index] };
 
       for (var i = 1; i < _matches.Length; i++)
       {

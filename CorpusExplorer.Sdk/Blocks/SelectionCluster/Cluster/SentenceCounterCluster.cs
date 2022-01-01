@@ -1,6 +1,10 @@
-﻿using System;
+﻿#region
+
+using System;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
 using CorpusExplorer.Sdk.Model;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {
@@ -10,14 +14,8 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
     {
     }
 
-    protected override bool CanAdd(Guid documentGuid, long counter, long max)
-    {
-      return AcceptAll || counter < max;
-    }
+    protected override bool CanAdd(Guid documentGuid, long counter, long max) => AcceptAll || counter < max;
 
-    protected override long Count(Guid documentGuid)
-    {
-      return Selection.GetDocumentLengthInSentences(documentGuid);
-    }
+    protected override long Count(Guid documentGuid) => Selection.GetDocumentLengthInSentences(documentGuid);
   }
 }

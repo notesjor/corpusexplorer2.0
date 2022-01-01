@@ -21,9 +21,6 @@ namespace CorpusExplorer.Sdk.Blocks.Similarity
     /// <returns>
     ///   The <see cref="double" />.
     /// </returns>
-    public static double Convert(double dist)
-    {
-      return 1.0d / (dist + 1.0d);
-    }
+    public static double Convert(double dist) => 1.0d / (dist + 1.0d);
   }
 }

@@ -87,30 +87,21 @@ namespace CorpusExplorer.Sdk.Data.Helper
       return true;
     }
 
-    public int Count
-    {
-      get { return _list.Count; }
-    }
+    public int Count 
+      => _list.Count;
 
-    public bool IsReadOnly
-    {
-      get { return false; }
-    }
+    public bool IsReadOnly 
+      => false;
 
-    public int IndexOf(T item)
-    {
-      int res;
-      return _dic.TryGetValue(item, out res) ? res : -1;
-    }
+    public int IndexOf(T item) 
+      => _dic.TryGetValue(item, out var res) ? res : -1;
 
     public void Insert(int index, T item)
     {
       _list.Insert(index, item);
 
-      for (int i = index + 1; i < _list.Count; i++)
-      {
+      for (var i = index + 1; i < _list.Count; i++) 
         _dic[_list[i]] = _dic[_list[i]] + 1;
-      }
     }
 
     public void RemoveAt(int index)
@@ -120,8 +111,8 @@ namespace CorpusExplorer.Sdk.Data.Helper
 
     public T this[int index]
     {
-      get { return _list[index]; }
-      set { _list[index] = value; }
+      get => _list[index];
+      set => _list[index] = value;
     }
 
     public void AddRange(IEnumerable<T> items)

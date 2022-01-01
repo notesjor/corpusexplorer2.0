@@ -40,7 +40,7 @@ namespace Bcs.IO
       if (encoding == null)
         encoding = Encoding.UTF8;
       if (delimiters == null)
-        delimiters = new[] {"\r\n", "\r", "\n"};
+        delimiters = new[] { "\r\n", "\r", "\n" };
 
       return ReadText(path, encoding).Split(delimiters, stringSplitOptions);
     }
@@ -85,10 +85,7 @@ namespace Bcs.IO
         // ignore
       }
 
-      using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
-      {
-        fs.Write(bytes, 0, bytes.Length);
-      }
+      using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write)) fs.Write(bytes, 0, bytes.Length);
     }
   }
 }

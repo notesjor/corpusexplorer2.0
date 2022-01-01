@@ -105,11 +105,11 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Polenter.SharpSerializer, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpSerializer.3.0.1\lib\netstandard1.0\Polenter.SharpSerializer.dll</HintPath>
+    <Reference Include="Polenter.SharpSerializer, Version=3.0.2.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpSerializer.3.0.2\lib\net452\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=6.9.12.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.9.12\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.10.5.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.10.5\lib\net45\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -132,6 +132,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Addon\AbstractSimpleOnDemandAddon.cs" />
@@ -302,6 +303,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helper\AutoSplitBlockHelper.cs" />
     <Compile Include="Helper\AvailableAddonHelper.cs" />
+    <Compile Include="Helper\ChunkHelper.cs" />
     <Compile Include="Helper\DictionaryMergeHelper.cs" />
     <Compile Include="Helper\DictionarySerializerHelper.cs" />
     <Compile Include="Helper\DynamicAddonLoader.cs" />
@@ -358,6 +360,7 @@
     <Compile Include="Model\CorpusExplorer\FileSystem\FileSystemCorpusRoot.cs" />
     <Compile Include="Model\CorpusExplorer\FileSystem\FileSystemLayerHead.cs" />
     <Compile Include="Model\Delegates\HydraDelegate.cs" />
+    <Compile Include="Model\Localization\ModelLocalization.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusCleaner.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusNormalizer.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusMergerQueryBased.cs" />
@@ -454,6 +457,7 @@
     <Compile Include="Utils\DocumentProcessing\Importer\CorpusExplorerV6\ImporterCec6.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\CorpusExplorerV6\ImporterCec6Stream.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\ImporterConll.cs" />
+    <Compile Include="Utils\DocumentProcessing\Importer\ImporterCorpusWorkBench.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\ImporterTlv.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\ImporterTreeTagger.cs" />
     <Compile Include="Utils\DocumentProcessing\Scraper\Cec6Scraper.cs" />
@@ -465,6 +469,10 @@
     <Compile Include="Utils\DocumentProcessing\Sentenizer\QuickSentenizer.cs" />
     <Compile Include="Utils\DocumentProcessing\Tagger\Abstract\AbstractAdditionalTagger.cs" />
     <Compile Include="Utils\DocumentProcessing\Tagger\Abstract\AbstractTaggerWithUnderscore.cs" />
+    <Compile Include="Utils\DocumentProcessing\Tagger\AdditionalTaggerWrapper\AdditionalTaggerWrapper.cs" />
+    <Compile Include="Utils\DocumentProcessing\Tagger\AdditionalTaggerWrapper\Model\AdditionalTaggerWrapperCorpus.cs" />
+    <Compile Include="Utils\DocumentProcessing\Tagger\AdditionalTaggerWrapper\Model\AdditionalTaggerWrapperCorpusBuilder.cs" />
+    <Compile Include="Utils\DocumentProcessing\Tagger\AdditionalTaggerWrapper\Model\AdditionalTaggerWrapperLayer.cs" />
     <Compile Include="Utils\DocumentProcessing\Tagger\ConllTagger\Abstract\AbstractConllStyleTagger.cs" />
     <Compile Include="Utils\DocumentProcessing\Tagger\Helper\TaggerHelper.cs" />
     <Compile Include="Utils\DocumentProcessing\Tokenizer\HighSpeedSpaceTokenizer.cs" />
@@ -558,6 +566,7 @@
     <Compile Include="Helper\DataTableExtension.cs" />
     <Compile Include="Helper\DictionaryExtension.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerExactPhrase.cs" />
+    <Compile Include="Utils\Filter\QueryFilter.cs" />
     <Compile Include="Utils\ReMapper\Abstract\AbstractReMapper.cs" />
     <Compile Include="Utils\ReMapper\Model\ReMapperEntry.cs" />
     <Compile Include="Utils\ReMapper\ReMapperInline.cs" />
@@ -617,7 +626,7 @@
     <Compile Include="Model\CorpusExplorer\CeTranscriptEntry.cs" />
     <Compile Include="Model\CorpusExplorer\CeObject.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\Abstract\AbstractExporter.cs" />
-    <Compile Include="Utils\Filter\QueryFilter.cs" />
+    <Compile Include="Utils\Filter\QuickQuery.cs" />
     <Compile Include="Model\Interface\IHydra.cs" />
     <Compile Include="Helper\Verbalizer\IVerbalizerSimple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -625,7 +634,7 @@
     <Compile Include="Blocks\Similarity\Abstract\AbstractSimilarity.cs" />
     <Compile Include="Blocks\Similarity\ConvertDistanceToSimilarity.cs" />
     <Compile Include="Blocks\Similarity\CosineMeasure.cs" />
-    <Compile Include="Blocks\Similarity\EuclideanDistance.cs" />
+    <Compile Include="Blocks\Similarity\DistanceEuclidean.cs" />
     <Compile Include="Blocks\Measure\Abstract\AbstractMeasure.cs" />
     <Compile Include="Blocks\Measure\BraunMeasure.cs" />
     <Compile Include="Blocks\Measure\DiceCoefficient.cs" />
@@ -702,6 +711,10 @@
     <Compile Include="ViewModel\PhrasesViewModel.cs" />
     <Compile Include="ViewModel\PositionFrequencyViewModel.cs" />
     <Compile Include="ViewModel\PosTagFilterViewModel.cs" />
+    <Compile Include="ViewModel\ProjectionViewModel.cs" />
+    <Compile Include="ViewModel\Projection\Annotation\Abstract\AbstractAnnotation.cs" />
+    <Compile Include="ViewModel\Projection\Annotation\AnnotationByFilterQuery.cs" />
+    <Compile Include="ViewModel\Projection\Annotation\AnnotationByUser.cs" />
     <Compile Include="ViewModel\QuickInfoTextViewModel.cs" />
     <Compile Include="ViewModel\QuickInfoText\QuickInfoTextResult.cs" />
     <Compile Include="ViewModel\QuickInfoTtrViewModel.cs" />

@@ -25,9 +25,7 @@ namespace CorpusExplorer.Sdk.Blocks.VocabularyComplaxity
     /// <returns>
     ///   The <see cref="double" />.
     /// </returns>
-    public override double CalculateValue(Dictionary<string, double> token)
-    {
-      return VocabularyComplexityViCalculationHelper.GetVi(token, 2) / token.Count;
-    }
+    public override double CalculateValue(Dictionary<string, double> token) =>
+      VocabularyComplexityViCalculationHelper.GetVi(token, 2) / token.Count;
   }
 }

@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks
 {
@@ -77,7 +81,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
           sequences[x.Key]
            .Add(new Tuple<int, HashSet<string>, int, HashSet<string>, int, HashSet<string>>(sI, wPre, iA, wBetween, iB,
-                                                                                            wPost));
+                 wPost));
         }
       }
     }

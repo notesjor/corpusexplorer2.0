@@ -50,6 +50,16 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       this.commandBarDropDownButton2 = new Telerik.WinControls.UI.CommandBarDropDownButton();
       this.btn_layout_tree = new Telerik.WinControls.UI.RadMenuItem();
       this.btn_layout_net = new Telerik.WinControls.UI.RadMenuItem();
+      this.commandBarRowElement2 = new Telerik.WinControls.UI.CommandBarRowElement();
+      this.commandBarStripElement2 = new Telerik.WinControls.UI.CommandBarStripElement();
+      this.commandBarLabel1 = new Telerik.WinControls.UI.CommandBarLabel();
+      this.txt_minFreq = new Telerik.WinControls.UI.CommandBarTextBox();
+      this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
+      this.host_range = new Telerik.WinControls.UI.CommandBarHostItem();
+      this.lbl_pre = new Telerik.WinControls.UI.CommandBarLabel();
+      this.txt_pre = new Telerik.WinControls.UI.CommandBarTextBox();
+      this.lbl_post = new Telerik.WinControls.UI.CommandBarLabel();
+      this.txt_post = new Telerik.WinControls.UI.CommandBarTextBox();
       this.webHtml5Visualisation1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser.WebHtml5Visualisation();
       ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
       this.radSplitContainer1.SuspendLayout();
@@ -105,7 +115,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       resources.ApplyResources(this.radCommandBar1, "radCommandBar1");
       this.radCommandBar1.Name = "radCommandBar1";
       this.radCommandBar1.Rows.AddRange(new Telerik.WinControls.UI.CommandBarRowElement[] {
-            this.commandBarRowElement1});
+            this.commandBarRowElement1,
+            this.commandBarRowElement2});
       // 
       // commandBarRowElement1
       // 
@@ -212,6 +223,69 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       resources.ApplyResources(this.btn_layout_net, "btn_layout_net");
       this.btn_layout_net.Click += new System.EventHandler(this.btn_layout_net_Click);
       // 
+      // commandBarRowElement2
+      // 
+      this.commandBarRowElement2.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement2.Name = "commandBarRowElement2";
+      this.commandBarRowElement2.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
+            this.commandBarStripElement2});
+      // 
+      // commandBarStripElement2
+      // 
+      resources.ApplyResources(this.commandBarStripElement2, "commandBarStripElement2");
+      this.commandBarStripElement2.Items.AddRange(new Telerik.WinControls.UI.RadCommandBarBaseItem[] {
+            this.commandBarLabel1,
+            this.txt_minFreq,
+            this.commandBarSeparator1,
+            this.host_range,
+            this.lbl_pre,
+            this.txt_pre,
+            this.lbl_post,
+            this.txt_post});
+      this.commandBarStripElement2.Name = "commandBarStripElement2";
+      // 
+      // commandBarLabel1
+      // 
+      resources.ApplyResources(this.commandBarLabel1, "commandBarLabel1");
+      this.commandBarLabel1.Name = "commandBarLabel1";
+      // 
+      // txt_minFreq
+      // 
+      resources.ApplyResources(this.txt_minFreq, "txt_minFreq");
+      this.txt_minFreq.Name = "txt_minFreq";
+      // 
+      // commandBarSeparator1
+      // 
+      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
+      this.commandBarSeparator1.Name = "commandBarSeparator1";
+      this.commandBarSeparator1.VisibleInOverflowMenu = false;
+      // 
+      // host_range
+      // 
+      resources.ApplyResources(this.host_range, "host_range");
+      this.host_range.MinSize = new System.Drawing.Size(135, 38);
+      this.host_range.Name = "host_range";
+      // 
+      // lbl_pre
+      // 
+      resources.ApplyResources(this.lbl_pre, "lbl_pre");
+      this.lbl_pre.Name = "lbl_pre";
+      // 
+      // txt_pre
+      // 
+      resources.ApplyResources(this.txt_pre, "txt_pre");
+      this.txt_pre.Name = "txt_pre";
+      // 
+      // lbl_post
+      // 
+      resources.ApplyResources(this.lbl_post, "lbl_post");
+      this.lbl_post.Name = "lbl_post";
+      // 
+      // txt_post
+      // 
+      resources.ApplyResources(this.txt_post, "txt_post");
+      this.txt_post.Name = "txt_post";
+      // 
       // webHtml5Visualisation1
       // 
       this.webHtml5Visualisation1.BackColor = System.Drawing.Color.White;
@@ -257,5 +331,15 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private Telerik.WinControls.UI.RadMenuItem btn_layout_net;
     private Telerik.WinControls.UI.RadMenuItem btn_export_graphml;
     private Telerik.WinControls.UI.RadMenuItem btn_export_csv;
+    private Telerik.WinControls.UI.CommandBarRowElement commandBarRowElement2;
+    private Telerik.WinControls.UI.CommandBarStripElement commandBarStripElement2;
+    private Telerik.WinControls.UI.CommandBarLabel commandBarLabel1;
+    private Telerik.WinControls.UI.CommandBarTextBox txt_minFreq;
+    private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator1;
+    private Telerik.WinControls.UI.CommandBarHostItem host_range;
+    private Telerik.WinControls.UI.CommandBarLabel lbl_pre;
+    private Telerik.WinControls.UI.CommandBarTextBox txt_pre;
+    private Telerik.WinControls.UI.CommandBarLabel lbl_post;
+    private Telerik.WinControls.UI.CommandBarTextBox txt_post;
   }
 }

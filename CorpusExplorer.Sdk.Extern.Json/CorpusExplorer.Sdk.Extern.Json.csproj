@@ -61,7 +61,7 @@
     <Compile Include="RepositoryManifest.cs" />
     <Compile Include="SimpleStandoff\Model\Annotation.cs" />
     <Compile Include="SimpleStandoff\Model\Document.cs" />
-    <Compile Include="SimpleStandoff\SimpleJsonStandoffImporter.cs" />
+    <Compile Include="SimpleStandoff\ImporterSimpleJsonStandoff.cs" />
     <Compile Include="SimpleStandoff\SimpleJsonStandoffScraper.cs" />
     <Compile Include="Speedy\Model\Property.cs" />
     <Compile Include="Speedy\Model\Speedy.cs" />

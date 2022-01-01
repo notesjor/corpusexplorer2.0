@@ -13,9 +13,7 @@ namespace CorpusExplorer.Sdk.Blocks.Measure
   [Serializable]
   public sealed class SimpsonMeasure : AbstractMeasure
   {
-    public override double Calculate(double k, double k0, double ki, double kj, double kij)
-    {
-      return kij / (kij + Math.Min(ki, kj));
-    }
+    public override double Calculate(double k, double k0, double ki, double kj, double kij) =>
+      kij / (kij + Math.Min(ki, kj));
   }
 }

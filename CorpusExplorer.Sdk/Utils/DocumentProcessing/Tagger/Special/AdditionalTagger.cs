@@ -40,8 +40,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Special
       }
 
       tagger.Execute();
-      AbstractCorpusAdapter output;
-      if (!tagger.Output.TryDequeue(out output))
+      if (!tagger.Output.TryDequeue(out var output))
         return;
       if (output == null)
         return;

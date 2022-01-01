@@ -24,8 +24,8 @@
 
     public ClusterMetadataItem CA { get; }
     public ClusterMetadataItem CB { get; }
-    public string Label { get; }
     public object Data { get; private set; }
+    public string Label { get; }
     public double Similarity { get; }
 
     public void DisposeData()

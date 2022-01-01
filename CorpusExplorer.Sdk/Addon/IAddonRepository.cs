@@ -29,6 +29,11 @@ namespace CorpusExplorer.Sdk.Addon
     IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> AddonBackends { get; }
 
     /// <summary>
+    ///   Externe Analysemodule für die Konsole
+    /// </summary>
+    IEnumerable<IAction> AddonConsoleActions { get; }
+
+    /// <summary>
     ///   Liste mit Exportern die Projekte, Korpora und Schnappschüsse (alle IHydra) exportieren können
     /// </summary>
     IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters { get; }
@@ -46,19 +51,9 @@ namespace CorpusExplorer.Sdk.Addon
     IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers { get; }
 
     /// <summary>
-    ///   Zusätzliche Tagger
+    ///   Funktionen die per Sideload zur Verfügung gestellt werden.
     /// </summary>
-    IEnumerable<AbstractTagger> AddonTagger { get; }
-
-    /// <summary>
-    ///   Externe Analysemodule für die Konsole
-    /// </summary>
-    IEnumerable<IAction> AddonConsoleActions { get; }
-
-    /// <summary>
-    ///   Externe Analysemodule für die GUI
-    /// </summary>
-    IEnumerable<IAddonView> AddonViews { get; }
+    IEnumerable<object> AddonSideloadFeature { get; }
 
     /// <summary>
     ///   Erlaubt den Export von Analysedaten in unterschiedliche Tabellenformate
@@ -66,8 +61,13 @@ namespace CorpusExplorer.Sdk.Addon
     IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter { get; }
 
     /// <summary>
-    ///   Funktionen die per Sideload zur Verfügung gestellt werden.
+    ///   Zusätzliche Tagger
     /// </summary>
-    IEnumerable<object> AddonSideloadFeature { get; }
+    IEnumerable<AbstractTagger> AddonTagger { get; }
+
+    /// <summary>
+    ///   Externe Analysemodule für die GUI
+    /// </summary>
+    IEnumerable<IAddonView> AddonViews { get; }
   }
 }

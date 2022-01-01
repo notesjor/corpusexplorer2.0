@@ -9,7 +9,6 @@ using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.RawText;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.Abstract;
@@ -30,7 +29,7 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
       set { }
     }
 
-    public override IEnumerable<string> LanguagesAvailabel => new[] {"Deutsch (Mittelhochdeutsch)"};
+    public override IEnumerable<string> LanguagesAvailabel => new[] { "Deutsch (Mittelhochdeutsch)" };
     public override string LanguageSelected { get; set; } = "Deutsch (Mittelhochdeutsch)";
 
     private void DisplayError(string message)
@@ -43,11 +42,10 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
       // Tokenisiere
       var tagRaw = new RawTextTagger();
       tagRaw.Input = Input;
-      tagRaw.DefineEndOfSentence(new[] {".", "<s/>", "<s />", "!", ":", "?"});
+      tagRaw.DefineEndOfSentence(new[] { ".", "<s/>", "<s />", "!", ":", "?" });
       tagRaw.Execute();
 
-      AbstractCorpusAdapter corpus;
-      if (!tagRaw.Output.TryDequeue(out corpus))
+      if (!tagRaw.Output.TryDequeue(out var corpus))
         return;
 
       // Überprüfe DTA::CAB-Bedingungen
@@ -104,8 +102,8 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
       {
         var dic = new Dictionary<string, object>
         {
-          {"GUID", dsel},
-          {"Text", layer.GetReadableDocumentByGuid(dsel).ReduceDocumentToText()}
+          { "GUID", dsel },
+          { "Text", layer.GetReadableDocumentByGuid(dsel).ReduceDocumentToText() }
         };
         var met = corpus.GetDocumentMetadata(dsel);
         foreach (var x in met)
@@ -122,7 +120,7 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
         return;
 
       // Füge die Orignaldaten wieder an
-      Output.Enqueue(CorpusBuilder.Append(corpus, new[] {origL}));
+      Output.Enqueue(CorpusBuilder.Append(corpus, new[] { origL }));
     }
 
     private sealed class SimpleInternalTreeTagger : AbstractTreeTagger

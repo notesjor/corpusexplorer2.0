@@ -114,10 +114,7 @@ namespace CorpusExplorer.Terminal.Automate
         return;
       }
 
-      if (_result.queries == null)
-        _result.queries = new [] { form.Result } ;
-      else
-        _result.queries = _result.queries.Concat(new[] { form.Result }).ToArray();
+      _result.queries = _result.queries == null ? new [] { form.Result } : _result.queries.Concat(new[] { form.Result }).ToArray();
 
       ReloadUi();
       Show();

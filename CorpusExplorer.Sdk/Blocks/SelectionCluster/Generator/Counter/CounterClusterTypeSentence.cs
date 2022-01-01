@@ -1,7 +1,11 @@
-﻿using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster;
+﻿#region
+
+using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Counter.Abstract;
 using CorpusExplorer.Sdk.Model;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Counter
 {
@@ -12,16 +16,14 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Counter
     public override int BaseSum(Selection selection)
     {
       Selection = selection;
-      return (int) selection.CountSentences;
+      return (int)selection.CountSentences;
     }
 
-    public override AbstractCluster NewCluster(string displayname, int max, bool acceptAll)
-    {
-      return new SentenceCounterCluster(Selection, displayname)
+    public override AbstractCluster NewCluster(string displayname, int max, bool acceptAll) =>
+      new SentenceCounterCluster(Selection, displayname)
       {
         Max = max,
         AcceptAll = acceptAll
       };
-    }
   }
 }

@@ -1,7 +1,11 @@
+#region
+
 using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
 using CorpusExplorer.Sdk.Model;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract
 {
@@ -31,16 +35,6 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract
     }
 
     /// <summary>
-    ///   Bereinigt einen Cluster-Wert bevor dieser an GenerateKey/NewCluster übergeben wird.
-    /// </summary>
-    /// <param name="value">Cluster-Wert</param>
-    /// <returns>Bereinigter Cluster-Wert</returns>
-    protected virtual object PreFixClusterValue(object value)
-    {
-      return value;
-    }
-
-    /// <summary>
     ///   Erzeugt aus einem Cluster-Wert einen eindeutigen Schlüssel
     /// </summary>
     /// <param name="value">ClusterWert</param>
@@ -53,5 +47,12 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract
     /// <param name="value">Cluster-Wert</param>
     /// <returns>Cluster</returns>
     protected abstract AbstractCluster NewCluster(object value);
+
+    /// <summary>
+    ///   Bereinigt einen Cluster-Wert bevor dieser an GenerateKey/NewCluster übergeben wird.
+    /// </summary>
+    /// <param name="value">Cluster-Wert</param>
+    /// <returns>Bereinigter Cluster-Wert</returns>
+    protected virtual object PreFixClusterValue(object value) => value;
   }
 }

@@ -12,12 +12,12 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     private HandleRef swigCPtr;
 
     public MultiwordToken(int id_first, int id_last, string form, string misc) : this(
-                                                                                      udpipe_csharpPINVOKE
-                                                                                       .new_MultiwordToken__SWIG_0(id_first,
-                                                                                                                   id_last,
-                                                                                                                   form,
-                                                                                                                   misc),
-                                                                                      true)
+     udpipe_csharpPINVOKE
+      .new_MultiwordToken__SWIG_0(id_first,
+                                  id_last,
+                                  form,
+                                  misc),
+     true)
     {
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
     }
@@ -25,7 +25,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     public MultiwordToken(int id_first, int id_last, string form) : this(
                                                                          udpipe_csharpPINVOKE
                                                                           .new_MultiwordToken__SWIG_1(id_first, id_last,
-                                                                                                      form), true)
+                                                                            form), true)
     {
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
     }
@@ -45,10 +45,8 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     }
 
     internal MultiwordToken(IntPtr cPtr, bool cMemoryOwn) : base(udpipe_csharpPINVOKE.MultiwordToken_SWIGUpcast(cPtr),
-                                                                 cMemoryOwn)
-    {
+                                                                 cMemoryOwn) =>
       swigCPtr = new HandleRef(this, cPtr);
-    }
 
     public int idFirst
     {
@@ -95,9 +93,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       Dispose();
     }
 
-    internal static HandleRef getCPtr(MultiwordToken obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
+    internal static HandleRef getCPtr(MultiwordToken obj) =>
+      obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
   }
 }

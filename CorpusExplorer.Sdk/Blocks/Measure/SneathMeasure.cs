@@ -13,9 +13,7 @@ namespace CorpusExplorer.Sdk.Blocks.Measure
   [Serializable]
   public sealed class SneathMeasure : AbstractMeasure
   {
-    public override double Calculate(double k, double k0, double ki, double kj, double kij)
-    {
-      return kij / (kij + 2.0d * ki + 2.0d * kj);
-    }
+    public override double Calculate(double k, double k0, double ki, double kj, double kij) =>
+      kij / (kij + 2.0d * ki + 2.0d * kj);
   }
 }

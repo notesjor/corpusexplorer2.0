@@ -45,16 +45,16 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public int Capacity
     {
-      get => (int) capacity();
+      get => (int)capacity();
       set
       {
         if (value < size())
           throw new ArgumentOutOfRangeException("Capacity");
-        reserve((uint) value);
+        reserve((uint)value);
       }
     }
 
-    public int Count => (int) size();
+    public int Count => (int)size();
 
     public bool IsFixedSize => false;
 
@@ -87,15 +87,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
     }
 
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-      return new MultiwordTokensEnumerator(this);
-    }
+    IEnumerator IEnumerable.GetEnumerator() => new MultiwordTokensEnumerator(this);
 
-    IEnumerator<MultiwordToken> IEnumerable<MultiwordToken>.GetEnumerator()
-    {
-      return new MultiwordTokensEnumerator(this);
-    }
+    IEnumerator<MultiwordToken> IEnumerable<MultiwordToken>.GetEnumerator() => new MultiwordTokensEnumerator(this);
 
     public void Add(MultiwordToken x)
     {
@@ -153,15 +147,10 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       Dispose();
     }
 
-    internal static HandleRef getCPtr(MultiwordTokens obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
+    internal static HandleRef getCPtr(MultiwordTokens obj) =>
+      obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
 
-    public MultiwordTokensEnumerator GetEnumerator()
-    {
-      return new MultiwordTokensEnumerator(this);
-    }
+    public MultiwordTokensEnumerator GetEnumerator() => new MultiwordTokensEnumerator(this);
 
     private MultiwordToken getitem(int index)
     {
@@ -315,7 +304,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
             throw new InvalidOperationException("Enumeration finished.");
           if (currentObject == null)
             throw new InvalidOperationException("Collection modified.");
-          return (MultiwordToken) currentObject;
+          return (MultiwordToken)currentObject;
         }
       }
     }

@@ -1,6 +1,10 @@
+#region
+
 using System;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
 using CorpusExplorer.Sdk.Helper;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {
@@ -8,10 +12,7 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
   {
     private readonly int _value;
 
-    public IntegerCluster(int value)
-    {
-      _value = value;
-    }
+    public IntegerCluster(int value) => _value = value;
 
     public override object CentralValue => _value;
 

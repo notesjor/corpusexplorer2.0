@@ -40,8 +40,7 @@ namespace CorpusExplorer.Sdk.Extern.SentimentDetection.Model
           var splits = line.Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
           if (splits.Length != 3)
             continue;
-          double val;
-          if (!double.TryParse(splits[2], out val))
+          if (!double.TryParse(splits[2], out var val))
             continue;
           if (res.RawData.ContainsKey(splits[0]))
           {

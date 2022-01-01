@@ -38,7 +38,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
       ShowView += ShowViewCall;
 
-      _colors = UniversalColorExtension.ToWinFormColor(UniversalColor.Palette);
+      _colors = UniversalColor.Palette.ToWinFormColor();
 
       tagger1.TaggerItemSelected += Tagger1OnTaggerItemSelected;
     }

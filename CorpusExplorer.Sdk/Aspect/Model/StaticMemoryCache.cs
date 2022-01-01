@@ -16,10 +16,7 @@ namespace CorpusExplorer.Sdk.Aspect.Model
     private static readonly IList<CachedObject<T>> Cache = new List<CachedObject<T>>();
     private readonly TimeSpan _cacheLife;
 
-    public StaticMemoryCache(TimeSpan cacheLife)
-    {
-      _cacheLife = cacheLife;
-    }
+    public StaticMemoryCache(TimeSpan cacheLife) => _cacheLife = cacheLife;
 
     public T this[string key]
     {
@@ -38,7 +35,7 @@ namespace CorpusExplorer.Sdk.Aspect.Model
         var cacheHit = Cache.FirstOrDefault(c => c.Key == key);
         if (cacheHit != null)
           Cache.Remove(cacheHit);
-        Cache.Add(new CachedObject<T> {Key = key, Value = value, CachedDate = DateTime.Now});
+        Cache.Add(new CachedObject<T> { Key = key, Value = value, CachedDate = DateTime.Now });
       }
     }
 

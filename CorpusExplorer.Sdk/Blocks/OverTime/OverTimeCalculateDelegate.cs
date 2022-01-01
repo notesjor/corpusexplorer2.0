@@ -1,4 +1,8 @@
-﻿using CorpusExplorer.Sdk.Model;
+﻿#region
+
+using CorpusExplorer.Sdk.Model;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.OverTime
 {

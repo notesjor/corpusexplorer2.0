@@ -26,8 +26,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract
                      {
                        try
                        {
-                         string item;
-                         if (!Input.TryDequeue(out item))
+                         if (!Input.TryDequeue(out var item))
                            return;
 
                          var temp = Execute(item);

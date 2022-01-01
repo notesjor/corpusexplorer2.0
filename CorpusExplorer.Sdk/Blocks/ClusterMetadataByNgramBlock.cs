@@ -1,9 +1,13 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.Similarity.Abstract;
 using CorpusExplorer.Sdk.Model;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks
 {
@@ -12,27 +16,11 @@ namespace CorpusExplorer.Sdk.Blocks
   {
     public int NGramMinFrequency { get; set; }
 
-    public int NGramPatternSize { get; set; }
-
     public string NGramPattern { get; set; }
 
+    public int NGramPatternSize { get; set; }
+
     public int NGramSize { get; set; }
-
-    protected override Dictionary<string, double> Join(Dictionary<string, double> a, Dictionary<string, double> b)
-    {
-      var res = new Dictionary<string, double>();
-      foreach (var x in a)
-        if (b.ContainsKey(x.Key))
-          res.Add(x.Key, (x.Value + b[x.Key]) / 2);
-        else
-          res.Add(x.Key, x.Value);
-
-      foreach (var x in b)
-        if (!a.ContainsKey(x.Key))
-          res.Add(x.Key, x.Value);
-
-      return res;
-    }
 
     protected override double CalculateDistance(
       AbstractDistance similarityIndex, Dictionary<string, double> a, Dictionary<string, double> b)
@@ -54,6 +42,22 @@ namespace CorpusExplorer.Sdk.Blocks
       return NGramMinFrequency > 0
                ? block.NGramFrequency.Where(x => x.Value >= NGramMinFrequency).ToDictionary(x => x.Key, x => x.Value)
                : block.NGramFrequency;
+    }
+
+    protected override Dictionary<string, double> Join(Dictionary<string, double> a, Dictionary<string, double> b)
+    {
+      var res = new Dictionary<string, double>();
+      foreach (var x in a)
+        if (b.ContainsKey(x.Key))
+          res.Add(x.Key, (x.Value + b[x.Key]) / 2);
+        else
+          res.Add(x.Key, x.Value);
+
+      foreach (var x in b)
+        if (!a.ContainsKey(x.Key))
+          res.Add(x.Key, x.Value);
+
+      return res;
     }
   }
 }

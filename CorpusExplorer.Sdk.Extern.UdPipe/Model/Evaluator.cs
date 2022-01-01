@@ -13,10 +13,10 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     private HandleRef swigCPtr;
 
     public Evaluator(Model m, string tokenizer, string tagger, string parser) : this(
-                                                                                     udpipe_csharpPINVOKE
-                                                                                      .new_Evaluator(Model.getCPtr(m),
-                                                                                                     tokenizer, tagger,
-                                                                                                     parser), true)
+     udpipe_csharpPINVOKE
+      .new_Evaluator(Model.getCPtr(m),
+                     tokenizer, tagger,
+                     parser), true)
     {
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
     }
@@ -83,10 +83,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       Dispose();
     }
 
-    internal static HandleRef getCPtr(Evaluator obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
+    internal static HandleRef getCPtr(Evaluator obj) => obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
 
     public void setModel(Model m)
     {

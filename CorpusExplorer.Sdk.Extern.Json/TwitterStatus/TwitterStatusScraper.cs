@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Extern.Json.Abstract;
 using CorpusExplorer.Sdk.Extern.Json.TwitterStatus.Model;
 using CorpusExplorer.Sdk.Extern.Json.TwitterStatus.Reader;
@@ -131,6 +132,7 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStatus
       }
       catch (Exception ex)
       {
+        InMemoryErrorConsole.Log(ex);
         return null;
       }
     }

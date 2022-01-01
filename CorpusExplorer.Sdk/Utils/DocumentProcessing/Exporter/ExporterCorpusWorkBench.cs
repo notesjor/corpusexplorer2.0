@@ -31,6 +31,17 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
                                ? $"<text id=\"{textId++}\">"
                                : $"<text id=\"{textId++}\" date=\"{date:yyyy-MM-dd}\" yearmonth=\"{date:yyyy-MM}\" year=\"{date:yyyy}\">");
 
+            // Schreibe zusätzliche Metadaten in CWB (zulässig in alten Versionen)
+            // Bsp. 1: <text_collection historical>
+            // Bsp. 2: <text_period 1700-1750>
+            var killTags = new List<string>();
+            foreach (var x in hydra.GetDocumentMetadata(dsel))
+            {
+              var tag = $"text_{x.Key.Replace(" ", "_")}";
+              writer.WriteLine($"<{tag} {x.Value}>");
+              killTags.Add($"</{tag}>");
+            }
+
             var layers = hydra.GetReadableMultilayerDocument(dsel).ToDictionary(x => x.Key, x => x.Value.Select(y => y.ToArray()).ToArray());
             if (!layers.ContainsKey("Wort") || !layers.ContainsKey("Lemma") || !layers.ContainsKey("POS"))
               continue;
@@ -60,7 +71,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
               continue;
             }
 
-            writer.Write(stb.ToString());
+            writer.WriteLine(stb.ToString());
+            foreach (var killTag in killTags)
+              writer.WriteLine(killTag);
             writer.WriteLine("</text>");
           }
         writer.WriteLine("</corpus>");

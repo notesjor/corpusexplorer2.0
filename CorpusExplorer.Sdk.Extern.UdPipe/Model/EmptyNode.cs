@@ -193,9 +193,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       Dispose();
     }
 
-    internal static HandleRef getCPtr(EmptyNode obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
+    internal static HandleRef getCPtr(EmptyNode obj) => obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
   }
 }

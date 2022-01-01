@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#region
+
 using System.Data;
 using CorpusExplorer.Sdk.Blocks.Abstract;
-using CorpusExplorer.Sdk.Model;
-using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks
 {
@@ -19,12 +19,12 @@ namespace CorpusExplorer.Sdk.Blocks
 
     public override void Calculate()
     {
-      Selection selection = Selection.CreateTemporary(new[]
+      var selection = Selection.CreateTemporary(new[]
       {
         new FilterQuerySingleLayerAllInOneSentence
         {
           Inverse = false,
-          LayerQueries = new[] {LayerQuery1, LayerQuery2},
+          LayerQueries = new[] { LayerQuery1, LayerQuery2 },
           LayerDisplayname = LayerDisplayname
         }
       });
@@ -40,13 +40,13 @@ namespace CorpusExplorer.Sdk.Blocks
         LayerDisplayname = LayerDisplayname,
         OrFilterQueries = new[]
         {
-            new FilterQuerySingleLayerFirstFollowedByAnyOtherMatch
-            {
-              Inverse = false,
-              LayerQueries = new[] { LayerQuery2, LayerQuery1 },
-              LayerDisplayname = LayerDisplayname
-            }
+          new FilterQuerySingleLayerFirstFollowedByAnyOtherMatch
+          {
+            Inverse = false,
+            LayerQueries = new[] { LayerQuery2, LayerQuery1 },
+            LayerDisplayname = LayerDisplayname
           }
+        }
       });
       vm.Execute();
 

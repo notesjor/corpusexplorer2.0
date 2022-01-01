@@ -50,7 +50,7 @@ namespace CorpusExplorer.Sdk.Extern.Json
         },
         {
           "JSON Stand-Off Universal (*.json)|*.json",
-          new SimpleJsonStandoffImporter()
+          new ImporterSimpleJsonStandoff()
         },
       };
 

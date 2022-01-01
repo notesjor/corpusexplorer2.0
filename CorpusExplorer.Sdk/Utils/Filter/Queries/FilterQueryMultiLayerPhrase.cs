@@ -55,10 +55,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
     protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      KeyValuePair<Guid, int>[] query;
-      HashSet<Guid> layers;
-
-      if (!GetSpecificQuery(corpus, out query, out layers)) // ist null, wenn das Korpus nicht alle Layer enthält
+      if (!GetSpecificQuery(corpus, out var query, out var layers)) // ist null, wenn das Korpus nicht alle Layer enthält
         return -1;
 
       var mult = corpus.GetMultilayerDocument(documentGuid, layers);
@@ -99,10 +96,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
     protected override IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid)
     {
-      KeyValuePair<Guid, int>[] query;
-      HashSet<Guid> layers;
-
-      if (!GetSpecificQuery(corpus, out query, out layers)) // ist null, wenn das Korpus nicht alle Layer enthält
+      if (!GetSpecificQuery(corpus, out var query, out var layers)) // ist null, wenn das Korpus nicht alle Layer enthält
         return null;
 
       var mult = corpus.GetMultilayerDocument(documentGuid, layers);
@@ -150,10 +144,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
     public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      KeyValuePair<Guid, int>[] query;
-      HashSet<Guid> layers;
-
-      if (!GetSpecificQuery(corpus, out query, out layers)) // ist null, wenn das Korpus nicht alle Layer enthält
+      if (!GetSpecificQuery(corpus, out var query, out var layers)) // ist null, wenn das Korpus nicht alle Layer enthält
         return null;
 
       var mult = corpus.GetMultilayerDocument(documentGuid, layers);
@@ -198,10 +189,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
     protected override bool ValidateCall(AbstractCorpusAdapter corpus, Guid documentGuid)
     {
-      KeyValuePair<Guid, int>[] query;
-      HashSet<Guid> layers;
-
-      if (!GetSpecificQuery(corpus, out query, out layers)) // ist null, wenn das Korpus nicht alle Layer enthält
+      if (!GetSpecificQuery(corpus, out var query, out var layers)) // ist null, wenn das Korpus nicht alle Layer enthält
         return false;
 
       var mult = corpus.GetMultilayerDocument(documentGuid, layers);

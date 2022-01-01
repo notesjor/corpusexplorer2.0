@@ -72,7 +72,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Twitter
                                                 bs.Write(buffer, 0, buffer.Length);
                                               }
                                               lock(clo)
-                                              PostStatusUpdate($"AUFZEICHNUNG LÄUFT: {cnt++} Tweets aufgezeichnet", 1, 1);
+                                                PostStatusUpdate($"AUFZEICHNUNG LÄUFT: {cnt++} Tweets aufgezeichnet", 1, 1);
                                             }
                                             catch
                                             {

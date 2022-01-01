@@ -24,7 +24,7 @@ namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter
                       {
                         ElasticSearchFulltextContextManager
                          .Initialize(
-                                     new[] {$"{h}:{p}"},
+                                     new[] { $"{h}:{p}" },
                                      db.ToLower(),
                                      string.IsNullOrEmpty(usr)
                                        ? null

@@ -24,6 +24,8 @@ namespace CorpusExplorer.Sdk.ViewModel
     public string Layer2Displayname { get; set; } = "Wort";
     public IEnumerable<string> LayerQueryPhrase { get; set; }
 
+    public int MinFrequency { get; set; } = 2;
+
     public IEnumerable<string> DiscoveredNodes
     {
       get
@@ -76,35 +78,40 @@ namespace CorpusExplorer.Sdk.ViewModel
       var block = Selection.CreateBlock<TextLiveSearchBlock>();
       block.LayerQueries = new[]
       {
-        new FilterQuerySingleLayerExactPhrase {LayerDisplayname = Layer1Displayname, LayerQueries = LayerQueryPhrase}
+        new FilterQuerySingleLayerExactPhrase
+        {
+          LayerDisplayname = Layer1Displayname, 
+          LayerQueries = LayerQueryPhrase
+        }
       };
+
       block.Calculate();
 
       var pre = new List<string[]>();
       var post = new List<string[]>();
 
       foreach (var c in block.SearchResults)
-      foreach (var d in c.Value)
-      foreach (var s in d.Value)
-      {
-        var sent = Selection.GetReadableDocumentSnippet(d.Key, Layer2Displayname, s.Key, s.Key)
-                            .ReduceDocumentToStreamDocument().ToArray();
+        foreach (var d in c.Value)
+          foreach (var s in d.Value)
+          {
+            var sent = Selection.GetReadableDocumentSnippet(d.Key, Layer2Displayname, s.Key, s.Key)
+                                .ReduceDocumentToStreamDocument().ToArray();
 
-        if (sent.Length > 200)
-          continue;
+            if (sent.Length > 200)
+              continue;
 
-        var tmp = new List<string>();
+            var tmp = new List<string>();
 
-        for (var i = 0; i < s.Value.First(); i++)
-          tmp.Add(sent[i]);
-        pre.Add(tmp.ToArray());
+            for (var i = 0; i < s.Value.First(); i++)
+              tmp.Add(sent[i]);
+            pre.Add(tmp.ToArray());
 
-        tmp.Clear();
+            tmp.Clear();
 
-        for (var i = s.Value.Last() + 1; i < sent.Length; i++)
-          tmp.Add(sent[i]);
-        post.Add(tmp.ToArray());
-      }
+            for (var i = s.Value.Last() + 1; i < sent.Length; i++)
+              tmp.Add(sent[i]);
+            post.Add(tmp.ToArray());
+          }
 
       if (HighlightCooccurrences)
       {
@@ -126,6 +133,12 @@ namespace CorpusExplorer.Sdk.ViewModel
         BranchPost.Merge(x.ToList(), FlowNodeDirection.Forward);
       if (AutoJoin)
         BranchPost.Join(FlowNodeDirection.Forward);
+
+      if (MinFrequency < 2)
+        return;
+
+      BranchPre.RemoveBranches(MinFrequency);
+      BranchPost.RemoveBranches(MinFrequency);
     }
 
     protected override bool Validate()

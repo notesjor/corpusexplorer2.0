@@ -1,18 +1,23 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Helper;
-using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
-using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Utils.Diff;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks
 {
   public class EditDistantCalculationBlock : AbstractBlock
   {
+    public List<Tuple<Guid, Guid, int, int>> EditDistances { get; set; }
+
+    public string LayerDisplayname { get; set; } = "Wort";
+
     public override void Calculate()
     {
       var dsel = Selection.DocumentGuids.ToArray();
@@ -44,8 +49,5 @@ namespace CorpusExplorer.Sdk.Blocks
         });
       });
     }
-
-    public string LayerDisplayname { get; set; } = "Wort";
-    public List<Tuple<Guid, Guid, int, int>> EditDistances { get; set; }
   }
 }

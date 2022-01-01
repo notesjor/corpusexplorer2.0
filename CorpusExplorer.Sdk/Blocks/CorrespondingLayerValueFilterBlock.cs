@@ -1,22 +1,27 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 
+#endregion
+
 namespace CorpusExplorer.Sdk.Blocks
 {
   /// <summary>
-  /// Kann z. B. genutzt werden um alle Wort-Werte zu erhalten denen der POS-Wert NE zugeordnet ist.
+  ///   Kann z. B. genutzt werden um alle Wort-Werte zu erhalten denen der POS-Wert NE zugeordnet ist.
   /// </summary>
   public class CorrespondingLayerValueFilterBlock : AbstractSimple2LayerBlock
   {
     private readonly object _clvLock = new object();
 
     /// <summary>
-    /// Gibt alle Layer1Values zurück, die eine Übereistimmung (anderer Layer) mit Layer2ValueFilter haben.
+    ///   Gibt alle Layer1Values zurück, die eine Übereistimmung (anderer Layer) mit Layer2ValueFilter haben.
     /// </summary>
     public HashSet<string> Layer1FilterValueResults { get; set; } = new HashSet<string>();
+
     public HashSet<string> Layer2ValueFilters { get; set; } = new HashSet<string>();
 
     protected override void CalculateCall(

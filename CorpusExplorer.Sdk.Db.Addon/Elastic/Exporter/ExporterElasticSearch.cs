@@ -24,7 +24,7 @@ namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter
                       {
                         ElasticSearchContextManager
                          .Initialize(
-                                     new[] {$"{h}:{p}"},
+                                     new[] { $"{h}:{p}" },
                                      db.ToLower(),
                                      string.IsNullOrEmpty(usr)
                                        ? null
@@ -34,7 +34,7 @@ namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter
                       },
                       "CorpusExplorer <-> Elasticsearch Verbindungsdaten (*.elastic)|*.elastic");
 
-      var merger = new CorpusMerger {CorpusBuilder = new CorpusBuilderElasticSearch()};
+      var merger = new CorpusMerger { CorpusBuilder = new CorpusBuilderElasticSearch() };
       merger.Input(hydra.ToCorpus());
       merger.Execute();
     }

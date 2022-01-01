@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks.Abstract;
@@ -8,6 +10,8 @@ using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Model.Cache.Helper;
 using CorpusExplorer.Sdk.Model.Cache.Helper.Exception;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks
 {
@@ -74,12 +78,10 @@ namespace CorpusExplorer.Sdk.Blocks
           else
             freq[values[i]].Add(values[j], 1d);
         else
-          freq.Add(values[i], new Dictionary<string, double> {{values[j], 1d}});
+          freq.Add(values[i], new Dictionary<string, double> { { values[j], 1d } });
 
       lock (_resultLock)
-      {
         DictionaryMergeHelper.Merge2LevelDictionary(ref _cooccurrencesFrequency, freq, (x, y) => x + y);
-      }
     }
 
     /// <summary>
@@ -105,7 +107,7 @@ namespace CorpusExplorer.Sdk.Blocks
     /// </summary>
     protected override void CalculateInitProperties()
     {
-      if (_cache.AbortCalculation(new Dictionary<string, object> {{nameof(LayerDisplayname), LayerDisplayname}}))
+      if (_cache.AbortCalculation(new Dictionary<string, object> { { nameof(LayerDisplayname), LayerDisplayname } }))
         throw new BlockAlreadyCachedException();
 
       _cooccurrencesFrequency = new Dictionary<string, Dictionary<string, double>>();

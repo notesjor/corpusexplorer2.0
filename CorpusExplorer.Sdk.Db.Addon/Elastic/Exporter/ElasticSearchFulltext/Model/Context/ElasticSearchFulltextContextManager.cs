@@ -14,10 +14,7 @@ namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter.ElasticSearchFull
   {
     private static ElasticSearchFulltextContext _context;
 
-    public static ElasticSearchFulltextContext GetContext()
-    {
-      return _context;
-    }
+    public static ElasticSearchFulltextContext GetContext() => _context;
 
     public static void Initialize(
       IEnumerable<string> connectionPool,

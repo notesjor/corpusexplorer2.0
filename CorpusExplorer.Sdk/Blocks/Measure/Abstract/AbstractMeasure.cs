@@ -1,8 +1,11 @@
-﻿using CorpusExplorer.Sdk.Properties;
+﻿#region
 
 #region
 
 using System;
+using CorpusExplorer.Sdk.Properties;
+
+#endregion
 
 #endregion
 
@@ -34,17 +37,6 @@ namespace CorpusExplorer.Sdk.Blocks.Measure.Abstract
     public abstract double Calculate(double k, double k0, double ki, double kj, double kij);
 
     /// <summary>
-    ///   Gibt einen <see cref="T:System.String" /> zurück, der das aktuelle <see cref="T:System.Object" /> darstellt.
-    /// </summary>
-    /// <returns>
-    ///   Ein <see cref="T:System.String" />, der das aktuelle <see cref="T:System.Object" /> darstellt.
-    /// </returns>
-    public override string ToString()
-    {
-      return GetType().Name.Replace(Resources.Measure, "");
-    }
-
-    /// <summary>
     ///   The get p.
     /// </summary>
     /// <param name="ki">
@@ -59,9 +51,14 @@ namespace CorpusExplorer.Sdk.Blocks.Measure.Abstract
     /// <returns>
     ///   The <see cref="double" />.
     /// </returns>
-    protected double GetP(double k0, double ki, double kj, double kij)
-    {
-      return k0 + ki + kj + kij;
-    }
+    protected double GetP(double k0, double ki, double kj, double kij) => k0 + ki + kj + kij;
+
+    /// <summary>
+    ///   Gibt einen <see cref="T:System.String" /> zurück, der das aktuelle <see cref="T:System.Object" /> darstellt.
+    /// </summary>
+    /// <returns>
+    ///   Ein <see cref="T:System.String" />, der das aktuelle <see cref="T:System.Object" /> darstellt.
+    /// </returns>
+    public override string ToString() => GetType().Name.Replace(Resources.Measure, "");
   }
 }

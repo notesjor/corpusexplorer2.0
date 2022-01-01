@@ -143,7 +143,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
           Geometry = ShapeFactory.GetShapeGeometry(shape == Shape.Rectangle
                                                      ? CommonShapeType.RectangleShape
                                                      : CommonShapeType.EllipseShape),
-          Background = new SolidColorBrush(UniversalColorExtension.ToWpfColor(color))
+          Background = new SolidColorBrush(color.ToWpfColor())
         };
         newItems.Add(item);
         _nodes.Add(node, item);
@@ -216,21 +216,21 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
       Brush brush;
       if (color2 == null)
       {
-        brush = new SolidColorBrush(UniversalColorExtension.ToWpfColor(color1));
+        brush = new SolidColorBrush(color1.ToWpfColor());
       }
       else
       {
         brush = new LinearGradientBrush();
         if (color3 == null)
         {
-          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(UniversalColorExtension.ToWpfColor(color1), 0));
-          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(UniversalColorExtension.ToWpfColor(color2), 1));
+          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(color1.ToWpfColor(), 0));
+          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(color2.ToWpfColor(), 1));
         }
         else
         {
-          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(UniversalColorExtension.ToWpfColor(color1), 0));
-          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(UniversalColorExtension.ToWpfColor(color2), 0.5));
-          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(UniversalColorExtension.ToWpfColor(color3), 1));
+          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(color1.ToWpfColor(), 0));
+          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(color2.ToWpfColor(), 0.5));
+          ((LinearGradientBrush) brush).GradientStops.Add(new GradientStop(color3.ToWpfColor(), 1));
         }
       }
 

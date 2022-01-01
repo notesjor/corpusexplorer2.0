@@ -13,8 +13,6 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
   [Serializable]
   public class FilterQuerySingleLayerMarkedPhrase : AbstractFilterQuery
   {
-    [XmlAttribute] public static readonly string SearchPattern = ".<*>.";
-
     [XmlIgnore] private readonly object _getQueriesLock = new object();
 
     [XmlIgnore] private readonly object _getSentenceCallLock = new object();
@@ -268,7 +266,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
         var res = new List<int>();
         foreach (var query in _layerQueries)
-          if (query == SearchPattern)
+          if (query == Mark)
           {
             res.Add(-1);
           }

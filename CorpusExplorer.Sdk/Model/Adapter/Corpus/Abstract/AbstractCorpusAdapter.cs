@@ -76,23 +76,23 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     ///   Auflistung - CorpusGuid / DocumentGuids des Korpus
     /// </summary>
     public IEnumerable<KeyValuePair<Guid, IEnumerable<Guid>>> CorporaAndDocumentGuids
-      => new Dictionary<Guid, IEnumerable<Guid>> {{CorpusGuid, DocumentGuids}};
+      => new Dictionary<Guid, IEnumerable<Guid>> { { CorpusGuid, DocumentGuids } };
 
     /// <summary>
     ///   Gets the selected corpora displaynames.
     /// </summary>
-    public IEnumerable<string> CorporaDisplaynames => new[] {CorpusDisplayname};
+    public IEnumerable<string> CorporaDisplaynames => new[] { CorpusDisplayname };
 
     /// <summary>
     ///   Auflistung aller Corpora per GUID
     /// </summary>
-    public IEnumerable<Guid> CorporaGuids => new[] {CorpusGuid};
+    public IEnumerable<Guid> CorporaGuids => new[] { CorpusGuid };
 
     /// <summary>
     ///   Gets the corpora guids and displaynames.
     /// </summary>
     public IEnumerable<KeyValuePair<Guid, string>> CorporaGuidsAndDisplaynames
-      => new Dictionary<Guid, string> {{CorpusGuid, CorpusDisplayname}};
+      => new Dictionary<Guid, string> { { CorpusGuid, CorpusDisplayname } };
 
     /// <summary>
     ///   Gets the count corpora.
@@ -181,7 +181,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     /// </returns>
     public IEnumerable<Guid> FindDocumentByMetadata(string exampleKey, object exampleValue)
     {
-      return FindDocumentByMetadata(new Dictionary<string, object> {{exampleKey, exampleValue}});
+      return FindDocumentByMetadata(new Dictionary<string, object> { { exampleKey, exampleValue } });
     }
 
     /// <summary>
@@ -216,7 +216,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     /// </returns>
     public IEnumerable<AbstractCorpusAdapter> GetCorpora(string displayname)
     {
-      return displayname == CorpusDisplayname ? new[] {this} : null;
+      return displayname == CorpusDisplayname ? new[] { this } : null;
     }
 
     /// <summary>
@@ -410,7 +410,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     public Dictionary<Guid, T> GetDocumentMetadata<T>(string metaKey, T defaultValue)
     {
       return DocumentMetadata.Where(x => x.Value.ContainsKey(metaKey) && x.Value[metaKey] is T)
-                             .ToDictionary(x => x.Key, x => (T) x.Value[metaKey]);
+                             .ToDictionary(x => x.Key, x => (T)x.Value[metaKey]);
     }
 
     /// <summary>
@@ -787,5 +787,20 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     /// <param name="key">Key</param>
     /// <param name="value">Daten</param>
     public abstract void SetCorpusMetadata(string key, object value);
+
+    /// <summary>
+    /// Gibt das Dokument im Roh-Daten-Format zurück.
+    /// Dieses Format beinhaltet alle Metadaten und den Text (Wort) als VRT.
+    /// </summary>
+    /// <param name="dsel">The dsel.</param>
+    /// <param name="separatorSentences">Separator für Sätze</param>
+    /// <param name="separatorTokens">Separator für Token</param>
+    /// <returns>Metadaten + Text</returns>
+    public Dictionary<string, object> GetDocumentRaw(Guid dsel, string separatorTokens = "\r\n", string separatorSentences = "\r\n")
+    {
+      var res = GetDocumentMetadata(dsel).ToDictionary(x => x.Key, x => x.Value);
+      res.Add("Text", string.Join(separatorSentences, GetReadableDocument(dsel, "Wort").Select(x => string.Join(separatorTokens, x))));
+      return res;
+    }
   }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Extern.Plaintext.Abstract;
 using CorpusExplorer.Sdk.Helper;
@@ -54,7 +55,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.KleineAnfrageDe
           }
           catch (Exception ex)
           {
-            // ignore
+            InMemoryErrorConsole.Log(ex);
           }
       }
 

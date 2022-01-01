@@ -1,9 +1,13 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks
 {
@@ -16,8 +20,6 @@ namespace CorpusExplorer.Sdk.Blocks
       LayerDisplayname = "Wort";
       MetadataKey = "GUID";
     }
-
-    public string MetadataKey { get; set; }
 
     public Dictionary<string, Dictionary<string, double>> DocumentTermFrequency { get; set; }
 
@@ -37,6 +39,8 @@ namespace CorpusExplorer.Sdk.Blocks
       }
     }
 
+    public string MetadataKey { get; set; }
+
     protected override void CalculateCall(
       AbstractCorpusAdapter corpus,
       AbstractLayerAdapter layer,
@@ -47,10 +51,7 @@ namespace CorpusExplorer.Sdk.Blocks
       var sum = 0;
       foreach (var s in doc)
       {
-        foreach (var w in s)
-        {
-          res.Add(layer[w]);
-        }
+        foreach (var w in s) res.Add(layer[w]);
 
         sum += s.Length;
       }
@@ -58,14 +59,14 @@ namespace CorpusExplorer.Sdk.Blocks
       var k = corpus.GetDocumentMetadata(dsel, MetadataKey, string.Empty);
 
       if (DocumentTermFrequency.ContainsKey(k))
+      {
         lock (_lockDocumentTermFrequency)
           foreach (var x in res)
-          {
             if (DocumentTermFrequency[k].ContainsKey(x))
               DocumentTermFrequency[k][x] += 1;
             else
               DocumentTermFrequency[k].Add(x, 1);
-          }
+      }
       else
       {
         var vals = res.ToDictionary(x => x, x => 1d);

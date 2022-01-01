@@ -1,5 +1,9 @@
+#region
+
 using System;
 using CorpusExplorer.Sdk.Helper;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator
 {

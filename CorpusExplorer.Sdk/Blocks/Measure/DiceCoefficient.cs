@@ -13,9 +13,6 @@ namespace CorpusExplorer.Sdk.Blocks.Measure
   [Serializable]
   public sealed class DiceCoefficient : AbstractMeasure
   {
-    public override double Calculate(double k, double k0, double ki, double kj, double kij)
-    {
-      return 2 * kij / (ki + kj);
-    }
+    public override double Calculate(double k, double k0, double ki, double kj, double kij) => 2 * kij / (ki + kj);
   }
 }

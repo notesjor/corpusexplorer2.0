@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,15 +8,14 @@ using CorpusExplorer.Sdk.Blocks.PhrasesLaboratory.GrammarRule.Abstract;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 
+#endregion
+
 namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory
 {
   [Serializable]
   public class PhraseGrammar
   {
-    public PhraseGrammar()
-    {
-      Rules = new Dictionary<int, List<AbstractGrammarRule>>();
-    }
+    public PhraseGrammar() => Rules = new Dictionary<int, List<AbstractGrammarRule>>();
 
     public Dictionary<int, List<AbstractGrammarRule>> Rules { get; set; }
 

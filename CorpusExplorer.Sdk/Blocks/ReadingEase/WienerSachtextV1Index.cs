@@ -44,9 +44,7 @@ namespace CorpusExplorer.Sdk.Blocks.ReadingEase
       double ms,
       double iw,
       double es,
-      double hypenCount3More)
-    {
-      return 0.1935 * ms + 0.1672 * averageSentenceLength + 0.1297 * iw - 0.0327 * es - 0.875;
-    }
+      double hypenCount3More) =>
+      0.1935 * ms + 0.1672 * averageSentenceLength + 0.1297 * iw - 0.0327 * es - 0.875;
   }
 }

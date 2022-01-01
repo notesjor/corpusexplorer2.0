@@ -13,9 +13,7 @@ namespace CorpusExplorer.Sdk.Blocks.Measure
   [Serializable]
   public sealed class YuleMeasure : AbstractMeasure
   {
-    public override double Calculate(double k, double k0, double ki, double kj, double kij)
-    {
-      return (k0 * kij - ki * kj) / (k0 * kij + ki * kj);
-    }
+    public override double Calculate(double k, double k0, double ki, double kj, double kij) =>
+      (k0 * kij - ki * kj) / (k0 * kij + ki * kj);
   }
 }

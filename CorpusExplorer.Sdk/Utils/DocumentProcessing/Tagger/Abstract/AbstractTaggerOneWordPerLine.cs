@@ -137,8 +137,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
       while (Input.Count > 0)
         try
         {
-          Dictionary<string, object> doc;
-          if (!Input.TryDequeue(out doc))
+          if (!Input.TryDequeue(out var doc))
             continue;
           var text = doc?.Get("Text") as string;
           if (text == null)

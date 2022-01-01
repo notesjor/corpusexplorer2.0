@@ -1,6 +1,5 @@
 ﻿#region
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Bcs.IO;
@@ -16,7 +15,6 @@ namespace CorpusExplorer.Sdk.Extern.RFTagger.Tagger
   public class RFTagger : AbstractTaggerOneWordPerLine
   {
     private string _languageSelected;
-    private string _installationPath;
     private string _modelPath;
 
     public RFTagger()
@@ -29,20 +27,16 @@ namespace CorpusExplorer.Sdk.Extern.RFTagger.Tagger
 
     private Dictionary<string, string> _languagesAvailable => new Dictionary<string, string>
     {
-      {"Deutsch", "german"},
-      {"Tschechisch", "czech"},
-      {"Slowenisch", "slovene"},
-      {"Slowakisch", "slovak"},
-      {"Ungarisch", "hungarian"},
+      { "Deutsch", "german" },
+      { "Tschechisch", "czech" },
+      { "Slowenisch", "slovene" },
+      { "Slowakisch", "slovak" },
+      { "Ungarisch", "hungarian" },
     };
 
     public override string DisplayName => "RFTagger";
 
-    public override string InstallationPath
-    {
-      get => _installationPath;
-      set => _installationPath = value;
-    }
+    public override string InstallationPath { get; set; }
 
     public override IEnumerable<string> LanguagesAvailabel => _languagesAvailable.Keys;
 
@@ -62,36 +56,35 @@ namespace CorpusExplorer.Sdk.Extern.RFTagger.Tagger
     protected override string ExecuteTagger(string text)
     {
       using (var fileOutput = new TemporaryFile(Configuration.TempPath))
+      using (var fileInput = new TemporaryFile(Configuration.TempPath))
       {
-        using (var fileInput = new TemporaryFile(Configuration.TempPath))
+        FileIO.Write(fileInput.Path, Tokenizer.ExecuteToArray(text));
+
+        try
         {
-          FileIO.Write(fileInput.Path, Tokenizer.ExecuteToArray(text));
-
-          try
+          var process = new Process
           {
-            var process = new Process
+            StartInfo =
             {
-              StartInfo =
-              {
-                FileName = Configuration.GetDependencyPath("RFTagger/bin/rft-annotate"),
-                Arguments = $"{_modelPath} {fileInput.Path} {fileOutput.Path}",
-                CreateNoWindow = true,
-                WindowStyle = ProcessWindowStyle.Hidden
-              }
-            };
-            process.Start();
-            process.WaitForExit();
+              FileName = Configuration.GetDependencyPath("RFTagger/bin/rft-annotate"),
+              Arguments = $"{_modelPath} {fileInput.Path} {fileOutput.Path}",
+              CreateNoWindow = true,
+              WindowStyle = ProcessWindowStyle.Hidden
+            }
+          };
+          process.Start();
+          process.WaitForExit();
 
-            return FileIO.ReadText(fileOutput.Path, Configuration.Encoding);
-          }
-          catch
-          {
-            return string.Empty;
-          }
+          return FileIO.ReadText(fileOutput.Path, Configuration.Encoding);
+        }
+        catch
+        {
+          return string.Empty;
         }
       }
     }
 
-    protected override bool IsEndOfSentence(string[] data) => data != null && data.Length == 2 && data[1] == "SYM.Pun.Sent";
+    protected override bool IsEndOfSentence(string[] data) =>
+      data != null && data.Length == 2 && data[1] == "SYM.Pun.Sent";
   }
 }

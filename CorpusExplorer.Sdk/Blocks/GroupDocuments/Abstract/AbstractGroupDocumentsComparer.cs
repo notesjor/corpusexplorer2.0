@@ -1,4 +1,8 @@
+#region
+
 using System;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.GroupDocuments.Abstract
 {
@@ -16,17 +20,12 @@ namespace CorpusExplorer.Sdk.Blocks.GroupDocuments.Abstract
 
     public abstract bool IsBiggerOrEqual(object obj, object refernce);
 
-    public bool IsInRange(object rangeLow, object obj, object rangeHigh)
-    {
-      return IsBiggerOrEqual(obj, rangeLow) && IsSmallerOrEqual(obj, rangeHigh);
-    }
+    public bool IsInRange(object rangeLow, object obj, object rangeHigh) =>
+      IsBiggerOrEqual(obj, rangeLow) && IsSmallerOrEqual(obj, rangeHigh);
 
     public abstract bool IsSmallerOrEqual(object obj, object refernce);
 
-    public bool IsTypeValid(object obj)
-    {
-      return obj.GetType() == Type;
-    }
+    public bool IsTypeValid(object obj) => obj.GetType() == Type;
 
     public abstract object Substract(object obj, ulong span);
   }

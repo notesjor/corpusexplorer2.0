@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Utils.Filter;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.NamedEntityRecognition
 {
@@ -10,12 +14,6 @@ namespace CorpusExplorer.Sdk.Blocks.NamedEntityRecognition
   public class Rule
   {
     private AbstractFilterQuery _filter;
-
-    [XmlElement]
-    public string Query { get; set; }
-
-    [XmlAttribute]
-    public double Rank { get; set; }
 
     [XmlIgnore]
     public AbstractFilterQuery Filter
@@ -30,5 +28,11 @@ namespace CorpusExplorer.Sdk.Blocks.NamedEntityRecognition
       }
       set => Query = QueryParser.Serialize(value);
     }
+
+    [XmlElement]
+    public string Query { get; set; }
+
+    [XmlAttribute]
+    public double Rank { get; set; }
   }
 }

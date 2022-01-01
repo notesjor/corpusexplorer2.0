@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,6 +8,8 @@ using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.Similarity;
 using CorpusExplorer.Sdk.Blocks.Similarity.Abstract;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks
 {
@@ -15,8 +19,8 @@ namespace CorpusExplorer.Sdk.Blocks
   [Serializable]
   public class DocumentSimilarityBlock : AbstractBlock
   {
-    private object _resultsLock = new object();
     private Dictionary<string, Dictionary<string, double>> _results;
+    private object _resultsLock = new object();
 
     /// <summary>
     ///   Gets or sets the layer displayname.
@@ -60,7 +64,7 @@ namespace CorpusExplorer.Sdk.Blocks
 
       lock (_resultsLock)
         _results = new Dictionary<string, Dictionary<string, double>>();
-      
+
       var matrix = block.TermDocumentMatrix.ToArray();
 
       Parallel.For(0, matrix.Length, Configuration.ParallelOptions, i =>
@@ -83,7 +87,7 @@ namespace CorpusExplorer.Sdk.Blocks
             if (_results.ContainsKey(k1))
               _results[k1].Add(k2, sim);
             else
-              _results.Add(k1, new Dictionary<string, double> {{k2, sim}});
+              _results.Add(k1, new Dictionary<string, double> { { k2, sim } });
         });
       });
     }

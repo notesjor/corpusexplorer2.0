@@ -30,7 +30,7 @@ namespace CorpusExplorer.Sdk.Blocks
       LayerDisplayname = "Wort";
       LayerQuery = string.Empty;
       MinimumSignificance = 0.8d;
-      SimilarityIndex = new EuclideanDistance();
+      SimilarityIndex = new DistanceEuclidean();
     }
 
     /// <summary>

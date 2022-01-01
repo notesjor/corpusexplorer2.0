@@ -6,7 +6,6 @@ using System.Linq;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.ConllTagger.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer.Abstract;
@@ -27,26 +26,26 @@ namespace CorpusExplorer.Sdk.Extern.MarMoT
 
     private readonly Dictionary<string, string> _languagesAvailable = new Dictionary<string, string>
     {
-      {"Deutsch", "SPMRL\\de.marmot"},
-      {"Arabisch", "SPMRL\\ar.marmot"},
-      {"Baskisch", "SPMRL\\eu.marmot"},
-      {"Bulgarisch", "MultExt\\bg.marmot"},
-      {"Englisch", "MultExt\\en.marmot"},
-      {"Estnisch", "MultExt\\et.marmot"},
-      {"Französisch", "SPMRL\\fr.marmot"},
-      {"Hebräisch", "SPMRL\\he.marmot"},
-      {"Koreanisch", "SPMRL\\ko.marmot"},
-      {"Persisch", "MultExt\\fa.marmot"},
-      {"Polnisch (MultExt)", "MultExt\\pl.marmot"},
-      {"Polnisch (SPMRL)", "SPMRL\\pl.marmot"},
-      {"Rumänisch", "MultExt\\ro.marmot"},
-      {"Schwedisch", "SPMRL\\sv.marmot"},
-      {"Serbisch", "MultExt\\sr.marmot"},
-      {"Slowakisch", "MultExt\\sk.marmot"},
-      {"Slowenisch", "MultExt\\sl.marmot"},
-      {"Tschechisch", "MultExt\\cs.marmot"},
-      {"Ungarisch (MultExt)", "MultExt\\hu.marmot"},
-      {"Ungarisch (SPMRL)", "SPMRL\\hu.marmot"}
+      { "Deutsch", "SPMRL\\de.marmot" },
+      { "Arabisch", "SPMRL\\ar.marmot" },
+      { "Baskisch", "SPMRL\\eu.marmot" },
+      { "Bulgarisch", "MultExt\\bg.marmot" },
+      { "Englisch", "MultExt\\en.marmot" },
+      { "Estnisch", "MultExt\\et.marmot" },
+      { "Französisch", "SPMRL\\fr.marmot" },
+      { "Hebräisch", "SPMRL\\he.marmot" },
+      { "Koreanisch", "SPMRL\\ko.marmot" },
+      { "Persisch", "MultExt\\fa.marmot" },
+      { "Polnisch (MultExt)", "MultExt\\pl.marmot" },
+      { "Polnisch (SPMRL)", "SPMRL\\pl.marmot" },
+      { "Rumänisch", "MultExt\\ro.marmot" },
+      { "Schwedisch", "SPMRL\\sv.marmot" },
+      { "Serbisch", "MultExt\\sr.marmot" },
+      { "Slowakisch", "MultExt\\sk.marmot" },
+      { "Slowenisch", "MultExt\\sl.marmot" },
+      { "Tschechisch", "MultExt\\cs.marmot" },
+      { "Ungarisch (MultExt)", "MultExt\\hu.marmot" },
+      { "Ungarisch (SPMRL)", "SPMRL\\hu.marmot" }
     };
 
     private string _languageSelected;
@@ -121,14 +120,9 @@ namespace CorpusExplorer.Sdk.Extern.MarMoT
       }
     }
 
-    protected override string TextPostTaggerCleanup(string text)
-    {
-      return base.TextPostTaggerCleanup(text.Replace("\n", "\r\n"));
-    }
+    protected override string TextPostTaggerCleanup(string text) =>
+      base.TextPostTaggerCleanup(text.Replace("\n", "\r\n"));
 
-    protected override string TextPreTaggerCleanup(string text)
-    {
-      return DetectSentence(Tokenizer.Execute(text));
-    }
+    protected override string TextPreTaggerCleanup(string text) => DetectSentence(Tokenizer.Execute(text));
   }
 }

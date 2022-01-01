@@ -2,6 +2,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 #endregion
 
@@ -16,9 +17,10 @@ namespace CorpusExplorer.Sdk.Helper
 
     public int GetHashCode(string[] obj)
     {
-      if (obj == null)
-        return -1;
-      return obj.GetHashCode();
+      unchecked
+      {
+        return obj.Aggregate(1, (current, s) => current * s.GetHashCode());
+      }
     }
   }
 }

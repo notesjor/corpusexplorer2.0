@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.CorpusExplorer;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory
 {
@@ -85,14 +89,14 @@ namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory
           dicO = add;
         else
           foreach (var x in add)
-            foreach (var y in dicI)
-            {
-              var key = $"{y.Key}{separator}{x.Key}";
-              if (dicO.ContainsKey(key))
-                dicO[key] = x.Value;
-              else
-                dicO.Add(key, x.Value);
-            }
+          foreach (var y in dicI)
+          {
+            var key = $"{y.Key}{separator}{x.Key}";
+            if (dicO.ContainsKey(key))
+              dicO[key] = x.Value;
+            else
+              dicO.Add(key, x.Value);
+          }
       }
 
       return dicO;

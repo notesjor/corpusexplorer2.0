@@ -17,6 +17,7 @@ using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Cache;
 using CorpusExplorer.Sdk.Model.Cache.Abstract;
+using CorpusExplorer.Sdk.Model.Localizer;
 using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.Utils.DataTableWriter;
 using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
@@ -195,6 +196,29 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     ///   Tagger
     /// </summary>
     public static IEnumerable<AbstractTagger> AddonTaggers => _addonTaggers;
+
+    /// <summary>
+    /// Gets the layer display name localization.
+    /// </summary>
+    /// <value>The layer display name localization.</value>
+    public static ModelLocalization LayerDisplayNameLocalization { get; } = new ModelLocalization();
+
+    /// <summary>
+    /// Gets the document metadata localization.
+    /// </summary>
+    /// <value>The document metadata localization.</value>
+    public static ModelLocalization DocumentMetadataLocalization { get; } = new ModelLocalization();
+
+    public static void LoadLocalizations(string directory)
+    {
+      var path = Path.Combine(directory, "layer.local");
+      if(File.Exists(path))
+        LayerDisplayNameLocalization.LoadLocalization(path);
+      path = Path.Combine(directory, "meta.local");
+      if (File.Exists(path))
+        DocumentMetadataLocalization.LoadLocalization(path);
+    }
+
 
 #if UNIVERSAL
 #else

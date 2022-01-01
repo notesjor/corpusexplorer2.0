@@ -1,19 +1,22 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.Similarity;
 using CorpusExplorer.Sdk.Blocks.Similarity.Abstract;
 using CorpusExplorer.Sdk.Helper;
-using CorpusExplorer.Sdk.Model.CorpusExplorer;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks
 {
   public class CooccurrenceSecondLevelProfileBlock : AbstractBlock
   {
-    public string LayerValue { get; set; }
-    public string LayerDisplayname { get; set; } = "Wort";
     public Dictionary<string, double> CooccurrencesSimilarity { get; set; }
+    public string LayerDisplayname { get; set; } = "Wort";
+    public string LayerValue { get; set; }
     public AbstractSimilarity Similarity { get; set; } = new CosineMeasure();
 
     public override void Calculate()
@@ -58,22 +61,12 @@ namespace CorpusExplorer.Sdk.Blocks
       });
     }
 
-    private double[] MakeVector(Dictionary<string, double> rawValues, string[] keyV)
-    {
-      var res = new double[keyV.Length];
-      for (var i = 0; i < keyV.Length; i++)
-        res[i] = rawValues.ContainsKey(keyV[i]) ? rawValues[keyV[i]] : 0;
-      return res;
-    }
-
     private Dictionary<string, double> CleanDictionary(Dictionary<string, double> dic, string ignore)
     {
       var res = new Dictionary<string, double>();
       foreach (var d in dic)
-      {
         if (d.Key != ignore)
           res.Add(d.Key, d.Value);
-      }
 
       return res;
     }
@@ -84,6 +77,14 @@ namespace CorpusExplorer.Sdk.Blocks
       block.LayerDisplayname = LayerDisplayname;
       block.Calculate();
       return block.CooccurrenceSignificance.CompleteDictionaryToFullDictionary();
+    }
+
+    private double[] MakeVector(Dictionary<string, double> rawValues, string[] keyV)
+    {
+      var res = new double[keyV.Length];
+      for (var i = 0; i < keyV.Length; i++)
+        res[i] = rawValues.ContainsKey(keyV[i]) ? rawValues[keyV[i]] : 0;
+      return res;
     }
   }
 }

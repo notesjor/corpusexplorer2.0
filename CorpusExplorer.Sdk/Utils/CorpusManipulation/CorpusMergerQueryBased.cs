@@ -114,12 +114,13 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
       IEnumerable<AbstractCorpusAdapter> corpora,
       AbstractCorpusBuilder builder = null)
     {
-      var merger = new CorpusMerger();
-      merger.CorpusBuilder = builder ?? new CorpusBuilderWriteDirect();
-      foreach (var corpus in corpora)
+      var merger = new CorpusMerger
       {
+        CorpusBuilder = builder ?? new CorpusBuilderWriteDirect()
+      };
+
+      foreach (var corpus in corpora) 
         merger.Input(corpus);
-      }
 
       merger.Execute();
       return merger.Output.FirstOrDefault();

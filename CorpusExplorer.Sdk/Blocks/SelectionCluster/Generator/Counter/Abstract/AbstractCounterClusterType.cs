@@ -1,5 +1,9 @@
-﻿using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
+﻿#region
+
+using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
 using CorpusExplorer.Sdk.Model;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Counter.Abstract
 {

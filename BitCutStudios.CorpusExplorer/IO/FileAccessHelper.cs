@@ -19,7 +19,6 @@ namespace Bcs.IO
         {
         }
 
-        ;
         return true;
       }
       catch (Exception)

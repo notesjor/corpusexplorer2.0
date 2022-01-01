@@ -30,8 +30,7 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering.Wordcloud.Layou
       foreach (var word in words)
       {
         var size = graphicEngine.Measure(word.Label, word.Occurrences);
-        RectangleF freeRectangle;
-        if (!TryFindFreeRectangle(size, out freeRectangle))
+        if (!TryFindFreeRectangle(size, out var freeRectangle))
           return;
         var item = new LayoutItem(freeRectangle, word);
         QuadTree.Insert(item);

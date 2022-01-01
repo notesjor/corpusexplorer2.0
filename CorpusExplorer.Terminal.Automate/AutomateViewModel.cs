@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Xml;
 using System.Xml.Serialization;
 using CorpusExplorer.Terminal.Console.Xml.Extensions;
 using CorpusExplorer.Terminal.Console.Xml.Model;
@@ -22,7 +24,7 @@ namespace CorpusExplorer.Terminal.Automate
       _script = new cescript
       {
         version = "1.0",
-        head = new []
+        head = new[]
         {
           new meta
           {
@@ -54,11 +56,27 @@ namespace CorpusExplorer.Terminal.Automate
       SessionMode = sessionMode;
       Metas = metas;
 
-      using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+      var enc = Encoding.UTF8;
+
+      var settings = new XmlWriterSettings
+      {
+        Encoding = enc,
+        CheckCharacters = false
+      };
+
+      string xml;
+      using (var ms = new MemoryStream())
+      using (var writer = XmlWriter.Create(ms, settings))
       {
         var se = new XmlSerializer(typeof(cescript));
-        se.Serialize(fs, _script);
+        se.Serialize(writer, _script);
+        xml = enc.GetString(ms.ToArray());
       }
+
+      xml = xml.Replace("_x002A_", "*")
+               .Replace("_x003A_", ":")
+               .Replace("﻿<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
+      File.WriteAllText(path, xml, enc);
     }
 
     public void Execute(string path) =>
@@ -73,8 +91,8 @@ namespace CorpusExplorer.Terminal.Automate
       if (_script.sessions == null)
         _script.sessions = new sessions();
 
-      _script.sessions.session = _script.sessions.session == null 
-                                   ? new[] { newSession } 
+      _script.sessions.session = _script.sessions.session == null
+                                   ? new[] { newSession }
                                    : _script.sessions.session.Concat(new[] { newSession }).ToArray();
     }
 

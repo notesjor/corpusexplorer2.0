@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm;
@@ -31,7 +32,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
         }
         catch (Exception ex)
         {
-          // ignore
+          InMemoryErrorConsole.Log(ex);
         }
       }
     }

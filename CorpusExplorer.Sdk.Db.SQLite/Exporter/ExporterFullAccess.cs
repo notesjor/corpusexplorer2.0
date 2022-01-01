@@ -38,10 +38,10 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Exporter
         for (var i = 0; i < first.Length; i++)
         {
           var s = first[i];
-          var start = (ulong) tdidx;
+          var start = (ulong)tdidx;
           for (var j = 0; j < s.Length; j++)
           {
-            var tidx = (ulong) tokens.Count + 1; // TokenID - Identifiziert ein Token in der DB.
+            var tidx = (ulong)tokens.Count + 1; // TokenID - Identifiziert ein Token in der DB.
             tokens.Add(new Token
             {
               ID = tidx,
@@ -52,7 +52,7 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Exporter
             foreach (var ldoc in mdoc)
               annotations.Add(new Annotation
               {
-                ID = (ulong) annotations.Count + 1,
+                ID = (ulong)annotations.Count + 1,
                 TokenID = tidx,
                 LayerValueID = values[ldoc.Key][ldoc.Value[i][j]]
               });
@@ -62,10 +62,10 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Exporter
 
           sentences.Add(new AnnotationSpan
           {
-            ID = (ulong) sentences.Count + 1,
+            ID = (ulong)sentences.Count + 1,
             LayerValueID = values[SentenceLayerMark][SentenceLayerMark],
             TokenStartID = start,
-            TokenEndID = (ulong) tdidx - 1
+            TokenEndID = (ulong)tdidx - 1
           });
         }
       }
@@ -179,7 +179,7 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Exporter
         var dict = layer.ReciveRawLayerDictionary();
         foreach (var x in dict)
         {
-          var vidx = (ulong) values.Count + 1;
+          var vidx = (ulong)values.Count + 1;
           res[key].Add(x.Key, vidx);
           values.Add(new LayerValue
           {
@@ -191,8 +191,8 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Exporter
       }
 
       // Layer für Satzgrenzen
-      var idx = (ulong) values.Count + 1;
-      res.Add(SentenceLayerMark, new Dictionary<string, ulong> {{SentenceLayerMark, idx}});
+      var idx = (ulong)values.Count + 1;
+      res.Add(SentenceLayerMark, new Dictionary<string, ulong> { { SentenceLayerMark, idx } });
       values.Add(new LayerValue
       {
         ID = idx,

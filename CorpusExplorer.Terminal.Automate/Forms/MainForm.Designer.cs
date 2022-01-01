@@ -29,18 +29,18 @@
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
+      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+      Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
+      Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
       Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
+      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+      Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+      Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
+      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
       Telerik.WinControls.UI.RadListDataItem radListDataItem4 = new Telerik.WinControls.UI.RadListDataItem();
       Telerik.WinControls.UI.RadListDataItem radListDataItem5 = new Telerik.WinControls.UI.RadListDataItem();
-      Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-      Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
-      Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn6 = new Telerik.WinControls.UI.GridViewCommandColumn();
-      Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
-      Telerik.WinControls.UI.RadListDataItem radListDataItem6 = new Telerik.WinControls.UI.RadListDataItem();
-      Telerik.WinControls.UI.RadListDataItem radListDataItem7 = new Telerik.WinControls.UI.RadListDataItem();
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
@@ -72,16 +72,16 @@
       this.grid_sessions = new Telerik.WinControls.UI.RadGridView();
       this.btn_session_add = new Telerik.WinControls.UI.RadButton();
       this.panel5 = new System.Windows.Forms.Panel();
+      this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
+      this.panel_parallel = new System.Windows.Forms.Panel();
+      this.info4 = new CorpusExplorer.Terminal.Automate.Controls.Info();
+      this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+      this.txt_parallel = new Telerik.WinControls.UI.RadTextBox();
+      this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
       this.info3 = new CorpusExplorer.Terminal.Automate.Controls.Info();
       this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
       this.drop_sessionMode = new Telerik.WinControls.UI.RadDropDownList();
       this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-      this.panel_parallel = new System.Windows.Forms.Panel();
-      this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-      this.txt_parallel = new Telerik.WinControls.UI.RadTextBox();
-      this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-      this.info4 = new CorpusExplorer.Terminal.Automate.Controls.Info();
-      this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       this.panel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radCollapsiblePanel1)).BeginInit();
@@ -112,14 +112,14 @@
       ((System.ComponentModel.ISupportInitialize)(this.grid_sessions.MasterTemplate)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.btn_session_add)).BeginInit();
       this.panel5.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
+      this.panel_parallel.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txt_parallel)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.drop_sessionMode)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-      this.panel_parallel.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.txt_parallel)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
       // 
@@ -228,19 +228,20 @@
       // 
       // 
       // 
+      this.grid_headMeta.MasterTemplate.AddNewRowPosition = Telerik.WinControls.UI.SystemRowPosition.Bottom;
       this.grid_headMeta.MasterTemplate.AllowDragToGroup = false;
       this.grid_headMeta.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-      gridViewTextBoxColumn7.HeaderText = "key";
-      gridViewTextBoxColumn7.Name = "key";
-      gridViewTextBoxColumn7.Width = 499;
-      gridViewTextBoxColumn8.HeaderText = "value";
-      gridViewTextBoxColumn8.Name = "value";
-      gridViewTextBoxColumn8.Width = 502;
+      gridViewTextBoxColumn1.HeaderText = "key";
+      gridViewTextBoxColumn1.Name = "key";
+      gridViewTextBoxColumn1.Width = 499;
+      gridViewTextBoxColumn2.HeaderText = "value";
+      gridViewTextBoxColumn2.Name = "value";
+      gridViewTextBoxColumn2.Width = 502;
       this.grid_headMeta.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2});
       this.grid_headMeta.MasterTemplate.EnableGrouping = false;
-      this.grid_headMeta.MasterTemplate.ViewDefinition = tableViewDefinition5;
+      this.grid_headMeta.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.grid_headMeta.Name = "grid_headMeta";
       this.grid_headMeta.Size = new System.Drawing.Size(1021, 163);
       this.grid_headMeta.TabIndex = 1;
@@ -321,13 +322,13 @@
       this.drop_version.DropDownAnimationEnabled = true;
       this.drop_version.DropDownHeight = 107;
       this.drop_version.ItemHeight = 36;
-      radListDataItem3.Selected = true;
-      radListDataItem3.Text = "1.0";
-      radListDataItem4.Text = "0.9";
-      radListDataItem5.Text = "0.5";
+      radListDataItem1.Selected = true;
+      radListDataItem1.Text = "1.0";
+      radListDataItem2.Text = "0.9";
+      radListDataItem3.Text = "0.5";
+      this.drop_version.Items.Add(radListDataItem1);
+      this.drop_version.Items.Add(radListDataItem2);
       this.drop_version.Items.Add(radListDataItem3);
-      this.drop_version.Items.Add(radListDataItem4);
-      this.drop_version.Items.Add(radListDataItem5);
       this.drop_version.Location = new System.Drawing.Point(172, 0);
       this.drop_version.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.drop_version.Name = "drop_version";
@@ -475,25 +476,25 @@
       this.grid_sessions.MasterTemplate.AllowAddNewRow = false;
       this.grid_sessions.MasterTemplate.AllowDragToGroup = false;
       this.grid_sessions.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-      gridViewTextBoxColumn9.HeaderText = "ID: Info";
-      gridViewTextBoxColumn9.Name = "id";
-      gridViewTextBoxColumn9.Width = 845;
-      gridViewCommandColumn5.HeaderText = "Bearbeiten";
-      gridViewCommandColumn5.Image = global::CorpusExplorer.Terminal.Automate.Properties.Resources.tool_pencil;
-      gridViewCommandColumn5.MinWidth = 77;
-      gridViewCommandColumn5.Name = "edit";
-      gridViewCommandColumn5.Width = 78;
-      gridViewCommandColumn6.HeaderText = "Löschen";
-      gridViewCommandColumn6.Image = global::CorpusExplorer.Terminal.Automate.Properties.Resources.close_window;
-      gridViewCommandColumn6.MinWidth = 77;
-      gridViewCommandColumn6.Name = "delete";
-      gridViewCommandColumn6.Width = 79;
+      gridViewTextBoxColumn3.HeaderText = "ID: Info";
+      gridViewTextBoxColumn3.Name = "id";
+      gridViewTextBoxColumn3.Width = 845;
+      gridViewCommandColumn1.HeaderText = "Bearbeiten";
+      gridViewCommandColumn1.Image = global::CorpusExplorer.Terminal.Automate.Properties.Resources.tool_pencil;
+      gridViewCommandColumn1.MinWidth = 77;
+      gridViewCommandColumn1.Name = "edit";
+      gridViewCommandColumn1.Width = 78;
+      gridViewCommandColumn2.HeaderText = "Löschen";
+      gridViewCommandColumn2.Image = global::CorpusExplorer.Terminal.Automate.Properties.Resources.close_window;
+      gridViewCommandColumn2.MinWidth = 77;
+      gridViewCommandColumn2.Name = "delete";
+      gridViewCommandColumn2.Width = 79;
       this.grid_sessions.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn9,
-            gridViewCommandColumn5,
-            gridViewCommandColumn6});
+            gridViewTextBoxColumn3,
+            gridViewCommandColumn1,
+            gridViewCommandColumn2});
       this.grid_sessions.MasterTemplate.EnableGrouping = false;
-      this.grid_sessions.MasterTemplate.ViewDefinition = tableViewDefinition6;
+      this.grid_sessions.MasterTemplate.ViewDefinition = tableViewDefinition2;
       this.grid_sessions.Name = "grid_sessions";
       this.grid_sessions.ReadOnly = true;
       this.grid_sessions.Size = new System.Drawing.Size(1021, 124);
@@ -532,6 +533,78 @@
       this.panel5.Size = new System.Drawing.Size(1063, 32);
       this.panel5.TabIndex = 5;
       // 
+      // radLabel12
+      // 
+      this.radLabel12.Dock = System.Windows.Forms.DockStyle.Left;
+      this.radLabel12.Font = new System.Drawing.Font("Segoe UI", 14F);
+      this.radLabel12.Location = new System.Drawing.Point(528, 0);
+      this.radLabel12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+      this.radLabel12.Name = "radLabel12";
+      this.radLabel12.Size = new System.Drawing.Size(16, 32);
+      this.radLabel12.TabIndex = 9;
+      this.radLabel12.Text = "<html><span style=\"color: #0000ff\">&gt;</span></html>";
+      // 
+      // panel_parallel
+      // 
+      this.panel_parallel.Controls.Add(this.info4);
+      this.panel_parallel.Controls.Add(this.radLabel8);
+      this.panel_parallel.Controls.Add(this.txt_parallel);
+      this.panel_parallel.Controls.Add(this.radLabel4);
+      this.panel_parallel.Dock = System.Windows.Forms.DockStyle.Left;
+      this.panel_parallel.Location = new System.Drawing.Point(353, 0);
+      this.panel_parallel.Name = "panel_parallel";
+      this.panel_parallel.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+      this.panel_parallel.Size = new System.Drawing.Size(175, 32);
+      this.panel_parallel.TabIndex = 7;
+      // 
+      // info4
+      // 
+      this.info4.BackColor = System.Drawing.Color.White;
+      this.info4.DisplayText = "Wenn Sie den asynchron-mode aktiviert haben, können Sie hier die maximale Anzahl " +
+    "an Threads festlegen. Bei 0 nutzt der CorpusExplorer alle verfügbaren Ressourcen" +
+    " vollständig aus.";
+      this.info4.Dock = System.Windows.Forms.DockStyle.Left;
+      this.info4.Location = new System.Drawing.Point(143, 0);
+      this.info4.Name = "info4";
+      this.info4.Size = new System.Drawing.Size(32, 32);
+      this.info4.TabIndex = 7;
+      // 
+      // radLabel8
+      // 
+      this.radLabel8.Dock = System.Windows.Forms.DockStyle.Left;
+      this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 14F);
+      this.radLabel8.Location = new System.Drawing.Point(132, 0);
+      this.radLabel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+      this.radLabel8.Name = "radLabel8";
+      this.radLabel8.Size = new System.Drawing.Size(11, 32);
+      this.radLabel8.TabIndex = 5;
+      this.radLabel8.Text = "<html>\"</html>";
+      // 
+      // txt_parallel
+      // 
+      this.txt_parallel.Dock = System.Windows.Forms.DockStyle.Left;
+      this.txt_parallel.Font = new System.Drawing.Font("Segoe UI", 11F);
+      this.txt_parallel.Location = new System.Drawing.Point(94, 0);
+      this.txt_parallel.Name = "txt_parallel";
+      this.txt_parallel.NullText = "0";
+      this.txt_parallel.Size = new System.Drawing.Size(38, 32);
+      this.txt_parallel.TabIndex = 4;
+      this.txt_parallel.Text = "0";
+      this.txt_parallel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.txt_parallel.TextChanged += new System.EventHandler(this.txt_parallel_TextChanged);
+      // 
+      // radLabel4
+      // 
+      this.radLabel4.Dock = System.Windows.Forms.DockStyle.Left;
+      this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 14F);
+      this.radLabel4.Location = new System.Drawing.Point(10, 0);
+      this.radLabel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+      this.radLabel4.Name = "radLabel4";
+      this.radLabel4.Size = new System.Drawing.Size(84, 32);
+      this.radLabel4.TabIndex = 3;
+      this.radLabel4.Text = "<html><span style=\"color: #0000ff\"></span><span style=\"color: #ff0000\">parallel</" +
+    "span><span style=\"color: #000000\">=\"</span></html>";
+      // 
       // info3
       // 
       this.info3.BackColor = System.Drawing.Color.White;
@@ -550,7 +623,7 @@
       this.radLabel2.Location = new System.Drawing.Point(310, 0);
       this.radLabel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.radLabel2.Name = "radLabel2";
-      this.radLabel2.Size = new System.Drawing.Size(11, 27);
+      this.radLabel2.Size = new System.Drawing.Size(11, 32);
       this.radLabel2.TabIndex = 4;
       this.radLabel2.Text = "<html>\"</html>";
       // 
@@ -560,11 +633,11 @@
       this.drop_sessionMode.DropDownAnimationEnabled = true;
       this.drop_sessionMode.DropDownHeight = 107;
       this.drop_sessionMode.ItemHeight = 36;
-      radListDataItem6.Selected = true;
-      radListDataItem6.Text = "asynchron";
-      radListDataItem7.Text = "synchron";
-      this.drop_sessionMode.Items.Add(radListDataItem6);
-      this.drop_sessionMode.Items.Add(radListDataItem7);
+      radListDataItem4.Selected = true;
+      radListDataItem4.Text = "asynchron";
+      radListDataItem5.Text = "synchron";
+      this.drop_sessionMode.Items.Add(radListDataItem4);
+      this.drop_sessionMode.Items.Add(radListDataItem5);
       this.drop_sessionMode.Location = new System.Drawing.Point(179, 0);
       this.drop_sessionMode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.drop_sessionMode.Name = "drop_sessionMode";
@@ -580,82 +653,10 @@
       this.radLabel1.Location = new System.Drawing.Point(20, 0);
       this.radLabel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.radLabel1.Name = "radLabel1";
-      this.radLabel1.Size = new System.Drawing.Size(159, 27);
+      this.radLabel1.Size = new System.Drawing.Size(159, 32);
       this.radLabel1.TabIndex = 2;
       this.radLabel1.Text = "<html><span style=\"color: #0000ff\">&lt;sessions </span><span style=\"color: #ff000" +
     "0\">mode</span><span style=\"color: #000000\">=\"</span></html>";
-      // 
-      // panel_parallel
-      // 
-      this.panel_parallel.Controls.Add(this.info4);
-      this.panel_parallel.Controls.Add(this.radLabel8);
-      this.panel_parallel.Controls.Add(this.txt_parallel);
-      this.panel_parallel.Controls.Add(this.radLabel4);
-      this.panel_parallel.Dock = System.Windows.Forms.DockStyle.Left;
-      this.panel_parallel.Location = new System.Drawing.Point(353, 0);
-      this.panel_parallel.Name = "panel_parallel";
-      this.panel_parallel.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-      this.panel_parallel.Size = new System.Drawing.Size(175, 32);
-      this.panel_parallel.TabIndex = 7;
-      // 
-      // radLabel4
-      // 
-      this.radLabel4.Dock = System.Windows.Forms.DockStyle.Left;
-      this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 14F);
-      this.radLabel4.Location = new System.Drawing.Point(10, 0);
-      this.radLabel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-      this.radLabel4.Name = "radLabel4";
-      this.radLabel4.Size = new System.Drawing.Size(84, 27);
-      this.radLabel4.TabIndex = 3;
-      this.radLabel4.Text = "<html><span style=\"color: #0000ff\"></span><span style=\"color: #ff0000\">parallel</" +
-    "span><span style=\"color: #000000\">=\"</span></html>";
-      // 
-      // txt_parallel
-      // 
-      this.txt_parallel.Dock = System.Windows.Forms.DockStyle.Left;
-      this.txt_parallel.Font = new System.Drawing.Font("Segoe UI", 11F);
-      this.txt_parallel.Location = new System.Drawing.Point(94, 0);
-      this.txt_parallel.Name = "txt_parallel";
-      this.txt_parallel.NullText = "0";
-      this.txt_parallel.Size = new System.Drawing.Size(38, 32);
-      this.txt_parallel.TabIndex = 4;
-      this.txt_parallel.Text = "0";
-      this.txt_parallel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      this.txt_parallel.TextChanged += new System.EventHandler(this.txt_parallel_TextChanged);
-      // 
-      // radLabel8
-      // 
-      this.radLabel8.Dock = System.Windows.Forms.DockStyle.Left;
-      this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 14F);
-      this.radLabel8.Location = new System.Drawing.Point(132, 0);
-      this.radLabel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-      this.radLabel8.Name = "radLabel8";
-      this.radLabel8.Size = new System.Drawing.Size(11, 27);
-      this.radLabel8.TabIndex = 5;
-      this.radLabel8.Text = "<html>\"</html>";
-      // 
-      // info4
-      // 
-      this.info4.BackColor = System.Drawing.Color.White;
-      this.info4.DisplayText = "Wenn Sie den asynchron-mode aktiviert haben, können Sie hier die maximale Anzahl " +
-    "an Threads festlegen. Bei 0 nutzt der CorpusExplorer alle verfügbaren Ressourcen" +
-    " vollständig aus.";
-      this.info4.Dock = System.Windows.Forms.DockStyle.Left;
-      this.info4.Location = new System.Drawing.Point(143, 0);
-      this.info4.Name = "info4";
-      this.info4.Size = new System.Drawing.Size(32, 32);
-      this.info4.TabIndex = 7;
-      // 
-      // radLabel12
-      // 
-      this.radLabel12.Dock = System.Windows.Forms.DockStyle.Left;
-      this.radLabel12.Font = new System.Drawing.Font("Segoe UI", 14F);
-      this.radLabel12.Location = new System.Drawing.Point(528, 0);
-      this.radLabel12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-      this.radLabel12.Name = "radLabel12";
-      this.radLabel12.Size = new System.Drawing.Size(16, 27);
-      this.radLabel12.TabIndex = 9;
-      this.radLabel12.Text = "<html><span style=\"color: #0000ff\">&gt;</span></html>";
       // 
       // MainForm
       // 
@@ -705,15 +706,15 @@
       ((System.ComponentModel.ISupportInitialize)(this.btn_session_add)).EndInit();
       this.panel5.ResumeLayout(false);
       this.panel5.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
+      this.panel_parallel.ResumeLayout(false);
+      this.panel_parallel.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txt_parallel)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.drop_sessionMode)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-      this.panel_parallel.ResumeLayout(false);
-      this.panel_parallel.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.txt_parallel)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();

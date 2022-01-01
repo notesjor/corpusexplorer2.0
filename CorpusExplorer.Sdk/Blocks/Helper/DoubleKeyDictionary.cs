@@ -1,6 +1,10 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.Helper
 {
@@ -18,8 +22,6 @@ namespace CorpusExplorer.Sdk.Blocks.Helper
       }
     }
 
-    public Dictionary<string, Dictionary<string, T>> RawData { get; } = new Dictionary<string, Dictionary<string, T>>();
-
     public string[] Keys
     {
       get
@@ -36,6 +38,8 @@ namespace CorpusExplorer.Sdk.Blocks.Helper
       }
     }
 
+    public Dictionary<string, Dictionary<string, T>> RawData { get; } = new Dictionary<string, Dictionary<string, T>>();
+
     public void Add(string key1, string key2, T value)
     {
       if (RawData.ContainsKey(key2) && RawData[key2].ContainsKey(key1))
@@ -46,14 +50,12 @@ namespace CorpusExplorer.Sdk.Blocks.Helper
       if (RawData.ContainsKey(key1))
         RawData[key1].Add(key2, value);
       else
-        RawData.Add(key1, new Dictionary<string, T> {{key2, value}});
+        RawData.Add(key1, new Dictionary<string, T> { { key2, value } });
     }
 
-    public bool ContainsKeyCombination(string key1, string key2)
-    {
-      return RawData.ContainsKey(key1) && RawData[key1].ContainsKey(key2) ||
-             RawData.ContainsKey(key2) && RawData[key2].ContainsKey(key1);
-    }
+    public bool ContainsKeyCombination(string key1, string key2) =>
+      RawData.ContainsKey(key1) && RawData[key1].ContainsKey(key2) ||
+      RawData.ContainsKey(key2) && RawData[key2].ContainsKey(key1);
 
     public void Remove(string key1, string key2)
     {

@@ -1,8 +1,11 @@
-﻿using CorpusExplorer.Sdk.Properties;
+﻿#region
 
 #region
 
 using System;
+using CorpusExplorer.Sdk.Properties;
+
+#endregion
 
 #endregion
 
@@ -76,23 +79,18 @@ namespace CorpusExplorer.Sdk.Blocks.Cooccurrence
     /// </summary>
     /// <param name="a">Vorkommen des Begriffs</param>
     /// <param name="n">Gesamtzahl der Sätze</param>
-    public ISignificance PreCalculationSetup(double a, double n)
-    {
-      return new ChiSquaredSignificance
+    public ISignificance PreCalculationSetup(double a, double n) =>
+      new ChiSquaredSignificance
       {
         _a = a,
         _n = n,
         _s = n - a
       };
-    }
 
     /// <summary>
     ///   Returns a <see cref="System.String" /> that represents this instance.
     /// </summary>
     /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
-    public override string ToString()
-    {
-      return Label;
-    }
+    public override string ToString() => Label;
   }
 }

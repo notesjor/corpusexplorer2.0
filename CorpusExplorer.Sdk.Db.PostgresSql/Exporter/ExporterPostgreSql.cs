@@ -13,7 +13,7 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql.Exporter
   {
     public override void Export(IHydra hydra, string path)
     {
-      hydra.ToCorpus(new CorpusBuilderPostgreSql {SaveSettingsPath = path});
+      hydra.ToCorpus(new CorpusBuilderPostgreSql { SaveSettingsPath = path });
     }
   }
 }

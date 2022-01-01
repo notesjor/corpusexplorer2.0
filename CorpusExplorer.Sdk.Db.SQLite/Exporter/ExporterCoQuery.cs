@@ -29,7 +29,7 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Exporter
 
       context.Files.InsertAllOnSubmit(guids.Select((t, i) => new File
       {
-        FileId = (short) (i + 1),
+        FileId = (short)(i + 1),
         Filename = select.GetDocumentDisplayname(t),
         Path = select.GetDocumentDisplayname(t)
       }));
@@ -41,14 +41,14 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Exporter
 
       var dict = new Dictionary<string, int>();
       var dictIndex = 1;
-      var entryId = (long) 1;
+      var entryId = (long)1;
 
       var lexicons = new List<Lexicon>();
       var entries = new List<Corpus>();
 
-      for (var i = 0; i < guids.Length; i++)
+      foreach (var guid in guids)
       {
-        var mdoc = select.GetReadableMultilayerDocument(guids[i]);
+        var mdoc = @select.GetReadableMultilayerDocument(guid);
         var lemma = mdoc["Lemma"]?.Select(x => x.ToArray()).ToArray();
         var word = mdoc["Wort"].Select(x => x.ToArray()).ToArray();
         var pos = mdoc["POS"]?.Select(x => x.ToArray()).ToArray();
@@ -56,7 +56,7 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Exporter
         for (var s = 0; s < word.Length; s++)
         for (var w = 0; w < word[s].Length; w++)
         {
-          var bag = new List<string> {word[s][w]};
+          var bag = new List<string> { word[s][w] };
           if (lemma != null)
             bag.Add(lemma[s][w]);
           if (pos != null)
@@ -78,7 +78,7 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Exporter
           entries.Add(new Corpus
           {
             ID = entryId++,
-            FileId = fdict[guids[i]],
+            FileId = fdict[guid],
             SentenceId = s + 1,
             WordId = dict[key]
           });

@@ -82,7 +82,7 @@ namespace CorpusExplorer.Terminal.Automate
       _vm.Save(sfd.FileName,
                drop_version.SelectedItem.Text,
                drop_sessionMode.SelectedItem.Text,
-               grid_headMeta.Rows.Select(x => new KeyValuePair<string, string>(x.Cells[0].Value.ToString(), x.Cells[1].Value.ToString())).ToArray().ToArray());
+               grid_headMeta.Rows.Select(x => new KeyValuePair<string, string>(x.Cells[0].Value?.ToString(), x.Cells[1].Value?.ToString())).ToArray().ToArray());
       return sfd.FileName;
     }
 

@@ -49,10 +49,7 @@ namespace Bcs.Crawler
     /// </summary>
     [XmlArray("blocks")] private List<string> _urlBlockedPrefix = new List<string>();
 
-    public HtmlSearchCrawler()
-    {
-      MaxResults = 0;
-    }
+    public HtmlSearchCrawler() => MaxResults = 0;
 
     /// <summary>
     ///   Gets or sets the page crawler.

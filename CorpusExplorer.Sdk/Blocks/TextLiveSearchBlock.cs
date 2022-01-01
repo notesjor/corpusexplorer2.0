@@ -31,7 +31,7 @@ namespace CorpusExplorer.Sdk.Blocks
     /// </summary>
     public override void Calculate()
     {
-      SearchResults = QueryFilter.SearchOnWordLevel(Selection, LayerQueries);
+      SearchResults = QuickQuery.SearchOnWordLevel(Selection, LayerQueries);
       ResultSelection =
         Selection.CreateTemporary(
                                   SearchResults.ToDictionary(

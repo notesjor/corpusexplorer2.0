@@ -27,7 +27,7 @@ namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Importer
 
       ElasticSearchContextManager
        .Initialize(
-                   new[] {$"{lines[1]}:{lines[2]}"},
+                   new[] { $"{lines[1]}:{lines[2]}" },
                    lines[3].ToLower(),
                    lines.Length < 6 || string.IsNullOrEmpty(lines[4])
                      ? null

@@ -1,16 +1,17 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Blocks.PhrasesLaboratory.GrammarRule.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory.GrammarRule
 {
   [Serializable]
   public class JoinAllGrammarRule : AbstractGrammarRule
   {
-    public JoinAllGrammarRule(string label)
-    {
-      Label = label;
-    }
+    public JoinAllGrammarRule(string label) => Label = label;
 
     private JoinAllGrammarRule()
     {
@@ -23,7 +24,7 @@ namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory.GrammarRule
       var res = new Constituent(Label, true);
       foreach (var constituent in constituents)
         res.Add(constituent);
-      return new[] {res};
+      return new[] { res };
     }
   }
 }

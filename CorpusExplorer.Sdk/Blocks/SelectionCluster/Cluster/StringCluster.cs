@@ -1,5 +1,9 @@
-﻿using System;
+﻿#region
+
+using System;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {
@@ -7,10 +11,7 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
   {
     private readonly string _value;
 
-    public StringCluster(string value)
-    {
-      _value = value ?? "";
-    }
+    public StringCluster(string value) => _value = value ?? "";
 
     public override object CentralValue => _value;
 

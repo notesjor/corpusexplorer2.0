@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
@@ -6,6 +8,8 @@ using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Counter;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Counter.Abstract;
 using CorpusExplorer.Sdk.Model;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator
 {
@@ -40,22 +44,19 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator
       return res;
     }
 
-    protected internal override KeyValuePair<Guid, Dictionary<string, object>>[] GetDocumentGuids(Selection selection)
-    {
-      return EnableAutoOrder ? AutoOrder(selection) : base.GetDocumentGuids(selection);
-    }
-
     private KeyValuePair<Guid, Dictionary<string, object>>[] AutoOrder(Selection selection)
     {
       return selection.DocumentMetadata.OrderBy(x =>
                                                   GetOrderByValue(x.Value == null
                                                                     ? null
-                                                                    :
-                                                                    x.Value.ContainsKey(MetadataKey)
-                                                                      ?
-                                                                      x.Value[MetadataKey]
+                                                                    : x.Value.ContainsKey(MetadataKey)
+                                                                      ? x.Value[MetadataKey]
                                                                       : null))
                       .ToArray();
     }
+
+    protected internal override KeyValuePair<Guid, Dictionary<string, object>>[]
+      GetDocumentGuids(Selection selection) =>
+      EnableAutoOrder ? AutoOrder(selection) : base.GetDocumentGuids(selection);
   }
 }

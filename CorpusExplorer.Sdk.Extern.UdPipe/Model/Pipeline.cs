@@ -13,13 +13,13 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     private HandleRef swigCPtr;
 
     public Pipeline(Model m, string input, string tagger, string parser, string output) : this(
-                                                                                               udpipe_csharpPINVOKE
-                                                                                                .new_Pipeline(Model.getCPtr(m),
-                                                                                                              input,
-                                                                                                              tagger,
-                                                                                                              parser,
-                                                                                                              output),
-                                                                                               true)
+     udpipe_csharpPINVOKE
+      .new_Pipeline(Model.getCPtr(m),
+                    input,
+                    tagger,
+                    parser,
+                    output),
+     true)
     {
       if (udpipe_csharpPINVOKE.SWIGPendingException.Pending) throw udpipe_csharpPINVOKE.SWIGPendingException.Retrieve();
     }
@@ -72,10 +72,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       Dispose();
     }
 
-    internal static HandleRef getCPtr(Pipeline obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
+    internal static HandleRef getCPtr(Pipeline obj) => obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
 
     public string process(string data, ProcessingError error)
     {

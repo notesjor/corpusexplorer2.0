@@ -1,6 +1,10 @@
+#region
+
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
 using CorpusExplorer.Sdk.Model;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract
 {
@@ -17,7 +21,7 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract
         DetectMinMax(selection);
 
       if (Ranges < 2)
-        return new AbstractCluster[] {BuildRangeCluster(Min, Max)};
+        return new AbstractCluster[] { BuildRangeCluster(Min, Max) };
 
       var range = OperatorMinus(Max, Min);
       var section = OperatorDivideByRange(range, Ranges);

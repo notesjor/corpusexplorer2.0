@@ -37,10 +37,7 @@ namespace CorpusExplorer.Sdk.Aspect
     ///   Konstruktor für alle void-Methoden sowie alle nicht-void-Methoden
     ///   bei denen die Exception durchgereicht werden soll.
     /// </summary>
-    public ErrorReportingAspect()
-    {
-      _hasDefaultValue = false;
-    }
+    public ErrorReportingAspect() => _hasDefaultValue = false;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="ErrorReportingAspect" /> class.

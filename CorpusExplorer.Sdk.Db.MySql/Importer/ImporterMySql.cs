@@ -13,11 +13,8 @@ namespace CorpusExplorer.Sdk.Db.MySql.Importer
 {
   public class ImporterMySql : AbstractImporter
   {
-    private string CreateConnectionString(DbSettingsReader setting)
-    {
-      return
-        $"user id={setting.Username};password={setting.Password};host={setting.Host};port={setting.Port};database={setting.DbName};persist security info=True";
-    }
+    private string CreateConnectionString(DbSettingsReader setting) =>
+      $"user id={setting.Username};password={setting.Password};host={setting.Host};port={setting.Port};database={setting.DbName};persist security info=True";
 
     protected override IEnumerable<AbstractCorpusAdapter> Execute(string importFilePath)
     {

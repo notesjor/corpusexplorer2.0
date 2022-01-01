@@ -135,12 +135,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       page_welcome_btn_analytics.ImageCheckmark = Resources.image_brightness;
       ((RadDropDownButtonElement)corpus_start_add.RootElement.Children[0]).ActionButton.TextWrap = true;
 
-      RadPageViewHelper.MakeHeaderInvisible(pages_main);
-      RadPageViewHelper.MakeHeaderInvisible(pages_corpora);
-      RadPageViewHelper.MakeHeaderInvisible(pages_analytics);
-      RadPageViewHelper.MakeHeaderInvisible(pages_standardanalytics);
-      RadPageViewHelper.MakeHeaderInvisible(pages_snapshot);
-      RadPageViewHelper.MakeHeaderInvisible(pages_3rdParty);
+      pages_main.MakeHeaderInvisible();
+      pages_corpora.MakeHeaderInvisible();
+      pages_analytics.MakeHeaderInvisible();
+      pages_standardanalytics.MakeHeaderInvisible();
+      pages_snapshot.MakeHeaderInvisible();
+      pages_3rdParty.MakeHeaderInvisible();
 
       main_mainmenu_corpus.Layout.ArrowPrimitive.Direction = ArrowDirection.Down;
       main_mainmenu_analytics.Layout.ArrowPrimitive.Direction = ArrowDirection.Down;
@@ -212,7 +212,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         }
         catch (Exception ex)
         {
-          // ignore
+          InMemoryErrorConsole.Log(ex);
         }
         // InAppKorpora
         try
@@ -221,7 +221,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         }
         catch (Exception ex)
         {
-          // ignore
+          InMemoryErrorConsole.Log(ex);
         }
 
         task.Wait();
@@ -243,7 +243,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       }
       catch (Exception ex)
       {
-        // ignore
+        InMemoryErrorConsole.Log(ex);
       }
 
       #endregion
@@ -1826,7 +1826,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         return Resources.Dashboard_ProjectRenameCheck_Warn_NoName;
 
       var chars = Path.GetInvalidFileNameChars();
-      if (chars.Any(x => arg.Contains(x)))
+      if (chars.Any(arg.Contains))
         return Resources.InvalidPathChars;
 
       if (File.Exists(Path.Combine(Configuration.MyProjects, arg + ".proj5")))
@@ -2318,13 +2318,21 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       if (form.ShowDialog() != DialogResult.OK)
         return;
 
-      foreach (var csel in Project.CorporaGuids)
+      Processing.Invoke("Annotiere Dokumente...", () =>
       {
-        var corpus = Project.GetCorpus(csel);
-        form.Result.CorpusBuilder = corpus.GetCorpusBuilder();
-        form.Result.Input.Enqueue(corpus);
-        form.Result.Execute();
-      }
+        foreach (var csel in Project.CorporaGuids)
+        {
+          var corpus = Project.GetCorpus(csel);
+          form.Result.Input.Enqueue(corpus);
+          form.Result.Execute();
+
+          var nCorpus = form.Result.Output.Single();
+          nCorpus.CorpusPath = corpus.CorpusPath;
+
+          Project.Remove(csel);
+          Project.Add(nCorpus);
+        }
+      });
     }
 
     private void settings_tool_eraseCache_Click(object sender, EventArgs e)

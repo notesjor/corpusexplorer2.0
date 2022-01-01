@@ -160,8 +160,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.ConllTagger.Abstrac
                        {
                          try
                          {
-                           Dictionary<string, object> doc;
-                           if (!Input.TryDequeue(out doc))
+                           if (!Input.TryDequeue(out var doc))
                              return;
 
                            // Tagger

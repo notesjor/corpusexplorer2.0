@@ -43,16 +43,16 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public int Capacity
     {
-      get => (int) capacity();
+      get => (int)capacity();
       set
       {
         if (value < size())
           throw new ArgumentOutOfRangeException("Capacity");
-        reserve((uint) value);
+        reserve((uint)value);
       }
     }
 
-    public int Count => (int) size();
+    public int Count => (int)size();
 
     public bool IsFixedSize => false;
 
@@ -85,15 +85,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
     }
 
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-      return new SentencesEnumerator(this);
-    }
+    IEnumerator IEnumerable.GetEnumerator() => new SentencesEnumerator(this);
 
-    IEnumerator<Sentence> IEnumerable<Sentence>.GetEnumerator()
-    {
-      return new SentencesEnumerator(this);
-    }
+    IEnumerator<Sentence> IEnumerable<Sentence>.GetEnumerator() => new SentencesEnumerator(this);
 
     public void Add(Sentence x)
     {
@@ -151,15 +145,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       Dispose();
     }
 
-    internal static HandleRef getCPtr(Sentences obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
+    internal static HandleRef getCPtr(Sentences obj) => obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
 
-    public SentencesEnumerator GetEnumerator()
-    {
-      return new SentencesEnumerator(this);
-    }
+    public SentencesEnumerator GetEnumerator() => new SentencesEnumerator(this);
 
     private Sentence getitem(int index)
     {
@@ -313,7 +301,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
             throw new InvalidOperationException("Enumeration finished.");
           if (currentObject == null)
             throw new InvalidOperationException("Collection modified.");
-          return (Sentence) currentObject;
+          return (Sentence)currentObject;
         }
       }
     }

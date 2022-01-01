@@ -22,15 +22,11 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql.Builder
 
     public string SaveSettingsPath { get; set; }
 
-    private string CreateConnectionString(DbSettingsReader setting)
-    {
-      return CreateConnectionString(setting.Host, setting.Port, setting.DbName, setting.Username, setting.Password);
-    }
+    private string CreateConnectionString(DbSettingsReader setting) =>
+      CreateConnectionString(setting.Host, setting.Port, setting.DbName, setting.Username, setting.Password);
 
-    private string CreateConnectionString(string host, int port, string dbName, string user, string password)
-    {
-      return $"user id={user};password={password};host={host};port={port};database={dbName}";
-    }
+    private string CreateConnectionString(string host, int port, string dbName, string user, string password) =>
+      $"user id={user};password={password};host={host};port={port};database={dbName}";
 
     protected override AbstractCorpusAdapter CreateCorpus(
       Dictionary<Guid, Dictionary<string, object>> documentMetadata,
@@ -58,9 +54,7 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql.Builder
 
     protected override AbstractLayerAdapter CreateLayer(
       AbstractCorpusAdapter corpus,
-      AbstractLayerState layer)
-    {
-      return LayerAdapterLinqConnect.Create(corpus, layer);
-    }
+      AbstractLayerState layer) =>
+      LayerAdapterLinqConnect.Create(corpus, layer);
   }
 }

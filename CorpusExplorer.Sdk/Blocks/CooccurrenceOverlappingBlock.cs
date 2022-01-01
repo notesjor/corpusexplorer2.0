@@ -23,7 +23,7 @@ namespace CorpusExplorer.Sdk.Blocks
         return;
 
       var queries = new HashSet<string>(LayerQueries);
-      var filter = QueryFilter.SearchOnSentenceLevel(
+      var filter = QuickQuery.SearchOnSentenceLevel(
                                                      Selection,
                                                      new[]
                                                      {

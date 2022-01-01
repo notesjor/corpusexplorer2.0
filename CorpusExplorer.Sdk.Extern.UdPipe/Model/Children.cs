@@ -43,12 +43,12 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public int Capacity
     {
-      get => (int) capacity();
+      get => (int)capacity();
       set
       {
         if (value < size())
           throw new ArgumentOutOfRangeException("Capacity");
-        reserve((uint) value);
+        reserve((uint)value);
       }
     }
 
@@ -77,7 +77,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       CopyTo(0, array, arrayIndex, Count);
     }
 
-    public int Count => (int) size();
+    public int Count => (int)size();
 
     public bool IsReadOnly => false;
 
@@ -106,15 +106,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
     }
 
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-      return new ChildrenEnumerator(this);
-    }
+    IEnumerator IEnumerable.GetEnumerator() => new ChildrenEnumerator(this);
 
-    IEnumerator<int> IEnumerable<int>.GetEnumerator()
-    {
-      return new ChildrenEnumerator(this);
-    }
+    IEnumerator<int> IEnumerable<int>.GetEnumerator() => new ChildrenEnumerator(this);
 
     public int IndexOf(int value)
     {
@@ -180,15 +174,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       Dispose();
     }
 
-    internal static HandleRef getCPtr(Children obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
+    internal static HandleRef getCPtr(Children obj) => obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
 
-    public ChildrenEnumerator GetEnumerator()
-    {
-      return new ChildrenEnumerator(this);
-    }
+    public ChildrenEnumerator GetEnumerator() => new ChildrenEnumerator(this);
 
     private int getitem(int index)
     {
@@ -336,7 +324,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
             throw new InvalidOperationException("Enumeration finished.");
           if (currentObject == null)
             throw new InvalidOperationException("Collection modified.");
-          return (int) currentObject;
+          return (int)currentObject;
         }
       }
     }

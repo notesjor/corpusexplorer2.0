@@ -31,7 +31,7 @@ namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Backend
                       {
                         ElasticSearchContextManager
                          .Initialize(
-                                     new[] {$"{h}:{p}"},
+                                     new[] { $"{h}:{p}" },
                                      db.ToLower(),
                                      string.IsNullOrEmpty(usr)
                                        ? null

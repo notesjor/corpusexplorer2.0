@@ -27,6 +27,8 @@ namespace CorpusExplorer.Sdk.ViewModel
     public int Pre { get; set; } = 3;
     public int Post { get; set; } = 3;
 
+    public int MinFrequency { get; set; } = 2;
+
     public IEnumerable<string> DiscoveredNodes
     {
       get
@@ -129,6 +131,12 @@ namespace CorpusExplorer.Sdk.ViewModel
         BranchPost.Merge(x.ToList(), FlowNodeDirection.Forward);
       if (AutoJoin)
         BranchPost.Join(FlowNodeDirection.Forward);
+
+      if (MinFrequency < 2)
+        return;
+
+      BranchPre.RemoveBranches(MinFrequency);
+      BranchPost.RemoveBranches(MinFrequency);
     }
 
     protected override bool Validate()

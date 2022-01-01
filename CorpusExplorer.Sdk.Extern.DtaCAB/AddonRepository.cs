@@ -15,7 +15,9 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
 {
   public class AddonRepository : AbstractAddonRepository
   {
-    public override IEnumerable<AbstractAdditionalTagger> AddonAdditionalTagger => new[] {new DtaCabAdditionalTagger()};
+    public override IEnumerable<AbstractAdditionalTagger> AddonAdditionalTagger =>
+      new[] { new DtaCabAdditionalTagger() };
+
     public override IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> AddonBackends => null;
     public override IEnumerable<IAction> AddonConsoleActions => null;
     public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters => null;
@@ -23,7 +25,7 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers => null;
     public override IEnumerable<object> AddonSideloadFeature => null;
     public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter => null;
-    public override IEnumerable<AbstractTagger> AddonTagger => new[] {new DtaCabTreeTagger()};
+    public override IEnumerable<AbstractTagger> AddonTagger => new[] { new DtaCabTreeTagger() };
     public override IEnumerable<IAddonView> AddonViews => null;
     public override string Guid => "CorpusExplorer.Sdk.Extern.DtaCAB";
   }

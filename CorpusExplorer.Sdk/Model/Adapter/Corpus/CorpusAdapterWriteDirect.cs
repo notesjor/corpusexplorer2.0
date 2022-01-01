@@ -61,8 +61,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
 
     public override void AddLayer(AbstractLayerAdapter layer)
     {
-      var l = layer as LayerAdapterWriteDirect;
-      if (l != null)
+      if (layer is LayerAdapterWriteDirect l)
         _layers.Add(l);
     }
 
@@ -503,8 +502,11 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       do
       {
         layer = LayerAdapterWriteDirect.Create(fs);
-        if (layer != null)
-          res._layers.Add(layer);
+        if (layer == null) 
+          continue;
+
+        layer.Displayname = Configuration.LayerDisplayNameLocalization.Translate(layer.Displayname);
+        res._layers.Add(layer);
       } while (layer != null);
 
       // Metadata Fallback

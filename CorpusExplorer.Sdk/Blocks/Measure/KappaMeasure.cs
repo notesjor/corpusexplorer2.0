@@ -13,9 +13,7 @@ namespace CorpusExplorer.Sdk.Blocks.Measure
   [Serializable]
   public sealed class KappaMeasure : AbstractMeasure
   {
-    public override double Calculate(double k, double k0, double ki, double kj, double kij)
-    {
-      return 1.0d / (1.0d + GetP(k0, ki, kj, kij) * (ki + kj) / (2.0d * (k0 * kij - ki * kj)));
-    }
+    public override double Calculate(double k, double k0, double ki, double kj, double kij) =>
+      1.0d / (1.0d + GetP(k0, ki, kj, kij) * (ki + kj) / (2.0d * (k0 * kij - ki * kj)));
   }
 }

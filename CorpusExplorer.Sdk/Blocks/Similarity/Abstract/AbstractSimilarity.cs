@@ -40,7 +40,7 @@ namespace CorpusExplorer.Sdk.Blocks.Similarity.Abstract
     /// <returns>
     ///   The <see cref="double" />.
     /// </returns>
-    public double CalculateSimilarity(float[] vectorA, float[] vectorB) 
+    public double CalculateSimilarity(float[] vectorA, float[] vectorB)
       => CalculateSimilarity(vectorA.Select(x => (double)x).ToArray(), vectorB.Select(x => (double)x).ToArray());
 
     /// <summary>
@@ -102,7 +102,8 @@ namespace CorpusExplorer.Sdk.Blocks.Similarity.Abstract
                                       Dictionary<string, Dictionary<string, float>> vectorB)
       =>
         CalculateSimilarity(vectorA.ToDictionary(x => x.Key, x => x.Value.ToDictionary(y => y.Key, y => (double)y.Value)),
-                            vectorB.ToDictionary(x => x.Key, x => x.Value.ToDictionary(y => y.Key, y => (double)y.Value)));
+                            vectorB.ToDictionary(x => x.Key,
+                                                 x => x.Value.ToDictionary(y => y.Key, y => (double)y.Value)));
 
     /// <summary>
     ///   The calculate similarity.

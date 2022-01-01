@@ -1,5 +1,9 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.Disambiguation
 {
@@ -29,7 +33,7 @@ namespace CorpusExplorer.Sdk.Blocks.Disambiguation
 
     public IEnumerable<IDisambiguationCluster> GetClusters()
     {
-      return new[] {ClusterA, ClusterB};
+      return new[] { ClusterA, ClusterB };
     }
 
     public string Label => string.Join(", ", LabelItems);
@@ -49,11 +53,9 @@ namespace CorpusExplorer.Sdk.Blocks.Disambiguation
 
     public double Value { get; }
 
-    public double Distance(DisambiguationCluster otherCluster)
-    {
-      return Math.Abs(Value          - otherCluster.Value) + Math.Abs(ClusterA.Value - otherCluster.ClusterA.Value) +
-             Math.Abs(ClusterB.Value - otherCluster.ClusterB.Value);
-    }
+    public double Distance(DisambiguationCluster otherCluster) =>
+      Math.Abs(Value          - otherCluster.Value) + Math.Abs(ClusterA.Value - otherCluster.ClusterA.Value) +
+      Math.Abs(ClusterB.Value - otherCluster.ClusterB.Value);
 
     public void Join(DisambiguationCluster otherCluster)
     {
@@ -69,14 +71,11 @@ namespace CorpusExplorer.Sdk.Blocks.Disambiguation
         Value = value;
       }
 
-      public IEnumerable<IDisambiguationCluster> GetClusters()
-      {
-        return null;
-      }
+      public IEnumerable<IDisambiguationCluster> GetClusters() => null;
 
       public string Label { get; }
 
-      public IEnumerable<string> LabelItems => new[] {Label};
+      public IEnumerable<string> LabelItems => new[] { Label };
 
       public double Value { get; }
     }

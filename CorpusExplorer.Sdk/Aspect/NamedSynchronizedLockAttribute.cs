@@ -15,10 +15,7 @@ namespace CorpusExplorer.Sdk.Aspect
 
     private readonly string _name;
 
-    public NamedSynchronizedLockAttribute(string name)
-    {
-      _name = name;
-    }
+    public NamedSynchronizedLockAttribute(string name) => _name = name;
 
     private NamedSynchronizedLockAttribute()
     {

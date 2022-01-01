@@ -12,7 +12,7 @@ namespace CorpusExplorer.Sdk.Blocks.Similarity
   ///   The euclidean distance.
   /// </summary>
   [Serializable]
-  public class EuclideanDistance : AbstractDistance
+  public class DistanceEuclidean : AbstractDistance
   {
     /// <summary>
     ///   The calculate distance.

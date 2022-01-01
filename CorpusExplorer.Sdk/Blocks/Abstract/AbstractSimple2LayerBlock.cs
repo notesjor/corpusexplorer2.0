@@ -1,13 +1,16 @@
-﻿using System.Linq;
+﻿#region
+
+#region
+
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Model.Cache.Helper.Exception;
 
-#region
-
-using System;
-using System.Threading.Tasks;
+#endregion
 
 #endregion
 

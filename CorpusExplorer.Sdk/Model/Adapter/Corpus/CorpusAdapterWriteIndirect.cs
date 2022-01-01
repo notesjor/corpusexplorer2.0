@@ -130,12 +130,12 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     {
       var res = new Dictionary<string, HashSet<object>>();
       foreach (var x in _documentMetadata)
-      foreach (var o in x.Value)
-      {
-        if (!res.ContainsKey(o.Key))
-          res.Add(o.Key, new HashSet<object>());
-        res[o.Key].Add(o.Value);
-      }
+        foreach (var o in x.Value)
+        {
+          if (!res.ContainsKey(o.Key))
+            res.Add(o.Key, new HashSet<object>());
+          res[o.Key].Add(o.Value);
+        }
 
       return res;
     }
@@ -356,8 +356,11 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       do
       {
         layer = LayerAdapterWriteIndirect.Create(fs, path);
-        if (layer != null)
-          res._layers.Add(layer);
+        if (layer == null)
+          continue;
+
+        layer.Displayname = Configuration.LayerDisplayNameLocalization.Translate(layer.Displayname);
+        res._layers.Add(layer);
       } while (layer != null);
 
       // Metadata Fallback
@@ -366,8 +369,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       {
         var guids = new HashSet<Guid>();
         foreach (var l in res._layers)
-        foreach (var dsel in l.DocumentGuids)
-          guids.Add(dsel);
+          foreach (var dsel in l.DocumentGuids)
+            guids.Add(dsel);
 
         res._documentMetadata = guids.ToDictionary(x => x, x => new Dictionary<string, object>());
       }

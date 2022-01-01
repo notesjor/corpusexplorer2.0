@@ -99,11 +99,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Txt
 
                        var page = metas[2].Trim();
                        // ReSharper disable once RedundantAssignment
-                       var pageNr = -1;
                        var hasPageNr = false;
 
                        if (page.StartsWith("S. ") &&
-                           int.TryParse(page.Replace("S. ", string.Empty), out pageNr))
+                           int.TryParse(page.Replace("S. ", string.Empty), out var pageNr))
                        {
                          entry.Add("Seite", pageNr);
                          hasPageNr = true;

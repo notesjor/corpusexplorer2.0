@@ -84,14 +84,14 @@ namespace CorpusExplorer.Terminal.Automate
         drop_starttag.SelectedItem.Text == "annotate"
           ? (object)new annotate
           {
-            type = drop_type.SelectedItem.Text,
+            type = drop_type.SelectedItem.Tag.ToString(),
             language = anno_drop_language.SelectedItem.Text,
             tagger = anno_drop_tagger.SelectedItem.Text,
             Items = GetSources()
           }
           : new import
           {
-            type = drop_type.SelectedItem.Text,
+            type = drop_type.SelectedItem.Tag.ToString(),
             Items = GetSources()
           };
       private set
@@ -103,6 +103,7 @@ namespace CorpusExplorer.Terminal.Automate
           anno_drop_tagger.SelectValue(annotate.tagger);
           anno_drop_language.SelectValue(annotate.language);
           ListSources(annotate.Items);
+          DropTypeRefreshAnnotate();
           type = annotate.type;
         }
         else
@@ -110,6 +111,7 @@ namespace CorpusExplorer.Terminal.Automate
           var import = value as import;
           drop_starttag.SelectedIndex = 1;
           ListSources(import?.Items);
+          DropTypeRefreshImport();
           type = import?.type;
         }
 
@@ -179,17 +181,24 @@ namespace CorpusExplorer.Terminal.Automate
         $"<html><span style=\"color: #0000ff\">&lt;/{drop_starttag.SelectedItem.Text}&gt;</span></html>";
 
       if (drop_starttag.SelectedItem.Text == "annotate")
-      {
-        drop_type.Items.Clear();
-        drop_type.Items.AddRange(_scrapers.Select(x => new RadListDataItem(x.Key) { Tag = x.Value.GetType().Name }));
-        anno_drop_tagger.SelectedIndex = 0;
-      }
+        DropTypeRefreshAnnotate();
       else
-      {
-        drop_type.Items.Clear();
-        drop_type.Items.AddRange(_importers.Select(x => new RadListDataItem(x.Key) { Tag = x.Value.GetType().Name }));
-      }
+        DropTypeRefreshImport();
+
       drop_type.SelectedIndex = 0;
+    }
+
+    private void DropTypeRefreshImport()
+    {
+      drop_type.Items.Clear();
+      drop_type.Items.AddRange(_importers.Select(x => new RadListDataItem(x.Key) { Tag = x.Value.GetType().Name }));
+    }
+
+    private void DropTypeRefreshAnnotate()
+    {
+      drop_type.Items.Clear();
+      drop_type.Items.AddRange(_scrapers.Select(x => new RadListDataItem(x.Key) { Tag = x.Value.GetType().Name }));
+      anno_drop_tagger.SelectedIndex = 0;
     }
 
     private void anno_drop_tagger_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
@@ -202,7 +211,13 @@ namespace CorpusExplorer.Terminal.Automate
       anno_drop_language.SelectedIndex = 0;
     }
 
-    private void grid_directories_Click(object sender, EventArgs e)
+    private string GetFileExtensions(string[] files)
+    {
+      var first = files?.First();
+      return first == null ? "" : $"*{Path.GetFileName(first).Replace(Path.GetFileNameWithoutExtension(first), "")}";
+    }
+
+    private void btn_add_directories_Click(object sender, EventArgs e)
     {
       var fbd = new FolderBrowserDialog();
       if (fbd.ShowDialog() != DialogResult.OK)
@@ -211,7 +226,7 @@ namespace CorpusExplorer.Terminal.Automate
       grid_directories.Rows.Add(fbd.SelectedPath, GetFileExtensions(Directory.GetFiles(fbd.SelectedPath)));
     }
 
-    private void grid_files_Click(object sender, EventArgs e)
+    private void btn_add_files_Click(object sender, EventArgs e)
     {
       var ofd = new OpenFileDialog { Multiselect = true };
       if (ofd.ShowDialog() != DialogResult.OK)
@@ -219,12 +234,6 @@ namespace CorpusExplorer.Terminal.Automate
 
       foreach (var fn in ofd.FileNames)
         grid_files.Rows.Add(fn);
-    }
-
-    private string GetFileExtensions(string[] files)
-    {
-      var first = files?.First();
-      return first == null ? "" : Path.GetFileName(first).Replace(Path.GetFileNameWithoutExtension(first), "");
     }
   }
 }

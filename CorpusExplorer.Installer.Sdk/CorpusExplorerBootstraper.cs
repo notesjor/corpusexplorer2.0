@@ -189,7 +189,6 @@ namespace CorpusExplorer.Installer.Sdk
       if (!Directory.Exists(tempDir))
         Directory.CreateDirectory(tempDir);
 
-      var mb = 1024d * 1024d;
       var hasError = false;
       for (var i = 0; i < updates.Length; i++)
       {
@@ -567,8 +566,7 @@ namespace CorpusExplorer.Installer.Sdk
     {
       AddonInstaller(args);
 
-      bool createdNew;
-      var mutex = new Mutex(true, "CorpusExplorer v2.0", out createdNew);
+      var mutex = new Mutex(true, "CorpusExplorer v2.0", out var createdNew);
       if (!createdNew)
         return;
 

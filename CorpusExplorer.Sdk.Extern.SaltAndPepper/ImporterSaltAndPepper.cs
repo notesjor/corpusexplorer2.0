@@ -47,10 +47,7 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
 
     private readonly ImporterConll _importer;
 
-    public ImporterSaltAndPepper()
-    {
-      _importer = new ImporterConll();
-    }
+    public ImporterSaltAndPepper() => _importer = new ImporterConll();
 
     public PepperImportModule Module { get; set; } = PepperImportModule.None;
 
@@ -67,7 +64,7 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
         if (formatName == null)
           return null;
         if (formatName == "-!-")
-          return _importer.Execute(new[] {outputTemp.Path});
+          return _importer.Execute(new[] { outputTemp.Path });
 
         var vars = new Dictionary<string, string>
         {
@@ -113,7 +110,7 @@ namespace CorpusExplorer.Sdk.Extern.SaltAndPepper
         pepper.Start();
         pepper.WaitForExit();
 
-        return _importer.Execute(new[] {outputTemp.Path});
+        return _importer.Execute(new[] { outputTemp.Path });
       }
     }
 

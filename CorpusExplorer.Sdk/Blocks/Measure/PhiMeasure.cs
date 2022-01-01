@@ -13,9 +13,7 @@ namespace CorpusExplorer.Sdk.Blocks.Measure
   [Serializable]
   public sealed class PhiMeasure : AbstractMeasure
   {
-    public override double Calculate(double k, double k0, double ki, double kj, double kij)
-    {
-      return (kij * k0 - ki * kj) / Math.Sqrt((kij + ki) * (kij + kj) * (k0 + ki) * (k0 + kj));
-    }
+    public override double Calculate(double k, double k0, double ki, double kj, double kij) =>
+      (kij * k0 - ki * kj) / Math.Sqrt((kij + ki) * (kij + kj) * (k0 + ki) * (k0 + kj));
   }
 }

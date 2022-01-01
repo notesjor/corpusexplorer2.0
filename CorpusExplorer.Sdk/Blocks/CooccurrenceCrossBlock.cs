@@ -1,22 +1,22 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.ViewModel;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks
 {
   public class CooccurrenceCrossBlock : AbstractBlock
   {
-    public string LayerDisplayname { get; set; } = "Wort";
-
-    public IEnumerable<string> LayerValues { get; set; }
-
     public List<Tuple<string, string, double, double>> CrossCooccurences;
 
     public bool EnableExternalCooccurrencesFilter { get; set; } = true;
+    public string LayerDisplayname { get; set; } = "Wort";
+
+    public IEnumerable<string> LayerValues { get; set; }
 
     public override void Calculate()
     {

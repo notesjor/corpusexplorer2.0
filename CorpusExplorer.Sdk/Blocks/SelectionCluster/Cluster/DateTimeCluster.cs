@@ -1,5 +1,9 @@
+#region
+
 using System;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {
@@ -7,10 +11,7 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
   {
     private readonly DateTime _value;
 
-    public DateTimeCluster(DateTime value)
-    {
-      _value = value;
-    }
+    public DateTimeCluster(DateTime value) => _value = value;
 
     public override object CentralValue => _value;
 
@@ -20,7 +21,7 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
     {
       try
       {
-        var test = (DateTime) obj;
+        var test = (DateTime)obj;
         if (_value != test)
           return false;
         Add(documentGuid);

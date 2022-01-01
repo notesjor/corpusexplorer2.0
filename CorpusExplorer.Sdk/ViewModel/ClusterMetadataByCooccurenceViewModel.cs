@@ -16,7 +16,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public string MetadataKey { get; set; }
 
-    public AbstractDistance SimilarityIndex { get; set; } = new EuclideanDistance();
+    public AbstractDistance SimilarityIndex { get; set; } = new DistanceEuclidean();
 
     public string LayerDisplayname { get; set; } = "Wort";
 

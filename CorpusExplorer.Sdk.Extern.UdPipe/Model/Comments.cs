@@ -43,12 +43,12 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
 
     public int Capacity
     {
-      get => (int) capacity();
+      get => (int)capacity();
       set
       {
         if (value < size())
           throw new ArgumentOutOfRangeException("Capacity");
-        reserve((uint) value);
+        reserve((uint)value);
       }
     }
 
@@ -79,7 +79,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       CopyTo(0, array, arrayIndex, Count);
     }
 
-    public int Count => (int) size();
+    public int Count => (int)size();
 
     public bool IsReadOnly => false;
 
@@ -109,15 +109,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       }
     }
 
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-      return new CommentsEnumerator(this);
-    }
+    IEnumerator IEnumerable.GetEnumerator() => new CommentsEnumerator(this);
 
-    IEnumerator<string> IEnumerable<string>.GetEnumerator()
-    {
-      return new CommentsEnumerator(this);
-    }
+    IEnumerator<string> IEnumerable<string>.GetEnumerator() => new CommentsEnumerator(this);
 
     public int IndexOf(string value)
     {
@@ -184,15 +178,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       Dispose();
     }
 
-    internal static HandleRef getCPtr(Comments obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
+    internal static HandleRef getCPtr(Comments obj) => obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
 
-    public CommentsEnumerator GetEnumerator()
-    {
-      return new CommentsEnumerator(this);
-    }
+    public CommentsEnumerator GetEnumerator() => new CommentsEnumerator(this);
 
     private string getitem(int index)
     {
@@ -341,7 +329,7 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
             throw new InvalidOperationException("Enumeration finished.");
           if (currentObject == null)
             throw new InvalidOperationException("Collection modified.");
-          return (string) currentObject;
+          return (string)currentObject;
         }
       }
     }

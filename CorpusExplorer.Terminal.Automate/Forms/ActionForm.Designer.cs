@@ -573,6 +573,7 @@
       // 
       // 
       // 
+      this.grid_arguments.MasterTemplate.AddNewRowPosition = Telerik.WinControls.UI.SystemRowPosition.Bottom;
       this.grid_arguments.MasterTemplate.AllowDragToGroup = false;
       this.grid_arguments.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
       gridViewTextBoxColumn1.HeaderText = "argument";

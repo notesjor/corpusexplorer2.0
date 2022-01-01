@@ -169,7 +169,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
                               corpus.Save(Path.Combine(Configuration.MyCorpora, formName.Result.EnsureFileName()),
                                           false);
                             }
-                            catch (FileNotFoundException ex)
+                            catch (FileNotFoundException)
                             {
                               try
                               {
@@ -200,13 +200,11 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
         return Resources.QuickMode_CorpusNameCheck_Warn_NoName;
 
       var chars = Path.GetInvalidFileNameChars();
-      if (chars.Any(x => arg.Contains(x)))
-        return Resources.InvalidPathChars;
-
-      if (File.Exists(Path.Combine(Configuration.MyCorpora, arg + ".cec6")))
-        return Resources.QuickMode_CorpusNameCheck_Warn_AlreadyExsits;
-
-      return null;
+      return chars.Any(arg.Contains)
+               ? Resources.InvalidPathChars
+               : File.Exists(Path.Combine(Configuration.MyCorpora, arg + ".cec6"))
+                 ? Resources.QuickMode_CorpusNameCheck_Warn_AlreadyExsits
+                 : null;
     }
 
     /// <summary>

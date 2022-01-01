@@ -1,5 +1,9 @@
+#region
+
 using System;
 using CorpusExplorer.Sdk.Blocks.GroupDocuments.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.GroupDocuments
 {
@@ -11,29 +15,14 @@ namespace CorpusExplorer.Sdk.Blocks.GroupDocuments
 
     protected override Type Type => typeof(int);
 
-    public override object Add(object obj, ulong span)
-    {
-      return (int) obj + (int) span;
-    }
+    public override object Add(object obj, ulong span) => (int)obj + (int)span;
 
-    public override double Difference(object objA, object objB)
-    {
-      return (int) objA - (int) objB;
-    }
+    public override double Difference(object objA, object objB) => (int)objA - (int)objB;
 
-    public override bool IsBiggerOrEqual(object obj, object refernce)
-    {
-      return (int) obj >= (int) refernce;
-    }
+    public override bool IsBiggerOrEqual(object obj, object refernce) => (int)obj >= (int)refernce;
 
-    public override bool IsSmallerOrEqual(object obj, object refernce)
-    {
-      return (int) obj <= (int) refernce;
-    }
+    public override bool IsSmallerOrEqual(object obj, object refernce) => (int)obj <= (int)refernce;
 
-    public override object Substract(object obj, ulong span)
-    {
-      return (int) obj - (int) span;
-    }
+    public override object Substract(object obj, ulong span) => (int)obj - (int)span;
   }
 }

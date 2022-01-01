@@ -1,5 +1,9 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Xml.Serialization;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.NamedEntityRecognition
 {

@@ -24,10 +24,8 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
     {
     }
 
-    internal Word(IntPtr cPtr, bool cMemoryOwn) : base(udpipe_csharpPINVOKE.Word_SWIGUpcast(cPtr), cMemoryOwn)
-    {
+    internal Word(IntPtr cPtr, bool cMemoryOwn) : base(udpipe_csharpPINVOKE.Word_SWIGUpcast(cPtr), cMemoryOwn) =>
       swigCPtr = new HandleRef(this, cPtr);
-    }
 
     public Children children
     {
@@ -187,9 +185,6 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Model
       Dispose();
     }
 
-    internal static HandleRef getCPtr(Word obj)
-    {
-      return obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-    }
+    internal static HandleRef getCPtr(Word obj) => obj == null ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
   }
 }

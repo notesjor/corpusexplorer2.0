@@ -37,14 +37,14 @@ namespace CorpusExplorer.Sdk.Extern.Tika
         if (string.IsNullOrEmpty(text?.Text))
           return null;
 
-        var res = new Dictionary<string, object> {{"Text", text.Text}};
+        var res = new Dictionary<string, object> { { "Text", text.Text } };
         if (text.Metadata == null)
-          return new[] {res};
+          return new[] { res };
 
         foreach (var meta in text.Metadata.Where(meta => !res.ContainsKey(meta.Key)))
           res.Add(meta.Key, meta.Value);
 
-        return new[] {res};
+        return new[] { res };
       }
       catch
       {

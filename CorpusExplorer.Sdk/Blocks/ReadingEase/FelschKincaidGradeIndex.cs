@@ -44,9 +44,7 @@ namespace CorpusExplorer.Sdk.Blocks.ReadingEase
       double ms,
       double iw,
       double es,
-      double hypenCount3More)
-    {
-      return 0.39 * averageSentenceLength + 11.8 * averageNumberOfSyllablesPerWord - 15.59;
-    }
+      double hypenCount3More) =>
+      0.39 * averageSentenceLength + 11.8 * averageNumberOfSyllablesPerWord - 15.59;
   }
 }

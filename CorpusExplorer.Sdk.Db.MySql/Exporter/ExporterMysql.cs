@@ -13,7 +13,7 @@ namespace CorpusExplorer.Sdk.Db.MySql.Exporter
   {
     public override void Export(IHydra hydra, string path)
     {
-      hydra.ToCorpus(new CorpusBuilderMySql {SaveSettingsPath = path});
+      hydra.ToCorpus(new CorpusBuilderMySql { SaveSettingsPath = path });
     }
   }
 }

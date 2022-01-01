@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +9,8 @@ using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.Partition.Delegates;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.Partition
 {
@@ -37,7 +41,7 @@ namespace CorpusExplorer.Sdk.Blocks.Partition
                        {
                          try
                          {
-                           var block = Selection.CreateTemporary(new[] {part}).CreateBlock<TB>();
+                           var block = Selection.CreateTemporary(new[] { part }).CreateBlock<TB>();
                            if (OnConfiguration != null)
                              block = OnConfiguration(block);
                            block.Calculate();

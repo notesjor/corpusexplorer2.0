@@ -283,18 +283,10 @@ namespace CorpusExplorer.Sdk.Extern.Wiki.Wiktionary
     }
 
     private static List<string> CleanSampels(List<string> input)
-    {
-      var res = new List<string>();
-      foreach (var item in input)
-      {
-        var idx = item.IndexOf("1\r\n\r\n");
-        if (idx > -1)
-          res.Add(item.Substring(0, idx));
-        else
-          res.Add(item);
-      }
-      return res;
-    }
+      => (from item
+            in input
+          let idx = item.IndexOf("1\r\n\r\n")
+          select idx > -1 ? item.Substring(0, idx) : item).ToList();
 
     private static Regex _applyAlignedEntriesAlternateNumbering = new Regex(@"[A-z]");
 

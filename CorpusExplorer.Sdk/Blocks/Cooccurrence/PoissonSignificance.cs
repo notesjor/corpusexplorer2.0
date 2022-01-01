@@ -1,9 +1,12 @@
-﻿using CorpusExplorer.Sdk.Properties;
+﻿#region
 
 #region
 
 using System;
 using CorpusExplorer.Sdk.Helper;
+using CorpusExplorer.Sdk.Properties;
+
+#endregion
 
 #endregion
 
@@ -49,8 +52,8 @@ namespace CorpusExplorer.Sdk.Blocks.Cooccurrence
       var l = b * _a / _n;
       return (k + 1) / l > 2.5
                ? k < 10
-                   ? (l                             - k * Math.Log(l) + Math.Log(StatisticHelper.Fakultät(k))) / _log
-                   : k * (Math.Log(k) - Math.Log(l) - 1)                                                       / _log
+                   ? (l               - k * Math.Log(l) + Math.Log(StatisticHelper.Fakultät(k))) / _log
+                   : k * (Math.Log(k) - Math.Log(l) - 1)                                         / _log
                : 0;
     }
 
@@ -71,23 +74,18 @@ namespace CorpusExplorer.Sdk.Blocks.Cooccurrence
     /// </summary>
     /// <param name="a">Vorkommen des Begriffs</param>
     /// <param name="n">Gesamtzahl der Sätze</param>
-    public ISignificance PreCalculationSetup(double a, double n)
-    {
-      return new PoissonSignificance
+    public ISignificance PreCalculationSetup(double a, double n) =>
+      new PoissonSignificance
       {
         _a = a,
         _n = n,
         _log = Math.Log(n)
       };
-    }
 
     /// <summary>
     ///   Returns a <see cref="System.String" /> that represents this instance.
     /// </summary>
     /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
-    public override string ToString()
-    {
-      return Label;
-    }
+    public override string ToString() => Label;
   }
 }

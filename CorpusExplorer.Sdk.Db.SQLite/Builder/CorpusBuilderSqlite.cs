@@ -20,16 +20,12 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Builder
     protected override AbstractCorpusAdapter CreateCorpus(
       Dictionary<Guid, Dictionary<string, object>> documentMetadata,
       Dictionary<string, object> corpusMetadata,
-      List<Concept> concepts)
-    {
-      return CorpusAdapterLinqConnect.Create(CorpusDisplayname, documentMetadata, corpusMetadata, concepts);
-    }
+      List<Concept> concepts) =>
+      CorpusAdapterLinqConnect.Create(CorpusDisplayname, documentMetadata, corpusMetadata, concepts);
 
     protected override AbstractLayerAdapter CreateLayer(
       AbstractCorpusAdapter corpus,
-      AbstractLayerState layer)
-    {
-      return LayerAdapterLinqConnect.Create(corpus, layer);
-    }
+      AbstractLayerState layer) =>
+      LayerAdapterLinqConnect.Create(corpus, layer);
   }
 }

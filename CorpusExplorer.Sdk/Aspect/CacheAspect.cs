@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using PostSharp.Aspects;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Aspect
 {
@@ -20,6 +24,32 @@ namespace CorpusExplorer.Sdk.Aspect
     public override void CompileTimeInitialize(MethodBase method, AspectInfo aspectInfo)
     {
       _methodName = method?.DeclaringType?.FullName + "." + method?.Name;
+    }
+
+    private string GetCacheKey(object instance, Arguments arguments)
+    {
+      // If we have no argument, return just the method name so we don't uselessly allocate memory.
+      if (instance        == null &&
+          arguments.Count == 0)
+        return _methodName;
+
+      // Add all arguments to the cache key. Note that generic arguments are not part of the cache
+      // key, so method calls that differ only by generic arguments will have conflicting cache keys.
+      var stringBuilder = new StringBuilder(_methodName);
+      stringBuilder.Append('(');
+      if (instance != null)
+      {
+        stringBuilder.Append(instance);
+        stringBuilder.Append("; ");
+      }
+
+      for (var i = 0; i < arguments.Count; i++)
+      {
+        stringBuilder.Append(arguments.GetArgument(i) ?? "null");
+        stringBuilder.Append(", ");
+      }
+
+      return stringBuilder.ToString();
     }
 
     // This method is executed before the execution of target methods of this aspect.
@@ -48,33 +78,7 @@ namespace CorpusExplorer.Sdk.Aspect
     // This method is executed upon successful completion of target methods of this aspect.
     public override void OnSuccess(MethodExecutionArgs args)
     {
-      Cache.Add((string) args.MethodExecutionTag, args.ReturnValue);
-    }
-
-    private string GetCacheKey(object instance, Arguments arguments)
-    {
-      // If we have no argument, return just the method name so we don't uselessly allocate memory.
-      if (instance        == null &&
-          arguments.Count == 0)
-        return _methodName;
-
-      // Add all arguments to the cache key. Note that generic arguments are not part of the cache
-      // key, so method calls that differ only by generic arguments will have conflicting cache keys.
-      var stringBuilder = new StringBuilder(_methodName);
-      stringBuilder.Append('(');
-      if (instance != null)
-      {
-        stringBuilder.Append(instance);
-        stringBuilder.Append("; ");
-      }
-
-      for (var i = 0; i < arguments.Count; i++)
-      {
-        stringBuilder.Append(arguments.GetArgument(i) ?? "null");
-        stringBuilder.Append(", ");
-      }
-
-      return stringBuilder.ToString();
+      Cache.Add((string)args.MethodExecutionTag, args.ReturnValue);
     }
   }
 }

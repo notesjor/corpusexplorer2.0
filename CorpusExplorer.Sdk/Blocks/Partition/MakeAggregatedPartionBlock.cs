@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.Partition.Delegates;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.Partition
 {

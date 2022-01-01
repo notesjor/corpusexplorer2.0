@@ -58,6 +58,8 @@ namespace CorpusExplorer.Sdk.Helper
         if (value == null)
           break;
 
+        key = Configuration.DocumentMetadataLocalization.Translate(key);
+
         if (res.ContainsKey(key))
           res[key] = value;
         else

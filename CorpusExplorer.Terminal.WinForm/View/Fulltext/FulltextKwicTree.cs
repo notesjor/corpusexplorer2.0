@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
 using Bcs.IO;
+using CorpusExplorer.Sdk.Blocks.Flow;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.ViewModel;
@@ -14,6 +15,8 @@ using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter.Abstract;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Properties;
+using Telerik.WinControls.Primitives;
+using Telerik.WinControls.UI;
 using HorizontalAlignment = System.Windows.HorizontalAlignment;
 using MessageBox = System.Windows.MessageBox;
 
@@ -23,8 +26,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 {
   public partial class FulltextKwicTree : AbstractView
   {
-    private TextFlowSearchViewModel _vm;
     private readonly WpfDiagram wpfDiagram1;
+
+    private RadCheckBox chk_range = new RadCheckBox
+    {
+      Checked = true,
+      Text = "Einschränken?"
+    };
 
     public FulltextKwicTree()
     {
@@ -33,6 +41,26 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       { VerticalAlignment = VerticalAlignment.Stretch, HorizontalAlignment = HorizontalAlignment.Stretch };
       elementHost1.Child = wpfDiagram1;
       ShowView += OnShowView;
+
+      var root = chk_range.RootElement.Children[0].Children[1].Children[0].Children[0] as TextPrimitive;
+      root.Font = new System.Drawing.Font(lbl_post.Font.FontFamily, lbl_post.Font.Size);
+
+      host_range.Padding = new Padding(0, 3, 0, 0);
+      host_range.Size = new System.Drawing.Size(chk_range.Size.Width + 5, chk_range.Size.Height + 5);
+
+      host_range.HostedControl = chk_range;
+      chk_range.CheckStateChanged += Chk_range_CheckStateChanged;
+    }
+
+    private void Chk_range_CheckStateChanged(object sender, EventArgs e)
+    {
+      lbl_post.Visibility =
+        lbl_pre.Visibility =
+          txt_post.Visibility =
+            txt_pre.Visibility =
+              chk_range.Checked
+                ? Telerik.WinControls.ElementVisibility.Visible
+                : Telerik.WinControls.ElementVisibility.Collapsed;
     }
 
     private void Analyse(bool highlight)
@@ -41,14 +69,35 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
                         Resources.SucheFundstellen,
                         () =>
                         {
-                          _vm.LayerQueryPhrase = wordBag1.ResultQueries;
-                          _vm.Layer1Displayname = wordBag1.ResultSelectedLayerDisplayname;
-                          _vm.Layer2Displayname = "Wort";
-                          _vm.HighlightCooccurrences = highlight;
-                          _vm.Execute();
-
                           wpfDiagram1.CallNew();
-                          BuildTree();
+
+                          if (chk_range.Checked)
+                          {
+                            var vm = GetViewModel<TextFlowSearchWithRangeSelectionViewModel>();
+                            vm.LayerQueryPhrase = wordBag1.ResultQueries;
+                            vm.Layer1Displayname = wordBag1.ResultSelectedLayerDisplayname;
+                            vm.MinFrequency = int.Parse(txt_minFreq.Text);
+                            vm.Layer2Displayname = "Wort";
+                            vm.HighlightCooccurrences = highlight;
+
+                            vm.Pre = int.Parse(txt_pre.Text);
+                            vm.Post = int.Parse(txt_post.Text);
+
+                            vm.Execute();
+                            BuildTree(vm.BranchPre, vm.BranchPost, string.Join(" ", vm.LayerQueryPhrase));
+                          }
+                          else
+                          {
+                            var vm = GetViewModel<TextFlowSearchViewModel>();
+                            vm.LayerQueryPhrase = wordBag1.ResultQueries;
+                            vm.Layer1Displayname = wordBag1.ResultSelectedLayerDisplayname;
+                            vm.MinFrequency = int.Parse(txt_minFreq.Text);
+                            vm.Layer2Displayname = "Wort";
+                            vm.HighlightCooccurrences = highlight;
+
+                            vm.Execute();
+                            BuildTree(vm.BranchPre, vm.BranchPost, string.Join(" ", vm.LayerQueryPhrase));
+                          }
                         });
     }
 
@@ -82,27 +131,26 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       Analyse(false);
     }
 
-    private void BuildTree()
+    private void BuildTree(FlowNode nodePre, FlowNode nodePost, string label)
     {
       Processing.Invoke("Setze Struktur zusammen...",
                         () =>
                         {
                           elementHost1.SuspendLayout();
 
-                          wpfDiagram1.CallNew();
-                          var pre = _vm.BranchPre.RecursiveNodes().ToArray();
+                          var pre = nodePre.RecursiveNodes().ToArray();
                           wpfDiagram1.CallAddNodes(pre);
                           wpfDiagram1.CallColorizeNodes(pre, new UniversalColor(180, 200, 255));
 
-                          var post = _vm.BranchPost.RecursiveNodes().ToArray();
+                          var post = nodePost.RecursiveNodes().ToArray();
                           wpfDiagram1.CallAddNodes(post);
                           wpfDiagram1.CallColorizeNodes(post, new UniversalColor(180, 200, 255));
 
-                          wpfDiagram1.CallColorizeNodes(new[] { string.Join(" ", _vm.LayerQueryPhrase) },
+                          wpfDiagram1.CallColorizeNodes(new[] { label },
                                                         new UniversalColor(180, 255, 200));
 
-                          wpfDiagram1.CallAddConnections(_vm.BranchPre.RecursiveConnections(false));
-                          wpfDiagram1.CallAddConnections(_vm.BranchPost.RecursiveConnections(true));
+                          wpfDiagram1.CallAddConnections(nodePre.RecursiveConnections(false));
+                          wpfDiagram1.CallAddConnections(nodePost.RecursiveConnections(true));
 
                           wpfDiagram1.CallConnectionRendering();
 
@@ -152,7 +200,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
     private void OnShowView(object sender, EventArgs eventArgs)
     {
-      _vm = GetViewModel<TextFlowSearchViewModel>();
     }
 
     private void commandBarDropDownButton2_Click(object sender, EventArgs e)

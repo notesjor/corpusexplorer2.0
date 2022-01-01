@@ -62,45 +62,38 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger
     protected override string ExecuteTagger(string text)
     {
       using (var fileOutput = new TemporaryFile(Configuration.TempPath))
+      using (var fileInput = new TemporaryFile(Configuration.TempPath))
       {
-        using (var fileInput = new TemporaryFile(Configuration.TempPath))
+        FileIO.Write(fileInput.Path, text);
+
+        try
         {
-          FileIO.Write(fileInput.Path, text);
-
-          try
+          var process = new Process
           {
-            var process = new Process
+            StartInfo =
             {
-              StartInfo =
-              {
-                FileName = OpenNlpLocator.BatchFile,
-                Arguments =
-                  $"POSTagger {OpenNlpLocator.GetPerceptronModel(LanguageSelected)} < {fileInput.Path} > {fileOutput.Path}",
-                CreateNoWindow = true,
-                WindowStyle = ProcessWindowStyle.Hidden
-              }
-            };
-            process.Start();
-            process.WaitForExit();
+              FileName = OpenNlpLocator.BatchFile,
+              Arguments =
+                $"POSTagger {OpenNlpLocator.GetPerceptronModel(LanguageSelected)} < {fileInput.Path} > {fileOutput.Path}",
+              CreateNoWindow = true,
+              WindowStyle = ProcessWindowStyle.Hidden
+            }
+          };
+          process.Start();
+          process.WaitForExit();
 
-            return FileIO.ReadText(fileOutput.Path, Configuration.Encoding);
-          }
-          catch
-          {
-            return string.Empty;
-          }
+          return FileIO.ReadText(fileOutput.Path, Configuration.Encoding);
+        }
+        catch
+        {
+          return string.Empty;
         }
       }
     }
 
-    protected override bool IsEndOfSentence(string[] data)
-    {
-      return data.Length > 1 && data[1] == "$.";
-    }
+    protected override bool IsEndOfSentence(string[] data) => data.Length > 1 && data[1] == "$.";
 
-    protected override string TextPostTaggerCleanup(string text)
-    {
-      return base.TextPostTaggerCleanup(text.Replace("<ENDOFCORPUSEXPLORERFILE>_NE", "<ENDOFCORPUSEXPLORERFILE>"));
-    }
+    protected override string TextPostTaggerCleanup(string text) =>
+      base.TextPostTaggerCleanup(text.Replace("<ENDOFCORPUSEXPLORERFILE>_NE", "<ENDOFCORPUSEXPLORERFILE>"));
   }
 }

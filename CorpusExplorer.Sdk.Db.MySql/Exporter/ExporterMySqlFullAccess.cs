@@ -41,23 +41,23 @@ namespace CorpusExplorer.Sdk.Db.MySql.Exporter
         for (var i = 0; i < first.Length; i++)
         {
           var s = first[i];
-          var start = (ulong) tdidx;
+          var start = (ulong)tdidx;
           for (var j = 0; j < s.Length; j++)
           {
-            var tidx = (ulong) tokens.Count + 1; // TokenID - Identifiziert ein Token in der DB.
+            var tidx = (ulong)tokens.Count + 1; // TokenID - Identifiziert ein Token in der DB.
             tokens.Add(new Token
             {
               ID = tidx,
-              DocumentID = (uint) dsel.Value,
-              TokenIndex = (uint) tdidx
+              DocumentID = (uint)dsel.Value,
+              TokenIndex = (uint)tdidx
             });
 
             foreach (var ldoc in mdoc)
               annotations.Add(new Annotation
               {
-                ID = (ulong) annotations.Count + 1,
+                ID = (ulong)annotations.Count + 1,
                 TokenID = tidx,
-                LayerValueID = (uint) values[ldoc.Key][ldoc.Value[i][j]]
+                LayerValueID = (uint)values[ldoc.Key][ldoc.Value[i][j]]
               });
 
             tdidx++;
@@ -65,10 +65,10 @@ namespace CorpusExplorer.Sdk.Db.MySql.Exporter
 
           sentences.Add(new AnnotationSpan
           {
-            ID = (ulong) sentences.Count + 1,
-            LayerValueID = (uint) values[SentenceLayerMark][SentenceLayerMark],
+            ID = (ulong)sentences.Count + 1,
+            LayerValueID = (uint)values[SentenceLayerMark][SentenceLayerMark],
             TokenStartID = start,
-            TokenEndID = (ulong) tdidx - 1
+            TokenEndID = (ulong)tdidx - 1
           });
         }
       }
@@ -117,14 +117,14 @@ namespace CorpusExplorer.Sdk.Db.MySql.Exporter
         {
           CorpusID = 1,
           GUID = dsel.Key,
-          ID = (uint) didx
+          ID = (uint)didx
         });
 
         var ms = selection.GetDocumentMetadata(dsel.Key);
         foreach (var m in ms)
           meta.Add(new DocumentMetadata
           {
-            DocumentID = (uint) didx,
+            DocumentID = (uint)didx,
             Label = m.Key,
             Value = m.Value?.ToString()
           });
@@ -145,7 +145,7 @@ namespace CorpusExplorer.Sdk.Db.MySql.Exporter
 
         layers.Add(new Layer
         {
-          ID = (uint) lidx,
+          ID = (uint)lidx,
           GUID = layer.Guid,
           Displayname = layer.Displayname
         });
@@ -157,7 +157,7 @@ namespace CorpusExplorer.Sdk.Db.MySql.Exporter
       var idx = layers.Count + 1;
       layers.Add(new Layer
       {
-        ID = (uint) idx,
+        ID = (uint)idx,
         Displayname = SentenceLayerMark,
         GUID = Guid.NewGuid()
       });
@@ -182,24 +182,24 @@ namespace CorpusExplorer.Sdk.Db.MySql.Exporter
         var dict = layer.ReciveRawLayerDictionary();
         foreach (var x in dict)
         {
-          var vidx = (ulong) values.Count + 1;
+          var vidx = (ulong)values.Count + 1;
           res[key].Add(x.Key, vidx);
           values.Add(new LayerValue
           {
-            ID = (uint) vidx,
-            LayerID = (uint) layers[layer.Displayname],
+            ID = (uint)vidx,
+            LayerID = (uint)layers[layer.Displayname],
             Value = x.Key
           });
         }
       }
 
       // Layer für Satzgrenzen
-      var idx = (ulong) values.Count + 1;
-      res.Add(SentenceLayerMark, new Dictionary<string, ulong> {{SentenceLayerMark, idx}});
+      var idx = (ulong)values.Count + 1;
+      res.Add(SentenceLayerMark, new Dictionary<string, ulong> { { SentenceLayerMark, idx } });
       values.Add(new LayerValue
       {
-        ID = (uint) idx,
-        LayerID = (uint) layers[SentenceLayerMark],
+        ID = (uint)idx,
+        LayerID = (uint)layers[SentenceLayerMark],
         Value = SentenceLayerMark
       });
 
@@ -209,15 +209,11 @@ namespace CorpusExplorer.Sdk.Db.MySql.Exporter
       return res;
     }
 
-    private string CreateConnectionString(DbSettingsReader setting)
-    {
-      return CreateConnectionString(setting.Host, setting.Port, setting.DbName, setting.Username, setting.Password);
-    }
+    private string CreateConnectionString(DbSettingsReader setting) =>
+      CreateConnectionString(setting.Host, setting.Port, setting.DbName, setting.Username, setting.Password);
 
-    private string CreateConnectionString(string host, int port, string dbName, string user, string password)
-    {
-      return $"user id={user};password={password};host={host};port={port};database={dbName};persist security info=True";
-    }
+    private string CreateConnectionString(string host, int port, string dbName, string user, string password) =>
+      $"user id={user};password={password};host={host};port={port};database={dbName};persist security info=True";
 
     public override void Export(IHydra hydra, string path)
     {

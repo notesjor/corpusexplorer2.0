@@ -28,8 +28,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
       {
         while (Input.Count > 0)
         {
-          AbstractCorpusAdapter corpus;
-          if (!Input.TryDequeue(out corpus))
+          if (!Input.TryDequeue(out var corpus))
             continue;
 
           Output.Enqueue(CorpusBuilder.Append(corpus, ExecuteCall(ref corpus)));

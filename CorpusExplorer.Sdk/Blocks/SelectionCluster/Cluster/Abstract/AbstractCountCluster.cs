@@ -1,5 +1,9 @@
-﻿using System;
+﻿#region
+
+using System;
 using CorpusExplorer.Sdk.Model;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract
 {

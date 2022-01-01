@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bcs.IO;
+using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Extern.Json.Speedy.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
@@ -46,13 +47,13 @@ namespace CorpusExplorer.Sdk.Extern.Json.Speedy
           }
           catch (Exception ex)
           {
-
+            InMemoryErrorConsole.Log(ex);
           }
         }
       }
       catch (Exception ex)
       {
-
+        InMemoryErrorConsole.Log(ex);
       }
     }
 

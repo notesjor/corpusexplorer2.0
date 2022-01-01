@@ -46,8 +46,8 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
           continue;
         }
 
-        var doc = document.Value.Split(new[] {"\n"}, StringSplitOptions.RemoveEmptyEntries)
-                          .Select(s => s.Split(new[] {"\t"}, StringSplitOptions.None)).ToArray();
+        var doc = document.Value.Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries)
+                          .Select(s => s.Split(new[] { "\t" }, StringSplitOptions.None)).ToArray();
 
         if (!layer.ChangeCompleteDocument(document.Key, doc, false))
           error = true;
@@ -57,7 +57,7 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
         MessageBox.Show("Der DTA:CAB-Webservice konnte nicht alle Dokumente normalisieren. Das können Sie tun:\n1. Stellen Sie eine sicher, dass eine stabile Internetverbindung besteht.\n2. Möglicherweise ist der Webservice überlastet. Bitte probieren Sie es zu einem späteren Zeitpunkt erneut.\n3.  Kontaktieren Sie die Entwickler http://CorpusExplorer.de",
                         "Fehler DTA::CAB nicht alle Dokumente wurden normalisiert.", MessageBoxButtons.OK);
 
-      return new[] {layer};
+      return new[] { layer };
     }
 
     protected override void Cleanup()
@@ -69,10 +69,8 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
       MessageBox.Show(string.Format(DtaCabValidator.ErrorTemplate, message), "Fehler", MessageBoxButtons.OK);
     }
 
-    protected override IEnumerable<AbstractLayerState> ExecuteCall(ref AbstractCorpusAdapter corpus)
-    {
-      return ApplyAnnoation(corpus, MakeWebRequests(MakeWebRequestClusters(GenerateDocs(corpus))));
-    }
+    protected override IEnumerable<AbstractLayerState> ExecuteCall(ref AbstractCorpusAdapter corpus) =>
+      ApplyAnnoation(corpus, MakeWebRequests(MakeWebRequestClusters(GenerateDocs(corpus))));
 
     private Dictionary<Guid, string> GenerateDocs(AbstractCorpusAdapter corpus)
     {
@@ -184,7 +182,7 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
           if (string.IsNullOrEmpty(text))
             throw new ArgumentNullException(nameof(text));
 
-          var split = text.Split(new[] {"\n\n\n"}, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim())
+          var split = text.Split(new[] { "\n\n\n" }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim())
                           .ToArray();
           if (split.Length != cluster.Key.Length)
             throw new IndexOutOfRangeException();

@@ -24,7 +24,7 @@ namespace CorpusExplorer.Sdk.Db.SQLite
     public override IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> AddonBackends =>
       new Dictionary<string, AbstractCorpusBuilder>
       {
-        {"CorpusExplorer <-> SQLite", new CorpusBuilderSqlite()}
+        { "CorpusExplorer <-> SQLite", new CorpusBuilderSqlite() }
       };
 
     public override IEnumerable<IAction> AddonConsoleActions => null;
@@ -32,24 +32,26 @@ namespace CorpusExplorer.Sdk.Db.SQLite
     public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters =>
       new Dictionary<string, AbstractExporter>
       {
-        {"CorpusExplorer <-> SQLite (*.db)|*.db", new ExporterSqlite()},
-        {"CorpusExplorer --> Coquery.org SQLite (*.db)|*.db", new ExporterCoQuery()},
-        {"CorpusExplorer --> SQLite (*.db)|*.db", new ExporterFullAccess()}
+        { "CorpusExplorer <-> SQLite (*.db)|*.db", new ExporterSqlite() },
+        { "CorpusExplorer --> Coquery.org SQLite (*.db)|*.db", new ExporterCoQuery() },
+        { "CorpusExplorer --> SQLite (*.db)|*.db", new ExporterFullAccess() }
       };
 
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter =>
       new Dictionary<string, AbstractImporter>
       {
-        {"CorpusExplorer <-> SQLite (*.s3db)|*.s3db", new ImporterSqlite()}
+        { "CorpusExplorer <-> SQLite (*.s3db)|*.s3db", new ImporterSqlite() }
       };
 
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers => null;
     public override IEnumerable<object> AddonSideloadFeature => null;
-    public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter => 
+
+    public override IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter =>
       new Dictionary<string, AbstractTableWriter>
       {
-        {"SQLite-Datenbank (*.db)|*.db", new SQLiteTableWriter()}
+        { "SQLite-Datenbank (*.db)|*.db", new SQLiteTableWriter() }
       };
+
     public override IEnumerable<AbstractTagger> AddonTagger => null;
     public override IEnumerable<IAddonView> AddonViews => null;
     public override string Guid => "CorpusExplorer.Sdk.Db.SQLite";

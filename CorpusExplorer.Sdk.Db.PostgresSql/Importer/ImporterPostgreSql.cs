@@ -13,11 +13,8 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql.Importer
 {
   public class ImporterPostgreSql : AbstractImporter
   {
-    private string CreateConnectionString(DbSettingsReader setting)
-    {
-      return
-        $"user id={setting.Username};password={setting.Password};host={setting.Host};port={setting.Port};database={setting.DbName}";
-    }
+    private string CreateConnectionString(DbSettingsReader setting) =>
+      $"user id={setting.Username};password={setting.Password};host={setting.Host};port={setting.Port};database={setting.DbName}";
 
     protected override IEnumerable<AbstractCorpusAdapter> Execute(string importFilePath)
     {

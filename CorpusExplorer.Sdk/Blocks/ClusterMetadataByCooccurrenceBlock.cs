@@ -1,9 +1,13 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.Similarity.Abstract;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks
 {
@@ -13,6 +17,58 @@ namespace CorpusExplorer.Sdk.Blocks
   {
     public double CooccurrenceMinFrequency { get; set; }
     public double CooccurrenceMinSignificance { get; set; }
+
+    private Dictionary<string, Dictionary<string, double>> ApplyFilter(CooccurrenceBlock block)
+    {
+      var res = block.CooccurrenceSignificance;
+      if (CooccurrenceMinSignificance > 0)
+      {
+        var tmp = new Dictionary<string, Dictionary<string, double>>();
+        foreach (var x in res)
+        foreach (var y in x.Value)
+          if (y.Value >= CooccurrenceMinSignificance)
+          {
+            if (tmp.ContainsKey(x.Key))
+              tmp[x.Key].Add(y.Key, y.Value);
+            else
+              tmp.Add(x.Key, new Dictionary<string, double> { { y.Key, y.Value } });
+          }
+
+        res = tmp;
+      }
+
+      if (CooccurrenceMinFrequency > 0)
+      {
+        var tmp = new Dictionary<string, Dictionary<string, double>>();
+        foreach (var x in res)
+        foreach (var y in x.Value)
+          if (block.CooccurrenceFrequency[x.Key][y.Key] >= CooccurrenceMinFrequency)
+          {
+            if (tmp.ContainsKey(x.Key))
+              tmp[x.Key].Add(y.Key, y.Value);
+            else
+              tmp.Add(x.Key, new Dictionary<string, double> { { y.Key, y.Value } });
+          }
+
+        res = tmp;
+      }
+
+      return res;
+    }
+
+    protected override double CalculateDistance(
+      AbstractDistance similarityIndex, Dictionary<string, Dictionary<string, double>> a,
+      Dictionary<string, Dictionary<string, double>> b) =>
+      similarityIndex.CalculateSimilarity(a, b) / 2d;
+
+    protected override Dictionary<string, Dictionary<string, double>> CalculateValues(Selection selection)
+    {
+      var block = selection.CreateBlock<CooccurrenceBlock>();
+      block.LayerDisplayname = LayerDisplayname;
+      block.Calculate();
+
+      return ApplyFilter(block).CompleteDictionaryToFullDictionary();
+    }
 
     protected override Dictionary<string, Dictionary<string, double>> Join(
       Dictionary<string, Dictionary<string, double>> a, Dictionary<string, Dictionary<string, double>> b)
@@ -46,60 +102,6 @@ namespace CorpusExplorer.Sdk.Blocks
         {
           res.Add(x.Key, x.Value);
         }
-
-      return res;
-    }
-
-    protected override double CalculateDistance(
-      AbstractDistance similarityIndex, Dictionary<string, Dictionary<string, double>> a,
-      Dictionary<string, Dictionary<string, double>> b)
-    {
-      return similarityIndex.CalculateSimilarity(a, b) / 2d;
-    }
-
-    protected override Dictionary<string, Dictionary<string, double>> CalculateValues(Selection selection)
-    {
-      var block = selection.CreateBlock<CooccurrenceBlock>();
-      block.LayerDisplayname = LayerDisplayname;
-      block.Calculate();
-
-      return ApplyFilter(block).CompleteDictionaryToFullDictionary();
-    }
-
-    private Dictionary<string, Dictionary<string, double>> ApplyFilter(CooccurrenceBlock block)
-    {
-      var res = block.CooccurrenceSignificance;
-      if (CooccurrenceMinSignificance > 0)
-      {
-        var tmp = new Dictionary<string, Dictionary<string, double>>();
-        foreach (var x in res)
-        foreach (var y in x.Value)
-          if (y.Value >= CooccurrenceMinSignificance)
-          {
-            if (tmp.ContainsKey(x.Key))
-              tmp[x.Key].Add(y.Key, y.Value);
-            else
-              tmp.Add(x.Key, new Dictionary<string, double> {{y.Key, y.Value}});
-          }
-
-        res = tmp;
-      }
-
-      if (CooccurrenceMinFrequency > 0)
-      {
-        var tmp = new Dictionary<string, Dictionary<string, double>>();
-        foreach (var x in res)
-        foreach (var y in x.Value)
-          if (block.CooccurrenceFrequency[x.Key][y.Key] >= CooccurrenceMinFrequency)
-          {
-            if (tmp.ContainsKey(x.Key))
-              tmp[x.Key].Add(y.Key, y.Value);
-            else
-              tmp.Add(x.Key, new Dictionary<string, double> {{y.Key, y.Value}});
-          }
-
-        res = tmp;
-      }
 
       return res;
     }

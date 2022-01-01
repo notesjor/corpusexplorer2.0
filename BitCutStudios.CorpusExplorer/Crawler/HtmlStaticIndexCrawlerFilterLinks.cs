@@ -111,10 +111,7 @@ namespace Bcs.Crawler
     /// </summary>
     private Dictionary<string, string> _parameters = new Dictionary<string, string>();
 
-    public HtmlStaticIndexCrawlerFilterLinks(FilterNodes filterFunction)
-    {
-      FilterFunction = filterFunction;
-    }
+    public HtmlStaticIndexCrawlerFilterLinks(FilterNodes filterFunction) => FilterFunction = filterFunction;
 
     #endregion
 

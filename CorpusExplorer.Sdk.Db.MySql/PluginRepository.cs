@@ -23,7 +23,7 @@ namespace CorpusExplorer.Sdk.Db.MySql
     public override IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> AddonBackends =>
       new Dictionary<string, AbstractCorpusBuilder>
       {
-        {"CorpusExplorer <-> MySQL", new CorpusBuilderMySql()}
+        { "CorpusExplorer <-> MySQL", new CorpusBuilderMySql() }
       };
 
     public override IEnumerable<IAction> AddonConsoleActions => null;
@@ -31,14 +31,14 @@ namespace CorpusExplorer.Sdk.Db.MySql
     public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters =>
       new Dictionary<string, AbstractExporter>
       {
-        {"CorpusExplorer <-> MySQL (*.mysql)|*.mysql", new ExporterMysql()},
-        {"CorpusExplorer --> MySQL (*.db)|*.db", new ExporterMySqlFullAccess()}
+        { "CorpusExplorer <-> MySQL (*.mysql)|*.mysql", new ExporterMysql() },
+        { "CorpusExplorer --> MySQL (*.db)|*.db", new ExporterMySqlFullAccess() }
       };
 
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter =>
       new Dictionary<string, AbstractImporter>
       {
-        {"CorpusExplorer <-> MySQL (*.mysql)|*.mysql", new ImporterMySql()}
+        { "CorpusExplorer <-> MySQL (*.mysql)|*.mysql", new ImporterMySql() }
       };
 
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers => null;

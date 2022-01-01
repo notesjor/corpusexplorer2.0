@@ -1,3 +1,5 @@
+#region
+
 using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster;
@@ -6,6 +8,8 @@ using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model;
 
+#endregion
+
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator
 {
   public class SelectionClusterGeneratorDoubleRange : AbstractSelectionClusterGeneratorRange<double>
@@ -13,10 +17,8 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator
     public override double Max { get; set; }
     public override double Min { get; set; }
 
-    protected override AbstractRangeCluster<double> BuildRangeCluster(double start, double end)
-    {
-      return new DoubleRangeCluster(start, end);
-    }
+    protected override AbstractRangeCluster<double> BuildRangeCluster(double start, double end) =>
+      new DoubleRangeCluster(start, end);
 
     protected override void DetectMinMax(Selection selection)
     {
@@ -38,24 +40,12 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator
       Max = values.Max();
     }
 
-    protected override bool OperatorAsmallerB(double a, double b)
-    {
-      return a < b;
-    }
+    protected override bool OperatorAsmallerB(double a, double b) => a < b;
 
-    protected override double OperatorDivideByRange(double a, int ranges)
-    {
-      return a / ranges;
-    }
+    protected override double OperatorDivideByRange(double a, int ranges) => a / ranges;
 
-    protected override double OperatorMinus(double a, double b)
-    {
-      return a - b;
-    }
+    protected override double OperatorMinus(double a, double b) => a - b;
 
-    protected override double OperatorPlus(double a, double b)
-    {
-      return a + b;
-    }
+    protected override double OperatorPlus(double a, double b) => a + b;
   }
 }

@@ -19,22 +19,22 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
   {
     private readonly Dictionary<string, string> _languages = new Dictionary<string, string>
     {
-      {"Arabisch", "arabic.tagger"},
-      {"Chinesisch (distsim)", "chinese-distsim.tagger"},
-      {"Chinesisch (nodistsim)", "chinese-nodistsim.tagger"},
-      {"Englisch (english-bidirectional-distsim)", "english-bidirectional-distsim.tagger"},
-      {"Englisch (english-caseless-left3words-distsim)", "english-caseless-left3words-distsim.tagger"},
-      {"Englisch (english-left3words-distsim)", "english-left3words-distsim.tagger"},
-      {"Englisch (wsj-0-18-bidirectional-distsim)", "wsj-0-18-bidirectional-distsim.tagger"},
-      {"Englisch (wsj-0-18-bidirectional-nodistsim)", "wsj-0-18-bidirectional-nodistsim.tagger"},
-      {"Englisch (wsj-0-18-caseless-left3words-distsim)", "wsj-0-18-caseless-left3words-distsim.tagger"},
-      {"Englisch (wsj-0-18-left3words-distsim)", "wsj-0-18-left3words-distsim.tagger"},
-      {"Englisch (wsj-0-18-left3words-nodistsim)", "wsj-0-18-left3words-nodistsim.tagger"},
-      {"Französisch", "french.tagger"},
-      {"Deutsch (german-dewac)", "german-dewac.tagger"},
-      {"Deutsch (german-fast)", "german-fast.tagger"},
-      {"Deutsch (german-fast-caseless)", "german-fast-caseless.tagger"},
-      {"Deutsch (german-hgc)", "german-hgc.tagger"}
+      { "Arabisch", "arabic.tagger" },
+      { "Chinesisch (distsim)", "chinese-distsim.tagger" },
+      { "Chinesisch (nodistsim)", "chinese-nodistsim.tagger" },
+      { "Englisch (english-bidirectional-distsim)", "english-bidirectional-distsim.tagger" },
+      { "Englisch (english-caseless-left3words-distsim)", "english-caseless-left3words-distsim.tagger" },
+      { "Englisch (english-left3words-distsim)", "english-left3words-distsim.tagger" },
+      { "Englisch (wsj-0-18-bidirectional-distsim)", "wsj-0-18-bidirectional-distsim.tagger" },
+      { "Englisch (wsj-0-18-bidirectional-nodistsim)", "wsj-0-18-bidirectional-nodistsim.tagger" },
+      { "Englisch (wsj-0-18-caseless-left3words-distsim)", "wsj-0-18-caseless-left3words-distsim.tagger" },
+      { "Englisch (wsj-0-18-left3words-distsim)", "wsj-0-18-left3words-distsim.tagger" },
+      { "Englisch (wsj-0-18-left3words-nodistsim)", "wsj-0-18-left3words-nodistsim.tagger" },
+      { "Französisch", "french.tagger" },
+      { "Deutsch (german-dewac)", "german-dewac.tagger" },
+      { "Deutsch (german-fast)", "german-fast.tagger" },
+      { "Deutsch (german-fast-caseless)", "german-fast-caseless.tagger" },
+      { "Deutsch (german-hgc)", "german-hgc.tagger" }
     };
 
     private string _languageSelected;
@@ -128,10 +128,7 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
       }
     }
 
-    protected override bool IsEndOfSentence(string[] data)
-    {
-      return data.Length > 1 && data[1] == "$.";
-    }
+    protected override bool IsEndOfSentence(string[] data) => data.Length > 1 && data[1] == "$.";
 
     private static string LocateJava(string getFolderPath)
     {
@@ -154,12 +151,12 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
             .Replace("  ", " ")
             .Replace("  ", " ")
             .Replace("  ", " ")
-            .Split(new[] {"<ENDOFCORPUSEXPLORERFILE>"}, StringSplitOptions.RemoveEmptyEntries);
+            .Split(new[] { "<ENDOFCORPUSEXPLORERFILE>" }, StringSplitOptions.RemoveEmptyEntries);
 
       if (splits.Length == 0)
         return text;
 
-      var res = new List<string> {splits[0]};
+      var res = new List<string> { splits[0] };
 
       for (var i = 1; i < splits.Length; i++)
       {

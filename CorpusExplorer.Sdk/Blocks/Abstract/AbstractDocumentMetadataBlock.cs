@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Cache.Helper.Exception;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.Abstract
 {
@@ -12,10 +16,7 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
     /// <summary>
     ///   Initializes a new instance of the <see cref="Abstract.AbstractSimple1LayerBlock" /> class.
     /// </summary>
-    protected AbstractDocumentMetadataBlock()
-    {
-      LayerDisplayname = "Wort";
-    }
+    protected AbstractDocumentMetadataBlock() => LayerDisplayname = "Wort";
 
     public string LayerDisplayname { get; set; }
 

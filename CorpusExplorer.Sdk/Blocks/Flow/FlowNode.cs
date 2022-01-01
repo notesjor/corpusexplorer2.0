@@ -1,6 +1,10 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.Flow
 {
@@ -8,10 +12,7 @@ namespace CorpusExplorer.Sdk.Blocks.Flow
   {
     private Dictionary<string, FlowNode> _children = new Dictionary<string, FlowNode>();
 
-    public FlowNode(string content)
-    {
-      Content = content;
-    }
+    public FlowNode(string content) => Content = content;
 
     public IEnumerable<FlowNode> Children => _children.Values;
     public int ChildrenCount => _children.Count;
@@ -104,6 +105,19 @@ namespace CorpusExplorer.Sdk.Blocks.Flow
       }
 
       return res;
+    }
+
+    public void RemoveBranches(int minFrequency)
+    {
+      var remove = new List<string>();
+      foreach (var item in _children)
+        if (item.Value.Frequency < minFrequency)
+          remove.Add(item.Key);
+        else
+          item.Value.RemoveBranches(minFrequency);
+
+      foreach (var x in remove)
+        _children.Remove(x);
     }
   }
 }

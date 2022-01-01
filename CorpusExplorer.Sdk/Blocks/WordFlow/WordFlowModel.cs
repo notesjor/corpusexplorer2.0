@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Blocks.WordFlow
 {
@@ -23,7 +27,7 @@ namespace CorpusExplorer.Sdk.Blocks.WordFlow
         else
           _brain[wordSource].Add(wordTarget, obj);
       else
-        _brain.Add(wordSource, new Dictionary<string, T> {{wordTarget, obj}});
+        _brain.Add(wordSource, new Dictionary<string, T> { { wordTarget, obj } });
     }
   }
 }

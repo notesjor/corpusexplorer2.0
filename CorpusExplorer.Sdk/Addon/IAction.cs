@@ -1,5 +1,9 @@
-﻿using CorpusExplorer.Sdk.Model;
+﻿#region
+
+using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Addon
 {

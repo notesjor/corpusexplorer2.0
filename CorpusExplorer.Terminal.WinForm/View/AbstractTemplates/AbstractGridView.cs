@@ -150,8 +150,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
       _grid.DataSource = null;
       if (res == DialogResult.OK)
       {
-        var tmp = _grid.DataSource as DataTable;
-        if (tmp != null)
+        if (_grid.DataSource is DataTable tmp)
           _backup = tmp;
         _grid.DataSource = dt.RegexFilter(form.SelectColumn, form.RegularExpression);
       }

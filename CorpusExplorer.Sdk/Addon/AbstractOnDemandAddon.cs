@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.IO;
 using System.Net;
 using System.Reflection;
 using CorpusExplorer.Sdk.Helper;
+
+#endregion
 
 namespace CorpusExplorer.Sdk.Addon
 {
@@ -23,8 +27,6 @@ namespace CorpusExplorer.Sdk.Addon
 
     protected abstract object Execute(object input);
 
-    protected abstract bool ValidateInstallation();
-
     private void RunInstallation()
     {
       var tempDir = Path.Combine(Path.GetTempPath(), "CorpusExplorer");
@@ -36,12 +38,15 @@ namespace CorpusExplorer.Sdk.Addon
       using (var wc = new CorpusExplorerWebClient())
         wc.DownloadFile(Url, tempFile);
 
-      var appPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"CorpusExplorer\App");
+      var appPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                                 @"CorpusExplorer\App");
       if (!Directory.Exists(appPath))
         appPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
       ZipHelper.Uncompress(tempFile, appPath);
     }
+
+    protected abstract bool ValidateInstallation();
 
     private class CorpusExplorerWebClient : WebClient
     {

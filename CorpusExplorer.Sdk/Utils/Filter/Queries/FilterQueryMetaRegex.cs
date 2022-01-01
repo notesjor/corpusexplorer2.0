@@ -56,11 +56,15 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       _values = new List<Regex>();
       foreach (var o in metaValues)
       {
-        var regex = o as Regex;
-        if (regex != null)
-          _values.Add(regex);
-        else if (o is string)
-          _values.Add(new Regex((string) o));
+        switch (o)
+        {
+          case Regex regex:
+            _values.Add(regex);
+            break;
+          case string s:
+            _values.Add(new Regex(s));
+            break;
+        }
       }
     }
 

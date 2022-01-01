@@ -123,10 +123,10 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="elementHost1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 105</value>
+    <value>0, 147</value>
   </data>
   <data name="elementHost1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>780, 295</value>
+    <value>780, 253</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="elementHost1.TabIndex" type="System.Int32, mscorlib">
@@ -154,7 +154,7 @@
     <value>Segoe UI, 11pt</value>
   </data>
   <data name="wordBag1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 69</value>
+    <value>0, 111</value>
   </data>
   <data name="wordBag1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 6, 5, 6</value>
@@ -246,8 +246,56 @@
   <data name="commandBarDropDownButton2.ToolTipText" xml:space="preserve">
     <value>Layout</value>
   </data>
+  <data name="commandBarStripElement2.DisplayName" xml:space="preserve">
+    <value>commandBarStripElement2</value>
+  </data>
+  <data name="commandBarLabel1.DisplayName" xml:space="preserve">
+    <value>commandBarLabel1</value>
+  </data>
+  <data name="commandBarLabel1.Text" xml:space="preserve">
+    <value>Frequenz (Min.):</value>
+  </data>
+  <data name="txt_minFreq.DisplayName" xml:space="preserve">
+    <value>commandBarTextBox1</value>
+  </data>
+  <data name="txt_minFreq.Text" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="commandBarSeparator1.DisplayName" xml:space="preserve">
+    <value>commandBarSeparator1</value>
+  </data>
+  <data name="host_range.DisplayName" xml:space="preserve">
+    <value>commandBarHostItem1</value>
+  </data>
+  <data name="host_range.Text" xml:space="preserve">
+    <value>commandBarHostItem1</value>
+  </data>
+  <data name="lbl_pre.DisplayName" xml:space="preserve">
+    <value>commandBarLabel2</value>
+  </data>
+  <data name="lbl_pre.Text" xml:space="preserve">
+    <value>Pre:</value>
+  </data>
+  <data name="txt_pre.DisplayName" xml:space="preserve">
+    <value>commandBarTextBox2</value>
+  </data>
+  <data name="txt_pre.Text" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="lbl_post.DisplayName" xml:space="preserve">
+    <value>commandBarLabel3</value>
+  </data>
+  <data name="lbl_post.Text" xml:space="preserve">
+    <value>Post:</value>
+  </data>
+  <data name="txt_post.DisplayName" xml:space="preserve">
+    <value>commandBarTextBox3</value>
+  </data>
+  <data name="txt_post.Text" xml:space="preserve">
+    <value>5</value>
+  </data>
   <data name="radCommandBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>780, 69</value>
+    <value>780, 111</value>
   </data>
   <data name="radCommandBar1.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -256,7 +304,7 @@
     <value>radCommandBar1</value>
   </data>
   <data name="&gt;&gt;radCommandBar1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadCommandBar, Telerik.WinControls.UI, Version=2021.3.914.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadCommandBar, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radCommandBar1.Parent" xml:space="preserve">
     <value>splitPanel1</value>
@@ -320,7 +368,7 @@
     <value>splitPanel1</value>
   </data>
   <data name="&gt;&gt;splitPanel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2021.3.914.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;splitPanel1.Parent" xml:space="preserve">
     <value>radSplitContainer1</value>
@@ -347,7 +395,7 @@
     <value>radSplitContainer1</value>
   </data>
   <data name="&gt;&gt;radSplitContainer1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2021.3.914.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radSplitContainer1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -362,79 +410,139 @@
     <value>commandBarRowElement1</value>
   </data>
   <data name="&gt;&gt;commandBarRowElement1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarRowElement, Telerik.WinControls.UI, Version=2021.3.914.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarRowElement, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarStripElement1.Name" xml:space="preserve">
     <value>commandBarStripElement1</value>
   </data>
   <data name="&gt;&gt;commandBarStripElement1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarStripElement, Telerik.WinControls.UI, Version=2021.3.914.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarStripElement, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarButton1.Name" xml:space="preserve">
     <value>commandBarButton1</value>
   </data>
   <data name="&gt;&gt;commandBarButton1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.3.914.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarButton2.Name" xml:space="preserve">
     <value>commandBarButton2</value>
   </data>
   <data name="&gt;&gt;commandBarButton2.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.3.914.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarDropDownButton1.Name" xml:space="preserve">
     <value>commandBarDropDownButton1</value>
   </data>
   <data name="&gt;&gt;commandBarDropDownButton1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarDropDownButton, Telerik.WinControls.UI, Version=2021.3.914.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarDropDownButton, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_export_gexf.Name" xml:space="preserve">
     <value>btn_export_gexf</value>
   </data>
   <data name="&gt;&gt;btn_export_gexf.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Version=2021.3.914.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_export_graphviz.Name" xml:space="preserve">
     <value>btn_export_graphviz</value>
   </data>
   <data name="&gt;&gt;btn_export_graphviz.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Version=2021.3.914.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_export_graphml.Name" xml:space="preserve">
     <value>btn_export_graphml</value>
   </data>
   <data name="&gt;&gt;btn_export_graphml.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Version=2021.3.914.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_export_csv.Name" xml:space="preserve">
     <value>btn_export_csv</value>
   </data>
   <data name="&gt;&gt;btn_export_csv.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Version=2021.3.914.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarButton3.Name" xml:space="preserve">
     <value>commandBarButton3</value>
   </data>
   <data name="&gt;&gt;commandBarButton3.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.3.914.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarDropDownButton2.Name" xml:space="preserve">
     <value>commandBarDropDownButton2</value>
   </data>
   <data name="&gt;&gt;commandBarDropDownButton2.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarDropDownButton, Telerik.WinControls.UI, Version=2021.3.914.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarDropDownButton, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_layout_tree.Name" xml:space="preserve">
     <value>btn_layout_tree</value>
   </data>
   <data name="&gt;&gt;btn_layout_tree.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Version=2021.3.914.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_layout_net.Name" xml:space="preserve">
     <value>btn_layout_net</value>
   </data>
   <data name="&gt;&gt;btn_layout_net.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Version=2021.3.914.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadMenuItem, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarRowElement2.Name" xml:space="preserve">
+    <value>commandBarRowElement2</value>
+  </data>
+  <data name="&gt;&gt;commandBarRowElement2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarRowElement, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarStripElement2.Name" xml:space="preserve">
+    <value>commandBarStripElement2</value>
+  </data>
+  <data name="&gt;&gt;commandBarStripElement2.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarStripElement, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarLabel1.Name" xml:space="preserve">
+    <value>commandBarLabel1</value>
+  </data>
+  <data name="&gt;&gt;commandBarLabel1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarLabel, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;txt_minFreq.Name" xml:space="preserve">
+    <value>txt_minFreq</value>
+  </data>
+  <data name="&gt;&gt;txt_minFreq.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarTextBox, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;commandBarSeparator1.Name" xml:space="preserve">
+    <value>commandBarSeparator1</value>
+  </data>
+  <data name="&gt;&gt;commandBarSeparator1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarSeparator, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;host_range.Name" xml:space="preserve">
+    <value>host_range</value>
+  </data>
+  <data name="&gt;&gt;host_range.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarHostItem, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;lbl_pre.Name" xml:space="preserve">
+    <value>lbl_pre</value>
+  </data>
+  <data name="&gt;&gt;lbl_pre.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarLabel, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;txt_pre.Name" xml:space="preserve">
+    <value>txt_pre</value>
+  </data>
+  <data name="&gt;&gt;txt_pre.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarTextBox, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;lbl_post.Name" xml:space="preserve">
+    <value>lbl_post</value>
+  </data>
+  <data name="&gt;&gt;lbl_post.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarLabel, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
+  <data name="&gt;&gt;txt_post.Name" xml:space="preserve">
+    <value>txt_post</value>
+  </data>
+  <data name="&gt;&gt;txt_post.Type" xml:space="preserve">
+    <value>Telerik.WinControls.UI.CommandBarTextBox, Telerik.WinControls.UI, Version=2021.3.1123.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FulltextKwicTree</value>

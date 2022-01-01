@@ -153,7 +153,7 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Adapter
     public static AbstractLayerAdapter Create(AbstractCorpusAdapter corpus, AbstractLayerState layer)
     {
       var context = new DataContext(LinqConnectConfiguration.ConnectionString);
-      var corpusID = ((CorpusAdapterLinqConnect) corpus).DbIndex;
+      var corpusID = ((CorpusAdapterLinqConnect)corpus).DbIndex;
 
       var layerSet = new Layer
       {
@@ -200,9 +200,8 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Adapter
       return Create(context, layerSet);
     }
 
-    public static AbstractLayerAdapter Create(DataContext db, Layer layer)
-    {
-      return new LayerAdapterLinqConnect
+    public static AbstractLayerAdapter Create(DataContext db, Layer layer) =>
+      new LayerAdapterLinqConnect
       {
         _db = db,
         _layer = layer,
@@ -210,7 +209,6 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Adapter
         _guid = layer.GUID,
         _dbIndex = layer.ID
       };
-    }
 
     public override Dictionary<Guid, int[][]> GetDocumentDictionary()
     {
@@ -255,10 +253,7 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Adapter
       return res;
     }
 
-    protected override CeDictionary GetValueDictionary()
-    {
-      return new CeDictionary(ReciveRawLayerDictionary());
-    }
+    protected override CeDictionary GetValueDictionary() => new CeDictionary(ReciveRawLayerDictionary());
 
     public override Dictionary<string, int> ReciveRawLayerDictionary()
     {
@@ -379,11 +374,9 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Adapter
       }
     }
 
-    public override Concept ToConcept(IEnumerable<string> ignoreValues = null)
-    {
+    public override Concept ToConcept(IEnumerable<string> ignoreValues = null) =>
       // TODO: Konzepte werden von EntityFramework aktuell nicht unterstützt
-      return null;
-    }
+      null;
 
     public override void ValueAdd(string value)
     {
@@ -429,9 +422,7 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Adapter
                        {
                          if (regex.IsMatch(x.Value))
                            lock (@lock)
-                           {
                              res.Add(x.Value);
-                           }
                        });
 
       return res;

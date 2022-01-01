@@ -49,8 +49,8 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Adapter
     public override IEnumerable<KeyValuePair<Guid, Dictionary<string, object>>> DocumentMetadata
       => _corpus.Documents.ToDictionary(x => x.GUID,
                                         x => x.DocumentMetadataEntries.ToDictionary(y => y.Label,
-                                                                                    y => ValueSerializer
-                                                                                     .DeserializeValue(y.Value)));
+                                         y => ValueSerializer
+                                          .DeserializeValue(y.Value)));
 
     public override Guid FirstDocument
       => _corpus.Documents.FirstOrDefault().GUID;
@@ -197,25 +197,18 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Adapter
              select doc.GUID;
     }
 
-    public override AbstractCorpusBuilder GetCorpusBuilder()
-    {
-      return new CorpusBuilderSqlite();
-    }
+    public override AbstractCorpusBuilder GetCorpusBuilder() => new CorpusBuilderSqlite();
 
     public override IEnumerable<KeyValuePair<string, object>> GetCorpusMetadata()
     {
       return _corpus.CorpusMetadataEntries.ToDictionary(x => x.Label, x => ValueSerializer.DeserializeValue(x.Value));
     }
 
-    public override long GetDocumentLengthInSentences(Guid documentGuid)
-    {
-      return (from x in _corpus.Documents where x.GUID == documentGuid select x.CountSentences).FirstOrDefault();
-    }
+    public override long GetDocumentLengthInSentences(Guid documentGuid) =>
+      (from x in _corpus.Documents where x.GUID == documentGuid select x.CountSentences).FirstOrDefault();
 
-    public override long GetDocumentLengthInWords(Guid documentGuid)
-    {
-      return (from x in _corpus.Documents where x.GUID == documentGuid select x.CountToken).FirstOrDefault();
-    }
+    public override long GetDocumentLengthInWords(Guid documentGuid) =>
+      (from x in _corpus.Documents where x.GUID == documentGuid select x.CountToken).FirstOrDefault();
 
     public override Dictionary<string, object> GetDocumentMetadata(Guid documentGuid)
     {
@@ -239,52 +232,40 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Adapter
         if (res.ContainsKey(meta.Label))
           res[meta.Label].Add(ValueSerializer.DeserializeValue(meta.Value));
         else
-          res.Add(meta.Label, new HashSet<object> {ValueSerializer.DeserializeValue(meta.Value)});
+          res.Add(meta.Label, new HashSet<object> { ValueSerializer.DeserializeValue(meta.Value) });
 
       return res;
     }
 
-    public override IEnumerable<string> GetDocumentMetadataPrototypeOnlyProperties()
-    {
-      return new HashSet<string>(from doc in _corpus.Documents
-                                 from entry in doc.DocumentMetadataEntries
-                                 select entry.Label);
-    }
+    public override IEnumerable<string> GetDocumentMetadataPrototypeOnlyProperties() =>
+      new HashSet<string>(from doc in _corpus.Documents
+                          from entry in doc.DocumentMetadataEntries
+                          select entry.Label);
 
-    public override IEnumerable<object> GetDocumentMetadataPrototypeOnlyPropertieValues(string property)
-    {
-      return new HashSet<object>(from doc in _corpus.Documents
-                                 from entry in doc.DocumentMetadataEntries
-                                 where entry.Label == property
-                                 select entry.Value);
-    }
+    public override IEnumerable<object> GetDocumentMetadataPrototypeOnlyPropertieValues(string property) =>
+      new HashSet<object>(from doc in _corpus.Documents
+                          from entry in doc.DocumentMetadataEntries
+                          where entry.Label == property
+                          select entry.Value);
 
-    public override AbstractLayerAdapter GetLayer(Guid layerGuid)
-    {
-      return layerGuid == Guid.Empty
-               ? null
-               : (from x in _corpus.Layers where x.GUID == layerGuid select LayerAdapterLinqConnect.Create(_db, x))
-              .FirstOrDefault();
-    }
+    public override AbstractLayerAdapter GetLayer(Guid layerGuid) =>
+      layerGuid == Guid.Empty
+        ? null
+        : (from x in _corpus.Layers where x.GUID == layerGuid select LayerAdapterLinqConnect.Create(_db, x))
+       .FirstOrDefault();
 
-    public override AbstractLayerAdapter GetLayerOfDocument(Guid documentGuid, string layerDisplayname)
-    {
-      return (from l in _corpus.Layers
-              where l.Displayname == layerDisplayname
-              from d in l.LayerDocuments
-              where d.Document.GUID == documentGuid
-              select LayerAdapterLinqConnect.Create(_db, l)).FirstOrDefault();
-    }
+    public override AbstractLayerAdapter GetLayerOfDocument(Guid documentGuid, string layerDisplayname) =>
+      (from l in _corpus.Layers
+       where l.Displayname == layerDisplayname
+       from d in l.LayerDocuments
+       where d.Document.GUID == documentGuid
+       select LayerAdapterLinqConnect.Create(_db, l)).FirstOrDefault();
 
-    public override IEnumerable<AbstractLayerAdapter> GetLayers(string displayname)
-    {
-      return from x in _corpus.Layers where x.Displayname == displayname select LayerAdapterLinqConnect.Create(_db, x);
-    }
+    public override IEnumerable<AbstractLayerAdapter> GetLayers(string displayname) =>
+      from x in _corpus.Layers where x.Displayname == displayname select LayerAdapterLinqConnect.Create(_db, x);
 
-    public override IEnumerable<AbstractLayerAdapter> GetLayersOfDocument(Guid documentGuid)
-    {
-      return from x in _corpus.Layers where x.GUID == documentGuid select LayerAdapterLinqConnect.Create(_db, x);
-    }
+    public override IEnumerable<AbstractLayerAdapter> GetLayersOfDocument(Guid documentGuid) =>
+      from x in _corpus.Layers where x.GUID == documentGuid select LayerAdapterLinqConnect.Create(_db, x);
 
     public override IEnumerable<string> GetLayerValues(string layerDisplayname)
     {
@@ -304,28 +285,22 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Adapter
                                                                           .Select(x => x.Value);
     }
 
-    public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, string layerDisplayname)
-    {
-      return GetReadableDocument(
-                                 documentGuid,
-                                 (from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID)
-                                .FirstOrDefault());
-    }
+    public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, string layerDisplayname) =>
+      GetReadableDocument(
+                          documentGuid,
+                          (from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID)
+                         .FirstOrDefault());
 
-    public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, Guid layerGuid)
-    {
-      return GetLayer(layerGuid).GetReadableDocumentByGuid(documentGuid);
-    }
+    public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, Guid layerGuid) =>
+      GetLayer(layerGuid).GetReadableDocumentByGuid(documentGuid);
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocumentSnippet(
       Guid documentGuid,
       string layerDisplayname,
       int start,
-      int stop)
-    {
-      return GetLayer((from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID).FirstOrDefault())
+      int stop) =>
+      GetLayer((from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID).FirstOrDefault())
        .GetReadableDocumentByGuid(documentGuid);
-    }
 
     public override Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(
       Guid documentGuid)
@@ -385,11 +360,9 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Adapter
       _db.SubmitChanges();
     }
 
-    public override bool RemoveConcept(Concept concept)
-    {
+    public override bool RemoveConcept(Concept concept) =>
       // TODO: Konzepte werden von EntityFramework aktuell nicht unterstützt
-      return false;
-    }
+      false;
 
     public override void ResetAllDocumentMetadata(Dictionary<Guid, Dictionary<string, object>> newMetadata)
     {
@@ -447,16 +420,14 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Adapter
       string layerDisplayname,
       int sentenceIndex,
       int wordIndex,
-      string layerValue)
-    {
-      return SetDocumentLayerValueMask(
-                                       documentGuid,
-                                       (from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID)
-                                      .FirstOrDefault(),
-                                       sentenceIndex,
-                                       wordIndex,
-                                       layerValue);
-    }
+      string layerValue) =>
+      SetDocumentLayerValueMask(
+                                documentGuid,
+                                (from x in _corpus.Layers where x.Displayname == layerDisplayname select x.GUID)
+                               .FirstOrDefault(),
+                                sentenceIndex,
+                                wordIndex,
+                                layerValue);
 
     public override void SetDocumentMetadata(Guid documentGuid, Dictionary<string, object> metadata)
     {

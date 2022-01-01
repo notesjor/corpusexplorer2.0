@@ -1,14 +1,17 @@
-﻿using System.Linq;
+﻿#region
+
+#region
+
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Model.Cache.Helper.Exception;
 
-#region
-
-using System;
-using System.Threading.Tasks;
+#endregion
 
 #endregion
 
@@ -24,10 +27,7 @@ namespace CorpusExplorer.Sdk.Blocks.Abstract
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractSimple1LayerBlock" /> class.
     /// </summary>
-    protected AbstractSimple1LayerBlock()
-    {
-      LayerDisplayname = "Wort";
-    }
+    protected AbstractSimple1LayerBlock() => LayerDisplayname = "Wort";
 
     /// <summary>
     ///   Gets or sets the layer displayname.

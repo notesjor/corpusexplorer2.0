@@ -23,7 +23,7 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql
     public override IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> AddonBackends =>
       new Dictionary<string, AbstractCorpusBuilder>
       {
-        {"CorpusExplorer <-> PostgreSQL", new CorpusBuilderPostgreSql()}
+        { "CorpusExplorer <-> PostgreSQL", new CorpusBuilderPostgreSql() }
       };
 
     public override IEnumerable<IAction> AddonConsoleActions => null;
@@ -31,14 +31,14 @@ namespace CorpusExplorer.Sdk.Db.PostgreSql
     public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters =>
       new Dictionary<string, AbstractExporter>
       {
-        {"CorpusExplorer <-> PostgreSQL (*.psql)|*.psql", new ExporterPostgreSql()},
-        {"CorpusExplorer --> PostgreSQL (*.db)|*.db", new ExporterPostgreSqlFullAccess()}
+        { "CorpusExplorer <-> PostgreSQL (*.psql)|*.psql", new ExporterPostgreSql() },
+        { "CorpusExplorer --> PostgreSQL (*.db)|*.db", new ExporterPostgreSqlFullAccess() }
       };
 
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter =>
       new Dictionary<string, AbstractImporter>
       {
-        {"CorpusExplorer <-> PostgreSQL (*.psql)|*.psql", new ImporterPostgreSql()}
+        { "CorpusExplorer <-> PostgreSQL (*.psql)|*.psql", new ImporterPostgreSql() }
       };
 
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers => null;

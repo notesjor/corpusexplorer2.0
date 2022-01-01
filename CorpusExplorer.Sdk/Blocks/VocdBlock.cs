@@ -128,9 +128,8 @@ namespace CorpusExplorer.Sdk.Blocks
           perl.WaitForExit();
 
           var vals = output.Split(new[] {"|"}, StringSplitOptions.RemoveEmptyEntries);
-          double d, v;
-          if (vals.Length != 2 || !double.TryParse(vals[0], NumberStyles.Float, CultureInfo.InvariantCulture, out d) ||
-              !double.TryParse(vals[1], NumberStyles.Float, CultureInfo.InvariantCulture, out v))
+          if (vals.Length != 2 || !double.TryParse(vals[0], NumberStyles.Float, CultureInfo.InvariantCulture, out var d) ||
+              !double.TryParse(vals[1], NumberStyles.Float, CultureInfo.InvariantCulture, out var v))
             continue;
           Diversity.Add(cluster.Displayname, d);
           Variance.Add(cluster.Displayname, v);

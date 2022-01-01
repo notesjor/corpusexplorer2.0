@@ -14,7 +14,7 @@ namespace CorpusExplorer.Sdk.ViewModel
   {
     private ClusterMetadataByNgramBlock _block;
 
-    public AbstractDistance SimilarityIndex { get; set; } = new EuclideanDistance();
+    public AbstractDistance SimilarityIndex { get; set; } = new DistanceEuclidean();
 
     public string LayerDisplayname { get; set; } = "Wort";
 
