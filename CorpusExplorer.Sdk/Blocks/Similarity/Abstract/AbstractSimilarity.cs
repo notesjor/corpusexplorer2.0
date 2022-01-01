@@ -40,6 +40,37 @@ namespace CorpusExplorer.Sdk.Blocks.Similarity.Abstract
     /// <returns>
     ///   The <see cref="double" />.
     /// </returns>
+    public double CalculateSimilarity(float[] vectorA, float[] vectorB) 
+      => CalculateSimilarity(vectorA.Select(x => (double)x).ToArray(), vectorB.Select(x => (double)x).ToArray());
+
+    /// <summary>
+    ///   The calculate similarity.
+    /// </summary>
+    /// <param name="vectorA">
+    ///   The vector a.
+    /// </param>
+    /// <param name="vectorB">
+    ///   The vector b.
+    /// </param>
+    /// <returns>
+    ///   The <see cref="double" />.
+    /// </returns>
+    public double CalculateSimilarity(Dictionary<string, float> vectorA, Dictionary<string, float> vectorB)
+      => CalculateSimilarity(vectorA.ToDictionary(x => x.Key, x => (double)x.Value),
+                             vectorB.ToDictionary(x => x.Key, x => (double)x.Value));
+
+    /// <summary>
+    ///   The calculate similarity.
+    /// </summary>
+    /// <param name="vectorA">
+    ///   The vector a.
+    /// </param>
+    /// <param name="vectorB">
+    ///   The vector b.
+    /// </param>
+    /// <returns>
+    ///   The <see cref="double" />.
+    /// </returns>
     public double CalculateSimilarity(Dictionary<string, double> vectorA, Dictionary<string, double> vectorB)
     {
       var tmp = new HashSet<string>();
@@ -54,6 +85,24 @@ namespace CorpusExplorer.Sdk.Blocks.Similarity.Abstract
                                  keys.Select(x => vectorA.ContainsKey(x) ? vectorA[x] : 0).ToArray(),
                                  keys.Select(x => vectorB.ContainsKey(x) ? vectorB[x] : 0).ToArray());
     }
+
+    /// <summary>
+    ///   The calculate similarity.
+    /// </summary>
+    /// <param name="vectorA">
+    ///   The vector a.
+    /// </param>
+    /// <param name="vectorB">
+    ///   The vector b.
+    /// </param>
+    /// <returns>
+    ///   The <see cref="double" />.
+    /// </returns>
+    public double CalculateSimilarity(Dictionary<string, Dictionary<string, float>> vectorA,
+                                      Dictionary<string, Dictionary<string, float>> vectorB)
+      =>
+        CalculateSimilarity(vectorA.ToDictionary(x => x.Key, x => x.Value.ToDictionary(y => y.Key, y => (double)y.Value)),
+                            vectorB.ToDictionary(x => x.Key, x => x.Value.ToDictionary(y => y.Key, y => (double)y.Value)));
 
     /// <summary>
     ///   The calculate similarity.

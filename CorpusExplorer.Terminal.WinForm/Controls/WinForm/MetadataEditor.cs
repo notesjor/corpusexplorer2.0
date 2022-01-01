@@ -17,6 +17,14 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     public MetadataEditor()
     {
       InitializeComponent();
+      property_meta.CreateItemElement += Property_meta_CreateItemElement;
+      property_meta.EditorInitialized += Property_meta_EditorInitialized;
+    }
+
+    public bool ShowControlBar
+    {
+      get => clearPanel1.Visible;
+      set => clearPanel1.Visible = value;
     }
 
     public Dictionary<string, object> Metadata
@@ -54,6 +62,21 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
           }
         }
       }
+    }
+
+    public void AddMetadataDescription(Dictionary<string, string> entries)
+    {
+      if (!(property_meta.SelectedObject is RadPropertyStore store))
+        return;
+
+      foreach (var item in store)
+        if (entries.ContainsKey(item.PropertyName))
+          item.Description = entries[item.PropertyName];
+
+      property_meta.SelectedObject = store;
+
+      property_meta.HelpVisible = true;
+      property_meta.HelpBarHeight = 50;
     }
 
     private void SetupStore(Dictionary<string, object> value)
@@ -105,7 +128,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       if (x.PropertyType != typeof(DateTime))
         return;
 
-      var c = x.TypeConverter as DateTimeConverter;
+      var c = x.TypeConverter as CeDateTimeConverter;
       if (c == null)
         return;
     }

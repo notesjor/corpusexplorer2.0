@@ -1,6 +1,6 @@
-﻿namespace CorpusExplorer.Sdk.Model.Interface
+﻿namespace CorpusExplorer.Sdk.Helper.Verbalizer
 {
-  public interface IVerbalize
+  public interface IVerbalizerSimple
   {
     /// <summary>
     ///   Gibt eine automatisch generierte Zusammenfassung des Inhalts/Bedeutung zurück.

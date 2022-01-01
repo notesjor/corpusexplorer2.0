@@ -655,32 +655,38 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                Resources.find,
                                "Texte suchen (KWIT)");
 
-      GuiModuleBuilder.InitializePage(
-                                      modul_panel_analytics,
-                                      main_mainmenu_analytics,
-                                      (o, e) => SetAnalyticModul(page_rawanalytics_edition),
-                                      page_rawanalytics_edition,
-                                      Resources.history1,
-                                      Resources.history,
-                                      Resources.Textedition,
-                                      Resources.Textedition_Description,
-                                      "http://www.bitcutstudios.com/products/corpusexplorer/help/textedition.html",
-                                      // Handbook
-                                      Resources.Help_Static_HandsOnLab,
-                                      // Hand-on Lab
-                                      Resources.Help_Static_YoutubeChannel,
-                                      // Video
-                                      Resources.Help_Static_AdditionalInformation) // Weitere Informationen
-                      .AddView(
-                               typeof(TextCompare),
-                               Resources.history1,
-                               Resources.history,
-                               Resources.Textedition_CompareTexts)
-                      .AddView(
-                               typeof(TextSimilarity),
-                               Resources.documents1,
-                               Resources.documents,
-                               Resources.Textedition_TextSimilarity);
+      var edition = GuiModuleBuilder.InitializePage(
+                                     modul_panel_analytics,
+                                     main_mainmenu_analytics,
+                                     (o, e) => SetAnalyticModul(page_rawanalytics_edition),
+                                     page_rawanalytics_edition,
+                                     Resources.history1,
+                                     Resources.history,
+                                     Resources.Textedition,
+                                     Resources.Textedition_Description,
+                                     "http://www.bitcutstudios.com/products/corpusexplorer/help/textedition.html",
+                                     // Handbook
+                                     Resources.Help_Static_HandsOnLab,
+                                     // Hand-on Lab
+                                     Resources.Help_Static_YoutubeChannel,
+                                     // Video
+                                     Resources.Help_Static_AdditionalInformation) // Weitere Informationen
+                     .AddView(
+                              typeof(TextCompare),
+                              Resources.history1,
+                              Resources.history,
+                              Resources.Textedition_CompareTexts)
+                     .AddView(
+                              typeof(TextSimilarity),
+                              Resources.documents1,
+                              Resources.documents,
+                              Resources.Textedition_TextSimilarity);
+      if (Environment.Is64BitProcess)
+        edition.AddView(
+                        typeof(LdaTopics),
+                        Resources.tag_green1,
+                        Resources.tag_green,
+                        "LDA-Topic Model");
 
       // ab hier: modul_panel_analytics
 
@@ -2522,8 +2528,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     {
       if (string.IsNullOrWhiteSpace(snapshot_edit_displayname.Text))
         warnBox1.Display(Resources.Dashboard_Warn_Snapshotname_NoName);
-      
-      if (Project.SelectionsRecursive.Any(x=> x.Displayname == snapshot_edit_displayname.Text))
+
+      if (Project.SelectionsRecursive.Any(x => x.Displayname == snapshot_edit_displayname.Text))
         warnBox1.Display(Resources.Dashboard_Warn_Snapshotname_AlreadyExsists);
 
       warnBox1.Display(null);

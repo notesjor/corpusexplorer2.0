@@ -108,8 +108,8 @@
     <Reference Include="Polenter.SharpSerializer, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.1\lib\netstandard1.0\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=6.9.11.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.9.11\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.9.12.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.9.12\lib\net45\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -121,8 +121,8 @@
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
@@ -144,11 +144,19 @@
     <Compile Include="Blocks\ClusterMetadataByCooccurrenceSelectiveBlock.cs" />
     <Compile Include="Blocks\ClusterMetadataByNgramBlock.cs" />
     <Compile Include="Blocks\ClusterMetadata\ClusterMetadataItem.cs" />
+    <Compile Include="Blocks\CooccurrenceClassicBlock.cs" />
     <Compile Include="Blocks\CooccurrenceContextBlock.cs" />
     <Compile Include="Blocks\CooccurrenceCrossBlock.cs" />
     <Compile Include="Blocks\CooccurrenceSecondLevelProfileBlock.cs" />
     <Compile Include="Blocks\CorrespondingLayerValueFilterBlock.cs" />
+    <Compile Include="Blocks\CrossFrequencySelectedRangeBlock.cs" />
+    <Compile Include="Blocks\CrossFrequencySelectedBlock.cs" />
     <Compile Include="Blocks\CrossFrequencyDocumentBasedBlock.cs" />
+    <Compile Include="Blocks\CrossFrequencySelected\Abstract\AbstractCrossFrequencySelectedBehaviour.cs" />
+    <Compile Include="Blocks\Range\Abstract\AbstractRange.cs" />
+    <Compile Include="Blocks\CrossFrequencySelected\CrossFrequencySelectedBehaviourAnyMatch.cs" />
+    <Compile Include="Blocks\CrossFrequencySelected\CrossFrequencySelectedBehaviourPhrase.cs" />
+    <Compile Include="Blocks\Range\RangeSimple.cs" />
     <Compile Include="Blocks\CutOffPhraseBlock.cs" />
     <Compile Include="Blocks\DocumentHashBlock.cs" />
     <Compile Include="Blocks\DocumentSimilarityBlock.cs" />
@@ -316,6 +324,7 @@
     <Compile Include="Helper\PathShortenerHelper.cs" />
     <Compile Include="Helper\ProjectJoiner.cs" />
     <Compile Include="Helper\QueueExtension.cs" />
+    <Compile Include="Helper\RangeHelper.cs" />
     <Compile Include="Helper\SelectionEqualityComparer.cs" />
     <Compile Include="Helper\SelectionJoiner.cs" />
     <Compile Include="Helper\SelectionListConverterHelper.cs" />
@@ -329,6 +338,8 @@
     <Compile Include="Helper\TypeEqualityComparer.cs" />
     <Compile Include="Helper\UniversalColor.cs" />
     <Compile Include="Helper\ValueMergeHelper.cs" />
+    <Compile Include="Helper\Verbalizer\IVerbalizerComplex.cs" />
+    <Compile Include="Helper\Verbalizer\VerbalizerComplexStorage.cs" />
     <Compile Include="Model\Adapter\Corpus\CorpusAdapterSingleFile.cs" />
     <Compile Include="Model\Adapter\Corpus\CorpusAdapterWriteIndirect.cs" />
     <Compile Include="Model\Adapter\Corpus\CorpusAdapterWriteDirect.cs" />
@@ -413,7 +424,6 @@
     <Compile Include="Model\Concept.cs" />
     <Compile Include="Model\Extension\Obsolete\ObsoleteProjectExtension.cs" />
     <Compile Include="Model\Extension\ScraperDocumentExtension.cs" />
-    <Compile Include="Model\Interface\IKarkinos.cs" />
     <Compile Include="Model\Layer.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -478,6 +488,7 @@
     <Compile Include="Utils\DocumentProcessing\Tokenizer\HighSpeedGermanWikipediaTokenizer.cs" />
     <Compile Include="Utils\Filter\Abstract\AbstractFilterQuerySingleLayerFulltext.cs" />
     <Compile Include="Utils\Filter\Interface\IFilterQueryWithLayerValues.cs" />
+    <Compile Include="Utils\Filter\Queries\FilterQueryDocumentGuid.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMetaEndsWith.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMetaStartsWith.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMultiLayerAll.cs" />
@@ -608,7 +619,7 @@
     <Compile Include="Utils\DocumentProcessing\Exporter\Abstract\AbstractExporter.cs" />
     <Compile Include="Utils\Filter\QueryFilter.cs" />
     <Compile Include="Model\Interface\IHydra.cs" />
-    <Compile Include="Model\Interface\IVerbalize.cs" />
+    <Compile Include="Helper\Verbalizer\IVerbalizerSimple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Blocks\Similarity\Abstract\AbstractDistance.cs" />
     <Compile Include="Blocks\Similarity\Abstract\AbstractSimilarity.cs" />

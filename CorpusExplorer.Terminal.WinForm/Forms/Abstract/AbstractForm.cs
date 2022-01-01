@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using CorpusExplorer.Sdk.Model;
 using Telerik.WinControls;
 using Telerik.WinControls.Enumerations;
+using Telerik.WinControls.Themes;
 using Telerik.WinControls.UI;
 
 #endregion
@@ -16,6 +17,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
   /// </summary>
   public partial class AbstractForm : RadForm
   {
+    private TelerikMetroTouchTheme _telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
+
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractForm" /> class.
     /// </summary>
@@ -23,7 +26,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
     {
       try
       {
-        ThemeResolutionService.ApplicationThemeName = "TelerikMetroTouch";
+        ThemeResolutionService.EnsureThemeRegistered(_telerikMetroTouchTheme1.ThemeName);
+        ThemeResolutionService.ApplicationThemeName = _telerikMetroTouchTheme1.ThemeName;
       }
       catch
       {

@@ -8,6 +8,7 @@ namespace CorpusExplorer.Sdk.Extern.MachineLearning.Blocks.Lda
 {
   public enum Language
   {
+    None = -1,
     English = 0,
     French = 1,
     German = 2,

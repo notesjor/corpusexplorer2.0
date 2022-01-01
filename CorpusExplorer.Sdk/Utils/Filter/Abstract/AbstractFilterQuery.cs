@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Helper.Verbalizer;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Interface;
@@ -46,7 +47,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
   [XmlInclude(typeof(FilterQuerySingleLayerRegexFulltext))]
   [XmlInclude(typeof(FilterQueryUnsupportedParserFeature))]
   [Serializable]
-  public abstract class AbstractFilterQuery : IVerbalize, ICloneable
+  public abstract class AbstractFilterQuery : IVerbalizerSimple, ICloneable
   {
     /// <summary>
     ///   The _or filter queries.

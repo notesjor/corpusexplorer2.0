@@ -27,8 +27,7 @@ namespace CorpusExplorer.Sdk.Extern.MachineLearning
     public override IEnumerable<IAddonView> AddonViews => null;
     public override IEnumerable<IAction> AddonConsoleActions => new IAction[]
     {
-      new LdaTopicAction(),
-      new LdaDocumentTopicAction()
+      new LdaAction()
     };
     public override IEnumerable<object> AddonSideloadFeature => null;
     public override string Guid => "CorpusExplorer.Sdk.Extern.MachineLearning";
