@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="header.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<!DOCTYPE idsCorpus PUBLIC "-//IDS//DTD IDS-XCES 1.0//EN" "http://corpora.ids-mannheim.de/idsxces1/DTD/ids.xcesdoc.dtd">
+<idsHeader pattern="text" status="new" type="text" TEIform="teiHeader" version="1.0">
+    <fileDesc>
+     <titleStmt>
+      <textSigle>{DocSigle}</textSigle>
+      <t.title assemblage="external">{TITLE}</t.title>
+     </titleStmt>
+     <editionStmt version="0"/>
+     <publicationStmt>
+      <distributor/>
+      <pubAddress/>
+      <availability region="ids" status="unknown" Default="n"></availability>
+      <pubDate/>
+     </publicationStmt>
+     <sourceDesc Default="n">
+      <biblStruct Default="n" status="draft">
+       <analytic>
+        <h.title type="main">{TITLE}</h.title>
+        <h.title type="sub"/>
+        <h.title level="m" type="abbr"/>
+        <h.title level="a" type="abbr"/>
+        <h.author>p_0</h.author>
+        <editor/>
+        <imprint>
+         <pubDate type="year">{YEAR}</pubDate>
+         <pubDate type="day">{DAY}</pubDate>
+         <pubDate type="month">{MONTH}</pubDate>
+         <pubDate type="time">{TIME}</pubDate>
+        </imprint>
+        <biblScope/>
+       </analytic>
+       <monogr>
+        <h.title type="main"/>
+        <editor></editor>
+        <edition>
+         <further>Exported by CorpusExplorer v2.0</further>
+         <kind/>
+         <appearance/>
+        </edition>
+        <imprint/>
+        <biblScope/>
+       </monogr>
+      </biblStruct>
+      <reference type="complete" assemblage="non-automatic">{DocSigle} {TITLE}, {DAY}.{MONTH}.{YEAR} {TIME} Uhr</reference>
+      <reference type="short" assemblage="non-automatic">{DocSigle} {TITLE}, {DAY}.{MONTH}.{YEAR}</reference>
+     </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+     <samplingDecl Default="n"/>
+     <editorialDecl Default="n">
+      <pagination type="no"/>
+     </editorialDecl>
+    </encodingDesc>
+    <profileDesc>
+     <creation>
+      <creatDate>{YEAR}.{MONTH}.{DAY}</creatDate>
+      <creatRef>({DAY}.{MONTH}.{YEAR})</creatRef>
+      <creatRefShort>({DAY}.{MONTH}.{YEAR})</creatRefShort>
+     </creation>
+     <textDesc Default="n">
+      <textTypeArt></textTypeArt>
+      <textDomain/>
+     </textDesc>
+     <correspDesc Default="n">
+      <correspContext>
+       <ref type="prev" n="3"><gap reason="anonymisation" instant="false"/></ref>
+       <ref type="prev" n="2"><gap reason="anonymisation" instant="false"/></ref>
+       <ref type="prev" n="1"><gap reason="anonymisation" instant="false"/></ref>
+      </correspContext>
+     </correspDesc>
+    </profileDesc>
+   </idsHeader>

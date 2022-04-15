@@ -23,9 +23,12 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Facebook
       try
       {
         var client = new RestClient($"https://graph.facebook.com/oauth/access_token?client_id={Settings["App-ID"]}&client_secret={Settings["App-Geheimcode"]}&grant_type=client_credentials");
-        var request = new RestRequest(Method.GET);
+        var request = new RestRequest();
 
-        return new FacebookClient(JsonConvert.DeserializeObject<FacebookOAuthResponse>(client.Execute(request).Content).access_token)
+        var response = client.GetAsync(request);
+        response.Wait();
+        
+        return new FacebookClient(JsonConvert.DeserializeObject<FacebookOAuthResponse>(response.Result.Content).access_token)
         {
           AppId = Settings["App-ID"],
           AppSecret = Settings["App-Geheimcode"]

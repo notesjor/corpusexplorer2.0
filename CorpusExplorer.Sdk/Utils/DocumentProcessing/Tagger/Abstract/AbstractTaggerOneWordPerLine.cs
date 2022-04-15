@@ -41,6 +41,19 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
     /// </summary>
     protected virtual int TaggerContentLengthMin => 10;
 
+    /// <summary>
+    /// Gets the foundry name.
+    /// </summary>
+    /// <value>The foundry name.</value>
+    protected abstract string Foundry { get; }
+
+    /// <summary>
+    /// Gets the foundry layer information.
+    /// </summary>
+    /// <example>pos lemma</example>
+    /// <value>The foundry layer information.</value>
+    protected abstract string FoundryLayerInfo { get; }
+
     protected virtual string TaggerFileSeparator => "\r\n<ENDOFCORPUSEXPLORERFILE>\r\n";
 
     protected virtual string[] TaggerValueSeparator => new[] { "\t" };
@@ -59,7 +72,11 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
                      CorpusBuilder.Create(
                                           _layers.Select(x => x.Value),
                                           meta,
-                                          new Dictionary<string, object>(),
+                                          new Dictionary<string, object>
+                                          {
+                                            { "Foundry", Foundry },
+                                            { "FoundryLayerInfo", FoundryLayerInfo }
+                                          },
                                           null));
     }
 
@@ -246,7 +263,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
       {
         res.Add((Guid)sdm[_guidKey], sdm.GetMetaDictionary().ToDictionary(entry => entry.Key, entry => entry.Value));
       }
-      
+
       return res;
     }
 

@@ -39,7 +39,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
       this.drop_textA = new Telerik.WinControls.UI.CommandBarDropDownList();
       this.commandBarLabel4 = new Telerik.WinControls.UI.CommandBarLabel();
       this.drop_textB = new Telerik.WinControls.UI.CommandBarDropDownList();
-      this.webHtml5Visualisation1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser.WebHtml5Visualisation();
+      this.webHtml5Visualisation1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WebBrowserControl();
       this.clearPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
       this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar3)).BeginInit();
@@ -106,9 +106,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
       // 
       this.webHtml5Visualisation1.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.webHtml5Visualisation1, "webHtml5Visualisation1");
-      this.webHtml5Visualisation1.MainpageUrl = null;
       this.webHtml5Visualisation1.Name = "webHtml5Visualisation1";
-      this.webHtml5Visualisation1.TemplateVars = ((System.Collections.Generic.Dictionary<string, string>)(resources.GetObject("webHtml5Visualisation1.TemplateVars")));
       // 
       // clearPanel1
       // 
@@ -147,7 +145,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
     private Telerik.WinControls.UI.CommandBarDropDownList drop_textA;
     private Telerik.WinControls.UI.CommandBarLabel commandBarLabel4;
     private Telerik.WinControls.UI.CommandBarDropDownList drop_textB;
-    private WebHtml5Visualisation webHtml5Visualisation1;
+    private Controls.WinForm.WebBrowserControl webHtml5Visualisation1;
     private Controls.WinForm.ClearPanel clearPanel1;
     private Telerik.WinControls.UI.RadLabel radLabel1;
   }

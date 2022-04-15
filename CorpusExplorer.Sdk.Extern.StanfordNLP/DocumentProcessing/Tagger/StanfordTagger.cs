@@ -81,6 +81,9 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
       }
     }
 
+    protected override string Foundry => "Stanford";
+    protected override string FoundryLayerInfo => "pos";
+
     protected override string ExecuteTagger(string text)
     {
       using (var fileInput = new TemporaryFile(Configuration.TempPath))

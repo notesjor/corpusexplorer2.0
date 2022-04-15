@@ -50,7 +50,6 @@ namespace CorpusExplorer.Sdk.ViewModel
       return dt;
     }
 
-    public IEnumerable<string> LayerDisplaynames => new[] { LayerDisplayname };
     public string LayerDisplayname { get; set; } = "Wort";
   }
 }

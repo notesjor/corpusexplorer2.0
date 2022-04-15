@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 
-namespace CorpusExplorer.Sdk.Model.Localizer
+namespace CorpusExplorer.Sdk.Model.Localization
 {
   public class ModelLocalization
   {

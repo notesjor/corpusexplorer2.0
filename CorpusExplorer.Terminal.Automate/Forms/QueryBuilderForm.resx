@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="radLabel3.Text" xml:space="preserve">
+    <value>&lt;html&gt;&lt;p&gt;Zulässige Werte:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;ZAHL - z. B. 100 - für 100 zufällige Dokumente&lt;/li&gt;&lt;li&gt;% - z. B. 25% - Zieht 25% zufällige Dokumente&lt;/li&gt;&lt;li&gt;%%% - z. B. 25%%% - für 0.000025% Dokumente (für große Korpora)&lt;/li&gt;&lt;li&gt;T - z. B. 2000T - für x Dokumente bis zur Überschreitung der 2000 Token-Marke&lt;/li&gt;&lt;li&gt;TTT - z. B. 2TTT - für x Dokumente bis zur Überschreitung der 2 Mio. Token-Marke&lt;/li&gt;&lt;/ul&gt;&lt;/html&gt;</value>
+  </data>
 </root>

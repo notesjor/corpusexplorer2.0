@@ -55,7 +55,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       this.editor_output = new Telerik.WinControls.UI.RadSyntaxEditor();
       this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
       this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
-      this.webHtml5LaboratoryVisualisation1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser.WebHtml5LaboratoryVisualisation();
+      this.webHtml5LaboratoryVisualisation1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WebBrowserControl();
       this.timer1 = new System.Windows.Forms.Timer(this.components);
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
@@ -299,7 +299,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       // 
       this.webHtml5LaboratoryVisualisation1.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.webHtml5LaboratoryVisualisation1, "webHtml5LaboratoryVisualisation1");
-      this.webHtml5LaboratoryVisualisation1.MainpageUrl = null;
       this.webHtml5LaboratoryVisualisation1.Name = "webHtml5LaboratoryVisualisation1";
       // 
       // timer1
@@ -361,7 +360,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
     private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
     private Telerik.WinControls.UI.SplitPanel splitPanel2;
     private Telerik.WinControls.UI.RadGroupBox radGroupBox3;
-    private Controls.WinForm.Webbrowser.WebHtml5LaboratoryVisualisation webHtml5LaboratoryVisualisation1;
+    private Controls.WinForm.WebBrowserControl webHtml5LaboratoryVisualisation1;
     private Telerik.WinControls.UI.CommandBarButton btn_save;
     private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator3;
     private Telerik.WinControls.UI.CommandBarButton btn_export_image;

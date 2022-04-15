@@ -102,21 +102,36 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="K4os.Compression.LZ4, Version=1.2.16.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.1.2.16\lib\net46\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.2.16.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.Streams.1.2.16\lib\net46\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.7.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Hash.xxHash.1.0.7\lib\net46\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Polenter.SharpSerializer, Version=3.0.2.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.2\lib\net452\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=6.10.5.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.10.5\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.10.9.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.10.9\lib\net45\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
@@ -150,10 +165,12 @@
     <Compile Include="Blocks\CooccurrenceCrossBlock.cs" />
     <Compile Include="Blocks\CooccurrenceSecondLevelProfileBlock.cs" />
     <Compile Include="Blocks\CorrespondingLayerValueFilterBlock.cs" />
+    <Compile Include="Blocks\CrossFrequencySelectedUltraBlock.cs" />
     <Compile Include="Blocks\CrossFrequencySelectedRangeBlock.cs" />
     <Compile Include="Blocks\CrossFrequencySelectedBlock.cs" />
     <Compile Include="Blocks\CrossFrequencyDocumentBasedBlock.cs" />
     <Compile Include="Blocks\CrossFrequencySelected\Abstract\AbstractCrossFrequencySelectedBehaviour.cs" />
+    <Compile Include="Blocks\Ngram1LayerSelectiveHighlightCooccurrencesBlock.cs" />
     <Compile Include="Blocks\Range\Abstract\AbstractRange.cs" />
     <Compile Include="Blocks\CrossFrequencySelected\CrossFrequencySelectedBehaviourAnyMatch.cs" />
     <Compile Include="Blocks\CrossFrequencySelected\CrossFrequencySelectedBehaviourPhrase.cs" />
@@ -195,7 +212,7 @@
     <Compile Include="Blocks\GroupDocuments\Abstract\AbstractGroupDocumentsComparer.cs" />
     <Compile Include="Blocks\Abstract\AbstractCompareSelectionBlock.cs" />
     <Compile Include="Blocks\BurrowsDeltaBlock.cs" />
-    <Compile Include="Blocks\NGramHighlightCooccurrencesBlock.cs" />
+    <Compile Include="Blocks\NgramHighlightCooccurrencesBlock.cs" />
     <Compile Include="Blocks\Disambiguation\DisambiguationCluster.cs" />
     <Compile Include="Blocks\Disambiguation\IDisambiguationCluster.cs" />
     <Compile Include="Blocks\DocumentCloneDetectionBlock.cs" />
@@ -342,6 +359,7 @@
     <Compile Include="Helper\ValueMergeHelper.cs" />
     <Compile Include="Helper\Verbalizer\IVerbalizerComplex.cs" />
     <Compile Include="Helper\Verbalizer\VerbalizerComplexStorage.cs" />
+    <Compile Include="Helper\ViewModelLayerDisplaynameMapper.cs" />
     <Compile Include="Model\Adapter\Corpus\CorpusAdapterSingleFile.cs" />
     <Compile Include="Model\Adapter\Corpus\CorpusAdapterWriteIndirect.cs" />
     <Compile Include="Model\Adapter\Corpus\CorpusAdapterWriteDirect.cs" />
@@ -447,6 +465,7 @@
     <Compile Include="Utils\DocumentProcessing\Builder\CorpusBuilderWriteDirect.cs" />
     <Compile Include="Utils\DocumentProcessing\Cleanup\RegexRemoveNonWesternCharsCleanup.cs" />
     <Compile Include="Utils\DocumentProcessing\Cluster\DocumentProcessingClusterBuilder.cs" />
+    <Compile Include="Utils\DocumentProcessing\Exporter\ExporterSketchEngine.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterTreeTagger.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterXml.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\Tlv\ExporterTlv.cs" />
@@ -460,6 +479,7 @@
     <Compile Include="Utils\DocumentProcessing\Importer\ImporterCorpusWorkBench.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\ImporterTlv.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\ImporterTreeTagger.cs" />
+    <Compile Include="Utils\DocumentProcessing\Importer\ImporterSketchEngine.cs" />
     <Compile Include="Utils\DocumentProcessing\Scraper\Cec6Scraper.cs" />
     <Compile Include="Utils\DocumentProcessing\Scraper\CsvScraper.cs" />
     <Compile Include="Utils\DocumentProcessing\Scraper\TsvScraper.cs" />
@@ -579,6 +599,7 @@
     <Compile Include="Utils\WaitBehaviour\WaitBehaviourWindows.cs" />
     <Compile Include="ViewModel\Abstract\AbstractCompareViewModel.cs" />
     <Compile Include="ViewModel\Abstract\AbstractOverTimeViewModel.cs" />
+    <Compile Include="ViewModel\BestGuessKwicViewModel.cs" />
     <Compile Include="ViewModel\BurrowsDeltaViewModel.cs" />
     <Compile Include="ViewModel\ClusterMetadataByBurrowsDeltaViewModel.cs" />
     <Compile Include="ViewModel\ClusterMetadataByCooccurenceSelectiveViewModel.cs" />
@@ -608,7 +629,8 @@
     <Compile Include="ViewModel\KeywordPresetReferenceListViewModel.cs" />
     <Compile Include="ViewModel\MtldViewModel.cs" />
     <Compile Include="ViewModel\Ngram1LayerSelectiveViewModel.cs" />
-    <Compile Include="ViewModel\NGramHighlightCooccurrencesViewModel.cs" />
+    <Compile Include="ViewModel\Ngram1LayerSelectiveHighlightCooccurrencesViewModel.cs" />
+    <Compile Include="ViewModel\NgramHighlightCooccurrencesViewModel.cs" />
     <Compile Include="ViewModel\CorpusWeightUnlimmitedCompareViewModel.cs" />
     <Compile Include="ViewModel\DisambiguationCompareViewModel.cs" />
     <Compile Include="ViewModel\DocumentGuidMetadataResolver.cs" />
@@ -695,7 +717,6 @@
     <Compile Include="ViewModel\Interfaces\IProvideAggregatedDataItems.cs" />
     <Compile Include="ViewModel\Interfaces\IProvideDataTable.cs" />
     <Compile Include="ViewModel\Interfaces\IProvideHtmlOutput.cs" />
-    <Compile Include="ViewModel\Interfaces\IProvideLayerDisplaynames.cs" />
     <Compile Include="ViewModel\Interfaces\IUseSpecificLayer.cs" />
     <Compile Include="ViewModel\Interfaces\IViewModel.cs" />
     <Compile Include="Blocks\PhrasesLaboratory\GrammarRule\ExactGrammarRule.cs" />
@@ -732,7 +753,9 @@
     <Compile Include="ViewModel\ValidateSelectionIntegrityViewModel.cs" />
     <Compile Include="ViewModel\VocabularyComplexityViewModel.cs" />
     <Compile Include="ViewModel\VocdViewModel.cs" />
-    <Compile Include="View\Html\Html5\Html5Builder.cs" />
+    <Compile Include="View\Html\EasyWebBuilder.cs" />
+    <Compile Include="View\Html\Interface\IEasyWebBuilderLevel0.cs" />
+    <Compile Include="View\Html\Interface\IEasyWebBuilderLevel1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

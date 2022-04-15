@@ -55,6 +55,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     public void SelectLayer(string initValue)
     {
       cmb_names.SelectedIndex = _names.IndexOf(initValue);
+      if(string.IsNullOrWhiteSpace(initValue) && IsLayerOptional)
+        chk_active.Checked = false;
     }
 
     private void chk_active_CheckStateChanged(object sender, EventArgs e)

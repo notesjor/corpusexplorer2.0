@@ -30,8 +30,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract
       }
       else
       {
-        var merger = new CorpusMerger {CorpusBuilder = new TCB()};
-        merger.Input((AbstractCorpusAdapter) hydra);
+        var merger = new CorpusMerger { CorpusBuilder = new TCB() };
+        merger.Input((AbstractCorpusAdapter)hydra);
         merger.Execute();
         merger.Output.FirstOrDefault()?.Save(path, UseCompression);
       }

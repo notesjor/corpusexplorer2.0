@@ -25,7 +25,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
 
     private object _lockDebug = new object();
     private List<Exception> _debug = new List<Exception>();
-    public IEnumerable<Exception> DebugLog
+    private HashSet<string> _sentenceEndings = new HashSet<string> { ".", "!", "?", ";", ":" }; // STTS 2.0
+
+  public IEnumerable<Exception> DebugLog
     {
       get
       {
@@ -45,8 +47,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       var skeleton = new Dictionary<Guid, int[]>(); // GUID | Length = Sätze / Value = Token pro Satz - Zum Aufbauen von Referenzdokumenten
 
       BuildWortLayer(path, rawText, ref entries, ref references, ref skeleton);
-      // ReSharper disable once RedundantAssignment
-      rawText = null;
+      // ReSharper disable once ForCanBeConvertedToForeach
+      for (var i = 0; i < rawText.Length; i++)
+        rawText[i].Clear();
       GC.Collect();
 
       if (ImportTreeTagger)
@@ -445,14 +448,12 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
 
                 if (sentences.Count == 0) // Fals Korap keine Sätze erkannt hat, erkenne Satzgrenzen mit Hilfe der Token
                 {
-                  var sentenceEndings = new HashSet<string> { ".", "!", "?", ";", ":" }; // STTS 2.0
-
                   for (; i < tokens.Count; i++)
                   {
                     refs.Add(new TokenReference(tokens[i].From, tokens[i].To, doc.Count, sent.Count));
                     sent.Add(tokens[i].Content);
 
-                    if (sentenceEndings.Contains(tokens[i].Content))
+                    if (_sentenceEndings.Contains(tokens[i].Content))
                     {
                       skel.Add(sent.Count);
                       doc.Add(sent.ToArray());

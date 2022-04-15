@@ -49,6 +49,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TnTTagger
       }
     }
 
+    protected override string Foundry => "TnT-Tagger";
+    protected override string FoundryLayerInfo => "pos";
+
     protected override string ExecuteTagger(string text)
     {
       using (var fileInput = new TemporaryFile(Configuration.TempPath))

@@ -116,7 +116,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
 #if LINUX
       
 #else
-      webHtml5Visualisation1.LoadHtml(stb.ToString());
+      webHtml5Visualisation1.ShowHtml(stb.ToString());
 #endif
 
       RefreshMetadata(_docs[Index].DocumentMetadata);

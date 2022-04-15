@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.View.Html;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Helper;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
@@ -43,19 +44,21 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
       radLabel1.Text =
         $"<html>Notwendige Transformationen (A -&gt; B) - Hinzufügen: &nbsp;<strong>{_vm.ChangesInsert}</strong> - Entfernen: &nbsp;<strong>{_vm.ChangesRemove}</strong> - Distanz: &nbsp;<strong>{_vm.EditDistance}</strong></html>";
 
-      webHtml5Visualisation1.MainpageUrl = Configuration.GetDependencyPath("d3Templates/diff.html");
-      webHtml5Visualisation1.TemplateVars = new Dictionary<string, string>
-      {
-        {"#DIFFS", _vm.HtmlOutput}
-      };
-      webHtml5Visualisation1.GoToMainpage();
+      webHtml5Visualisation1.ShowFile(EasyWebBuilder
+                                     .Create()
+                                     .SetIndexByDependencyFile("d3Templates/diff.html")
+                                     .ReplaceTemplateVars(new Dictionary<string, string>
+                                                          {
+                                                            { "#DIFFS", _vm.HtmlOutput }
+                                                          })
+                                     .Finalize());
     }
 
     private void drop_textA_SelectedIndexChanged(object sender, PositionChangedEventArgs e)
     {
       if (drop_textA.SelectedItem == null)
         return;
-      _guidA = (Guid) drop_textA.SelectedValue;
+      _guidA = (Guid)drop_textA.SelectedValue;
       CompareTexts();
     }
 
@@ -63,7 +66,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
     {
       if (drop_textB.SelectedItem == null)
         return;
-      _guidB = (Guid) drop_textB.SelectedValue;
+      _guidB = (Guid)drop_textB.SelectedValue;
       CompareTexts();
     }
 

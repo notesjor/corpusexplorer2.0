@@ -20,7 +20,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
   /// </summary>
   public partial class CooccurrenceMultiwordGrid : AbstractGridViewWithTextLense
   {
-    private NGramHighlightCooccurrencesViewModel _vm;
+    private NgramHighlightCooccurrencesViewModel _vm;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractView" /> class.
@@ -49,7 +49,22 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       radGridView1.ResetBindings();
       ApplyFilterDelay();
       radGridView1.Columns[0].DisableHTMLRendering = false;
-      radGridView1.Columns[2].IsVisible = false;
+      radGridView1.Columns[3].IsVisible = false;
+
+
+      AddSummaryRow();
+      AddChildTemplate(
+                       x => new FilterQuerySingleLayerExactPhrase
+                       {
+                         Inverse = false,
+                         LayerDisplayname = _vm.LayerDisplayname,
+                         LayerQueries =
+                           x[3].ToString()
+                              .Split(
+                                     new[] { " " },
+                                     StringSplitOptions
+                                      .RemoveEmptyEntries)
+                       });
     }
 
     /// <summary>
@@ -131,8 +146,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
                                                        {
                                                          Inverse = false,
                                                          LayerDisplayname = _vm.LayerDisplayname,
-                                                         LayerQueries =
-                                                           row.Cells["Query"].Value.ToString()
+                                                         LayerQueries = 
+                                                           row.Cells[3].Value.ToString()
                                                               .Split(
                                                                      new[] {" "},
                                                                      StringSplitOptions
@@ -142,7 +157,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
 
     private void GridNGramVisualisation_ShowVisualisation(object sender, EventArgs e)
     {
-      _vm = GetViewModel<NGramHighlightCooccurrencesViewModel>();
+      _vm = GetViewModel<NgramHighlightCooccurrencesViewModel>();
     }
 
     private void btn_layer_Click(object sender, EventArgs e)

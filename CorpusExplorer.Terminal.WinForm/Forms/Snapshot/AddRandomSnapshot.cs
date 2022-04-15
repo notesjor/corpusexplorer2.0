@@ -38,7 +38,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
         block = _selection.CreateBlock<RandomSelectionBlock>();
       }
 
-      block.DocumentCount = (int) count_docs.Value;
+      block.DocumentMaxCount = (int) count_docs.Value;
       block.Calculate();
       Selection = block.RandomSelection;
       InvertSelection = block.RandomInvertSelection;

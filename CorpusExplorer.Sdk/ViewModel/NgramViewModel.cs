@@ -101,8 +101,6 @@ namespace CorpusExplorer.Sdk.ViewModel
       return res;
     }
 
-    public IEnumerable<string> LayerDisplaynames => Selection.LayerUniqueDisplaynames;
-
     public string LayerDisplayname { get; set; }
 
     protected override void ExecuteAnalyse()

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Properties;
@@ -16,15 +15,14 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public FrequencyCompareViewModel()
     {
-      LayerDisplaynames = new List<string>
-      {
-        "POS",
-        "Lemma",
-        "Wort"
-      };
+      Mapper = new ViewModelLayerDisplaynameMapper(this, new[] { nameof(Layer1Displayname), nameof(Layer2Displayname), nameof(Layer3Displayname) });
     }
 
-    public IEnumerable<string> LayerDisplaynames { get; set; }
+    public string Layer1Displayname { get; set; } = "POS";
+
+    public string Layer2Displayname { get; set; } = "Lemma";
+
+    public string Layer3Displayname { get; set; } = "Wort";
 
     /// <summary>
     ///   Gibt eine Datentabelle zurück
@@ -35,26 +33,45 @@ namespace CorpusExplorer.Sdk.ViewModel
       return _dataTable;
     }
 
+    public ViewModelLayerDisplaynameMapper Mapper { get; set; }
+
+    public string[] LayerDisplaynamesMultiMapper
+    {
+      get => new[] { Layer1Displayname, Layer2Displayname, Layer3Displayname };
+      set
+      {
+        Layer1Displayname = Layer2Displayname = Layer3Displayname = null;
+        Layer1Displayname = value?[0];
+        Layer2Displayname = value?[1];
+        Layer3Displayname = value?[2];
+      }
+    }
+
+
     protected override void ExecuteAnalyse()
     {
       _dataTable = new DataTable();
-      foreach (var mapping in LayerDisplaynames)
-        _dataTable.Columns.Add(mapping, typeof(string));
+      var val = string.IsNullOrEmpty(Layer2Displayname) ? 1 : string.IsNullOrEmpty(Layer3Displayname) ? 2 : 3;
+      _dataTable.Columns.Add(Layer1Displayname, typeof(string));
+      if (val > 1)
+        _dataTable.Columns.Add(Layer2Displayname, typeof(string));
+      if (val > 2)
+        _dataTable.Columns.Add(Layer3Displayname, typeof(string));
+
       _dataTable.Columns.Add(Resources.Frequeny1, typeof(double));
       _dataTable.Columns.Add(Resources.Frequeny2, typeof(double));
       _dataTable.Columns.Add(Resources.FrequenyD12, typeof(double));
 
-      var layers = LayerDisplaynames.ToArray();
-      switch (LayerDisplaynames.Count())
+      switch (val)
       {
         case 1:
-          Calculate1Layer(layers.FirstOrDefault());
+          Calculate1Layer(Layer1Displayname);
           break;
         case 2:
-          Calculate2Layer(layers[0], layers[1]);
+          Calculate2Layer(Layer1Displayname, Layer2Displayname);
           break;
         case 3:
-          Calculate3Layer(layers[0], layers[1], layers[2]);
+          Calculate3Layer(Layer1Displayname, Layer2Displayname, Layer3Displayname);
           break;
       }
     }
@@ -139,13 +156,13 @@ namespace CorpusExplorer.Sdk.ViewModel
                 _dataTable.Rows.Add(x.Key, y.Key, z.Key, z.Value, 0.0d, z.Value);
         else
           foreach (var y in x.Value)
-          foreach (var z in y.Value)
-            _dataTable.Rows.Add(x.Key, y.Key, z.Key, z.Value, 0.0d, z.Value);
+            foreach (var z in y.Value)
+              _dataTable.Rows.Add(x.Key, y.Key, z.Key, z.Value, 0.0d, z.Value);
 
       foreach (var x in b)
-      foreach (var y in x.Value)
-      foreach (var z in y.Value)
-        _dataTable.Rows.Add(x.Key, y.Key, z.Key, 0.0d, z.Value, z.Value);
+        foreach (var y in x.Value)
+          foreach (var z in y.Value)
+            _dataTable.Rows.Add(x.Key, y.Key, z.Key, 0.0d, z.Value, z.Value);
 
       _dataTable.EndLoadData();
     }
@@ -172,8 +189,8 @@ namespace CorpusExplorer.Sdk.ViewModel
             _dataTable.Rows.Add(x.Key, y.Key, y.Value, 0.0d, y.Value);
 
       foreach (var x in b)
-      foreach (var y in x.Value)
-        _dataTable.Rows.Add(x.Key, y.Key, 0.0d, y.Value, y.Value);
+        foreach (var y in x.Value)
+          _dataTable.Rows.Add(x.Key, y.Key, 0.0d, y.Value, y.Value);
       _dataTable.EndLoadData();
     }
 

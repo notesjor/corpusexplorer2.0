@@ -46,7 +46,7 @@ namespace CorpusExplorer.Sdk.Db.ElasticSearch.Elastic.Exporter
           Metadata = meta,
           Displayname = meta != null && meta.ContainsKey("Titel")
                           ? meta["Titel"].ToString()
-                          : dsel.ToString(),
+                          : dsel.ToString("N"),
           Layers = hydra.GetReadableMultilayerDocument(dsel)
                         .Select(
                                 x => new Layer

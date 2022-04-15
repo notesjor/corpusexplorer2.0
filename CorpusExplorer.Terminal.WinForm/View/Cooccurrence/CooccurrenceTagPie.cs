@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.View.Html;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
@@ -74,15 +75,18 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     private void wordBag1_ExecuteButtonClicked(object sender, EventArgs e)
     {
       Processing.SplashShow("Erzeuge TagPie...");
-      webHtml5Visualisation1.MainpageUrl = Configuration.GetDependencyPath("d3Templates/tagpies.html");
-      webHtml5Visualisation1.TemplateVars = new Dictionary<string, string>
-      {
-        {
-          "<!--#DATA#-->",
-          ToJsonArray()
-        }
-      };
-      webHtml5Visualisation1.GoToMainpage();
+
+      webHtml5Visualisation1.ShowFile(EasyWebBuilder
+                                     .Create()
+                                     .SetIndexByDependencyFile("d3Templates/tagpies.html")
+                                     .ReplaceTemplateVars(new Dictionary<string, string>
+                                      {
+                                        {
+                                          "<!--#DATA#-->",
+                                          ToJsonArray()
+                                        }
+                                      })
+                                     .Finalize());
       if (!_firstRun)
       {
         Processing.SplashClose();

@@ -34,7 +34,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CooccurrenceTagPie));
       this.wordBag1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WordBag();
-      this.webHtml5Visualisation1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser.WebHtml5Visualisation();
+      this.webHtml5Visualisation1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WebBrowserControl();
       this.timer1 = new System.Windows.Forms.Timer(this.components);
       this.radCommandBar1 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement1 = new Telerik.WinControls.UI.CommandBarRowElement();
@@ -59,9 +59,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // 
       this.webHtml5Visualisation1.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.webHtml5Visualisation1, "webHtml5Visualisation1");
-      this.webHtml5Visualisation1.MainpageUrl = null;
       this.webHtml5Visualisation1.Name = "webHtml5Visualisation1";
-      this.webHtml5Visualisation1.TemplateVars = ((System.Collections.Generic.Dictionary<string, string>)(resources.GetObject("webHtml5Visualisation1.TemplateVars")));
       // 
       // timer1
       // 
@@ -132,7 +130,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     #endregion
 
     private WordBag wordBag1;
-    private WebHtml5Visualisation webHtml5Visualisation1;
+    private Controls.WinForm.WebBrowserControl webHtml5Visualisation1;
     private System.Windows.Forms.Timer timer1;
     private Telerik.WinControls.UI.RadCommandBar radCommandBar1;
     private Telerik.WinControls.UI.CommandBarRowElement commandBarRowElement1;

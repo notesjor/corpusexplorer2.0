@@ -20,7 +20,6 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.UDPipe
       AddValueLayer("Lemma", 2);
       AddValueLayer("POS", 4);
 
-
       Configuration.GetSetting("UDPipe", @"C:\UDPipe\udpipe.exe");
 
       // ReSharper disable once VirtualMemberCallInConstructor
@@ -78,6 +77,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.UDPipe
         _model = _languagesAvailable[_languageSelected];
       }
     }
+
+    protected override string Foundry => "UDPipe";
+    protected override string FoundryLayerInfo => "pos lemma";
 
     protected override string ExecuteTagger(string text)
     {

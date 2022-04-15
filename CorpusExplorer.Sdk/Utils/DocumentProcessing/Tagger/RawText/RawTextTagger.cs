@@ -30,6 +30,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.RawText
 
     public override string LanguageSelected { get; set; } = "Universal";
 
+    protected override string Foundry => "None";
+    protected override string FoundryLayerInfo => "";
+
     /// <summary>
     ///   Überschreitet der Tagger diese Länge, dann wird die Runde abgeschlossen.
     ///   Wird dynamisch bestimmt. Empfohlener Startwert: 200000

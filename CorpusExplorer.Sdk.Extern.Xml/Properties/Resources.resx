@@ -117,4 +117,227 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Template.Ids.KorAP.Data" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;?xml-model href="text.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?&gt;
+
+&lt;raw_text docid="{DocId}" xmlns="http://ids-mannheim.de/ns/KorAP"&gt;
+  &lt;metadata file="metadata.xml" /&gt;
+  &lt;text&gt;{TEXT}&lt;/text&gt;
+&lt;/raw_text&gt;</value>
+  </data>
+  <data name="Template.Ids.KorAP.Morpho" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;?xml-model href="span.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?&gt;
+
+&lt;layer xmlns="http://ids-mannheim.de/ns/KorAP" version="KorAP-0.4" docid="{DocId}"&gt;
+ &lt;spanList&gt;
+{ANNO}
+ &lt;/spanList&gt;
+&lt;/layer&gt;</value>
+  </data>
+  <data name="Template.Ids.KorAP.Morpho.Span" xml:space="preserve">
+    <value>&lt;span id="t_{j}" from="{From}" to="{To}"&gt;
+   &lt;fs type="lex" xmlns="http://www.tei-c.org/ns/1.0"&gt;
+    &lt;f name="lex"&gt;
+     &lt;fs&gt;
+{TAGS}
+     &lt;/fs&gt;
+    &lt;/f&gt;
+   &lt;/fs&gt;
+  &lt;/span&gt;</value>
+  </data>
+  <data name="Template.Ids.KorAP.Root" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;?xml-model href="header.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?&gt;
+&lt;!DOCTYPE idsCorpus PUBLIC "-//IDS//DTD IDS-XCES 1.0//EN" "http://corpora.ids-mannheim.de/idsxces1/DTD/ids.xcesdoc.dtd"&gt;
+&lt;idsHeader type="corpus" pattern="text" status="new" version="1.0" TEIform="teiHeader"&gt;
+  &lt;fileDesc&gt;
+   &lt;titleStmt&gt;
+    &lt;korpusSigle&gt;{CSIGLE}&lt;/korpusSigle&gt;
+    &lt;c.title&gt;&lt;/c.title&gt;
+   &lt;/titleStmt&gt;
+   &lt;editionStmt version="1.0"/&gt;
+   &lt;publicationStmt&gt;
+    &lt;distributor&gt;&lt;/distributor&gt;
+    &lt;pubAddress&gt;&lt;/pubAddress&gt;
+    &lt;telephone&gt;&lt;/telephone&gt;
+    &lt;eAddress type="www"&gt;http://www.corpusexplorer.de&lt;/eAddress&gt;
+    &lt;availability region="ids" status="unknown" Default="n"&gt;&lt;/availability&gt;
+    &lt;pubDate&gt;{CYEAR}&lt;/pubDate&gt;
+   &lt;/publicationStmt&gt;
+   &lt;sourceDesc Default="n"&gt;
+    &lt;biblStruct Default="n" status="draft"&gt;
+     &lt;monogr&gt;
+      &lt;h.title type="main"&gt;&lt;/h.title&gt;
+      &lt;h.title type="sub"&gt;&lt;/h.title&gt;
+      &lt;h.author/&gt;
+      &lt;editor&gt;&lt;/editor&gt;
+      &lt;edition&gt;
+       &lt;further&gt;&lt;/further&gt;
+       &lt;kind/&gt;
+       &lt;appearance/&gt;
+      &lt;/edition&gt;
+      &lt;imprint&gt;
+       &lt;publisher&gt;&lt;/publisher&gt;
+      &lt;/imprint&gt;
+     &lt;/monogr&gt;
+    &lt;/biblStruct&gt;
+   &lt;/sourceDesc&gt;
+  &lt;/fileDesc&gt;
+  &lt;encodingDesc&gt;
+   &lt;projectDesc Default="n"&gt;&lt;p part="N"&gt;CorpusExplorer&lt;/p&gt;&lt;/projectDesc&gt;
+   &lt;editorialDecl Default="n"&gt;
+    &lt;conformance level="0"&gt;This document conforms to I5 (see http://jtei.revues.org/508)&lt;/conformance&gt;
+    &lt;transduction n="1" Default="n"&gt;Exported by CorpusExplorer v2.0&lt;/transduction&gt;
+   &lt;/editorialDecl&gt;
+  &lt;/encodingDesc&gt;
+  &lt;profileDesc&gt;
+   &lt;langUsage Default="n"&gt;
+    &lt;language id="de"&gt;Deutsch&lt;/language&gt;
+   &lt;/langUsage&gt;
+   &lt;textDesc Default="n"&gt;
+    &lt;textType&gt;&lt;/textType&gt;
+    &lt;textTypeRef/&gt;
+   &lt;/textDesc&gt;
+  &lt;/profileDesc&gt;
+  &lt;revisionDesc status="draft"&gt;
+   &lt;listChange ordered="true"&gt;
+    &lt;change when="{DATE}" status="draft"&gt;Exported by CorpusExplorer v2.0&lt;/change&gt;
+   &lt;/listChange&gt;
+  &lt;/revisionDesc&gt;
+ &lt;/idsHeader&gt;</value>
+  </data>
+  <data name="Template.Ids.KorAP.Structure" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;?xml-model href="span.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?&gt;
+
+&lt;layer docid="{DocId}" xmlns="http://ids-mannheim.de/ns/KorAP" version="KorAP-0.4"&gt;
+  &lt;spanList&gt;
+    &lt;span id="s0" from="0" to="{To}" l="1"&gt;
+      &lt;fs type="struct" xmlns="http://www.tei-c.org/ns/1.0"&gt;
+        &lt;f name="name"&gt;text&lt;/f&gt;
+      &lt;/fs&gt;
+    &lt;/span&gt;
+    &lt;span id="s1" from="0" to="{To}" l="2"&gt;
+      &lt;fs type="struct" xmlns="http://www.tei-c.org/ns/1.0"&gt;
+        &lt;f name="name"&gt;body&lt;/f&gt;
+      &lt;/fs&gt;
+    &lt;/span&gt;
+  &lt;/spanList&gt;
+&lt;/layer&gt;</value>
+  </data>
+  <data name="Template.Ids.KorAP.Tokens" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;?xml-model href="span.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?&gt;
+
+&lt;layer docid="{DocId}" xmlns="http://ids-mannheim.de/ns/KorAP" version="KorAP-0.4"&gt;
+  &lt;spanList&gt;
+{TOKENS}
+  &lt;/spanList&gt;
+&lt;/layer&gt;</value>
+  </data>
+  <data name="Template.Ids.KorAP.Year" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;?xml-model href="header.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?&gt;
+&lt;!DOCTYPE idsCorpus PUBLIC "-//IDS//DTD IDS-XCES 1.0//EN" "http://corpora.ids-mannheim.de/idsxces1/DTD/ids.xcesdoc.dtd"&gt;
+&lt;idsHeader type="document" pattern="text" status="new" version="1.0" TEIform="teiHeader"&gt;
+   &lt;fileDesc&gt;
+    &lt;titleStmt&gt;
+     &lt;dokumentSigle&gt;{SubCSigle}&lt;/dokumentSigle&gt;
+     &lt;d.title&gt;&lt;/d.title&gt;
+    &lt;/titleStmt&gt;
+    &lt;publicationStmt&gt;
+     &lt;distributor/&gt;
+     &lt;pubAddress/&gt;
+     &lt;availability region="ids" status="unknown" Default="n"&gt;&lt;/availability&gt;
+     &lt;pubDate/&gt;
+    &lt;/publicationStmt&gt;
+    &lt;sourceDesc Default="n"&gt;
+     &lt;biblStruct Default="n" status="draft"&gt;
+      &lt;monogr&gt;
+       &lt;h.title type="main"/&gt;
+       &lt;imprint/&gt;
+      &lt;/monogr&gt;
+     &lt;/biblStruct&gt;
+    &lt;/sourceDesc&gt;
+   &lt;/fileDesc&gt;
+  &lt;/idsHeader&gt;</value>
+  </data>
+  <data name="Template.Ids.KorAP.ZDoc" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;?xml-model href="header.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?&gt;
+&lt;!DOCTYPE idsCorpus PUBLIC "-//IDS//DTD IDS-XCES 1.0//EN" "http://corpora.ids-mannheim.de/idsxces1/DTD/ids.xcesdoc.dtd"&gt;
+&lt;idsHeader pattern="text" status="new" type="text" TEIform="teiHeader" version="1.0"&gt;
+    &lt;fileDesc&gt;
+     &lt;titleStmt&gt;
+      &lt;textSigle&gt;{DocSigle}&lt;/textSigle&gt;
+      &lt;t.title assemblage="external"&gt;{TITLE}&lt;/t.title&gt;
+     &lt;/titleStmt&gt;
+     &lt;editionStmt version="0"/&gt;
+     &lt;publicationStmt&gt;
+      &lt;distributor/&gt;
+      &lt;pubAddress/&gt;
+      &lt;availability region="ids" status="unknown" Default="n"&gt;&lt;/availability&gt;
+      &lt;pubDate/&gt;
+     &lt;/publicationStmt&gt;
+     &lt;sourceDesc Default="n"&gt;
+      &lt;biblStruct Default="n" status="draft"&gt;
+       &lt;analytic&gt;
+        &lt;h.title type="main"&gt;{TITLE}&lt;/h.title&gt;
+        &lt;h.title type="sub"/&gt;
+        &lt;h.title level="m" type="abbr"/&gt;
+        &lt;h.title level="a" type="abbr"/&gt;
+        &lt;h.author&gt;p_0&lt;/h.author&gt;
+        &lt;editor/&gt;
+        &lt;imprint&gt;
+         &lt;pubDate type="year"&gt;{YEAR}&lt;/pubDate&gt;
+         &lt;pubDate type="day"&gt;{DAY}&lt;/pubDate&gt;
+         &lt;pubDate type="month"&gt;{MONTH}&lt;/pubDate&gt;
+         &lt;pubDate type="time"&gt;{TIME}&lt;/pubDate&gt;
+        &lt;/imprint&gt;
+        &lt;biblScope/&gt;
+       &lt;/analytic&gt;
+       &lt;monogr&gt;
+        &lt;h.title type="main"/&gt;
+        &lt;editor&gt;&lt;/editor&gt;
+        &lt;edition&gt;
+         &lt;further&gt;Exported by CorpusExplorer v2.0&lt;/further&gt;
+         &lt;kind/&gt;
+         &lt;appearance/&gt;
+        &lt;/edition&gt;
+        &lt;imprint/&gt;
+        &lt;biblScope/&gt;
+       &lt;/monogr&gt;
+      &lt;/biblStruct&gt;
+      &lt;reference type="complete" assemblage="non-automatic"&gt;{DocSigle} {TITLE}, {DAY}.{MONTH}.{YEAR} {TIME} Uhr&lt;/reference&gt;
+      &lt;reference type="short" assemblage="non-automatic"&gt;{DocSigle} {TITLE}, {DAY}.{MONTH}.{YEAR}&lt;/reference&gt;
+     &lt;/sourceDesc&gt;
+    &lt;/fileDesc&gt;
+    &lt;encodingDesc&gt;
+     &lt;samplingDecl Default="n"/&gt;
+     &lt;editorialDecl Default="n"&gt;
+      &lt;pagination type="no"/&gt;
+     &lt;/editorialDecl&gt;
+    &lt;/encodingDesc&gt;
+    &lt;profileDesc&gt;
+     &lt;creation&gt;
+      &lt;creatDate&gt;{YEAR}.{MONTH}.{DAY}&lt;/creatDate&gt;
+      &lt;creatRef&gt;({DAY}.{MONTH}.{YEAR})&lt;/creatRef&gt;
+      &lt;creatRefShort&gt;({DAY}.{MONTH}.{YEAR})&lt;/creatRefShort&gt;
+     &lt;/creation&gt;
+     &lt;textDesc Default="n"&gt;
+      &lt;textTypeArt&gt;&lt;/textTypeArt&gt;
+      &lt;textDomain/&gt;
+     &lt;/textDesc&gt;
+     &lt;correspDesc Default="n"&gt;
+      &lt;correspContext&gt;
+       &lt;ref type="prev" n="3"&gt;&lt;gap reason="anonymisation" instant="false"/&gt;&lt;/ref&gt;
+       &lt;ref type="prev" n="2"&gt;&lt;gap reason="anonymisation" instant="false"/&gt;&lt;/ref&gt;
+       &lt;ref type="prev" n="1"&gt;&lt;gap reason="anonymisation" instant="false"/&gt;&lt;/ref&gt;
+      &lt;/correspContext&gt;
+     &lt;/correspDesc&gt;
+    &lt;/profileDesc&gt;
+   &lt;/idsHeader&gt;</value>
+  </data>
 </root>

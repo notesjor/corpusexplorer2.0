@@ -53,6 +53,9 @@ namespace CorpusExplorer.Sdk.Extern.RFTagger.Tagger
       }
     }
 
+    protected override string Foundry => "RFTagger";
+    protected override string FoundryLayerInfo => "pos";
+
     protected override string ExecuteTagger(string text)
     {
       using (var fileOutput = new TemporaryFile(Configuration.TempPath))

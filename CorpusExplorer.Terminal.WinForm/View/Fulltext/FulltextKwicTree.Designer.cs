@@ -60,7 +60,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       this.txt_pre = new Telerik.WinControls.UI.CommandBarTextBox();
       this.lbl_post = new Telerik.WinControls.UI.CommandBarLabel();
       this.txt_post = new Telerik.WinControls.UI.CommandBarTextBox();
-      this.webHtml5Visualisation1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser.WebHtml5Visualisation();
+      this.webHtml5Visualisation1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WebBrowserControl();
       ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
       this.radSplitContainer1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -290,9 +290,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       this.webHtml5Visualisation1.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.webHtml5Visualisation1, "webHtml5Visualisation1");
-      this.webHtml5Visualisation1.MainpageUrl = null;
       this.webHtml5Visualisation1.Name = "webHtml5Visualisation1";
-      this.webHtml5Visualisation1.TemplateVars = ((System.Collections.Generic.Dictionary<string, string>)(resources.GetObject("webHtml5Visualisation1.TemplateVars")));
       // 
       // FulltextKwicTree
       // 
@@ -313,7 +311,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 
     private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
     private Telerik.WinControls.UI.SplitPanel splitPanel1;
-    private Controls.WinForm.Webbrowser.WebHtml5Visualisation webHtml5Visualisation1;
+    private Controls.WinForm.WebBrowserControl webHtml5Visualisation1;
     private System.Windows.Forms.Integration.ElementHost elementHost1;
   
     private Telerik.WinControls.UI.RadCommandBar radCommandBar1;

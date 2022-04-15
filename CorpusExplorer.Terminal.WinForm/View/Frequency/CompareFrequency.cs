@@ -88,7 +88,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
                           _vm.Selection = Project.CurrentSelection;
                           _vm.SelectionToCompare = _selectionDropdown1.ResultSelection;
                           if (SelectedLayerDisplaynames != null)
-                            _vm.LayerDisplaynames = SelectedLayerDisplaynames;
+                            _vm.LayerDisplaynamesMultiMapper = SelectedLayerDisplaynames;
                           if (!_vm.Execute())
                             return;
 

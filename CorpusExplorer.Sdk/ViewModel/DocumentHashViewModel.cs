@@ -60,7 +60,6 @@ namespace CorpusExplorer.Sdk.ViewModel
     }
 
     public Algorithm HashAlgorithm { get; set; } = Algorithm.SHA512;
-    public IEnumerable<string> LayerDisplaynames => new[] { LayerDisplayname };
     public string LayerDisplayname { get; set; } = "Wort";
 
     public enum Algorithm

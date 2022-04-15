@@ -9,9 +9,11 @@ using CorpusExplorer.Sdk.ViewModel.Interfaces;
 
 namespace CorpusExplorer.Sdk.ViewModel
 {
-  public class NGramHighlightCooccurrencesViewModel : AbstractViewModel, IUseSpecificLayer, IProvideDataTable
+  public class Ngram1LayerSelectiveHighlightCooccurrencesViewModel : AbstractViewModel, IUseSpecificLayer, IProvideDataTable
   {
-    public NGramHighlightCooccurrencesViewModel()
+    private Ngram1LayerSelectiveHighlightCooccurrencesBlock _block;
+
+    public Ngram1LayerSelectiveHighlightCooccurrencesViewModel()
     {
       LayerDisplayname = "Wort";
       NGramSize = 5;
@@ -19,16 +21,28 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public int NGramSize { get; set; }
 
-    public Dictionary<KeyValuePair<string, byte>[], double> WeightedNgrams { get; set; }
+    /// <summary>
+    /// Format:
+    /// Key = NGram > Key = Token / Value = Signifikanz (max.)
+    /// Value = Frequenz
+    /// </summary>
+    public KeyValuePair<KeyValuePair<string, double>[], double>[] NgramsSignificants => _block.NgramsSignificants;
 
-    public Dictionary<string, KeyValuePair<string, double>> WeightedNgramsHtml
+    /// <summary>
+    /// Format:
+    /// Key = NGram > Key = Token / Value = Rang
+    /// Value = Werte > [0] = Frequenz / [1] = Signifikanz (max.)
+    /// </summary>
+    public KeyValuePair<KeyValuePair<string, byte>[], double[]>[] NgramsWeighted => _block.NgramsWeighted;
+
+    public Dictionary<string, KeyValuePair<string, double[]>> WeightedNgramsHtml
     {
       get
       {
-        var d1 = new Dictionary<string, double>();
+        var d1 = new Dictionary<string, double[]>();
         var d2 = new Dictionary<string, string>();
 
-        foreach (var ngram in WeightedNgrams)
+        foreach (var ngram in NgramsWeighted)
         {
           var stb = new StringBuilder("<html>");
 
@@ -55,16 +69,17 @@ namespace CorpusExplorer.Sdk.ViewModel
 
           if (d1.ContainsKey(key))
           {
-            d1[key] += ngram.Value;
+            d1[key][0] += ngram.Value[0];
+            d1[key][1] = d1[key][1] > ngram.Value[0] ? d1[key][1] : ngram.Value[0];
           }
           else
           {
-            d1.Add(key, 1);
+            d1.Add(key, ngram.Value);
             d2.Add(key, string.Join(" ", ngram.Key.Select(x => x.Key)));
           }
         }
 
-        return d1.ToDictionary(x => x.Key, x => new KeyValuePair<string, double>(d2[x.Key], x.Value));
+        return d1.ToDictionary(x => x.Key, x => new KeyValuePair<string, double[]>(d2[x.Key], x.Value));
       }
     }
 
@@ -88,19 +103,18 @@ namespace CorpusExplorer.Sdk.ViewModel
       return dt;
     }
 
-    public IEnumerable<string> LayerDisplaynames => Selection.LayerDisplaynames;
-
     public string LayerDisplayname { get; set; }
 
     protected override void ExecuteAnalyse()
     {
-      var block = Selection.CreateBlock<NGramHighlightCooccurrencesBlock>();
-      block.LayerDisplayname = LayerDisplayname;
-      block.NGramSize = NGramSize;
-      block.Calculate();
-
-      WeightedNgrams = block.WeightedNgrams;
+      _block = Selection.CreateBlock<Ngram1LayerSelectiveHighlightCooccurrencesBlock>();
+      _block.LayerDisplayname = LayerDisplayname;
+      _block.LayerQueries = LayerQueries;
+      _block.NGramSize = NGramSize;
+      _block.Calculate();
     }
+
+    public IEnumerable<string> LayerQueries { get; set; }
 
     protected override bool Validate()
     {

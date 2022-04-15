@@ -1,6 +1,7 @@
-﻿namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
+﻿
+namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
 {
-  partial class WebHtml5Visualisation
+  partial class WebBrowserControl
   {
     /// <summary> 
     /// Erforderliche Designervariable.
@@ -13,9 +14,9 @@
     /// <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
     protected override void Dispose(bool disposing)
     {
-      if (disposing && (this.components != null))
+      if (disposing && (components != null))
       {
-        this.components.Dispose();
+        components.Dispose();
       }
       base.Dispose(disposing);
     }
@@ -28,18 +29,10 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.SuspendLayout();
-      // 
-      // WebD3JsVisualisation
-      // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-      this.Name = "WebD3JsVisualisation";
-      this.ResumeLayout(false);
-
+      components = new System.ComponentModel.Container();
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
     }
 
     #endregion
-
   }
 }

@@ -14,18 +14,36 @@ namespace CorpusExplorer.Terminal.Automate.Helper
     public abstract bool Validate(AbstractValidator additionalValidator = null);
   }
 
-  public class Validator<T> : AbstractValidator where T : Control
+  public class Validator : AbstractValidator
   {
-    public class ValidatorRule<T> where T : Control
+    public class Rule
     {
-      public T Control { get; set; }
-      public Function<T, bool> ValidationFunction { get; set; }
+      public Control Control { get; set; }
+      public Func<Control, bool> ValidationFunction { get; set; }
       public string ErrorMessage { get; set; }
 
-      internal bool Validate() => ValidationFunction(Control);
+      internal bool Validate()
+      {
+        try
+        {
+          // ReSharper disable once ConvertIfStatementToReturnStatement
+          if (ValidationFunction == null)
+            return true;
+
+          return ValidationFunction(Control);
+        }
+        catch (InvalidCastException)
+        {
+          return true;
+        }
+        catch
+        {
+          return false;
+        }
+      }
     }
 
-    public List<ValidatorRule<T>> Rules { get; set; } = new List<ValidatorRule<T>>();
+    public List<Rule> Rules { get; set; } = new List<Rule>();
 
     public override bool Validate(AbstractValidator additionalValidator = null)
     {

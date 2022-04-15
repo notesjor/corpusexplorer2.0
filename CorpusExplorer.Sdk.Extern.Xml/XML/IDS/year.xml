@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="header.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<!DOCTYPE idsCorpus PUBLIC "-//IDS//DTD IDS-XCES 1.0//EN" "http://corpora.ids-mannheim.de/idsxces1/DTD/ids.xcesdoc.dtd">
+<idsHeader type="document" pattern="text" status="new" version="1.0" TEIform="teiHeader">
+   <fileDesc>
+    <titleStmt>
+     <dokumentSigle>{SubCSigle}</dokumentSigle>
+     <d.title></d.title>
+    </titleStmt>
+    <publicationStmt>
+     <distributor/>
+     <pubAddress/>
+     <availability region="ids" status="unknown" Default="n"></availability>
+     <pubDate/>
+    </publicationStmt>
+    <sourceDesc Default="n">
+     <biblStruct Default="n" status="draft">
+      <monogr>
+       <h.title type="main"/>
+       <imprint/>
+      </monogr>
+     </biblStruct>
+    </sourceDesc>
+   </fileDesc>
+  </idsHeader>

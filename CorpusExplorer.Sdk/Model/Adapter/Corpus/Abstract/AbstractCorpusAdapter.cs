@@ -407,6 +407,14 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
       }
     }
 
+    public object GetDocumentMetadata(Guid documentGuid, string metaKey)
+    {
+      var meta = GetDocumentMetadata(documentGuid);
+      if (meta == null || !meta.ContainsKey(metaKey))
+        return null;
+      return meta[metaKey];
+    }
+
     public Dictionary<Guid, T> GetDocumentMetadata<T>(string metaKey, T defaultValue)
     {
       return DocumentMetadata.Where(x => x.Value.ContainsKey(metaKey) && x.Value[metaKey] is T)
@@ -756,7 +764,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     /// <returns>Wert</returns>
     public object GetCorpusMetadata(string key)
     {
-      return (from x in GetCorpusMetadata() where x.Key == key select x.Value).FirstOrDefault();
+      var meta = GetCorpusMetadata();
+      return meta == null ? null : (from x in meta where x.Key == key select x.Value).FirstOrDefault();
     }
 
     public Dictionary<Guid, int[][]> GetMultilayerDocument(Guid documentGuid)

@@ -171,14 +171,17 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
         try
         {
           var client = new RestClient("http://www.deutschestextarchiv.de/demo/cab-ce-plugin/query?fmt=ceplugin");
-          var request = new RestRequest(Method.POST);
+          var request = new RestRequest();
           request.AddHeader("Client", "CorpusExplorer v2.0");
           request.AddHeader("Session", ses);
           request.AddHeader("cache-control", "no-cache");
           request.AddHeader("Content-Type", "text/plain");
           request.AddParameter("undefined", cluster.Value, ParameterType.RequestBody);
 
-          var text = client.Execute(request).Content;
+          var response = client.PostAsync(request);
+          response.Wait();
+
+          var text = response.Result.Content;
           if (string.IsNullOrEmpty(text))
             throw new ArgumentNullException(nameof(text));
 

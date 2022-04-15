@@ -5,6 +5,7 @@ using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Extern.Binary.Excel.Kidko;
 using CorpusExplorer.Sdk.Extern.Binary.Excel.Universal;
 using CorpusExplorer.Sdk.Extern.Binary.ListOfScrapDocuments;
+using CorpusExplorer.Sdk.Extern.Binary.NexisNew;
 using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
@@ -48,6 +49,10 @@ namespace CorpusExplorer.Sdk.Extern.Binary
         {
           "Universeller Excel™-Scraper (*.xlsx)|*.xlsx",
           new UniversalExcelScraper()
+        },
+        {
+          "Nexis/Uni / Lexis-Nexis (ab 2019) - [Vollständig + MS Word (docx) + separate Dateien] (*.zip)|*.zip",
+          new NexisNewScraper()
         },
         {
           "KiDKo/E-Scraper (*.xlsx)|*.xlsx",

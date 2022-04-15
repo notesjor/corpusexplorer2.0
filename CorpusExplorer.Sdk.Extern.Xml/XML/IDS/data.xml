@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="text.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+
+<raw_text docid="{DocId}" xmlns="http://ids-mannheim.de/ns/KorAP">
+  <metadata file="metadata.xml" />
+  <text>{TEXT}</text>
+</raw_text>

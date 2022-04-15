@@ -8,7 +8,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
   {
     protected override void PreAction(string path)
     {
-      if (path.EndsWith(".gz"))
+      if (path.EndsWith(".lz4"))
         UseCompression = true;
     }
   }

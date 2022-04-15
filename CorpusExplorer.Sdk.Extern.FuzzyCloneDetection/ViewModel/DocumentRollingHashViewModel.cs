@@ -39,7 +39,6 @@ namespace CorpusExplorer.Sdk.Extern.FuzzyCloneDetection.ViewModel
       return dt;
     }
 
-    public IEnumerable<string> LayerDisplaynames => new[] { LayerDisplayname };
     public string LayerDisplayname { get; set; } = "Wort";
   }
 }

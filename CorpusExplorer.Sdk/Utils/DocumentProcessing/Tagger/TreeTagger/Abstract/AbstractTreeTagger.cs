@@ -13,6 +13,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger.Abstract
     protected HashSet<string> _sentenceMark =
       new HashSet<string> { "$.", "PUNCT", ".", "SENT", "PON", "FS", "interp", "S" };
 
+    protected override string Foundry => "TreeTagger";
+    protected override string FoundryLayerInfo => "pos lemma";
+
     public override string InstallationPath
     {
       get => "(NICHT WÄHLBAR - OPTIMIERTE VERSION)";

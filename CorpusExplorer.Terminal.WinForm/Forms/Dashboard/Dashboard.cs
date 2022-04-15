@@ -111,6 +111,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       InitializeComponent();
 
+      #region No Browser
+
+      Configuration.UseChrome = args.All(s => s != "--no-browser");
+
+      #endregion
+
       #region Linux
 #if LINUX
       flowLayoutPanel5.Controls.Remove(corpus_start_online);
@@ -118,6 +124,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       pages_corpora.Pages.Remove(page_corpus_online);
       radScrollablePanel6.Controls.Remove(settings_tool_xpath);
+      Configuration.UseChrome = false;
 #endif
       #endregion
 
@@ -399,6 +406,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       files.AddRange(Directory.GetFiles(Configuration.MyCorpora, Resources.Filter_CEC5));
       files.AddRange(Directory.GetFiles(Configuration.MyCorpora, Resources.Filter_CEC6));
       files.AddRange(Directory.GetFiles(Configuration.MyCorpora, Resources.Filter_CEC6_GZ));
+      files.AddRange(Directory.GetFiles(Configuration.MyCorpora, Resources.Filter_CEC6_LZ4));
 
       if (files.Count == 0)
       {
@@ -593,7 +601,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                               QuickMode.AddCorpusToProject(Project, CorpusAdapterSingleFile.Create(path), EnableCorpusChecks);
                               break;
                             case ".cec6":
-                            case ".cec6.gz":
+                            case ".gz":
+                            case ".lz4": 
+                            default:
                               QuickMode.AddCorpusToProject(Project, CorpusAdapterWriteDirect.Create(path), EnableCorpusChecks);
                               break;
                           }

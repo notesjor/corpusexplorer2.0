@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.Interfaces;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 
 namespace CorpusExplorer.Sdk.Blocks
 {
   [Serializable]
-  public class NGramHighlightCooccurrencesBlock : AbstractBlock, IUseHydraSentenceOptimization
+  public class NgramHighlightCooccurrencesBlock : AbstractBlock
   {
     public double HighSignificanceThreshold { get; set; } = 10.0;
 
@@ -15,17 +16,60 @@ namespace CorpusExplorer.Sdk.Blocks
     public double LowSignificanceThreshold { get; set; } = 5.0;
 
     public double MinimumSignificanceThreshold { get; set; } = 1.0;
-    public byte MinimumTrashhold { get; set; } = 2;
 
     public int NGramSize { get; set; } = 5;
 
-    public Dictionary<KeyValuePair<string, byte>[], double> WeightedNgrams { get; set; }
+    /// <summary>
+    /// Format:
+    /// Key = NGram > Key = Token / Value = Signifikanz (max.)
+    /// Value = Frequenz
+    /// </summary>
+    public KeyValuePair<KeyValuePair<string, double>[], double>[] NgramsSignificants { get; set; }
 
     /// <summary>
-    ///   Soll die Hydra-Optimierung verwendet werden. In diesem Fall nur die Fundsätze und nicht das gesamte Dokument
-    ///   betrachtet.
+    /// Format:
+    /// Key = NGram > Key = Token / Value = Rang
+    /// Value = Werte > [0] = Frequenz / [1] = Signifikanz (max.) / [2] = Signifikanz (Summe)
     /// </summary>
-    public bool UseHydraOptimization { get; set; } = false;
+    public KeyValuePair<KeyValuePair<string, byte>[], double[]>[] NgramsWeighted
+    {
+      get
+      {
+        var res = new List<KeyValuePair<KeyValuePair<string, byte>[], double[]>>();
+
+        for (var i = 0; i < NgramsSignificants.Length; i++)
+        {
+          var key = new KeyValuePair<string, byte>[NgramsSignificants[i].Key.Length];
+          var max = 0.0;
+          var sum = 0.0;
+
+          for (var j = 0; j < NgramsSignificants[i].Key.Length; j++)
+          {
+            var val = NgramsSignificants[i].Key[j].Value;
+            if (double.IsNaN(val) || double.IsInfinity(val))
+              val = 0;
+
+            key[j] = new KeyValuePair<string, byte>(NgramsSignificants[i].Key[j].Key, val < MinimumSignificanceThreshold
+                                                      ? (byte)0
+                                                      : val < LowSignificanceThreshold
+                                                        ? (byte)1
+                                                        : val < HighSignificanceThreshold
+                                                          ? (byte)2
+                                                          : (byte)3);
+            if (val > max)
+              max = val;
+            sum += val;
+          }
+
+          if(sum < Configuration.MinimumSignificance)
+            continue;
+
+          res.Add(new KeyValuePair<KeyValuePair<string, byte>[], double[]>(key, new[] { NgramsSignificants[i].Value, max, sum }));
+        }
+
+        return res.ToArray();
+      }
+    }
 
     /// <summary>
     ///   Funktion die aufgerufen wird, wenn eine Berechnung durchgeführt werden soll.
@@ -40,82 +84,56 @@ namespace CorpusExplorer.Sdk.Blocks
       var block2 = Selection.CreateBlock<CooccurrenceBlock>();
       block2.LayerDisplayname = LayerDisplayname;
       block2.Calculate();
-      var dic = block2.CooccurrenceSignificance.CompleteDictionaryToFullDictionary();
+      var dict = block2.CooccurrenceSignificance.CompleteDictionaryToFullDictionary();
 
-      WeightedNgrams = new Dictionary<KeyValuePair<string, byte>[], double>();
+      var lst = new List<KeyValuePair<KeyValuePair<string, double>[], double>>();
+      var init = 0.0;
 
       foreach (var ngram in block1.NGramFrequency)
       {
-        var chunks = ngram.Key.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
-
-        var key = new byte[chunks.Length];
-        for (var i = 0; i < key.Length; i++)
-          key[i] = 0;
-
-        var trash = (byte) 0;
-        for (var i = 0; i < chunks.Length; i++)
-        {
-          if (!dic.ContainsKey(chunks[i]))
-            continue;
-
-          var sig = dic[chunks[i]];
-          byte max = 0;
-
-          for (var j = i + 1; j < key.Length; j++)
-          {
-            if (!sig.ContainsKey(chunks[j]))
-              continue;
-
-            var val = sig[chunks[j]];
-            var res = val < MinimumSignificanceThreshold
-                        ? (byte) 0
-                        : val < LowSignificanceThreshold
-                          ? (byte) 1
-                          : val < HighSignificanceThreshold
-                            ? (byte) 2
-                            : (byte) 3;
-
-            if (res > max)
-              max = res;
-
-            key[j] = res;
-          }
-
-          if (max <= key[i])
-            continue;
-
-          key[i] = max;
-          if (max > trash)
-            trash = max;
-        }
-
-        if (trash < MinimumTrashhold)
+        if(ngram.Value < Configuration.MinimumFrequency)
           continue;
 
-        var join = new List<KeyValuePair<string, byte>>();
-        var was0 = true;
+        var tokens = ngram.Key.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+        if(tokens.Length != NGramSize)
+          continue;
 
-        for (var i = 0; i < key.Length; i++)
-          if (was0)
+        var rates = new double[tokens.Length];
+        for (var i = 0; i < rates.Length; i++)
+          rates[i] = 0;
+
+        for (var i = 0; i < tokens.Length; i++)
+        {
+          if (!dict.ContainsKey(tokens[i]))
+            continue;
+
+          var max = 0.0;
+          var sdic = dict[tokens[i]];
+          for (var j = i + 1; j < tokens.Length; j++)
           {
-            if (key[i] == 0)
+            if(!sdic.ContainsKey(tokens[j]))
               continue;
-            join.Add(new KeyValuePair<string, byte>(chunks[i], key[i]));
-            was0 = false;
-          }
-          else
-          {
-            join.Add(new KeyValuePair<string, byte>(chunks[i], key[i]));
-            if (key[i] == 0)
-              was0 = true;
+
+            var val = sdic[tokens[j]];
+            if (val > max)
+              max = val;
+
+            if (val > rates[j])
+              rates[j] = val;
           }
 
-        while (join.Count                 > 0 &&
-               join[join.Count - 1].Value == 0)
-          join.RemoveAt(join.Count - 1);
+          if (max > init)
+            rates[i] = max;
+        }
 
-        WeightedNgrams.Add(join.ToArray(), ngram.Value);
+        var key = new KeyValuePair<string, double>[tokens.Length];
+        for (var i = 0; i < tokens.Length; i++)
+          key[i] = new KeyValuePair<string, double>(tokens[i], rates[i]);
+
+        lst.Add(new KeyValuePair<KeyValuePair<string, double>[], double>(key, ngram.Value));
       }
+
+      NgramsSignificants = lst.ToArray();
     }
   }
 }

@@ -30,7 +30,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// </returns>
     public override object Clone()
     {
-      return new FilterQueryMetaContainsCaseSensitive
+      return new FilterQueryMetaStartsWith
       {
         Inverse = Inverse,
         MetaLabel = MetaLabel,

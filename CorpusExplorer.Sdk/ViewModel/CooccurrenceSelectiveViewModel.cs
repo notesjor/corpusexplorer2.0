@@ -46,6 +46,8 @@ namespace CorpusExplorer.Sdk.ViewModel
     /// </summary>
     public Dictionary<string, double> SignificanceDictionary { get; set; }
 
+    public CorrespondingLayerValueFilterViewModel CorrespondingLayerValueFilter { get; set; }
+
     /// <summary>
     ///   Gets the data table.
     /// </summary>
@@ -56,9 +58,19 @@ namespace CorpusExplorer.Sdk.ViewModel
       dt.Columns.Add(Resources.Frequency, typeof(double));
       dt.Columns.Add(Resources.Significance, typeof(double));
 
+      CorrespondingLayerValueFilter?.DataTableFilterInit(ref dt, new[] { Resources.Cooccurrence });
+
       dt.BeginLoadData();
-      foreach (var x in SignificanceDictionary)
-        dt.Rows.Add(x.Key, FrequencyDictionary.ContainsKey(x.Key) ? FrequencyDictionary[x.Key] : 0, x.Value);
+      foreach (var data in SignificanceDictionary.Select(x => new object[] { x.Key, FrequencyDictionary.ContainsKey(x.Key) ? FrequencyDictionary[x.Key] : 0, x.Value }))
+      {
+        if (CorrespondingLayerValueFilter == null)
+          dt.Rows.Add(data);
+        else
+        {
+          if (CorrespondingLayerValueFilter.DataTableFilter(data))
+            dt.Rows.Add(data);
+        }
+      }
       dt.EndLoadData();
       return dt;
     }

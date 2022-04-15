@@ -1,0 +1,9 @@
+  <span id="t_{j}" from="{From}" to="{To}">
+   <fs type="lex" xmlns="http://www.tei-c.org/ns/1.0">
+    <f name="lex">
+     <fs>
+{TAGS}
+     </fs>
+    </f>
+   </fs>
+  </span>

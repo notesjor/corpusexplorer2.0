@@ -38,6 +38,7 @@
       Telerik.WinControls.UI.RadListDataItem radListDataItem8 = new Telerik.WinControls.UI.RadListDataItem();
       Telerik.WinControls.UI.RadListDataItem radListDataItem9 = new Telerik.WinControls.UI.RadListDataItem();
       Telerik.WinControls.UI.RadListDataItem radListDataItem10 = new Telerik.WinControls.UI.RadListDataItem();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryBuilderForm));
       Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
       Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
       Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -229,7 +230,7 @@
       this.pages_options.Location = new System.Drawing.Point(0, 170);
       this.pages_options.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.pages_options.Name = "pages_options";
-      this.pages_options.SelectedPage = this.page_meta;
+      this.pages_options.SelectedPage = this.page_random;
       this.pages_options.Size = new System.Drawing.Size(1099, 409);
       this.pages_options.TabIndex = 2;
       this.pages_options.ViewMode = Telerik.WinControls.UI.PageViewMode.Backstage;
@@ -441,7 +442,7 @@
       this.fulltext_drop_operator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.fulltext_drop_operator.Name = "fulltext_drop_operator";
       this.fulltext_drop_operator.NullText = "Bitte Operator auswählen...";
-      this.fulltext_drop_operator.Size = new System.Drawing.Size(870, 32);
+      this.fulltext_drop_operator.Size = new System.Drawing.Size(870, 0);
       this.fulltext_drop_operator.TabIndex = 0;
       this.fulltext_drop_operator.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.refreshlive_dropdown);
       // 
@@ -503,7 +504,7 @@
       this.radGroupBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
       this.radGroupBox6.Name = "radGroupBox6";
       this.radGroupBox6.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
-      this.radGroupBox6.Size = new System.Drawing.Size(880, 96);
+      this.radGroupBox6.Size = new System.Drawing.Size(880, 197);
       this.radGroupBox6.TabIndex = 1;
       this.radGroupBox6.Text = "Zufällig zu ziehende Texte";
       // 
@@ -512,10 +513,9 @@
       this.radLabel3.Dock = System.Windows.Forms.DockStyle.Top;
       this.radLabel3.Location = new System.Drawing.Point(5, 62);
       this.radLabel3.Name = "radLabel3";
-      this.radLabel3.Size = new System.Drawing.Size(816, 23);
+      this.radLabel3.Size = new System.Drawing.Size(588, 120);
       this.radLabel3.TabIndex = 3;
-      this.radLabel3.Text = "Zulässig: Zahlenwerte (z. B. 100 -> Für 100 Dokumente) / Prozentualer Angabe mögl" +
-    "ich (z. B. 25% -> Für 25% des Korpus)";
+      this.radLabel3.Text = resources.GetString("radLabel3.Text");
       // 
       // random_txt_value
       // 

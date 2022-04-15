@@ -13,7 +13,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.LexisNexis
 {
   public class NexisComScraper : AbstractScraper
   {
-    public override string DisplayName => "nexis.com - Nachrichten";
+    public override string DisplayName => "nexis.com - Nachrichten (bis 2020)";
 
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {

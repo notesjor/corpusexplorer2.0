@@ -17,7 +17,7 @@ using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Cache;
 using CorpusExplorer.Sdk.Model.Cache.Abstract;
-using CorpusExplorer.Sdk.Model.Localizer;
+using CorpusExplorer.Sdk.Model.Localization;
 using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.Utils.DataTableWriter;
 using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
@@ -357,6 +357,12 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// </summary>
     private static string SettingsAppPath { get; set; }
 
+    /// <summary>
+    /// Gets or sets a value indicating whether [use chrome].
+    /// </summary>
+    /// <value><c>true</c> if [use chrome]; otherwise, <c>false</c>.</value>
+    public static bool UseChrome { get; set; } = true;
+
     public static IAction GetConsoleAction(string actionName)
     {
       return (from x in AddonConsoleActions where x.Action == actionName select x).FirstOrDefault();
@@ -624,8 +630,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     {
       var res = string.IsNullOrEmpty(path) ? AppPath : Path.Combine(AppPath, path);
       var dir = Path.GetDirectoryName(res);
-      if (dir != null &&
-          !Directory.Exists(dir))
+      if (!string.IsNullOrWhiteSpace(dir) && !Directory.Exists(dir))
         Directory.CreateDirectory(dir);
       return res;
     }

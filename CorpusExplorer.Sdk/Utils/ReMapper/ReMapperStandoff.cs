@@ -78,7 +78,7 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper
             SentenceIndex = i,
             TokenIndex = j,
             TextCharFrom = idx,
-            TextCharTo = idx + t.Length - 1
+            TextCharTo = idx + t.Length
           });
           last += t.Length;
         }

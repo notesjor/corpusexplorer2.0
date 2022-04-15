@@ -19,7 +19,7 @@ namespace CorpusExplorer.Sdk.Blocks
     public string LayerDisplayname { get; set; } = "Wort";
 
     [XmlArray]
-    public string[] LayerQueries { get; set; }
+    public IEnumerable<string> LayerQueries { get; set; }
 
     public override void Calculate()
     {
@@ -55,7 +55,7 @@ namespace CorpusExplorer.Sdk.Blocks
       var dictionary = new Dictionary<string, double>();
       foreach (var k in CooccurrenceFrequency)
       {
-        if (ignore.Contains(k.Key))
+        if (ignore.Contains(k.Key) || !blockB.Frequency.ContainsKey(k.Key))
           continue;
         try
         {

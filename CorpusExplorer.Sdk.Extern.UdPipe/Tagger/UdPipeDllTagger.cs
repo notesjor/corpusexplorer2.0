@@ -120,6 +120,9 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe.Tagger
       }
     }
 
+    protected override string Foundry => "UDPipe";
+    protected override string FoundryLayerInfo => "pos lemma";
+
     protected override string ExecuteTagger(string text)
     {
       try

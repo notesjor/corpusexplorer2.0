@@ -15,13 +15,20 @@ using CorpusExplorer.Sdk.Model.Adapter.Layer;
 
 namespace CorpusExplorer.Sdk.Extern.QuickIndexRocks
 {
-  public class QuickIndex : IDisposable
+  /// <summary>
+  /// Implementierung von QuickIndex für RocksDB
+  /// Implements the <see cref="System.IDisposable" />
+  /// </summary>
+  /// <seealso cref="System.IDisposable" />
+  public class QuickIndexWakeUp : IDisposable
   {
     private EasyRocksDb _dic;
     private EasyRocksDb _dicRes;
-    private Dictionary<long, Guid> _fixRes;
     private EasyRocksDb _meta;
+    private Dictionary<long, Guid> _fixRes;
     private readonly string[] _emptyMark = { "[...]" };
+    private string _pathToCec6;
+    private string _layerDisplayname;
 
     /// <summary>
     /// Erstellt ein neues QuickIndex-Objekt.
@@ -30,7 +37,7 @@ namespace CorpusExplorer.Sdk.Extern.QuickIndexRocks
     /// </summary>
     /// <param name="pathToCec6">Pfad zur CEC6-Datei. Muss bereits exsistieren. Die CEC6-Datei beleibt erhalten.</param>
     /// <param name="layerDisplayname">Layer für den der QuickIndex gelöscht werden soll.</param>
-    public QuickIndex(string pathToCec6, string layerDisplayname = "Wort")
+    public QuickIndexWakeUp(string pathToCec6, string layerDisplayname = "Wort")
     {
       // Erstelle QuickIndex falls er nicht exsistiert.
       if (!Directory.Exists($"{pathToCec6}_{layerDisplayname}.idxmrRDB"))
@@ -45,14 +52,60 @@ namespace CorpusExplorer.Sdk.Extern.QuickIndexRocks
       Read(pathToCec6, layerDisplayname); // Baue ReadOnly-Verbindung auf.
     }
 
+    public void WakeUp()
+    {
+      _dic = DictionaryIndex.ReadDic(_pathToCec6, _layerDisplayname);
+      _dicRes = DictionaryIndex.ReadDicRes(_pathToCec6, _layerDisplayname);
+      _meta = InverseIndex.Read(_pathToCec6, _layerDisplayname);
+    }
+
+    public void GoToSleep()
+    {
+      _dic?.Dispose();
+      _dicRes?.Dispose();
+      _meta?.Dispose();
+
+      _dic = null;
+      _dicRes = null;
+      _meta = null;
+    }
+
+    private EasyRocksDb Dic
+    {
+      get
+      {
+        if (_dic == null)
+          WakeUp();
+        return _dic;
+      }
+    }
+
+    private EasyRocksDb DicRes
+    {
+      get
+      {
+        if (_dicRes == null)
+          WakeUp();
+        return _dicRes;
+      }
+    }
+
+    private EasyRocksDb Meta
+    {
+      get
+      {
+        if (_meta == null)
+          WakeUp();
+        return _meta;
+      }
+    }
+
     private void Read(string pathToCec6, string layerDisplayname)
     {
-      var dic = DictionaryIndex.Read(pathToCec6, layerDisplayname);
-      _dic = dic[0];
-      _dicRes = dic[1];
+      _pathToCec6 = pathToCec6;
+      _layerDisplayname = layerDisplayname;
 
       _fixRes = Cec6FileIndex.Read(pathToCec6, layerDisplayname).ToDictionary(x => x.Value, x => x.Key);
-      _meta = InverseIndex.Read(pathToCec6, layerDisplayname);
     }
 
     public string PathToCec6 { get; }
@@ -116,7 +169,7 @@ namespace CorpusExplorer.Sdk.Extern.QuickIndexRocks
     /// <returns>Dokument</returns>
     public IEnumerable<IEnumerable<string>> GetDocument(long position)
     {
-      return GetIndexDocument(position).Select(s => s.Select(w => _dicRes.Get(position.ToString())));
+      return GetIndexDocument(position).Select(s => s.Select(w => DicRes.Get(position.ToString())));
     }
 
     /// <summary>
@@ -133,13 +186,13 @@ namespace CorpusExplorer.Sdk.Extern.QuickIndexRocks
                ? null
                : markEmpty
                  ? MarkEmpty(sentenceIndices, doc)
-                 : sentenceIndices.Select(sI => doc[sI].Select(x => _dicRes.Get(x.ToString())));
+                 : sentenceIndices.Select(sI => doc[sI].Select(x => DicRes.Get(x.ToString())));
     }
 
     private IEnumerable<IEnumerable<string>> MarkEmpty(IEnumerable<int> sentenceIndices, int[][] doc)
     {
       var arr = sentenceIndices.ToArray();
-      var sen = arr.Select(sI => doc[sI].Select(x => _dicRes.Get(x.ToString()))).ToList();
+      var sen = arr.Select(sI => doc[sI].Select(x => DicRes.Get(x.ToString()))).ToList();
       for (var i = arr.Length; i > 0; i--)
       {
         if (arr[i] + 1 == arr[i])
@@ -205,7 +258,7 @@ namespace CorpusExplorer.Sdk.Extern.QuickIndexRocks
     {
       try
       {
-        return InverseIndex.GetPositions(PathToCec6, LayerDisplayname, long.Parse(_meta.Get(_dic.Get(query))));
+        return InverseIndex.GetPositions(PathToCec6, LayerDisplayname, long.Parse(Meta.Get(Dic.Get(query))));
       }
       catch
       {
@@ -339,9 +392,9 @@ namespace CorpusExplorer.Sdk.Extern.QuickIndexRocks
 
     public void Dispose()
     {
-      _dic?.Dispose();
-      _dicRes?.Dispose();
-      _meta?.Dispose();
+      Dic?.Dispose();
+      DicRes?.Dispose();
+      Meta?.Dispose();
       _fixRes?.Clear();
       GC.Collect();
     }

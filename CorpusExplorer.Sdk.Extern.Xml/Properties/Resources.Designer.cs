@@ -19,7 +19,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -57,6 +57,147 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        ///&lt;?xml-model href=&quot;text.rng&quot; type=&quot;application/xml&quot; schematypens=&quot;http://relaxng.org/ns/structure/1.0&quot;?&gt;
+        ///
+        ///&lt;raw_text docid=&quot;{DocId}&quot; xmlns=&quot;http://ids-mannheim.de/ns/KorAP&quot;&gt;
+        ///  &lt;metadata file=&quot;metadata.xml&quot; /&gt;
+        ///  &lt;text&gt;{TEXT}&lt;/text&gt;
+        ///&lt;/raw_text&gt; ähnelt.
+        /// </summary>
+        internal static string Template_Ids_KorAP_Data {
+            get {
+                return ResourceManager.GetString("Template.Ids.KorAP.Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        ///&lt;?xml-model href=&quot;span.rng&quot; type=&quot;application/xml&quot; schematypens=&quot;http://relaxng.org/ns/structure/1.0&quot;?&gt;
+        ///
+        ///&lt;layer xmlns=&quot;http://ids-mannheim.de/ns/KorAP&quot; version=&quot;KorAP-0.4&quot; docid=&quot;{DocId}&quot;&gt;
+        /// &lt;spanList&gt;
+        ///{ANNO}
+        /// &lt;/spanList&gt;
+        ///&lt;/layer&gt; ähnelt.
+        /// </summary>
+        internal static string Template_Ids_KorAP_Morpho {
+            get {
+                return ResourceManager.GetString("Template.Ids.KorAP.Morpho", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;span id=&quot;t_{j}&quot; from=&quot;{From}&quot; to=&quot;{To}&quot;&gt;
+        ///   &lt;fs type=&quot;lex&quot; xmlns=&quot;http://www.tei-c.org/ns/1.0&quot;&gt;
+        ///    &lt;f name=&quot;lex&quot;&gt;
+        ///     &lt;fs&gt;
+        ///{TAGS}
+        ///     &lt;/fs&gt;
+        ///    &lt;/f&gt;
+        ///   &lt;/fs&gt;
+        ///  &lt;/span&gt; ähnelt.
+        /// </summary>
+        internal static string Template_Ids_KorAP_Morpho_Span {
+            get {
+                return ResourceManager.GetString("Template.Ids.KorAP.Morpho.Span", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        ///&lt;?xml-model href=&quot;header.rng&quot; type=&quot;application/xml&quot; schematypens=&quot;http://relaxng.org/ns/structure/1.0&quot;?&gt;
+        ///&lt;!DOCTYPE idsCorpus PUBLIC &quot;-//IDS//DTD IDS-XCES 1.0//EN&quot; &quot;http://corpora.ids-mannheim.de/idsxces1/DTD/ids.xcesdoc.dtd&quot;&gt;
+        ///&lt;idsHeader type=&quot;corpus&quot; pattern=&quot;text&quot; status=&quot;new&quot; version=&quot;1.0&quot; TEIform=&quot;teiHeader&quot;&gt;
+        ///  &lt;fileDesc&gt;
+        ///   &lt;titleStmt&gt;
+        ///    &lt;korpusSigle&gt;{CSIGLE}&lt;/korpusSigle&gt;
+        ///    &lt;c.title&gt;&lt;/c.title&gt;
+        ///   &lt;/titleStmt&gt;
+        ///   &lt;editionStmt version=&quot;1.0&quot;/&gt;
+        ///   &lt;publicationStm [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        internal static string Template_Ids_KorAP_Root {
+            get {
+                return ResourceManager.GetString("Template.Ids.KorAP.Root", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        ///&lt;?xml-model href=&quot;span.rng&quot; type=&quot;application/xml&quot; schematypens=&quot;http://relaxng.org/ns/structure/1.0&quot;?&gt;
+        ///
+        ///&lt;layer docid=&quot;{DocId}&quot; xmlns=&quot;http://ids-mannheim.de/ns/KorAP&quot; version=&quot;KorAP-0.4&quot;&gt;
+        ///  &lt;spanList&gt;
+        ///    &lt;span id=&quot;s0&quot; from=&quot;0&quot; to=&quot;{To}&quot; l=&quot;1&quot;&gt;
+        ///      &lt;fs type=&quot;struct&quot; xmlns=&quot;http://www.tei-c.org/ns/1.0&quot;&gt;
+        ///        &lt;f name=&quot;name&quot;&gt;text&lt;/f&gt;
+        ///      &lt;/fs&gt;
+        ///    &lt;/span&gt;
+        ///    &lt;span id=&quot;s1&quot; from=&quot;0&quot; to=&quot;{To}&quot; l=&quot;2&quot;&gt;
+        ///      &lt;fs type=&quot;struct&quot; xmlns=&quot;http://www.tei-c.org/ns/1.0&quot;&gt;
+        ///      [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        internal static string Template_Ids_KorAP_Structure {
+            get {
+                return ResourceManager.GetString("Template.Ids.KorAP.Structure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        ///&lt;?xml-model href=&quot;span.rng&quot; type=&quot;application/xml&quot; schematypens=&quot;http://relaxng.org/ns/structure/1.0&quot;?&gt;
+        ///
+        ///&lt;layer docid=&quot;{DocId}&quot; xmlns=&quot;http://ids-mannheim.de/ns/KorAP&quot; version=&quot;KorAP-0.4&quot;&gt;
+        ///  &lt;spanList&gt;
+        ///{TOKENS}
+        ///  &lt;/spanList&gt;
+        ///&lt;/layer&gt; ähnelt.
+        /// </summary>
+        internal static string Template_Ids_KorAP_Tokens {
+            get {
+                return ResourceManager.GetString("Template.Ids.KorAP.Tokens", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        ///&lt;?xml-model href=&quot;header.rng&quot; type=&quot;application/xml&quot; schematypens=&quot;http://relaxng.org/ns/structure/1.0&quot;?&gt;
+        ///&lt;!DOCTYPE idsCorpus PUBLIC &quot;-//IDS//DTD IDS-XCES 1.0//EN&quot; &quot;http://corpora.ids-mannheim.de/idsxces1/DTD/ids.xcesdoc.dtd&quot;&gt;
+        ///&lt;idsHeader type=&quot;document&quot; pattern=&quot;text&quot; status=&quot;new&quot; version=&quot;1.0&quot; TEIform=&quot;teiHeader&quot;&gt;
+        ///   &lt;fileDesc&gt;
+        ///    &lt;titleStmt&gt;
+        ///     &lt;dokumentSigle&gt;{SubCSigle}&lt;/dokumentSigle&gt;
+        ///     &lt;d.title&gt;&lt;/d.title&gt;
+        ///    &lt;/titleStmt&gt;
+        ///    &lt;publicationStmt&gt;
+        ///     &lt;distribu [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        internal static string Template_Ids_KorAP_Year {
+            get {
+                return ResourceManager.GetString("Template.Ids.KorAP.Year", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        ///&lt;?xml-model href=&quot;header.rng&quot; type=&quot;application/xml&quot; schematypens=&quot;http://relaxng.org/ns/structure/1.0&quot;?&gt;
+        ///&lt;!DOCTYPE idsCorpus PUBLIC &quot;-//IDS//DTD IDS-XCES 1.0//EN&quot; &quot;http://corpora.ids-mannheim.de/idsxces1/DTD/ids.xcesdoc.dtd&quot;&gt;
+        ///&lt;idsHeader pattern=&quot;text&quot; status=&quot;new&quot; type=&quot;text&quot; TEIform=&quot;teiHeader&quot; version=&quot;1.0&quot;&gt;
+        ///    &lt;fileDesc&gt;
+        ///     &lt;titleStmt&gt;
+        ///      &lt;textSigle&gt;{DocSigle}&lt;/textSigle&gt;
+        ///      &lt;t.title assemblage=&quot;external&quot;&gt;{TITLE}&lt;/t.title&gt;
+        ///     &lt;/titleStmt&gt;
+        ///     &lt;editionSt [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        internal static string Template_Ids_KorAP_ZDoc {
+            get {
+                return ResourceManager.GetString("Template.Ids.KorAP.ZDoc", resourceCulture);
             }
         }
     }

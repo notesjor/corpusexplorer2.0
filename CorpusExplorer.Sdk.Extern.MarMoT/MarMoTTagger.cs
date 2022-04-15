@@ -85,6 +85,9 @@ namespace CorpusExplorer.Sdk.Extern.MarMoT
                                 (current, ending) => current.Replace($"\r\n{ending}\r\n", $"\r\n{ending}\r\n\r\n"));
     }
 
+    protected override string Foundry => "MarMoT";
+    protected override string FoundryLayerInfo => "pos";
+
     protected override string ExecuteTagger(string text)
     {
       using (var fileOutput = new TemporaryFile(Configuration.TempPath))

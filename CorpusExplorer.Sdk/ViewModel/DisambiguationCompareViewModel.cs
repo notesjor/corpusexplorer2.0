@@ -65,9 +65,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     {
       return _dataTable;
     }
-
-    public IEnumerable<string> LayerDisplaynames => Selection.LayerUniqueDisplaynames;
-
+    
     public string LayerDisplayname
     {
       get => _selectedLayerDisplayname;

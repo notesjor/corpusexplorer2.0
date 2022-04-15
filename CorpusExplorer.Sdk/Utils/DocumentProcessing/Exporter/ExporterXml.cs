@@ -45,7 +45,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
         // Speichere alle Dokumente
         foreach (var dsel in csel.Value)
         {
-          var dpath = CombineAndEnsureDirectoryExsists(root, dsel.ToString());
+          var dpath = CombineAndEnsureDirectoryExsists(root, dsel.ToString("N"));
 
           // Speichere die Dokument-Metadaten
           using (var fs = new FileStream(Path.Combine(dpath, "doc.meta.xml"), FileMode.Create, FileAccess.Write))

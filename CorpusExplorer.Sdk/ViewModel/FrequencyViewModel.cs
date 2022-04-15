@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
 using CorpusExplorer.Sdk.ViewModel.Interfaces;
 
@@ -19,15 +20,14 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public FrequencyViewModel()
     {
-      LayerDisplaynames = new List<string>
-      {
-        "POS",
-        "Lemma",
-        "Wort"
-      };
+      Mapper = new ViewModelLayerDisplaynameMapper(this, new[]{ nameof(Layer1Displayname), nameof(Layer2Displayname), nameof(Layer3Displayname) });
     }
 
-    public IEnumerable<string> LayerDisplaynames { get; set; }
+    public string Layer1Displayname { get; set; } = "POS";
+
+    public string Layer2Displayname { get; set; } = "Lemma";
+
+    public string Layer3Displayname { get; set; } = "Wort";
 
     /// <summary>
     ///   Gets the data table.
@@ -37,34 +37,36 @@ namespace CorpusExplorer.Sdk.ViewModel
       return ((IProvideDataTable) _vm).GetDataTable();
     }
 
+    public ViewModelLayerDisplaynameMapper Mapper { get; set; }
+
     protected override void ExecuteAnalyse()
     {
-      var layers = new HashSet<string>(LayerDisplaynames).Where(x => Selection.ContainsLayer(x)).ToArray();
+      var val = string.IsNullOrEmpty(Layer2Displayname) ? 1 : string.IsNullOrEmpty(Layer3Displayname) ? 2 : 3;
 
-      switch (layers.Length)
+      switch (val)
       {
         case 1:
           _vm = new Frequency1LayerViewModel
           {
             Selection = Selection,
-            LayerDisplayname = layers[0]
+            LayerDisplayname = Layer1Displayname
           };
           break;
         case 2:
           _vm = new Frequency2LayerViewModel
           {
             Selection = Selection,
-            Layer1Displayname = layers[0],
-            Layer2Displayname = layers[1]
+            Layer1Displayname = Layer1Displayname,
+            Layer2Displayname = Layer2Displayname
           };
           break;
         case 3:
           _vm = new Frequency3LayerViewModel
           {
             Selection = Selection,
-            Layer1Displayname = layers[0],
-            Layer2Displayname = layers[1],
-            Layer3Displayname = layers[2]
+            Layer1Displayname = Layer1Displayname,
+            Layer2Displayname = Layer2Displayname,
+            Layer3Displayname = Layer3Displayname
           };
           break;
       }

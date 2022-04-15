@@ -94,9 +94,6 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
           continue;
 
         var tokens = line.Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
-        if(tokens.Length < 2)
-          continue;
-
         for (var i = 0; i < tokens.Length; i++)
         {
           if (sent.Count == i)

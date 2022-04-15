@@ -43,7 +43,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_export = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_clipboard = new Telerik.WinControls.UI.CommandBarButton();
-      this.webHtml5Visualisation1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser.WebHtml5Visualisation();
+      this.webHtml5Visualisation1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WebBrowserControl();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
       this.radSplitContainer1.SuspendLayout();
@@ -173,9 +173,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       // 
       this.webHtml5Visualisation1.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.webHtml5Visualisation1, "webHtml5Visualisation1");
-      this.webHtml5Visualisation1.MainpageUrl = null;
       this.webHtml5Visualisation1.Name = "webHtml5Visualisation1";
-      this.webHtml5Visualisation1.TemplateVars = ((System.Collections.Generic.Dictionary<string, string>)(resources.GetObject("webHtml5Visualisation1.TemplateVars")));
       // 
       // SimpleTextView2
       // 
@@ -220,6 +218,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
     private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator1;
     private Telerik.WinControls.UI.CommandBarButton btn_export;
     private Telerik.WinControls.UI.CommandBarButton btn_clipboard;
-        private Controls.WinForm.Webbrowser.WebHtml5Visualisation webHtml5Visualisation1;
+        private Controls.WinForm.WebBrowserControl webHtml5Visualisation1;
     }
 }

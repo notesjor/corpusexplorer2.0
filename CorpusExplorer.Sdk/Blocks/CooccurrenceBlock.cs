@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Blocks.Cooccurrence;
@@ -66,7 +67,7 @@ namespace CorpusExplorer.Sdk.Blocks
     /// </summary>
     public override void Calculate()
     {
-      if (_cache.AbortCalculation(new Dictionary<string, object> {{nameof(LayerDisplayname), LayerDisplayname}}))
+      if (_cache.AbortCalculation(new Dictionary<string, object> { { nameof(LayerDisplayname), LayerDisplayname } }))
         return;
 
       _block = Selection.CreateBlock<CrossFrequencyBlock>();
@@ -95,7 +96,7 @@ namespace CorpusExplorer.Sdk.Blocks
                          }
 
                          var dic = new Dictionary<string, double>();
-                         var hsh = new HashSet<string> {word.Key};
+                         var hsh = new HashSet<string> { word.Key };
 
                          foreach (var collocate in word.Value)
                          {
@@ -128,30 +129,44 @@ namespace CorpusExplorer.Sdk.Blocks
       var cooc = CooccurrenceSignificance.CompleteDictionaryToFullDictionary();
 
       foreach (var x in cooc)
-      foreach (var y in x.Value)
-      {
-        if (keys.ContainsKey(x.Key))
+        foreach (var y in x.Value)
         {
-          if (keys[x.Key] < y.Value)
-            keys[x.Key] = y.Value;
-        }
-        else
-        {
-          keys.Add(x.Key, y.Value);
-        }
+          if (keys.ContainsKey(x.Key))
+          {
+            if (keys[x.Key] < y.Value)
+              keys[x.Key] = y.Value;
+          }
+          else
+          {
+            keys.Add(x.Key, y.Value);
+          }
 
-        if (keys.ContainsKey(y.Key))
-        {
-          if (keys[y.Key] < y.Value)
-            keys[y.Key] = y.Value;
+          if (keys.ContainsKey(y.Key))
+          {
+            if (keys[y.Key] < y.Value)
+              keys[y.Key] = y.Value;
+          }
+          else
+          {
+            keys.Add(y.Key, y.Value);
+          }
         }
-        else
-        {
-          keys.Add(y.Key, y.Value);
-        }
-      }
 
       return keys;
+    }
+
+    /// <summary>
+    /// Gibt alle Kookkurrenzen zum Token zurück (erspart Konvertierung in Vollmatrix).
+    /// </summary>
+    /// <param name="token">Token</param>
+    /// <returns>Alle Kookkurrenzen</returns>
+    public Dictionary<string, double> SearchCooccurrence(string token)
+    {
+      var res = CooccurrenceSignificance.ContainsKey(token) ? CooccurrenceSignificance[token] : new Dictionary<string, double>();
+      foreach (var pair in CooccurrenceSignificance.Where(pair => pair.Value.ContainsKey(token)))
+        res.Add(pair.Key, pair.Value[token]);
+
+      return res;
     }
   }
 }

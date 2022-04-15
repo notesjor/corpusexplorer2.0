@@ -36,7 +36,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Opus
 
         var doc = new Dictionary<string, List<string[]>>();
 
-        var sentences = (from x in text.ChildNodes where x.Name == "s" select x).ToArray();
+        var sentences = xml.DocumentNode.SelectNodes("//s").ToArray();
         foreach (var sentence in sentences)
         {
           var sent = new Dictionary<string, List<string>> { { "Wort", new List<string>() } };

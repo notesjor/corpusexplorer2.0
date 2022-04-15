@@ -17,26 +17,26 @@ namespace CorpusExplorer.Terminal.Automate
   {
     private Dictionary<string, AbstractTableWriter> _outputAction;
     private Dictionary<string, AbstractExporter> _outputExporter;
-    private readonly Validator<RadTextBox> _validator;
+    private readonly Validator _validator;
 
     private ActionForm()
     {
       InitializeComponent();
-      _validator = new Validator<RadTextBox>
+      _validator = new Validator
       {
-        Rules = new List<Validator<RadTextBox>.ValidatorRule<RadTextBox>>
+        Rules = new List<Validator.Rule>
         {
-          new Validator<RadTextBox>.ValidatorRule<RadTextBox>
+          new Validator.Rule
           {
             Control = txt_outputPath,
             ErrorMessage = "Bitte tragen Sie einen einen Ausgabepfad ein.",
-            ValidationFunction = box => !string.IsNullOrWhiteSpace(box.Text)
+            ValidationFunction = box => !string.IsNullOrWhiteSpace((box as RadTextBox)?.Text)
           },
-          new Validator<RadTextBox>.ValidatorRule<RadTextBox>
+          new Validator.Rule
           {
             Control = txt_cluster,
             ErrorMessage = "Sie haben die Cluster-Funktion aktiviert. Bitte geben Sie daher auch einen Cluster-Query ein.",
-            ValidationFunction = box => !string.IsNullOrWhiteSpace(box.Text)
+            ValidationFunction = box => !string.IsNullOrWhiteSpace((box as RadTextBox)?.Text)
           }
         }
       };

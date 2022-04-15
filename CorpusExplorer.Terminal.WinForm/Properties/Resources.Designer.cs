@@ -3377,6 +3377,15 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die *.cec6.lz4 ähnelt.
+        /// </summary>
+        public static string Filter_CEC6_LZ4 {
+            get {
+                return ResourceManager.GetString("Filter_CEC6.LZ4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap filter_list {

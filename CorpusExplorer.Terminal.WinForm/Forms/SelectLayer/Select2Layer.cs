@@ -13,10 +13,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
         return;
       var values = initValues.ToArray();
 
-      if (values.Length > 0)
-        layerSettings1.SelectLayer(values[0]);
-      if (values.Length > 1)
-        layerSettings2.SelectLayer(values[1]);
+      layerSettings1.SelectLayer(values[0]);
+      layerSettings2.SelectLayer(values[1]);
     }
 
     #region Layer1
@@ -55,8 +53,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
 
     public string[] ResultSelectedLayerDisplaynames =>
       ResultUseLayer2
-        ? new[] {ResultSelectedLayer1Displayname, ResultSelectedLayer2Displayname}
-        : new[] {ResultSelectedLayer1Displayname};
+        ? new[] { ResultSelectedLayer1Displayname, ResultSelectedLayer2Displayname }
+        : new[] { ResultSelectedLayer1Displayname };
 
     private void Form_ButtonOkClick(object sender, EventArgs e)
     {

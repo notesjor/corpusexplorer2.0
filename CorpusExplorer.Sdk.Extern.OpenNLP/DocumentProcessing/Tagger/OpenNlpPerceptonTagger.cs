@@ -59,6 +59,9 @@ namespace CorpusExplorer.Sdk.Extern.OpenNLP.DocumentProcessing.Tagger
       }
     }
 
+    protected override string Foundry => "OpenNLP";
+    protected override string FoundryLayerInfo => "pos";
+
     protected override string ExecuteTagger(string text)
     {
       using (var fileOutput = new TemporaryFile(Configuration.TempPath))

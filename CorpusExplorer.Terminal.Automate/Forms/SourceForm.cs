@@ -26,8 +26,8 @@ namespace CorpusExplorer.Terminal.Automate
     private Dictionary<string, AbstractScraper> _scrapers;
     private Dictionary<string, AbstractTagger> _taggers;
     private Dictionary<string, AbstractImporter> _importers;
-
-    private Validator<RadGridView> _validator;
+    
+    private Validator _validator;
 
     public SourceForm()
     {
@@ -36,26 +36,26 @@ namespace CorpusExplorer.Terminal.Automate
       drop_starttag.SelectedIndex = 1;
       drop_starttag.SelectedIndex = 0;
 
-      _validator = new Validator<RadGridView>
+      _validator = new Validator
       {
-        Rules = new List<Validator<RadGridView>.ValidatorRule<RadGridView>>
+        Rules = new List<Validator.Rule>
         {
-          new Validator<RadGridView>.ValidatorRule<RadGridView>()
+          new Validator.Rule()
           {
             Control = grid_directories,
             ErrorMessage = "Bitte löschen Sie den leeren Verzeichniseintrag.",
             ValidationFunction = grid =>
             {
-              return grid.Rows.All(row => !string.IsNullOrWhiteSpace(row.Cells[0].Value.ToString()) || string.IsNullOrWhiteSpace(row.Cells[1].Value.ToString()));
+              return ((RadGridView)grid).Rows.All(row => !string.IsNullOrWhiteSpace(row.Cells[0].Value.ToString()) || string.IsNullOrWhiteSpace(row.Cells[1].Value.ToString()));
             }
           },
-          new Validator<RadGridView>.ValidatorRule<RadGridView>()
+          new Validator.Rule()
           {
             Control = grid_directories,
             ErrorMessage = "Sie müssen für alle Verzeichnisse einen Filter setzen - z. B. *.txt",
             ValidationFunction = grid =>
             {
-              return grid.Rows.All(row => string.IsNullOrWhiteSpace(row.Cells[0].Value.ToString()) || !string.IsNullOrWhiteSpace(row.Cells[1].Value.ToString()));
+              return ((RadGridView)grid).Rows.All(row => string.IsNullOrWhiteSpace(row.Cells[0].Value.ToString()) || !string.IsNullOrWhiteSpace(row.Cells[1].Value.ToString()));
             }
           }
         }

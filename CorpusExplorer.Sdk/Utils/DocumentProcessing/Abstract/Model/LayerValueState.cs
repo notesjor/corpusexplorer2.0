@@ -140,7 +140,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model
       return RequestIndex(data[_valueIndex]);
     }
 
-    private void AddCompleteDocument(Guid documentGuid, int[][] documentTokens)
+    public void AddCompleteDocument(Guid documentGuid, int[][] documentTokens)
     {
       if (!Documents.ContainsKey(documentGuid))
         Documents.Add(documentGuid, documentTokens);

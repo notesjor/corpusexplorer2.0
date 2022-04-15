@@ -30,7 +30,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimpleTextCompare));
-      this.webHtml5Visualisation1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser.WebHtml5Visualisation();
+      this.webHtml5Visualisation1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WebBrowserControl();
       this.radCommandBar3 = new Telerik.WinControls.UI.RadCommandBar();
       this.commandBarRowElement3 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement3 = new Telerik.WinControls.UI.CommandBarStripElement();
@@ -51,9 +51,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
       // 
       this.webHtml5Visualisation1.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.webHtml5Visualisation1, "webHtml5Visualisation1");
-      this.webHtml5Visualisation1.MainpageUrl = null;
       this.webHtml5Visualisation1.Name = "webHtml5Visualisation1";
-      this.webHtml5Visualisation1.TemplateVars = ((System.Collections.Generic.Dictionary<string, string>)(resources.GetObject("webHtml5Visualisation1.TemplateVars")));
       // 
       // radCommandBar3
       // 
@@ -143,7 +141,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
 
     #endregion
 
-    private Controls.WinForm.Webbrowser.WebHtml5Visualisation webHtml5Visualisation1;
+    private Controls.WinForm.WebBrowserControl webHtml5Visualisation1;
     private Telerik.WinControls.UI.RadCommandBar radCommandBar3;
     private Telerik.WinControls.UI.CommandBarRowElement commandBarRowElement3;
     private Telerik.WinControls.UI.CommandBarStripElement commandBarStripElement3;

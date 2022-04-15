@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="header.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<!DOCTYPE idsCorpus PUBLIC "-//IDS//DTD IDS-XCES 1.0//EN" "http://corpora.ids-mannheim.de/idsxces1/DTD/ids.xcesdoc.dtd">
+<idsHeader type="corpus" pattern="text" status="new" version="1.0" TEIform="teiHeader">
+  <fileDesc>
+   <titleStmt>
+    <korpusSigle>{CSIGLE}</korpusSigle>
+    <c.title></c.title>
+   </titleStmt>
+   <editionStmt version="1.0"/>
+   <publicationStmt>
+    <distributor></distributor>
+    <pubAddress></pubAddress>
+    <telephone></telephone>
+    <eAddress type="www">http://www.corpusexplorer.de</eAddress>
+    <availability region="ids" status="unknown" Default="n"></availability>
+    <pubDate>{YEAR}</pubDate>
+   </publicationStmt>
+   <sourceDesc Default="n">
+    <biblStruct Default="n" status="draft">
+     <monogr>
+      <h.title type="main"></h.title>
+      <h.title type="sub"></h.title>
+      <h.author/>
+      <editor></editor>
+      <edition>
+       <further></further>
+       <kind/>
+       <appearance/>
+      </edition>
+      <imprint>
+       <publisher></publisher>
+      </imprint>
+     </monogr>
+    </biblStruct>
+   </sourceDesc>
+  </fileDesc>
+  <encodingDesc>
+   <projectDesc Default="n"><p part="N">CorpusExplorer</p></projectDesc>
+   <editorialDecl Default="n">
+    <conformance level="0">This document conforms to I5 (see http://jtei.revues.org/508)</conformance>
+    <transduction n="1" Default="n">Exported by CorpusExplorer v2.0</transduction>
+   </editorialDecl>
+  </encodingDesc>
+  <profileDesc>
+   <langUsage Default="n">
+    <language id="de">Deutsch</language>
+   </langUsage>
+   <textDesc Default="n">
+    <textType></textType>
+    <textTypeRef/>
+   </textDesc>
+  </profileDesc>
+  <revisionDesc status="draft">
+   <listChange ordered="true">
+    <change when="{DATE}" status="draft">Exported by CorpusExplorer v2.0</change>
+   </listChange>
+  </revisionDesc>
+ </idsHeader>

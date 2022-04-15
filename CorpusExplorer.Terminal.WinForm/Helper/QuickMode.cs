@@ -166,8 +166,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
 
                             try
                             {
-                              corpus.Save(Path.Combine(Configuration.MyCorpora, formName.Result.EnsureFileName()),
-                                          false);
+                              corpus.Save(Path.Combine(Configuration.MyCorpora, formName.Result.EnsureFileName() + ".cec6.lz4" ), true);
                             }
                             catch (FileNotFoundException)
                             {
@@ -432,11 +431,13 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
     {
       var message = string.Join("\n", new[]
       {
-        "--help\t-  Zeigt diese Hilfe an.",
-        "--anno\t-  Automatische Annotation mittels GUI.",
-        "--conv\t-  Konvertiert bestehende Korpora.",
-        "--sreset\t-  Setzt den CorpusExplorer zurück (soft reset).",
-        "--hreset\t-  Setzt den CorpusExplorer zurück (hard reset)."
+        "--help\t-\tZeigt diese Hilfe an.",
+        "--anno\t-\tAutomatische Annotation mittels GUI.",
+        "--conv\t-\tKonvertiert bestehende Korpora.",
+        "--sreset\t-\tSetzt den CorpusExplorer zurück (soft reset).",
+        "--hreset\t-\tSetzt den CorpusExplorer zurück (hard reset).",
+        "--no-browser\t-\tNutzt den systemeigenen Web-Browser (Linux/MacOS).",
+        "--lang:CODE\t-\tSetzt die Sprache des CorpusExplorers z. B. en_UK",
       });
 
       MessageBox.Show(message, "..:: CorpusExplorer - QuickMode ::..", MessageBoxButtons.OK, MessageBoxIcon.Information);

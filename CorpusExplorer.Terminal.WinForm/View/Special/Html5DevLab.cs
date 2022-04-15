@@ -136,8 +136,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
 
       try
       {
-        webHtml5LaboratoryVisualisation1.MainpageUrl = _file.Path;
-        webHtml5LaboratoryVisualisation1.GoToMainpage();
+        webHtml5LaboratoryVisualisation1.ShowFile(_file.Path);
       }
       catch (Exception ex)
       {

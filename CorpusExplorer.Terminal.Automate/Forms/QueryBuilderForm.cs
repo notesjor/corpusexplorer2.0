@@ -11,7 +11,7 @@ namespace CorpusExplorer.Terminal.Automate
 {
   public partial class QueryBuilderForm : AbstractForm
   {
-    private Validator<RadTextBox> _validatorBasic;
+    private Validator _validatorBasic;
     private AbstractValidator _additionalValidator = null;
     private HashSet<string> _uniqueQueryNames;
 
@@ -19,22 +19,47 @@ namespace CorpusExplorer.Terminal.Automate
     {
       InitializeComponent();
 
-      _validatorBasic = new Validator<RadTextBox>
+      _validatorBasic = new Validator
       {
-        Rules = new List<Validator<RadTextBox>.ValidatorRule<RadTextBox>>
+        Rules = new List<Validator.Rule>
         {
-          new Validator<RadTextBox>.ValidatorRule<RadTextBox>
+          new Validator.Rule
           {
             Control = query_txt_name,
             ErrorMessage = "Bitte vergeben Sie einen eindeutigen Namen für diese Abfrage",
-            ValidationFunction = box => !string.IsNullOrWhiteSpace(box.Text)
+            ValidationFunction = box => !string.IsNullOrWhiteSpace((box as RadTextBox)?.Text)
           },
-          new Validator<RadTextBox>.ValidatorRule<RadTextBox>
+          new Validator.Rule
           {
             Control = query_txt_name,
             ErrorMessage = "Sie haben bereits eine Abfrage mit diesem Namen definiert. Bitte vergeben Sie für diese Abfrage einen eindeutigen Namen.",
-            ValidationFunction = box => box.Text == _originalQueryName || !_uniqueQueryNames.Contains(box.Text)
+            ValidationFunction = box => (box as RadTextBox)?.Text == _originalQueryName || !_uniqueQueryNames.Contains((box as RadTextBox)?.Text)
           }
+        }
+      };
+
+      _additionalValidator = new Validator
+      {
+        Rules = new List<Validator.Rule>
+        {
+          new Validator.Rule
+          {
+            Control = meta_txt_label,
+            ErrorMessage = "Bitte geben Sie den Namen einer Metadaten-Angabe ein.",
+            ValidationFunction = x => !string.IsNullOrWhiteSpace(((RadTextBox) x).Text)
+          },
+          new Validator.Rule
+          {
+            Control = meta_txt_value,
+            ErrorMessage = "Bitte geben Sie einen Wert für die Metadaten-Suche ein.",
+            ValidationFunction = x => !string.IsNullOrWhiteSpace(((RadTextBox) x).Text)
+          },
+          new Validator.Rule
+          {
+            Control = meta_drop_operator,
+            ErrorMessage = "Bitte wählhen Sie einen Suchoperator aus.",
+            ValidationFunction = x => ((RadDropDownList)x).SelectedIndex > -1
+          },
         }
       };
 
@@ -123,7 +148,7 @@ namespace CorpusExplorer.Terminal.Automate
 
     private ResultBuildDelegate _resultBuild;
     private string _originalQueryName = "";
-
+    
     private void btn_ok_Click(object sender, EventArgs e)
     {
       if (_validatorBasic != null)
@@ -154,23 +179,23 @@ namespace CorpusExplorer.Terminal.Automate
         query_check_invert.Visible = true;
         _liveQueryPreview = Preview_Meta;
         _resultBuild = Build_Meta;
-        _additionalValidator = new Validator<Control>
+        _additionalValidator = new Validator
         {
-          Rules = new List<Validator<Control>.ValidatorRule<Control>>
+          Rules = new List<Validator.Rule>
           {
-            new Validator<Control>.ValidatorRule<Control>
+            new Validator.Rule
             {
               Control = meta_txt_label,
-              ErrorMessage = "Bitte geben Sie den Namen eines Metadaten-Angabe ein.",
+              ErrorMessage = "Bitte geben Sie den Namen einer Metadaten-Angabe ein.",
               ValidationFunction = x => !string.IsNullOrWhiteSpace(((RadTextBox) x).Text)
             },
-            new Validator<Control>.ValidatorRule<Control>
+            new Validator.Rule
             {
               Control = meta_txt_value,
               ErrorMessage = "Bitte geben Sie einen Wert für die Metadaten-Suche ein.",
               ValidationFunction = x => !string.IsNullOrWhiteSpace(((RadTextBox) x).Text)
             },
-            new Validator<Control>.ValidatorRule<Control>
+            new Validator.Rule
             {
               Control = meta_drop_operator,
               ErrorMessage = "Bitte wählhen Sie einen Suchoperator aus.",
@@ -184,23 +209,23 @@ namespace CorpusExplorer.Terminal.Automate
         query_check_invert.Visible = true;
         _liveQueryPreview = Preview_Fulltext;
         _resultBuild = Build_Fulltext;
-        _additionalValidator = new Validator<Control>
+        _additionalValidator = new Validator
         {
-          Rules = new List<Validator<Control>.ValidatorRule<Control>>
+          Rules = new List<Validator.Rule>
           {
-            new Validator<Control>.ValidatorRule<Control>
+            new Validator.Rule
             {
               Control = fulltext_txt_layer,
               ErrorMessage = "Bitte geben Sie einen Layer-Namen ein.",
               ValidationFunction = x => !string.IsNullOrWhiteSpace(((RadTextBox) x).Text)
             },
-            new Validator<Control>.ValidatorRule<Control>
+            new Validator.Rule
             {
               Control = fulltext_txt_values,
               ErrorMessage = "Bitte geben Sie mindestens einen Wert für die Volltext-Suche ein.",
               ValidationFunction = x => !string.IsNullOrWhiteSpace(((RadAutoCompleteBox) x).Text)
             },
-            new Validator<Control>.ValidatorRule<Control>
+            new Validator.Rule
             {
               Control = fulltext_drop_operator,
               ErrorMessage = "Bitte wählhen Sie einen Suchoperator aus.",
@@ -214,17 +239,9 @@ namespace CorpusExplorer.Terminal.Automate
         query_check_invert.Visible = false;
         _liveQueryPreview = Preview_Random;
         _resultBuild = Build_Random;
-        _additionalValidator = new Validator<Control>
+        _additionalValidator = new Validator
         {
-          Rules = new List<Validator<Control>.ValidatorRule<Control>>
-          {
-            new Validator<Control>.ValidatorRule<Control>
-            {
-              Control = fulltext_txt_layer,
-              ErrorMessage = "Bitte geben Sie einen Layer-Namen ein.",
-              ValidationFunction = x => !string.IsNullOrWhiteSpace(((RadTextBox) x).Text)
-            },
-          }
+          Rules = new List<Validator.Rule>()
         };
       }
       else if (pages_options.SelectedPage == page_listBuilder)

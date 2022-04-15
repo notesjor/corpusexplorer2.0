@@ -41,7 +41,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       if (_vm == null)
         return;
       if (layerDisplaynames != null)
-        _vm.LayerDisplaynames = layerDisplaynames;
+        _vm.Mapper.MappedLayerDisplaynames = layerDisplaynames;
 
       _vm.Execute();
 
@@ -59,44 +59,42 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
     {
       try
       {
-        switch (_vm.LayerDisplaynames.Count())
+        switch (_vm.Mapper.MappedLayerDisplaynames.Count(x => !string.IsNullOrEmpty(x)))
         {
           case 1:
             return new FilterQuerySingleLayerAnyMatch
             {
               Inverse = false,
-              LayerDisplayname = _vm.LayerDisplaynames.First(),
-              LayerQueries = new[] { row[_vm.LayerDisplaynames.First()].ToString() }
+              LayerDisplayname = _vm.Layer1Displayname,
+              LayerQueries = new[] { row[_vm.Layer1Displayname].ToString() }
             };
           case 2:
-            var arr2 = _vm.LayerDisplaynames.ToArray();
             return new FilterQueryMultiLayerAll
             {
               Inverse = false,
               MultilayerValues = new Dictionary<string, string>
             {
-              { arr2[0], row[arr2[0]].ToString() },
-              { arr2[1], row[arr2[1]].ToString() }
+              { _vm.Layer1Displayname, row[_vm.Layer1Displayname].ToString() },
+              { _vm.Layer2Displayname, row[_vm.Layer2Displayname].ToString() }
             }
             };
           case 3:
-            var arr3 = _vm.LayerDisplaynames.ToArray();
             return new FilterQueryMultiLayerAll
             {
               Inverse = false,
               MultilayerValues = new Dictionary<string, string>
             {
-              { arr3[0], row[arr3[0]].ToString() },
-              { arr3[1], row[arr3[1]].ToString() },
-              { arr3[2], row[arr3[2]].ToString() }
+              { _vm.Layer1Displayname, row[_vm.Layer1Displayname].ToString() },
+              { _vm.Layer2Displayname, row[_vm.Layer2Displayname].ToString() },
+              { _vm.Layer3Displayname, row[_vm.Layer3Displayname].ToString() }
             }
             };
           default:
             return new FilterQuerySingleLayerAnyMatch
             {
               Inverse = false,
-              LayerDisplayname = _vm.LayerDisplaynames.Last(),
-              LayerQueries = new[] { row[_vm.LayerDisplaynames.Last()].ToString() }
+              LayerDisplayname = _vm.Mapper.MappedLayerDisplaynames.Last(),
+              LayerQueries = new[] { row[_vm.Mapper.MappedLayerDisplaynames.Last()].ToString() }
             };
         }
       }
@@ -105,8 +103,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
         return new FilterQuerySingleLayerAnyMatch
         {
           Inverse = false,
-          LayerDisplayname = _vm.LayerDisplaynames.Last(),
-          LayerQueries = new[] { row[_vm.LayerDisplaynames.Last()].ToString() }
+          LayerDisplayname = _vm.Mapper.MappedLayerDisplaynames.Last(),
+          LayerQueries = new[] { row[_vm.Mapper.MappedLayerDisplaynames.Last()].ToString() }
         };
       }
     }
@@ -141,7 +139,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 
     private void btn_filter_Click(object sender, EventArgs e)
     {
-      FilterListFunction(_vm.LayerDisplaynames.ToArray());
+      FilterListFunction(_vm.Mapper.MappedLayerDisplaynames.ToArray());
     }
 
     private void btn_filterEditor_Click(object sender, EventArgs e)
@@ -165,7 +163,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 
     private void btn_layers_Click(object sender, EventArgs e)
     {
-      var form = new Select3Layer(_vm.LayerDisplaynames);
+      var form = new Select3Layer(_vm.Mapper.MappedLayerDisplaynames);
       form.ShowDialog();
       Analyse(form.ResultSelectedLayerDisplaynames);
     }
@@ -186,7 +184,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 
     private void btn_snapshot_create_Click(object sender, EventArgs e)
     {
-      var map = _vm.LayerDisplaynames.ToArray();
+      var map = _vm.Mapper.MappedLayerDisplaynames.ToArray();
 
       CreateSelection(
                       radGridView1.SelectedRows.Select(

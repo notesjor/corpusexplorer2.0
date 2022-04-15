@@ -4,6 +4,8 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography;
+using Bcs.Security;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
@@ -65,100 +67,89 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
         _layers.Add(l);
     }
 
-    public override bool ContainsDocument(Guid documentGuid)
-    {
-      return _documentMetadata.ContainsKey(documentGuid);
-    }
+    public override bool ContainsDocument(Guid documentGuid) 
+      => _documentMetadata.ContainsKey(documentGuid);
 
-    public override bool ContainsLayer(Guid layerGuid)
-    {
-      return _layers.Any(x => x.Guid == layerGuid);
-    }
+    public override bool ContainsLayer(Guid layerGuid) 
+      => _layers.Any(x => x.Guid == layerGuid);
 
-    public override bool ContainsLayer(string layerDisplayname)
+    public override bool ContainsLayer(string layerDisplayname) 
+      => _layers.Any(x => x.Displayname == layerDisplayname);
+
+    public static CorpusAdapterWriteDirect Create(string path, string password)
     {
-      return _layers.Any(x => x.Displayname == layerDisplayname);
+      using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+      using (var cr = new CryptoStream(fs, KeyGenerator.GenerateRijndael(password).CreateDecryptor(), CryptoStreamMode.Read))
+      using (var gz = new GZipStream(cr, CompressionMode.Decompress))
+      using (var bs = new BufferedStream(gz))
+      {
+        return Create(path, bs);
+      }
     }
 
     public static CorpusAdapterWriteDirect Create(string path)
     {
-      if (path.EndsWith(".gz"))
-        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
-        using (var gz = new GZipStream(fs, CompressionMode.Decompress))
-        using (var bs = new BufferedStream(gz))
-        {
-          return Create(path, bs);
-        }
-      else
-        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
-        using (var bs = new BufferedStream(fs))
-        {
-          return Create(path, bs);
-        }
+      using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+        if (path.ToLower().EndsWith(".gz"))
+          using (var gz = new GZipStream(fs, CompressionMode.Decompress))
+            return Create(path, gz);
+        else if (path.ToLower().EndsWith(".lz4"))
+          using (var lz = K4os.Compression.LZ4.Streams.LZ4Stream.Decode(fs))
+            return Create(path, lz);
+        else
+          return Create(path, fs);
     }
 
-    private static CorpusAdapterWriteDirect Create(string path, BufferedStream bs)
+    private static CorpusAdapterWriteDirect Create(string path, Stream stream)
     {
-      var buffer = new byte[8];
-      bs.Read(buffer, 0, buffer.Length);
-      var mode = Configuration.Encoding.GetString(buffer);
+      using (var bs = new BufferedStream(stream))
+      {
+        var buffer = new byte[8];
+        bs.Read(buffer, 0, buffer.Length);
+        var mode = Configuration.Encoding.GetString(buffer);
 
-      if (mode == "SEDITION")
-        return CreateStrategySmart(path, bs);
+        if (mode == "SEDITION")
+          return CreateStrategySmart(path, bs);
 
-      bs.Seek(0, SeekOrigin.Begin);
-      return CreateStrategyOld(path, bs);
+        bs.Seek(0, SeekOrigin.Begin);
+        return CreateStrategyOld(path, bs);
+      }
     }
 
     public static CorpusAdapterWriteDirect Create(
       Dictionary<Guid, Dictionary<string, object>> documentMetadata,
       Dictionary<string, object> corpusMetadata,
-      List<Concept> concepts)
-    {
-      return new CorpusAdapterWriteDirect
+      List<Concept> concepts) =>
+      new CorpusAdapterWriteDirect
       {
         _guid = Guid.NewGuid(),
         _documentMetadata = documentMetadata ?? new Dictionary<Guid, Dictionary<string, object>>(),
-        _metadata = corpusMetadata ?? new Dictionary<string, object>(),
+        _metadata = corpusMetadata           ?? new Dictionary<string, object>(),
         _layers = new List<LayerAdapterWriteDirect>()
       };
-    }
 
-    public override IEnumerable<Guid> FindDocumentByMetadata(Dictionary<string, object> example)
-    {
-      return from x in _documentMetadata
-             where example.All(y => x.Value.ContainsKey(y.Key) && x.Value[y.Key].Equals(y.Value))
-             select x.Key;
-    }
+    public override IEnumerable<Guid> FindDocumentByMetadata(Dictionary<string, object> example) =>
+      from x in _documentMetadata
+      where example.All(y => x.Value.ContainsKey(y.Key) && x.Value[y.Key].Equals(y.Value))
+      select x.Key;
 
-    public override AbstractCorpusBuilder GetCorpusBuilder()
-    {
-      return new CorpusBuilderWriteDirect();
-    }
+    public override AbstractCorpusBuilder GetCorpusBuilder() 
+      => new CorpusBuilderWriteDirect();
 
-    public override IEnumerable<KeyValuePair<string, object>> GetCorpusMetadata()
-    {
-      return _metadata;
-    }
+    public override IEnumerable<KeyValuePair<string, object>> GetCorpusMetadata() 
+      => _metadata;
 
     public Dictionary<string, Dictionary<string, int>> GetDictionaryForNormalization()
       => _layers.ToDictionary(x => x.Displayname, x => x.ReciveRawLayerDictionary());
 
-    public override long GetDocumentLengthInSentences(Guid documentGuid)
-    {
-      return _layers.FirstOrDefault(x => x.ContainsDocument(documentGuid))?[documentGuid]?.Length ?? 0;
-    }
+    public override long GetDocumentLengthInSentences(Guid documentGuid) 
+      => _layers.FirstOrDefault(x => x.ContainsDocument(documentGuid))?[documentGuid]?.Length ?? 0;
 
-    public override long GetDocumentLengthInWords(Guid documentGuid)
-    {
-      return _layers.FirstOrDefault(x => x.ContainsDocument(documentGuid))?[documentGuid]?.SelectMany(s => s).Count()
-          ?? 0;
-    }
+    public override long GetDocumentLengthInWords(Guid documentGuid) 
+      => _layers.FirstOrDefault(x => x.ContainsDocument(documentGuid))?[documentGuid]?.Sum(s => s.Length) ?? 0;
 
-    public override Dictionary<string, object> GetDocumentMetadata(Guid documentGuid)
-    {
-      return _documentMetadata[documentGuid];
-    }
+    public override Dictionary<string, object> GetDocumentMetadata(Guid documentGuid) 
+      => _documentMetadata[documentGuid];
 
     public override Dictionary<string, HashSet<object>> GetDocumentMetadataPrototype()
     {
@@ -174,80 +165,54 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       return res;
     }
 
-    public override IEnumerable<string> GetDocumentMetadataPrototypeOnlyProperties()
-    {
-      return new HashSet<string>(from x in _documentMetadata from o in x.Value select o.Key);
-    }
+    public override IEnumerable<string> GetDocumentMetadataPrototypeOnlyProperties() 
+      => new HashSet<string>(from x in _documentMetadata from o in x.Value select o.Key);
 
-    public override IEnumerable<object> GetDocumentMetadataPrototypeOnlyPropertieValues(string property)
-    {
-      return new HashSet<object>(from x in _documentMetadata from o in x.Value where o.Key == property select o.Value);
-    }
+    public override IEnumerable<object> GetDocumentMetadataPrototypeOnlyPropertieValues(string property) 
+      => new HashSet<object>(from x in _documentMetadata from o in x.Value where o.Key == property select o.Value);
 
-    public override AbstractLayerAdapter GetLayer(Guid layerGuid)
-    {
-      return (from x in _layers where x.Guid == layerGuid select x).FirstOrDefault();
-    }
+    public override AbstractLayerAdapter GetLayer(Guid layerGuid) 
+      => (from x in _layers where x.Guid == layerGuid select x).FirstOrDefault();
 
-    public override AbstractLayerAdapter GetLayerOfDocument(Guid documentGuid, string layerDisplayname)
-    {
-      return (from x in _layers where x.Displayname == layerDisplayname && x.ContainsDocument(documentGuid) select x)
-       .FirstOrDefault();
-    }
+    public override AbstractLayerAdapter GetLayerOfDocument(Guid documentGuid, string layerDisplayname) =>
+      (from x in _layers 
+       where x.Displayname == layerDisplayname && x.ContainsDocument(documentGuid) 
+       select x)
+     .FirstOrDefault();
 
-    public override IEnumerable<AbstractLayerAdapter> GetLayers(string displayname)
-    {
-      return from x in _layers where x.Displayname == displayname select x;
-    }
+    public override IEnumerable<AbstractLayerAdapter> GetLayers(string displayname) 
+      => from x in _layers where x.Displayname == displayname select x;
 
-    public override IEnumerable<AbstractLayerAdapter> GetLayersOfDocument(Guid documentGuid)
-    {
-      return from x in _layers where x.ContainsDocument(documentGuid) select x;
-    }
+    public override IEnumerable<AbstractLayerAdapter> GetLayersOfDocument(Guid documentGuid) 
+      => from x in _layers where x.ContainsDocument(documentGuid) select x;
 
-    public override IEnumerable<string> GetLayerValues(string layerDisplayname)
-    {
-      return _layers.Where(x => x.Displayname == layerDisplayname).SelectMany(x => x.Values);
-    }
+    public override IEnumerable<string> GetLayerValues(string layerDisplayname) 
+      => _layers.Where(x => x.Displayname == layerDisplayname).SelectMany(x => x.Values);
 
-    public override IEnumerable<string> GetLayerValues(Guid layerGuid)
-    {
-      return _layers.FirstOrDefault(x => x.Guid == layerGuid)?.Values;
-    }
+    public override IEnumerable<string> GetLayerValues(Guid layerGuid) 
+      => _layers.FirstOrDefault(x => x.Guid == layerGuid)?.Values;
 
-    public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, string layerDisplayname)
-    {
-      return _layers.FirstOrDefault(
-                                    x => x.Displayname == layerDisplayname && x.ContainsDocument(documentGuid))?
+    public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, string layerDisplayname) =>
+      _layers.FirstOrDefault(x => x.Displayname == layerDisplayname && x.ContainsDocument(documentGuid))?
        .GetReadableDocumentByGuid(documentGuid);
-    }
 
-    public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, Guid layerGuid)
-    {
-      return _layers.FirstOrDefault(
-                                    x => x.Guid == layerGuid && x.ContainsDocument(documentGuid))?
+    public override IEnumerable<IEnumerable<string>> GetReadableDocument(Guid documentGuid, Guid layerGuid) =>
+      _layers.FirstOrDefault(x => x.Guid == layerGuid && x.ContainsDocument(documentGuid))?
        .GetReadableDocumentByGuid(documentGuid);
-    }
 
     public override IEnumerable<IEnumerable<string>> GetReadableDocumentSnippet(
       Guid documentGuid,
       string layerDisplayname,
       int start,
-      int stop)
-    {
-      return _layers.FirstOrDefault(
-                                    x => x.Displayname == layerDisplayname && x.ContainsDocument(documentGuid))?
+      int stop) =>
+      _layers.FirstOrDefault(x => x.Displayname == layerDisplayname && x.ContainsDocument(documentGuid))?
        .GetReadableDocumentSnippetByGuid(documentGuid, start, stop);
-    }
 
     public override Dictionary<string, IEnumerable<IEnumerable<string>>> GetReadableMultilayerDocument(
-      Guid documentGuid)
-    {
-      return _layers.Where(x => x.ContainsDocument(documentGuid))
-                    .ToDictionary(
-                                  x => x.Displayname,
-                                  x => x.GetReadableDocumentByGuid(documentGuid));
-    }
+      Guid documentGuid) =>
+      _layers.Where(x => x.ContainsDocument(documentGuid))
+             .ToDictionary(x => x.Displayname,
+                           x => x.GetReadableDocumentByGuid(documentGuid));
 
     public override void LayerCopy(string layerDisplaynameOriginal, string layerDisplaynameCopy)
     {
@@ -264,10 +229,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
         _layers.Remove(layer);
     }
 
-    public override void LayerNew(string layerDisplayname)
-    {
-      LayerCopy("Wort", layerDisplayname);
-    }
+    public override void LayerNew(string layerDisplayname) 
+      => LayerCopy("Wort", layerDisplayname);
 
     public override void LayerRename(string layerDisplaynameOld, string layerDisplaynameNew)
     {
@@ -286,24 +249,54 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       _documentMetadata = newMetadata;
     }
 
-    public override void Save(string path = null, bool useCompression = false)
+    public void Save(string path, string password)
     {
       _displayname = Path.GetFileNameWithoutExtension(path);
 
-      path = useCompression
-               ? path.ForceFileExtension("cec6.gz").Replace(".cec6.cec6.gz", ".cec6.gz")
-               : path.ForceFileExtension("cec6");
+      path = path.ForceFileExtension("cec6.drm").Replace(".cec6.cec6", ".cec6");
 
-      if (useCompression)
-        SaveCompressed(path);
-      else
-        SaveUncompressed(path);
+      using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+      using (var cr = new CryptoStream(fs, KeyGenerator.GenerateRijndael(password).CreateEncryptor(), CryptoStreamMode.Write))
+      using (var gz = new GZipStream(cr, CompressionLevel.Fastest))
+      using (var bs = new BufferedStream(gz))
+        Save(bs);
     }
 
-    private void SaveCompressed(string path)
+    public override void Save(string path = null, bool useCompression = false)
+    {
+      path = path.Replace(".cec6.cec6", ".cec6");
+      _displayname = Path.GetFileNameWithoutExtension(path);
+
+      if (useCompression && path.EndsWith(".cec6"))
+        path += ".lz4";
+
+      if (path.ToLower().EndsWith(".cec6"))
+        SaveUncompressed(path);
+      else if (path.ToLower().EndsWith(".cec6.lz4"))
+        SaveCompressedLz4(path);
+      else if (path.ToLower().EndsWith(".cec6.gz"))
+        SaveCompressedGzip(path);
+      else // Sollte nur im Ausnahmefall gelten.
+      {
+        if (useCompression)
+          SaveCompressedLz4(path.ForceFileExtension("cec6.lz4").Replace(".cec6.cec6", ".cec6"));
+        else
+          SaveUncompressed(path.ForceFileExtension("cec6").Replace(".cec6.cec6", ".cec6"));
+      }
+    }
+
+    private void SaveCompressedGzip(string path)
     {
       using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
       using (var gz = new GZipStream(fs, CompressionLevel.Fastest))
+      using (var bs = new BufferedStream(gz))
+        Save(bs);
+    }
+
+    private void SaveCompressedLz4(string path)
+    {
+      using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+      using (var gz = K4os.Compression.LZ4.Streams.LZ4Stream.Encode(fs, K4os.Compression.LZ4.LZ4Level.L03_HC))
       using (var bs = new BufferedStream(gz))
         Save(bs);
     }
@@ -339,10 +332,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       // fs.Write(buffer, 0, buffer.Length);
     }
 
-    public Dictionary<Guid, long> WriteFuriousIndex(string layerDisplayname, string path)
-    {
-      return (from l in _layers where l.Displayname == layerDisplayname select l.WriteFuriousIndex(path)).FirstOrDefault();
-    }
+    public Dictionary<Guid, long> WriteFuriousIndex(string layerDisplayname, string path) 
+      => (from l in _layers where l.Displayname == layerDisplayname select l.WriteFuriousIndex(path)).FirstOrDefault();
 
     [Obsolete("Ersetzt durch WriteFuriousIndex im Zusammhang mit neuer Version von QuickIndex")]
     public Dictionary<Guid, long> GetFuriousIndex(string layerDisplayname)
@@ -386,23 +377,18 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       Guid layerGuid,
       int sentenceIndex,
       int wordIndex,
-      string layerValue)
-    {
-      return _layers.FirstOrDefault(x => x.Guid == layerGuid && x.ContainsDocument(documentGuid))?
-              .SetDocumentLayerValueMaskBySwitch(documentGuid, sentenceIndex, wordIndex, layerValue) ?? false;
-    }
+      string layerValue) =>
+      _layers.FirstOrDefault(x => x.Guid == layerGuid && x.ContainsDocument(documentGuid))?
+       .SetDocumentLayerValueMaskBySwitch(documentGuid, sentenceIndex, wordIndex, layerValue) ?? false;
 
     public override bool SetDocumentLayerValueMask(
       Guid documentGuid,
       string layerDisplayname,
       int sentenceIndex,
       int wordIndex,
-      string layerValue)
-    {
-      return _layers.FirstOrDefault(
-                                    x => x.Displayname == layerDisplayname && x.ContainsDocument(documentGuid))?
-              .SetDocumentLayerValueMaskBySwitch(documentGuid, sentenceIndex, wordIndex, layerValue) ?? false;
-    }
+      string layerValue) =>
+      _layers.FirstOrDefault(x => x.Displayname == layerDisplayname && x.ContainsDocument(documentGuid))?
+       .SetDocumentLayerValueMaskBySwitch(documentGuid, sentenceIndex, wordIndex, layerValue) ?? false;
 
     public override void SetDocumentMetadata(Guid documentGuid, Dictionary<string, object> metadata)
     {
@@ -414,9 +400,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
 
     public override void SetNewDocumentMetadata(string metadataKey, Type type)
     {
-      foreach (var x in _documentMetadata)
-        if (!x.Value.ContainsKey(metadataKey))
-          x.Value.Add(metadataKey, Activator.CreateInstance(type));
+      foreach (var x in _documentMetadata.Where(x => !x.Value.ContainsKey(metadataKey)))
+        x.Value.Add(metadataKey, Activator.CreateInstance(type));
     }
 
     private static CorpusAdapterWriteDirect CreateStrategyOld(string path, Stream fs)
@@ -502,7 +487,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       do
       {
         layer = LayerAdapterWriteDirect.Create(fs);
-        if (layer == null) 
+        if (layer == null)
           continue;
 
         layer.Displayname = Configuration.LayerDisplayNameLocalization.Translate(layer.Displayname);

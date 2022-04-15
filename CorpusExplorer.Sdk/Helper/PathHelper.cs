@@ -38,7 +38,7 @@ namespace CorpusExplorer.Sdk.Helper
       if (File.Exists(filename))
         File.Delete(filename);
 
-      return dir != null ? Path.Combine(dir, name) : string.Empty;
+      return !string.IsNullOrWhiteSpace(dir) ? Path.Combine(dir, name) : string.Empty;
     }
 
     public static bool IsDirectory(this string path)

@@ -19,8 +19,21 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.ConllTagger.Abstrac
 
     protected readonly object _parseDocumentLock = new object();
 
+    /// <summary>
+    /// Gets the foundry name.
+    /// </summary>
+    /// <value>The foundry name.</value>
+    protected abstract string Foundry { get; }
+
+    /// <summary>
+    /// Gets the foundry layer information.
+    /// </summary>
+    /// <example>pos lemma</example>
+    /// <value>The foundry layer information.</value>
+    protected abstract string FoundryLayerInfo { get; }
+
     // ReSharper disable once VirtualMemberNeverOverridden.Global
-    protected virtual string[] TaggerValueSeparator => new[] {"\t"};
+    protected virtual string[] TaggerValueSeparator => new[] { "\t" };
 
     public override void Execute()
     {
@@ -34,7 +47,11 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.ConllTagger.Abstrac
                      CorpusBuilder.Create(
                                           _layers.Select(x => x.Value),
                                           meta,
-                                          new Dictionary<string, object>(),
+                                          new Dictionary<string, object>
+                                          {
+                                            { "Foundry", Foundry },
+                                            { "FoundryLayerInfo", FoundryLayerInfo }
+                                          },
                                           null));
     }
 
@@ -47,7 +64,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.ConllTagger.Abstrac
 
     protected void AddValueLayer(string displayname, int valueIndex, int minimumLength = 1)
     {
-      var res = new LayerValueState(displayname, valueIndex) {MinimumDataLength = minimumLength};
+      var res = new LayerValueState(displayname, valueIndex) { MinimumDataLength = minimumLength };
       _layers.Add(displayname, res);
     }
 
@@ -65,7 +82,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.ConllTagger.Abstrac
       var document = keys.ToDictionary(x => x, x => new List<int[]>());
       var values = keys.ToDictionary(x => x, x => 0);
 
-      var lines = text.Split(new[] {"\r\n", "\r", "\n"}, StringSplitOptions.None);
+      var lines = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
       foreach (var line in lines)
       {
         // CoNLL kann Kommentare enthalten, die hiermit ausgeblendet werden.

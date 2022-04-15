@@ -241,7 +241,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml
           new PureXmlTextScraper()
         },
         {
-          "nexis.com - Zeitungsartikel (*.html)|*.html",
+          "Nexis/Uni / Lexis-Nexis (bis 2019) - (*.html)|*.html",
           new NexisComScraper()
         },
         {

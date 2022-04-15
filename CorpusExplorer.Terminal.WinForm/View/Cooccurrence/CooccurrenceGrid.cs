@@ -54,7 +54,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
                          LayerQueries =
                            new[]
                            {
-                             _vm.LayerDisplayname,
+                             x[_vm.LayerDisplayname].ToString(),
                              x[Resources.Kookkurrenz].ToString()
                            }
                        });

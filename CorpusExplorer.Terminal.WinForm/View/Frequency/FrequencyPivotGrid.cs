@@ -59,7 +59,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
     {
       var vm = GetViewModel<FrequencyViewModel>();
       if (SelectedLayerDisplaynames != null)
-        vm.LayerDisplaynames = SelectedLayerDisplaynames;
+        vm.Mapper.MappedLayerDisplaynames = SelectedLayerDisplaynames;
       if (!vm.Execute())
         return;
 

@@ -119,23 +119,25 @@ namespace CorpusExplorer.Core
     public override IEnumerable<KeyValuePair<string, AbstractExporter>> AddonExporters =>
       new Dictionary<string, AbstractExporter>
       {
-        {"JSON-Export (*.json)|*.json", new ExporterJson()},
-        {"XML-Export (*.xml)|*.xml", new ExporterXml()},
-        {"TLV-XML-Export (*.xml)|*.xml", new ExporterTlv()},
-        {"CorpusExplorer v6 (*.cec6)|*.cec6", new ExporterCec6()},
-        {"CorpusExplorer v6+GZIP (*.cec6.gz)|*.cec6.gz", new ExporterCec6 {UseCompression = true}},
-        {"Plaintext-Export (*.txt)|*.txt", new ExporterPlaintext()},
-        {"Plaintext-Export [Nur Wort-Layer] (*.txt)|*.txt", new ExporterPlaintextPure()},
-        {"Plaintext-Export [Nur Wort-Layer - Eine Datei] (*.txt)|*.txt", new ExporterPlaintextPureInOneFile()},
-        {"Einfacher HTML-Export [Nur Wort-Layer] (*.txt)|*.txt", new ExporterHtmlPure()},
-        {"CSV-Export [Nur Metadatan] (*.csv)|*.csv", new ExporterCsvMetadataOnly()},
-        {"CSV-Export [Metadaten + Wort-Layer] (*.csv)|*.csv", new ExporterCsv()},
-        {"Abfragen-Export [Nur für Schnappschüsse] (*.ceusd)|*.ceusd", new ExporterQuery()},
-        {"CoNLL (*.conll)|*.conll", new ExporterConll()},
-        {"TreeTagger (*.treetagger)|*.treetagger", new ExporterTreeTagger()},
-        {"TreeTagger + Satzgrenze (*.treetagger)|*.treetagger", new ExporterTreeTagger {UseSentenceTag = true}},
-        {"CorpusWorkBench (*.vrt)|*.vrt", new ExporterCorpusWorkBench{UseSentenceTag = false}},
-        {"CorpusWorkBench + Satzgrenze (*.vrt)|*.vrt", new ExporterCorpusWorkBench {UseSentenceTag = true}}
+        { "JSON-Export (*.json)|*.json", new ExporterJson() },
+        { "XML-Export (*.xml)|*.xml", new ExporterXml() },
+        { "TLV-XML-Export (*.xml)|*.xml", new ExporterTlv() },
+        { "CorpusExplorer v6 (*.cec6)|*.cec6", new ExporterCec6() },
+        { "CorpusExplorer v6 + LZ4 (*.cec6.lz4)|*.cec6.lz4", new ExporterCec6 { UseCompression = true } },
+        { "CorpusExplorer v6 + GZip (*.cec6.gz)|*.cec6.gz", new ExporterCec6 { UseCompression = true } },
+        { "Plaintext-Export (*.txt)|*.txt", new ExporterPlaintext() },
+        { "Plaintext-Export [Nur Wort-Layer] (*.txt)|*.txt", new ExporterPlaintextPure() },
+        { "Plaintext-Export [Nur Wort-Layer - Eine Datei] (*.txt)|*.txt", new ExporterPlaintextPureInOneFile() },
+        { "Einfacher HTML-Export [Nur Wort-Layer] (*.txt)|*.txt", new ExporterHtmlPure() },
+        { "CSV-Export [Nur Metadatan] (*.csv)|*.csv", new ExporterCsvMetadataOnly() },
+        { "CSV-Export [Metadaten + Wort-Layer] (*.csv)|*.csv", new ExporterCsv() },
+        { "Abfragen-Export [Nur für Schnappschüsse] (*.ceusd)|*.ceusd", new ExporterQuery() },
+        { "CoNLL (*.conll)|*.conll", new ExporterConll() },
+        { "TreeTagger (*.treetagger)|*.treetagger", new ExporterTreeTagger() },
+        { "TreeTagger + Satzgrenze (*.treetagger)|*.treetagger", new ExporterTreeTagger { UseSentenceTag = true } },
+        { "CorpusWorkBench (*.vrt)|*.vrt", new ExporterCorpusWorkBench { UseSentenceTag = false } },
+        { "CorpusWorkBench + Satzgrenze (*.vrt)|*.vrt", new ExporterCorpusWorkBench { UseSentenceTag = true } },
+        { "Sketch Engine VERT (*.vert)|*.vert", new ExporterSketchEngine() },
       };
 
     /// <summary>
@@ -145,12 +147,13 @@ namespace CorpusExplorer.Core
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter =>
       new Dictionary<string, AbstractImporter>
       {
-        {"CorpusExplorer v6 (*.cec6, *.cec6.gz)|*.cec6;*.cec6.gz", new ImporterCec6()},
+        {"CorpusExplorer v6 (*.cec6, *.cec6.lz4, *.cec6.gz)|*.cec6;*.cec6.gz;*.cec6.lz4", new ImporterCec6()},
         {"CorpusExplorer v6 [STREAM] (*.cec6)|*.cec6", new ImporterCec6Stream()},
         {"TLV-XML (*.xml)|*.xml", new ImporterTlv()},
         {"CoNLL (*.conll)|*.conll", new ImporterConll()},
         {"TreeTagger (*.txt)|*.txt", new ImporterTreeTagger()},
-        {"CorpusWorkBench VRT (*.vrt)|*.vrt", new ImporterCorpusWorkBench()}
+        {"CorpusWorkBench VRT (*.vrt)|*.vrt", new ImporterCorpusWorkBench()},
+        {"Sketch Engine VERT (*.vert)|*.vert", new ImporterSketchEngine()},
       };
 
     /// <summary>
@@ -193,7 +196,7 @@ namespace CorpusExplorer.Core
       new IAction[]
       {
         new BasicInformationAction(),
-        
+
         new ClusterAction(),
         new ClusterListAction(),
         new ConvertAction(),
@@ -201,8 +204,10 @@ namespace CorpusExplorer.Core
         new CooccurrenceCorrespondingAction(),
         new CooccurrenceCrossAction(),
         new CooccurrenceCrossFullAction(),
+        new CooccurrencePolarisationAction(),
         new CooccurrenceProfileAction(),
         new CooccurrenceSelectedAction(),
+        new CooccurrenceSelectedCorrespondingAction(),
         new CorrespondingValuesAction(),
         new CrossFrequencyAction(),
         new CrossFrequencyCorrespondingAction(),
@@ -216,7 +221,7 @@ namespace CorpusExplorer.Core
         new DocumentTermFrequencyAction(),
 
         new EditDistanceAction(),
-        
+
         new Frequency1Action(),
         new Frequency1RawAction(),
         new Frequency1SelectAction(),
@@ -255,16 +260,22 @@ namespace CorpusExplorer.Core
 
         new NamedEntityAction(),
         new NGramAction(),
+        new NGramCooccurrenceAction(),
         new NGramCorrespondingAction(),
         new NGramSelectedAction(),
+        new NGramSelectedCooccurrenceAction(),
 
         new PositionFrequencyAction(),
         new PositionFrequencyCorrespondingAction(),
 
         new QueryAction(),
+        new QueryCountAllTokenMatchesAction(),
+        new QueryCountDocumentsAction(),
+        new QueryCountSentencesAction(),
         new QueryListAction(),
 
         new SentenceCountAction(),
+        new SizeAction(),
         new StyleBurrowsDeltaAction(),
         new StyleNgramAction(),
 

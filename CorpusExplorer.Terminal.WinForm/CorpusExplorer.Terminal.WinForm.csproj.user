@@ -13,7 +13,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <StartArguments>
-    </StartArguments>
+    <StartArguments>--no-browser</StartArguments>
   </PropertyGroup>
 </Project>

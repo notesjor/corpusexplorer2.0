@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model;
@@ -14,44 +15,46 @@ namespace CorpusExplorer.Sdk.Blocks
   [Serializable]
   public class RandomSelectionBlock : AbstractBlock
   {
-    private int _documentCount;
+    private int documentMaxCount;
 
     public bool NoParent { get; set; } = false;
 
     public RandomSelectionBlock()
     {
-      DocumentCount = 0;
+      DocumentMaxCount = 0;
     }
 
-    public int DocumentCount
+    public int DocumentMaxCount
     {
-      get => _documentCount;
-      set => _documentCount = value;
+      get => documentMaxCount;
+      set => documentMaxCount = value;
     }
 
-    public double DocumentPercent
+    public double DocumentMaxPercent
     {
-      get => _documentCount / (double) Selection.CountDocuments * 100d;
+      get => documentMaxCount / (double)Selection.CountDocuments * 100d;
       set
       {
         if (value > 100)
           value = 100;
-        _documentCount = (int) (Selection.CountDocuments / 100d * value);
+        documentMaxCount = (int)(Selection.CountDocuments / 100d * value);
         EnsureDocumentCountMax();
       }
     }
 
-    public double DocumentProMillion
+    public double DocumentMaxProMillion
     {
-      get => _documentCount / (double) Selection.CountDocuments * 1000000d;
+      get => documentMaxCount / (double)Selection.CountDocuments * 1000000d;
       set
       {
         if (value > 1000000)
           value = 1000000;
-        _documentCount = (int) (Selection.CountDocuments / 1000000d * value);
+        documentMaxCount = (int)(Selection.CountDocuments / 1000000d * value);
         EnsureDocumentCountMax();
       }
     }
+
+    public long TokenMax { get; set; } = 0;
 
     public Selection RandomInvertSelection { get; set; }
 
@@ -78,32 +81,66 @@ namespace CorpusExplorer.Sdk.Blocks
       // Erzeuge Auswahlliste
       var selD = new List<Guid>();
 
-      while (selD.Count < DocumentCount)
+      if (DocumentMaxCount == 0 && TokenMax > 0)
+        DocumentMaxCount = Selection.CountDocuments;
+
+      var rdLock = new object();
+      var token = (long)0;
+      var tokenLock = new object();
+      var selLock = new object();
+
+      Parallel.For(0, DocumentMaxCount, Configuration.ParallelOptions, i =>
       {
-        var guid = rd[rnd.Next(0, rd.Count)];
-        selD.Add(guid);
-        rd.Remove(guid);
-      }
+        Guid guid;
+        lock (rdLock)
+        {
+          guid = rd[rnd.Next(0, rd.Count)];
+          rd.Remove(guid);
+        }
+
+        if (TokenMax == 0)
+          lock (selLock)
+            selD.Add(guid);
+        else
+        {
+          lock (tokenLock)
+            if (token >= TokenMax)
+              return;
+
+          var len = Selection.GetDocumentLengthInWords(guid);
+          if (len < 1)
+            return;
+
+          lock (tokenLock)
+          {
+            if (token >= TokenMax)
+              return;
+            token += len;
+            lock (selLock)
+              selD.Add(guid);
+          }
+        }
+      });
 
       RandomSelection = Project.CreateSelection(selD,
                                                 string.Format(
                                                               Resources.SelectionRandomDescription,
                                                               selD.Count,
-                                                              Math.Round(DocumentPercent, 2)),
+                                                              Math.Round(DocumentMaxPercent, 2)),
                                                 NoParent ? null : Selection);
 
       RandomInvertSelection = Project.CreateSelection(rd,
                                                       string.Format(
                                                                     Resources.SelectionRandomDescription,
                                                                     rd.Count,
-                                                                    Math.Round(100d - DocumentPercent, 2)),
+                                                                    Math.Round(100d - DocumentMaxPercent, 2)),
                                                       NoParent ? null : Selection);
     }
 
     private void EnsureDocumentCountMax()
     {
-      if (_documentCount > Selection.CountDocuments)
-        _documentCount = Selection.CountDocuments;
+      if (documentMaxCount > Selection.CountDocuments)
+        documentMaxCount = Selection.CountDocuments;
     }
   }
 }

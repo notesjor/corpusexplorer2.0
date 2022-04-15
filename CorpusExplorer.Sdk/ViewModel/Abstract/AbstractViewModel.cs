@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.Collections.Generic;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.ViewModel.Interfaces;

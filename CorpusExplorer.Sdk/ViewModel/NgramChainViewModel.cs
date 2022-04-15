@@ -87,8 +87,6 @@ namespace CorpusExplorer.Sdk.ViewModel
       return res;
     }
 
-    public IEnumerable<string> LayerDisplaynames => Selection.LayerUniqueDisplaynames;
-
     public string LayerDisplayname { get; set; }
 
     public IEnumerable<KeyValuePair<string[], double>> TakeTopNGrams(int max)

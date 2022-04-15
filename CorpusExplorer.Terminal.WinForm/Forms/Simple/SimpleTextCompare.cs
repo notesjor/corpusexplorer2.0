@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.View.Html;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
 using Telerik.WinControls.UI;
@@ -69,12 +70,13 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Simple
 
       _diff.Execute();
 
-      webHtml5Visualisation1.MainpageUrl = Configuration.GetDependencyPath("d3Templates/diff.html");
-      webHtml5Visualisation1.TemplateVars = new Dictionary<string, string>
-      {
-        {"#DIFFS", _diff.HtmlOutput}
-      };
-      webHtml5Visualisation1.GoToMainpage();
+      webHtml5Visualisation1.ShowFile(EasyWebBuilder.Create()
+                                                    .SetIndexByDependencyFile("d3Templates/diff.html")
+                                                    .ReplaceTemplateVars(new Dictionary<string, string>
+                                                     {
+                                                       { "#DIFFS", _diff.HtmlOutput }
+                                                     })
+                                                    .Finalize());
     }
   }
 }

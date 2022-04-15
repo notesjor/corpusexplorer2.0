@@ -51,13 +51,10 @@ namespace CorpusExplorer.Sdk.Extern.QuickIndexRocks.Indices
       cR.Clear();
     }
 
-    public static EasyRocksDb[] Read(string pathToCec6, string layerDisplayname)
-    {
-      return new[]
-      {
-        new EasyRocksDb(pathToCec6 + $"_{layerDisplayname}.dicRDB", false),
-        new EasyRocksDb(pathToCec6 + $"_{layerDisplayname}.dicrRDB", false)
-      };
-    }
+    public static EasyRocksDb ReadDic(string pathToCec6, string layerDisplayname)
+      => new EasyRocksDb(pathToCec6 + $"_{layerDisplayname}.dicRDB", false);
+
+    public static EasyRocksDb ReadDicRes(string pathToCec6, string layerDisplayname) 
+      => new EasyRocksDb(pathToCec6 + $"_{layerDisplayname}.dicrRDB", false);
   }
 }

@@ -34,9 +34,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     public Dictionary<string, Dictionary<string, double>> FrequencyDictionary { get; set; }
 
     public string LayerDisplayname { get; set; }
-
-    public IEnumerable<string> LayerDisplaynames => Selection.LayerUniqueDisplaynames;
-
+    
     /// <summary>
     ///   Eigenschaft kann gesetzt werden, um die Ausgabe von GetDataTable() zu filtern.
     ///   Zum Filter/Optimieren des Blocks sollte Configuration.MinimumFrequency gesetzt werden.
@@ -145,7 +143,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       if (sdf == null || fdf == null)
         return res;
 
-      CorrespondingLayerValueFilter?.DataTableFilterInit(ref res, new[] { LayerDisplayname, Resources.Cooccurrence });
+      CorrespondingLayerValueFilter?.DataTableFilterInit(ref res, new[] { Resources.Cooccurrence });
 
       res.BeginLoadData();
       foreach (var data in from sd in sdf where fdf.ContainsKey(sd.Key) from se in sd.Value.Where(se => fdf[sd.Key].ContainsKey(se.Key)) where se.Value >= CooccurrenceMinSignificance && fdf[sd.Key][se.Key] >= CooccurrenceMinFrequency select new object[] { sd.Key, se.Key, fdf[sd.Key][se.Key], se.Value })

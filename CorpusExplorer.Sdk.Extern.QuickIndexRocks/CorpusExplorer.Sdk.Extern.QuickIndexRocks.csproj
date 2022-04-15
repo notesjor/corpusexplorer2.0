@@ -70,6 +70,8 @@
     <Compile Include="Indices\DictionaryIndex.cs" />
     <Compile Include="Indices\InverseIndex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuickIndexWakeUp.cs" />
+    <Compile Include="QuickIndexOnDemand.cs" />
     <Compile Include="QuickIndex.cs" />
   </ItemGroup>
   <ItemGroup>
