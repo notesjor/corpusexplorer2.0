@@ -20,8 +20,11 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.EasyHashtagSeparation
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
       var lines = File.ReadAllLines(file, Configuration.Encoding);
+
+      var cnt = 1;
+      var name = Path.GetFileNameWithoutExtension(file);
       var res = new List<Dictionary<string, object>>();
-      var dic = new Dictionary<string, object>();
+      var dic = new Dictionary<string, object> { { "ID", cnt++ }, { "Datei", name } };
       var stb = new StringBuilder();
 
       foreach (var line in lines.Where(line => !string.IsNullOrEmpty(line)))
@@ -32,7 +35,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.EasyHashtagSeparation
           stb.Clear();
 
           res.Add(dic);
-          dic = new Dictionary<string, object>();
+          dic = new Dictionary<string, object> { { "ID", cnt++ }, { "Datei", name } };
 
           continue;
         }

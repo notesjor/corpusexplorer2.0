@@ -14613,8 +14613,8 @@ Global
 		{AF1FA133-8158-4B1C-BA63-2EEB352E1AC7} = {59E639FC-8692-4EC0-9196-E6359981EDCA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_NeutralResourcesLanguage = de-DE
 		SolutionGuid = {E3F515DB-595D-431B-A98D-790A3F3DFF48}
+		RESX_NeutralResourcesLanguage = de-DE
 	EndGlobalSection
 	GlobalSection(AutomaticVersions) = postSolution
 		AssemblyInfoFilePath = Properties\AssemblyInfo.cs

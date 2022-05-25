@@ -45,6 +45,6 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Abstract
 
     #endregion
 
-    private Telerik.WinControls.Themes.TelerikMetroTouchTheme telerikMetroTouchTheme1;
+    protected Telerik.WinControls.Themes.TelerikMetroTouchTheme telerikMetroTouchTheme1;
   }
 }

@@ -124,7 +124,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       pages_corpora.Pages.Remove(page_corpus_online);
       radScrollablePanel6.Controls.Remove(settings_tool_xpath);
-      Configuration.UseChrome = false;
 #endif
       #endregion
 

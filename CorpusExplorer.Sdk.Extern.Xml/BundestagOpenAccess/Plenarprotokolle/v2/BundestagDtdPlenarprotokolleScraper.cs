@@ -52,14 +52,29 @@ namespace CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle.v2
           if (lines != null && lines.Count > 0 && lines[0].GetAttributeValue("klasse", "") == "redner")
           {
             var speaker = lines[0].ChildNodes.FirstOrDefault(x => x.Name == "redner");
-            var name = speaker?.ChildNodes.FirstOrDefault();
-            var rolle = name?.ChildNodes.FirstOrDefault(x => x.Name == "rolle");
+            if (speaker == null)
+              continue;
 
-            own.Add("Redner*in", $"{name.SelectSingleNode("nachname")?.InnerText}, {name.SelectSingleNode("vorname")?.InnerText}");
-            own.Add("Fraktion", name.SelectSingleNode("fraktion")?.InnerText);
-            own.Add("Redner*in (Titel)", name.SelectSingleNode("titel")?.InnerText);
-            own.Add("Redner*in (Rolle)", rolle?.ChildNodes?.FirstOrDefault(x => x.Name == "rolle_lang")?.InnerText);
             own.Add("Redner*in (ID)", speaker.GetAttributeValue("id", ""));
+
+            var name = speaker.ChildNodes?.FirstOrDefault(x => x.Name == "name");
+            if (name != null)
+            {
+              var titel = name.ChildNodes?.FirstOrDefault(x => x.Name == "titel")?.InnerText ?? "";
+              var vorname = name.ChildNodes?.FirstOrDefault(x => x.Name == "vorname")?.InnerText ?? "";
+              var nachname = name.ChildNodes?.FirstOrDefault(x => x.Name == "nachname")?.InnerText ?? "";
+
+              own.Add("Redner*in", $"{nachname}, {vorname}");
+              own.Add("Redner*in (Titel)", titel);
+            }
+
+            var rolle = name?.ChildNodes?.FirstOrDefault(x => x.Name == "rolle");
+            if (rolle != null)
+              own.Add("Redner*in (Rolle)", rolle.ChildNodes?.FirstOrDefault(x => x.Name == "rolle_lang")?.InnerText);
+
+            var fraktion = name?.ChildNodes?.FirstOrDefault(x => x.Name == "fraktion");
+            if(fraktion != null)
+              own.Add("Fraktion", fraktion.InnerText);
 
             lines.RemoveAt(0);
           }

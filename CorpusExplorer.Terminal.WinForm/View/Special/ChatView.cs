@@ -33,62 +33,28 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       var speaker = combo_speaker.SelectedValue as string;
       var utterance = combo_utteranche.SelectedValue as string;
 
-      if (string.IsNullOrEmpty(speaker)   ||
-          string.IsNullOrEmpty(utterance) ||
-          speaker == utterance)
+      if (string.IsNullOrEmpty(speaker) || string.IsNullOrEmpty(utterance) || speaker == utterance)
         return;
 
-      var order = new Dictionary<int, KeyValuePair<Guid, string>>();
-      foreach (var dsel in Project.CurrentSelection.DocumentGuids)
-      {
-        var meta = Project.CurrentSelection.GetDocumentMetadata(dsel);
-        if (meta == null ||
-            !meta.ContainsKey(utterance))
-          continue;
-
-        if (!int.TryParse(meta[utterance].ToString(), out var x) ||
-            order.ContainsKey(x))
-          continue;
-
-        order.Add(
-                  x,
-                  new KeyValuePair<Guid, string>(dsel,
-                                                 meta.ContainsKey(speaker) ? meta[speaker].ToString() : string.Empty));
-      }
-
-      var array = order.OrderBy(x => x.Key);
-
-      var tokens = new Dictionary<string, int>();
-      var types = new Dictionary<string, HashSet<string>>();
+      var bag = Project.CurrentSelection.DocumentGuids.Select(
+                                                              dsel =>
+                                                                new KeyValuePair<Guid, int>(dsel,
+                                                                 int.Parse(Project.CurrentSelection
+                                                                            .GetDocumentMetadata(dsel, utterance,
+                                                                              "-1")))).OrderBy(x => x.Value).ToArray();
 
       var list = new List<ListViewDataItem>();
-      foreach (var pair in array)
+      foreach (var pair in bag)
       {
-        var doc = Project.CurrentSelection.GetReadableDocument(pair.Value.Key, "Wort").Select(x => x.ToArray())
-                         .ToArray();
-        if (!tokens.ContainsKey(pair.Value.Value))
-        {
-          tokens.Add(pair.Value.Value, 0);
-          types.Add(pair.Value.Value, new HashSet<string>());
-        }
+        var doc = Project.CurrentSelection.GetReadableDocument(pair.Key, "Wort").ReduceDocumentToText();
+        var usr = Project.CurrentSelection.GetDocumentMetadata(pair.Key, speaker, "");
 
-        var token = 0;
-        foreach (var s in doc)
-        {
-          token += s.Length;
-          foreach (var w in s) types[pair.Value.Value].Add(w);
-        }
-
-        tokens[pair.Value.Value] += token;
-
-        list.Add(
-                 new ListViewDataItem
+        list.Add(new ListViewDataItem
                  {
-                   BackColor = GetUserColor(pair.Value.Value),
-                   Text =
-                     $"<html>({types[pair.Value.Value].Count:D5} / {tokens[pair.Value.Value]:D5}) <u>{pair.Value.Value}</u>: {doc.ReduceDocumentToText()}</html>",
+                   BackColor = GetUserColor(usr),
+                   Text = $"<html>({pair.Value:D5}) <u>{usr}</u>: {doc}</html>",
                    Font = new Font(radListView1.Font.FontFamily, 12, FontStyle.Bold),
-                   Key = pair.Value.Key
+                   Key = pair.Key,
                  });
       }
 

@@ -104,9 +104,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       // 
       // btn_go
       // 
+      this.btn_go.AutoToolTip = true;
       resources.ApplyResources(this.btn_go, "btn_go");
       this.btn_go.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.button_circle_right;
-      this.btn_go.AutoToolTip = true;
       this.btn_go.Name = "btn_go";
       this.btn_go.Click += new System.EventHandler(this.btn_go_Click);
       // 
@@ -118,9 +118,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       // 
       // commandBarButton1
       // 
+      this.commandBarButton1.AutoToolTip = true;
       resources.ApplyResources(this.commandBarButton1, "commandBarButton1");
       this.commandBarButton1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.camera_add;
-      this.commandBarButton1.AutoToolTip = true;
       this.commandBarButton1.Name = "commandBarButton1";
       this.commandBarButton1.Click += new System.EventHandler(this.radButton1_Click);
       // 
@@ -128,9 +128,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       // 
       resources.ApplyResources(this.radListView1, "radListView1");
       this.radListView1.GroupItemSize = new System.Drawing.Size(200, 40);
+      this.radListView1.HorizontalScrollState = Telerik.WinControls.UI.ScrollState.AlwaysShow;
       this.radListView1.ItemSize = new System.Drawing.Size(200, 40);
       this.radListView1.Name = "radListView1";
       this.radListView1.ShowCheckBoxes = true;
+      this.radListView1.VerticalScrollState = Telerik.WinControls.UI.ScrollState.AlwaysShow;
       // 
       // txt_filter
       // 

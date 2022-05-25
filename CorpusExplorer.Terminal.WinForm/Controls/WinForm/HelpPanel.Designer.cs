@@ -30,55 +30,34 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HelpPanel));
-      this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-      this.btn_video = new Telerik.WinControls.UI.RadButton();
-      this.btn_handson = new Telerik.WinControls.UI.RadButton();
-      this.btn_handbook = new Telerik.WinControls.UI.RadButton();
+      this.radScrollablePanel1 = new Telerik.WinControls.UI.RadScrollablePanel();
       this.btn_online = new Telerik.WinControls.UI.RadButton();
+      this.btn_handbook = new Telerik.WinControls.UI.RadButton();
+      this.btn_handson = new Telerik.WinControls.UI.RadButton();
+      this.btn_video = new Telerik.WinControls.UI.RadButton();
       this.header1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.Header();
-      this.flowLayoutPanel2.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.btn_video)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.btn_handson)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.btn_handbook)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel1)).BeginInit();
+      this.radScrollablePanel1.PanelContainer.SuspendLayout();
+      this.radScrollablePanel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.btn_online)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_handbook)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_handson)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_video)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.header1)).BeginInit();
       this.SuspendLayout();
       // 
-      // flowLayoutPanel2
+      // radScrollablePanel1
       // 
-      this.flowLayoutPanel2.Controls.Add(this.btn_video);
-      this.flowLayoutPanel2.Controls.Add(this.btn_handson);
-      this.flowLayoutPanel2.Controls.Add(this.btn_handbook);
-      this.flowLayoutPanel2.Controls.Add(this.btn_online);
-      resources.ApplyResources(this.flowLayoutPanel2, "flowLayoutPanel2");
-      this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+      resources.ApplyResources(this.radScrollablePanel1, "radScrollablePanel1");
+      this.radScrollablePanel1.Name = "radScrollablePanel1";
       // 
-      // btn_video
+      // radScrollablePanel1.PanelContainer
       // 
-      resources.ApplyResources(this.btn_video, "btn_video");
-      this.btn_video.Name = "btn_video";
-      this.btn_video.Tag = "";
-      this.btn_video.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.KurzesEinstiegsvideo;
-      this.btn_video.TextWrap = true;
-      this.btn_video.Click += new System.EventHandler(this.btn_video_Click);
-      // 
-      // btn_handson
-      // 
-      resources.ApplyResources(this.btn_handson, "btn_handson");
-      this.btn_handson.Name = "btn_handson";
-      this.btn_handson.Tag = "";
-      this.btn_handson.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.PraktischeÜbungen;
-      this.btn_handson.TextWrap = true;
-      this.btn_handson.Click += new System.EventHandler(this.btn_handson_Click);
-      // 
-      // btn_handbook
-      // 
-      resources.ApplyResources(this.btn_handbook, "btn_handbook");
-      this.btn_handbook.Name = "btn_handbook";
-      this.btn_handbook.Tag = "";
-      this.btn_handbook.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.InteraktivesHandbuch;
-      this.btn_handbook.TextWrap = true;
-      this.btn_handbook.Click += new System.EventHandler(this.btn_handbook_Click);
+      this.radScrollablePanel1.PanelContainer.Controls.Add(this.btn_online);
+      this.radScrollablePanel1.PanelContainer.Controls.Add(this.btn_handbook);
+      this.radScrollablePanel1.PanelContainer.Controls.Add(this.btn_handson);
+      this.radScrollablePanel1.PanelContainer.Controls.Add(this.btn_video);
+      resources.ApplyResources(this.radScrollablePanel1.PanelContainer, "radScrollablePanel1.PanelContainer");
       // 
       // btn_online
       // 
@@ -87,12 +66,55 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       this.btn_online.Tag = "";
       this.btn_online.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.WeitereInformationen;
       this.btn_online.TextWrap = true;
+      this.btn_online.ThemeName = "TelerikMetroTouch";
       this.btn_online.Click += new System.EventHandler(this.btn_online_Click);
+      // 
+      // btn_handbook
+      // 
+      resources.ApplyResources(this.btn_handbook, "btn_handbook");
+      this.btn_handbook.Name = "btn_handbook";
+      // 
+      // 
+      // 
+      this.btn_handbook.RootElement.MaxSize = new System.Drawing.Size(0, 0);
+      this.btn_handbook.Tag = "";
+      this.btn_handbook.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.InteraktivesHandbuch;
+      this.btn_handbook.TextWrap = true;
+      this.btn_handbook.ThemeName = "TelerikMetroTouch";
+      this.btn_handbook.Click += new System.EventHandler(this.btn_handbook_Click);
+      // 
+      // btn_handson
+      // 
+      resources.ApplyResources(this.btn_handson, "btn_handson");
+      this.btn_handson.Name = "btn_handson";
+      // 
+      // 
+      // 
+      this.btn_handson.RootElement.MaxSize = new System.Drawing.Size(0, 0);
+      this.btn_handson.Tag = "";
+      this.btn_handson.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.PraktischeÜbungen;
+      this.btn_handson.TextWrap = true;
+      this.btn_handson.ThemeName = "TelerikMetroTouch";
+      this.btn_handson.Click += new System.EventHandler(this.btn_handson_Click);
+      // 
+      // btn_video
+      // 
+      resources.ApplyResources(this.btn_video, "btn_video");
+      this.btn_video.Name = "btn_video";
+      // 
+      // 
+      // 
+      this.btn_video.RootElement.MaxSize = new System.Drawing.Size(0, 0);
+      this.btn_video.Tag = "";
+      this.btn_video.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.KurzesEinstiegsvideo;
+      this.btn_video.TextWrap = true;
+      this.btn_video.ThemeName = "TelerikMetroTouch";
+      this.btn_video.Click += new System.EventHandler(this.btn_video_Click);
       // 
       // header1
       // 
-      this.header1.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this.header1, "header1");
+      this.header1.BackColor = System.Drawing.Color.White;
       this.header1.HeaderDescription = "{HeaderDescription}";
       this.header1.HeaderHead = "{HeaderHead}";
       this.header1.Name = "header1";
@@ -101,28 +123,28 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.BackColor = System.Drawing.Color.White;
-      this.Controls.Add(this.flowLayoutPanel2);
       this.Controls.Add(this.header1);
+      this.Controls.Add(this.radScrollablePanel1);
       resources.ApplyResources(this, "$this");
       this.Name = "HelpPanel";
-      this.flowLayoutPanel2.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.btn_video)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.btn_handson)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.btn_handbook)).EndInit();
+      this.radScrollablePanel1.PanelContainer.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel1)).EndInit();
+      this.radScrollablePanel1.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.btn_online)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_handbook)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_handson)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_video)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.header1)).EndInit();
       this.ResumeLayout(false);
-      this.PerformLayout();
 
     }
 
     #endregion
-
-    private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     private Telerik.WinControls.UI.RadButton btn_video;
     private Telerik.WinControls.UI.RadButton btn_handson;
     private Telerik.WinControls.UI.RadButton btn_handbook;
     private Telerik.WinControls.UI.RadButton btn_online;
     private Header header1;
+    private Telerik.WinControls.UI.RadScrollablePanel radScrollablePanel1;
   }
 }

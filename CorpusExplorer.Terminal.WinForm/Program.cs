@@ -46,7 +46,7 @@ namespace CorpusExplorer.Terminal.WinForm
     [STAThread]
     private static void Main(params string[] args)
     {
-      SetProcessDpiAwareness(_Process_DPI_Awareness.Process_Per_Monitor_DPI_Aware);
+      SetProcessDpiAwareness(_Process_DPI_Awareness.Process_System_DPI_Aware);
 
       ChangeLanguage(args);
 

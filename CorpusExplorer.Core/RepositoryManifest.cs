@@ -136,7 +136,7 @@ namespace CorpusExplorer.Core
         { "TreeTagger (*.treetagger)|*.treetagger", new ExporterTreeTagger() },
         { "TreeTagger + Satzgrenze (*.treetagger)|*.treetagger", new ExporterTreeTagger { UseSentenceTag = true } },
         { "CorpusWorkBench (*.vrt)|*.vrt", new ExporterCorpusWorkBench { UseSentenceTag = false } },
-        { "CorpusWorkBench + Satzgrenze (*.vrt)|*.vrt", new ExporterCorpusWorkBench { UseSentenceTag = true } },
+        { "CorpusWorkBench + Satzgrenze (*.vrt, *.vrt.xml)|*.vrt;*.vrt.xml", new ExporterCorpusWorkBench { UseSentenceTag = true } },
         { "Sketch Engine VERT (*.vert)|*.vert", new ExporterSketchEngine() },
       };
 

@@ -34,7 +34,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
-      Telerik.WinControls.UI.ListViewDataItem listViewDataItem2 = new Telerik.WinControls.UI.ListViewDataItem("<html><strong>Hinweis:</strong> \"Aktuelles und Neuigkeiten\" können nur bei besteh" +
+      Telerik.WinControls.UI.ListViewDataItem listViewDataItem1 = new Telerik.WinControls.UI.ListViewDataItem("<html><strong>Hinweis:</strong> \"Aktuelles und Neuigkeiten\" können nur bei besteh" +
         "ender Internetverbindung angeziegt werden.</html>");
       this.radScrollablePanel3 = new Telerik.WinControls.UI.RadScrollablePanel();
       this.radScrollablePanel9 = new Telerik.WinControls.UI.RadScrollablePanel();
@@ -1647,10 +1647,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.radListView1.AllowRemove = false;
       resources.ApplyResources(this.radListView1, "radListView1");
       this.radListView1.GroupItemSize = new System.Drawing.Size(200, 40);
-      listViewDataItem2.Text = "<html><strong>Hinweis:</strong> \"Aktuelles und Neuigkeiten\" können nur bei besteh" +
-    "ender Internetverbindung angeziegt werden.</html>";
+      resources.ApplyResources(listViewDataItem1, "listViewDataItem1");
       this.radListView1.Items.AddRange(new Telerik.WinControls.UI.ListViewDataItem[] {
-            listViewDataItem2});
+            listViewDataItem1});
       this.radListView1.ItemSize = new System.Drawing.Size(200, 40);
       this.radListView1.Name = "radListView1";
       this.radListView1.ItemMouseClick += new Telerik.WinControls.UI.ListViewItemEventHandler(this.OpenRssFeedItemClick);
@@ -1764,7 +1763,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // 
       this.pages_main.RootElement.MinSize = new System.Drawing.Size(576, 445);
-      this.pages_main.SelectedPage = this.page_settings;
+      this.pages_main.SelectedPage = this.page_welcome;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.Scroll;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).ItemFitMode = Telerik.WinControls.UI.StripViewItemFitMode.Fill;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_main.GetChildAt(0))).ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
@@ -1809,6 +1808,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // page_corpus_start
       // 
       this.page_corpus_start.Controls.Add(this.radScrollablePanel3);
+      this.page_corpus_start.ItemSize = new System.Drawing.SizeF(97F, 29F);
       resources.ApplyResources(this.page_corpus_start, "page_corpus_start");
       this.page_corpus_start.Name = "page_corpus_start";
       // 
@@ -1816,6 +1816,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       this.page_corpus_online.Controls.Add(this.radSplitContainer1);
       this.page_corpus_online.Controls.Add(this.header5);
+      this.page_corpus_online.ItemSize = new System.Drawing.SizeF(97F, 29F);
       resources.ApplyResources(this.page_corpus_online, "page_corpus_online");
       this.page_corpus_online.Name = "page_corpus_online";
       // 
@@ -1954,12 +1955,13 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       resources.ApplyResources(this.pages_snapshot, "pages_snapshot");
       this.pages_snapshot.ItemSizeMode = Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth;
       this.pages_snapshot.Name = "pages_snapshot";
-      this.pages_snapshot.SelectedPage = this.page_snapshot_edit;
+      this.pages_snapshot.SelectedPage = this.page_snapshot_home;
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pages_snapshot.GetChildAt(0))).ItemSizeMode = Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth;
       // 
       // page_snapshot_home
       // 
       this.page_snapshot_home.Controls.Add(this.radScrollablePanel5);
+      this.page_snapshot_home.ItemSize = new System.Drawing.SizeF(85F, 29F);
       resources.ApplyResources(this.page_snapshot_home, "page_snapshot_home");
       this.page_snapshot_home.Name = "page_snapshot_home";
       // 
@@ -1969,6 +1971,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       this.page_snapshot_edit.Controls.Add(this.radGroupBox1);
       this.page_snapshot_edit.Controls.Add(this.header11);
       this.page_snapshot_edit.Controls.Add(this.clearPanel3);
+      this.page_snapshot_edit.ItemSize = new System.Drawing.SizeF(85F, 29F);
       resources.ApplyResources(this.page_snapshot_edit, "page_snapshot_edit");
       this.page_snapshot_edit.Name = "page_snapshot_edit";
       // 
@@ -2084,12 +2087,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // page_analytics_start
       // 
       this.page_analytics_start.Controls.Add(this.radScrollablePanel1);
+      this.page_analytics_start.ItemSize = new System.Drawing.SizeF(253F, 29F);
       resources.ApplyResources(this.page_analytics_start, "page_analytics_start");
       this.page_analytics_start.Name = "page_analytics_start";
       // 
       // page_analytics_view
       // 
       this.page_analytics_view.Controls.Add(this.pages_standardanalytics);
+      this.page_analytics_view.ItemSize = new System.Drawing.SizeF(253F, 29F);
       resources.ApplyResources(this.page_analytics_view, "page_analytics_view");
       this.page_analytics_view.Name = "page_analytics_view";
       // 
@@ -2176,6 +2181,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // page_analytics_thirdparty
       // 
       this.page_analytics_thirdparty.Controls.Add(this.pages_3rdParty);
+      this.page_analytics_thirdparty.ItemSize = new System.Drawing.SizeF(253F, 29F);
       resources.ApplyResources(this.page_analytics_thirdparty, "page_analytics_thirdparty");
       this.page_analytics_thirdparty.Name = "page_analytics_thirdparty";
       // 
@@ -2489,6 +2495,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       // 
       // 
       this.RootElement.ApplyShapeToControl = true;
+      this.RootElement.MinSize = new System.Drawing.Size(840, 630);
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Dashboard_FormClosing);
       this.Load += new System.EventHandler(this.Dashboard_Load);
       this.SizeChanged += new System.EventHandler(this.Dashboard_SizeChanged);
