@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.View.Html;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;

@@ -83,6 +83,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Abstract
       this.RootElement.ApplyShapeToControl = true;
       this.ShowInTaskbar = false;
       this.TopMost = true;
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
       this.radPanel1.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.btn_ok)).EndInit();

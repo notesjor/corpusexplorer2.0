@@ -322,9 +322,9 @@
     &lt;/encodingDesc&gt;
     &lt;profileDesc&gt;
      &lt;creation&gt;
-      &lt;creatDate&gt;{YEAR}.{MONTH}.{DAY}&lt;/creatDate&gt;
-      &lt;creatRef&gt;({DAY}.{MONTH}.{YEAR})&lt;/creatRef&gt;
-      &lt;creatRefShort&gt;({DAY}.{MONTH}.{YEAR})&lt;/creatRefShort&gt;
+      &lt;createDate&gt;{YEAR}.{MONTH}.{DAY}&lt;/createDate&gt;
+      &lt;createRef&gt;({DAY}.{MONTH}.{YEAR})&lt;/createRef&gt;
+      &lt;createRefShort&gt;({DAY}.{MONTH}.{YEAR})&lt;/createRefShort&gt;
      &lt;/creation&gt;
      &lt;textDesc Default="n"&gt;
       &lt;textTypeArt&gt;&lt;/textTypeArt&gt;
@@ -338,6 +338,9 @@
       &lt;/correspContext&gt;
      &lt;/correspDesc&gt;
     &lt;/profileDesc&gt;
+    &lt;xenoData&gt;
+{XENODATA}
+    &lt;/xenoData&gt;
    &lt;/idsHeader&gt;</value>
   </data>
 </root>

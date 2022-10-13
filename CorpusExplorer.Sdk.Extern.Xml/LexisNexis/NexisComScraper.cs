@@ -150,7 +150,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.LexisNexis
       }
 
       var body = html.DocumentNode.SelectSingleNode("//body");
-      var cont = body.InnerHtml.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+      var cont = body.InnerHtml.Split(Splitter.LineBreaks, StringSplitOptions.RemoveEmptyEntries);
       var stb = new StringBuilder();
 
       foreach (var s in cont)

@@ -49,6 +49,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       // radScrollablePanel1
       // 
       resources.ApplyResources(this.radScrollablePanel1, "radScrollablePanel1");
+      this.radScrollablePanel1.HorizontalScrollBarState = Telerik.WinControls.UI.ScrollState.AlwaysHide;
       this.radScrollablePanel1.Name = "radScrollablePanel1";
       // 
       // radScrollablePanel1.PanelContainer
@@ -58,6 +59,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
       this.radScrollablePanel1.PanelContainer.Controls.Add(this.btn_handson);
       this.radScrollablePanel1.PanelContainer.Controls.Add(this.btn_video);
       resources.ApplyResources(this.radScrollablePanel1.PanelContainer, "radScrollablePanel1.PanelContainer");
+      ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radScrollablePanel1.GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
       // 
       // btn_online
       // 

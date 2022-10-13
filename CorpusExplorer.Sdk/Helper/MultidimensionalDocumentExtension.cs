@@ -13,6 +13,7 @@ namespace CorpusExplorer.Sdk.Helper
   /// <summary>
   ///   The multidimensional document extension.
   /// </summary>
+  [Obsolete]
   public static class MultidimensionalDocumentExtension
   {
     #region Public Methods and Operators
@@ -31,6 +32,7 @@ namespace CorpusExplorer.Sdk.Helper
     /// </returns>
     /// <exception cref="NoNullAllowedException">
     /// </exception>
+    [Obsolete]
     public static int[][][] GetMultidimensionalDocument(
       this IEnumerable<AbstractLayerAdapter> layers,
       Guid documentGuid)

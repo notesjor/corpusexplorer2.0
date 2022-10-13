@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Plaintext.RelAnnis
@@ -46,7 +47,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.RelAnnis
       using (var read = new StreamReader(fs, Configuration.Encoding))
         while (!read.EndOfStream)
         {
-          var items = read.ReadLine().Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
+          var items = read.ReadLine().Split(Splitter.Tab, StringSplitOptions.RemoveEmptyEntries);
           if (items.Length < 5)
             continue;
           if (items[3] != "token")
@@ -100,7 +101,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.RelAnnis
       using (var read = new StreamReader(fs, Configuration.Encoding))
         while (!read.EndOfStream)
         {
-          var items = read.ReadLine().Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
+          var items = read.ReadLine().Split(Splitter.Tab, StringSplitOptions.RemoveEmptyEntries);
           if (items.Length != 4)
             continue;
 

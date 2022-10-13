@@ -7,6 +7,7 @@ using System.Text;
 using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Helper;
+using CorpusExplorer.Sdk.Helper;
 
 #endregion
 
@@ -25,7 +26,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017
       var stb = new StringBuilder();
 
       foreach (
-        var tids in corpus.sentences.Select(s => s.tokenIDs.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)))
+        var tids in corpus.sentences.Select(s => s.tokenIDs.Split(Splitter.Space, StringSplitOptions.RemoveEmptyEntries)))
         stb.AppendLine(string.Join(" ", tids.Select(tid => tokens[tid])));
 
       return new[] {new Dictionary<string, object> {{"Text", stb.ToString()}}};

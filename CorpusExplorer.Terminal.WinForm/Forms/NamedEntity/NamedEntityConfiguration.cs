@@ -43,7 +43,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.NamedEntity
         hashset.Add(name);
 
         var context = new List<string> { row.Cells[2].Value.ToString() };
-        context.AddRange(row.Cells[3].Value.ToString().Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+        context.AddRange(row.Cells[3].Value.ToString().Split(Sdk.Helper.Splitter.Space, StringSplitOptions.RemoveEmptyEntries));
         entities.Add(new Entity
         {
           Name = name,
@@ -55,7 +55,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.NamedEntity
               Filter = new FilterQuerySingleLayerExactPhrase
               {
                 LayerDisplayname = "Wort",
-                LayerQueries = row.Cells[0].Value.ToString().Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)
+                LayerQueries = row.Cells[0].Value.ToString().Split(Sdk.Helper.Splitter.Space, StringSplitOptions.RemoveEmptyEntries)
               }
             }
             /*
@@ -65,7 +65,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.NamedEntity
               Filter = new FilterQuerySingleLayerAnyMatch
               {
                 LayerDisplayname = "Wort",
-                LayerQueries = row.Cells[2].Value.ToString().Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)
+                LayerQueries = row.Cells[2].Value.ToString().Split(Sdk.Helper.Splitter.Space, StringSplitOptions.RemoveEmptyEntries)
               }
             },
             new Rule

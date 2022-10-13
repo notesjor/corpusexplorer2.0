@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer.Abstract;
@@ -54,7 +55,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer
         input = input.Replace("  ", " ");
       } while (input.Length != length);
 
-      return input.Replace("< ENDOFCORPUSEXPLORERFILE >", "<ENDOFCORPUSEXPLORERFILE>").Trim().Replace(" ", "\r\n");
+      return input.Replace("< ENDOFCORPUSEXPLORERFILE >", "<ENDOFCORPUSEXPLORERFILE>").Trim().Replace(" ", Environment.NewLine);
     }
   }
 }

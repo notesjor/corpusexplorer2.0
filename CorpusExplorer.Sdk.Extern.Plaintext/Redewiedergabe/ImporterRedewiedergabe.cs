@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
@@ -60,7 +61,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.Redewiedergabe
 
         for (var i = 1; i < lines.Length; i++)
         {
-          var split = lines[i].Split(new[] { "\t" }, StringSplitOptions.None);
+          var split = lines[i].Split(Splitter.Tab, StringSplitOptions.None);
           if (split.Length != 11) // siehe oben: if (... lines[0] != "tok\tnormtok\tlemma\tpos\trfpos\tsentstart\tstwr\tframe\tspeaker\tintexpr\tnote")
             continue;
 
@@ -143,7 +144,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.Redewiedergabe
       _files = new Dictionary<string, Guid>();
       for (var i = 1; i < lines.Length; i++)
       {
-        var split = lines[i].Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
+        var split = lines[i].Split(Splitter.Tab, StringSplitOptions.RemoveEmptyEntries);
         if (split.Length != 14) // siehe oben: if (... lines[0] != "file\torig_filename\tyear\tdecade\tsource\ttitle\tauthor\tfictional\ttext_type\tnarrative\tcabtokens\tdialect\tperspective\tquotes")
           continue;
 

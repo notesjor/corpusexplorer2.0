@@ -59,7 +59,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
                          .Replace("\" type=\"", mark)
                          .Replace("\">", mark)
                          .Replace("</entry>", string.Empty);
-      var split = outerXml.Split(new[] {mark}, StringSplitOptions.RemoveEmptyEntries);
+      var split = outerXml.Split(new[] { mark }, StringSplitOptions.RemoveEmptyEntries);
       if (split.Length != 3)
         return new KeyValuePair<string, object>("ERROR", null);
 
@@ -144,7 +144,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
                                                                                                         .Parse(y
                                                                                                                 .GetAttribute("v")));
 
-        layerstate.Add(id, new LayerValueState(name, id) {Cache = dict});
+        layerstate.Add(id, new LayerValueState(name, id) { Cache = dict });
       }
 
       #endregion
@@ -196,7 +196,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
           continue;
 
         var orig = Sentenizer.Execute(Tokenizer.ExecuteToArray(HttpUtility.HtmlDecode(body.InnerText)));
-        var doc = orig.Select(s => s.Select(w => new Word {Content = w}).ToArray()).ToArray();
+        var doc = orig.Select(s => s.Select(w => new Word { Content = w }).ToArray()).ToArray();
         var sidx = 0;
         var widx = 0;
 
@@ -207,9 +207,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
         {
           var ldoc = CleanLayerFromPrototype(ref orig);
           for (var s = 0; s < ldoc.Length; s++)
-          for (var w = 0; w < ldoc[s].Length; w++)
-            if (doc[s][w].Annotation.ContainsKey(state.Value.Displayname))
-              ldoc[s][w] = doc[s][w].Annotation[state.Value.Displayname];
+            for (var w = 0; w < ldoc[s].Length; w++)
+              if (doc[s][w].Annotation.ContainsKey(state.Value.Displayname))
+                ldoc[s][w] = doc[s][w].Annotation[state.Value.Displayname];
           ldocs.Add(state.Key, ldoc);
         }
 
@@ -219,7 +219,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
 
         documentMeta.Add(guid, dmetaDic);
         wortLayer.AddCompleteDocument(guid, orig);
-        foreach (var x in ldocs) ((LayerValueState) layerstate[x.Key]).AddCompleteDocument(guid, x.Value);
+        foreach (var x in ldocs) ((LayerValueState)layerstate[x.Key]).AddCompleteDocument(guid, x.Value);
 
         #endregion
       }
@@ -227,7 +227,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
       #endregion
 
       var builder = new CorpusBuilderWriteDirect();
-      return builder.Create(new List<AbstractLayerState>(layerstate.Select(x => x.Value)) {wortLayer}, documentMeta,
+      return builder.Create(new List<AbstractLayerState>(layerstate.Select(x => x.Value)) { wortLayer }, documentMeta,
                             corpusMeta, null);
     }
 

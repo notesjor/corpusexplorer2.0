@@ -12,7 +12,7 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
 
 namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
 {
-  public class CorpusAdapterWriteIndirect : AbstractCorpusAdapter, IDisposable
+  public class CorpusAdapterWriteIndirect : AbstractCorpusAdapter
   {
     private string _displayname = string.Empty;
     private Dictionary<Guid, Dictionary<string, object>> _documentMetadata;
@@ -378,7 +378,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       return res;
     }
 
-    public void Dispose()
+    public override void Dispose()
     {
       foreach (var layer in _layers)
       {

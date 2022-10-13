@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.IO;
 using System.Text;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Blocks.Cooccurrence;
@@ -909,6 +910,18 @@ namespace CorpusExplorer.Sdk.Model
     }
 
     /// <summary>
+    ///   Remove a specific metadata entry for alle documents
+    /// </summary>
+    /// <param name="metadataKey">
+    ///   The metadataKey
+    /// </param>
+    public void RemoveDocumentMetadata(string metadataKey)
+    {
+      foreach (var corpus in _corpora)
+        corpus.RemoveDocumentMetadata(metadataKey);
+    }
+
+    /// <summary>
     ///   Switch für die angegebene Position im Text für einen bestimmten Layerwert.
     /// </summary>
     /// <param name="documentGuid">Document GUID</param>
@@ -1116,7 +1129,7 @@ namespace CorpusExplorer.Sdk.Model
     /// <returns>
     ///   The <see cref="Project" />.
     /// </returns>
-    public static Project Load(string path)
+    public static Project Load(string path, string forceCorpusRoot = null)
     {
       var lines = FileIO.ReadLines(path, Configuration.Encoding,
                                    stringSplitOptions: StringSplitOptions.RemoveEmptyEntries);
@@ -1126,6 +1139,7 @@ namespace CorpusExplorer.Sdk.Model
       var res = new Project();
 
       var i = 1;
+
       for (; i < lines.Length; i++)
       {
         if (lines[i] == "---->----")
@@ -1133,7 +1147,7 @@ namespace CorpusExplorer.Sdk.Model
 
         try
         {
-          var entry = lines[i].Split(new[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+          var entry = lines[i].Split(Splitter.Equal, StringSplitOptions.RemoveEmptyEntries);
           if (entry.Length != 2)
             continue;
 
@@ -1178,16 +1192,23 @@ namespace CorpusExplorer.Sdk.Model
         if (lines[i] == "----?----")
           break;
 
-        var entry = lines[i].Split(new[] { ">" }, StringSplitOptions.RemoveEmptyEntries);
+        var entry = lines[i].Split(Splitter.Greater, StringSplitOptions.RemoveEmptyEntries);
         if (entry.Length != 3)
           continue;
 
         var tguid = Guid.Parse(entry[0]);
         var type = Type.GetType(entry[1]);
 
-        var corpus =
-          type.GetMethods().First(x => x.IsStatic && x.IsPublic && x.Name == "Create" && x.GetParameters().Length == 1)
-              .Invoke(null, new object[] { entry[2] }) as AbstractCorpusAdapter;
+        AbstractCorpusAdapter corpus;
+        if(forceCorpusRoot == null)
+          corpus =
+            type.GetMethods().First(x => x.IsStatic && x.IsPublic && x.Name == "Create" && x.GetParameters().Length == 1)
+                .Invoke(null, new object[] { entry[2] }) as AbstractCorpusAdapter;
+        else
+          corpus =
+            type.GetMethods().First(x => x.IsStatic && x.IsPublic && x.Name == "Create" && x.GetParameters().Length == 1)
+                .Invoke(null, new object[] { Path.Combine(forceCorpusRoot, entry[2]) }) as AbstractCorpusAdapter;
+        
         if (corpus == null || corpus.CorpusGuid != tguid)
           continue;
         res.AddOnLoad(corpus);
@@ -1226,7 +1247,7 @@ namespace CorpusExplorer.Sdk.Model
     /// <param name="path">
     ///   Pfad unter dem das Projekt gespeichert wird.
     /// </param>
-    public void Save(string path)
+    public void Save(string path, bool saveFullCorpusPath = true)
     {
       var stb = new StringBuilder();
 
@@ -1245,7 +1266,7 @@ namespace CorpusExplorer.Sdk.Model
       stb.AppendLine("---->----");
 
       foreach (var corpus in _corpora)
-        stb.AppendLine($"{corpus.CorpusGuid}>{corpus.GetType()}>{corpus.CorpusPath}");
+        stb.AppendLine($"{corpus.CorpusGuid}>{corpus.GetType()}>{(saveFullCorpusPath ? corpus.CorpusPath : Path.GetFileName(corpus.CorpusPath))}");
 
       stb.AppendLine("----?----");
 

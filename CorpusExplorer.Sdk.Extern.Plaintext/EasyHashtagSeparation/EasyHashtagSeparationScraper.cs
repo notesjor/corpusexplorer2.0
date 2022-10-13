@@ -42,7 +42,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.EasyHashtagSeparation
 
         if (line.StartsWith("#"))
         {
-          var splits = line.Split(new[] { '#' }, StringSplitOptions.RemoveEmptyEntries);
+          var splits = line.Split(Splitter.Hashtag, StringSplitOptions.RemoveEmptyEntries);
           if (splits.Length != 2 || splits[0] == "Text")
             continue;
 

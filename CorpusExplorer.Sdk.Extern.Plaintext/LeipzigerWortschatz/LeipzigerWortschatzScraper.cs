@@ -61,7 +61,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.LeipzigerWortschatz
       foreach (var line in lines)
         try
         {
-          var split = line.Split(new[] {"\t"}, StringSplitOptions.RemoveEmptyEntries);
+          var split = line.Split(Splitter.Tab, StringSplitOptions.RemoveEmptyEntries);
           if (split.Length != 2)
             continue;
 
@@ -84,7 +84,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.LeipzigerWortschatz
       foreach (var line in lines)
         try
         {
-          var split = line.Split(new[] {"\t"}, StringSplitOptions.RemoveEmptyEntries);
+          var split = line.Split(Splitter.Tab, StringSplitOptions.RemoveEmptyEntries);
           if (split.Length != 2)
             continue;
 
@@ -105,7 +105,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.LeipzigerWortschatz
       foreach (var line in lines)
         try
         {
-          var split = line.Split(new[] {"\t"}, StringSplitOptions.RemoveEmptyEntries);
+          var split = line.Split(Splitter.Tab, StringSplitOptions.RemoveEmptyEntries);
           if (split.Length != 3)
             continue;
 

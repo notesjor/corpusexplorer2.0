@@ -46,7 +46,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
 
       return new ClanChildesImportData
       {
-        Text = text.Split(new[] {"\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries),
+        Text = text.Split(Splitter.LineBreaks, StringSplitOptions.RemoveEmptyEntries),
         Rules = File.Exists(path + ".cecclanr") ? Serializer.Deserialize<ClanChildesRule[]>(path + ".cecclanr") : null
       };
     }
@@ -100,7 +100,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
     {
       var rules = data.Rules;
 
-      var sentenceMarks = new HashSet<string> {".", "!", "?", ",", ";", "+", "#"};
+      var sentenceMarks = new HashSet<string> { ".", "!", "?", ",", ";", "+", "#" };
       string lineUtterance = null;
       var lineNumberUtterance = 0;
 
@@ -125,6 +125,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
         out var layerLemmaInfo,
         out var layerCategory);
 
+      
       // Zeile für Zeile einlesen
       string[] text = null;
       for (var i = 0; i < data.Text.Length; i++)
@@ -177,7 +178,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
             out layerLemmaInfo,
             out layerCategory);
 
-          var split = CleanTextLine(line).Split(new[] {"\t"}, StringSplitOptions.RemoveEmptyEntries);
+          var split = CleanTextLine(line).Split(Splitter.Tab, StringSplitOptions.RemoveEmptyEntries);
 
           speaker = split[0].Replace("*", "").Replace(":", "");
           original = split[1]; // Orignal ohne Modifikationen
@@ -206,12 +207,12 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
           continue;
         }
 
-        var splits = line.Split(new[] {":"}, StringSplitOptions.RemoveEmptyEntries);
+        var splits = line.Split(Splitter.Colon, StringSplitOptions.RemoveEmptyEntries);
         mod = splits[0].Replace("%", "");
         var lineAnnotation = line.Replace("%" + mod + ":", "").Trim();
         var lineNumberAnnoation = i;
 
-        var mor = line.Replace("%" + mod + ":", "").Trim().Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
+        var mor = line.Replace("%" + mod + ":", "").Trim().Split(Splitter.Space, StringSplitOptions.RemoveEmptyEntries);
         var lem = new List<string>();
         var lemI = new List<string>();
         var pos = new List<string>();
@@ -246,14 +247,14 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
             }
 
             var m = mor[mIndex];
-            var split = m.Split(new[] {"|"}, StringSplitOptions.RemoveEmptyEntries);
+            var split = m.Split(Splitter.Pipe, StringSplitOptions.RemoveEmptyEntries);
 
             // POS-Tag Extraktion
             var p = split[0];
             // Wenn POS-Tag folgenden Format entspricht, dann spalte die POS-Info ab: INFO#POS
             if (p.Contains("#"))
             {
-              var pS = p.Split(new[] {"#"}, StringSplitOptions.RemoveEmptyEntries);
+              var pS = p.Split(Splitter.Hashtag, StringSplitOptions.RemoveEmptyEntries);
               if (pS.Length == 2)
               {
                 p = pS[1];
@@ -329,7 +330,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
               posP.Add(p.Substring(idx + 1));
             }
             else
-              // Wenn Normalform ODER normiert, dann speichere das POS-Tag
+            // Wenn Normalform ODER normiert, dann speichere das POS-Tag
             {
               pos.Add(p);
               posP.Add("");
@@ -340,7 +341,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
             // Wenn Lemma-Tag folgenden Format entspricht, dann spalte die Lemma-Info ab: LEMMA-INFO
             if (l.Contains("-"))
             {
-              var lS = l.Split(new[] {"-"}, StringSplitOptions.RemoveEmptyEntries);
+              var lS = l.Split(Splitter.Dash, StringSplitOptions.RemoveEmptyEntries);
               lem.Add(lS.Length == 2 ? lS[0] : l);
               lemI.Add(lS.Length == 2 ? lS[1] : "");
             }
@@ -525,10 +526,10 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
         return res;
 
       foreach (var r in from r in rules
-        where cnt >= r.SentenceIndexStart
-        where cnt <= r.SentenceIndexEnd
-        where !res.ContainsKey(r.MetaLabel)
-        select r)
+                        where cnt >= r.SentenceIndexStart
+                        where cnt <= r.SentenceIndexEnd
+                        where !res.ContainsKey(r.MetaLabel)
+                        select r)
         res.Add(r.MetaLabel, r.MetaValue);
 
       return res;
@@ -567,7 +568,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
     {
       text = CleanTextLine(text);
 
-      var words = text.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
+      var words = text.Split(Splitter.Space, StringSplitOptions.RemoveEmptyEntries);
       var res = new List<string>();
       var isValid = new List<bool>();
       var category = new List<string>();
@@ -647,7 +648,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
 
         if (word.Contains("@"))
         {
-          var parts = word.Split(new[] {"@"}, StringSplitOptions.RemoveEmptyEntries);
+          var parts = word.Split(Splitter.At, StringSplitOptions.RemoveEmptyEntries);
           if (parts.Length == 2)
           {
             word = parts[0];
@@ -740,13 +741,13 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClanChildes
       if (layerWord == null)
         return;
 
-      AddDocument("Wort", dguid, new[] {layerWord});
-      AddDocument("Lemma", dguid, new[] {layerLemma});
-      AddDocument("Lemma-Info", dguid, new[] {layerLemmaInfo});
-      AddDocument("POS", dguid, new[] {layerPos});
-      AddDocument("POS-Info", dguid, new[] {layerPosInfo});
-      AddDocument("POS-Person", dguid, new[] {layerPosPerson});
-      AddDocument("@-Kategorie", dguid, new[] {layerCategory});
+      AddDocument("Wort", dguid, new[] { layerWord });
+      AddDocument("Lemma", dguid, new[] { layerLemma });
+      AddDocument("Lemma-Info", dguid, new[] { layerLemmaInfo });
+      AddDocument("POS", dguid, new[] { layerPos });
+      AddDocument("POS-Info", dguid, new[] { layerPosInfo });
+      AddDocument("POS-Person", dguid, new[] { layerPosPerson });
+      AddDocument("@-Kategorie", dguid, new[] { layerCategory });
       AddDocumentMetadata(
         dguid,
         GenerateDictionary(

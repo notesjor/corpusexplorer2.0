@@ -11,6 +11,7 @@ using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Extern.Wiki.Wikipedia;
 using CorpusExplorer.Sdk.Extern.Wiki.Wiktionary.Model.Original;
 using CorpusExplorer.Sdk.Extern.Wiki.Wiktionary.Model.Parsed;
+using CorpusExplorer.Sdk.Helper;
 using Newtonsoft.Json;
 
 namespace CorpusExplorer.Sdk.Extern.Wiki.Wiktionary
@@ -148,7 +149,7 @@ namespace CorpusExplorer.Sdk.Extern.Wiki.Wiktionary
       var res = new List<string>();
       foreach (var line in lines)
         if (!string.IsNullOrWhiteSpace(line))
-          res.AddRange(line.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries));
+          res.AddRange(line.Split(Splitter.LineBreaks, StringSplitOptions.RemoveEmptyEntries));
       return res.ToArray();
     }
 
@@ -170,7 +171,7 @@ namespace CorpusExplorer.Sdk.Extern.Wiki.Wiktionary
         res.Lemma = nxt.Substring(0, idx).Trim();
 
         i++;
-        var spl = lines[i].Split(new[] { "|" }, StringSplitOptions.None); // extract the information from: === {{Wortart|Substantiv|Deutsch}}, {{n}} ===
+        var spl = lines[i].Split(Splitter.Pipe, StringSplitOptions.None); // extract the information from: === {{Wortart|Substantiv|Deutsch}}, {{n}} ===
         if (spl.Length > 1)
           res.POS = spl[1];
         if (spl.Length > 2 && spl[2].Contains(",")) // extract Genus-Information: Deutsch}}, {{n}} ===
@@ -187,7 +188,7 @@ namespace CorpusExplorer.Sdk.Extern.Wiki.Wiktionary
             continue;
 
           // extract diffrent Wordforms: |Partizip II=geregelt
-          spl = lines[i].Substring(1).Split(new[] { "=" }, StringSplitOptions.None);
+          spl = lines[i].Substring(1).Split(Splitter.Equal, StringSplitOptions.None);
           if (spl.Length == 2 && !spl[1].Contains("|"))
             res.Forms.Add(new Form { Label = spl[0], Token = spl[1] });
         }
@@ -394,7 +395,7 @@ namespace CorpusExplorer.Sdk.Extern.Wiki.Wiktionary
       return getFulltext
                ? new List<string>
                { _integratedWikiSyntaxCleanup.ExecuteInline(line.Replace("[", "").Replace("]", "").Trim()).Trim() }
-               : _integratedWikiSyntaxCleanup.ExecuteInline(line).Split(new[] { "," }, StringSplitOptions.None)
+               : _integratedWikiSyntaxCleanup.ExecuteInline(line).Split(Splitter.Comma, StringSplitOptions.None)
                                              .Select(x => x.Replace("[", "").Replace("]", "").Trim()).ToList();
     }
 
@@ -402,7 +403,7 @@ namespace CorpusExplorer.Sdk.Extern.Wiki.Wiktionary
 
     private static void ApplyHyphenation(ref Entry entry, string hyphenation)
     {
-      var spl = hyphenation.Split(new[] { "," }, StringSplitOptions.None);
+      var spl = hyphenation.Split(Splitter.Comma, StringSplitOptions.None);
       var vrs = new Dictionary<string, string>();
 
       foreach (var s in spl)

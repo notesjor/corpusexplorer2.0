@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
@@ -93,7 +94,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
         if(low.StartsWith("<"))
           continue;
 
-        var tokens = line.Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
+        var tokens = line.Split(Splitter.Tab, StringSplitOptions.RemoveEmptyEntries);
         for (var i = 0; i < tokens.Length; i++)
         {
           if (sent.Count == i)
@@ -160,7 +161,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
       try
       {
         var oldMeta = line.Replace("<text_", "").Replace("/>", "").Replace(">", "");
-        var split = oldMeta.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
+        var split = oldMeta.Split(Splitter.Space, StringSplitOptions.RemoveEmptyEntries).ToList();
 
         var label = split[0];
         

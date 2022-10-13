@@ -14,7 +14,7 @@ namespace CorpusExplorer.Sdk.Helper
                                                       object[] values)
     {
       var block = selection.CreateBlock<SelectionClusterBlock>();
-      var split = values[0].ToString().Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries).ToList();
+      var split = values[0].ToString().Split(Splitter.Semicolon, StringSplitOptions.RemoveEmptyEntries).ToList();
       if (split.Count < 1 || split.Count > 4)
         return null;
 

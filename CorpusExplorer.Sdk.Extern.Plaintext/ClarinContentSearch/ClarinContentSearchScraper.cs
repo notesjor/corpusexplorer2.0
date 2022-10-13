@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Extern.Plaintext.Abstract;
+using CorpusExplorer.Sdk.Helper;
 
 namespace CorpusExplorer.Sdk.Extern.Plaintext.ClarinContentSearch
 {
@@ -18,13 +19,14 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.ClarinContentSearch
 
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
-      var lines = FileIO.ReadText(file).Split(new[] {"\r\n", "\n"}, StringSplitOptions.RemoveEmptyEntries);
+      var lines = FileIO.ReadText(file).Split(Splitter.LineBreaks, StringSplitOptions.RemoveEmptyEntries);
 
       var res = new List<Dictionary<string, object>>();
+      var separator = new[] { Separator };
 
       for (var i = 1; i < lines.Length; i++)
       {
-        var cells = lines[i].Split(new[] {Separator}, StringSplitOptions.None);
+        var cells = lines[i].Split(separator, StringSplitOptions.None);
 
         res.Add(
           new Dictionary<string, object>

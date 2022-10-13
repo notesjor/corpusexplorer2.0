@@ -75,6 +75,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger
       }
     }
 
+    private static char[] separator = {',', ' ', '<', '>', '/'};
+
     private void ReadScriptConfiguration()
     {
       try
@@ -88,7 +90,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger
         if (string.IsNullOrEmpty(split[2]))
           return;
 
-        var phrases = split[2].Trim().Split(new[] {",", " ", "<", ">", "/"}, StringSplitOptions.RemoveEmptyEntries);
+        var phrases = split[2].Trim().Split(separator, StringSplitOptions.RemoveEmptyEntries);
         var phrase = AddRangeLayer("Phrase");
         foreach (var p in phrases)
         {

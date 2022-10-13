@@ -33,7 +33,6 @@
       this.clearPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
       this.btn_action = new Telerik.WinControls.UI.RadButton();
       this.lbl_label = new Telerik.WinControls.UI.RadLabel();
-      this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       this.radPanel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radRichTextEditor1)).BeginInit();
@@ -60,6 +59,7 @@
       this.radRichTextEditor1.BorderColor = System.Drawing.Color.White;
       this.radRichTextEditor1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.radRichTextEditor1.Font = new System.Drawing.Font("Segoe UI", 9F);
+      this.radRichTextEditor1.HorizontalScrollBarVisibility = Telerik.WinControls.RichTextEditor.UI.ScrollBarVisibility.Hidden;
       this.radRichTextEditor1.IsContextMenuEnabled = false;
       this.radRichTextEditor1.IsReadOnly = true;
       this.radRichTextEditor1.IsSelectionEnabled = false;
@@ -123,6 +123,5 @@
     private Telerik.WinControls.UI.RadButton btn_action;
     private ClearPanel clearPanel1;
     private Telerik.WinControls.UI.RadRichTextEditor radRichTextEditor1;
-    private Telerik.WinControls.Themes.TelerikMetroTouchTheme telerikMetroTouchTheme1;
   }
 }

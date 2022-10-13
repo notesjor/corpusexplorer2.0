@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>ImageBuilder_LINUX</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\CorpusExplorer.Installer.ImageBuilder\ImageBuilderViewModel.cs" Link="ImageBuilderViewModel.cs" />
+    <Compile Include="..\CorpusExplorer.Installer.ImageBuilder\Program.cs" Link="Program.cs" />
+    <Compile Include="..\CorpusExplorer.Sdk\Helper\Splitter.cs" Link="Splitter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SharpZipLib" Version="1.4.0" />
+  </ItemGroup>
+
+</Project>

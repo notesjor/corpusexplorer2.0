@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
+using System.Text;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model;
+using CorpusExplorer.Sdk.Utils.DataTableWriter;
 using CorpusExplorer.Sdk.View.Html.Interface;
 
 namespace CorpusExplorer.Sdk.View.Html
@@ -111,62 +110,19 @@ namespace CorpusExplorer.Sdk.View.Html
       return this;
     }
 
-    public IEasyWebBuilderLevel1 ReplaceScript(Selection selection)
+    private string ExecuteScript(Selection selection, string action, string[] arguments)
     {
-      var done = new HashSet<string>();
-      var html = FileIO.ReadText(IndexPath, Configuration.Encoding);
-      var first = 0;
+      var a = Configuration.GetConsoleAction(action);
+      if (a == null)
+        return "";
 
-      while (first > -1)
+      using (var ms = new MemoryStream())
       {
-        var last = html.IndexOf(End, first);
-        if (last == -1)
-          break;
+        var writer = new JsonTableWriter { OutputStream = ms };
+        a.Execute(selection, arguments, writer);
 
-        var key = html.Substring(first, last - first + End.Length);
-        var cnt = key.Substring(Start.Length, key.Length - Start.Length - End.Length);
-
-        if (!done.Contains(key))
-        {
-          var lines = cnt.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-          var result = string.Empty;
-          foreach (var line in lines)
-            result = ExecuteScript(line, selection);
-
-          done.Add(key);
-        }
-
-        first = html.IndexOf(Start, last + 1);
+        return Encoding.UTF8.GetString(ms.ToArray());
       }
-
-      return this;
-    }
-
-    private string ExecuteScript(string command, Selection selection)
-    {
-      throw new NotImplementedException();
-      /*
-      var process = new Process
-      {
-        StartInfo =
-        {
-          FileName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "cec.exe"),
-          Arguments = task.StartsWith("F:") ? task : $"F:JSON {task}",
-          CreateNoWindow = true,
-          UseShellExecute = false,
-          StandardOutputEncoding = Configuration.Encoding,
-          RedirectStandardOutput = true,
-          WindowStyle = ProcessWindowStyle.Hidden
-        }
-      };
-
-      process.Start();
-
-      var res = process.StandardOutput.ReadToEnd();
-      process.WaitForExit();
-
-      return res;
-      */
     }
 
     /// <summary>
@@ -175,8 +131,5 @@ namespace CorpusExplorer.Sdk.View.Html
     /// <returns>Path to Index-File</returns>
     public string Finalize()
       => IndexPath;
-
-    private const string End = "*/";
-    private const string Start = "/*CEC";
   }
 }

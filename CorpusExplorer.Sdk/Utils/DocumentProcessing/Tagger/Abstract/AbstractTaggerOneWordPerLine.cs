@@ -54,7 +54,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
     /// <value>The foundry layer information.</value>
     protected abstract string FoundryLayerInfo { get; }
 
-    protected virtual string TaggerFileSeparator => "\r\n<ENDOFCORPUSEXPLORERFILE>\r\n";
+    protected virtual string TaggerFileSeparator => "<ENDOFCORPUSEXPLORERFILE>";
 
     protected virtual string[] TaggerValueSeparator => new[] { "\t" };
 
@@ -127,7 +127,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
         gsl.Add((Guid)doc[_guidKey]);
 
         stb.Append(TextPreMergerCleanup(t, ref doc));
-        stb.Append(TaggerFileSeparator);
+        stb.Append($"{Environment.NewLine}{TaggerFileSeparator}{Environment.NewLine}");
       }
 
       string text;
@@ -194,7 +194,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
       var document = keys.ToDictionary(x => x, x => new List<int[]>());
       var values = keys.ToDictionary(x => x, x => 0);
 
-      var lines = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+      var lines = text.Split(Splitter.LineBreaks, StringSplitOptions.RemoveEmptyEntries);
       foreach (var line in lines)
       {
         var entries = line.Split(TaggerValueSeparator, StringSplitOptions.RemoveEmptyEntries);
@@ -273,6 +273,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
       var layerKeys = _layers.Select(x => x.Key).ToArray();
       // act definiert wieviele Tokens maximal pro Turn gewählt werden.
       var act = TaggerContentLengthMax;
+      // Statischer Separator
+      var separator = new[] { TaggerFileSeparator };
 
       while (Input.Count > 0)
       {
@@ -286,6 +288,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
         GetDocumentClusters(act);
 
         var count = InternQueue.Count;
+
         while (count > 0)
         {
           Parallel.For(
@@ -299,7 +302,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
 
                          // TreeTagger
                          var text = TextPostTaggerCleanup(ExecuteTagger(GenerateText(ref turn, out var guids)));
-                         var tmp = text.Split(new[] { TaggerFileSeparator }, StringSplitOptions.RemoveEmptyEntries);
+                         var tmp = text.Split(separator, StringSplitOptions.RemoveEmptyEntries);
                          // mkpt - maximal korrekt geparste texte
                          var correct = text.EndsWith(TaggerFileSeparator) ? tmp.Length : tmp.Length - 1;
 

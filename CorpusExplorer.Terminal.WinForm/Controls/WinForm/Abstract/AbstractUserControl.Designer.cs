@@ -38,6 +38,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Abstract
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.BackColor = System.Drawing.Color.White;
       resources.ApplyResources(this, "$this");
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.Name = "AbstractUserControl";
       this.ResumeLayout(false);
 

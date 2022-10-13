@@ -81,7 +81,7 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
       var selection = corpus.ToSelection().CreateTemporary(FilterQueries);
       CurrentCountToken += selection.CountToken;
       CurrentCountDocuments += selection.CountDocuments;
-      
+
       // metaDocs
       var dmeta = selection.DocumentMetadata;
       if (dmeta != null)
@@ -119,7 +119,7 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
         CorpusBuilder = builder ?? new CorpusBuilderWriteDirect()
       };
 
-      foreach (var corpus in corpora) 
+      foreach (var corpus in corpora)
         merger.Input(corpus);
 
       merger.Execute();

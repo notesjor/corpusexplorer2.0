@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Xml;
+using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.Exceptions;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.LoadStrategy;
-using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.LoadStrategy.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using HtmlAgilityPack;
 
@@ -20,6 +22,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
 
     public bool Debug { get; set; } = false;
     private object _lockDebug = new object();
+    public bool ReadTaxonomy { get; set; } = false;
+    public bool ReadLanguage { get; set; } = false;
+
     private List<Exception> _debug = new List<Exception>();
     public IEnumerable<Exception> DebugLog
     {
@@ -30,43 +35,51 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       }
     }
 
-    public AbstractLoadStrategy Strategy { get; set; } = new LoadStrategyFileStream();
-
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
       try
       {
-        using (var als = Strategy.Create(file, null))
+        using (var zip = new KorapZip(file))
         {
-          if (als == null)
-            return null;
-
-          var prefix = HasLeadingPathPoint(als.Entries) ? @"^\.\/" : @"^";
-          var corpusRegex = new Regex(prefix + @"[a-zA-Z0-9]*\/header\.xml");
-          var mainHeader = als.Entries.FirstOrDefault(x => corpusRegex.IsMatch(x));
-
-          if (string.IsNullOrWhiteSpace(mainHeader))
-            return null;
-
-          var header = GetZipHeader(file, als.GetEntry(mainHeader));
-          if (header == null)
-            return null;
-
-          var res = new List<Dictionary<string, object>>();
-          var dataRegex = new Regex(prefix + @"[a-zA-Z0-9]*\/[a-zA-Z0-9]*\/[a-zA-Z0-9]*\/data\.xml");
-          foreach (var tData in als.Entries.Where(x => dataRegex.IsMatch(x)))
+          try
           {
-            var text = GetText(file, als.GetEntry(tData));
-            if (string.IsNullOrEmpty(text))
-              continue;
+            var corpusRegex = new Regex(@"^[a-zA-Z0-9]*\/header\.xml$");
+            var mainHeader = zip.Entries.Single(x => corpusRegex.IsMatch(x));
 
-            var mpath = tData.Replace("data.xml", "header.xml");
-            var meta = GetMetadata(mpath, als.GetEntry(mpath), header);
-            meta.Add("Text", text);
-            res.Add(meta);
+            if (string.IsNullOrWhiteSpace(mainHeader))
+              return null;
+
+            var header = GetZipHeader(file, zip, mainHeader);
+            if (header == null)
+              return null;
+
+            var resLock = new object();
+            var res = new List<Dictionary<string, object>>();
+
+            var dataRegex = new Regex(@"^[a-zA-Z0-9]*\/[a-zA-Z0-9]*\/[a-zA-Z0-9]*\/data\.xml$");
+            var tDatas = zip.Entries.Where(x => dataRegex.IsMatch(x)).ToArray();
+
+            Parallel.ForEach(tDatas, Configuration.ParallelOptions, tData =>
+            {
+              var text = GetText(file, zip, tData);
+              if (string.IsNullOrEmpty(text))
+                return;
+
+              var meta = GetMetadata(zip, tData.Replace("data.xml", ""), header);
+              meta.Add("Text", text);
+              lock (resLock)
+                res.Add(meta);
+            });
+
+            return res;
           }
-
-          return res;
+          catch (Exception ex)
+          {
+            if (Debug)
+              lock (_lockDebug)
+                _debug.Add(new IdsException(file, "/", ex));
+            return null;
+          }
         }
       }
       catch (Exception ex)
@@ -79,17 +92,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       return null;
     }
 
-    private bool HasLeadingPathPoint(IEnumerable<string> entries)
-      => entries.Take(10).Any(x => x.StartsWith("."));
-
-    private string GetText(string path, Stream entry)
+    public string GetText(string path, KorapZip zip, string zipPath)
     {
       try
       {
-        var xml = new HtmlDocument();
-        xml.Load(entry, Encoding.UTF8);
-
-        return WebUtility.HtmlDecode(xml.DocumentNode.SelectSingleNode("//text").InnerText);
+        return zip.Read(zipPath).DocumentNode.SelectSingleNode("//text").InnerText;
       }
       catch (Exception ex)
       {
@@ -101,18 +108,14 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       }
     }
 
-    private Dictionary<string, object> GetMetadata(string path, Stream entry, Dictionary<string, object> corpusHeader)
+    public Dictionary<string, object> GetMetadata(KorapZip zip, string zipPath, Dictionary<string, object> corpusHeader)
     {
-      if (entry == null)
-        return new Dictionary<string, object>();
-
       var res = corpusHeader.ToDictionary(x => x.Key, x => x.Value);
-      res.Add("ZipPath", path.Replace("header.xml", ""));
+      res.Add("ZipPath", zipPath);
 
       try
       {
-        var xml = new HtmlDocument();
-        xml.Load(entry);
+        var xml = zip.Read(zipPath + "header.xml");
 
         var titleStmt = xml.DocumentNode.SelectSingleNode("//titlestmt");
         var sigle = titleStmt.SelectSingleNode("./textsigle");
@@ -129,7 +132,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       {
         if (Debug)
           lock (_lockDebug)
-            _debug.Add(new IdsException(path, "GetMetadata", ex));
+            _debug.Add(new IdsException(zipPath, "GetMetadata", ex));
       }
       return res;
     }
@@ -140,24 +143,25 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       {
         int y = -1, m = -1, d = -1;
 
-        foreach (var x in pubDates)
-        {
-          var type = x.GetAttributeValue("type", "");
-          switch (type)
+        if (pubDates != null)
+          foreach (var x in pubDates)
           {
-            case"year":
-              y = int.Parse(x.InnerHtml);
-              break;
-            case "month":
-              m = int.Parse(x.InnerHtml);
-              break;
-            case "day":
-              d = int.Parse(x.InnerHtml);
-              break;
+            var type = x.GetAttributeValue("type", "");
+            switch (type)
+            {
+              case "year":
+                y = int.Parse(x.InnerHtml);
+                break;
+              case "month":
+                m = int.Parse(x.InnerHtml);
+                break;
+              case "day":
+                d = int.Parse(x.InnerHtml);
+                break;
+            }
           }
-        }
 
-        if(y == -1 || m == -1 || d == -1)
+        if (y == -1 || m == -1 || d == -1)
           return DateTime.MinValue;
 
         return new DateTime(y, m, d);
@@ -168,39 +172,23 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       }
     }
 
-    private string GetSubCorpusName(string path, ZipArchiveEntry entry, ref object zipLock)
-    {
-      try
-      {
-        var xml = new HtmlDocument();
-        lock (zipLock)
-          xml.Load(entry.Open());
-
-        return xml.DocumentNode.SelectSingleNode("//d.title")?.InnerText;
-      }
-      catch (Exception ex)
-      {
-        if (Debug)
-          lock (_lockDebug)
-            _debug.Add(new IdsException(path, entry.FullName, ex));
-        return null;
-      }
-    }
-
-    private Dictionary<string, object> GetZipHeader(string path, Stream entry)
+    public Dictionary<string, object> GetZipHeader(string path, KorapZip zip, string zipPath)
     {
       Dictionary<string, object> res = null;
       try
       {
-        var xml = new HtmlDocument();
-        xml.Load(entry);
+        var xml = zip.Read(zipPath);
 
         res = new Dictionary<string, object>
         {
           {"Korpus", xml.DocumentNode.SelectSingleNode("//c.title")?.InnerText},
-          {"Sprache", BuildHeaderLanguageUsage(xml.DocumentNode.SelectNodes("//language"))},
-          {"Taxonomy", BuildHeaderTaxonomy(xml.DocumentNode.SelectNodes("//taxonomy/category/catdesc"))}
         };
+
+        if(ReadLanguage)
+          res.Add("Sprache", BuildHeaderLanguageUsage(xml.DocumentNode.SelectNodes("//language")));
+
+        if (ReadTaxonomy)
+          res.Add("Taxonomy", BuildHeaderTaxonomy(xml.DocumentNode.SelectNodes("//taxonomy/category/catdesc")));
       }
       catch (Exception ex)
       {

@@ -40,8 +40,16 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter =>
       new Dictionary<string, AbstractImporter>
       {
-        {"CLAN/Childes (*.cex)|*.cex", new ImporterClanChildes()},
-        { "Projekt: http://www.redewiedergabe.de/ (metadata.tsv)|metadata.tsv", new ImporterRedewiedergabe() }
+        {
+          "CLAN/Childes (*.cex)|*.cex", new ImporterClanChildes()
+        },
+        {
+          "Projekt: http://www.redewiedergabe.de/ (metadata.tsv)|metadata.tsv", new ImporterRedewiedergabe()
+        },
+        {
+          "Wortschatz Leipzig (*-sentences.txt)|*-sentences.txt",
+          new ImporterLeipzigerWortschatz()
+        }
       };
 
     /// <summary>
@@ -84,7 +92,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
           new EuroparlScraper()
         },
         {
-          "Deutscher Wortschatz [Leipzig](*.sql)|*.sql",
+          "Wortschatz Leipzig (*-sentences.txt)|*-sentences.txt",
           new LeipzigerWortschatzScraper()
         }
       };

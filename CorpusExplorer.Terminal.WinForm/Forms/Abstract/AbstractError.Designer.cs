@@ -61,6 +61,7 @@
       // AbstractError
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       resources.ApplyResources(this, "$this");
       this.Controls.Add(this.radLabel2);
       this.Controls.Add(this.radLabel1);

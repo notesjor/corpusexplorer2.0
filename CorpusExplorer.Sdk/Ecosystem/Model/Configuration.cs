@@ -71,6 +71,12 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// </summary>
     public static IEnumerable<AbstractAdditionalTagger> AddonAdditionalTaggers => _addonAdditionalTaggers;
 
+    public static void AddonAdditionalTaggersAdd(IEnumerable<AbstractAdditionalTagger> list)
+    {
+      if (list != null)
+        _addonAdditionalTaggers.AddRange(list);
+    }
+
     /// <summary>
     ///   Verfügbare Backends
     /// </summary>
@@ -88,7 +94,20 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       }
     }
 
+    public static void AddonBackendsAdd(IEnumerable<KeyValuePair<string, AbstractCorpusBuilder>> list)
+    {
+      if (list != null)
+        foreach (var x in list.Where(x => !_addonImporters.ContainsKey(x.Key)))
+          _addonBackends.Add(x.Key, x.Value);
+    }
+
     public static IEnumerable<IAction> AddonConsoleActions => _addonConsoleActions;
+
+    public static void AddonConsoleActionsAdd(IEnumerable<IAction> list)
+    {
+      if (list != null) 
+        _addonConsoleActions.AddRange(list);
+    }
 
     /// <summary>
     ///   Zusätzliche Crawler
@@ -107,6 +126,13 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       }
     }
 
+    public static void AddonExportersAdd(IEnumerable<KeyValuePair<string, AbstractExporter>> list)
+    {
+      if (list != null)
+        foreach (var x in list.Where(x => !_addonImporters.ContainsKey(x.Key)))
+          _addonExporters.Add(x.Key, x.Value);
+    }
+
     /// <summary>
     ///   Liste mit Scrapern die lokale Dateien bestehender Korpora importieren (z. B. XML, EXMERaLDA).
     ///   Für Dateien MIT Annotation.
@@ -121,6 +147,20 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
         list.Insert(0, cec6);
         return list;
       }
+    }
+
+    public static void AddonImportersAdd(IEnumerable<KeyValuePair<string, AbstractImporter>> list)
+    {
+      if (list != null)
+        foreach (var x in list.Where(x => !_addonImporters.ContainsKey(x.Key)))
+          _addonImporters.Add(x.Key, x.Value);
+    }
+
+    public static void AddonTableWriterAdd(IEnumerable<KeyValuePair<string, AbstractTableWriter>> list)
+    {
+      if (list != null)
+        foreach (var x in list.Where(x => !_addonImporters.ContainsKey(x.Key)))
+          _addonTableWriters.Add(x.Key, x.Value);
     }
 
     public static AbstractTableWriter GetTableWriter(string tableWriterTag)
@@ -186,6 +226,13 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     public static IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers =>
       _addonScrapers.OrderBy(x => x.Key);
 
+    public static void AddonScrapersAdd(IEnumerable<KeyValuePair<string, AbstractScraper>> list)
+    {
+      if (list != null)
+        foreach (var x in list.Where(x => !_addonImporters.ContainsKey(x.Key)))
+          _addonScrapers.Add(x.Key, x.Value);
+    }
+
     /// <summary>
     /// Export für Analysedaten im Tabellenformat
     /// </summary>
@@ -196,6 +243,12 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     ///   Tagger
     /// </summary>
     public static IEnumerable<AbstractTagger> AddonTaggers => _addonTaggers;
+
+    public static void AddonTaggersAdd(IEnumerable<AbstractTagger> list)
+    {
+      if (list != null)
+        _addonTaggers.AddRange(list);
+    }
 
     /// <summary>
     /// Gets the layer display name localization.
@@ -212,7 +265,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     public static void LoadLocalizations(string directory)
     {
       var path = Path.Combine(directory, "layer.local");
-      if(File.Exists(path))
+      if (File.Exists(path))
         LayerDisplayNameLocalization.LoadLocalization(path);
       path = Path.Combine(directory, "meta.local");
       if (File.Exists(path))
@@ -305,7 +358,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     public static string MyProjects { get; private set; }
 
     public static ParallelOptions ParallelOptions { get; set; } =
-      new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount * 2 };
+      new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount };
 
     public static bool ProtectMemoryOverflow
     {

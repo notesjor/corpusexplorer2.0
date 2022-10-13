@@ -130,6 +130,11 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.AdditionalTaggerWra
       throw new NotImplementedException();
     }
 
+    public override void Dispose()
+    {
+      throw new NotImplementedException();
+    }
+
     public override IEnumerable<AbstractLayerAdapter> Layers { get; }
     public override IEnumerable<string> LayerUniqueDisplaynames { get; }
     public override IEnumerable<string> LayerDisplaynames { get; }

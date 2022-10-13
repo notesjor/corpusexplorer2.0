@@ -33,7 +33,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Special
         tagger.Input.Enqueue(
                              new Dictionary<string, object>
                              {
-                               {"Text", string.Join("\r\n", stream)},
+                               {"Text", string.Join(Environment.NewLine, stream)},
                                {"GUID", guid}
                              });
         docs.Add(guid, stream.Length);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 
@@ -38,7 +39,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       var str = sentence.Substring(0, matches[0].Index).Trim();
       return string.IsNullOrWhiteSpace(str)
                 ? 0
-                : str.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries).Length;
+                : str.Split(Splitter.Space, StringSplitOptions.RemoveEmptyEntries).Length;
     }
 
     protected override IEnumerable<int> GetSentencesCall(IEnumerable<string> sentences)
@@ -60,16 +61,12 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       if (matches.Count == 0)
         return null;
 
-      var res = new List<int>();
-      foreach (Match match in matches)
-      {
-        var str = sentence.Substring(0, match.Index).Trim();
-        res.Add(string.IsNullOrWhiteSpace(str)
-                  ? 0
-                  : str.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries).Length);
-      }
-
-      return res;
+      return (from Match match in matches
+              select sentence.Substring(0, match.Index).Trim()
+              into str
+              select string.IsNullOrWhiteSpace(str)
+                ? 0
+                : str.Split(Splitter.Space, StringSplitOptions.RemoveEmptyEntries).Length).ToList();
     }
 
     protected override bool ValidateCall(string document)

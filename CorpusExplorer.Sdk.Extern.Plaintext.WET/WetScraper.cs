@@ -189,7 +189,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET
       var buffer = new byte[fs.Length];
       fs.Read(buffer, 0, buffer.Length);
       return Configuration.Encoding.GetString(buffer)
-        .Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+        .Split(Splitter.LineBreaks, StringSplitOptions.RemoveEmptyEntries);
     }
   }
 }

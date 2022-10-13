@@ -128,13 +128,16 @@
   <data name="radScrollablePanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 5, 5, 5</value>
   </data>
+  <data name="radScrollablePanel1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
   <data name="btn_online.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 11pt</value>
   </data>
   <data name="btn_online.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DgAACw4BQL7hQQAAB4dJREFUaEPVmWlQllUUx1PTFpusZpqpyQ/N1Kdm6kPfm770pWZaLce0LHXUNKtx
+        DAAACwwBP0AiyAAAB4dJREFUaEPVmWlQllUUx1PTFpusZpqpyQ/N1Kdm6kPfm770pWZaLce0LHXUNKtx
         JxdizC3NBXdxG0QQ3BAJBSIVUBQFcYNUJEVDUFmFl5336X+u917vc5/zPoDaDJ6Z38A953/u8ix3ed7H
         HMd5pGGdD8pH0RN7gWfBK5IBoDenfVBYZ3dB514HE8B2cBY0AseiGRSCnWAieIOrq7uwzq6ADvQH40E+
         sDvbVWhAk8BzXBtdgXX6gcb6gimgEnCduh/qQAR4imvTD9YZCjTwDvgbcJ1wMTN1dfWSrJiqpVkx1eFp
@@ -173,10 +176,10 @@
     <value>MiddleCenter</value>
   </data>
   <data name="btn_online.Location" type="System.Drawing.Point, System.Drawing">
-    <value>417, 6</value>
+    <value>411, 6</value>
   </data>
   <data name="btn_online.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>5, 5, 5, 5</value>
   </data>
   <data name="btn_online.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 100</value>
@@ -195,7 +198,7 @@
     <value>btn_online</value>
   </data>
   <data name="&gt;&gt;btn_online.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2022.2.510.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2022.2.622.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_online.Parent" xml:space="preserve">
     <value>radScrollablePanel1.PanelContainer</value>
@@ -230,10 +233,10 @@
     <value>MiddleCenter</value>
   </data>
   <data name="btn_handbook.Location" type="System.Drawing.Point, System.Drawing">
-    <value>280, 6</value>
+    <value>276, 6</value>
   </data>
   <data name="btn_handbook.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>5, 5, 5, 5</value>
   </data>
   <data name="btn_handbook.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 100</value>
@@ -251,7 +254,7 @@
     <value>btn_handbook</value>
   </data>
   <data name="&gt;&gt;btn_handbook.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2022.2.510.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2022.2.622.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_handbook.Parent" xml:space="preserve">
     <value>radScrollablePanel1.PanelContainer</value>
@@ -283,10 +286,10 @@
     <value>MiddleCenter</value>
   </data>
   <data name="btn_handson.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 6</value>
+    <value>141, 6</value>
   </data>
   <data name="btn_handson.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>5, 5, 5, 5</value>
   </data>
   <data name="btn_handson.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 100</value>
@@ -304,7 +307,7 @@
     <value>btn_handson</value>
   </data>
   <data name="&gt;&gt;btn_handson.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2022.2.510.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2022.2.622.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_handson.Parent" xml:space="preserve">
     <value>radScrollablePanel1.PanelContainer</value>
@@ -339,7 +342,7 @@
     <value>6, 6</value>
   </data>
   <data name="btn_video.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 6, 6</value>
+    <value>5, 5, 5, 5</value>
   </data>
   <data name="btn_video.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 100</value>
@@ -357,7 +360,7 @@
     <value>btn_video</value>
   </data>
   <data name="&gt;&gt;btn_video.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2022.2.510.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2022.2.622.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_video.Parent" xml:space="preserve">
     <value>radScrollablePanel1.PanelContainer</value>
@@ -375,7 +378,7 @@
     <value>radScrollablePanel1.PanelContainer</value>
   </data>
   <data name="&gt;&gt;radScrollablePanel1.PanelContainer.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadScrollablePanelContainer, Telerik.WinControls.UI, Version=2022.2.510.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadScrollablePanelContainer, Telerik.WinControls.UI, Version=2022.2.622.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radScrollablePanel1.PanelContainer.Parent" xml:space="preserve">
     <value>radScrollablePanel1</value>
@@ -393,7 +396,7 @@
     <value>radScrollablePanel1</value>
   </data>
   <data name="&gt;&gt;radScrollablePanel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadScrollablePanel, Telerik.WinControls.UI, Version=2022.2.510.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadScrollablePanel, Telerik.WinControls.UI, Version=2022.2.622.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radScrollablePanel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -426,7 +429,7 @@
     <value>&lt;html&gt;&lt;span style="font-family: segoe ui light; font-size:14.5pt"&gt;{HeaderHead}&lt;/span&gt;&lt;br/&gt;&lt;span style="font-family: segoe ui; font-size:11pt"&gt;{HeaderDescription}&lt;/span&gt;&lt;/html&gt;</value>
   </data>
   <data name="header1.TextAlignment" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopLeft</value>
+    <value>BottomLeft</value>
   </data>
   <data name="&gt;&gt;header1.Name" xml:space="preserve">
     <value>header1</value>

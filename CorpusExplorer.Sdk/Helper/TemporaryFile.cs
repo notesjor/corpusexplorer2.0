@@ -14,7 +14,7 @@ namespace CorpusExplorer.Sdk.Helper
       if (!Directory.Exists(directory))
         Directory.CreateDirectory(directory);
 
-      Path = System.IO.Path.Combine(directory, Guid.NewGuid().ToString("N") + fileExtension);
+      Path = System.IO.Path.Combine(directory, Guid.NewGuid().ToString("N") + fileExtension).Replace("\\", "/");
     }
 
     public string Path { get; }

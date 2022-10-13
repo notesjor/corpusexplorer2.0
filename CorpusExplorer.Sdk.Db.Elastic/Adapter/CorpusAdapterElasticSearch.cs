@@ -396,6 +396,12 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
       _db.Update(_corpus);
     }
 
+    public override void Dispose()
+    {
+      this._corpus = null;
+      this._db = null;
+    }
+
     public override bool SetDocumentLayerValueMask(
       Guid documentGuid,
       Guid layerGuid,

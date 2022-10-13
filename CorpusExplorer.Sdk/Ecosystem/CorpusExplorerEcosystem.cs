@@ -34,12 +34,10 @@ namespace CorpusExplorer.Sdk.Ecosystem
       SslFix();
       Configuration.Initialize(InitialOptionsEnum.MinimalAnd3rdParty, alternative3rdPartyPath: alternative3rdPartyPath);
       Configuration.Cache = cacheStrategy ?? new CacheStrategyCurrentSelection();
-      var res = new TerminalController();
-      res.ProjectNew();
+      CurrentTerminalController = new TerminalController();
+      CurrentTerminalController.ProjectNew();
 
-      CurrentTerminalController = res;
-
-      return res;
+      return CurrentTerminalController;
     }
 
     /// <summary>
@@ -50,23 +48,38 @@ namespace CorpusExplorer.Sdk.Ecosystem
     ///   Erlaubt es das Block-Caching-Verhalten zu ändern. Für InitializeMinimal(null) ist
     ///   CacheStrategyDisableCaching festgelegt.
     /// </param>
-    /// <param name="alternative3rdPartyPath">
-    ///   Normalerweise wird nur im Pfad der aktuellen EXEcutable nach 3rd-Party-Addons gesucht.
-    ///   Mit diesem Parameter kann ein anderer Ordner als Suchpfad angegeben werden.
-    /// </param>
     /// <returns>Project</returns>
-    public static Project InitializeMinimal(AbstractCacheStrategy cacheStrategy = null,
-                                            string alternative3rdPartyPath = null)
+    public static Project InitializeMinimal(AbstractCacheStrategy cacheStrategy = null)
     {
       SslFix();
-      Configuration.Initialize(InitialOptionsEnum.Minimal, alternative3rdPartyPath: alternative3rdPartyPath);
+      Configuration.Initialize(InitialOptionsEnum.Minimal);
       Configuration.Cache = cacheStrategy ?? new CacheStrategyDisableCaching();
+      
+      CurrentTerminalController = null;
       var res = new TerminalController();
       res.ProjectNew();
 
-      CurrentTerminalController = CurrentTerminalController;
-
       return res.Project;
+    }
+
+    /// <summary>
+    ///   Initialisiert ein minimales CorpusExplorer-Ökosystem.
+    ///   Erlaubt keine Projektverwaltung
+    /// </summary>
+    /// <param name="cacheStrategy">
+    ///   Erlaubt es das Block-Caching-Verhalten zu ändern. Für InitializeMinimal(null) ist
+    ///   CacheStrategyDisableCaching festgelegt.
+    /// </param>
+    /// <returns>Project</returns>
+    public static TerminalController InitializeMinimalTerminal(AbstractCacheStrategy cacheStrategy = null)
+    {
+      SslFix();
+      Configuration.Initialize(InitialOptionsEnum.Minimal);
+      Configuration.Cache = cacheStrategy ?? new CacheStrategyDisableCaching();
+      CurrentTerminalController = new TerminalController();
+      CurrentTerminalController.ProjectNew();
+
+      return CurrentTerminalController;
     }
 
     private static void SslFix()

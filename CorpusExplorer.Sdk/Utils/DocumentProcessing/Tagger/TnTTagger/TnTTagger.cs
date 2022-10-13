@@ -100,7 +100,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TnTTagger
       var lines =
         new Queue<string>(
                           text.Replace("\r>", ">")
-                              .Split(new[] {"\r\n", "\n\r", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries));
+                              .Split(Splitter.LineBreaks, StringSplitOptions.RemoveEmptyEntries));
       var clean = new List<string>();
       var level = 0;
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using CorpusExplorer.Sdk.Extern.Xml.Catma._5._0.Parser.Abstract;
+using CorpusExplorer.Sdk.Helper;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Catma._5._0.Parser
 {
@@ -18,7 +19,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Catma._5._0.Parser
 
       var fn = target.Substring(0, ix);
       var rg = target.Substring(ix + 1).Replace("char=", string.Empty)
-        .Split(new[] {","}, StringSplitOptions.RemoveEmptyEntries);
+        .Split(Splitter.Comma, StringSplitOptions.RemoveEmptyEntries);
       return rg.Length != 2 ? null : new Tuple<string, int, int>(fn, int.Parse(rg[0]), int.Parse(rg[1]));
     }
   }

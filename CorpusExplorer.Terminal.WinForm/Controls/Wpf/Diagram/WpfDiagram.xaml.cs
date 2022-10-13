@@ -273,7 +273,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram
         VerticalAlignment = VerticalAlignment.Stretch,
         Orientation = System.Windows.Controls.Orientation.Horizontal
       };
-      var split = node.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
+      var split = node.Split(Sdk.Helper.Splitter.Space, StringSplitOptions.RemoveEmptyEntries);
       foreach (var s in split)
       {
         var highlight = s.StartsWith("<strong>");

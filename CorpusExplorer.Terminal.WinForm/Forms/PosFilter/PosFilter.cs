@@ -73,6 +73,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
       }
     }
 
+    private static char[] _separator =  { ';', ' ', '\n', '\r' };
+
     public CorrespondingLayerValueFilterViewModel Result
     {
       get
@@ -85,7 +87,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.SelectLayer
           Selection = _selection,
           Layer1Displayname = _layer1Displayname,
           Layer2Displayname = layerSettings1.ResultSelectedLayer,
-          Layer2ValueFilters = new HashSet<string>(txt_results.Text.Split(new[] { ";", " ", "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries)),
+          Layer2ValueFilters = new HashSet<string>(txt_results.Text.Split(_separator, StringSplitOptions.RemoveEmptyEntries)),
           AnyMatch = !chk_all.Checked
         };
         res.Execute();

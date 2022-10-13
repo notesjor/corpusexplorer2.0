@@ -38,7 +38,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.KleineAnfrageDe
             if (line == @"\.") // wurden alle Daten gelesen, dann brich ab.
               break;
 
-            var d = line.Split(new[] {"\t"}, StringSplitOptions.RemoveEmptyEntries);
+            var d = line.Split(Splitter.Tab, StringSplitOptions.RemoveEmptyEntries);
 
             res.Add(new Dictionary<string, object>
             {

@@ -4,6 +4,7 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
@@ -192,7 +193,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
                     Inverse = false,
                     LayerDisplayname = drop_values.SelectedValue.ToString(),
                     LayerQueries =
-                      parent[Resources.Muster].ToString().Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)
+                      parent[Resources.Muster].ToString().Split(Splitter.Space, StringSplitOptions.RemoveEmptyEntries)
                   });
       vm.Execute();
 

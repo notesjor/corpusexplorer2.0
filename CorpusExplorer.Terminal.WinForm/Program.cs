@@ -14,9 +14,9 @@ using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem;
 using CorpusExplorer.Terminal.WinForm.Forms.Dashboard;
 using CorpusExplorer.Terminal.WinForm.Forms.Error;
-using CorpusExplorer.Terminal.WinForm.Forms.Insight;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.Helper;
+using Telerik.WinControls;
 
 #endregion
 
@@ -30,12 +30,9 @@ namespace CorpusExplorer.Terminal.WinForm
     private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
     {
       InMemoryErrorConsole.Log(e.Exception);
-      InMemoryErrorConsole.SendAppCrash(e.Exception);
-      if (InMemoryErrorConsole.ShowErrorConsoleOnAppCrash)
-      {
-        var form = new ErrorConsole();
-        form.ShowDialog();
-      }
+
+      var form = new ErrorConsole();
+      form.ShowDialog();
 
       InMemoryErrorConsole.Clear();
     }
@@ -47,6 +44,7 @@ namespace CorpusExplorer.Terminal.WinForm
     private static void Main(params string[] args)
     {
       SetProcessDpiAwareness(_Process_DPI_Awareness.Process_System_DPI_Aware);
+      RadControl.EnableRadAutoScale = false;
 
       ChangeLanguage(args);
 
@@ -61,19 +59,6 @@ namespace CorpusExplorer.Terminal.WinForm
       }
       Application.ThreadException += Application_ThreadException;
 
-      try
-      {
-        if (InsightController.AskForPermission)
-        {
-          var insightForm = new ApplicationInsight();
-          insightForm.ShowDialog();
-        }
-      }
-      catch
-      {
-        // ignore
-      }
-
       if (AppQuickMode(args))
         return;
 
@@ -86,11 +71,9 @@ namespace CorpusExplorer.Terminal.WinForm
       catch (Exception ex)
       {
         InMemoryErrorConsole.Log(ex);
-        if (InMemoryErrorConsole.ShowErrorConsoleOnAppCrash)
-        {
-          var form = new ErrorConsole();
-          form.ShowDialog();
-        }
+
+        var form = new ErrorConsole();
+        form.ShowDialog();
       }
 
       try

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Helper;
 
 namespace CorpusExplorer.Sdk.Extern.SentimentDetection.Model
 {
@@ -37,7 +38,7 @@ namespace CorpusExplorer.Sdk.Extern.SentimentDetection.Model
           if (string.IsNullOrEmpty(line))
             continue;
 
-          var splits = line.Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
+          var splits = line.Split(Splitter.Tab, StringSplitOptions.RemoveEmptyEntries);
           if (splits.Length != 3)
             continue;
           if (!double.TryParse(splits[2], out var val))

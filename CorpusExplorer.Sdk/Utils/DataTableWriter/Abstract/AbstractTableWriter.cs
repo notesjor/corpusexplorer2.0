@@ -90,7 +90,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract
     /// </summary>
     protected abstract void WriteFooter();
 
-    protected void WriteOutput(string line)
+    protected virtual void WriteOutput(string line)
     {
       var buffer = Configuration.Encoding.GetBytes(line.Replace("&#", "#"));
       OutputStream.Write(buffer, 0, buffer.Length);

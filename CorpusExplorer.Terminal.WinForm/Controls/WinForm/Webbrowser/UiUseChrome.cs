@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CefSharp;
 using CefSharp.DevTools.Page;
+using CefSharp.EasyAnyCPU;
 using CefSharp.WinForms;
 using CorpusExplorer.Terminal.WinForm.Properties;
 

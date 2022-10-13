@@ -53,7 +53,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.RawText
         layerState.AddCompleteDocument(dsel, ndoc);
       }
 
-      return new[] {layerState};
+      return new[] { layerState };
     }
 
     protected override void Initialize()
@@ -62,7 +62,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.RawText
 
       // Rufe Kopfdaten ab
       var head =
-        lines[0].Split(new[] {ValueSeparator}, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToArray();
+        lines[0].Split(new[] { ValueSeparator }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToArray();
       if (head.Length != 2)
         return;
 
@@ -71,10 +71,12 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.RawText
 
       // Ermittel Werte
       _values = new Dictionary<string, string>();
+      var separator = new[] { ValueSeparator };
+
       for (var i = 1; i < lines.Length; i++)
       {
         var items =
-          lines[i].Split(new[] {ValueSeparator}, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToArray();
+          lines[i].Split(separator, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToArray();
         if (!_values.ContainsKey(items[0]))
           _values.Add(items[0], items[1]);
       }

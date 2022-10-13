@@ -6,7 +6,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model.Abstract
 {
   public abstract class AbstractLayerState : IDisposable
   {
-    protected readonly object CacheLock = new object();
+    private object _cacheLock = new object();
 
     protected AbstractLayerState(string displayname)
     {
@@ -65,7 +65,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model.Abstract
 
     protected int RequestIndex(string data)
     {
-      lock (CacheLock)
+      lock (_cacheLock)
       {
         if (Cache.ContainsKey(data))
           return Cache[data];

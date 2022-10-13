@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
@@ -57,7 +58,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
                            var q = wordBag1.ResultQueries.First();
                            var bag = new List<string> {q};
                            bag.AddRange(x[Resources.Label]
-                                       .ToString().Split(new[] {", "}, StringSplitOptions.RemoveEmptyEntries));
+                                       .ToString()
+                                       .Split(Splitter.Comma, StringSplitOptions.RemoveEmptyEntries)
+                                       .Select(y=>y.Trim()));
 
                            return new FilterQuerySingleLayerFirstAndAnyOtherMatch
                            {
@@ -73,7 +76,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Disambigution
                            var bag = new List<string> {qs[0]};
                            var other = x[Resources.Label]
                                       .ToString()
-                                      .Split(new[] {", "}, StringSplitOptions.RemoveEmptyEntries);
+                                      .Split(Splitter.Comma, StringSplitOptions.RemoveEmptyEntries)
+                                      .Select(y=>y.Trim());
                            bag.AddRange(other);
 
                            var or = new List<AbstractFilterQuery>();

@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
+using CorpusExplorer.Sdk.ViewModel.Interfaces;
 
 namespace CorpusExplorer.Sdk.ViewModel
 {
-  public class ValidateSelectionIntegrityViewModel : AbstractViewModel
+  public class ValidateSelectionIntegrityViewModel : AbstractViewModel, IProvideDataTable
   {
     public Selection CleanSelection =>
       Selection.Project.CreateSelection(ValidDocumentGuids, $"{Selection.Displayname}_(VALID)");
@@ -52,6 +54,29 @@ namespace CorpusExplorer.Sdk.ViewModel
     protected override bool Validate()
     {
       return true;
+    }
+
+    public DataTable GetDataTable()
+    {
+      var dt = new DataTable();
+
+      dt.Columns.Add("Test", typeof(string));
+      dt.Columns.Add("Result", typeof(string));
+      dt.Columns.Add("Affected", typeof(long));
+      dt.Columns.Add("Unit", typeof(string));
+
+      dt.BeginLoadData();
+
+      dt.Rows.Add("Invalid corpora", InvalidCorpusGuids.Count == 0, InvalidCorpusGuids.Count, "Corpora");
+      dt.Rows.Add("Empty documents", EmptyDocumentGuids.Count == 0, EmptyDocumentGuids.Count, "Documents");
+      dt.Rows.Add("Documents with different layers", NoLayerMatchingDocumentGuids.Count == 0, NoLayerMatchingDocumentGuids.Count, "Documents");
+      dt.Rows.Add("Documents without sentences", SentenceErrorDocumentGuids.Count == 0, SentenceErrorDocumentGuids.Count, "Documents");
+      dt.Rows.Add("Invalid documents", "-TOTAL-", Selection.CountDocuments - ValidDocumentGuids.Count, "Documents");
+      dt.Rows.Add("Valid documents", "-TOTAL-", ValidDocumentGuids.Count, "Documents");
+
+      dt.EndLoadData();
+
+      return dt;
     }
   }
 }

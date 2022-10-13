@@ -11,5 +11,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.CorpusExplorerV6
     {
       return new[] {CorpusAdapterWriteDirect.Create(importFilePath)};
     }
+
+    public override bool HasStaticGuids => true;
   }
 }

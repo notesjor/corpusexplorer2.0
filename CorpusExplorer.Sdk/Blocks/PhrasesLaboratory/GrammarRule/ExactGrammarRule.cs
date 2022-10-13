@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks.PhrasesLaboratory.GrammarRule.Abstract;
+using CorpusExplorer.Sdk.Helper;
 
 #endregion
 
@@ -32,7 +33,7 @@ namespace CorpusExplorer.Sdk.Blocks.PhrasesLaboratory.GrammarRule
       set
       {
         _body = value;
-        _matches = _body.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+        _matches = _body.Split(Splitter.Space, StringSplitOptions.RemoveEmptyEntries);
         _isRecursiv = _matches.Any(match => match == Label);
       }
     }

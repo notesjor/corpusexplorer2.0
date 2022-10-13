@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Helper;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017
@@ -183,7 +184,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017
       return
         dspin.TextCorpus.sentences.Select(
             sentence =>
-              sentence.tokenIDs.Split(new[] {" ", "\t", "\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries))
+              sentence.tokenIDs.Split(Splitter.TabSpaceAndLineBreaks, StringSplitOptions.RemoveEmptyEntries))
           .ToArray();
     }
 

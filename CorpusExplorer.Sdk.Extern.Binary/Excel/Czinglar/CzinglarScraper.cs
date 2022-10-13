@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Extern.Binary.Abstract;
 using CorpusExplorer.Sdk.Extern.Binary.Excel.Universal.Reader;
+using CorpusExplorer.Sdk.Helper;
 
 #endregion
 
@@ -16,7 +17,7 @@ namespace CorpusExplorer.Sdk.Extern.Binary.Excel.Czinglar
     public override string DisplayName => "Czinglar-Excel";
 
     protected override AbstractGenericDataReader<Dictionary<string, string>> DataReader =>
-      new ExcelUniversalDataReader(new[] {"Utterance_ID", "Person", "Utterance_cha", "Child_age", "Situation"});
+      new ExcelUniversalDataReader(new[] { "Utterance_ID", "Person", "Utterance_cha", "Child_age", "Situation" });
 
     protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(
       IEnumerable<Dictionary<string, string>> model)
@@ -37,7 +38,7 @@ namespace CorpusExplorer.Sdk.Extern.Binary.Excel.Czinglar
             {"Id", key},
             {"Person", x["Person"]},
             {"Text", x["Utterance_cha"]},
-            {"Alter", x["Child_age"].Split(new[] {";"}, StringSplitOptions.None).FirstOrDefault()},
+            {"Alter", x["Child_age"].Split(Splitter.Semicolon, StringSplitOptions.None).FirstOrDefault()},
             {"Situation", x["Situation"]}
           });
       }

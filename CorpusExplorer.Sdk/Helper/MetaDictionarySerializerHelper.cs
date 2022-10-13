@@ -30,7 +30,7 @@ namespace CorpusExplorer.Sdk.Helper
       if (DeserializeInt32(ms) != 400)
         return null;
       var key = DeserializeString(ms);
-
+      
       while (key != null)
       {
         var type = DeserializeInt32(ms);

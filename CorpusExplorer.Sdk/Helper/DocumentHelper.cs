@@ -104,7 +104,7 @@ namespace CorpusExplorer.Sdk.Helper
     /// Wandelt ein Snippet in einen String um und fügt der Ausgabe ein Highlight hinzu.
     /// </summary>
     /// <param name="document">Dokument oder Snippet</param>
-    /// <param name="sentenceSeparator">Wie sollen Sätze separiert werden?</param>
+    /// <param name="sentenceSeparator">Wie sollen Sätze separiert werden? - Wenn null, dann nutze Systemstandard</param>
     /// <param name="tokenSeparator">Wie sollen Token separiert werden?</param>
     /// <param name="highlight">Wort die gehighlighted werden.</param>
     /// <param name="highlightStart">Highlight Start-Tag</param>
@@ -112,8 +112,11 @@ namespace CorpusExplorer.Sdk.Helper
     /// <returns></returns>
     public static string ReduceDocumentToText(this IEnumerable<IEnumerable<string>> document, IEnumerable<string> highlight,
                                               string highlightStart = "<strong>", string highlightEnd = "</strong>",
-                                              string sentenceSeparator = "\r\n", string tokenSeparator = " ")
+                                              string sentenceSeparator = null, string tokenSeparator = " ")
     {
+      if (sentenceSeparator == null)
+        sentenceSeparator = Environment.NewLine;
+
       var h = new HashSet<string>(highlight);
       return string.Join(sentenceSeparator, document.Select(s => string.Join(tokenSeparator, s.Select(w => h.Contains(w) ? $"{highlightStart}{w}{highlightEnd}" : w))));
     }
@@ -134,12 +137,15 @@ namespace CorpusExplorer.Sdk.Helper
     /// Wandelt ein Snippet in einen String um.
     /// </summary>
     /// <param name="document">Dokument oder Snippet</param>
-    /// <param name="sentenceSeparator">Wie sollen Sätze separiert werden?</param>
+    /// <param name="sentenceSeparator">Wie sollen Sätze separiert werden? - Wenn null, nutze Systemstandard</param>
     /// <param name="tokenSeparator">Wie sollen Token separiert werden?</param>
     /// <returns></returns>
     public static string ReduceDocumentToText(this IEnumerable<IEnumerable<string>> document,
-                                              string sentenceSeparator = "\r\n", string tokenSeparator = " ")
+                                              string sentenceSeparator = null, string tokenSeparator = " ")
     {
+      if (sentenceSeparator == null)
+        sentenceSeparator = Environment.NewLine;
+
       return string.Join(sentenceSeparator, document.Select(s => string.Join(tokenSeparator, s)));
     }
 
@@ -189,6 +195,8 @@ namespace CorpusExplorer.Sdk.Helper
         from = 0;
       if (to == -1)
         to = text.Length;
+      if (to == 0)
+        return "";
 
       var list = new List<string>();
       for (var i = from; i < to; i++)

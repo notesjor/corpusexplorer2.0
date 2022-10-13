@@ -19,7 +19,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -117,8 +117,8 @@
     <Reference Include="Polenter.SharpSerializer, Version=3.0.2.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.2\lib\net452\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=6.10.10.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.10.10\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.10.15.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.10.15\lib\net45\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -127,10 +127,15 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+    </Reference>
     <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -145,9 +150,24 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.2\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.ReaderWriter.4.3.1\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Addon\AbstractSimpleOnDemandAddon.cs" />
@@ -336,6 +356,7 @@
     <Compile Include="Helper\CorpusExplorerWebClient.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Helper\MultidimensionalDocumentAnalyzer.cs" />
     <Compile Include="Helper\ObjectCastHelper.cs" />
     <Compile Include="Helper\PathHelper.cs" />
     <Compile Include="Helper\JsonToCsvHelper.cs" />
@@ -349,6 +370,7 @@
     <Compile Include="Helper\SelectionListConverterHelper.cs" />
     <Compile Include="Helper\SelectionParentHelper.cs" />
     <Compile Include="Helper\SelectionToDataTableHelper.cs" />
+    <Compile Include="Helper\Splitter.cs" />
     <Compile Include="Helper\TaskExtension.cs" />
     <Compile Include="Helper\TemplateTextGenerator.cs" />
     <Compile Include="Helper\TemporaryDirectory.cs" />
@@ -380,8 +402,13 @@
     <Compile Include="Model\Delegates\HydraDelegate.cs" />
     <Compile Include="Model\Localization\ModelLocalization.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusCleaner.cs" />
+    <Compile Include="Utils\CorpusManipulation\CorpusMergerQueryBasedKwic.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusNormalizer.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusMergerQueryBased.cs" />
+    <Compile Include="Utils\CorpusManipulation\CorpusRandomizer.cs" />
+    <Compile Include="Utils\CorpusManipulation\CorpusRandomizerStrategy\Abstract\AbstractCorpusRandomizerStrategy.cs" />
+    <Compile Include="Utils\CorpusManipulation\CorpusRandomizerStrategy\CorpusRandomizerStrategySentences.cs" />
+    <Compile Include="Utils\CorpusManipulation\CorpusRandomizerStrategy\CorpusRandomizerStrategyTokens.cs" />
     <Compile Include="Utils\DataTableWriter\BinaryTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\HtmlTableSnippetWriter.cs" />
     <Compile Include="Utils\DataTableWriter\HtmlTableWriter.cs" />
@@ -391,12 +418,15 @@
     <Compile Include="Utils\DataTableWriter\TsvRoundedTableWriter.cs" />
     <Compile Include="Utils\DocumentProcessing\Cleanup\ExtendedStandardCleanup.cs" />
     <Compile Include="Utils\DocumentProcessing\Cleanup\RegexHyphenationCleanup.cs" />
+    <Compile Include="Utils\DocumentProcessing\Cleanup\RegexUnicodeReplacerCleanup.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCec6.cs" />
+    <Compile Include="Utils\DocumentProcessing\Exporter\ExporterConllZip.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterConll.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCorpusWorkBench.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCsv.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCsvMetadataOnly.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterHtmlPure.cs" />
+    <Compile Include="Utils\DocumentProcessing\Exporter\ExporterJsonZip.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterJson.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterPlaintext.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterPlaintextPure.cs" />
@@ -466,6 +496,7 @@
     <Compile Include="Utils\DocumentProcessing\Cleanup\RegexRemoveNonWesternCharsCleanup.cs" />
     <Compile Include="Utils\DocumentProcessing\Cluster\DocumentProcessingClusterBuilder.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterSketchEngine.cs" />
+    <Compile Include="Utils\DocumentProcessing\Exporter\ExporterTreeTaggerZip.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterTreeTagger.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterXml.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\Tlv\ExporterTlv.cs" />
@@ -516,6 +547,8 @@
     <Compile Include="Utils\DocumentProcessing\Tokenizer\HighSpeedGermanWikipediaTokenizer.cs" />
     <Compile Include="Utils\Filter\Abstract\AbstractFilterQuerySingleLayerFulltext.cs" />
     <Compile Include="Utils\Filter\Interface\IFilterQueryWithLayerValues.cs" />
+    <Compile Include="Utils\Filter\Parser\FilterQueryMultiLayerComplex\Parser4FilterQueryMultiLayerComplex.cs" />
+    <Compile Include="Utils\Filter\Queries\FilterQueryMultiLayerComplex.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryDocumentGuid.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMetaEndsWith.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMetaStartsWith.cs" />

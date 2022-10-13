@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Dewac
@@ -63,7 +64,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dewac
 
       foreach (var sentence in sentences)
       {
-        var words = sentence.Split(new[] {"\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries);
+        var words = sentence.Split(Splitter.LineBreaks, StringSplitOptions.RemoveEmptyEntries);
 
         var wSent = new List<string>();
         var pSent = new List<string>();
@@ -71,7 +72,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dewac
 
         foreach (var word in words)
         {
-          var data = word.Split(new[] {"\t", " "}, StringSplitOptions.RemoveEmptyEntries);
+          var data = word.Split(Splitter.TabAndSpace, StringSplitOptions.RemoveEmptyEntries);
           if (data.Length == 0)
             continue;
           wSent.Add(data[0]);

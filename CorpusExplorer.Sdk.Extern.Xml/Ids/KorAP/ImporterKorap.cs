@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Xml;
+using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.Exceptions;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.LoadStrategy;
-using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.LoadStrategy.Abstract;
-using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.Model.Virtual;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
-using HtmlAgilityPack;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
 {
@@ -20,14 +21,16 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
     public bool ImportOpenNlp { get; set; } = true;
     public bool ImportTreeTagger { get; set; } = true;
 
+    public bool ReadTaxonomy { get; set; } = false;
+    public bool ReadLanguage { get; set; } = false;
+
     public bool Debug { get; set; } = false;
-    public AbstractLoadStrategy Strategy { get; set; } = new LoadStrategyFileStream();
 
     private object _lockDebug = new object();
     private List<Exception> _debug = new List<Exception>();
-    private HashSet<string> _sentenceEndings = new HashSet<string> { ".", "!", "?", ";", ":" }; // STTS 2.0
+    private static HashSet<string> _sentenceEndings = new HashSet<string> { ".", "!", "?", ";", ":" }; // STTS 2.0
 
-  public IEnumerable<Exception> DebugLog
+    public IEnumerable<Exception> DebugLog
     {
       get
       {
@@ -38,535 +41,464 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
 
     protected override void ExecuteCall(string path)
     {
-      var rawText = GetRawText(path);
-      if (rawText.Length == 0)
-        return;
+      ImportCoreNlp = ValidateFeature(ImportCoreNlp, path, "corenlp", out var corenlp);
+      ImportMalt = ValidateFeature(ImportMalt, path, "malt", out var malt);
+      ImportMarmot = ValidateFeature(ImportMarmot, path, "marmot", out var marmot);
+      ImportOpenNlp = ValidateFeature(ImportOpenNlp, path, "opennlp", out var opennlp);
+      ImportTreeTagger = ValidateFeature(ImportTreeTagger, path, "tree_tagger", out var tree_tagger);
 
-      var entries = new Dictionary<string, Guid>(); // ZIP-Path | GUID - Zur Orientierung in der ZIP-Datei
-      var references = new Dictionary<Guid, Dictionary<int, TokenReference[]>>(); // GUID | From & Token - Zum Nachschlagen von Poistionen
-      var skeleton = new Dictionary<Guid, int[]>(); // GUID | Length = Sätze / Value = Token pro Satz - Zum Aufbauen von Referenzdokumenten
-
-      BuildWortLayer(path, rawText, ref entries, ref references, ref skeleton);
-      // ReSharper disable once ForCanBeConvertedToForeach
-      for (var i = 0; i < rawText.Length; i++)
-        rawText[i].Clear();
-      GC.Collect();
-
-      if (ImportTreeTagger)
-        BuildTreeTagger(path, entries, references, skeleton);
-      if (ImportCoreNlp)
-        BuildCoreNlp(path, entries, references, skeleton);
-      if (ImportMalt)
-        BuildMalt(path, entries, references, skeleton);
-      if (ImportMarmot)
-        BuildMarMoT(path, entries, references, skeleton);
-      if (ImportOpenNlp)
-        BuildOpenNlp(path, entries, references, skeleton);
-    }
-
-    private AbstractLoadStrategy GetStrategy(string path, string ext) => Strategy.Create(path, ext);
-
-    private void BuildTreeTagger(string path, Dictionary<string, Guid> entries,
-                                 Dictionary<Guid, Dictionary<int, TokenReference[]>> references, Dictionary<Guid, int[]> skeleton)
-    {
-      try
+      using (var zip = new KorapZip(path))
       {
-        using (var cache = GetStrategy(path, "tree_tagger"))
-          if (cache != null)
-            BuildTaggerFeatureMorpho(path, entries, references, skeleton, cache, "tree_tagger");
-      }
-      catch (Exception ex)
-      {
-        if (Debug)
-          lock (_lockDebug)
-            _debug.Add(new IdsException("tree_tagger", "/", ex));
-      }
-    }
+        var helper = new KorapScraper { ReadTaxonomy = ReadTaxonomy, ReadLanguage = ReadLanguage }; // Helper
 
-    private void BuildCoreNlp(string path, Dictionary<string, Guid> entries,
-                              Dictionary<Guid, Dictionary<int, TokenReference[]>> references, Dictionary<Guid, int[]> skeleton)
-    {
-      try
-      {
-        using (var cache = GetStrategy(path, "corenlp"))
+        // -- siehe ScraperKorap --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> 
+        var corpusRegex = new Regex(@"^[a-zA-Z0-9]*\/header\.xml$");
+        var mainHeader = zip.Entries.Single(x => corpusRegex.IsMatch(x));
+
+        if (string.IsNullOrWhiteSpace(mainHeader))
+          return;
+
+        var header = helper.GetZipHeader(path, zip, mainHeader);
+        if (header == null)
+          return;
+
+        var dataRegex = new Regex(@"^[a-zA-Z0-9]*\/[a-zA-Z0-9]*\/[a-zA-Z0-9]*\/data\.xml$");
+        var tDatas = zip.Entries.Where(x => dataRegex.IsMatch(x)).ToArray();
+        // <-- siehe ScraperKorap <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- 
+
+        Parallel.ForEach(tDatas, Configuration.ParallelOptions, tData =>
         {
-          if (cache == null)
-            return;
-
-          BuildTaggerFeatureMorpho(path, entries, references, skeleton, cache, "corenlp");
-          BuildTaggerFeatureConstituency(path, entries, references, skeleton, cache, "corenlp");
-        }
-      }
-      catch (Exception ex)
-      {
-        if (Debug)
-          lock (_lockDebug)
-            _debug.Add(new IdsException("corenlp", "/", ex));
-      }
-    }
-
-    private void BuildMalt(string path, Dictionary<string, Guid> entries,
-                           Dictionary<Guid, Dictionary<int, TokenReference[]>> references, Dictionary<Guid, int[]> skeleton)
-    {
-      try
-      {
-        using (var cache = GetStrategy(path, "malt"))
-          if (cache != null)
-            BuildTaggerFeatureDependency( path, entries, references, skeleton, cache, "malt");
-      }
-      catch (Exception ex)
-      {
-        if (Debug)
-          lock (_lockDebug)
-            _debug.Add(new IdsException("malt", "/", ex));
-      }
-    }
-
-    private void BuildMarMoT(string path, Dictionary<string, Guid> entries,
-                             Dictionary<Guid, Dictionary<int, TokenReference[]>> references, Dictionary<Guid, int[]> skeleton)
-    {
-      try
-      {
-        using (var cache = GetStrategy(path, "marmot"))
-          if (cache != null)
-            BuildTaggerFeatureMorpho(path, entries, references, skeleton, cache, "marmot");
-      }
-      catch (Exception ex)
-      {
-        if (Debug)
-          lock (_lockDebug)
-            _debug.Add(new IdsException("marmot", "/", ex));
-      }
-    }
-
-    private void BuildOpenNlp(string path, Dictionary<string, Guid> entries,
-                              Dictionary<Guid, Dictionary<int, TokenReference[]>> references, Dictionary<Guid, int[]> skeleton)
-    {
-      try
-      {
-        using (var cache = GetStrategy(path, "opennlp"))
-          if (cache != null)
-            BuildTaggerFeatureMorpho(path, entries, references, skeleton, cache, "opennlp");
-      }
-      catch (Exception ex)
-      {
-        if (Debug)
-          lock (_lockDebug)
-            _debug.Add(new IdsException("opennlp", "/", ex));
-      }
-    }
-
-    private void BuildTaggerFeatureDependency(string path, Dictionary<string, Guid> entries, Dictionary<Guid, Dictionary<int, TokenReference[]>> references, Dictionary<Guid, int[]> skeleton, AbstractLoadStrategy als, string subfolder)
-    {
-      foreach (var entry in entries)
-      {
-        try
-        {
-          IEnumerable<HtmlNode> spans = null;
           try
           {
-            var xml = new HtmlDocument();
-            xml.Load(als.GetEntry($"{entry.Key}/{subfolder}/dependency.xml"));
+            // GUID
+            var dsel = Guid.NewGuid();
 
-            spans = xml.DocumentNode.SelectNodes("//span");
+            var textRoot = tData.Replace("data.xml", "");
+            if (textRoot.EndsWith("/"))
+              textRoot = textRoot.Substring(0, textRoot.Length - 1);
+
+            // Add Metadata
+            AddDocumentMetadata(dsel, helper.GetMetadata(zip, textRoot, header));
+
+            var entryPath = FindEntryPath(zip, textRoot);
+
+            if (!BuildWordLayer(path, zip, entryPath, ref helper, tData, textRoot, dsel, out var skeleton, out var references))
+              return;
+
+            if (ImportCoreNlp)
+            {
+              BuildTaggerFeatureMorpho(corenlp, textRoot, "corenlp", dsel, skeleton, references, path);
+              BuildTaggerFeatureConstituency(corenlp, textRoot, "corenlp", dsel, skeleton, references, path);
+            }
+            if (ImportMalt)
+              BuildTaggerFeatureDependency(malt, textRoot, "malt", dsel, skeleton, references, path);
+            if (ImportMarmot)
+              BuildTaggerFeatureMorpho(marmot, textRoot, "marmot", dsel, skeleton, references, path);
+            if (ImportOpenNlp)
+              BuildTaggerFeatureMorpho(opennlp, textRoot, "opennlp", dsel, skeleton, references, path);
+            if (ImportTreeTagger)
+              BuildTaggerFeatureMorpho(tree_tagger, textRoot, "tree_tagger", dsel, skeleton, references, path);
           }
           catch (Exception ex)
           {
             if (Debug)
               lock (_lockDebug)
-                _debug.Add(new IdsException(path, $"{entry.Key}/{subfolder}/dependency.xml", ex));
+                _debug.Add(ex);
+          }
+        });
+      }
+
+      corenlp?.Dispose();
+      malt?.Dispose();
+      marmot?.Dispose();
+      opennlp?.Dispose();
+      tree_tagger?.Dispose();
+    }
+
+    private static string FindEntryPath(KorapZip zip, string textRoot)
+    {
+      var entryPath = zip.Exists(textRoot + "/base/tokens.xml") ? textRoot + "/base/tokens.xml" : null;
+      // Fallback Kaskade
+      // ReSharper disable ConvertIfStatementToNullCoalescingExpression
+      if (entryPath == null)
+        entryPath = zip.Exists(textRoot + "/base/tokens_conservative.xml")
+          ? textRoot + "/base/tokens_conservative.xml"
+          : null;
+      if (entryPath == null)
+        entryPath = textRoot + "/base/tokens_aggr.xml";
+      // ReSharper restore ConvertIfStatementToNullCoalescingExpression
+      return entryPath;
+    }
+
+    private bool BuildWordLayer(string path, KorapZip zip, string zipPath, ref KorapScraper helper, string tData, string textRoot, Guid dsel, out int[] skelOut, out Dictionary<int, int[][]> refsOut)
+    {
+      var currentText = helper.GetText(path, zip, tData);
+      if (string.IsNullOrEmpty(currentText))
+      {
+        skelOut = null;
+        refsOut = null;
+
+        return false;
+      }
+
+      string[][] doc;
+      var sentences = DetectSentences(zip, path, textRoot);
+      if (sentences.Length > 0)
+        GenerateText(zip, zipPath, currentText, out refsOut, out doc, out skelOut, sentences);
+      else // Fals Korap keine Sätze erkannt hat, erkenne Satzgrenzen mit Hilfe der Token
+        GenerateTextFallback(zip, zipPath, currentText, out refsOut, out doc, out skelOut);
+
+      AddDocument("Wort", dsel, doc);
+
+      return true;
+    }
+
+    private static int[] DetectSentences(KorapZip zip, string path, string textRoot)
+    {
+
+      try
+      {
+        var xml = zip.ReadXml(textRoot + "/struct/structure.xml");
+
+        var res = new List<int>();
+        var spans = xml.SelectNodes("//*[local-name()='span']");
+        foreach (XmlNode span in spans)
+        {
+          if (span.ChildNodes == null || span.ChildNodes.Count == 0)
+            res.Add(int.Parse(span.GetAttribute("to", "0")));
+          else
+          {
+            if (span.GetFirstSubNodeRecursive("f").InnerText == "s")
+              res.Add(int.Parse(span.GetAttribute("to", "0")));
+          }
+        }
+
+        return res.ToArray();
+      }
+      catch
+      {
+        return Array.Empty<int>();
+      }
+    }
+
+    private static void GenerateText(KorapZip zip, string zipPath, string currentText, out Dictionary<int, int[][]> refsOut, out string[][] docOut, out int[] skelOut, int[] sentences)
+    {
+      var xml = zip.ReadXmlClean(zipPath);
+      var nodes = xml.SelectNodes("//*[local-name()='span']");
+
+      var tmpRefs = new List<int[]>();
+      var tmpDoc = new List<string[]>();
+      var tmpSkel = new List<int>();
+
+      var sent = new List<string>();
+
+      var i = 0;
+
+      foreach (var s in sentences)
+        for (; i < nodes.Count; i++)
+        {
+          var n = nodes[i];
+
+          var f = int.Parse(n.GetAttribute("from", "-1"));
+          var t = int.Parse(n.GetAttribute("to", "-1"));
+
+          if (f >= s)
+          {
+            tmpSkel.Add(sent.Count);
+            tmpDoc.Add(sent.ToArray());
+            sent.Clear();
+            break;
           }
 
-          if (spans == null)
-            return;
+          tmpRefs.Add(new[] { f, t, tmpDoc.Count, sent.Count }); // from, to, sentence, token
+          sent.Add(currentText.Substring(f, t - f));
+        }
 
-          // Erstelle leeres Dokument
-          var emptyDoc = new string[skeleton[entry.Value].Length][];
-          for (var i = 0; i < skeleton[entry.Value].Length; i++)
-            emptyDoc[i] = new string[skeleton[entry.Value][i]];
+      if (sent.Count > 0)
+      {
+        tmpSkel.Add(sent.Count);
+        tmpDoc.Add(sent.ToArray());
+        sent.Clear();
+      }
 
-          var refDoc = references[entry.Value];
+      refsOut = TokenReferenceIndexBuilder(tmpRefs);
+      docOut = tmpDoc.ToArray();
+      skelOut = tmpSkel.ToArray();
+    }
 
-          var name = "DEP";
-          var layers = new Dictionary<string, string[][]>
+    private static void GenerateTextFallback(KorapZip zip, string zipPath, string currentText, out Dictionary<int, int[][]> refsOut, out string[][] docOut, out int[] skelOut)
+    {
+      var tmpRefs = new List<int[]>();
+      var tmpDoc = new List<string[]>();
+      var tmpSkel = new List<int>();
+
+      var sent = new List<string>();
+
+      var xml = zip.ReadXmlClean(zipPath);
+
+      foreach (XmlNode n in xml.SelectNodes("//*[local-name()='span']"))
+      {
+        var f = int.Parse(n.GetAttribute("from", "-1"));
+        var t = int.Parse(n.GetAttribute("to", "-1"));
+        var token = currentText.Substring(f, t - f);
+
+        tmpRefs.Add(new[] { f, t, tmpDoc.Count, sent.Count }); // from, to, sentence, token
+        sent.Add(token);
+
+        if (_sentenceEndings.Contains(token))
+        {
+          tmpSkel.Add(sent.Count);
+          tmpDoc.Add(sent.ToArray());
+          sent.Clear();
+        }
+      }
+
+      if (sent.Count > 0)
+      {
+        tmpSkel.Add(sent.Count);
+        tmpDoc.Add(sent.ToArray());
+        sent.Clear();
+      }
+
+      refsOut = TokenReferenceIndexBuilder(tmpRefs);
+      docOut = tmpDoc.ToArray();
+      skelOut = tmpSkel.ToArray();
+    }
+
+    private static bool ValidateFeature(bool featureSwitch, string path, string feature, out KorapZip zip)
+    {
+      if (!featureSwitch)
+      {
+        zip = null;
+        return false;
+      }
+
+      try
+      {
+        zip = new KorapZip(Path.Combine(Path.GetDirectoryName(path), $"{Path.GetFileNameWithoutExtension(path)}.{feature}.zip"));
+        return true;
+      }
+      catch
+      {
+        zip = null;
+        return false;
+      }
+    }
+
+    private void BuildTaggerFeatureDependency(KorapZip zip, string textRoot, string subfolder, Guid dsel, int[] skeleton, Dictionary<int, int[][]> references, string path)
+    {
+      try
+      {
+        XmlNodeList spans = null;
+        try
+        {
+          XmlDocument xml;
+          xml = zip.ReadXml($"{textRoot}/{subfolder}/dependency.xml");
+
+          spans = xml.SelectNodes("//*[local-name()='span']");
+        }
+        catch (Exception ex)
+        {
+          if (Debug)
+            lock (_lockDebug)
+              _debug.Add(new IdsException(path, $"{textRoot}/{subfolder}/dependency.xml", ex));
+        }
+
+        if (spans == null)
+          return;
+
+        // Erstelle leeres Dokument
+        var emptyDoc = new string[skeleton.Length][];
+        for (var i = 0; i < skeleton.Length; i++)
+          emptyDoc[i] = new string[skeleton[i]];
+
+        var name = "DEP";
+        var layers = new Dictionary<string, string[][]>
           {
-            {name, emptyDoc.Select(a => a.ToArray()).ToArray()}
+            { name, emptyDoc.Select(a => a.ToArray()).ToArray() }
           };
-          foreach (var span in spans)
-          {
-            var rel = span.SelectSingleNode("./rel")?.GetAttributeValue("label", "");
-            if (string.IsNullOrEmpty(rel))
-              continue;
-
-            var idxF = int.Parse(span.GetAttributeValue("from", "-1"));
-            var idxT = int.Parse(span.GetAttributeValue("to", "-1"));
-            if (idxF == -1 || idxT == -1 || idxT < idxF)
-              continue;
-
-            foreach (var t in FindTokens(ref refDoc, idxF, idxT))
-              layers[name][t.Sentence][t.Token] = rel;
-          }
-
-          foreach (var l in layers)
-            AddDocument($"{l.Key} ({subfolder})", entry.Value, l.Value.Where(x => x.Length > 0).ToArray());
-        }
-        catch (Exception ex)
+        foreach (XmlNode span in spans)
         {
-          if (Debug)
-            lock (_lockDebug)
-              _debug.Add(ex);
+          var rel = span.GetSimpleXpathFirst("/rel")?.GetAttribute("label", "");
+          if (string.IsNullOrEmpty(rel))
+            continue;
+
+          var idxF = int.Parse(span.GetAttribute("from", "-1"));
+          var idxT = int.Parse(span.GetAttribute("to", "-1"));
+          if (idxF == -1 || idxT == -1 || idxT < idxF)
+            continue;
+
+          foreach (var t in FindTokens(ref references, idxF, idxT))
+            layers[name][t[2]][t[3]] = rel; // t[2] = sentence / t[3] = token
         }
+
+        foreach (var l in layers)
+          AddDocument($"{l.Key} ({subfolder})", dsel, l.Value.Where(x => x.Length > 0).ToArray());
+      }
+      catch (Exception ex)
+      {
+        if (Debug)
+          lock (_lockDebug)
+            _debug.Add(ex);
       }
     }
 
-    private void BuildTaggerFeatureConstituency(string path, Dictionary<string, Guid> entries, Dictionary<Guid, Dictionary<int, TokenReference[]>> references, Dictionary<Guid, int[]> skeleton, AbstractLoadStrategy als, string subfolder)
+    private void BuildTaggerFeatureConstituency(KorapZip zip, string textRoot, string subfolder, Guid dsel, int[] skeleton, Dictionary<int, int[][]> references, string path)
     {
-      foreach (var entry in entries)
+      try
       {
+        XmlNodeList spans = null;
         try
         {
-          IEnumerable<HtmlNode> spans = null;
-          try
-          {
-            var xml = new HtmlDocument();
-            xml.Load(als.GetEntry($"{entry.Key}/{subfolder}/constituency.xml"));
+          XmlDocument xml;
+          xml = zip.ReadXml($"{textRoot}/{subfolder}/constituency.xml");
 
-            spans = xml.DocumentNode.SelectNodes("//span");
-          }
-          catch (Exception ex)
-          {
-            if (Debug)
-              lock (_lockDebug)
-                _debug.Add(new IdsException(path, $"{entry.Key}/{subfolder}/constituency.xml", ex));
-          }
-          if (spans == null)
-            return;
-
-          // Erstelle leeres Dokument
-          var emptyDoc = new string[skeleton[entry.Value].Length][];
-          for (var i = 0; i < skeleton[entry.Value].Length; i++)
-            emptyDoc[i] = new string[skeleton[entry.Value][i]];
-
-          var refDoc = references[entry.Value];
-
-          var layers = new Dictionary<string, string[][]>();
-          foreach (var span in spans)
-          {
-            var idxF = int.Parse(span.GetAttributeValue("from", "-1"));
-            var idxT = int.Parse(span.GetAttributeValue("to", "-1"));
-            if (idxF == -1 || idxT == -1 || idxT < idxF)
-              continue;
-
-            var fs = span.SelectNodes("./fs/f");
-            foreach (var f in fs)
-            {
-              var name = f.GetAttributeValue("name", "");
-              if (string.IsNullOrEmpty(name)) // kein certainty-Filter nötig
-                continue;
-
-              // name = FixLayerName(name); - nicht nötig
-              if (!layers.ContainsKey(name))
-                layers.Add(name, emptyDoc.Select(a => a.ToArray()).ToArray());
-
-              foreach (var t in FindTokens(ref refDoc, idxF, idxT))
-                layers[name][t.Sentence][t.Token] = f.InnerText;
-            }
-          }
-
-          foreach (var l in layers)
-            AddDocument($"{l.Key} ({subfolder})", entry.Value, l.Value.Where(x => x.Length > 0).ToArray());
+          spans = xml.SelectNodes("//*[local-name()='span']");
         }
         catch (Exception ex)
         {
           if (Debug)
             lock (_lockDebug)
-              _debug.Add(ex);
+              _debug.Add(new IdsException(path, $"{textRoot}/{subfolder}/constituency.xml", ex));
         }
+
+        if (spans == null)
+          return;
+
+        // Erstelle leeres Dokument
+        var emptyDoc = new string[skeleton.Length][];
+        for (var i = 0; i < skeleton.Length; i++)
+          emptyDoc[i] = new string[skeleton[i]];
+
+        var layers = new Dictionary<string, string[][]>();
+        foreach (XmlNode span in spans)
+        {
+          var idxF = int.Parse(span.GetAttribute("from", "-1"));
+          var idxT = int.Parse(span.GetAttribute("to", "-1"));
+          if (idxF == -1 || idxT == -1 || idxT < idxF)
+            continue;
+
+          var fs = span.GetSimpleXpath("/fs/f");
+          foreach (var f in fs)
+          {
+            var name = f.GetAttribute("name", "");
+            if (string.IsNullOrEmpty(name)) // kein certainty-Filter nötig
+              continue;
+
+            // name = FixLayerName(name); - nicht nötig
+            if (!layers.ContainsKey(name))
+              layers.Add(name, emptyDoc.Select(a => a.ToArray()).ToArray());
+
+            foreach (var t in FindTokens(ref references, idxF, idxT))
+              layers[name][t[2]][t[3]] = f.InnerText; // t[2] = sentence / t[3] = token
+          }
+        }
+
+        foreach (var l in layers)
+          AddDocument($"{l.Key} ({subfolder})", dsel, l.Value.Where(x => x.Length > 0).ToArray());
+      }
+      catch (Exception ex)
+      {
+        if (Debug)
+          lock (_lockDebug)
+            _debug.Add(ex);
       }
     }
 
-    private void BuildTaggerFeatureMorpho(string path, Dictionary<string, Guid> entries, Dictionary<Guid, Dictionary<int, TokenReference[]>> references, Dictionary<Guid, int[]> skeleton, AbstractLoadStrategy als, string subfolder)
+    private void BuildTaggerFeatureMorpho(KorapZip zip, string textRoot, string subfolder, Guid dsel, int[] skeleton, Dictionary<int, int[][]> references, string path)
     {
-      foreach (var entry in entries)
+      try
       {
+        XmlNodeList spans = null;
         try
         {
-          IEnumerable<HtmlNode> spans = null;
-          try
-          {
-            var xml = new HtmlDocument();
-            xml.Load(als.GetEntry($"{entry.Key}/{subfolder}/morpho.xml"));
+          XmlDocument xml;
+          xml = zip.ReadXml($"{textRoot}/{subfolder}/morpho.xml");
 
-            spans = xml.DocumentNode.SelectNodes("//span");
-          }
-          catch (Exception ex)
-          {
-            if (Debug)
-              lock (_lockDebug)
-                _debug.Add(new IdsException(path, $"{entry.Key}/{subfolder}/morpho.xml", ex));
-          }
-          if (spans == null)
-            return;
-
-          // Erstelle leeres Dokument
-          var emptyDoc = new string[skeleton[entry.Value].Length][];
-          for (var i = 0; i < skeleton[entry.Value].Length; i++)
-            emptyDoc[i] = new string[skeleton[entry.Value][i]];
-
-          var refDoc = references[entry.Value];
-
-          var layers = new Dictionary<string, string[][]>();
-          foreach (var span in spans)
-          {
-            var idxF = int.Parse(span.GetAttributeValue("from", "-1"));
-            var idxT = int.Parse(span.GetAttributeValue("to", "-1"));
-            if (idxF == -1 || idxT == -1 || idxT < idxF)
-              continue;
-
-            var fs = span.SelectNodes("./fs/f/fs/f");
-            foreach (var f in fs)
-            {
-              var name = f.GetAttributeValue("name", "");
-              if (string.IsNullOrEmpty(name) || name == "certainty")
-                continue;
-
-              name = FixLayerName(name);
-              if (!layers.ContainsKey(name))
-                layers.Add(name, emptyDoc.Select(a => a.ToArray()).ToArray());
-
-              foreach (var t in FindTokens(ref refDoc, idxF, idxT))
-                layers[name][t.Sentence][t.Token] = f.InnerText;
-            }
-          }
-
-          foreach (var l in layers)
-            AddDocument($"{l.Key} ({subfolder})", entry.Value, l.Value.Where(x => x.Length > 0).ToArray());
+          spans = xml.DocumentElement.SelectNodes("//*[local-name()='span']");
         }
         catch (Exception ex)
         {
           if (Debug)
             lock (_lockDebug)
-              _debug.Add(ex);
+              _debug.Add(new IdsException(path, $"{textRoot}/{subfolder}/morpho.xml", ex));
         }
+
+        if (spans == null)
+          return;
+
+        // Erstelle leeres Dokument
+        var emptyDoc = new string[skeleton.Length][];
+        for (var i = 0; i < skeleton.Length; i++)
+          emptyDoc[i] = new string[skeleton[i]];
+
+        var layers = new Dictionary<string, string[][]>();
+        foreach (XmlNode span in spans)
+        {
+          var idxF = int.Parse(span.GetAttribute("from", "-1"));
+          var idxT = int.Parse(span.GetAttribute("to", "-1"));
+          if (idxF == -1 || idxT == -1 || idxT < idxF)
+            continue;
+
+          var fs = span.GetSimpleXpath("/fs/f/fs/f");
+          foreach (XmlNode f in fs)
+          {
+            var name = f.GetAttribute("name", "");
+            if (string.IsNullOrEmpty(name) || name == "certainty")
+              continue;
+
+            name = FixLayerName(name);
+            if (!layers.ContainsKey(name))
+              layers.Add(name, emptyDoc.Select(a => a.ToArray()).ToArray());
+
+            foreach (var t in FindTokens(ref references, idxF, idxT))
+              layers[name][t[2]][t[3]] = f.InnerText; // t[2] = sentence / t[3] = token
+          }
+        }
+
+        foreach (var l in layers)
+          AddDocument($"{l.Key} ({subfolder})", dsel, l.Value.Where(x => x.Length > 0).ToArray());
+      }
+      catch (Exception ex)
+      {
+        if (Debug)
+          lock (_lockDebug)
+            _debug.Add(ex);
       }
     }
 
-    private IEnumerable<TokenReference> FindTokens(ref Dictionary<int, TokenReference[]> refDoc, int from, int to)
+    private static IEnumerable<int[]> FindTokens(ref Dictionary<int, int[][]> refDoc, int from, int to)
     {
-      var res = new List<TokenReference>();
+      var res = new List<int[]>();
       for (var i = from; i < to; i++)
         if (refDoc.ContainsKey(i))
           res.AddRange(refDoc[i]);
       return res;
     }
 
+    private static Dictionary<string, string> _layerNameFixes = new Dictionary<string, string>
+    {
+      {"ctag", "POS"},
+      {"msd", "MSD"},
+      {"pos", "POS"},
+      {"lemma", "Lemma"}
+    };
+
     private static string FixLayerName(string name)
+      => _layerNameFixes.ContainsKey(name) ? _layerNameFixes[name] : name;
+
+    private static Dictionary<int, int[][]> TokenReferenceIndexBuilder(List<int[]> refs)
     {
-      if (name == "ctag")
-        name = "POS";
-      if (name == "msd")
-        name = "MSD";
-      if (name == "pos")
-        name = "POS";
-      if (name == "lemma")
-        name = "Lemma";
-      return name;
-    }
-
-    private void BuildWortLayer(string path, Dictionary<string, object>[] rawText, ref Dictionary<string, Guid> entries,
-                                ref Dictionary<Guid, Dictionary<int, TokenReference[]>> references,
-                                ref Dictionary<Guid, int[]> skeleton)
-    {
-      try
-      {
-        using (var cache = GetStrategy(path, null))
-          if (cache != null)
-            foreach (var text in rawText)
-            {
-              try
-              {
-                var textRoot = text["ZipPath"].ToString();
-                if (textRoot.EndsWith("/"))
-                  textRoot = textRoot.Substring(0, textRoot.Length - 1);
-
-                var entry = cache.GetEntry(textRoot + "/base/tokens.xml");
-                // Fallback Kaskade
-                // ReSharper disable ConvertIfStatementToNullCoalescingExpression
-                if (entry == null)
-                  entry = cache.GetEntry(textRoot + "/base/tokens_conservative.xml");
-                if (entry == null)
-                  entry = cache.GetEntry(textRoot + "/base/tokens_aggr.xml");
-                // ReSharper restore ConvertIfStatementToNullCoalescingExpression
-
-                var tokens = GetTokens(path, entry, text["Text"].ToString());
-                if (tokens == null)
-                {
-                  if (Debug)
-                    lock (_lockDebug)
-                      _debug.Add(new FileNotFoundException($"{textRoot} - RawText"));
-                  continue;
-                }
-
-                // GUID
-                var dsel = Guid.NewGuid();
-                entries.Add(textRoot, dsel);
-
-                // Add Metadata
-                text.Remove("Text");
-                AddDocumentMetadata(dsel, text);
-
-                var sentences = new List<int>();
-                try
-                {
-                  var xml = new HtmlDocument();
-                  xml.Load(cache.GetEntry(textRoot + "/struct/structure.xml"));
-
-                  var spans = xml.DocumentNode.SelectNodes("//span");
-                  foreach (var span in spans)
-                  {
-                    if (span.ChildNodes == null || span.ChildNodes.Count == 0)
-                      sentences.Add(int.Parse(span.GetAttributeValue("to", "0")));
-                    else
-                    {
-                      if (span.SelectSingleNode("./fs/f").InnerText == "s")
-                        sentences.Add(int.Parse(span.GetAttributeValue("to", "0")));
-                    }
-                  }
-                }
-                catch (Exception ex)
-                {
-                  if (Debug)
-                    lock (_lockDebug)
-                      _debug.Add(new IdsException(path, textRoot + "/struct/structure.xml", ex));
-                }
-
-                var skel = new List<int>();
-                var refs = new List<TokenReference>();
-                var doc = new List<string[]>();
-                var sent = new List<string>();
-                var i = 0;
-
-                if (sentences.Count == 0) // Fals Korap keine Sätze erkannt hat, erkenne Satzgrenzen mit Hilfe der Token
-                {
-                  for (; i < tokens.Count; i++)
-                  {
-                    refs.Add(new TokenReference(tokens[i].From, tokens[i].To, doc.Count, sent.Count));
-                    sent.Add(tokens[i].Content);
-
-                    if (_sentenceEndings.Contains(tokens[i].Content))
-                    {
-                      skel.Add(sent.Count);
-                      doc.Add(sent.ToArray());
-                      sent.Clear();
-                    }
-                  }
-                }
-                else
-                {
-                  foreach (var s in sentences)
-                  {
-                    for (; i < tokens.Count; i++)
-                    {
-                      if (tokens[i].From >= s)
-                      {
-                        skel.Add(sent.Count);
-                        doc.Add(sent.ToArray());
-                        sent.Clear();
-                        break;
-                      }
-
-                      refs.Add(new TokenReference(tokens[i].From, tokens[i].To, doc.Count, sent.Count));
-                      sent.Add(tokens[i].Content);
-                    }
-                  }
-                }
-
-                if (sent.Count > 0)
-                {
-                  skel.Add(sent.Count);
-                  doc.Add(sent.ToArray());
-                  sent.Clear();
-                }
-
-                skeleton.Add(dsel, skel.ToArray());
-                references.Add(dsel, TokenReferenceIndexBuilder(refs));
-                AddDocument("Wort", dsel, doc.Where(x => x.Length > 0).ToArray());
-              }
-              catch (Exception ex)
-              {
-                if (Debug)
-                  lock (_lockDebug)
-                    _debug.Add(ex);
-              }
-            }
-      }
-      catch (Exception ex)
-      {
-        if (Debug)
-          lock (_lockDebug)
-            _debug.Add(new IdsException(path, "/", ex));
-      }
-    }
-
-    private Dictionary<int, TokenReference[]> TokenReferenceIndexBuilder(List<TokenReference> refs)
-    {
-      var tmp = new Dictionary<int, List<TokenReference>>();
+      var tmp = new Dictionary<int, List<int[]>>();
       foreach (var x in refs)
       {
-        if (tmp.ContainsKey(x.From))
-          tmp[x.From].Add(x);
+        if (tmp.ContainsKey(x[0]))
+          tmp[x[0]].Add(x);
         else
-          tmp.Add(x.From, new List<TokenReference> { x });
+          tmp.Add(x[0], new List<int[]> { x });
       }
 
       return tmp.ToDictionary(x => x.Key, x => x.Value.ToArray());
     }
-
-    private List<Token> GetTokens(string path, Stream entry, string textContent)
-    {
-      var res = new List<Token>();
-      int f, t;
-      try
-      {
-        var xml = new HtmlDocument();
-        xml.Load(entry);
-
-        var items = new List<Token>();
-        foreach (var node in xml.DocumentNode.SelectNodes("//span"))
-        {
-          f = int.Parse(node.GetAttributeValue("from", "-1"));
-          t = int.Parse(node.GetAttributeValue("to", "-1"));
-          items.Add(new Token { From = f, To = t, Content = textContent.Substring(f, t - f) });
-        }
-
-        res.AddRange(items);
-      }
-      catch (Exception ex)
-      {
-        if (Debug)
-          lock (_lockDebug)
-            _debug.Add(new IdsException(path, "", ex));
-        return null;
-      }
-
-      return res.Count == 0 ? null : res;
-    }
-
-    private Dictionary<string, object>[] GetRawText(string importFilePath)
-    {
-      var scraper = new KorapScraper { Debug = Debug, Strategy = Strategy };
-      scraper.Input.Enqueue(importFilePath);
-      scraper.Execute();
-
-      // ReSharper disable once InvertIf
-      if (Debug && scraper.DebugLog != null)
-        lock (_lockDebug)
-          _debug.AddRange(scraper.DebugLog);
-
-      return scraper.Output.ToArray();
-    }
-
-    private string Reduce(string[] text)
-      => text == null ? "" : string.Join(" ", text);
   }
 }

@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Properties;
@@ -12,7 +13,7 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 
 namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
 {
-  public abstract class AbstractCorpusAdapter : IHydra
+  public abstract class AbstractCorpusAdapter : IHydra, IDisposable
   {
     public abstract IEnumerable<Concept> Concepts { get; }
 
@@ -681,6 +682,23 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     public abstract void ResetAllDocumentMetadata(Dictionary<Guid, Dictionary<string, object>> newMetadata);
 
     /// <summary>
+    ///   Remove a specific metadata entry for alle documents
+    /// </summary>
+    /// <param name="metadataKey">
+    ///   The metadataKey
+    /// </param>
+    public void RemoveDocumentMetadata(string metadataKey)
+    {
+      Parallel.ForEach(DocumentGuids, dsel =>
+      {
+        var meta = GetDocumentMetadata(dsel);
+        if (!meta.Remove(metadataKey))
+          return;
+        SetDocumentMetadata(dsel, meta);
+      });
+    }
+
+    /// <summary>
     ///   Switch für die angegebene Position im Text für einen bestimmten Layerwert.
     /// </summary>
     /// <param name="documentGuid">Document GUID</param>
@@ -811,5 +829,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
       res.Add("Text", string.Join(separatorSentences, GetReadableDocument(dsel, "Wort").Select(x => string.Join(separatorTokens, x))));
       return res;
     }
+
+    public abstract void Dispose();
   }
 }

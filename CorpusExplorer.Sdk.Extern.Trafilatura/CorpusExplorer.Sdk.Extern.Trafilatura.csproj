@@ -40,8 +40,9 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.11.42.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.11.42\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="fastJSONLD, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>W:\Abgeschlossene Projekte\JSON-LD\fastJSONLD\bin\Debug\netstandard2.0\fastJSONLD.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,10 +59,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\JSON-LD\fastJSONLD\fastJSONLD.csproj">
-      <Project>{5F4A4405-A10D-4BFE-9874-6309E8D36513}</Project>
-      <Name>fastJSONLD</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj">
       <Project>{3226C218-0FB3-43A6-A67C-39CBAC704EA3}</Project>
       <Name>BitCutStudios.CorpusExplorer</Name>
@@ -73,7 +70,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack">
+      <Version>1.11.43</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

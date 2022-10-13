@@ -141,7 +141,6 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
 
           res._documents.Add(guid, DocumentSerializerHelper.Deserialize(fs));
         }
-
         return res;
       }
       catch (Exception ex)
@@ -192,8 +191,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
         return null;
 
       start = start < 0 ? 0 : start;
-      stop = stop >= doc.Length ? doc.Length - 1 : stop;
       stop = stop <= start ? start + 1 : stop;
+      stop = stop >= doc.Length ? doc.Length - 1 : stop;
 
       var res = new List<IEnumerable<string>>();
       for (var i = start; i < stop; i++)

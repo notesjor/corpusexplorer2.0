@@ -30,5 +30,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
     }
 
     protected abstract IEnumerable<AbstractCorpusAdapter> Execute(string importFilePath);
+
+    public virtual bool HasStaticGuids => false;
   }
 }

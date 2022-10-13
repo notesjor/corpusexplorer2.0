@@ -32,7 +32,7 @@ namespace CorpusExplorer.Sdk.Addon.Example.WordCloudOwnRendering
       vm.Execute();
 
       /*
-      var dic = vm.Search(txt_query.Text.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries));
+      var dic = vm.Search(txt_query.Text.Split(new[] {Splitter.Semicolon}, StringSplitOptions.RemoveEmptyEntries));
       if (dic == null || !dic.Any())
         return;
 

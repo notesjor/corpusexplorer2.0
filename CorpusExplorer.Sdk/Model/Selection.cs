@@ -39,21 +39,21 @@ namespace CorpusExplorer.Sdk.Model
     /// </summary>
     [XmlArray] private readonly List<Selection> _subSelections = new List<Selection>();
 
-    [XmlIgnore] [NonSerialized] private long _countSentenceMatches = -1;
+    [XmlIgnore][NonSerialized] private long _countSentenceMatches = -1;
 
-    [XmlIgnore] [NonSerialized] private long _countSentences = -1;
+    [XmlIgnore][NonSerialized] private long _countSentences = -1;
 
-    [XmlIgnore] [NonSerialized] private long _countToken = -1;
+    [XmlIgnore][NonSerialized] private long _countToken = -1;
 
-    [XmlIgnore] [NonSerialized] private long _countTokenMatches = -1;
-    [XmlIgnore] [NonSerialized] private IEnumerable<KeyValuePair<Guid, Dictionary<string, object>>> _documentMetadata;
+    [XmlIgnore][NonSerialized] private long _countTokenMatches = -1;
+    [XmlIgnore][NonSerialized] private IEnumerable<KeyValuePair<Guid, Dictionary<string, object>>> _documentMetadata;
 
-    [XmlIgnore] [NonSerialized] private Project _project;
+    [XmlIgnore][NonSerialized] private Project _project;
 
     /// <summary>
     ///   Selected Corpora and Documents
     /// </summary>
-    [XmlIgnore] [NonSerialized] private Dictionary<Guid, HashSet<Guid>> _selection;
+    [XmlIgnore][NonSerialized] private Dictionary<Guid, HashSet<Guid>> _selection;
 
     [XmlArray] private KeyValuePair<Guid, HashSet<Guid>>[] _selectionSerialized;
 
@@ -928,6 +928,17 @@ namespace CorpusExplorer.Sdk.Model
     }
 
     /// <summary>
+    ///   Remove a specific metadata entry for alle documents
+    /// </summary>
+    /// <param name="metadataKey">
+    ///   The metadataKey
+    /// </param>
+    public void RemoveDocumentMetadata(string metadataKey)
+    {
+      Project.RemoveDocumentMetadata(metadataKey);
+    }
+
+    /// <summary>
     ///   Switch für die angegebene Position im Text für einen bestimmten Layerwert.
     /// </summary>
     /// <param name="documentGuid">Document GUID</param>
@@ -1040,6 +1051,16 @@ namespace CorpusExplorer.Sdk.Model
     /// <summary>
     ///   Erzeugt eine neue Unterauswahl.
     /// </summary>
+    /// <param name="query">Query</param>
+    /// <param name="displayName">Überschreibt den automatisch generierten Anzeigenamen</param>
+    /// <param name="noParent">Erzeugt den Schnappschuss ohne Parent-Schnappschuss</param>
+    /// <returns></returns>
+    public Selection Create(AbstractFilterQuery query, string displayName, bool noParent)
+      => Create(new []{query}, displayName, noParent);
+
+    /// <summary>
+    ///   Erzeugt eine neue Unterauswahl.
+    /// </summary>
     /// <param name="queries">Queries</param>
     /// <param name="displayName">Überschreibt den automatisch generierten Anzeigenamen</param>
     /// <param name="noParent">Erzeugt den Schnappschuss ohne Parent-Schnappschuss</param>
@@ -1076,6 +1097,9 @@ namespace CorpusExplorer.Sdk.Model
 
     public Selection CreateTemporary(IEnumerable<Guid> definition) =>
       CreateTemporary(DocumentGuidsToSelectionDictionary(definition));
+
+    public Selection CreateTemporary(AbstractFilterQuery query)
+      => CreateTemporary(new[] { query });
 
     public Selection CreateTemporary(IEnumerable<AbstractFilterQuery> queries)
     {

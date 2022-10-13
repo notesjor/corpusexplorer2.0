@@ -67,7 +67,7 @@ namespace CorpusExplorer.Sdk.Blocks
           };
           TemplateTextGenerator.GenerateToFile(script, vars, scriptTemp.Path);
 
-          var exporter = new ExporterPlaintextPureInOneFile {LayerDisplayname = LayerDisplayname};
+          var exporter = new ExporterPlaintextPureInOneFile { LayerDisplayname = LayerDisplayname };
           var selection = Selection.CreateTemporary(cluster.DocumentGuids);
           var data = exporter.Export(selection)
                              .Replace("+<", "")
@@ -109,17 +109,17 @@ namespace CorpusExplorer.Sdk.Blocks
           perl.StandardError.ReadToEnd();
           perl.WaitForExit();
 
-          var vals = output.Split(new[] {"|"}, StringSplitOptions.RemoveEmptyEntries);
+          var vals = output.Split(Splitter.Pipe, StringSplitOptions.RemoveEmptyEntries);
           if (vals.Length != 2 || !double.TryParse(vals[0], NumberStyles.Float, CultureInfo.InvariantCulture, out var d) ||
               !double.TryParse(vals[1], NumberStyles.Float, CultureInfo.InvariantCulture, out var v))
             continue;
           Diversity.Add(cluster.Displayname, d);
           Variance.Add(cluster.Displayname, v);
 
-          var ttr = new QuickInfoTtrViewModel {Selection = selection, LayerDisplayname = LayerDisplayname};
+          var ttr = new QuickInfoTtrViewModel { Selection = selection, LayerDisplayname = LayerDisplayname };
           ttr.Execute();
           TypeTokenRatio.Add(cluster.Displayname,
-                             new[] {ttr.CounterTypes, ttr.CounterTokens, ttr.CounterTypeTokenRatio});
+                             new[] { ttr.CounterTypes, ttr.CounterTokens, ttr.CounterTypeTokenRatio });
         }
     }
   }

@@ -25,7 +25,7 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.APAEK
       if (pdf == null)
         return null;
 
-      var lines = ((string)pdf["Text"]).Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+      var lines = ((string)pdf["Text"]).Split(Splitter.LineBreaks, StringSplitOptions.RemoveEmptyEntries);
 
       // META
       var meta = new Dictionary<string, object>();
@@ -133,7 +133,7 @@ namespace CorpusExplorer.Sdk.Extern.TextSharp.APAEK
               NewEntry(ref meta, ref speaker, ref stb, ref res, ref id);
 
             // Neu erstellen
-            speaker = line.Substring(0, 8).Split(new[] { ":" }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
+            speaker = line.Substring(0, 8).Split(Splitter.Colon, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
             stb = new StringBuilder();
             stb.AppendLine(line.Replace($"{speaker}:", "").Trim());
 

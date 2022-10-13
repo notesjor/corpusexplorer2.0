@@ -48,21 +48,21 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Devart.Data, Version=5.0.2697.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+    <Reference Include="Devart.Data, Version=5.0.2938.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\Devart\dotConnect\SQLite\Devart.Data.dll</HintPath>
+      <HintPath>..\..\..\..\Program Files\Devart\dotConnect\SQLite\Devart.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Devart.Data.Linq, Version=4.9.2242.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+    <Reference Include="Devart.Data.Linq, Version=5.0.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\Devart\dotConnect\Linq\Devart.Data.Linq.dll</HintPath>
+      <HintPath>..\..\..\..\Program Files\Devart\dotConnect\Linq\Devart.Data.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="Devart.Data.SQLite, Version=5.17.1905.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+    <Reference Include="Devart.Data.SQLite, Version=6.0.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\Devart\dotConnect\SQLite\Devart.Data.SQLite.dll</HintPath>
+      <HintPath>..\..\..\..\Program Files\Devart\dotConnect\SQLite\Devart.Data.SQLite.dll</HintPath>
     </Reference>
-    <Reference Include="Devart.Data.SQLite.Linq, Version=4.9.2242.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+    <Reference Include="Devart.Data.SQLite.Linq, Version=5.0.0.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\Devart\dotConnect\Linq\Devart.Data.SQLite.Linq.dll</HintPath>
+      <HintPath>..\..\..\..\Program Files\Devart\dotConnect\Linq\Devart.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

@@ -79,7 +79,7 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStatus
 
     // ReSharper disable FunctionComplexityOverflow
     private Dictionary<string, object> StreamMessageToScrapDocument(Tweet message)
-      // ReSharper restore FunctionComplexityOverflow
+    // ReSharper restore FunctionComplexityOverflow
     {
       try
       {
@@ -101,11 +101,11 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStatus
             {"Sprache", message.Lang},
             {"Quelle", message.Source},
             {"Text", message.Text},
-            {"Tweet (Id)", message.ID},
+            {"Tweet (Id)", message.ID == 0 ? message.StatusID : message.ID},
             {"Jugendgefährdend?", message.PossiblySensitive},
             {"Land", message.Place == null ? "" : message.Place.Country},
             {"Ländercode", message.Place == null ? "" : message.Place.CountryCode},
-            {"Absender (Id)", message.User == null ? 0 : message.UserID},
+            {"Absender (Id)", GetUserId(message)},
             {"Absender (Sprache)", message.User == null ? "" : message.User.Lang},
             {"Absender (Name)", message.User == null ? "" : message.User.Name},
             {"Absender (Anzeigename)", message.User == null ? "" : message.User.ScreenName},
@@ -135,6 +135,17 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStatus
         InMemoryErrorConsole.Log(ex);
         return null;
       }
+    }
+
+    private ulong GetUserId(Tweet message)
+    {
+      if(message.UserID > 0)
+        return message.UserID;
+      if (message.User == null)
+        return 0;
+      if (message.User.UserID > 0)
+        return message.User.UserID;
+      return ulong.Parse(message.User.UserIDResponse);
     }
   }
 }

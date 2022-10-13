@@ -25,6 +25,8 @@ namespace CorpusExplorer.Sdk.Blocks
 
     public Selection ResultSelection { get; set; }
     public Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>> SearchResults { get; set; }
+    public Dictionary<Guid, int[]> SearchResultsSimpleDocumentSentence 
+      => SearchResults.SelectMany(c => c.Value).ToDictionary(d => d.Key, d => d.Value.Keys.ToArray());
 
     /// <summary>
     ///   Funktion die aufgerufen wird, wenn eine Berechnung durchgeführt werden soll.

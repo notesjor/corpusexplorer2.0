@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
@@ -45,7 +46,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
           continue;
         }
 
-        var items = line.Split(new[] {"\t", " "}, StringSplitOptions.RemoveEmptyEntries);
+        var items = line.Split(Splitter.TabAndSpace, StringSplitOptions.RemoveEmptyEntries);
         if (items.Length != _layerNames.Length)
           continue;
 

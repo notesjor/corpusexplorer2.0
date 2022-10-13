@@ -2,6 +2,7 @@
 
 using System;
 using System.Data;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.SelectLayer;
@@ -50,7 +51,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
                          var queries = x[Resources.NGramm].ToString()
                                                           .Replace(_vm.NGramPattern,
                                                                    FilterQuerySingleLayerExactPhrase.SearchPattern)
-                                                          .Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
+                                                          .Split(Splitter.Space, StringSplitOptions.RemoveEmptyEntries);
                          return new FilterQuerySingleLayerExactPhrase
                          {
                            Inverse = false,

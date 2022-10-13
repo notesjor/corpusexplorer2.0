@@ -7,6 +7,7 @@ using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Catma._5._0.Parser;
 using CorpusExplorer.Sdk.Extern.Xml.Catma._5._0.Parser.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.Helper;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Tlv;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Tlv.Model;
@@ -83,7 +84,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Catma._5._0
 
       foreach (var seg in segs)
       {
-        var split = seg.GetAttribute("ana").Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
+        var split = seg.GetAttribute("ana").Split(Splitter.Space, StringSplitOptions.RemoveEmptyEntries);
         var ptr = seg.GetFirstSubNode("ptr");
         if (ptr == null)
           continue;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using CorpusExplorer.Sdk.Extern.Plaintext.Abstract;
+using CorpusExplorer.Sdk.Helper;
 
 // ReSharper disable StringIndexOfIsCultureSpecific.2
 // ReSharper disable StringIndexOfIsCultureSpecific.1
@@ -72,7 +73,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.Europarl
             raw.Substring(index, end - index)
               .Replace(labelSpeaker, string.Empty)
               .Replace(labelClose, string.Empty)
-              .Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
+              .Split(Splitter.Space, StringSplitOptions.RemoveEmptyEntries);
 
           speakerName = string.Empty;
           speakerId = 0;

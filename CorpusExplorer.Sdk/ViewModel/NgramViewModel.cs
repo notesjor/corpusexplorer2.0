@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
 using CorpusExplorer.Sdk.ViewModel.Interfaces;
@@ -88,7 +89,7 @@ namespace CorpusExplorer.Sdk.ViewModel
             res.Rows.Add(x.Key, x.Value);
         else
         {
-          var tokens = x.Key.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+          var tokens = x.Key.Split(Splitter.Space, StringSplitOptions.RemoveEmptyEntries);
           if (!CorrespondingLayerValueFilter.CustomFilter(tokens))
             return;
 

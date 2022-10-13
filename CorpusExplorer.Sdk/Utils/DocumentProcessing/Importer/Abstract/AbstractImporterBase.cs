@@ -88,22 +88,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
         return Layers[layerName].ConvertToLayer(layerValue);
       }
     }
-
-    /// <summary>
-    ///   Converts to layer.
-    /// </summary>
-    /// <param name="layerName">Name of the layer.</param>
-    /// <param name="layerValues">The layer values.</param>
-    /// <returns>System.Int32[].</returns>
-    protected int[] ConvertToLayer(string layerName, string[] layerValues)
-    {
-      lock (_layerLock)
-      {
-        EnsureLayer(layerName);
-        return Layers[layerName].ConvertToLayer(layerValues);
-      }
-    }
-
+    
     protected string ConvertToSingleLineOfText(IEnumerable<string> lines) 
       => lines == null ? string.Empty : string.Join("\r\n", lines).Trim();
 
@@ -125,7 +110,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
 
     protected abstract void ExecuteCall(string path);
 
-    private IEnumerable<AbstractCorpusAdapter> BuildCorpus(bool dontFlushHeads)
+    protected IEnumerable<AbstractCorpusAdapter> BuildCorpus(bool dontFlushHeads)
     {
       var res = CorpusBuilder.Create(
                                      Layers.Select(x => x.Value),
@@ -154,7 +139,12 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
         {
           if (Layers != null)
             foreach (var layer in Layers)
-              layer.Value.Documents.Clear();
+              layer.Value.Documents = new Dictionary<Guid, int[][]>();
+
+          CorpusMetadata = new Dictionary<string, object>();
+          DocumentMetadata = new Dictionary<Guid, Dictionary<string, object>>();
+          Concepts = new List<Concept>();
+
           GC.Collect();
           return;
         }
@@ -166,7 +156,6 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
         Layers = new Dictionary<string, LayerValueState>();
 
         GC.Collect();
-        GC.WaitForPendingFinalizers();
       }
     }
 

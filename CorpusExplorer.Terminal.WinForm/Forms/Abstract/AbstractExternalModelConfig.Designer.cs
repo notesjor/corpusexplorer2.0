@@ -78,6 +78,7 @@
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       resources.ApplyResources(this, "$this");
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.Controls.Add(this.radGridView1);
       this.DisplayAbort = true;
       this.Name = "AbstractExternalModelConfig";

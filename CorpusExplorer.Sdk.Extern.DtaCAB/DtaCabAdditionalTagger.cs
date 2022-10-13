@@ -46,8 +46,8 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
           continue;
         }
 
-        var doc = document.Value.Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries)
-                          .Select(s => s.Split(new[] { "\t" }, StringSplitOptions.None)).ToArray();
+        var doc = document.Value.Split(Helper.Splitter.LF, StringSplitOptions.RemoveEmptyEntries)
+                          .Select(s => s.Split(Helper.Splitter.Tab, StringSplitOptions.None)).ToArray();
 
         if (!layer.ChangeCompleteDocument(document.Key, doc, false))
           error = true;
@@ -153,6 +153,8 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
       return res;
     }
 
+    private string[] separator = { "\n\n\n" }; // DTA spezifischer Separator
+
     private Dictionary<Guid, string> MakeWebRequests(List<KeyValuePair<Guid[], string>> clusters)
     {
       if (clusters == null)
@@ -185,7 +187,7 @@ namespace CorpusExplorer.Sdk.Extern.DtaCAB
           if (string.IsNullOrEmpty(text))
             throw new ArgumentNullException(nameof(text));
 
-          var split = text.Split(new[] { "\n\n\n" }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim())
+          var split = text.Split(separator, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim())
                           .ToArray();
           if (split.Length != cluster.Key.Length)
             throw new IndexOutOfRangeException();

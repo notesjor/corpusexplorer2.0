@@ -310,6 +310,11 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Corpus
         _corpus.Metadata.Add(key, value);
     }
 
+    public override void Dispose()
+    {
+      this._layers.Clear();
+    }
+
     public override bool SetDocumentLayerValueMask(
       Guid documentGuid,
       Guid layerGuid,

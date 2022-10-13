@@ -18,17 +18,18 @@ namespace CorpusExplorer.Sdk.Helper
 
       try
       {
-        var selDat = listStream.Split(new[] {"?"}, StringSplitOptions.RemoveEmptyEntries);
+        var selDat = listStream.Split(Splitter.Question, StringSplitOptions.RemoveEmptyEntries);
+        
         foreach (var sD in selDat)
           try
           {
             var dic = new Dictionary<Guid, HashSet<Guid>>();
 
-            var corpora = sD.Split(new[] {"#"}, StringSplitOptions.RemoveEmptyEntries);
+            var corpora = sD.Split(Splitter.Hashtag, StringSplitOptions.RemoveEmptyEntries);
             for (var i = 1; i < corpora.Length; i++)
               try
               {
-                var items = corpora[i].Split(new[] {">"}, StringSplitOptions.RemoveEmptyEntries);
+                var items = corpora[i].Split(Splitter.Greater, StringSplitOptions.RemoveEmptyEntries);
                 if (items.Length < 2)
                   continue;
 
@@ -43,7 +44,7 @@ namespace CorpusExplorer.Sdk.Helper
                 // ignore
               }
 
-            var head = corpora[0].Split(new[] {"="}, StringSplitOptions.RemoveEmptyEntries);
+            var head = corpora[0].Split(Splitter.Equal, StringSplitOptions.RemoveEmptyEntries);
             var selection = project.CreateSelection(dic, DisplaynameDecoder(head[2]),
                                                     head[1] == "ROOT" ? null : res[Guid.Parse(head[1])]);
 
@@ -80,8 +81,8 @@ namespace CorpusExplorer.Sdk.Helper
 
     private static AbstractFilterQuery[] QueryDecoder(string exportInline)
     {
-      return Configuration.Encoding.GetString(Convert.FromBase64String(exportInline.Replace("&", "=")))
-                          .Split(new[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries).Select(QueryParser.Parse)
+      return Configuration.Encoding.GetString(Convert.FromBase64String(exportInline.Replace('&', '=')))
+                          .Split(Splitter.CRLF, StringSplitOptions.RemoveEmptyEntries).Select(QueryParser.Parse)
                           .ToArray();
     }
 

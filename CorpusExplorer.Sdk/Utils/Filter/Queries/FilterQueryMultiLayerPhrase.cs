@@ -24,7 +24,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
     [XmlAttribute] private string _multiLayerValueSeparator = ":";
 
-    [XmlIgnore] [NonSerialized] private List<KeyValuePair<string, string>> _query;
+    [XmlIgnore][NonSerialized] private List<KeyValuePair<string, string>> _query;
 
     public IEnumerable<string> MultiLayerQueries
     {
@@ -50,7 +50,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
     public override object Clone()
     {
-      return new FilterQueryMultiLayerPhrase {_multiLayerQueries = _multiLayerQueries.ToArray()};
+      return new FilterQueryMultiLayerPhrase { _multiLayerQueries = _multiLayerQueries.ToArray() };
     }
 
     protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
@@ -106,23 +106,23 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       {
         var res = new List<int>();
         for (var i = 0; i < first.Value.Length; i++)
-        for (var j = first.Value[i].Length - query.Length; j >= 0; j--)
-        {
-          var match = true;
-          for (var k = query.Length - 1; k >= 0; k--)
+          for (var j = first.Value[i].Length - query.Length; j >= 0; j--)
           {
-            if (query[k].Value == mult[query[k].Key][i][j - k])
-              continue;
-            match = false;
-            break;
-          }
+            var match = true;
+            for (var k = query.Length - 1; k >= 0; k--)
+            {
+              if (query[k].Value == mult[query[k].Key][i][j - k])
+                continue;
+              match = false;
+              break;
+            }
 
-          if (match)
-          {
-            res.Add(i);
-            break;
+            if (match)
+            {
+              res.Add(i);
+              break;
+            }
           }
-        }
 
         return res;
       }
@@ -130,13 +130,13 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       {
         var res = new List<int>();
         for (var i = 0; i < first.Value.Length; i++)
-        for (var j = 0; j < first.Value[i].Length - query.Length; j++)
-        {
-          if (query.Where((t, k) => t.Value != mult[t.Key][i][j + k]).Any())
-            continue;
-          res.Add(i);
-          break;
-        }
+          for (var j = 0; j < first.Value[i].Length - query.Length; j++)
+          {
+            if (query.Where((t, k) => t.Value != mult[t.Key][i][j + k]).Any())
+              continue;
+            res.Add(i);
+            break;
+          }
 
         return res;
       }
@@ -197,25 +197,25 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
       if (Configuration.RightToLeftSupport)
         for (var i = 0; i < first.Value.Length; i++)
-        for (var j = first.Value[i].Length - query.Length; j >= 0; j--)
-        {
-          var match = true;
-          for (var k = query.Length - 1; k >= 0; k--)
+          for (var j = first.Value[i].Length - query.Length; j >= 0; j--)
           {
-            if (query[k].Value == mult[query[k].Key][i][j - k])
-              continue;
-            match = false;
-            break;
-          }
+            var match = true;
+            for (var k = query.Length - 1; k >= 0; k--)
+            {
+              if (query[k].Value == mult[query[k].Key][i][j - k])
+                continue;
+              match = false;
+              break;
+            }
 
-          if (match)
-            return true;
-        }
+            if (match)
+              return true;
+          }
       else
         for (var i = 0; i < first.Value.Length; i++)
-        for (var j = 0; j < first.Value[i].Length - query.Length; j++)
-          if (!query.Where((t, k) => t.Value != mult[t.Key][i][j + k]).Any())
-            return true;
+          for (var j = 0; j < first.Value[i].Length - query.Length; j++)
+            if (!query.Where((t, k) => t.Value != mult[t.Key][i][j + k]).Any())
+              return true;
 
       return false;
     }
@@ -266,10 +266,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
         return;
 
       _query = new List<KeyValuePair<string, string>>();
+      var separator = new[] { _multiLayerValueSeparator };
 
       foreach (var x in _multiLayerQueries)
       {
-        var split = x.Split(new[] {_multiLayerValueSeparator}, StringSplitOptions.None);
+        var split = x.Split(separator, StringSplitOptions.None);
         if (split.Length != 2)
           throw new IndexOutOfRangeException(
                                              $"FilterQueryMultiLayerPhrase erfordert die Kombination aus Layer + Wert. Scheinbar wurden mehrere Werte übergeben. Dies ist nicht zulässig. Überprüfen Sie den Wert-Trenner - dieser lautet: \"{_multiLayerValueSeparator}\"");

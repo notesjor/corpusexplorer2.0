@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Helper;
 
 namespace CorpusExplorer.Sdk.Model.Localization
 {
@@ -12,11 +13,12 @@ namespace CorpusExplorer.Sdk.Model.Localization
     public void LoadLocalization(string path)
     {
       var lines = File.ReadAllLines(path, Configuration.Encoding);
+
       _dict = new Dictionary<string, string>();
       foreach (var line in lines)
       {
-        var split = line.Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
-        if(split.Length != 2)
+        var split = line.Split(Splitter.Tab, StringSplitOptions.RemoveEmptyEntries);
+        if (split.Length != 2)
           continue;
 
         if (_dict.ContainsKey(split[0]))
@@ -26,7 +28,7 @@ namespace CorpusExplorer.Sdk.Model.Localization
       }
     }
 
-    public string Translate(string label) 
+    public string Translate(string label)
       => _dict == null ? label : _dict.ContainsKey(label) ? _dict[label] : label;
   }
 }

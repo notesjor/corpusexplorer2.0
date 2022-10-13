@@ -584,6 +584,14 @@ namespace CorpusExplorer.Sdk.Model.Interface
     void ResetAllDocumentMetadata(Dictionary<Guid, Dictionary<string, object>> newMetadata);
 
     /// <summary>
+    ///   Remove a specific metadata entry for alle documents
+    /// </summary>
+    /// <param name="metadataKey">
+    ///   The metadataKey
+    /// </param>
+    void RemoveDocumentMetadata(string metadataKey);
+
+    /// <summary>
     ///   Switch für die angegebene Position im Text für einen bestimmten Layerwert.
     /// </summary>
     /// <param name="documentGuid">Document GUID</param>

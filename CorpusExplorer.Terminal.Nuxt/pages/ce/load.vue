@@ -1,0 +1,15 @@
+<template>
+  <div>
+      <div style="margin-top:20px">Projekt speichern</div>
+      <small>
+        Das Projekt wird im aktuellen Ordner unter dem Projektnamen gespeichert.
+      </small>
+      <FileManagerLoad style="margin-top:20px" Label="Projektnamen hier eingeben..." :Filter="['.proj5']" :SingleSelect="true"></FileManagerLoad>
+  </div>
+</template>
+
+<script>
+export default {
+    name: "CeLoad",
+};
+</script>

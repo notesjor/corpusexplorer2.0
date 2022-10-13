@@ -7,10 +7,8 @@ using CorpusExplorer.Sdk.Extern.Xml.AnnotationPro;
 using CorpusExplorer.Sdk.Extern.Xml.Bawe;
 using CorpusExplorer.Sdk.Extern.Xml.Bnc;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Drucksachen;
-using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle.v1;
 using CorpusExplorer.Sdk.Extern.Xml.BundestagOpenAccess.Plenarprotokolle.v2;
-using CorpusExplorer.Sdk.Extern.Xml.Catma;
 using CorpusExplorer.Sdk.Extern.Xml.Catma._5._0;
 using CorpusExplorer.Sdk.Extern.Xml.Catma._6._0;
 using CorpusExplorer.Sdk.Extern.Xml.CoraXml._0._8;
@@ -23,14 +21,11 @@ using CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017;
 using CorpusExplorer.Sdk.Extern.Xml.EuroparlUds;
-using CorpusExplorer.Sdk.Extern.Xml.Exmaralda;
 using CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Simple;
 using CorpusExplorer.Sdk.Extern.Xml.FnhdC;
-using CorpusExplorer.Sdk.Extern.Xml.Folker;
 using CorpusExplorer.Sdk.Extern.Xml.Folker.Flk;
 using CorpusExplorer.Sdk.Extern.Xml.Folker.Fln;
 using CorpusExplorer.Sdk.Extern.Xml.Gutenberg;
-using CorpusExplorer.Sdk.Extern.Xml.Ids;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.I5Xml;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP;
 using CorpusExplorer.Sdk.Extern.Xml.LexisNexis;
@@ -46,7 +41,6 @@ using CorpusExplorer.Sdk.Extern.Xml.Talkbank;
 using CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds;
 using CorpusExplorer.Sdk.Extern.Xml.Tei.P5Cal2;
 using CorpusExplorer.Sdk.Extern.Xml.TextGrid;
-using CorpusExplorer.Sdk.Extern.Xml.Tiger;
 using CorpusExplorer.Sdk.Extern.Xml.Tiger.Importer;
 using CorpusExplorer.Sdk.Extern.Xml.Tiger.Scraper;
 using CorpusExplorer.Sdk.Extern.Xml.Txm;
@@ -76,12 +70,14 @@ namespace CorpusExplorer.Sdk.Extern.Xml
       new Dictionary<string, AbstractExporter>
       {
         {"Slash/A-XML (*.xml)|*.xml", new ExporterSlashA()},
+        {"DTA-TCF + ZIP (*.zip)|*.zip", new ExporterDtaZip()},
         {"DTA-TCF (*.tcf.xml)|*.tcf.xml", new ExporterDta()},
-        {"DTA-TCF 2017 (*.tcf.xml)|*.tcf.xml", new ExporterDta2017()},
+        {"DTA-TCF bis 2017 (*.tcf.xml)|*.tcf.xml", new ExporterDta2017()},
         {"WebLicht (*.xml)|*.xml", new ExporterWeblicht()},
         {"AnnotationPro (*.ant)|*.ant", new ExporterAnnoationPro()},
         {"DWDS TEI (*.xml)|*.xml", new ExporterDwdsTei() },
         {"TXM TEI-XML (*.xml)|*.xml", new ExporterTxm() },
+        {"TXM TEI-XML + ZIP (*.zip)|*.zip", new ExporterTxmZip() },
         {"CATMA 6 (*.xml/*.txt)|*", new ExporterCatma() },
         {"XCES-XML (https://opus.nlpl.eu/) (*.xml)|*.xml", new ExporterOpusXces() },
       };
@@ -116,7 +112,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers =>
       new Dictionary<string, AbstractScraper>
       {
-        {
+        { 
           "IDS I5-Korpora (*.i5.xml)|*.i5.xml",
           new IdsScraper()
         },

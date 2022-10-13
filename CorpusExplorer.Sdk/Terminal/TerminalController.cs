@@ -51,9 +51,9 @@ namespace CorpusExplorer.Sdk.Terminal
     /// <param name="path">
     ///   The path.
     /// </param>
-    public void ProjectLoad(string path)
+    public void ProjectLoad(string path, string forceCorpusRoot = null)
     {
-      Project = Project.Load(path);
+      Project = Project.Load(path, forceCorpusRoot);
       ProjectPath = path;
     }
 
@@ -91,7 +91,7 @@ namespace CorpusExplorer.Sdk.Terminal
     /// <summary>
     ///   The project save.
     /// </summary>
-    public void ProjectSave(string path = null)
+    public void ProjectSave(string path = null, bool saveFullCorpusPath = true)
     {
       if (string.IsNullOrEmpty(path))
         path = ProjectPath;
@@ -99,7 +99,7 @@ namespace CorpusExplorer.Sdk.Terminal
         path = Path.Combine(Configuration.MyProjects, Project.Displayname + ".proj5");
 
       lock (_projectLock)
-        _project.Save(path);
+        _project.Save(path, saveFullCorpusPath);
     }
   }
 }

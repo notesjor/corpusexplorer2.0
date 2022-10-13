@@ -39,7 +39,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Txt
       var res = new ConcurrentBag<Dictionary<string, object>>();
       var text = File.ReadAllText(file, Configuration.Encoding);
 
-      var docs = text.Split(new[] {"\r\n\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+      var docs = text.Split(Splitter.CRLFCRLF, StringSplitOptions.RemoveEmptyEntries);
 
       Parallel.For(
                    0,
@@ -73,7 +73,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Txt
                             .Replace("  ", " ")
                             .Replace(",", ";");
 
-                       var metas = metaData.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries);
+                       var metas = metaData.Split(Splitter.Semicolon, StringSplitOptions.RemoveEmptyEntries);
                        if (metas.Length == 1)
                        {
                          entry.Add("Titel", metas[0]);

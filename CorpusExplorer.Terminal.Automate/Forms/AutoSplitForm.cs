@@ -57,7 +57,7 @@ namespace CorpusExplorer.Terminal.Automate
           return;
 
         var txt = value.Substring(2);
-        var vals = txt.Split(new[] { "::" }, StringSplitOptions.RemoveEmptyEntries);
+        var vals = txt.Split(Sdk.Helper.Splitter.ColonColon, StringSplitOptions.RemoveEmptyEntries);
         txt_meta.Text = vals[0];
 
         if (vals[1].StartsWith("TEXT"))
@@ -75,7 +75,7 @@ namespace CorpusExplorer.Terminal.Automate
         if (vals[1].StartsWith("DATE"))
         {
           drop_type.SelectedIndex = 3;
-          vals = vals[1].Replace("DATE;", "").Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+          vals = vals[1].Replace("DATE;", "").Split(Sdk.Helper.Splitter.Semicolon, StringSplitOptions.RemoveEmptyEntries);
 
           drop_date.SelectStartsWithValue($"DATE;{vals[0]} ");
           if (vals.Length > 1)

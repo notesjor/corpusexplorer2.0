@@ -39,19 +39,19 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model
         ChangeCompleteDocument(documentGuid, ConvertToLayer(documentTokens));
         return true;
       }
-      
+
       // Wenn gewünscht ist, dass "" als keine Änderung zu interpretieren ist.
-      if(!Documents.ContainsKey(documentGuid))
+      if (!Documents.ContainsKey(documentGuid))
         return false;
       var oldDoc = Documents[documentGuid];
       ChangeCompleteDocument(documentGuid, ConvertToLayer(documentTokens));
       var newDoc = Documents[documentGuid];
 
-      var idx = Cache[""];
+      var idx = RequestIndex("");
       for (var s = 0; s < oldDoc.Length; s++)
-      for (var w = 0; w < oldDoc[s].Length; w++)
-        if (newDoc[s][w] != idx)
-          oldDoc[s][w] = newDoc[s][w]; // Stelle Werte wieder her.
+        for (var w = 0; w < oldDoc[s].Length; w++)
+          if (newDoc[s][w] != idx)
+            oldDoc[s][w] = newDoc[s][w]; // Stelle Werte wieder her.
 
       Documents[documentGuid] = oldDoc;
       return true;
@@ -84,50 +84,16 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model
 
     public int[][] ConvertToLayer(string[][] document)
     {
-      lock (CacheLock)
+      var res = new int[document.Length][];
+
+      for (var i = 0; i < document.Length; i++)
       {
-        var res = new int[document.Length][];
-
-        for (var i = 0; i < document.Length; i++)
-        {
-          res[i] = new int[document[i].Length];
-          for (var j = 0; j < document[i].Length; j++)
-          {
-            var val = document[i][j] ?? string.Empty;
-            if (Cache.ContainsKey(val))
-              res[i][j] = Cache[val];
-            else
-            {
-              res[i][j] = Cache.Count;
-              Cache.Add(val, Cache.Count);
-            }
-          }
-        }
-
-        return res;
+        res[i] = new int[document[i].Length];
+        for (var j = 0; j < document[i].Length; j++)
+          res[i][j] = base.RequestIndex(document[i][j] ?? string.Empty);
       }
-    }
 
-    public int[] ConvertToLayer(string[] layerValues)
-    {
-      lock (CacheLock)
-      {
-        var res = new int[layerValues.Length];
-
-        for (var i = 0; i < layerValues.Length; i++)
-        {
-          var val = layerValues[i] ?? string.Empty;
-          if (Cache.ContainsKey(val))
-            res[i] = Cache[val];
-          else
-          {
-            res[i] = Cache.Count;
-            Cache.Add(val, Cache.Count);
-          }
-        }
-
-        return res;
-      }
+      return res;
     }
 
     public int ConvertToLayer(string layerValue)

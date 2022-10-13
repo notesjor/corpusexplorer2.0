@@ -55,6 +55,8 @@ namespace CorpusExplorer.Sdk.Utils.Filter
       char oper,
       string value)
     {
+      var separator = new[] {" ", ";"};
+
       switch (type)
       {
         case 'M':
@@ -142,35 +144,35 @@ namespace CorpusExplorer.Sdk.Utils.Filter
               {
                 Inverse = inverse,
                 LayerDisplayname = name,
-                LayerQueries = value.Split(new[] {" ", ";"}, StringSplitOptions.RemoveEmptyEntries)
+                LayerQueries = value.Split(separator, StringSplitOptions.RemoveEmptyEntries)
               };
             case '-':
               return new FilterQuerySingleLayerAllInOneDocument
               {
                 Inverse = inverse,
                 LayerDisplayname = name,
-                LayerQueries = value.Split(new[] {" ", ";"}, StringSplitOptions.RemoveEmptyEntries)
+                LayerQueries = value.Split(separator, StringSplitOptions.RemoveEmptyEntries)
               };
             case '=':
               return new FilterQuerySingleLayerAllInOneSentence
               {
                 Inverse = inverse,
                 LayerDisplayname = name,
-                LayerQueries = value.Split(new[] {" ", ";"}, StringSplitOptions.RemoveEmptyEntries)
+                LayerQueries = value.Split(separator, StringSplitOptions.RemoveEmptyEntries)
               };
             case '§':
               return new FilterQuerySingleLayerExactPhrase
               {
                 Inverse = inverse,
                 LayerDisplayname = name,
-                LayerQueries = value.Split(new[] {" ", ";"}, StringSplitOptions.RemoveEmptyEntries)
+                LayerQueries = value.Split(separator, StringSplitOptions.RemoveEmptyEntries)
               };
             case '1':
               return new FilterQuerySingleLayerFirstAndAnyOtherMatch
               {
                 Inverse = inverse,
                 LayerDisplayname = name,
-                LayerQueries = value.Split(new[] {" ", ";"}, StringSplitOptions.RemoveEmptyEntries)
+                LayerQueries = value.Split(separator, StringSplitOptions.RemoveEmptyEntries)
               };
           }
 

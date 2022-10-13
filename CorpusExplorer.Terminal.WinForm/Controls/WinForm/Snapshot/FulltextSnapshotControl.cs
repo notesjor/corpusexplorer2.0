@@ -40,7 +40,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
           return new FilterQueryMultiLayerPhrase
           {
             MultiLayerValueSeparator = ":",
-            MultiLayerQueries = txt_values.Text.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries)
+            MultiLayerQueries = txt_values.Text.Split(Sdk.Helper.Splitter.Semicolon, StringSplitOptions.RemoveEmptyEntries)
                                           .Select(x => x.Trim()),
             Guid = _guid
           };
@@ -50,7 +50,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
         {
           var query = (AbstractFilterQuerySingleLayer) combo_query.SelectedValue;
           query.LayerDisplayname = combo_layer.SelectedItem.Text;
-          query.LayerQueries = txt_values.Text.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries)
+          query.LayerQueries = txt_values.Text.Split(Sdk.Helper.Splitter.Semicolon, StringSplitOptions.RemoveEmptyEntries)
                                          .Select(x => x.Trim());
           query.Guid = _guid;
           return query;
@@ -62,7 +62,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Snapshot
         {
           var query = (FilterQuerySingleLayerExactPhrase) combo_query.SelectedValue;
           query.LayerDisplayname = combo_layer.SelectedItem.Text;
-          query.LayerQueries = txt_values.Text.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries)
+          query.LayerQueries = txt_values.Text.Split(Sdk.Helper.Splitter.Semicolon, StringSplitOptions.RemoveEmptyEntries)
                                          .Select(x => x.Trim());
           query.Guid = _guid;
           return query;

@@ -133,7 +133,7 @@ namespace CorpusExplorer.Sdk.Helper
       var off = text.IndexOf("</style>", StringComparison.Ordinal);
       var cut = off + 8; // 8 = Length of </style>
 
-      var lines = text.Substring(0, off).Split(new[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+      var lines = text.Substring(0, off).Split(Splitter.CRLF, StringSplitOptions.RemoveEmptyEntries);
       var html = text.Substring(cut);
 
       foreach (var s in lines.Where(s => s.StartsWith(".")))

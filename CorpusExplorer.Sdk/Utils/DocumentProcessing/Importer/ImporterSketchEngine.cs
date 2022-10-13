@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml.Linq;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
@@ -81,7 +82,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
         if (low.StartsWith("<"))
           continue;
 
-        var tokens = line.Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
+        var tokens = line.Split(Splitter.Tab, StringSplitOptions.RemoveEmptyEntries);
         for (var i = 0; i < tokens.Length; i++)
         {
           if (sent.Count == i)

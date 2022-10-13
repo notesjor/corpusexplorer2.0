@@ -476,6 +476,11 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
         _corpus.Metadata.Add(key, value);
     }
 
+    public override void Dispose()
+    {
+      _corpus = null;
+    }
+
     /// <summary>
     ///   Switch für die angegebene Position im Text für einen bestimmten Layerwert.
     /// </summary>

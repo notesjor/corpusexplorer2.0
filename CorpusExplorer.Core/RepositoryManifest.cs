@@ -120,6 +120,7 @@ namespace CorpusExplorer.Core
       new Dictionary<string, AbstractExporter>
       {
         { "JSON-Export (*.json)|*.json", new ExporterJson() },
+        { "JSON-Export + ZIP (*.zip)|*.zip", new ExporterJsonZip() },
         { "XML-Export (*.xml)|*.xml", new ExporterXml() },
         { "TLV-XML-Export (*.xml)|*.xml", new ExporterTlv() },
         { "CorpusExplorer v6 (*.cec6)|*.cec6", new ExporterCec6() },
@@ -133,8 +134,10 @@ namespace CorpusExplorer.Core
         { "CSV-Export [Metadaten + Wort-Layer] (*.csv)|*.csv", new ExporterCsv() },
         { "Abfragen-Export [Nur für Schnappschüsse] (*.ceusd)|*.ceusd", new ExporterQuery() },
         { "CoNLL (*.conll)|*.conll", new ExporterConll() },
+        { "CoNLL + ZIP (*.zip)|*.zip", new ExporterConllZip() },
         { "TreeTagger (*.treetagger)|*.treetagger", new ExporterTreeTagger() },
         { "TreeTagger + Satzgrenze (*.treetagger)|*.treetagger", new ExporterTreeTagger { UseSentenceTag = true } },
+        { "TreeTagger + ZIP (*.zip)|*.zip", new ExporterTreeTaggerZip { UseSentenceTag = true } },
         { "CorpusWorkBench (*.vrt)|*.vrt", new ExporterCorpusWorkBench { UseSentenceTag = false } },
         { "CorpusWorkBench + Satzgrenze (*.vrt, *.vrt.xml)|*.vrt;*.vrt.xml", new ExporterCorpusWorkBench { UseSentenceTag = true } },
         { "Sketch Engine VERT (*.vert)|*.vert", new ExporterSketchEngine() },
@@ -195,6 +198,8 @@ namespace CorpusExplorer.Core
     public override IEnumerable<IAction> AddonConsoleActions =>
       new IAction[]
       {
+        new AddTaggerAction(),
+
         new BasicInformationAction(),
 
         new ClusterAction(),
@@ -242,7 +247,9 @@ namespace CorpusExplorer.Core
         new KwicAllInSentenceFilterAction(),
         new KwicAnyFilterAction(),
         new KwicExactPhraseFilterAction(),
+        new KwicExportAction(),
         new KwicFirstAnyFilterAction(),
+        new KwicMdaFilterAction(),
         new KwicNamedEntityAction(),
         new KwicSignificantFilterAction(),
         new KwitAction(),
@@ -254,6 +261,8 @@ namespace CorpusExplorer.Core
         new MetaAction(),
         new MetaCategoriesAction(),
         new MetaDocumentAction(),
+        new MetaExportAction(),
+        new MetaImportAction(),
         new MetaSelectedAction(),
         new MetaSelectedDomainAction(),
         new MtldAction(),
@@ -274,6 +283,9 @@ namespace CorpusExplorer.Core
         new QueryCountSentencesAction(),
         new QueryListAction(),
 
+        new RemoveLayerAction(),
+        new RemoveMetaAction(),
+
         new SentenceCountAction(),
         new SizeAction(),
         new StyleBurrowsDeltaAction(),
@@ -285,6 +297,7 @@ namespace CorpusExplorer.Core
         new TokenListSelectAction(),
         new TypeCountAction(),
 
+        new ValidateAction(),
         new VocabularyComplexityAction(),
         new VocdAction(),
       };

@@ -81,12 +81,12 @@ namespace CorpusExplorer.Sdk.Helper
 
       try
       {
-        var lines = text.Split(new[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+        var lines = text.Split(Splitter.CRLF, StringSplitOptions.RemoveEmptyEntries);
         return lines
-              .Where(line => !line.Contains("#")) // Anpassung 1.
+              .Where(line => !line.Contains('#')) // Anpassung 1.
               .Select(line =>
                         line.Replace("{CPU}", Environment.Is64BitProcess ? "x64" : "x86")
-                            .Split(new[] {"|"}, StringSplitOptions.RemoveEmptyEntries)); // Anpassung 2.
+                            .Split(Splitter.Pipe, StringSplitOptions.RemoveEmptyEntries)); // Anpassung 2.
       }
       catch
       {

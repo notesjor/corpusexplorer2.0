@@ -83,7 +83,7 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStatus.Model
 
     [JsonProperty("QuotedStatus")] public QuotedStatus QuotedStatus { get; set; }
 
-    [JsonProperty("QuotedStatusID")] public long QuotedStatusID { get; set; }
+    [JsonProperty("QuotedStatusID")] public ulong QuotedStatusID { get; set; }
 
     [JsonProperty("RetweetCount")] public ulong? RetweetCount { get; set; }
 
@@ -97,7 +97,7 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStatus.Model
 
     [JsonProperty("Source")] public string Source { get; set; }
 
-    [JsonProperty("StatusID")] public long StatusID { get; set; }
+    [JsonProperty("StatusID")] public ulong StatusID { get; set; }
 
     [JsonProperty("Text")] public string Text { get; set; }
 

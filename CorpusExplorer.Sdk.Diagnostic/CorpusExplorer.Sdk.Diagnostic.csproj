@@ -15,7 +15,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -51,14 +51,6 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenSourceTelemetrieClient452, Version=1.0.0.1, Culture=neutral, PublicKeyToken=886802316dee4012, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>W:\Kooperationsprojekte\OpenSourceTelemetrie\OpenSourceTelemetrieClient452\bin\Release\OpenSourceTelemetrieClient452.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenSourceTelemetrieData452, Version=1.0.0.0, Culture=neutral, PublicKeyToken=886802316dee4012, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>W:\Kooperationsprojekte\OpenSourceTelemetrie\OpenSourceTelemetrieClient452\bin\Release\OpenSourceTelemetrieData452.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />

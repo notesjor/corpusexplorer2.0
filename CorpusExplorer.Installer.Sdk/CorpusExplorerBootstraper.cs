@@ -279,7 +279,7 @@ namespace CorpusExplorer.Installer.Sdk
 
         var index = _installed.FindIndex(x => x[0] == update.Url);
         if (index == -1)
-          _installed.Add(new[] {update.Url, update.OnlineVersion});
+          _installed.Add(new[] { update.Url, update.OnlineVersion });
         else
           _installed[index][1] = update.OnlineVersion;
       }
@@ -297,7 +297,7 @@ namespace CorpusExplorer.Installer.Sdk
 
     private static void DoUpdate_Call(string url, string tempDir, int i)
     {
-      var info = url.Split(new[] {"#"}, StringSplitOptions.None);
+      var info = url.Split(CorpusExplorer.Sdk.Helper.Splitter.Hashtag, StringSplitOptions.None);
       if (info.Length != 3)
         return;
 
@@ -395,7 +395,7 @@ namespace CorpusExplorer.Installer.Sdk
 
     private static void DoUpdate_Link(string url)
     {
-      var info = url.Split(new[] {"#"}, StringSplitOptions.RemoveEmptyEntries);
+      var info = url.Split(CorpusExplorer.Sdk.Helper.Splitter.Hashtag, StringSplitOptions.RemoveEmptyEntries);
       if (info.Length != 3)
         return;
 
@@ -606,8 +606,8 @@ namespace CorpusExplorer.Installer.Sdk
     private static void ValidateDotNetFramework()
     {
       var version = DotNetFrameworkDetection.GetLatestDotNetVersion();
-      if (version[0] < 4                                       ||
-          version[0] == 4                    && version[1] < 5 ||
+      if (version[0] < 4 ||
+          version[0] == 4 && version[1] < 5 ||
           version[0] == 4 && version[1] == 5 && version[2] < 2)
         if (
           MessageBox.Show("Auf ihrem Rechner ist eine veraltete Version des .NET-Frameworks installiert.\nBitte aktualisieren Sie das .NET-Framework bevor Sie mit der Installation des CorpusExplorers fortfahren.\nMöchten Sie die .NET-Downloadseite aufrufen?",
@@ -621,7 +621,7 @@ namespace CorpusExplorer.Installer.Sdk
     {
       var update = CheckForUpdates();
 
-      if (update                                      == null ||
+      if (update == null ||
           update.Count(x => !x.InstallationCompleted) == 0)
         return;
 
@@ -696,10 +696,10 @@ namespace CorpusExplorer.Installer.Sdk
     {
       try
       {
-        var lines = text.Split(new[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+        var lines = text.Split(CorpusExplorer.Sdk.Helper.Splitter.CRLF, StringSplitOptions.RemoveEmptyEntries);
         return lines.Select(line =>
                               line.Replace("{CPU}", Environment.Is64BitProcess ? "x64" : "x86")
-                                  .Split(new[] {"|"}, StringSplitOptions.RemoveEmptyEntries));
+                                  .Split(CorpusExplorer.Sdk.Helper.Splitter.Pipe, StringSplitOptions.RemoveEmptyEntries));
       }
       catch
       {

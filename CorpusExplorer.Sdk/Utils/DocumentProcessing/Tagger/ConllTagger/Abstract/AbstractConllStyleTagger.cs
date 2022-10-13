@@ -81,8 +81,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.ConllTagger.Abstrac
       var sentences = keys.ToDictionary(x => x, x => new List<int>());
       var document = keys.ToDictionary(x => x, x => new List<int[]>());
       var values = keys.ToDictionary(x => x, x => 0);
-
-      var lines = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+      
+      var lines = text.Split(Splitter.LineBreaks, StringSplitOptions.None);
       foreach (var line in lines)
       {
         // CoNLL kann Kommentare enthalten, die hiermit ausgeblendet werden.

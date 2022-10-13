@@ -14,8 +14,10 @@ using CorpusExplorer.Sdk.Ecosystem;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model;
+using CorpusExplorer.Sdk.Model.Adapter.Corpus;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Extension;
+using CorpusExplorer.Sdk.Utils.CorpusManipulation;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
@@ -107,13 +109,6 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
                           cleaner2.Execute();
                         });
 
-      InMemoryErrorConsole.TrackEvent(new Dictionary<string, double>
-      {
-        {$"SCRAPE (format): {scraper.GetType().FullName}", 0 },
-        { "SCRAPE (ms)", (DateTime.Now - time).Milliseconds },
-        { "SCRAPE (files)", files.Count() }
-      });
-
       Tagging(project, cleaner2?.Output, checkErrors);
     }
 
@@ -161,36 +156,32 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
 
                             output = corpus.CountDocuments;
 
-                            corpus.CorpusDisplayname = formName.Result;
+                            SaveCorpus(corpus, formName.Result);
                             AddCorpusToProject(project, corpus, checkErrors);
-
-                            try
-                            {
-                              corpus.Save(Path.Combine(Configuration.MyCorpora, formName.Result.EnsureFileName() + ".cec6.lz4" ), true);
-                            }
-                            catch (FileNotFoundException)
-                            {
-                              try
-                              {
-                                MessageBox.Show("Der CorpusExplorer hat festgestellt, dass der Windows Defender die Korpusverarbeitung blockiert.\nLösungen:\n1) Deaktivieren Sie den 'Überwachten Ordnerzugriff' ganz oder selektiv für den Ordner 'Dokumente\\CorpusExplorer'.\n2) Im folgenden Schritt können Sie das Korpus außerhalb (in einem anderen Ordner) speichern.");
-                                Export(corpus.ToSelection());
-                              }
-                              catch
-                              {
-                                // ignore
-                              }
-                            }
                           }
                         });
+    }
 
-      InMemoryErrorConsole.TrackEvent(new Dictionary<string, double>
+    private static void SaveCorpus(AbstractCorpusAdapter corpus, string name)
+    {
+      corpus.CorpusDisplayname = name;
+
+      try
       {
-        { "TAGGING (ms)", (DateTime.Now - time).Milliseconds },
-        { $"TAGGING (Tagger): {tagger.GetType().FullName}", 0 },
-        { $"TAGGING (Tagger - Language): {tagger.LanguageSelected}", 0 },
-        { "TAGGING (docs - IN)", input },
-        { "TAGGING (docs - OUT)", output }
-      });
+        corpus.Save(Path.Combine(Configuration.MyCorpora, name.EnsureFileName() + ".cec6.lz4"), true);
+      }
+      catch (FileNotFoundException)
+      {
+        try
+        {
+          MessageBox.Show("Der CorpusExplorer hat festgestellt, dass der Windows Defender die Korpusverarbeitung blockiert.\nLösungen:\n1) Deaktivieren Sie den 'Überwachten Ordnerzugriff' ganz oder selektiv für den Ordner 'Dokumente\\CorpusExplorer'.\n2) Im folgenden Schritt können Sie das Korpus außerhalb (in einem anderen Ordner) speichern.");
+          Export(corpus.ToSelection());
+        }
+        catch
+        {
+          // ignore
+        }
+      }
     }
 
     private static string CorpusNameCheck(string arg)
@@ -325,21 +316,36 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
         return;
       }
 
-      Processing.Invoke(
-                        Resources.Corpus_Loading,
-                        () =>
-                        {
-                          if (corpora != null)
-                            foreach (var corpus in corpora)
-                              AddCorpusToProject(project, corpus, checkErrors);
-                        });
-
-      InMemoryErrorConsole.TrackEvent(new Dictionary<string, double>
+      // z. B. wenn CEC6 importiert wird
+      if (importer.HasStaticGuids)
       {
-        {$"IMPORT (format): {importer.GetType().FullName}", 0 },
-        { "IMPORT (ms)", (DateTime.Now - time).Milliseconds },
-        { "IMPORT (files)", files.Count() }
-      });
+        Processing.Invoke(
+                         Resources.Corpus_Loading,
+                         () =>
+                         {
+                           if (corpora != null)
+                             foreach (var corpus in corpora)
+                               AddCorpusToProject(project, corpus, checkErrors);
+                         });
+        return;
+      }
+
+      // Alle anderen Fälle
+      var formName = new SimpleTextInputValidation(
+                                                   Resources.Dashboard_EnterCorpusNameHead,
+                                                   Resources.Dashboard_EnterCorpusNameDescription,
+                                                   Resources.cabinet,
+                                                   Resources.Dashboard_EnterCorpusNameNullText,
+                                                   CorpusNameCheck);
+      if (formName.ShowDialog() != DialogResult.OK)
+        return;
+
+      var merged = CorpusMerger.Merge(corpora);
+      foreach (var corpus in corpora)
+        corpus.Dispose();
+
+      SaveCorpus(merged, formName.Result);
+      AddCorpusToProject(project, merged, checkErrors);
     }
 
     /// <summary>
@@ -367,12 +373,6 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       var exporter = dic[sfd.FilterIndex - 1].Value;
 
       Processing.Invoke(Resources.GutDingWillWeileHaben, () => exporter.Export(selection, sfd.FileName));
-
-      InMemoryErrorConsole.TrackEvent(new Dictionary<string, double>
-      {
-        {$"EXPORT (format): {exporter.GetType().FullName}", 0 },
-        { "EXPORT (ms)", (DateTime.Now - time).Milliseconds }
-      });
     }
 
     /// <summary>

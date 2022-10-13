@@ -2605,7 +2605,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer
         input = input.Replace("  ", " ");
       } while (length != input.Length);
 
-      return input.Replace("< ENDOFCORPUSEXPLORERFILE >", "<ENDOFCORPUSEXPLORERFILE>").Trim().Replace(" ", "\r\n");
+      return input.Replace("< ENDOFCORPUSEXPLORERFILE >", "<ENDOFCORPUSEXPLORERFILE>").Trim().Replace(" ", Environment.NewLine);
     }
 
     private string SpecialTokenizerCleanup(string str)

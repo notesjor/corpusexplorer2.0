@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\PostSharp.6.10.10\build\PostSharp.props" Condition="Exists('..\packages\PostSharp.6.10.10\build\PostSharp.props')" />
+  <Import Project="..\packages\PostSharp.6.10.15\build\PostSharp.props" Condition="Exists('..\packages\PostSharp.6.10.15\build\PostSharp.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -48,7 +48,7 @@
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
@@ -84,8 +84,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.AnalysisServices.AdomdClient, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
-    <Reference Include="PostSharp, Version=6.10.10.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.10.10\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.10.15.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.10.15\lib\net45\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -99,28 +99,28 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.WinControls, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2022.1.222.40\Telerik.WinControls.dll</HintPath>
+    <Reference Include="Telerik.WinControls, Version=2022.3.921.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2022.3.921.40\Telerik.WinControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.GridView, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2022.1.222.40\Telerik.WinControls.GridView.dll</HintPath>
+    <Reference Include="Telerik.WinControls.GridView, Version=2022.3.921.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2022.3.921.40\Telerik.WinControls.GridView.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2022.1.222.40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2022.3.921.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2022.3.921.40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2022.1.222.40\Telerik.WinControls.UI.dll</HintPath>
+    <Reference Include="Telerik.WinControls.UI, Version=2022.3.921.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2022.3.921.40\Telerik.WinControls.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="TelerikCommon, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2022.1.222.40\TelerikCommon.dll</HintPath>
+    <Reference Include="TelerikCommon, Version=2022.3.921.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2022.3.921.40\TelerikCommon.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="TelerikData, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2022.1.222.40\TelerikData.dll</HintPath>
+    <Reference Include="TelerikData, Version=2022.3.921.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2022.3.921.40\TelerikData.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -270,7 +270,7 @@
       <Project>{DC1B5A58-29DA-476D-89F8-E73A1DB11E52}</Project>
       <Name>CorpusExplorer.Sdk</Name>
     </ProjectReference>
-    <ProjectReference Include="W:\Kooperationsprojekte\CorpusExplorer.Terminal.Console\CorpusExplorer.Terminal.Console.csproj">
+    <ProjectReference Include="..\..\..\..\Projekte-Kooperation\CorpusExplorer.Terminal.Console\CorpusExplorer.Terminal.Console.csproj">
       <Project>{77D277FA-CB8F-4619-90E8-4AF5BE6E9AC3}</Project>
       <Name>CorpusExplorer.Terminal.Console</Name>
     </ProjectReference>
@@ -340,10 +340,10 @@
     <PropertyGroup>
       <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\PostSharp.6.10.10\build\PostSharp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PostSharp.6.10.10\build\PostSharp.props'))" />
-    <Error Condition="!Exists('..\packages\PostSharp.6.10.10\build\PostSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PostSharp.6.10.10\build\PostSharp.targets'))" />
+    <Error Condition="!Exists('..\packages\PostSharp.6.10.15\build\PostSharp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PostSharp.6.10.15\build\PostSharp.props'))" />
+    <Error Condition="!Exists('..\packages\PostSharp.6.10.15\build\PostSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PostSharp.6.10.15\build\PostSharp.targets'))" />
   </Target>
-  <Import Project="..\packages\PostSharp.6.10.10\build\PostSharp.targets" Condition="Exists('..\packages\PostSharp.6.10.10\build\PostSharp.targets')" />
+  <Import Project="..\packages\PostSharp.6.10.15\build\PostSharp.targets" Condition="Exists('..\packages\PostSharp.6.10.15\build\PostSharp.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using CorpusExplorer.Sdk.Blocks;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
 using CorpusExplorer.Sdk.ViewModel.Interfaces;
@@ -77,7 +78,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 
         while (!reader.EndOfStream)
         {
-          var split = reader.ReadLine()?.Split(new[] { "\t" }, StringSplitOptions.None);
+          var split = reader.ReadLine()?.Split(Splitter.Tab, StringSplitOptions.None);
           if (split == null || split.Length <= udL)
             continue;
 

@@ -5,6 +5,7 @@ using System.Linq;
 using CorpusExplorer.Sdk.Extern.Xml.CoraXml._0._8.Extension;
 using CorpusExplorer.Sdk.Extern.Xml.CoraXml._0._8.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Helper;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.CoraXml._0._8
@@ -87,7 +88,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.CoraXml._0._8
       var header = doc.header;
       if (header != null)
       {
-        var lines = header.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+        var lines = header.Split(Splitter.LineBreaks, StringSplitOptions.RemoveEmptyEntries);
         foreach (var line in lines)
         {
           var idx = line.IndexOf(':');

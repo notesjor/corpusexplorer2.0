@@ -28,10 +28,10 @@ namespace CorpusExplorer.Sdk.Blocks.NamedEntityRecognition
     {
       var lines = FileIO.ReadLines(path, Configuration.Encoding);
       var entities = new List<Entity>();
-
+      
       for (var i = 1; i < lines.Length; i++)
       {
-        var split = lines[i].Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
+        var split = lines[i].Split(Splitter.Tab, StringSplitOptions.RemoveEmptyEntries);
         if (split.Length < 3)
           continue;
 
@@ -43,7 +43,7 @@ namespace CorpusExplorer.Sdk.Blocks.NamedEntityRecognition
                   new FilterQuerySingleLayerExactPhrase
                   {
                     LayerDisplayname = "Wort",
-                    LayerQueries = split[0].Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries)
+                    LayerQueries = split[0].Split(Splitter.Space, StringSplitOptions.RemoveEmptyEntries)
                   })
           /*
           NewRule(0.8, new FilterQuerySingleLayerAnyMatch
@@ -57,7 +57,7 @@ namespace CorpusExplorer.Sdk.Blocks.NamedEntityRecognition
         if (split.Length == 4)
         {
           var query = new List<string> { split[2] };
-          query.AddRange(split[3].Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+          query.AddRange(split[3].Split(Splitter.Space, StringSplitOptions.RemoveEmptyEntries));
           rules.Add(NewRule(1.0,
                             new FilterQuerySingleLayerFirstAndAnyOtherMatch
                               { LayerDisplayname = "Wort", LayerQueries = query.ToArray() }));

@@ -17,7 +17,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET.Forms
     }
 
     public HashSet<string> SelectedDomains =>
-      new HashSet<string>(radAutoCompleteBox1.Text.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries));
+      new HashSet<string>(radAutoCompleteBox1.Text.Split(Helper.Splitter.Semicolon, StringSplitOptions.RemoveEmptyEntries));
 
     public string SelectedLanguage => _list[combo_languages.SelectedIndex];
 

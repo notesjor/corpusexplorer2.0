@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using CorpusExplorer.Sdk.Extern.Xml.Abstract;
 using CorpusExplorer.Sdk.Extern.Xml.AnnotationPro.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Helper;
+using Telerik.Windows.Zip;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.AnnotationPro
 {

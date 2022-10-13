@@ -24,8 +24,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
 
     public string Label
     {
-      get => txt_label.Text;
-      set => txt_label.Text = _label = value;
+      get => _label;
+      set => _label = value;
     }
 
     public long Value

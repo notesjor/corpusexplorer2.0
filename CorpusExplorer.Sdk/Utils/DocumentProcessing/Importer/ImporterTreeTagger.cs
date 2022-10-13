@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
@@ -13,7 +14,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
   public class ImporterTreeTagger : AbstractImporter
   {
     private readonly Dictionary<Guid, Dictionary<string, object>> _docMeta = new Dictionary<Guid, Dictionary<string, object>>();
-    private readonly LayerValueState _layerL = new LayerValueState("Lemma", 2);    
+    private readonly LayerValueState _layerL = new LayerValueState("Lemma", 2);
     private readonly LayerValueState _layerP = new LayerValueState("POS", 1);
     private readonly LayerValueState _layerW = new LayerValueState("Wort", 0);
     private readonly object _layerLock = new object();
@@ -35,7 +36,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
       foreach (var line in lines)
         try
         {
-          var split = line.Split(new[] {"\t"}, StringSplitOptions.None);
+          var split = line.Split(Splitter.Tab, StringSplitOptions.None);
           if (split.Length != 3)
             continue;
 
@@ -86,7 +87,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
     protected override IEnumerable<AbstractCorpusAdapter> PostProcessing(IEnumerable<AbstractCorpusAdapter> corpora)
     {
       var builder = new CorpusBuilderWriteDirect();
-      return builder.Create(new[] {_layerW, _layerP, _layerL}, _docMeta, new Dictionary<string, object>(), null);
+      return builder.Create(new[] { _layerW, _layerP, _layerL }, _docMeta, new Dictionary<string, object>(), null);
     }
   }
 }

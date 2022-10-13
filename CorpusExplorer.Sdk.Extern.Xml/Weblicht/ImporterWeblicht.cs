@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Weblicht.Model;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
@@ -85,7 +86,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
       return
         dspin.TextCorpus.sentences.Select(
             sentence =>
-              sentence.tokenIDs.Split(new[] { " ", "\t", "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries))
+              sentence.tokenIDs.Split(Splitter.TabSpaceAndLineBreaks, StringSplitOptions.RemoveEmptyEntries))
           .ToArray();
     }
   }

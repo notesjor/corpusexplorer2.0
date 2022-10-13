@@ -22,7 +22,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
 
       foreach (var csel in hydra.CorporaAndDocumentGuids)
       {
-        var root = CombineAndEnsureDirectoryExsists(path, csel.Key.ToString());
+        var root = CombineAndEnsureDirectoryExsists(path, csel.Key.ToString("N"));
         var corpus = hydra.GetCorpus(csel.Key);
         if (corpus == null)
           continue;
@@ -32,7 +32,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
                           Path.Combine(root, "doc.index.json"),
                           JsonConvert.SerializeObject(
                                                       csel.Value.ToDictionary(
-                                                                              x => x,
+                                                                              x => x.ToString("N"),
                                                                               hydra.GetDocumentDisplayname)));
 
         // Erzeuge Index.json (Guid > Layernamen - Dictionary)
@@ -40,7 +40,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
                           Path.Combine(root, "layer.index.json"),
                           JsonConvert.SerializeObject(
                                                       corpus.LayerGuidAndDisplaynames.ToDictionary(
-                                                                                                   x => x.Key,
+                                                                                                   x => x.Key.ToString("N"),
                                                                                                    x => x.Value)));
 
         // Speichere alle Dokumente
@@ -53,17 +53,13 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
                             Path.Combine(dpath, "doc.meta.json"),
                             JsonConvert.SerializeObject(corpus.GetDocumentMetadata(dsel)));
 
-          var list = new List<Guid>();
-
           // Gebe die Layerdaten des Dokuments aus
           foreach (var layer in corpus.Layers)
           {
             if (!layer.ContainsDocument(dsel))
               continue;
 
-            var lguid = layer.Guid;
-            list.Add(lguid);
-            var lpath = CombineAndEnsureDirectoryExsists(dpath, lguid.ToString());
+            var lpath = CombineAndEnsureDirectoryExsists(dpath, layer.Guid.ToString("N"));
 
             File.WriteAllText(
                               Path.Combine(lpath, "doc.data.json"),
@@ -72,8 +68,6 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
                                                                .Select(d => d.ToArray())
                                                                .ToArray()));
           }
-
-          File.WriteAllText(Path.Combine(dpath, "layer.info.json"), JsonConvert.SerializeObject(list.ToArray()));
         }
       }
     }

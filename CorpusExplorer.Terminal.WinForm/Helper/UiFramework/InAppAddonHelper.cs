@@ -58,7 +58,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       var lines = File.ReadAllLines(file, Encoding.UTF8);
 
       return (from line in lines
-              select line.Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries)
+              select line.Split(Splitter.Tab, StringSplitOptions.RemoveEmptyEntries)
               into split
               where split.Length == 6
               select new RepositoryAddonEntry
@@ -77,7 +77,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       var lines = File.ReadAllLines(Path.Combine(Configuration.AppPath, file), Encoding.UTF8);
 
       return (from line in lines
-              select line.Split(new[] { "\t" }, StringSplitOptions.RemoveEmptyEntries)
+              select line.Split(Splitter.Tab, StringSplitOptions.RemoveEmptyEntries)
               into split
               where split.Length == 8
               select new RepositoryCorpusEntry

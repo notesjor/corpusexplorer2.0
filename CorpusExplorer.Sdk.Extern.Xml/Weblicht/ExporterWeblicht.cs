@@ -42,7 +42,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Weblicht
           {
             XmlSerializerHelper.Serialize(GetDSpin(hydra, guid, i++), ms);
             var lines = Configuration.Encoding.GetString(ms.ToArray())
-                                     .Split(new[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+                                     .Split(Splitter.CRLF, StringSplitOptions.RemoveEmptyEntries);
             lines[1] = GetDspinMetadata(hydra.GetDocumentMetadata(guid));
             text = string.Join("\r\n", lines);
           }

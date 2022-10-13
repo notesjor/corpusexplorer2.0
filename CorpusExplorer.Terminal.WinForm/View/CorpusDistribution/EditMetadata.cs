@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.Simple;
@@ -20,9 +23,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     private void btn_doReplace_Click(object sender, EventArgs e)
     {
       _vm.Replace(txt_search.Text, txt_replace.Text);
-      radGridView1.DataBindings.Clear();
-      radGridView1.DataSource = _vm.DataTable;
-      radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+      
+      Refresh();
     }
 
     private void btn_export_Click(object sender, EventArgs e)
@@ -38,26 +40,29 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       var ofd = new OpenFileDialog {Filter = "TSV-Datei (*.tsv)|*.tsv"};
       if (ofd.ShowDialog() != DialogResult.OK)
         return;
-      _vm.Import(ofd.FileName);
-      DocumentMetadataVisualisation_ShowVisualisation(null, null);
 
+      _vm.Import(ofd.FileName);
+      Refresh();
+    }
+
+    private void Refresh()
+    {
+      _vm = GetViewModel<DocumentMetadataViewModel>();
       _vm.Execute();
-      radGridView1.Columns.Clear();
+
+      radGridView1.DataBindings.Clear();
       radGridView1.DataSource = _vm.DataTable;
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
     }
 
     private void btn_meta_add_Click(object sender, EventArgs e)
     {
-      var form = new SimpleTextInput(
-                                     "Neue Metaangabe",
-                                     "Geben Sie den Namen der neuen Metaangabe an. Dieser Wert kann später nicht mehr geändert werden.",
-                                     Resources.tag_green,
-                                     "Name hier eingeben...");
+      var form = new CorpusExplorer.Tool4.DocPlusEditor.Forms.MetadataNew(new HashSet<string>(from DataColumn c in _vm.DataTable.Columns select c.ColumnName));
       if (form.ShowDialog() != DialogResult.OK)
         return;
 
-      _vm.AddMetaEntry(form.Result, typeof(string));
+      _vm.AddMetaEntry(form.Result.Key, form.Result.Value);
+      Refresh();
     }
 
     private void btn_save_Click(object sender, EventArgs e)
@@ -67,10 +72,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
 
     private void DocumentMetadataVisualisation_ShowVisualisation(object sender, EventArgs e)
     {
-      _vm = GetViewModel<DocumentMetadataViewModel>();
-      _vm.Execute();
-      radGridView1.DataSource = _vm.DataTable;
-      radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+      Refresh();
     }
   }
 }

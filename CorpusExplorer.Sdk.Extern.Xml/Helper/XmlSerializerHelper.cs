@@ -37,5 +37,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Helper
         xml.Serialize(bs, obj);
       }
     }
+
+    public static byte[] Serialize<T>(T obj)
+    {
+      using (var bs = new MemoryStream())
+      {
+        var xml = new XmlSerializer(typeof(T));
+        xml.Serialize(bs, obj);
+        return bs.ToArray();
+      }
+    }
+
+    public static string Serialize<T>(T obj, Encoding encoding) 
+      => encoding.GetString(Serialize<T>(obj));
   }
 }

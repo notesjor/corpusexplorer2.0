@@ -51,29 +51,29 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="Telerik.Reporting, Version=16.1.22.511, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
-      <HintPath>W:\Telerik\Telerik Reporting R2 2022\bin\Telerik.Reporting.dll</HintPath>
+    <Reference Include="Telerik.WinControls, Version=2022.3.921.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2022.3.921.40\Telerik.WinControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2022.3.921.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2022.3.921.40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2022.3.921.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2022.3.921.40\Telerik.WinControls.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2022.3.921.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2022.3.921.40\TelerikCommon.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Reporting, Version=16.2.22.914, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik Reporting R3 2022\bin\Telerik.Reporting.dll</HintPath>
       <SpecificVersion>True</SpecificVersion>
     </Reference>
-    <Reference Include="Telerik.ReportViewer.WinForms, Version=16.1.22.511, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
-      <HintPath>W:\Telerik\Telerik Reporting R2 2022\bin\Telerik.ReportViewer.WinForms.dll</HintPath>
+    <Reference Include="Telerik.ReportViewer.WinForms, Version=16.2.22.914, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <HintPath>C:\Program Files (x86)\Progress\Telerik Reporting R3 2022\bin\Telerik.ReportViewer.WinForms.dll</HintPath>
       <SpecificVersion>True</SpecificVersion>
-    </Reference>
-    <Reference Include="Telerik.WinControls, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2022.1.222.40\Telerik.WinControls.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2022.1.222.40\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Telerik.WinControls.UI, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2022.1.222.40\Telerik.WinControls.UI.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="TelerikCommon, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2022.1.222.40\TelerikCommon.dll</HintPath>
-      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +160,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\CorpusCooccurrences.resx">
       <DependentUpon>CorpusCooccurrences.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\CorpusDistribution.resx">
       <DependentUpon>CorpusDistribution.cs</DependentUpon>

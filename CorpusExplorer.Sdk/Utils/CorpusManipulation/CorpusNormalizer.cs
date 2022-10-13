@@ -7,12 +7,32 @@ using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model.Abstract;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
 
 namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
 {
   public static class CorpusNormalizer
   {
+    /// <summary>
+    /// Normalisiert ein Korpus
+    /// </summary>
+    /// <param name="builder">CorpusBuilder</param>
+    /// <param name="corpus">Korpus</param>
+    /// <returns>Normalisiertes Korpus</returns>
+    public static AbstractCorpusAdapter Input(AbstractCorpusBuilder builder, AbstractCorpusAdapter corpus)
+    {
+      var normDict = new Dictionary<string, Dictionary<string, int>>();
+      foreach (var layer in corpus.Layers)
+      {
+        var dict = layer.ReciveRawReverseLayerDictionary();
+        var norm = new Dictionary<string, int>();
+        foreach (var x in dict.Where(x => !norm.ContainsKey(x.Value)))
+          norm.Add(x.Value, x.Key);
+        normDict.Add(layer.Displayname, norm);
+      }
+
+      return Input(builder, corpus, normDict);
+    }
+
     /// <summary>
     /// Normalisiert ein Korpus
     /// </summary>

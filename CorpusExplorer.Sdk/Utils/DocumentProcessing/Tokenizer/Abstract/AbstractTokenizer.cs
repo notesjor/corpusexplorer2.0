@@ -1,4 +1,5 @@
 using System;
+using CorpusExplorer.Sdk.Helper;
 
 namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer.Abstract
 {
@@ -10,7 +11,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer.Abstract
 
     public string[] ExecuteToArray(string input)
     {
-      return Execute(input).Split(new[] {"\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries);
+      return Execute(input).Split(Splitter.LineBreaks, StringSplitOptions.RemoveEmptyEntries);
     }
   }
 }

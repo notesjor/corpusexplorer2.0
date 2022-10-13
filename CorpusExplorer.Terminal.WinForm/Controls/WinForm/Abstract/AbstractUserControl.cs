@@ -22,6 +22,14 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Abstract
       }
 
       InitializeComponent();
+      Load += AbstractUserControl_Load;
+    }
+
+    private void AbstractUserControl_Load(object sender, System.EventArgs e)
+    {
+      foreach(var control in this.Controls)
+        if (control is RadControl rc)
+          rc.SetRadAutoScale(false);
     }
   }
 }

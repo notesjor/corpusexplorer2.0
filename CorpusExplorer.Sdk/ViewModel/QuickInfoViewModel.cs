@@ -10,20 +10,20 @@ namespace CorpusExplorer.Sdk.ViewModel
 {
   public class QuickInfoViewModel : AbstractViewModel
   {
-    public int CounterCorpora { get; private set; }
-    public int CounterDocuments { get; private set; }
-    public int CounterLayers { get; private set; }
-    public long CounterTokens { get; private set; }
+    public int CountCorpora { get; private set; }
+    public int CountDocuments { get; private set; }
+    public int CountLayers { get; private set; }
+    public long CountTokens { get; private set; }
 
     /// <summary>
     ///   The analyse.
     /// </summary>
     protected override void ExecuteAnalyse()
     {
-      CounterCorpora = Selection.CountCorpora;
-      CounterDocuments = Selection.CountDocuments;
-      CounterLayers = new HashSet<string>(Selection.LayerDisplaynames).Count();
-      CounterTokens = Selection.CountToken;
+      CountCorpora = Selection.CountCorpora;
+      CountDocuments = Selection.CountDocuments;
+      CountLayers = new HashSet<string>(Selection.LayerDisplaynames).Count();
+      CountTokens = Selection.CountToken;
     }
 
     protected override bool Validate()

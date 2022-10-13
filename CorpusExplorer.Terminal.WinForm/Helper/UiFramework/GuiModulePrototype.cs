@@ -150,8 +150,6 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       {
         var p = (RadPageViewPage)((RadTileElement)sender).Tag;
         Pages.SelectedPage = p;
-        InMemoryErrorConsole.TrackPageView($"page_mod_{functionName}");
-        //ToDo: FavoriteManager.CountPage(view.ToString());
         Execute(p);
       };
       modul_viewstates.Items.Add(tile);
@@ -172,8 +170,6 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
         }
 
         e(null, null);
-        InMemoryErrorConsole.TrackPageView($"page_mod_{functionName}");
-        //ToDo: FavoriteManager.CountPage(view.ToString());
       };
       _topMenu.Items.Add(item);
     }
@@ -202,7 +198,6 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       {
         var p = (RadPageViewPage) ((RadTileElement) sender).Tag;
         Pages.SelectedPage = p;
-        InMemoryErrorConsole.TrackPageView($"page_mod_{view}");
         FavoriteManager.CountPage(view.ToString());
         Execute(p);
       };
@@ -225,7 +220,6 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
 
         ModulPage(null, null);
         Pages.SelectedPage = p;
-        InMemoryErrorConsole.TrackPageView($"page_mod_{view}");
         FavoriteManager.CountPage(view.ToString());
         Execute(p);
       };

@@ -95,7 +95,7 @@ namespace CorpusExplorer.Sdk.Blocks
         if (ngram.Value < Configuration.MinimumFrequency)
           continue;
 
-        var tokens = ngram.Key.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+        var tokens = ngram.Key.Split(Splitter.Space, StringSplitOptions.RemoveEmptyEntries);
         if (tokens.Length != NGramSize)
           continue;
 

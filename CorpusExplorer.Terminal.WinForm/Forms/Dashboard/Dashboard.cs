@@ -38,7 +38,6 @@ using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser;
 using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
 using CorpusExplorer.Terminal.WinForm.Forms.CloneDetection;
 using CorpusExplorer.Terminal.WinForm.Forms.Error;
-using CorpusExplorer.Terminal.WinForm.Forms.Insight;
 using CorpusExplorer.Terminal.WinForm.Forms.Interfaces;
 using CorpusExplorer.Terminal.WinForm.Forms.Simple;
 using CorpusExplorer.Terminal.WinForm.Forms.Snapshot;
@@ -199,8 +198,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       LoadSettings();
 
-      RealoadInsightSettings();
-
       Corpus_LaodAvailabelCorpora();
       Serializer.LogErrors = true;
 
@@ -241,10 +238,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
             radListView1.Items.Add(new ListViewDataItem
             {
               Text = $"<html><strong>{feedItem.PublishingDate.Value:yyyy-MM-dd}:</strong> {feedItem.Title}</html>",
-              Tag = feedItem.Link
+              Tag = feedItem.Link,
             });
+            
             // siehe OpenRssFeedItemClick
           }
+          radListView1.ItemSize = new Size(radListView1.ItemSize.Width, 30);
         }
       }
       catch (Exception ex)
@@ -391,12 +390,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       var vm = new QuickInfoViewModel { Selection = Project.SelectAll };
       vm.Execute();
 
-      page_corpus_start_quickinfo_corpora.Value = vm.CounterCorpora;
-      page_corpus_start_quickinfo_layers.Value = vm.CounterLayers;
-      page_corpus_start_quickinfo_texts.Value = vm.CounterDocuments;
-      page_corpus_start_quickinfo_tokens.Value = vm.CounterTokens;
+      infoPanel_korpora.CountCorpora = vm.CountCorpora;
+      infoPanel_korpora.CountLayers = vm.CountLayers;
+      infoPanel_korpora.CountDocuments = vm.CountDocuments;
+      infoPanel_korpora.CountTokens = vm.CountTokens;
 
-      page_welcome_btn_corpus.ShowCheckmark = vm.CounterCorpora > 0;
+      page_welcome_btn_corpus.ShowCheckmark = vm.CountCorpora > 0;
     }
 
     private void Corpus_LaodAvailabelCorpora()
@@ -1186,8 +1185,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                                                 (RadPageViewPage)((RadTileElement)sender).Tag;
                                                               pages_analytics.SelectedPage = page_analytics_thirdparty;
                                                               pages_main.SelectedPage = page_analytics;
-                                                              InMemoryErrorConsole
-                                                               .TrackPageView($"page_thirdparty_{pages_3rdParty.Name}");
                                                               ResumeLayout();
                                                             });
 
@@ -1213,8 +1210,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                                                 (RadPageViewPage)((RadMenuItem)sender).Tag;
                                                               pages_analytics.SelectedPage = page_analytics_thirdparty;
                                                               pages_main.SelectedPage = page_analytics;
-                                                              InMemoryErrorConsole
-                                                               .TrackPageView($"page_thirdparty_{pages_3rdParty.Name}");
                                                               ResumeLayout();
                                                             });
 
@@ -1351,10 +1346,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         _terminal.ProjectSave();
       ProjectNew();
 
-      page_corpus_start_quickinfo_corpora.Value = 0;
-      page_corpus_start_quickinfo_layers.Value = 0;
-      page_corpus_start_quickinfo_texts.Value = 0;
-      page_corpus_start_quickinfo_tokens.Value = 0;
+      infoPanel_korpora.CountCorpora = 0;
+      infoPanel_korpora.CountLayers = 0;
+      infoPanel_korpora.CountDocuments = 0;
+      infoPanel_korpora.CountTokens = 0;
 
       page_welcome_btn_projectname.ShowCheckmark = false;
       page_welcome_btn_analytics.ShowCheckmark = false;
@@ -1844,16 +1839,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       return null;
     }
 
-    private void RealoadInsightSettings()
-    {
-      var insightEnable = InsightController.IsInsightActive;
-      settings_insight_enable.Visible = !insightEnable;
-      settings_insight_disable.Visible = insightEnable;
-      settings_insight_renew.Visible = insightEnable;
-
-      settings_insigt_id.Text = insightEnable ? InsightController.InsightId : null;
-    }
-
     private void RefreshWebCrawlers()
     {
       Processing.Invoke("Durchsuche Ordner \"Meine Datenquellen\"...", () =>
@@ -1913,18 +1898,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       var vm = new QuickInfoViewModel { Selection = Project.CurrentSelection };
       vm.Execute();
 
-      page_snapshot_start_quickinfo_corpora.Value = vm.CounterCorpora;
-      page_snapshot_start_quickinfo_layers.Value = vm.CounterLayers;
-      page_snapshot_start_quickinfo_texts.Value = vm.CounterDocuments;
-      page_snapshot_start_quickinfo_tokens.Value = vm.CounterTokens;
-
-      InMemoryErrorConsole.TrackEvent(new Dictionary<string, double>
-      {
-        {"cnt_CORPORA", vm.CounterCorpora},
-        {"cnt_LAYERS", vm.CounterLayers},
-        {"cnt_DOCUMENTS", vm.CounterDocuments},
-        {"cnt_TOKENS", vm.CounterTokens}
-      });
+      infoPanel_snapshot.CountCorpora = vm.CountCorpora;
+      infoPanel_snapshot.CountLayers = vm.CountLayers;
+      infoPanel_snapshot.CountDocuments = vm.CountDocuments;
+      infoPanel_snapshot.CountTokens = vm.CountTokens;
 
       page_analytics_snapshot_list_snapshots.ExpandAll();
     }
@@ -2065,8 +2042,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       pages_main.SelectedPage = page_snapshot;
 
       Selection_ReLoad();
-
-      InMemoryErrorConsole.TrackPageView($"page_snapshot_{page_snapshot_edit.Name}");
     }
 
     private void SelectionEditAddMetasplit(Selection parentSelection = null)
@@ -2151,8 +2126,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       pages_analytics.SelectedPage = page_analytics_view;
       pages_main.SelectedPage = page_analytics;
-
-      InMemoryErrorConsole.TrackPageView($"page_analytics_{page.Name}");
     }
 
     /// <summary>
@@ -2178,8 +2151,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       pages_analytics.SelectedPage = page;
       pages_main.SelectedPage = page_analytics;
-
-      InMemoryErrorConsole.TrackPageView($"page_analytics_{page.Name}");
     }
 
     /// <summary>
@@ -2196,7 +2167,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
       pages_corpora.SelectedPage = page;
       pages_main.SelectedPage = page_corpus;
-      InMemoryErrorConsole.TrackPageView($"page_corpus_{page.Name}");
 
       if (page_corpus_start == page)
         Corpus_LaodAvailabelCorpora();
@@ -2218,7 +2188,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         RefreshFavorites();
 
       pages_main.SelectedPage = page;
-      InMemoryErrorConsole.TrackPageView($"page_main_{page.Name}");
     }
 
     private void SetPageSnapshot(RadPageViewPage page)
@@ -2265,30 +2234,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       foreach (var x in _significanceMessures)
         settings_drop_signifikanz.Items.Add(new RadListDataItem(x.Key, x.Value));
     }
-
-    private void settings_insight_disable_Click(object sender, EventArgs e)
-    {
-      InsightController.SetInsightStatus(false);
-      RealoadInsightSettings();
-    }
-
-    private void settings_insight_enable_Click(object sender, EventArgs e)
-    {
-      InsightController.SetInsightStatus(true);
-      RealoadInsightSettings();
-    }
-
-    private void settings_insight_info_Click(object sender, EventArgs e)
-    {
-      Process.Start("https://notes.jan-oliver-ruediger.de/software/corpusexplorer-overview/telemetrie/");
-    }
-
-    private void settings_insight_renew_Click(object sender, EventArgs e)
-    {
-      InsightController.NewInstallationId();
-      RealoadInsightSettings();
-    }
-
+    
     [NamedSynchronizedLock("Settings")]
     private void Settings_ReLoad()
     {
@@ -2557,7 +2503,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       Hide();
       try
       {
-        Process.Start("dpxc-editor.exe")?.WaitForExit();
+        var form = new CorpusExplorer.Tool4.DocPlusEditor.Forms.Editor(_terminal);
+        form.ShowDialog();
       }
       catch
       {

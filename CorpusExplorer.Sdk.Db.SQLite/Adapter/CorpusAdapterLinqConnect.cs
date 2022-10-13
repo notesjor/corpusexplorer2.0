@@ -403,6 +403,12 @@ namespace CorpusExplorer.Sdk.Db.SQLite.Adapter
       _db.SubmitChanges();
     }
 
+    public override void Dispose()
+    {
+      this._corpus = null;
+      this._db.Dispose();
+    }
+
     public override bool SetDocumentLayerValueMask(
       Guid documentGuid,
       Guid layerGuid,

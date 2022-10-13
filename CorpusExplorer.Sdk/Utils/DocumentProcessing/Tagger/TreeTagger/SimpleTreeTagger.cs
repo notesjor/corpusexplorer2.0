@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
@@ -40,6 +41,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger
 
     protected override string ExecuteTagger(string text)
     {
+      using (var fileOutput = new TemporaryFile(Configuration.TempPath))
       using (var fileInput = new TemporaryFile(Configuration.TempPath))
       {
         FileIO.Write(fileInput.Path, text);
@@ -50,22 +52,19 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger
           {
             StartInfo =
             {
-              FileName = Path.Combine(LocatorStrategy.TreeTaggerRootDirectory, @"bin\tree-tagger.exe"),
+              FileName = Path.Combine(LocatorStrategy.TreeTaggerRootDirectory, @"bin/tree-tagger.exe").Replace("\\", "/"),
               Arguments =
-                $"-quiet -token -lemma -sgml -no-unknown \"{LocatorStrategy.ApplyLanguage(LanguageSelected)}\" \"{fileInput.Path}\"",
+                $"-quiet -token -lemma -sgml -no-unknown \"{LocatorStrategy.ApplyLanguage(LanguageSelected)}\" \"{fileInput.Path}\" \"{fileOutput.Path}\"",
               CreateNoWindow = true,
               UseShellExecute = false,
-              StandardOutputEncoding = Configuration.Encoding,
-              RedirectStandardOutput = true,
+              WorkingDirectory = Configuration.TempPath,
               WindowStyle = ProcessWindowStyle.Hidden
             }
           };
           process.Start();
-
-          var res = process.StandardOutput.ReadToEnd();
           process.WaitForExit();
 
-          return res;
+          return FileIO.ReadText(fileOutput.Path, Configuration.Encoding);
         }
         catch
         {

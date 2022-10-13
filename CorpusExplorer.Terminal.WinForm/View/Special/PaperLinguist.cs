@@ -22,6 +22,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       ShowView += PaperLinguist_ShowView;
     }
 
+    private static char[] _separator = {';', ' '};
+
     private void btn_execute_Click(object sender, EventArgs e)
     {
       ReportTreeItem report = null;
@@ -44,7 +46,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
                             });
 
                           var posFilter =
-                            txt_overview_analy_posFilter.Text.Split(new[] {";", " "},
+                            txt_overview_analy_posFilter.Text.Split(_separator,
                                                                     StringSplitOptions.RemoveEmptyEntries);
 
                           if (chk_overview_analy_frequency.Checked)
@@ -61,7 +63,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
                                                      PosTags = posFilter
                                                    });
 
-                          var queries = txt_query_kwicRequests.Text.Split(new[] {";", " "},
+                          var queries = txt_query_kwicRequests.Text.Split(_separator,
                                                                           StringSplitOptions.RemoveEmptyEntries);
 
                           if (chk_query_kwic.Checked)

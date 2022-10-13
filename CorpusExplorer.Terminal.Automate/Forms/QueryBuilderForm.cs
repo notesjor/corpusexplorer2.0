@@ -97,14 +97,14 @@ namespace CorpusExplorer.Terminal.Automate
             case 'M':
               pages_options.SelectedPage = page_meta;
               meta_drop_operator.SelectStartsWithValue(txt[1].ToString());
-              vals = txt.Substring(2).Split(new[] { "::" }, StringSplitOptions.RemoveEmptyEntries);
+              vals = txt.Substring(2).Split(Sdk.Helper.Splitter.ColonColon, StringSplitOptions.RemoveEmptyEntries);
               meta_txt_label.Text = vals[0];
               meta_txt_value.Text = vals[1];
               break;
             case 'T':
               pages_options.SelectedPage = page_fulltext;
               fulltext_drop_operator.SelectStartsWithValue(txt[1].ToString());
-              vals = txt.Substring(2).Split(new[] { "::" }, StringSplitOptions.RemoveEmptyEntries);
+              vals = txt.Substring(2).Split(Sdk.Helper.Splitter.ColonColon, StringSplitOptions.RemoveEmptyEntries);
               fulltext_txt_layer.Text = vals[0];
               fulltext_txt_values.Text = vals[1];
               break;
@@ -113,7 +113,7 @@ namespace CorpusExplorer.Terminal.Automate
               {
                 case 'R':
                   pages_options.SelectedPage = page_random;
-                  vals = txt.Substring(2).Split(new[] { "::" }, StringSplitOptions.RemoveEmptyEntries);
+                  vals = txt.Substring(2).Split(Sdk.Helper.Splitter.ColonColon, StringSplitOptions.RemoveEmptyEntries);
                   random_txt_value.Text = vals[1];
                   break;
               }

@@ -165,8 +165,16 @@ namespace CorpusExplorer.Terminal.Automate
       panel_cluster.Visible = panel_clusterMerge.Visible = switch_cluster.Value;
     }
 
-    private bool IsExporter
-      => (drop_actionType.SelectedItem.Text == "query" || drop_actionType.SelectedItem.Text == "convert");
+    private HashSet<string> _exporter = new HashSet<string>
+    {
+      "query",
+      "convert",
+      "meta-import",
+      "remove-layer",
+      "remove-meta"
+    };
+
+    private bool IsExporter => _exporter.Contains(drop_actionType.SelectedItem.Text);
 
     private void drop_actionType_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
     {
