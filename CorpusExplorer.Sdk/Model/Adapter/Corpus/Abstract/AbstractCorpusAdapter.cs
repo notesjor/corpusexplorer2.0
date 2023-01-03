@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Properties;
@@ -284,21 +285,21 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
       try
       {
         if (guid == Guid.Empty)
-          return guid.ToString(Resources.N);
+          return guid.ToString();
 
         var meta = GetDocumentMetadata(guid);
         if (meta == null)
-          return guid.ToString(Resources.N);
+          return guid.ToString();
 
-        if (!meta.ContainsKey(Resources.Title))
-          return guid.ToString(Resources.N);
+        if (!meta.ContainsKey(Configuration.TitleMetaKey))
+          return guid.ToString();
 
-        var res = meta[Resources.Title] as string;
-        return string.IsNullOrEmpty(res) ? guid.ToString(Resources.N) : res;
+        var res = meta[Configuration.TitleMetaKey] as string;
+        return string.IsNullOrEmpty(res) ? guid.ToString() : res;
       }
       catch
       {
-        return guid.ToString(Resources.N);
+        return guid.ToString();
       }
     }
 

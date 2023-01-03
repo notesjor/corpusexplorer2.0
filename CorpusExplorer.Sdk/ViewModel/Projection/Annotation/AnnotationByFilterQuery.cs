@@ -22,7 +22,7 @@ namespace CorpusExplorer.Sdk.ViewModel.Projection.Annotation
 
     public void Refresh(Selection selection)
     {
-      Matches = (from c in QuickQuery.SearchOnWordLevel(selection, Queries) from d in c.Value from s in d.Value select new Tuple<Guid, int, int, int>(d.Key, s.Key, s.Value.Min(), s.Value.Max())).ToList();
+      Matches = (from c in QuickQuery.AndSearchOnWordLevel(selection, Queries) from d in c.Value from s in d.Value select new Tuple<Guid, int, int, int>(d.Key, s.Key, s.Value.Min(), s.Value.Max())).ToList();
     }
 
     public List<Tuple<Guid, int, int, int>> Matches { get; set; }

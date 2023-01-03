@@ -143,8 +143,7 @@ namespace CorpusExplorer.Sdk.Blocks
       if (_cache.AbortCalculation(new Dictionary<string, object> {{nameof(LayerDisplayname), LayerDisplayname}}))
         throw new BlockAlreadyCachedException();
 
-      _search = QuickQuery.SearchOnSentenceLevel(Selection,
-                                                  new[] { Behaviour.GetFilterQuery(LayerDisplayname, LayerQueries) });
+      _search = QuickQuery.SearchOnSentenceLevel(Selection, Behaviour.GetFilterQuery(LayerDisplayname, LayerQueries) );
       _cooccurrencesFrequency = new Dictionary<string, Dictionary<string, double>>();
       _resultLock = new object();
       TotalMatches = (from x in _search from y in x.Value select y.Value.Count).Sum();

@@ -296,6 +296,9 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
     {
       _fs?.Dispose();
       _stream?.Dispose();
+      _dictionary?.Clear();
+      _reverse?.Clear();
+      _documentInfo?.Clear();
     }
   }
 }

@@ -108,17 +108,17 @@
     <Reference Include="K4os.Compression.LZ4.Streams, Version=1.2.16.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
       <HintPath>..\packages\K4os.Compression.LZ4.Streams.1.2.16\lib\net46\K4os.Compression.LZ4.Streams.dll</HintPath>
     </Reference>
-    <Reference Include="K4os.Hash.xxHash, Version=1.0.7.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
-      <HintPath>..\packages\K4os.Hash.xxHash.1.0.7\lib\net46\K4os.Hash.xxHash.dll</HintPath>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.8.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Hash.xxHash.1.0.8\lib\netstandard2.0\K4os.Hash.xxHash.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Polenter.SharpSerializer, Version=3.0.2.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.2\lib\net452\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=6.10.15.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.6.10.15\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=6.10.16.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.6.10.16\lib\net45\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -422,6 +422,7 @@
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCec6.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterConllZip.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterConll.cs" />
+    <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCorpusWorkBench2022.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCorpusWorkBench.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCsv.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCsvMetadataOnly.cs" />
@@ -619,7 +620,7 @@
     <Compile Include="Helper\DataTableExtension.cs" />
     <Compile Include="Helper\DictionaryExtension.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerExactPhrase.cs" />
-    <Compile Include="Utils\Filter\QueryFilter.cs" />
+    <Compile Include="Utils\ReMapper2\ReMapperDocument.cs" />
     <Compile Include="Utils\ReMapper\Abstract\AbstractReMapper.cs" />
     <Compile Include="Utils\ReMapper\Model\ReMapperEntry.cs" />
     <Compile Include="Utils\ReMapper\ReMapperInline.cs" />

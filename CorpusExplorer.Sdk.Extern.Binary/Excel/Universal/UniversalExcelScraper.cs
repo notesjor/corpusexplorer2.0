@@ -19,13 +19,14 @@ namespace CorpusExplorer.Sdk.Extern.Binary.Excel.Universal
     protected override IEnumerable<Dictionary<string, object>> ScrapDocuments(
       IEnumerable<Dictionary<string, string>> model)
     {
-      return
-        model.Select(
-          m =>
-            new Dictionary<string, object>(
-              m.ToDictionary<KeyValuePair<string, string>, string, object>(
-                x => x.Key,
-                x => x.Value)));
+      var res = model.Select(
+        m =>
+          new Dictionary<string, object>(
+            m.ToDictionary<KeyValuePair<string, string>, string, object>(
+              x => x.Key,
+              x => x.Value)));
+      
+      return res;
     }
   }
 }

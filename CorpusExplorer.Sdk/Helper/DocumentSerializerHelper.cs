@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CorpusExplorer.Sdk.Ecosystem.Model;
+using System;
 using System.IO;
 
 namespace CorpusExplorer.Sdk.Helper
@@ -18,6 +19,9 @@ namespace CorpusExplorer.Sdk.Helper
       var bufferLength = new byte[_isize];
       ms.Read(bufferLength, 0, bufferLength.Length);
       var length = BitConverter.ToInt32(bufferLength, 0);
+      if(Configuration.ProtectMemoryOverflow && length > 1000000) 
+        return null;
+
       var idx = 0;
       var current = new int[length][];
 

@@ -153,8 +153,7 @@ namespace CorpusExplorer.Sdk.Blocks
       _cooccurrencesFrequency = new Dictionary<string, Dictionary<string, double>>();
       _resultLock = new object();
 
-      _search = QuickQuery.SearchOnWordLevel(Selection,
-                                              new[] { Behaviour.GetFilterQuery(LayerDisplayname, LayerQueries) });
+      _search = QuickQuery.SearchOnWordLevel(Selection, Behaviour.GetFilterQuery(LayerDisplayname, LayerQueries) );
 
       TotalMatches = (from x in _search from y in x.Value from z in y.Value select z.Value.Count).Sum();
     }

@@ -47,6 +47,7 @@ namespace CorpusExplorer.Terminal.Universal
       _server.AddEndpoint(HttpMethod.Post, "/selection/new", SelectionNew);
       _server.AddEndpoint(HttpMethod.Post, "/selection/reduce", SelectionReduce);
       _server.AddEndpoint(HttpMethod.Get, "/selection/info", SelectionInfo);
+      _server.AddEndpoint(HttpMethod.Get, "/selection/meta", SelectionMeta);
       _server.AddEndpoint(HttpMethod.Get, "/selection/change", SelectionChange);
 
       _server.AddEndpoint(HttpMethod.Get, "/app/logo", GetLogo);

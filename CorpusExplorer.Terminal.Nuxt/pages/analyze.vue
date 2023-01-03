@@ -1,18 +1,15 @@
 <template>
-  <div>
-    <ViewPivot></ViewPivot>
-    <ViewGrid></ViewGrid>
+  <div style="margin-top:20px">
+    <ViewFullText></ViewFullText>
   </div>
 </template>
 
 <script>
-import ViewPivot from "@/components/DataViews/ViewPivot.vue";
-import ViewGrid from "@/components/DataViews/ViewGrid.vue";
+import ViewFullText from "@/components/DataViews/ViewFullText.vue";
 export default {
   name: 'Analyse',
   components:{
-    ViewPivot,
-    ViewGrid
+    ViewFullText
 },
 }
 </script>

@@ -384,6 +384,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       {
         layer.Dispose();
       }
+      _documentMetadata?.Clear();
+      _metadata?.Clear();
     }
   }
 }

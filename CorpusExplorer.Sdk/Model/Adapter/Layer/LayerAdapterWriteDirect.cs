@@ -139,7 +139,10 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
           if (guid == Guid.Empty)
             break;
 
-          res._documents.Add(guid, DocumentSerializerHelper.Deserialize(fs));
+          var doc = DocumentSerializerHelper.Deserialize(fs);
+          if(doc == null)
+            throw new FormatException();
+          res._documents.Add(guid, doc);
         }
         return res;
       }
@@ -190,12 +193,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
       if (doc == null)
         return null;
 
-      start = start < 0 ? 0 : start;
-      stop = stop <= start ? start + 1 : stop;
-      stop = stop >= doc.Length ? doc.Length - 1 : stop;
-
       var res = new List<IEnumerable<string>>();
-      for (var i = start; i < stop; i++)
+      for (var i = start; i <= stop; i++)
         res.Add(doc[i].Select(w => this[w]));
 
       return res;

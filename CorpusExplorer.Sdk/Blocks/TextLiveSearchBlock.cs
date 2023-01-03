@@ -23,9 +23,17 @@ namespace CorpusExplorer.Sdk.Blocks
       set => _layerQueries = value;
     }
 
+    public enum SearchMode
+    {
+      And,
+      Or
+    }
+
+    public SearchMode Mode { get; set; } = SearchMode.Or;
+
     public Selection ResultSelection { get; set; }
     public Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>> SearchResults { get; set; }
-    public Dictionary<Guid, int[]> SearchResultsSimpleDocumentSentence 
+    public Dictionary<Guid, int[]> SearchResultsSimpleDocumentSentence
       => SearchResults.SelectMany(c => c.Value).ToDictionary(d => d.Key, d => d.Value.Keys.ToArray());
 
     /// <summary>
@@ -33,7 +41,7 @@ namespace CorpusExplorer.Sdk.Blocks
     /// </summary>
     public override void Calculate()
     {
-      SearchResults = QuickQuery.SearchOnWordLevel(Selection, LayerQueries);
+      SearchResults = Mode == SearchMode.And ? QuickQuery.AndSearchOnWordLevel(Selection, LayerQueries) : QuickQuery.OrSearchOnWordLevel(Selection, LayerQueries);
       ResultSelection =
         Selection.CreateTemporary(
                                   SearchResults.ToDictionary(

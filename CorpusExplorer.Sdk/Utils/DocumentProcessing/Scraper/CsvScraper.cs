@@ -13,7 +13,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper
   public sealed class CsvScraper : AbstractScraper
   {
     // ReSharper disable once MemberCanBePrivate.Global
-    public string[] Delimiters { get; set; } = {";"};
+    public string[] Delimiters { get; set; } = { ";" };
     public override string DisplayName => "CSV-Datei";
 
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
@@ -59,6 +59,19 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper
             {
               // ignore
             }
+
+          if (item.ContainsKey("text")) // Fix: Falscher case für Text
+          {
+            var text = item["text"].ToString();
+            item.Remove("text");
+            item.Add("Text", text);
+          }
+          if (item.ContainsKey("Text")) // Fix: Behebt CSV-Sondercodierung von Zeichenketten
+          {
+            var text = item["Text"].ToString();
+            if (text.StartsWith("\"") && text.EndsWith("\""))
+              item["Text"] = text.Substring(1, text.Length - 2);
+          }
 
           res.Add(item);
         }

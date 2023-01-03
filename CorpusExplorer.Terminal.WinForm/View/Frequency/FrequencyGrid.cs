@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Windows.Forms;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
@@ -186,30 +187,101 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
     {
       var map = _vm.Mapper.MappedLayerDisplaynames.ToArray();
 
-      CreateSelection(
-                      radGridView1.SelectedRows.Select(
-                                                       row => new FilterQueryMultiLayerAny
-                                                       {
-                                                         Inverse = false,
-                                                         MultilayerValues = new Dictionary<string, string>
-                                                         {
-                                                           {
-                                                             map[0],
-                                                             row.Cells[map[0]].Value
-                                                                .ToString()
-                                                           },
-                                                           {
-                                                             map[1],
-                                                             row.Cells[map[1]].Value
-                                                                .ToString()
-                                                           },
-                                                           {
-                                                             map[2],
-                                                             row.Cells[map[2]].Value
-                                                                .ToString()
-                                                           }
-                                                         }
-                                                       }));
+      if (radGridView1.SelectedRows == null || radGridView1.SelectedRows.Count == 0)
+      {
+        MessageBox.Show("Bitte wählen Sie mindestens eine Zeile aus!", "Bitte Zeile(n) auswählen...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        return;
+      }
+
+      if (radGridView1.SelectedRows.Any(x=>x.HierarchyLevel > 0))
+      {
+        var res = new List<Guid>();
+        foreach(var row in radGridView1.SelectedRows)
+        {
+          if(row.IsSelected)
+            res.AddRange((row.Cells["Info"].Value as IEnumerable<KeyValuePair<Guid, int>>).Select(x=>x.Key));
+        }
+        CreateSelection(res.ToArray());
+      }
+      else
+        switch (_vm.Mapper.MappedLayerDisplaynames.Count(x => !string.IsNullOrEmpty(x)))
+        {
+          case 1:
+            CreateSelection(
+              radGridView1.SelectedRows.Select(
+                row => new FilterQuerySingleLayerAnyMatch
+                {
+                  Inverse = false,
+                  LayerDisplayname = map[0],
+                  LayerQueries = new[]
+                  {
+                  row.Cells[map[0]].Value
+                    .ToString()
+                  }
+                }));
+            break;
+          case 2:
+            CreateSelection(
+              radGridView1.SelectedRows.Select(
+                row => new FilterQueryMultiLayerAny
+                {
+                  Inverse = false,
+                  MultilayerValues = new Dictionary<string, string>
+                  {
+                  {
+                    map[0],
+                    row.Cells[map[0]].Value
+                      .ToString()
+                  },
+                  {
+                    map[1],
+                    row.Cells[map[1]].Value
+                      .ToString()
+                  }
+                  }
+                }));
+            break;
+          case 3:
+            CreateSelection(
+              radGridView1.SelectedRows.Select(
+                row => new FilterQueryMultiLayerAny
+                {
+                  Inverse = false,
+                  MultilayerValues = new Dictionary<string, string>
+                  {
+                  {
+                    map[0],
+                    row.Cells[map[0]].Value
+                      .ToString()
+                  },
+                  {
+                    map[1],
+                    row.Cells[map[1]].Value
+                      .ToString()
+                  },
+                  {
+                    map[2],
+                    row.Cells[map[2]].Value
+                      .ToString()
+                  }
+                  }
+                }));
+            break;
+          default:
+            CreateSelection(
+              radGridView1.SelectedRows.Select(
+                row => new FilterQuerySingleLayerAnyMatch
+                {
+                  Inverse = false,
+                  LayerDisplayname = map[0],
+                  LayerQueries = new[]
+                  {
+                  row.Cells[map[0]].Value
+                    .ToString()
+                  }
+                }));
+            break;
+        }
     }
 
     private void ShowViewCall(object sender, EventArgs e)

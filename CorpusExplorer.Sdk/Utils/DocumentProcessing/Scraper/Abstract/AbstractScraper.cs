@@ -33,7 +33,15 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract
                          if (temp == null)
                            return;
                          foreach (var t in temp)
+                         {
+                           if (t.ContainsKey("text")) // Fix: Falscher case für Text
+                           {
+                             var text = t["text"].ToString();
+                             t.Remove("text");
+                             t.Add("Text", text);
+                           }
                            Output.Enqueue(t);
+                         }
                        }
                        catch (Exception ex)
                        {

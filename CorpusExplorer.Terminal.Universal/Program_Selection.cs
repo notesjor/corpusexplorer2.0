@@ -33,22 +33,42 @@ namespace CorpusExplorer.Terminal.Universal
 
     private static ResponseSnapshot[] Convert_Selection(IEnumerable<Selection> selections)
     {
-      if(selections == null || !selections.Any())
+      if (selections == null || !selections.Any())
         return null;
 
-      return selections.Select(selection => new ResponseSnapshot
+      return selections.Select(Convert_Selection).ToArray();
+    }
+
+    private static ResponseSnapshot Convert_Selection(Selection selection)
+    {
+      var layers = new HashSet<string>(selection.LayerDisplaynames);
+
+      return new ResponseSnapshot
       {
-        Guid = selection.Guid, 
+        Guid = selection.Guid,
         Name = selection.Displayname,
         Children = Convert_Selection(selection.SubSelections),
         Size = new ResponseSize
         {
-          Corpora = selection.CountCorpora, 
-          Documents = selection.CountDocuments, 
-          Layers = new HashSet<string>(selection.LayerDisplaynames).Count, 
+          Corpora = selection.CountCorpora,
+          Documents = selection.CountDocuments,
+          Layers = layers.Count,
           Tokens = selection.CountToken
-        }
-      }).ToArray();
+        },
+        LayerNames = layers,
+        DocumentGuids = selection.DocumentGuids
+      };
+    }
+
+    private static void SelectionMeta(HttpContext obj)
+    {
+      var guid = Guid.Parse(obj.Request.GetData()["guid"]);
+      if (guid == Guid.Empty)
+      {
+        obj.Response.Send(HttpStatusCode.NotFound);
+        return;
+      }
+      obj.Response.Send(_terminal.Project.CurrentSelection.GetDocumentMetadata(guid));
     }
 
     private static void SelectionChange(HttpContext obj)

@@ -19,7 +19,7 @@ namespace CorpusExplorer.Terminal.Universal
     private static void CorpusAnnotate(HttpContext obj)
     {
       throw new NotImplementedException();
-
+      var res = new Dictionary<Guid, string>(); // Rückgabe von corpus.DocumentGuidAndDisplaynames notwendig
       _terminal.Project.SelectAll.Displayname = "ALL";
     }
 
@@ -67,11 +67,16 @@ namespace CorpusExplorer.Terminal.Universal
           return;
         }
 
+        var res = new Dictionary<Guid, string>();
         foreach (var corpus in importer.Execute(request.Paths))
+        {
           _terminal.Project.Add(corpus);
+          foreach(var x in corpus.DocumentGuidAndDisplaynames)
+            res.Add(x.Key, x.Value);
+        }
 
         _terminal.Project.SelectAll.Displayname = "ALL";
-        obj.Response.Send(HttpStatusCode.OK);
+        obj.Response.Send(res);
       }
       catch (Exception ex)
       {

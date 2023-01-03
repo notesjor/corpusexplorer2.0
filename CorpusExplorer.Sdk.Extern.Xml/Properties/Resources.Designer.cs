@@ -61,6 +61,82 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;/idsDoc&gt; ähnelt.
+        /// </summary>
+        internal static string Template_Ids_I5_Doc_Foot {
+            get {
+                return ResourceManager.GetString("Template.Ids.I5.Doc.Foot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;idsDoc type=&quot;text&quot; version=&quot;1.0&quot; TEIform=&quot;TEI.2&quot; id=&quot;{cluster_id}&quot;&gt;
+        ///  &lt;idsHeader type=&quot;document&quot; pattern=&quot;text&quot; status=&quot;new&quot; version=&quot;1.0&quot; TEIform=&quot;teiHeader&quot;&gt;
+        ///   &lt;fileDesc&gt;
+        ///    &lt;titleStmt&gt;
+        ///     &lt;dokumentSigle&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_SIGLE/{cluster_id}&lt;/dokumentSigle&gt;
+        ///     &lt;d.title&gt;&lt;/d.title&gt;
+        ///    &lt;/titleStmt&gt;
+        ///    &lt;publicationStmt&gt;
+        ///     &lt;distributor/&gt;
+        ///     &lt;pubAddress/&gt;
+        ///     &lt;availability region=&quot;world&quot;&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_LICENCE&lt;/availability&gt;
+        ///     &lt;pubDate/&gt;
+        ///    &lt;/publicationStm [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        internal static string Template_Ids_I5_Doc_Head {
+            get {
+                return ResourceManager.GetString("Template.Ids.I5.Doc.Head", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;idsText id=&quot;CE-EXPORT-TEMP_PLEASE_CHANGE_SIGLE.{cluster_id}.{text_id}&quot; n=&quot;CorpusExplorer/{guid}&quot; version=&quot;1&quot;&gt;
+        ///   &lt;idsHeader type=&quot;text&quot; pattern=&quot;text&quot; status=&quot;new&quot; version=&quot;1.0&quot; TEIform=&quot;teiHeader&quot;&gt;
+        ///    &lt;fileDesc&gt;
+        ///     &lt;titleStmt&gt;
+        ///      &lt;textSigle&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_SIGLE/{cluster_id}.{text_id}&lt;/textSigle&gt;
+        ///      &lt;t.title assemblage=&quot;external&quot;&gt;{title}&lt;/t.title&gt;
+        ///     &lt;/titleStmt&gt;
+        ///     &lt;editionStmt version=&quot;0&quot;&gt;&lt;/editionStmt&gt;
+        ///     &lt;publicationStmt&gt;
+        ///      &lt;distributor&gt;&lt;/distributor&gt;
+        ///      &lt;p [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        internal static string Template_Ids_I5_Doc_Text {
+            get {
+                return ResourceManager.GetString("Template.Ids.I5.Doc.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;/idsCorpus&gt; ähnelt.
+        /// </summary>
+        internal static string Template_Ids_I5_Foot {
+            get {
+                return ResourceManager.GetString("Template.Ids.I5.Foot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+        ///&lt;!DOCTYPE idsCorpus PUBLIC &quot;-//IDS//DTD IDS-I5 1.0//EN&quot; &quot;http://corpora.ids-mannheim.de/I5/DTD/i5.dtd&quot;&gt;
+        ///&lt;idsCorpus version=&quot;1.0&quot; TEIform=&quot;teiCorpus.2&quot;&gt;
+        /// &lt;idsHeader type=&quot;corpus&quot; pattern=&quot;CE-EXPORT-TEMP_PLEASE_CHANGE_PATTERN&quot; status=&quot;new&quot; version=&quot;1.0&quot; TEIform=&quot;teiHeader&quot;&gt;
+        ///  &lt;fileDesc&gt;
+        ///   &lt;titleStmt&gt;
+        ///    &lt;korpusSigle&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_SIGLE&lt;/korpusSigle&gt;
+        ///    &lt;c.title&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_TITLE&lt;/c.title&gt;
+        ///   &lt;/titleStmt&gt;
+        ///   &lt;editionStmt version=&quot;1. [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        internal static string Template_Ids_I5_Head {
+            get {
+                return ResourceManager.GetString("Template.Ids.I5.Head", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
         ///&lt;?xml-model href=&quot;text.rng&quot; type=&quot;application/xml&quot; schematypens=&quot;http://relaxng.org/ns/structure/1.0&quot;?&gt;
         ///
@@ -119,7 +195,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///    &lt;c.title&gt;&lt;/c.title&gt;
         ///   &lt;/titleStmt&gt;
         ///   &lt;editionStmt version=&quot;1.0&quot;/&gt;
-        ///   &lt;publicationStm [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///   &lt;publ [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         internal static string Template_Ids_KorAP_Root {
             get {
@@ -139,8 +215,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///      &lt;/fs&gt;
         ///    &lt;/span&gt;
         ///    &lt;span id=&quot;s1&quot; from=&quot;0&quot; to=&quot;{To}&quot; l=&quot;2&quot;&gt;
-        ///      &lt;fs type=&quot;struct&quot; xmlns=&quot;http://www.tei-c.org/ns/1.0&quot;&gt;
-        ///      [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///      &lt;fs type=&quot;struct&quot; xmlns=&quot;http://www.tei-c.org/ns/ [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         internal static string Template_Ids_KorAP_Structure {
             get {
@@ -175,7 +250,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///     &lt;d.title&gt;&lt;/d.title&gt;
         ///    &lt;/titleStmt&gt;
         ///    &lt;publicationStmt&gt;
-        ///     &lt;distribu [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///     [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         internal static string Template_Ids_KorAP_Year {
             get {

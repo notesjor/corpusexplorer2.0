@@ -12,7 +12,7 @@ namespace CorpusExplorer.Sdk.ViewModel.TextLiveSearch
     public string Pre { get; set; }
 
     public IEnumerable<KeyValuePair<Guid, int>> Sentences => _sentences;
-
+    
     public void AddSentence(Guid documetGuid, int sentenceId)
     {
       _sentences.Add(new KeyValuePair<Guid, int>(documetGuid, sentenceId));

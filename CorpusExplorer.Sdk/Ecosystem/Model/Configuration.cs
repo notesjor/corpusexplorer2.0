@@ -105,7 +105,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
     public static void AddonConsoleActionsAdd(IEnumerable<IAction> list)
     {
-      if (list != null) 
+      if (list != null)
         _addonConsoleActions.AddRange(list);
     }
 
@@ -162,6 +162,9 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
         foreach (var x in list.Where(x => !_addonImporters.ContainsKey(x.Key)))
           _addonTableWriters.Add(x.Key, x.Value);
     }
+
+    public static AbstractExporter GetExporter(string exporter)
+      => (from x in _addonExporters where x.Value.GetType().Name.EndsWith(exporter) select x.Value).FirstOrDefault();
 
     public static AbstractTableWriter GetTableWriter(string tableWriterTag)
     {
@@ -392,6 +395,11 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
         SetSetting("R/L-Support", value);
       }
     }
+
+    /// <summary>
+    /// Ändrn um eine andere Metaangabe als Bezeichnung für ein Dokument zu verwenden.
+    /// </summary>
+    public static string TitleMetaKey { get; set; } = Resources.Title;
 
     /// <summary>
     ///   Pfad zu den temporären Dateien

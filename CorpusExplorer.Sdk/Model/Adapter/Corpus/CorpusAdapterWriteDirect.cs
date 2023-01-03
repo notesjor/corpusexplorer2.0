@@ -89,23 +89,25 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
 
     public static CorpusAdapterWriteDirect Create(string path)
     {
+      if (path.ToLower().EndsWith(".gz"))
+        return CreateGzip(path);
+      if (path.ToLower().EndsWith(".lz4"))
+        return CreateLz4(path);
+
       using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
-        if (path.ToLower().EndsWith(".gz"))
-          return CreateGzip(path, fs);
-        else if (path.ToLower().EndsWith(".lz4"))
-          return CreateLz4(path, fs);
-        else
-          return Create(path, fs);
+        return Create(path, fs);
     }
 
-    private static CorpusAdapterWriteDirect CreateLz4(string path, FileStream fs)
+    private static CorpusAdapterWriteDirect CreateLz4(string path)
     {
+      using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
       using (var lz = K4os.Compression.LZ4.Streams.LZ4Stream.Decode(fs))
         return Create(path, lz);
     }
 
-    private static CorpusAdapterWriteDirect CreateGzip(string path, FileStream fs)
+    private static CorpusAdapterWriteDirect CreateGzip(string path)
     {
+      using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
       using (var gz = new GZipStream(fs, CompressionMode.Decompress))
         return Create(path, gz);
     }
@@ -423,17 +425,17 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
 
     private static object CreateInstance(Type type)
     {
-      if(type == typeof(string))
+      if (type == typeof(string))
         return "";
-      if(type == typeof(int))
+      if (type == typeof(int))
         return 0;
-      if(type == typeof(double))
+      if (type == typeof(double))
         return 0.0;
-      if(type == typeof(bool))
+      if (type == typeof(bool))
         return false;
-      if(type == typeof(DateTime))
+      if (type == typeof(DateTime))
         return DateTime.MinValue;
-      
+
       return Activator.CreateInstance(type);
     }
 

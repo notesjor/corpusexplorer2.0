@@ -80,12 +80,12 @@ namespace CorpusExplorer.Sdk.Blocks
       foreach (var s in from sentence in sentences where sentence >= 0 && sentence < doc.Length select doc[sentence] into s where !ProtectMemoryOverflow || s.Length <= 250 select s)
       {
         GetUniqueTokens(layer, s, out var keys, out var cooc);
-        foreach(var k in keys)
-        foreach(var c in cooc)
-          if (freq[k].ContainsKey(c))
-            freq[k][c]++;
-          else
-            freq[k].Add(c, 1);
+        foreach (var k in keys)
+          foreach (var c in cooc)
+            if (freq[k].ContainsKey(c))
+              freq[k][c]++;
+            else
+              freq[k].Add(c, 1);
       }
 
       lock (_resultLock)
@@ -140,8 +140,7 @@ namespace CorpusExplorer.Sdk.Blocks
         throw new BlockAlreadyCachedException();
 
       _queries = new HashSet<string>(LayerQueries);
-      _search = QuickQuery.SearchOnSentenceLevel(Selection,
-                                                  new[] { Behaviour.GetFilterQuery(LayerDisplayname, LayerQueries) });
+      _search = QuickQuery.SearchOnSentenceLevel(Selection, Behaviour.GetFilterQuery(LayerDisplayname, LayerQueries));
       _cooccurrencesFrequency = new Dictionary<string, Dictionary<string, double>>();
       _resultLock = new object();
       TotalMatches = (from x in _search from y in x.Value select y.Value.Count).Sum();

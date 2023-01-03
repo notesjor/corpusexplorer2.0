@@ -1071,7 +1071,7 @@ namespace CorpusExplorer.Sdk.Model
         return null;
 
       var q = queries.ToArray();
-      return Create(Project, QuickQuery.SearchOnDocumentLevel(this, q), displayName, this, noParent);
+      return Create(Project, QuickQuery.AndSearchOnDocumentLevel(this, q), displayName, this, noParent);
     }
 
     /// <summary>
@@ -1107,7 +1107,7 @@ namespace CorpusExplorer.Sdk.Model
         return null;
 
       var q = queries.ToArray();
-      var res = CreateTemporary(QuickQuery.SearchOnDocumentLevel(this, q));
+      var res = CreateTemporary(QuickQuery.AndSearchOnDocumentLevel(this, q));
       res.Queries = q;
 
       return res;

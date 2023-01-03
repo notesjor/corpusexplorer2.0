@@ -138,8 +138,9 @@ namespace CorpusExplorer.Core
         { "TreeTagger (*.treetagger)|*.treetagger", new ExporterTreeTagger() },
         { "TreeTagger + Satzgrenze (*.treetagger)|*.treetagger", new ExporterTreeTagger { UseSentenceTag = true } },
         { "TreeTagger + ZIP (*.zip)|*.zip", new ExporterTreeTaggerZip { UseSentenceTag = true } },
-        { "CorpusWorkBench (*.vrt)|*.vrt", new ExporterCorpusWorkBench { UseSentenceTag = false } },
-        { "CorpusWorkBench + Satzgrenze (*.vrt, *.vrt.xml)|*.vrt;*.vrt.xml", new ExporterCorpusWorkBench { UseSentenceTag = true } },
+        { "CorpusWorkBench bis 2021(*.vrt)|*.vrt", new ExporterCorpusWorkBench { UseSentenceTag = false } },
+        { "CorpusWorkBench bis 2021 inkl. Satzgrene (*.vrt, *.vrt.xml)|*.vrt;*.vrt.xml", new ExporterCorpusWorkBench { UseSentenceTag = true } },
+        { "CorpusWorkBench ab 2022 (*.vrt, *.vrt.xml)|*.vrt;*.vrt.xml", new ExporterCorpusWorkBench2022 { UseSentenceTag = true } },
         { "Sketch Engine VERT (*.vert)|*.vert", new ExporterSketchEngine() },
       };
 
@@ -274,6 +275,7 @@ namespace CorpusExplorer.Core
         new NGramSelectedAction(),
         new NGramSelectedCooccurrenceAction(),
 
+        new PhraseCountAction(),
         new PositionFrequencyAction(),
         new PositionFrequencyCorrespondingAction(),
 

@@ -79,6 +79,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"TXM TEI-XML (*.xml)|*.xml", new ExporterTxm() },
         {"TXM TEI-XML + ZIP (*.zip)|*.zip", new ExporterTxmZip() },
         {"CATMA 6 (*.xml/*.txt)|*", new ExporterCatma() },
+        {"IDS I5 (*.xml)|*.xml", new ExporterI5() },
+        {"IDS KorAP (*.zip)|*.zip", new ExporterKorap() },
         {"XCES-XML (https://opus.nlpl.eu/) (*.xml)|*.xml", new ExporterOpusXces() },
       };
 

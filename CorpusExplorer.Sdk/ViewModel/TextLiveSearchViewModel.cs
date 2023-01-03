@@ -159,28 +159,31 @@ namespace CorpusExplorer.Sdk.ViewModel
         foreach (var result in corpus.Value)
           foreach (var sent in result.Value)
           {
-            if (sent.Value == null || sent.Value.Count == 0)
+            if (sent.Value == null)
               continue;
 
             var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key)
                                      .ReduceDocumentToStreamDocument().ToArray();
             var key = string.Join("|", streamDoc);
-            if (!res.ContainsKey(key))
+            if(res.ContainsKey(key))
+            {
+              res[key].AddSentence(result.Key, sent.Key);
+            }
+            else
             {
               var min = sent.Value.Min();
               var max = sent.Value.Max();
 
-              res.Add(
-                      key,
-                      new UniqueTextLiveSearchResultEntry
-                      {
-                        Pre = $"{GetAddContextSentencesPre(result.Key, sent.Key)} {streamDoc.SplitDocument(0, min)}".Trim(),
-                        Match = streamDoc.SplitDocument(min, max + 1),
-                        Post = $"{streamDoc.SplitDocument(max + 1)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim()
-                      });
-            }
+              var entry = new UniqueTextLiveSearchResultEntry
+              {
+                Pre = $"{GetAddContextSentencesPre(result.Key, sent.Key)} {streamDoc.SplitDocument(0, min)}".Trim(),
+                Match = streamDoc.SplitDocument(min, max + 1),
+                Post = $"{streamDoc.SplitDocument(max + 1)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim(),
+              };
+              entry.AddSentence(result.Key, sent.Key);
 
-            res[key].AddSentence(result.Key, sent.Key);
+              res.Add(key, entry);
+            }
           }
 
       return res.Values;
@@ -299,12 +302,15 @@ namespace CorpusExplorer.Sdk.ViewModel
     protected override void ExecuteAnalyse()
     {
       var block = Selection.CreateBlock<TextLiveSearchBlock>();
+      block.Mode = Mode;
       block.LayerQueries = Queries.Select(x => x.Value);
       block.Calculate();
 
       ResultSelection = block.ResultSelection;
       SearchResults = block.SearchResults;
     }
+
+    public TextLiveSearchBlock.SearchMode Mode { get; set; } = TextLiveSearchBlock.SearchMode.Or;
 
     protected override bool Validate()
     {

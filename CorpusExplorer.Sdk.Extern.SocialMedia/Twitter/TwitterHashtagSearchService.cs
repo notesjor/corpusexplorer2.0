@@ -36,7 +36,9 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Twitter
                           search.Query == query &&
                           search.Count == 100 &&
                           search.MaxID == maxID &&
-                          search.SinceID == sinceID
+                          search.SinceID == sinceID &&
+                          search.TweetMode == TweetMode.Extended &&
+                          search.SearchLanguage == "de"
                     select search.Statuses)
          .SingleOrDefaultAsync();
         task.Wait();

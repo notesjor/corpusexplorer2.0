@@ -117,6 +117,184 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Template.Ids.I5.Doc.Foot" xml:space="preserve">
+    <value>&lt;/idsDoc&gt;</value>
+  </data>
+  <data name="Template.Ids.I5.Doc.Head" xml:space="preserve">
+    <value>&lt;idsDoc type="text" version="1.0" TEIform="TEI.2" id="{cluster_id}"&gt;
+  &lt;idsHeader type="document" pattern="text" status="new" version="1.0" TEIform="teiHeader"&gt;
+   &lt;fileDesc&gt;
+    &lt;titleStmt&gt;
+     &lt;dokumentSigle&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_SIGLE/{cluster_id}&lt;/dokumentSigle&gt;
+     &lt;d.title&gt;&lt;/d.title&gt;
+    &lt;/titleStmt&gt;
+    &lt;publicationStmt&gt;
+     &lt;distributor/&gt;
+     &lt;pubAddress/&gt;
+     &lt;availability region="world"&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_LICENCE&lt;/availability&gt;
+     &lt;pubDate/&gt;
+    &lt;/publicationStmt&gt;
+    &lt;sourceDesc&gt;
+     &lt;biblStruct Default="n"&gt;
+      &lt;monogr&gt;
+       &lt;h.title type="main"&gt;&lt;/h.title&gt;
+       &lt;imprint/&gt;
+      &lt;/monogr&gt;
+     &lt;/biblStruct&gt;
+    &lt;/sourceDesc&gt;
+   &lt;/fileDesc&gt;
+  &lt;/idsHeader&gt;</value>
+  </data>
+  <data name="Template.Ids.I5.Doc.Text" xml:space="preserve">
+    <value>&lt;idsText id="CE-EXPORT-TEMP_PLEASE_CHANGE_SIGLE.{cluster_id}.{text_id}" n="CorpusExplorer/{guid}" version="1"&gt;
+   &lt;idsHeader type="text" pattern="text" status="new" version="1.0" TEIform="teiHeader"&gt;
+    &lt;fileDesc&gt;
+     &lt;titleStmt&gt;
+      &lt;textSigle&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_SIGLE/{cluster_id}.{text_id}&lt;/textSigle&gt;
+      &lt;t.title assemblage="external"&gt;{title}&lt;/t.title&gt;
+     &lt;/titleStmt&gt;
+     &lt;editionStmt version="0"&gt;&lt;/editionStmt&gt;
+     &lt;publicationStmt&gt;
+      &lt;distributor&gt;&lt;/distributor&gt;
+      &lt;pubAddress&gt;&lt;/pubAddress&gt;
+      &lt;availability region="world" Default="n" status="unknown"&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_LICENCE&lt;/availability&gt;
+      &lt;pubDate&gt;&lt;/pubDate&gt;
+     &lt;/publicationStmt&gt;
+     &lt;sourceDesc Default="n"&gt;
+      &lt;biblStruct Default="n" status="draft"&gt;
+       &lt;analytic&gt;
+        &lt;h.title type="main"&gt;{title}&lt;/h.title&gt;
+        &lt;h.title type="sub"&gt;&lt;/h.title&gt;
+        &lt;h.title type="abbr" level="m"&gt;&lt;/h.title&gt;
+        &lt;h.title type="abbr" level="a"&gt;&lt;/h.title&gt;
+        &lt;h.author&gt;{author}&lt;/h.author&gt;
+        &lt;editor&gt;&lt;/editor&gt;
+        &lt;imprint&gt;&lt;/imprint&gt;
+        &lt;biblScope type="subsume"&gt;&lt;/biblScope&gt;
+        &lt;biblScope type="pp"&gt;&lt;/biblScope&gt;
+        &lt;biblNote n="1"&gt;&lt;/biblNote&gt;
+       &lt;/analytic&gt;
+       &lt;monogr&gt;
+        &lt;h.title type="main"&gt;&lt;/h.title&gt;
+        &lt;editor&gt;CorpusExplorer&lt;/editor&gt;
+        &lt;edition&gt;
+         &lt;further&gt; Export File: CorpusExplorer - see: http://CorpusExplorer.de &lt;/further&gt;
+         &lt;kind&gt;&lt;/kind&gt;
+         &lt;appearance&gt;&lt;/appearance&gt;
+        &lt;/edition&gt;
+        &lt;imprint&gt;
+         &lt;pubDate type="year"&gt;{doc_date_year}&lt;/pubDate&gt;
+         &lt;pubDate type="month"&gt;{doc_date_month}&lt;/pubDate&gt;
+         &lt;pubDate type="day"&gt;{doc_date_day}&lt;/pubDate&gt;
+        &lt;/imprint&gt;
+        &lt;biblScope type="vol"&gt;&lt;/biblScope&gt;
+        &lt;biblScope type="volume-title"&gt;&lt;/biblScope&gt;
+       &lt;/monogr&gt;
+      &lt;/biblStruct&gt;
+      &lt;reference type="complete" assemblage="non-automatic"&gt;CorpusExplorer:{guid}&lt;/reference&gt;
+      &lt;reference type="short" assemblage="regular"&gt;CorpusExplorer:{guid_short}&lt;/reference&gt;
+     &lt;/sourceDesc&gt;
+    &lt;/fileDesc&gt;
+    &lt;encodingDesc&gt;
+     &lt;samplingDecl Default="n"&gt;&lt;/samplingDecl&gt;
+     &lt;editorialDecl Default="n"&gt;
+      &lt;pagination type="no"&gt;&lt;/pagination&gt;
+     &lt;/editorialDecl&gt;
+    &lt;/encodingDesc&gt;
+    &lt;profileDesc&gt;
+     &lt;creation&gt;
+      &lt;creatDate&gt;{doc_date}&lt;/creatDate&gt;
+     &lt;/creation&gt;
+     &lt;textClass Default="n"&gt;
+      &lt;classCode scheme="https://en.wikipedia.org/wiki/Portal:Contents/Categories"&gt;&lt;/classCode&gt;
+     &lt;/textClass&gt;
+     &lt;textDesc Default="n"&gt;
+      &lt;textTypeArt&gt;&lt;/textTypeArt&gt;
+      &lt;textDomain&gt;&lt;/textDomain&gt;
+     &lt;/textDesc&gt;
+    &lt;/profileDesc&gt;
+   &lt;/idsHeader&gt;
+   &lt;text&gt;
+    &lt;front&gt;&lt;/front&gt;
+    &lt;body&gt;
+     &lt;div n="0" type="section" part="N" org="uniform" sample="complete" complete="y"&gt;
+      &lt;p part="N"&gt;{text}&lt;/p&gt;
+     &lt;/div&gt;
+    &lt;/body&gt;
+    &lt;back&gt;&lt;/back&gt;
+   &lt;/text&gt;
+  &lt;/idsText&gt;</value>
+  </data>
+  <data name="Template.Ids.I5.Foot" xml:space="preserve">
+    <value>&lt;/idsCorpus&gt;</value>
+  </data>
+  <data name="Template.Ids.I5.Head" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;
+&lt;!DOCTYPE idsCorpus PUBLIC "-//IDS//DTD IDS-I5 1.0//EN" "http://corpora.ids-mannheim.de/I5/DTD/i5.dtd"&gt;
+&lt;idsCorpus version="1.0" TEIform="teiCorpus.2"&gt;
+ &lt;idsHeader type="corpus" pattern="CE-EXPORT-TEMP_PLEASE_CHANGE_PATTERN" status="new" version="1.0" TEIform="teiHeader"&gt;
+  &lt;fileDesc&gt;
+   &lt;titleStmt&gt;
+    &lt;korpusSigle&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_SIGLE&lt;/korpusSigle&gt;
+    &lt;c.title&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_TITLE&lt;/c.title&gt;
+   &lt;/titleStmt&gt;
+   &lt;editionStmt version="1.0"&gt;&lt;/editionStmt&gt;
+   &lt;publicationStmt&gt;
+    &lt;distributor&gt;Institut für Deutsche Sprache&lt;/distributor&gt;
+    &lt;pubAddress&gt;Postfach 10 16 21, D-68016 Mannheim&lt;/pubAddress&gt;
+    &lt;telephone&gt;+49 (0)621 1581 0&lt;/telephone&gt;
+    &lt;eAddress type="www"&gt;http://www.ids-mannheim.de&lt;/eAddress&gt;
+    &lt;eAddress type="www"&gt;http://www.ids-mannheim.de/kl/projekte/korpora/&lt;/eAddress&gt;
+    &lt;eAddress type="email"&gt;dereko@ids-mannheim.de&lt;/eAddress&gt;
+    &lt;availability status="restricted"&gt;This document, the IDS-Wikipedia.de-Corpus, is part of the Archive of General Reference Corpora at the IDS. It is published under the Creative Commons Attribution-ShareAlike License. See http://creativecommons.org/licenses/by-sa/3.0/legalcode for details. See http://www.ids-mannheim.de/kl/projekte/korpora/releases.html on how to refer to this document.&lt;/availability&gt;
+    &lt;pubDate type="year"&gt;{export_data_year}&lt;/pubDate&gt;
+   &lt;/publicationStmt&gt;
+   &lt;sourceDesc&gt;
+    &lt;biblStruct Default="n"&gt;
+     &lt;monogr&gt;
+      &lt;h.title type="main"&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_TITLE&lt;/h.title&gt;
+      &lt;h.author/&gt;
+      &lt;editor&gt;CorpusExplorer&lt;/editor&gt;
+      &lt;edition&gt;
+       &lt;further&gt;I5-Export file see: http://corpusexplorer.de&lt;/further&gt;
+       &lt;kind/&gt;
+       &lt;appearance/&gt;
+      &lt;/edition&gt;
+      &lt;imprint&gt;
+       &lt;publisher&gt;CorpusExplorer&lt;/publisher&gt;
+       &lt;pubPlace&gt;URL:http://corpusexplorer.de&lt;/pubPlace&gt;
+      &lt;/imprint&gt;
+     &lt;/monogr&gt;
+    &lt;/biblStruct&gt;
+   &lt;/sourceDesc&gt;
+  &lt;/fileDesc&gt;
+  &lt;encodingDesc&gt;
+   &lt;editorialDecl&gt;
+    &lt;conformance&gt;This document conforms to I5 (see http://jtei.revues.org/508)&lt;/conformance&gt;
+    &lt;transduction&gt;This document has been generated via CorpusExplorer-Export.&lt;/transduction&gt;
+   &lt;/editorialDecl&gt;
+      &lt;classDecl&gt;
+        &lt;taxonomy id="topic"&gt;
+          &lt;h.bibl&gt;Thementaxonomie (siehe http://www.ids-mannheim.de/kl/projekte/methoden/te.html)&lt;/h.bibl&gt;          
+        &lt;/taxonomy&gt;
+      &lt;/classDecl&gt;
+  &lt;/encodingDesc&gt;
+  &lt;profileDesc&gt;
+   &lt;langUsage&gt;
+    &lt;language id="de" usage="100"&gt;Deutsch&lt;/language&gt;
+   &lt;/langUsage&gt;
+   &lt;textDesc&gt;
+    &lt;textType&gt;&lt;/textType&gt;
+    &lt;textTypeRef/&gt;
+   &lt;/textDesc&gt;
+  &lt;/profileDesc&gt;
+  &lt;revisionDesc&gt;
+   &lt;listChange&gt;
+    &lt;change when="{export_date}" who="CorpusExplorer"&gt;export&lt;/change&gt;
+   &lt;/listChange&gt;
+  &lt;/revisionDesc&gt;
+ &lt;/idsHeader&gt;</value>
+  </data>
   <data name="Template.Ids.KorAP.Data" xml:space="preserve">
     <value>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;?xml-model href="text.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?&gt;

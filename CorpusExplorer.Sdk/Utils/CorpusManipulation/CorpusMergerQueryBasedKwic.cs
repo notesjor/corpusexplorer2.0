@@ -83,11 +83,16 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
 
       // selection
       var selection = corpus.ToSelection().CreateTemporary(FilterQueries);
+      if (selection?.Layers == null || !selection.Layers.Any() || selection.CountDocuments == 0)
+        return; 
+
       var block = selection.CreateBlock<TextLiveSearchBlock>();
       block.LayerQueries = FilterQueries;
       block.Calculate();
 
       var kwic = block.SearchResultsSimpleDocumentSentence;
+      if (kwic == null || kwic.Count == 0)
+        return;
 
       CurrentCountToken += selection.CountToken;
       CurrentCountDocuments += selection.CountDocuments;

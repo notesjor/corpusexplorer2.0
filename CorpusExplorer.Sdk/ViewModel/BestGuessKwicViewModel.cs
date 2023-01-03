@@ -25,14 +25,12 @@ namespace CorpusExplorer.Sdk.ViewModel
         _cooc.Calculate();
       }
 
-      var matches = QuickQuery.SearchOnSentenceLevel(Selection, new AbstractFilterQuery[]
-      {
+      var matches = QuickQuery.SearchOnSentenceLevel(Selection, 
         new FilterQuerySingleLayerAnyMatch
         {
           LayerDisplayname = LayerDisplayname,
           LayerQueries = new[] { LayerQuey }
-        }
-      });
+        });
 
       var list = (from csel in matches
                   from dsel in csel.Value

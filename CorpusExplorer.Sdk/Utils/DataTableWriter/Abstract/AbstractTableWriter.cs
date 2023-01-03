@@ -65,6 +65,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract
     {
       if (WriteTid)
       {
+        tid = tid.Replace(".cec6", "");
         var tCol = table.Columns.Add("TID", typeof(string));
         tCol.SetOrdinal(0);
         foreach (DataRow row in table.Rows)

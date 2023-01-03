@@ -25,14 +25,11 @@ namespace CorpusExplorer.Sdk.Blocks
       var queries = new HashSet<string>(LayerQueries);
       var filter = QuickQuery.SearchOnSentenceLevel(
                                                      Selection,
-                                                     new[]
-                                                     {
-                                                       new FilterQuerySingleLayerAllInOneSentence
+                                                     new FilterQuerySingleLayerAllInOneSentence
                                                        {
                                                          LayerDisplayname = LayerDisplayname,
                                                          LayerQueries = queries
-                                                       }
-                                                     });
+                                                       });
 
       var matches = filter.SelectMany(c => c.Value).Sum(d => d.Value.Count);
       CooccurrenceFrequency = new Dictionary<string, double>();

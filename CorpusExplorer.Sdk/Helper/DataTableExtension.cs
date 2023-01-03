@@ -158,5 +158,22 @@ namespace CorpusExplorer.Sdk.Helper
         return Configuration.Encoding.GetString(ms.GetBuffer());
       }
     }
+
+    public static DataTable RoundDataTable(this DataTable table)
+    {
+      var indices = (from DataColumn col in table.Columns where col.DataType == typeof(double) select col.ColumnName).ToArray();
+      if(indices.Length == 0)
+        return table;
+
+      table.BeginLoadData();
+      foreach(DataRow r in table.Rows)
+      {
+        foreach (var i in indices)
+          r[i] = Math.Round((double)r[i], 2);
+      }
+      table.EndLoadData();
+
+      return table;
+    }
   }
 }

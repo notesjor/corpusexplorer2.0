@@ -13,14 +13,14 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper
   public sealed class TsvScraper : AbstractScraper
   {
     // ReSharper disable once MemberCanBePrivate.Global
-    public string[] Delimiters { get; set; } = {"\t"};
+    public string[] Delimiters { get; set; } = { "\t" };
     public override string DisplayName => "TSV-Datei";
 
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
       var res = new List<Dictionary<string, object>>();
 
-      using(var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
+      using (var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
       using (var sr = new StreamReader(fs, Configuration.Encoding))
       {
         var headers = sr.ReadLine().Split(Delimiters, StringSplitOptions.None);
@@ -39,7 +39,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper
                 var key = headers[j];
                 if (item.ContainsKey(key))
                   continue;
-
+                
                 var val = string.IsNullOrWhiteSpace(row[j]) ? string.Empty : row[j];
                 switch (key)
                 {
@@ -58,6 +58,19 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper
               {
                 // ignore
               }
+
+            if (item.ContainsKey("text")) // Fix: Falscher case für Text
+            {
+              var text = item["text"].ToString();
+              item.Remove("text");
+              item.Add("Text", text);
+            }
+            if (item.ContainsKey("Text")) // Fix: Behebt TSV-Sondercodierung von Zeichenketten
+            {
+              var text = item["Text"].ToString();
+              if (text.StartsWith("\"") && text.EndsWith("\""))
+                item["Text"] = text.Substring(1, text.Length - 2);
+            }
 
             res.Add(item);
           }
