@@ -63,7 +63,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model.Abstract
 
     public abstract int RequestIndex(string[] data, int lastIndex);
 
-    protected int RequestIndex(string data)
+    public int RequestIndex(string data)
     {
       lock (_cacheLock)
       {

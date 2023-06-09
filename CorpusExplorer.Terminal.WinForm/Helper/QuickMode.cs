@@ -285,6 +285,7 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       var dic = Configuration.AddonImporters.ToArray();
       var ofd = new OpenFileDialog
       {
+        InitialDirectory = Configuration.MyCorpora,
         CheckFileExists = true,
         CheckPathExists = true,
         Multiselect = true,

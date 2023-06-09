@@ -55,7 +55,7 @@
       <HintPath>..\packages\HtmlAgilityPack.1.11.46\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Polenter.SharpSerializer, Version=3.0.2.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.2\lib\net452\Polenter.SharpSerializer.dll</HintPath>
@@ -133,6 +133,10 @@
     <Compile Include="Utils\DocumentProcessing\Scraper\Rtf\SimpleRtfDocumentScraper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Projekte-Kooperation\CorpusExplorer.Terminal.Console\Action\CorpusExplorer.Sdk.Action\CorpusExplorer.Sdk.Action.csproj">
+      <Project>{693d7071-5091-481f-b404-ac4772a0df60}</Project>
+      <Name>CorpusExplorer.Sdk.Action</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj">
       <Project>{3226c218-0fb3-43a6-a67c-39cbac704ea3}</Project>
       <Name>BitCutStudios.CorpusExplorer</Name>
@@ -144,10 +148,6 @@
     <ProjectReference Include="..\CorpusExplorer.Sdk\CorpusExplorer.Sdk.csproj">
       <Project>{dc1b5a58-29da-476d-89f8-e73a1db11e52}</Project>
       <Name>CorpusExplorer.Sdk</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Projekte-Kooperation\CorpusExplorer.Terminal.Console\Action\CorpusExplorer.Sdk.Action\CorpusExplorer.Sdk.Action.csproj">
-      <Project>{693d7071-5091-481f-b404-ac4772a0df60}</Project>
-      <Name>CorpusExplorer.Sdk.Action</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

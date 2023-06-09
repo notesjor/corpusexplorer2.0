@@ -193,6 +193,9 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
       if (doc == null)
         return null;
 
+      start = start < 0 ? 0 : start;
+      stop = stop >= doc.Length ? doc.Length - 1 : stop;
+
       var res = new List<IEnumerable<string>>();
       for (var i = start; i <= stop; i++)
         res.Add(doc[i].Select(w => this[w]));

@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 using System.Xml;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Helper;
@@ -24,6 +25,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
     private object _lockDebug = new object();
     public bool ReadTaxonomy { get; set; } = false;
     public bool ReadLanguage { get; set; } = false;
+    public int HtmlDecodeRounds { get; set; } = 0;
 
     private List<Exception> _debug = new List<Exception>();
     public IEnumerable<Exception> DebugLog
@@ -96,7 +98,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
     {
       try
       {
-        return zip.Read(zipPath).DocumentNode.SelectSingleNode("//text").InnerText;
+        var res = zip.Read(zipPath).DocumentNode.SelectSingleNode("//text").InnerText;
+        for (var i = 0; i < HtmlDecodeRounds; i++)
+          res = HttpUtility.HtmlDecode(res);
+        return res;
       }
       catch (Exception ex)
       {
@@ -115,7 +120,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
 
       try
       {
-        var xml = zip.Read(zipPath + "header.xml");
+        var xml = zip.Read(zipPath + "/header.xml");
 
         var titleStmt = xml.DocumentNode.SelectSingleNode("//titlestmt");
         var sigle = titleStmt.SelectSingleNode("./textsigle");

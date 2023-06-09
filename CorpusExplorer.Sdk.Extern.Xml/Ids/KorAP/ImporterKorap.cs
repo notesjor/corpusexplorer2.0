@@ -15,6 +15,20 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
 {
   public class ImporterKorap : AbstractImporterBase
   {
+    private static readonly HashSet<string>
+      _sentenceEndings = new HashSet<string> { ".", "!", "?", ";", ":" }; // STTS 2.0
+
+    private static readonly Dictionary<string, string> _layerNameFixes = new Dictionary<string, string>
+    {
+      { "ctag", "POS" },
+      { "msd", "MSD" },
+      { "pos", "POS" },
+      { "lemma", "Lemma" }
+    };
+
+    private readonly List<Exception> _debug = new List<Exception>();
+
+    private readonly object _lockDebug = new object();
     public bool ImportCoreNlp { get; set; } = true;
     public bool ImportMalt { get; set; } = true;
     public bool ImportMarmot { get; set; } = true;
@@ -25,17 +39,16 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
     public bool ReadLanguage { get; set; } = false;
 
     public bool Debug { get; set; } = false;
-
-    private object _lockDebug = new object();
-    private List<Exception> _debug = new List<Exception>();
-    private static HashSet<string> _sentenceEndings = new HashSet<string> { ".", "!", "?", ";", ":" }; // STTS 2.0
+    public int HtmlDecodeRounds { get; set; } = 0;
 
     public IEnumerable<Exception> DebugLog
     {
       get
       {
         lock (_lockDebug)
+        {
           return _debug;
+        }
       }
     }
 
@@ -49,7 +62,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
 
       using (var zip = new KorapZip(path))
       {
-        var helper = new KorapScraper { ReadTaxonomy = ReadTaxonomy, ReadLanguage = ReadLanguage }; // Helper
+        var helper = new KorapScraper { ReadTaxonomy = ReadTaxonomy, ReadLanguage = ReadLanguage, HtmlDecodeRounds = HtmlDecodeRounds }; // Helper
 
         // -- siehe ScraperKorap --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> 
         var corpusRegex = new Regex(@"^[a-zA-Z0-9]*\/header\.xml$");
@@ -82,7 +95,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
 
             var entryPath = FindEntryPath(zip, textRoot);
 
-            if (!BuildWordLayer(path, zip, entryPath, ref helper, tData, textRoot, dsel, out var skeleton, out var references))
+            if (!BuildWordLayer(path, zip, entryPath, ref helper, tData, textRoot, dsel, out var skeleton,
+                  out var references))
               return;
 
             if (ImportCoreNlp)
@@ -90,6 +104,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
               BuildTaggerFeatureMorpho(corenlp, textRoot, "corenlp", dsel, skeleton, references, path);
               BuildTaggerFeatureConstituency(corenlp, textRoot, "corenlp", dsel, skeleton, references, path);
             }
+
             if (ImportMalt)
               BuildTaggerFeatureDependency(malt, textRoot, "malt", dsel, skeleton, references, path);
             if (ImportMarmot)
@@ -103,7 +118,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
           {
             if (Debug)
               lock (_lockDebug)
+              {
                 _debug.Add(ex);
+              }
           }
         });
       }
@@ -130,7 +147,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       return entryPath;
     }
 
-    private bool BuildWordLayer(string path, KorapZip zip, string zipPath, ref KorapScraper helper, string tData, string textRoot, Guid dsel, out int[] skelOut, out Dictionary<int, int[][]> refsOut)
+    private bool BuildWordLayer(string path, KorapZip zip, string zipPath, ref KorapScraper helper, string tData,
+      string textRoot, Guid dsel, out int[] skelOut, out Dictionary<int, int[][]> refsOut)
     {
       var currentText = helper.GetText(path, zip, tData);
       if (string.IsNullOrEmpty(currentText))
@@ -155,7 +173,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
 
     private static int[] DetectSentences(KorapZip zip, string path, string textRoot)
     {
-
       try
       {
         var xml = zip.ReadXml(textRoot + "/struct/structure.xml");
@@ -163,15 +180,15 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
         var res = new List<int>();
         var spans = xml.SelectNodes("//*[local-name()='span']");
         foreach (XmlNode span in spans)
-        {
           if (span.ChildNodes == null || span.ChildNodes.Count == 0)
+          {
             res.Add(int.Parse(span.GetAttribute("to", "0")));
+          }
           else
           {
             if (span.GetFirstSubNodeRecursive("f").InnerText == "s")
               res.Add(int.Parse(span.GetAttribute("to", "0")));
           }
-        }
 
         return res.ToArray();
       }
@@ -181,7 +198,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       }
     }
 
-    private static void GenerateText(KorapZip zip, string zipPath, string currentText, out Dictionary<int, int[][]> refsOut, out string[][] docOut, out int[] skelOut, int[] sentences)
+    private static void GenerateText(KorapZip zip, string zipPath, string currentText,
+      out Dictionary<int, int[][]> refsOut, out string[][] docOut, out int[] skelOut, int[] sentences)
     {
       var xml = zip.ReadXmlClean(zipPath);
       var nodes = xml.SelectNodes("//*[local-name()='span']");
@@ -226,7 +244,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       skelOut = tmpSkel.ToArray();
     }
 
-    private static void GenerateTextFallback(KorapZip zip, string zipPath, string currentText, out Dictionary<int, int[][]> refsOut, out string[][] docOut, out int[] skelOut)
+    private static void GenerateTextFallback(KorapZip zip, string zipPath, string currentText,
+      out Dictionary<int, int[][]> refsOut, out string[][] docOut, out int[] skelOut)
     {
       var tmpRefs = new List<int[]>();
       var tmpDoc = new List<string[]>();
@@ -275,7 +294,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
 
       try
       {
-        zip = new KorapZip(Path.Combine(Path.GetDirectoryName(path), $"{Path.GetFileNameWithoutExtension(path)}.{feature}.zip"));
+        zip = new KorapZip(Path.Combine(Path.GetDirectoryName(path),
+          $"{Path.GetFileNameWithoutExtension(path)}.{feature}.zip"));
         return true;
       }
       catch
@@ -285,7 +305,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       }
     }
 
-    private void BuildTaggerFeatureDependency(KorapZip zip, string textRoot, string subfolder, Guid dsel, int[] skeleton, Dictionary<int, int[][]> references, string path)
+    private void BuildTaggerFeatureDependency(KorapZip zip, string textRoot, string subfolder, Guid dsel,
+      int[] skeleton, Dictionary<int, int[][]> references, string path)
     {
       try
       {
@@ -301,7 +322,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
         {
           if (Debug)
             lock (_lockDebug)
+            {
               _debug.Add(new IdsException(path, $"{textRoot}/{subfolder}/dependency.xml", ex));
+            }
         }
 
         if (spans == null)
@@ -314,9 +337,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
 
         var name = "DEP";
         var layers = new Dictionary<string, string[][]>
-          {
-            { name, emptyDoc.Select(a => a.ToArray()).ToArray() }
-          };
+        {
+          { name, emptyDoc.Select(a => a.ToArray()).ToArray() }
+        };
         foreach (XmlNode span in spans)
         {
           var rel = span.GetSimpleXpathFirst("/rel")?.GetAttribute("label", "");
@@ -339,11 +362,14 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       {
         if (Debug)
           lock (_lockDebug)
+          {
             _debug.Add(ex);
+          }
       }
     }
 
-    private void BuildTaggerFeatureConstituency(KorapZip zip, string textRoot, string subfolder, Guid dsel, int[] skeleton, Dictionary<int, int[][]> references, string path)
+    private void BuildTaggerFeatureConstituency(KorapZip zip, string textRoot, string subfolder, Guid dsel,
+      int[] skeleton, Dictionary<int, int[][]> references, string path)
     {
       try
       {
@@ -359,7 +385,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
         {
           if (Debug)
             lock (_lockDebug)
+            {
               _debug.Add(new IdsException(path, $"{textRoot}/{subfolder}/constituency.xml", ex));
+            }
         }
 
         if (spans == null)
@@ -401,11 +429,14 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       {
         if (Debug)
           lock (_lockDebug)
+          {
             _debug.Add(ex);
+          }
       }
     }
 
-    private void BuildTaggerFeatureMorpho(KorapZip zip, string textRoot, string subfolder, Guid dsel, int[] skeleton, Dictionary<int, int[][]> references, string path)
+    private void BuildTaggerFeatureMorpho(KorapZip zip, string textRoot, string subfolder, Guid dsel, int[] skeleton,
+      Dictionary<int, int[][]> references, string path)
     {
       try
       {
@@ -421,7 +452,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
         {
           if (Debug)
             lock (_lockDebug)
+            {
               _debug.Add(new IdsException(path, $"{textRoot}/{subfolder}/morpho.xml", ex));
+            }
         }
 
         if (spans == null)
@@ -441,7 +474,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
             continue;
 
           var fs = span.GetSimpleXpath("/fs/f/fs/f");
-          foreach (XmlNode f in fs)
+          foreach (var f in fs)
           {
             var name = f.GetAttribute("name", "");
             if (string.IsNullOrEmpty(name) || name == "certainty")
@@ -463,7 +496,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       {
         if (Debug)
           lock (_lockDebug)
+          {
             _debug.Add(ex);
+          }
       }
     }
 
@@ -476,27 +511,19 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       return res;
     }
 
-    private static Dictionary<string, string> _layerNameFixes = new Dictionary<string, string>
-    {
-      {"ctag", "POS"},
-      {"msd", "MSD"},
-      {"pos", "POS"},
-      {"lemma", "Lemma"}
-    };
-
     private static string FixLayerName(string name)
-      => _layerNameFixes.ContainsKey(name) ? _layerNameFixes[name] : name;
+    {
+      return _layerNameFixes.ContainsKey(name) ? _layerNameFixes[name] : name;
+    }
 
     private static Dictionary<int, int[][]> TokenReferenceIndexBuilder(List<int[]> refs)
     {
       var tmp = new Dictionary<int, List<int[]>>();
       foreach (var x in refs)
-      {
         if (tmp.ContainsKey(x[0]))
           tmp[x[0]].Add(x);
         else
           tmp.Add(x[0], new List<int[]> { x });
-      }
 
       return tmp.ToDictionary(x => x.Key, x => x.Value.ToArray());
     }

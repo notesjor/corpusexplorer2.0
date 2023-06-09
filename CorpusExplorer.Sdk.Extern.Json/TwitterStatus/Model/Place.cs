@@ -4,28 +4,42 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStatus.Model
 {
   public class Place
   {
-    [JsonProperty("Attributes")] public object Attributes { get; set; }
 
-    [JsonProperty("BoundingBox")] public object BoundingBox { get; set; }
+    [JsonProperty("Name")]
+    public string Name { get; set; }
 
-    [JsonProperty("ContainedWithin")] public object ContainedWithin { get; set; }
+    [JsonProperty("CountryCode")]
+    public string CountryCode { get; set; }
 
-    [JsonProperty("Country")] public object Country { get; set; }
+    [JsonProperty("ID")]
+    public string ID { get; set; }
 
-    [JsonProperty("CountryCode")] public object CountryCode { get; set; }
+    [JsonProperty("Country")]
+    public string Country { get; set; }
 
-    [JsonProperty("FullName")] public object FullName { get; set; }
+    [JsonProperty("PlaceType")]
+    public string PlaceType { get; set; }
 
-    [JsonProperty("Geometry")] public object Geometry { get; set; }
+    [JsonProperty("Url")]
+    public string Url { get; set; }
 
-    [JsonProperty("ID")] public object ID { get; set; }
+    [JsonProperty("FullName")]
+    public string FullName { get; set; }
 
-    [JsonProperty("Name")] public object Name { get; set; }
+    [JsonProperty("Attributes")]
+    public string Attributes { get; set; }
+    
+    [JsonProperty("BoundingBox")]
+    public string BoundingBox { get; set; }
 
-    [JsonProperty("PlaceType")] public object PlaceType { get; set; }
+    [JsonProperty("Geometry")]
+    public string Geometry { get; set; }
 
-    [JsonProperty("PolyLines")] public object PolyLines { get; set; }
+    [JsonProperty("PolyLines")]
+    public string PolyLines { get; set; }
 
-    [JsonProperty("Url")] public object Url { get; set; }
+    [JsonProperty("ContainedWithin")]
+    public string ContainedWithin { get; set; }
   }
+  
 }

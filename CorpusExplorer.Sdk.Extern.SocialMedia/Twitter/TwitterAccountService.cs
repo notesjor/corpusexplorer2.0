@@ -12,15 +12,15 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Twitter
 {
   public class TwitterAccountService : AbstractService
   {
-    protected override void Query(object connection, IEnumerable<string> queries, string outputPath)
+    protected override void Query(object connection, IEnumerable<string> queries, string outputPath, int limit)
     {
       foreach (var query in queries)
       {
-        ExecuteQuery(connection, query, outputPath);
+        ExecuteQuery(connection, query, outputPath, limit);
       }
     }
 
-    private void ExecuteQuery(object connection, string query, string outputPath)
+    private void ExecuteQuery(object connection, string query, string outputPath, int queryLimit)
     {
       if (!(connection is TwitterContext context))
         return;
@@ -55,6 +55,10 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Twitter
           maxId = ulong.Parse(tweets.Last().StatusID.ToString()) - 1;
         else
           break;
+
+        if (limit > 0 && tweets.Count >= limit)
+          break;
+
       } while (true);
 
       var account = query.Replace("@", "");

@@ -10,7 +10,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Facebook
 {
   public class FacebookStatusCommentsService : AbstractService
   {
-    protected override void Query(object connection, IEnumerable<string> queries, string outputPath)
+    protected override void Query(object connection, IEnumerable<string> queries, string outputPath, int limit)
     {
       var client = connection as FacebookClient;
       if (client == null)

@@ -12,9 +12,10 @@ namespace CorpusExplorer.Sdk.Helper
 {
   public static class SelectionListConverterHelper
   {
-    public static void FromListStream(Project project, string listStream)
+    public static void FromListStream(Project project, string listStream, out string[] errors)
     {
       var res = new Dictionary<Guid, Selection>();
+      var err = new List<string>();
 
       try
       {
@@ -41,7 +42,7 @@ namespace CorpusExplorer.Sdk.Helper
               }
               catch
               {
-                // ignore
+                err.Add("Fehler beim Erzeugen der Selektion: " + corpora[i]);
               }
 
             var head = corpora[0].Split(Splitter.Equal, StringSplitOptions.RemoveEmptyEntries);
@@ -55,13 +56,15 @@ namespace CorpusExplorer.Sdk.Helper
           }
           catch
           {
-            // ignore
+            err.Add("Fehler beim Laden der Selektion: " + sD);
           }
       }
       catch
       {
-        // ignore
+        err.Add("Fehler beim Laden der Schnappschüsse");
       }
+
+      errors = err.ToArray();
     }
 
     public static string ToListStream(Selection selection)

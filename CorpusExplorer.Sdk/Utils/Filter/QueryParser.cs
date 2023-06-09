@@ -167,6 +167,12 @@ namespace CorpusExplorer.Sdk.Utils.Filter
                 LayerDisplayname = name,
                 LayerQueries = value.Split(separator, StringSplitOptions.RemoveEmptyEntries)
               };
+            case 'M':
+              return new FilterQueryMultiLayerPhrase
+              {
+                Inverse = inverse,
+                MultiLayerQueries = value.Split(separator, StringSplitOptions.RemoveEmptyEntries), 
+              };
             case '1':
               return new FilterQuerySingleLayerFirstAndAnyOtherMatch
               {

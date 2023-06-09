@@ -1764,7 +1764,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     {
       Processing.SplashShow(Resources.Dashboard_ProjectLoad);
 
-      _terminal.ProjectLoad(path);
+      _terminal.ProjectLoad(path, out var errors);
       Project = _terminal.Project;
       Project.SelectionCreated += ProjectModelChanges;
       Project.SelectionChanged += CurrentSelectionChanged;
@@ -2325,7 +2325,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                     ? CorpusAdapterWriteDirect.Create(ofd.FileName)
                     : ofd.FilterIndex == 2
                       ? CorpusAdapterSingleFile.Create(ofd.FileName)
-                      : (IHydra)Project.Load(ofd.FileName);
+                      : (IHydra)Project.Load(ofd.FileName, out var errors);
 
       var dic = Configuration.AddonExporters.ToArray();
       var sfd = new SaveFileDialog

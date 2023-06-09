@@ -369,6 +369,11 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       set => SetSetting("RAM-Selbstschutz", value);
     }
 
+    public static double DefaultFontSize{
+      get => (double)GetSetting("Schriftgröße", 12.0);
+      set => SetSetting("Schriftgröße", value);
+    }
+
     public static Random Random { get; private set; } = new Random();
 
     public static bool RightToLeftSupport
@@ -781,6 +786,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       Encoding = Encoding;
       RightToLeftSupport = RightToLeftSupport;
       ProtectMemoryOverflow = ProtectMemoryOverflow;
+      DefaultFontSize = DefaultFontSize;
 
       _addonSideLoadFeatures = new List<object>();
       _addonBackends = new Dictionary<string, AbstractCorpusBuilder>();

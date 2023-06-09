@@ -29,7 +29,7 @@ namespace CorpusExplorer.Terminal.Universal
     private static void ProjectLoad(HttpContext obj)
     {
       var path = obj.Request.PostData<RequestFileSingle>()?.Path;
-      _terminal.ProjectLoad(path, Path.GetDirectoryName(path));
+      _terminal.ProjectLoad(path, out var error, Path.GetDirectoryName(path));
       obj.Response.Send(HttpStatusCode.OK);
     }
 

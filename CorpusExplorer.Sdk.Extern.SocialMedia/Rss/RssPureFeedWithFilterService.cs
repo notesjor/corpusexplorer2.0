@@ -11,7 +11,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Rss
 {
   public class RssPureFeedWithFilterService : AbstractService
   {
-    protected override void Query(object connection, IEnumerable<string> queries, string outputPath)
+    protected override void Query(object connection, IEnumerable<string> queries, string outputPath, int limit)
     {
       if (!(connection is Feed feed))
         return;

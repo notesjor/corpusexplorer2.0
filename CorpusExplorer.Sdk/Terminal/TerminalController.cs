@@ -51,9 +51,9 @@ namespace CorpusExplorer.Sdk.Terminal
     /// <param name="path">
     ///   The path.
     /// </param>
-    public void ProjectLoad(string path, string forceCorpusRoot = null)
+    public void ProjectLoad(string path, out string[] errors, string forceCorpusRoot = null)
     {
-      Project = Project.Load(path, forceCorpusRoot);
+      Project = Project.Load(path, out errors, forceCorpusRoot);
       ProjectPath = path;
     }
 

@@ -2,8 +2,11 @@
 
 namespace CorpusExplorer.Sdk.Extern.Json.TwitterStatus.Model
 {
-  public class Annotation
+  public class Hashtag
   {
-    [JsonProperty("Type")] public object Type { get; set; }
+
+    [JsonProperty("text")]
+    public string Text { get; set; }
   }
+  
 }

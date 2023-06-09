@@ -12,7 +12,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Wordpress
   {
     public bool GetComments { get; set; } = true;
 
-    protected override void Query(object connection, IEnumerable<string> queries, string outputPath)
+    protected override void Query(object connection, IEnumerable<string> queries, string outputPath, int limit)
     {
       var client = connection as WordPressClient;
       if (client == null)

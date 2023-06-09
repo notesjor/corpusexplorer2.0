@@ -64,7 +64,6 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
       //CefSharpSettings.LegacyJavascriptBindingEnabled = true;
       CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
 
-      Cef.EnableHighDPISupport();
       Cef.Initialize(settings, false, browserProcessHandler: null);
 
       _initialized = true;

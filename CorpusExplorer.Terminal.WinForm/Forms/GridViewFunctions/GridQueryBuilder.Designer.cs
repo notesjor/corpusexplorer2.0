@@ -35,9 +35,10 @@
       this.btn_new = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_load = new Telerik.WinControls.UI.CommandBarButton();
       this.btn_save = new Telerik.WinControls.UI.CommandBarButton();
-      this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+      this.radDataFilter1 = new Telerik.WinControls.UI.RadDataFilter();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radDataFilter1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
       // 
@@ -89,29 +90,26 @@
       this.btn_save.Name = "btn_save";
       this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
       // 
-      // elementHost1
+      // radDataFilter1
       // 
-      resources.ApplyResources(this.elementHost1, "elementHost1");
-      this.elementHost1.Name = "elementHost1";
-      this.elementHost1.Child = null;
+      resources.ApplyResources(this.radDataFilter1, "radDataFilter1");
+      this.radDataFilter1.ItemHeight = 40;
+      this.radDataFilter1.Name = "radDataFilter1";
       // 
       // GridQueryBuilder
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       resources.ApplyResources(this, "$this");
-      this.Controls.Add(this.elementHost1);
+      this.Controls.Add(this.radDataFilter1);
       this.Controls.Add(this.radCommandBar1);
       this.DisplayAbort = true;
       this.Name = "GridQueryBuilder";
-      // 
-      // 
-      // 
-      this.RootElement.ApplyShapeToControl = true;
       this.Controls.SetChildIndex(this.radPanel1, 0);
       this.Controls.SetChildIndex(this.radCommandBar1, 0);
-      this.Controls.SetChildIndex(this.elementHost1, 0);
+      this.Controls.SetChildIndex(this.radDataFilter1, 0);
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radDataFilter1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
@@ -126,6 +124,6 @@
     private Telerik.WinControls.UI.CommandBarButton btn_new;
     private Telerik.WinControls.UI.CommandBarButton btn_load;
     private Telerik.WinControls.UI.CommandBarButton btn_save;
-    private System.Windows.Forms.Integration.ElementHost elementHost1;    
+    private Telerik.WinControls.UI.RadDataFilter radDataFilter1;
   }
 }

@@ -36,12 +36,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       if (string.IsNullOrEmpty(speaker) || string.IsNullOrEmpty(utterance) || speaker == utterance)
         return;
 
-      var bag = Project.CurrentSelection.DocumentGuids.Select(
-                                                              dsel =>
-                                                                new KeyValuePair<Guid, int>(dsel,
-                                                                 int.Parse(Project.CurrentSelection
-                                                                            .GetDocumentMetadata(dsel, utterance,
-                                                                              "-1")))).OrderBy(x => x.Value).ToArray();
+      var bag = Project.CurrentSelection.DocumentGuids.Select(dsel =>
+                                                                new KeyValuePair<Guid, object>(dsel,
+                                                                 Project.CurrentSelection.GetDocumentMetadata(dsel, utterance, null))).ToArray();
+
+      bag = bag.Where(x => x.Value != null).OrderBy(x => x.Value).ToArray();
 
       var list = new List<ListViewDataItem>();
       foreach (var pair in bag)
@@ -50,12 +49,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
         var usr = Project.CurrentSelection.GetDocumentMetadata(pair.Key, speaker, "");
 
         list.Add(new ListViewDataItem
-                 {
-                   BackColor = GetUserColor(usr),
-                   Text = $"<html>({pair.Value:D5}) <u>{usr}</u>: {doc}</html>",
-                   Font = new Font(radListView1.Font.FontFamily, 12, FontStyle.Bold),
-                   Key = pair.Key,
-                 });
+        {
+          BackColor = GetUserColor(usr),
+          Text = $"<html>({pair.Value:D5}) <u>{usr}</u>: {doc}</html>",
+          Font = new Font(radListView1.Font.FontFamily, 12, FontStyle.Bold),
+          Key = pair.Key,
+        });
       }
 
       _items = list.ToArray();
@@ -85,7 +84,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
     private void radButton1_Click(object sender, EventArgs e)
     {
       var guids =
-        (from item in radListView1.Items where item.CheckState == ToggleState.On select (Guid) item.Key).ToArray();
+        (from item in radListView1.Items where item.CheckState == ToggleState.On select (Guid)item.Key).ToArray();
 
       if (guids.Length == 0)
         return;

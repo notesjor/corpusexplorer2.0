@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="telerikMetroTouchTheme1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="radCommandBar1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -131,11 +134,17 @@
   <data name="commandBarLabel1.DisplayName" xml:space="preserve">
     <value>commandBarLabel1</value>
   </data>
+  <data name="commandBarLabel1.Text" xml:space="preserve">
+    <value>Äußerungs (ID/Nr.):</value>
+  </data>
   <data name="combo_utteranche.DisplayName" xml:space="preserve">
     <value>commandBarDropDownList1</value>
   </data>
   <data name="commandBarLabel2.DisplayName" xml:space="preserve">
     <value>commandBarLabel2</value>
+  </data>
+  <data name="commandBarLabel2.Text" xml:space="preserve">
+    <value>Sprecher:</value>
   </data>
   <data name="combo_speaker.DisplayName" xml:space="preserve">
     <value>commandBarDropDownList2</value>
@@ -162,7 +171,7 @@
     <value>Schnappschuss erstellen</value>
   </data>
   <data name="radCommandBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>780, 44</value>
+    <value>780, 69</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="radCommandBar1.TabIndex" type="System.Int32, mscorlib">
@@ -172,7 +181,7 @@
     <value>radCommandBar1</value>
   </data>
   <data name="&gt;&gt;radCommandBar1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadCommandBar, Telerik.WinControls.UI, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadCommandBar, Telerik.WinControls.UI, Version=2023.1.314.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radCommandBar1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -184,10 +193,10 @@
     <value>Fill</value>
   </data>
   <data name="radListView1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 81</value>
+    <value>0, 101</value>
   </data>
   <data name="radListView1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>780, 319</value>
+    <value>780, 299</value>
   </data>
   <data name="radListView1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -196,7 +205,7 @@
     <value>radListView1</value>
   </data>
   <data name="&gt;&gt;radListView1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2023.1.314.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radListView1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -208,10 +217,10 @@
     <value>Top</value>
   </data>
   <data name="txt_filter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 44</value>
+    <value>0, 69</value>
   </data>
   <data name="txt_filter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>780, 37</value>
+    <value>780, 32</value>
   </data>
   <data name="txt_filter.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -220,7 +229,7 @@
     <value>txt_filter</value>
   </data>
   <data name="&gt;&gt;txt_filter.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2023.1.314.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;txt_filter.Parent" xml:space="preserve">
     <value>$this</value>
@@ -231,59 +240,65 @@
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="&gt;&gt;telerikMetroTouchTheme1.Name" xml:space="preserve">
+    <value>telerikMetroTouchTheme1</value>
+  </data>
+  <data name="&gt;&gt;telerikMetroTouchTheme1.Type" xml:space="preserve">
+    <value>Telerik.WinControls.Themes.TelerikMetroTouchTheme, Telerik.WinControls.Themes.TelerikMetroTouch, Version=2023.1.314.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+  </data>
   <data name="&gt;&gt;commandBarRowElement1.Name" xml:space="preserve">
     <value>commandBarRowElement1</value>
   </data>
   <data name="&gt;&gt;commandBarRowElement1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarRowElement, Telerik.WinControls.UI, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarRowElement, Telerik.WinControls.UI, Version=2023.1.314.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarStripElement1.Name" xml:space="preserve">
     <value>commandBarStripElement1</value>
   </data>
   <data name="&gt;&gt;commandBarStripElement1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarStripElement, Telerik.WinControls.UI, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarStripElement, Telerik.WinControls.UI, Version=2023.1.314.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarLabel1.Name" xml:space="preserve">
     <value>commandBarLabel1</value>
   </data>
   <data name="&gt;&gt;commandBarLabel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarLabel, Telerik.WinControls.UI, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarLabel, Telerik.WinControls.UI, Version=2023.1.314.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;combo_utteranche.Name" xml:space="preserve">
     <value>combo_utteranche</value>
   </data>
   <data name="&gt;&gt;combo_utteranche.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarDropDownList, Telerik.WinControls.UI, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarDropDownList, Telerik.WinControls.UI, Version=2023.1.314.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarLabel2.Name" xml:space="preserve">
     <value>commandBarLabel2</value>
   </data>
   <data name="&gt;&gt;commandBarLabel2.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarLabel, Telerik.WinControls.UI, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarLabel, Telerik.WinControls.UI, Version=2023.1.314.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;combo_speaker.Name" xml:space="preserve">
     <value>combo_speaker</value>
   </data>
   <data name="&gt;&gt;combo_speaker.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarDropDownList, Telerik.WinControls.UI, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarDropDownList, Telerik.WinControls.UI, Version=2023.1.314.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_go.Name" xml:space="preserve">
     <value>btn_go</value>
   </data>
   <data name="&gt;&gt;btn_go.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2023.1.314.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarSeparator1.Name" xml:space="preserve">
     <value>commandBarSeparator1</value>
   </data>
   <data name="&gt;&gt;commandBarSeparator1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarSeparator, Telerik.WinControls.UI, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarSeparator, Telerik.WinControls.UI, Version=2023.1.314.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;commandBarButton1.Name" xml:space="preserve">
     <value>commandBarButton1</value>
   </data>
   <data name="&gt;&gt;commandBarButton1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2022.1.222.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.CommandBarButton, Telerik.WinControls.UI, Version=2023.1.314.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ChatView</value>

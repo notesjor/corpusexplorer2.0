@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
@@ -13,6 +16,7 @@ using CorpusExplorer.Terminal.WinForm.Forms.SelectLayer;
 using CorpusExplorer.Terminal.WinForm.Helper;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Properties;
+using Telerik.WinControls;
 using Telerik.WinControls.Data;
 using Telerik.WinControls.UI;
 
@@ -26,6 +30,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
     private int _delay = 500;
     private DataTable _backup;
     protected RadGridView _grid;
+    private Font _font;
 
     public AbstractGridView()
     {
@@ -135,6 +140,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
       _grid.ShowRowHeaderColumn = false;
       _grid.FilterChanged -= _grid_FilterChanged;
       _grid.FilterChanged += _grid_FilterChanged;
+
+      _font = new Font(_grid.Font.FontFamily, (float)Configuration.DefaultFontSize);
+      _grid.CellFormatting += _grid_CellFormatting;
+    }
+
+    private void _grid_CellFormatting(object sender, CellFormattingEventArgs e)
+    {
+      e.CellElement.Font = _font;
     }
 
     protected void RegexFunction()
@@ -193,15 +206,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.AbstractTemplates
         new GridQueryBuilder(
                              table.Columns.Cast<DataColumn>()
                                   .ToDictionary(column => column.ColumnName, column => column.DataType),
-                             _grid.FilterDescriptors,
+                             _grid.FilterDescriptors.Expression,
                              name);
       if (form.ShowDialog() != DialogResult.OK)
         return;
 
       _grid.SuspendUpdate();
       _grid.FilterDescriptors.Clear();
-      foreach (var filter in form.Result)
-        _grid.FilterDescriptors.Add(filter);
+      _grid.FilterDescriptors.Expression = form.Result;
       _grid.ResumeUpdate();
     }
 

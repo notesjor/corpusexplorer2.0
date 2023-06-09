@@ -9,7 +9,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Blogger
 {
   public class BloggerAndCommentsService : AbstractService
   {
-    protected override void Query(object connection, IEnumerable<string> queries, string outputPath)
+    protected override void Query(object connection, IEnumerable<string> queries, string outputPath, int limit)
     {
       var context = connection as Google.Apis.Blogger.v3.BloggerService;
       if (context == null)
@@ -17,11 +17,12 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Blogger
 
       PostStatusUpdate("Inhalte werden abgerufen...", 0, 1);
 
-      var cnt = 1;
-      var sum = 0;
+      var cnt = 1;      
       var serializer = new NetDataContractSerializer();
       foreach (var blogId in queries)
       {
+        var sum = 0;
+        
         while (true)
         {
           var reqBlog = context.Posts.List(blogId);
@@ -48,6 +49,9 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Blogger
             // ToDo
 
           }
+
+          if (limit > 0 && sum >= limit)
+            break;
         }
       }
     }

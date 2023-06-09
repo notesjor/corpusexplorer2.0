@@ -1,17 +1,30 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace CorpusExplorer.Sdk.Extern.Json.TwitterStatus.Model
 {
   public class Entities
   {
-    [JsonProperty("HashTagEntities")] public object[] HashTagEntities { get; set; }
+    [JsonProperty("url")]
+    public Url Url { get; set; }
 
-    [JsonProperty("MediaEntities")] public MediaEntity[] MediaEntities { get; set; }
+    [JsonProperty("description")]
+    public Description Description { get; set; }
 
-    [JsonProperty("SymbolEntities")] public object[] SymbolEntities { get; set; }
+    [JsonProperty("user_mentions")]
+    public IList<UserMention> UserMentions { get; set; }
 
-    [JsonProperty("UrlEntities")] public UrlEntity[] UrlEntities { get; set; }
+    [JsonProperty("urls")]
+    public IList<string> Urls { get; set; }
 
-    [JsonProperty("UserMentionEntities")] public UserMentionEntity[] UserMentionEntities { get; set; }
+    [JsonProperty("hashtags")]
+    public IList<Hashtag> Hashtags { get; set; }
+
+    [JsonProperty("MediaEntities")]
+    public IList<string> MediaEntities { get; set; }
+
+    [JsonProperty("symbols")]
+    public IList<string> Symbols { get; set; }
   }
+  
 }

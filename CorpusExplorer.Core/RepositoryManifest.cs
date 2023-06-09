@@ -256,12 +256,17 @@ namespace CorpusExplorer.Core
         new KwitAction(),
         new KwitSelectAction(),
 
+        new LayerCloneAction(),
         new LayerNamesAction(),
+        new LayerNewAction(),
+        new LayerRemoveAction(),
+        new LayerRenameAction(),
         new LayerValuesAction(),
 
         new MetaAction(),
         new MetaCategoriesAction(),
         new MetaDocumentAction(),
+        new MetaDocumentSelectAction(),
         new MetaExportAction(),
         new MetaImportAction(),
         new MetaSelectedAction(),

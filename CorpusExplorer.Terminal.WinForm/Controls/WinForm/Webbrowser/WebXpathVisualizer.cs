@@ -62,7 +62,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
         foreach (var link in links)
         {
           var href = link.GetAttributeValue("href", "");
-          link.SetAttributeValue("href", "javascript:void(0)");
+          link.SetAttributeValue("href", "");
           link.SetAttributeValue("link", href);
         }
 
@@ -73,8 +73,15 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
           if (t.Name == "script")
             continue;
           // Setze Bridge
-          t.SetAttributeValue("onclick", $"ce.call('{t.XPath.Replace("/", "-")}')");
+          t.SetAttributeValue("onclick", $"ceCall('{t.XPath.Replace("/", "-")}')");
         }
+
+        // Add the function to a new Script-tag to the head
+        var head = _documentOriginal.DocumentNode.SelectSingleNode("//head");
+        var script = _documentOriginal.CreateElement("script");
+        script.SetAttributeValue("type", "text/javascript");
+        script.InnerHtml = "async function ceCall(xpath){await CefSharp.BindObjectAsync(\"boundObject\"); await boundObject.call(xpath);}";
+        head.AppendChild(script);
 
         FileIO.Write(_file.Path, _documentOriginal.DocumentNode.OuterHtml);
 
@@ -151,12 +158,14 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
 
       try
       {
-        BoundObject.XPathChanged += (s, e) => XPath = (string) s;
+        boundObject.XPathChanged += (s, e) => XPath = (string) s;
 
         _browser = StaticBrowserHandler.Get(Size);
         // _browser.LoadingStateChanged += _browser_LoadingStateChanged;
 
-        _browser.RegisterAsyncJsObject("ce", new BoundObject(), BindingOptions.DefaultBinder);
+        _browser.JavascriptObjectRepository.Settings.LegacyBindingEnabled = true;
+        _browser.JavascriptObjectRepository.Register("boundObject", new boundObject(), isAsync: true, options: BindingOptions.DefaultBinder);
+
         Controls.Add(_browser);
       }
       catch (Exception ex)
@@ -172,11 +181,13 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
       _file.Dispose();
     }
 
-    public class BoundObject
+    // ReSharper disable once InconsistentNaming
+    public class boundObject
     {
       //We expect an exception here, so tell VS to ignore
       [DebuggerHidden]
-      public void Call(string xpath)
+      // ReSharper disable once InconsistentNaming
+      public void call(string xpath)
       {
         if (string.IsNullOrEmpty(xpath))
           return;

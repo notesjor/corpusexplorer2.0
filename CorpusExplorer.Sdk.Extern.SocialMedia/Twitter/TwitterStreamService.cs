@@ -14,8 +14,9 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Twitter
     private static TwitterContext _context;
     private static string _query;
     private static string _outputpath;
+    public static string Language { get; set; } = "de";
 
-    protected override void Query(object connection, IEnumerable<string> queries, string outputPath)
+    protected override void Query(object connection, IEnumerable<string> queries, string outputPath, int limit)
     {
       _context = connection as TwitterContext;
       if(_context == null)
@@ -28,7 +29,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Twitter
 
       _outputpath = dir;
 
-      var task = StreamTwitterContent();
+      var task = StreamTwitterContent(limit);
       Console.WriteLine("ok!");
 
       while (true)
@@ -41,14 +42,14 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Twitter
       task.Wait();
     }
 
-    private Task<List<Streaming>> StreamTwitterContent()
+    private Task<List<Streaming>> StreamTwitterContent(int limit)
     {
       var cnt = 0;
       var clo = new object();
       PostStatusUpdate("AUFZEICHNUNG LÄUFT: 0 Tweets aufgezeichnet", 1, 1);
 
       return (from strm in _context.Streaming
-              where strm.Type == StreamingType.Filter && strm.Track == _query
+              where strm.Type == StreamingType.Filter && strm.Track == _query && strm.Language == Language
               select strm).StartAsync(
                                       async strm =>
                                       {
@@ -72,7 +73,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Twitter
                                                 bs.Write(buffer, 0, buffer.Length);
                                               }
                                               lock(clo)
-                                                PostStatusUpdate($"AUFZEICHNUNG LÄUFT: {cnt++} Tweets aufgezeichnet", 1, 1);
+                                                PostStatusUpdate($"AUFZEICHNUNG LÄUFT: {cnt++} Tweets aufgezeichnet", 1, 1);                                                                                            
                                             }
                                             catch
                                             {

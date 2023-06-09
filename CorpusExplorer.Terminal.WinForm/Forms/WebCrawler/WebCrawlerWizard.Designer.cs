@@ -948,6 +948,7 @@
       // page_4_drop_example
       // 
       resources.ApplyResources(this.page_4_drop_example, "page_4_drop_example");
+      this.page_4_drop_example.DropDownAnimationEnabled = true;
       this.page_4_drop_example.Name = "page_4_drop_example";
       this.page_4_drop_example.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.page_4_drop_example_SelectedIndexChanged);
       // 
@@ -1047,25 +1048,25 @@
       // 
       this.wizardPage2.ContentArea = this.panel3;
       this.wizardPage2.CustomizePageHeader = true;
-      resources.ApplyResources(this.wizardPage2, "wizardPage2");
       this.wizardPage2.HeaderVisibility = Telerik.WinControls.ElementVisibility.Collapsed;
       this.wizardPage2.Name = "wizardPage2";
+      resources.ApplyResources(this.wizardPage2, "wizardPage2");
       // 
       // wizardPage3
       // 
       this.wizardPage3.ContentArea = this.panel4;
       this.wizardPage3.CustomizePageHeader = true;
-      resources.ApplyResources(this.wizardPage3, "wizardPage3");
       this.wizardPage3.HeaderVisibility = Telerik.WinControls.ElementVisibility.Collapsed;
       this.wizardPage3.Name = "wizardPage3";
+      resources.ApplyResources(this.wizardPage3, "wizardPage3");
       // 
       // wizardPage4
       // 
       this.wizardPage4.ContentArea = this.panel5;
       this.wizardPage4.CustomizePageHeader = true;
-      resources.ApplyResources(this.wizardPage4, "wizardPage4");
       this.wizardPage4.HeaderVisibility = Telerik.WinControls.ElementVisibility.Collapsed;
       this.wizardPage4.Name = "wizardPage4";
+      resources.ApplyResources(this.wizardPage4, "wizardPage4");
       // 
       // radDesktopAlert1
       // 
@@ -1081,10 +1082,6 @@
       resources.ApplyResources(this, "$this");
       this.Controls.Add(this.radWizard1);
       this.Name = "WebCrawlerWizard";
-      // 
-      // 
-      // 
-      this.RootElement.ApplyShapeToControl = true;
       ((System.ComponentModel.ISupportInitialize)(this.radWizard1)).EndInit();
       this.radWizard1.ResumeLayout(false);
       this.panel6.ResumeLayout(false);

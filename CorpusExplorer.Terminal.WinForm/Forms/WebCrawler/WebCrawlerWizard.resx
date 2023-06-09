@@ -136,7 +136,7 @@
     <value>txt_result_limmit</value>
   </data>
   <data name="&gt;&gt;txt_result_limmit.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;txt_result_limmit.Parent" xml:space="preserve">
     <value>radGroupBox7</value>
@@ -163,7 +163,7 @@
     <value>radGroupBox7</value>
   </data>
   <data name="&gt;&gt;radGroupBox7.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox7.Parent" xml:space="preserve">
     <value>radGroupBox5</value>
@@ -187,7 +187,7 @@
     <value>txt_result_prefix</value>
   </data>
   <data name="&gt;&gt;txt_result_prefix.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;txt_result_prefix.Parent" xml:space="preserve">
     <value>radGroupBox6</value>
@@ -214,7 +214,7 @@
     <value>radGroupBox6</value>
   </data>
   <data name="&gt;&gt;radGroupBox6.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox6.Parent" xml:space="preserve">
     <value>radGroupBox5</value>
@@ -238,7 +238,7 @@
     <value>txt_result_xpath</value>
   </data>
   <data name="&gt;&gt;txt_result_xpath.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;txt_result_xpath.Parent" xml:space="preserve">
     <value>radGroupBox5</value>
@@ -265,7 +265,7 @@
     <value>radGroupBox5</value>
   </data>
   <data name="&gt;&gt;radGroupBox5.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox5.Parent" xml:space="preserve">
     <value>splitPanel3</value>
@@ -292,7 +292,7 @@
     <value>num_search_min</value>
   </data>
   <data name="&gt;&gt;num_search_min.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadSpinEditor, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadSpinEditor, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;num_search_min.Parent" xml:space="preserve">
     <value>radGroupBox3</value>
@@ -319,7 +319,7 @@
     <value>radGroupBox3</value>
   </data>
   <data name="&gt;&gt;radGroupBox3.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox3.Parent" xml:space="preserve">
     <value>splitPanel1</value>
@@ -343,7 +343,7 @@
     <value>splitPanel1</value>
   </data>
   <data name="&gt;&gt;splitPanel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;splitPanel1.Parent" xml:space="preserve">
     <value>radSplitContainer1</value>
@@ -370,7 +370,7 @@
     <value>num_search_increment</value>
   </data>
   <data name="&gt;&gt;num_search_increment.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadSpinEditor, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadSpinEditor, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;num_search_increment.Parent" xml:space="preserve">
     <value>radGroupBox4</value>
@@ -397,7 +397,7 @@
     <value>radGroupBox4</value>
   </data>
   <data name="&gt;&gt;radGroupBox4.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox4.Parent" xml:space="preserve">
     <value>splitPanel2</value>
@@ -421,7 +421,7 @@
     <value>splitPanel2</value>
   </data>
   <data name="&gt;&gt;splitPanel2.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;splitPanel2.Parent" xml:space="preserve">
     <value>radSplitContainer1</value>
@@ -445,7 +445,7 @@
     <value>radSplitContainer1</value>
   </data>
   <data name="&gt;&gt;radSplitContainer1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radSplitContainer1.Parent" xml:space="preserve">
     <value>radGroupBox2</value>
@@ -481,7 +481,7 @@
     <value>radLabel3</value>
   </data>
   <data name="&gt;&gt;radLabel3.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel3.Parent" xml:space="preserve">
     <value>radGroupBox2</value>
@@ -505,7 +505,7 @@
     <value>txt_search_url</value>
   </data>
   <data name="&gt;&gt;txt_search_url.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;txt_search_url.Parent" xml:space="preserve">
     <value>radGroupBox2</value>
@@ -538,7 +538,7 @@
     <value>radGroupBox2</value>
   </data>
   <data name="&gt;&gt;radGroupBox2.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox2.Parent" xml:space="preserve">
     <value>splitPanel3</value>
@@ -565,7 +565,7 @@
     <value>txt_name</value>
   </data>
   <data name="&gt;&gt;txt_name.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;txt_name.Parent" xml:space="preserve">
     <value>radGroupBox8</value>
@@ -592,7 +592,7 @@
     <value>radGroupBox8</value>
   </data>
   <data name="&gt;&gt;radGroupBox8.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox8.Parent" xml:space="preserve">
     <value>splitPanel3</value>
@@ -616,7 +616,7 @@
     <value>splitPanel3</value>
   </data>
   <data name="&gt;&gt;splitPanel3.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;splitPanel3.Parent" xml:space="preserve">
     <value>radSplitContainer2</value>
@@ -643,7 +643,7 @@
     <value>grid_mappings</value>
   </data>
   <data name="&gt;&gt;grid_mappings.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGridView, Telerik.WinControls.GridView, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGridView, Telerik.WinControls.GridView, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;grid_mappings.Parent" xml:space="preserve">
     <value>radGroupBox9</value>
@@ -679,7 +679,7 @@
     <value>radLabel4</value>
   </data>
   <data name="&gt;&gt;radLabel4.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel4.Parent" xml:space="preserve">
     <value>radGroupBox9</value>
@@ -706,7 +706,7 @@
     <value>btn_showBrowser</value>
   </data>
   <data name="&gt;&gt;btn_showBrowser.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;btn_showBrowser.Parent" xml:space="preserve">
     <value>radGroupBox9</value>
@@ -733,7 +733,7 @@
     <value>radGroupBox9</value>
   </data>
   <data name="&gt;&gt;radGroupBox9.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox9.Parent" xml:space="preserve">
     <value>splitPanel4</value>
@@ -757,7 +757,7 @@
     <value>splitPanel4</value>
   </data>
   <data name="&gt;&gt;splitPanel4.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;splitPanel4.Parent" xml:space="preserve">
     <value>radSplitContainer2</value>
@@ -781,7 +781,7 @@
     <value>radSplitContainer2</value>
   </data>
   <data name="&gt;&gt;radSplitContainer2.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radSplitContainer2.Parent" xml:space="preserve">
     <value>panel6</value>
@@ -838,7 +838,7 @@
     <value>page_0_chk_mode_3</value>
   </data>
   <data name="&gt;&gt;page_0_chk_mode_3.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_0_chk_mode_3.Parent" xml:space="preserve">
     <value>radGroupBox1</value>
@@ -868,7 +868,7 @@
     <value>page_0_check_sampledata</value>
   </data>
   <data name="&gt;&gt;page_0_check_sampledata.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadCheckBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadCheckBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_0_check_sampledata.Parent" xml:space="preserve">
     <value>clearPanel2</value>
@@ -895,7 +895,7 @@
     <value>clearPanel2</value>
   </data>
   <data name="&gt;&gt;clearPanel2.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
   <data name="&gt;&gt;clearPanel2.Parent" xml:space="preserve">
     <value>radGroupBox1</value>
@@ -925,7 +925,7 @@
     <value>page_0_chk_mode_2</value>
   </data>
   <data name="&gt;&gt;page_0_chk_mode_2.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadRadioButton, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_0_chk_mode_2.Parent" xml:space="preserve">
     <value>radGroupBox1</value>
@@ -958,7 +958,7 @@
     <value>radGroupBox1</value>
   </data>
   <data name="&gt;&gt;radGroupBox1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox1.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -982,7 +982,7 @@
     <value>clearPanel1</value>
   </data>
   <data name="&gt;&gt;clearPanel1.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
   <data name="&gt;&gt;clearPanel1.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -1009,7 +1009,7 @@
     <value>page_0_txt_name</value>
   </data>
   <data name="&gt;&gt;page_0_txt_name.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_0_txt_name.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -1039,7 +1039,7 @@
     <value>radLabel1</value>
   </data>
   <data name="&gt;&gt;radLabel1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel1.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -1090,7 +1090,7 @@
     <value>page_2_num_start</value>
   </data>
   <data name="&gt;&gt;page_2_num_start.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadSpinEditor, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadSpinEditor, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_2_num_start.Parent" xml:space="preserve">
     <value>radGroupBox11</value>
@@ -1117,7 +1117,7 @@
     <value>radGroupBox11</value>
   </data>
   <data name="&gt;&gt;radGroupBox11.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox11.Parent" xml:space="preserve">
     <value>splitPanel5</value>
@@ -1141,7 +1141,7 @@
     <value>splitPanel5</value>
   </data>
   <data name="&gt;&gt;splitPanel5.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;splitPanel5.Parent" xml:space="preserve">
     <value>radSplitContainer3</value>
@@ -1168,7 +1168,7 @@
     <value>page_2_num_incr</value>
   </data>
   <data name="&gt;&gt;page_2_num_incr.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadSpinEditor, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadSpinEditor, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_2_num_incr.Parent" xml:space="preserve">
     <value>radGroupBox12</value>
@@ -1195,7 +1195,7 @@
     <value>radGroupBox12</value>
   </data>
   <data name="&gt;&gt;radGroupBox12.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox12.Parent" xml:space="preserve">
     <value>splitPanel6</value>
@@ -1219,7 +1219,7 @@
     <value>splitPanel6</value>
   </data>
   <data name="&gt;&gt;splitPanel6.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;splitPanel6.Parent" xml:space="preserve">
     <value>radSplitContainer3</value>
@@ -1231,7 +1231,7 @@
     <value>Top</value>
   </data>
   <data name="radSplitContainer3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 180</value>
+    <value>15, 212</value>
   </data>
   <data name="radSplitContainer3.Size" type="System.Drawing.Size, System.Drawing">
     <value>897, 62</value>
@@ -1243,7 +1243,7 @@
     <value>radSplitContainer3</value>
   </data>
   <data name="&gt;&gt;radSplitContainer3.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radSplitContainer3.Parent" xml:space="preserve">
     <value>panel3</value>
@@ -1261,7 +1261,7 @@
     <value>Segoe UI, 11pt</value>
   </data>
   <data name="radLabel8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 102</value>
+    <value>15, 134</value>
   </data>
   <data name="radLabel8.Size" type="System.Drawing.Size, System.Drawing">
     <value>897, 78</value>
@@ -1279,7 +1279,7 @@
     <value>radLabel8</value>
   </data>
   <data name="&gt;&gt;radLabel8.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel8.Parent" xml:space="preserve">
     <value>panel3</value>
@@ -1294,7 +1294,7 @@
     <value>15, 102</value>
   </data>
   <data name="page_2_txt_url.Size" type="System.Drawing.Size, System.Drawing">
-    <value>897, 0</value>
+    <value>897, 32</value>
   </data>
   <data name="page_2_txt_url.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1303,7 +1303,7 @@
     <value>page_2_txt_url</value>
   </data>
   <data name="&gt;&gt;page_2_txt_url.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_2_txt_url.Parent" xml:space="preserve">
     <value>panel3</value>
@@ -1339,7 +1339,7 @@
     <value>radLabel9</value>
   </data>
   <data name="&gt;&gt;radLabel9.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel9.Parent" xml:space="preserve">
     <value>panel3</value>
@@ -1369,7 +1369,7 @@
     <value>radLabel7</value>
   </data>
   <data name="&gt;&gt;radLabel7.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel7.Parent" xml:space="preserve">
     <value>panel3</value>
@@ -1450,7 +1450,7 @@
     <value>radLabel11</value>
   </data>
   <data name="&gt;&gt;radLabel11.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel11.Parent" xml:space="preserve">
     <value>page_3_cnt_browser</value>
@@ -1483,7 +1483,7 @@
     <value>radLabel10</value>
   </data>
   <data name="&gt;&gt;radLabel10.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel10.Parent" xml:space="preserve">
     <value>page_3_cnt_browser</value>
@@ -1510,7 +1510,7 @@
     <value>page_3_txt_xpathresult</value>
   </data>
   <data name="&gt;&gt;page_3_txt_xpathresult.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_3_txt_xpathresult.Parent" xml:space="preserve">
     <value>clearPanel4</value>
@@ -1534,7 +1534,7 @@
     <value>page_3_btn_xpathrefresh</value>
   </data>
   <data name="&gt;&gt;page_3_btn_xpathrefresh.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_3_btn_xpathrefresh.Parent" xml:space="preserve">
     <value>clearPanel4</value>
@@ -1558,7 +1558,7 @@
     <value>clearPanel4</value>
   </data>
   <data name="&gt;&gt;clearPanel4.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
   <data name="&gt;&gt;clearPanel4.Parent" xml:space="preserve">
     <value>page_3_cnt_browser</value>
@@ -1585,7 +1585,7 @@
     <value>page_3_txt_testquery</value>
   </data>
   <data name="&gt;&gt;page_3_txt_testquery.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_3_txt_testquery.Parent" xml:space="preserve">
     <value>clearPanel3</value>
@@ -1609,7 +1609,7 @@
     <value>page_3_btn_testquery</value>
   </data>
   <data name="&gt;&gt;page_3_btn_testquery.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_3_btn_testquery.Parent" xml:space="preserve">
     <value>clearPanel3</value>
@@ -1633,7 +1633,7 @@
     <value>clearPanel3</value>
   </data>
   <data name="&gt;&gt;clearPanel3.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
   <data name="&gt;&gt;clearPanel3.Parent" xml:space="preserve">
     <value>page_3_cnt_browser</value>
@@ -1666,7 +1666,7 @@
     <value>page_3_cnt_browser</value>
   </data>
   <data name="&gt;&gt;page_3_cnt_browser.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_3_cnt_browser.Parent" xml:space="preserve">
     <value>splitPanel7</value>
@@ -1690,7 +1690,7 @@
     <value>splitPanel7</value>
   </data>
   <data name="&gt;&gt;splitPanel7.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;splitPanel7.Parent" xml:space="preserve">
     <value>radSplitContainer4</value>
@@ -1714,7 +1714,7 @@
     <value>page_3_list_testresults</value>
   </data>
   <data name="&gt;&gt;page_3_list_testresults.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadListView, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_3_list_testresults.Parent" xml:space="preserve">
     <value>radGroupBox14</value>
@@ -1747,7 +1747,7 @@
     <value>radGroupBox14</value>
   </data>
   <data name="&gt;&gt;radGroupBox14.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox14.Parent" xml:space="preserve">
     <value>splitPanel8</value>
@@ -1771,7 +1771,7 @@
     <value>page_3_txt_prefix</value>
   </data>
   <data name="&gt;&gt;page_3_txt_prefix.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_3_txt_prefix.Parent" xml:space="preserve">
     <value>radGroupBox16</value>
@@ -1804,7 +1804,7 @@
     <value>radGroupBox16</value>
   </data>
   <data name="&gt;&gt;radGroupBox16.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox16.Parent" xml:space="preserve">
     <value>splitPanel8</value>
@@ -1828,7 +1828,7 @@
     <value>page_3_txt_limit</value>
   </data>
   <data name="&gt;&gt;page_3_txt_limit.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_3_txt_limit.Parent" xml:space="preserve">
     <value>radGroupBox15</value>
@@ -1861,7 +1861,7 @@
     <value>radGroupBox15</value>
   </data>
   <data name="&gt;&gt;radGroupBox15.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox15.Parent" xml:space="preserve">
     <value>splitPanel8</value>
@@ -1885,7 +1885,7 @@
     <value>splitPanel8</value>
   </data>
   <data name="&gt;&gt;splitPanel8.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;splitPanel8.Parent" xml:space="preserve">
     <value>radSplitContainer4</value>
@@ -1909,7 +1909,7 @@
     <value>radSplitContainer4</value>
   </data>
   <data name="&gt;&gt;radSplitContainer4.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radSplitContainer4.Parent" xml:space="preserve">
     <value>panel4</value>
@@ -1981,7 +1981,7 @@
     <value>page_4_drop_example</value>
   </data>
   <data name="&gt;&gt;page_4_drop_example.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadDropDownList, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_4_drop_example.Parent" xml:space="preserve">
     <value>panel2</value>
@@ -2005,7 +2005,7 @@
     <value>page_4_btn_loadUrl</value>
   </data>
   <data name="&gt;&gt;page_4_btn_loadUrl.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_4_btn_loadUrl.Parent" xml:space="preserve">
     <value>panel2</value>
@@ -2062,7 +2062,7 @@
     <value>radLabel12</value>
   </data>
   <data name="&gt;&gt;radLabel12.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel12.Parent" xml:space="preserve">
     <value>page_4_cnt_browser</value>
@@ -2089,7 +2089,7 @@
     <value>page_4_txt_xpath</value>
   </data>
   <data name="&gt;&gt;page_4_txt_xpath.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadTextBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_4_txt_xpath.Parent" xml:space="preserve">
     <value>clearPanel5</value>
@@ -2113,7 +2113,7 @@
     <value>page_4_btn_xpathrefresh</value>
   </data>
   <data name="&gt;&gt;page_4_btn_xpathrefresh.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_4_btn_xpathrefresh.Parent" xml:space="preserve">
     <value>clearPanel5</value>
@@ -2137,7 +2137,7 @@
     <value>page_4_btn_xpathToList</value>
   </data>
   <data name="&gt;&gt;page_4_btn_xpathToList.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadButton, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_4_btn_xpathToList.Parent" xml:space="preserve">
     <value>clearPanel5</value>
@@ -2161,7 +2161,7 @@
     <value>clearPanel5</value>
   </data>
   <data name="&gt;&gt;clearPanel5.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+    <value>CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
   <data name="&gt;&gt;clearPanel5.Parent" xml:space="preserve">
     <value>page_4_cnt_browser</value>
@@ -2185,7 +2185,7 @@
     <value>page_4_cnt_browser</value>
   </data>
   <data name="&gt;&gt;page_4_cnt_browser.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_4_cnt_browser.Parent" xml:space="preserve">
     <value>radSplitContainer5</value>
@@ -2212,7 +2212,7 @@
     <value>page_4_grid_xpath</value>
   </data>
   <data name="&gt;&gt;page_4_grid_xpath.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGridView, Telerik.WinControls.GridView, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGridView, Telerik.WinControls.GridView, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;page_4_grid_xpath.Parent" xml:space="preserve">
     <value>radGroupBox17</value>
@@ -2248,7 +2248,7 @@
     <value>radLabel13</value>
   </data>
   <data name="&gt;&gt;radLabel13.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadLabel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radLabel13.Parent" xml:space="preserve">
     <value>radGroupBox17</value>
@@ -2281,7 +2281,7 @@
     <value>radGroupBox17</value>
   </data>
   <data name="&gt;&gt;radGroupBox17.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadGroupBox, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radGroupBox17.Parent" xml:space="preserve">
     <value>splitPanel10</value>
@@ -2305,7 +2305,7 @@
     <value>splitPanel10</value>
   </data>
   <data name="&gt;&gt;splitPanel10.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.SplitPanel, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;splitPanel10.Parent" xml:space="preserve">
     <value>radSplitContainer5</value>
@@ -2329,7 +2329,7 @@
     <value>radSplitContainer5</value>
   </data>
   <data name="&gt;&gt;radSplitContainer5.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadSplitContainer, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radSplitContainer5.Parent" xml:space="preserve">
     <value>panel5</value>
@@ -2367,7 +2367,7 @@
   <data name="radWizard1.PageHeaderIcon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGIAAABDCAYAAABnVdCdAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAACLFJREFUeF7tnC2TJEUQhs9hUWgUGoWd6SMgEAjUWU7hCFBA7C6xpwjcmYu1+xOQ
+        wgAADsIBFShKgAAACLFJREFUeF7tnC2TJEUQhs9hUWgUGoWd6SMgEAjUWU7hCFBA7C6xpwjcmYu1+xOQ
         CASK2J05sZIIzP0EJAIB+WRl9tX2dE9XV1XPx+68ER0zVV1dH/nmV1VPzJMaOFs//fb7m+bvi3Xzn36u
         Fs/t1glz4PJm8f7568XSii0g4IfVxx/w/ez104+kfKc3DGerxYfnq+YFF31Y9QlTcXm3ePds3fxyvm7e
         XKya3y9Wy5d2SwER9lXRU767WC8vuUIfJ4vJgpKwWv7E96//+uwdEeiVavi6uTYhX2lDA2XI0HsQF93H
@@ -2432,7 +2432,7 @@
     <value>radWizard1</value>
   </data>
   <data name="&gt;&gt;radWizard1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadWizard, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadWizard, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radWizard1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2459,42 +2459,42 @@
     <value>wizardCompletionPage1</value>
   </data>
   <data name="&gt;&gt;wizardCompletionPage1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.WizardCompletionPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.WizardCompletionPage, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;wizardWelcomePage1.Name" xml:space="preserve">
     <value>wizardWelcomePage1</value>
   </data>
   <data name="&gt;&gt;wizardWelcomePage1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.WizardWelcomePage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.WizardWelcomePage, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;wizardPage2.Name" xml:space="preserve">
     <value>wizardPage2</value>
   </data>
   <data name="&gt;&gt;wizardPage2.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.WizardPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.WizardPage, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;wizardPage3.Name" xml:space="preserve">
     <value>wizardPage3</value>
   </data>
   <data name="&gt;&gt;wizardPage3.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.WizardPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.WizardPage, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;wizardPage4.Name" xml:space="preserve">
     <value>wizardPage4</value>
   </data>
   <data name="&gt;&gt;wizardPage4.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.WizardPage, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.WizardPage, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;radDesktopAlert1.Name" xml:space="preserve">
     <value>radDesktopAlert1</value>
   </data>
   <data name="&gt;&gt;radDesktopAlert1.Type" xml:space="preserve">
-    <value>Telerik.WinControls.UI.RadDesktopAlert, Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
+    <value>Telerik.WinControls.UI.RadDesktopAlert, Telerik.WinControls.UI, Version=2023.1.117.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>WebCrawlerWizard</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>CorpusExplorer.Terminal.WinForm.Forms.Abstract.AbstractForm, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=c83c9d65a780b37c</value>
+    <value>CorpusExplorer.Terminal.WinForm.Forms.Abstract.AbstractForm, CorpusExplorer, Version=2.2015.9.1, Culture=neutral, PublicKeyToken=6c9866eeb69c45e9</value>
   </data>
 </root>

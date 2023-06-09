@@ -306,6 +306,16 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
     }
 
     /// <summary>
+    /// Gibt die Anzahl der Token pro Satz für ein Dokument zurück
+    /// </summary>
+    /// <param name="documentGuid">Dokument GUID</param>
+    /// <returns>Anzahl Sätze / Anzahl Token</returns>
+    public IEnumerable<int> DocumentSize(Guid documentGuid)
+    {
+      return this[documentGuid].Select(x => x.Length);
+    }
+
+    /// <summary>
     ///   Filtert die Werte (Layer.Values) und zeigt nur diejenigen an, die im gewählten Dokument vorhanden sind.
     /// </summary>
     /// <param name="document">Dokument des Werte angezeigt werden sollen.</param>

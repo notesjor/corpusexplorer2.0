@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Abstract;
+using CorpusExplorer.Sdk.Helper;
 using LinqToTwitter;
 using Newtonsoft.Json;
 
@@ -9,15 +10,17 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Twitter
 {
   public class TwitterHashtagSearchService : AbstractService
   {
-    protected override void Query(object connection, IEnumerable<string> queries, string outputPath)
+    protected override void Query(object connection, IEnumerable<string> queries, string outputPath, int limit)
     {
       foreach (var query in queries)
       {
-        ExecuteQuery(connection, query, outputPath);
+        ExecuteQuery(connection, query, outputPath, limit);
       }
     }
 
-    private void ExecuteQuery(object connection, string query, string outputPath)
+    public bool QueryToFolder { get; set; } = true;
+
+    private void ExecuteQuery(object connection, string query, string outputPath, int limit)
     {
       if (!(connection is TwitterContext context))
         return;
@@ -50,16 +53,30 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Twitter
         sum += searchResponse.Count;
         maxID = searchResponse.Min(status => status.StatusID) - 1;
 
-        var dir = Path.Combine(outputPath, query.Replace("@", ""));
-
-        if (!Directory.Exists(dir))
-          Directory.CreateDirectory(dir);
-
-        foreach (var tweet in searchResponse)
+        if (QueryToFolder)
         {
-          PostStatusUpdate($"Speichere Tweet {cnt++}/{sum} zu \"{query}\"...", cnt, sum);
-          File.WriteAllText(Path.Combine(dir, $"twitter_query_{query}_{tweet.CreatedAt:yyyy-MM-dd_HH-mm-ss}.json"), JsonConvert.SerializeObject(tweet));
+          var dir = PathHelper.EnsureFileName(Path.Combine(outputPath, query));
+
+          if (!Directory.Exists(dir))
+            Directory.CreateDirectory(dir);
+
+          foreach (var tweet in searchResponse)
+          {
+            PostStatusUpdate($"Speichere Tweet {cnt++}/{sum} zu \"{query}\"...", cnt, sum);
+            File.WriteAllText(Path.Combine(dir, $"twitter_query_{tweet.CreatedAt:yyyy-MM-dd_HH-mm-ss}.json"), JsonConvert.SerializeObject(tweet));
+          }
         }
+        else
+        {
+          foreach (var tweet in searchResponse)
+          {
+            PostStatusUpdate($"Speichere Tweet {cnt++}/{sum} zu \"{query}\"...", cnt, sum);
+            File.WriteAllText(Path.Combine(outputPath, $"twitter_query_{tweet.CreatedAt:yyyy-MM-dd_HH-mm-ss}.json"), JsonConvert.SerializeObject(tweet));
+          }
+        }
+
+        if (limit > 0 && sum >= limit)
+          break;
 
       } while (searchResponse.Any());
     }

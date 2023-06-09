@@ -11,7 +11,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Youtube
 {
   public class YoutTubeVideoService : AbstractService
   {
-    protected override void Query(object connection, IEnumerable<string> queries, string outputPath)
+    protected override void Query(object connection, IEnumerable<string> queries, string outputPath, int limit)
     {
       var context = connection as YouTubeService;
       var serializer = new Newtonsoft.Json.JsonSerializer();

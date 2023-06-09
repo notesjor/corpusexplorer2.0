@@ -1,124 +1,200 @@
 ﻿using Newtonsoft.Json;
+using System;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CorpusExplorer.Sdk.Extern.Json.TwitterStatus.Model
 {
   public class Tweet
   {
-    [JsonProperty("Annotation")] public Annotation Annotation { get; set; }
 
-    [JsonProperty("Contributors")] public object[] Contributors { get; set; }
+    [JsonProperty("Type")]
+    public int Type { get; set; }
 
-    [JsonProperty("Coordinates")] public Coordinates Coordinates { get; set; }
+    [JsonProperty("ID")]
+    public ulong ID { get; set; }
 
-    [JsonProperty("Count")] public ulong Count { get; set; }
+    [JsonProperty("UserID")]
+    public ulong UserID { get; set; }
 
-    [JsonProperty("CreatedAt")] public string CreatedAt { get; set; }
+    [JsonProperty("ScreenName")]
+    public object ScreenName { get; set; }
 
-    [JsonProperty("CurrentUserRetweet")] public ulong CurrentUserRetweet { get; set; }
+    [JsonProperty("SinceID")]
+    public ulong SinceID { get; set; }
 
-    [JsonProperty("Cursor")] public ulong Cursor { get; set; }
+    [JsonProperty("MaxID")]
+    public ulong MaxID { get; set; }
 
-    [JsonProperty("CursorMovement")] public object CursorMovement { get; set; }
+    [JsonProperty("Count")]
+    public ulong Count { get; set; }
 
-    [JsonProperty("EmbeddedStatus")] public object EmbeddedStatus { get; set; }
+    [JsonProperty("Cursor")]
+    public ulong Cursor { get; set; }
 
-    [JsonProperty("Entities")] public Entities Entities { get; set; }
+    [JsonProperty("IncludeRetweets")]
+    public bool IncludeRetweets { get; set; }
 
-    [JsonProperty("ExcludeReplies")] public bool ExcludeReplies { get; set; }
+    [JsonProperty("ExcludeReplies")]
+    public bool ExcludeReplies { get; set; }
 
-    [JsonProperty("ExtendedEntities")] public ExtendedEntities ExtendedEntities { get; set; }
+    [JsonProperty("IncludeEntities")]
+    public bool IncludeEntities { get; set; }
 
-    [JsonProperty("FavoriteCount")] public ulong? FavoriteCount { get; set; }
+    [JsonProperty("IncludeUserEntities")]
+    public bool IncludeUserEntities { get; set; }
 
-    [JsonProperty("Favorited")] public bool Favorited { get; set; }
+    [JsonProperty("IncludeMyRetweet")]
+    public bool IncludeMyRetweet { get; set; }
 
-    [JsonProperty("FilterLevel")] public ulong FilterLevel { get; set; }
+    [JsonProperty("IncludeAltText")]
+    public bool IncludeAltText { get; set; }
 
-    [JsonProperty("ID")] public ulong ID { get; set; }
+    [JsonProperty("OEmbedUrl")]
+    public object OEmbedUrl { get; set; }
+    
+    [JsonProperty("OEmbedHideMedia")]
+    public bool OEmbedHideMedia { get; set; }
+
+    [JsonProperty("OEmbedHideThread")]
+    public bool OEmbedHideThread { get; set; }
+
+    [JsonProperty("OEmbedOmitScript")]
+    public bool OEmbedOmitScript { get; set; }
+    
+    [JsonProperty("OEmbedRelated")]
+    public object OEmbedRelated { get; set; }
+
+    [JsonProperty("OEmbedLanguage")]
+    public object OEmbedLanguage { get; set; }
+
+    [JsonProperty("CreatedAt")]
+    public DateTime CreatedAt { get; set; }
+
+    [JsonProperty("StatusID")]
+    public ulong StatusID { get; set; }
+
+    [JsonProperty("Text")]
+    public string Text { get; set; }
+
+    [JsonProperty("FullText")]
+    public string FullText { get; set; }
+
+    [JsonProperty("ExtendedTweet")]
+    public Tweet SubTweet { get; set; }
+
+    [JsonProperty("Source")]
+    public object Source { get; set; }
+
+    [JsonProperty("Truncated")]
+    public bool Truncated { get; set; }
+
+    [JsonProperty("DisplayTextRange")]
+    public object DisplayTextRange { get; set; }
+
+    [JsonProperty("TweetMode")]
+    public string TweetMode { get; set; }
+
+    [JsonProperty("InReplyToStatusID")]
+    public string InReplyToStatusID { get; set; }
+
+    [JsonProperty("InReplyToUserID")]
+    public string InReplyToUserID { get; set; }
+
+    [JsonProperty("FavoriteCount")]
+    public object FavoriteCount { get; set; }
+
+    [JsonProperty("Favorited")]
+    public bool Favorited { get; set; }
+
+    [JsonProperty("InReplyToScreenName")]
+    public object InReplyToScreenName { get; set; }
+    
+    [JsonProperty("User")]
+    public User User { get; set; }
+
+    [JsonProperty("Users")]
+    public object Users { get; set; }
+
+    [JsonProperty("Contributors")]
+    public object Contributors { get; set; }
+
+    [JsonProperty("Coordinates")]
+    public Coordinates Coordinates { get; set; }
+
+    [JsonProperty("Place")]
+    public Place Place { get; set; }
+    
+
+    [JsonProperty("Entities")]
+    public Entities Entities { get; set; }
+
+    [JsonProperty("ExtendedEntities")]
+    public object ExtendedEntities { get; set; }
+
+    [JsonProperty("TrimUser")]
+    public bool TrimUser { get; set; }
 
     [JsonProperty("IncludeContributorDetails")]
     public bool IncludeContributorDetails { get; set; }
 
-    [JsonProperty("IncludeEntities")] public bool IncludeEntities { get; set; }
+    [JsonProperty("RetweetCount")]
+    public int RetweetCount { get; set; }
 
-    [JsonProperty("IncludeMyRetweet")] public bool IncludeMyRetweet { get; set; }
+    [JsonProperty("Retweeted")]
+    public bool Retweeted { get; set; }
 
-    [JsonProperty("IncludeRetweets")] public bool IncludeRetweets { get; set; }
+    [JsonProperty("PossiblySensitive")]
+    public bool PossiblySensitive { get; set; }
 
-    [JsonProperty("IncludeUserEntities")] public bool IncludeUserEntities { get; set; }
+    [JsonProperty("RetweetedStatus")]
+    public object RetweetedStatus { get; set; }
+    
+    [JsonProperty("CurrentUserRetweet")]
+    public int CurrentUserRetweet { get; set; }
 
-    [JsonProperty("InReplyToScreenName")] public object InReplyToScreenName { get; set; }
+    [JsonProperty("IsQuotedStatus")]
+    public bool IsQuotedStatus { get; set; }
 
-    [JsonProperty("InReplyToStatusID")] public ulong InReplyToStatusID { get; set; }
+    [JsonProperty("QuotedStatusID")]
+    public ulong QuotedStatusID { get; set; }
 
-    [JsonProperty("InReplyToUserID")] public ulong InReplyToUserID { get; set; }
+    [JsonProperty("QuotedStatus")]
+    public object QuotedStatus { get; set; }
 
-    [JsonProperty("Lang")] public string Lang { get; set; }
+    [JsonProperty("Scopes")]
+    public object Scopes { get; set; }
 
-    [JsonProperty("Map")] public bool Map { get; set; }
+    [JsonProperty("WithheldCopyright")]
+    public bool WithheldCopyright { get; set; }
 
-    [JsonProperty("MaxID")] public long MaxID { get; set; }
+    [JsonProperty("WithheldInCountries")]
+    public object WithheldInCountries { get; set; }
 
-    [JsonProperty("MetaData")] public MetaData MetaData { get; set; }
+    [JsonProperty("WithheldScope")]
+    public object WithheldScope { get; set; }
 
-    [JsonProperty("OEmbedAlign")] public ulong OEmbedAlign { get; set; }
+    [JsonProperty("MetaData")]
+    public object MetaData { get; set; }
 
-    [JsonProperty("OEmbedHideMedia")] public bool OEmbedHideMedia { get; set; }
+    [JsonProperty("Lang")]
+    public object Lang { get; set; }
 
-    [JsonProperty("OEmbedHideThread")] public bool OEmbedHideThread { get; set; }
+    [JsonProperty("Map")]
+    public bool Map { get; set; }
 
-    [JsonProperty("OEmbedLanguage")] public object OEmbedLanguage { get; set; }
+    [JsonProperty("TweetIDs")]
+    public object TweetIDs { get; set; }
 
-    [JsonProperty("OEmbedMaxWidth")] public ulong OEmbedMaxWidth { get; set; }
+    [JsonProperty("FilterLevel")]
+    public string FilterLevel { get; set; }
 
-    [JsonProperty("OEmbedOmitScript")] public bool OEmbedOmitScript { get; set; }
+    [JsonProperty("EmbeddedStatus")]
+    public object EmbeddedStatus { get; set; }
 
-    [JsonProperty("OEmbedRelated")] public object OEmbedRelated { get; set; }
-
-    [JsonProperty("OEmbedUrl")] public object OEmbedUrl { get; set; }
-
-    [JsonProperty("Place")] public Place Place { get; set; }
-
-    [JsonProperty("PossiblySensitive")] public bool PossiblySensitive { get; set; }
-
-    [JsonProperty("QuotedStatus")] public QuotedStatus QuotedStatus { get; set; }
-
-    [JsonProperty("QuotedStatusID")] public ulong QuotedStatusID { get; set; }
-
-    [JsonProperty("RetweetCount")] public ulong? RetweetCount { get; set; }
-
-    [JsonProperty("Retweeted")] public bool Retweeted { get; set; }
-
-    [JsonProperty("RetweetedStatus")] public RetweetedStatus RetweetedStatus { get; set; }
-
-    [JsonProperty("ScreenName")] public string ScreenName { get; set; }
-
-    [JsonProperty("SinceID")] public ulong SinceID { get; set; }
-
-    [JsonProperty("Source")] public string Source { get; set; }
-
-    [JsonProperty("StatusID")] public ulong StatusID { get; set; }
-
-    [JsonProperty("Text")] public string Text { get; set; }
-
-    [JsonProperty("TrimUser")] public bool TrimUser { get; set; }
-
-    [JsonProperty("Truncated")] public bool Truncated { get; set; }
-
-    [JsonProperty("TweetIDs")] public object TweetIDs { get; set; }
-
-    [JsonProperty("Type")] public ulong Type { get; set; }
-
-    [JsonProperty("User")] public User User { get; set; }
-
-    [JsonProperty("UserID")] public ulong UserID { get; set; }
-
-    [JsonProperty("Users")] public object[] Users { get; set; }
-
-    [JsonProperty("WithheldCopyright")] public bool WithheldCopyright { get; set; }
-
-    [JsonProperty("WithheldInCountries")] public object[] WithheldInCountries { get; set; }
-
-    [JsonProperty("WithheldScope")] public object WithheldScope { get; set; }
+    [JsonProperty("CursorMovement")]
+    public object CursorMovement { get; set; }    
   }
+  
 }

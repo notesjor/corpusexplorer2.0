@@ -9,18 +9,19 @@ using CorpusExplorer.Sdk.Extern.SocialMedia.Helper;
 using CorpusExplorer.Sdk.Helper;
 using DontPanic.TumblrSharp;
 using DontPanic.TumblrSharp.Client;
+using LinqToTwitter;
 
 namespace CorpusExplorer.Sdk.Extern.SocialMedia.Tumblr
 {
   public class TumblrService : AbstractService
   {
-    protected override void Query(object connection, IEnumerable<string> queries, string outputPath)
+    protected override void Query(object connection, IEnumerable<string> queries, string outputPath, int limit)
     {
       foreach (var blogName in queries)
-        Query(connection, blogName, outputPath);
+        Query(connection, blogName, outputPath, limit);
     }
 
-    protected void Query(object connection, string blogName, string outputPath)
+    protected void Query(object connection, string blogName, string outputPath, int limit)
     {
       var context = connection as TumblrClient;
       if (context == null)
@@ -31,12 +32,12 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Tumblr
         Directory.CreateDirectory(path);
 
       PostStatusUpdate("Inhalte werden abgerufen...", 0, 1);
-
-      var cnt = 1;
-      var sum = 0;
+      
       var serializer = new NetDataContractSerializer();
       for (var i = 0; i < int.MaxValue; i += 20)
       {
+        var cnt = 1;
+        var sum = 0;
         try
         {          
           var request = context.GetPostsAsync(blogName, i, 20, PostType.All, true, true);
@@ -59,6 +60,9 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Tumblr
               serializer.Serialize(file, post);
             cnt++;
           }
+
+          if (limit > 0 && sum >= limit)
+            break;
         }
         catch
         {

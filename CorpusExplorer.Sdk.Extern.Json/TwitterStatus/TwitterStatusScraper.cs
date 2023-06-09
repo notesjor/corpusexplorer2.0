@@ -94,13 +94,13 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStatus
             },
             {
               "Datum",
-              DateTime.ParseExact(message.CreatedAt, "yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture)
+              message.CreatedAt
             },
             {"Favorisierungs-Rate", message.FavoriteCount},
             {"Retweet-Rate", message.RetweetCount},
             {"Sprache", message.Lang},
             {"Quelle", message.Source},
-            {"Text", message.Text},
+            {"Text", string.IsNullOrWhiteSpace(message.Text) ? message.FullText : message.Text},
             {"Tweet (Id)", message.ID == 0 ? message.StatusID : message.ID},
             {"Jugendgefährdend?", message.PossiblySensitive},
             {"Land", message.Place == null ? "" : message.Place.Country},
@@ -114,13 +114,13 @@ namespace CorpusExplorer.Sdk.Extern.Json.TwitterStatus
               "Medien-URL (|-separiert)",
               message.Entities == null || message.Entities.MediaEntities == null
                 ? ""
-                : string.Join("|", message.Entities.MediaEntities.Select(media => media.ExpandedUrl))
+                : string.Join("|", message.Entities.MediaEntities)
             },
             {
               "Externe-URL (|-separiert)",
-              message.Entities == null || message.Entities.UrlEntities == null
+              message.Entities == null
                 ? ""
-                : string.Join("|", message.Entities.UrlEntities.Select(url => url.ExpandedUrl))
+                : string.Join("|", message.Entities.Urls)
             },
             {
               "URL",

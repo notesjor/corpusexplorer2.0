@@ -22,6 +22,8 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public HashSet<Guid> SentenceErrorDocumentGuids { get; private set; }
 
+    public HashSet<Guid> LayerTokensContainsSpace { get; set; }
+
     public bool HasError { get; private set; }
 
     public HashSet<Guid> ValidDocumentGuids { get; set; }
@@ -46,6 +48,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       EmptyDocumentGuids = block.EmptyDocumentGuids;
       NoLayerMatchingDocumentGuids = block.NoLayerMatchingDocumentGuids;
       SentenceErrorDocumentGuids = block.SentenceErrorDocumentGuids;
+      LayerTokensContainsSpace = block.LayerTokensContainsSpace;
       HasError = block.HasError;
 
       ValidDocumentGuids = block.ValidDocumentGuids;
@@ -71,6 +74,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       dt.Rows.Add("Empty documents", EmptyDocumentGuids.Count == 0, EmptyDocumentGuids.Count, "Documents");
       dt.Rows.Add("Documents with different layers", NoLayerMatchingDocumentGuids.Count == 0, NoLayerMatchingDocumentGuids.Count, "Documents");
       dt.Rows.Add("Documents without sentences", SentenceErrorDocumentGuids.Count == 0, SentenceErrorDocumentGuids.Count, "Documents");
+      dt.Rows.Add("Layer with SPACE-Token", LayerTokensContainsSpace.Count == 0, LayerTokensContainsSpace.Count, "Layers");
       dt.Rows.Add("Invalid documents", "-TOTAL-", Selection.CountDocuments - ValidDocumentGuids.Count, "Documents");
       dt.Rows.Add("Valid documents", "-TOTAL-", ValidDocumentGuids.Count, "Documents");
 

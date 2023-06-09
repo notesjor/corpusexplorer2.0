@@ -49,7 +49,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -69,25 +69,15 @@
     <Compile Include="Speedy\ExporterSpeedy.cs" />
     <Compile Include="Speedy\ImporterSpeedy.cs" />
     <Compile Include="Speedy\SpeedyScraper.cs" />
-    <Compile Include="TwitterStatus\Model\Annotation.cs" />
-    <Compile Include="TwitterStatus\Model\AspectRatio.cs" />
-    <Compile Include="TwitterStatus\Model\Coordinates.cs" />
-    <Compile Include="TwitterStatus\Model\CursorMovement.cs" />
-    <Compile Include="TwitterStatus\Model\Entities.cs" />
-    <Compile Include="TwitterStatus\Model\ExtendedEntities.cs" />
-    <Compile Include="TwitterStatus\Model\MediaEntity.cs" />
-    <Compile Include="TwitterStatus\Model\MetaData.cs" />
-    <Compile Include="TwitterStatus\Model\Place.cs" />
-    <Compile Include="TwitterStatus\Model\QuotedStatus.cs" />
-    <Compile Include="TwitterStatus\Model\RetweetedStatus.cs" />
-    <Compile Include="TwitterStatus\Model\Size.cs" />
-    <Compile Include="TwitterStatus\Model\Status.cs" />
     <Compile Include="TwitterStatus\Model\Tweet.cs" />
-    <Compile Include="TwitterStatus\Model\UrlEntity.cs" />
+    <Compile Include="TwitterStatus\Model\Coordinates.cs" />
+    <Compile Include="TwitterStatus\Model\Description.cs" />
+    <Compile Include="TwitterStatus\Model\Entities.cs" />
+    <Compile Include="TwitterStatus\Model\Hashtag.cs" />
+    <Compile Include="TwitterStatus\Model\Place.cs" />
+    <Compile Include="TwitterStatus\Model\Url.cs" />
     <Compile Include="TwitterStatus\Model\User.cs" />
-    <Compile Include="TwitterStatus\Model\UserMentionEntity.cs" />
-    <Compile Include="TwitterStatus\Model\Variant.cs" />
-    <Compile Include="TwitterStatus\Model\VideoInfo.cs" />
+    <Compile Include="TwitterStatus\Model\UserMention.cs" />
     <Compile Include="TwitterStatus\Reader\TwitterStatusReader.cs" />
     <Compile Include="TwitterStatus\TwitterStatusScraper.cs" />
     <Compile Include="TwitterStream\Model\BoundingBox.cs" />

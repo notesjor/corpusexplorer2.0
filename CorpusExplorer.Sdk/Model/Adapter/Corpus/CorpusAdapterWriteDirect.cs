@@ -13,6 +13,7 @@ using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
 
 namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
@@ -242,7 +243,23 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     }
 
     public override void LayerNew(string layerDisplayname)
-      => LayerCopy("Wort", layerDisplayname);
+    {
+      var layer = GetLayers("Wort").FirstOrDefault();
+      var newLayer = new LayerValueState(layerDisplayname, Layers.Count());
+      var val = newLayer.RequestIndex("");
+
+      foreach (var dsel in layer.DocumentGuids)
+      {
+        var size = layer.DocumentSize(dsel).ToArray();
+        var doc = new int[size.Length][];
+        for (var i = 0; i < size.Length; i++)
+          doc[i] = Enumerable.Repeat(val, size[i]).ToArray();
+        
+        newLayer.AddCompleteDocument(dsel, doc);
+      }
+
+      AddLayer(LayerAdapterWriteDirect.Create(newLayer));
+    }
 
     public override void LayerRename(string layerDisplaynameOld, string layerDisplaynameNew)
     {

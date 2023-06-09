@@ -11,18 +11,16 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Opus
 {
   public class ImporterOpusXces : AbstractImporterBase
   {
+    private string[] _roots = new[] { "//text", "//document", "//helpdocument", "//html" };
+
     protected override void ExecuteCall(string path)
     {
       var xml = new HtmlDocument();
       xml.Load(path, Configuration.Encoding);
 
-      var texts = xml.DocumentNode.SelectNodes("//text");
+      var texts = GetRoot(xml); 
       if (texts == null || texts.Count < 1)
-      {
-        texts = xml.DocumentNode.SelectNodes("//document");
-        if (texts == null || texts.Count < 1)
-          return;
-      }
+        return;
 
       for (var i = 0; i < texts.Count; i++)
       {
@@ -42,12 +40,19 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Opus
           var sent = new Dictionary<string, List<string>> { { "Wort", new List<string>() } };
           var ws = (from x in sentence.ChildNodes where x.Name == "w" select x).ToArray();
 
+          if(ws.Length == 0)
+            continue;
+
           foreach (var w in ws)
           {
-            sent["Wort"].Add(w.InnerText);
+            var t = w.InnerText;
+            if(string.IsNullOrWhiteSpace(t))
+              continue;
 
-            ParseTokenAnnotation(w, "lem", "Lemma", sent);
-            ParseTokenAnnotation(w, "tree", "POS", sent);
+            sent["Wort"].Add(t);
+
+            ParseTokenAnnotation(w, "lem", "Lemma", t, ref sent);
+            ParseTokenAnnotation(w, "tree", "POS", "", ref sent);
           }
 
           foreach (var s in sent)
@@ -64,16 +69,29 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Opus
       }
     }
 
-    private static void ParseTokenAnnotation(HtmlNode w, string layerAttr, string layerName,
-                                             Dictionary<string, List<string>> sent)
+    private HtmlNodeCollection GetRoot(HtmlDocument xml)
     {
-      if (w.Attributes.All(y => y.Name != layerAttr))
-        return;
+      foreach (var root in _roots)
+      {
+        var texts = xml.DocumentNode.SelectNodes(root);
+        if (texts != null && texts.Count > 0)
+          return texts;
+      }
+      return null;
+    }
 
+    private static void ParseTokenAnnotation(HtmlNode w, string layerAttr,
+                                             string layerName, string defaultValue,
+                                             ref Dictionary<string, List<string>> sent)
+    {
       if (!sent.ContainsKey(layerName))
         sent.Add(layerName, new List<string>());
 
-      sent[layerName].Add(w.GetAttributeValue(layerAttr, ""));
+      var attr = w.Attributes.FirstOrDefault(x => x.Name == layerAttr);
+      if (attr == null || string.IsNullOrEmpty(attr.Value))
+        sent[layerName].Add(defaultValue);
+      else
+        sent[layerName].Add(attr.Value);
     }
   }
 }

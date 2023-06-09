@@ -78,7 +78,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       // 
       resources.ApplyResources(this.commandBarLabel1, "commandBarLabel1");
       this.commandBarLabel1.Name = "commandBarLabel1";
-      this.commandBarLabel1.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.ÄußerungsID;
       // 
       // combo_utteranche
       // 
@@ -92,7 +91,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Special
       // 
       resources.ApplyResources(this.commandBarLabel2, "commandBarLabel2");
       this.commandBarLabel2.Name = "commandBarLabel2";
-      this.commandBarLabel2.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.SprecherID;
       // 
       // combo_speaker
       // 

@@ -35,7 +35,9 @@ using CorpusExplorer.Sdk.Extern.Xml.Pmg;
 using CorpusExplorer.Sdk.Extern.Xml.PostgreSqlDump;
 using CorpusExplorer.Sdk.Extern.Xml.PureXml;
 using CorpusExplorer.Sdk.Extern.Xml.PurlOrg;
+using CorpusExplorer.Sdk.Extern.Xml.SaltXml;
 using CorpusExplorer.Sdk.Extern.Xml.Shakespeare;
+using CorpusExplorer.Sdk.Extern.Xml.SixCms;
 using CorpusExplorer.Sdk.Extern.Xml.SlashA;
 using CorpusExplorer.Sdk.Extern.Xml.Talkbank;
 using CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds;
@@ -82,6 +84,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"IDS I5 (*.xml)|*.xml", new ExporterI5() },
         {"IDS KorAP (*.zip)|*.zip", new ExporterKorap() },
         {"XCES-XML (https://opus.nlpl.eu/) (*.xml)|*.xml", new ExporterOpusXces() },
+        {"SaltXML (*.xml, *.salt)|*.salt;*.xml", new ExporterSaltXml() }
       };
 
     /// <summary>
@@ -104,6 +107,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"TiGER-XML (*.xml)|*.xml", new ImporterTiger() },
         {"FOLKER / OrthoNormal (*.fln)|*.fln", new ImporterFolkerFln() },
         {"IDS KorAP (*.zip)|*.zip", new ImporterKorap()},
+        {"IDS KorAP ab 2021 (*.zip)|*.zip", new ImporterKorap2021()},
         {"XCES-XML (https://opus.nlpl.eu/) (*.xml)|*.xml", new ImporterOpusXces()}
       };
 
@@ -114,13 +118,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml
     public override IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers =>
       new Dictionary<string, AbstractScraper>
       {
-        { 
+        {
           "IDS I5-Korpora (*.i5.xml)|*.i5.xml",
           new IdsScraper()
         },
         {
           "IDS KorAP (*.zip)|*.zip",
           new KorapScraper()
+        },
+        {
+          "SixCMS Artikel-Export (*.xml)|*.xml",
+          new SixCmsScraper()
         },
         {
           "Shakespeare Drama-XML (*.xml)|*.xml",
