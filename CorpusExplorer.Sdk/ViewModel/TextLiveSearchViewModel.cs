@@ -54,7 +54,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       get { return SearchResults.SelectMany(x => x.Value).Sum(y => y.Value.Count); }
     }
 
-    public int ResultCountWords => (from x in SearchResults from y in x.Value from z in y.Value select z.Value.Count)
+    public int ResultCountTokens => (from x in SearchResults from y in x.Value from z in y.Value select z.Value.Count)
      .Sum();
 
     public Selection ResultSelection { get; set; }

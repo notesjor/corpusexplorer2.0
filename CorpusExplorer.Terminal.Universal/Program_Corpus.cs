@@ -17,8 +17,9 @@ namespace CorpusExplorer.Terminal.Universal
   public static partial class Program
   {
     private static void CorpusAnnotate(HttpContext obj)
-    {
+    {      
       throw new NotImplementedException();
+      //var request = obj.Request.PostData<RequestCorpus>();
       //var res = new Dictionary<Guid, string>(); // Rückgabe von corpus.DocumentGuidAndDisplaynames notwendig
       //_terminal.Project.SelectAll.Displayname = "ALL";
     }

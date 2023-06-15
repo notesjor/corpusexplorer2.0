@@ -36,7 +36,8 @@ namespace CorpusExplorer.Terminal.Universal
       _server.AddEndpoint(HttpMethod.Post, "/project/new", ProjectNew);
       _server.AddEndpoint(HttpMethod.Post, "/project/save", ProjectSave);
       _server.AddEndpoint(HttpMethod.Post, "/project/load", ProjectLoad);
-      _server.AddEndpoint(HttpMethod.Post, "/project/settings", ProjectSettings);
+      _server.AddEndpoint(HttpMethod.Post, "/project/settings", ProjectSettingsSet);
+      _server.AddEndpoint(HttpMethod.Get, "/project/settings", ProjectSettingsGet);
       _server.AddEndpoint(HttpMethod.Get, "/project/info", ProjectInfo);
 
       _server.AddEndpoint(HttpMethod.Post, "/corpus/annotate", CorpusAnnotate);
@@ -58,6 +59,9 @@ namespace CorpusExplorer.Terminal.Universal
       _server.AddEndpoint(HttpMethod.Get, "/fs/set", FileSystemSet);
 
       _server.AddEndpoint(HttpMethod.Post, "/analyze", Analyze);
+      _server.AddEndpoint(HttpMethod.Get, "/text", GetText);
+      _server.AddEndpoint(HttpMethod.Post, "/kwic", GetKwic);
+      _server.AddEndpoint(HttpMethod.Get, "/operator", GetOperators);
       Console.WriteLine($"localhost:{port}");
 
       AbstractWaitBehaviour wait = new WaitBehaviourWindows();

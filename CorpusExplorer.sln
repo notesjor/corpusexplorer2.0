@@ -1061,6 +1061,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorpusExplorer.Terminal.Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorpusExplorer.Sdk.Exter.ApacheArrow", "CorpusExplorer.Sdk.Exter.ApacheArrow\CorpusExplorer.Sdk.Exter.ApacheArrow.csproj", "{4C22942D-6829-43D3-BB18-B2907C0EBC8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorpusExplorer.Terminal.Bridge", "CorpusExplorer.Terminal.Bridge\CorpusExplorer.Terminal.Bridge.csproj", "{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug (Linux)|Any CPU = Debug (Linux)|Any CPU
@@ -14814,6 +14816,46 @@ Global
 		{4C22942D-6829-43D3-BB18-B2907C0EBC8C}.Release|x64.Build.0 = Release|Any CPU
 		{4C22942D-6829-43D3-BB18-B2907C0EBC8C}.Release|x86.ActiveCfg = Release|Any CPU
 		{4C22942D-6829-43D3-BB18-B2907C0EBC8C}.Release|x86.Build.0 = Release|Any CPU
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug (Linux)|Any CPU.ActiveCfg = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug (Linux)|Any CPU.Build.0 = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug (Linux)|ARM.ActiveCfg = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug (Linux)|ARM.Build.0 = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug (Linux)|ARM64.ActiveCfg = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug (Linux)|ARM64.Build.0 = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug (Linux)|x64.ActiveCfg = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug (Linux)|x64.Build.0 = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug (Linux)|x86.ActiveCfg = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug (Linux)|x86.Build.0 = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug|Any CPU.Build.0 = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug|ARM.ActiveCfg = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug|ARM.Build.0 = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug|ARM64.ActiveCfg = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug|ARM64.Build.0 = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug|x64.ActiveCfg = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug|x64.Build.0 = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug|x86.ActiveCfg = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Debug|x86.Build.0 = Debug|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release (Linux)|Any CPU.ActiveCfg = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release (Linux)|Any CPU.Build.0 = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release (Linux)|ARM.ActiveCfg = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release (Linux)|ARM.Build.0 = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release (Linux)|ARM64.ActiveCfg = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release (Linux)|ARM64.Build.0 = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release (Linux)|x64.ActiveCfg = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release (Linux)|x64.Build.0 = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release (Linux)|x86.ActiveCfg = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release (Linux)|x86.Build.0 = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release|Any CPU.ActiveCfg = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release|Any CPU.Build.0 = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release|ARM.ActiveCfg = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release|ARM.Build.0 = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release|ARM64.ActiveCfg = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release|ARM64.Build.0 = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release|x64.ActiveCfg = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release|x64.Build.0 = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release|x86.ActiveCfg = Release|x86
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -15335,10 +15377,11 @@ Global
 		{77D277FA-CB8F-4619-90E8-4AF5BE6E9AC3} = {DC45801A-BEFB-4BC0-B082-1B4C7F1F30C9}
 		{0AA24118-8D37-4534-84AB-AC7B4C99C0E4} = {DC45801A-BEFB-4BC0-B082-1B4C7F1F30C9}
 		{4C22942D-6829-43D3-BB18-B2907C0EBC8C} = {386551FA-CAC0-40E4-8F9C-64A9D1745268}
+		{E8D1274E-E013-49FA-A7CA-24F7BDC0A898} = {DC45801A-BEFB-4BC0-B082-1B4C7F1F30C9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_NeutralResourcesLanguage = de-DE
 		SolutionGuid = {E3F515DB-595D-431B-A98D-790A3F3DFF48}
+		RESX_NeutralResourcesLanguage = de-DE
 	EndGlobalSection
 	GlobalSection(AutomaticVersions) = postSolution
 		AssemblyInfoFilePath = Properties\AssemblyInfo.cs

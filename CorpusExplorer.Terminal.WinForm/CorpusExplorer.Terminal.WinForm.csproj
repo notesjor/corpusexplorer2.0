@@ -1985,6 +1985,10 @@
       <Project>{4d8437ca-b5ac-4941-bf5d-73682528cac9}</Project>
       <Name>CorpusExplorer.Terminal.Automate</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Terminal.Bridge\CorpusExplorer.Terminal.Bridge.csproj">
+      <Project>{e8d1274e-e013-49fa-a7ca-24f7bdc0a898}</Project>
+      <Name>CorpusExplorer.Terminal.Bridge</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CorpusExplorer.Terminal.WebCrawler\CorpusExplorer.Terminal.WebCrawler.csproj">
       <Project>{e935c729-c4d9-4818-9fc8-9c15d5bca435}</Project>
       <Name>CorpusExplorer.Terminal.WebCrawler</Name>

@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Model;
+using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Terminal.Universal.Message.Response.Size;
 using CorpusExplorer.Terminal.Universal.Message.Response.Snapshot;
 using Tfres;
