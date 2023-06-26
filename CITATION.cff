@@ -1,0 +1,46 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: CorpusExplorer
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Jan Oliver
+    family-names: Rüdiger
+    email: e-mail@jan-oliver-ruediger.de
+    orcid: 'https://orcid.org/0000-0002-7506-4784'
+identifiers:
+  - type: url
+    value: 'http://corpusexplorer.de'
+    description: Official download page
+  - type: url
+    value: 'http://hdl.handle.net/11234/1-2634'
+    description: LINDAT/CLARIAH Repository
+  - type: other
+    value: 'https://github.com/notesjor/corpusexplorer2.0'
+    description: Public repository
+repository-code: 'https://github.com/notesjor/corpusexplorer2.0'
+url: 'http://corpusexplorer.de'
+abstract: >-
+  Software for corpus linguists and text/data mining
+  enthusiasts. The CorpusExplorer combines over 50
+  interactive visualizations under a user-friendly
+  interface. Routine tasks such as text acquisition,
+  cleaning or tagging are completely automated. The simple
+  interface supports the use in university teaching and
+  leads users/students to fast and substantial results. The
+  CorpusExplorer is open for many standards (XML, CSV, JSON,
+  R, etc.) and also offers its own software development kit
+  (SDK).
+keywords:
+  - corpus linguistics
+  - NLProc
+  - Natural Language Processing
+  - Text-Mining
+  - Data-Mining
+  - linguistics
+license: AGPL-3.0
+version: '2.0'
