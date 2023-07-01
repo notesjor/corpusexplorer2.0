@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Projekte-Kooperation\CorpusExplorer.Terminal.Console\Action\CorpusExplorer.Sdk.Action\CorpusExplorer.Sdk.Action.csproj" />
+    <ProjectReference Include="..\..\..\..\Projekte-Kooperation\CorpusExplorer.Terminal.Console\CorpusExplorer.Terminal.Console.csproj" />
     <ProjectReference Include="..\..\..\..\Projekte-Kooperation\TfresWebserver\TefresWebserver\TFRES.csproj" />
     <ProjectReference Include="..\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj" />
     <ProjectReference Include="..\CorpusExplorer.Core\CorpusExplorer.Core.csproj" />

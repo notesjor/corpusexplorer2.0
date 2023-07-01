@@ -21,6 +21,8 @@ namespace CorpusExplorer.Terminal.Universal
     private static void ProjectNew(HttpContext obj)
     {
       _terminal.ProjectNew();
+      _fast_selection = null;
+      
       obj.Response.Send(HttpStatusCode.OK);
     }
 
@@ -28,6 +30,7 @@ namespace CorpusExplorer.Terminal.Universal
     {
       var path = obj.Request.PostData<RequestFileSingle>()?.Path;
       _terminal.Project.Save(path, false);
+      
       obj.Response.Send(HttpStatusCode.OK);
     }
 
@@ -35,6 +38,8 @@ namespace CorpusExplorer.Terminal.Universal
     {
       var path = obj.Request.PostData<RequestFileSingle>()?.Path;
       _terminal.ProjectLoad(path, out var error, Path.GetDirectoryName(path));
+      _fast_selection = null;
+
       obj.Response.Send(HttpStatusCode.OK);
     }
 

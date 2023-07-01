@@ -37,7 +37,7 @@ namespace CorpusExplorer.Sdk.Toolkit.Compatibility
     /// </param>
     private void Form1_Load(object sender, EventArgs e)
     {
-      Controler.Init();
+      Controller.Init();
     }
 
     #endregion

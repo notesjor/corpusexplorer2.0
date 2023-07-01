@@ -11,7 +11,7 @@ using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.DataTableWriter
 {
-  public class HtmlTableSnippetWriter : AbstractTableWriter
+  public class HtmlTableSnippetTableWriter : AbstractTableWriter
   {
     private readonly Regex _r = new Regex(@"<[^>]*>");
     public override string MimeType => "text/html";

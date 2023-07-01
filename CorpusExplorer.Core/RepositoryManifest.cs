@@ -49,7 +49,7 @@ namespace CorpusExplorer.Core
     {
       {"CSV-Tabelle (*.csv)|*.csv", new CsvTableWriter() },
       {"HTML-Dokument (*.html)|*.html", new HtmlTableWriter() },
-      {"HTML-Tabelle (*.html)|*.html", new HtmlTableSnippetWriter() },
+      {"HTML-Tabelle (*.html)|*.html", new HtmlTableSnippetTableWriter() },
       {"JSON-Dokument (*.json)|*.json", new JsonTableWriter() },
       {"JSON-Dokument (gerundet) (*.json)|*.json", new JsonRoundedTableWriter() },
       {"SQL-Query nur Daten (*.sql)|*.sql", new SqlDataOnlyTableWriter() },
@@ -152,6 +152,7 @@ namespace CorpusExplorer.Core
       new Dictionary<string, AbstractImporter>
       {
         {"CorpusExplorer v6 (*.cec6, *.cec6.lz4, *.cec6.gz)|*.cec6;*.cec6.gz;*.cec6.lz4", new ImporterCec6()},
+        {"CorpusExplorer v6 [mit DRM geschützt] (*.cec6.drm)|*.cec6.drm", new ImporterCec6Drm()},
         {"CorpusExplorer v6 [STREAM] (*.cec6)|*.cec6", new ImporterCec6Stream()},
         {"TLV-XML (*.xml)|*.xml", new ImporterTlv()},
         {"CoNLL (*.conll)|*.conll", new ImporterConll()},

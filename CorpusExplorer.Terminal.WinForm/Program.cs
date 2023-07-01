@@ -124,6 +124,9 @@ namespace CorpusExplorer.Terminal.WinForm
             return true;
           }
           return false;
+        case "--bridge":
+          QuickMode.Bridge();
+          return true;
         case "--reset":
         case "--sreset":
           QuickMode.SoftReset();

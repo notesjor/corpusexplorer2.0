@@ -22,9 +22,9 @@ namespace CorpusExplorer.Sdk.Toolkit.Compatibility
     [STAThread]
     private static void Main(string[] args)
     {
-      Controler.Init();
+      Controller.Init();
 
-      if (!Controler.NeedConversion) return;
+      if (!Controller.NeedConversion) return;
 
       //Controler.Upgrade(@"C:\Users\Jan\Documents\CorpusExplorer\Meine Korpora\CorpusExplorerNEXT\");
       //Controler.Upgrade(@"C:\Users\Jan\Documents\CorpusExplorer\Meine Korpora\Präpositionen II\");

@@ -9,7 +9,7 @@ namespace CorpusExplorer.Sdk.Compatibility
   {
     protected override IEnumerable<AbstractCorpusAdapter> Execute(string inputPath)
     {
-      return new[] {Ce1CompatibilityControler.Upgrade(Path.GetDirectoryName(inputPath))};
+      return new[] {Ce1CompatibilityController.Upgrade(Path.GetDirectoryName(inputPath))};
     }
   }
 }

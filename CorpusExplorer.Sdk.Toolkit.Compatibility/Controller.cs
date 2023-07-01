@@ -19,7 +19,7 @@ namespace CorpusExplorer.Sdk.Toolkit.Compatibility
   /// <summary>
   ///   The controler.
   /// </summary>
-  public static class Controler
+  public static class Controller
   {
     #region Static Fields
 

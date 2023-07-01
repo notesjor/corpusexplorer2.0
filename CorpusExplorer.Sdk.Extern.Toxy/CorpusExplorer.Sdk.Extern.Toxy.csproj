@@ -64,8 +64,8 @@
     <Reference Include="DocumentFormat.OpenXml, Version=2.20.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.20.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.11.46.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.11.46\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.11.48.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.48\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=1.4.2.13, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.1.4.2\lib\netstandard2.0\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -123,7 +123,7 @@
       <HintPath>..\packages\Microsoft.Extensions.Logging.7.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.7.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.7.0.1\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Options, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Options.7.0.1\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
@@ -137,8 +137,8 @@
     <Reference Include="Microsoft.Maui.Graphics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Maui.Graphics.7.0.86\lib\netstandard2.0\Microsoft.Maui.Graphics.dll</HintPath>
     </Reference>
-    <Reference Include="MsgReader, Version=5.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MsgReader.5.2.2\lib\netstandard2.0\MsgReader.dll</HintPath>
+    <Reference Include="MsgReader, Version=5.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MsgReader.5.2.3\lib\netstandard2.0\MsgReader.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -225,7 +225,7 @@
       <HintPath>..\packages\System.Security.Cryptography.Cng.5.0.0\lib\net461\System.Security.Cryptography.Cng.dll</HintPath>
     </Reference>
     <Reference Include="System.Security.Cryptography.Pkcs, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Cryptography.Pkcs.7.0.1\lib\netstandard2.0\System.Security.Cryptography.Pkcs.dll</HintPath>
+      <HintPath>..\packages\System.Security.Cryptography.Pkcs.7.0.3\lib\netstandard2.0\System.Security.Cryptography.Pkcs.dll</HintPath>
     </Reference>
     <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>

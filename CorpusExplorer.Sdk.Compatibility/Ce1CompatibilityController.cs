@@ -17,7 +17,7 @@ namespace CorpusExplorer.Sdk.Compatibility
   /// <summary>
   ///   The controler.
   /// </summary>
-  public static class Ce1CompatibilityControler
+  public static class Ce1CompatibilityController
   {
     /// <summary>
     ///   The upgrade.

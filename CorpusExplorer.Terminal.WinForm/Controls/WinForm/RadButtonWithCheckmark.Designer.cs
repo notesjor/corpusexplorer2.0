@@ -46,8 +46,8 @@
       // 
       // pictureBox1
       // 
-      this.pictureBox1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.ok_button;
       resources.ApplyResources(this.pictureBox1, "pictureBox1");
+      this.pictureBox1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.ok_button;
       this.pictureBox1.Name = "pictureBox1";
       this.pictureBox1.TabStop = false;
       this.pictureBox1.Click += new System.EventHandler(this.ButtonClick);

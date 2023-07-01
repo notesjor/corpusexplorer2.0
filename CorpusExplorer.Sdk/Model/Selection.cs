@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.ComponentModel.Composition.Primitives;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
+using CorpusExplorer.Sdk.Model.Adapter.Corpus;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Model.CorpusExplorer;
@@ -1056,7 +1058,7 @@ namespace CorpusExplorer.Sdk.Model
     /// <param name="noParent">Erzeugt den Schnappschuss ohne Parent-Schnappschuss</param>
     /// <returns></returns>
     public Selection Create(AbstractFilterQuery query, string displayName, bool noParent)
-      => Create(new []{query}, displayName, noParent);
+      => Create(new[] { query }, displayName, noParent);
 
     /// <summary>
     ///   Erzeugt eine neue Unterauswahl.
@@ -1403,6 +1405,37 @@ namespace CorpusExplorer.Sdk.Model
       }
 
       return res;
+    }
+
+    public bool AllowExport
+    {
+      get
+      {
+        try
+        {
+          foreach (var c in this.CorporaGuids)
+          {
+            var corpus = GetCorpus(c);
+            if (corpus == null)
+              continue;
+
+            if (!(corpus is CorpusAdapterWriteDirect))
+              continue;
+
+            var value = corpus.GetCorpusMetadata("[PROTECTION]") as string;
+            if (value == null)
+              continue;
+
+            if (value.Contains("NOEXPORT"))
+              return false;
+          }
+          return true;
+        }
+        catch
+        {
+          return false;
+        }
+      }
     }
 
     /// <summary>

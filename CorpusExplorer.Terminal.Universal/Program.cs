@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace CorpusExplorer.Terminal.Universal
 
     public static void Main(string[] args)
     {
-      Console.Write("Server: ");
+      System.Console.Write("Server: ");
       CultureInfo.DefaultThreadCurrentCulture = Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
       _terminal = CorpusExplorerEcosystem.InitializeMinimalTerminal();
       InitializeAddons();
@@ -45,7 +46,8 @@ namespace CorpusExplorer.Terminal.Universal
       _server.AddEndpoint(HttpMethod.Post, "/corpus/import", CorpusImport);
       _server.AddEndpoint(HttpMethod.Get, "/corpus/import", CorpusImportFormatOptions);
 
-      _server.AddEndpoint(HttpMethod.Post, "/selection/new", SelectionNew);
+      _server.AddEndpoint(HttpMethod.Get, "/selection/operators", QuerySystemHelper.GetOperators);
+      _server.AddEndpoint(HttpMethod.Post, "/selection/new", SelectionNew);      
       _server.AddEndpoint(HttpMethod.Post, "/selection/reduce", SelectionReduce);
       _server.AddEndpoint(HttpMethod.Get, "/selection/info", SelectionInfo);
       _server.AddEndpoint(HttpMethod.Get, "/selection/meta", SelectionMeta);
@@ -58,11 +60,19 @@ namespace CorpusExplorer.Terminal.Universal
       _server.AddEndpoint(HttpMethod.Get, "/fs/get", FileSystemGet);
       _server.AddEndpoint(HttpMethod.Get, "/fs/set", FileSystemSet);
 
-      _server.AddEndpoint(HttpMethod.Post, "/analyze", Analyze);
-      _server.AddEndpoint(HttpMethod.Get, "/text", GetText);
-      _server.AddEndpoint(HttpMethod.Post, "/kwic", GetKwic);
-      _server.AddEndpoint(HttpMethod.Get, "/operator", GetOperators);
-      Console.WriteLine($"localhost:{port}");
+      _server.AddEndpoint(HttpMethod.Post, "/analyze", Analyze);      
+
+      _server.AddEndpoint(HttpMethod.Get, "/fast/norm", FastNormData);
+      _server.AddEndpoint(HttpMethod.Get, "/fast/count", FastCount);
+      _server.AddEndpoint(HttpMethod.Get, "/fast/kwic", FastKwic);
+      _server.AddEndpoint(HttpMethod.Get, "/fast/fulltext", FastFulltext);
+      _server.AddEndpoint(HttpMethod.Get, "/fast/cooc", FastCooccurrences);
+      _server.AddEndpoint(HttpMethod.Get, "/fast/timeline", FastTimeline);
+      _server.AddEndpoint(HttpMethod.Get, "/fast/snapshot", QuerySystemHelper.GetOperators);
+      _server.AddEndpoint(HttpMethod.Post, "/fast/snapshot", FastSnapshop);
+      _server.AddEndpoint(HttpMethod.Get, "/fast/subscribe", FastSubscribe);
+
+      System.Console.WriteLine($"localhost:{port}");
 
       AbstractWaitBehaviour wait = new WaitBehaviourWindows();
       wait.Wait();

@@ -20,10 +20,13 @@ using CorpusExplorer.Sdk.Model.Extension;
 using CorpusExplorer.Sdk.Utils.CorpusManipulation;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.CorpusExplorerV6;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger;
 using CorpusExplorer.Sdk.ViewModel;
+using CorpusExplorer.Terminal.WinForm.Forms.Bridge;
 using CorpusExplorer.Terminal.WinForm.Forms.CorpusError;
+using CorpusExplorer.Terminal.WinForm.Forms.Publishing;
 using CorpusExplorer.Terminal.WinForm.Forms.Scraper;
 using CorpusExplorer.Terminal.WinForm.Forms.Simple;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
@@ -219,6 +222,14 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       if (project.ContainsCorpus(corpus.CorpusGuid))
         return;
 
+      if (corpus is CorpusAdapterWriteDirect cec6)
+      {
+        Processing.SplashClose();
+        if (!PublishingController.ReadPublishingInfo(cec6))
+          return;
+        Processing.SplashShow("Korpus wird geladen...");
+      }
+
       var name = corpus.CorpusDisplayname;
       var selection = corpus.ToSelection();
 
@@ -308,8 +319,16 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
     {
       var time = DateTime.Now;
       IEnumerable<AbstractCorpusAdapter> corpora = null;
-      Processing.Invoke(Resources.Corpus_ImportIsRunning,
+
+      if(importer.GetType() == typeof(ImporterCec6Drm))
+      {
+        corpora = PublishingController.ReadCryptedCorpora(files);
+      }
+      else
+      {
+        Processing.Invoke(Resources.Corpus_ImportIsRunning,
                         () => { corpora = importer.Execute(files); });
+      }      
 
       if (corpora == null && files.Count() == 1)
       {
@@ -471,6 +490,13 @@ namespace CorpusExplorer.Terminal.WinForm.Helper
       }
 
       return res.ToArray();
+    }
+
+    internal static void Bridge()
+    {
+      Application.EnableVisualStyles();
+      Application.SetCompatibleTextRenderingDefault(false);
+      Application.Run(new BridgeForm());
     }
   }
 }

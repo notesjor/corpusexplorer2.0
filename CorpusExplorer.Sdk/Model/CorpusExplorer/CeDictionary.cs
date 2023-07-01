@@ -328,6 +328,11 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
 
     public void Dispose()
     {
+      Clear();
+    }
+
+    internal void Clear()
+    {
       _d1.Clear();
       _d2.Clear();
     }

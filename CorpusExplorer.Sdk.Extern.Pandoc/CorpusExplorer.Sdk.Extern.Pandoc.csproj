@@ -44,8 +44,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\CorpusExplorer.Sdk.Diagnostic\bin\Debug\CorpusExplorer.Sdk.Diagnostic.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.11.46.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.11.46\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.11.48.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.48\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

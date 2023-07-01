@@ -16,6 +16,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
   [ToolboxItem(true)]
   public partial class WebBrowserControl : AbstractUserControl, IUiBrowser
   {
+    private string _url;
     private AbstractUiBrowser _browser;
 
     public WebBrowserControl()

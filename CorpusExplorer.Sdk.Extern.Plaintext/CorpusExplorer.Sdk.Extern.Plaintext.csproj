@@ -49,8 +49,8 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.11.46.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.11.46\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.11.48.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.48\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=2.3.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -59,8 +59,8 @@
     <Reference Include="Microsoft.Maui.Graphics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Maui.Graphics.7.0.86\lib\netstandard2.0\Microsoft.Maui.Graphics.dll</HintPath>
     </Reference>
-    <Reference Include="MsgReader, Version=5.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MsgReader.5.2.2\lib\netstandard2.0\MsgReader.dll</HintPath>
+    <Reference Include="MsgReader, Version=5.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MsgReader.5.2.3\lib\netstandard2.0\MsgReader.dll</HintPath>
     </Reference>
     <Reference Include="OpenMcdf, Version=2.3.0.0, Culture=neutral, PublicKeyToken=fdbb1629d7c00800, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenMcdf.2.3.0\lib\net40\OpenMcdf.dll</HintPath>
@@ -110,7 +110,7 @@
       <HintPath>..\packages\System.Security.Cryptography.Cng.5.0.0\lib\net461\System.Security.Cryptography.Cng.dll</HintPath>
     </Reference>
     <Reference Include="System.Security.Cryptography.Pkcs, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Cryptography.Pkcs.7.0.1\lib\netstandard2.0\System.Security.Cryptography.Pkcs.dll</HintPath>
+      <HintPath>..\packages\System.Security.Cryptography.Pkcs.7.0.3\lib\netstandard2.0\System.Security.Cryptography.Pkcs.dll</HintPath>
     </Reference>
     <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>

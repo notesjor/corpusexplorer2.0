@@ -19,7 +19,7 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -660,6 +660,16 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap archive_download_24px {
+            get {
+                object obj = ResourceManager.GetObject("archive-download@24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap archive_download_48px {
             get {
                 object obj = ResourceManager.GetObject("archive-download@48px", resourceCulture);
@@ -1165,6 +1175,26 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap cabinet_korap {
+            get {
+                object obj = ResourceManager.GetObject("cabinet_korap", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap cabinet_korap_48 {
+            get {
+                object obj = ResourceManager.GetObject("cabinet_korap_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap cabinet_warn {
             get {
                 object obj = ResourceManager.GetObject("cabinet-warn", resourceCulture);
@@ -1454,6 +1484,16 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         public static System.Drawing.Bitmap cloud {
             get {
                 object obj = ResourceManager.GetObject("cloud", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap cloud_data_storage {
+            get {
+                object obj = ResourceManager.GetObject("cloud-data-storage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -4995,6 +5035,26 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap korap {
+            get {
+                object obj = ResourceManager.GetObject("korap", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap korap_48 {
+            get {
+                object obj = ResourceManager.GetObject("korap_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Korpora ähnelt.
         /// </summary>
         public static string Korpora {
@@ -5245,6 +5305,16 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         public static string Links {
             get {
                 return ResourceManager.GetString("Links", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap list {
+            get {
+                object obj = ResourceManager.GetObject("list", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -5909,6 +5979,16 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         public static System.Drawing.Bitmap OpenBook {
             get {
                 object obj = ResourceManager.GetObject("OpenBook", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap padlock_round {
+            get {
+                object obj = ResourceManager.GetObject("padlock-round", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

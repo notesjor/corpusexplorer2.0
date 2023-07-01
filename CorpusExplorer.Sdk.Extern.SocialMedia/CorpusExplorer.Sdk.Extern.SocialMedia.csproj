@@ -67,29 +67,29 @@
     <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
       <HintPath>..\packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis, Version=1.60.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.1.60.0\lib\net45\Google.Apis.dll</HintPath>
+    <Reference Include="Google.Apis, Version=1.61.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.61.0\lib\net45\Google.Apis.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.Auth, Version=1.60.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Auth.1.60.0\lib\net461\Google.Apis.Auth.dll</HintPath>
+    <Reference Include="Google.Apis.Auth, Version=1.61.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.61.0\lib\net461\Google.Apis.Auth.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.60.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Auth.1.60.0\lib\net461\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.61.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.61.0\lib\net461\Google.Apis.Auth.PlatformServices.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.Blogger.v3, Version=1.60.0.2925, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Blogger.v3.1.60.0.2925\lib\net45\Google.Apis.Blogger.v3.dll</HintPath>
+    <Reference Include="Google.Apis.Blogger.v3, Version=1.61.0.2925, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Blogger.v3.1.61.0.2925\lib\net45\Google.Apis.Blogger.v3.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.Core, Version=1.60.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Core.1.60.0\lib\net45\Google.Apis.Core.dll</HintPath>
+    <Reference Include="Google.Apis.Core, Version=1.61.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.61.0\lib\net45\Google.Apis.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.PlatformServices, Version=1.60.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.1.60.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.61.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.61.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.YouTube.v3, Version=1.60.0.3064, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.YouTube.v3.1.60.0.3064\lib\net45\Google.Apis.YouTube.v3.dll</HintPath>
+    <Reference Include="Google.Apis.YouTube.v3, Version=1.61.0.3064, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.YouTube.v3.1.61.0.3064\lib\net45\Google.Apis.YouTube.v3.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.11.46.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.11.46\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.11.48.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.48\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="InstaSharp, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\InstaSharp.2.0.6\lib\netstandard1.2\InstaSharp.dll</HintPath>
@@ -125,7 +125,7 @@
       <HintPath>..\packages\Microsoft.Extensions.Logging.7.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.7.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.7.0.1\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Options, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Options.7.0.1\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
@@ -213,7 +213,7 @@
       <HintPath>..\packages\System.Text.Encodings.Web.7.0.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
     <Reference Include="System.Text.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Json.7.0.2\lib\netstandard2.0\System.Text.Json.dll</HintPath>
+      <HintPath>..\packages\System.Text.Json.7.0.3\lib\netstandard2.0\System.Text.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>

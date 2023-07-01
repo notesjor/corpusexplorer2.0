@@ -81,7 +81,7 @@ namespace CorpusExplorer.Terminal.Universal
       }
       catch (Exception ex)
       {
-        Console.WriteLine(ex.Message); // DEBUG
+        System.Console.WriteLine(ex.Message); // DEBUG
       }
     }
 

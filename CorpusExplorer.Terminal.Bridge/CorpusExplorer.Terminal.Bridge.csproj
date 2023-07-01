@@ -84,36 +84,9 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\..\CorpusExplorerV2\CorpusExplorer\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="RestSharp, Version=110.2.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
-      <HintPath>..\..\..\CorpusExplorerV2\CorpusExplorer\packages\RestSharp.110.2.0\lib\netstandard2.0\RestSharp.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\..\CorpusExplorerV2\CorpusExplorer\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
-    </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\..\CorpusExplorerV2\CorpusExplorer\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
-    </Reference>
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\CorpusExplorerV2\CorpusExplorer\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\CorpusExplorerV2\CorpusExplorer\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Encodings.Web, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\..\CorpusExplorerV2\CorpusExplorer\packages\System.Text.Encodings.Web.7.0.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\..\CorpusExplorerV2\CorpusExplorer\packages\System.Text.Json.7.0.2\lib\netstandard2.0\System.Text.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\..\CorpusExplorerV2\CorpusExplorer\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -122,62 +95,10 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.WinControls, Version=2023.2.606.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\..\..\CorpusExplorerV2\CorpusExplorer\lib\RCWF\2023.2.606.40\Telerik.WinControls.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetro, Version=2023.2.606.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.WinControls.UI, Version=2023.2.606.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\..\..\CorpusExplorerV2\CorpusExplorer\lib\RCWF\2023.2.606.40\Telerik.WinControls.UI.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="TelerikCommon, Version=2023.2.606.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\..\..\CorpusExplorerV2\CorpusExplorer\lib\RCWF\2023.2.606.40\TelerikCommon.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbstractForm.Designer.cs">
-      <DependentUpon>AbstractForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AddUrl.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddUrl.Designer.cs">
-      <DependentUpon>AddUrl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="AbstractForm.resx">
-      <DependentUpon>AbstractForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddUrl.resx">
-      <DependentUpon>AddUrl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -192,49 +113,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <!--sirinie -->
-    <None Include="Resources\CorpusExplorer_64x64.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\page.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\folder-open.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\save.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cabinet.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\button-cancel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\control-hyperlink.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Projekte-Kooperation\CorpusExplorer.Terminal.Console\CorpusExplorer.Terminal.Console.csproj">
-      <Project>{77d277fa-cb8f-4619-90e8-4af5be6e9ac3}</Project>
-      <Name>CorpusExplorer.Terminal.Console</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\CorpusExplorerV2\CorpusExplorer\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj">
-      <Project>{3226c218-0fb3-43a6-a67c-39cbac704ea3}</Project>
-      <Name>BitCutStudios.CorpusExplorer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\CorpusExplorerV2\CorpusExplorer\CorpusExplorer.Sdk.Diagnostic\CorpusExplorer.Sdk.Diagnostic.csproj">
-      <Project>{2d491ec8-11c5-4c02-b604-48b8458174e1}</Project>
-      <Name>CorpusExplorer.Sdk.Diagnostic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\CorpusExplorerV2\CorpusExplorer\CorpusExplorer.Sdk\CorpusExplorer.Sdk.csproj">
-      <Project>{DC1B5A58-29DA-476D-89F8-E73A1DB11E52}</Project>
-      <Name>CorpusExplorer.Sdk</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="corpusexplorer.ico" />
-    <None Include="Resources\button-update.png" />
-    <None Include="Resources\button-ok.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

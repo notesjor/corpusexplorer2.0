@@ -1,4 +1,4 @@
-﻿namespace CorpusExplorer.Terminal.Bridge
+﻿namespace CorpusExplorer.Terminal.WinForm.Forms.Bridge
 {
   partial class AddUrl
   {
@@ -65,7 +65,6 @@
       // btn_ok
       // 
       this.btn_ok.Dock = System.Windows.Forms.DockStyle.Right;
-      this.btn_ok.Image = global::CorpusExplorer.Terminal.Bridge.Properties.Resources.button_ok;
       this.btn_ok.Location = new System.Drawing.Point(304, 10);
       this.btn_ok.Name = "btn_ok";
       this.btn_ok.Size = new System.Drawing.Size(148, 33);

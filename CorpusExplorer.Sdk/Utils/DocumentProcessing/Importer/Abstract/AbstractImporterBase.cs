@@ -15,11 +15,11 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
     private readonly object _metaLock = new object();
     private readonly object _layerLock = new object();
     public AbstractCorpusBuilder CorpusBuilder { get; set; } = new CorpusBuilderWriteDirect();
-    private List<Concept> Concepts { get; set; }
+    private List<Concept> Concepts { get; set; } = new List<Concept>();
     private string CorpusDisplayname { get; set; }
-    private Dictionary<string, object> CorpusMetadata { get; set; }
-    private Dictionary<Guid, Dictionary<string, object>> DocumentMetadata { get; set; }
-    private Dictionary<string, LayerValueState> Layers { get; set; }
+    private Dictionary<string, object> CorpusMetadata { get; set; } = new Dictionary<string, object>();
+    private Dictionary<Guid, Dictionary<string, object>> DocumentMetadata { get; set; } = new Dictionary<Guid, Dictionary<string, object>>();
+    private Dictionary<string, LayerValueState> Layers { get; set; } = new Dictionary<string, LayerValueState>();
 
     protected void AddCorpusMetadata(string key, object value)
     {

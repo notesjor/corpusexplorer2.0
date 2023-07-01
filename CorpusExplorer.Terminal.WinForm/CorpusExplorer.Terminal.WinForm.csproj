@@ -183,8 +183,8 @@
     <Reference Include="CodeHollow.FeedReader, Version=1.2.6.0, Culture=neutral, PublicKeyToken=66d870f2b3d70f48, processorArchitecture=MSIL">
       <HintPath>..\packages\CodeHollow.FeedReader.1.2.6\lib\net452\CodeHollow.FeedReader.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.11.46.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.11.46\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.11.48.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.48\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=1.4.2.13, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.1.4.2\lib\netstandard2.0\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -202,17 +202,17 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=2023.0.5.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.2023.0.5\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=2023.0.6.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.2023.0.6\lib\net45\PostSharp.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Patterns.Aggregation, Version=2023.0.5.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Patterns.Aggregation.Redist.2023.0.5\lib\net45\PostSharp.Patterns.Aggregation.dll</HintPath>
+    <Reference Include="PostSharp.Patterns.Aggregation, Version=2023.0.6.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Aggregation.Redist.2023.0.6\lib\net45\PostSharp.Patterns.Aggregation.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Patterns.Common, Version=2023.0.5.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Patterns.Common.Redist.2023.0.5\lib\net46\PostSharp.Patterns.Common.dll</HintPath>
+    <Reference Include="PostSharp.Patterns.Common, Version=2023.0.6.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Common.Redist.2023.0.6\lib\net46\PostSharp.Patterns.Common.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Patterns.Threading, Version=2023.0.5.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Patterns.Threading.Redist.2023.0.5\lib\net45\PostSharp.Patterns.Threading.dll</HintPath>
+    <Reference Include="PostSharp.Patterns.Threading, Version=2023.0.6.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Threading.Redist.2023.0.6\lib\net45\PostSharp.Patterns.Threading.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -696,6 +696,18 @@
     <Compile Include="Forms\Abstract\AbstractExternalModelConfig.Designer.cs">
       <DependentUpon>AbstractExternalModelConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Bridge\AddUrl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Bridge\AddUrl.Designer.cs">
+      <DependentUpon>AddUrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Bridge\BridgeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Bridge\BridgeForm.Designer.cs">
+      <DependentUpon>BridgeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CloneDetection\CloneDetectionAlgorithm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -751,6 +763,19 @@
       <DependentUpon>PredefinedFunctions.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Interfaces\IMainForm.cs" />
+    <Compile Include="Forms\KorAP\KorapApiImporter.cs" />
+    <Compile Include="Forms\KorAP\KorAPClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KorAP\KorAPClient.Designer.cs">
+      <DependentUpon>KorAPClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\KorAP\KorAPSignin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\KorAP\KorAPSignin.Designer.cs">
+      <DependentUpon>KorAPSignin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Map\MapConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -768,6 +793,49 @@
     </Compile>
     <Compile Include="Forms\PosFilter\PosFilter.Designer.cs">
       <DependentUpon>PosFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Publishing\CorpusPublisher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Publishing\CorpusPublisher.Designer.cs">
+      <DependentUpon>CorpusPublisher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Publishing\CorpusPublisherExport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Publishing\CorpusPublisherExport.Designer.cs">
+      <DependentUpon>CorpusPublisherExport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Publishing\CorpusRandomizer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Publishing\CorpusRandomizer.Designer.cs">
+      <DependentUpon>CorpusRandomizer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Publishing\DrmManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Publishing\DrmManager.Designer.cs">
+      <DependentUpon>DrmManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Publishing\DrmManagerReopen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Publishing\DrmManagerReopen.Designer.cs">
+      <DependentUpon>DrmManagerReopen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Publishing\DrmOpen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Publishing\DrmOpen.Designer.cs">
+      <DependentUpon>DrmOpen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Publishing\PublishingController.cs" />
+    <Compile Include="Forms\Publishing\PublishingInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Publishing\PublishingInfo.Designer.cs">
+      <DependentUpon>PublishingInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\RegEx\RegExForm.cs">
       <SubType>Form</SubType>
@@ -1479,6 +1547,12 @@
     <EmbeddedResource Include="Forms\Abstract\AbstractExternalModelConfig.resx">
       <DependentUpon>AbstractExternalModelConfig.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Bridge\AddUrl.resx">
+      <DependentUpon>AddUrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Bridge\BridgeForm.resx">
+      <DependentUpon>BridgeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CloneDetection\CloneDetectionAlgorithm.resx">
       <DependentUpon>CloneDetectionAlgorithm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1506,6 +1580,12 @@
     <EmbeddedResource Include="Forms\GridViewFunctions\PredefinedFunctions.resx">
       <DependentUpon>PredefinedFunctions.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KorAP\KorAPClient.resx">
+      <DependentUpon>KorAPClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\KorAP\KorAPSignin.resx">
+      <DependentUpon>KorAPSignin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Map\MapConfiguration.resx">
       <DependentUpon>MapConfiguration.cs</DependentUpon>
     </EmbeddedResource>
@@ -1514,6 +1594,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PosFilter\PosFilter.resx">
       <DependentUpon>PosFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Publishing\CorpusPublisher.resx">
+      <DependentUpon>CorpusPublisher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Publishing\CorpusPublisherExport.resx">
+      <DependentUpon>CorpusPublisherExport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Publishing\CorpusRandomizer.resx">
+      <DependentUpon>CorpusRandomizer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Publishing\DrmManager.resx">
+      <DependentUpon>DrmManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Publishing\DrmManagerReopen.resx">
+      <DependentUpon>DrmManagerReopen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Publishing\DrmOpen.resx">
+      <DependentUpon>DrmOpen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Publishing\PublishingInfo.resx">
+      <DependentUpon>PublishingInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RegEx\RegExForm.resx">
       <DependentUpon>RegExForm.cs</DependentUpon>
@@ -1885,6 +1986,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Projekte-Kooperation\CorpusExplorer.Terminal.Console\CorpusExplorer.Terminal.Console.csproj">
+      <Project>{77d277fa-cb8f-4619-90e8-4af5be6e9ac3}</Project>
+      <Name>CorpusExplorer.Terminal.Console</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\IDS\CSharpKorAPClient\CSharpKorAPClient\DotNetKorapClient.Classic\DotNetKorapClient.Classic.csproj">
+      <Project>{e5619eed-1ecb-43de-a7f5-526f0950f8a0}</Project>
+      <Name>DotNetKorapClient.Classic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj">
       <Project>{3226C218-0FB3-43A6-A67C-39CBAC704EA3}</Project>
       <Name>BitCutStudios.CorpusExplorer</Name>
@@ -2130,6 +2239,14 @@
     <None Include="Resources\user_symbol_green-stats1.png" />
     <None Include="Resources\user_symbol_purple-stats1.png" />
     <None Include="Resources\execute1.png" />
+    <None Include="Resources\archive-download%4024px.png" />
+    <None Include="Resources\padlock-round.png" />
+    <None Include="Resources\cloud-data-storage.png" />
+    <None Include="Resources\list.png" />
+    <None Include="Resources\korap.png" />
+    <None Include="Resources\cabinet_korap.png" />
+    <None Include="Resources\cabinet_korap_48.png" />
+    <None Include="Resources\korap_48.png" />
     <Content Include="XDependencies\NTextCat\Wiki280.profile.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -15,6 +15,7 @@ using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
+using CorpusExplorer.Sdk.Utils.Drm;
 
 namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
 {
@@ -77,10 +78,12 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
     public override bool ContainsLayer(string layerDisplayname)
       => _layers.Any(x => x.Displayname == layerDisplayname);
 
-    public static CorpusAdapterWriteDirect Create(string path, string password)
+    public static CorpusAdapterWriteDirect Create(string path, string user, string password)
     {
+      var token = DrmDb.UserValidate(path + "db", user, password);
+
       using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
-      using (var cr = new CryptoStream(fs, KeyGenerator.GenerateRijndael(password).CreateDecryptor(), CryptoStreamMode.Read))
+      using (var cr = new CryptoStream(fs, KeyGenerator.GenerateRijndael(token).CreateDecryptor(), CryptoStreamMode.Read))
       using (var gz = new GZipStream(cr, CompressionMode.Decompress))
       using (var bs = new BufferedStream(gz))
       {
@@ -278,17 +281,19 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
       _documentMetadata = newMetadata;
     }
 
-    public void Save(string path, string password)
+    public void Save(string path, string token, Dictionary<string, string> userPasswordCombinations)
     {
       _displayname = Path.GetFileNameWithoutExtension(path);
 
       path = path.ForceFileExtension("cec6.drm").Replace(".cec6.cec6", ".cec6");
 
       using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
-      using (var cr = new CryptoStream(fs, KeyGenerator.GenerateRijndael(password).CreateEncryptor(), CryptoStreamMode.Write))
+      using (var cr = new CryptoStream(fs, KeyGenerator.GenerateRijndael(token).CreateEncryptor(), CryptoStreamMode.Write))
       using (var gz = new GZipStream(cr, CompressionLevel.Fastest))
       using (var bs = new BufferedStream(gz))
         Save(bs);
+
+      DrmDb.Create(token, userPasswordCombinations, path + "db");
     }
 
     public override void Save(string path = null, bool useCompression = false)

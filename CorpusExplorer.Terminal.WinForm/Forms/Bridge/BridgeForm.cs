@@ -1,8 +1,13 @@
 ﻿using CorpusExplorer.Sdk.Ecosystem;
+using CorpusExplorer.Sdk.Helper;
+using CorpusExplorer.Sdk.Model;
+using CorpusExplorer.Sdk.Model.Adapter.Corpus;
+using CorpusExplorer.Sdk.Model.Cache;
 using CorpusExplorer.Sdk.Utils.DataTableWriter;
 using CorpusExplorer.Sdk.Utils.WaitBehaviour;
 using CorpusExplorer.Terminal.Console.Web;
-using RestSharp;
+using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
+using CorpusExplorer.Terminal.WinForm.Forms.Publishing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +16,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,22 +26,29 @@ using Telerik.WinControls;
 using Telerik.WinControls.Themes;
 using Telerik.WinControls.UI;
 
-namespace CorpusExplorer.Terminal.Bridge
+namespace CorpusExplorer.Terminal.WinForm.Forms.Bridge
 {
-  public partial class MainForm : AbstractForm
+  public partial class BridgeForm : AbstractForm
   {
-    private HashSet<string> _corpora = new HashSet<string>();
+    private Project _project;
     private string _ip;
     private int _port;
-    private WebServiceBridge _bridge = null;
+    private WebServiceBridge _bridge = null;    
+    private HashSet<string> _corpora = new HashSet<string>();
 
-    public MainForm()
+    public BridgeForm()
     {
-      CorpusExplorerEcosystem.InitializeMinimal();
-
       InitializeComponent();
 
+      _project = CorpusExplorerEcosystem.InitializeMinimal(new CacheStrategyDisableCaching());
+
       Shown += MainForm_Shown;
+      FormClosing += MainForm_FormClosing;
+    }
+
+    private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+    {
+      _bridge.Dispose();
     }
 
     private void MainForm_Shown(object sender, EventArgs e)
@@ -44,18 +58,28 @@ namespace CorpusExplorer.Terminal.Bridge
 
     private void btn_serviceRestart_Click(object sender, EventArgs e)
     {
+      ServiceRestart();
+    }
+
+    private void ServiceRestart()
+    {
       try
       {
-        _bridge.Cancel();
-
-        var client = new RestClient();
-        var request = new RestRequest($"http://{_ip}:{_port}/restart");
-        request.Timeout = 100;
-        client.Execute(request);
-
         ServiceStartCall();
 
-        AddCorpora(_corpora);
+        var client = new HttpClient();
+        client.Timeout = TimeSpan.FromMilliseconds(100);
+        try
+        {
+          client.GetAsync($"http://{_ip}:{_port}/restart").Wait();
+        }
+        catch
+        {
+          // ignore
+        }
+        AddCorpora(_corpora.ToArray());
+
+        ServiceStartCall();
       }
       catch
       {
@@ -70,13 +94,14 @@ namespace CorpusExplorer.Terminal.Bridge
         _ip = txt_ip.Text.Replace(" ", "");
         _port = int.Parse(txt_port.Text);
 
-        _bridge = new WebServiceBridge(new JsonTableWriter(), _ip, _port);
-        _bridge.Run(new WaitBehaviourNone(), ServiceStoppedCall);
+        _bridge = new WebServiceBridge(ref _project, new JsonTableWriter { WriteTid = false }, _ip, _port);
+        _bridge.Selection = _project.SelectAll;
+        _bridge.Run(new WaitBehaviourNone(), ServiceStoppedCall);        
 
         lbl_status.Invoke(new Action(() =>
         {
           lbl_status.ForeColor = Color.Green;
-          lbl_status.Text = "Läuft";
+          lbl_status.Text = "LÄUFT";
         }));
       }
       catch
@@ -93,10 +118,12 @@ namespace CorpusExplorer.Terminal.Bridge
       {
         lbl_status.Invoke(new Action(() =>
         {
-          lbl_status.Text = "Gestoppt";
+          lbl_status.Text = "ABBRUCH";
           lbl_status.ForeColor = Color.Red;
         }));
       }
+
+      _bridge.Dispose();
     }
 
     private void btn_corpusAdd_Click(object sender, EventArgs e)
@@ -129,9 +156,9 @@ namespace CorpusExplorer.Terminal.Bridge
 
         var res = false;
         if (file.StartsWith("http"))
-          res = _bridge.LoadCorpus(new Uri(file));
+          res = AddCorpora_Url(file);
         else
-          res = _bridge.LoadCorpus(file);
+          res = AddCorpora_File(file);
 
 
         if (!res)
@@ -140,8 +167,79 @@ namespace CorpusExplorer.Terminal.Bridge
         _corpora.Add(file);
       }
 
+      _bridge.Selection = _project.SelectAll;
+
       panel_load.Visible = true;
       lbl_load.Visible = false;
+    }
+
+    private bool AddCorpora_File(string file)
+    {
+      try
+      {
+        var corpus = CorpusAdapterWriteDirect.Create(file);
+        if(corpus == null)
+          return false;
+
+        _project.Add(corpus);
+        return true;
+      }
+      catch
+      {
+        return false;
+      }
+    }
+
+    private bool AddCorpora_Url(string url)
+    {
+      if (url.EndsWith(".drm"))
+      {
+        try
+        {
+          using (var temp = new TemporaryDirectory())
+          using (var wc = new WebClient())
+          {
+            var file = Path.Combine(temp.Path, Path.GetFileName(url));
+            wc.DownloadFile(url, file);
+            wc.DownloadFile(url, file + "db");
+
+            var corpus = PublishingController.ReadCryptedCorpora(new[] { file }).FirstOrDefault();
+            if (corpus == null)
+              return false;
+
+            _project.Add(corpus);
+            return true;
+          }
+        }
+        catch
+        {
+          return false;
+        }
+      }
+      else if (url.Contains(".cec6"))
+      {
+        try
+        {
+          using (var temp = new TemporaryDirectory())
+          using (var wc = new WebClient())
+          {
+            var file = Path.Combine(temp.Path, Path.GetFileName(url));
+            wc.DownloadFile(url, file);
+
+            var corpus = CorpusAdapterWriteDirect.Create(file);
+            if(corpus == null)
+              return false;
+
+            _project.Add(corpus);
+            return true;
+          }
+        }
+        catch
+        {
+          return false;
+        }
+      }
+      return false;
     }
 
     private void RefeshCorpusList()
@@ -152,10 +250,10 @@ namespace CorpusExplorer.Terminal.Bridge
     }
 
     private void btn_new_Click(object sender, EventArgs e)
-    {
-      _bridge.UnloadCorpora();
+    {      
       _corpora.Clear();
       RefeshCorpusList();
+      ServiceRestart();
     }
 
     private void btn_load_Click(object sender, EventArgs e)
@@ -175,6 +273,7 @@ namespace CorpusExplorer.Terminal.Bridge
       AddCorpora(corpora);
 
       RefeshCorpusList();
+      ServiceRestart();
     }
 
     private void btn_save_Click(object sender, EventArgs e)

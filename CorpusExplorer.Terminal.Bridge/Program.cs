@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,9 +13,12 @@ namespace CorpusExplorer.Terminal.Bridge
     [STAThread]
     static void Main()
     {
-      Application.EnableVisualStyles();
-      Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new MainForm());
+      Process.Start(new ProcessStartInfo
+      {
+        FileName = "CorpusExplorer.exe",
+        Arguments = "--bridge",
+        UseShellExecute = false,
+      }).WaitForExit();
     }
   }
 }

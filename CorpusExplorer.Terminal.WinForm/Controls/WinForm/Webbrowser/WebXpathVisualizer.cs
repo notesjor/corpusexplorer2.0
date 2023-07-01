@@ -44,6 +44,8 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser
 
     public HtmlNodeCollection SelectedNodesByXPath { get; set; }
 
+    public ChromiumWebBrowser Browser => _browser;
+
     public string Url
     {
       get => _url;

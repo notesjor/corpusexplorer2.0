@@ -117,8 +117,8 @@
     <Reference Include="Polenter.SharpSerializer, Version=3.0.2.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpSerializer.3.0.2\lib\net452\Polenter.SharpSerializer.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp, Version=2023.0.5.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.2023.0.5\lib\net45\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=2023.0.6.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Redist.2023.0.6\lib\net45\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -352,8 +352,10 @@
     <Compile Include="Helper\DictionarySerializerHelper.cs" />
     <Compile Include="Helper\DynamicAddonLoader.cs" />
     <Compile Include="Helper\EncodingFixer.cs" />
+    <Compile Include="Helper\FileExtensionHelper.cs" />
     <Compile Include="Helper\IEnumerableStringSerializerHelper.cs" />
     <Compile Include="Helper\IEnumerableStatistics.cs" />
+    <Compile Include="Helper\CeDictionaryMemoryFriendly.cs" />
     <Compile Include="Helper\MetaDictionarySerializerHelper.cs" />
     <Compile Include="Helper\DictionaryToDataTableHelper.cs" />
     <Compile Include="Helper\DictionaryToTupleEnumerationHelper.cs" />
@@ -417,7 +419,7 @@
     <Compile Include="Utils\CorpusManipulation\CorpusRandomizerStrategy\CorpusRandomizerStrategySentences.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusRandomizerStrategy\CorpusRandomizerStrategyTokens.cs" />
     <Compile Include="Utils\DataTableWriter\BinaryTableWriter.cs" />
-    <Compile Include="Utils\DataTableWriter\HtmlTableSnippetWriter.cs" />
+    <Compile Include="Utils\DataTableWriter\HtmlTableSnippetTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\HtmlTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\JsonRoundedTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\SqlDataOnlyTableWriter.cs" />
@@ -512,6 +514,7 @@
     <Compile Include="Utils\DocumentProcessing\Exporter\Tlv\TlvBuilder.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\Abstract\AbstractImporterBase.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\Abstract\AbstractImporter.cs" />
+    <Compile Include="Utils\DocumentProcessing\Importer\CorpusExplorerV6\ImporterCec6Drm.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\CorpusExplorerV6\ImporterCec6.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\CorpusExplorerV6\ImporterCec6Stream.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\ImporterConll.cs" />
@@ -553,6 +556,8 @@
     <Compile Include="Utils\DocumentProcessing\Tagger\UDPipe\UdPipeExeTagger.cs" />
     <Compile Include="Utils\DocumentProcessing\Tokenizer\HighSpeedGermanTokenizer.cs" />
     <Compile Include="Utils\DocumentProcessing\Tokenizer\HighSpeedGermanWikipediaTokenizer.cs" />
+    <Compile Include="Utils\Drm\CorpusLicenceInfo.cs" />
+    <Compile Include="Utils\Drm\DrmDb.cs" />
     <Compile Include="Utils\Filter\Abstract\AbstractFilterQuerySingleLayerFulltext.cs" />
     <Compile Include="Utils\Filter\Interface\IFilterQueryWithLayerValues.cs" />
     <Compile Include="Utils\Filter\Parser\FilterQueryMultiLayerComplex\Parser4FilterQueryMultiLayerComplex.cs" />

@@ -52,7 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ce1CompatibilityControler.cs" />
+    <Compile Include="Ce1CompatibilityController.cs" />
     <Compile Include="CorpusExplorerV1\Helper\CeEnviroment.cs" />
     <Compile Include="CorpusExplorerV1\Helper\HelperStatistik.cs" />
     <Compile Include="CorpusExplorerV1\Helper\ListOptimized.cs" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CorpusExplorer.Terminal.Bridge
+namespace CorpusExplorer.Terminal.WinForm.Forms.Bridge
 {
   public partial class AddUrl : AbstractForm
   {

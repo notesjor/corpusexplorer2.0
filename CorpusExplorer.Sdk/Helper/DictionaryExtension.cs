@@ -205,6 +205,12 @@ namespace CorpusExplorer.Sdk.Helper
       return res;
     }
 
+    public static CeDictionaryMemoryFriendly<double> CompleteDictionaryToFullDictionaryMemoryFriendly(this Dictionary<string, Dictionary<string, double>> fragmentDictionary)
+    {
+      var dict = fragmentDictionary.CompleteDictionaryToFullDictionary();
+      return CeDictionaryMemoryFriendly<double>.Create(ref dict, false);
+    }
+
     public static Dictionary<string, Dictionary<string, double>> CompleteDictionaryViaJoinToFullDictionary(
       this Dictionary<string, Dictionary<string, double>> fragmentDictionary)
     {

@@ -68,6 +68,14 @@ using Telerik.WinControls.UI.Localization;
 using ArrowDirection = Telerik.WinControls.ArrowDirection;
 using PositionChangedEventArgs = Telerik.WinControls.UI.Data.PositionChangedEventArgs;
 using VocdGrid = CorpusExplorer.Terminal.WinForm.View.StyleMetrics.VocdGrid;
+using CorpusExplorer.Terminal.Console.Web;
+using CorpusExplorer.Sdk.Utils.DataTableWriter;
+using CorpusExplorer.Sdk.Utils.WaitBehaviour;
+using CefSharp.DevTools.Cast;
+using System.Net;
+using System.Net.Http;
+using CorpusExplorer.Terminal.WinForm.Forms.Publishing;
+using CorpusExplorer.Terminal.WinForm.Forms.KorAP;
 
 #endregion
 
@@ -240,7 +248,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
               Text = $"<html><strong>{feedItem.PublishingDate.Value:yyyy-MM-dd}:</strong> {feedItem.Title}</html>",
               Tag = feedItem.Link,
             });
-            
+
             // siehe OpenRssFeedItemClick
           }
           radListView1.ItemSize = new Size(radListView1.ItemSize.Width, 30);
@@ -251,7 +259,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         InMemoryErrorConsole.Log(ex);
       }
 
-      #endregion
+      #endregion      
+
+      BridgeStop();
 
       Welcome.SplashClose();
     }
@@ -533,6 +543,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                  .Replace("&nbsp;", "");
 
       page_analytics_snapshot_list_snapshots.ExpandAll();
+
+      BridgeEnsure();
     }
 
     private void Dashboard_FormClosing(object sender, FormClosingEventArgs e)
@@ -600,7 +612,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                               break;
                             case ".cec6":
                             case ".gz":
-                            case ".lz4": 
+                            case ".lz4":
                             default:
                               QuickMode.AddCorpusToProject(Project, CorpusAdapterWriteDirect.Create(path), EnableCorpusChecks);
                               break;
@@ -1801,6 +1813,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
     private void ProjectNew()
     {
+      BridgeStop();
       _terminal.ProjectNew();
       Project = _terminal.Project;
       Project.SelectionCreated += ProjectModelChanges;
@@ -1894,6 +1907,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       if (Project.CurrentSelection == null)
         return;
 
+      // PROTECTION
+      page_analytics_snapshot_btn_snapshot_export.Visible = Project.CurrentSelection.AllowExport;
+      page_analytics_snapshot_btn_snapshot_publish.Visible = Project.CurrentSelection.AllowExport;
+      page_analytics_snapshot_noexport.Visible = !Project.CurrentSelection.AllowExport;
+
       // QuickInfo
       var vm = new QuickInfoViewModel { Selection = Project.CurrentSelection };
       vm.Execute();
@@ -1904,6 +1922,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       infoPanel_snapshot.CountTokens = vm.CountTokens;
 
       page_analytics_snapshot_list_snapshots.ExpandAll();
+
+      // BRIDGE
+      if (_bridge != null)
+        _bridge.Selection = Project.CurrentSelection;
     }
 
     private RadMenuItem Selection_ReLoad(RadMenuItem node, Selection selection)
@@ -2234,7 +2256,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       foreach (var x in _significanceMessures)
         settings_drop_signifikanz.Items.Add(new RadListDataItem(x.Key, x.Value));
     }
-    
+
     [NamedSynchronizedLock("Settings")]
     private void Settings_ReLoad()
     {
@@ -2431,7 +2453,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                           foreach (var dir in dirs)
                             try
                             {
-                              Ce1CompatibilityControler.Upgrade(dir);
+                              Ce1CompatibilityController.Upgrade(dir);
                             }
                             catch
                             {
@@ -2526,6 +2548,136 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         // ignore
       }
       Show();
+    }
+
+    #region BRIDGE
+    private WebServiceBridge _bridge = null;
+
+    private string BridgeIP => txt_bridge_ip.Text.Replace(" ", "");
+    private int BridgePort => int.Parse(txt_bridge_port.Text.Trim());
+
+    private void BridgeStart()
+    {
+      try
+      {
+        var project = Project;
+        _bridge = new WebServiceBridge(ref project, new JsonTableWriter { WriteTid = false }, BridgeIP, BridgePort);
+        _bridge.Run(new WaitBehaviourNone(), ServiceStoppedCall);
+        _bridge.Selection = Project.CurrentSelection;
+
+        lbl_bridge_status.Invoke(new Action(() =>
+        {
+          lbl_bridge_status.ForeColor = Color.Green;
+          lbl_bridge_status.Text = "LÄUFT";
+        }));
+
+        panel_bridge.Visible = true;
+      }
+      catch (Exception ex)
+      {
+        InMemoryErrorConsole.Log(ex);
+      }
+    }
+
+    private void BridgeStop()
+    {
+      try
+      {
+        if (panel_bridge == null)
+          return;
+
+        if (_bridge != null)
+        {
+          _bridge.Dispose();
+          _bridge = null;
+        }
+        panel_bridge.Visible = false;
+      }
+      catch (Exception ex)
+      {
+        InMemoryErrorConsole.Log(ex);
+      }
+    }
+
+    private void BridgeEnsure()
+    {
+      if (switch_bridge.Value)
+        _bridge.Selection = Project.CurrentSelection;
+    }
+
+    private void BridgeRestart()
+    {
+      BridgeStop();
+
+      try
+      {
+        var client = new HttpClient();
+        client.Timeout = TimeSpan.FromMilliseconds(100);
+        client.GetAsync($"http://{BridgeIP}:{BridgePort}/restart").Wait();
+      }
+      catch
+      {
+        // ignore
+      }
+
+      BridgeStart();
+    }
+
+    private void ServiceStoppedCall(Task task)
+    {
+      if (lbl_bridge_status.InvokeRequired)
+      {
+        lbl_bridge_status.Invoke(new Action(() =>
+        {
+          lbl_bridge_status.Text = "ABBRUCH";
+          lbl_bridge_status.ForeColor = Color.Red;
+        }));
+      }
+    }
+
+
+    private void switch_bridge_ValueChanged(object sender, EventArgs e)
+    {
+      if (switch_bridge.Value)
+      {
+        BridgeStart();
+      }
+      else
+      {
+        BridgeStop();
+      }
+    }
+
+    private void btn_bridge_reload_Click(object sender, EventArgs e)
+    {
+      BridgeRestart();
+    }
+    #endregion
+
+    private void page_analytics_snapshot_btn_snapshot_publish_Click(object sender, EventArgs e)
+    {
+      PublishingController.Publish(_terminal.Project.CurrentSelection);
+    }
+
+    private void settings_tool_drmUsers_Click(object sender, EventArgs e)
+    {
+      PublishingController.ManageCryptedCorpus();
+    }
+
+    private string _korapToken = "";
+
+    private void corpus_start_korap_Click(object sender, EventArgs e)
+    {
+      var form = new KorAPClient(_korapToken);
+      if (form.ShowDialog() != DialogResult.OK)
+        return;
+
+      _korapToken = form.Token;
+      if (form.Result == null)
+        return;
+
+      QuickMode.AddCorpusToProject(Project, form.Result, false);
+      ReloadAll();
     }
   }
 }

@@ -7,27 +7,15 @@ using System.Text;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Utils.DataTableWriter;
+using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Terminal.Universal.Message.Request.Analyze;
-using CorpusExplorer.Terminal.Universal.TableWriter;
 using Tfres;
 
 namespace CorpusExplorer.Terminal.Universal
 {
   public static partial class Program
   {
-    private static void GetText(HttpContext obj)
-    {
-      var guid = Guid.Parse(obj.Request.GetData()["guid"]);
-      var multi = _terminal.Project.CurrentSelection.GetReadableMultilayerDocument(guid).ToDictionary(x=>x.Key, x=>x.Value.Select(y=>y.ToArray()).ToArray());
-      obj.Response.Send(multi);
-    }
-
-    private static void GetKwic(HttpContext obj)
-    {
-      var query = ConvertRequestToQuery(obj.Request);
-    }   
-
     private static void Analyze(HttpContext obj)
     {
       var request = obj.Request.PostData<RequestAnalyze>();
@@ -38,7 +26,47 @@ namespace CorpusExplorer.Terminal.Universal
         return;
       }
 
-      var tw = new DirectJsonTableWriter(obj);
+      var parameter = obj.Request.GetData();
+      var format = parameter.ContainsKey("f") ? parameter["f"] : "json";
+
+      AbstractTableWriter tw = null;
+
+      switch (format)
+      {
+        default:
+          tw = new JsonTableWriter();
+          break;
+        case "JSONR":
+          tw = new JsonRoundedTableWriter();
+          break;
+        case "CSV":
+          tw = new CsvTableWriter();
+          break;
+        case "TSV":
+          tw = new TsvTableWriter();
+          break;
+        case "TSVR":
+          tw = new TsvRoundedTableWriter();
+          break;
+        case "TRTD":
+          tw = new HtmlTableSnippetTableWriter();
+          break;
+        case "HTML":
+          tw = new HtmlTableWriter();
+          break;
+        case "XML":
+          tw = new XmlTableWriter();
+          break;
+        case "SQL":
+          tw = new SqlTableWriter();
+          break;
+      }
+
+      // Prepare TableWriter
+      tw.Path = "";
+      tw.WriteTid = parameter.ContainsKey("tid") && parameter["tid"] == "true";
+      tw.OutputStream = obj.Response.GetChunkedOutputStream(tw.MimeType);
+
       action.Execute(_terminal.Project.CurrentSelection, request.Arguments, tw);
       tw.Destroy(false);
 
