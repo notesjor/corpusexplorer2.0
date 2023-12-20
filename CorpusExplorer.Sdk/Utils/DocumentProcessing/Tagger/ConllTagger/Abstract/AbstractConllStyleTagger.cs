@@ -125,7 +125,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.ConllTagger.Abstrac
       lock (_parseDocumentLock)
       {
         foreach (var x in document)
-          _layers[x.Key].Documents.Add(guid, x.Value.ToArray());
+          _layers[x.Key].DocumentAdd(guid, x.Value.ToArray());
       }
     }
 

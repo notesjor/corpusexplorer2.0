@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Sdk.Extern.Json</RootNamespace>
     <AssemblyName>CorpusExplorer.Sdk.Extern.Json</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -48,6 +48,9 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.11.55.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.55\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -57,6 +60,9 @@
   <ItemGroup>
     <Compile Include="Abstract\AbstractGenericDataReader.cs" />
     <Compile Include="Abstract\AbstractGenericJsonFormatScraper.cs" />
+    <Compile Include="OpenLegalData\OpenLegalDataScraper.cs" />
+    <Compile Include="OpenLegalData\Model\Court.cs" />
+    <Compile Include="OpenLegalData\Model\OpenLegalDataEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryManifest.cs" />
     <Compile Include="SimpleStandoff\Model\Annotation.cs" />

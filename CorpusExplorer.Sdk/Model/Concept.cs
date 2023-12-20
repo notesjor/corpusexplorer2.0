@@ -1,6 +1,4 @@
-﻿using CorpusExplorer.Sdk.Properties;
-
-#region
+﻿#region
 
 using System;
 using System.Collections.Generic;
@@ -65,8 +63,7 @@ namespace CorpusExplorer.Sdk.Model
       if (sentenceStopIndex == -1 ||
           wordStopIndex     == -1)
         if (sentenceStopIndex != wordStopIndex)
-          throw new ArgumentException(
-                                      Resources.ConceptRangeException);
+          throw new ArgumentException("If the value of sentenceStopIndex or wordStopIndex is greater than -1, then you must also set the other value.");
 
       var res = Guid.NewGuid();
       _marks.Add(

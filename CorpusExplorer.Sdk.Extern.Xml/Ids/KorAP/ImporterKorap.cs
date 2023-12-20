@@ -9,6 +9,7 @@ using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.Exceptions;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.LoadStrategy;
+using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.LoadStrategy.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
@@ -40,6 +41,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
 
     public bool Debug { get; set; } = false;
     public int HtmlDecodeRounds { get; set; } = 0;
+    public AbstractKorapLoadStrategy LoadStrategy { get; set; }
 
     public IEnumerable<Exception> DebugLog
     {
@@ -52,21 +54,32 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       }
     }
 
+    private Regex _corpusRegex = new Regex(@"^[a-zA-Z0-9]*\/header\.xml$", RegexOptions.Compiled);
+    private Regex _dataRegex = new Regex(@"^[a-zA-Z0-9]*\/[a-zA-Z0-9]*\/[a-zA-Z0-9]*\/data\.xml$", RegexOptions.Compiled);
+
+    private void DefalutLoadStrategy(string path)
+    {
+      LoadStrategy = KorapLoadStrategyZipFile.AddonInitialize();
+      LoadStrategy.Initialize(path);
+    }
+
     protected override void ExecuteCall(string path)
     {
+      if(LoadStrategy == null)
+        DefalutLoadStrategy(path);
+
       ImportCoreNlp = ValidateFeature(ImportCoreNlp, path, "corenlp", out var corenlp);
       ImportMalt = ValidateFeature(ImportMalt, path, "malt", out var malt);
       ImportMarmot = ValidateFeature(ImportMarmot, path, "marmot", out var marmot);
       ImportOpenNlp = ValidateFeature(ImportOpenNlp, path, "opennlp", out var opennlp);
       ImportTreeTagger = ValidateFeature(ImportTreeTagger, path, "tree_tagger", out var tree_tagger);
 
-      using (var zip = new KorapZip(path))
+      using (var zip = LoadStrategy.Initialize(path))
       {
-        var helper = new KorapScraper { ReadTaxonomy = ReadTaxonomy, ReadLanguage = ReadLanguage, HtmlDecodeRounds = HtmlDecodeRounds }; // Helper
+        var helper = new KorapScraper { ReadTaxonomy = ReadTaxonomy, ReadLanguage = ReadLanguage, HtmlDecodeRounds = HtmlDecodeRounds, LoadStrategy = LoadStrategy }; // Helper
 
         // -- siehe ScraperKorap --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> --> 
-        var corpusRegex = new Regex(@"^[a-zA-Z0-9]*\/header\.xml$");
-        var mainHeader = zip.Entries.Single(x => corpusRegex.IsMatch(x));
+        var mainHeader = zip.Entries.Single(x => _corpusRegex.IsMatch(x));
 
         if (string.IsNullOrWhiteSpace(mainHeader))
           return;
@@ -75,8 +88,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
         if (header == null)
           return;
 
-        var dataRegex = new Regex(@"^[a-zA-Z0-9]*\/[a-zA-Z0-9]*\/[a-zA-Z0-9]*\/data\.xml$");
-        var tDatas = zip.Entries.Where(x => dataRegex.IsMatch(x)).ToArray();
+        var tDatas = zip.Entries.Where(x => _dataRegex.IsMatch(x)).ToArray();
         // <-- siehe ScraperKorap <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- 
 
         Parallel.ForEach(tDatas, Configuration.ParallelOptions, tData =>
@@ -132,7 +144,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       tree_tagger?.Dispose();
     }
 
-    private static string FindEntryPath(KorapZip zip, string textRoot)
+    private static string FindEntryPath(AbstractKorapLoadStrategy zip, string textRoot)
     {
       var entryPath = zip.Exists(textRoot + "/base/tokens.xml") ? textRoot + "/base/tokens.xml" : null;
       // Fallback Kaskade
@@ -147,7 +159,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       return entryPath;
     }
 
-    private bool BuildWordLayer(string path, KorapZip zip, string zipPath, ref KorapScraper helper, string tData,
+    private bool BuildWordLayer(string path, AbstractKorapLoadStrategy zip, string zipPath, ref KorapScraper helper, string tData,
       string textRoot, Guid dsel, out int[] skelOut, out Dictionary<int, int[][]> refsOut)
     {
       var currentText = helper.GetText(path, zip, tData);
@@ -171,7 +183,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       return true;
     }
 
-    private static int[] DetectSentences(KorapZip zip, string path, string textRoot)
+    private static int[] DetectSentences(AbstractKorapLoadStrategy zip, string path, string textRoot)
     {
       try
       {
@@ -198,7 +210,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       }
     }
 
-    private static void GenerateText(KorapZip zip, string zipPath, string currentText,
+    private static void GenerateText(AbstractKorapLoadStrategy zip, string zipPath, string currentText,
       out Dictionary<int, int[][]> refsOut, out string[][] docOut, out int[] skelOut, int[] sentences)
     {
       var xml = zip.ReadXmlClean(zipPath);
@@ -244,7 +256,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       skelOut = tmpSkel.ToArray();
     }
 
-    private static void GenerateTextFallback(KorapZip zip, string zipPath, string currentText,
+    private static void GenerateTextFallback(AbstractKorapLoadStrategy zip, string zipPath, string currentText,
       out Dictionary<int, int[][]> refsOut, out string[][] docOut, out int[] skelOut)
     {
       var tmpRefs = new List<int[]>();
@@ -284,7 +296,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       skelOut = tmpSkel.ToArray();
     }
 
-    private static bool ValidateFeature(bool featureSwitch, string path, string feature, out KorapZip zip)
+    private bool ValidateFeature(bool featureSwitch, string path, string feature, out AbstractKorapLoadStrategy zip)
     {
       if (!featureSwitch)
       {
@@ -294,7 +306,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
 
       try
       {
-        zip = new KorapZip(Path.Combine(Path.GetDirectoryName(path),
+        zip = LoadStrategy.Initialize(Path.Combine(Path.GetDirectoryName(path),
           $"{Path.GetFileNameWithoutExtension(path)}.{feature}.zip"));
         return true;
       }
@@ -305,7 +317,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       }
     }
 
-    private void BuildTaggerFeatureDependency(KorapZip zip, string textRoot, string subfolder, Guid dsel,
+    private void BuildTaggerFeatureDependency(AbstractKorapLoadStrategy zip, string textRoot, string subfolder, Guid dsel,
       int[] skeleton, Dictionary<int, int[][]> references, string path)
     {
       try
@@ -368,7 +380,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       }
     }
 
-    private void BuildTaggerFeatureConstituency(KorapZip zip, string textRoot, string subfolder, Guid dsel,
+    private void BuildTaggerFeatureConstituency(AbstractKorapLoadStrategy zip, string textRoot, string subfolder, Guid dsel,
       int[] skeleton, Dictionary<int, int[][]> references, string path)
     {
       try
@@ -435,7 +447,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       }
     }
 
-    private void BuildTaggerFeatureMorpho(KorapZip zip, string textRoot, string subfolder, Guid dsel, int[] skeleton,
+    private void BuildTaggerFeatureMorpho(AbstractKorapLoadStrategy zip, string textRoot, string subfolder, Guid dsel, int[] skeleton,
       Dictionary<int, int[][]> references, string path)
     {
       try

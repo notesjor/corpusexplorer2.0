@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Extern.NTextCat;
-using CorpusExplorer.Sdk.Extern.Plaintext.WET.Forms;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 
@@ -40,20 +39,14 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET
       }
     }
 
-    public IEnumerable<Dictionary<string, object>> ExecuteBypass(Stream stream)
+    public IEnumerable<Dictionary<string, object>> ExecuteBypass(Stream stream, string filterLanguage, DomainFilter filterDomains)
     {
       lock (_filterLock)
       {
         if (!_filterSet)
         {
-          var form = new LanguageSelectionForm();
-          form.ShowDialog();
-
-          if (form.UseLanguageFilter)
-            _filterLanguage = form.SelectedLanguage;
-
-          if (form.UseDomainFilter)
-            _filterDomain = new DomainFilter(form.SelectedDomains);
+          _filterLanguage = filterLanguage;
+          _filterDomain = filterDomains;
 
           _filterSet = true;
         }
@@ -76,7 +69,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET
       {
         if (!_filterSet)
         {
-          var form = new LanguageSelectionForm();
+          var form = new CorpusExplorer.Sdk.Extern.Plaintext.WET.Forms.LanguageSelectionForm();
           form.ShowDialog();
 
           if (form.UseLanguageFilter)

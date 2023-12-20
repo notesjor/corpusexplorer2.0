@@ -67,7 +67,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
       lock (_layerLock)
       {
         EnsureLayer(layerName);
-        Layers[layerName].Documents.Add(documentGuid, document);
+        Layers[layerName].DocumentAdd(documentGuid, document);
       }
     }
 
@@ -139,7 +139,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
         {
           if (Layers != null)
             foreach (var layer in Layers)
-              layer.Value.Documents = new Dictionary<Guid, int[][]>();
+              layer.Value.FlushDocuments();
 
           CorpusMetadata = new Dictionary<string, object>();
           DocumentMetadata = new Dictionary<Guid, Dictionary<string, object>>();

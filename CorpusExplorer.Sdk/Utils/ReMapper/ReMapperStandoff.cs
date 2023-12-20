@@ -80,7 +80,7 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper
             TextCharFrom = idx,
             TextCharTo = idx + t.Length
           });
-          last += t.Length;
+          last = idx + t.Length;
         }
       }
 

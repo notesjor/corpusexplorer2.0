@@ -19,8 +19,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Publishing
       InitializeComponent();
     }
 
-    public CorpusLicenceInfo Result =>
-      new CorpusLicenceInfo
+    public CorpusInfo Result =>
+      new CorpusInfo
       {
         CorpusName = txt_corpusName.Text,
         CorpusDescription = txt_corpusInfo.Text,

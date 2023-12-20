@@ -8,6 +8,7 @@ using CorpusExplorer.Sdk.Utils.CorpusManipulation.CorpusRandomizerStrategy;
 using CorpusExplorer.Sdk.Utils.CorpusManipulation.CorpusRandomizerStrategy.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter;
 using CorpusExplorer.Sdk.Utils.Drm;
+using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,10 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Publishing
           return;
 
         var info = publisher.Result;
+        info.CountTokens = selection.CountToken;
+        info.CountSentences = selection.CountSentences;
+        info.CountDocuments = selection.CountDocuments;
+        info.LayerNames = selection.LayerDisplaynames.ToArray();
 
         using (var dir = new TemporaryDirectory())
         {
@@ -57,6 +62,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Publishing
 
           Publishing_AddInfo(info, dir);
 
+          // Ermittelt die Gesamtgröße
+          info.FileSize = DirectoryHelper.CalculateDirectorySize(dir.Path);
+
+          // Muss erneut hinzugefügt werden (überschreibt Werte)
+          Publishing_AddInfo(info, dir);
+
           var sfd = new SaveFileDialog
           {
             CheckPathExists = true,
@@ -65,19 +76,25 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Publishing
           if (sfd.ShowDialog() != DialogResult.OK)
             return;
 
+          Processing.SplashShow("Erzeuge Ausgabe-Datei...");
+
           ZipHelper.Compress(dir.Path, sfd.FileName);
+
+          Processing.SplashClose();
         }
       }
       catch (Exception ex)
       {
         InMemoryErrorConsole.Log(ex);
+        Processing.SplashClose();
       }
     }
 
-    private static void Publishing_AddInfo(CorpusLicenceInfo info, TemporaryDirectory dir)
+    private static void Publishing_AddInfo(CorpusInfo info, TemporaryDirectory dir)
     {
       File.WriteAllText(Path.Combine(dir.Path, "corpus_info.json"), JsonConvert.SerializeObject(info), Encoding.UTF8);
       File.WriteAllText(Path.Combine(dir.Path, "corpus_info.txt"), Publishing_AddInfo_InfoToText(info), Encoding.UTF8);
+      File.WriteAllText(Path.Combine(dir.Path, "corpus_info.cff"), Publishing_AddInfo_InfoToCff(info), Encoding.UTF8);
 
       using (var wc = new WebClient())
       {
@@ -102,7 +119,36 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Publishing
       }
     }
 
-    private static string Publishing_AddInfo_InfoToText(CorpusLicenceInfo info)
+    private static string Publishing_AddInfo_InfoToCff(CorpusInfo info)
+    {
+      var lines = new List<string>();
+      lines.Add("# This corpus was published with CorpusExplorer.de");
+      lines.Add("# Visit http://corpusexplorer.de to publish your corpora today!");
+      lines.Add("");
+      lines.Add("cff -version: 1.2.0");
+      lines.Add($"title: {info.CorpusName}");
+      lines.Add("message: >-");
+      lines.Add("  If you use this corpus, please cite it using the");
+      lines.Add("  metadata from this file.");
+      lines.Add("type: corpus");
+      lines.Add($"authors: {info.LicenceHolder}");
+      lines.Add("identifiers:");
+      lines.Add("  - type: url");
+      lines.Add($"    value: '{info.AdditionalInfoUrl}'");
+      lines.Add("    description: Additional project information");
+      lines.Add("  - type: url");
+      lines.Add($"    value: '{info.LicenceUrl}'");
+      lines.Add("    description: Full licence text");
+      lines.Add($"url: '{info.AdditionalInfoUrl}'");
+      lines.Add($"license: '{info.LicenceName}'");
+      lines.Add($"version: {info.Version}");
+      lines.Add("abstract: >-");
+      lines.Add($"  {info.CorpusDescription.Replace("\r\n", "\r\n  ")}");
+
+      return string.Join(Environment.NewLine, lines);
+    }
+
+    private static string Publishing_AddInfo_InfoToText(CorpusInfo info)
     {
       var lines = new List<string>();
       lines.Add("CORPUS PUBLISHING INFORMATION");
@@ -122,11 +168,13 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Publishing
       return string.Join(Environment.NewLine, lines);
     }
 
-    private static Selection Publishing_randomizer(CorpusLicenceInfo info, Selection selection, TemporaryDirectory dir)
+    private static Selection Publishing_randomizer(CorpusInfo info, Selection selection, TemporaryDirectory dir)
     {
       var form = new CorpusRandomizer();
       if (form.ShowDialog() != DialogResult.OK)
         return null;
+
+      Processing.SplashShow("Text wird randomisiert...");
 
       AbstractCorpusRandomizerStrategy _strategy;
       if (form.RandomizeSentencesAndTokens)
@@ -143,14 +191,18 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Publishing
       Directory.CreateDirectory(subdir);
       _tmp.Save(Path.Combine(subdir, "corpus.cec6"), false);
 
+      Processing.SplashClose();
+
       return _tmp.ToSelection();
     }
 
-    private static bool Publishing_DifferentFormats(CorpusLicenceInfo info, Selection selection, TemporaryDirectory dir)
+    private static bool Publishing_DifferentFormats(CorpusInfo info, Selection selection, TemporaryDirectory dir)
     {
       var form = new CorpusPublisherExport();
       if (form.ShowDialog() != DialogResult.OK)
         return false;
+
+      Processing.SplashShow("Erzeuge gewählte Exportformate...");
 
       _tmp = selection.ToCorpus();
       _tmp.SetCorpusMetadata("[INFO]", JsonConvert.SerializeObject(info));
@@ -168,10 +220,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Publishing
         export.Export(_tmp, Path.Combine(subdir, "corpus" + ext));
       }
 
+      Processing.SplashClose();
+
       return true;
     }
 
-    private static bool Publishing_Crypted(CorpusLicenceInfo info, Selection selection, TemporaryDirectory dir)
+    private static bool Publishing_Crypted(CorpusInfo info, Selection selection, TemporaryDirectory dir)
     {
       _tmp = selection.ToCorpus();
       _tmp.SetCorpusMetadata("[INFO]", info);
@@ -203,7 +257,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Publishing
         var data = corpus.GetCorpusMetadata("[INFO]");
         if (data == null)
           return true;
-        var info = JsonConvert.DeserializeObject<CorpusLicenceInfo>(data.ToString());
+        var info = JsonConvert.DeserializeObject<CorpusInfo>(data.ToString());
         if (info == null)
           return true;
 

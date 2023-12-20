@@ -165,18 +165,14 @@ namespace CorpusExplorer.Sdk.Toolkit.Compatibility
           {
           }
 
-        nlayers.Add(new LayerValueState(layerOld.LayerName, nlayers.Count)
-        {
-          Documents = ndocs,
-          Cache = ndic
-        });
+        nlayers.Add(new LayerValueState(layerOld.LayerName, nlayers.Count, ndic, ndocs));
       }
 
       // FIX CLEAN
       var master = nlayers.FirstOrDefault(x => x.Displayname == "Wort");
       if (master == null) return;
 
-      var fmeta = master.Documents.ToDictionary(guid => guid.Key, guid => nmeta[guid.Key]);
+      var fmeta = master.GetDocuments().ToDictionary(guid => guid.Key, guid => nmeta[guid.Key]);
 
       // STORE
       if (builder == null)

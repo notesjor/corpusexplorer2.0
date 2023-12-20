@@ -8,7 +8,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WordBag.Operator
     private Regex _query;
 
     public override void Initialize(string query)
-      => _query = new Regex(query);
+      => _query = new Regex(query, RegexOptions.Compiled);
 
     public override bool IsMatch(string token)
       => _query.IsMatch(token);

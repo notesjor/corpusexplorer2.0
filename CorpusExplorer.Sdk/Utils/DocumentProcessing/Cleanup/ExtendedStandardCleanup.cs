@@ -12,8 +12,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup
   {
     private Regex[] _regex = new []
     {
-      new Regex(@"\&[a-zA-Z]*\;*"),
-      new Regex(@"\<\s*\>"),
+      new Regex(@"\&[a-zA-Z]*\;*", RegexOptions.Compiled),
+      new Regex(@"\<\s*\>", RegexOptions.Compiled),
     };
 
     public override string DisplayName => Resources.StandardCleanup + "++";

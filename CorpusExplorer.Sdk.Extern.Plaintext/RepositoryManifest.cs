@@ -10,6 +10,7 @@ using CorpusExplorer.Sdk.Extern.Plaintext.KleineAnfrageDe;
 using CorpusExplorer.Sdk.Extern.Plaintext.LeipzigerWortschatz;
 using CorpusExplorer.Sdk.Extern.Plaintext.RawMailMsg;
 using CorpusExplorer.Sdk.Extern.Plaintext.Redewiedergabe;
+using CorpusExplorer.Sdk.Extern.Plaintext.Tsv;
 using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
@@ -47,8 +48,10 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
           "Projekt: http://www.redewiedergabe.de/ (metadata.tsv)|metadata.tsv", new ImporterRedewiedergabe()
         },
         {
-          "Wortschatz Leipzig (*-sentences.txt)|*-sentences.txt",
-          new ImporterLeipzigerWortschatz()
+          "Wortschatz Leipzig (*-sentences.txt)|*-sentences.txt", new ImporterLeipzigerWortschatz()
+        },
+        {
+          "Universelles TSV-Korpus (*.tsv)|*.tsv", new ImporterTsv()
         }
       };
 
@@ -76,7 +79,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
           new RawMsgMsgScraper()
         },
         {
-          "TSV-Datei mit Überschriften (*.tsv;)|*.tsv;",
+          "TSV-Datei mit Überschriften (*.tsv; *.tab)|*.tsv;*.tab",
           new TsvScraper()
         },
         {

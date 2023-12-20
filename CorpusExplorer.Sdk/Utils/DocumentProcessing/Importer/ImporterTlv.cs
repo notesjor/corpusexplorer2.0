@@ -52,14 +52,16 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
       return list.ToArray();
     }
 
+    private readonly string _mark = "<-!|!->";
+    private readonly string[] _markSplitter = new[] { "<-!|!->" };
+
     private KeyValuePair<string, object> DeserializeMeta(string outerXml)
     {
-      const string mark = "<-!|!->";
       outerXml = outerXml.Replace("<entry category=\"", string.Empty)
-                         .Replace("\" type=\"", mark)
-                         .Replace("\">", mark)
+                         .Replace("\" type=\"", _mark)
+                         .Replace("\">", _mark)
                          .Replace("</entry>", string.Empty);
-      var split = outerXml.Split(new[] { mark }, StringSplitOptions.RemoveEmptyEntries);
+      var split = outerXml.Split(_markSplitter, StringSplitOptions.RemoveEmptyEntries);
       if (split.Length != 3)
         return new KeyValuePair<string, object>("ERROR", null);
 
@@ -144,7 +146,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
                                                                                                         .Parse(y
                                                                                                                 .GetAttribute("v")));
 
-        layerstate.Add(id, new LayerValueState(name, id) { Cache = dict });
+        layerstate.Add(id, new LayerValueState(name, id, dict));
       }
 
       #endregion
@@ -155,10 +157,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
                                           x => x.Key,
                                           x => new KeyValuePair<string, Dictionary<int, string>>(
                                                                                                  x.Value.Displayname,
-                                                                                                 x.Value.Cache
+                                                                                                 x.Value.GetCache()
                                                                                                   .ToDictionary(y => y.Value,
-                                                                                                                y => y
-                                                                                                                 .Key)));
+                                                                                                                y => y.Key)));
 
       #endregion
 

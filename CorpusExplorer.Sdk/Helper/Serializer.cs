@@ -52,11 +52,15 @@ namespace CorpusExplorer.Sdk.Helper
 
 #if UNIVERSAL
 #else
+
+#if ULTRA
+#else
         // Format CEC2a-CEC4a
         obj = DeserializeNetDataContractCompressed(path) ?? // CEC2a-CEC4a compress = true
               DeserializeNetDataContractUncompressed(path); // CEC2a-CEC4a compress = false
         if (obj != null)
           return obj as T;
+#endif
 #endif
 
         // Format CEC2b-CEC4b / PROJ5
@@ -92,6 +96,9 @@ namespace CorpusExplorer.Sdk.Helper
     }
 
 #if UNIVERSAL
+#else
+
+#if ULTRA
 #else
     public static T InMemoryDeserialize<T>(byte[] buffer)
     {
@@ -136,6 +143,7 @@ namespace CorpusExplorer.Sdk.Helper
         return null;
       }
     }
+#endif
 #endif
 
     /// <summary>
@@ -384,6 +392,9 @@ namespace CorpusExplorer.Sdk.Helper
 
     #if UNIVERSAL
     #else
+
+    #if ULTRA
+    #else
     private static object DeserializeNetDataContractCompressed(string path)
     {
       try
@@ -422,6 +433,7 @@ namespace CorpusExplorer.Sdk.Helper
         return null;
       }
     }
+#endif
 #endif
 
     public static object DeserializeSharpSerializer(string path)

@@ -26,6 +26,8 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// </summary>
     [NonSerialized] private Dictionary<string, int> _d2 = new Dictionary<string, int>();
 
+    private object _lock = new object();
+
     /// <summary>
     ///   Initializes a new instance of the <see cref="CeDictionary" /> class.
     /// </summary>
@@ -34,7 +36,7 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// </param>
     public CeDictionary(IEnumerable<string> dic)
     {
-      _d2 = new Dictionary<string, int> {{string.Empty, -1}};
+      _d2 = new Dictionary<string, int> { { string.Empty, -1 } };
       foreach (var x in dic)
         _d2.Add(x, _d2.Count);
 
@@ -62,6 +64,16 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// <param name="dic">
     ///   The dic.
     /// </param>
+    public CeDictionary(IEnumerable<KeyValuePair<string, int>> dic) : this(dic.ToDictionary(x => x.Key, x => x.Value))
+    {
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="CeDictionary" /> class.
+    /// </summary>
+    /// <param name="dic">
+    ///   The dic.
+    /// </param>
     public CeDictionary(Dictionary<int, string> dic)
     {
       if (!dic.ContainsKey(-1))
@@ -81,11 +93,22 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// <summary>
     ///   Gets the count.
     /// </summary>
-    public int Count => _d1.Count;
+    public int Count
+    {
+      get
+      {
+        lock (_lock)
+          return _d1.Count;
+      }
+    }
 
     public IEnumerable<int> Indices
     {
-      get { return _d1.Select(x => x.Key); }
+      get
+      {
+        lock (_lock)
+          return _d1.Select(x => x.Key);
+      }
     }
 
     /// <summary>
@@ -101,14 +124,16 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     {
       get
       {
-        try
-        {
-          return string.IsNullOrEmpty(label) ? -1 : _d2.ContainsKey(label) ? _d2[label] : -1;
-        }
-        catch
-        {
-          return -1;
-        }
+        lock (_lock)
+          try
+          {
+            lock (_lock)
+              return string.IsNullOrEmpty(label) ? -1 : _d2.ContainsKey(label) ? _d2[label] : -1;
+          }
+          catch
+          {
+            return -1;
+          }
       }
     }
 
@@ -125,14 +150,15 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     {
       get
       {
-        try
-        {
-          return index == -1 ? string.Empty : _d1.ContainsKey(index) ? _d1[index] : string.Empty;
-        }
-        catch
-        {
-          return string.Empty;
-        }
+        lock (_lock)
+          try
+          {
+              return index == -1 ? string.Empty : _d1.ContainsKey(index) ? _d1[index] : string.Empty;
+          }
+          catch
+          {
+            return string.Empty;
+          }
       }
     }
 
@@ -141,7 +167,11 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// </summary>
     public IEnumerable<string> Values
     {
-      get { return _d1.Select(x => x.Value); }
+      get
+      {
+        lock (_lock)
+          return _d1.Select(x => x.Value);
+      }
     }
 
     /// <summary>
@@ -152,7 +182,8 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// </returns>
     IEnumerator IEnumerable.GetEnumerator()
     {
-      return GetEnumerator();
+      lock (_lock)
+        return GetEnumerator();
     }
 
     /// <summary>
@@ -163,7 +194,8 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// </returns>
     public IEnumerator<KeyValuePair<int, string>> GetEnumerator()
     {
-      return _d1.GetEnumerator();
+      lock (_lock)
+        return _d1.GetEnumerator();
     }
 
     /// <summary>
@@ -174,34 +206,41 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// </param>
     public int Add(string value)
     {
-      if (_d2.ContainsKey(value))
-        return _d2[value];
+      lock (_lock)
+      {
+        if (_d2.ContainsKey(value))
+          return _d2[value];
 
-      var idx = _d1.Count;
-      while (_d1.ContainsKey(idx))
-        idx++;
+        var idx = _d1.Count;
+        while (_d1.ContainsKey(idx))
+          idx++;
 
-      _d1.Add(idx, value);
-      _d2.Add(value, idx);
+        _d1.Add(idx, value);
+        _d2.Add(value, idx);
 
-      return idx;
+        return idx;
+      }
     }
 
     public void AddForcedKeyValuePair(KeyValuePair<string, int> value)
     {
-      if (_d2.ContainsKey(value.Key))
-        return;
+      lock (_lock)
+      {
+        if (_d2.ContainsKey(value.Key))
+          return;
 
-      if (_d1.ContainsKey(value.Value))
-        return;
+        if (_d1.ContainsKey(value.Value))
+          return;
 
-      _d1.Add(value.Value, value.Key);
-      _d2.Add(value.Key, value.Value);
+        _d1.Add(value.Value, value.Key);
+        _d2.Add(value.Key, value.Value);
+      }
     }
 
     public CeDictionary Clone()
     {
-      return new CeDictionary(_d2.ToArray().ToDictionary(x => x.Key, x => x.Value));
+      lock (_lock)
+        return new CeDictionary(_d2.ToArray().ToDictionary(x => x.Key, x => x.Value));
     }
 
     /// <summary>
@@ -215,7 +254,8 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// </returns>
     public bool Contains(string value)
     {
-      return _d2.ContainsKey(value);
+      lock (_lock)
+        return _d2.ContainsKey(value);
     }
 
     /// <summary>
@@ -231,53 +271,61 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// </exception>
     public void InternRedefineValue(string oldValue, string newValue)
     {
-      if (!_d2.ContainsKey(oldValue))
-        throw new KeyNotFoundException($"Parameter oldValue ({oldValue}) is not a valid key");
+      lock (_lock)
+      {
+        if (!_d2.ContainsKey(oldValue))
+          throw new KeyNotFoundException($"Parameter oldValue ({oldValue}) is not a valid key");
 
-      if (_d2.ContainsKey(newValue))
-        throw new KeyNotFoundException($"Parameter newValue ({newValue}) is already present in the CeDictionary");
+        if (_d2.ContainsKey(newValue))
+          throw new KeyNotFoundException($"Parameter newValue ({newValue}) is already present in the CeDictionary");
 
-      var oidx = _d2[oldValue];
-      _d1.Remove(oidx);
-      _d2.Remove(oldValue);
+        var oidx = _d2[oldValue];
+        _d1.Remove(oidx);
+        _d2.Remove(oldValue);
 
-      _d1.Add(oidx, newValue);
-      _d2.Add(newValue, oidx);
+        _d1.Add(oidx, newValue);
+        _d2.Add(newValue, oidx);
+      }
     }
 
     public Dictionary<int, int> Merge(Dictionary<string, int> newValues)
     {
-      var res = new Dictionary<int, int>();
-      foreach (var newValue in newValues)
+      lock (_lock)
       {
-        if (!_d2.ContainsKey(newValue.Key))
+        var res = new Dictionary<int, int>();
+        foreach (var newValue in newValues)
         {
-          var idx = _d1.Count;
-          _d1.Add(idx, newValue.Key);
-          _d2.Add(newValue.Key, idx);
+          if (!_d2.ContainsKey(newValue.Key))
+          {
+            var idx = _d1.Count;
+            _d1.Add(idx, newValue.Key);
+            _d2.Add(newValue.Key, idx);
+          }
+
+          res.Add(newValue.Value, _d2[newValue.Key]);
         }
 
-        res.Add(newValue.Value, _d2[newValue.Key]);
+        return res;
       }
-
-      return res;
     }
 
     public IEnumerable<KeyValuePair<int, string>> ReciveRawIndexToValue()
     {
-      return _d1;
+      lock (_lock)
+        return _d1;
     }
 
     public IEnumerable<KeyValuePair<string, int>> ReciveRawValueToIndex()
     {
-      return _d2;
+      lock (_lock)
+        return _d2;
     }
 
     public void RefreshDictionaries()
     {
-      if (_d2       == null ||
-          _d2.Count == 0)
-        OnDeserialized(new StreamingContext());
+      lock (_lock)
+        if (_d2 == null || _d2.Count == 0)
+          OnDeserialized(new StreamingContext());
     }
 
     /// <summary>
@@ -286,13 +334,16 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// <param name="layerValue">Layerwert-Bezeichnung</param>
     public void Remove(string layerValue)
     {
-      if (!_d2.ContainsKey(layerValue))
-        return;
+      lock (_lock)
+      {
+        if (!_d2.ContainsKey(layerValue))
+          return;
 
-      var idx = _d2[layerValue];
+        var idx = _d2[layerValue];
 
-      _d2.Remove(layerValue);
-      _d1.Remove(idx);
+        _d2.Remove(layerValue);
+        _d1.Remove(idx);
+      }
     }
 
     /// <summary>
@@ -302,28 +353,32 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
     /// <param name="layerValueNew">Neue Layerwert-Bezeichnung</param>
     public void RenameValue(string layerValueOld, string layerValueNew)
     {
-      if (!_d2.ContainsKey(layerValueOld))
-        return;
+      lock (_lock)
+      {
+        if (!_d2.ContainsKey(layerValueOld))
+          return;
 
-      var idx = _d2[layerValueOld];
-      _d2.Remove(layerValueOld);
-      _d2.Add(layerValueNew, idx);
-      _d1[idx] = layerValueNew;
+        var idx = _d2[layerValueOld];
+        _d2.Remove(layerValueOld);
+        _d2.Add(layerValueNew, idx);
+        _d1[idx] = layerValueNew;
+      }
     }
 
     [OnDeserialized]
     private void OnDeserialized(StreamingContext context)
     {
-      try
-      {
-        _d2 = _d1.ToDictionary(x => x.Value, x => x.Key);
-      }
-      catch // Fallback
-      {
-        _d2 = new Dictionary<string, int>();
-        foreach (var entry in _d1.Where(entry => !_d2.ContainsKey(entry.Value)))
-          _d2.Add(entry.Value, entry.Key);
-      }
+      lock (_lock)
+        try
+        {
+          _d2 = _d1.ToDictionary(x => x.Value, x => x.Key);
+        }
+        catch // Fallback
+        {
+          _d2 = new Dictionary<string, int>();
+          foreach (var entry in _d1.Where(entry => !_d2.ContainsKey(entry.Value)))
+            _d2.Add(entry.Value, entry.Key);
+        }
     }
 
     public void Dispose()
@@ -333,8 +388,11 @@ namespace CorpusExplorer.Sdk.Model.CorpusExplorer
 
     internal void Clear()
     {
-      _d1.Clear();
-      _d2.Clear();
+      lock (_lock)
+      {
+        _d1.Clear();
+        _d2.Clear();
+      }
     }
   }
 }

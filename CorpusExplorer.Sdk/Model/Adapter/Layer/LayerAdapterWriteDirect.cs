@@ -90,8 +90,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
       var res = new LayerAdapterWriteDirect
       {
         _guid = Guid.NewGuid(),
-        _documents = layer.Documents,
-        _dictionary = layer.Cache,
+        _documents = layer.GetDocuments().ToDictionary(x => x.Key, x => x.Value),
+        _dictionary = layer.GetCache().ToDictionary(x => x.Key, x => x.Value),
         Displayname = layer.Displayname
       };
       res.RefreshDictionaries();
@@ -140,7 +140,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
             break;
 
           var doc = DocumentSerializerHelper.Deserialize(fs);
-          if(doc == null)
+          if (doc == null)
             throw new FormatException();
           res._documents.Add(guid, doc);
         }
@@ -348,7 +348,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
 
     protected override IEnumerable<string> ValuesByRegex(string regEx)
     {
-      var rx = new Regex(regEx);
+      var rx = new Regex(regEx, RegexOptions.Compiled);
       return from x in _dictionary where rx.IsMatch(x.Key) select x.Key;
     }
 

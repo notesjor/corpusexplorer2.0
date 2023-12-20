@@ -6,12 +6,12 @@ using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel.Composition.Primitives;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Blocks.Abstract;
+using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus;
@@ -233,7 +233,7 @@ namespace CorpusExplorer.Sdk.Model
     ///   Ein <see cref="T:System.Collections.Generic.IEnumerator`1" />, der zum Durchlaufen der Auflistung verwendet werden
     ///   kann.
     /// </returns>
-    public IEnumerator<KeyValuePair<Guid, HashSet<Guid>>> GetEnumerator() => _selection.GetEnumerator();
+    public IEnumerator<KeyValuePair<Guid, HashSet<Guid>>> GetEnumerator() => _selection?.GetEnumerator();
 
     /// <summary>
     ///   The contains corpus.
@@ -320,28 +320,50 @@ namespace CorpusExplorer.Sdk.Model
     /// </summary>
     [XmlIgnore]
     public int CountDocuments
-      => _selection.Sum(pair => pair.Value.Count);
+    {
+      get
+      {
+        try
+        {
+          return _selection.Sum(pair => pair.Value.Count);
+        }
+        catch (Exception ex)
+        {
+          InMemoryErrorConsole.Log(ex);
+          return 0;
+        }
+      }
+    }
 
     [XmlIgnore]
     public long CountSentences
     {
       get
       {
-        if (_countSentences > -1)
+        try
+        {
+          if (_countSentences > -1)
+            return _countSentences;
+
+          _countSentences = 0;
+          foreach (var csel in _selection)
+          {
+            var corpus = GetCorpus(csel.Key);
+            if (corpus == null)
+              continue;
+            foreach (var dsel in csel.Value)
+              _countSentences += corpus.GetDocumentLengthInSentences(dsel);
+          }
+
+          Project.GetDocumentLengthInSentences(_selection);
           return _countSentences;
 
-        _countSentences = 0;
-        foreach (var csel in _selection)
-        {
-          var corpus = GetCorpus(csel.Key);
-          if (corpus == null)
-            continue;
-          foreach (var dsel in csel.Value)
-            _countSentences += corpus.GetDocumentLengthInSentences(dsel);
         }
-
-        Project.GetDocumentLengthInSentences(_selection);
-        return _countSentences;
+        catch (Exception ex)
+        {
+          InMemoryErrorConsole.Log(ex);
+          return 0;
+        }
       }
     }
 
@@ -350,20 +372,28 @@ namespace CorpusExplorer.Sdk.Model
     {
       get
       {
-        if (_countToken > -1)
-          return _countToken;
-
-        _countToken = 0;
-        foreach (var csel in _selection)
+        try
         {
-          var corpus = GetCorpus(csel.Key);
-          if (corpus == null)
-            continue;
-          foreach (var dsel in csel.Value)
-            _countToken += corpus.GetDocumentLengthInWords(dsel);
-        }
+          if (_countToken > -1)
+            return _countToken;
 
-        return _countToken;
+          _countToken = 0;
+          foreach (var csel in _selection)
+          {
+            var corpus = GetCorpus(csel.Key);
+            if (corpus == null)
+              continue;
+            foreach (var dsel in csel.Value)
+              _countToken += corpus.GetDocumentLengthInWords(dsel);
+          }
+
+          return _countToken;
+        }
+        catch (Exception ex)
+        {
+          InMemoryErrorConsole.Log(ex);
+          return 0;
+        }
       }
     }
 

@@ -12,7 +12,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Tlv
   public class TlvBuilder
   {
     private readonly List<TlvEntry> _entries = new List<TlvEntry>();
-    private readonly Regex _regex = new Regex(@"<[^>]*>");
+    private readonly Regex _regex = new Regex(@"<[^>]*>", RegexOptions.Compiled);
     private readonly string _text;
 
     public TlvBuilder(string text)

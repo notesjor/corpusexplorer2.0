@@ -12,11 +12,11 @@ using CorpusExplorer.Sdk.Model.Extension;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 
-namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Tlv
+namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
 {
   public class ExporterTlv : AbstractExporter
   {
-    private readonly Regex _regex = new Regex(@"<[^>]*>");
+    private readonly Regex _regex = new Regex(@"<[^>]*>", RegexOptions.Compiled);
 
     public override void Export(IHydra hydra, string path)
     {

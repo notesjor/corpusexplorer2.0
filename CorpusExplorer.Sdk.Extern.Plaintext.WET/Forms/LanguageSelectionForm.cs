@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 
 namespace CorpusExplorer.Sdk.Extern.Plaintext.WET.Forms
@@ -59,8 +58,11 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET.Forms
 
     private void LanguageSelectionForm_Load(object sender, EventArgs e)
     {
-      _list = FileIO.ReadLines(Configuration.GetDependencyPath("NTextCat/ntextcat.list"),
-        stringSplitOptions: StringSplitOptions.RemoveEmptyEntries).ToList();
+      try
+      {
+        _list = System.IO.File.ReadLines(Configuration.GetDependencyPath("NTextCat/ntextcat.list")).ToList();
+      }
+      catch { }
       _list.Add("Alle Sprachen / Kein Filter");
       combo_languages.DataSource = _list;
     }

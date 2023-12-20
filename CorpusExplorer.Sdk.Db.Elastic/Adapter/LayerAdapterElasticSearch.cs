@@ -146,7 +146,7 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
         if (layerOld == null)
           break;
 
-        layerOld.Dictionary = new CeDictionary(layer.Cache);
+        layerOld.Dictionary = new CeDictionary(layer.GetCache());
         context.Update(layerOld);
 
         return Create(context, layerOld);
@@ -157,16 +157,16 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
         {
           LayerId = Guid.NewGuid(),
           CorpusId = corpus.CorpusGuid,
-          Dictionary = new CeDictionary(layer.Cache),
+          Dictionary = new CeDictionary(layer.GetCache()),
           Displayname = layer.Displayname,
-          LayerDocuments = new HashSet<Guid>(layer.Documents.Select(x => x.Key))
+          LayerDocuments = new HashSet<Guid>(layer.GetDocuments().Select(x => x.Key))
         };
       context.Add(layerSet);
 
       corpusSet.Layers.Add(layerSet.LayerId, layerSet.Displayname);
       context.Update(corpusSet);
 
-      foreach (var d in layer.Documents)
+      foreach (var d in layer.GetDocuments())
       {
         var doc = context.GetDocument(d.Key);
         if (doc == null)
@@ -390,7 +390,7 @@ namespace CorpusExplorer.Sdk.Db.Elastic.Adapter
       var res = new HashSet<string>();
       var @lock = new object();
 
-      var regex = new Regex(regEx);
+      var regex = new Regex(regEx, RegexOptions.Compiled);
       Parallel.ForEach(
                        _values,
                        Configuration.ParallelOptions,

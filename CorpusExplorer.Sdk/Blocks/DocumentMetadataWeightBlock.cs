@@ -342,12 +342,19 @@ namespace CorpusExplorer.Sdk.Blocks
       DocumentSize = new Dictionary<Guid, int[]>();
       _lockDocument = new object();
 
-      var dfdBlock = Selection.CreateBlock<DocumentFrequencyDictionaryBlock>();
-      dfdBlock.LayerDisplayname = LayerDisplayname;
-      dfdBlock.Calculate();
+      try
+      {
+        var dfdBlock = Selection.CreateBlock<DocumentFrequencyDictionaryBlock>();
+        dfdBlock.LayerDisplayname = LayerDisplayname;
+        dfdBlock.Calculate();
 
-      _token = dfdBlock.DocumentSizeInToken;
-      _types = dfdBlock.DocumentDictionaries.ToDictionary(x => x.Key, x => x.Value.Count);
+        _token = dfdBlock.DocumentSizeInToken;
+        _types = dfdBlock.DocumentDictionaries.ToDictionary(x => x.Key, x => x.Value.Count);
+      }
+      catch
+      {
+        // ignore
+      }
     }
   }
 }

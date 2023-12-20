@@ -73,7 +73,7 @@ namespace CorpusExplorer.Sdk.Helper
         res.Columns.Add(c.ColumnName, c.DataType);
 
       res.BeginLoadData();
-      var regex = new Regex(regularExpression);
+      var regex = new Regex(regularExpression, RegexOptions.Compiled);
 
       foreach (DataRow row in dataTable.Rows)
       {

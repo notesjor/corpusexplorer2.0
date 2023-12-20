@@ -9,7 +9,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model
   {
     private readonly int _valueIndex;
 
-    public LayerValueState(string displayname, int valueIndex) : base(displayname)
+    public LayerValueState(string displayname, int valueIndex, Dictionary<string, int> cache = null, Dictionary<Guid, int[][]> documents = null) : base(displayname, cache, documents)
     {
       _valueIndex = valueIndex;
     }
@@ -25,10 +25,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model
     /// <returns></returns>
     public bool ChangeCompleteDocument(Guid documentGuid, string[][] documentTokens, bool applyEmptyValues = true)
     {
-      if (!Documents.ContainsKey(documentGuid))
+      if (!DocumentExists(documentGuid))
         return false;
 
-      var old = Documents[documentGuid];
+      var old = DocumentGet(documentGuid);
       if (old.Length != documentTokens.Length)
         return false;
       if (old.Where((t, i) => t.Length != documentTokens[i].Length).Any())
@@ -41,11 +41,11 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model
       }
 
       // Wenn gewünscht ist, dass "" als keine Änderung zu interpretieren ist.
-      if (!Documents.ContainsKey(documentGuid))
+      if (!DocumentExists(documentGuid))
         return false;
-      var oldDoc = Documents[documentGuid];
+      var oldDoc = DocumentGet(documentGuid);
       ChangeCompleteDocument(documentGuid, ConvertToLayer(documentTokens));
-      var newDoc = Documents[documentGuid];
+      var newDoc = DocumentGet(documentGuid);
 
       var idx = RequestIndex("");
       for (var s = 0; s < oldDoc.Length; s++)
@@ -53,7 +53,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model
           if (newDoc[s][w] != idx)
             oldDoc[s][w] = newDoc[s][w]; // Stelle Werte wieder her.
 
-      Documents[documentGuid] = oldDoc;
+      DocumentAdd(documentGuid, oldDoc);
       return true;
     }
 
@@ -108,14 +108,14 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model
 
     public void AddCompleteDocument(Guid documentGuid, int[][] documentTokens)
     {
-      if (!Documents.ContainsKey(documentGuid))
-        Documents.Add(documentGuid, documentTokens);
+      if (!DocumentExists(documentGuid))
+        DocumentAdd(documentGuid, documentTokens);
     }
 
     private void ChangeCompleteDocument(Guid documentGuid, int[][] documentTokens)
     {
-      if (Documents.ContainsKey(documentGuid))
-        Documents[documentGuid] = documentTokens;
-    }
+      if (DocumentExists(documentGuid))
+        DocumentAdd(documentGuid, documentTokens);
+    }    
   }
 }

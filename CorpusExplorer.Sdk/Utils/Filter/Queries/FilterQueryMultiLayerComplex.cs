@@ -150,5 +150,15 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           session.PositionRestore();
       }
     }
+
+    public void QuerySetDirect(IEnumerable<KeyValuePair<string, HashSet<string>>> query)
+    {
+      this._query = query.ToArray();
+    }
+
+    public KeyValuePair<string, HashSet<string>>[] QueryGetDirect()
+    {
+      return this._query;
+    }
   }
 }

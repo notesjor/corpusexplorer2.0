@@ -28,6 +28,7 @@ using CorpusExplorer.Sdk.Extern.Xml.Folker.Fln;
 using CorpusExplorer.Sdk.Extern.Xml.Gutenberg;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.I5Xml;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP;
+using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.LoadStrategy;
 using CorpusExplorer.Sdk.Extern.Xml.LexisNexis;
 using CorpusExplorer.Sdk.Extern.Xml.Opus;
 using CorpusExplorer.Sdk.Extern.Xml.Perseus;
@@ -106,8 +107,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"TXM TEI-XML (*.xml)|*.xml", new ImporterTxm() },
         {"TiGER-XML (*.xml)|*.xml", new ImporterTiger() },
         {"FOLKER / OrthoNormal (*.fln)|*.fln", new ImporterFolkerFln() },
-        {"IDS KorAP (*.zip)|*.zip", new ImporterKorap()},
-        {"IDS KorAP ab 2021 (*.zip)|*.zip", new ImporterKorap2021()},
+        {"IDS KorAP (*.zip)|*.zip", new ImporterKorap { LoadStrategy = KorapLoadStrategyZipFile.AddonInitialize() } },
+        {"IDS KorAP ab 2021 (*.zip)|*.zip", new ImporterKorap2021{ LoadStrategy = KorapLoadStrategyZipFile.AddonInitialize() } },
         {"XCES-XML (https://opus.nlpl.eu/) (*.xml)|*.xml", new ImporterOpusXces()}
       };
 
@@ -261,7 +262,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {
           "Talkbank XML (*.xml)|*.xml",
           new TalkbankScraper()
-        }
+        },
       };
 
     /// <summary>

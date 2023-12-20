@@ -11,19 +11,19 @@ namespace CorpusExplorer.Terminal.Universal
 {
   public static partial class Program
   {
-    private static void GetLogo(HttpContext obj)
+    private static Dictionary<string, string> _translation = new Dictionary<string, string>();
+
+    private static void SetTranslation(HttpContext obj)
     {
-      obj.Response.SendFile(Path.Combine(PathHelper.PathBranding, "logo.svg"), "image/svg+xml");
+      _translation = obj.Request.PostData<Dictionary<string, string>>();
+      obj.Response.Send(System.Net.HttpStatusCode.OK);
     }
 
-    private static void GetWelcome(HttpContext obj)
+    private static string Translate(string key)
     {
-      obj.Response.SendFile(Path.Combine(PathHelper.PathBranding, "welcome.html"), "text/html");
-    }
-
-    private static void GetLocalize(HttpContext obj)
-    {
-      obj.Response.SendFile(Path.Combine(PathHelper.PathLocalize, "data.json"), "application/json");
+      if(_translation.ContainsKey(key))
+        return _translation[key];
+      return key;
     }
   }
 }

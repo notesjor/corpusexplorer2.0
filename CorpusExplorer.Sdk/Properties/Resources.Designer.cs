@@ -19,10 +19,10 @@ namespace CorpusExplorer.Sdk.Properties {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace CorpusExplorer.Sdk.Properties {
         ///   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CorpusExplorer.Sdk.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace CorpusExplorer.Sdk.Properties {
         ///   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Alle Dokumente von ähnelt.
         /// </summary>
-        internal static string AllDocumentsFrom {
+        public static string AllDocumentsFrom {
             get {
                 return ResourceManager.GetString("AllDocumentsFrom", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Alle Werte in einem Dokument ({0}). ähnelt.
         /// </summary>
-        internal static string AllValues {
+        public static string AllValues {
             get {
                 return ResourceManager.GetString("AllValues", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Alle Werte in einem Satz ({0}). ähnelt.
         /// </summary>
-        internal static string AllValuesInOneSentence {
+        public static string AllValuesInOneSentence {
             get {
                 return ResourceManager.GetString("AllValuesInOneSentence", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Alle Werte ({0}) mit einem Abstand von {1} Sätzen. ähnelt.
         /// </summary>
-        internal static string AllValuesWithSentenceSpace {
+        public static string AllValuesWithSentenceSpace {
             get {
                 return ResourceManager.GetString("AllValuesWithSentenceSpace", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Alle Werte ({0}) mit einem Abstand von {1} Worten. ähnelt.
         /// </summary>
-        internal static string AlLValuesWithWordSpace {
+        public static string AlLValuesWithWordSpace {
             get {
                 return ResourceManager.GetString("AlLValuesWithWordSpace", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Kategorie ähnelt.
         /// </summary>
-        internal static string Category {
+        public static string Category {
             get {
                 return ResourceManager.GetString("Category", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die categoryA ähnelt.
         /// </summary>
-        internal static string CategoryA {
+        public static string CategoryA {
             get {
                 return ResourceManager.GetString("CategoryA", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die categoryB ähnelt.
         /// </summary>
-        internal static string CategoryB {
+        public static string CategoryB {
             get {
                 return ResourceManager.GetString("CategoryB", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Chi-Quadrat-Test (CQT) ähnelt.
         /// </summary>
-        internal static string ChiQuadratTestCQT {
+        public static string ChiQuadratTestCQT {
             get {
                 return ResourceManager.GetString("ChiQuadratTestCQT", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Komplexität ähnelt.
         /// </summary>
-        internal static string Complexity {
+        public static string Complexity {
             get {
                 return ResourceManager.GetString("Complexity", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die If the value of sentenceStopIndex or wordStopIndex is greater than -1, then you must also set the other value. ähnelt.
         /// </summary>
-        internal static string ConceptRangeException {
+        public static string ConceptRangeException {
             get {
                 return ResourceManager.GetString("ConceptRangeException", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Kookkurrenz ähnelt.
         /// </summary>
-        internal static string Cooccurrence {
+        public static string Cooccurrence {
             get {
                 return ResourceManager.GetString("Cooccurrence", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Extreme Bereinigung für Korpora mit großer Wertvarianz ähnelt.
         /// </summary>
-        internal static string CorpusCleanup {
+        public static string CorpusCleanup {
             get {
                 return ResourceManager.GetString("CorpusCleanup", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Korpusverteilung ähnelt.
         /// </summary>
-        internal static string CorpusDistribution {
+        public static string CorpusDistribution {
             get {
                 return ResourceManager.GetString("CorpusDistribution", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Erstellt ähnelt.
         /// </summary>
-        internal static string Created {
+        public static string Created {
             get {
                 return ResourceManager.GetString("Created", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Kreuz-Frequenz ähnelt.
         /// </summary>
-        internal static string CrossFrequency {
+        public static string CrossFrequency {
             get {
                 return ResourceManager.GetString("CrossFrequency", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die yyyy-MM-dd HH-mm ähnelt.
         /// </summary>
-        internal static string DateTimeFormat_Long {
+        public static string DateTimeFormat_Long {
             get {
                 return ResourceManager.GetString("DateTimeFormat_Long", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die yy-MMM-dd HH:mm:ss ähnelt.
         /// </summary>
-        internal static string DateTimeFormat_Short {
+        public static string DateTimeFormat_Short {
             get {
                 return ResourceManager.GetString("DateTimeFormat_Short", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Wortschatzkomplexität ähnelt.
         /// </summary>
-        internal static string DictionaryComplexity {
+        public static string DictionaryComplexity {
             get {
                 return ResourceManager.GetString("DictionaryComplexity", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Source directory does not exist or could not be found: ähnelt.
         /// </summary>
-        internal static string DirectoryNotFound {
+        public static string DirectoryNotFound {
             get {
                 return ResourceManager.GetString("DirectoryNotFound", resourceCulture);
             }
@@ -243,7 +243,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Disambiguierung ähnelt.
         /// </summary>
-        internal static string Disambigution {
+        public static string Disambigution {
             get {
                 return ResourceManager.GetString("Disambigution", resourceCulture);
             }
@@ -252,7 +252,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Verteilung in allen Sätzen ähnelt.
         /// </summary>
-        internal static string DistributionOverSentences {
+        public static string DistributionOverSentences {
             get {
                 return ResourceManager.GetString("DistributionOverSentences", resourceCulture);
             }
@@ -261,7 +261,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dokument ähnelt.
         /// </summary>
-        internal static string Document {
+        public static string Document {
             get {
                 return ResourceManager.GetString("Document", resourceCulture);
             }
@@ -270,7 +270,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dokumenteninhalt ähnelt.
         /// </summary>
-        internal static string DocumentContent {
+        public static string DocumentContent {
             get {
                 return ResourceManager.GetString("DocumentContent", resourceCulture);
             }
@@ -279,7 +279,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Verteilung in allen Dokumenten ähnelt.
         /// </summary>
-        internal static string DocumentDistribution {
+        public static string DocumentDistribution {
             get {
                 return ResourceManager.GetString("DocumentDistribution", resourceCulture);
             }
@@ -288,7 +288,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dokument-Metadaten ähnelt.
         /// </summary>
-        internal static string DocumentMeta {
+        public static string DocumentMeta {
             get {
                 return ResourceManager.GetString("DocumentMeta", resourceCulture);
             }
@@ -297,7 +297,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dokumente ähnelt.
         /// </summary>
-        internal static string Documents {
+        public static string Documents {
             get {
                 return ResourceManager.GetString("Documents", resourceCulture);
             }
@@ -306,7 +306,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dokumentenähnlichkeit ähnelt.
         /// </summary>
-        internal static string DocumentSimilarity {
+        public static string DocumentSimilarity {
             get {
                 return ResourceManager.GetString("DocumentSimilarity", resourceCulture);
             }
@@ -315,7 +315,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dokumentengröße ähnelt.
         /// </summary>
-        internal static string DocumentSize {
+        public static string DocumentSize {
             get {
                 return ResourceManager.GetString("DocumentSize", resourceCulture);
             }
@@ -324,7 +324,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dokumente (1) ähnelt.
         /// </summary>
-        internal static string Dokumente1 {
+        public static string Dokumente1 {
             get {
                 return ResourceManager.GetString("Dokumente1", resourceCulture);
             }
@@ -333,7 +333,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dokumente (2) ähnelt.
         /// </summary>
-        internal static string Dokumente2 {
+        public static string Dokumente2 {
             get {
                 return ResourceManager.GetString("Dokumente2", resourceCulture);
             }
@@ -342,7 +342,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dokumente D(1, 2) ähnelt.
         /// </summary>
-        internal static string DokumenteD12 {
+        public static string DokumenteD12 {
             get {
                 return ResourceManager.GetString("DokumenteD12", resourceCulture);
             }
@@ -351,7 +351,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dokument (GUID) ähnelt.
         /// </summary>
-        internal static string DokumentGUID {
+        public static string DokumentGUID {
             get {
                 return ResourceManager.GetString("DokumentGUID", resourceCulture);
             }
@@ -360,7 +360,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dokument-Metadaten {0} = {1} ähnelt.
         /// </summary>
-        internal static string DokumentMetadaten01 {
+        public static string DokumentMetadaten01 {
             get {
                 return ResourceManager.GetString("DokumentMetadaten01", resourceCulture);
             }
@@ -369,7 +369,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dokument-Metadaten (exakt) {0} = {1} ähnelt.
         /// </summary>
-        internal static string DokumentMetadatenExakt01 {
+        public static string DokumentMetadatenExakt01 {
             get {
                 return ResourceManager.GetString("DokumentMetadatenExakt01", resourceCulture);
             }
@@ -378,7 +378,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die TSV-Datei (*.tsv)|*.tsv ähnelt.
         /// </summary>
-        internal static string FilterTSV {
+        public static string FilterTSV {
             get {
                 return ResourceManager.GetString("FilterTSV", resourceCulture);
             }
@@ -387,7 +387,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Finde korrespondierende Werte ähnelt.
         /// </summary>
-        internal static string FindCorrespondingValues {
+        public static string FindCorrespondingValues {
             get {
                 return ResourceManager.GetString("FindCorrespondingValues", resourceCulture);
             }
@@ -396,7 +396,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Frequenz ähnelt.
         /// </summary>
-        internal static string Frequency {
+        public static string Frequency {
             get {
                 return ResourceManager.GetString("Frequency", resourceCulture);
             }
@@ -405,7 +405,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Frequenz (relativ) ähnelt.
         /// </summary>
-        internal static string Frequency_Relativ {
+        public static string Frequency_Relativ {
             get {
                 return ResourceManager.GetString("Frequency_Relativ", resourceCulture);
             }
@@ -414,7 +414,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Frequenz (individueller Layer) ähnelt.
         /// </summary>
-        internal static string FrequencyOnSpecialLayer {
+        public static string FrequencyOnSpecialLayer {
             get {
                 return ResourceManager.GetString("FrequencyOnSpecialLayer", resourceCulture);
             }
@@ -423,7 +423,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Frequenz (1) ähnelt.
         /// </summary>
-        internal static string Frequeny1 {
+        public static string Frequeny1 {
             get {
                 return ResourceManager.GetString("Frequeny1", resourceCulture);
             }
@@ -432,7 +432,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Frequenz (2) ähnelt.
         /// </summary>
-        internal static string Frequeny2 {
+        public static string Frequeny2 {
             get {
                 return ResourceManager.GetString("Frequeny2", resourceCulture);
             }
@@ -441,7 +441,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Frequenz D(1, 2) ähnelt.
         /// </summary>
-        internal static string FrequenyD12 {
+        public static string FrequenyD12 {
             get {
                 return ResourceManager.GetString("FrequenyD12", resourceCulture);
             }
@@ -450,7 +450,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Volltextsuche ähnelt.
         /// </summary>
-        internal static string FulltextSearch {
+        public static string FulltextSearch {
             get {
                 return ResourceManager.GetString("FulltextSearch", resourceCulture);
             }
@@ -459,7 +459,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Gruppe ähnelt.
         /// </summary>
-        internal static string Group {
+        public static string Group {
             get {
                 return ResourceManager.GetString("Group", resourceCulture);
             }
@@ -468,7 +468,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Gruppiere Dokumente nach Datum ähnelt.
         /// </summary>
-        internal static string GroupDocumentsByDate {
+        public static string GroupDocumentsByDate {
             get {
                 return ResourceManager.GetString("GroupDocumentsByDate", resourceCulture);
             }
@@ -477,7 +477,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Gruppiere Dokumente nach einer Metaangabe ähnelt.
         /// </summary>
-        internal static string GroupDocumentsByMeta {
+        public static string GroupDocumentsByMeta {
             get {
                 return ResourceManager.GetString("GroupDocumentsByMeta", resourceCulture);
             }
@@ -486,7 +486,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Identische Sätze ähnelt.
         /// </summary>
-        internal static string IdenticalSentences {
+        public static string IdenticalSentences {
             get {
                 return ResourceManager.GetString("IdenticalSentences", resourceCulture);
             }
@@ -495,7 +495,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Index ähnelt.
         /// </summary>
-        internal static string Index {
+        public static string Index {
             get {
                 return ResourceManager.GetString("Index", resourceCulture);
             }
@@ -504,7 +504,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Keywords ähnelt.
         /// </summary>
-        internal static string Keywords {
+        public static string Keywords {
             get {
                 return ResourceManager.GetString("Keywords", resourceCulture);
             }
@@ -513,7 +513,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Bezeichnung ähnelt.
         /// </summary>
-        internal static string Label {
+        public static string Label {
             get {
                 return ResourceManager.GetString("Label", resourceCulture);
             }
@@ -522,7 +522,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die One or more Layer in the parameter layers are null ähnelt.
         /// </summary>
-        internal static string LayerValueNullError {
+        public static string LayerValueNullError {
             get {
                 return ResourceManager.GetString("LayerValueNullError", resourceCulture);
             }
@@ -531,7 +531,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Frequenz Links/Rechts ähnelt.
         /// </summary>
-        internal static string LeftRightFrequency {
+        public static string LeftRightFrequency {
             get {
                 return ResourceManager.GetString("LeftRightFrequency", resourceCulture);
             }
@@ -540,7 +540,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Lemma (Grundform) ähnelt.
         /// </summary>
-        internal static string LemmaLongLabel {
+        public static string LemmaLongLabel {
             get {
                 return ResourceManager.GetString("LemmaLongLabel", resourceCulture);
             }
@@ -549,7 +549,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Log-Likelihood-Test (LLT) ähnelt.
         /// </summary>
-        internal static string LogLikelihoodTestLLT {
+        public static string LogLikelihoodTestLLT {
             get {
                 return ResourceManager.GetString("LogLikelihoodTestLLT", resourceCulture);
             }
@@ -558,7 +558,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Measure ähnelt.
         /// </summary>
-        internal static string Measure {
+        public static string Measure {
             get {
                 return ResourceManager.GetString("Measure", resourceCulture);
             }
@@ -567,7 +567,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Metadaten ähnelt.
         /// </summary>
-        internal static string MetadataLabel {
+        public static string MetadataLabel {
             get {
                 return ResourceManager.GetString("MetadataLabel", resourceCulture);
             }
@@ -576,7 +576,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Der Typ eines einmal gesetzten Typs kann nachträglich nicht verändert werden (Typsicherheit). ähnelt.
         /// </summary>
-        internal static string MetaDataTypeExcetion {
+        public static string MetaDataTypeExcetion {
             get {
                 return ResourceManager.GetString("MetaDataTypeExcetion", resourceCulture);
             }
@@ -585,7 +585,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Der Parameter ist keine gültige Metaangabe ähnelt.
         /// </summary>
-        internal static string MetaErrorNoValidValue {
+        public static string MetaErrorNoValidValue {
             get {
                 return ResourceManager.GetString("MetaErrorNoValidValue", resourceCulture);
             }
@@ -594,7 +594,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Mehrworteinheiten auszählen ähnelt.
         /// </summary>
-        internal static string MultiwordFrequency {
+        public static string MultiwordFrequency {
             get {
                 return ResourceManager.GetString("MultiwordFrequency", resourceCulture);
             }
@@ -603,7 +603,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Meine Korpora ähnelt.
         /// </summary>
-        internal static string MyCorpora {
+        public static string MyCorpora {
             get {
                 return ResourceManager.GetString("MyCorpora", resourceCulture);
             }
@@ -612,7 +612,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Meine Datenquellen ähnelt.
         /// </summary>
-        internal static string MyDataSources {
+        public static string MyDataSources {
             get {
                 return ResourceManager.GetString("MyDataSources", resourceCulture);
             }
@@ -621,7 +621,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Meine Erweiterungen ähnelt.
         /// </summary>
-        internal static string MyExtension {
+        public static string MyExtension {
             get {
                 return ResourceManager.GetString("MyExtension", resourceCulture);
             }
@@ -630,7 +630,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Meine Projekte ähnelt.
         /// </summary>
-        internal static string MyProjects {
+        public static string MyProjects {
             get {
                 return ResourceManager.GetString("MyProjects", resourceCulture);
             }
@@ -639,7 +639,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die N ähnelt.
         /// </summary>
-        internal static string N {
+        public static string N {
             get {
                 return ResourceManager.GetString("N", resourceCulture);
             }
@@ -648,7 +648,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Zeitung ähnelt.
         /// </summary>
-        internal static string Newspaper {
+        public static string Newspaper {
             get {
                 return ResourceManager.GetString("Newspaper", resourceCulture);
             }
@@ -657,7 +657,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die N-Gramm ähnelt.
         /// </summary>
-        internal static string NGram {
+        public static string NGram {
             get {
                 return ResourceManager.GetString("NGram", resourceCulture);
             }
@@ -666,7 +666,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die -KEINE DATEN- ähnelt.
         /// </summary>
-        internal static string NoData {
+        public static string NoData {
             get {
                 return ResourceManager.GetString("NoData", resourceCulture);
             }
@@ -675,7 +675,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Kein Titel (GUID: {0}) ähnelt.
         /// </summary>
-        internal static string NoTitle {
+        public static string NoTitle {
             get {
                 return ResourceManager.GetString("NoTitle", resourceCulture);
             }
@@ -684,7 +684,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Partner ähnelt.
         /// </summary>
-        internal static string Partner {
+        public static string Partner {
             get {
                 return ResourceManager.GetString("Partner", resourceCulture);
             }
@@ -693,7 +693,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Muster ähnelt.
         /// </summary>
-        internal static string Pattern {
+        public static string Pattern {
             get {
                 return ResourceManager.GetString("Pattern", resourceCulture);
             }
@@ -702,7 +702,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Poisson-Verteilung (PV) ähnelt.
         /// </summary>
-        internal static string PoissonVerteilungPV {
+        public static string PoissonVerteilungPV {
             get {
                 return ResourceManager.GetString("PoissonVerteilungPV", resourceCulture);
             }
@@ -711,7 +711,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Part-of-Speech (POS) ähnelt.
         /// </summary>
-        internal static string POSLongLabel {
+        public static string POSLongLabel {
             get {
                 return ResourceManager.GetString("POSLongLabel", resourceCulture);
             }
@@ -720,7 +720,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Projekt ähnelt.
         /// </summary>
-        internal static string Project {
+        public static string Project {
             get {
                 return ResourceManager.GetString("Project", resourceCulture);
             }
@@ -729,7 +729,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Abfrage ähnelt.
         /// </summary>
-        internal static string Query {
+        public static string Query {
             get {
                 return ResourceManager.GetString("Query", resourceCulture);
             }
@@ -738,7 +738,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Lesbarkeit ähnelt.
         /// </summary>
-        internal static string ReadingEase {
+        public static string ReadingEase {
             get {
                 return ResourceManager.GetString("ReadingEase", resourceCulture);
             }
@@ -747,7 +747,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die  (relativ) ähnelt.
         /// </summary>
-        internal static string relativ {
+        public static string relativ {
             get {
                 return ResourceManager.GetString("relativ", resourceCulture);
             }
@@ -756,7 +756,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Suche nach der Phrase ({0}). ähnelt.
         /// </summary>
-        internal static string SearchForPhrases {
+        public static string SearchForPhrases {
             get {
                 return ResourceManager.GetString("SearchForPhrases", resourceCulture);
             }
@@ -765,7 +765,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Schnappschuss-Zufallsgenerator (Split) ähnelt.
         /// </summary>
-        internal static string SelectionRandimSplit {
+        public static string SelectionRandimSplit {
             get {
                 return ResourceManager.GetString("SelectionRandimSplit", resourceCulture);
             }
@@ -774,7 +774,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Zufallsauswahl (Split-A): {0}% ähnelt.
         /// </summary>
-        internal static string SelectionRandimSplitA {
+        public static string SelectionRandimSplitA {
             get {
                 return ResourceManager.GetString("SelectionRandimSplitA", resourceCulture);
             }
@@ -783,7 +783,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Zufallsauswahl (Split-B): {0}% ähnelt.
         /// </summary>
-        internal static string SelectionRandimSplitB {
+        public static string SelectionRandimSplitB {
             get {
                 return ResourceManager.GetString("SelectionRandimSplitB", resourceCulture);
             }
@@ -792,7 +792,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Zufällige Auswahl von {0} Dokumenten ({1}%) ähnelt.
         /// </summary>
-        internal static string SelectionRandomDescription {
+        public static string SelectionRandomDescription {
             get {
                 return ResourceManager.GetString("SelectionRandomDescription", resourceCulture);
             }
@@ -801,7 +801,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Die Funktion SetNewDocumentMetadata(string metadataKey, object defaultValue) erwartet für den Parameter &quot;defaultValue&quot; einen als serialisierbar gekennzeichneten Wert. Bitte kennzeichnen Sie den Typ des Werts ({0}) als serialisierbar. ähnelt.
         /// </summary>
-        internal static string SetDocumentMetadata_SerializerException {
+        public static string SetDocumentMetadata_SerializerException {
             get {
                 return ResourceManager.GetString("SetDocumentMetadata_SerializerException", resourceCulture);
             }
@@ -810,7 +810,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Signifikanz ähnelt.
         /// </summary>
-        internal static string Significance {
+        public static string Significance {
             get {
                 return ResourceManager.GetString("Significance", resourceCulture);
             }
@@ -819,7 +819,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Signifikanz (1) ähnelt.
         /// </summary>
-        internal static string Significance1 {
+        public static string Significance1 {
             get {
                 return ResourceManager.GetString("Significance1", resourceCulture);
             }
@@ -828,7 +828,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Signifikanz (2) ähnelt.
         /// </summary>
-        internal static string Significance2 {
+        public static string Significance2 {
             get {
                 return ResourceManager.GetString("Significance2", resourceCulture);
             }
@@ -837,7 +837,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Signifikanz D(1, 2) ähnelt.
         /// </summary>
-        internal static string SignificanceD12 {
+        public static string SignificanceD12 {
             get {
                 return ResourceManager.GetString("SignificanceD12", resourceCulture);
             }
@@ -846,7 +846,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Silben ähnelt.
         /// </summary>
-        internal static string Silben {
+        public static string Silben {
             get {
                 return ResourceManager.GetString("Silben", resourceCulture);
             }
@@ -855,7 +855,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Standardbereinigung ähnelt.
         /// </summary>
-        internal static string StandardCleanup {
+        public static string StandardCleanup {
             get {
                 return ResourceManager.GetString("StandardCleanup", resourceCulture);
             }
@@ -864,7 +864,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Zeichenkette ähnelt.
         /// </summary>
-        internal static string StringLabel {
+        public static string StringLabel {
             get {
                 return ResourceManager.GetString("StringLabel", resourceCulture);
             }
@@ -873,7 +873,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Zeichenkette (Wortform) ähnelt.
         /// </summary>
-        internal static string StringLabelLong {
+        public static string StringLabelLong {
             get {
                 return ResourceManager.GetString("StringLabelLong", resourceCulture);
             }
@@ -882,7 +882,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Temporäre Auswahl ähnelt.
         /// </summary>
-        internal static string TemporarySelection {
+        public static string TemporarySelection {
             get {
                 return ResourceManager.GetString("TemporarySelection", resourceCulture);
             }
@@ -891,7 +891,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Titel ähnelt.
         /// </summary>
-        internal static string Title {
+        public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
             }
@@ -900,7 +900,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Token ähnelt.
         /// </summary>
-        internal static string Token {
+        public static string Token {
             get {
                 return ResourceManager.GetString("Token", resourceCulture);
             }
@@ -909,7 +909,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Token (1) ähnelt.
         /// </summary>
-        internal static string Token1 {
+        public static string Token1 {
             get {
                 return ResourceManager.GetString("Token1", resourceCulture);
             }
@@ -918,7 +918,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Token (2) ähnelt.
         /// </summary>
-        internal static string Token2 {
+        public static string Token2 {
             get {
                 return ResourceManager.GetString("Token2", resourceCulture);
             }
@@ -927,7 +927,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Token D(1, 2) ähnelt.
         /// </summary>
-        internal static string TokenD12 {
+        public static string TokenD12 {
             get {
                 return ResourceManager.GetString("TokenD12", resourceCulture);
             }
@@ -936,7 +936,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Types ähnelt.
         /// </summary>
-        internal static string Types {
+        public static string Types {
             get {
                 return ResourceManager.GetString("Types", resourceCulture);
             }
@@ -945,7 +945,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Types (1) ähnelt.
         /// </summary>
-        internal static string Types1 {
+        public static string Types1 {
             get {
                 return ResourceManager.GetString("Types1", resourceCulture);
             }
@@ -954,7 +954,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Types (2) ähnelt.
         /// </summary>
-        internal static string Types2 {
+        public static string Types2 {
             get {
                 return ResourceManager.GetString("Types2", resourceCulture);
             }
@@ -963,7 +963,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Types D(1, 2) ähnelt.
         /// </summary>
-        internal static string TypesD12 {
+        public static string TypesD12 {
             get {
                 return ResourceManager.GetString("TypesD12", resourceCulture);
             }
@@ -972,7 +972,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Einheit ähnelt.
         /// </summary>
-        internal static string Unit {
+        public static string Unit {
             get {
                 return ResourceManager.GetString("Unit", resourceCulture);
             }
@@ -981,7 +981,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Die Eigenschaft Path darf bei virtuellen Korpora nicht null sein. Bitte verwenden Sie zum laden des Korpus die statische Funktion Corpora.Load(string path); ähnelt.
         /// </summary>
-        internal static string VirtualCorpusNullPathException {
+        public static string VirtualCorpusNullPathException {
             get {
                 return ResourceManager.GetString("VirtualCorpusNullPathException", resourceCulture);
             }
@@ -990,7 +990,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Wert ähnelt.
         /// </summary>
-        internal static string Wert {
+        public static string Wert {
             get {
                 return ResourceManager.GetString("Wert", resourceCulture);
             }
@@ -999,7 +999,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Wert (1) ähnelt.
         /// </summary>
-        internal static string Wert1 {
+        public static string Wert1 {
             get {
                 return ResourceManager.GetString("Wert1", resourceCulture);
             }
@@ -1008,7 +1008,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Wert (2) ähnelt.
         /// </summary>
-        internal static string Wert2 {
+        public static string Wert2 {
             get {
                 return ResourceManager.GetString("Wert2", resourceCulture);
             }
@@ -1017,7 +1017,7 @@ namespace CorpusExplorer.Sdk.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Wert D(1, 2) ähnelt.
         /// </summary>
-        internal static string WertD12 {
+        public static string WertD12 {
             get {
                 return ResourceManager.GetString("WertD12", resourceCulture);
             }

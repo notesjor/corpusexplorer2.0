@@ -7,7 +7,7 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext.WET
   {
     private readonly Regex _regex =
       new Regex(
-        @"^(http\:\/\/|https\:\/\/|)((?:www\.)?(?:\w[-\w]{0-61}\w|\w)(?:\.\w[-\w]{0-61}\w|\w)*?)\.((?:\w{2-3}\.)?\w+)");
+        @"^(http\:\/\/|https\:\/\/|)((?:www\.)?(?:\w[-\w]{0-61}\w|\w)(?:\.\w[-\w]{0-61}\w|\w)*?)\.((?:\w{2-3}\.)?\w+)", RegexOptions.Compiled);
 
     private readonly HashSet<string> _tldFilter;
 

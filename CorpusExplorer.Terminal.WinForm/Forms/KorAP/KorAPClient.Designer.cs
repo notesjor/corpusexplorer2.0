@@ -282,6 +282,7 @@
       // 
       // txt_queries
       // 
+      this.txt_queries.AcceptsReturn = true;
       this.txt_queries.AutoSize = false;
       this.txt_queries.Dock = System.Windows.Forms.DockStyle.Fill;
       this.txt_queries.Location = new System.Drawing.Point(5, 60);

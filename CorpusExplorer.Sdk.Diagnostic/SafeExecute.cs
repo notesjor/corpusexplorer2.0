@@ -5,7 +5,7 @@ namespace CorpusExplorer.Sdk.Diagnostic
   public static class SafeExecute
   {
     // ReSharper disable once UnusedMember.Global
-    public static void Call(Action action)
+    public static void Call(System.Action action)
     {
       try
       {

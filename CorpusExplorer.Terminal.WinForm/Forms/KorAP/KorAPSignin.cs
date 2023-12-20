@@ -3,6 +3,7 @@ using CefSharp.WinForms;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser;
 using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
+using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,6 +49,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.KorAP
         Close();
 
       _browser.AddressChanged += Browser_AddressChanged;
+      Processing.SplashClose();
     }
 
     private void Browser_AddressChanged(object sender, AddressChangedEventArgs e)

@@ -62,7 +62,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Splash.Forms
       // 
       // pictureBox1
       // 
-      this.pictureBox1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.CorpusExplorer;
+      this.pictureBox1.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.green_256x256;
       resources.ApplyResources(this.pictureBox1, "pictureBox1");
       this.pictureBox1.Name = "pictureBox1";
       this.pictureBox1.TabStop = false;
@@ -93,10 +93,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Splash.Forms
       this.Controls.Add(this.radLabel1);
       this.Controls.Add(this.radWaitingBar1);
       this.Name = "WelcomeForm";
-      // 
-      // 
-      // 
-      this.RootElement.ApplyShapeToControl = true;
       ((System.ComponentModel.ISupportInitialize)(this.lbl_version)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
@@ -117,7 +113,5 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Splash.Forms
     private Telerik.WinControls.UI.RadLabel radLabel2;
     private Telerik.WinControls.UI.RadLabel radLabel3;
     private Telerik.WinControls.UI.RadLabel lbl_version;
-
-
   }
 }

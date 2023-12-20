@@ -102,6 +102,8 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
         return Create(path, fs);
     }
 
+    public static CorpusAdapterWriteDirect CreateFromStream(Stream stream) => Create("STREAM", stream);
+
     private static CorpusAdapterWriteDirect CreateLz4(string path)
     {
       using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -257,7 +259,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
         var doc = new int[size.Length][];
         for (var i = 0; i < size.Length; i++)
           doc[i] = Enumerable.Repeat(val, size[i]).ToArray();
-        
+
         newLayer.AddCompleteDocument(dsel, doc);
       }
 

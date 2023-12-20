@@ -120,7 +120,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
       Dictionary<string, object> layerMetadata,
       string layerDisplayname)
     {
-      return Create(new Model.Layer(documents, dictionary, layerMetadata) {Displayname = layerDisplayname});
+      return Create(new Model.Layer(documents, dictionary, layerMetadata) { Displayname = layerDisplayname });
     }
 
     public static LayerAdapterSingleFile Create(
@@ -129,14 +129,15 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
       Dictionary<string, object> layerMetadata,
       string layerDisplayname)
     {
-      return Create(new Model.Layer(documents, dictionary, layerMetadata) {Displayname = layerDisplayname});
+      return Create(new Model.Layer(documents, dictionary, layerMetadata) { Displayname = layerDisplayname });
     }
 
     public static LayerAdapterSingleFile Create(AbstractLayerState layerState)
     {
-      return Create(
-                    new Model.Layer(layerState.Documents, layerState.Cache, null)
-                      {Displayname = layerState.Displayname});
+      return Create(new Model.Layer(layerState.GetDocuments().ToDictionary(x => x.Key, x => x.Value), layerState.GetCache().ToDictionary(x => x.Key, x => x.Value), null)
+      {
+        Displayname = layerState.Displayname
+      });
     }
 
     public override Dictionary<Guid, int[][]> GetDocumentDictionary()

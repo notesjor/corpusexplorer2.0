@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
+using CorpusExplorer.Sdk.Extern.Json.OpenLegalData;
 using CorpusExplorer.Sdk.Extern.Json.SimpleStandoff;
 using CorpusExplorer.Sdk.Extern.Json.Speedy;
 using CorpusExplorer.Sdk.Extern.Json.TwitterStatus;
@@ -64,6 +65,10 @@ namespace CorpusExplorer.Sdk.Extern.Json
         {
           "SPEEDy/CODEX (*.json)|*.json",
           new SpeedyScraper()
+        },
+        {
+          "OpenLegalData (*.jsonl)|*.jsonl",
+          new OpenLegalDataScraper()
         },
         {
           "Twitter-JSON via StreamAPI (*.json)|*.json",

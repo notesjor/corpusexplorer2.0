@@ -101,6 +101,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
             foreach (var foundry in foundries.Where(f => f.CorpusGuid == csel))
             {
               var layer = GetLayers(hydra, foundry, dsel);
+              if(layer == null || layer.Count == 0)
+                continue;
               var max = layer.First().Value.Length;
               var lnames = layer.Keys.ToArray();
 

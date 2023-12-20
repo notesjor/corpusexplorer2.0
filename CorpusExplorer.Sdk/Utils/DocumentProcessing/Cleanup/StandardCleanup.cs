@@ -826,12 +826,32 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup
 
     protected override string Execute(string key, string input)
     {
-      return _dictionary.Aggregate(input, (current, entry) => current.Replace(entry.Key, entry.Value));
+      return _dictionary.Aggregate(input, (current, entry) =>
+      {
+        try
+        {
+          return current.Replace(entry.Key, entry.Value);
+        }
+        catch
+        {
+          return current;
+        }
+      });
     }
 
     public virtual string Bypass(string text)
     {
-      return _dictionary.Aggregate(text, (current, entry) => current.Replace(entry.Key, entry.Value));
+      return _dictionary.Aggregate(text, (current, entry) =>
+      {
+        try
+        {
+          return current.Replace(entry.Key, entry.Value);
+        }
+        catch
+        {
+          return current;
+        }
+      });
     }
   }
 }

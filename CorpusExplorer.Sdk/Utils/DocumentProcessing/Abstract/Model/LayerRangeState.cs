@@ -8,12 +8,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model
   {
     private readonly List<TaggerLayerRangeStateItem> _ranges = new List<TaggerLayerRangeStateItem>();
 
-    public LayerRangeState(string displayname)
-      : base(displayname)
-    {
-      Documents = new Dictionary<Guid, int[][]>();
-      Cache = new Dictionary<string, int>();
-    }
+    public LayerRangeState(string displayname) : base(displayname) { }
 
     public void AddRange(Func<string, bool> start, Func<string, string> value, Func<string, bool> end)
     {

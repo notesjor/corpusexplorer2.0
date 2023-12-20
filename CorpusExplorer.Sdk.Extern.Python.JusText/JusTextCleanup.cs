@@ -53,9 +53,11 @@ namespace CorpusExplorer.Sdk.Extern.Python.JusText
         }
     }
 
+    private readonly string[] _germanPostFilterSplitter = new[] { "<p> " };
+
     private string GermanPostFilter(string text)
     {
-      var ps = text.Split(new[] { "<p> " }, StringSplitOptions.RemoveEmptyEntries);
+      var ps = text.Split(_germanPostFilterSplitter, StringSplitOptions.RemoveEmptyEntries);
       var res = new List<string>();
 
       foreach (var p in ps)

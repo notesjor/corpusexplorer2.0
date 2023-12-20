@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Sdk.Extern.Xml</RootNamespace>
     <AssemblyName>CorpusExplorer.Sdk.Extern.Xml</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -49,8 +49,8 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.11.48.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.11.48\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.11.55.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.55\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -814,7 +814,9 @@
     <Compile Include="Ids\KorAP\ExporterKorap.cs" />
     <Compile Include="Ids\KorAP\ImporterKorap.cs" />
     <Compile Include="Ids\KorAP\ImporterKorap2021.cs" />
-    <Compile Include="Ids\KorAP\LoadStrategy\KorapZip.cs" />
+    <Compile Include="Ids\KorAP\LoadStrategy\Abstract\AbstractKorapLoadStrategy.cs" />
+    <Compile Include="Ids\KorAP\LoadStrategy\KorapLoadStrategyDirectory.cs" />
+    <Compile Include="Ids\KorAP\LoadStrategy\KorapLoadStrategyZipFile.cs" />
     <Compile Include="Ids\KorAP\Model\AnnoBase\Structure\f.cs" />
     <Compile Include="Ids\KorAP\Model\AnnoBase\Structure\fs.cs" />
     <Compile Include="Ids\KorAP\Model\AnnoBase\Structure\layer.cs" />

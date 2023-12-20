@@ -864,7 +864,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                Resources.sheet_calculate,
                                Resources.Cooccurrences_Table)
                       .AddView(
-                               typeof(CooccurrenceTagPie),
+                               typeof(FrequencyOverTime2),
                                Resources.cloud1,
                                Resources.cloud2,
                                Resources.Cooccurrences_Cloud)
@@ -1107,7 +1107,14 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                               Resources.execute,
                               "Abfragen automatisieren",
                               "call_cec-ui",
-                              true);
+                              true)
+                     .AddView(
+                              typeof(FrequencyOverTimeNext),
+                              Resources.execute1,
+                              Resources.execute,
+                              "Verteilung"
+                              )
+                     ;
 
       // Notwendig um abschließend die 3rd-Party Views im Menü anzuzeigen.
       main_mainmenu_analytics.Items.Add(_addonMenuItem);

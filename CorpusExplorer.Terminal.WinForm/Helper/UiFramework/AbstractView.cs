@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using CorpusExplorer.Sdk.Model;
+using CorpusExplorer.Sdk.Utils.Filter;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.ViewModel.Interfaces;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Abstract;
@@ -61,17 +62,6 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       if (queries == null)
         return;
 
-      var list = queries.ToList();
-      var first = list.FirstOrDefault();
-      if (first == null)
-        return;
-
-      if (list.Count > 1)
-      {
-        list.RemoveAt(0);
-        first.OrFilterQueries = list;
-      }
-
       var form = new SimpleTextInput(
                                      Resources.SchnappschussErstellen,
                                      Resources.GebenSieDemNeuenSchnappschussEinenNamen,
@@ -80,7 +70,9 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       if (form.ShowDialog() != DialogResult.OK)
         return;
 
-      Project.CreateSelection(new[] {first}, form.Result, Project.CurrentSelection);
+      var guids = QuickQuery.OrSearchOnDocumentLevel(Project.CurrentSelection, queries);
+
+      Project.CreateSelection(guids, form.Result, Project.CurrentSelection);
     }
 
     protected void CreateSelection(IEnumerable<Guid> documentGuids)
@@ -103,14 +95,14 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
     {
       if (ViewModel == null || typeof(T) != _viewModelType)
       {
-        ViewModel = new T {Selection = Project.CurrentSelection};
+        ViewModel = new T { Selection = Project.CurrentSelection };
         _viewModelType = typeof(T);
       }
 
       if (!Equals(ViewModel.Selection, Project.CurrentSelection))
         ViewModel.Selection = Project.CurrentSelection;
 
-      return (T) ViewModel;
+      return (T)ViewModel;
     }
 
     internal void InitializeVisualisation(GuiModelBuilderProjectRequestDelegate getProjectDelegate)

@@ -366,6 +366,65 @@ namespace CorpusExplorer.Sdk.Utils.Filter
     }
 
     /// <summary>
+    ///   Sucht in allen Sätzen nach allen Fundstellen, die allen Abfragen entsprechen.
+    ///   Dabei werden die Ergebnisse nicht in einem HashSet gespeichert, sondern in einer Liste.
+    /// </summary>
+    /// <param name="selection">Schnappschuss auf dem die Suche ausgeführt wird</param>
+    /// <param name="queries">Abfragen</param>
+    /// <returns>Key = CorpusGuid / Value.Key = DocumentGuid / Value.Value.Key = SatzId / Value.Value.Value = WortId</returns>
+    public static Dictionary<Guid, Dictionary<Guid, Dictionary<int, List<int>>>> AndSearchOnWordLevelList(
+      Selection selection,
+      IEnumerable<AbstractFilterQuery> queries)
+    {
+      var res = SearchOnWordLevelList(selection, queries.First());
+      if (res == null || res.Count == 0)
+        return res;
+
+      var @lock = new object();
+
+      Parallel.ForEach(queries.Skip(1), Configuration.ParallelOptions, query =>
+      {
+        var tmp = SearchOnWordLevelList(selection, query);
+        lock (@lock)
+        {
+          var csels = res.Keys.ToArray();
+          foreach (var csel in csels)
+          {
+            if (!tmp.ContainsKey(csel))
+            {
+              res.Remove(csel);
+              continue;
+            }
+            var dsels = res[csel].Keys.ToArray();
+            foreach (var dsel in dsels)
+            {
+              if (!tmp[csel].ContainsKey(dsel))
+              {
+                res[csel].Remove(dsel);
+                continue;
+              }
+              var ssels = res[csel][dsel].Keys.ToArray();
+              foreach (var ssel in ssels)
+              {
+                if (!tmp[csel][dsel].ContainsKey(ssel))
+                {
+                  res[csel][dsel].Remove(ssel);
+                  continue;
+                }
+                var wsels = res[csel][dsel][ssel].ToArray();
+                foreach (var wsel in wsels)
+                  if (!tmp[csel][dsel][ssel].Contains(wsel))
+                    res[csel][dsel][ssel].Remove(wsel);
+              }
+            }
+          }
+        }
+      });
+
+      return res;
+    }
+
+    /// <summary>
     ///   Sucht in allen Sätzen nach allen Fundstellen.
     /// </summary>
     /// <param name="selection">Schnappschuss auf dem die Suche ausgeführt wird</param>
@@ -394,6 +453,46 @@ namespace CorpusExplorer.Sdk.Utils.Filter
               {
                 if (!res[csel.Key][dsel.Key].ContainsKey(ssel.Key))
                   res[csel.Key][dsel.Key].Add(ssel.Key, new HashSet<int>());
+                foreach (var widx in ssel.Value)
+                  res[csel.Key][dsel.Key][ssel.Key].Add(widx);
+              }
+            }
+          }
+      });
+
+      return res;
+    }
+
+    /// <summary>
+    ///   Sucht in allen Sätzen nach allen Fundstellen.
+    ///   Dabei werden die Ergebnisse nicht in einem HashSet gespeichert, sondern in einer Liste.
+    /// </summary>
+    /// <param name="selection">Schnappschuss auf dem die Suche ausgeführt wird</param>
+    /// <param name="queries">Abfragen</param>
+    /// <returns>Key = CorpusGuid / Value.Key = DocumentGuid / Value.Value.Key = SatzId / Value.Value.Value = WortId</returns>
+    public static Dictionary<Guid, Dictionary<Guid, Dictionary<int, List<int>>>> OrSearchOnWordLevelList(
+      Selection selection,
+      IEnumerable<AbstractFilterQuery> queries)
+    {
+      var res = new Dictionary<Guid, Dictionary<Guid, Dictionary<int, List<int>>>>();
+      var @lock = new object();
+
+      Parallel.ForEach(queries, Configuration.ParallelOptions, query =>
+      {
+        var result = SearchOnWordLevel(selection, query);
+        lock (@lock)
+          foreach (var csel in result)
+          {
+            if (!res.ContainsKey(csel.Key))
+              res.Add(csel.Key, new Dictionary<Guid, Dictionary<int, List<int>>>());
+            foreach (var dsel in csel.Value)
+            {
+              if (!res[csel.Key].ContainsKey(dsel.Key))
+                res[csel.Key].Add(dsel.Key, new Dictionary<int, List<int>>());
+              foreach (var ssel in dsel.Value)
+              {
+                if (!res[csel.Key][dsel.Key].ContainsKey(ssel.Key))
+                  res[csel.Key][dsel.Key].Add(ssel.Key, new List<int>());
                 foreach (var widx in ssel.Value)
                   res[csel.Key][dsel.Key][ssel.Key].Add(widx);
               }
@@ -446,6 +545,59 @@ namespace CorpusExplorer.Sdk.Utils.Filter
                                               {
                                                 if (!res[csel.Key][dsel].ContainsKey(sidx.Key))
                                                   res[csel.Key][dsel].Add(sidx.Key, new HashSet<int>());
+                                                foreach (var widx in sidx.Value)
+                                                  res[csel.Key][dsel][sidx.Key].Add(widx);
+                                              }
+                                            }
+                                          });
+
+                       });
+      return res;
+    }
+
+    /// <summary>
+    ///   Sucht in allen Sätzen nach Fundstellen.
+    ///   Dabei werden die Ergebnisse nicht in einem HashSet gespeichert, sondern in einer Liste.
+    /// </summary>
+    /// <param name="selection">Schnappschuss auf dem die Suche ausgeführt wird</param>
+    /// <param name="query">Abfrage</param>
+    /// <returns>Key = CorpusGuid / Value.Key = DocumentGuid / Value.Value.Key = SatzId / Value.Value.Value = WortId</returns>
+    public static Dictionary<Guid, Dictionary<Guid, Dictionary<int, List<int>>>> SearchOnWordLevelList(
+      Selection selection,
+      AbstractFilterQuery query)
+    {
+      var res = new Dictionary<Guid, Dictionary<Guid, Dictionary<int, List<int>>>>();
+      var @lock = new object();
+
+      Parallel.ForEach(
+                       selection,
+                       Configuration.ParallelOptions,
+                       csel =>
+                       {
+                         var corpus = selection.GetCorpus(csel.Key);
+                         if (corpus == null)
+                           return;
+
+                         Parallel.ForEach(
+                                          csel.Value,
+                                          Configuration.ParallelOptions,
+                                          dsel =>
+                                          {
+                                            var result = query.GetSentenceAndWordIndices(corpus, dsel);
+
+                                            if (result == null || result.Count == 0)
+                                              return;
+
+                                            lock (@lock)
+                                            {
+                                              if (!res.ContainsKey(csel.Key))
+                                                res.Add(csel.Key, new Dictionary<Guid, Dictionary<int, List<int>>>());
+                                              if (!res[csel.Key].ContainsKey(dsel))
+                                                res[csel.Key].Add(dsel, new Dictionary<int, List<int>>());
+                                              foreach (var sidx in result)
+                                              {
+                                                if (!res[csel.Key][dsel].ContainsKey(sidx.Key))
+                                                  res[csel.Key][dsel].Add(sidx.Key, new List<int>());
                                                 foreach (var widx in sidx.Value)
                                                   res[csel.Key][dsel][sidx.Key].Add(widx);
                                               }

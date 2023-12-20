@@ -36,7 +36,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger
       set => Configuration.SetSetting("TreeTagger", value);
     }
 
-    public override IEnumerable<string> LanguagesAvailabel => new[] {"Durch Skript definiert."};
+    public override IEnumerable<string> LanguagesAvailabel => new[] { "Durch Skript definiert." };
 
     protected override string ExecuteTagger(string text)
     {
@@ -75,18 +75,19 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger
       }
     }
 
-    private static char[] separator = {',', ' ', '<', '>', '/'};
+    private static char[] separator = { ',', ' ', '<', '>', '/' };
+    private readonly string[] _configSeparator = { "|" };
 
     private void ReadScriptConfiguration()
     {
       try
       {
         var config = FileIO.ReadLines(InstallationPath)[1];
-        var split = config.Split(new[] {"|"}, StringSplitOptions.None);
+        var split = config.Split(_configSeparator, StringSplitOptions.None);
         if (split[0].Trim() != "REM CorpusExplorer" || split.Length != 3)
           throw new Exception();
 
-        _sentenceMark = new HashSet<string> {split[1].Trim()};
+        _sentenceMark = new HashSet<string> { split[1].Trim() };
         if (string.IsNullOrEmpty(split[2]))
           return;
 

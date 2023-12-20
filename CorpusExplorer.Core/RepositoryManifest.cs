@@ -231,6 +231,7 @@ namespace CorpusExplorer.Core
 
         new Frequency1Action(),
         new Frequency1RawAction(),
+        new Frequency1RawSelectAction(),
         new Frequency1SelectAction(),
         new Frequency2Action(),
         new Frequency2RawAction(),
@@ -272,6 +273,10 @@ namespace CorpusExplorer.Core
         new MetaImportAction(),
         new MetaSelectedAction(),
         new MetaSelectedDomainAction(),
+        new MetaUniqueAction(),
+        new MetaUniqueSelectAction(),
+        new MetaUniqueSelectValuesAction(),
+        new MetaUniqueValuesAction(),
         new MtldAction(),
 
         new NamedEntityAction(),

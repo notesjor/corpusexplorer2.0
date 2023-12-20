@@ -19,10 +19,10 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Layer.Model
       return new EchtzeitLayer
       {
         Guid = Guid.NewGuid(),
-        Dictionary = new CeDictionary(layer.Cache),
+        Dictionary = new CeDictionary(layer.GetCache()),
         Displayname = layer.Displayname,
-        DocumentGuid = layer.Documents.FirstOrDefault().Key,
-        Document = layer.Documents.FirstOrDefault().Value
+        DocumentGuid = layer.GetDocuments().FirstOrDefault().Key,
+        Document = layer.GetDocuments().FirstOrDefault().Value
       };
     }
   }

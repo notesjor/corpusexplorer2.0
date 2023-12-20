@@ -73,11 +73,20 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     private string ValidateGetValue(AbstractCorpusAdapter corpus, Guid documentGuid)
     {
       var metas = corpus.GetDocumentMetadata(documentGuid);
-      return metas       == null ||
-             metas.Count == 0    ||
+      return metas == null ||
+             metas.Count == 0 ||
              !metas.ContainsKey(MetaLabel)
                ? null
-               : metas[MetaLabel]?.ToString();
+               : ValueFix(metas[MetaLabel]);
+    }
+
+    private string ValueFix(object obj)
+    {
+      if(obj == null)
+        return null;
+      if (obj is DateTime dt)
+        return dt.ToString("yyyy-MM-dd HH:mm:ss");
+      return obj.ToString();
     }
   }
 }

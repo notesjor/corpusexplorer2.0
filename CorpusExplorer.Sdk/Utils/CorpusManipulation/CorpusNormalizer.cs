@@ -49,28 +49,31 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
         var state = layer.ToLayerState();
         var fixes = new Dictionary<int, int>();
 
-        foreach (var key in state.Cache.Keys.ToArray())
+        var cache = state.GetCache().ToDictionary(x => x.Key, x => x.Value);
+        foreach (var key in cache.Keys.ToArray())
         {
           var nval = ndict.ContainsKey(key) ? ndict[key] : -1;
 
-          fixes.Add(state.Cache[key], nval);
-          state.Cache[key] = nval;
+          fixes.Add(cache[key], nval);
+          cache[key] = nval;
         }
+        state.ForceReplaceCache(cache);
 
         object dlock = new object();
-        Parallel.ForEach(state.Documents.Keys.ToArray(), Configuration.ParallelOptions, dsel =>
+        var documents = state.GetDocuments();
+        Parallel.ForEach(documents.Select(x => x.Key).ToArray(), Configuration.ParallelOptions, dsel =>
         {
           int[][] doc;
           lock (dlock)
-            doc = state.Documents[dsel];
+            doc = state.DocumentGet(dsel);
 
           // ReSharper disable once ForCanBeConvertedToForeach
           for (var i = 0; i < doc.Length; i++)
             for (var j = 0; j < doc[i].Length; j++)
               doc[i][j] = fixes[doc[i][j]];
 
-          lock(dlock)
-            state.Documents[dsel] = doc;
+          lock (dlock)
+            state.ForceReplaceDocument(dsel, doc);
         });
       });
 

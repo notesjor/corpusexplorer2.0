@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CorpusExplorer.Sdk.Utils.Drm
 {
-  public class CorpusLicenceInfo
+  public class CorpusInfo
   {
     public string CorpusName { get; set; }
     public string CorpusDescription { get; set; }
@@ -16,5 +16,11 @@ namespace CorpusExplorer.Sdk.Utils.Drm
     public string AdditionalInfoUrl { get; set; }
     public string Version { get; set; }
     public bool NeedAcceptance { get; set; }
+
+    public long FileSize { get; set; }
+    public long CountDocuments { get; set; }
+    public long CountSentences { get; set; }
+    public long CountTokens { get; set; }
+    public string[] LayerNames { get; set; } = new string[0];
   }
 }

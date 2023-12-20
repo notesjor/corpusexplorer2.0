@@ -126,7 +126,7 @@ namespace CorpusExplorer.Terminal.Automate
 
     private object[] GetSources()
     {
-      var res = grid_files.Rows.Select(row => new file { Value = row.Cells[0].Value.ToString() }).Cast<object>().ToList();
+      var res = grid_files.Rows.Select(row => new myFile { Value = row.Cells[0].Value.ToString() }).Cast<object>().ToList();
       res.AddRange(grid_directories.Rows.Select(row => new directory { Value = row.Cells[0].Value?.ToString(), filter = row.Cells[1].Value?.ToString() }));
       return res.ToArray();
     }
@@ -137,7 +137,7 @@ namespace CorpusExplorer.Terminal.Automate
       {
         switch (item)
         {
-          case file f:
+          case myFile f:
             grid_files.Rows.Add(f.Value);
             break;
           case directory d:

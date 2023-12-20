@@ -21,13 +21,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Helper
       }
     }
 
-    private static readonly Regex _r1 = new Regex("[ ]{2,}", RegexOptions.None);
-
     public static string RemoveMultiSpacesAndLinebreaks(string text)
     {
       try
       {
-        return _r1.Replace(text.Replace("\r\n", " ").Replace("\r", " ").Replace("\n", " "), " ");
+        text = text.Replace("\r\n", " ").Replace("\r", " ").Replace("\n", " ");
+        var length = text.Length;
+        do
+        {
+          length = text.Length;
+          text = text.Replace("  ", " ");
+        } while (length != text.Length);
+        return text;
       }
       catch
       {

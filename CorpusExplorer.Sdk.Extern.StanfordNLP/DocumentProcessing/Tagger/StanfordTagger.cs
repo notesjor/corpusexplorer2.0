@@ -143,6 +143,8 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
                       .FirstOrDefault();
     }
 
+    private readonly string[] _separator = new[] { "<ENDOFCORPUSEXPLORERFILE>" };
+
     protected override string TextPostTaggerCleanup(string text)
     {
       if (string.IsNullOrEmpty(text))
@@ -154,7 +156,7 @@ namespace CorpusExplorer.Sdk.Extern.StanfordNLP.DocumentProcessing.Tagger
             .Replace("  ", " ")
             .Replace("  ", " ")
             .Replace("  ", " ")
-            .Split(new[] { "<ENDOFCORPUSEXPLORERFILE>" }, StringSplitOptions.RemoveEmptyEntries);
+            .Split(_separator, StringSplitOptions.RemoveEmptyEntries);
 
       if (splits.Length == 0)
         return text;

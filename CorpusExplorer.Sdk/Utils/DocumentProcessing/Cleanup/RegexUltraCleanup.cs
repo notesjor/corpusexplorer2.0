@@ -11,7 +11,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup
 {
   public class RegexUltraCleanup : AbstractCleanup
   {
-    private readonly Regex _r1 = new Regex(@"[^a-zA-ZßäöüÄÖÜ\.\?\(\)\[\]\{\}0-9,;:\-'&\%`\s" + "\" ]");
+    private readonly Regex _r1 = new Regex(@"[^a-zA-ZßäöüÄÖÜ\.\?\(\)\[\]\{\}0-9,;:\-'&\%`\s" + "\" ]", RegexOptions.Compiled);
 
     public override string DisplayName => Resources.CorpusCleanup;
 

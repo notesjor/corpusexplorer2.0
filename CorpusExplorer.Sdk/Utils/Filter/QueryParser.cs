@@ -14,6 +14,8 @@ namespace CorpusExplorer.Sdk.Utils.Filter
   [SuppressMessage("ReSharper", "LocalizableElement")]
   public static class QueryParser
   {
+    private static readonly string[] _separator = new[] { "|" };
+
     public static AbstractFilterQuery Parse(string query)
     {
       // Wenn keine OR-Gruppe vorliegt
@@ -22,7 +24,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
 
       // Baue OR-Gruppe auf
       var entries = query.Substring(1, query.Length - 2)
-                         .Split(new[] {"|"}, StringSplitOptions.RemoveEmptyEntries)
+                         .Split(_separator, StringSplitOptions.RemoveEmptyEntries)
                          .Select(x => x.Trim())
                          .ToArray();
       var master = ParseEntry(entries[0]);

@@ -3059,4 +3059,10 @@ Nicht geeignet für Korpra mit mehr als 5 Mio. Token!</value>
   <data name="korap_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\korap_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="green_256x256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\green_256x256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pride_256x256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pride_256x256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -52,10 +52,13 @@ namespace CorpusExplorer.Terminal.Universal
       _server.AddEndpoint(HttpMethod.Get, "/selection/info", SelectionInfo);
       _server.AddEndpoint(HttpMethod.Get, "/selection/meta", SelectionMeta);
       _server.AddEndpoint(HttpMethod.Get, "/selection/change", SelectionChange);
+      _server.AddEndpoint(HttpMethod.Get, "/selection/guids", SelectionGuids);
 
-      _server.AddEndpoint(HttpMethod.Get, "/app/logo", GetLogo);
-      _server.AddEndpoint(HttpMethod.Get, "/app/welcome", GetWelcome);
-      _server.AddEndpoint(HttpMethod.Get, "/app/localize", GetLocalize);
+      _server.AddEndpoint(HttpMethod.Post, "/app/translate", SetTranslation);
+      _server.AddEndpoint(HttpMethod.Get, "/news", GetNews);
+      _server.AddEndpoint(HttpMethod.Get, "/available/corpora", GetAvailableCorpora);
+      _server.AddEndpoint(HttpMethod.Get, "/available/addons", GetAvailableAddons);
+      _server.AddEndpoint(HttpMethod.Get, "/download", GetCorpusOrAddon);
 
       _server.AddEndpoint(HttpMethod.Get, "/fs/get", FileSystemGet);
       _server.AddEndpoint(HttpMethod.Get, "/fs/set", FileSystemSet);

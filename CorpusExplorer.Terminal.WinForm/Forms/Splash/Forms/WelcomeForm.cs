@@ -1,5 +1,6 @@
 ﻿#region
 
+using System;
 using System.IO;
 using System.Reflection;
 using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
@@ -28,6 +29,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Splash.Forms
         lbl_version.Text =
           $"({File.GetLastWriteTime(Assembly.GetExecutingAssembly().Location).ToString("2.yyyy.MM.dd")})";
         radWaitingBar1.StartWaiting();
+
+        if(DateTime.Now.Month >= 6 && DateTime.Now.Month <= 8)
+          pictureBox1.Image = Properties.Resources.pride_256x256;
       };
     }
 

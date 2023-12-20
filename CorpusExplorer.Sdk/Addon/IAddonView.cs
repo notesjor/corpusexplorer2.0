@@ -16,13 +16,13 @@ namespace CorpusExplorer.Sdk.Addon
     ///   Icon das für dieses Addon angezeigt wird (wird nicht von allen Terminals unterstützt).
     ///   Es wird empfohlen ein PNG-Bild mit einer Auflösung von 24*24 Pixeln bereitzustellen.
     /// </summary>
-    Image Image24X24 { get; }
+    System.Drawing.Image Image24X24 { get; }
 
     /// <summary>
     ///   Icon das für dieses Addon angezeigt wird (wird nicht von allen Terminals unterstützt).
     ///   Es wird empfohlen ein PNG-Bild mit einer Auflösung von 48*48 Pixeln bereitzustellen.
     /// </summary>
-    Image Image48X48 { get; }
+    System.Drawing.Image Image48X48 { get; }
 
     /// <summary>
     ///   Name/Bezeichnung des Addons. Achten Sie auf eine möglichst kurze Bezeichnung.

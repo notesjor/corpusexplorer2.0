@@ -13,7 +13,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
 {
   public class HtmlTableWriter : AbstractTableWriter
   {
-    private readonly Regex _r = new Regex(@"<[^>]*>");
+    private readonly Regex _r = new Regex(@"<[^>]*>", RegexOptions.Compiled);
     public override string MimeType => "text/html";
     public override string Description => "HTML5-document";
     public override string TableWriterTag => "F:HTML";

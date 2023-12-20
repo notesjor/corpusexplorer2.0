@@ -399,7 +399,7 @@ namespace CorpusExplorer.Sdk.Extern.Wiki.Wiktionary
                                              .Select(x => x.Replace("[", "").Replace("]", "").Trim()).ToList();
     }
 
-    private static Regex _hyphenation = new Regex(@"\{{2}[\w\s.]*\}{2}");
+    private static Regex _hyphenation = new Regex(@"\{{2}[\w\s.]*\}{2}", RegexOptions.Compiled);
 
     private static void ApplyHyphenation(ref Entry entry, string hyphenation)
     {

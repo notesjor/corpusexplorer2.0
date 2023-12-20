@@ -349,6 +349,7 @@
       // 
       // txt_corpusInfo
       // 
+      this.txt_corpusInfo.AcceptsReturn = true;
       this.txt_corpusInfo.Dock = System.Windows.Forms.DockStyle.Top;
       this.txt_corpusInfo.Location = new System.Drawing.Point(0, 93);
       this.txt_corpusInfo.Multiline = true;

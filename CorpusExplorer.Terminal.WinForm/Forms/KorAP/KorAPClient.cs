@@ -1,5 +1,6 @@
 ﻿using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
+using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using DotNetKorAPClient;
 using DotNetKorAPClient.Sampler;
 using DotNetKorAPClient.Sampler.Abstract;
@@ -49,6 +50,9 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.KorAP
 
     private void btn_ok_Click(object sender, EventArgs e)
     {
+      Hide();
+      Processing.SplashShow("KorAP-Abfrage läuft...");
+
       DialogResult = DialogResult.OK;
 
       var auth = Auth.Create(Token);
@@ -72,6 +76,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.KorAP
       var importer = new KorapApiImporter();
       Result = importer.BypassData(results);
 
+      Processing.SplashClose();
+
       Close();
     }
 
@@ -92,8 +98,13 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.KorAP
 
     private void btn_signin_Click(object sender, EventArgs e)
     {
+      Hide();
+      Processing.SplashShow("KorAP-Authentifizierung läuft...");
       var form = new KorAPSignin();
-      if (form.ShowDialog() != DialogResult.OK)
+      var res = form.ShowDialog();
+
+      Show();
+      if (res != DialogResult.OK)
         return;
 
       using (var wc = new WebClient())

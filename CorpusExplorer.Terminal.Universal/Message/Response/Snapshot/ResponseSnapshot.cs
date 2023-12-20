@@ -11,6 +11,6 @@ namespace CorpusExplorer.Terminal.Universal.Message.Response.Snapshot
     public ResponseSnapshot[] Children { get; set; }
     public ResponseSize Size { get; set; }
     public HashSet<string> LayerNames { get; set; }
-    public IEnumerable<Guid> DocumentGuids { get; internal set; }
+    public bool IsActive { get; set; }
   }
 }

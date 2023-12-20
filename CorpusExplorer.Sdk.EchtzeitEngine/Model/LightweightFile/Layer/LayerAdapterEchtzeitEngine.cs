@@ -226,7 +226,7 @@ namespace CorpusExplorer.Sdk.EchtzeitEngine.Model.LightweightFile.Layer
 
     protected override IEnumerable<string> ValuesByRegex(string regEx)
     {
-      var regex = new Regex(regEx);
+      var regex = new Regex(regEx, RegexOptions.Compiled);
       return from x in _layer.Dictionary where regex.Match(x.Value).Success select x.Value;
     }
   }

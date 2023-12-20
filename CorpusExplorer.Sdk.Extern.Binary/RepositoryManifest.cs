@@ -32,8 +32,14 @@ namespace CorpusExplorer.Sdk.Extern.Binary
     ///   Liste mit Scrapern die lokale Dateien bestehender Korpora importieren (z. B. XML, EXMERaLDA).
     ///   Für Dateien MIT Annotation.
     /// </summary>
-    public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter
-      => null;
+    public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter =>
+      new Dictionary<string, AbstractImporter>
+      {
+        {
+          "Universeller Excel™-Importer (*.xlsx)|*.xlsx",
+          new ImporterUniversalExcel()
+        }
+      };
 
     /// <summary>
     ///   Liste mit Scrapern die lokale Dateien (z. B. TXT, RTF, DOCX, PDF) in Korpusdokumente konvertieren.

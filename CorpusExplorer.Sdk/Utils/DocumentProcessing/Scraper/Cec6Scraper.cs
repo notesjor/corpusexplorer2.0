@@ -13,7 +13,12 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper
     {
       var res = new List<Dictionary<string, object>>();
 
+#if ULTRA
+      AbstractCorpusAdapter corpus = CorpusAdapterWriteDirect.Create(file) as AbstractCorpusAdapter;
+#else
       AbstractCorpusAdapter corpus = CorpusAdapterWriteDirect.Create(file) as AbstractCorpusAdapter ?? CorpusAdapterSingleFile.Create(file);
+#endif
+
       foreach (var guid in corpus.DocumentGuids)
       {
         var doc = corpus.GetDocumentMetadata(guid);

@@ -7,13 +7,15 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.CorpusExplorerV6
 {
   public class ImporterCec6Drm : AbstractImporter
   {
+    private readonly string[] _splitter = new[] { "%" };
+
     protected override IEnumerable<AbstractCorpusAdapter> Execute(string importFilePath)
     {
       var user = "";
       var password = "";
       if (importFilePath.StartsWith("%"))
       {
-        var split = importFilePath.Split(new[] { "%" }, System.StringSplitOptions.RemoveEmptyEntries);
+        var split = importFilePath.Split(_splitter, System.StringSplitOptions.RemoveEmptyEntries);
         user = split[0];
         password = split[1];
         importFilePath = split[2];

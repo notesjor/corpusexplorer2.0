@@ -91,7 +91,7 @@ namespace CorpusExplorer.Sdk.Compatibility
           {
           }
 
-        nlayers.Add(new LayerValueState(layerOld.LayerName, nlayers.Count) {Cache = ndic, Documents = ndocs});
+        nlayers.Add(new LayerValueState(layerOld.LayerName, nlayers.Count, ndic, ndocs));
       }
 
       // FIX CLEAN
@@ -99,7 +99,7 @@ namespace CorpusExplorer.Sdk.Compatibility
       if (master == null)
         return null;
 
-      var fmeta = master.Documents.ToDictionary(guid => guid.Key, guid => nmeta[guid.Key]);
+      var fmeta = master.GetDocuments().ToDictionary(guid => guid.Key, guid => nmeta[guid.Key]);
 
       // STORE
       var builder = new CorpusBuilderWriteDirect();

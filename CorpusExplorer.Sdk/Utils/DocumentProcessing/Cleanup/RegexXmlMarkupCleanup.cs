@@ -9,7 +9,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup
 {
   public class RegexXmlMarkupCleanup : AbstractCleanup
   {
-    private readonly Regex _r1 = new Regex(@"<[^>]*>");
+    private readonly Regex _r1 = new Regex(@"<[^>]*>", RegexOptions.Compiled);
 
     public override string DisplayName => "HTML Standardbereinigung mittels REGEX";
 

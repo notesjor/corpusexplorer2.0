@@ -14,8 +14,8 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
   public class FilterQuerySingleLayerRegex : AbstractFilterQuery
   {
     [XmlIgnore] private Dictionary<Guid, HashSet<int>> _cache;
-
     [XmlAttribute] private string _regexQuery;
+    [XmlIgnore] private Regex _regex;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractFilterQuerySingleLayer" /> class.
@@ -43,6 +43,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       set
       {
         _regexQuery = value;
+        _regex = new Regex(value, RegexOptions.Compiled);
         ClearCache();
       }
     }
@@ -194,8 +195,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     {
       try
       {
-        var regex = new Regex(RegexQuery);
-        return new HashSet<int>(layer.Values.Where(x => regex.IsMatch(x)).Select(x => layer[x]));
+        return new HashSet<int>(layer.Values.Where(x => _regex.IsMatch(x)).Select(x => layer[x]));
       }
       catch
       {

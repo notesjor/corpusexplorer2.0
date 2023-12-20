@@ -26,10 +26,7 @@ namespace CorpusExplorer.Terminal.Universal
 
     private static void SelectionInfo(HttpContext obj)
     {
-      var selections = _terminal.Project.Selections.ToList();
-      selections.Insert(0, _terminal.Project.SelectAll);
-
-      obj.Response.Send(Convert_Selection(selections));
+      obj.Response.Send(Convert_Selection(_terminal.Project.Selections.ToList()));
     }
 
     private static ResponseSnapshot[] Convert_Selection(IEnumerable<Selection> selections)
@@ -47,7 +44,7 @@ namespace CorpusExplorer.Terminal.Universal
       return new ResponseSnapshot
       {
         Guid = selection.Guid,
-        Name = selection.Displayname,
+        Name = Translate(selection.Displayname),
         Children = Convert_Selection(selection.SubSelections),
         Size = new ResponseSize
         {
@@ -57,8 +54,13 @@ namespace CorpusExplorer.Terminal.Universal
           Tokens = selection.CountToken
         },
         LayerNames = layers,
-        DocumentGuids = selection.DocumentGuids
+        IsActive = selection == _terminal.Project.CurrentSelection
       };
+    }
+
+    private static void SelectionGuids(HttpContext obj)
+    {
+      obj.Response.Send(_terminal.Project.CurrentSelection.DocumentGuids);
     }
 
     private static void SelectionMeta(HttpContext obj)

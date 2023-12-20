@@ -13,6 +13,9 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
   [Serializable]
   public class FilterQuerySingleLayerRegexFulltext : AbstractFilterQuerySingleLayerFulltext
   {
+    private string _regexQuery;
+    private Regex _regex;
+
     /// <summary>
     ///   Initializes a new instance of the <see cref="AbstractFilterQuerySingleLayer" /> class.
     /// </summary>
@@ -25,14 +28,21 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// <summary>
     ///   Gets or sets the layer queries.
     /// </summary>
-    public string RegexQuery { get; set; }
+    public string RegexQuery
+    {
+      get => _regexQuery; set
+      {
+        _regexQuery = value;
+        _regex = new Regex(_regexQuery, RegexOptions.Compiled);
+      }
+    }
 
     public override string Verbal =>
       $"Alle Dokumente (Volltext) auf die der RegEx \"{RegexQuery}\" in Layer {LayerDisplayname} zutrifft.";
 
     protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, string sentence)
     {
-      var matches = new Regex(RegexQuery).Matches(sentence);
+      var matches = _regex.Matches(sentence);
       if (matches.Count == 0)
         return -1;
 
@@ -44,12 +54,10 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
     protected override IEnumerable<int> GetSentencesCall(IEnumerable<string> sentences)
     {
-      var regex = new Regex(RegexQuery);
-
       var res = new List<int>();
       var arr = sentences.ToArray();
       for (var i = 0; i < arr.Length; i++)
-        if (regex.IsMatch(arr[i]))
+        if (_regex.IsMatch(arr[i]))
           res.Add(i);
 
       return res;
@@ -57,7 +65,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
     protected override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, string sentence)
     {
-      var matches = new Regex(RegexQuery).Matches(sentence);
+      var matches = _regex.Matches(sentence);
       if (matches.Count == 0)
         return null;
 
@@ -71,7 +79,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
     protected override bool ValidateCall(string document)
     {
-      return new Regex(RegexQuery).IsMatch(document);
+      return _regex.IsMatch(document);
     }
 
     public override object Clone()

@@ -264,7 +264,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
 
     protected override IEnumerable<string> ValuesByRegex(string regEx)
     {
-      var rx = new Regex(regEx);
+      var rx = new Regex(regEx, RegexOptions.Compiled);
       return from x in _dictionary where rx.IsMatch(x.Key) select x.Key;
     }
 

@@ -17,7 +17,7 @@ namespace CorpusExplorer.Terminal.WinForm.Localizer.PivotGrid
         case PivotStringId.Count:                                          return "Zähle";
         case PivotStringId.StdDev:                                         return "Standardabweichung";
         case PivotStringId.Sum:                                            return "Summe";
-        case PivotStringId.Average:                                        return "Durchscnitt";
+        case PivotStringId.Average:                                        return "Durchschnitt";
         case PivotStringId.Var:                                            return "Varianz";
         case PivotStringId.VarP:                                           return "Varianz (P)";
         case PivotStringId.GroupP0AggregateP1:                             return "{0} {1}";
@@ -28,7 +28,7 @@ namespace CorpusExplorer.Terminal.WinForm.Localizer.PivotGrid
         case PivotStringId.DayGroupField:                                  return "Tag";
         case PivotStringId.HourGroupField:                                 return "Stunde";
         case PivotStringId.MinuteGroupField:                               return "Minute";
-        case PivotStringId.SecondsGroupField:                              return "Seknde";
+        case PivotStringId.SecondsGroupField:                              return "Sekunde";
         case PivotStringId.P0Total:                                        return "{0} Total";
         case PivotStringId.PivotAggregateP0ofP1:                           return "{0} von {1}";
         case PivotStringId.ExpandCollapseMenuItem:                         return "Erweitern";
@@ -65,7 +65,7 @@ namespace CorpusExplorer.Terminal.WinForm.Localizer.PivotGrid
         case PivotStringId.AllNodeSelectAllSearchResult:                   return "(Wähle alle Suchergebnisse)";
         case PivotStringId.FilterMenuAvailableFilters:                     return "&Verfügbare Filter";
         case PivotStringId.CheckBoxMenuItem:                               return "Wähle mehrere Einträge";
-        case PivotStringId.CalculationOptionsDialogNoCalculation:          return "Keine BErechnungen";
+        case PivotStringId.CalculationOptionsDialogNoCalculation:          return "Keine Berechnungen";
         case PivotStringId.CalculationOptionsDialogPrevious:               return "(zurück)";
         case PivotStringId.CalculationOptionsDialogNext:                   return "(vor)";
         case PivotStringId.CalculationOptionsDialogGrandTotal:             return "% der Gesamtsumme";
@@ -113,14 +113,14 @@ namespace CorpusExplorer.Terminal.WinForm.Localizer.PivotGrid
         case PivotStringId.Top10FilterOptionsDialogBottom:                    return "Bottom";
         case PivotStringId.Top10FilterOptionsDialogItems:                     return "Einträge";
         case PivotStringId.Top10FilterOptionsDialogPercent:                   return "Prozent";
-        case PivotStringId.Top10FilterOptionsDialogTop10:                     return "Top10 Filter ({0})";
+        case PivotStringId.Top10FilterOptionsDialogTop10:                     return "Top-10 Filter ({0})";
         case PivotStringId.ValueFilter:                                       return "Wert Filter ({0})";
         case PivotStringId.AggregateOptionsDialogGroupBoxText:                return "Werte zusammenfassen nach";
         case PivotStringId.AggregateOptionsDialogLabelCustomName:             return "Eigener Name:";
         case PivotStringId.AggregateOptionsDialogLabelDescription:
           return
             "Wählen Sie die Berechnungsart aus, mit der die Daten des ausgewählten Feldes zusammengefasst werden sollen.";
-        case PivotStringId.AggregateOptionsDialogLabelField:       return "FieLabelld Name";
+        case PivotStringId.AggregateOptionsDialogLabelField:       return "Feld Name";
         case PivotStringId.AggregateOptionsDialogLabelSourceName:  return "Quellen Name:";
         case PivotStringId.AggregateOptionsDialogText:             return "Optionen: Aggregation";
         case PivotStringId.AggregateOptionsAggregateOptionsText:   return "Aggregate Optionen";
@@ -131,21 +131,21 @@ namespace CorpusExplorer.Terminal.WinForm.Localizer.PivotGrid
         case PivotStringId.CalculationOptionsDialogLabelBaseField: return "Basis Feld:";
         case PivotStringId.CalculationOptionsDialogGroupBoxText:   return "Zeige Wert als";
         case PivotStringId.LabelFilterOptionsDialogGroupBoxText:   return "Einträge anzeigen, für die das Label";
-        case PivotStringId.LabelFilterOptionsDialogText:           return "LabelFilterOptionsDialog";
+        case PivotStringId.LabelFilterOptionsDialogText:           return "Filter-Optionen";
         case PivotStringId.LabelFilterOptionsDialogLabelAnd:       return "und";
         case PivotStringId.NumberFormatOptionsDialogFormat:        return "Format";
         case PivotStringId.NumberFormatOptionsDialogLabelDescription:
           return
             "Das Format sollte die Messgröße des Wertes bezeichnen. ($, ¥, €, kg., lb.), Das Format wird für allgemeine Berechnungen wie z. B. Sum, Average, Min und Max und andere verwendet.";
-        case PivotStringId.NumberFormatOptionsDialogText:         return "NumberFormatOptionsDialog";
+        case PivotStringId.NumberFormatOptionsDialogText:         return "Zahlen Format";
         case PivotStringId.NumberFormatOptionsDialogGroupBoxText: return "Generelles Format";
         case PivotStringId.SortOptionsDialogAscending:            return "Aufsteigend sortieren (A-Z):";
         case PivotStringId.SortOptionsDialogDescending:           return "Absteigend sortieren (Z-A):";
         case PivotStringId.SortOptionsDialogGroupBoxText:         return "Sortier-Optionen";
-        case PivotStringId.SortOptionsDialogText:                 return "SortOptionsDialog";
+        case PivotStringId.SortOptionsDialogText:                 return "Sortier-Optionen";
         case PivotStringId.Top10FilterOptionsDialogGroupBoxText:  return "Zeige";
         case PivotStringId.Top10FilterOptionsDialogLabelBy:       return "nach";
-        case PivotStringId.Top10FilterOptionsDialogText:          return "Top10FilterOptionsDialog";
+        case PivotStringId.Top10FilterOptionsDialogText:          return "Top-10 Filter";
         case PivotStringId.ValueFilterOptionsDialogGroupBox:      return "Zeige Einträge, für die";
         case PivotStringId.ValueFilterOptionsDialogText:          return "ValueFilterOptionsDialog";
         case PivotStringId.DragDataItemsHere:                     return "Einträge hierhin ziehen";
@@ -207,13 +207,13 @@ namespace CorpusExplorer.Terminal.WinForm.Localizer.PivotGrid
         case PivotStringId.PivotMoreFields:                 return "Weitere Felder";
         case PivotStringId.CellScreenTipValue:              return "Wert";
         case PivotStringId.CellScreenTipRow:                return "Reihe";
-        case PivotStringId.CellScreenTipColumn:             return "Saplte";
+        case PivotStringId.CellScreenTipColumn:             return "Spalte";
         case PivotStringId.SortOptionsContextFromAtoZMenuText:
           return "Aufsteigend sortieren (von A nach Z)";
         case PivotStringId.SortOptionsContextFromZtoAMenuText:
           return "Absteigend sortieren (von A nach Z)";
         case PivotStringId.SortOptionsContextMoreSortingOptionsMenuText:     return "Weitere Sortier-Optionen ...";
-        case PivotStringId.ContextTop10FilterOptionsMenuText:                return "Top10 Filter";
+        case PivotStringId.ContextTop10FilterOptionsMenuText:                return "Top-10 Filter";
         case PivotStringId.ContextNumberFormatrOptionsMenuText:              return "Zahlen-Format...";
         case PivotStringId.ContextClearCalculationsrOptionsMenuText:         return "Lösche Berechnungen";
         case PivotStringId.ContextMoreCalculationOptionsOptionsMenuText:     return "Weitere berechnungs-Optionen...";

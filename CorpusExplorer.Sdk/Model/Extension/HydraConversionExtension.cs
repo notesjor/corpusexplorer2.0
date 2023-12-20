@@ -67,23 +67,16 @@ namespace CorpusExplorer.Sdk.Model.Extension
     {
       foreach (var layer in selection.Layers)
       {
-        nlayers.Add(layer.Displayname, new LayerValueState(layer.Displayname, nlayers.Count));
-
-        var tIds = new HashSet<int>();
+        var nlayer = new LayerValueState(layer.Displayname, nlayers.Count);
 
         foreach (var dsel in selection.DocumentGuids)
           if (layer.ContainsDocument(dsel))
           {
             documents.Add(dsel);
-            var doc = layer[dsel];
-            nlayers[layer.Displayname].AddCompleteDocument(dsel, doc);
-
-            foreach (var s in doc)
-              foreach (var t in s)
-                tIds.Add(t);
+            nlayer.AddCompleteDocument(dsel, layer.GetReadableDocumentByGuid(dsel));
           }
 
-        nlayers[layer.Displayname].Cache = tIds.ToDictionary(x => layer[x], x => x);
+        nlayers.Add(layer.Displayname, nlayer);
       }
     }
 

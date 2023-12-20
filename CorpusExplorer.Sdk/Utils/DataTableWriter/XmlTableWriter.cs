@@ -13,7 +13,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter
 {
   public class XmlTableWriter : AbstractTableWriter
   {
-    private readonly Regex _r = new Regex(@"<[^>]*>");
+    private readonly Regex _r = new Regex(@"<[^>]*>", RegexOptions.Compiled);
 
     public override string TableWriterTag => "F:XML";
     public override string MimeType => "application/xml";

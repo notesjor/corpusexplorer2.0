@@ -3,7 +3,7 @@ using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser;
 
 namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
 {
-  partial class CooccurrenceTagPie
+  partial class FrequencyOverTime2
   {
     /// <summary> 
     /// Erforderliche Designervariable.
@@ -32,7 +32,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CooccurrenceTagPie));
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrequencyOverTime2));
       this.wordBag1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WordBag();
       this.webHtml5Visualisation1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WebBrowserControl();
       this.timer1 = new System.Windows.Forms.Timer(this.components);

@@ -4,19 +4,29 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.LoadStrategy.Abstract;
 using HtmlAgilityPack;
 using Telerik.Windows.Zip;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.LoadStrategy
 {
-  public class KorapZip : IDisposable
+  public class KorapLoadStrategyZipFile : AbstractKorapLoadStrategy
   {
     private object _zipLock = new object();
     private FileStream _fs;
     private ZipArchive _zip;
     private Dictionary<string, ZipArchiveEntry> _entries = new Dictionary<string, ZipArchiveEntry>();
 
-    public KorapZip(string path)
+    public static KorapLoadStrategyZipFile AddonInitialize() => new KorapLoadStrategyZipFile();
+
+    public override AbstractKorapLoadStrategy Initialize(string path)
+    {
+      return new KorapLoadStrategyZipFile(path);
+    }
+
+    private KorapLoadStrategyZipFile() { }
+
+    private KorapLoadStrategyZipFile(string path)
     {
       if (!File.Exists(path))
         throw new FileNotFoundException();
@@ -32,10 +42,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.LoadStrategy
           _entries.Add(entry.FullName, entry);
     }
 
-    public IEnumerable<string> Entries
+    public override IEnumerable<string> Entries
       => _entries.Keys;
 
-    public HtmlDocument Read(string entry)
+    public override HtmlDocument Read(string entry)
     {
       var res = new HtmlDocument();
       lock (_zipLock)
@@ -44,17 +54,17 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.LoadStrategy
       return res;
     }
 
-    public XmlDocument ReadXml(string entry)
+    public override XmlDocument ReadXml(string entry)
     {
       var res = new XmlDocument();
       lock (_zipLock)
-        using(var reader = new StreamReader(_entries[entry].Open(), Encoding.UTF8))
+        using (var reader = new StreamReader(_entries[entry].Open(), Encoding.UTF8))
           res.Load(reader);
 
       return res;
     }
 
-    public XmlDocument ReadXmlClean(string entry)
+    public override XmlDocument ReadXmlClean(string entry)
     {
       string xml;
       using (var ms = new MemoryStream())
@@ -79,13 +89,13 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.LoadStrategy
       return res;
     }
 
-    public void Dispose()
+    public override void Dispose()
     {
       _entries?.Clear();
       _zip?.Dispose();
       _fs?.Close();
     }
 
-    public bool Exists(string entry) => _entries.ContainsKey(entry);
+    public override bool Exists(string entry) => _entries.ContainsKey(entry);
   }
 }

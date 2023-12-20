@@ -14,6 +14,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dewac
       var buffer = new byte[4096];
       var text = "";
       var cnt = 0;
+      var separtor = new[] { "</s>" };
 
       using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
       using (var bs = new BufferedStream(fs))
@@ -38,7 +39,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dewac
               text.Substring(textStart, textEnd - textStart)
                 .Replace("<s>", "")
                 .Trim()
-                .Split(new[] {"</s>"}, StringSplitOptions.RemoveEmptyEntries));
+                .Split(separtor, StringSplitOptions.RemoveEmptyEntries));
 
             text = text.Substring(textEnd + 7).TrimStart();
             cnt++;

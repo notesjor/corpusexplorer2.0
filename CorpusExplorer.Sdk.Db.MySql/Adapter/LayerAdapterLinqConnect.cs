@@ -164,7 +164,7 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
       context.Layers.InsertOnSubmit(layerSet);
       context.SubmitChanges(ConflictMode.ContinueOnConflict);
 
-      foreach (var d in layer.Documents)
+      foreach (var d in layer.GetDocuments())
       {
         var doc =
           (from x in context.Documents where x.GUID == d.Key && x.CorpusID == corpusID select x).FirstOrDefault();
@@ -188,7 +188,7 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
 
       context.SubmitChanges(ConflictMode.ContinueOnConflict);
 
-      foreach (var v in layer.Cache)
+      foreach (var v in layer.GetCache())
         context.LayerDictionaryEntries.InsertOnSubmit(new LayerDictionaryEntry
         {
           LayerID = layerSet.ID,
@@ -414,7 +414,7 @@ namespace CorpusExplorer.Sdk.Db.MySql.Adapter
       var res = new HashSet<string>();
       var @lock = new object();
 
-      var regex = new Regex(regEx);
+      var regex = new Regex(regEx, RegexOptions.Compiled);
       Parallel.ForEach(
                        _db.LayerDictionaryEntries,
                        Configuration.ParallelOptions,

@@ -540,7 +540,7 @@ namespace CorpusExplorer.Sdk.Model
       var res = new HashSet<string>();
       var @lock = new object();
 
-      var regex = new Regex(regEx);
+      var regex = new Regex(regEx, RegexOptions.Compiled);
       Parallel.ForEach(
                        _dictionary,
                        Configuration.ParallelOptions,

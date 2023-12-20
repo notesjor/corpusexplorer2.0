@@ -215,19 +215,18 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract
     /// <returns></returns>
     public LayerValueState ToLayerState(string newDisplayname = null, int valueIndex = 0, bool clearDictionary = false, bool clearDocument = false, bool noDocuments = false)
     {
-      return new LayerValueState(newDisplayname ?? Displayname, valueIndex)
-      {
-        Documents = noDocuments   ? new Dictionary<Guid, int[][]>() :
-                    clearDocument ? GetDocumentDictionary()
-                                     .ToDictionary(x => x.Key,
-                                                   x => x.Value.Select(y => y.Select(z => 0).ToArray()).ToArray()) :
-                                    GetDocumentDictionary(),
-        Cache = clearDictionary
+      return new LayerValueState(newDisplayname ?? Displayname,
+        valueIndex,
+        clearDictionary
                   ? new Dictionary<string, int>()
                   : GetValueDictionary()
                    .ReciveRawIndexToValue()
-                   .ToDictionary(x => x.Value, x => x.Key)
-      };
+                   .ToDictionary(x => x.Value, x => x.Key),
+        noDocuments ? new Dictionary<Guid, int[][]>() :
+        clearDocument ? GetDocumentDictionary()
+                         .ToDictionary(x => x.Key,
+                                       x => x.Value.Select(y => y.Select(z => 0).ToArray()).ToArray()) :
+                        GetDocumentDictionary());
     }
 
     /// <summary>

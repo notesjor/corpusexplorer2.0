@@ -110,9 +110,17 @@ namespace CorpusExplorer.Sdk.Model
 
         const string label = "<html>Alle Korpora & Dokumente &nbsp;<strong>(dynamisch)</strong></html>";
         _selectionAll = Selection.Create(this, dic, label, null, true);
-        var sels = _selections.ToArray();
-        foreach (var s in sels.Where(s => s.Displayname == label))
-          _selections.Remove(s);
+        
+        var sels = _selections.Where(s => s.Displayname == label).ToArray();
+        foreach (var s in sels)
+          try
+          {
+            _selections.Remove(s);
+          }
+          catch
+          {
+            // ignore
+          }
 
         _selections.Add(_selectionAll);
         CurrentSelection = SelectAll;
@@ -1059,7 +1067,7 @@ namespace CorpusExplorer.Sdk.Model
       string overrideSelectionDisplayname,
       Selection parentSelection = null)
     {
-      var res = parentSelection == null
+      var res = parentSelection == null || parentSelection == SelectAll
                   ? SelectAll.Create(queries, overrideSelectionDisplayname, true)
                   : parentSelection.Create(queries, overrideSelectionDisplayname, false);
 
@@ -1097,7 +1105,7 @@ namespace CorpusExplorer.Sdk.Model
       string overrideSelectionDisplayname,
       Selection parentSelection = null)
     {
-      var res = parentSelection == null
+      var res = parentSelection == null || parentSelection == SelectAll
                   ? SelectAll.Create(corpusAndDocumentGuids, overrideSelectionDisplayname, true)
                   : parentSelection.Create(corpusAndDocumentGuids, overrideSelectionDisplayname, false);
 

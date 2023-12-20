@@ -10,7 +10,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Cleanup
 {
   public class RegexUnicodeReplacerCleanup : AbstractCleanup
   {
-    private Regex _regex = new Regex("[\u20AD-\uFFFF]");
+    private Regex _regex = new Regex("[\u20AD-\uFFFF]", RegexOptions.Compiled);
 
     public override string DisplayName
       => "Regex Replace Unicode";

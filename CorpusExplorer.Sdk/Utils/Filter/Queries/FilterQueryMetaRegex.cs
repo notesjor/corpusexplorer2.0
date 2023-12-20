@@ -62,7 +62,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
             _values.Add(regex);
             break;
           case string s:
-            _values.Add(new Regex(s));
+            _values.Add(new Regex(s, RegexOptions.Compiled));
             break;
         }
       }

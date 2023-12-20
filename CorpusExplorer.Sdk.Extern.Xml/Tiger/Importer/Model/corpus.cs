@@ -6,7 +6,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Xml.Schema;
 using System.Xml.Serialization;
-using CorpusExplorer.Sdk.Extern.Xml.Tiger.Scraper.Model;
 
 #endregion
 

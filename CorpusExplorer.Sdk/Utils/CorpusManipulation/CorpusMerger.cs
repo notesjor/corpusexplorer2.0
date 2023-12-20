@@ -70,6 +70,12 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
       if (corpus == null)
         return;
 
+      if(corpus.Layers == null || corpus.Layers.Count() == 0)
+        return;
+
+      if(corpus.CountDocuments == 0 || corpus.CountToken == 0)
+        return;
+
       // concepts
       if (corpus.Concepts != null && corpus.Concepts.Count() > 0)
         _concepts.AddRange(corpus.Concepts);
@@ -111,7 +117,8 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
                              }
                            });
         else
-          _layers.Add(layer.Displayname, layer.ToLayerState());
+          lock (@lock)
+            _layers.Add(layer.Displayname, layer.ToLayerState());
     }
 
     public static AbstractCorpusAdapter Merge(

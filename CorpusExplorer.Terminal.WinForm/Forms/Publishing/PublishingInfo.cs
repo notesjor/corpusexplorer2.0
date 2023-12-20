@@ -18,7 +18,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Publishing
     private string _urlInfo;
     private string _urlLicence;
 
-    public PublishingInfo(CorpusLicenceInfo cli)
+    public PublishingInfo(CorpusInfo cli)
     {
       InitializeComponent();
 

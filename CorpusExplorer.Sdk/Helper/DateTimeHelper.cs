@@ -11,7 +11,7 @@ namespace CorpusExplorer.Sdk.Helper
 {
   public static class DateTimeHelper
   {
-    private static readonly Regex GermanMarchPatch = new Regex(@"\sM.{1,6}rz\s");
+    private static readonly Regex GermanMarchPatch = new Regex(@"\sM.{1,6}rz\s", RegexOptions.Compiled);
 
     /// <summary>
     ///   Gibt zurück ob ein Datum (testDateTime) im Bereich (timeSpan) eines Referenzdatums (referenceDateTime) liegt.

@@ -42,7 +42,7 @@ namespace CorpusExplorer.Sdk.Extern.Json.Speedy
       foreach (var n in nLayers)
       {
         var aLayer = layer.ToLayerState(n, addLayers.Count + 1, true, true);
-        var fDoc = aLayer.Documents.First();
+        var fDoc = aLayer.GetDocuments().First();
         var aDoc = fDoc.Value.Select(x => x.Select(_ => "-null-").ToArray()).ToArray(); // Erzeuge leeres Dokument - Muss ggf. auch im Exporter geändert werden.
 
         foreach (var a in model.Properties.Where(x => x.Type == n))

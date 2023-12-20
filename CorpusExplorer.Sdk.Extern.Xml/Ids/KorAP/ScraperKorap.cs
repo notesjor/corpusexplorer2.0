@@ -12,6 +12,7 @@ using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Extern.Xml.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.Exceptions;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.LoadStrategy;
+using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP.LoadStrategy.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using HtmlAgilityPack;
 
@@ -26,6 +27,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
     public bool ReadTaxonomy { get; set; } = false;
     public bool ReadLanguage { get; set; } = false;
     public int HtmlDecodeRounds { get; set; } = 0;
+    public AbstractKorapLoadStrategy LoadStrategy { get; set; }
 
     private List<Exception> _debug = new List<Exception>();
     public IEnumerable<Exception> DebugLog
@@ -37,16 +39,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       }
     }
 
+    private Regex _corpusRegex = new Regex(@"^[a-zA-Z0-9]*\/header\.xml$", RegexOptions.Compiled);
+    private Regex _dataRegex = new Regex(@"^[a-zA-Z0-9]*\/[a-zA-Z0-9]*\/[a-zA-Z0-9]*\/data\.xml$", RegexOptions.Compiled);
+
     protected override IEnumerable<Dictionary<string, object>> Execute(string file)
     {
       try
       {
-        using (var zip = new KorapZip(file))
+        using (var zip = LoadStrategy.Initialize(file))
         {
           try
           {
-            var corpusRegex = new Regex(@"^[a-zA-Z0-9]*\/header\.xml$");
-            var mainHeader = zip.Entries.Single(x => corpusRegex.IsMatch(x));
+            var mainHeader = zip.Entries.Single(x => _corpusRegex.IsMatch(x));
 
             if (string.IsNullOrWhiteSpace(mainHeader))
               return null;
@@ -58,8 +62,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
             var resLock = new object();
             var res = new List<Dictionary<string, object>>();
 
-            var dataRegex = new Regex(@"^[a-zA-Z0-9]*\/[a-zA-Z0-9]*\/[a-zA-Z0-9]*\/data\.xml$");
-            var tDatas = zip.Entries.Where(x => dataRegex.IsMatch(x)).ToArray();
+            var tDatas = zip.Entries.Where(x => _dataRegex.IsMatch(x)).ToArray();
 
             Parallel.ForEach(tDatas, Configuration.ParallelOptions, tData =>
             {
@@ -94,7 +97,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       return null;
     }
 
-    public string GetText(string path, KorapZip zip, string zipPath)
+    public string GetText(string path, AbstractKorapLoadStrategy zip, string zipPath)
     {
       try
       {
@@ -113,7 +116,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       }
     }
 
-    public Dictionary<string, object> GetMetadata(KorapZip zip, string zipPath, Dictionary<string, object> corpusHeader)
+    public Dictionary<string, object> GetMetadata(AbstractKorapLoadStrategy zip, string zipPath, Dictionary<string, object> corpusHeader)
     {
       var res = corpusHeader.ToDictionary(x => x.Key, x => x.Value);
       res.Add("ZipPath", zipPath);
@@ -177,7 +180,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       }
     }
 
-    public Dictionary<string, object> GetZipHeader(string path, KorapZip zip, string zipPath)
+    public Dictionary<string, object> GetZipHeader(string path, AbstractKorapLoadStrategy zip, string zipPath)
     {
       Dictionary<string, object> res = null;
       try
