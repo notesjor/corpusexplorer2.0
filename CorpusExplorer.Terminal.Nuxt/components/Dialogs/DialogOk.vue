@@ -7,7 +7,7 @@
         <v-card-text v-show="!!message" class="pa-4">{{ message }}</v-card-text>
         <v-card-actions class="pt-0">
           <v-spacer></v-spacer>
-          <v-btn color="primary" @click.native="ok">{{ yes }}</v-btn>
+          <v-btn color="primary" @click="ok">{{ yes }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -15,14 +15,14 @@
 
   <!--
     Verwendung
-    import DialogYesNo from "/components/Dialogs/DialogOk.vue";
+    import DialogOk from "/components/Dialogs/DialogOk.vue";
 
     export default {
       components:{
         DialogOk
       },
 
-    <DialogOk ref="mydiag" @result="diag_res" title="Überschrift" message="Meine Nachricht" color="#f00" width="600"></DialogYesNo>
+    <DialogOk ref="mydiag" @result="diag_res" title="Überschrift" message="Meine Nachricht" color="#f00" width="600"></DialogOk>
 
     diag_res(){
       

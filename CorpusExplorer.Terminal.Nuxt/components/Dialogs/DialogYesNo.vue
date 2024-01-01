@@ -7,8 +7,8 @@
         <v-card-text v-show="!!message" class="pa-4">{{ message }}</v-card-text>
         <v-card-actions class="pt-0">
           <v-spacer></v-spacer>
-          <v-btn color="primary" @click.native="agree">{{ yes }}</v-btn>
-          <v-btn text @click.native="cancel">{{ no }}</v-btn>
+          <v-btn color="primary" @click.="agree">{{ yes }}</v-btn>
+          <v-btn text @click="cancel">{{ no }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -57,11 +57,11 @@
       },
       yes: {
         type: String,
-        default: "Ok"
+        default: null
       },
       no: {
         type: String,
-        default: "Abbrechen"
+        default: null
       },
     },
     methods: {
@@ -77,7 +77,11 @@
         this.$emit('result', false);
       }
     },
-    emits:["result"]
+    emits:["result"],
+    mounted() {
+      if(!this.yes) this.yes = this.$t('Accept');
+      if(!this.no) this.no = this.$t('Reject');
+    }
   }
   </script>
   

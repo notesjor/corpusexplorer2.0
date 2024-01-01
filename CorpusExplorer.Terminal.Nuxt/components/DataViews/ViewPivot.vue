@@ -1,60 +1,121 @@
 <template>
   <div id="app">
-    <ejs-pivotview id="pivotview_flist" :height="height"></ejs-pivotview>
-    <ejs-pivotfieldlist
-      id="pivotfieldlist1"
-      :dataSourceSettings="dataSourceSettings"
-      :enginePopulated="fieldEnginePopulated"
-      :renderMode="renderMode"
-    ></ejs-pivotfieldlist>
+    <DxPivotGrid id="pivotgrid" ref="grid" :data-source="dataSource" :allow-sorting-by-summary="true"
+      :allow-filtering="true" :show-borders="true" :show-column-grand-totals="true" :show-row-grand-totals="true"
+      :show-row-totals="false" :show-column-totals="false">
+      <DxFieldChooser :enabled="true" :height="400" />
+    </DxPivotGrid>
   </div>
 </template>
   
-  <script>
-import Vue from "vue";
-import {
-  PivotViewPlugin,
-  PivotFieldListPlugin,
-} from "@syncfusion/ej2-vue-pivotview";
+<script>
+import 'devextreme/dist/css/dx.material.blue.light.compact.css';
 
-Vue.use(PivotViewPlugin);
-Vue.use(PivotFieldListPlugin);
+import {
+  DxChart,
+  DxAdaptiveLayout,
+  DxCommonSeriesSettings,
+  DxSize,
+  DxTooltip,
+  DxExport
+} from 'devextreme-vue/chart';
+
+import Chart from "devextreme/viz/chart";
+
+import {
+  DxPivotGrid,
+  DxFieldChooser
+} from 'devextreme-vue/pivot-grid';
 
 export default {
+  name: "ViewPivot",
+  components: {
+    DxChart,
+    DxAdaptiveLayout,
+    DxCommonSeriesSettings,
+    DxSize,
+    DxTooltip,
+    DxPivotGrid,
+    DxFieldChooser,
+    DxExport,
+    Chart
+  },
   data() {
     return {
-      dataSourceSettings: {
-        dataSource: [
-          {
-            balance: 2430.87,
-            quantity: 11,
-            name: "Skinner Ward",
-            gender: "male",
-            company: "GROK",
-            state: "New Jercy",
-          },
-          {
-            balance: 3192.7,
-            quantity: 15,
-            name: "Gwen Dixon",
-            gender: "female",
-            company: "ICOLOGY",
-            state: "Vetaikan",
-          },
-          {
-            balance: 1663.84,
-            quantity: 14,
-            name: "Deena Gillespie",
-            gender: "female",
-            company: "OVERPLEX",
-            state: "New Jercy",
-          },
-        ],
-        expandAll: true,
+      vizMode: { title: "Balken", value: "bar" },
+      vizModes: [
+        { title: "Balken", value: "bar" },
+        { title: "Linien", value: "line" },
+        { title: "Flächen", value: "area" },
+        { title: "Scatter", value: "scatter" },
+        { title: "Bubble", value: "bubble" },
+        { title: "Balken (gestapelt)", value: "stackedbar" },
+        { title: "Linien (gestapelt)", value: "stackedline" },
+        { title: "Flächen (gestapelt)", value: "stackedarea" },
+        { title: "Balken (auf 100%)", value: "fullstackedbar" },
+        { title: "Linien (auf 100%)", value: "fullstackedline" },
+        { title: "Flächen (auf 100%)", value: "fullstackedarea" },
+      ],
+      fieldsOriginal: [],
+      dataSource: {
+        fields: [],
+        store: []
+        ,
       },
-      height: 350,
+      customizeTooltip(args) {
+        return {
+          html: `${args.argumentText} / ${args.seriesName}: ${args.originalValue}`,
+        };
+      },
+      height: 600,
       renderMode: "Fixed",
     };
+  },
+  mounted() {
+    this.height = window.innerHeight - 150;
+
+    var self = this;
+
+    /* COPILOT
+    fetch('http://localhost:12712/analyze', {
+      method: 'POST',
+      body: JSON.stringify({
+        "Action": "frequency3",
+        "Arguments": []
+      })
+    }).then(response => response.json())
+      .then(data => {
+        self.dataSource = {
+          fields: data.fields,
+          store: data.store
+        };
+        self.fieldsOriginal = data.fields;
+      });
+      */
+
+     /* Notwendig
+     fetch(`${basePath}/schema.json`)
+        .then(response => response.json())
+        .then(schema => {
+          fetch(`${basePath}/data.json`)
+            .then(response => response.json())
+            .then(data => {
+              self.$data.fieldsOriginal = schema;
+              self.$data.dataSource = {
+                fields: schema,
+                store: data
+              };
+
+              const pivotGrid = self.$refs.grid.instance;
+              const chart = self.$refs.chart.instance;
+              pivotGrid.bindChart(chart, {
+                dataFieldsDisplayMode: 'splitPanes',
+                alternateDataFields: false,
+              });
+              self.setProfile(0);
+            });
+        });
+        */
   },
   methods: {
     fieldEnginePopulated: function (args) {
@@ -67,14 +128,3 @@ export default {
   },
 };
 </script>
-<style>
-@import "@syncfusion/ej2-vue-pivotview/styles/material.css";
-@import "@syncfusion/ej2-inputs/styles/material.css";
-@import "@syncfusion/ej2-buttons/styles/material.css";
-@import "@syncfusion/ej2-dropdowns/styles/material.css";
-@import "@syncfusion/ej2-lists/styles/material.css";
-@import "@syncfusion/ej2-popups/styles/material.css";
-@import "@syncfusion/ej2-popups/styles/material.css";
-@import "@syncfusion/ej2-navigations/styles/material.css";
-@import "@syncfusion/ej2-grids/styles/material.css";
-</style>

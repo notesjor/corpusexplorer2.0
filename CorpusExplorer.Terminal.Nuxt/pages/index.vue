@@ -1,83 +1,63 @@
+<script setup>
+import HeadDescription from '~/components/HeadDescription.vue'
+
+
+</script>
+
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center">
-        <NuxtLogo />
-        <VuetifyLogo />
-      </v-card>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+  <h1 class="text-3xl">{{ $t("start_Welcome") }}</h1>
+  <p style="margin-bottom: 20px;">{{ $t("start_Welcome_Text") }}</p>
+
+  <head-description :head="lbl_checklist_head" :description="lbl_checklist_description"></head-description>
+  <div>
+    <big-button leftIcon="mdi-numeric-1-circle" icon="mdi-form-textbox" style="margin:5px 10px 20px 0px"
+      :label="lbl_check_projectName" />
+    <nuxt-link to="/corpus">
+      <big-button leftIcon="mdi-numeric-2-circle" icon="mdi-file-cabinet" style="margin:5px 10px 20px 0px"
+        :label="lbl_check_loadCorpora" />
+    </nuxt-link>
+    <nuxt-link to="/snapshot">
+      <big-button leftIcon="mdi-numeric-3-circle" icon="mdi-camera-outline" style="margin:5px 10px 20px 0px"
+        :label="lbl_check_createSnapshot" />
+    </nuxt-link>
+    <big-button leftIcon="mdi-numeric-4-circle" icon="mdi-chart-box-outline" style="margin:5px 10px 20px 0px"
+      :label="lbl_check_doWork" />
+  </div>
+
+  <head-description-info :head="lbl_firstSteps_head" :description="lbl_firstSteps_description" />
+
+  <head-description :head="lbl_whatsNew_head" :description="lbl_whatsNew_description"></head-description>
+  <div>
+    <big-button icon="mdi-lock" style="margin:5px 10px 20px 0px" :label="lbl_info_dataprotection" />
+    <big-button icon="mdi-share-variant" style="margin:5px 10px 20px 0px" :label="lbl_info_datashare" />
+    <big-button icon="mdi-server-security" style="margin:5px 10px 20px 0px" :label="lbl_info_softwaredesign" />
+    <big-button icon="mdi-chart-timeline-variant-shimmer" style="margin:5px 10px 20px 0px"
+      :label="lbl_info_visualization" />
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage'
+  components: { HeadDescription },
+  name: 'IndexPage',
+
+  data() {
+    return {
+      lbl_check_projectName: this.$t('start_check_projectName'),
+      lbl_check_loadCorpora: this.$t('start_check_loadCorpora'),
+      lbl_check_createSnapshot: this.$t('start_check_createSnaprshot'),
+      lbl_check_doWork: this.$t('start_check_doWork'),
+      lbl_checklist_head: this.$t('start_Checklist'),
+      lbl_checklist_description: this.$t('start_Checklist_Text'),
+      lbl_firstSteps_head: this.$t('start_FirstSteps'),
+      lbl_firstSteps_description: this.$t('start_FirstSteps_Text'),
+      lbl_whatsNew_head: this.$t('start_WhatsNew'),
+      lbl_whatsNew_description: this.$t('start_WhatsNew_Text'),
+      lbl_info_dataprotection: this.$t('start_info_dataprotection'),
+      lbl_info_datashare: this.$t('start_info_datashare'),
+      lbl_info_softwaredesign: this.$t('start_info_softwaredesign'),
+      lbl_info_visualization: this.$t('start_info_visualization'),
+    }
+  },
 }
 </script>

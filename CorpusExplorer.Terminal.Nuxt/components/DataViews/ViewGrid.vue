@@ -1,57 +1,61 @@
 <template>
   <div>
-    <ejs-grid
-      ref="grid"
-      :dataSource="data"
-      :allowSorting="true"
-      :allowGrouping="true"
-      :allowFiltering="true"
-    >
-    </ejs-grid>
+    <DxDataGrid id="grid" ref="grid" :data-source="dataSource" :column-auto-width="true" :allow-column-resizing="true"
+      :allow-column-reordering="true" :height="height">
+
+      <DxColumn v-for="c in schema" :key="c" :data-field="c.dataField" :caption="c.caption" :allow-fixing="true"
+        :alignment="c.align == undefined ? 'left' : c.align" />
+
+      <DxFilterRow :visible="true" />
+      <DxColumnChooser :enabled="true" mode="select" />
+      <DxSorting mode="multiple" />
+      <DxScrolling mode="virtual" />
+      <DxGrouping :context-menu-enabled="true" />
+      <DxGroupPanel :visible="true" />
+    </DxDataGrid>
   </div>
 </template>
   
-  <script>
-import Vue from "vue";
-import { GridPlugin, Sort, Group, Filter } from "@syncfusion/ej2-vue-grids";
-
-Vue.use(GridPlugin);
+<script>
+import 'devextreme/dist/css/dx.material.blue.light.compact.css';
+import { DxDataGrid, DxColumn, DxFilterRow, DxColumnChooser, DxSorting, DxScrolling, DxGrouping, DxGroupPanel } from 'devextreme-vue/data-grid';
 
 export default {
-  name: "Analyse",
+  name: "ViewGrid",
   components: {
-    GridPlugin,
+    DxDataGrid,
+    DxColumn,
+    DxFilterRow,
+    DxColumnChooser,
+    DxSorting,
+    DxScrolling,
+    DxGrouping,
+    DxGroupPanel
   },
   data() {
     return {
-      data: [
-        { OrderID: 10248, CustomerID: "VINET", Freight: 32.38 },
-        { OrderID: 10249, CustomerID: "TOMSP", Freight: 11.61 },
-        { OrderID: 10250, CustomerID: "HANAR", Freight: 65.83 },
-        { OrderID: 10251, CustomerID: "VICTE", Freight: 41.34 },
-        { OrderID: 10252, CustomerID: "SUPRD", Freight: 51.3 },
-        { OrderID: 10253, CustomerID: "HANAR", Freight: 58.17 },
-        { OrderID: 10254, CustomerID: "CHOPS", Freight: 22.98 },
-        { OrderID: 10255, CustomerID: "RICSU", Freight: 148.33 },
-        { OrderID: 10256, CustomerID: "WELLI", Freight: 13.97 },
-      ],
+      dataSource: {
+        store: []
+      },
+      height: 600,
     };
   },
-  mounted() {},
-  provide: {
-    grid: [Sort, Group, Filter],
+  mounted() {
+    this.height = window.innerHeight - 150;
+
+    var self = this;
+    fetch('http://localhost:12712/analyze', {
+      method: 'POST',
+      body: JSON.stringify({
+        "Action": "frequency3",
+        "Arguments": []
+      })
+    }).then(response => response.json())
+      .then(data => {
+        self.dataSource = {
+          store: data
+        };
+      });
   },
 };
 </script>
-  
-<style>
-@import "@syncfusion/ej2-base/styles/material.css";
-@import "@syncfusion/ej2-inputs/styles/material.css";
-@import "@syncfusion/ej2-buttons/styles/material.css";
-@import "@syncfusion/ej2-dropdowns/styles/material.css";
-@import "@syncfusion/ej2-lists/styles/material.css";
-@import "@syncfusion/ej2-popups/styles/material.css";
-@import "@syncfusion/ej2-popups/styles/material.css";
-@import "@syncfusion/ej2-navigations/styles/material.css";
-@import "@syncfusion/ej2-grids/styles/material.css";
-</style>

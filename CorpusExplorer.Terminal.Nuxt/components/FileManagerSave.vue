@@ -28,20 +28,10 @@
       <v-col cols="3">
         <v-list dense>
           <v-list-item v-for="(item, i) in Directories" :key="i" @click="goTo(item)" v-if="(i == 0) && (CurrentPath.length > 0)">
-            <v-list-item-icon>
-              <v-icon>mdi-folder-arrow-up-outline</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item }}</v-list-item-title>
-            </v-list-item-content>
+            <v-icon>mdi-folder-arrow-up-outline</v-icon>{{ item }}
           </v-list-item>
           <v-list-item v-for="(item, i) in Directories" :key="i" @click="goTo(item)" v-if="(i > 0)">
-            <v-list-item-icon>
-              <v-icon>mdi-folder</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ item }}</v-list-item-title>
-            </v-list-item-content>
+              <v-icon>mdi-folder</v-icon>{{ item }}
           </v-list-item>
         </v-list>
       </v-col>

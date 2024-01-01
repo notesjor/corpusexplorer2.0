@@ -10,7 +10,7 @@
 </template>
   
 <script>
-var size = ["Tsd.", "Mio.", "Mrd."]
+var size = []
 
 export default {
 name: "BigNumber",
@@ -27,6 +27,11 @@ props:{
     type: Number,
     default: 2
   },
+},
+mounted() {
+  size.push(this.$t('size_1K'));
+  size.push(this.$t('size_1M'));
+  size.push(this.$t('size_1G'));
 },
 watch: {
   Value: function(newVal, oldVal){
