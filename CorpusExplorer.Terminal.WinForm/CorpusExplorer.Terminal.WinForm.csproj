@@ -2490,16 +2490,16 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CefSharp.Common">
-      <Version>120.1.80</Version>
+      <Version>120.1.110</Version>
     </PackageReference>
     <PackageReference Include="CefSharp.WinForms">
-      <Version>120.1.80</Version>
+      <Version>120.1.110</Version>
     </PackageReference>
     <PackageReference Include="CodeHollow.FeedReader">
       <Version>1.2.6</Version>
     </PackageReference>
     <PackageReference Include="HtmlAgilityPack">
-      <Version>1.11.55</Version>
+      <Version>1.11.57</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Win32.Primitives">
       <Version>4.3.0</Version>
