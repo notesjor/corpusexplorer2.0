@@ -4,6 +4,7 @@ using System;
 using System.Reflection;
 using CorpusExplorer.Sdk.Diagnostic;
 using PostSharp.Aspects;
+using PostSharp.Serialization;
 
 #endregion
 
@@ -19,7 +20,7 @@ namespace CorpusExplorer.Sdk.Aspect
   /// }
   /// </code>
   /// </summary>
-  [Serializable]
+  [PSerializable]
   public sealed class ErrorReportingAspect : OnMethodBoundaryAspect
   {
     /// <summary>

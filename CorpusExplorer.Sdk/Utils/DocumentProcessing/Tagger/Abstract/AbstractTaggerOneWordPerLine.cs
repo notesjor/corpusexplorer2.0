@@ -88,7 +88,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
         {
           var g = i[_guidKey];
           if (g is string gs && Guid.TryParse(gs, out var guid))
-            i[_guidKey] = guid;
+          {
+            i.Remove(_guidKey);
+            i.Add(_guidKey, guid);
+          }
           else
             i[_guidKey] = Guid.NewGuid();
         }
@@ -258,7 +261,23 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
 
       foreach (var sdm in Input)
       {
-        res.Add((Guid)sdm[_guidKey], sdm.GetMetaDictionary().ToDictionary(entry => entry.Key, entry => entry.Value));
+        try
+        {
+          var guid = (Guid)sdm[_guidKey];
+          var meta = sdm.GetMetaDictionary();
+
+          if (res.ContainsKey(guid))
+          {            
+            meta.Add("GUID (OLD)", guid);
+            res.Add(Guid.NewGuid(), meta);
+          }
+          else
+            res.Add(guid, meta);
+        }
+        catch (Exception ex)
+        {
+          InMemoryErrorConsole.Log(ex);
+        }
       }
 
       return res;

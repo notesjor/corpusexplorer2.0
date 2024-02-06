@@ -41,23 +41,30 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Publishing
 
         using (var dir = new TemporaryDirectory())
         {
-          switch (publisher.ResultProtectionMode)
+          try
           {
-            case 0:
-              if (!Publishing_DifferentFormats(info, selection, dir))
-                return;
-              break;
-            case 1:
-              selection = Publishing_randomizer(info, selection, dir);
-              if (selection == null)
-                return;
-              if (!Publishing_DifferentFormats(info, selection, dir))
-                return;
-              break;
-            case 2:
-              if (!Publishing_Crypted(info, selection, dir))
-                return;
-              break;
+            switch (publisher.ResultProtectionMode)
+            {
+              case 0:
+                if (!Publishing_DifferentFormats(info, selection, dir))
+                  return;
+                break;
+              case 1:
+                selection = Publishing_randomizer(info, selection, dir);
+                if (selection == null)
+                  return;
+                if (!Publishing_DifferentFormats(info, selection, dir))
+                  return;
+                break;
+              case 2:
+                if (!Publishing_Crypted(info, selection, dir))
+                  return;
+                break;
+            }
+          }
+          catch
+          {
+            // ignore
           }
 
           Publishing_AddInfo(info, dir);
@@ -92,30 +99,37 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Publishing
 
     private static void Publishing_AddInfo(CorpusInfo info, TemporaryDirectory dir)
     {
-      File.WriteAllText(Path.Combine(dir.Path, "corpus_info.json"), JsonConvert.SerializeObject(info), Encoding.UTF8);
-      File.WriteAllText(Path.Combine(dir.Path, "corpus_info.txt"), Publishing_AddInfo_InfoToText(info), Encoding.UTF8);
-      File.WriteAllText(Path.Combine(dir.Path, "corpus_info.cff"), Publishing_AddInfo_InfoToCff(info), Encoding.UTF8);
-
-      using (var wc = new WebClient())
+      try
       {
-        try
+        File.WriteAllText(Path.Combine(dir.Path, "corpus_info.json"), JsonConvert.SerializeObject(info), Encoding.UTF8);
+        File.WriteAllText(Path.Combine(dir.Path, "corpus_info.txt"), Publishing_AddInfo_InfoToText(info), Encoding.UTF8);
+        File.WriteAllText(Path.Combine(dir.Path, "corpus_info.cff"), Publishing_AddInfo_InfoToCff(info), Encoding.UTF8);
+
+        using (var wc = new WebClient())
         {
-          if (!string.IsNullOrEmpty(info.AdditionalInfoUrl))
-            wc.DownloadFile(info.AdditionalInfoUrl, Path.Combine(dir.Path, Path.GetFileName(info.AdditionalInfoUrl)));
+          try
+          {
+            if (!string.IsNullOrEmpty(info.AdditionalInfoUrl))
+              wc.DownloadFile(info.AdditionalInfoUrl, Path.Combine(dir.Path, Path.GetFileName(info.AdditionalInfoUrl)));
+          }
+          catch
+          {
+            // ignore
+          }
+          try
+          {
+            if (!string.IsNullOrEmpty(info.LicenceUrl))
+              wc.DownloadFile(info.LicenceUrl, Path.Combine(dir.Path, Path.GetFileName(info.LicenceUrl)));
+          }
+          catch
+          {
+            // ignore
+          }
         }
-        catch
-        {
-          // ignore
-        }
-        try
-        {
-          if (!string.IsNullOrEmpty(info.LicenceUrl))
-            wc.DownloadFile(info.LicenceUrl, Path.Combine(dir.Path, Path.GetFileName(info.LicenceUrl)));
-        }
-        catch
-        {
-          // ignore
-        }
+      }
+      catch
+      {
+        // ignore
       }
     }
 

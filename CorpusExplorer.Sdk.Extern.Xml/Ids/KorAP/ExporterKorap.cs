@@ -32,7 +32,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
         using (var entry = zip.CreateEntry($"{csigle}/header.xml"))
         using (var writer = new StreamWriter(entry.Open()))
           writer.Write(Resources.Template_Ids_KorAP_Root.Replace("{CSIGLE}", csigle)
-            .Replace("{CYEAR}", DateTime.Now.Year.ToString())
+            .Replace("{CYEAR}", DateTime.Now.Year.ToString("D4"))
             .Replace("{DATE}", DateTime.Now.ToString("yyyy-MM-dd")));
 
         foreach (var package in packages)
@@ -60,9 +60,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
             using (var writer = new StreamWriter(entry.Open()))
               writer.Write(Resources.Template_Ids_KorAP_ZDoc.Replace("{DocSigle}", doccsigle)
                 .Replace("{TITLE}", title)
-                .Replace("{MONTH}", date.Month.ToString())
-                .Replace("{DAY}", date.Day.ToString())
-                .Replace("{YEAR}", date.Year.ToString())
+                .Replace("{MONTH}", date.Month.ToString("D2"))
+                .Replace("{DAY}", date.Day.ToString("D2"))
+                .Replace("{YEAR}", date.Year.ToString("D4"))
                 .Replace("{TIME}", date.ToString("HH:mm:ss zzz"))
                 .Replace("{XENODATA}", GenerateXenoData(meta.ToDictionary(x => x.Key, x => x.Value))));
 
@@ -103,11 +103,11 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
               var layer = GetLayers(hydra, foundry, dsel);
               if(layer == null || layer.Count == 0)
                 continue;
-              var max = layer.First().Value.Length;
+
               var lnames = layer.Keys.ToArray();
 
               var anno = new List<string>();
-              for (var j = 0; j < max; j++)
+              for (var j = 0; j < align.Count; j++)
               {
                 var tags = lnames.Select(lname => $"      <f name=\"{lname}\">{layer[lname][j]}</f>");
 

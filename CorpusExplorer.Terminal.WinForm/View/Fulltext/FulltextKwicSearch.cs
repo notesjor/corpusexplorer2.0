@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.Simple;
+using CorpusExplorer.Terminal.WinForm.Helper;
 using CorpusExplorer.Terminal.WinForm.Properties;
 using CorpusExplorer.Terminal.WinForm.View.AbstractTemplates;
 using Telerik.WinControls.UI;
@@ -13,12 +15,17 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
 {
   public partial class FulltextKwicSearch : AbstractGridView
   {
+    private RadCheckBox _checkBox;
     private DateTime _preventDoubleCommandClick = DateTime.Now;
     private TextLiveSearchViewModel _vm;
 
     public FulltextKwicSearch()
     {
       InitializeComponent();
+      _checkBox = new RadCheckBox { Text = "Phrasen-Suche?" };
+      commandBarHostItem1.Padding = new Padding(0, 3, 0, 0);
+      commandBarHostItem1.HostedControl = _checkBox;
+
       InitializeGrid(radGridView1);
       ShowView += OnShowView;
     }
@@ -29,6 +36,14 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       if (wordBag1.ResultSelectedLayerDisplayname != null)
         _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
       _vm.AddQuery(
+        _checkBox.Checked ? (AbstractFilterQuery)
+                   new FilterQuerySingleLayerExactPhrase
+                   {
+                     Inverse = false,
+                     LayerDisplayname = _vm.LayerDisplayname,
+                     LayerQueries = wordBag1.ResultQueries
+                   }
+                   :
                    new FilterQuerySingleLayerAnyMatch
                    {
                      Inverse = false,
@@ -44,36 +59,43 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       ApplyFilterDelay();
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
 
-      var pre = radGridView1.Columns["Pre"];
-      pre.TextAlignment = ContentAlignment.MiddleRight;
-      pre.AutoSizeMode = BestFitColumnMode.AllCells;
-      pre.Name = Resources.Links;
-
-      var match = radGridView1.Columns["Match"];
-      match.TextAlignment = ContentAlignment.MiddleCenter;
-      match.AutoSizeMode = BestFitColumnMode.AllCells;
-      match.Name = Resources.Fundstelle;
-
-      var post = radGridView1.Columns["Post"];
-      post.TextAlignment = ContentAlignment.MiddleLeft;
-      post.AutoSizeMode = BestFitColumnMode.AllCells;
-      post.Name = Resources.Rechts;
-
-      radGridView1.Columns["Frequenz"].MaxWidth = 80;
-      radGridView1.Columns["Info"].IsVisible = false;
-
-      radGridView1.Columns.Add(new GridViewCommandColumn(Resources.Details)
+      try
       {
-        AllowFiltering = false,
-        AllowGroup = false,
-        HeaderText = "",
-        DefaultText = "",
-        UseDefaultText = true,
-        MaxWidth = 37,
-        Image = Resources.find
-      });
+        var pre = radGridView1.Columns["Pre"];
+        pre.TextAlignment = ContentAlignment.MiddleRight;
+        pre.AutoSizeMode = BestFitColumnMode.AllCells;
+        pre.Name = Resources.Links;
 
-      _grid.CommandCellClick += OnGridOnCommandCellClick;
+        var match = radGridView1.Columns["Match"];
+        match.TextAlignment = ContentAlignment.MiddleCenter;
+        match.AutoSizeMode = BestFitColumnMode.AllCells;
+        match.Name = Resources.Fundstelle;
+
+        var post = radGridView1.Columns["Post"];
+        post.TextAlignment = ContentAlignment.MiddleLeft;
+        post.AutoSizeMode = BestFitColumnMode.AllCells;
+        post.Name = Resources.Rechts;
+
+        radGridView1.Columns["Frequenz"].MaxWidth = 80;
+        radGridView1.Columns["Info"].IsVisible = false;
+
+        radGridView1.Columns.Add(new GridViewCommandColumn(Resources.Details)
+        {
+          AllowFiltering = false,
+          AllowGroup = false,
+          HeaderText = "",
+          DefaultText = "",
+          UseDefaultText = true,
+          MaxWidth = 37,
+          Image = Resources.find
+        });
+
+        _grid.CommandCellClick += OnGridOnCommandCellClick;
+      }
+      catch
+      {
+        // ignore
+      }
     }
 
     /// <summary>
@@ -87,7 +109,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     /// </param>
     private void btn_csvExport_Click(object sender, EventArgs e)
     {
-      ExportFunction();
+      DataTableExporter.Export(_vm.GetUniqueDataTableCsvMeta());
     }
 
     private void btn_filter_Click(object sender, EventArgs e)
@@ -138,7 +160,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       vm.Execute();
 
       var form = new SimpleTextView(vm.QuickDocumentInfoResults, Project);
-      form.NewProperty += (o, a) => { vm.SetNewDocumentMetadata((KeyValuePair<string, Type>) o); };
+      form.NewProperty += (o, a) => { vm.SetNewDocumentMetadata((KeyValuePair<string, Type>)o); };
 
       if (form.ShowDialog() == DialogResult.OK)
         foreach (var doc in form.Documents)

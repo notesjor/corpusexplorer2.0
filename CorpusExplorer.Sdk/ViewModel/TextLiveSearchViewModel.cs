@@ -81,6 +81,15 @@ namespace CorpusExplorer.Sdk.ViewModel
       return dt;
     }
 
+    public IEnumerable<Guid> AddQueries(IEnumerable<AbstractFilterQuery> queries)
+    {
+      var res = new List<Guid>();
+      foreach (var query in queries)
+        res.Add(AddQuery(query));
+
+      return res;
+    }
+
     public Guid AddQuery(AbstractFilterQuery query)
     {
       var res = Guid.NewGuid();
@@ -113,7 +122,7 @@ namespace CorpusExplorer.Sdk.ViewModel
                        corpus.Key,
                        result.Key,
                        sent.Key,
-                       $"{GetAddContextSentencesPre(result.Key, sent.Key)} {streamDoc.SplitDocument(0, min)}".Trim(), 
+                       $"{GetAddContextSentencesPre(result.Key, sent.Key)} {streamDoc.SplitDocument(0, min)}".Trim(),
                        streamDoc.SplitDocument(min, max + 1),
                        $"{streamDoc.SplitDocument(max + 1)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim()
                       ));
@@ -165,7 +174,7 @@ namespace CorpusExplorer.Sdk.ViewModel
             var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key)
                                      .ReduceDocumentToStreamDocument().ToArray();
             var key = string.Join("|", streamDoc);
-            if(res.ContainsKey(key))
+            if (res.ContainsKey(key))
             {
               res[key].AddSentence(result.Key, sent.Key);
             }
@@ -282,6 +291,42 @@ namespace CorpusExplorer.Sdk.ViewModel
         foreach (var s in d.Sentences)
         {
           dt.Rows.Add(d.Pre, d.Match, d.Post, first ? d.Count : -1, s.Key.ToString("N"), s.Value);
+          first = false;
+        }
+      }
+
+      dt.EndLoadData();
+
+      return dt;
+    }
+
+    public DataTable GetUniqueDataTableCsvMeta()
+    {
+      var dt = new DataTable();
+      dt.Columns.Add("Pre", typeof(string));
+      dt.Columns.Add("Match", typeof(string));
+      dt.Columns.Add("Post", typeof(string));
+      dt.Columns.Add("Frequenz (-1 = copycat)", typeof(int));
+      dt.Columns.Add("SatzID", typeof(int));
+
+      var prototype = Selection.GetDocumentMetadataPrototypeOnlyProperties();
+      foreach (var p in prototype)
+        dt.Columns.Add(p, typeof(string));
+
+      var data = GetUniqueData();
+
+      dt.BeginLoadData();
+      foreach (var d in data)
+      {
+        var first = true;
+        foreach (var s in d.Sentences)
+        {
+          var row = new List<object> { d.Pre, d.Match, d.Post, first ? d.Count : -1, s.Value };
+          var meta = Selection.GetDocumentMetadata(s.Key);
+          foreach (var p in prototype)
+            row.Add(meta.ContainsKey(p) ? meta[p] : "");
+
+          dt.Rows.Add(row.ToArray());
           first = false;
         }
       }

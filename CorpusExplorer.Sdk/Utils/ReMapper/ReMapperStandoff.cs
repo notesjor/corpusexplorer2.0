@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Utils.ReMapper.Model;
 
@@ -60,27 +61,37 @@ namespace CorpusExplorer.Sdk.Utils.ReMapper
       {
         for (var j = 0; j < doc[i].Length; j++)
         {
-          var t = doc[i][j];
-
-          var idx = text.IndexOf(t, last);
-          if (idx == -1)
+          try
           {
-            if (ThrowExceptionAfterAlignmentErrors > 0)
-              ThrowExceptionAfterAlignmentErrors--;
-            else if (ThrowExceptionAfterAlignmentErrors == 0)
-              throw new Exception("ReMapperStandoff - AlignmentException");
-            else // == -1
-              continue;
+            var t = doc[i][j];
+
+            if (last >= text.Length)
+              throw new Exception("ReMapperStandoff - Last Overflow Exception");
+
+            var idx = text.IndexOf(t, last);
+            if (idx == -1)
+            {
+              if (ThrowExceptionAfterAlignmentErrors > 0)
+                ThrowExceptionAfterAlignmentErrors--;
+              else if (ThrowExceptionAfterAlignmentErrors == 0)
+                throw new Exception("ReMapperStandoff - Alignment Exception");
+              else // == -1
+                continue;
+            }
+
+            res.Add(new ReMapperEntry
+            {
+              SentenceIndex = i,
+              TokenIndex = j,
+              TextCharFrom = idx,
+              TextCharTo = idx + t.Length
+            });
+            last = idx + t.Length;
           }
-
-          res.Add(new ReMapperEntry
+          catch (Exception ex)
           {
-            SentenceIndex = i,
-            TokenIndex = j,
-            TextCharFrom = idx,
-            TextCharTo = idx + t.Length
-          });
-          last = idx + t.Length;
+            InMemoryErrorConsole.Log(ex);
+          }
         }
       }
 

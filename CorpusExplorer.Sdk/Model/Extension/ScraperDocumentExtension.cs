@@ -76,7 +76,11 @@ namespace CorpusExplorer.Sdk.Model.Extension
 
     public static Dictionary<string, object> GetMetaDictionary(this Dictionary<string, object> scraperDocument)
     {
-      return scraperDocument.Where(entry => entry.Key != "Text" && !entry.Key.StartsWith("!")).ToDictionary(entry => entry.Key, entry => entry.Value);
+      var res = new Dictionary<string, object>();
+      foreach (var entry in scraperDocument)
+        if (res.ContainsKey(entry.Key) && entry.Key != "Text" && !entry.Key.StartsWith("!"))
+          res.Add(entry.Key, entry.Value);
+      return res;
     }
 
     /// <summary>

@@ -67,7 +67,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
       // 
       // commandBarRowElement1
       // 
-      this.commandBarRowElement1.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement1.MinSize = new System.Drawing.Size(31, 31);
       this.commandBarRowElement1.Name = "commandBarRowElement1";
       this.commandBarRowElement1.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement1});
@@ -87,6 +87,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
             this.commandBarSeparator2,
             this.btn_snapshot_create});
       this.commandBarStripElement1.Name = "commandBarStripElement1";
+      this.commandBarStripElement1.OverflowMenuMaxSize = new System.Drawing.Size(338, 0);
+      this.commandBarStripElement1.OverflowMenuMinSize = new System.Drawing.Size(62, 31);
       // 
       // btn_function
       // 
@@ -170,7 +172,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
       // 
       // commandBarRowElement2
       // 
-      this.commandBarRowElement2.MinSize = new System.Drawing.Size(25, 25);
+      this.commandBarRowElement2.MinSize = new System.Drawing.Size(31, 31);
       this.commandBarRowElement2.Name = "commandBarRowElement2";
       this.commandBarRowElement2.Strips.AddRange(new Telerik.WinControls.UI.CommandBarStripElement[] {
             this.commandBarStripElement3});
@@ -184,6 +186,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
             this.commandBarSeparator3,
             this.btn_showTopics});
       this.commandBarStripElement3.Name = "commandBarStripElement3";
+      this.commandBarStripElement3.OverflowMenuMaxSize = new System.Drawing.Size(338, 0);
+      this.commandBarStripElement3.OverflowMenuMinSize = new System.Drawing.Size(62, 31);
       // 
       // btn_settings
       // 

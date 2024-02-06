@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using PostSharp.Aspects;
+using PostSharp.Serialization;
 
 #endregion
 
 namespace CorpusExplorer.Sdk.Aspect
 {
-  [Serializable]
+  [PSerializable]
   public class CacheAspect : OnMethodBoundaryAspect
   {
     // Simple static Cache!

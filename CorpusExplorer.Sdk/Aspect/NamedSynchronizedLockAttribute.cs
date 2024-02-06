@@ -3,12 +3,13 @@
 using System;
 using System.Collections.Generic;
 using PostSharp.Aspects;
+using PostSharp.Serialization;
 
 #endregion
 
 namespace CorpusExplorer.Sdk.Aspect
 {
-  [Serializable]
+  [PSerializable]
   public sealed class NamedSynchronizedLockAttribute : MethodInterceptionAspect
   {
     [NonSerialized] private static readonly Dictionary<string, string> Cache = new Dictionary<string, string>();

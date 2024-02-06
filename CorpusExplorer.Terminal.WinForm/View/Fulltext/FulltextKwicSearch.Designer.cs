@@ -41,6 +41,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       this.btn_print = new Telerik.WinControls.UI.CommandBarButton();
       this.commandBarSeparator2 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_snapshot_create = new Telerik.WinControls.UI.CommandBarButton();
+      this.commandBarSeparator3 = new Telerik.WinControls.UI.CommandBarSeparator();
+      this.commandBarHostItem1 = new Telerik.WinControls.UI.CommandBarHostItem();
       this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
       this.wordBag1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WordBag();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
@@ -73,30 +75,32 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
             this.btn_csvExport,
             this.btn_print,
             this.commandBarSeparator2,
-            this.btn_snapshot_create});
+            this.btn_snapshot_create,
+            this.commandBarSeparator3,
+            this.commandBarHostItem1});
       this.commandBarStripElement2.Name = "commandBarStripElement2";
       // 
       // btn_filter
       // 
+      this.btn_filter.AutoToolTip = true;
       resources.ApplyResources(this.btn_filter, "btn_filter");
       this.btn_filter.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_list;
-      this.btn_filter.AutoToolTip = true;
       this.btn_filter.Name = "btn_filter";
       this.btn_filter.Click += new System.EventHandler(this.btn_filter_Click);
       // 
       // btn_filterEditor
       // 
+      this.btn_filterEditor.AutoToolTip = true;
       resources.ApplyResources(this.btn_filterEditor, "btn_filterEditor");
       this.btn_filterEditor.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_settings;
-      this.btn_filterEditor.AutoToolTip = true;
       this.btn_filterEditor.Name = "btn_filterEditor";
       this.btn_filterEditor.Click += new System.EventHandler(this.btn_filterEditor_Click);
       // 
       // btn_regex
       // 
+      this.btn_regex.AutoToolTip = true;
       resources.ApplyResources(this.btn_regex, "btn_regex");
       this.btn_regex.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.filter_regex;
-      this.btn_regex.AutoToolTip = true;
       this.btn_regex.Name = "btn_regex";
       this.btn_regex.Click += new System.EventHandler(this.btn_regex_Click);
       // 
@@ -110,9 +114,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       // btn_csvExport
       // 
+      this.btn_csvExport.AutoToolTip = true;
       resources.ApplyResources(this.btn_csvExport, "btn_csvExport");
       this.btn_csvExport.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
-      this.btn_csvExport.AutoToolTip = true;
       this.btn_csvExport.Name = "btn_csvExport";
       this.btn_csvExport.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.CSVExport;
       this.btn_csvExport.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.CSVExport;
@@ -120,9 +124,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       // btn_print
       // 
+      this.btn_print.AutoToolTip = true;
       resources.ApplyResources(this.btn_print, "btn_print");
       this.btn_print.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.print;
-      this.btn_print.AutoToolTip = true;
       this.btn_print.Name = "btn_print";
       this.btn_print.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Drucken;
       this.btn_print.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.Drucken;
@@ -138,13 +142,25 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
       // 
       // btn_snapshot_create
       // 
+      this.btn_snapshot_create.AutoToolTip = true;
       resources.ApplyResources(this.btn_snapshot_create, "btn_snapshot_create");
       this.btn_snapshot_create.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.camera_add;
-      this.btn_snapshot_create.AutoToolTip = true;
       this.btn_snapshot_create.Name = "btn_snapshot_create";
       this.btn_snapshot_create.Text = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.SchnappschussErstellen;
       this.btn_snapshot_create.ToolTipText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.SchnappschussErstellen;
       this.btn_snapshot_create.Click += new System.EventHandler(this.btn_snapshot_create_Click);
+      // 
+      // commandBarSeparator3
+      // 
+      resources.ApplyResources(this.commandBarSeparator3, "commandBarSeparator3");
+      this.commandBarSeparator3.Name = "commandBarSeparator3";
+      this.commandBarSeparator3.VisibleInOverflowMenu = false;
+      // 
+      // commandBarHostItem1
+      // 
+      resources.ApplyResources(this.commandBarHostItem1, "commandBarHostItem1");
+      this.commandBarHostItem1.MinSize = new System.Drawing.Size(150, 38);
+      this.commandBarHostItem1.Name = "commandBarHostItem1";
       // 
       // radGridView1
       // 
@@ -198,5 +214,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
     private Telerik.WinControls.UI.RadGridView radGridView1;
     private Controls.WinForm.WordBag wordBag1;
     private Telerik.WinControls.UI.CommandBarButton btn_regex;
+    private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator3;
+    private Telerik.WinControls.UI.CommandBarHostItem commandBarHostItem1;
   }
 }

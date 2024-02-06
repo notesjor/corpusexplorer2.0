@@ -36,12 +36,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.EditionTools
       InitializeComponent();
       radGridView1.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
       radGridView1.AllowAutoSizeColumns = true;
-      InitializeGrid(radGridView1);
+      InitializeGrid(radGridView1);      
     }
 
     private void Analyse()
     {
-      _vm = GetViewModel<LdaViewModel>();
+      if(_vm == null)
+        _vm = GetViewModel<LdaViewModel>();
       if (!_vm.Execute())
         return;
       BindData();
