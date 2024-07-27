@@ -44,10 +44,22 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper
                 switch (key)
                 {
                   case "GUID":
+                  case "guid":
                     item.Add(key, val == string.Empty ? Guid.Empty : Guid.Parse(val));
                     break;
                   case "Datum":
+                  case "datum":
+                  case "date":
                     item.Add(key, val == string.Empty ? DateTime.MinValue : DateTimeHelper.Parse(val));
+                    break;
+                  case "Jahr":
+                  case "year":
+                  case "Monat":
+                  case "month":
+                  case "Tag":
+                  case "day":
+                    var test = int.TryParse(val, out var v);
+                    item.Add(key, test ? v : 0);
                     break;
                   default:
                     item.Add(key, val);

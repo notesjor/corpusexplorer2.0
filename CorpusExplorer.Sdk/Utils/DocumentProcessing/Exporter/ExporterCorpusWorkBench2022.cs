@@ -15,11 +15,15 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
   {
     public override void Export(IHydra hydra, string path)
     {
-      using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
-      using (var writer = new StreamWriter(fs, Encoding.UTF8))
+      var prototype = hydra.GetDocumentMetadataPrototypeOnlyProperties().ToArray();
+
+      using (var fsCorpus = new FileStream(path, FileMode.Create, FileAccess.Write))
+      using (var wsCorpus = new StreamWriter(fsCorpus, Encoding.UTF8))
+      using (var fsMeta = new FileStream(path + ".meta", FileMode.Create, FileAccess.Write))
+      using (var wsMeta = new StreamWriter(fsMeta, Encoding.UTF8))
       {
-        writer.WriteLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-        writer.WriteLine("<corpus>");
+        wsCorpus.WriteLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+        wsCorpus.WriteLine("<corpus>");
 
         var textId = 0;
 
@@ -27,14 +31,18 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
           foreach (var dsel in csel.Value)
           {
             var date = hydra.GetDocumentMetadata(dsel, "Datum", DateTime.MinValue);
-            writer.Write(date == DateTime.MinValue
-                               ? $"<text id=\"{textId++}\""
-                               : $"<text id=\"{textId++}\" date=\"{date:yyyy-MM-dd}\" yearmonth=\"{date:yyyy-MM}\" year=\"{date:yyyy}\"");
+            wsCorpus.Write(date == DateTime.MinValue
+                               ? $"<text id=\"{textId}\""
+                               : $"<text id=\"{textId}\" date=\"{date:yyyy-MM-dd}\" yearmonth=\"{date:yyyy-MM}\" year=\"{date:yyyy}\"");
 
-            foreach (var x in hydra.GetDocumentMetadata(dsel))
-              writer.Write($" {x.Key.Replace(" ", "_")}=\"{x.Value}\"");
+            var meta = hydra.GetDocumentMetadata(dsel).ToDictionary(x => x.Key, x => x.Value);
+            foreach (var x in meta)
+              wsCorpus.Write($" {x.Key.Replace(" ", "_")}=\"{x.Value}\"");
+            wsMeta.WriteLine($"{textId}\t{string.Join("\t", prototype.Select(x => meta.ContainsKey(x) ? meta[x] : ""))}");
 
-            writer.WriteLine(">");
+            textId++;
+
+            wsCorpus.WriteLine(">");
 
             var layers = hydra.GetReadableMultilayerDocument(dsel).ToDictionary(x => x.Key, x => x.Value.Select(y => y.ToArray()).ToArray());
             if (!layers.ContainsKey("Wort") || !layers.ContainsKey("Lemma") || !layers.ContainsKey("POS"))
@@ -65,10 +73,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
               continue;
             }
 
-            writer.WriteLine(stb.ToString());
-            writer.WriteLine("</text>");
+            wsCorpus.WriteLine(stb.ToString());
+            wsCorpus.WriteLine("</text>");
           }
-        writer.WriteLine("</corpus>");
+        wsCorpus.WriteLine("</corpus>");
       }
     }
 

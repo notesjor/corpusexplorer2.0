@@ -4,6 +4,7 @@ using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Blocks.Flow;
 using CorpusExplorer.Sdk.Helper;
+using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
 
@@ -20,9 +21,8 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public bool HighlightCooccurrences { get; set; }
 
-    public string Layer1Displayname { get; set; } = "Wort";
-    public string Layer2Displayname { get; set; } = "Wort";
-    public IEnumerable<string> LayerQueryPhrase { get; set; }
+    public string LayerDisplayname { get; set; } = "Wort";
+    public AbstractFilterQuery LayerQuery { get; set; }
 
     public int MinFrequency { get; set; } = 2;
 
@@ -78,11 +78,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       var block = Selection.CreateBlock<TextLiveSearchBlock>();
       block.LayerQueries = new[]
       {
-        new FilterQuerySingleLayerExactPhrase
-        {
-          LayerDisplayname = Layer1Displayname, 
-          LayerQueries = LayerQueryPhrase
-        }
+        LayerQuery
       };
 
       block.Calculate();
@@ -94,21 +90,23 @@ namespace CorpusExplorer.Sdk.ViewModel
         foreach (var d in c.Value)
           foreach (var s in d.Value)
           {
-            var sent = Selection.GetReadableDocumentSnippet(d.Key, Layer2Displayname, s.Key, s.Key)
+            var sent = Selection.GetReadableDocumentSnippet(d.Key, LayerDisplayname, s.Key, s.Key)
                                 .ReduceDocumentToStreamDocument().ToArray();
 
             if (sent.Length > 200)
               continue;
 
             var tmp = new List<string>();
+            var min = s.Value.Select(x=> x.From).Min();
+            var max = s.Value.Select(x=> x.To).Max() + 1;
 
-            for (var i = 0; i < s.Value.First(); i++)
+            for (var i = 0; i < min; i++)
               tmp.Add(sent[i]);
             pre.Add(tmp.ToArray());
 
             tmp.Clear();
 
-            for (var i = s.Value.Last() + 1; i < sent.Length; i++)
+            for (var i = max; i < sent.Length; i++)
               tmp.Add(sent[i]);
             post.Add(tmp.ToArray());
           }
@@ -141,9 +139,11 @@ namespace CorpusExplorer.Sdk.ViewModel
       BranchPost.RemoveBranches(MinFrequency);
     }
 
+    public IEnumerable<string> LayerQueryPhrase => ((AbstractFilterQuerySingleLayer)LayerQuery).LayerQueries;
+
     protected override bool Validate()
     {
-      return LayerQueryPhrase != null;
+      return LayerQuery != null;
     }
 
     private void Highlight(ref List<string[]> list)

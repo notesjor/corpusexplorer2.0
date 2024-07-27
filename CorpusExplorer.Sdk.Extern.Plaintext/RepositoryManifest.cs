@@ -10,6 +10,7 @@ using CorpusExplorer.Sdk.Extern.Plaintext.KleineAnfrageDe;
 using CorpusExplorer.Sdk.Extern.Plaintext.LeipzigerWortschatz;
 using CorpusExplorer.Sdk.Extern.Plaintext.RawMailMsg;
 using CorpusExplorer.Sdk.Extern.Plaintext.Redewiedergabe;
+using CorpusExplorer.Sdk.Extern.Plaintext.RelAnnis;
 using CorpusExplorer.Sdk.Extern.Plaintext.Tsv;
 using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
@@ -52,7 +53,13 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
         },
         {
           "Universelles TSV-Korpus (*.tsv)|*.tsv", new ImporterTsv()
-        }
+        },
+        {
+          "ANNIS v3.3 (corpus.annis)|corpus.annis", new ImporterRelAnnis()
+        },
+        {
+          "ANNIS v3.3 (corpus.annis) - Layer-Alternative|corpus.annis", new ImporterRelAnnisAlternative()
+        },
       };
 
     /// <summary>
@@ -79,16 +86,20 @@ namespace CorpusExplorer.Sdk.Extern.Plaintext
           new RawMsgMsgScraper()
         },
         {
-          "TSV-Datei mit Überschriften (*.tsv; *.tab)|*.tsv;*.tab",
-          new TsvScraper()
+          "TSV-Datei mit Überschriften - Windows (*.csv; *.tsv; *.tab)|*.csv;*.tsv;*.tab",
+          new TsvAndCsvScraper { NewLine = "\r\n" }
         },
         {
-          "CSV-Datei mit Überschriften - getrennt mit , (*.csv)|*.csv",
-          new CsvScraper { Delimiters = new []{","}}
+          "TSV-Datei mit Überschriften - Linux (*.csv; *.tsv; *.tab)|*.csv;*.tsv;*.tab",
+          new TsvAndCsvScraper { NewLine = "\n" }
         },
         {
-          "CSV-Datei mit Überschriften - getrennt mit ; (*.csv)|*.csv",
-          new CsvScraper { Delimiters = new []{";"}}
+          "CSV-Datei mit Überschriften - Windows (*.csv)|*.csv",
+          new TsvAndCsvScraper { NewLine = "\r\n" }
+        },
+        {
+          "CSV-Datei mit Überschriften - Linux (*.csv)|*.csv",
+          new TsvAndCsvScraper { NewLine = "\n" }
         },
         {
           "EuroParl (*.txt)|*.txt",

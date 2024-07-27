@@ -86,7 +86,7 @@ namespace CorpusExplorer.Terminal.Automate
           {
             type = drop_type.SelectedItem.Tag.ToString(),
             language = anno_drop_language.SelectedItem.Text,
-            tagger = anno_drop_tagger.SelectedItem.Text,
+            tagger = _taggers[anno_drop_tagger.SelectedItem.Text].GetType().Name,
             Items = GetSources()
           }
           : new import

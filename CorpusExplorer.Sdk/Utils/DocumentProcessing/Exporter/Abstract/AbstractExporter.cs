@@ -1,5 +1,6 @@
 ﻿#region
 
+using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Extension;
@@ -14,7 +15,14 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract
   {
     public void Export(AbstractCorpusAdapter corpus, string path)
     {
-      Export(corpus.ToSelection(), path);
+      try
+      {
+        Export(corpus.ToSelection(), path);
+      }
+      catch (Exception e)
+      {
+        InMemoryErrorConsole.Log(e);
+      }
     }
 
     public void Export(Selection selection, string path)
@@ -22,12 +30,26 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract
       if (!selection.AllowExport)
         throw new Exception("Export not allowed");
 
-      Export((IHydra)selection, path);
+      try
+      {
+        Export((IHydra)selection, path);
+      }
+      catch (Exception e)
+      {
+        InMemoryErrorConsole.Log(e);
+      }
     }
 
     public void Export(Project project, string path)
     {
-      Export(project.CurrentSelection, path);
+      try
+      {
+        Export(project.CurrentSelection, path);
+      }
+      catch (Exception e)
+      {
+        InMemoryErrorConsole.Log(e);
+      }
     }
 
     public abstract void Export(IHydra hydra, string path);

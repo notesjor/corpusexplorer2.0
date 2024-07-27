@@ -832,5 +832,13 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
     }
 
     public abstract void Dispose();
+
+    public int GetDocumentSentencesLength(Guid documentGuid, int sentence)
+    {
+      var layer = this.GetLayersOfDocument(documentGuid).FirstOrDefault();
+      if (layer == null)
+        return 0;
+      return layer[documentGuid][sentence].Length;
+    }
   }
 }

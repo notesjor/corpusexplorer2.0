@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 
 namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
@@ -20,13 +21,10 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     public string LayerDisplayname { get; set; }
 
 
-    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    protected override CeRange? GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      var layer = corpus.GetLayers(LayerDisplayname).FirstOrDefault();
-      return layer == null ? -1 : GetSentenceFirstIndexCall(corpus, documentGuid, layer.GetReadableDocumentByGuid(documentGuid).ReduceToSentences().ToArray()[sentence]);
+      return new CeRange(0, corpus.GetDocumentSentencesLength(documentGuid, sentence));
     }
-
-    protected abstract int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, string sentence);
 
     protected override IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid)
     {
@@ -36,13 +34,13 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
 
     protected abstract IEnumerable<int> GetSentencesCall(IEnumerable<string> sentences);
 
-    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<CeRange> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       var layer = corpus.GetLayers(LayerDisplayname).FirstOrDefault();
-      return layer == null ? null : GetWordIndices(corpus, documentGuid, layer.GetReadableDocumentByGuid(documentGuid).ReduceToSentences().ToArray()[sentence]);
+      if(layer == null)
+        return null;
+      return new[] { new CeRange(0, layer[documentGuid][sentence].Length) };
     }
-
-    protected abstract IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, string sentence);
 
     protected override bool ValidateCall(AbstractCorpusAdapter corpus, Guid documentGuid)
     {

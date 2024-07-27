@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Extern.Json.OpenLegalData;
+using CorpusExplorer.Sdk.Extern.Json.Simple;
 using CorpusExplorer.Sdk.Extern.Json.SimpleStandoff;
 using CorpusExplorer.Sdk.Extern.Json.Speedy;
 using CorpusExplorer.Sdk.Extern.Json.TwitterStatus;
@@ -89,6 +90,10 @@ namespace CorpusExplorer.Sdk.Extern.Json
         {
           "JSON Stand-Off Universal (*.json)|*.json",
           new SimpleJsonStandoffScraper()
+        },
+        {
+          "JSON-Dokument (*.json)|*.json",
+          new SimpleJsonScraper()
         },
       };
 

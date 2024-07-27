@@ -48,12 +48,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.11.58.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.11.58\lib\Net45\HtmlAgilityPack.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -69,6 +63,7 @@
     <Compile Include="SimpleStandoff\Model\Document.cs" />
     <Compile Include="SimpleStandoff\ImporterSimpleJsonStandoff.cs" />
     <Compile Include="SimpleStandoff\SimpleJsonStandoffScraper.cs" />
+    <Compile Include="Simple\SimpleJsonScraper.cs" />
     <Compile Include="Speedy\Model\Property.cs" />
     <Compile Include="Speedy\Model\Speedy.cs" />
     <Compile Include="Speedy\SpeedyDataReader.cs" />
@@ -129,7 +124,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="CorpusExplorerNextSnKey2019.pfx" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj">
@@ -152,6 +146,14 @@
     <Folder Include="Reddit\" />
     <Folder Include="Tumblr\" />
     <Folder Include="YouTube\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack">
+      <Version>1.11.61</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

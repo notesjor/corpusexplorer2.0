@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.Filter.Queries
@@ -83,10 +84,10 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// <returns>
     ///   The <see cref="int" />.
     /// </returns>
-    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    protected override CeRange? GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       var res = SentenceIndexCall(corpus, documentGuid, sentence);
-      return res?.FirstOrDefault() ?? -1;
+      return res?.FirstOrDefault();
     }
 
     /// <summary>
@@ -118,7 +119,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     ///   GetSentenceIndices() abgefragt werden.
     /// </param>
     /// <returns>Auflistung aller Vorkommen im Satz</returns>
-    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<CeRange> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       return SentenceIndexCall(corpus, documentGuid, sentence);
     }
@@ -278,7 +279,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       _multilayerValuesSerialized = _multilayerValues.ToArray();
     }
 
-    private IEnumerable<int> SentenceIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    private IEnumerable<CeRange> SentenceIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       try
       {
@@ -297,7 +298,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           return null;
 
         var docs = search.Select(x => x.Key[documentGuid][sentence]).ToArray();
-        var res = new List<int>();
+        var res = new List<CeRange>();
 
         for (var j = 0; j < doc.Length; j++)
           if (doc[j] == first.Value)
@@ -305,7 +306,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
             if (docs.Where((t, k) => t[j] != search[k].Value).Any())
               continue;
 
-            res.Add(j);
+            res.Add(new CeRange(j));
           }
 
         return res;

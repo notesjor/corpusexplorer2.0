@@ -1,132 +1,193 @@
-﻿using System;
+﻿using Bcs.IO;
+using CorpusExplorer.Sdk.Extern.Plaintext.RelAnnis.Helper;
+using CorpusExplorer.Sdk.Extern.Plaintext.RelAnnis.NodeProcessor;
+using CorpusExplorer.Sdk.Extern.Plaintext.RelAnnis.NodeProcessor.Abstract;
+using CorpusExplorer.Sdk.Extern.Plaintext.RelAnnis.Stentenizer;
+using CorpusExplorer.Sdk.Extern.Plaintext.RelAnnis.Stentenizer.Abstract;
+using CorpusExplorer.Sdk.Helper;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
+using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.AdditionalTaggerWrapper.Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CorpusExplorer.Sdk.Ecosystem.Model;
-using CorpusExplorer.Sdk.Helper;
-using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 
 namespace CorpusExplorer.Sdk.Extern.Plaintext.RelAnnis
 {
   public class ImporterRelAnnis : AbstractImporterBase
   {
-    private HashSet<string> _ending = new HashSet<string> { ".", "!", "?", ":", ";" };
+    public AbstractRelAnnisSentenizer Sentenizer { get; set; } = new RelAnnisStentenizerSimpleDefault();
+    public AbstractRelAnnisTokenValidator TokenValidator { get; set; } = new RelAnnisTokenValidatorDefault();
 
     protected override void ExecuteCall(string path)
     {
-      var dir = Path.GetDirectoryName(path);
+      path = Path.GetDirectoryName(path);
 
-      var docIds = GetMetadata(path);
-      var position = GetWordLayer(path, docIds, out var templates);
-      GetAnnotations(path, docIds, position, templates);
+      var documentList = GetDocumentList(path);
+      var documentMeta = GetDocumentMeta(path);
+      var tokens = GetDocumentTokens(path);
+      var sentences = Sentenizer.GetSentences(path);
+      var layers = GetLayers(path);
+
+      foreach (var doc in documentList)
+      {
+        var guid = Guid.NewGuid();
+        var id = doc.Key;
+        var name = doc.Value;
+        var meta = documentMeta[id];
+
+        AddDocumentMetadata(guid, meta);
+
+        var sentence = sentences[id];
+
+        var mask = AddAnnisLayerAndGetMask(guid, tokens[id], sentence);
+        foreach (var layer in layers)
+          AddAnnisLayer(guid, layer.Key, layer.Value, mask);
+      }
     }
 
-    private void GetAnnotations(string path, Dictionary<int, Guid> docIds, Dictionary<int, Tuple<Guid, int, int>> position, Dictionary<int, int[]> templates)
+    private void AddAnnisLayer(Guid guid, string layerDisplayname, Dictionary<int, string> layerValues, int[][] mask)
     {
-      using (var fs = new FileStream(Path.Combine(path, "node_annotation.tab"), FileMode.Open, FileAccess.Read))
-      using (var read = new StreamReader(fs, Configuration.Encoding))
-        while (!read.EndOfStream)
-        {
-
-        }
-    }
-
-    private Dictionary<int, Tuple<Guid, int, int>> GetWordLayer(string path, Dictionary<int, Guid> docIds,
-                                                                out Dictionary<int, int[]> templates)
-    {
-      templates = new Dictionary<int, int[]>();
-      var res = new Dictionary<int, Tuple<Guid, int, int>>();
-
-      var dId_last = -1;
-      var sentence = new List<string>();
       var doc = new List<string[]>();
+      foreach (var s in mask)
+      {
+        var sentence = new List<string>();
+        foreach (var w in s)
+          sentence.Add(layerValues.ContainsKey(w) ? layerValues[w] : "");
 
-      using (var fs = new FileStream(Path.Combine(path, "node.tab"), FileMode.Open, FileAccess.Read))
-      using (var read = new StreamReader(fs, Configuration.Encoding))
-        while (!read.EndOfStream)
+        doc.Add(sentence.ToArray());
+      }
+
+      AddDocument(layerDisplayname, guid, doc.ToArray());
+    }
+
+    private Dictionary<string, Dictionary<int, string>> GetLayers(string path)
+    {
+      var res = new Dictionary<string, Dictionary<int, string>>();
+
+      var lines = FileIO.ReadLines(AnnisFileResolverHelper.ResolveAnnisEndings(path, "node_annotation"));
+      if (lines != null)
+        foreach (var line in lines)
         {
-          var items = read.ReadLine().Split(Splitter.Tab, StringSplitOptions.RemoveEmptyEntries);
-          if (items.Length < 5)
-            continue;
-          if (items[3] != "token")
+          var split = line.Split('\t');
+          if (split.Length < 4)
             continue;
 
-          var tId = int.Parse(items[0]);
-          //var dId = items[1];
-          var token = items.Last();
+          var id = int.Parse(split[0]);
+          var key = split[2];
+          var value = split[3];
 
-          var dId_current = int.Parse(items[1]); // ist bereits nullbasiert
+          if (!res.ContainsKey(key))
+            res.Add(key, new Dictionary<int, string>());
 
-          if (dId_current != dId_last)
-          {
-            if (sentence.Count > 0)
-              doc.Add(sentence.ToArray());
-
-            if (dId_last != -1)
-            {
-              AddDocument("Wort", docIds[dId_last], doc.ToArray());
-              templates.Add(dId_last, doc.Select(x => x.Length).ToArray());
-            }
-
-            dId_last = dId_current;
-
-            sentence.Clear();
-            doc.Clear();
-          }
-
-          res.Add(tId, new Tuple<Guid, int, int>(docIds[dId_last], doc.Count, sentence.Count));
-          sentence.Add(token);
-
-          if (!_ending.Contains(token)) 
-            continue;
-
-          if (sentence.Count > 0)
-            doc.Add(sentence.ToArray());
-
-          sentence.Clear();
+          res[key].Add(id, value);
         }
 
       return res;
     }
 
-    private Dictionary<int, Guid> GetMetadata(string path)
+    private int[][] AddAnnisLayerAndGetMask(Guid guid, Dictionary<int, string> tokens, List<KeyValuePair<int, int>> sentence)
     {
-      var dId_last = -1;
-      var meta = new Dictionary<string, object>();
-      var res = new Dictionary<int, Guid>();
+      var res = new List<int[]>();
+      var doc = new List<string[]>();
 
-      using (var fs = new FileStream(Path.Combine(path, "corpus_annotation.tab"), FileMode.Open, FileAccess.Read))
-      using (var read = new StreamReader(fs, Configuration.Encoding))
-        while (!read.EndOfStream)
+      foreach (var s in sentence)
+      {
+        var start = s.Key;
+        var end = s.Value;
+
+        var ts = tokens.Where(x => x.Key >= start && x.Key <= end).OrderBy(x => x.Key).ToArray();
+
+        doc.Add(ts.Select(x => x.Value).ToArray());
+        res.Add(ts.Select(x => x.Key).ToArray());
+      }
+
+      AddDocument("Wort", guid, doc.ToArray());
+
+      return res.ToArray(); // mask
+    }
+
+    private Dictionary<int, Dictionary<int, string>> GetDocumentTokens(string path)
+    {
+      var res = new Dictionary<int, Dictionary<int, string>>();
+
+      var lines = FileIO.ReadLines(AnnisFileResolverHelper.ResolveAnnisEndings(path, "node"));
+      if (lines != null)
+        foreach (var line in lines)
         {
-          var items = read.ReadLine().Split(Splitter.Tab, StringSplitOptions.RemoveEmptyEntries);
-          if (items.Length != 4)
+          var split = line.Split('\t');
+          if (split.Length < 14)
             continue;
 
-          var dId_current = int.Parse(items[0]) - 1; // muss als nullbasiert werden
+          var id = int.Parse(split[0]);
+          var did = int.Parse(split[2]);
+          var token = split[12];
 
-          if (dId_current != dId_last)
-          {
-            var guid = Guid.NewGuid();
-            res.Add(dId_current, guid);
+          if (!TokenValidator.IsInvalid(split))
+            continue;
 
-            if (dId_last != -1)
-              AddDocumentMetadata(res[dId_last], meta);
+          // FIX START
+          if (token == "NULL")
+            token = "";
+          // FIX END
 
-            dId_last = dId_current;
-            meta = new Dictionary<string, object> { { "GUID", guid } };
-          }
+          if (!res.ContainsKey(did))
+            res.Add(did, new Dictionary<int, string>());
 
-          var key = items[3];
-          if (meta.ContainsKey(key))
-            meta[key] = items[4];
-          else
-            meta.Add(key, items[4]);
+          res[did].Add(id, token);
         }
 
-      AddDocumentMetadata(res[dId_last], meta);
+      return res;
+    }
+
+    private Dictionary<int, Dictionary<string, object>> GetDocumentMeta(string path)
+    {
+      var res = new Dictionary<int, Dictionary<string, object>>();
+
+      var lines = FileIO.ReadLines(AnnisFileResolverHelper.ResolveAnnisEndings(path, "corpus_annotation"));
+      if (lines != null)
+        foreach (var line in lines)
+        {
+          var split = line.Split('\t');
+          if (split.Length < 4)
+            continue;
+
+          var id = int.Parse(split[0]);
+          var key = split[2];
+          var value = split[3];
+
+          if (!res.ContainsKey(id))
+            res.Add(id, new Dictionary<string, object>());
+
+          res[id].Add(key, value);
+        }
+
+      return res;
+    }
+
+    private Dictionary<int, string> GetDocumentList(string path)
+    {
+      var res = new Dictionary<int, string>();
+
+      var lines = FileIO.ReadLines(AnnisFileResolverHelper.ResolveAnnisEndings(path, "corpus"));
+      if (lines != null)
+        foreach (var line in lines)
+        {
+          var split = line.Split('\t');
+          if (split.Length < 3)
+            continue;
+
+          if (split[2] != "DOCUMENT")
+            continue;
+
+          var id = int.Parse(split[0]);
+          var name = split[1];
+
+          res.Add(id, name);
+        }
+
       return res;
     }
   }

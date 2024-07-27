@@ -1505,5 +1505,12 @@ namespace CorpusExplorer.Sdk.Model
     {
       Clear();
     }
+
+    public int GetDocumentSentencesLength(Guid documentGuid, int sentence)
+    {
+      var corpus = ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid));
+      var layer = corpus.GetLayersOfDocument(documentGuid).First();
+      return layer[documentGuid][sentence].Length;
+    }
   }
 }

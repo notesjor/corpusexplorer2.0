@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using CorpusExplorer.Sdk.Extern.Xml.Ids.Helper;
 using CorpusExplorer.Sdk.Extern.Xml.Properties;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Interface;
@@ -22,7 +23,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       var map = new ReMapperStandoff();
       var foundries = GetFoundries(hydra, path);
 
-      var packages = MakePackages(hydra);
+      var packages = ExportPackageHelper.MakePackages(hydra);
       using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
       using (var zip = new ZipArchive(fs, ZipArchiveMode.Create, true, null))
       {
@@ -55,6 +56,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
             var title = meta.ContainsKey("Titel") && meta["Titel"] != null ? meta["Titel"].ToString() : "";
             var date = meta.ContainsKey("Datum") && meta["Datum"] is DateTime dt ? dt : DateTime.MinValue;
 
+            meta = ExportXenodataHelper.RemoveDataByKey(meta, "Titel");
+            meta = ExportXenodataHelper.RemoveDataByKey(meta, "Datum");
+
             // Dokument-Metadaten
             using (var entry = zip.CreateEntry($"{csigle}/{package.Key}/{i:D6}/header.xml"))
             using (var writer = new StreamWriter(entry.Open()))
@@ -64,7 +68,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
                 .Replace("{DAY}", date.Day.ToString("D2"))
                 .Replace("{YEAR}", date.Year.ToString("D4"))
                 .Replace("{TIME}", date.ToString("HH:mm:ss zzz"))
-                .Replace("{XENODATA}", GenerateXenoData(meta.ToDictionary(x => x.Key, x => x.Value))));
+                .Replace("{XENODATA}", ExportXenodataHelper.GenerateXenoData(meta)));
 
             var doc = hydra.GetReadableDocument(dsel, "Wort").Select(x => x.ToArray()).ToArray();
             // ReSharper disable once ArgumentsStyleStringLiteral
@@ -78,7 +82,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
                 .Replace("{TEXT}", text));
 
             var align = map.ExtractAlignment(text, doc);
-
+            
             // Token-Standoff
             using (var entry = zip.CreateEntry($"{csigle}/{package.Key}/{i:D6}/base/tokens.xml"))
             using (var writer = new StreamWriter(entry.Open()))
@@ -91,7 +95,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
             using (var writer = new StreamWriter(entry.Open()))
               writer.Write(Resources.Template_Ids_KorAP_Structure
                 .Replace("{DocId}", docid)
-                .Replace("{To}", align.Max(x => x.TextCharTo).ToString()));
+                .Replace("{To}", align.Max(x => x.TextCharTo).ToString())
+                .Replace("{Sentences}", GenerateSentenceSpans(doc, align)));
 
             // >>>>>>>>>>>>>>>>>>>>>
             // FOUNDRY - EXPORT >>>> 
@@ -138,58 +143,42 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
         foundry.Close();
     }
 
-    private string GenerateXenoData(Dictionary<string, object> meta)
+    private string GenerateSentenceSpans(string[][] doc, List<ReMapperEntry> align)
     {
-      GenerateXenoDataClean(ref meta, "Titel");
-      GenerateXenoDataClean(ref meta, "Datum");
-
       var stb = new StringBuilder();
-      foreach (var x in meta)
+      var queue = new Queue<ReMapperEntry>(align);
+
+      var id = 3; // Wichtig, im Template sind die ersten beiden IDs reserviert
+
+      foreach (var s in doc)
       {
-        if (x.Value == null)
+        if(queue.Count == 0)
+          break;
+
+        var from = -1;
+        var to = -1;
+        foreach (var w in s)
+        {
+          if (queue.Count == 0)
+            break;
+
+          var entry = queue.Dequeue();
+          if (from == -1)
+            from = entry.TextCharFrom;
+          to = entry.TextCharTo;
+        }
+
+        if (from == -1 || to == -1)
           continue;
 
-        var type = GenerateXenoDataType(x.Value);
-        switch (type)
-        {
-          case "number":
-            stb.AppendLine($"        <meta name=\"{x.Key}\" type=\"number\">{x.Value.ToString().Replace(",", ".")}</meta>");
-            break;
-          case "date":
-            stb.AppendLine($"        <meta name=\"{x.Key}\" type=\"date\">{x.Value:yyyy-MM-dd}</meta>");
-            break;
-          case "text":
-            stb.AppendLine($"        <meta name=\"{x.Key}\" type=\"text\">{x.Value}</meta>");
-            break;
-        }
+        stb.AppendLine(Resources.Template_Ids_KorAP_Structure_Sentence
+          .Replace("{id}", id.ToString())
+          .Replace("{from}", from.ToString())
+          .Replace("{to}", to.ToString()));
+        id++;
       }
 
       return stb.ToString();
-    }
-
-    private string GenerateXenoDataType(object value)
-    {
-      switch (value)
-      {
-        case int _:
-        case long _:
-        case float _:
-        case double _:
-        case decimal _:
-        case byte _:
-        case short _:
-          return "number";
-        case DateTime _:
-          return "date";
-        default:
-          return "text";
-      }
-    }
-
-    private void GenerateXenoDataClean(ref Dictionary<string, object> meta, string key)
-    {
-      if (meta.ContainsKey(key))
-        meta.Remove(key);
     }
 
     private Dictionary<string, string[]> GetLayers(IHydra hydra, Foundry foundry, Guid dsel)
@@ -338,24 +327,6 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
       #endregion
 
       return res;
-    }
-
-    private Dictionary<string, HashSet<Guid>> MakePackages(IHydra hydra)
-    {
-      var res = new Dictionary<string, HashSet<Guid>>();
-
-      foreach (var d in hydra.DocumentMetadata)
-      {
-        var key = d.Value.ContainsKey("Datum") && d.Value["Datum"] is DateTime dt
-                    ? $"CE{dt.Year}"
-                    : "CEXXXX";
-        if (res.ContainsKey(key))
-          res[key].Add(d.Key);
-        else
-          res.Add(key, new HashSet<Guid> { d.Key });
-      }
-
-      return res;
-    }
+    }    
   }
 }

@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{83CDE0A4-D064-4AC1-82C8-D7CF3F119416}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CorpusExplorer.Tool4.DocPlusEditor</RootNamespace>
+    <AssemblyName>CorpusExplorer.Sdk.DocPlusEditor</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>CorpusExplorerNextSnKey2019.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2024.2.514.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2024.2.514.462\Telerik.WinControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2024.2.514.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2024.2.514.462\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2024.2.514.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2024.2.514.462\Telerik.WinControls.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip, Version=2024.2.426.462, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2024.2.514.462\Telerik.Windows.Zip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2024.2.514.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2024.2.514.462\TelerikCommon.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoFix\Abstract\AbstractAutoFix.cs" />
+    <Compile Include="AutoFix\Abstract\AbstractCastMetaAutoFix.cs" />
+    <Compile Include="AutoFix\Abstract\AbstractMetaAutoFix.cs" />
+    <Compile Include="AutoFix\Abstract\AbstractTextAutoFix.cs" />
+    <Compile Include="AutoFix\Meta\BooleanCastMetaAutoFix.cs" />
+    <Compile Include="AutoFix\Meta\DateTimeCastMetaAutoFix.cs" />
+    <Compile Include="AutoFix\Meta\DoubleCastMetaAutoFix.cs" />
+    <Compile Include="AutoFix\Meta\IntCastMetaAutoFix.cs" />
+    <Compile Include="AutoFix\Meta\MetaAddGuidAutoFix.cs" />
+    <Compile Include="AutoFix\Meta\MetaDeleteAutoFix.cs" />
+    <Compile Include="AutoFix\Meta\MetaRenameAutoFix.cs" />
+    <Compile Include="AutoFix\Meta\StringCastMetaAutoFix.cs" />
+    <Compile Include="AutoFix\Text\TextAutoFixHtmlEncodingFragments.cs" />
+    <Compile Include="AutoFix\Text\TextAutoFixLineBreaks.cs" />
+    <Compile Include="AutoFix\Text\TextAutoFixPdfLineBreaks.cs" />
+    <Compile Include="AutoFix\Text\TextAutoFixReplace.cs" />
+    <Compile Include="AutoFix\Text\TextAutoFixReplaceRegex.cs" />
+    <Compile Include="AutoFix\Text\TextAutoFixSpace.cs" />
+    <Compile Include="AutoFix\Text\TextAutoFixXmlFragments.cs" />
+    <Compile Include="Controls\Abstract\AbstractUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Abstract\AbstractUserControl.Designer.cs">
+      <DependentUpon>AbstractUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HeadPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\HeadPanel.Designer.cs">
+      <DependentUpon>HeadPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MetadataEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MetadataEditor.Designer.cs">
+      <DependentUpon>MetadataEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Abstract\AbstractForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Abstract\AbstractForm.Designer.cs">
+      <DependentUpon>AbstractForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Editor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Editor.Designer.cs">
+      <DependentUpon>Editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Lizenz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Lizenz.Designer.cs">
+      <DependentUpon>Lizenz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MetadataFixer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MetadataFixer.Designer.cs">
+      <DependentUpon>MetadataFixer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MetadataNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MetadataNew.Designer.cs">
+      <DependentUpon>MetadataNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TextAutoFixer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TextAutoFixer.Designer.cs">
+      <DependentUpon>TextAutoFixer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TextFindAndReplace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TextFindAndReplace.Designer.cs">
+      <DependentUpon>TextFindAndReplace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\DictionaryBindingHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ViewModel\DocPlusViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj">
+      <Project>{3226c218-0fb3-43a6-a67c-39cbac704ea3}</Project>
+      <Name>BitCutStudios.CorpusExplorer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Core\CorpusExplorer.Core.csproj">
+      <Project>{029fe5a6-9504-499a-9e0d-05754d44cbb1}</Project>
+      <Name>CorpusExplorer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Diagnostic\CorpusExplorer.Sdk.Diagnostic.csproj">
+      <Project>{2d491ec8-11c5-4c02-b604-48b8458174e1}</Project>
+      <Name>CorpusExplorer.Sdk.Diagnostic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Binary\CorpusExplorer.Sdk.Extern.Binary.csproj">
+      <Project>{130da92c-9c08-44bc-b491-340c88056396}</Project>
+      <Name>CorpusExplorer.Sdk.Extern.Binary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Xml\CorpusExplorer.Sdk.Extern.Xml.csproj">
+      <Project>{6841c8ca-7c40-44c4-b5aa-fbc84fcb7293}</Project>
+      <Name>CorpusExplorer.Sdk.Extern.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CorpusExplorer.Sdk\CorpusExplorer.Sdk.csproj">
+      <Project>{dc1b5a58-29da-476d-89f8-e73a1db11e52}</Project>
+      <Name>CorpusExplorer.Sdk</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="CorpusExplorerNextSnKey2019.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\Abstract\AbstractUserControl.resx">
+      <DependentUpon>AbstractUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\HeadPanel.resx">
+      <DependentUpon>HeadPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MetadataEditor.resx">
+      <DependentUpon>MetadataEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Abstract\AbstractForm.resx">
+      <DependentUpon>AbstractForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Editor.resx">
+      <DependentUpon>Editor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Lizenz.resx">
+      <DependentUpon>Lizenz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MetadataFixer.resx">
+      <DependentUpon>MetadataFixer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MetadataNew.resx">
+      <DependentUpon>MetadataNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TextAutoFixer.resx">
+      <DependentUpon>TextAutoFixer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TextFindAndReplace.resx">
+      <DependentUpon>TextFindAndReplace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\abstract_class-add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asset-diamond-folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asset-diamond-folder1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asset-diamond-save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asset-diamond-save1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_blue_arrow_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_circle_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_circle_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_on_off_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_rounded_red_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cabinet-export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cabinet-export1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cabinet-export2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cabinet-import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clipboard_copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\documents-import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\documents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gears.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inspect_document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\replace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_all.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_green1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tool_pencil.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

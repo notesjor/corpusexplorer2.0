@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.Filter.Queries
@@ -59,7 +60,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     ///   GetSentenceIndices() abgefragt werden.
     /// </param>
     /// <returns>Auflistung aller Vorkommen im Satz</returns>
-    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<CeRange> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       int[][] doc;
       HashSet<int> indices;
@@ -114,7 +115,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// <returns>
     ///   The <see cref="int" />.
     /// </returns>
-    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    protected override CeRange? GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       int[][] doc;
       HashSet<int> indices;
@@ -124,12 +125,13 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       }
       catch (ArgumentException)
       {
-        return -1;
+        return null;
       }
 
-      return indices != null && indices.Count > 0
-               ? GetSentencesFirstIndexCall(doc[sentence], new HashSet<int>(indices))
-               : -1;
+      if (indices != null && indices.Count > 0)
+        return GetSentencesFirstIndexCall(doc[sentence], new HashSet<int>(indices));
+
+      return null;
     }
 
     /// <summary>
@@ -241,21 +243,21 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// <returns>
     ///   The <see cref="int" />.
     /// </returns>
-    private static int GetSentencesFirstIndexCall(int[] sentence, HashSet<int> indices)
+    private static CeRange? GetSentencesFirstIndexCall(int[] sentence, HashSet<int> indices)
     {
       for (var i = 0; i < sentence.Length; i++)
         if (indices.Contains(sentence[i]))
-          return i;
+          return new CeRange(i);
 
-      return -1;
+      return null;
     }
 
-    private static IEnumerable<int> GetWordIndicesCall(int[] sentence, HashSet<int> indices)
+    private static IEnumerable<CeRange> GetWordIndicesCall(int[] sentence, HashSet<int> indices)
     {
-      var res = new List<int>();
+      var res = new List<CeRange>();
       for (var i = 0; i < sentence.Length; i++)
         if (indices.Contains(sentence[i]))
-          res.Add(i);
+          res.Add(new CeRange(i));
       return res;
     }
 

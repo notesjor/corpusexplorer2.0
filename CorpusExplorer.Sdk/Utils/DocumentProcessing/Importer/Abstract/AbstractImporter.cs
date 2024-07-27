@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
@@ -16,9 +18,9 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract
           if (corpus != null)
             res.AddRange(corpus);
         }
-        catch
+        catch (Exception ex)
         {
-          // ignore
+          InMemoryErrorConsole.Log(ex);
         }
 
       return PostProcessing(res);

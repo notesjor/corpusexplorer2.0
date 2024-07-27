@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Extern.Json.SimpleStandoff.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
@@ -63,17 +64,17 @@ namespace CorpusExplorer.Sdk.Extern.Json.SimpleStandoff
 
         foreach (var a in layer.Value)
           for (var s = a.FromSentence; s <= a.ToSentence; s++)
-          for (var t = (s == a.FromSentence ? a.From : 0); t < (s == a.ToSentence ? (a.To > lDoc[s].Length ? lDoc[s].Length : a.To) : lDoc[s].Length); t++)
-          {
-            try
+            for (var t = (s == a.FromSentence ? a.From : 0); t < (s == a.ToSentence ? (a.To > lDoc[s].Length ? lDoc[s].Length : a.To) : lDoc[s].Length); t++)
             {
-              lDoc[s][t] = a.LayerValue;
+              try
+              {
+                lDoc[s][t] = a.LayerValue;
+              }
+              catch (Exception ex)
+              {
+                InMemoryErrorConsole.Log(ex);
+              }
             }
-            catch
-            {
-              // ignore
-            }
-          }
 
         AddDocument(layer.Key, guid, lDoc);
       }
@@ -90,9 +91,10 @@ namespace CorpusExplorer.Sdk.Extern.Json.SimpleStandoff
         {
           try
           {
-            var matches = alignment.Where(x => x.TextCharFrom >= a.From && x.TextCharTo <= a.To).Select(x=> alignment.IndexOf(x)).ToArray();
-            if(matches == null || matches.Length == 0)
+            var matches = alignment.Where(x => x.TextCharFrom >= a.From && x.TextCharTo <= a.To).Select(x => alignment.IndexOf(x)).ToArray();
+            if (matches == null || matches.Length == 0)
               continue;
+
             var min = matches.Min(x => x);
             var max = matches.Max(x => x);
 
@@ -101,9 +103,9 @@ namespace CorpusExplorer.Sdk.Extern.Json.SimpleStandoff
             a.FromSentence = alignment[min].SentenceIndex;
             a.ToSentence = alignment[max].SentenceIndex;
           }
-          catch
+          catch (Exception ex)
           {
-            // ignore
+            InMemoryErrorConsole.Log(ex);
           }
         }
       }
@@ -131,6 +133,9 @@ namespace CorpusExplorer.Sdk.Extern.Json.SimpleStandoff
         foreach (var a in layer.Value)
         {
           var matches = tokens.Where(x => x.Index >= a.From && x.Index <= a.To).OrderBy(x => x.Index).ToArray();
+          if (matches == null || matches.Length == 0)
+            continue;
+
           var min = matches.First();
           var max = matches.Last();
 

@@ -2,8 +2,10 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 
@@ -100,30 +102,30 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// <returns>
     ///   The <see cref="int" />.
     /// </returns>
-    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    protected override CeRange? GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       if (corpus       == null ||
           documentGuid == Guid.Empty)
-        return -1;
+        return null;
       var queries = GetQueries(corpus);
       if (queries        == null ||
           queries.Length == 0)
-        return -1;
+        return null;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
       var doc = layer?[documentGuid];
       if (doc      == null ||
           sentence < 0     ||
           sentence >= doc.Length)
-        return -1;
+        return null;
 
       var s = doc[sentence];
       var sum = queries.Count(q => q > -1);
 
       for (var i = 0; sum + i < s.Length; i++)
         if (!queries.Where((t, j) => t != -1 && (i + j >= s.Length || s[i + j] != t)).Any())
-          return i;
+          return new CeRange(i);
 
-      return -1;
+      return null;
     }
 
     /// <summary>
@@ -181,7 +183,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     ///   GetSentenceIndices() abgefragt werden.
     /// </param>
     /// <returns>Auflistung aller Vorkommen im Satz</returns>
-    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<CeRange> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       if (corpus       == null ||
           documentGuid == Guid.Empty)
@@ -205,11 +207,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
         return null;
 
       var s = doc[sentence];
-      var res = new List<int>();
+      var res = new List<CeRange>();
 
       for (var i = 0; i < s.Length; i++)
         if (wIdx == s[i])
-          res.Add(i);
+          res.Add(new CeRange(i));
 
       return res;
     }

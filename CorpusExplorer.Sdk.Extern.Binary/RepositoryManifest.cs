@@ -6,6 +6,7 @@ using CorpusExplorer.Sdk.Extern.Binary.Excel.Kidko;
 using CorpusExplorer.Sdk.Extern.Binary.Excel.Universal;
 using CorpusExplorer.Sdk.Extern.Binary.ListOfScrapDocuments;
 using CorpusExplorer.Sdk.Extern.Binary.NexisNew;
+using CorpusExplorer.Sdk.Extern.Binary.PdfDocument;
 using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
@@ -63,6 +64,10 @@ namespace CorpusExplorer.Sdk.Extern.Binary
         {
           "KiDKo/E-Scraper (*.xlsx)|*.xlsx",
           new KidkoScraper()
+        },
+        {
+          "PDF-Scraper einfach (*.pdf)|*.pdf",
+          new PdfDocumentScraper()
         }
       };
 

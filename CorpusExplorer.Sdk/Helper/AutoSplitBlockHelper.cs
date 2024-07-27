@@ -67,34 +67,34 @@ namespace CorpusExplorer.Sdk.Helper
               };
               break;
             case "CEN":
-              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeCenturyOnlyValue();
+              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeCentury();
               break;
             case "DEC":
-              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeDecadeOnlyValue();
+              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeDecade();
               break;
             case "Y":
-              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeYearOnlyValue();
+              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeYear();
               break;
             case "YW":
-              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeYearWeekOnlyValue();
+              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeYearWeek();
               break;
             case "YQ":
-              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeYearQuarterOnlyValue();
+              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeYearQuarter();
               break;
             case "YM":
-              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeYearMonthOnlyValue();
+              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeYearMonth();
               break;
             case "YMD":
-              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeYearMonthDayOnlyValue();
+              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeYearMonthDay();
               break;
             case "YMDH":
-              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeYearMonthDayHourOnlyValue();
+              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeYearMonthDayHour();
               break;
             case "YMDHM":
-              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeYearMonthDayHourMinuteOnlyValue();
+              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeYearMonthDayHourMinute();
               break;
             case "ALL":
-              block.ClusterGenerator = new SelectionClusterGeneratorDateTimeValue();
+              block.ClusterGenerator = new SelectionClusterGeneratorDateTime();
               break;
           }
 

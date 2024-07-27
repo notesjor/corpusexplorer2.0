@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Interface;
@@ -48,20 +49,12 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       }
     }
 
-    /// <summary>
-    ///   End of Index - wird von GetWordIndices verwendet um das Ende des Musters zu bestimmen.
-    /// </summary>
-    /// <value>The eoi.</value>
-    [XmlIgnore]
-    private int Eoi { get; set; }
-
     [XmlIgnore]
     public IEnumerable<string> LayerQueries
     {
       get => _layerQueries;
       set
       {
-        Eoi = value.Count() - 1;
         _layerQueries = value;
         _layerQueryCache = new Dictionary<Guid, int[]>();
       }
@@ -99,26 +92,46 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// <returns>
     ///   The <see cref="int" />.
     /// </returns>
-    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    protected override CeRange? GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       if (corpus == null || documentGuid == Guid.Empty)
-        return -1;
+        return null;
       var queries = GetQueries(corpus);
       if (queries == null || queries.Length == 0)
-        return -1;
+        return null;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
       var doc = layer?[documentGuid];
       if (doc == null || sentence < 0 || sentence >= doc.Length)
-        return -1;
+        return null;
 
       var s = doc[sentence];
-      var sum = queries.Count(q => q > -1);
+      var sum = queries.Count();
 
-      for (var i = 0; sum + i < s.Length; i++)
-        if (!queries.Where((t, j) => t != -1 && (i + j >= s.Length || s[i + j] != t)).Any())
-          return i;
+      for (var i = 0; i < doc.Length; i++)
+      {
+        if (doc[i] == null)
+          continue;
 
-      return -1;
+        for (var j = 0; sum + j <= doc[i].Length; j++)
+        {
+          var valid = true;
+          for (var k = 0; k < sum; k++)
+          {
+            if (queries[k] == -1)
+              continue;
+
+            if (queries[k] != doc[i][j + k])
+            {
+              valid = false;
+              break;
+            }
+          }
+          if (valid)
+            return new CeRange(i);
+        }
+      }
+
+      return null;
     }
 
     /// <summary>
@@ -137,11 +150,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     {
       lock (_getSentenceCallLock)
       {
-        if (corpus       == null ||
+        if (corpus == null ||
             documentGuid == Guid.Empty)
           return null;
         var queries = GetQueries(corpus);
-        if (queries        == null ||
+        if (queries == null ||
             queries.Length == 0)
           return null;
         var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
@@ -150,7 +163,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           return null;
 
         var res = new List<int>();
-        var sum = queries.Count(q => q > -1);
+        var sum = queries.Count();
 
         if (Configuration.RightToLeftSupport)
         {
@@ -161,9 +174,24 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           {
             if (doc[i] == null)
               continue;
-            for (var j = 0; sum + j < doc[i].Length; j++)
-              if (!queries.Where((t, k) => t != -1 && (j + k >= doc[i].Length || doc[i][j + k] != t)).Any())
+
+            for (var j = 0; sum + j <= doc[i].Length; j++)
+            {
+              var valid = true;
+              for (var k = 0; k < sum; k++)
+              {
+                if (queries[k] == -1)
+                  continue;
+
+                if (queries[k] != doc[i][j + k])
+                {
+                  valid = false;
+                  break;
+                }
+              }
+              if (valid)
                 res.Add(i);
+            }
           }
         }
 
@@ -182,33 +210,43 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     ///   GetSentenceIndices() abgefragt werden.
     /// </param>
     /// <returns>Auflistung aller Vorkommen im Satz</returns>
-    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<CeRange> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      if (corpus       == null ||
+      if (corpus == null ||
           documentGuid == Guid.Empty)
         return null;
       var queries = GetQueries(corpus);
-      if (queries        == null ||
+      if (queries == null ||
           queries.Length == 0)
         return null;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
       var doc = layer?[documentGuid];
-      if (doc      == null ||
-          sentence < 0     ||
+      if (doc == null ||
+          sentence < 0 ||
           sentence >= doc.Length)
         return null;
 
       var s = doc[sentence];
 
-      var sum = queries.Count(q => q > -1);
-      var res = new HashSet<int>();
+      var sum = queries.Count();
+      var res = new List<CeRange>();
 
-      for (var i = 0; sum + i < s.Length; i++)
+      for (var w = 0; sum + w <= s.Length; w++)
       {
-        if (queries.Where((t, j) => t != -1 && (i + j >= s.Length || s[i + j] != t)).Any())
-          continue;
-        res.Add(i);
-        res.Add(i + Eoi);
+        var valid = true;
+        for (var m = 0; m < sum; m++)
+        {
+          if (queries[m] == -1)
+            continue;
+
+          if (queries[m] != s[w + m])
+          {
+            valid = false;
+            break;
+          }
+        }
+        if (valid)
+          res.Add(new CeRange(w, w + sum));
       }
 
       return res;
@@ -228,11 +266,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// </returns>
     protected override bool ValidateCall(AbstractCorpusAdapter corpus, Guid documentGuid)
     {
-      if (corpus       == null ||
+      if (corpus == null ||
           documentGuid == Guid.Empty)
         return false;
       var queries = GetQueries(corpus);
-      if (queries        == null ||
+      if (queries == null ||
           queries.Length == 0)
         return false;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
@@ -242,23 +280,31 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
       foreach (var s in doc)
       {
-        var sum = queries.Count(q => q > -1);
+        var sum = queries.Count();
 
         if (Configuration.RightToLeftSupport)
-          for (var i = s.Length; i > sum; i--)
+          for (var i = 0; i < doc.Length; i++)
           {
-            var any = false;
-            for (var j = queries.Length; j > 0; j--)
-            {
-              var t = queries[j];
-              if (i + j < s.Length && (t == -1 || s[i + j] == t))
-                continue;
-              any = true;
-              break;
-            }
+            if (doc[i] == null)
+              continue;
 
-            if (!any)
-              return true;
+            for (var j = 0; sum + j <= doc[i].Length; j++)
+            {
+              var valid = true;
+              for (var k = 0; k < sum; k++)
+              {
+                if (queries[k] == -1)
+                  continue;
+
+                if (queries[k] != doc[i][j + k])
+                {
+                  valid = false;
+                  break;
+                }
+              }
+              if (valid)
+                return true;
+            }
           }
         else
           for (var i = 0; sum + i < s.Length; i++)

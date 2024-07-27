@@ -3,8 +3,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 
 #endregion
@@ -76,9 +78,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     /// <returns>
     ///   The <see cref="int" />.
     /// </returns>
-    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    protected override CeRange? GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      return ValidateCall(corpus, documentGuid) ? 0 : -1;
+      if (ValidateCall(corpus, documentGuid))
+        return new CeRange(0, corpus.GetDocumentSentencesLength(documentGuid, sentence));
+      return null;
     }
 
     /// <summary>
@@ -109,9 +113,9 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     ///   GetSentenceIndices() abgefragt werden.
     /// </param>
     /// <returns>Auflistung aller Vorkommen im Satz</returns>
-    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<CeRange> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      return ValidateCall(corpus, documentGuid) ? new[] {0} : null;
+      return ValidateCall(corpus, documentGuid) ? new CeRange[0] : null;
     }
   }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Interface;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
@@ -29,7 +30,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public Selection ResultSelection { get; set; }
 
-    public Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>> SearchResults { get; private set; }
+    public Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<CeRange>>>> SearchResults { get; private set; }
 
     public DataTable GetDataTable()
     {
@@ -52,7 +53,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 
       dt.BeginLoadData();
       foreach (var d in data)
-        dt.Rows.Add(d.Pre, d.Match, d.Post, d.Count, d.Token, string.Join(" | ", d.FoundCooccurrences) , d.SignificantToken, d.SignificanceMax, d.SignificanceSum,
+        dt.Rows.Add(d.Pre, d.Match, d.Post, d.Count, d.Token, string.Join(" | ", d.FoundCooccurrences), d.SignificantToken, d.SignificanceMax, d.SignificanceSum,
                     d.SignificanceMed, d.SignificanceRank, d.CorpusGuid.ToString("N"), d.DocumentGuid.ToString("N"));
       dt.EndLoadData();
 
@@ -75,47 +76,46 @@ namespace CorpusExplorer.Sdk.ViewModel
     {
       var res = new Dictionary<string, SignificanceExtendedUniqueTextLiveSearchResultEntry>();
       foreach (var corpus in SearchResults)
-      foreach (var document in corpus.Value)
-      foreach (var sent in document.Value.Where(sent => sent.Value != null && sent.Value.Count != 0))
-      {
-        var streamDoc =
-          RunHighlighting(Selection.GetReadableDocumentSnippet(document.Key, "Wort", sent.Key, sent.Key).ReduceDocumentToStreamDocument().ToArray(),
-                          out var token, out var stoken, out var sigMax, out var sigSum, out var sigMed, out var cooc);
+        foreach (var document in corpus.Value)
+          foreach (var sent in document.Value.Where(sent => sent.Value != null && sent.Value.Count != 0))
+          {
+            var streamDoc =
+              RunHighlighting(Selection.GetReadableDocumentSnippet(document.Key, "Wort", sent.Key, sent.Key).ReduceDocumentToStreamDocument().ToArray(),
+                              out var token, out var stoken, out var sigMax, out var sigSum, out var sigMed, out var cooc);
 
-        var key = string.Join("|", streamDoc);
-        if (!res.ContainsKey(key))
-        {
-          var min = sent.Value.Min();
-          var max = sent.Value.Max();
-          res.Add(
-                  key,
-                  new SignificanceExtendedUniqueTextLiveSearchResultEntry
-                  {
-                    Pre = $"{HighlightBodyStart}{streamDoc.SplitDocument(0, min)}{HighlightBodyEnd}",
-                    Match = $"{HighlightBodyStart}{streamDoc.SplitDocument(min, max + 1)}{HighlightBodyEnd}",
-                    Post = $"{HighlightBodyStart}{streamDoc.SplitDocument(max       + 1)}{HighlightBodyEnd}",
-                    Token = token,
-                    SignificantToken = stoken,
-                    SignificanceMax = sigMax,
-                    SignificanceSum = sigSum,
-                    SignificanceMed = sigMed,
-                    CorpusGuid = corpus.Key,
-                    DocumentGuid = document.Key,
-                    FoundCooccurrences = cooc
-                  });
-        }
+            var key = string.Join("|", streamDoc);
+            if (!res.ContainsKey(key))
+              foreach (var range in sent.Value)
+              {
+                res.Add(
+                        key,
+                        new SignificanceExtendedUniqueTextLiveSearchResultEntry
+                        {
+                          Pre = $"{HighlightBodyStart}{streamDoc.SplitDocument(0, range.To)}{HighlightBodyEnd}",
+                          Match = $"{HighlightBodyStart}{streamDoc.SplitDocument(range.From, range.To)}{HighlightBodyEnd}",
+                          Post = $"{HighlightBodyStart}{streamDoc.SplitDocument(range.To + 1)}{HighlightBodyEnd}",
+                          Token = token,
+                          SignificantToken = stoken,
+                          SignificanceMax = sigMax,
+                          SignificanceSum = sigSum,
+                          SignificanceMed = sigMed,
+                          CorpusGuid = corpus.Key,
+                          DocumentGuid = document.Key,
+                          FoundCooccurrences = cooc
+                        });
+              }
 
-        res[key].AddSentence(document.Key, sent.Key);
-      }
+            res[key].AddSentence(document.Key, sent.Key);
+          }
 
       var sigTokenMax = res.Max(x => x.Value.SignificantToken);
       foreach (var x in res)
         try
         {
           x.Value.SignificanceRank =
-            x.Value.SignificantToken / x.Value.Token                            +
-            x.Value.SignificanceMed  * (x.Value.SignificantToken / sigTokenMax) +
-            x.Value.SignificanceSum  * (x.Value.SignificantToken / sigTokenMax);
+            x.Value.SignificantToken / x.Value.Token +
+            x.Value.SignificanceMed * (x.Value.SignificantToken / sigTokenMax) +
+            x.Value.SignificanceSum * (x.Value.SignificantToken / sigTokenMax);
         }
         catch
         {

@@ -102,78 +102,19 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="K4os.Compression.LZ4, Version=1.3.6.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
-      <HintPath>..\packages\K4os.Compression.LZ4.1.3.6\lib\netstandard2.0\K4os.Compression.LZ4.dll</HintPath>
-    </Reference>
-    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.3.6.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
-      <HintPath>..\packages\K4os.Compression.LZ4.Streams.1.3.6\lib\netstandard2.0\K4os.Compression.LZ4.Streams.dll</HintPath>
-    </Reference>
-    <Reference Include="K4os.Hash.xxHash, Version=1.0.8.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
-      <HintPath>..\packages\K4os.Hash.xxHash.1.0.8\lib\netstandard2.0\K4os.Hash.xxHash.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Polenter.SharpSerializer, Version=3.0.2.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpSerializer.3.0.2\lib\net452\Polenter.SharpSerializer.dll</HintPath>
-    </Reference>
-    <Reference Include="PostSharp, Version=2024.0.5.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.Redist.2024.0.5\lib\net45\PostSharp.dll</HintPath>
-    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
-    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
-    </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
-    </Reference>
     <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.IO.Pipelines, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Pipelines.8.0.0\lib\net462\System.IO.Pipelines.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
-    </Reference>
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
-    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.2\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Xml.ReaderWriter.4.3.1\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Addon\AbstractSimpleOnDemandAddon.cs" />
@@ -182,6 +123,7 @@
     <Compile Include="Aspect\CacheAspect.cs" />
     <Compile Include="Blocks\Abstract\AbstractClusterMetadataBlock.cs" />
     <Compile Include="Blocks\Abstract\AbstractLayerValueBlock.cs" />
+    <Compile Include="Blocks\CentralSnipBlock.cs" />
     <Compile Include="Blocks\ClusterMetadataByCooccurrenceBlock.cs" />
     <Compile Include="Blocks\ClusterMetadataByCooccurrenceSelectiveBlock.cs" />
     <Compile Include="Blocks\ClusterMetadataByNgramBlock.cs" />
@@ -196,8 +138,11 @@
     <Compile Include="Blocks\CrossFrequencySelectedBlock.cs" />
     <Compile Include="Blocks\CrossFrequencyDocumentBasedBlock.cs" />
     <Compile Include="Blocks\CrossFrequencySelected\Abstract\AbstractCrossFrequencySelectedBehaviour.cs" />
+    <Compile Include="Blocks\DocumentContainsLayerValueSelectBlock.cs" />
+    <Compile Include="Blocks\Frequency2LayerSelectBlock.cs" />
     <Compile Include="Blocks\Ngram1LayerSelectiveHighlightCooccurrencesBlock.cs" />
     <Compile Include="Blocks\PhraseFastCounterBlock.cs" />
+    <Compile Include="Blocks\PositionFrequencySimpleBlock.cs" />
     <Compile Include="Blocks\Range\Abstract\AbstractRange.cs" />
     <Compile Include="Blocks\CrossFrequencySelected\CrossFrequencySelectedBehaviourAnyMatch.cs" />
     <Compile Include="Blocks\CrossFrequencySelected\CrossFrequencySelectedBehaviourPhrase.cs" />
@@ -276,18 +221,20 @@
     <Compile Include="Blocks\SelectionClusterBlock.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\Abstract\AbstractCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\Abstract\AbstractCountCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\Abstract\AbstractDateTimeCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\Abstract\AbstractSelectionClusterGeneratorDateTime.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\Abstract\AbstractRangeCluster.cs" />
-    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeCenturyOnlyCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeCenturyCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeCluster.cs" />
-    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeDecadeOnlyCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeDecadeCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeRangeCluster.cs" />
-    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearMonthDayHourMinuteOnlyCluster.cs" />
-    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearMonthDayHourOnlyCluster.cs" />
-    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearMonthDayOnlyCluster.cs" />
-    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearMonthOnlyCluster.cs" />
-    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearOnlyCluster.cs" />
-    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearQuarterOnlyCluster.cs" />
-    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearWeekOnlyCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearMonthDayHourMinuteCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearMonthDayHourCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearMonthDayCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearMonthCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearQuarterCluster.cs" />
+    <Compile Include="Blocks\SelectionCluster\Cluster\DateTimeYearWeekCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\DocumentCounterCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\DoubleCluster.cs" />
     <Compile Include="Blocks\SelectionCluster\Cluster\DoubleRangeCluster.cs" />
@@ -307,23 +254,23 @@
     <Compile Include="Blocks\SelectionCluster\Generator\Abstract\AbstractSelectionClusterGeneratorRange.cs" />
     <Compile Include="Blocks\SelectionCluster\Generator\Abstract\AbstractSelectionClusterGeneratorValue.cs" />
     <Compile Include="Blocks\SelectionCluster\Generator\Abstract\AbstractSelectionClusterGenerator.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeCenturyOnlyValue.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeDecadeOnlyValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeCentury.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeDecade.cs" />
     <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeRange.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeValue.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthDayHourMinuteOnlyValue.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthDayHourOnlyValue.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthDayOnlyValue.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthOnlyValue.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearOnlyValue.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearQuarterOnlyValue.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearWeekOnlyValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTime.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthDayHourMinute.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthDayHour.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonthDay.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearMonth.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYear.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearQuarter.cs" />
+    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDateTimeYearWeek.cs" />
     <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDoubleRange.cs" />
     <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorDoubleValue.cs" />
     <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorIntegerRange.cs" />
     <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorIntegerValue.cs" />
-    <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorRobustDateTimeValue.cs" />
     <Compile Include="Blocks\SelectionCluster\Generator\SelectionClusterGeneratorStringValue.cs" />
+    <Compile Include="Blocks\SelectionCluster\Helper\SelectionClusterDateTimeHelper.cs" />
     <Compile Include="Blocks\SentenceFrequenceDistributionBlock.cs" />
     <Compile Include="Blocks\SentenceHashBlock.cs" />
     <Compile Include="Blocks\SortDocuments.cs" />
@@ -375,6 +322,7 @@
     <Compile Include="Helper\ProjectJoiner.cs" />
     <Compile Include="Helper\QueueExtension.cs" />
     <Compile Include="Helper\RangeHelper.cs" />
+    <Compile Include="Helper\ReadableMultilayerDocumentExtension.cs" />
     <Compile Include="Helper\SelectionEqualityComparer.cs" />
     <Compile Include="Helper\SelectionJoiner.cs" />
     <Compile Include="Helper\SelectionListConverterHelper.cs" />
@@ -406,6 +354,7 @@
     <Compile Include="Model\Cache\Helper\BlockCacheHelper.cs" />
     <Compile Include="Model\Cache\Helper\Exception\BlockAlreadyCachedException.cs" />
     <Compile Include="Model\Corpus.cs" />
+    <Compile Include="Model\CorpusExplorer\CeRange.cs" />
     <Compile Include="Model\CorpusExplorer\CeTriple.cs" />
     <Compile Include="Model\CorpusExplorer\FileSystem\FileSystemCorpusRoot.cs" />
     <Compile Include="Model\CorpusExplorer\FileSystem\FileSystemLayerHead.cs" />
@@ -418,6 +367,7 @@
     <Compile Include="Utils\CorpusManipulation\CorpusRandomizer.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusRandomizerStrategy\Abstract\AbstractCorpusRandomizerStrategy.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusRandomizerStrategy\CorpusRandomizerStrategySentences.cs" />
+    <Compile Include="Utils\CorpusManipulation\CorpusRandomizerStrategy\CorpusRandomizerStrategySort.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusRandomizerStrategy\CorpusRandomizerStrategyTokens.cs" />
     <Compile Include="Utils\DataTableWriter\BinaryTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\HtmlTableSnippetTableWriter.cs" />
@@ -525,6 +475,7 @@
     <Compile Include="Utils\DocumentProcessing\Importer\ImporterSketchEngine.cs" />
     <Compile Include="Utils\DocumentProcessing\Scraper\Cec6Scraper.cs" />
     <Compile Include="Utils\DocumentProcessing\Scraper\CsvScraper.cs" />
+    <Compile Include="Utils\DocumentProcessing\Scraper\TsvAndCsvScraper.cs" />
     <Compile Include="Utils\DocumentProcessing\Scraper\TsvScraper.cs" />
     <Compile Include="Utils\DocumentProcessing\Scraper\TxtScraper.cs" />
     <Compile Include="Utils\DocumentProcessing\Scraper\Txt\CosmasScraper.cs" />
@@ -816,7 +767,6 @@
     <None Include="package.nuspec">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -838,19 +788,169 @@
   <ItemGroup>
     <Content Include="Utils\Diff\Quellenvermerk.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="CsvHelper">
+      <Version>33.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="K4os.Compression.LZ4">
+      <Version>1.3.8</Version>
+    </PackageReference>
+    <PackageReference Include="K4os.Compression.LZ4.Streams">
+      <Version>1.3.8</Version>
+    </PackageReference>
+    <PackageReference Include="K4os.Hash.xxHash">
+      <Version>1.0.8</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces">
+      <Version>8.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Bcl.HashCode">
+      <Version>1.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CSharp">
+      <Version>4.7.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.Platforms">
+      <Version>7.0.4</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Win32.Primitives">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="NETStandard.Library">
+      <Version>2.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="PostSharp.Redist">
+      <Version>2024.1.4</Version>
+    </PackageReference>
+    <PackageReference Include="SharpSerializer">
+      <Version>4.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.Buffers">
+      <Version>4.5.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Collections">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Collections.Concurrent">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Diagnostics.Debug">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Diagnostics.DiagnosticSource">
+      <Version>8.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Diagnostics.Tools">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Diagnostics.Tracing">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Globalization">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.IO">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.IO.Compression">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.IO.Pipelines">
+      <Version>8.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Linq">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Linq.Expressions">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Memory">
+      <Version>4.5.5</Version>
+    </PackageReference>
+    <PackageReference Include="System.Net.Primitives">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Numerics.Vectors">
+      <Version>4.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.ObjectModel">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Extensions">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Primitives">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Resources.ResourceManager">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
+      <Version>6.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.Extensions">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.InteropServices">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.Numerics">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Security.Cryptography.Algorithms">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Security.Cryptography.Encoding">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Security.Cryptography.Primitives">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Security.Cryptography.X509Certificates">
+      <Version>4.3.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.Text.Encoding">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Text.Encoding.Extensions">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Text.RegularExpressions">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Threading">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Threading.Tasks">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Threading.Tasks.Extensions">
+      <Version>4.5.4</Version>
+    </PackageReference>
+    <PackageReference Include="System.Xml.ReaderWriter">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Xml.XDocument">
+      <Version>4.3.0</Version>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
-  <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

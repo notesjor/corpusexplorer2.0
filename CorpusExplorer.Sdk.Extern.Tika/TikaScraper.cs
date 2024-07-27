@@ -18,11 +18,11 @@ namespace CorpusExplorer.Sdk.Extern.Tika
     public TikaScraper()
     {
       var t = typeof(ClassType); // IKVM.OpenJDK.Tools
-      Console.WriteLine(t.ToString());
+      var tmp = t.ToString();
       t = typeof(TransformerFactoryImpl); // IKVM.OpenJDK.XML.Transform
-      Console.WriteLine(t.ToString());
+      tmp = t.ToString();
       t = typeof(AMX); // IKVM.OpenJDK.XML.WebServices
-      Console.WriteLine(t.ToString());
+      tmp = t.ToString();
     }
 
     public override string DisplayName => "Auf gut Glück (Tika)";

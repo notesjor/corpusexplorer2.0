@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.Filter.Queries
@@ -53,10 +54,10 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       return new FilterQueryMultiLayerPhrase { _multiLayerQueries = _multiLayerQueries.ToArray() };
     }
 
-    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    protected override CeRange? GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       if (!GetSpecificQuery(corpus, out var query, out var layers)) // ist null, wenn das Korpus nicht alle Layer enthält
-        return -1;
+        return null;
 
       var mult = corpus.GetMultilayerDocument(documentGuid, layers);
       var first = mult.First();
@@ -76,10 +77,10 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
           if (!match)
             continue;
-          return j;
+          return new CeRange(j);
         }
 
-        return -1;
+        return null;
       }
       else
       {
@@ -87,10 +88,10 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
         {
           if (query.Where((t, k) => t.Value != mult[t.Key][sentence][j + k]).Any())
             continue;
-          return j;
+          return new CeRange(j);
         }
 
-        return -1;
+        return null;
       }
     }
 
@@ -142,7 +143,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       }
     }
 
-    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<CeRange> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       if (!GetSpecificQuery(corpus, out var query, out var layers)) // ist null, wenn das Korpus nicht alle Layer enthält
         return null;
@@ -152,7 +153,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
       if (Configuration.RightToLeftSupport)
       {
-        var res = new List<int>();
+        var res = new List<CeRange>();
         for (var j = first.Value[sentence].Length - query.Length; j >= 0; j--)
         {
           var match = true;
@@ -166,7 +167,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
           if (!match)
             continue;
-          res.Add(j);
+          res.Add(new CeRange(j));
           break;
         }
 
@@ -174,12 +175,12 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       }
       else
       {
-        var res = new List<int>();
+        var res = new List<CeRange>();
         for (var j = 0; j < first.Value[sentence].Length - query.Length; j++)
         {
           if (query.Where((t, k) => t.Value != mult[t.Key][sentence][j + k]).Any())
             continue;
-          res.Add(j);
+          res.Add(new CeRange(j));
           break;
         }
 

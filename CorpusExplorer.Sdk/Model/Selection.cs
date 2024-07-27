@@ -292,7 +292,7 @@ namespace CorpusExplorer.Sdk.Model
     /// </summary>
     [XmlIgnore]
     public IEnumerable<string> CorporaDisplaynames
-      => _selection.Select(c => GetCorpus(c.Key).CorpusDisplayname).ToList();
+      => _selection.Select(c => GetCorpus(c.Key).CorpusDisplayname)?.ToList();
 
     /// <summary>
     ///   Auflistung aller Corpora per GUID
@@ -428,6 +428,9 @@ namespace CorpusExplorer.Sdk.Model
     [XmlIgnore]
     public IEnumerable<Guid> DocumentGuids
       => _selection.SelectMany(c => c.Value);
+    
+    public IEnumerable<Guid> DocumentGuidsOfCorpus(Guid corpusGuid) 
+      => _selection.ContainsKey(corpusGuid) ? _selection[corpusGuid] : new HashSet<Guid>();
 
     /// <summary>
     ///   Gets the document metadata.
@@ -1435,6 +1438,11 @@ namespace CorpusExplorer.Sdk.Model
       }
 
       return res;
+    }
+
+    public int GetDocumentSentencesLength(Guid documentGuid, int sentence)
+    {
+      return Project.GetDocumentSentencesLength(documentGuid, sentence);
     }
 
     public bool AllowExport

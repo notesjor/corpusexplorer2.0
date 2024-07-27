@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.Filter.Queries
@@ -50,9 +51,9 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       };
     }
 
-    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    protected override CeRange? GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      return GetWordIndices(corpus, documentGuid, sentence).Min();
+      return GetWordIndices(corpus, documentGuid, sentence).FirstOrDefault();
     }
 
     protected override IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid)
@@ -71,20 +72,20 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       return res.Where(x => x.Value >= 1).Select(x => x.Key);
     }
 
-    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<CeRange> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       var res = new Dictionary<int, double>();
       foreach (var query in Queries)
       {
         var indices = query.Key.GetWordIndices(corpus, documentGuid, sentence);
         foreach (var index in indices)
-          if (res.ContainsKey(index))
-            res[index] += query.Value;
+          if (res.ContainsKey(index.From))
+            res[index.From] += query.Value;
           else
-            res.Add(index, query.Value);
+            res.Add(index.From, query.Value);
       }
 
-      return res.Where(x => x.Value >= 1).Select(x => x.Key);
+      return res.Where(x => x.Value >= 1).Select(x => new CeRange(x.Key));
     }
 
     protected override bool ValidateCall(AbstractCorpusAdapter corpus, Guid documentGuid)

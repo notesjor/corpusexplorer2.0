@@ -117,6 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Template.FoLiA.Document" xml:space="preserve">
+    <value>&lt;?xml version='1.0' encoding='utf-8'?&gt;
+&lt;FoLiA xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://ilk.uvt.nl/folia" xml:id="CorpusExplorer" version="2.0.1" generator="CorpusExplorer"&gt;
+  &lt;metadata type="native"&gt;
+    &lt;annotations&gt;
+      &lt;text-annotation&gt;
+        &lt;annotator processor="CorpusExplorer"/&gt;
+      &lt;/text-annotation&gt;
+      &lt;sentence-annotation&gt;
+        &lt;annotator processor="CorpusExplorer"/&gt;
+      &lt;/sentence-annotation&gt;
+      &lt;token-annotation&gt;
+        &lt;annotator processor="CorpusExplorer"/&gt;
+      &lt;/token-annotation&gt;
+    &lt;/annotations&gt;
+    &lt;provenance&gt;
+      &lt;processor xml:id="proc.CorpusExplorer" name="CorpusExplorer2folia" type="auto" folia_version="2.0.1" command="CorpusExplorer"&gt;
+        &lt;processor xml:id="proc.CorpusExplorer.generator" name="CorpusExplorer" type="auto" version="2.1.2"&gt;
+          &lt;processor xml:id="proc.CorpusExplorer.generator.export" name="CorpusExplorer" type="datasource" version="2.1.0"&gt;
+            &lt;meta id="tool"&gt;CorpusExplorer&lt;/meta&gt;
+            {{META}}
+          &lt;/processor&gt;
+        &lt;/processor&gt;
+      &lt;/processor&gt;
+    &lt;/provenance&gt;
+    &lt;meta id="lang"&gt;&lt;/meta&gt;
+  &lt;/metadata&gt;
+  &lt;text xml:id="{{GUID}}"&gt;
+      {{TEXT}}
+  &lt;/text&gt;
+&lt;/FoLiA&gt;</value>
+  </data>
+  <data name="Template.FoLiA.Sentence" xml:space="preserve">
+    <value>&lt;s xml:id="{{GUID}}.{{SID}}"&gt;
+{{TOKEN}}
+      &lt;/s&gt;</value>
+  </data>
+  <data name="Template.FoLiA.Token" xml:space="preserve">
+    <value>&lt;w xml:id="{{GUID}}.{{SID}}.{{WID}}"&gt;
+          &lt;t&gt;{{WORD}}&lt;/t&gt;
+          {{LAYERS}}
+        &lt;/w&gt;</value>
+  </data>
   <data name="Template.Ids.I5.Doc.Foot" xml:space="preserve">
     <value>&lt;/idsDoc&gt;</value>
   </data>
@@ -125,13 +168,13 @@
   &lt;idsHeader type="document" pattern="text" status="new" version="1.0" TEIform="teiHeader"&gt;
    &lt;fileDesc&gt;
     &lt;titleStmt&gt;
-     &lt;dokumentSigle&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_SIGLE/{cluster_id}&lt;/dokumentSigle&gt;
+     &lt;dokumentSigle&gt;{cluster_id}&lt;/dokumentSigle&gt;
      &lt;d.title&gt;&lt;/d.title&gt;
     &lt;/titleStmt&gt;
     &lt;publicationStmt&gt;
      &lt;distributor/&gt;
      &lt;pubAddress/&gt;
-     &lt;availability region="world"&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_LICENCE&lt;/availability&gt;
+     &lt;availability region="world"&gt;&lt;/availability&gt;
      &lt;pubDate/&gt;
     &lt;/publicationStmt&gt;
     &lt;sourceDesc&gt;
@@ -146,18 +189,18 @@
   &lt;/idsHeader&gt;</value>
   </data>
   <data name="Template.Ids.I5.Doc.Text" xml:space="preserve">
-    <value>&lt;idsText id="CE-EXPORT-TEMP_PLEASE_CHANGE_SIGLE.{cluster_id}.{text_id}" n="CorpusExplorer/{guid}" version="1"&gt;
+    <value>&lt;idsText id="{text_id}" n="CorpusExplorer/{guid}" version="1"&gt;
    &lt;idsHeader type="text" pattern="text" status="new" version="1.0" TEIform="teiHeader"&gt;
     &lt;fileDesc&gt;
      &lt;titleStmt&gt;
-      &lt;textSigle&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_SIGLE/{cluster_id}.{text_id}&lt;/textSigle&gt;
+      &lt;textSigle&gt;{text_id}&lt;/textSigle&gt;
       &lt;t.title assemblage="external"&gt;{title}&lt;/t.title&gt;
      &lt;/titleStmt&gt;
      &lt;editionStmt version="0"&gt;&lt;/editionStmt&gt;
      &lt;publicationStmt&gt;
       &lt;distributor&gt;&lt;/distributor&gt;
       &lt;pubAddress&gt;&lt;/pubAddress&gt;
-      &lt;availability region="world" Default="n" status="unknown"&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_LICENCE&lt;/availability&gt;
+      &lt;availability region="world" Default="n" status="unknown"&gt;CORPUSEXPLORER-EXPORT-TEMP_PLEASE_CHANGE_LICENCE&lt;/availability&gt;
       &lt;pubDate&gt;&lt;/pubDate&gt;
      &lt;/publicationStmt&gt;
      &lt;sourceDesc Default="n"&gt;
@@ -213,6 +256,9 @@
       &lt;textDomain&gt;&lt;/textDomain&gt;
      &lt;/textDesc&gt;
     &lt;/profileDesc&gt;
+    &lt;xenoData&gt;
+{XENODATA}
+    &lt;/xenoData&gt;
    &lt;/idsHeader&gt;
    &lt;text&gt;
     &lt;front&gt;&lt;/front&gt;
@@ -232,11 +278,11 @@
     <value>&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;
 &lt;!DOCTYPE idsCorpus PUBLIC "-//IDS//DTD IDS-I5 1.0//EN" "http://corpora.ids-mannheim.de/I5/DTD/i5.dtd"&gt;
 &lt;idsCorpus version="1.0" TEIform="teiCorpus.2"&gt;
- &lt;idsHeader type="corpus" pattern="CE-EXPORT-TEMP_PLEASE_CHANGE_PATTERN" status="new" version="1.0" TEIform="teiHeader"&gt;
+ &lt;idsHeader type="corpus" pattern="CorpusExplorer" status="new" version="1.0" TEIform="teiHeader"&gt;
   &lt;fileDesc&gt;
    &lt;titleStmt&gt;
-    &lt;korpusSigle&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_SIGLE&lt;/korpusSigle&gt;
-    &lt;c.title&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_TITLE&lt;/c.title&gt;
+    &lt;korpusSigle&gt;{corpus_id}&lt;/korpusSigle&gt;
+    &lt;c.title&gt;{corpus_id}&lt;/c.title&gt;
    &lt;/titleStmt&gt;
    &lt;editionStmt version="1.0"&gt;&lt;/editionStmt&gt;
    &lt;publicationStmt&gt;
@@ -252,7 +298,7 @@
    &lt;sourceDesc&gt;
     &lt;biblStruct Default="n"&gt;
      &lt;monogr&gt;
-      &lt;h.title type="main"&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_TITLE&lt;/h.title&gt;
+      &lt;h.title type="main"&gt;&lt;/h.title&gt;
       &lt;h.author/&gt;
       &lt;editor&gt;CorpusExplorer&lt;/editor&gt;
       &lt;edition&gt;
@@ -402,8 +448,16 @@
         &lt;f name="name"&gt;body&lt;/f&gt;
       &lt;/fs&gt;
     &lt;/span&gt;
+{Sentences}
   &lt;/spanList&gt;
 &lt;/layer&gt;</value>
+  </data>
+  <data name="Template.Ids.KorAP.Structure.Sentence" xml:space="preserve">
+    <value>    &lt;span id="s{id}" from="{from}" to="{to}" l="-1"&gt;
+      &lt;fs type="struct" xmlns="http://www.tei-c.org/ns/1.0"&gt;
+        &lt;f name="name"&gt;s&lt;/f&gt;
+      &lt;/fs&gt;
+    &lt;/span&gt;</value>
   </data>
   <data name="Template.Ids.KorAP.Tokens" xml:space="preserve">
     <value>&lt;?xml version="1.0" encoding="UTF-8"?&gt;

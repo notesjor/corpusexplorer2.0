@@ -204,6 +204,8 @@ namespace CorpusExplorer.Core
 
         new BasicInformationAction(),
 
+        new CentralSnipAction(),
+        new CentralSnipTreeAction(),
         new ClusterAction(),
         new ClusterListAction(),
         new ConvertAction(),
@@ -218,6 +220,7 @@ namespace CorpusExplorer.Core
         new CorrespondingValuesAction(),
         new CrossFrequencyAction(),
         new CrossFrequencyCorrespondingAction(),
+        new CutOffPhraseAction(),
 
         new DisambiguationeAction(),
         new DispersionAction(),
@@ -235,6 +238,7 @@ namespace CorpusExplorer.Core
         new Frequency1SelectAction(),
         new Frequency2Action(),
         new Frequency2RawAction(),
+        new Phrase2LayerCountAction(),
         new Frequency3Action(),
         new Frequency3RawAction(),
 
@@ -301,6 +305,7 @@ namespace CorpusExplorer.Core
 
         new SentenceCountAction(),
         new SizeAction(),
+        new StopwordListAction(),
         new StyleBurrowsDeltaAction(),
         new StyleNgramAction(),
 

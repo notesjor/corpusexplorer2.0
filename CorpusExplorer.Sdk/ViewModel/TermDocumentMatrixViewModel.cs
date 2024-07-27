@@ -32,11 +32,12 @@ namespace CorpusExplorer.Sdk.ViewModel
       var dt = new DataTable();
       dt.Columns.Add(MetadataKey, typeof(string));
       dt.Columns.Add(LayerDisplayname, typeof(string));
-      dt.Columns.Add(Resources.Frequency, typeof(double));
+      dt.Columns.Add("TF-IDF", typeof(double));
 
       dt.BeginLoadData();
       foreach (var x in TermDocumentMatrix)
-        dt.Rows.Add(x.Key, x.Value);
+        foreach (var y in x.Value)
+          dt.Rows.Add(x.Key, y.Key, y.Value);
       dt.EndLoadData();
 
       return dt;

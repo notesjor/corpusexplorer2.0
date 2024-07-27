@@ -87,6 +87,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
         if (i.ContainsKey(_guidKey))
         {
           var g = i[_guidKey];
+          if(g is Guid)
+            continue;
           if (g is string gs && Guid.TryParse(gs, out var guid))
           {
             i.Remove(_guidKey);

@@ -7,7 +7,7 @@ using CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster.Abstract;
 
 namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 {
-  public class DateTimeCluster : AbstractCluster
+  public class DateTimeCluster : AbstractDateTimeCluster
   {
     private readonly DateTime _value;
 
@@ -17,11 +17,10 @@ namespace CorpusExplorer.Sdk.Blocks.SelectionCluster.Cluster
 
     public override string Displayname => _value.ToString("yyyy-MM-dd HH:mm:ss");
 
-    public override bool Add(Guid documentGuid, object obj)
+    public override bool Add(Guid documentGuid, DateTime test)
     {
       try
       {
-        var test = (DateTime)obj;
         if (_value != test)
           return false;
         Add(documentGuid);

@@ -290,6 +290,14 @@ namespace CorpusExplorer.Sdk.Model.Interface
     long GetDocumentLengthInSentences(Guid documentGuid);
 
     /// <summary>
+    ///   Gibt die Länge des Satzes in einem bestimmten Dokument zurück.
+    /// </summary>
+    /// <param name="documentGuid">GUID des Dokuments</param>
+    /// <param name="sentence">Id des Satzes</param>
+    /// <returns>System.Int32.</returns>
+    int GetDocumentSentencesLength(Guid documentGuid, int sentence);
+
+    /// <summary>
     ///   Gibt die Anzahl der Sätze in einem Dokument zurück.
     /// </summary>
     /// <param name="corpusGuid">Korpus GUID in dem das Dokument enthalten sein muss</param>

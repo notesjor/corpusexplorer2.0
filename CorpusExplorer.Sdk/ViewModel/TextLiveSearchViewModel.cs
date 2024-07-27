@@ -7,6 +7,7 @@ using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Interface;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
@@ -59,7 +60,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public Selection ResultSelection { get; set; }
 
-    public Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>> SearchResults { get; private set; }
+    public Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<CeRange>>>> SearchResults { get; private set; }
 
     public DataTable GetDataTable()
     {
@@ -114,18 +115,17 @@ namespace CorpusExplorer.Sdk.ViewModel
 
             var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key)
                                      .ReduceDocumentToStreamDocument().ToArray();
-            var min = sent.Value.Min();
-            var max = sent.Value.Max();
 
-            res.Add(new Tuple<Guid, Guid, int, string, string, string>
-                      (
-                       corpus.Key,
-                       result.Key,
-                       sent.Key,
-                       $"{GetAddContextSentencesPre(result.Key, sent.Key)} {streamDoc.SplitDocument(0, min)}".Trim(),
-                       streamDoc.SplitDocument(min, max + 1),
-                       $"{streamDoc.SplitDocument(max + 1)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim()
-                      ));
+            foreach (var range in sent.Value)
+              res.Add(new Tuple<Guid, Guid, int, string, string, string>
+                        (
+                         corpus.Key,
+                         result.Key,
+                         sent.Key,
+                         $"{GetAddContextSentencesPre(result.Key, sent.Key)} {streamDoc.SplitDocument(0, range.From)}".Trim(),
+                         streamDoc.SplitDocument(range.From, range.To),
+                         $"{streamDoc.SplitDocument(range.To + 1)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim()
+                        ));
           }
 
       return res;
@@ -168,7 +168,7 @@ namespace CorpusExplorer.Sdk.ViewModel
         foreach (var result in corpus.Value)
           foreach (var sent in result.Value)
           {
-            if (sent.Value == null)
+            if (sent.Value == null || sent.Value.Count == 0)
               continue;
 
             var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key)
@@ -180,13 +180,13 @@ namespace CorpusExplorer.Sdk.ViewModel
             }
             else
             {
-              var min = sent.Value.Min();
-              var max = sent.Value.Max();
+              var min = sent.Value.Select(x=>x.From).Min();
+              var max = sent.Value.Select(x=>x.To).Max();
 
               var entry = new UniqueTextLiveSearchResultEntry
               {
                 Pre = $"{GetAddContextSentencesPre(result.Key, sent.Key)} {streamDoc.SplitDocument(0, min)}".Trim(),
-                Match = streamDoc.SplitDocument(min, max + 1),
+                Match = streamDoc.SplitDocument(min, max),
                 Post = $"{streamDoc.SplitDocument(max + 1)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim(),
               };
               entry.AddSentence(result.Key, sent.Key);
@@ -213,19 +213,18 @@ namespace CorpusExplorer.Sdk.ViewModel
 
             var key = string.Join("|", streamDoc);
             if (!res.ContainsKey(key))
-            {
-              var min = sent.Value.Min();
-              var max = sent.Value.Max();
-              res.Add(
+              foreach (var range in sent.Value)
+              {
+                res.Add(
                       key,
                       new UniqueTextLiveSearchCutOffPhraseResultEntry
                       {
-                        Pre = $"{GetAddContextSentencesPre(result.Key, sent.Key)} {streamDoc.SplitDocument(0, min)}".Trim(),
-                        Match = streamDoc.SplitDocument(min, max + 1),
-                        Post = $"{streamDoc.SplitDocument(max + 1)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim(),
-                        Span = max - min - 2,
+                        Pre = $"{GetAddContextSentencesPre(result.Key, sent.Key)} {streamDoc.SplitDocument(0, range.From)}".Trim(),
+                        Match = streamDoc.SplitDocument(range.From, range.To),
+                        Post = $"{streamDoc.SplitDocument(range.To + 1)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim(),
+                        Span = range.Length,
                       });
-            }
+              }
 
             res[key].AddSentence(result.Key, sent.Key);
           }

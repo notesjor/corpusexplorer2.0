@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 
 #endregion
@@ -87,10 +88,10 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// <returns>
     ///   The <see cref="int" />.
     /// </returns>
-    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    protected override CeRange? GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       var res = SentenceIndexCall(corpus, documentGuid, sentence);
-      return res?.FirstOrDefault() ?? -1;
+      return res?.FirstOrDefault();
     }
 
     /// <summary>
@@ -122,7 +123,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     ///   GetSentenceIndices() abgefragt werden.
     /// </param>
     /// <returns>Auflistung aller Vorkommen im Satz</returns>
-    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<CeRange> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       return SentenceIndexCall(corpus, documentGuid, sentence);
     }
@@ -280,7 +281,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       _multilayerValuesSerialized = _multilayerValues.ToArray();
     }
 
-    private IEnumerable<int> SentenceIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    private IEnumerable<CeRange> SentenceIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       if (sentence < 0)
         return null;
@@ -299,10 +300,10 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
       var sent = doc[sentence];
 
-      var test = new List<int>();
+      var test = new List<CeRange>();
       for (var i = 0; i < sent.Length; i++)
         if (sent[i] == first.Value)
-          test.Add(i);
+          test.Add(new CeRange(i));
 
       if (test.Count == 1)
         return test;
@@ -321,10 +322,10 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
         for (var j = 0; j < test.Count; j++)
         {
-          if (test[j] >= sent2.Length)
+          if (test[j].To > sent2.Length)
             continue;
 
-          if (sent2[test[j]] == second.Value)
+          if (sent2[test[j].From] == second.Value)
             continue;
 
           test.RemoveAt(j);

@@ -99,14 +99,16 @@ namespace CorpusExplorer.Sdk.ViewModel
               continue;
 
             var tmp = new List<string>();
+            var min = s.Value.Select(x => x.From).Min();
+            var max = s.Value.Select(x => x.To).Max() + 1;
 
-            for (var i = 0; i < s.Value.First() && tmp.Count < Pre; i++)
+            for (var i = 0; i < min && tmp.Count < Pre; i++)
               tmp.Add(sent[i]);
             pre.Add(tmp.ToArray());
 
             tmp.Clear();
 
-            for (var i = s.Value.Last() + 1; i < sent.Length && tmp.Count < Post; i++)
+            for (var i = max; i < sent.Length && tmp.Count < Post; i++)
               tmp.Add(sent[i]);
             post.Add(tmp.ToArray());
           }

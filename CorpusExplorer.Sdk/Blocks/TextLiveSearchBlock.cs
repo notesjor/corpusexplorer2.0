@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Model;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Utils.Filter;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 
@@ -32,7 +33,7 @@ namespace CorpusExplorer.Sdk.Blocks
     public SearchMode Mode { get; set; } = SearchMode.Or;
 
     public Selection ResultSelection { get; set; }
-    public Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>> SearchResults { get; set; }
+    public Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<CeRange>>>> SearchResults { get; set; }
     public Dictionary<Guid, int[]> SearchResultsSimpleDocumentSentence
       => SearchResults.SelectMany(c => c.Value).ToDictionary(d => d.Key, d => d.Value.Keys.ToArray());
 
@@ -41,7 +42,11 @@ namespace CorpusExplorer.Sdk.Blocks
     /// </summary>
     public override void Calculate()
     {
-      SearchResults = Mode == SearchMode.And ? QuickQuery.AndSearchOnWordLevel(Selection, LayerQueries) : QuickQuery.OrSearchOnWordLevel(Selection, LayerQueries);
+      SearchResults = 
+        Mode == SearchMode.And 
+          ? QuickQuery.AndSearchOnWordLevel(Selection, LayerQueries) 
+          : QuickQuery.OrSearchOnWordLevel(Selection, LayerQueries);
+
       ResultSelection =
         Selection.CreateTemporary(
                                   SearchResults.ToDictionary(

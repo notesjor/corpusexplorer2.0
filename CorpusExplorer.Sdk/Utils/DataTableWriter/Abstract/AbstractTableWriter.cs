@@ -7,6 +7,7 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract
 {
   public abstract class AbstractTableWriter
   {
+    private Stream _outputStream;
     private readonly object WriteLock = new object();
     protected bool _headInitialized;
 
@@ -17,7 +18,18 @@ namespace CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract
 
     public bool WriteTid { get; set; } = true;
 
-    public Stream OutputStream { get; set; }
+    public Stream OutputStream
+    {
+      get => _outputStream;
+      set
+      {
+        _outputStream = value;
+        if (_outputStream != null && _outputStream is FileStream fs)
+        {
+          Path = fs.Name;
+        }
+      }
+    }
 
     public abstract string TableWriterTag { get; }
 

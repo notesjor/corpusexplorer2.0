@@ -50,7 +50,7 @@ namespace CorpusExplorer.Api.KorapOauth2
 
       var options = new RestClientOptions()
       {
-        MaxTimeout = 30000,
+        Timeout = new TimeSpan(0, 0, 30)
       };
       _client = new RestClient(options);
 

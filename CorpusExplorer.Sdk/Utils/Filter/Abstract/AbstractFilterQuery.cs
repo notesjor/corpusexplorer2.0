@@ -9,6 +9,7 @@ using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper.Verbalizer;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Model.Interface;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 
@@ -102,10 +103,10 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     ///   enthalten sein)
     /// </param>
     /// <returns>Key = DocumentGuid / Value => Key = Satzindex / Value = Fundstelle</returns>
-    public Dictionary<Guid, Dictionary<int, HashSet<int>>> GetSentenceAndWordIndices(
+    public Dictionary<Guid, Dictionary<int, IEnumerable<CeRange>>> GetSentenceAndWordIndices(
       AbstractCorpusAdapter corpus, IEnumerable<Guid> documentGuidPreFilter = null)
     {
-      var res = new Dictionary<Guid, Dictionary<int, HashSet<int>>>();
+      var res = new Dictionary<Guid, Dictionary<int, IEnumerable<CeRange>>>();
       var loc = new object();
       if (documentGuidPreFilter == null)
         documentGuidPreFilter = corpus.DocumentGuids;
@@ -132,19 +133,26 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     /// <param name="corpus">Korpus das das Dokument enthält</param>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>Key = Satzindex / Value = Fundstelle</returns>
-    public Dictionary<int, HashSet<int>> GetSentenceAndWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid)
+    public Dictionary<int, IEnumerable<CeRange>> GetSentenceAndWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid)
     {
       var sentences = GetSentenceIndices(corpus, documentGuid);
-      if (sentences == null || sentences.Count == 0)
+      if (sentences == null || sentences.Count() == 0)
         return null;
 
-      var res = new Dictionary<int, HashSet<int>>();
+      var res = new Dictionary<int, IEnumerable<CeRange>>();
       foreach (var sentence in sentences)
       {
         var indices = GetWordIndices(corpus, documentGuid, sentence);
         if (indices == null)
           continue;
-        res.Add(sentence, new HashSet<int>(indices));
+        if (res.ContainsKey(sentence))
+        {
+          var tmp = res[sentence].ToList();
+          tmp.AddRange(indices);
+          res[sentence] = tmp;
+        }
+        else
+          res.Add(sentence, indices);
       }
 
       return res;
@@ -159,11 +167,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     ///   enthalten sein)
     /// </param>
     /// <returns>Key = KorpusGuid / Value => Key = DocumentGuid / Value => Key = Satzindex / Value = Fundstelle</returns>
-    public Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>> GetSentenceAndWordIndices(
+    public Dictionary<Guid, Dictionary<Guid, Dictionary<int, IEnumerable<CeRange>>>> GetSentenceAndWordIndices(
       Selection selection, IEnumerable<Guid> documentGuidPreFilter = null)
     {
       var lo = new object();
-      var res = new Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>>();
+      var res = new Dictionary<Guid, Dictionary<Guid, Dictionary<int, IEnumerable<CeRange>>>>();
 
       Parallel.ForEach(selection, Configuration.ParallelOptions, csel =>
       {
@@ -193,7 +201,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     /// <returns>
     ///   Erste Übereinstimmung
     /// </returns>
-    protected abstract int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence);
+    protected abstract CeRange? GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence);
 
     /// <summary>
     ///   Gibt eine Auflistung aller Sätze in allen Dokumenten aus, die durch diesen Query und durch dessen OrQueries
@@ -205,10 +213,10 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     ///   enthalten sein)
     /// </param>
     /// <returns>Auflistung Key = Dokument / Value = SatzId</returns>
-    public Dictionary<Guid, HashSet<int>> GetSentenceIndices(AbstractCorpusAdapter corpus,
+    public Dictionary<Guid, IEnumerable<int>> GetSentenceIndices(AbstractCorpusAdapter corpus,
                                                              IEnumerable<Guid> documentGuidPreFilter = null)
     {
-      var res = new Dictionary<Guid, HashSet<int>>();
+      var res = new Dictionary<Guid, IEnumerable<int>>();
       var loc = new object();
       if (documentGuidPreFilter == null)
         documentGuidPreFilter = corpus.DocumentGuids;
@@ -216,7 +224,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
       Parallel.ForEach(documentGuidPreFilter, Configuration.ParallelOptions, dsel =>
       {
         var sen = GetSentenceIndices(corpus, dsel);
-        if (sen == null || sen.Count == 0)
+        if (sen == null || sen.Count() == 0)
           return;
         lock (loc)
         {
@@ -233,21 +241,21 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     /// <param name="corpus">Korpus das das Dokument enthält</param>
     /// <param name="documentGuid">GUID des Dokuments</param>
     /// <returns>Auflistung der Sätze (unsortiert).</returns>
-    public HashSet<int> GetSentenceIndices(AbstractCorpusAdapter corpus, Guid documentGuid)
+    public IEnumerable<int> GetSentenceIndices(AbstractCorpusAdapter corpus, Guid documentGuid)
     {
       try
       {
         var items = GetSentencesCall(corpus, documentGuid);
-        var res = items == null ? new HashSet<int>() : new HashSet<int>(items);
+        var res = items == null ? new List<int>() : items.ToList();
 
-        foreach (var x in _orFilterQueries.Select(query => query.GetSentenceIndices(corpus, documentGuid)).SelectMany(temp => temp)) 
+        foreach (var x in _orFilterQueries.Select(query => query.GetSentenceIndices(corpus, documentGuid)).SelectMany(temp => temp))
           res.Add(x);
 
         return res;
       }
       catch
       {
-        return new HashSet<int>();
+        return new int[0];
       }
     }
 
@@ -276,19 +284,19 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     ///   GetSentenceIndices() abgefragt werden.
     /// </param>
     /// <returns>Wort-Index der ersten Fundstelle</returns>
-    public int GetWordFirstIndex(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public CeRange? GetWordFirstIndex(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       var res = GetSentenceFirstIndexCall(corpus, documentGuid, sentence);
-      if (res > -1)
+      if (res != null)
         return res;
       foreach (var query in _orFilterQueries)
       {
         res = query.GetWordFirstIndex(corpus, documentGuid, sentence);
-        if (res > -1)
+        if (res != null)
           return res;
       }
 
-      return -1;
+      return null;
     }
 
     /// <summary>
@@ -302,7 +310,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Abstract
     ///   GetSentenceIndices() abgefragt werden.
     /// </param>
     /// <returns>Auflistung aller Vorkommen im Satz</returns>
-    public abstract IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence);
+    public abstract IEnumerable<CeRange> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence);
 
     /// <summary>
     ///   The validate.

@@ -35,16 +35,16 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Snapshot
       = new Dictionary<AbstractSelectionClusterGenerator, string>
       {
         {new SelectionClusterGeneratorDateTimeRange(), "Datums-Cluster"},
-        {new SelectionClusterGeneratorDateTimeValue(), "Identisches Datum/Uhrzeit"},
-        {new SelectionClusterGeneratorDateTimeYearMonthDayHourMinuteOnlyValue(), "Jahr/Monat/Tag/Stunde/Minute"},
-        {new SelectionClusterGeneratorDateTimeYearMonthDayHourOnlyValue(), "Jahr/Monat/Tag/Stunde"},
-        {new SelectionClusterGeneratorDateTimeYearMonthDayOnlyValue(), "Jahr/Monat/Tag"},
-        {new SelectionClusterGeneratorDateTimeYearQuarterOnlyValue(), "Jahr/Quartal"},
-        {new SelectionClusterGeneratorDateTimeYearWeekOnlyValue(), "Jahr/Woche"},
-        {new SelectionClusterGeneratorDateTimeYearMonthOnlyValue(), "Jahr/Monat"},
-        {new SelectionClusterGeneratorDateTimeYearOnlyValue(), "Jahr"},
-        {new SelectionClusterGeneratorDateTimeDecadeOnlyValue(), "Jahrzehnt"},
-        {new SelectionClusterGeneratorDateTimeCenturyOnlyValue(), "Jahrhundert"}
+        {new SelectionClusterGeneratorDateTime(), "Identisches Datum/Uhrzeit"},
+        {new SelectionClusterGeneratorDateTimeYearMonthDayHourMinute(), "Jahr/Monat/Tag/Stunde/Minute"},
+        {new SelectionClusterGeneratorDateTimeYearMonthDayHour(), "Jahr/Monat/Tag/Stunde"},
+        {new SelectionClusterGeneratorDateTimeYearMonthDay(), "Jahr/Monat/Tag"},
+        {new SelectionClusterGeneratorDateTimeYearQuarter(), "Jahr/Quartal"},
+        {new SelectionClusterGeneratorDateTimeYearWeek(), "Jahr/Woche"},
+        {new SelectionClusterGeneratorDateTimeYearMonth(), "Jahr/Monat"},
+        {new SelectionClusterGeneratorDateTimeYear(), "Jahr"},
+        {new SelectionClusterGeneratorDateTimeDecade(), "Jahrzehnt"},
+        {new SelectionClusterGeneratorDateTimeCentury(), "Jahrhundert"}
       };
 
     private readonly Selection _selection;

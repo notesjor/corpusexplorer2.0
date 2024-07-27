@@ -26,7 +26,7 @@ namespace CorpusExplorer.Sdk.Blocks
     ///   6 = letztes Vorkommen rechts
     ///   7 = Vorkommen Summe
     /// </summary>
-    public Dictionary<string, Tuple<int, int, int[], int[], int, int, int>> Positions;
+    public Dictionary<string, Tuple<int, int, int[], int[], int, int, int>> Positions { get; private set; }
 
     public string[] LayerQueries { get; set; }
 
@@ -71,7 +71,7 @@ namespace CorpusExplorer.Sdk.Blocks
                 else
                   temp[word].Add(pos, 1);
               else
-                temp.Add(word, new Dictionary<int, int> {{pos, 1}});
+                temp.Add(word, new Dictionary<int, int> { { pos, 1 } });
             }
             else
             {

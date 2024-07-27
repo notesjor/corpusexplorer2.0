@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 
@@ -94,21 +95,21 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     /// <returns>
     ///   The <see cref="int" />.
     /// </returns>
-    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    protected override CeRange? GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       if (corpus       == null ||
           documentGuid == Guid.Empty)
-        return -1;
+        return null;
       var queries = GetQueries(corpus);
       if (queries        == null ||
           queries.Length == 0)
-        return -1;
+        return null;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
       var doc = layer?[documentGuid];
       if (doc      == null ||
           sentence < 0     ||
           sentence >= doc.Length)
-        return -1;
+        return null;
 
       var s = doc[sentence];
       if (Configuration.RightToLeftSupport)
@@ -117,16 +118,16 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
                                                                     !queries
                                                                     .Where((t, q) => !queries[queries.Length - 1 - q]
                                                                                       .Contains(s[w - q])).Any()).Any())
-          return sentence;
+          return new CeRange(0, s.Length);
       }
       else
       {
         if (s.TakeWhile((t1, w) => w + queries.Length < s.Length)
              .Where((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any())
-          return sentence;
+          return new CeRange(0, s.Length);
       }
 
-      return -1;
+      return null;
     }
 
     /// <summary>
@@ -191,7 +192,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     ///   GetSentenceIndices() abgefragt werden.
     /// </param>
     /// <returns>Auflistung aller Vorkommen im Satz</returns>
-    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<CeRange> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       if (corpus       == null ||
           documentGuid == Guid.Empty)
@@ -207,7 +208,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           sentence >= doc.Length)
         return null;
 
-      var res = new List<int>();
+      var res = new List<CeRange>();
       var s = doc[sentence];
       if (Configuration.RightToLeftSupport)
       {
@@ -215,13 +216,13 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
                                                                     !queries
                                                                     .Where((t, q) => !queries[queries.Length - 1 - q]
                                                                                       .Contains(s[w - q])).Any()).Any())
-          res.Add(sentence);
+          res.Add(new CeRange(0, s.Length));
       }
       else
       {
         if (s.TakeWhile((t1, w) => w + queries.Length < s.Length)
              .Where((t1, w) => !queries.Where((t, q) => !t.Contains(s[w + q])).Any()).Any())
-          res.Add(sentence);
+          res.Add(new CeRange(0, s.Length));
       }
 
       return res;

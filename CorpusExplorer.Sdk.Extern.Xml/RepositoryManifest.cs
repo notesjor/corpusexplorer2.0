@@ -23,8 +23,10 @@ using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017;
 using CorpusExplorer.Sdk.Extern.Xml.EuroparlUds;
 using CorpusExplorer.Sdk.Extern.Xml.Exmaralda.Simple;
 using CorpusExplorer.Sdk.Extern.Xml.FnhdC;
+using CorpusExplorer.Sdk.Extern.Xml.FoLiA;
 using CorpusExplorer.Sdk.Extern.Xml.Folker.Flk;
 using CorpusExplorer.Sdk.Extern.Xml.Folker.Fln;
+using CorpusExplorer.Sdk.Extern.Xml.GermaParlTei;
 using CorpusExplorer.Sdk.Extern.Xml.Gutenberg;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.I5Xml;
 using CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP;
@@ -85,7 +87,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"IDS I5 (*.xml)|*.xml", new ExporterI5() },
         {"IDS KorAP (*.zip)|*.zip", new ExporterKorap() },
         {"XCES-XML (https://opus.nlpl.eu/) (*.xml)|*.xml", new ExporterOpusXces() },
-        {"SaltXML (*.xml, *.salt)|*.salt;*.xml", new ExporterSaltXml() }
+        {"SaltXML (*.xml, *.salt)|*.salt;*.xml", new ExporterSaltXml() },
+        {"FoLiA-XML (*.xml)|*.xml", new ExporterFolia() }
       };
 
     /// <summary>
@@ -109,7 +112,8 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"FOLKER / OrthoNormal (*.fln)|*.fln", new ImporterFolkerFln() },
         {"IDS KorAP (*.zip)|*.zip", new ImporterKorap { LoadStrategy = KorapLoadStrategyZipFile.AddonInitialize() } },
         {"IDS KorAP ab 2021 (*.zip)|*.zip", new ImporterKorap2021{ LoadStrategy = KorapLoadStrategyZipFile.AddonInitialize() } },
-        {"XCES-XML (https://opus.nlpl.eu/) (*.xml)|*.xml", new ImporterOpusXces()}
+        {"XCES-XML (https://opus.nlpl.eu/) (*.xml)|*.xml", new ImporterOpusXces()},
+        {"FoLiA-XML (*.xml)|*.xml", new ImporterFolia() }
       };
 
     /// <summary>
@@ -236,8 +240,12 @@ namespace CorpusExplorer.Sdk.Extern.Xml
           new BundestagPlenarprotokolleScraper()
         },
         {
-          "Bundestag OpenAccess Plenarprotokolle (ab 19. Legislaturperiode) (*.xml)|*.xml",
-          new BundestagDtdPlenarprotokolleScraper()
+          "Bundestag OpenAccess Plenarprotokolle (ab 19. Legislaturperiode - gesamtes Protokoll) (*.xml)|*.xml",
+          new BundestagDtdPlenarprotokolleSimpleScraper()
+        },
+        {
+          "Bundestag OpenAccess Plenarprotokolle (ab 19. Legislaturperiode - separate Redebeiträge) (*.xml)|*.xml",
+          new BundestagDtdPlenarprotokolleTurnScraper()
         },
         {
           "Bundestag OpenAccess Drucksachen (*.xml)|*.xml",
@@ -263,6 +271,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml
           "Talkbank XML (*.xml)|*.xml",
           new TalkbankScraper()
         },
+        {
+          "GermaParlTEI (*.xml)|*.xml",
+          new GermaParlTeiScraper()
+        }
       };
 
     /// <summary>

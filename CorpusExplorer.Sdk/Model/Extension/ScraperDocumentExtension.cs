@@ -78,7 +78,7 @@ namespace CorpusExplorer.Sdk.Model.Extension
     {
       var res = new Dictionary<string, object>();
       foreach (var entry in scraperDocument)
-        if (res.ContainsKey(entry.Key) && entry.Key != "Text" && !entry.Key.StartsWith("!"))
+        if (entry.Key != "Text" && !entry.Key.StartsWith("!"))
           res.Add(entry.Key, entry.Value);
       return res;
     }

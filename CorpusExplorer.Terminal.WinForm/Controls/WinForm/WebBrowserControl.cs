@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CefSharp;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Abstract;
 using CorpusExplorer.Terminal.WinForm.Controls.WinForm.Webbrowser;
@@ -17,38 +18,49 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
   public partial class WebBrowserControl : AbstractUserControl, IUiBrowser
   {
     private string _url;
-    private AbstractUiBrowser _browser;
+    private AbstractUiBrowser _browser = null;
 
-    public WebBrowserControl()
+    private AbstractUiBrowser Browser
     {
-      InitializeComponent();
-
-      var useChrome = Configuration.UseChrome;
+      get
+      {
+        if(_browser == null)
+        {
+          var useChrome = Configuration.UseChrome;
 #if LINUX
       useChrome = false;
 #endif
 
-      _browser = useChrome ? (AbstractUiBrowser)new UiUseChrome() : new UiUseSystemWebbrowser();
+          _browser = useChrome ? (AbstractUiBrowser)new UiUseChrome() : new UiUseSystemWebbrowser();
 
-      Controls.Add(_browser.GetControl(Size));
+          Controls.Add(_browser.GetControl(Size));
+        }
+
+        return _browser;
+      }
+    }
+
+    public WebBrowserControl()
+    {
+      InitializeComponent();
     }
 
     public void ExportImage()
-      => _browser.ExportImage();
+      => Browser.ExportImage();
 
     public void ExportPdf()
-      => _browser.ExportPdf();
+      => Browser.ExportPdf();
 
     public void Print()
-      => _browser.Print();
+      => Browser.Print();
 
     public void ShowFile(string path)
-      => _browser.ShowFile(path);
+      => Browser.ShowFile(path);
 
     public void ShowHtml(string html)
-      => _browser.ShowHtml(html);
+      => Browser.ShowHtml(html);
 
     public void ExportHtml()
-      => _browser.ExportHtml();
+      => Browser.ExportHtml();
   }
 }

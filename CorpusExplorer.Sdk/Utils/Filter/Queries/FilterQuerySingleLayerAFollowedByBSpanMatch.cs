@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.Filter.Queries
@@ -93,25 +94,25 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       }
     }
 
-    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    protected override CeRange? GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       if (corpus == null || documentGuid == Guid.Empty)
-        return -1;
+        return null;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
       var doc = layer?[documentGuid];
       if (doc == null || sentence < 0 || sentence >= doc.Length)
-        return -1;
+        return null;
       var queries = GetCachedIndices(layer);
       if (queries == null)
-        return -1;
+        return null;
 
       for (var i = 0; i < doc[sentence].Length; i++)
         if (doc[sentence][i] == queries.Value.Key)
           for (var j = i + 1; j < doc[sentence].Length; j++)
             if (queries.Value.Value == doc[sentence][j] && j - i == WordSpan)
-              return i;
+              return new CeRange(i);
 
-      return -1;
+      return null;
     }
 
     protected override IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid)
@@ -128,19 +129,19 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
       var res = new HashSet<int>();
       for (var s = 0; s < doc.Length; s++)
-      for (var i = 0; i < doc[s].Length; i++)
-        if (doc[s][i] == queries.Value.Key)
-          for (var j = i + 1; j < doc[s].Length; j++)
-            if (queries.Value.Value == doc[s][j] && j - i == WordSpan)
-            {
-              res.Add(s);
-              break;
-            }
+        for (var i = 0; i < doc[s].Length; i++)
+          if (doc[s][i] == queries.Value.Key)
+            for (var j = i + 1; j < doc[s].Length; j++)
+              if (queries.Value.Value == doc[s][j] && j - i == WordSpan)
+              {
+                res.Add(s);
+                break;
+              }
 
       return res;
     }
 
-    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<CeRange> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       if (corpus == null || documentGuid == Guid.Empty)
         return null;
@@ -152,14 +153,13 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       if (queries == null)
         return null;
 
-      var res = new HashSet<int>();
+      var res = new HashSet<CeRange>();
       for (var i = 0; i < doc[sentence].Length; i++)
         if (doc[sentence][i] == queries.Value.Key)
           for (var j = i + 1; j < doc[sentence].Length; j++)
             if (queries.Value.Value == doc[sentence][j] && j - i == WordSpan)
             {
-              res.Add(i);
-              res.Add(j);
+              res.Add(new CeRange(i, j));
               break;
             }
 

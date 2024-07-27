@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Interface;
 
@@ -81,23 +82,23 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       }
     }
 
-    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    protected override CeRange? GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       if (corpus == null || documentGuid == Guid.Empty)
-        return -1;
+        return null;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
       var doc = layer?[documentGuid];
       if (doc == null || sentence < 0 || sentence >= doc.Length)
-        return -1;
+        return null;
       var queries = GetCachedIndices(layer);
       if (queries == null || queries.Value.Value.Count == 0)
-        return -1;
+        return null;
 
       for (var j = 0; j < doc[sentence].Length; j++)
         if (doc[j].Any(w => w == queries.Value.Key) || doc[j].Any(w => queries.Value.Value.Contains(w)))
-          return j;
+          return new CeRange(j);
 
-      return -1;
+      return null;
     }
 
     protected override IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid)
@@ -120,7 +121,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       return res;
     }
 
-    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<CeRange> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
       if (corpus == null || documentGuid == Guid.Empty)
         return null;
@@ -132,10 +133,10 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       if (queries == null || queries.Value.Value.Count == 0)
         return null;
 
-      var res = new List<int>();
+      var res = new List<CeRange>();
       for (var j = 0; j < doc[sentence].Length; j++)
         if (doc[sentence][j] == queries.Value.Key || queries.Value.Value.Contains(doc[sentence][j]))
-          res.Add(j);
+          res.Add(new CeRange(j));
 
       return res;
     }

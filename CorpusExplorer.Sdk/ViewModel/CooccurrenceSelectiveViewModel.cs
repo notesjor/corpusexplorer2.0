@@ -30,9 +30,17 @@ namespace CorpusExplorer.Sdk.ViewModel
       get
       {
         var res = new Dictionary<string, double[]>();
-        foreach (var x in SignificanceDictionary)
-          if (FrequencyDictionary.ContainsKey(x.Key))
-            res.Add(x.Key, new[] {FrequencyDictionary[x.Key], x.Value});
+        try
+        {
+          if (FrequencyDictionary != null)
+            foreach (var x in SignificanceDictionary)
+              if (FrequencyDictionary.ContainsKey(x.Key))
+                res.Add(x.Key, new[] { FrequencyDictionary[x.Key], x.Value });
+        }
+        catch
+        {
+          // ignore
+        }
 
         return res;
       }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.Filter.Parser.FilterMultiLayerComplex;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 
 namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 {
@@ -34,14 +35,14 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       };
     }
 
-    public override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    public override IEnumerable<CeRange> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      return _mda.Analyze<List<int>>(corpus, documentGuid, sentence, new List<int>(), GetWordIndicesFunc);
+      return _mda.Analyze<List<CeRange>>(corpus, documentGuid, sentence, new List<CeRange>(), GetWordIndicesFunc);
     }
 
-    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
+    protected override CeRange? GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      return _mda.Analyze<int>(corpus, documentGuid, sentence, -1, GetSentenceFirstIndexCallFunc);
+      return _mda.Analyze<CeRange?>(corpus, documentGuid, sentence, null, GetSentenceFirstIndexCallFunc);
     }
 
     protected override IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid)
@@ -54,12 +55,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       return _mda.Analyze<int>(corpus, documentGuid, -1, ValidateCallFunc) > -1;
     }
 
-    private void GetWordIndicesFunc(ref MultidimensionalDocumentAnalyzer.Session<List<int>> session)
+    private void GetWordIndicesFunc(ref MultidimensionalDocumentAnalyzer.Session<List<CeRange>> session)
     {
       if (session.Info == _query.Length) // Mehrfach gefunden
       {
-        session.Result.Add(session.StoredTokenId);
-        session.Result.Add(session.CurrentTokenId - 1);
+        session.Result.Add(new CeRange(session.StoredTokenId, session.CurrentTokenId - 1));
         session.PositionRestore();
         return;
       }
@@ -79,11 +79,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       }
     }
 
-    private void GetSentenceFirstIndexCallFunc(ref MultidimensionalDocumentAnalyzer.Session<int> session)
+    private void GetSentenceFirstIndexCallFunc(ref MultidimensionalDocumentAnalyzer.Session<CeRange?> session)
     {
       if (session.Info == _query.Length) // Einmalig gefunden
       {
-        session.Result = session.StoredTokenId;
+        session.Result = new CeRange(session.StoredTokenId);
         session.Terminate = true;
         return;
       }

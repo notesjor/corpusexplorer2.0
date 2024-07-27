@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.Filter.Queries
@@ -40,18 +41,6 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
     public override string Verbal =>
       $"Alle Dokumente (Volltext) auf die der RegEx \"{RegexQuery}\" in Layer {LayerDisplayname} zutrifft.";
 
-    protected override int GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, string sentence)
-    {
-      var matches = _regex.Matches(sentence);
-      if (matches.Count == 0)
-        return -1;
-
-      var str = sentence.Substring(0, matches[0].Index).Trim();
-      return string.IsNullOrWhiteSpace(str)
-                ? 0
-                : str.Split(Splitter.Space, StringSplitOptions.RemoveEmptyEntries).Length;
-    }
-
     protected override IEnumerable<int> GetSentencesCall(IEnumerable<string> sentences)
     {
       var res = new List<int>();
@@ -61,20 +50,6 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           res.Add(i);
 
       return res;
-    }
-
-    protected override IEnumerable<int> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, string sentence)
-    {
-      var matches = _regex.Matches(sentence);
-      if (matches.Count == 0)
-        return null;
-
-      return (from Match match in matches
-              select sentence.Substring(0, match.Index).Trim()
-              into str
-              select string.IsNullOrWhiteSpace(str)
-                ? 0
-                : str.Split(Splitter.Space, StringSplitOptions.RemoveEmptyEntries).Length).ToList();
     }
 
     protected override bool ValidateCall(string document)

@@ -19,6 +19,7 @@ using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Helper;
 using System;
 using System.Collections.Generic;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 
 #endregion
 
@@ -39,7 +40,7 @@ namespace CorpusExplorer.Sdk.Blocks
     /// </summary>
     [NonSerialized] private object _resultLock;
 
-    private Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>> _search;
+    private Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<CeRange>>>> _search;
 
     /// <summary>
     ///   Wort/Kollokator/Frequenz-Wörterbuch
@@ -98,7 +99,7 @@ namespace CorpusExplorer.Sdk.Blocks
           var temp = new HashSet<int>();
           for (var i = 0; i < s.Length; i++)
           {
-            if (Ranges.Any(x => x.IsInRange(match, i)))
+            if (Ranges.Any(x => x.IsInRange(match.From, i)))
               temp.Add(s[i]);
           }
 

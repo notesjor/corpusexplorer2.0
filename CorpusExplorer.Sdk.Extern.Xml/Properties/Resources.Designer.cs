@@ -61,6 +61,50 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&apos;1.0&apos; encoding=&apos;utf-8&apos;?&gt;
+        ///&lt;FoLiA xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; xmlns=&quot;http://ilk.uvt.nl/folia&quot; xml:id=&quot;CorpusExplorer&quot; version=&quot;2.0.1&quot; generator=&quot;CorpusExplorer&quot;&gt;
+        ///  &lt;metadata type=&quot;native&quot;&gt;
+        ///    &lt;annotations&gt;
+        ///      &lt;text-annotation&gt;
+        ///        &lt;annotator processor=&quot;CorpusExplorer&quot;/&gt;
+        ///      &lt;/text-annotation&gt;
+        ///      &lt;sentence-annotation&gt;
+        ///        &lt;annotator processor=&quot;CorpusExplorer&quot;/&gt;
+        ///      &lt;/sentence-annotation&gt;
+        ///      &lt;token-annotation&gt;
+        ///        &lt;annotator processor=&quot;CorpusExplorer&quot;/&gt;
+        ///    [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        internal static string Template_FoLiA_Document {
+            get {
+                return ResourceManager.GetString("Template.FoLiA.Document", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;s xml:id=&quot;{{GUID}}.{{SID}}&quot;&gt;
+        ///{{TOKEN}}
+        ///      &lt;/s&gt; ähnelt.
+        /// </summary>
+        internal static string Template_FoLiA_Sentence {
+            get {
+                return ResourceManager.GetString("Template.FoLiA.Sentence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;w xml:id=&quot;{{GUID}}.{{SID}}.{{WID}}&quot;&gt;
+        ///          &lt;t&gt;{{WORD}}&lt;/t&gt;
+        ///          {{LAYERS}}
+        ///        &lt;/w&gt; ähnelt.
+        /// </summary>
+        internal static string Template_FoLiA_Token {
+            get {
+                return ResourceManager.GetString("Template.FoLiA.Token", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die &lt;/idsDoc&gt; ähnelt.
         /// </summary>
         internal static string Template_Ids_I5_Doc_Foot {
@@ -74,15 +118,19 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///  &lt;idsHeader type=&quot;document&quot; pattern=&quot;text&quot; status=&quot;new&quot; version=&quot;1.0&quot; TEIform=&quot;teiHeader&quot;&gt;
         ///   &lt;fileDesc&gt;
         ///    &lt;titleStmt&gt;
-        ///     &lt;dokumentSigle&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_SIGLE/{cluster_id}&lt;/dokumentSigle&gt;
+        ///     &lt;dokumentSigle&gt;{cluster_id}&lt;/dokumentSigle&gt;
         ///     &lt;d.title&gt;&lt;/d.title&gt;
         ///    &lt;/titleStmt&gt;
         ///    &lt;publicationStmt&gt;
         ///     &lt;distributor/&gt;
         ///     &lt;pubAddress/&gt;
-        ///     &lt;availability region=&quot;world&quot;&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_LICENCE&lt;/availability&gt;
+        ///     &lt;availability region=&quot;world&quot;&gt;&lt;/availability&gt;
         ///     &lt;pubDate/&gt;
-        ///    &lt;/publicationStm [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///    &lt;/publicationStmt&gt;
+        ///    &lt;sourceDesc&gt;
+        ///     &lt;biblStruct Default=&quot;n&quot;&gt;
+        ///      &lt;monogr&gt;
+        ///   [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         internal static string Template_Ids_I5_Doc_Head {
             get {
@@ -91,17 +139,18 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;idsText id=&quot;CE-EXPORT-TEMP_PLEASE_CHANGE_SIGLE.{cluster_id}.{text_id}&quot; n=&quot;CorpusExplorer/{guid}&quot; version=&quot;1&quot;&gt;
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;idsText id=&quot;{text_id}&quot; n=&quot;CorpusExplorer/{guid}&quot; version=&quot;1&quot;&gt;
         ///   &lt;idsHeader type=&quot;text&quot; pattern=&quot;text&quot; status=&quot;new&quot; version=&quot;1.0&quot; TEIform=&quot;teiHeader&quot;&gt;
         ///    &lt;fileDesc&gt;
         ///     &lt;titleStmt&gt;
-        ///      &lt;textSigle&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_SIGLE/{cluster_id}.{text_id}&lt;/textSigle&gt;
+        ///      &lt;textSigle&gt;{text_id}&lt;/textSigle&gt;
         ///      &lt;t.title assemblage=&quot;external&quot;&gt;{title}&lt;/t.title&gt;
         ///     &lt;/titleStmt&gt;
         ///     &lt;editionStmt version=&quot;0&quot;&gt;&lt;/editionStmt&gt;
         ///     &lt;publicationStmt&gt;
         ///      &lt;distributor&gt;&lt;/distributor&gt;
-        ///      &lt;p [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///      &lt;pubAddress&gt;&lt;/pubAddress&gt;
+        ///      &lt;availability region=&quot;world&quot; Default=&quot;n&quot; status=&quot;unknown&quot;&gt;CORPUSE [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         internal static string Template_Ids_I5_Doc_Text {
             get {
@@ -122,13 +171,15 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
         ///&lt;!DOCTYPE idsCorpus PUBLIC &quot;-//IDS//DTD IDS-I5 1.0//EN&quot; &quot;http://corpora.ids-mannheim.de/I5/DTD/i5.dtd&quot;&gt;
         ///&lt;idsCorpus version=&quot;1.0&quot; TEIform=&quot;teiCorpus.2&quot;&gt;
-        /// &lt;idsHeader type=&quot;corpus&quot; pattern=&quot;CE-EXPORT-TEMP_PLEASE_CHANGE_PATTERN&quot; status=&quot;new&quot; version=&quot;1.0&quot; TEIform=&quot;teiHeader&quot;&gt;
+        /// &lt;idsHeader type=&quot;corpus&quot; pattern=&quot;CorpusExplorer&quot; status=&quot;new&quot; version=&quot;1.0&quot; TEIform=&quot;teiHeader&quot;&gt;
         ///  &lt;fileDesc&gt;
         ///   &lt;titleStmt&gt;
-        ///    &lt;korpusSigle&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_SIGLE&lt;/korpusSigle&gt;
-        ///    &lt;c.title&gt;CE-EXPORT-TEMP_PLEASE_CHANGE_TITLE&lt;/c.title&gt;
+        ///    &lt;korpusSigle&gt;{corpus_id}&lt;/korpusSigle&gt;
+        ///    &lt;c.title&gt;{corpus_id}&lt;/c.title&gt;
         ///   &lt;/titleStmt&gt;
-        ///   &lt;editionStmt version=&quot;1. [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///   &lt;editionStmt version=&quot;1.0&quot;&gt;&lt;/editionStmt&gt;
+        ///   &lt;publicationStmt&gt;
+        ///    &lt;distributor&gt;Institut für [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         internal static string Template_Ids_I5_Head {
             get {
@@ -220,6 +271,19 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         internal static string Template_Ids_KorAP_Structure {
             get {
                 return ResourceManager.GetString("Template.Ids.KorAP.Structure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die     &lt;span id=&quot;s{id}&quot; from=&quot;{from}&quot; to=&quot;{to}&quot; l=&quot;-1&quot;&gt;
+        ///      &lt;fs type=&quot;struct&quot; xmlns=&quot;http://www.tei-c.org/ns/1.0&quot;&gt;
+        ///        &lt;f name=&quot;name&quot;&gt;s&lt;/f&gt;
+        ///      &lt;/fs&gt;
+        ///    &lt;/span&gt; ähnelt.
+        /// </summary>
+        internal static string Template_Ids_KorAP_Structure_Sentence {
+            get {
+                return ResourceManager.GetString("Template.Ids.KorAP.Structure.Sentence", resourceCulture);
             }
         }
         

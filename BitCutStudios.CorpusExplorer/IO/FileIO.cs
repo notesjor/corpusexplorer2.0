@@ -42,7 +42,7 @@ namespace Bcs.IO
       if (delimiters == null)
         delimiters = new[] { "\r\n", "\r", "\n" };
 
-      return ReadText(path, encoding).Split(delimiters, stringSplitOptions);
+      return ReadText(path, encoding)?.Split(delimiters, stringSplitOptions);
     }
 
     public static string ReadText(string path, Encoding encoding = null)

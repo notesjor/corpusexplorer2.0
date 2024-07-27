@@ -8,6 +8,7 @@ using Bcs.IO;
 using CorpusExplorer.Sdk.Blocks.Flow;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
+using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram;
 using CorpusExplorer.Terminal.WinForm.Controls.Wpf.Diagram.Converter;
@@ -89,10 +90,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.Fulltext
                           else
                           {
                             var vm = GetViewModel<TextFlowSearchViewModel>();
-                            vm.LayerQueryPhrase = wordBag1.ResultQueries;
-                            vm.Layer1Displayname = wordBag1.ResultSelectedLayerDisplayname;
+                            vm.LayerQuery = new FilterQuerySingleLayerExactPhrase
+                            {
+                              LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname,
+                              LayerQueries = wordBag1.ResultQueries
+                            };
                             vm.MinFrequency = int.Parse(txt_minFreq.Text);
-                            vm.Layer2Displayname = "Wort";
+                            vm.LayerDisplayname = "Wort";
                             vm.HighlightCooccurrences = highlight;
 
                             vm.Execute();

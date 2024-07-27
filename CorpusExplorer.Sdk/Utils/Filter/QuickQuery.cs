@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model;
+using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 
 #endregion
@@ -261,7 +262,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
                                           dsel =>
                                           {
                                             var result = query.GetSentenceIndices(corpus, dsel);
-                                            if (result == null || result.Count == 0)
+                                            if (result == null || result.Count() == 0)
                                               return;
 
                                             lock (@lock)
@@ -313,7 +314,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
     /// <param name="selection">Schnappschuss auf dem die Suche ausgeführt wird</param>
     /// <param name="queries">Abfragen</param>
     /// <returns>Key = CorpusGuid / Value.Key = DocumentGuid / Value.Value.Key = SatzId / Value.Value.Value = WortId</returns>
-    public static Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>> AndSearchOnWordLevel(
+    public static Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<CeRange>>>> AndSearchOnWordLevel(
       Selection selection,
       IEnumerable<AbstractFilterQuery> queries)
     {
@@ -372,7 +373,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
     /// <param name="selection">Schnappschuss auf dem die Suche ausgeführt wird</param>
     /// <param name="queries">Abfragen</param>
     /// <returns>Key = CorpusGuid / Value.Key = DocumentGuid / Value.Value.Key = SatzId / Value.Value.Value = WortId</returns>
-    public static Dictionary<Guid, Dictionary<Guid, Dictionary<int, List<int>>>> AndSearchOnWordLevelList(
+    public static Dictionary<Guid, Dictionary<Guid, Dictionary<int, List<CeRange>>>> AndSearchOnWordLevelList(
       Selection selection,
       IEnumerable<AbstractFilterQuery> queries)
     {
@@ -430,11 +431,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter
     /// <param name="selection">Schnappschuss auf dem die Suche ausgeführt wird</param>
     /// <param name="queries">Abfragen</param>
     /// <returns>Key = CorpusGuid / Value.Key = DocumentGuid / Value.Value.Key = SatzId / Value.Value.Value = WortId</returns>
-    public static Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>> OrSearchOnWordLevel(
+    public static Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<CeRange>>>> OrSearchOnWordLevel(
       Selection selection,
       IEnumerable<AbstractFilterQuery> queries)
     {
-      var res = new Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>>();
+      var res = new Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<CeRange>>>>();
       var @lock = new object();
 
       Parallel.ForEach(queries, Configuration.ParallelOptions, query =>
@@ -444,15 +445,15 @@ namespace CorpusExplorer.Sdk.Utils.Filter
           foreach (var csel in result)
           {
             if (!res.ContainsKey(csel.Key))
-              res.Add(csel.Key, new Dictionary<Guid, Dictionary<int, HashSet<int>>>());
+              res.Add(csel.Key, new Dictionary<Guid, Dictionary<int, HashSet<CeRange>>>());
             foreach (var dsel in csel.Value)
             {
               if (!res[csel.Key].ContainsKey(dsel.Key))
-                res[csel.Key].Add(dsel.Key, new Dictionary<int, HashSet<int>>());
+                res[csel.Key].Add(dsel.Key, new Dictionary<int, HashSet<CeRange>>());
               foreach (var ssel in dsel.Value)
               {
                 if (!res[csel.Key][dsel.Key].ContainsKey(ssel.Key))
-                  res[csel.Key][dsel.Key].Add(ssel.Key, new HashSet<int>());
+                  res[csel.Key][dsel.Key].Add(ssel.Key, new HashSet<CeRange>());
                 foreach (var widx in ssel.Value)
                   res[csel.Key][dsel.Key][ssel.Key].Add(widx);
               }
@@ -470,11 +471,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter
     /// <param name="selection">Schnappschuss auf dem die Suche ausgeführt wird</param>
     /// <param name="queries">Abfragen</param>
     /// <returns>Key = CorpusGuid / Value.Key = DocumentGuid / Value.Value.Key = SatzId / Value.Value.Value = WortId</returns>
-    public static Dictionary<Guid, Dictionary<Guid, Dictionary<int, List<int>>>> OrSearchOnWordLevelList(
+    public static Dictionary<Guid, Dictionary<Guid, Dictionary<int, List<CeRange>>>> OrSearchOnWordLevelList(
       Selection selection,
       IEnumerable<AbstractFilterQuery> queries)
     {
-      var res = new Dictionary<Guid, Dictionary<Guid, Dictionary<int, List<int>>>>();
+      var res = new Dictionary<Guid, Dictionary<Guid, Dictionary<int, List<CeRange>>>>();
       var @lock = new object();
 
       Parallel.ForEach(queries, Configuration.ParallelOptions, query =>
@@ -484,15 +485,15 @@ namespace CorpusExplorer.Sdk.Utils.Filter
           foreach (var csel in result)
           {
             if (!res.ContainsKey(csel.Key))
-              res.Add(csel.Key, new Dictionary<Guid, Dictionary<int, List<int>>>());
+              res.Add(csel.Key, new Dictionary<Guid, Dictionary<int, List<CeRange>>>());
             foreach (var dsel in csel.Value)
             {
               if (!res[csel.Key].ContainsKey(dsel.Key))
-                res[csel.Key].Add(dsel.Key, new Dictionary<int, List<int>>());
+                res[csel.Key].Add(dsel.Key, new Dictionary<int, List<CeRange>>());
               foreach (var ssel in dsel.Value)
               {
                 if (!res[csel.Key][dsel.Key].ContainsKey(ssel.Key))
-                  res[csel.Key][dsel.Key].Add(ssel.Key, new List<int>());
+                  res[csel.Key][dsel.Key].Add(ssel.Key, new List<CeRange>());
                 foreach (var widx in ssel.Value)
                   res[csel.Key][dsel.Key][ssel.Key].Add(widx);
               }
@@ -509,11 +510,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter
     /// <param name="selection">Schnappschuss auf dem die Suche ausgeführt wird</param>
     /// <param name="query">Abfrage</param>
     /// <returns>Key = CorpusGuid / Value.Key = DocumentGuid / Value.Value.Key = SatzId / Value.Value.Value = WortId</returns>
-    public static Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>> SearchOnWordLevel(
+    public static Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<CeRange>>>> SearchOnWordLevel(
       Selection selection,
       AbstractFilterQuery query)
     {
-      var res = new Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<int>>>>();
+      var res = new Dictionary<Guid, Dictionary<Guid, Dictionary<int, HashSet<CeRange>>>>();
       var @lock = new object();
 
       Parallel.ForEach(
@@ -538,13 +539,13 @@ namespace CorpusExplorer.Sdk.Utils.Filter
                                             lock (@lock)
                                             {
                                               if (!res.ContainsKey(csel.Key))
-                                                res.Add(csel.Key, new Dictionary<Guid, Dictionary<int, HashSet<int>>>());
+                                                res.Add(csel.Key, new Dictionary<Guid, Dictionary<int, HashSet<CeRange>>>());
                                               if (!res[csel.Key].ContainsKey(dsel))
-                                                res[csel.Key].Add(dsel, new Dictionary<int, HashSet<int>>());
+                                                res[csel.Key].Add(dsel, new Dictionary<int, HashSet<CeRange>>());
                                               foreach (var sidx in result)
                                               {
                                                 if (!res[csel.Key][dsel].ContainsKey(sidx.Key))
-                                                  res[csel.Key][dsel].Add(sidx.Key, new HashSet<int>());
+                                                  res[csel.Key][dsel].Add(sidx.Key, new HashSet<CeRange>());
                                                 foreach (var widx in sidx.Value)
                                                   res[csel.Key][dsel][sidx.Key].Add(widx);
                                               }
@@ -562,11 +563,11 @@ namespace CorpusExplorer.Sdk.Utils.Filter
     /// <param name="selection">Schnappschuss auf dem die Suche ausgeführt wird</param>
     /// <param name="query">Abfrage</param>
     /// <returns>Key = CorpusGuid / Value.Key = DocumentGuid / Value.Value.Key = SatzId / Value.Value.Value = WortId</returns>
-    public static Dictionary<Guid, Dictionary<Guid, Dictionary<int, List<int>>>> SearchOnWordLevelList(
+    public static Dictionary<Guid, Dictionary<Guid, Dictionary<int, List<CeRange>>>> SearchOnWordLevelList(
       Selection selection,
       AbstractFilterQuery query)
     {
-      var res = new Dictionary<Guid, Dictionary<Guid, Dictionary<int, List<int>>>>();
+      var res = new Dictionary<Guid, Dictionary<Guid, Dictionary<int, List<CeRange>>>>();
       var @lock = new object();
 
       Parallel.ForEach(
@@ -591,13 +592,13 @@ namespace CorpusExplorer.Sdk.Utils.Filter
                                             lock (@lock)
                                             {
                                               if (!res.ContainsKey(csel.Key))
-                                                res.Add(csel.Key, new Dictionary<Guid, Dictionary<int, List<int>>>());
+                                                res.Add(csel.Key, new Dictionary<Guid, Dictionary<int, List<CeRange>>>());
                                               if (!res[csel.Key].ContainsKey(dsel))
-                                                res[csel.Key].Add(dsel, new Dictionary<int, List<int>>());
+                                                res[csel.Key].Add(dsel, new Dictionary<int, List<CeRange>>());
                                               foreach (var sidx in result)
                                               {
                                                 if (!res[csel.Key][dsel].ContainsKey(sidx.Key))
-                                                  res[csel.Key][dsel].Add(sidx.Key, new List<int>());
+                                                  res[csel.Key][dsel].Add(sidx.Key, new List<CeRange>());
                                                 foreach (var widx in sidx.Value)
                                                   res[csel.Key][dsel][sidx.Key].Add(widx);
                                               }

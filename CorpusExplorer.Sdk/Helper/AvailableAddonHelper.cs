@@ -13,11 +13,11 @@ namespace CorpusExplorer.Sdk.Helper
     /// <param name="ignoreInName">Ignoriere folgenden Namensbestandteile (z. B. Scraper)</param>
     /// <returns>Auflistung als string</returns>
     public static IEnumerable<string> GetReflectedTypeNameList<T>(this IEnumerable<KeyValuePair<string, T>> dic, string ignoreInName)
-      => dic == null
-           ? (IEnumerable<string>) new List<string>()
+      => (dic == null
+           ? (IEnumerable<string>)new List<string>()
            : string.IsNullOrWhiteSpace(ignoreInName)
              ? new HashSet<string>(dic.Select(x => x.Value.GetType().Name))
-             : new HashSet<string>(dic.Select(x => x.Value.GetType().Name.Replace(ignoreInName, string.Empty)));
+             : new HashSet<string>(dic.Select(x => x.Value.GetType().Name.Replace(ignoreInName, string.Empty)))).OrderBy(x => x);
 
     /// <summary>
     /// Gibt eine Auflistung mit verfügbaren Typennamen zurück (Addons).
@@ -28,7 +28,7 @@ namespace CorpusExplorer.Sdk.Helper
     /// <returns>Auflistung als string</returns>
     public static IEnumerable<string> GetReflectedTypeNameList<T>(this IEnumerable<T> enumerable, string ignoreInName)
       => enumerable == null
-           ? (IEnumerable<string>) new List<string>()
+           ? (IEnumerable<string>)new List<string>()
            : string.IsNullOrWhiteSpace(ignoreInName)
              ? new HashSet<string>(enumerable.Select(x => x.GetType().Name))
              : new HashSet<string>(enumerable.Select(x => x.GetType().Name.Replace(ignoreInName, string.Empty)));

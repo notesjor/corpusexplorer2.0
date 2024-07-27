@@ -49,9 +49,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.11.58.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.11.58\lib\Net45\HtmlAgilityPack.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -253,7 +250,8 @@
     <Compile Include="BundestagOpenAccess\Drucksachen\Model\DOKUMENT.cs" />
     <Compile Include="BundestagOpenAccess\Plenarprotokolle\v1\BundestagPlenarprotokolleScraper.cs" />
     <Compile Include="BundestagOpenAccess\Plenarprotokolle\v1\Model\DOKUMENT.cs" />
-    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\BundestagDtdPlenarprotokolleScraper.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\BundestagDtdPlenarprotokolleSimpleScraper.cs" />
+    <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\BundestagDtdPlenarprotokolleTurnScraper.cs" />
     <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\a.cs" />
     <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\anlage.cs" />
     <Compile Include="BundestagOpenAccess\Plenarprotokolle\v2\Model\anlagen.cs" />
@@ -452,6 +450,8 @@
     <Compile Include="Exmaralda\Complex\Model\udinformation.cs" />
     <Compile Include="Exmaralda\Complex\Model\udmetainformation.cs" />
     <Compile Include="Exmaralda\Complex\Model\udspeakerinformation.cs" />
+    <Compile Include="FoLiA\ExporterFolia.cs" />
+    <Compile Include="FoLiA\ImporterFolia.cs" />
     <Compile Include="FoLiA\Model\alignment.cs" />
     <Compile Include="FoLiA\Model\alignmentannotation.cs" />
     <Compile Include="FoLiA\Model\alt.cs" />
@@ -633,6 +633,7 @@
     <Compile Include="Folker\Fln\Model\timepoint.cs" />
     <Compile Include="Folker\Fln\Model\uncertain.cs" />
     <Compile Include="Folker\Fln\Model\w.cs" />
+    <Compile Include="GermaParlTei\GermaParlTeiScraper.cs" />
     <Compile Include="Helper\XmlSerializerHelper.cs" />
     <Compile Include="Helper\XmlNodeHelper.cs" />
     <Compile Include="Catma\5.0\Parser\Abstract\AbstractCatmaRangeParser.cs" />
@@ -704,6 +705,8 @@
     <Compile Include="Helper\HtmlAgilityPackHelper.cs" />
     <Compile Include="Helper\TextHelper.cs" />
     <Compile Include="Ids\Exceptions\IdsException.cs" />
+    <Compile Include="Ids\Helper\ExportPackageHelper.cs" />
+    <Compile Include="Ids\Helper\ExportXenodataHelper.cs" />
     <Compile Include="Ids\I5Xml\ExporterI5.cs" />
     <Compile Include="Ids\I5Xml\IdsScraper.cs" />
     <Compile Include="Ids\I5Xml\Model\analytic.cs" />
@@ -1836,7 +1839,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="CorpusExplorerNextSnKey2019.pfx" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -1873,6 +1875,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ids\KorAP\Model\ZipFileNotes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack">
+      <Version>1.11.61</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

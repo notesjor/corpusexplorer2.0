@@ -22,7 +22,7 @@ namespace CorpusExplorer.Sdk.ViewModel.Projection.Annotation
 
     public void Refresh(Selection selection)
     {
-      Matches = (from c in QuickQuery.AndSearchOnWordLevel(selection, Queries) from d in c.Value from s in d.Value select new Tuple<Guid, int, int, int>(d.Key, s.Key, s.Value.Min(), s.Value.Max())).ToList();
+      Matches = (from c in QuickQuery.AndSearchOnWordLevel(selection, Queries) from d in c.Value from s in d.Value select new Tuple<Guid, int, int, int>(d.Key, s.Key, s.Value.Select(x => x.From).Min(), s.Value.Select(x => x.To).Max())).ToList();
     }
 
     public List<Tuple<Guid, int, int, int>> Matches { get; set; }
@@ -31,8 +31,8 @@ namespace CorpusExplorer.Sdk.ViewModel.Projection.Annotation
       => new AnnotationByUser(Matches[matchId].Item1, Matches[matchId].Item2, Matches[matchId].Item3,
                               Matches[matchId].Item4)
       {
-        Priority = Priority + 1, 
-        Displayname = Displayname, 
+        Priority = Priority + 1,
+        Displayname = Displayname,
         Value = Value
       };
 
