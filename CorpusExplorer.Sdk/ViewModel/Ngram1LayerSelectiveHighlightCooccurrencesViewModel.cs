@@ -20,6 +20,9 @@ namespace CorpusExplorer.Sdk.ViewModel
     }
 
     public int NGramSize { get; set; }
+    public bool RemoveUselessMulti { get; set; } = true;
+    public bool RemoveUselessStart { get; set; } = true;
+    public bool RemoveUselessEnd { get; set; } = true;
 
     /// <summary>
     /// Format:
@@ -35,22 +38,28 @@ namespace CorpusExplorer.Sdk.ViewModel
     /// </summary>
     public KeyValuePair<KeyValuePair<string, byte>[], double[]>[] NgramsWeighted => _block.NgramsWeighted;
 
-    public Dictionary<string, KeyValuePair<string, double[]>> WeightedNgramsHtml
+    public Dictionary<string, KeyValuePair<string, double[]>> WeightedNgramsPseudoHtml
     {
       get
       {
         var d1 = new Dictionary<string, double[]>();
         var d2 = new Dictionary<string, string>();
 
+        var start = "<html>";
+        var useless = "<color= 200, 200, 200>[...]&nbsp;";
+        var end = "</html>";
+
+        var uselessuseless = $"{useless}{useless}";
+
         foreach (var ngram in NgramsWeighted)
         {
-          var stb = new StringBuilder("<html>");
+          var stb = new StringBuilder();
 
           foreach (var x in ngram.Key)
             switch (x.Value)
             {
               case 0:
-                stb.Append("<color= 200, 200, 200>[...]&nbsp;");
+                stb.Append(useless);
                 break;
               case 1:
                 stb.Append($"<color= 150, 150, 150>{x.Key}&nbsp;");
@@ -63,9 +72,38 @@ namespace CorpusExplorer.Sdk.ViewModel
                 break;
             }
 
-          stb.Append("</html>");
-
           var key = stb.ToString();
+
+          #region cleanup
+          if (RemoveUselessMulti)
+          {
+            int n, o;
+            do
+            {
+              o = key.Length;
+              key = key.Replace(uselessuseless, "");
+              n = key.Length;
+            } while (n != o);
+          }
+
+          if(RemoveUselessStart)
+          {
+
+            while(key.StartsWith(useless))
+              key = key.Substring(useless.Length);
+          }
+
+          if (RemoveUselessEnd)
+          {
+            while (key.EndsWith(useless))
+              key = key.Substring(0, key.Length - useless.Length);
+          }
+
+          if(string.IsNullOrWhiteSpace(key))
+            continue;
+
+          key = $"{start}{key}{end}";
+          #endregion          
 
           if (d1.ContainsKey(key))
           {
@@ -97,7 +135,7 @@ namespace CorpusExplorer.Sdk.ViewModel
       dt.Columns.Add(Resources.Query, typeof(string));
 
       dt.BeginLoadData();
-      foreach (var ngram in WeightedNgramsHtml)
+      foreach (var ngram in WeightedNgramsPseudoHtml)
         dt.Rows.Add(ngram.Key, ngram.Value.Value[0], ngram.Value.Value[1], ngram.Value.Key);
       dt.EndLoadData();
 

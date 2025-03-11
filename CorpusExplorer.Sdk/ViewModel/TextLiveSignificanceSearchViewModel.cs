@@ -93,7 +93,7 @@ namespace CorpusExplorer.Sdk.ViewModel
                         {
                           Pre = $"{HighlightBodyStart}{streamDoc.SplitDocument(0, range.To)}{HighlightBodyEnd}",
                           Match = $"{HighlightBodyStart}{streamDoc.SplitDocument(range.From, range.To)}{HighlightBodyEnd}",
-                          Post = $"{HighlightBodyStart}{streamDoc.SplitDocument(range.To + 1)}{HighlightBodyEnd}",
+                          Post = $"{HighlightBodyStart}{streamDoc.SplitDocument(range.To)}{HighlightBodyEnd}",
                           Token = token,
                           SignificantToken = stoken,
                           SignificanceMax = sigMax,

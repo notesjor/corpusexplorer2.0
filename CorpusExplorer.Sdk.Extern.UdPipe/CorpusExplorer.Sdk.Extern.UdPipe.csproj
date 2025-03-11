@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Sdk.Extern.UdPipe</RootNamespace>
     <AssemblyName>CorpusExplorer.Sdk.Extern.UdPipe</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -74,16 +74,13 @@
     <Compile Include="Model\Word.cs" />
     <Compile Include="Model\Words.cs" />
     <Compile Include="RepositoryManifest.cs" />
+    <Compile Include="Tagger\UdPipeAlternativeDllTagger.cs" />
     <Compile Include="Tagger\UdPipeDllTagger.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj">
       <Project>{3226C218-0FB3-43A6-A67C-39CBAC704EA3}</Project>
       <Name>BitCutStudios.CorpusExplorer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CorpusExplorer.Core\CorpusExplorer.Core.csproj">
-      <Project>{029FE5A6-9504-499A-9E0D-05754D44CBB1}</Project>
-      <Name>CorpusExplorer.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\CorpusExplorer.Sdk.Diagnostic\CorpusExplorer.Sdk.Diagnostic.csproj">
       <Project>{2D491EC8-11C5-4C02-B604-48B8458174E1}</Project>

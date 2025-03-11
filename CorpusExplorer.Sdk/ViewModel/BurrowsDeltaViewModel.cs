@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
+using CorpusExplorer.Sdk.ViewModel.Interfaces;
 
 namespace CorpusExplorer.Sdk.ViewModel
 {
-  public class BurrowsDeltaViewModel : AbstractViewModel
+  public class BurrowsDeltaViewModel : AbstractViewModel, IProvideDataTable
   {
     private BurrowsDeltaBlock _block;
 
@@ -50,6 +52,23 @@ namespace CorpusExplorer.Sdk.ViewModel
     protected override bool Validate()
     {
       return !string.IsNullOrEmpty(MetadataKey);
+    }
+
+    public DataTable GetDataTable()
+    {
+      var dt = new DataTable();
+      dt.Columns.Add($"{MetadataKey} (A)", typeof(string));
+      dt.Columns.Add($"{MetadataKey} (B)", typeof(string));
+      dt.Columns.Add("Delta", typeof(double));
+
+      dt.BeginLoadData();
+      foreach (var x in KnownAuthors)
+        foreach (var y in x.Value.Where(y => x.Key != y.Key))
+          dt.Rows.Add(x.Key, y.Key, y.Value);
+        
+      dt.EndLoadData();
+
+      return dt;
     }
   }
 }

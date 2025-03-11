@@ -815,6 +815,53 @@ namespace CorpusExplorer.Sdk.Model
     {
       return ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid))
       ?.GetReadableMultilayerDocument(documentGuid, start, stop);
+    }      
+
+    /// <summary>
+    ///   The get multilayer document by guid.
+    /// </summary>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <returns>
+    ///   The <see cref="Dictionary{TKey,TValue}" />.
+    /// </returns>
+    public Dictionary<string, int[][]> GetMultilayerDocument(Guid documentGuid)
+    {
+      return ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid))
+        ?.GetMultilayerDocument(documentGuid);
+    }
+
+    /// <summary>
+    ///   The get multilayer document by guid.
+    /// </summary>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <param name="layerGuids">Only add Documents from specified layers</param>
+    /// <returns>
+    ///   The <see cref="Dictionary{TKey,TValue}" />.
+    /// </returns>
+    public Dictionary<Guid, int[][]> GetMultilayerDocument(Guid documentGuid, IEnumerable<Guid> layerGuids)
+    {
+      return ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid))
+        ?.GetMultilayerDocument(documentGuid, layerGuids);
+    }
+
+    /// <summary>
+    ///   The get multilayer document by guid.
+    /// </summary>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <param name="layerDisplaynames">Only add Documents from specified layers</param>
+    /// <returns>
+    ///   The <see cref="Dictionary{TKey,TValue}" />.
+    /// </returns>
+    public Dictionary<string, int[][]> GetMultilayerDocument(Guid documentGuid, IEnumerable<string> layerDisplaynames)
+    {
+      return ProxyRequestCorpus(c => c?.ContainsDocument(documentGuid))
+        ?.GetMultilayerDocument(documentGuid, layerDisplaynames);
     }
 
     /// <summary>

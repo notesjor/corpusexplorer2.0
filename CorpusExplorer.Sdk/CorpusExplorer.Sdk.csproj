@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Sdk</RootNamespace>
     <AssemblyName>CorpusExplorer.Sdk</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <CodeContractsAssemblyMode>0</CodeContractsAssemblyMode>
     <TargetFrameworkProfile />
@@ -102,13 +102,9 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -128,11 +124,13 @@
     <Compile Include="Blocks\ClusterMetadataByCooccurrenceSelectiveBlock.cs" />
     <Compile Include="Blocks\ClusterMetadataByNgramBlock.cs" />
     <Compile Include="Blocks\ClusterMetadata\ClusterMetadataItem.cs" />
+    <Compile Include="Blocks\CooccurrenceIndexOnlyBlock.cs" />
     <Compile Include="Blocks\CooccurrenceClassicBlock.cs" />
     <Compile Include="Blocks\CooccurrenceContextBlock.cs" />
     <Compile Include="Blocks\CooccurrenceCrossBlock.cs" />
     <Compile Include="Blocks\CooccurrenceSecondLevelProfileBlock.cs" />
     <Compile Include="Blocks\CorrespondingLayerValueFilterBlock.cs" />
+    <Compile Include="Blocks\CrossFrequencyIndexOnlyBlock.cs" />
     <Compile Include="Blocks\CrossFrequencySelectedUltraBlock.cs" />
     <Compile Include="Blocks\CrossFrequencySelectedRangeBlock.cs" />
     <Compile Include="Blocks\CrossFrequencySelectedBlock.cs" />
@@ -140,6 +138,7 @@
     <Compile Include="Blocks\CrossFrequencySelected\Abstract\AbstractCrossFrequencySelectedBehaviour.cs" />
     <Compile Include="Blocks\DocumentContainsLayerValueSelectBlock.cs" />
     <Compile Include="Blocks\Frequency2LayerSelectBlock.cs" />
+    <Compile Include="Blocks\NgramMultiLayerSelectiveBlock.cs" />
     <Compile Include="Blocks\Ngram1LayerSelectiveHighlightCooccurrencesBlock.cs" />
     <Compile Include="Blocks\PhraseFastCounterBlock.cs" />
     <Compile Include="Blocks\PositionFrequencySimpleBlock.cs" />
@@ -367,8 +366,8 @@
     <Compile Include="Utils\CorpusManipulation\CorpusRandomizer.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusRandomizerStrategy\Abstract\AbstractCorpusRandomizerStrategy.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusRandomizerStrategy\CorpusRandomizerStrategySentences.cs" />
-    <Compile Include="Utils\CorpusManipulation\CorpusRandomizerStrategy\CorpusRandomizerStrategySort.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusRandomizerStrategy\CorpusRandomizerStrategyTokens.cs" />
+    <Compile Include="Utils\CorpusManipulation\CorpusRandomizerStrategy\CorpusRandomizerStrategySentencesAndTokens.cs" />
     <Compile Include="Utils\DataTableWriter\BinaryTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\HtmlTableSnippetTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\HtmlTableWriter.cs" />
@@ -586,6 +585,7 @@
     <Compile Include="Helper\DataTableExtension.cs" />
     <Compile Include="Helper\DictionaryExtension.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerExactPhrase.cs" />
+    <Compile Include="Utils\FlatDocument\DocumentFlattener.cs" />
     <Compile Include="Utils\ReMapper\Abstract\AbstractReMapper.cs" />
     <Compile Include="Utils\ReMapper\Model\ReMapperEntry.cs" />
     <Compile Include="Utils\ReMapper\ReMapperInline.cs" />
@@ -802,10 +802,10 @@
       <Version>1.0.8</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces">
-      <Version>8.0.0</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Bcl.HashCode">
-      <Version>1.1.1</Version>
+      <Version>6.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.CSharp">
       <Version>4.7.0</Version>
@@ -823,13 +823,13 @@
       <Version>13.0.3</Version>
     </PackageReference>
     <PackageReference Include="PostSharp.Redist">
-      <Version>2024.1.4</Version>
+      <Version>2025.0.6</Version>
     </PackageReference>
     <PackageReference Include="SharpSerializer">
       <Version>4.0.2</Version>
     </PackageReference>
     <PackageReference Include="System.Buffers">
-      <Version>4.5.1</Version>
+      <Version>4.6.0</Version>
     </PackageReference>
     <PackageReference Include="System.Collections">
       <Version>4.3.0</Version>
@@ -841,7 +841,7 @@
       <Version>4.3.0</Version>
     </PackageReference>
     <PackageReference Include="System.Diagnostics.DiagnosticSource">
-      <Version>8.0.1</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="System.Diagnostics.Tools">
       <Version>4.3.0</Version>
@@ -858,8 +858,11 @@
     <PackageReference Include="System.IO.Compression">
       <Version>4.3.0</Version>
     </PackageReference>
+    <PackageReference Include="System.IO.Compression.ZipFile">
+      <Version>4.3.0</Version>
+    </PackageReference>
     <PackageReference Include="System.IO.Pipelines">
-      <Version>8.0.0</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="System.Linq">
       <Version>4.3.0</Version>
@@ -868,13 +871,13 @@
       <Version>4.3.0</Version>
     </PackageReference>
     <PackageReference Include="System.Memory">
-      <Version>4.5.5</Version>
+      <Version>4.6.0</Version>
     </PackageReference>
     <PackageReference Include="System.Net.Primitives">
       <Version>4.3.1</Version>
     </PackageReference>
     <PackageReference Include="System.Numerics.Vectors">
-      <Version>4.5.0</Version>
+      <Version>4.6.0</Version>
     </PackageReference>
     <PackageReference Include="System.ObjectModel">
       <Version>4.3.0</Version>
@@ -895,7 +898,7 @@
       <Version>4.3.1</Version>
     </PackageReference>
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
-      <Version>6.0.0</Version>
+      <Version>6.1.0</Version>
     </PackageReference>
     <PackageReference Include="System.Runtime.Extensions">
       <Version>4.3.1</Version>
@@ -937,7 +940,7 @@
       <Version>4.3.0</Version>
     </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Extensions">
-      <Version>4.5.4</Version>
+      <Version>4.6.0</Version>
     </PackageReference>
     <PackageReference Include="System.Xml.ReaderWriter">
       <Version>4.3.1</Version>
@@ -946,6 +949,7 @@
       <Version>4.3.0</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

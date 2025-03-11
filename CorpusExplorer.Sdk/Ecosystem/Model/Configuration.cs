@@ -85,7 +85,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     {
       get
       {
-        var list = _addonBackends.OrderBy(x => x.Key).ToList();
+        var list = _addonBackends.Where(x=>!string.IsNullOrWhiteSpace(x.Key)).OrderBy(x => x.Key).ToList();
         var cec6 =
           (from x in list where x.Value.GetType() == typeof(CorpusBuilderWriteDirect) select x).FirstOrDefault();
         list.Remove(cec6);
@@ -118,7 +118,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     {
       get
       {
-        var list = _addonExporters.OrderBy(x => x.Key).ToList();
+        var list = _addonExporters.Where(x=>!string.IsNullOrWhiteSpace(x.Key)).OrderBy(x => x.Key).ToList();
         var cec6 = (from x in list where x.Value.GetType() == typeof(ExporterCec6) select x).FirstOrDefault();
         list.Remove(cec6);
         list.Insert(0, cec6);
@@ -141,7 +141,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     {
       get
       {
-        var list = _addonImporters.OrderBy(x => x.Key).ToList();
+        var list = _addonImporters.Where(x=>!string.IsNullOrWhiteSpace(x.Key)).OrderBy(x => x.Key).ToList();
         var cec6 = (from x in list where x.Value.GetType() == typeof(ImporterCec6) select x).FirstOrDefault();
         list.Remove(cec6);
         list.Insert(0, cec6);
@@ -227,7 +227,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     ///   Für Dateien OHNE Annotation.
     /// </summary>
     public static IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers =>
-      _addonScrapers.OrderBy(x => x.Key);
+      _addonScrapers.Where(x=>!string.IsNullOrWhiteSpace(x.Key)).OrderBy(x => x.Key);
 
     public static void AddonScrapersAdd(IEnumerable<KeyValuePair<string, AbstractScraper>> list)
     {
@@ -240,7 +240,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// Export für Analysedaten im Tabellenformat
     /// </summary>
     public static IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter =>
-      _addonTableWriters.OrderBy(x => x.Key);
+      _addonTableWriters.Where(x=>!string.IsNullOrWhiteSpace(x.Key)).OrderBy(x => x.Key);
 
     /// <summary>
     ///   Tagger
@@ -267,12 +267,26 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
     public static void LoadLocalizations(string directory)
     {
-      var path = Path.Combine(directory, "layer.local");
-      if (File.Exists(path))
-        LayerDisplayNameLocalization.LoadLocalization(path);
-      path = Path.Combine(directory, "meta.local");
-      if (File.Exists(path))
-        DocumentMetadataLocalization.LoadLocalization(path);
+      try
+      {
+        var path = Path.Combine(directory, "layer.local");
+        if (File.Exists(path))
+          LayerDisplayNameLocalization.LoadLocalization(path);
+      }
+      catch
+      {
+        //ignore
+      }
+      try
+      {
+        var path = Path.Combine(directory, "meta.local");
+        if (File.Exists(path))
+          DocumentMetadataLocalization.LoadLocalization(path);
+      }
+      catch
+      {
+        // ignore
+      }
     }
 
 
@@ -292,7 +306,20 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// <summary>
     ///   Gets the app path.
     /// </summary>
-    public static string AppPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+    public static string AppPath
+    {
+      get
+      {
+        try
+        {
+          return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        }
+        catch
+        {
+          return "";
+        }
+      }
+    }
 
     public static AbstractCacheStrategy Cache { get; set; } = new CacheStrategyDisableCaching();
 
@@ -369,7 +396,8 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       set => SetSetting("RAM-Selbstschutz", value);
     }
 
-    public static double DefaultFontSize{
+    public static double DefaultFontSize
+    {
       get => (double)GetSetting("Schriftgröße", 12.0);
       set => SetSetting("Schriftgröße", value);
     }
@@ -409,14 +437,40 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// <summary>
     ///   Pfad zu den temporären Dateien
     /// </summary>
-    public static string TempPath { get; } = Path.Combine(Path.GetTempPath(), "CorpusExplorer");
+    public static string TempPath
+    {
+      get
+      {
+        try
+        {
+          return Path.Combine(Path.GetTempPath(), "CorpusExplorer");
+        }
+        catch
+        {
+          return "TEMP";
+        }
+      }
+    }
 
     /// <summary>
     ///   Pfad zu den Abhängigkeiten - nutzen Sie GetDependencyPath(string subPath) um einen relativen Pfad in einen absoluten
     ///   umzuwandeln.
     /// </summary>
     /// <value>The dependency path.</value>
-    public static string DependencyPath { get; } = Path.Combine(AppPath, "XDependencies");
+    public static string DependencyPath
+    {
+      get
+      {
+        try
+        {
+          return Path.Combine(AppPath, "XDependencies");
+        }
+        catch
+        {
+          return "XDependencies";
+        }
+      }
+    }
 
     /// <summary>
     ///   Dateipfad der Einstellungsdatei
@@ -428,6 +482,11 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// </summary>
     /// <value><c>true</c> if [use chrome]; otherwise, <c>false</c>.</value>
     public static bool UseChrome { get; set; } = true;
+    public static int IOBufferSize
+    {
+      get => (int)GetSetting("Puffergröße", 1024 * 1024 * 100);
+      set => SetSetting("Puffergröße", value);
+    }
 
     public static IAction GetConsoleAction(string actionName)
     {
@@ -463,20 +522,27 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// <exception cref="System.NotImplementedException"></exception>
     public static string GetDependencyPath(string subPath)
     {
-      var res = Path.Combine(Path.Combine(AppPath, "XDependencies"), subPath);
-      if (Directory.Exists(res))
+      try
+      {
+        var res = Path.Combine(Path.Combine(AppPath, "XDependencies"), subPath);
+        if (Directory.Exists(res))
+          return res;
+
+        var alternative =
+          Path.Combine(
+                       Path.Combine(
+                                    Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                                    @"CorpusExplorer\App\XDependencies"),
+                       subPath);
+        if (Directory.Exists(alternative) || File.Exists(alternative))
+          res = alternative;
+
         return res;
-
-      var alternative =
-        Path.Combine(
-                     Path.Combine(
-                                  Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                                  @"CorpusExplorer\App\XDependencies"),
-                     subPath);
-      if (Directory.Exists(alternative) || File.Exists(alternative))
-        res = alternative;
-
-      return res;
+      }
+      catch
+      {
+        return "XDependencies";
+      }
     }
 
     /// <summary>
@@ -677,10 +743,17 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
     private static string GetRelativAppDirectory(string directory)
     {
-      var res = string.IsNullOrEmpty(directory) ? AppPath : Path.Combine(AppPath, directory);
-      if (res != null && !Directory.Exists(res))
-        Directory.CreateDirectory(res);
-      return res;
+      try
+      {
+        var res = string.IsNullOrEmpty(directory) ? AppPath : Path.Combine(AppPath, directory);
+        if (res != null && !Directory.Exists(res))
+          Directory.CreateDirectory(res);
+        return res;
+      }
+      catch
+      {
+        return directory;
+      }
     }
 
     /// <summary>
@@ -694,11 +767,18 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// </returns>
     private static string GetRelativAppFilePath(string path)
     {
-      var res = string.IsNullOrEmpty(path) ? AppPath : Path.Combine(AppPath, path);
-      var dir = Path.GetDirectoryName(res);
-      if (!string.IsNullOrWhiteSpace(dir) && !Directory.Exists(dir))
-        Directory.CreateDirectory(dir);
-      return res;
+      try
+      {
+        var res = string.IsNullOrEmpty(path) ? AppPath : Path.Combine(AppPath, path);
+        var dir = Path.GetDirectoryName(res);
+        if (!string.IsNullOrWhiteSpace(dir) && !Directory.Exists(dir))
+          Directory.CreateDirectory(dir);
+        return res;
+      }
+      catch
+      {
+        return path;
+      }
     }
 
     /// <summary>
@@ -712,10 +792,17 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// </returns>
     private static string GetRelativPath(string path)
     {
-      var res = Path.Combine(
+      try
+      {
+        var res = Path.Combine(
                              Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                              "CorpusExplorer\\" + path);
-      return EnsurePath(res);
+        return EnsurePath(res);
+      }
+      catch
+      {
+        return EnsurePath(path);
+      }
     }
 
     private static void InitializeMinimal(bool forceReInitialization = false)

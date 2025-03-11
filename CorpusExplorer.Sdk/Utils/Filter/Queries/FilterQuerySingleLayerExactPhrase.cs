@@ -8,6 +8,7 @@ using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Properties;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Interface;
+using CorpusExplorer.Sdk.Utils.FlatDocument;
 
 namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 {
@@ -100,34 +101,37 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       if (queries == null || queries.Length == 0)
         return null;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
-      var doc = layer?[documentGuid];
-      if (doc == null || sentence < 0 || sentence >= doc.Length)
+      var odoc = layer?[documentGuid];
+      if (odoc == null || sentence < 0 || sentence >= odoc.Length)
         return null;
 
-      var s = doc[sentence];
       var sum = queries.Count();
 
-      for (var i = 0; i < doc.Length; i++)
+      using (var doc = new DocumentFlattener(odoc))
       {
-        if (doc[i] == null)
-          continue;
+        var start = doc.GetSentenceStartIndex(sentence);
+        if (start == -1)
+          return null;
 
-        for (var j = 0; sum + j <= doc[i].Length; j++)
+        for (var i = start; i < doc.FlatDocument.Length; i++)
         {
+          if (doc.FlatDocument[i] != queries[0])
+            continue;
+
           var valid = true;
-          for (var k = 0; k < sum; k++)
+          for (var q = 1; q < sum; q++)
           {
-            if (queries[k] == -1)
+            if (doc.FlatDocument[i + q] == queries[q])
               continue;
 
-            if (queries[k] != doc[i][j + k])
-            {
-              valid = false;
-              break;
-            }
+            valid = false;
+            break;
           }
-          if (valid)
-            return new CeRange(i);
+
+          if (!valid)
+            continue;
+
+          return new CeRange(doc.GetIndex(i).Value);
         }
       }
 
@@ -158,42 +162,32 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
             queries.Length == 0)
           return null;
         var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
-        var doc = layer?[documentGuid];
-        if (doc == null)
+        var odoc = layer?[documentGuid];
+        if (odoc == null)
           return null;
 
-        var res = new List<int>();
+        var res = new HashSet<int>();
         var sum = queries.Count();
 
-        if (Configuration.RightToLeftSupport)
-        {
-        }
-        else
-        {
-          for (var i = 0; i < doc.Length; i++)
+        using (var doc = new DocumentFlattener(odoc))
+          for (var i = 0; i < doc.FlatDocument.Length; i++)
           {
-            if (doc[i] == null)
+            if (doc.FlatDocument[i] != queries[0])
               continue;
 
-            for (var j = 0; sum + j <= doc[i].Length; j++)
+            var valid = true;
+            for (var q = 1; q < sum; q++)
             {
-              var valid = true;
-              for (var k = 0; k < sum; k++)
-              {
-                if (queries[k] == -1)
-                  continue;
+              if (doc.FlatDocument[i + q] == queries[q])
+                continue;
 
-                if (queries[k] != doc[i][j + k])
-                {
-                  valid = false;
-                  break;
-                }
-              }
-              if (valid)
-                res.Add(i);
+              valid = false;
+              break;
             }
+
+            if (valid)
+              res.Add(doc.GetIndex(i).Key);
           }
-        }
 
         return res;
       }
@@ -220,33 +214,42 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           queries.Length == 0)
         return null;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
-      var doc = layer?[documentGuid];
-      if (doc == null ||
-          sentence < 0 ||
-          sentence >= doc.Length)
+      var odoc = layer?[documentGuid];
+      if (odoc == null || sentence < 0 || sentence >= odoc.Length)
         return null;
-
-      var s = doc[sentence];
 
       var sum = queries.Count();
       var res = new List<CeRange>();
 
-      for (var w = 0; sum + w <= s.Length; w++)
+      using (var doc = new DocumentFlattener(odoc))
       {
-        var valid = true;
-        for (var m = 0; m < sum; m++)
+        var start = doc.GetSentenceStartIndex(sentence);
+        if (start == -1)
+          return null;
+        var stop = doc.GetSentenceStartIndex(sentence + 1);
+        if (stop == -1)
+          stop = doc.FlatDocument.Length;
+
+        for (var i = start; i < stop; i++)
         {
-          if (queries[m] == -1)
+          if (doc.FlatDocument[i] != queries[0])
             continue;
 
-          if (queries[m] != s[w + m])
+          var valid = true;
+          for (var q = 1; q < sum; q++)
           {
+            if (doc.FlatDocument[i + q] == queries[q])
+              continue;
+
             valid = false;
             break;
           }
+
+          if (!valid)
+            continue;
+
+          res.Add(new CeRange(doc.GetIndex(i).Value));
         }
-        if (valid)
-          res.Add(new CeRange(w, w + sum));
       }
 
       return res;
@@ -274,43 +277,33 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           queries.Length == 0)
         return false;
       var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
-      var doc = layer?[documentGuid];
-      if (doc == null)
+      var odoc = layer?[documentGuid];
+      if (odoc == null)
         return false;
 
-      foreach (var s in doc)
-      {
-        var sum = queries.Count();
+      var sum = queries.Count();
 
-        if (Configuration.RightToLeftSupport)
-          for (var i = 0; i < doc.Length; i++)
+      using (var doc = new DocumentFlattener(odoc))
+        for (var i = 0; i < doc.FlatDocument.Length; i++)
+        {
+          if (doc.FlatDocument[i] != queries[0])
+            continue;
+
+          var valid = true;
+          for (var q = 1; q < sum; q++)
           {
-            if (doc[i] == null)
+            if (doc.FlatDocument[i + q] == queries[q])
               continue;
 
-            for (var j = 0; sum + j <= doc[i].Length; j++)
-            {
-              var valid = true;
-              for (var k = 0; k < sum; k++)
-              {
-                if (queries[k] == -1)
-                  continue;
-
-                if (queries[k] != doc[i][j + k])
-                {
-                  valid = false;
-                  break;
-                }
-              }
-              if (valid)
-                return true;
-            }
+            valid = false;
+            break;
           }
-        else
-          for (var i = 0; sum + i < s.Length; i++)
-            if (!queries.Where((t, j) => i + j >= s.Length || t != -1 && s[i + j] != t).Any())
-              return true;
-      }
+
+          if (!valid)
+            continue;
+
+          return true;
+        }
 
       return false;
     }

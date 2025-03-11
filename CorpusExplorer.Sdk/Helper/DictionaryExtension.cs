@@ -205,6 +205,36 @@ namespace CorpusExplorer.Sdk.Helper
       return res;
     }
 
+    public static Dictionary<int, Dictionary<int, double>> CompleteDictionaryToFullDictionary(
+      this Dictionary<int, Dictionary<int, double>> fragmentDictionary)
+    {
+      var res = new Dictionary<int, Dictionary<int, double>>();
+
+      foreach (var x in fragmentDictionary)
+      {
+        if (!res.ContainsKey(x.Key))
+          res.Add(x.Key, new Dictionary<int, double>());
+
+        foreach (var y in x.Value)
+        {
+          if (!res.ContainsKey(y.Key))
+            res.Add(y.Key, new Dictionary<int, double>());
+
+          if (!res[x.Key].ContainsKey(y.Key))
+            res[x.Key].Add(y.Key, y.Value);
+          else if (y.Value > res[x.Key][y.Key])
+            res[x.Key][y.Key] = y.Value;
+
+          if (!res[y.Key].ContainsKey(x.Key))
+            res[y.Key].Add(x.Key, y.Value);
+          else if (y.Value > res[y.Key][x.Key])
+            res[y.Key][x.Key] = y.Value;
+        }
+      }
+
+      return res;
+    }
+
     public static CeDictionaryMemoryFriendly<double> CompleteDictionaryToFullDictionaryMemoryFriendly(this Dictionary<string, Dictionary<string, double>> fragmentDictionary)
     {
       var dict = fragmentDictionary.CompleteDictionaryToFullDictionary();
@@ -393,6 +423,42 @@ namespace CorpusExplorer.Sdk.Helper
       where T : IComparable
     {
       var rem = new List<string>();
+
+      foreach (var entry in dictionary)
+      {
+        var list = entry.Value.ToList();
+        foreach (var pair in list.Where(pair => pair.Value.CompareTo(minimum) < 0))
+          entry.Value.Remove(pair.Key);
+
+        if (entry.Value.Count == 0)
+          rem.Add(entry.Key);
+      }
+
+      foreach (var r in rem)
+        dictionary.Remove(r);
+
+      return dictionary;
+    }
+
+    /// <summary>
+    ///   Bereinigt ein Dictionary in dem alle Werte entfernt werden,
+    ///   deren Value unter dem minimum liegen.
+    /// </summary>
+    /// <param name="dictionary">
+    ///   Dictionary
+    /// </param>
+    /// <param name="minimum">
+    ///   minimum
+    /// </param>
+    /// <returns>
+    ///   Bereinigtes Dictionary
+    /// </returns>
+    public static Dictionary<int, Dictionary<int, T>> GetCleanDictionary<T>(
+      this Dictionary<int, Dictionary<int, T>> dictionary,
+      T minimum)
+      where T : IComparable
+    {
+      var rem = new List<int>();
 
       foreach (var entry in dictionary)
       {

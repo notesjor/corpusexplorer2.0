@@ -1,6 +1,6 @@
+using System.IO;
 using System.Linq;
 using System.Text;
-using Bcs.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Interface;
@@ -14,29 +14,38 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter
 
     public override void Export(IHydra hydra, string path)
     {
-      FileIO.Write(path, Export(hydra), Configuration.Encoding);
+      using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+        Export(hydra, fs);
     }
 
     public string Export(IHydra hydra)
     {
-      var stb = new StringBuilder();
-      foreach (var csel in hydra.CorporaAndDocumentGuids)
+      using (var ms = new MemoryStream())
       {
-        var corpus = hydra.GetCorpus(csel.Key);
-        var layer = corpus?.GetLayers(LayerDisplayname)?.FirstOrDefault();
-        if (layer == null)
-          continue;
+        Export(hydra, ms);
+        return Encoding.UTF8.GetString(ms.ToArray());
+      }
+    }
 
-        foreach (var dsel in csel.Value)
+    private void Export(IHydra hydra, Stream stream)
+    {
+      using (var writer = new StreamWriter(stream, Configuration.Encoding, 4096, true))
+      {
+        foreach (var csel in hydra.CorporaAndDocumentGuids)
         {
-          if (!layer.ContainsDocument(dsel))
+          var layer = hydra.GetCorpus(csel.Key)?.GetLayers(LayerDisplayname)?.FirstOrDefault();
+          if (layer == null)
             continue;
 
-          stb.AppendLine(layer.GetReadableDocumentByGuid(dsel).ReduceDocumentToText(" "));
+          foreach (var dsel in csel.Value)
+          {
+            if (!layer.ContainsDocument(dsel))
+              continue;
+
+            writer.WriteLine(layer.GetReadableDocumentByGuid(dsel).ReduceDocumentToText());
+          }
         }
       }
-
-      return stb.ToString();
     }
   }
 }

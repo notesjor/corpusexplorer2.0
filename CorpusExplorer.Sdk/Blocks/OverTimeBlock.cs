@@ -27,7 +27,7 @@ namespace CorpusExplorer.Sdk.Blocks
       block.MetadataKey = MetadataKey;
       block.Calculate();
 
-      _dtp = block.Cluster.OfType<DateTimeCluster>()
+      _dtp = block.Cluster.OfType<DateTimeYearMonthDayCluster>()
                   .ToDictionary(cluster => (DateTime) cluster.CentralValue, cluster => cluster.DocumentGuids);
 
       DateTimeValues = new Dictionary<DateTime, T>();

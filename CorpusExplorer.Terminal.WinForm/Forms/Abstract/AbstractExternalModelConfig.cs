@@ -62,6 +62,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.NamedEntity
         var delimiter = lines[0].Contains("\t") ? "\t" : ";";
         var dt = ConvertToDataTable(lines.Select(line => line.Split(new[] { delimiter }, StringSplitOptions.None)).ToArray());
 
+        radGridView1.DataSource = null;
         radGridView1.Columns.Clear();
         radGridView1.DataSource = dt;
 

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Sdk.Extern.MarMoT</RootNamespace>
     <AssemblyName>CorpusExplorer.Sdk.Extern.MarMoT</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -63,10 +63,6 @@
     <ProjectReference Include="..\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj">
       <Project>{3226c218-0fb3-43a6-a67c-39cbac704ea3}</Project>
       <Name>BitCutStudios.CorpusExplorer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CorpusExplorer.Core\CorpusExplorer.Core.csproj">
-      <Project>{029fe5a6-9504-499a-9e0d-05754d44cbb1}</Project>
-      <Name>CorpusExplorer.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\CorpusExplorer.Sdk\CorpusExplorer.Sdk.csproj">
       <Project>{dc1b5a58-29da-476d-89f8-e73a1db11e52}</Project>

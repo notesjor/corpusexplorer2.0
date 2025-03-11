@@ -859,6 +859,44 @@ namespace CorpusExplorer.Sdk.Model
       Project.GetReadableMultilayerDocument(documentGuid);
 
     /// <summary>
+    ///   The get multilayer document by guid.
+    /// </summary>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <returns>
+    ///   The <see cref="Dictionary{TKey,TValue}" />.
+    /// </returns>
+    public Dictionary<string, int[][]> GetMultilayerDocument(Guid documentGuid) =>
+      Project.GetMultilayerDocument(documentGuid);
+
+    /// <summary>
+    ///   The get multilayer document by guid.
+    /// </summary>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <param name="layerGuids">Only add Documents from specified layers</param>
+    /// <returns>
+    ///   The <see cref="Dictionary{TKey,TValue}" />.
+    /// </returns>
+    public Dictionary<Guid, int[][]> GetMultilayerDocument(Guid documentGuid, IEnumerable<Guid> layerGuids) =>
+      Project.GetMultilayerDocument(documentGuid, layerGuids);
+
+    /// <summary>
+    ///   The get multilayer document by guid.
+    /// </summary>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <param name="layerDisplaynames">Only add Documents from specified layers</param>
+    /// <returns>
+    ///   The <see cref="Dictionary{TKey,TValue}" />.
+    /// </returns>
+    public Dictionary<string, int[][]> GetMultilayerDocument(Guid documentGuid, IEnumerable<string> layerDisplaynames) =>
+      Project.GetMultilayerDocument(documentGuid, layerDisplaynames);
+
+    /// <summary>
     ///   The get readable multilayer document by guid.
     /// </summary>
     /// <param name="documentGuid">

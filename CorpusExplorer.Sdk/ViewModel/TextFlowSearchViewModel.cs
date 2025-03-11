@@ -98,7 +98,7 @@ namespace CorpusExplorer.Sdk.ViewModel
 
             var tmp = new List<string>();
             var min = s.Value.Select(x=> x.From).Min();
-            var max = s.Value.Select(x=> x.To).Max() + 1;
+            var max = s.Value.Select(x=> x.To).Max();
 
             for (var i = 0; i < min; i++)
               tmp.Add(sent[i]);

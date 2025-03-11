@@ -203,6 +203,7 @@ namespace CorpusExplorer.Core
         new AddTaggerAction(),
 
         new BasicInformationAction(),
+        new BurrowsDeltaAction(),
 
         new CentralSnipAction(),
         new CentralSnipTreeAction(),
@@ -210,16 +211,21 @@ namespace CorpusExplorer.Core
         new ClusterListAction(),
         new ConvertAction(),
         new CooccurrenceAction(),
+        new CooccurrenceClassicAction(),
         new CooccurrenceCorrespondingAction(),
         new CooccurrenceCrossAction(),
         new CooccurrenceCrossFullAction(),
+        new CooccurrenceDiversityAction(),
         new CooccurrencePolarisationAction(),
         new CooccurrenceProfileAction(),
         new CooccurrenceSelectedAction(),
         new CooccurrenceSelectedCorrespondingAction(),
+        new CorpusFiniteStateMachineAction(),
         new CorrespondingValuesAction(),
         new CrossFrequencyAction(),
         new CrossFrequencyCorrespondingAction(),
+        new CrossFrequencySelectAction(),
+        new CrossFrequencySelectRangeAction(),
         new CutOffPhraseAction(),
 
         new DisambiguationeAction(),
@@ -233,6 +239,8 @@ namespace CorpusExplorer.Core
         new EditDistanceAction(),
 
         new Frequency1Action(),
+        new Frequency1PerDocumentAction(),
+        new Frequency1PerSentenceAction(),
         new Frequency1RawAction(),
         new Frequency1RawSelectAction(),
         new Frequency1SelectAction(),
@@ -285,6 +293,7 @@ namespace CorpusExplorer.Core
 
         new NamedEntityAction(),
         new NGramAction(),
+        new NGramCharAction(),
         new NGramCooccurrenceAction(),
         new NGramCorrespondingAction(),
         new NGramSelectedAction(),
@@ -300,15 +309,18 @@ namespace CorpusExplorer.Core
         new QueryCountSentencesAction(),
         new QueryListAction(),
 
+        new ReadingEaseAction(),
         new RemoveLayerAction(),
         new RemoveMetaAction(),
 
         new SentenceCountAction(),
         new SizeAction(),
+        new SkipgramAction(),
         new StopwordListAction(),
         new StyleBurrowsDeltaAction(),
         new StyleNgramAction(),
 
+        new TermDocumentMatrixAction(),
         new TermFrequencyInverseDocumentFrequencyAction(),
         new TokenCountAction(),
         new TokenListAction(),

@@ -71,8 +71,7 @@ namespace CorpusExplorer.Sdk.Blocks
     /// Gets or sets the ranges.
     /// </summary>
     /// <value>The ranges.</value>
-    public IEnumerable<AbstractRange> Ranges { get; set; }
-      = new[] { new RangeSimple(-5, 5) };
+    public AbstractRange Ranges { get; set; } = new RangeSimple(-5, 5);
 
     public IEnumerable<string> LayerQueries { get; set; }
       = Array.Empty<string>();
@@ -96,6 +95,7 @@ namespace CorpusExplorer.Sdk.Blocks
       _blockCF.LayerDisplayname = LayerDisplayname;
       _blockCF.LayerQueries = LayerQueries;
       _blockCF.Behaviour = Behaviour;
+      _blockCF.Ranges = Ranges;
       _blockCF.Calculate();
 
       CountSentences = Selection.CountSentences;

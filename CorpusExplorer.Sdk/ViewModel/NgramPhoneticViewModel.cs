@@ -37,10 +37,13 @@ namespace CorpusExplorer.Sdk.ViewModel
     {
       var block = Selection.CreateBlock<NgramPhoneticBlock>();
       block.NGramSize = NGramSize;
+      block.LayerDisplayname = LayerDisplayname;
       block.Calculate();
 
       NGramFrequency = block.NGramFrequency;
     }
+
+    public string LayerDisplayname { get; set; } = "Wort";
 
     protected override bool Validate()
     {

@@ -10,11 +10,26 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Terminal.Automate</RootNamespace>
     <AssemblyName>cec-ui</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -86,41 +101,35 @@
     <ApplicationIcon>corpusexplorer.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.AnalysisServices.AdomdClient, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.WinControls, Version=2024.2.514.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2024.2.514.462\Telerik.WinControls.dll</HintPath>
+    <Reference Include="Telerik.Licensing.Runtime, Version=1.4.6.0, Culture=neutral, PublicKeyToken=98bb5b04e55c09ef, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2025.1.211.462\Telerik.Licensing.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.GridView, Version=2024.2.514.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2024.2.514.462\Telerik.WinControls.GridView.dll</HintPath>
+    <Reference Include="Telerik.WinControls, Version=2025.1.211.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2025.1.211.462\Telerik.WinControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2024.2.514.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2024.2.514.462\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
+    <Reference Include="Telerik.WinControls.GridView, Version=2025.1.211.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2025.1.211.462\Telerik.WinControls.GridView.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI, Version=2024.2.514.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2024.2.514.462\Telerik.WinControls.UI.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2025.1.211.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2025.1.211.462\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="TelerikCommon, Version=2024.2.514.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2024.2.514.462\TelerikCommon.dll</HintPath>
+    <Reference Include="Telerik.WinControls.UI, Version=2025.1.211.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2025.1.211.462\Telerik.WinControls.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="TelerikData, Version=2024.2.514.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2024.2.514.462\TelerikData.dll</HintPath>
+    <Reference Include="TelerikCommon, Version=2025.1.211.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2025.1.211.462\TelerikCommon.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -213,7 +222,6 @@
     <Compile Include="Helper\Validator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -240,37 +248,9 @@
   </ItemGroup>
   <ItemGroup>
     <!--sirinie -->
-    <ProjectReference Include="..\..\..\..\Projekte-Kooperation\CorpusExplorer.Terminal.Console\Action\CorpusExplorer.Sdk.Action\CorpusExplorer.Sdk.Action.csproj">
-      <Project>{693d7071-5091-481f-b404-ac4772a0df60}</Project>
-      <Name>CorpusExplorer.Sdk.Action</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\Projekte-Kooperation\CorpusExplorer.Terminal.Console\CorpusExplorer.Terminal.Console.csproj">
       <Project>{77d277fa-cb8f-4619-90e8-4af5be6e9ac3}</Project>
       <Name>CorpusExplorer.Terminal.Console</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CorpusExplorer.Core\CorpusExplorer.Core.csproj">
-      <Project>{029fe5a6-9504-499a-9e0d-05754d44cbb1}</Project>
-      <Name>CorpusExplorer.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Binary\CorpusExplorer.Sdk.Extern.Binary.csproj">
-      <Project>{130da92c-9c08-44bc-b491-340c88056396}</Project>
-      <Name>CorpusExplorer.Sdk.Extern.Binary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Epub\CorpusExplorer.Sdk.Extern.Epub.csproj">
-      <Project>{c126a782-ebef-4940-93cf-5c216d2d26a8}</Project>
-      <Name>CorpusExplorer.Sdk.Extern.Epub</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Json\CorpusExplorer.Sdk.Extern.Json.csproj">
-      <Project>{dd54a9b0-80a9-4dd6-83a6-65359086ce18}</Project>
-      <Name>CorpusExplorer.Sdk.Extern.Json</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Plaintext\CorpusExplorer.Sdk.Extern.Plaintext.csproj">
-      <Project>{7de57051-2f0e-4964-a341-579db1ec9e7f}</Project>
-      <Name>CorpusExplorer.Sdk.Extern.Plaintext</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Xml\CorpusExplorer.Sdk.Extern.Xml.csproj">
-      <Project>{6841c8ca-7c40-44c4-b5aa-fbc84fcb7293}</Project>
-      <Name>CorpusExplorer.Sdk.Extern.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\CorpusExplorer.Sdk\CorpusExplorer.Sdk.csproj">
       <Project>{DC1B5A58-29DA-476D-89F8-E73A1DB11E52}</Project>
@@ -335,12 +315,21 @@
     <Content Include="corpusexplorer.ico" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="PostSharp">
-      <Version>2024.1.4</Version>
-    </PackageReference>
     <PackageReference Include="PostSharp.Redist">
-      <Version>2024.1.4</Version>
+      <Version>2025.0.6</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 und x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

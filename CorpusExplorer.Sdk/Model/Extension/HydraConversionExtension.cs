@@ -159,6 +159,20 @@ namespace CorpusExplorer.Sdk.Model.Extension
                               null, true);
     }
 
+    public static Selection ToSelection(this AbstractCorpusAdapter corpus, IEnumerable<Guid> documentGuids)
+    {
+      return Selection.Create(corpus.ToProject(),
+        new Dictionary<Guid, HashSet<Guid>>
+        {
+          {
+            corpus.CorpusGuid,
+            new HashSet<Guid>(documentGuids)
+          }
+        },
+        corpus.CorpusDisplayname,
+        null, true);
+    }
+
     public static Selection ToSelection(this IEnumerable<AbstractCorpusAdapter> corpora)
     {
       var res = Project.Create();

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Utils.CorpusManipulation.CorpusRandomizerStrategy.Abstract;
@@ -9,24 +10,22 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation.CorpusRandomizerStrategy
   {
     protected override string[][] RandomizeDocument(IEnumerable<IEnumerable<string>> doc)
     {
-      var res = doc.ToList();
-      for (var i = 0; i < res.Count; i++)
+      return doc.AsParallel().Select(x => Randomize(x)).ToArray();
+    }
+
+    private string[] Randomize(IEnumerable<string> x)
+    {
+      var tmp = x.ToList();
+      var res = new List<string>();
+
+      while (tmp.Count > 0)
       {
-        var input = res[i].ToList();
-        var output = new List<string>();
-
-        while(input.Count > 0)
-        {
-          var idx = Configuration.Random.Next(0, input.Count);
-        
-          output.Add(input[idx]);
-          input.RemoveAt(idx);
-        }
-
-        res[i] = output;
+        var idx = Configuration.Random.Next(0, tmp.Count);
+        res.Add(tmp[idx]);
+        tmp.RemoveAt(idx);
       }
 
-      return res.Select(x=>x.ToArray()).ToArray();
+      return res.ToArray();
     }
   }
 }

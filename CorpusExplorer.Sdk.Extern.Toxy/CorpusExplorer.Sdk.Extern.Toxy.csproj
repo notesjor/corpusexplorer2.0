@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CorpusExplorer.Sdk.Extern.Toxy</RootNamespace>
     <AssemblyName>CorpusExplorer.Sdk.Extern.Toxy</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
@@ -54,27 +54,16 @@
     <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="MsgReader, Version=5.5.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MsgReader.5.5.9\lib\net462\MsgReader.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.OracleClient" />
-    <Reference Include="System.DirectoryServices" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Security" />
     <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
       <Private>True</Private>
@@ -85,14 +74,9 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Transactions" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,7 +102,7 @@
       <Version>1.8.9</Version>
     </PackageReference>
     <PackageReference Include="BouncyCastle.Cryptography">
-      <Version>2.4.0</Version>
+      <Version>2.5.1</Version>
     </PackageReference>
     <PackageReference Include="Common.Logging">
       <Version>3.4.1</Version>
@@ -130,10 +114,10 @@
       <Version>33.0.1</Version>
     </PackageReference>
     <PackageReference Include="DocumentFormat.OpenXml">
-      <Version>3.0.2</Version>
+      <Version>3.3.0</Version>
     </PackageReference>
     <PackageReference Include="DocumentFormat.OpenXml.Framework">
-      <Version>3.0.2</Version>
+      <Version>3.3.0</Version>
     </PackageReference>
     <PackageReference Include="DocumentFormat.OpenXmlSDK">
       <Version>2.0.0</Version>
@@ -142,19 +126,19 @@
       <Version>5.0.0</Version>
     </PackageReference>
     <PackageReference Include="ExtendedNumerics.BigDecimal">
-      <Version>2025.1001.2.129</Version>
+      <Version>3000.0.3.40</Version>
     </PackageReference>
     <PackageReference Include="HtmlAgilityPack">
-      <Version>1.11.61</Version>
+      <Version>1.12.0</Version>
     </PackageReference>
     <PackageReference Include="itext">
-      <Version>8.0.4</Version>
+      <Version>9.1.0</Version>
     </PackageReference>
     <PackageReference Include="itext.commons">
-      <Version>8.0.4</Version>
+      <Version>9.1.0</Version>
     </PackageReference>
     <PackageReference Include="itext7">
-      <Version>8.0.4</Version>
+      <Version>9.1.0</Version>
     </PackageReference>
     <PackageReference Include="iTextSharp">
       <Version>5.5.13.4</Version>
@@ -166,52 +150,52 @@
       <Version>5.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces">
-      <Version>8.0.0</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Bcl.HashCode">
-      <Version>1.1.1</Version>
+      <Version>6.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.CSharp">
       <Version>4.7.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection">
-      <Version>8.0.0</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
-      <Version>8.0.1</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging">
-      <Version>8.0.0</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions">
-      <Version>8.0.1</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Options">
-      <Version>8.0.2</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Primitives">
-      <Version>8.0.0</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.IO.RecyclableMemoryStream">
       <Version>3.0.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Maui.Graphics">
-      <Version>8.0.61</Version>
+      <Version>9.0.40</Version>
     </PackageReference>
     <PackageReference Include="MsgReader">
-      <Version>5.6.2</Version>
+      <Version>5.7.2</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>
     </PackageReference>
     <PackageReference Include="NPOI">
-      <Version>2.7.0</Version>
+      <Version>2.7.2</Version>
     </PackageReference>
     <PackageReference Include="OpenMcdf">
-      <Version>2.3.1</Version>
+      <Version>2.4.1</Version>
     </PackageReference>
     <PackageReference Include="PDFsharp">
-      <Version>1.50.5147</Version>
+      <Version>6.1.1</Version>
     </PackageReference>
     <PackageReference Include="Portable.BouncyCastle">
       <Version>1.9.0</Version>
@@ -226,37 +210,37 @@
       <Version>1.0.1</Version>
     </PackageReference>
     <PackageReference Include="SixLabors.ImageSharp">
-      <Version>3.1.4</Version>
+      <Version>3.1.7</Version>
     </PackageReference>
     <PackageReference Include="System.Buffers">
-      <Version>4.5.1</Version>
+      <Version>4.6.0</Version>
     </PackageReference>
     <PackageReference Include="System.ComponentModel.Annotations">
       <Version>5.0.0</Version>
     </PackageReference>
     <PackageReference Include="System.Configuration.ConfigurationManager">
-      <Version>8.0.0</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="System.Diagnostics.DiagnosticSource">
-      <Version>8.0.1</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="System.Drawing.Common">
-      <Version>8.0.6</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="System.Formats.Asn1">
-      <Version>8.0.0</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="System.Linq.Async">
       <Version>6.0.1</Version>
     </PackageReference>
     <PackageReference Include="System.Memory">
-      <Version>4.5.5</Version>
+      <Version>4.6.0</Version>
     </PackageReference>
     <PackageReference Include="System.Numerics.Vectors">
-      <Version>4.5.0</Version>
+      <Version>4.6.0</Version>
     </PackageReference>
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
-      <Version>6.0.0</Version>
+      <Version>6.1.0</Version>
     </PackageReference>
     <PackageReference Include="System.Runtime.Serialization.Primitives">
       <Version>4.3.0</Version>
@@ -271,28 +255,28 @@
       <Version>5.0.0</Version>
     </PackageReference>
     <PackageReference Include="System.Security.Cryptography.Pkcs">
-      <Version>8.0.0</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="System.Security.Cryptography.Primitives">
       <Version>4.3.0</Version>
     </PackageReference>
     <PackageReference Include="System.Security.Cryptography.ProtectedData">
-      <Version>8.0.0</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="System.Security.Cryptography.Xml">
-      <Version>8.0.1</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="System.Security.Permissions">
-      <Version>8.0.0</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="System.Security.Principal.Windows">
       <Version>5.0.0</Version>
     </PackageReference>
     <PackageReference Include="System.Text.Encoding.CodePages">
-      <Version>8.0.0</Version>
+      <Version>9.0.2</Version>
     </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Extensions">
-      <Version>4.5.4</Version>
+      <Version>4.6.0</Version>
     </PackageReference>
     <PackageReference Include="System.ValueTuple">
       <Version>4.5.0</Version>
@@ -304,7 +288,7 @@
       <Version>2.1.0</Version>
     </PackageReference>
     <PackageReference Include="Toxy">
-      <Version>2.0.0</Version>
+      <Version>2.5.0</Version>
     </PackageReference>
     <PackageReference Include="UTF.Unknown">
       <Version>2.5.1</Version>

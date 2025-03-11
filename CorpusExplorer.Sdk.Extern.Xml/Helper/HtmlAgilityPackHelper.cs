@@ -36,9 +36,12 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Helper
       }
     }
 
-    public string GetBodyText(string bodyXpath)
+    public HtmlNodeCollection GetNodes(string xpath)
+    => _doc.DocumentNode.SelectNodes(xpath);
+
+    public string GetBodyText(string bodyXpath = "//text")
     {
-      var text = _doc.DocumentNode.SelectNodes("//text").FirstOrDefault();
+      var text = _doc.DocumentNode.SelectNodes(bodyXpath).FirstOrDefault();
       return text == null ? string.Empty : text.InnerText;
     }
   }

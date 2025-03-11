@@ -15,7 +15,6 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
   {
     public static void InitializeInAppCorpusRepository(RadScrollablePanel panel)
     {
-      DownloadRepository("http://www.bitcutstudios.com/products/CorpusExplorer/repository_corpora.manifest", "repository_corpora.manifest");
       panel.Controls.Clear();
       var items = ReadCorpusRepository("repository_corpora.manifest");
       for (var i = items.Length - 1; i > -1; i--)
@@ -39,7 +38,6 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
 
     public static void InitializeInAppAddonRepository(RadScrollablePanel panel)
     {
-      DownloadRepository("http://www.bitcutstudios.com/products/CorpusExplorer/repository_addons.manifest", "repository_addons.manifest");
       panel.Controls.Clear();
       var items = ReadAppRepository("repository_addons.manifest");
       for (var i = items.Length - 1; i > -1; i--)
@@ -113,26 +111,6 @@ namespace CorpusExplorer.Terminal.WinForm.Helper.UiFramework
       public string UrlInfo { get; set; }
       public string UrlInstall { get; set; }
       public string AddonName { get; set; }
-    }
-
-    private static void DownloadRepository(string url, string file)
-    {
-      try
-      {
-        var dest = Path.Combine(Configuration.AppPath, file);
-        using (var tf = new TemporaryFile(Configuration.TempPath))
-        {
-          using (var wc = new WebClient())
-            wc.DownloadFile(url, tf.Path);
-          if (File.Exists(dest))
-            File.Delete(dest);
-          File.Move(tf.Path, dest);
-        }
-      }
-      catch
-      {
-        // ignore
-      }
     }
   }
 }

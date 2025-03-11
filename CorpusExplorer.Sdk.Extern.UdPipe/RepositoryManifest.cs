@@ -46,7 +46,8 @@ namespace CorpusExplorer.Sdk.Extern.UdPipe
     /// </summary>
     public override IEnumerable<AbstractTagger> AddonTagger => new AbstractTagger[]
     {
-      new UdPipeDllTagger()
+      new UdPipeDllTagger(),
+      new UdPipeAlternativeDllTagger()
     };
 
     /// <summary>

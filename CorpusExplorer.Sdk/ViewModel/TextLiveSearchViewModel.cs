@@ -124,7 +124,7 @@ namespace CorpusExplorer.Sdk.ViewModel
                          sent.Key,
                          $"{GetAddContextSentencesPre(result.Key, sent.Key)} {streamDoc.SplitDocument(0, range.From)}".Trim(),
                          streamDoc.SplitDocument(range.From, range.To),
-                         $"{streamDoc.SplitDocument(range.To + 1)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim()
+                         $"{streamDoc.SplitDocument(range.To)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim()
                         ));
           }
 
@@ -187,7 +187,7 @@ namespace CorpusExplorer.Sdk.ViewModel
               {
                 Pre = $"{GetAddContextSentencesPre(result.Key, sent.Key)} {streamDoc.SplitDocument(0, min)}".Trim(),
                 Match = streamDoc.SplitDocument(min, max),
-                Post = $"{streamDoc.SplitDocument(max + 1)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim(),
+                Post = $"{streamDoc.SplitDocument(max)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim(),
               };
               entry.AddSentence(result.Key, sent.Key);
 
@@ -221,7 +221,7 @@ namespace CorpusExplorer.Sdk.ViewModel
                       {
                         Pre = $"{GetAddContextSentencesPre(result.Key, sent.Key)} {streamDoc.SplitDocument(0, range.From)}".Trim(),
                         Match = streamDoc.SplitDocument(range.From, range.To),
-                        Post = $"{streamDoc.SplitDocument(range.To + 1)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim(),
+                        Post = $"{streamDoc.SplitDocument(range.To)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim(),
                         Span = range.Length,
                       });
               }

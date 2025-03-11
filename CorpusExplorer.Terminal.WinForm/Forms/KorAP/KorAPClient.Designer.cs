@@ -117,7 +117,7 @@
       this.btn_ok.Name = "btn_ok";
       this.btn_ok.Size = new System.Drawing.Size(210, 33);
       this.btn_ok.TabIndex = 1;
-      this.btn_ok.Text = "Daten analysieren";
+      this.btn_ok.Text = "Daten abrufen";
       this.btn_ok.Visible = false;
       this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
       // 
@@ -251,7 +251,6 @@
       this.radio_sample_normal.Size = new System.Drawing.Size(594, 30);
       this.radio_sample_normal.TabIndex = 2;
       this.radio_sample_normal.Text = "Die erstbesten Belege";
-      this.radio_sample_normal.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
       // 
       // radLabel2
       // 
@@ -306,7 +305,6 @@
       // combo_query_language
       // 
       this.combo_query_language.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.combo_query_language.DropDownAnimationEnabled = true;
       this.combo_query_language.Location = new System.Drawing.Point(352, 0);
       this.combo_query_language.Name = "combo_query_language";
       this.combo_query_language.NullText = "Abfragesprach auswählen...";

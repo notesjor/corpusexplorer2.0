@@ -9,31 +9,23 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="System.Security.Permissions" Version="8.0.0" />
-    <PackageReference Include="System.ServiceModel.Syndication" Version="8.0.0" />
+    <PackageReference Include="System.Security.Permissions" Version="9.0.2" />
+    <PackageReference Include="System.ServiceModel.Syndication" Version="9.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Projekte-Kooperation\CorpusExplorer.Terminal.Console\Action\CorpusExplorer.Sdk.Action\CorpusExplorer.Sdk.Action.csproj" />
     <ProjectReference Include="..\..\..\..\Projekte-Kooperation\CorpusExplorer.Terminal.Console\CorpusExplorer.Terminal.Console.csproj" />
-    <ProjectReference Include="..\..\..\..\Projekte-Kooperation\TfresWebserver\TefresWebserver\TFRES.csproj" />
     <ProjectReference Include="..\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj" />
     <ProjectReference Include="..\CorpusExplorer.Core\CorpusExplorer.Core.csproj" />
-    <ProjectReference Include="..\CorpusExplorer.Sdk.3rdParty.Commercial.Metaphone3\CorpusExplorer.Sdk.3rdParty.Commercial.Metaphone3.csproj" />
-    <ProjectReference Include="..\CorpusExplorer.Sdk.3rdParty.Commercial.TextScraper\CorpusExplorer.Sdk.3rdParty.Commercial.TextScraper.csproj" />
-    <ProjectReference Include="..\CorpusExplorer.Sdk.Compatibility\CorpusExplorer.Sdk.Compatibility.csproj" />
-    <ProjectReference Include="..\CorpusExplorer.Sdk.Diagnostic\CorpusExplorer.Sdk.Diagnostic.csproj" />
     <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Binary\CorpusExplorer.Sdk.Extern.Binary.csproj" />
     <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Epub\CorpusExplorer.Sdk.Extern.Epub.csproj" />
-    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.FuzzyCloneDetection\CorpusExplorer.Sdk.Extern.FuzzyCloneDetection.csproj" />
-    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.iTextSharp\CorpusExplorer.Sdk.Extern.iTextSharp.csproj" />
     <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Json\CorpusExplorer.Sdk.Extern.Json.csproj" />
     <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Plaintext.WET\CorpusExplorer.Sdk.Extern.Plaintext.WET.csproj" />
     <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Plaintext\CorpusExplorer.Sdk.Extern.Plaintext.csproj" />
-    <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.SentimentDetection\CorpusExplorer.Sdk.Extern.SentimentDetection.csproj" />
     <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Wiki\CorpusExplorer.Sdk.Extern.Wiki.csproj" />
     <ProjectReference Include="..\CorpusExplorer.Sdk.Extern.Xml\CorpusExplorer.Sdk.Extern.Xml.csproj" />
     <ProjectReference Include="..\CorpusExplorer.Sdk\CorpusExplorer.Sdk.csproj" />
+    <ProjectReference Include="C:\Projekte-Kooperation\TfresWebserver\TefresWebserver\TFRES.csproj" />
   </ItemGroup>
 
   <ItemGroup>

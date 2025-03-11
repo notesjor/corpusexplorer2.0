@@ -59,6 +59,7 @@
       this.radGridView1.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
       this.radGridView1.MasterTemplate.EnableFiltering = true;
       this.radGridView1.MasterTemplate.EnableGrouping = false;
+      this.radGridView1.MasterTemplate.MultiSelect = true;
       this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
       this.radGridView1.Name = "radGridView1";
       // 
@@ -78,14 +79,9 @@
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       resources.ApplyResources(this, "$this");
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.Controls.Add(this.radGridView1);
       this.DisplayAbort = true;
       this.Name = "AbstractExternalModelConfig";
-      // 
-      // 
-      // 
-      this.RootElement.ApplyShapeToControl = true;
       this.Controls.SetChildIndex(this.radPanel1, 0);
       this.Controls.SetChildIndex(this.radGridView1, 0);
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();

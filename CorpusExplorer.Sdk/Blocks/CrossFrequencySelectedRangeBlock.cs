@@ -52,8 +52,8 @@ namespace CorpusExplorer.Sdk.Blocks
 
     public IEnumerable<string> LayerQueries { get; set; }
 
-    public IEnumerable<AbstractRange> Ranges { get; set; }
-      = new[] { new RangeSimple(-2, 2) };
+    public AbstractRange Ranges { get; set; } = new RangeSimple(-2, 2);
+
     public AbstractCrossFrequencySelectedBehaviour Behaviour { get; set; }
       = new CrossFrequencySelectedBehaviourAnyMatch();
 
@@ -99,7 +99,7 @@ namespace CorpusExplorer.Sdk.Blocks
           var temp = new HashSet<int>();
           for (var i = 0; i < s.Length; i++)
           {
-            if (Ranges.Any(x => x.IsInRange(match.From, i)))
+            if (Ranges.IsInRange(match.From, i))
               temp.Add(s[i]);
           }
 

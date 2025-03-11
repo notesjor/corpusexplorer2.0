@@ -1,11 +1,8 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Cryptography;
-using Microsoft.IdentityModel.Tokens;
+﻿using System.Security.Cryptography;
 using Tfres;
 using System.Net;
 using System.Security.Claims;
 using System.Diagnostics;
-using System.Reflection.PortableExecutable;
 using System.Web;
 using RestSharp;
 using System.Text;

@@ -1,4 +1,6 @@
-﻿using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
+﻿using CorpusExplorer.Sdk.Utils.CorpusManipulation.CorpusRandomizerStrategy;
+using CorpusExplorer.Sdk.Utils.CorpusManipulation.CorpusRandomizerStrategy.Abstract;
+using CorpusExplorer.Terminal.WinForm.Forms.Abstract;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,7 +27,19 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Publishing
 
     public bool RandomizeSentencesAndTokens
     {
-      get { return chk_words.IsChecked; }
+      get { return chk_sentences_and_words.IsChecked; }
+    }
+
+    public AbstractCorpusRandomizerStrategy RandomizeStrategy
+    {
+      get
+      {
+        if (chk_sentences.IsChecked == false)
+          return new CorpusRandomizerStrategySentences();
+        if (chk_words.IsChecked == false)
+          return new CorpusRandomizerStrategyTokens();
+        return new CorpusRandomizerStrategySentencesAndTokens();
+      }
     }
 
     private void btn_abort_Click(object sender, EventArgs e)

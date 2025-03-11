@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using CorpusExplorer.Sdk.Ecosystem.Model;
-using CorpusExplorer.Sdk.Extern.Xml.Txm.Model;
 using CorpusExplorer.Sdk.Utils.DataTableWriter.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Abstract;
 using CorpusExplorer.Terminal.Automate.Helper;

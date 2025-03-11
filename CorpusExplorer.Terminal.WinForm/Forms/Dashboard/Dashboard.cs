@@ -9,9 +9,10 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Xml;
+using Microsoft.SyndicationFeed;
 using System.Windows.Forms;
 using Bcs.IO;
-using CodeHollow.FeedReader;
 using CorpusExplorer.Sdk.Addon;
 using CorpusExplorer.Sdk.Aspect;
 using CorpusExplorer.Sdk.Blocks.Cooccurrence;
@@ -76,6 +77,7 @@ using System.Net;
 using System.Net.Http;
 using CorpusExplorer.Terminal.WinForm.Forms.Publishing;
 using CorpusExplorer.Terminal.WinForm.Forms.KorAP;
+using Microsoft.SyndicationFeed.Rss;
 
 #endregion
 
@@ -214,45 +216,61 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       //Aktuelles
       try
       {
-        var task = FeedReader.ReadAsync("https://notes.jan-oliver-ruediger.de/category/appnote/feed/");
+        var feedUrl = "https://notes.jan-oliver-ruediger.de/category/appnote/feed/";
 
-        // InAppAddons
-        try
+        using (var xmlReader = XmlReader.Create(feedUrl, new XmlReaderSettings { Async = true }))
         {
-          InAppAddonHelper.InitializeInAppAddonRepository(radScrollablePanel8);
-        }
-        catch (Exception ex)
-        {
-          InMemoryErrorConsole.Log(ex);
-        }
-        // InAppKorpora
-        try
-        {
-          InAppAddonHelper.InitializeInAppCorpusRepository(radScrollablePanel9);
-        }
-        catch (Exception ex)
-        {
-          InMemoryErrorConsole.Log(ex);
-        }
+          var feedReader = new RssFeedReader(xmlReader);
 
-        task.Wait();
+          var items = new List<SyndicationItem>();
 
-        var feed = task.Result;
-        if (feed != null)
-        {
-          radListView1.Items.Clear();
-          foreach (var feedItem in feed.Items.OrderByDescending(x => x.PublishingDate.Value))
+          while (feedReader.Read().GetAwaiter().GetResult())
           {
-            radListView1.Items.Add(new ListViewDataItem
+            switch (feedReader.ElementType)
             {
-              Text = $"<html><strong>{feedItem.PublishingDate.Value:yyyy-MM-dd}:</strong> {feedItem.Title}</html>",
-              Tag = feedItem.Link,
-            });
-
-            // siehe OpenRssFeedItemClick
+              case SyndicationElementType.Item:
+                var item = feedReader.ReadItem().GetAwaiter().GetResult();
+                items.Add((SyndicationItem)item);
+                break;
+            }
           }
-          radListView1.ItemSize = new Size(radListView1.ItemSize.Width, 30);
+
+          if (items.Any())
+          {
+            radListView1.Items.Clear();
+            foreach (var feedItem in items.OrderByDescending(x => x.Published))
+            {
+              radListView1.Items.Add(new ListViewDataItem
+              {
+                Text = $"<html><strong>{feedItem.Published:yyyy-MM-dd}:</strong> {feedItem.Title}</html>",
+                Tag = feedItem.Links.FirstOrDefault()?.Uri.ToString(),
+              });
+
+              // siehe OpenRssFeedItemClick
+            }
+            radListView1.ItemSize = new Size(radListView1.ItemSize.Width, 30);
+          }
         }
+      }
+      catch (Exception ex)
+      {
+        InMemoryErrorConsole.Log(ex);
+      }
+
+      // InAppAddons
+      try
+      {
+        InAppAddonHelper.InitializeInAppAddonRepository(radScrollablePanel8);
+      }
+      catch (Exception ex)
+      {
+        InMemoryErrorConsole.Log(ex);
+      }
+
+      // InAppKorpora
+      try
+      {
+        InAppAddonHelper.InitializeInAppCorpusRepository(radScrollablePanel9);
       }
       catch (Exception ex)
       {
@@ -1108,12 +1126,12 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                               "Abfragen automatisieren",
                               "call_cec-ui",
                               true)
-                     .AddView(
-                              typeof(FrequencyOverTimeNext),
-                              Resources.execute1,
-                              Resources.execute,
-                              "Verteilung"
-                              )
+                     //.AddView(
+                     //         typeof(FrequencyOverTimeNext),
+                     //         Resources.execute1,
+                     //         Resources.execute,
+                     //         "Verteilung"
+                     //         )
                      ;
 
       // Notwendig um abschließend die 3rd-Party Views im Menü anzuzeigen.

@@ -126,4 +126,7 @@
   <data name="radLabel3.Text" xml:space="preserve">
     <value>&lt;html&gt;Zusätzlich zum Vertauschen von Sätzen erfolgt ein Vertauschen von Token innerhalb des Satzes. Das Dokument, N-Gramme und Belegstellen werden dadurch unbrauchbar. Alle statistischen Analysen wie z. B. Frequenz- und Kookkurrenz-Analysen sowie (Stil-)Metriken können aber weiterhin wie gewohnt genutzt werden.&lt;/html&gt;</value>
   </data>
+  <data name="radLabel5.Text" xml:space="preserve">
+    <value>&lt;html&gt;Token innerhalb eines Satzes werden vertauscht. Das Dokument, N-Gramme und Belegstellen werden dadurch unbrauchbar. Alle statistischen Analysen wie z. B. Frequenz- und Kookkurrenz-Analysen sowie (Stil-)Metriken können aber weiterhin wie gewohnt genutzt werden. Ideal, wenn die Satzposition für Korpusanalysen wichtig ist.&lt;/html&gt;</value>
+  </data>
 </root>

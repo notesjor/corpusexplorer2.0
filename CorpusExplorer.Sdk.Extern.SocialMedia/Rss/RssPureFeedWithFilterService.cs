@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
-using CodeHollow.FeedReader;
+using System.Xml;
+using Microsoft.SyndicationFeed;
+using Microsoft.SyndicationFeed.Rss;
 using CorpusExplorer.Sdk.Extern.SocialMedia.Abstract;
 using CorpusExplorer.Sdk.Helper;
 
@@ -13,7 +15,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Rss
   {
     protected override void Query(object connection, IEnumerable<string> queries, string outputPath, int limit)
     {
-      if (!(connection is Feed feed))
+      if (!(connection is List<SyndicationItem> feedItems))
         return;
 
       var dir = Path.Combine(outputPath, Authentication.Settings["Name"]);
@@ -22,7 +24,7 @@ namespace CorpusExplorer.Sdk.Extern.SocialMedia.Rss
 
       var queryArray = queries.ToArray();
       var serializer = new NetDataContractSerializer();
-      foreach (var item in feed.Items.Where(item => queryArray.Any(query => item.Content.Contains(query))))
+      foreach (var item in feedItems.Where(item => queryArray.Any(query => item.Description.Contains(query))))
       {
         using (var file = new FileStream(Path.Combine(dir, $"feed_{item.Id}-{DateTime.Now:yyyy-MM-ddTHH-mm-ss}.xml").EnsureFileName(), FileMode.Create, FileAccess.Write))
           serializer.Serialize(file, item);

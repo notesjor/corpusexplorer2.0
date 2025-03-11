@@ -32,13 +32,15 @@ namespace CorpusExplorer.Sdk.Blocks
     /// </summary>
     public int NGramSize { get; set; }
 
+    public string LayerDisplayname { get; set; } = "Wort";
+
     /// <summary>
     ///   Funktion die aufgerufen wird, wenn eine Berechnung durchgeführt werden soll.
     /// </summary>
     public override void Calculate()
     {
       var block = Selection.CreateBlock<Frequency1LayerBlock>();
-      block.LayerDisplayname = "Wort";
+      block.LayerDisplayname = LayerDisplayname;
       block.Calculate();
 
       var @lock = new object();

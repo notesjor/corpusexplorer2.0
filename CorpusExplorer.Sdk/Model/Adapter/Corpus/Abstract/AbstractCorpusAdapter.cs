@@ -787,11 +787,30 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
       return meta == null ? null : (from x in meta where x.Key == key select x.Value).FirstOrDefault();
     }
 
-    public Dictionary<Guid, int[][]> GetMultilayerDocument(Guid documentGuid)
+    /// <summary>
+    ///   The get multilayer document by guid.
+    /// </summary>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <returns>
+    ///   The <see cref="Dictionary{TKey,TValue}" />.
+    /// </returns>
+    public Dictionary<string, int[][]> GetMultilayerDocument(Guid documentGuid)
     {
-      return GetLayersOfDocument(documentGuid).ToDictionary(adapter => adapter.Guid, adapter => adapter[documentGuid]);
+      return GetLayersOfDocument(documentGuid).ToDictionary(adapter => adapter.Displayname, adapter => adapter[documentGuid]);
     }
 
+    /// <summary>
+    ///   The get multilayer document by guid.
+    /// </summary>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <param name="layerGuids">Only add Documents from specified layers</param>
+    /// <returns>
+    ///   The <see cref="Dictionary{TKey,TValue}" />.
+    /// </returns>
     public Dictionary<Guid, int[][]> GetMultilayerDocument(Guid documentGuid, IEnumerable<Guid> layerGuids)
     {
       var valid = new HashSet<Guid>(layerGuids);
@@ -799,6 +818,22 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract
                                               .ToDictionary(adapter => adapter.Guid, adapter => adapter[documentGuid]);
     }
 
+    /// <summary>
+    ///   The get multilayer document by guid.
+    /// </summary>
+    /// <param name="documentGuid">
+    ///   The document guid.
+    /// </param>
+    /// <param name="layerDisplaynames">Only add Documents from specified layers</param>
+    /// <returns>
+    ///   The <see cref="Dictionary{TKey,TValue}" />.
+    /// </returns>
+    public Dictionary<string, int[][]> GetMultilayerDocument(Guid documentGuid, IEnumerable<string> layerDisplaynames)
+    {
+      var valid = new HashSet<string>(layerDisplaynames);
+      return GetLayersOfDocument(documentGuid).Where(adapter => valid.Contains(adapter.Displayname))
+        .ToDictionary(adapter => adapter.Displayname, adapter => adapter[documentGuid]);
+    }
 
     public abstract bool RemoveConcept(Concept concept);
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -120,7 +121,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
 
     private static CorpusAdapterWriteDirect Create(string path, Stream stream)
     {
-      using (var bs = new BufferedStream(stream))
+      using (var bs = new BufferedStream(stream, Configuration.IOBufferSize))
       {
         var buffer = new byte[8];
         bs.Read(buffer, 0, buffer.Length);

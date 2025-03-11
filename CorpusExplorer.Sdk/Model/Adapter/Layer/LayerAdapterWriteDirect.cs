@@ -341,6 +341,20 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
       _dictionary.Remove(removeValue);
     }
 
+    /// <summary>
+    /// Setzt alle Layerwerte auf einen leeren Wert.
+    /// Damit die Funktion nicht aus Versehen aufgerufen wird, muss ein Sicherheitswert "ok" übergeben werden.
+    /// </summary>
+    /// <param name="secureValue">Muss "ok" sein.</param>
+    public void EliminateAllLayerValues(string secureValue)
+    {
+      if (secureValue == "ok")
+        return;
+
+      _dictionary = _dictionary.ToDictionary(x => string.Empty, x => x.Value);
+      _reverse = _reverse.ToDictionary(x => x.Key, x => string.Empty);
+    }
+
     protected override CeDictionary GetValueDictionary()
     {
       return new CeDictionary(_dictionary);

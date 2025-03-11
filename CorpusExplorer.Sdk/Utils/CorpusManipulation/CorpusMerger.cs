@@ -70,10 +70,10 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
       if (corpus == null)
         return;
 
-      if(corpus.Layers == null || corpus.Layers.Count() == 0)
+      if (corpus.Layers == null || corpus.Layers.Count() == 0)
         return;
 
-      if(corpus.CountDocuments == 0 || corpus.CountToken == 0)
+      if (corpus.CountDocuments == 0 || corpus.CountToken == 0)
         return;
 
       // concepts
@@ -97,28 +97,27 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
       // layers
       var @lock = new object();
       foreach (var layer in corpus.Layers)
-        if (_layers.ContainsKey(layer.Displayname))
-          Parallel.ForEach(
-                           layer.DocumentGuids,
-                           Configuration.ParallelOptions,
-                           dsel =>
-                           {
-                             try
-                             {
-                               var doc = layer.GetReadableDocumentByGuid(dsel)
-                                              .Select(s => s.ToArray())
-                                              .ToArray();
-                               lock (@lock)
-                                 _layers[layer.Displayname].AddCompleteDocument(dsel, doc);
-                             }
-                             catch (Exception ex)
-                             {
-                               InMemoryErrorConsole.Log(ex);
-                             }
-                           });
-        else
-          lock (@lock)
-            _layers.Add(layer.Displayname, layer.ToLayerState());
+      {
+        if (!_layers.ContainsKey(layer.Displayname))
+          _layers.Add(layer.Displayname, new LayerValueState(layer.Displayname, _layers.Count));
+
+        Parallel.ForEach(layer.DocumentGuids, Configuration.ParallelOptions,
+          dsel =>
+          {
+            try
+            {
+              var doc = layer.GetReadableDocumentByGuid(dsel)
+                             .Select(s => s.ToArray())
+                             .ToArray();
+              lock (@lock)
+                _layers[layer.Displayname].AddCompleteDocument(dsel, doc);
+            }
+            catch (Exception ex)
+            {
+              InMemoryErrorConsole.Log(ex);
+            }
+          });
+      }
     }
 
     public static AbstractCorpusAdapter Merge(

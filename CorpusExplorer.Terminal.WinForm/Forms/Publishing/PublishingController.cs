@@ -190,11 +190,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Publishing
 
       Processing.SplashShow("Text wird randomisiert...");
 
-      AbstractCorpusRandomizerStrategy _strategy;
-      if (form.RandomizeSentencesAndTokens)
-        _strategy = new CorpusRandomizerStrategyTokens();
-      else
-        _strategy = new CorpusRandomizerStrategySentences();
+      var _strategy = form.RandomizeStrategy;
 
       _tmp = selection.ToCorpus();
       _tmp = CorpusExplorer.Sdk.Utils.CorpusManipulation.CorpusRandomizer.Randomize(_tmp, _strategy);

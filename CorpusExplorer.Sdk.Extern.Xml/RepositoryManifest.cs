@@ -17,6 +17,7 @@ using CorpusExplorer.Sdk.Extern.Xml.Dewac;
 using CorpusExplorer.Sdk.Extern.Xml.DigitalPlato;
 using CorpusExplorer.Sdk.Extern.Xml.DortmunderChatKorpus;
 using CorpusExplorer.Sdk.Extern.Xml.Dpxc;
+using CorpusExplorer.Sdk.Extern.Xml.DraCor;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Basisformat;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf;
 using CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf2017;
@@ -113,6 +114,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"IDS KorAP (*.zip)|*.zip", new ImporterKorap { LoadStrategy = KorapLoadStrategyZipFile.AddonInitialize() } },
         {"IDS KorAP ab 2021 (*.zip)|*.zip", new ImporterKorap2021{ LoadStrategy = KorapLoadStrategyZipFile.AddonInitialize() } },
         {"XCES-XML (https://opus.nlpl.eu/) (*.xml)|*.xml", new ImporterOpusXces()},
+        {"SaltXML (*.xml, *.salt)|*.salt;*.xml", new ImporterSaltXml() },
         {"FoLiA-XML (*.xml)|*.xml", new ImporterFolia() }
       };
 
@@ -134,6 +136,14 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {
           "SixCMS Artikel-Export (*.xml)|*.xml",
           new SixCmsScraper()
+        },
+        {
+          "DraCor.org - Darama - Ganzer Text (*.xml)|*.xml",
+          new DraCorFullScraper()
+        },
+        {
+          "DraCor.org - Darama - Einzelne Redebeiträge (*.xml)|*.xml",
+          new DraCorTurnScraper()
         },
         {
           "Shakespeare Drama-XML (*.xml)|*.xml",
