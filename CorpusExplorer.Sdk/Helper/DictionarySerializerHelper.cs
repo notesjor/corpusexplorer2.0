@@ -49,9 +49,11 @@ namespace CorpusExplorer.Sdk.Helper
         // Lese Index
         stream.Read(bufferInt, 0, bufferInt.Length);
         var index = BitConverter.ToInt32(bufferInt, 0);
-
+        
         // Fügen Token/Index bzw. Index/Token den Wörterbüchern hinzu.
-        dictionary.Add(token, index);
+        // Fix für fehlerhafte Token-Kodierung aus externen Korpora wie KorAP
+        if (!dictionary.ContainsKey(token))                            
+          dictionary.Add(token, index);
         reverse.Add(index, token);
       }
     }

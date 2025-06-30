@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Xml;
+using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model.Abstract;
@@ -20,6 +22,25 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer
   {
     public AbstractSentenizer Sentenizer = new QuickSentenizer();
     public AbstractTokenizer Tokenizer = new HighSpeedGermanTokenizer();
+
+    public IEnumerable<AbstractCorpusAdapter> ExecuteInline(IEnumerable<string> xml)
+    {
+      var res = new List<AbstractCorpusAdapter>();
+      foreach (var x in xml)
+      {
+        try
+        {
+          var doc = new XmlDocument();
+          doc.LoadXml(x);
+          res.AddRange(Execute(ref doc));
+        }
+        catch (Exception ex)
+        {
+          InMemoryErrorConsole.Log(ex);
+        }
+      }
+      return res;
+    }
 
     public IEnumerable<AbstractCorpusAdapter> ExecuteInline(string xml)
     {

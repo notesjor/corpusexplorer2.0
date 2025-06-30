@@ -48,8 +48,8 @@ namespace CorpusExplorer.Terminal.Universal
       var settings = Configuration.GetSettings();
       settings.Add("Cache-System", Configuration.Cache.GetType().Name);
       settings.Add("Similarity", Configuration.Measure.GetType().Name);
-      settings.Add("Minimum (Frequency)", Configuration.MinimumFrequency);
-      settings.Add("Minimum (Significance)", Configuration.MinimumSignificance);
+      settings.Add("Minimum (Frequency)", Configuration.MinimumFrequency.ToString());
+      settings.Add("Minimum (Significance)", Configuration.MinimumSignificance.ToString());
       settings.Add("Significance", Configuration.GetSignificanceType().Name);
 
       obj.Response.Send(settings);
@@ -57,7 +57,7 @@ namespace CorpusExplorer.Terminal.Universal
 
     private static void ProjectSettingsSet(HttpContext obj)
     {
-      var data = obj.Request.PostData<Dictionary<string, object>>();
+      var data = obj.Request.PostData<Dictionary<string, string>>();
       if(data.ContainsKey("Cache-System"))
       {
         switch(data["Cache-System"].ToString())

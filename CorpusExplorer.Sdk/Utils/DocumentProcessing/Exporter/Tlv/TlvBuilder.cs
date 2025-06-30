@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Tlv.Model;
+using HtmlAgilityPack;
 
 namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Tlv
 {
@@ -46,7 +48,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Tlv
         if (!layer.ContainsKey(x.Layer))
         {
           layer.Add(x.Layer, layer.Count);
-          lDict.Add(x.Layer, new Dictionary<string, int> {{x.Value, 0}});
+          lDict.Add(x.Layer, new Dictionary<string, int> { { x.Value, 0 } });
         }
         else if (!lDict[x.Layer].ContainsKey(x.Value))
         {
@@ -100,10 +102,28 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Exporter.Tlv
                       $"<entry category=\"{x.Key}\" type=\"{x.Value.GetType()}\">{HttpUtility.HtmlEncode(_regex.Replace(HttpUtility.HtmlDecode(x.Value.ToString()), string.Empty))}</entry>");
 
       #endregion
+      //
+      var xml =
+        $"<xml>{(ExternalUsage ? _externalUsageInfo : "")}<layers>{layers}</layers><docs><doc id=\"0\"><meta>{meta}</meta><body>{text}</body></doc></docs></xml>";
 
-      return
-        $"<xml><meta><entry category=\"generator\" type=\"System.String\">CorpusExplorer v2.0 - TlvBuilder</entry></meta><layers>{layers}</layers><docs><doc id=\"0\"><meta>{meta}</meta><body>{text}</body></doc></docs></xml>";
+      if (ExternalUsage)
+        return xml;
+
+      #region Fix HTML Entities
+      var html = new HtmlAgilityPack.HtmlDocument();
+      html.LoadHtml(xml);
+
+      //foreach (var textNode in html.DocumentNode
+      //           .Descendants()
+      //           .Where(n => n.NodeType == HtmlNodeType.Text))
+      //  textNode.InnerHtml = WebUtility.HtmlEncode(WebUtility.HtmlDecode(textNode.InnerHtml));
+      #endregion
+
+      return html.DocumentNode.OuterHtml.Replace("<body>", "</meta><body>");
     }
+
+    public bool ExternalUsage { get; set; } = true;
+    private string _externalUsageInfo = "<meta><entry category=\"generator\" type=\"System.String\">CorpusExplorer v2.0 - TlvBuilder</entry></meta>";
 
     public void Remove(TlvEntry entry)
     {

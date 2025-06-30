@@ -30,21 +30,21 @@
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddonAppInstallState));
       this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
-      this.lbl_size = new Telerik.WinControls.UI.RadLabel();
-      this.btn_action = new Telerik.WinControls.UI.RadButton();
       this.lbl_description = new Telerik.WinControls.UI.RadLabel();
+      this.lbl_size = new Telerik.WinControls.UI.RadLabel();
+      this.clearPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
+      this.btn_action = new Telerik.WinControls.UI.RadButton();
       this.btn_info = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.InfoButton();
       this.lbl_label = new Telerik.WinControls.UI.RadLabel();
-      this.clearPanel1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.ClearPanel();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       this.radPanel1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.lbl_size)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.btn_action)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.lbl_description)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.btn_info)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.lbl_label)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.lbl_size)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.clearPanel1)).BeginInit();
       this.clearPanel1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_action)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_info)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.lbl_label)).BeginInit();
       this.SuspendLayout();
       // 
       // radPanel1
@@ -60,29 +60,6 @@
       this.radPanel1.Size = new System.Drawing.Size(190, 152);
       this.radPanel1.TabIndex = 0;
       // 
-      // lbl_size
-      // 
-      this.lbl_size.AutoSize = false;
-      this.lbl_size.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.lbl_size.Font = new System.Drawing.Font("Segoe UI", 8F);
-      this.lbl_size.Location = new System.Drawing.Point(3, 98);
-      this.lbl_size.Margin = new System.Windows.Forms.Padding(0);
-      this.lbl_size.Name = "lbl_size";
-      this.lbl_size.Size = new System.Drawing.Size(184, 18);
-      this.lbl_size.TabIndex = 5;
-      this.lbl_size.Text = "<html><strong>Benötigt:</strong> ca. {Size}</html>";
-      this.lbl_size.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-      // 
-      // btn_action
-      // 
-      this.btn_action.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.btn_action.Location = new System.Drawing.Point(33, 0);
-      this.btn_action.Name = "btn_action";
-      this.btn_action.Size = new System.Drawing.Size(151, 33);
-      this.btn_action.TabIndex = 4;
-      this.btn_action.Text = "Deinstallieren";
-      this.btn_action.Click += new System.EventHandler(this.btn_action_Click);
-      // 
       // lbl_description
       // 
       this.lbl_description.AutoSize = false;
@@ -96,6 +73,39 @@
       this.lbl_description.Text = "{Description}";
       this.lbl_description.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
       // 
+      // lbl_size
+      // 
+      this.lbl_size.AutoSize = false;
+      this.lbl_size.Dock = System.Windows.Forms.DockStyle.Bottom;
+      this.lbl_size.Font = new System.Drawing.Font("Segoe UI", 8F);
+      this.lbl_size.Location = new System.Drawing.Point(3, 98);
+      this.lbl_size.Margin = new System.Windows.Forms.Padding(0);
+      this.lbl_size.Name = "lbl_size";
+      this.lbl_size.Size = new System.Drawing.Size(184, 18);
+      this.lbl_size.TabIndex = 5;
+      this.lbl_size.Text = "<html><strong>Benötigt:</strong> ca. {Size}</html>";
+      this.lbl_size.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+      // 
+      // clearPanel1
+      // 
+      this.clearPanel1.Controls.Add(this.btn_action);
+      this.clearPanel1.Controls.Add(this.btn_info);
+      this.clearPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+      this.clearPanel1.Location = new System.Drawing.Point(3, 116);
+      this.clearPanel1.Name = "clearPanel1";
+      this.clearPanel1.Size = new System.Drawing.Size(184, 33);
+      this.clearPanel1.TabIndex = 6;
+      // 
+      // btn_action
+      // 
+      this.btn_action.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.btn_action.Location = new System.Drawing.Point(33, 0);
+      this.btn_action.Name = "btn_action";
+      this.btn_action.Size = new System.Drawing.Size(151, 33);
+      this.btn_action.TabIndex = 4;
+      this.btn_action.Text = "Deinstallieren";
+      this.btn_action.Click += new System.EventHandler(this.btn_action_Click);
+      // 
       // btn_info
       // 
       this.btn_info.Dock = System.Windows.Forms.DockStyle.Left;
@@ -107,11 +117,6 @@
       this.btn_info.MaximumSize = new System.Drawing.Size(33, 33);
       this.btn_info.MinimumSize = new System.Drawing.Size(33, 33);
       this.btn_info.Name = "btn_info";
-      // 
-      // 
-      // 
-      this.btn_info.RootElement.MaxSize = new System.Drawing.Size(33, 33);
-      this.btn_info.RootElement.MinSize = new System.Drawing.Size(33, 33);
       this.btn_info.Size = new System.Drawing.Size(33, 33);
       this.btn_info.TabIndex = 2;
       this.btn_info.Click += new System.EventHandler(this.btn_info_Click);
@@ -127,31 +132,21 @@
       this.lbl_label.Text = "{LABEL}";
       this.lbl_label.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
       // 
-      // clearPanel1
-      // 
-      this.clearPanel1.Controls.Add(this.btn_action);
-      this.clearPanel1.Controls.Add(this.btn_info);
-      this.clearPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.clearPanel1.Location = new System.Drawing.Point(3, 116);
-      this.clearPanel1.Name = "clearPanel1";
-      this.clearPanel1.Size = new System.Drawing.Size(184, 33);
-      this.clearPanel1.TabIndex = 6;
-      // 
-      // AddonInstallState
+      // AddonAppInstallState
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.Controls.Add(this.radPanel1);
-      this.Name = "AddonInstallState";
+      this.Name = "AddonAppInstallState";
       this.Size = new System.Drawing.Size(190, 152);
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
       this.radPanel1.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.lbl_size)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.btn_action)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.lbl_description)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.btn_info)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.lbl_label)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.lbl_size)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.clearPanel1)).EndInit();
       this.clearPanel1.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.btn_action)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.btn_info)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.lbl_label)).EndInit();
       this.ResumeLayout(false);
 
     }

@@ -84,26 +84,32 @@ namespace CorpusExplorer.Sdk.ViewModel
                               out var token, out var stoken, out var sigMax, out var sigSum, out var sigMed, out var cooc);
 
             var key = string.Join("|", streamDoc);
+            var min = streamDoc.Length;
+            var max = 0;
+
+            foreach (var range in sent.Value)
+            {
+              if (range.From < min)
+                min = range.From;
+              if (range.To > max)
+                max = range.To;
+            }
+
             if (!res.ContainsKey(key))
-              foreach (var range in sent.Value)
+              res.Add(key, new SignificanceExtendedUniqueTextLiveSearchResultEntry
               {
-                res.Add(
-                        key,
-                        new SignificanceExtendedUniqueTextLiveSearchResultEntry
-                        {
-                          Pre = $"{HighlightBodyStart}{streamDoc.SplitDocument(0, range.To)}{HighlightBodyEnd}",
-                          Match = $"{HighlightBodyStart}{streamDoc.SplitDocument(range.From, range.To)}{HighlightBodyEnd}",
-                          Post = $"{HighlightBodyStart}{streamDoc.SplitDocument(range.To)}{HighlightBodyEnd}",
-                          Token = token,
-                          SignificantToken = stoken,
-                          SignificanceMax = sigMax,
-                          SignificanceSum = sigSum,
-                          SignificanceMed = sigMed,
-                          CorpusGuid = corpus.Key,
-                          DocumentGuid = document.Key,
-                          FoundCooccurrences = cooc
-                        });
-              }
+                Pre = $"{HighlightBodyStart}{streamDoc.SplitDocument(0, min)}{HighlightBodyEnd}",
+                Match = $"{HighlightBodyStart}{streamDoc.SplitDocument(min, max)}{HighlightBodyEnd}",
+                Post = $"{HighlightBodyStart}{streamDoc.SplitDocument(max)}{HighlightBodyEnd}",
+                Token = token,
+                SignificantToken = stoken,
+                SignificanceMax = sigMax,
+                SignificanceSum = sigSum,
+                SignificanceMed = sigMed,
+                CorpusGuid = corpus.Key,
+                DocumentGuid = document.Key,
+                FoundCooccurrences = cooc
+              });
 
             res[key].AddSentence(document.Key, sent.Key);
           }
@@ -131,32 +137,45 @@ namespace CorpusExplorer.Sdk.ViewModel
       var res = new List<string>();
       cooc = new HashSet<string>(); // Verhindert Kookkurrenz-Mehrfachnennung UND gibt die gefunden Kookkurrenzen zurück
       var med = new List<double>();
-      token = streamDoc.Length;
+      token = streamDoc?.Length ?? 0;
       sigMax = 0;
       sigSum = 0;
+      if (streamDoc == null || streamDoc.Length == 0)
+      {
+        stoken = 0;
+        sigMed = 0;
+        return res.ToArray();
+      }
 
       foreach (var w in streamDoc)
       {
-        string val;
-        if (_highlightCache.ContainsKey(w))
+        try
         {
-          val = $"{HighlightStart}{w}{HighlightEnd}";
-          if (!cooc.Contains(w))
+          string val;
+          if (_highlightCache.ContainsKey(w))
           {
-            cooc.Add(w);
-            var sig = _highlightCache[w];
-            if (sig > sigMax)
-              sigMax = sig;
-            sigSum += sig;
-            med.Add(sig);
+            val = $"{HighlightStart}{w}{HighlightEnd}";
+            if (!cooc.Contains(w))
+            {
+              cooc.Add(w);
+              var sig = _highlightCache[w];
+              if (sig > sigMax)
+                sigMax = sig;
+              sigSum += sig;
+              med.Add(sig);
+            }
           }
-        }
-        else
-        {
-          val = w;
-        }
+          else
+          {
+            val = w;
+          }
 
-        res.Add(val);
+          res.Add(val);
+        }
+        catch
+        {
+          res.Add(w);
+        }
       }
 
       stoken = cooc.Count;

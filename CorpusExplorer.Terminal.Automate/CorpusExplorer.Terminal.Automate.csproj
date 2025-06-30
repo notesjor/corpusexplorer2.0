@@ -108,28 +108,28 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.Licensing.Runtime, Version=1.4.6.0, Culture=neutral, PublicKeyToken=98bb5b04e55c09ef, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2025.1.211.462\Telerik.Licensing.Runtime.dll</HintPath>
+    <Reference Include="Telerik.Licensing.Runtime, Version=1.6.5.0, Culture=neutral, PublicKeyToken=98bb5b04e55c09ef, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2025.2.520.462\Telerik.Licensing.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls, Version=2025.1.211.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2025.1.211.462\Telerik.WinControls.dll</HintPath>
+    <Reference Include="Telerik.WinControls, Version=2025.2.520.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2025.2.520.462\Telerik.WinControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.GridView, Version=2025.1.211.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2025.1.211.462\Telerik.WinControls.GridView.dll</HintPath>
+    <Reference Include="Telerik.WinControls.GridView, Version=2025.2.520.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2025.2.520.462\Telerik.WinControls.GridView.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2025.1.211.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2025.1.211.462\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2025.2.520.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2025.2.520.462\Telerik.WinControls.Themes.TelerikMetroTouch.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI, Version=2025.1.211.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2025.1.211.462\Telerik.WinControls.UI.dll</HintPath>
+    <Reference Include="Telerik.WinControls.UI, Version=2025.2.520.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2025.2.520.462\Telerik.WinControls.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="TelerikCommon, Version=2025.1.211.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <HintPath>..\lib\RCWF\2025.1.211.462\TelerikCommon.dll</HintPath>
+    <Reference Include="TelerikCommon, Version=2025.2.520.462, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2025.2.520.462\TelerikCommon.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -191,6 +191,7 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TelerikLicense.cs" />
     <EmbeddedResource Include="Controls\Info.resx">
       <DependentUpon>Info.cs</DependentUpon>
     </EmbeddedResource>
@@ -316,7 +317,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="PostSharp.Redist">
-      <Version>2025.0.6</Version>
+      <Version>2025.1.5</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

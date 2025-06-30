@@ -269,9 +269,9 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Corpus
 
     public override void LayerRename(string layerDisplaynameOld, string layerDisplaynameNew)
     {
-      var layers = (from x in _layers where x.Displayname == layerDisplaynameOld select x).ToArray();
-      foreach (var layer in layers)
-        layer.Displayname = layerDisplaynameNew;
+      foreach (var layer in _layers)
+        if (layer.Displayname == layerDisplaynameOld)
+          layer.Displayname = layerDisplaynameNew;
     }
 
     public override bool RemoveConcept(Concept concept)

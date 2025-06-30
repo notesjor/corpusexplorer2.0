@@ -96,23 +96,7 @@ namespace CorpusExplorer.Sdk.Model.Adapter.Layer
         res.Displayname = Configuration.Encoding.GetString(buffer);
 
         // Dictionary
-        var buffer2 = new byte[sizeof(int)];
-        while (true)
-        {
-          fs.Read(buffer2, 0, buffer2.Length);
-          length = BitConverter.ToInt32(buffer2, 0);
-          if (length < 0)
-            break; // SPLIT (durch int.MinValue)
-          buffer = new byte[length];
-          fs.Read(buffer, 0, buffer.Length);
-
-          var v = Configuration.Encoding.GetString(buffer);
-          fs.Read(buffer2, 0, buffer2.Length);
-          var i = BitConverter.ToInt32(buffer2, 0);
-
-          res._dictionary.Add(v, i);
-          res._reverse.Add(i, v);
-        }
+        DictionarySerializerHelper.Deserialize(fs, ref res._dictionary, ref res._reverse);
 
         // Documents
         buffer = new byte[16];

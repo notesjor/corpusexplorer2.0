@@ -65,6 +65,12 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
                                                                         _concepts));
     }
 
+    public void Input(IEnumerable<AbstractCorpusAdapter> corpora)
+    {
+      foreach (var c in corpora)
+        Input(c);
+    }
+
     public void Input(AbstractCorpusAdapter corpus)
     {
       if (corpus == null)

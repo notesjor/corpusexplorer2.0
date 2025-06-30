@@ -14,9 +14,6 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.AdditionalTaggerWra
 
     public override void AddLayer(AbstractLayerAdapter layer)
     {
-      if (layer.Displayname == "Wort")
-        return;
-
       AdditionalTaggerWrapperLayers.Add(layer as AdditionalTaggerWrapperLayer);
     }
 

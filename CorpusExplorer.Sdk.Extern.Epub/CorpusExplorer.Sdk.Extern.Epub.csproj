@@ -71,10 +71,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack">
-      <Version>1.12.0</Version>
+      <Version>1.12.1</Version>
     </PackageReference>
     <PackageReference Include="VersOne.Epub">
-      <Version>3.3.3</Version>
+      <Version>3.3.4</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

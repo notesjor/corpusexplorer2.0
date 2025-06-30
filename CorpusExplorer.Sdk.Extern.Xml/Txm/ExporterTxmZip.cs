@@ -15,7 +15,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Txm
     public override void Export(IHydra hydra, string zipPath)
     {
       using (var fs = new FileStream(zipPath, FileMode.Create, FileAccess.Write))
-      using (var zip = new ZipArchive(fs, ZipArchiveMode.Create, true, null))
+      using (var zip = ZipArchive.Create(fs))
       {
         var template = InitTemplate(hydra.LayerDisplaynames);
 

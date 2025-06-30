@@ -50,6 +50,10 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Licensing.Runtime, Version=1.6.5.0, Culture=neutral, PublicKeyToken=98bb5b04e55c09ef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\Progress\Telerik UI for WinForms 2025 Q2\Bin48\Telerik.Licensing.Runtime.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ce1CompatibilityController.cs" />
@@ -85,6 +89,7 @@
     <Compile Include="ImporterCorpusExplorerV1toV5.cs" />
     <Compile Include="RepositoryManifest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TelerikLicense.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj">

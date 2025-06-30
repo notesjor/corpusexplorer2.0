@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -31,6 +32,10 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Importer.CorpusExplorerV6;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Scraper.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract;
+using Newtonsoft.Json;
+using Bcs.IO;
+
+
 #if UNIVERSAL
 #else
 using Bcs.Addon;
@@ -85,7 +90,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     {
       get
       {
-        var list = _addonBackends.Where(x=>!string.IsNullOrWhiteSpace(x.Key)).OrderBy(x => x.Key).ToList();
+        var list = _addonBackends.Where(x => !string.IsNullOrWhiteSpace(x.Key)).OrderBy(x => x.Key).ToList();
         var cec6 =
           (from x in list where x.Value.GetType() == typeof(CorpusBuilderWriteDirect) select x).FirstOrDefault();
         list.Remove(cec6);
@@ -118,7 +123,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     {
       get
       {
-        var list = _addonExporters.Where(x=>!string.IsNullOrWhiteSpace(x.Key)).OrderBy(x => x.Key).ToList();
+        var list = _addonExporters.Where(x => !string.IsNullOrWhiteSpace(x.Key)).OrderBy(x => x.Key).ToList();
         var cec6 = (from x in list where x.Value.GetType() == typeof(ExporterCec6) select x).FirstOrDefault();
         list.Remove(cec6);
         list.Insert(0, cec6);
@@ -141,7 +146,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     {
       get
       {
-        var list = _addonImporters.Where(x=>!string.IsNullOrWhiteSpace(x.Key)).OrderBy(x => x.Key).ToList();
+        var list = _addonImporters.Where(x => !string.IsNullOrWhiteSpace(x.Key)).OrderBy(x => x.Key).ToList();
         var cec6 = (from x in list where x.Value.GetType() == typeof(ImporterCec6) select x).FirstOrDefault();
         list.Remove(cec6);
         list.Insert(0, cec6);
@@ -227,7 +232,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     ///   Für Dateien OHNE Annotation.
     /// </summary>
     public static IEnumerable<KeyValuePair<string, AbstractScraper>> AddonScrapers =>
-      _addonScrapers.Where(x=>!string.IsNullOrWhiteSpace(x.Key)).OrderBy(x => x.Key);
+      _addonScrapers.Where(x => !string.IsNullOrWhiteSpace(x.Key)).OrderBy(x => x.Key);
 
     public static void AddonScrapersAdd(IEnumerable<KeyValuePair<string, AbstractScraper>> list)
     {
@@ -240,7 +245,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// Export für Analysedaten im Tabellenformat
     /// </summary>
     public static IEnumerable<KeyValuePair<string, AbstractTableWriter>> AddonTableWriter =>
-      _addonTableWriters.Where(x=>!string.IsNullOrWhiteSpace(x.Key)).OrderBy(x => x.Key);
+      _addonTableWriters.Where(x => !string.IsNullOrWhiteSpace(x.Key)).OrderBy(x => x.Key);
 
     /// <summary>
     ///   Tagger
@@ -332,7 +337,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
         try
         {
-          _encoding = Encoding.GetEncoding((int)GetSetting("Encoding (CodePage)", Encoding.UTF8.CodePage));
+          _encoding = Encoding.GetEncoding(GetSetting("Encoding (CodePage)", Encoding.UTF8.CodePage));
         }
         catch
         {
@@ -344,7 +349,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       set
       {
         _encoding = value ?? Encoding.UTF8;
-        SetSetting("Encoding (CodePage)", _encoding.CodePage);
+        SetSetting("Encoding (CodePage)", _encoding.CodePage.ToString());
       }
     }
 
@@ -392,14 +397,14 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
     public static bool ProtectMemoryOverflow
     {
-      get => (bool)GetSetting("RAM-Selbstschutz", true);
-      set => SetSetting("RAM-Selbstschutz", value);
+      get => GetSetting("RAM-Selbstschutz", true);
+      set => SetSetting("RAM-Selbstschutz", value.ToString());
     }
 
     public static double DefaultFontSize
     {
       get => (double)GetSetting("Schriftgröße", 12.0);
-      set => SetSetting("Schriftgröße", value);
+      set => SetSetting("Schriftgröße", value.ToString());
     }
 
     public static Random Random { get; private set; } = new Random();
@@ -413,7 +418,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
 
         try
         {
-          _rightToLeftSupport = (bool)GetSetting("R/L-Support", false);
+          _rightToLeftSupport = GetSetting("R/L-Support", false);
         }
         catch
         {
@@ -425,7 +430,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       set
       {
         _rightToLeftSupport = value;
-        SetSetting("R/L-Support", value);
+        SetSetting("R/L-Support", value.ToString());
       }
     }
 
@@ -443,7 +448,30 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       {
         try
         {
-          return Path.Combine(Path.GetTempPath(), "CorpusExplorer");
+          var res = Path.Combine(Path.GetTempPath(), "CorpusExplorer");
+          if (Directory.Exists(res))
+            return res;
+
+          Directory.CreateDirectory(res);
+          if (!res.StartsWith("/tmp/"))
+            return res;
+
+          // Unix
+          try
+          {
+            var process = Process.Start(new ProcessStartInfo
+            {
+              FileName = "chmod",
+              Arguments = "777 " + res,
+              UseShellExecute = false
+            });
+            process.WaitForExit();
+          }
+          catch
+          {
+            // ignore
+          }
+          return res;
         }
         catch
         {
@@ -484,8 +512,8 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     public static bool UseChrome { get; set; } = true;
     public static int IOBufferSize
     {
-      get => (int)GetSetting("Puffergröße", 1024 * 1024 * 100);
-      set => SetSetting("Puffergröße", value);
+      get => GetSetting("Puffergröße", 1024 * 1024 * 100);
+      set => SetSetting("Puffergröße", value.ToString());
     }
 
     public static IAction GetConsoleAction(string actionName)
@@ -557,7 +585,7 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// <returns>
     ///   Wert
     /// </returns>
-    public static object GetSetting(string settingName, object defaultValue)
+    public static string GetSetting(string settingName, string defaultValue)
     {
       try
       {
@@ -574,18 +602,64 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       }
     }
 
-    public static Dictionary<string, object> GetSettings(string alternativePath = null)
+    public static int GetSetting(string settingName, int defaultValue)
     {
       try
       {
-        return File.Exists(alternativePath ?? SettingsAppPath)
-                 ? Serializer.Deserialize<Dictionary<string, object>>(alternativePath ?? SettingsAppPath)
-                 : new Dictionary<string, object>();
+        var get = GetSetting(settingName, defaultValue.ToString());
+        return int.TryParse(get, out var res) ? res : defaultValue;
       }
       catch
       {
-        return new Dictionary<string, object>();
+        return defaultValue;
       }
+    }
+
+    public static double GetSetting(string settingName, double defaultValue)
+    {
+      try
+      {
+        var get = GetSetting(settingName, defaultValue.ToString());
+        return double.TryParse(get, out var res) ? res : defaultValue;
+      }
+      catch
+      {
+        return defaultValue;
+      }
+    }
+
+    public static bool GetSetting(string settingName, bool defaultValue)
+    {
+      try
+      {
+        var get = GetSetting(settingName, defaultValue.ToString());
+        return bool.TryParse(get, out var res) ? res : defaultValue;
+      }
+      catch
+      {
+        return defaultValue;
+      }
+    }
+
+    private static object _cacheSettingsLock = new object();
+    private static Dictionary<string, string> _cacheSettings = null;
+
+    public static Dictionary<string, string> GetSettings(string alternativePath = null)
+    {
+      lock (_cacheSettingsLock)
+        try
+        {
+          if (_cacheSettings == null)
+            _cacheSettings = File.Exists(alternativePath ?? SettingsAppPath)
+              ? JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(alternativePath ?? SettingsAppPath, Encoding.UTF8))
+              : new Dictionary<string, string>();
+
+          return _cacheSettings;
+        }
+        catch
+        {
+          return new Dictionary<string, string>();
+        }
     }
 
     public static void Reload3rdPartyAddons(string alternativePath = null)
@@ -674,6 +748,15 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       }
     }
 
+    public static void SetSetting(string settingName, int value)
+      => SetSetting(settingName, value.ToString());
+
+    public static void SetSetting(string settingName, double value)
+      => SetSetting(settingName, value.ToString());
+
+    public static void SetSetting(string settingName, bool value)
+      => SetSetting(settingName, value.ToString());
+
     /// <summary>
     ///   Speichert eine Einstellung
     /// </summary>
@@ -683,9 +766,9 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
     /// <param name="value">
     ///   Wert
     /// </param>
-    public static void SetSetting(string settingName, object value)
+    public static void SetSetting(string settingName, string value)
     {
-      var obj = GetSettings() ?? new Dictionary<string, object>();
+      var obj = GetSettings() ?? new Dictionary<string, string>();
       if (obj.ContainsKey(settingName))
         obj[settingName] = value;
       else
@@ -694,15 +777,19 @@ namespace CorpusExplorer.Sdk.Ecosystem.Model
       SetSettings(obj);
     }
 
-    public static void SetSettings(Dictionary<string, object> settings, string alternativePath = null)
+    public static void SetSettings(Dictionary<string, string> settings, string alternativePath = null)
     {
-      try
+      lock (_cacheSettingsLock)
       {
-        Serializer.Serialize(settings, alternativePath ?? SettingsAppPath, true);
-      }
-      catch
-      {
-        // ignore
+        _cacheSettings = null;
+        try
+        {
+          FileIO.Write(alternativePath ?? SettingsAppPath, JsonConvert.SerializeObject(settings));
+        }
+        catch
+        {
+          // ignore
+        }
       }
     }
 

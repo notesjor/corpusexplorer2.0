@@ -25,7 +25,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
 
       var packages = ExportPackageHelper.MakePackages(hydra);
       using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
-      using (var zip = new ZipArchive(fs, ZipArchiveMode.Create, true, null))
+      using (var zip = ZipArchive.Create(fs))
       {
         var csigle = Path.GetFileNameWithoutExtension(path);
 
@@ -226,7 +226,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
         path = Path.Combine(dir, $"{name}.{FoundryName}.zip");
 
         _fs = new FileStream(path, FileMode.Create, FileAccess.Write);
-        Zip = new ZipArchive(_fs, ZipArchiveMode.Create, true, null);
+        Zip = ZipArchive.Create(_fs);
 
         CorpusGuid = corpusGuid;
         LayerDisplaynames = layerDisplaynames;

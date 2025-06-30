@@ -7,6 +7,28 @@ namespace CorpusExplorer.Sdk.Helper
 {
   public static class SelectionJoiner
   {
+    public static Dictionary<Guid, HashSet<Guid>> JoinToDictionary(this IEnumerable<Selection> selections)
+    {
+      var dict = new Dictionary<Guid, HashSet<Guid>>();
+      if (selections == null)
+        return dict;
+      foreach (var selection in selections)
+      {
+        var sel = selection.CorporaAndDocumentGuids;
+        if (sel == null)
+          continue;
+
+        foreach (var csel in sel)
+        {
+          if (!dict.ContainsKey(csel.Key))
+            dict.Add(csel.Key, new HashSet<Guid>());
+          foreach (var dsel in csel.Value)
+            dict[csel.Key].Add(dsel);
+        }
+      }
+      return dict;
+    }
+
     public static Selection JoinFull(this IEnumerable<Selection> selections, string newSelectionDisplayname)
     {
       var list = selections.ToList();

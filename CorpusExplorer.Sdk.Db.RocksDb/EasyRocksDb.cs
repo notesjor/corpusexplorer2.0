@@ -208,5 +208,10 @@ namespace CorpusExplorer.Sdk.Db.RocksDb
     {
       _db?.Dispose();
     }
+
+    public void CompactRange()
+    {
+      _db.CompactRange(null, null, null);
+    }
   }
 }

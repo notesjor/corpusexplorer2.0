@@ -109,7 +109,7 @@ namespace CorpusExplorer.Sdk.Helper
       stream.Write(buffer, 0, buffer.Length);
 
       foreach (var s in array)
-        if (s == null)
+        if (s == null || s.Length == 0)
         {
           buffer = BitConverter.GetBytes(0);
           stream.Write(buffer, 0, buffer.Length);

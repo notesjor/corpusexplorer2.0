@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 
@@ -11,10 +12,31 @@ namespace CorpusExplorer.Sdk.Helper
       if (string.IsNullOrEmpty(directory))
         directory = Configuration.TempPath;
 
-      if (!Directory.Exists(directory))
-        Directory.CreateDirectory(directory);
-
       Path = System.IO.Path.Combine(directory, Guid.NewGuid().ToString("N") + fileExtension).Replace("\\", "/");
+
+      if (Directory.Exists(directory)) 
+        return;
+
+      Directory.CreateDirectory(directory);
+
+      if (!directory.StartsWith("/tmp/")) 
+        return;
+      
+      // Unix
+      try
+      {
+        var process = Process.Start(new ProcessStartInfo
+        {
+          FileName = "chmod",
+          Arguments = "777 " + directory,
+          UseShellExecute = false
+        });
+        process.WaitForExit();
+      }
+      catch
+      {
+        // ignore
+      }
     }
 
     public string Path { get; }

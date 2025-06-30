@@ -29,9 +29,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Dta.Tcf
     public string UnknownPropertyValue { get; set; } = "Unbekannt";
 
     public override void Export(IHydra hydra, string zipPath)
-    {
+    { 
       using (var fs = new FileStream(zipPath, FileMode.Create, FileAccess.Write))
-      using (var zip = new ZipArchive(fs, ZipArchiveMode.Create, true, null))
+      using (var zip = ZipArchive.Create(fs))
       {
         foreach (var guid in hydra.DocumentGuids)
         {

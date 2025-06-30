@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model.Abstract;
@@ -31,7 +33,12 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
           if (!Input.TryDequeue(out var corpus))
             continue;
 
-          Output.Enqueue(CorpusBuilder.Append(corpus, ExecuteCall(ref corpus)));
+          var layers = ExecuteCall(ref corpus).ToList();
+          var docMeta = corpus.DocumentMetadata?.ToDictionary(x => x.Key, x => x.Value);
+          var corpusMeta = corpus.GetCorpusMetadata()?.ToDictionary(x => x.Key, x => x.Value);
+          var concepts = corpus.Concepts?.ToList();
+
+          Output.Enqueue(CorpusBuilder.Create(layers, docMeta, corpusMeta, concepts).First());
         }
       }
       catch

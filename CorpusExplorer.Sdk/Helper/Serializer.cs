@@ -6,6 +6,7 @@ using System.IO.Compression;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
+using Bcs.IO;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using Newtonsoft.Json;
@@ -164,17 +165,16 @@ namespace CorpusExplorer.Sdk.Helper
         SerializeUncompressed(obj, path);
     }
 
-    public static void SerializeJson<T>(T obj, string path)
+    public static void SerializeJson<T>(T obj, string path, bool typeSafe = true)
     {
       try
       {
-        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
-        using (var bs = new BufferedStream(fs))
-        using (var write = new StreamWriter(bs))
+        var settings = new JsonSerializerSettings
         {
-          var json = new JsonSerializer();
-          json.Serialize(write, obj);
-        }
+          TypeNameHandling = typeSafe ? TypeNameHandling.All : TypeNameHandling.None,
+          Formatting = Formatting.Indented
+        };
+        FileIO.Write(path, JsonConvert.SerializeObject(obj, settings));
       }
       catch (Exception ex)
       {
@@ -390,11 +390,11 @@ namespace CorpusExplorer.Sdk.Helper
       }
     }
 
-    #if UNIVERSAL
-    #else
+#if UNIVERSAL
+#else
 
-    #if ULTRA
-    #else
+#if ULTRA
+#else
     private static object DeserializeNetDataContractCompressed(string path)
     {
       try

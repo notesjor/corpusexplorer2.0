@@ -57,7 +57,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
       char oper,
       string value)
     {
-      var separator = new[] {" ", ";"};
+      var separator = new[] { " ", ";" };
 
       switch (type)
       {
@@ -127,6 +127,12 @@ namespace CorpusExplorer.Sdk.Utils.Filter
         case 't':
           switch (oper)
           {
+            case '!':
+              return new FilterQuerySingleLayerExists
+              {
+                Inverse = inverse,
+                LayerDisplayname = name
+              };
             case '?':
               return new FilterQuerySingleLayerRegex
               {
@@ -173,7 +179,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
               return new FilterQueryMultiLayerPhrase
               {
                 Inverse = inverse,
-                MultiLayerQueries = value.Split(separator, StringSplitOptions.RemoveEmptyEntries), 
+                MultiLayerQueries = value.Split(separator, StringSplitOptions.RemoveEmptyEntries),
               };
             case '1':
               return new FilterQuerySingleLayerFirstAndAnyOtherMatch
@@ -194,14 +200,14 @@ namespace CorpusExplorer.Sdk.Utils.Filter
               {
                 Inverse = inverse,
                 MetaLabel = "<:RANDOM:>",
-                MetaValues = new[] {value}
+                MetaValues = new[] { value }
               };
             case 'S':
               return new FilterQueryUnsupportedParserFeature
               {
                 Inverse = inverse,
                 MetaLabel = name,
-                MetaValues = new[] {value}
+                MetaValues = new[] { value }
               };
             case 'C':
               return new FilterQueryUnsupportedParserFeature
@@ -222,7 +228,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
     {
       if (values[0] == '"' && values[values.Length - 1] == '"')
         values = values.Substring(1, values.Length - 2);
-      return new[] {values.Replace("''", "\"")};
+      return new[] { values.Replace("''", "\"") };
     }
 
     private static AbstractFilterQuery ParseEntry(string query)

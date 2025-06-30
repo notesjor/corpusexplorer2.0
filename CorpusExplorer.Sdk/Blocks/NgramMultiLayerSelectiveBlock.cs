@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
-using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
+using CorpusExplorer.Sdk.Blocks.NgramMultiLayerSelectiveQuery;
+using CorpusExplorer.Sdk.Blocks.NgramMultiLayerSelectiveQuery.ValidateCall.Abstract;
+using CorpusExplorer.Sdk.Model.Extension;
 
 namespace CorpusExplorer.Sdk.Blocks
 {
@@ -12,134 +14,90 @@ namespace CorpusExplorer.Sdk.Blocks
   {
     private string Pattern { get; set; } = "*";
     public Dictionary<string, double> NGramFrequency { get; private set; }
-    public Dictionary<string, string[]> LayerAndQueries { get; set; }
+    /// <summary>
+    /// Query Key = Layer Name, Value = Position mit Query (*, PREFIX*, *SUFFIX, REGEX:...)
+    /// </summary>
+    public Dictionary<string, string[]> LayerQueries { get; set; } = null;
+    /// <summary>
+    /// Ermöglicht es vorkompilierte Queries zu verwenden. Achtung: Wenn mehrere Korpora eingesetzt werden, müssen die Queries für jedes Korpus neu kompiliert werden.
+    /// </summary>
+    public List<Dictionary<string, AbstractValidateCall>> LayerQueriesPreCompiled { get; set; } = null;
     public string LayerDisplayname { get; set; } = "Wort";
-
-    private abstract class AbstractValidateCall
-    {
-      public abstract bool Validate(int index);
-    }
-
-    private sealed class ValidateCallAll : AbstractValidateCall
-    {
-      public override bool Validate(int index) => true;
-    }
-
-    private sealed class ValidateCallExact : AbstractValidateCall
-    {
-      private readonly int _index;
-      public ValidateCallExact(int index) => _index = index;
-      public override bool Validate(int index) => _index == index;
-    }
-
-    private sealed class ValidCallHashset : AbstractValidateCall
-    {
-      private readonly HashSet<int> _hashSet;
-      private ValidCallHashset(HashSet<int> hashSet) => _hashSet = hashSet;
-      public static ValidCallHashset CreateContains(AbstractLayerAdapter layer, string value)
-        => new ValidCallHashset(new HashSet<int>(layer.Values.Where(x => x.Contains(value)).Select(x => layer[x])));
-      public static ValidCallHashset CreateStartsWith(AbstractLayerAdapter layer, string value)
-        => new ValidCallHashset(new HashSet<int>(layer.Values.Where(x => x.StartsWith(value)).Select(x => layer[x])));
-      public static ValidCallHashset CreateEndsWith(AbstractLayerAdapter layer, string value)
-        => new ValidCallHashset(new HashSet<int>(layer.Values.Where(x => x.EndsWith(value)).Select(x => layer[x])));
-      public override bool Validate(int index) => _hashSet.Contains(index);
-    }
-
-    private sealed class ValidateCallRegex : AbstractValidateCall
-    {
-      private readonly HashSet<int> _hashSet;
-      public ValidateCallRegex(AbstractLayerAdapter layer, string value)
-      {
-        var regex = new System.Text.RegularExpressions.Regex(value);
-        _hashSet = new HashSet<int>(from x in layer.ReciveRawLayerDictionary() where regex.IsMatch(x.Key) select x.Value);
-      }
-
-      public override bool Validate(int index) => _hashSet.Contains(index);
-    }
 
     public override void Calculate()
     {
+      var @lock = new object();
       NGramFrequency = new Dictionary<string, double>();
 
-      var nMax = LayerAndQueries.First().Value.Length;
-      if (LayerAndQueries.Keys.Any(k => LayerAndQueries[k].Length != nMax))
-        return;
+      int nMax;
+      string[] layers;
 
-      var mainLayer = Selection.GetLayers(LayerDisplayname).First();
-      var layers = LayerAndQueries.Keys.ToArray();
-      var compiledQueries = GetCompiledQueries(nMax, layers);
-      var layerNames = new HashSet<string>(layers) { LayerDisplayname };
-      var @lock = new object();
-
-      Parallel.ForEach(Selection.DocumentGuids, dsel =>
+      if (LayerQueriesPreCompiled == null)
       {
-        var multi = Selection.GetMultilayerDocument(dsel, layerNames);
-        if (multi.Count != compiledQueries.Count)
+        nMax = LayerQueries.First().Value.Length;
+        if (LayerQueries.Keys.Any(k => LayerQueries[k].Length != nMax))
           return;
-
-        var first = multi.First(x => x.Key == LayerDisplayname);
-        for (var s = 0; s < first.Value.Length; s++)
-        {
-          for (var t = 0; t < first.Value[s].Length; t++)
-          {
-            var valid = true;
-            for (var n = 0; n < nMax; n++)
-            {
-              if (layers.All(l => compiledQueries[n][l].Validate(multi[l][s][t])))
-                continue;
-
-              valid = false;
-              break;
-            }
-
-            if (!valid)
-              continue;
-
-            var tmp = new List<string>();
-            for (var n = 0; n < nMax; n++)
-              tmp.Add(mainLayer[first.Value[s][t + n]]);
-            var key = string.Join(" ", tmp);
-            lock (@lock)
-            {
-              if (NGramFrequency.ContainsKey(key))
-                NGramFrequency[key]++;
-              else
-                NGramFrequency.Add(key, 1);
-            } 
-          }
-        }
-      });
-    }
-
-    private List<Dictionary<string, AbstractValidateCall>> GetCompiledQueries(int n, string[] layers)
-    {
-      var compiledQueries = new List<Dictionary<string, AbstractValidateCall>>();
-      for (var i = 0; i < n; i++)
+        layers = LayerQueries.Keys.ToArray();
+      }
+      else
       {
-        compiledQueries.Add(new Dictionary<string, AbstractValidateCall>());
-        foreach (var l in layers)
-          compiledQueries[i].Add(l, Compile(l, LayerAndQueries[l][i]));
+        nMax = LayerQueriesPreCompiled.Count;
+        layers = LayerQueriesPreCompiled.First().Keys.ToArray();
       }
 
-      return compiledQueries;
-    }
+      Parallel.ForEach(Selection.CorporaAndDocumentGuids, csel =>
+      {
+        var corpus = Selection.GetCorpus(csel.Key);
+        var queriesCompiled = LayerQueriesPreCompiled ?? QueryCompiler.Compile(corpus.ToSelection(), LayerQueries, Pattern);
 
-    private AbstractValidateCall Compile(string lKey, string query)
-    {
-      var layer = Selection.GetLayers(lKey).First();
+        var layerNames = new HashSet<string>(layers) { LayerDisplayname };
+        var mainLayer = corpus.GetLayers(LayerDisplayname).First();
 
-      if (string.IsNullOrWhiteSpace(query) || query == Pattern)
-        return new ValidateCallAll();
-      if (query.StartsWith(Pattern) && query.EndsWith(Pattern))
-        return ValidCallHashset.CreateContains(layer, query.Substring(1, query.Length - 2));
-      if (query.StartsWith(Pattern))
-        return ValidCallHashset.CreateEndsWith(layer, query.Substring(1));
-      if (query.EndsWith(Pattern))
-        return ValidCallHashset.CreateStartsWith(layer, query.Substring(0, query.Length - 1));
-      if (query.StartsWith("REGEX:"))
-        return new ValidateCallRegex(layer, query.Substring(6));
+        Parallel.ForEach(csel.Value, dsel =>
+        {
+          var multi = corpus.GetMultilayerDocument(dsel, layerNames);
+          if (multi.Count != layerNames.Count)
+            return;
 
-      return new ValidateCallExact(layer[query]);
+          var first = multi.First(x => x.Key == LayerDisplayname).Value;
+          for (var s = 0; s < first.Length; s++)
+          {
+            for (var t = 0; t < first[s].Length; t++)
+            {
+              var valid = true;
+              for (var n = 0; n < nMax; n++)
+              {
+                if (t + n >= first[s].Length)
+                  break;
+
+                if (layers.Any(l => !queriesCompiled[n][l].Validate(multi[l][s][t + n])))
+                  valid = false;
+
+                if (!valid)
+                  break;
+              }
+
+              if (!valid)
+                continue;
+
+              if (nMax + t >= first[s].Length)
+                continue;
+
+              var tmp = new List<string>();
+              for (var n = 0; n < nMax; n++)
+                tmp.Add(mainLayer[first[s][t + n]]);
+              var key = string.Join(" ", tmp);
+              lock (@lock)
+              {
+                if (NGramFrequency.ContainsKey(key))
+                  NGramFrequency[key]++;
+                else
+                  NGramFrequency.Add(key, 1);
+              }
+            }
+          }
+        });
+      });
     }
   }
 }

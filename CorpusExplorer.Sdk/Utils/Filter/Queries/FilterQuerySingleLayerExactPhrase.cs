@@ -131,7 +131,8 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           if (!valid)
             continue;
 
-          return new CeRange(doc.GetIndex(i).Value);
+          var idx = doc.GetIndex(i).Value;
+          return new CeRange(idx, idx + sum);
         }
       }
 
@@ -248,7 +249,8 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
           if (!valid)
             continue;
 
-          res.Add(new CeRange(doc.GetIndex(i).Value));
+          var idx = doc.GetIndex(i).Value;
+          res.Add(new CeRange(idx, idx + sum));
         }
       }
 

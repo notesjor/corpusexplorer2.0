@@ -359,6 +359,28 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die [
+        ///{&quot;Name&quot;:&quot;Test-Korpus (Tweets)&quot;,&quot;SizeFile&quot;:&quot;3 MB&quot;,&quot;SizeTokens&quot;:&quot;1,61 Tsd.&quot;,&quot;SizeSentences&quot;:&quot;k. A.&quot;,&quot;SizeDocuments&quot;:&quot;27,7 Tsd.&quot;,&quot;Layer&quot;:&quot;Wort, POS, Lemma, Phrase&quot;,&quot;UrlPack&quot;:&quot;http:\/\/www.bitcutstudios.com\/products\/CorpusExplorer\/corpora\/standard\/Demo03.ceAddon&quot;,&quot;Info&quot;:&quot;Tweets des Accounts notesjor - Stand 12.02.2019&quot;,&quot;UrlInfo&quot;:&quot;https:\/\/notes.jan-oliver-ruediger.de\/korpora\/&quot;},
+        ///{&quot;Name&quot;:&quot;NottDeuYTSch&quot;,&quot;SizeFile&quot;:&quot;2,0 GB&quot;,&quot;SizeTokens&quot;:&quot;3,15 Mio.&quot;,&quot;SizeSentences&quot;:&quot;k. A. &quot;,&quot;SizeDocuments&quot;:&quot;37,86 Mio.&quot;, [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        public static string AddonJsonInfoCorpora {
+            get {
+                return ResourceManager.GetString("AddonJsonInfoCorpora", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die [
+        ///{&quot;Name&quot;:&quot;DTA::CAB&quot;,&quot;Info&quot;:&quot;DTA::CAB ist ein orthographischer Normalisierer f\u00fcr historische Sprachstufen des Deutschen.&quot;,&quot;SizeFile&quot;:&quot;5 MB&quot;,&quot;UrlInfo&quot;:&quot;https:\/\/notes.jan-oliver-ruediger.de\/software\/corpusexplorer-overview\/erweiterungen\/&quot;,&quot;UrlPack&quot;:&quot;http:\/\/bitcutstudios.com\/products\/CorpusExplorer\/addons\/DTA-CAB\/DTA-CAB.ceAddon&quot;,&quot;XXX&quot;:&quot;DTA-CAB&quot;},
+        ///{&quot;Name&quot;:&quot;DPXC-Editor&quot;,&quot;Info&quot;:&quot;Editor zum manuellen Erfassen von Textkorpora (Text\/Metadaten). Erm\u00f6glicht den Im-\/Export verschiedener Form [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        public static string AddonJsonInfoPlugin {
+            get {
+                return ResourceManager.GetString("AddonJsonInfoPlugin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Adresse: ähnelt.
         /// </summary>
         public static string Adresse {

@@ -24,18 +24,19 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm
     private string _size;
     private string _label;
 
-    public AddonAppInstallState(string label, string description, string size, string urlInfo, string urlInstall, string addonName)
+    public AddonAppInstallState(string label, string description, string size, string urlInfo, string urlInstall, string addonName, string directory)
     {
       InitializeComponent();
 
       lbl_label.Text = label;
       lbl_description.Text = description;
+      
       lbl_size.Text = lbl_size.Text.Replace("{Size}", size);
       _label = label;
       _size = size;
       _urlInfo = urlInfo;
       _urlInstall = urlInstall;
-      _addonPath = Path.Combine(Configuration.MyAddons, $"{addonName}.ceAddon");
+      _addonPath = Path.Combine(directory, $"{addonName}.ceAddon");
 
       CheckAddOnInstallState();
     }

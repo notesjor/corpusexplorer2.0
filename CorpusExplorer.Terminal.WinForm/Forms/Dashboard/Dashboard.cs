@@ -314,7 +314,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
 
         try
         {
-          _enableCorpusChecks = (bool)Configuration.GetSetting("CEC6-Validation?", false);
+          _enableCorpusChecks = Configuration.GetSetting("CEC6-Validation?", false);
         }
         catch
         {
@@ -326,7 +326,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
       set
       {
         _enableCorpusChecks = value;
-        Configuration.SetSetting("CEC6-Validation?", _enableCorpusChecks.Value);
+        Configuration.SetSetting("CEC6-Validation?", _enableCorpusChecks.Value.ToString());
       }
     }
 
@@ -380,7 +380,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     {
       Configuration.SetSettings(((RadPropertyStore)property_meta.SelectedObject)
                                .ToDictionary(x => x.PropertyName,
-                                             x => x.Value));
+                                             x => x.Value.ToString()));
     }
 
     private void btn_settings_saveas_Click(object sender, EventArgs e)
@@ -390,7 +390,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         return;
       Configuration.SetSettings(((RadPropertyStore)property_meta.SelectedObject)
                                .ToDictionary(x => x.PropertyName,
-                                             x => x.Value), sfd.FileName);
+                                             x => x.Value.ToString()), sfd.FileName);
     }
 
     private void ControlOnQueryRemove(object sender, EventArgs eventArgs)

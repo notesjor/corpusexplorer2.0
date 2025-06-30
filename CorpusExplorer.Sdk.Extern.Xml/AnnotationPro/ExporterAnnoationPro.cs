@@ -47,7 +47,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.AnnotationPro
     {
       AnnotationSystemDataSet ant = null;
       using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-      using (var zip = new ZipArchive(fs))
+      using (var zip = ZipArchive.Read(fs))
         ant = XmlSerializerHelper.Deserialize<AnnotationSystemDataSet>(zip.GetEntry("annotation.xml").Open());
 
       if (ant == null)
@@ -95,7 +95,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.AnnotationPro
         File.Copy(path, nFile, false);
 
       using (var fs = new FileStream(path, FileMode.Open, FileAccess.ReadWrite))
-      using (var zip = new ZipArchive(fs, ZipArchiveMode.Update, true, null))
+      using (var zip = ZipArchive.Update(fs))
       {
         var stream = zip.GetEntry("annotation.xml").Open();
         var xml = new XmlSerializer(typeof(AnnotationSystemDataSet));

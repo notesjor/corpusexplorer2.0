@@ -124,11 +124,15 @@
     <Compile Include="Blocks\ClusterMetadataByCooccurrenceSelectiveBlock.cs" />
     <Compile Include="Blocks\ClusterMetadataByNgramBlock.cs" />
     <Compile Include="Blocks\ClusterMetadata\ClusterMetadataItem.cs" />
+    <Compile Include="Blocks\CommunityDetection\Abstract\AbstractCommunityDetection.cs" />
+    <Compile Include="Blocks\CommunityDetection\Community.cs" />
+    <Compile Include="Blocks\CommunityDetection\CommunityDetectionLouvian.cs" />
     <Compile Include="Blocks\CooccurrenceIndexOnlyBlock.cs" />
     <Compile Include="Blocks\CooccurrenceClassicBlock.cs" />
     <Compile Include="Blocks\CooccurrenceContextBlock.cs" />
     <Compile Include="Blocks\CooccurrenceCrossBlock.cs" />
     <Compile Include="Blocks\CooccurrenceSecondLevelProfileBlock.cs" />
+    <Compile Include="Blocks\CorrespondingLayerValueSelectedBlock.cs" />
     <Compile Include="Blocks\CorrespondingLayerValueFilterBlock.cs" />
     <Compile Include="Blocks\CrossFrequencyIndexOnlyBlock.cs" />
     <Compile Include="Blocks\CrossFrequencySelectedUltraBlock.cs" />
@@ -138,8 +142,17 @@
     <Compile Include="Blocks\CrossFrequencySelected\Abstract\AbstractCrossFrequencySelectedBehaviour.cs" />
     <Compile Include="Blocks\DocumentContainsLayerValueSelectBlock.cs" />
     <Compile Include="Blocks\Frequency2LayerSelectBlock.cs" />
+    <Compile Include="Blocks\Ngram1LayerSelectiveQuickLookupBlock.cs" />
     <Compile Include="Blocks\NgramMultiLayerSelectiveBlock.cs" />
     <Compile Include="Blocks\Ngram1LayerSelectiveHighlightCooccurrencesBlock.cs" />
+    <Compile Include="Blocks\NgramMultiLayerSelectiveQuery\QueryCompiler.cs" />
+    <Compile Include="Blocks\NgramMultiLayerSelectiveQuery\ValidateCall\Abstract\AbstractValidateCall.cs" />
+    <Compile Include="Blocks\NgramMultiLayerSelectiveQuery\ValidateCall\ValidateCallAll.cs" />
+    <Compile Include="Blocks\NgramMultiLayerSelectiveQuery\ValidateCall\ValidateCallExact.cs" />
+    <Compile Include="Blocks\NgramMultiLayerSelectiveQuery\ValidateCall\ValidateCallRegex.cs" />
+    <Compile Include="Blocks\NgramMultiLayerSelectiveQuery\ValidateCall\ValidCallHashset.cs" />
+    <Compile Include="Blocks\NGramQuickLookup\QuickLookupCompiler.cs" />
+    <Compile Include="Blocks\NGramQuickLookup\QuickLookupItem.cs" />
     <Compile Include="Blocks\PhraseFastCounterBlock.cs" />
     <Compile Include="Blocks\PositionFrequencySimpleBlock.cs" />
     <Compile Include="Blocks\Range\Abstract\AbstractRange.cs" />
@@ -456,6 +469,7 @@
     <Compile Include="Utils\DocumentProcessing\Cleanup\RegexRemoveNonWesternCharsCleanup.cs" />
     <Compile Include="Utils\DocumentProcessing\Cluster\DocumentProcessingClusterBuilder.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterSketchEngine.cs" />
+    <Compile Include="Utils\DocumentProcessing\Exporter\ExporterRFriendly.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterTreeTaggerZip.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterTreeTagger.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterXml.cs" />
@@ -467,6 +481,7 @@
     <Compile Include="Utils\DocumentProcessing\Importer\CorpusExplorerV6\ImporterCec6Drm.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\CorpusExplorerV6\ImporterCec6.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\CorpusExplorerV6\ImporterCec6Stream.cs" />
+    <Compile Include="Utils\DocumentProcessing\Importer\Helper\ImporterInternalStandoffHelper.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\ImporterConll.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\ImporterCorpusWorkBench.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\ImporterTlv.cs" />
@@ -523,6 +538,7 @@
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerAFollowedByBMatch.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerAFollowedByBSpanMatch.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerAllInExactSpanWords.cs" />
+    <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerExists.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerFirstAndAnyOtherMatch.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerFirstFollowedByAnyOtherMatch.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQuerySingleLayerRegexFulltext.cs" />
@@ -605,6 +621,7 @@
     <Compile Include="ViewModel\ClusterMetadataByCooccurenceViewModel.cs" />
     <Compile Include="ViewModel\ClusterMetadataByNGramViewModel.cs" />
     <Compile Include="ViewModel\CooccurrenceCrossViewModel.cs" />
+    <Compile Include="ViewModel\CooccurrenceNetworkSelectiveViewModel.cs" />
     <Compile Include="ViewModel\CooccurrenceOverlappingViewModel.cs" />
     <Compile Include="ViewModel\CooccurrenceSecondLevelProfileViewModel.cs" />
     <Compile Include="ViewModel\CooccurrenceSelectiveViewModel.cs" />
@@ -790,7 +807,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CsvHelper">
-      <Version>33.0.1</Version>
+      <Version>33.1.0</Version>
     </PackageReference>
     <PackageReference Include="K4os.Compression.LZ4">
       <Version>1.3.8</Version>
@@ -802,7 +819,7 @@
       <Version>1.0.8</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces">
-      <Version>9.0.2</Version>
+      <Version>9.0.6</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Bcl.HashCode">
       <Version>6.0.0</Version>
@@ -823,13 +840,13 @@
       <Version>13.0.3</Version>
     </PackageReference>
     <PackageReference Include="PostSharp.Redist">
-      <Version>2025.0.6</Version>
+      <Version>2025.1.5</Version>
     </PackageReference>
     <PackageReference Include="SharpSerializer">
       <Version>4.0.2</Version>
     </PackageReference>
     <PackageReference Include="System.Buffers">
-      <Version>4.6.0</Version>
+      <Version>4.6.1</Version>
     </PackageReference>
     <PackageReference Include="System.Collections">
       <Version>4.3.0</Version>
@@ -841,7 +858,7 @@
       <Version>4.3.0</Version>
     </PackageReference>
     <PackageReference Include="System.Diagnostics.DiagnosticSource">
-      <Version>9.0.2</Version>
+      <Version>9.0.6</Version>
     </PackageReference>
     <PackageReference Include="System.Diagnostics.Tools">
       <Version>4.3.0</Version>
@@ -862,7 +879,7 @@
       <Version>4.3.0</Version>
     </PackageReference>
     <PackageReference Include="System.IO.Pipelines">
-      <Version>9.0.2</Version>
+      <Version>9.0.6</Version>
     </PackageReference>
     <PackageReference Include="System.Linq">
       <Version>4.3.0</Version>
@@ -871,13 +888,13 @@
       <Version>4.3.0</Version>
     </PackageReference>
     <PackageReference Include="System.Memory">
-      <Version>4.6.0</Version>
+      <Version>4.6.3</Version>
     </PackageReference>
     <PackageReference Include="System.Net.Primitives">
       <Version>4.3.1</Version>
     </PackageReference>
     <PackageReference Include="System.Numerics.Vectors">
-      <Version>4.6.0</Version>
+      <Version>4.6.1</Version>
     </PackageReference>
     <PackageReference Include="System.ObjectModel">
       <Version>4.3.0</Version>
@@ -898,7 +915,7 @@
       <Version>4.3.1</Version>
     </PackageReference>
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
-      <Version>6.1.0</Version>
+      <Version>6.1.2</Version>
     </PackageReference>
     <PackageReference Include="System.Runtime.Extensions">
       <Version>4.3.1</Version>
@@ -940,7 +957,7 @@
       <Version>4.3.0</Version>
     </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Extensions">
-      <Version>4.6.0</Version>
+      <Version>4.6.3</Version>
     </PackageReference>
     <PackageReference Include="System.Xml.ReaderWriter">
       <Version>4.3.1</Version>

@@ -16,7 +16,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.AnnotationPro
     {
       AnnotationSystemDataSet model = null;
       using(var fs = new FileStream(file, FileMode.Open, FileAccess.Read))
-      using (var zip = new ZipArchive(fs))
+      using (var zip = ZipArchive.Read(fs))
         model = XmlSerializerHelper.Deserialize<AnnotationSystemDataSet>(zip.GetEntry("annotation.xml").Open());
       
       var guid = model?.Layer.Where(layer => layer.Name == "Text").Select(layer => layer.Id).FirstOrDefault();

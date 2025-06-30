@@ -142,6 +142,7 @@ namespace CorpusExplorer.Core
         { "CorpusWorkBench bis 2021 inkl. Satzgrene (*.vrt, *.vrt.xml)|*.vrt;*.vrt.xml", new ExporterCorpusWorkBench { UseSentenceTag = true } },
         { "CorpusWorkBench ab 2022 (*.vrt, *.vrt.xml)|*.vrt;*.vrt.xml", new ExporterCorpusWorkBench2022 { UseSentenceTag = true } },
         { "Sketch Engine VERT (*.vert)|*.vert", new ExporterSketchEngine() },
+        { "R-Freundlicher Korpus-Export (*.tsv)|*.tsv", new ExporterRFriendly() },
       };
 
     /// <summary>
@@ -200,7 +201,7 @@ namespace CorpusExplorer.Core
     public override IEnumerable<IAction> AddonConsoleActions =>
       new IAction[]
       {
-        new AddTaggerAction(),
+        // new AddTaggerAction(), - TODO: Funktioniert unter Windows, aber nicht unter Linux/MacOS - Grund unklar, Memory-Management-Problem?
 
         new BasicInformationAction(),
         new BurrowsDeltaAction(),
@@ -216,6 +217,8 @@ namespace CorpusExplorer.Core
         new CooccurrenceCrossAction(),
         new CooccurrenceCrossFullAction(),
         new CooccurrenceDiversityAction(),
+        new CooccurrenceNetworkAction(),
+        new CooccurrenceNetworkSelectAction(),
         new CooccurrencePolarisationAction(),
         new CooccurrenceProfileAction(),
         new CooccurrenceSelectedAction(),

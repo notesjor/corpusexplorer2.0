@@ -39,10 +39,12 @@ using CorpusExplorer.Sdk.Extern.Xml.Pmg;
 using CorpusExplorer.Sdk.Extern.Xml.PostgreSqlDump;
 using CorpusExplorer.Sdk.Extern.Xml.PureXml;
 using CorpusExplorer.Sdk.Extern.Xml.PurlOrg;
+using CorpusExplorer.Sdk.Extern.Xml.Refi;
 using CorpusExplorer.Sdk.Extern.Xml.SaltXml;
 using CorpusExplorer.Sdk.Extern.Xml.Shakespeare;
 using CorpusExplorer.Sdk.Extern.Xml.SixCms;
 using CorpusExplorer.Sdk.Extern.Xml.SlashA;
+using CorpusExplorer.Sdk.Extern.Xml.Songkorpus;
 using CorpusExplorer.Sdk.Extern.Xml.Talkbank;
 using CorpusExplorer.Sdk.Extern.Xml.Tei.Dwds;
 using CorpusExplorer.Sdk.Extern.Xml.Tei.P5Cal2;
@@ -99,6 +101,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml
     public override IEnumerable<KeyValuePair<string, AbstractImporter>> AddonImporter =>
       new Dictionary<string, AbstractImporter>
       {
+        {"Rotterdam Exchange Format Initiative (*.qdpx, *.zip)|*.qdpx;*.zip", new ImporterRefi()},
         {"DEWAC (DEWAC-*.xml)|DEWAC-*.xml", new ImporterDewac()},
         {"WebLicht (*.xml)|*.xml", new ImporterWeblicht()},
         {"DTA-TCF 2017 (*.tcf.xml)|*.tcf.xml", new ImporterDta2017()},
@@ -113,6 +116,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {"FOLKER / OrthoNormal (*.fln)|*.fln", new ImporterFolkerFln() },
         {"IDS KorAP (*.zip)|*.zip", new ImporterKorap { LoadStrategy = KorapLoadStrategyZipFile.AddonInitialize() } },
         {"IDS KorAP ab 2021 (*.zip)|*.zip", new ImporterKorap2021{ LoadStrategy = KorapLoadStrategyZipFile.AddonInitialize() } },
+        {"IDS KorAP ab 2021 MINI-META (*.zip)|*.zip", new ImporterKorap2021Mini { LoadStrategy = KorapLoadStrategyZipFile.AddonInitialize() } },
         {"XCES-XML (https://opus.nlpl.eu/) (*.xml)|*.xml", new ImporterOpusXces()},
         {"SaltXML (*.xml, *.salt)|*.salt;*.xml", new ImporterSaltXml() },
         {"FoLiA-XML (*.xml)|*.xml", new ImporterFolia() }
@@ -148,6 +152,10 @@ namespace CorpusExplorer.Sdk.Extern.Xml
         {
           "Shakespeare Drama-XML (*.xml)|*.xml",
           new ShakespeareScraper()
+        },
+        {
+          "Songkorpus.de TEI (*.xml)|*.xml",
+          new SongkorpusScraper()
         },
         {
           "BAWE TEI-P4 (*.xml)|*.xml",

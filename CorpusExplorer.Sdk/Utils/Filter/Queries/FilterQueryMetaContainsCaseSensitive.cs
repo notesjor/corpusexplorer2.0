@@ -55,7 +55,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
     protected override bool ValidateCallCall(string value)
     {
-      return _values.Any(query => query.Contains(value));
+      return _values.Any(query => value.Contains(query));
     }
   }
 }

@@ -27,8 +27,6 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
     protected ConcurrentQueue<Dictionary<string, object>[]> InternQueue =
       new ConcurrentQueue<Dictionary<string, object>[]>();
 
-    public AbstractTokenizer Tokenizer { get; set; }
-
     /// <summary>
     ///   Überschreitet der Tagger diese Länge, dann wird die Runde abgeschlossen.
     ///   Wird dynamisch bestimmt. Empfohlener Startwert: 200000
@@ -87,13 +85,11 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
         if (i.ContainsKey(_guidKey))
         {
           var g = i[_guidKey];
-          if(g is Guid)
+          if (g is Guid)
             continue;
-          if (g is string gs && Guid.TryParse(gs, out var guid))
-          {
-            i.Remove(_guidKey);
-            i.Add(_guidKey, guid);
-          }
+
+          if (g is string s && Guid.TryParse(s, out var realGuid))
+            i[_guidKey] = realGuid;
           else
             i[_guidKey] = Guid.NewGuid();
         }
@@ -269,7 +265,7 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
           var meta = sdm.GetMetaDictionary();
 
           if (res.ContainsKey(guid))
-          {            
+          {
             meta.Add("GUID (OLD)", guid);
             res.Add(Guid.NewGuid(), meta);
           }
@@ -293,6 +289,8 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
       var act = TaggerContentLengthMax;
       // Statischer Separator
       var separator = new[] { TaggerFileSeparator };
+      var lockParse = new object();
+      var lockResult = new object();
 
       while (Input.Count > 0)
       {
@@ -327,28 +325,28 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
                          if (turn.Length == 1 && correct == 0)
                            correct = 1;
 
-                         var @lock = new object();
-                         Parallel.For(
-                                      0,
-                                      correct,
-                                      Configuration.ParallelOptions,
-                                      j =>
-                                      {
-                                        try
+                         lock (lockParse)
+                           Parallel.For(
+                                        0,
+                                        correct,
+                                        Configuration.ParallelOptions,
+                                        j =>
                                         {
-                                          ParseDocument(layerKeys, guids[j], ref tmp[j]);
-                                          lock (@lock)
+                                          try
                                           {
-                                            tmp[j] = null; // wichtig zu Error-Erkennung
-                                            turn[j].Clear();
-                                            turn[j] = null; // wichtig zu Error-Erkennung
+                                            ParseDocument(layerKeys, guids[j], ref tmp[j]);
+                                            lock (lockResult)
+                                            {
+                                              tmp[j] = null; // wichtig zu Error-Erkennung
+                                              turn[j].Clear();
+                                              turn[j] = null; // wichtig zu Error-Erkennung
+                                            }
                                           }
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                          InMemoryErrorConsole.Log(ex);
-                                        }
-                                      });
+                                          catch (Exception ex)
+                                          {
+                                            InMemoryErrorConsole.Log(ex);
+                                          }
+                                        });
 
                          // Aktualisiere act je nach Fall - Wenn kein Fehler (==) dann vergrößere den Wert.
                          // Wenn ein Fehler auftritt, dann reduziere ihn ( /= 3 )

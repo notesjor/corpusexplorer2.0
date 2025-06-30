@@ -209,13 +209,17 @@ namespace CorpusExplorer.Sdk.Model
     {
       _project = null;
 
-      foreach (var s in _subSelections)
-        s.Dispose();
-      _subSelections.Clear();
+      if (_subSelections != null)
+      {
+        foreach (var s in _subSelections)
+          s?.Dispose();
+        _subSelections.Clear();
+      }
 
-      foreach (var s in _selection)
-        s.Value.Clear();
-      _selection.Clear();
+      if (_selection != null)
+        foreach (var s in _selection)
+          s.Value.Clear();
+      _selection?.Clear();
     }
 
     /// <summary>
@@ -285,7 +289,7 @@ namespace CorpusExplorer.Sdk.Model
     /// </summary>
     [XmlIgnore]
     public IEnumerable<KeyValuePair<Guid, IEnumerable<Guid>>> CorporaAndDocumentGuids
-      => _selection.ToDictionary<KeyValuePair<Guid, HashSet<Guid>>, Guid, IEnumerable<Guid>>(c => c.Key, c => c.Value);
+      => _selection?.ToDictionary<KeyValuePair<Guid, HashSet<Guid>>, Guid, IEnumerable<Guid>>(c => c.Key, c => c.Value);
 
     /// <summary>
     ///   Gets the corpora displaynames.
@@ -428,8 +432,8 @@ namespace CorpusExplorer.Sdk.Model
     [XmlIgnore]
     public IEnumerable<Guid> DocumentGuids
       => _selection.SelectMany(c => c.Value);
-    
-    public IEnumerable<Guid> DocumentGuidsOfCorpus(Guid corpusGuid) 
+
+    public IEnumerable<Guid> DocumentGuidsOfCorpus(Guid corpusGuid)
       => _selection.ContainsKey(corpusGuid) ? _selection[corpusGuid] : new HashSet<Guid>();
 
     /// <summary>
