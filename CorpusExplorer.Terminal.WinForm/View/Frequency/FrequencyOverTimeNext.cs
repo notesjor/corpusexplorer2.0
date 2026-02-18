@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using CorpusExplorer.Sdk.Extern.Xml.Bnc.Model;
 using CorpusExplorer.Sdk.View.Html;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace CorpusExplorer.Terminal.WinForm.View.Frequency
@@ -43,37 +46,35 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       wordBag1_ExecuteButtonClicked(null, null);
     }
 
-    private string ToJsonArray()
+    private class yitem
+    {
+      public string name {get; set; }
+      public string type {get; set; } = "line";
+      public string stack {get; set; } = "Total";
+      public double[] data {get; set; }
+    }
+
+    private void ToJsonArray(out string[] xaxis, out yitem[] yaxis)
     {
       _vm = GetViewModel<CooccurrenceViewModel>();
       _vm.LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname;
       if (!_vm.Execute())
-        return string.Empty;
+      {
+        xaxis = new string[] { };
+        yaxis = new yitem[] { };
+        return;
+      }
       _lastSelectedLayer = wordBag1.ResultSelectedLayerDisplayname;
 
-      var array = new JArray();
-      const double lim = 52.0;
-
-      foreach (var query in wordBag1.ResultQueries)
-      {
-        var cooc = _vm.Search(new[] { query }).ToDictionary(x => x.Key, x => x.Value[1] + 1);
-        var max = (int)cooc.Select(x => x.Value).Concat(new[] { 1d }).Max();
-        var fact = lim / max;
-
-        var array2 = new JArray();
-        foreach (var x in cooc)
-          array2.Add(new JObject { { "key", x.Key }, { "value", (int)x.Value * fact } });
-
-        var entry = new JObject { { "major", new JObject { { "key", query }, { "value", lim } } }, { "data", array2 } };
-        array.Add(entry);
-      }
-
-      return array.ToString();
+      xaxis = new string[] { };
+      yaxis = new yitem[] { };
     }
 
     private void wordBag1_ExecuteButtonClicked(object sender, EventArgs e)
     {
-      Processing.SplashShow("Erzeuge TagPie...");
+      Processing.SplashShow("Erzeuge Chart...");
+
+      ToJsonArray(out var xaxis, out var yaxis);
 
       webHtml5Visualisation1.ShowFile(EasyWebBuilder
                                      .Create()
@@ -81,9 +82,13 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
                                      .ReplaceTemplateVars(new Dictionary<string, string>
                                       {
                                         {
-                                          "<!--#DATA#-->",
-                                          ToJsonArray()
-                                        }
+                                          "###X-AXIS###",
+                                          JsonConvert.SerializeObject(xaxis)
+                                        },
+                                        {
+                                          "###Y-AXIS###",
+                                          JsonConvert.SerializeObject(yaxis)
+                                         }
                                       })
                                      .Finalize());
       if (!_firstRun)

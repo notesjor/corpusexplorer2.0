@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Serialization;
+﻿using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
 using CorpusExplorer.Sdk.Model.Adapter.Layer.Abstract;
 using CorpusExplorer.Sdk.Model.CorpusExplorer;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Serialization;
 
 namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 {
@@ -86,16 +87,26 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
       }
     }
 
+    private bool PrepareCall(AbstractCorpusAdapter corpus, Guid documentGuid, out int[][] doc, out KeyValuePair<int, int>? queries)
+    {
+      doc = null;
+      queries = null;
+
+      if (corpus == null || documentGuid == Guid.Empty)
+        return false;
+      var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
+      doc = layer?[documentGuid];
+      if (doc == null)
+        return false;
+      queries = GetCachedIndices(layer);
+      return queries != null;
+    }
+
     protected override CeRange? GetSentenceFirstIndexCall(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      if (corpus == null || documentGuid == Guid.Empty)
+      if (!PrepareCall(corpus, documentGuid, out var doc, out var queries))
         return null;
-      var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
-      var doc = layer?[documentGuid];
-      if (doc == null || sentence < 0 || sentence >= doc.Length)
-        return null;
-      var queries = GetCachedIndices(layer);
-      if (queries == null)
+      if (sentence < 0 || sentence >= doc.Length)
         return null;
 
       for (var j = 0; j < doc[sentence].Length; j++)
@@ -107,14 +118,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
     protected override IEnumerable<int> GetSentencesCall(AbstractCorpusAdapter corpus, Guid documentGuid)
     {
-      if (corpus == null || documentGuid == Guid.Empty)
-        return null;
-      var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
-      var doc = layer?[documentGuid];
-      if (doc == null)
-        return null;
-      var queries = GetCachedIndices(layer);
-      if (queries == null)
+      if (!PrepareCall(corpus, documentGuid, out var doc, out var queries))
         return null;
 
       var res = new HashSet<int>();
@@ -133,14 +137,9 @@ namespace CorpusExplorer.Sdk.Utils.Filter.Queries
 
     public override IEnumerable<CeRange> GetWordIndices(AbstractCorpusAdapter corpus, Guid documentGuid, int sentence)
     {
-      if (corpus == null || documentGuid == Guid.Empty)
+      if (!PrepareCall(corpus, documentGuid, out var doc, out var queries))
         return null;
-      var layer = corpus.GetLayerOfDocument(documentGuid, LayerDisplayname);
-      var doc = layer?[documentGuid];
-      if (doc == null || sentence < 0 || sentence >= doc.Length)
-        return null;
-      var queries = GetCachedIndices(layer);
-      if (queries == null)
+      if (sentence < 0 || sentence >= doc.Length)
         return null;
 
       var res = new HashSet<CeRange>();

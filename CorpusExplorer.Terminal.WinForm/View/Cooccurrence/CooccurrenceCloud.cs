@@ -9,13 +9,13 @@ using Newtonsoft.Json.Linq;
 
 namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
 {
-  public partial class FrequencyOverTime2 : AbstractView
+  public partial class CooccurrenceCloud : AbstractView
   {
     private bool _firstRun = true;
     private string _lastSelectedLayer;
     private CooccurrenceViewModel _vm;
 
-    public FrequencyOverTime2()
+    public CooccurrenceCloud()
     {
       InitializeComponent();
     }

@@ -57,7 +57,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
     {
       var res = SearchOnDocumentLevel(selection, queries.First());
       if (res == null || res.Count == 0)
-        return null;
+        return new Dictionary<Guid, HashSet<Guid>>();
       var @lock = new object();
 
       Parallel.ForEach(queries.Skip(1), Configuration.ParallelOptions, query =>
@@ -164,7 +164,7 @@ namespace CorpusExplorer.Sdk.Utils.Filter
     {
       var res = SearchOnSentenceLevel(selection, queries.First());
       if (res == null || res.Count == 0)
-        return null;
+        return new Dictionary<Guid, Dictionary<Guid, HashSet<int>>>();
       var @lock = new object();
 
       Parallel.ForEach(queries.Skip(1), Configuration.ParallelOptions, query =>

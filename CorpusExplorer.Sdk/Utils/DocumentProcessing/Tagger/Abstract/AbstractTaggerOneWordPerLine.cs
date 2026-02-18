@@ -318,35 +318,36 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.Abstract
 
                          // TreeTagger
                          var text = TextPostTaggerCleanup(ExecuteTagger(GenerateText(ref turn, out var guids)));
-                         var tmp = text.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+                         var tmp = text?.Split(separator, StringSplitOptions.RemoveEmptyEntries);
                          // mkpt - maximal korrekt geparste texte
-                         var correct = text.EndsWith(TaggerFileSeparator) ? tmp.Length : tmp.Length - 1;
+                         var correct = text == null ? 0 : text.EndsWith(TaggerFileSeparator) ? tmp.Length : tmp.Length - 1;
 
                          if (turn.Length == 1 && correct == 0)
                            correct = 1;
 
-                         lock (lockParse)
-                           Parallel.For(
-                                        0,
-                                        correct,
-                                        Configuration.ParallelOptions,
-                                        j =>
-                                        {
-                                          try
+                         if (tmp != null)
+                           lock (lockParse)
+                             Parallel.For(
+                                          0,
+                                          correct,
+                                          Configuration.ParallelOptions,
+                                          j =>
                                           {
-                                            ParseDocument(layerKeys, guids[j], ref tmp[j]);
-                                            lock (lockResult)
+                                            try
                                             {
-                                              tmp[j] = null; // wichtig zu Error-Erkennung
-                                              turn[j].Clear();
-                                              turn[j] = null; // wichtig zu Error-Erkennung
+                                              ParseDocument(layerKeys, guids[j], ref tmp[j]);
+                                              lock (lockResult)
+                                              {
+                                                tmp[j] = null; // wichtig zu Error-Erkennung
+                                                turn[j].Clear();
+                                                turn[j] = null; // wichtig zu Error-Erkennung
+                                              }
                                             }
-                                          }
-                                          catch (Exception ex)
-                                          {
-                                            InMemoryErrorConsole.Log(ex);
-                                          }
-                                        });
+                                            catch (Exception ex)
+                                            {
+                                              InMemoryErrorConsole.Log(ex);
+                                            }
+                                          });
 
                          // Aktualisiere act je nach Fall - Wenn kein Fehler (==) dann vergrößere den Wert.
                          // Wenn ein Fehler auftritt, dann reduziere ihn ( /= 3 )

@@ -1,11 +1,15 @@
-using System;
-using System.Linq;
+using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator;
+using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Forms.SelectLayer;
 using CorpusExplorer.Terminal.WinForm.Forms.Splash;
 using CorpusExplorer.Terminal.WinForm.Helper;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Properties;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using Telerik.Charting;
 using Telerik.WinControls.UI;
 
@@ -13,26 +17,20 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
 {
   public partial class CooccurrenceOverTime : AbstractView
   {
-    private readonly ChartSelectionController _selection = new ChartSelectionController();
-
-    private readonly ChartPanZoomController _zoom = new ChartPanZoomController
-    {
-      PanZoomMode =
-        ChartPanZoomMode.Horizontal
-    };
-
-    private CooccurrencesOverTimeViewModel _vm;
+    private ClusterEasyGenericViewModel _vm;
 
     public CooccurrenceOverTime()
     {
       InitializeComponent();
-      chart_view.ShowPanZoom = true;
+      drop_cluster.Items.Add(new RadListDataItem("Jahr/Monat/Tag", new SelectionClusterGeneratorDateTimeYearMonthDay()));
+      drop_cluster.Items.Add(new RadListDataItem("Jahr/Woche", new SelectionClusterGeneratorDateTimeYearWeek()));
+      drop_cluster.Items.Add(new RadListDataItem("Jahr/Monat", new SelectionClusterGeneratorDateTimeYearMonth()));
+      drop_cluster.Items.Add(new RadListDataItem("Jahr/Quartal", new SelectionClusterGeneratorDateTimeYearQuarter()));
+      drop_cluster.Items.Add(new RadListDataItem("Jahr", new SelectionClusterGeneratorDateTimeYear()));
+      drop_cluster.Items.Add(new RadListDataItem("Jahrzehnt", new SelectionClusterGeneratorDateTimeDecade()));
+      drop_cluster.SelectedIndex = 0;
       ShowView += FrequencyOverTimeView_ShowView;
     }
-
-    public int Clusters { get; set; } = 25;
-
-    public double MaximalValue { get; set; }
 
     private void btn_export_Click(object sender, EventArgs e)
     {
@@ -46,40 +44,53 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
         var meta = commandBarDropDownList1.SelectedItem.Value as string;
         var queries = radAutoCompleteBox1.Items.Select(item => item.Text).ToArray();
 
-        if (!int.TryParse(commandBarTextBox1.Text, out var clusters))
-          clusters = 0;
-        Clusters = clusters;
+        if (SelectedLayerDisplaynames != null)
+          _vm.LayerDisplayname = SelectedLayerDisplaynames[0];
+        _vm.ClusterGenerator = drop_cluster.SelectedItem.Value as AbstractSelectionClusterGenerator;
+        _vm.MetadataKey = meta;
+        _vm.ChildViewModel = new CooccurrenceSelectiveViewModel { LayerDisplayname = _vm.LayerDisplayname, LayerQueries = queries };
+        _vm.Execute();
 
         ResetChart();
 
-        _vm.DateTimeProperty = meta;
-        _vm.LayerQueries = queries;
-        if (SelectedLayerDisplaynames != null)
-          _vm.LayerDisplayname = SelectedLayerDisplaynames[0];
-        if (!_vm.Execute())
-          return;
+        var bag = new HashSet<string>(_vm.ClusterTables.SelectMany(x => x.Value.Rows.Cast<DataRow>().Select(row => row[Resources.Cooccurrence].ToString())));
+        var dict = new Dictionary<string, double>();
+        foreach (var point in _vm.ClusterTables)
+          foreach (var row in point.Value.Rows.Cast<DataRow>())
+          {
+            var key = row[Resources.Cooccurrence].ToString();
+            if (!bag.Contains(key))
+              continue;
+
+            var value = Convert.ToDouble(row[Resources.Significance]);
+            if (!dict.ContainsKey(key))
+              dict.Add(key, value);
+            else if (value > dict[key])
+              dict[key] = value;
+          }
 
         drop_select.Items.Clear();
 
-        foreach (var x in _vm.DateTimeValues)
-        foreach (var y in x.Value)
-          drop_select.Items.Add(y.Key, false);
+        foreach (var x in dict.OrderByDescending(x => x.Value))
+          drop_select.Items.Add(x.Key, false);
       });
     }
 
-    private LineSeries BuildSeries(string query)
+    private BarSeries BuildSeries(string query)
     {
-      var res = new LineSeries {LegendTitle = query};
-
-      var points = _vm.AggregateDateTimeValues(Clusters);
-
-      foreach (var point in points)
+      var res = new BarSeries
       {
-        var value = point.Value.ContainsKey(query) ? point.Value[query] : 0;
-        if (value > MaximalValue)
-          MaximalValue = value;
+        LegendTitle = query,
+        CombineMode = ChartSeriesCombineMode.Stack100
+      };
 
-        res.DataPoints.Add(new CategoricalDataPoint(value, point.Key.ToString("yyyy-MM-dd")));
+      var points = _vm.ClusterTables;
+
+      foreach (var point in points.OrderBy(x => x.Key))
+      {
+        var value = point.Value.Rows.Cast<DataRow>().Where(row => row[Resources.Cooccurrence].ToString() == query).Select(row => Convert.ToDouble(row[Resources.Significance])).FirstOrDefault();
+
+        res.DataPoints.Add(new CategoricalDataPoint(value, point.Key));
       }
 
       return res;
@@ -93,14 +104,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       if (queries.Length == 0)
         return;
 
-      MaximalValue = 0.0d; // wird durch die folgende Zeile ermittelt
+      //MaximalValue = 0.0d; // wird durch die folgende Zeile ermittelt
       foreach (var query in queries)
         chart_view.Series.Add(BuildSeries(query));
 
-      foreach (var x in chart_view.Axes.OfType<LinearAxis>())
-        x.Maximum = MaximalValue;
+      //foreach (var x in chart_view.Axes.OfType<LinearAxis>()) x.Maximum = MaximalValue;
 
-      chart_view.ShowPanZoom = true;
       chart_view.ShowLegend = true;
       chart_view.ShowToolTip = true;
       chart_view.ShowTrackBall = true;
@@ -115,10 +124,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
 
     private void FrequencyOverTimeView_ShowView(object sender, EventArgs e)
     {
-      _vm = GetViewModel<CooccurrencesOverTimeViewModel>();
+      _vm = GetViewModel<ClusterEasyGenericViewModel>();
 
       radAutoCompleteBox1.AutoCompleteDataSource = Project.CurrentSelection.GetLayerValues(Resources.Wort);
-      commandBarDropDownList1.DataSource = _vm.DocumentMetadata;
+      commandBarDropDownList1.DataSource = _vm.DocumentMetaProperties;
 
       foreach (var item in commandBarDropDownList1.Items)
         if (item.Text == Resources.Datum)
@@ -129,11 +138,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     {
       chart_view.Series.Clear();
       chart_view.Axes.Clear();
-      chart_view.Controllers.Clear();
-
-      _zoom.PanZoomMode = ChartPanZoomMode.Horizontal;
-      chart_view.Controllers.Add(_zoom);
-      chart_view.Controllers.Add(_selection);
     }
 
     private void btn_layer_Click(object sender, EventArgs e)

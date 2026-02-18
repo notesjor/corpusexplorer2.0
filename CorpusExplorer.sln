@@ -17459,7 +17459,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3F515DB-595D-431B-A98D-790A3F3DFF48}
-		RESX_NeutralResourcesLanguage = de-DE
 	EndGlobalSection
 	GlobalSection(AutomaticVersions) = postSolution
 		AssemblyInfoFilePath = Properties\AssemblyInfo.cs

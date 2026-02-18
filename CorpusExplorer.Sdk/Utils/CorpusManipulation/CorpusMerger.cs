@@ -9,6 +9,7 @@ using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus.Abstract;
+using CorpusExplorer.Sdk.Utils.CorpusManipulation.CorpusMergerTransformation.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Abstract.Model;
 using CorpusExplorer.Sdk.Utils.DocumentProcessing.Builder;
@@ -65,13 +66,13 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
                                                                         _concepts));
     }
 
-    public void Input(IEnumerable<AbstractCorpusAdapter> corpora)
+    public void Input(IEnumerable<AbstractCorpusAdapter> corpora, IEnumerable<AbstractCorpusMergerTransformation> transformations = null)
     {
       foreach (var c in corpora)
-        Input(c);
+        Input(c, transformations);
     }
 
-    public void Input(AbstractCorpusAdapter corpus)
+    public void Input(AbstractCorpusAdapter corpus, IEnumerable<AbstractCorpusMergerTransformation> transformations = null)
     {
       if (corpus == null)
         return;
@@ -107,6 +108,10 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
         if (!_layers.ContainsKey(layer.Displayname))
           _layers.Add(layer.Displayname, new LayerValueState(layer.Displayname, _layers.Count));
 
+        var transforms = transformations == null
+          ? null :
+          transformations.Where(t => t.LayerDisplayname == layer.Displayname).ToArray();
+
         Parallel.ForEach(layer.DocumentGuids, Configuration.ParallelOptions,
           dsel =>
           {
@@ -115,6 +120,11 @@ namespace CorpusExplorer.Sdk.Utils.CorpusManipulation
               var doc = layer.GetReadableDocumentByGuid(dsel)
                              .Select(s => s.ToArray())
                              .ToArray();
+
+              if (transforms != null && transforms.Length > 0)
+                foreach (var transform in transforms)
+                  doc = transform.Transform(doc);
+
               lock (@lock)
                 _layers[layer.Displayname].AddCompleteDocument(dsel, doc);
             }

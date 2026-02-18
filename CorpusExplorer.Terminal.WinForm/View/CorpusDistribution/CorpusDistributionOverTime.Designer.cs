@@ -37,9 +37,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       this.commandBarStripElement1 = new Telerik.WinControls.UI.CommandBarStripElement();
       this.commandBarLabel1 = new Telerik.WinControls.UI.CommandBarLabel();
       this.commandBarDropDownList1 = new Telerik.WinControls.UI.CommandBarDropDownList();
-      this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
-      this.commandBarLabel2 = new Telerik.WinControls.UI.CommandBarLabel();
-      this.commandBarTextBox1 = new Telerik.WinControls.UI.CommandBarTextBox();
       this.commandBarRowElement2 = new Telerik.WinControls.UI.CommandBarRowElement();
       this.commandBarStripElement2 = new Telerik.WinControls.UI.CommandBarStripElement();
       this.commandBarLabel3 = new Telerik.WinControls.UI.CommandBarLabel();
@@ -51,6 +48,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       this.btn_export = new Telerik.WinControls.UI.CommandBarButton();
       this.chart_view = new Telerik.WinControls.UI.RadChartView();
       this.drop_select = new Telerik.WinControls.UI.RadCheckedDropDownList();
+      this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
+      this.commandBarLabel2 = new Telerik.WinControls.UI.CommandBarLabel();
+      this.drop_cluster = new Telerik.WinControls.UI.CommandBarDropDownList();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.chart_view)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.drop_select)).BeginInit();
@@ -79,7 +79,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
             this.commandBarDropDownList1,
             this.commandBarSeparator1,
             this.commandBarLabel2,
-            this.commandBarTextBox1});
+            this.drop_cluster});
       this.commandBarStripElement1.Name = "commandBarStripElement1";
       // 
       // commandBarLabel1
@@ -92,26 +92,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       // 
       resources.ApplyResources(this.commandBarDropDownList1, "commandBarDropDownList1");
       this.commandBarDropDownList1.DropDownAnimationEnabled = true;
-      this.commandBarDropDownList1.MaxDropDownItems = 0;
       this.commandBarDropDownList1.MinSize = new System.Drawing.Size(200, 22);
       this.commandBarDropDownList1.Name = "commandBarDropDownList1";
       this.commandBarDropDownList1.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.BitteAuswählen;
-      // 
-      // commandBarSeparator1
-      // 
-      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
-      this.commandBarSeparator1.Name = "commandBarSeparator1";
-      this.commandBarSeparator1.VisibleInOverflowMenu = false;
-      // 
-      // commandBarLabel2
-      // 
-      resources.ApplyResources(this.commandBarLabel2, "commandBarLabel2");
-      this.commandBarLabel2.Name = "commandBarLabel2";
-      // 
-      // commandBarTextBox1
-      // 
-      resources.ApplyResources(this.commandBarTextBox1, "commandBarTextBox1");
-      this.commandBarTextBox1.Name = "commandBarTextBox1";
       // 
       // commandBarRowElement2
       // 
@@ -142,7 +125,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       // 
       resources.ApplyResources(this.commandBarDropDownList2, "commandBarDropDownList2");
       this.commandBarDropDownList2.DropDownAnimationEnabled = true;
-      this.commandBarDropDownList2.MaxDropDownItems = 0;
       this.commandBarDropDownList2.MinSize = new System.Drawing.Size(200, 22);
       this.commandBarDropDownList2.Name = "commandBarDropDownList2";
       this.commandBarDropDownList2.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.commandBarDropDownList2_SelectedIndexChanged);
@@ -162,7 +144,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       // 
       resources.ApplyResources(this.commandBarDropDownList3, "commandBarDropDownList3");
       this.commandBarDropDownList3.DropDownAnimationEnabled = true;
-      this.commandBarDropDownList3.MaxDropDownItems = 0;
       this.commandBarDropDownList3.MinSize = new System.Drawing.Size(150, 22);
       this.commandBarDropDownList3.Name = "commandBarDropDownList3";
       // 
@@ -174,9 +155,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       // 
       // btn_export
       // 
+      this.btn_export.AutoToolTip = true;
       resources.ApplyResources(this.btn_export, "btn_export");
       this.btn_export.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
-      this.btn_export.AutoToolTip = true;
       this.btn_export.Name = "btn_export";
       this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
       // 
@@ -208,6 +189,24 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
       this.drop_select.Name = "drop_select";
       this.drop_select.ItemCheckedChanged += new Telerik.WinControls.UI.RadCheckedListDataItemEventHandler(this.drop_select_ItemCheckedChanged);
       // 
+      // commandBarSeparator1
+      // 
+      resources.ApplyResources(this.commandBarSeparator1, "commandBarSeparator1");
+      this.commandBarSeparator1.Name = "commandBarSeparator1";
+      this.commandBarSeparator1.VisibleInOverflowMenu = false;
+      // 
+      // commandBarLabel2
+      // 
+      resources.ApplyResources(this.commandBarLabel2, "commandBarLabel2");
+      this.commandBarLabel2.Name = "commandBarLabel2";
+      // 
+      // drop_cluster
+      // 
+      resources.ApplyResources(this.drop_cluster, "drop_cluster");
+      this.drop_cluster.DropDownAnimationEnabled = true;
+      this.drop_cluster.MinSize = new System.Drawing.Size(200, 22);
+      this.drop_cluster.Name = "drop_cluster";
+      // 
       // CorpusDistributionOverTime
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -232,9 +231,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     private Telerik.WinControls.UI.CommandBarLabel commandBarLabel1;
     private Telerik.WinControls.UI.CommandBarDropDownList commandBarDropDownList1;
     private Telerik.WinControls.UI.RadChartView chart_view;
-    private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator1;
-    private Telerik.WinControls.UI.CommandBarLabel commandBarLabel2;
-    private Telerik.WinControls.UI.CommandBarTextBox commandBarTextBox1;
     private Telerik.WinControls.UI.RadCheckedDropDownList drop_select;
     private Telerik.WinControls.UI.CommandBarLabel commandBarLabel3;
     private Telerik.WinControls.UI.CommandBarDropDownList commandBarDropDownList2;
@@ -245,5 +241,8 @@ namespace CorpusExplorer.Terminal.WinForm.View.CorpusDistribution
     private Telerik.WinControls.UI.CommandBarStripElement commandBarStripElement2;
     private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator2;
     private Telerik.WinControls.UI.CommandBarButton btn_export;
+    private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator1;
+    private Telerik.WinControls.UI.CommandBarLabel commandBarLabel2;
+    private Telerik.WinControls.UI.CommandBarDropDownList drop_cluster;
   }
 }

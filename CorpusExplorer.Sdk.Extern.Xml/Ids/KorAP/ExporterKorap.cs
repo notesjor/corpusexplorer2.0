@@ -22,13 +22,12 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.KorAP
     {
       var map = new ReMapperStandoff();
       var foundries = GetFoundries(hydra, path);
+      var csigle = Path.GetFileNameWithoutExtension(path);
 
-      var packages = ExportPackageHelper.MakePackages(hydra);
+      var packages = ExportPackageHelper.MakePackages(csigle,hydra);
       using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
       using (var zip = ZipArchive.Create(fs))
       {
-        var csigle = Path.GetFileNameWithoutExtension(path);
-
         // Korpus-Metadaten
         using (var entry = zip.CreateEntry($"{csigle}/header.xml"))
         using (var writer = new StreamWriter(entry.Open()))

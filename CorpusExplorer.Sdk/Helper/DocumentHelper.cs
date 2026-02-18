@@ -74,20 +74,15 @@ namespace CorpusExplorer.Sdk.Helper
     [Obsolete]
     public static IEnumerable<IEnumerable<IEnumerable<KeyValuePair<string, string>>>>
       ReduceDocumentMultilayerToSynchronReadabelDocument(
-        this Dictionary<string, IEnumerable<IEnumerable<string>>> multiDocument)
-    {
-      return ConvertMultilayerToSyncLayer(multiDocument);
-    }
+        this Dictionary<string, IEnumerable<IEnumerable<string>>> multiDocument) =>
+      ConvertMultilayerToSyncLayer(multiDocument);
 
     /// <summary>
     ///   Reduziert ein Dokument so, das es nur noch eine Auflistung von Token/Worten ist.
     /// </summary>
     /// <param name="document">Dokument</param>
     /// <returns>Wort für Wort</returns>
-    public static IEnumerable<string> ReduceDocumentToStreamDocument(this IEnumerable<IEnumerable<string>> document)
-    {
-      return document.SelectMany(sent => sent);
-    }
+    public static IEnumerable<string> ReduceDocumentToStreamDocument(this IEnumerable<IEnumerable<string>> document) => document.SelectMany(sent => sent);
 
     /// <summary>
     ///   Reduziert ein Dokument so, das es nur noch der gewählte Satz übrigbleibt.
@@ -95,10 +90,7 @@ namespace CorpusExplorer.Sdk.Helper
     /// <param name="document">Dokument</param>
     /// <param name="sentenceId">SatzId</param>
     /// <returns>Wort für Wort</returns>
-    public static IEnumerable<string> ReduceToSentence(this IEnumerable<IEnumerable<string>> document, int sentenceId)
-    {
-      return document.Skip(sentenceId).Take(1).SelectMany(x => x);
-    }
+    public static IEnumerable<string> ReduceToSentence(this IEnumerable<IEnumerable<string>> document, int sentenceId) => document.Skip(sentenceId).Take(1).SelectMany(x => x);
 
     /// <summary>
     /// Wandelt ein Snippet in einen String um und fügt der Ausgabe ein Highlight hinzu.
@@ -155,10 +147,7 @@ namespace CorpusExplorer.Sdk.Helper
     /// <param name="sentence">Satz</param>
     /// <param name="tokenSeparator">Wie sollen Token separiert werden?</param>
     /// <returns></returns>
-    public static string ReduceSentenceToText(this IEnumerable<string> sentence, string tokenSeparator = " ")
-    {
-      return string.Join(tokenSeparator, sentence);
-    }
+    public static string ReduceSentenceToText(this IEnumerable<string> sentence, string tokenSeparator = " ") => string.Join(tokenSeparator, sentence);
 
     /// <summary>
     /// Wandelt einen Satz (Snippet) in einen String um.
@@ -166,10 +155,7 @@ namespace CorpusExplorer.Sdk.Helper
     /// <param name="sentence">Satz</param>
     /// <param name="tokenSeparator">Wie sollen Token separiert werden?</param>
     /// <returns></returns>
-    public static string ReduceSentenceToText(this IEnumerable<int> sentence, AbstractLayerAdapter layer, string tokenSeparator = " ")
-    {
-      return string.Join(tokenSeparator, sentence.Select(x => layer[x]));
-    }
+    public static string ReduceSentenceToText(this IEnumerable<int> sentence, AbstractLayerAdapter layer, string tokenSeparator = " ") => string.Join(tokenSeparator, sentence.Select(x => layer[x]));
 
     /// <summary>
     ///   Reduziert ein Dokument so, das es eine Auflistung von Sätzen darstellt.
@@ -177,42 +163,44 @@ namespace CorpusExplorer.Sdk.Helper
     /// <param name="document">The document.</param>
     /// <returns>IEnumerable&lt;System.String&gt;.</returns>
     public static IEnumerable<string> ReduceToSentences(this IEnumerable<IEnumerable<string>> document,
-                                                        string tokenSeparator = " ")
-    {
-      return document.Select(s => string.Join(tokenSeparator, s));
-    }
+                                                        string tokenSeparator = " ") =>
+      document.Select(s => string.Join(tokenSeparator, s));
 
-    public static string SplitDocument(this IEnumerable<IEnumerable<string>> document, int from, int to = -1)
-    {
-      return SplitDocument(ReduceDocumentToStreamDocument(document), from, to);
-    }
+    public static string SplitDocument(this IEnumerable<IEnumerable<string>> document, int from, int to = -1) => SplitDocument(ReduceDocumentToStreamDocument(document), from, to);
 
     public static string SplitDocument(this IEnumerable<string> streamDocument, int from, int to = -1)
     {
-      var text = streamDocument.ToArray();
+      try
+      {
+        var text = streamDocument.ToArray();
 
-      if (from < 0)
-        from = 0;
-      if (to == -1)
-        to = text.Length;
-      if (to == 0)
+        if (from < 0)
+          from = 0;
+        if (to == -1)
+          to = text.Length;
+        if (to == 0)
+          return "";
+
+        var list = new List<string>();
+        for (var i = from; i < to; i++)
+          try
+          {
+            if (text[i].Length == 1)
+              list.Add(text[i]);
+            else
+              list.Add(" " + text[i]);
+          }
+          catch
+          {
+            break;
+          }
+
+        return string.Concat(list).Trim();
+      }
+      catch
+      {
         return "";
-
-      var list = new List<string>();
-      for (var i = from; i < to; i++)
-        try
-        {
-          if (text[i].Length == 1)
-            list.Add(text[i]);
-          else
-            list.Add(" " + text[i]);
-        }
-        catch
-        {
-          break;
-        }
-
-      return string.Concat(list).Trim();
+      }
     }
 
     public static string Improve(this string text)

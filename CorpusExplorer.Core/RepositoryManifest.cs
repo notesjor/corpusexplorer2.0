@@ -120,6 +120,7 @@ namespace CorpusExplorer.Core
       new Dictionary<string, AbstractExporter>
       {
         { "JSON-Export (*.json)|*.json", new ExporterJson() },
+        { "JSON-Export [Nur Wort-Layer] (*.json)|*.json", new ExporterJsonPure() },
         { "JSON-Export + ZIP (*.zip)|*.zip", new ExporterJsonZip() },
         { "XML-Export (*.xml)|*.xml", new ExporterXml() },
         { "TLV-XML-Export (*.xml)|*.xml", new ExporterTlv() },
@@ -256,6 +257,10 @@ namespace CorpusExplorer.Core
         new GetDocumentAction(),
         new GetDocumentDisplaynamesAction(),
         new GetDocumentMetadataAction(),
+        new GuidOfCorpusAction(),
+        new GuidOfDocumentAction(),
+        new GuidOfLayerAction(),
+        new GuidOfSelectionAction(),
 
         new InverseDocumentFrequencyAction(),
 
@@ -271,6 +276,7 @@ namespace CorpusExplorer.Core
         new KwicNamedEntityAction(),
         new KwicSignificantFilterAction(),
         new KwitAction(),
+        new KwitFrequencyAction(),
         new KwitSelectAction(),
 
         new LayerCloneAction(),

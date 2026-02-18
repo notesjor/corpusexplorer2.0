@@ -11,46 +11,60 @@ namespace CorpusExplorer.Sdk.Blocks
 {
   public class CutOffPhraseBlock : AbstractBlock
   {
-    public string LayerDisplayname { get; set; } = "Wort";
+    private TextLiveSearchViewModel _vm;
+    public string LayerDisplayname1 { get; set; } = "Wort";
+    public string LayerDisplayname2 { get; set; } = "Wort";
     public string LayerQuery1 { get; set; }
     public string LayerQuery2 { get; set; }
 
-    public DataTable UniqueDataTableGui { get; set; }
+    public DataTable GetUniqueDataTableCutOffPhrase() => _vm?.GetUniqueDataTableCutOffPhrase();
+    public DataTable GetUniqueDataTableCutOffPhraseGui() => _vm?.GetUniqueDataTableCutOffPhraseGui();
 
     public override void Calculate()
     {
       var selection = Selection.CreateTemporary(new[]
       {
-        new FilterQuerySingleLayerAllInOneSentence
+        new FilterQuerySingleLayerAnyMatch
         {
           Inverse = false,
-          LayerQueries = new[] { LayerQuery1, LayerQuery2 },
-          LayerDisplayname = LayerDisplayname
+          LayerQueries = new[] { LayerQuery1 },
+          LayerDisplayname = LayerDisplayname1
+        }
+      });
+      selection = selection.CreateTemporary(new[]
+      {
+        new FilterQuerySingleLayerAnyMatch
+
+        {
+          Inverse = false,
+          LayerQueries = new[] { LayerQuery2 },
+          LayerDisplayname = LayerDisplayname2
         }
       });
 
-      var vm = new TextLiveSearchViewModel { Selection = selection };
-      vm.ClearQueries();
+      _vm = new TextLiveSearchViewModel { Selection = selection };
+      _vm.ClearQueries();
 
-      vm.AddQuery(new FilterQuerySingleLayerAFollowedByBMatch
+      _vm.AddQuery(new FilterQueryDualLayerAFollowedByBMatch
       {
         Inverse = false,
         LayerQuery1 = LayerQuery1,
         LayerQuery2 = LayerQuery2,
-        LayerDisplayname = LayerDisplayname,
+        LayerDisplayname1 = LayerDisplayname1,
+        LayerDisplayname2 = LayerDisplayname2,
         OrFilterQueries = new[]
         {
-          new FilterQuerySingleLayerFirstFollowedByAnyOtherMatch
+          new FilterQueryDualLayerAFollowedByBMatch
           {
             Inverse = false,
-            LayerQueries = new[] { LayerQuery2, LayerQuery1 },
-            LayerDisplayname = LayerDisplayname
+            LayerQuery1 = LayerQuery2,
+            LayerQuery2 = LayerQuery1,
+            LayerDisplayname1 = LayerDisplayname2,
+            LayerDisplayname2 = LayerDisplayname1,
           }
         }
       });
-      vm.Execute();
-
-      UniqueDataTableGui = vm.GetUniqueDataTableCutOffPhrase();
+      _vm.Execute();
     }
   }
 }

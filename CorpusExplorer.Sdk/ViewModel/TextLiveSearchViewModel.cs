@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
+using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Model.CorpusExplorer;
@@ -45,18 +46,11 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public int ResultCountCorpora => SearchResults.Count;
 
-    public int ResultCountDocuments
-    {
-      get { return SearchResults.Sum(x => x.Value.Count); }
-    }
+    public int ResultCountDocuments => SearchResults.Sum(x => x.Value.Count);
 
-    public int ResultCountSentences
-    {
-      get { return SearchResults.SelectMany(x => x.Value).Sum(y => y.Value.Count); }
-    }
+    public int ResultCountSentences => SearchResults.SelectMany(x => x.Value).Sum(y => y.Value.Count);
 
-    public int ResultCountTokens => (from x in SearchResults from y in x.Value from z in y.Value select z.Value.Count)
-     .Sum();
+    public int ResultCountTokens => (from x in SearchResults from y in x.Value from z in y.Value select z.Value.Count).Sum();
 
     public Selection ResultSelection { get; set; }
 
@@ -83,13 +77,7 @@ namespace CorpusExplorer.Sdk.ViewModel
     }
 
     public IEnumerable<Guid> AddQueries(IEnumerable<AbstractFilterQuery> queries)
-    {
-      var res = new List<Guid>();
-      foreach (var query in queries)
-        res.Add(AddQuery(query));
-
-      return res;
-    }
+      => queries.Select(query => AddQuery(query)).ToList();
 
     public Guid AddQuery(AbstractFilterQuery query)
     {
@@ -116,32 +104,41 @@ namespace CorpusExplorer.Sdk.ViewModel
             var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key)
                                      .ReduceDocumentToStreamDocument().ToArray();
 
-            foreach (var range in sent.Value)
-              res.Add(new Tuple<Guid, Guid, int, string, string, string>
-                        (
-                         corpus.Key,
-                         result.Key,
-                         sent.Key,
-                         $"{GetAddContextSentencesPre(result.Key, sent.Key)} {streamDoc.SplitDocument(0, range.From)}".Trim(),
-                         streamDoc.SplitDocument(range.From, range.To),
-                         $"{streamDoc.SplitDocument(range.To)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim()
-                        ));
+            res.AddRange(sent.Value.Select(range => new Tuple<Guid, Guid, int, string, string, string>(corpus.Key, result.Key, sent.Key, $"{GetAddContextSentencesPre(result.Key, sent.Key)} {streamDoc.SplitDocument(0, range.From)}".Trim(), streamDoc.SplitDocument(range.From, range.To), $"{streamDoc.SplitDocument(range.To)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim())));
           }
 
       return res;
     }
 
     private string GetAddContextSentencesPost(Guid resultKey, int sentKey)
-      => AddContextSentencesPost < 1
-        ? ""
-        : Selection.GetReadableDocumentSnippet(resultKey, "Wort", sentKey + 1, sentKey + AddContextSentencesPost)
-          .ReduceDocumentToText(sentenceSeparator: " ");
+    {
+      try
+      {
+        return AddContextSentencesPost < 1
+          ? ""
+          : Selection.GetReadableDocumentSnippet(resultKey, "Wort", sentKey + 1, sentKey + AddContextSentencesPost)
+            .ReduceDocumentToText(sentenceSeparator: " ");
+      }
+      catch
+      {
+        return "";
+      }
+    }
 
     private string GetAddContextSentencesPre(Guid resultKey, int sentKey)
-      => AddContextSentencesPre < 1
-        ? ""
-        : Selection.GetReadableDocumentSnippet(resultKey, "Wort", sentKey - AddContextSentencesPre, sentKey - 1)
-          .ReduceDocumentToText(sentenceSeparator: " ");
+    {
+      try
+      {
+        return AddContextSentencesPre < 1
+          ? ""
+          : Selection.GetReadableDocumentSnippet(resultKey, "Wort", sentKey - AddContextSentencesPre, sentKey - 1)
+            .ReduceDocumentToText(sentenceSeparator: " ");
+      }
+      catch
+      {
+        return "";
+      }
+    }
 
     public string GetDocumentDisplayname(Guid key)
     {
@@ -180,8 +177,8 @@ namespace CorpusExplorer.Sdk.ViewModel
             }
             else
             {
-              var min = sent.Value.Select(x=>x.From).Min();
-              var max = sent.Value.Select(x=>x.To).Max();
+              var min = sent.Value.Select(x => x.From).Min();
+              var max = sent.Value.Select(x => x.To).Max();
 
               var entry = new UniqueTextLiveSearchResultEntry
               {
@@ -200,36 +197,43 @@ namespace CorpusExplorer.Sdk.ViewModel
 
     public IEnumerable<UniqueTextLiveSearchCutOffPhraseResultEntry> GetUniqueCutOffPhraseData()
     {
-      var res = new Dictionary<string, UniqueTextLiveSearchCutOffPhraseResultEntry>();
-      foreach (var corpus in SearchResults)
-        foreach (var result in corpus.Value)
-          foreach (var sent in result.Value)
-          {
-            if (sent.Value == null || sent.Value.Count == 0)
-              continue;
+      try
+      {
+        var res = new Dictionary<string, UniqueTextLiveSearchCutOffPhraseResultEntry>();
+        foreach (var corpus in SearchResults)
+          foreach (var result in corpus.Value)
+            foreach (var sent in result.Value)
+            {
+              if (sent.Value == null || sent.Value.Count == 0)
+                continue;
 
-            var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key)
-                                     .ReduceDocumentToStreamDocument().ToArray();
+              var streamDoc = Selection.GetReadableDocumentSnippet(result.Key, "Wort", sent.Key, sent.Key)
+                                       .ReduceDocumentToStreamDocument().ToArray();
 
-            var key = string.Join("|", streamDoc);
-            if (!res.ContainsKey(key))
               foreach (var range in sent.Value)
               {
-                res.Add(
-                      key,
-                      new UniqueTextLiveSearchCutOffPhraseResultEntry
-                      {
-                        Pre = $"{GetAddContextSentencesPre(result.Key, sent.Key)} {streamDoc.SplitDocument(0, range.From)}".Trim(),
-                        Match = streamDoc.SplitDocument(range.From, range.To),
-                        Post = $"{streamDoc.SplitDocument(range.To)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim(),
-                        Span = range.Length,
-                      });
+                var key = string.Join("|", streamDoc.SplitDocument(range.From, range.To));
+                if (!res.ContainsKey(key))
+                  res.Add(
+                        key,
+                        new UniqueTextLiveSearchCutOffPhraseResultEntry
+                        {
+                          Pre = $"{GetAddContextSentencesPre(result.Key, sent.Key)} {streamDoc.SplitDocument(0, range.From)}".Trim(),
+                          Match = streamDoc.SplitDocument(range.From, range.To + 1),
+                          Post = $"{streamDoc.SplitDocument(range.To + 1)} {GetAddContextSentencesPost(result.Key, sent.Key)}".Trim(),
+                          Span = range.Length,
+                        });
+                res[key].AddSentence(result.Key, sent.Key);
               }
+            }
 
-            res[key].AddSentence(result.Key, sent.Key);
-          }
-
-      return res.Values;
+        return res.Values;
+      }
+      catch (Exception ex)
+      {
+        InMemoryErrorConsole.Log(ex);
+        return null;
+      }
     }
 
     public DataTable GetUniqueDataTableGui()
@@ -259,13 +263,32 @@ namespace CorpusExplorer.Sdk.ViewModel
       dt.Columns.Add("Post", typeof(string));
       dt.Columns.Add("Spanne", typeof(int));
       dt.Columns.Add("Frequenz", typeof(int));
+
+      var data = GetUniqueCutOffPhraseData();
+
+      dt.BeginLoadData();
+      foreach (var d in data)
+        dt.Rows.Add(d.Pre, d.Match, d.Post, d.Span + 1, d.Count);
+      dt.EndLoadData();
+
+      return dt;
+    }
+
+    public DataTable GetUniqueDataTableCutOffPhraseGui()
+    {
+      var dt = new DataTable();
+      dt.Columns.Add("Pre", typeof(string));
+      dt.Columns.Add("Match", typeof(string));
+      dt.Columns.Add("Post", typeof(string));
+      dt.Columns.Add("Spanne", typeof(int));
+      dt.Columns.Add("Frequenz", typeof(int));
       dt.Columns.Add("Info", typeof(IEnumerable<KeyValuePair<Guid, int>>));
 
       var data = GetUniqueCutOffPhraseData();
 
       dt.BeginLoadData();
       foreach (var d in data)
-        dt.Rows.Add(d.Pre, d.Match, d.Post, d.Span, d.Count, d.Sentences);
+        dt.Rows.Add(d.Pre, d.Match, d.Post, d.Span + 1, d.Count, d.Sentences);
       dt.EndLoadData();
 
       return dt;
@@ -322,8 +345,7 @@ namespace CorpusExplorer.Sdk.ViewModel
         {
           var row = new List<object> { d.Pre, d.Match, d.Post, first ? d.Count : -1, s.Value };
           var meta = Selection.GetDocumentMetadata(s.Key);
-          foreach (var p in prototype)
-            row.Add(meta.ContainsKey(p) ? meta[p] : "");
+          row.AddRange(prototype.Select(p => meta.TryGetValue(p, out var value) ? value : ""));
 
           dt.Rows.Add(row.ToArray());
           first = false;

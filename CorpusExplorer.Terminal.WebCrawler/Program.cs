@@ -139,6 +139,7 @@ namespace CorpusExplorer.Terminal.WebCrawler
                            if (crawler.Output.Count <= 0)
                              return;
                            var arr = crawler.Output.ToArray();
+
                            Serializer.Serialize(arr.ToArray(),
                                                 Path.Combine(_outputPath, $"{crawler.DisplayName}.sdd"),
                                                 false);

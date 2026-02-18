@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Blocks.Flow;
@@ -7,10 +8,11 @@ using CorpusExplorer.Sdk.Helper;
 using CorpusExplorer.Sdk.Utils.Filter.Abstract;
 using CorpusExplorer.Sdk.Utils.Filter.Queries;
 using CorpusExplorer.Sdk.ViewModel.Abstract;
+using CorpusExplorer.Sdk.ViewModel.Interfaces;
 
 namespace CorpusExplorer.Sdk.ViewModel
 {
-  public class TextFlowSearchViewModel : AbstractViewModel
+  public class TextFlowSearchViewModel : AbstractViewModel, IProvideDataTable
   {
     private HashSet<string> _highlighter = new HashSet<string>();
 
@@ -46,6 +48,46 @@ namespace CorpusExplorer.Sdk.ViewModel
         DiscoverConnections(ref res, BranchPost, true);
         return res;
       }
+    }
+
+    private class ConnectionFrequency
+    {
+      public int Incoming { get; set; } = 0;
+      public int Outgoing { get; set; } = 0;
+      public Tuple<int, int> ToTuple() => new Tuple<int, int>(Incoming, Outgoing);
+    }
+
+    public Dictionary<string, Tuple<int, int>> DiscoveredConnectionFrequency
+    {
+      get
+      {
+        var res = new Dictionary<string, ConnectionFrequency>();
+        foreach (var x in DiscoveredConnections)
+        {
+          if (!res.ContainsKey(x.Item1))
+            res.Add(x.Item1, new ConnectionFrequency());
+          res[x.Item1].Outgoing += x.Item2;
+          if (!res.ContainsKey(x.Item3))
+            res.Add(x.Item3, new ConnectionFrequency());
+          res[x.Item3].Incoming += x.Item2;
+        }
+        return res.ToDictionary(x => x.Key, x => x.Value.ToTuple());
+      }
+    }
+
+    public DataTable GetDataTable()
+    {
+      var dt = new DataTable();
+      dt.Columns.Add(LayerDisplayname, typeof(string));
+      dt.Columns.Add("Outgoing", typeof(int));
+      dt.Columns.Add("Incoming", typeof(int));
+      dt.Columns.Add("Frequenz", typeof(int));
+
+      dt.BeginLoadData();
+      foreach (var x in DiscoveredConnectionFrequency)
+        dt.Rows.Add(x.Key, x.Value.Item2, x.Value.Item1, x.Value.Item1 + x.Value.Item2);
+      dt.EndLoadData();
+      return dt;
     }
 
     private void DiscoverNodes(ref HashSet<string> res, FlowNode current)
@@ -97,8 +139,8 @@ namespace CorpusExplorer.Sdk.ViewModel
               continue;
 
             var tmp = new List<string>();
-            var min = s.Value.Select(x=> x.From).Min();
-            var max = s.Value.Select(x=> x.To).Max();
+            var min = s.Value.Select(x => x.From).Min();
+            var max = s.Value.Select(x => x.To).Max();
 
             for (var i = 0; i < min; i++)
               tmp.Add(sent[i]);

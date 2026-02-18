@@ -38,12 +38,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       this.commandBarLabel1 = new Telerik.WinControls.UI.CommandBarLabel();
       this.commandBarDropDownList1 = new Telerik.WinControls.UI.CommandBarDropDownList();
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
-      this.commandBarLabel2 = new Telerik.WinControls.UI.CommandBarLabel();
-      this.commandBarTextBox1 = new Telerik.WinControls.UI.CommandBarTextBox();
-      this.commandBarSeparator2 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_export = new Telerik.WinControls.UI.CommandBarButton();
       this.chart_view = new Telerik.WinControls.UI.RadChartView();
       this.wordBag1 = new CorpusExplorer.Terminal.WinForm.Controls.WinForm.WordBag();
+      this.commandBarLabel2 = new Telerik.WinControls.UI.CommandBarLabel();
+      this.drop_cluster = new Telerik.WinControls.UI.CommandBarDropDownList();
+      this.commandBarSeparator2 = new Telerik.WinControls.UI.CommandBarSeparator();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.chart_view)).BeginInit();
       this.SuspendLayout();
@@ -70,7 +70,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
             this.commandBarDropDownList1,
             this.commandBarSeparator1,
             this.commandBarLabel2,
-            this.commandBarTextBox1,
+            this.drop_cluster,
             this.commandBarSeparator2,
             this.btn_export});
       this.commandBarStripElement1.Name = "commandBarStripElement1";
@@ -85,7 +85,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       // 
       resources.ApplyResources(this.commandBarDropDownList1, "commandBarDropDownList1");
       this.commandBarDropDownList1.DropDownAnimationEnabled = true;
-      this.commandBarDropDownList1.MaxDropDownItems = 0;
       this.commandBarDropDownList1.MinSize = new System.Drawing.Size(200, 22);
       this.commandBarDropDownList1.Name = "commandBarDropDownList1";
       this.commandBarDropDownList1.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.BitteAuswählen;
@@ -96,27 +95,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       this.commandBarSeparator1.Name = "commandBarSeparator1";
       this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
-      // commandBarLabel2
-      // 
-      resources.ApplyResources(this.commandBarLabel2, "commandBarLabel2");
-      this.commandBarLabel2.Name = "commandBarLabel2";
-      // 
-      // commandBarTextBox1
-      // 
-      resources.ApplyResources(this.commandBarTextBox1, "commandBarTextBox1");
-      this.commandBarTextBox1.Name = "commandBarTextBox1";
-      // 
-      // commandBarSeparator2
-      // 
-      resources.ApplyResources(this.commandBarSeparator2, "commandBarSeparator2");
-      this.commandBarSeparator2.Name = "commandBarSeparator2";
-      this.commandBarSeparator2.VisibleInOverflowMenu = false;
-      // 
       // btn_export
       // 
+      this.btn_export.AutoToolTip = true;
       resources.ApplyResources(this.btn_export, "btn_export");
       this.btn_export.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
-      this.btn_export.AutoToolTip = true;
       this.btn_export.Name = "btn_export";
       this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
       // 
@@ -151,6 +134,24 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
       this.wordBag1.ResultSelectedLayerDisplayname = null;
       this.wordBag1.ExecuteButtonClicked += new System.EventHandler(this.wordBag1_ExecuteButtonClicked);
       // 
+      // commandBarLabel2
+      // 
+      resources.ApplyResources(this.commandBarLabel2, "commandBarLabel2");
+      this.commandBarLabel2.Name = "commandBarLabel2";
+      // 
+      // drop_cluster
+      // 
+      resources.ApplyResources(this.drop_cluster, "drop_cluster");
+      this.drop_cluster.DropDownAnimationEnabled = true;
+      this.drop_cluster.MinSize = new System.Drawing.Size(200, 22);
+      this.drop_cluster.Name = "drop_cluster";
+      // 
+      // commandBarSeparator2
+      // 
+      resources.ApplyResources(this.commandBarSeparator2, "commandBarSeparator2");
+      this.commandBarSeparator2.Name = "commandBarSeparator2";
+      this.commandBarSeparator2.VisibleInOverflowMenu = false;
+      // 
       // FrequencyOverTime
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -174,10 +175,10 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
     private Telerik.WinControls.UI.CommandBarDropDownList commandBarDropDownList1;
     private Telerik.WinControls.UI.RadChartView chart_view;
     private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator1;
-    private Telerik.WinControls.UI.CommandBarLabel commandBarLabel2;
-    private Telerik.WinControls.UI.CommandBarTextBox commandBarTextBox1;
-    private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator2;
     private Telerik.WinControls.UI.CommandBarButton btn_export;
     private Controls.WinForm.WordBag wordBag1;
+    private Telerik.WinControls.UI.CommandBarLabel commandBarLabel2;
+    private Telerik.WinControls.UI.CommandBarDropDownList drop_cluster;
+    private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator2;
   }
 }

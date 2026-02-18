@@ -142,7 +142,7 @@ namespace CorpusExplorer.Sdk.Blocks
     /// </summary>
     protected override void CalculateInitProperties()
     {
-      if (_cache.AbortCalculation(new Dictionary<string, object> {{nameof(LayerDisplayname), LayerDisplayname}}))
+      if (_cache.AbortCalculation(new Dictionary<string, object> { { nameof(LayerDisplayname), LayerDisplayname } }))
         throw new BlockAlreadyCachedException();
 
       Frequency = new Dictionary<string, double>();

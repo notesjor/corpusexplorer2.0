@@ -10,6 +10,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Blocks.Abstract;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
@@ -119,6 +120,45 @@ namespace CorpusExplorer.Sdk.Model
 
         return _countTokenMatches;
       }
+    }
+
+    /// <summary>
+    /// Gibt Normierungswerte für N-Gramme zurück.
+    /// </summary>
+    /// <param name="ngramSizes">Auflistung von N-Gramm-Größen (z. B.: 2, 3, 4, 5)</param>
+    /// <param name="layerDisplayname">Layer der für die Berechnung genutzt wird</param>
+    /// <returns>Dictionary Key = Werte aus ngramSizes / Value = Normdaten</returns>
+    public Dictionary<int, ulong> CountNGramNormalization(IEnumerable<int> ngramSizes, string layerDisplayname = "Wort")
+    {
+      var keys = new HashSet<int>(ngramSizes.Where(x => x > 0));
+      var res = keys.ToDictionary(x => x, x => (ulong)0);
+      var @lock = new object();
+
+      foreach (var csel in _selection)
+      {
+        var corpus = GetCorpus(csel.Key);
+        if (corpus == null)
+          continue;
+
+        var layer = corpus.GetLayers(layerDisplayname).Single();
+
+        Parallel.ForEach(csel.Value, Configuration.ParallelOptions, dsel =>
+        {
+          var doc = layer[dsel].Select(x => (ulong)x.Length);
+          var tmp = new Dictionary<int, ulong>();
+          foreach(var k in keys)
+          {
+            var sub = (ulong)(k - 1);
+            tmp.Add(k, doc.Select(s => s - sub).Where(v => v > 0).Aggregate((ulong)0, (current, v) => current + v));
+          }
+
+          lock (@lock)
+            foreach (var k in keys)
+              res[k] += tmp[k];
+        });
+      }
+
+      return res;
     }
 
     /// <summary>

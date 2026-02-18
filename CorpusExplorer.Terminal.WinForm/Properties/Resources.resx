@@ -316,7 +316,7 @@ auf dieses Fenster</value>
     <value>..\Resources\ok_button1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NGram" xml:space="preserve">
-    <value>NGram</value>
+    <value>N-Gramm</value>
   </data>
   <data name="remove_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\remove_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -3106,5 +3106,11 @@ Nicht geeignet für Korpra mit mehr als 5 Mio. Token!</value>
 {"Name":"UDPipe","Info":"POS-Tagger f\u00fcr 69 Sprachen (siehe Info) - inkl. Minderheitensprachen und tote Sprachen.","SizeFile":"3500 MB","UrlInfo":"http:\/\/www.bitcutstudios.com\/products\/CorpusExplorer\/help\/udpipe.html","UrlPack":"http:\/\/bitcutstudios.com\/products\/CorpusExplorer\/addons\/UDPipe\/UDPipe.ceAddon","XXX":"UDPipe"},
 {"Name":"OnSteroids","Info":"Installieren Sie alle verf\u00fcgbaren Add-ons. Installation dauert mehrere Minuten.","SizeFile":"8000 MB","UrlInfo":"https:\/\/notes.jan-oliver-ruediger.de\/software\/corpusexplorer-overview\/erweiterungen\/","UrlPack":"http:\/\/bitcutstudios.com\/products\/CorpusExplorer\/addons\/CorpusExplorerOnSteroids\/CorpusExplorerOnSteroids.ceAddon","XXX":"CorpusExplorerOnSteroids"}
 ]</value>
+  </data>
+  <data name="Frequency_Relativ" xml:space="preserve">
+    <value>Frequenz (relativ)</value>
+  </data>
+  <data name="Significance" xml:space="preserve">
+    <value>Signifikanz</value>
   </data>
 </root>

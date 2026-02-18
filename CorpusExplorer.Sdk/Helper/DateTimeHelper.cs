@@ -142,5 +142,8 @@ namespace CorpusExplorer.Sdk.Helper
       var result = firstThursday.AddDays(weekNum * 7);
       return result.AddDays(-3);
     }
+
+    public static string ToStringSafe(this object obj)
+      => obj == null ? string.Empty : (obj is DateTime dt ? dt.ToString("yyyy-MM-ddTHH:mm:ss") : obj.ToString());
   }
 }

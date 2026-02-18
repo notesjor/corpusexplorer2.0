@@ -45,7 +45,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       _vm.LayerQuery1 = txt_start.Text;
       _vm.LayerQuery2 = txt_end.Text;
       if (SelectedLayerDisplaynames != null)
-        _vm.LayerDisplayname = SelectedLayerDisplaynames[0];
+        _vm.LayerDisplayname1 = _vm.LayerDisplayname2 = SelectedLayerDisplaynames[0];
       if (!_vm.Execute())
         return;
       BindData();
@@ -58,26 +58,42 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
 
     private void BindData()
     {
-      radGridView1.DataSource = _vm.GetDataTable();
+      radGridView1.DataSource = _vm.GetUniqueDataTableCutOffPhraseGui();
       radGridView1.ResetBindings();
 
       var pre = radGridView1.Columns["Pre"];
-      pre.TextAlignment = ContentAlignment.MiddleRight;
-      pre.AutoSizeMode = BestFitColumnMode.AllCells;
-      pre.Name = Resources.Links;
+      if (pre != null)
+      {
+        pre.TextAlignment = ContentAlignment.MiddleRight;
+        pre.AutoSizeMode = BestFitColumnMode.AllCells;
+        pre.Name = Resources.Links;
+      }
 
       var match = radGridView1.Columns["Match"];
-      match.TextAlignment = ContentAlignment.MiddleCenter;
-      match.AutoSizeMode = BestFitColumnMode.AllCells;
-      match.Name = Resources.Fundstelle;
+      if (match != null)
+      {
+        match.TextAlignment = ContentAlignment.MiddleCenter;
+        match.AutoSizeMode = BestFitColumnMode.AllCells;
+        match.Name = Resources.Fundstelle;
+      }
 
       var post = radGridView1.Columns["Post"];
-      post.TextAlignment = ContentAlignment.MiddleLeft;
-      post.AutoSizeMode = BestFitColumnMode.AllCells;
-      post.Name = Resources.Rechts;
+      if (post != null)
+      {
+        post.TextAlignment = ContentAlignment.MiddleLeft;
+        post.AutoSizeMode = BestFitColumnMode.AllCells;
+        post.Name = Resources.Rechts;
+      }
 
-      radGridView1.Columns["Frequenz"].MaxWidth = 80;
-      radGridView1.Columns["Info"].IsVisible = false;
+      try
+      {
+        radGridView1.Columns["Frequenz"].MaxWidth = 80;
+        radGridView1.Columns["Info"].IsVisible = false;
+      }
+      catch
+      {
+        //ignore
+      }
 
       radGridView1.Columns.Add(new GridViewCommandColumn(Resources.Details)
       {
@@ -106,7 +122,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
       vm.Execute();
 
       var form = new SimpleTextView(vm.QuickDocumentInfoResults, Project);
-      form.NewProperty += (o, a) => { vm.SetNewDocumentMetadata((KeyValuePair<string, Type>) o); };
+      form.NewProperty += (o, a) => { vm.SetNewDocumentMetadata((KeyValuePair<string, Type>)o); };
 
       if (form.ShowDialog() == DialogResult.OK)
         foreach (var doc in form.Documents)

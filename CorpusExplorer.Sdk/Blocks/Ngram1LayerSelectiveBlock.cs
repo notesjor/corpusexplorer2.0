@@ -17,10 +17,12 @@ namespace CorpusExplorer.Sdk.Blocks
 
     public override void Calculate()
     {
+      var anyFilter = new HashSet<string>(LayerQueries.SelectMany(x => x.Split(' ')));
+
       var query = new FilterQuerySingleLayerAnyMatch
       {
         LayerDisplayname = LayerDisplayname,
-        LayerQueries = LayerQueries
+        LayerQueries = anyFilter
       };
       var selection = Selection.CreateTemporary(new[] { query });
 
@@ -41,12 +43,9 @@ namespace CorpusExplorer.Sdk.Blocks
       sub.Calculate();
 
       var @lock = new object();
-      var filter = new HashSet<string>(LayerQueries);
-
       Parallel.ForEach(sub.NGramFrequency, ngram =>
-      {
-        var split = ngram.Key.Split(' ');
-        if (!split.Any(s => filter.Contains(s))) 
+      {        
+        if(!LayerQueries.Any(x => ngram.Key.Contains(x)))
           return;
 
         lock (@lock)

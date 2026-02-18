@@ -141,6 +141,7 @@
     <Compile Include="Blocks\CrossFrequencyDocumentBasedBlock.cs" />
     <Compile Include="Blocks\CrossFrequencySelected\Abstract\AbstractCrossFrequencySelectedBehaviour.cs" />
     <Compile Include="Blocks\DocumentContainsLayerValueSelectBlock.cs" />
+    <Compile Include="Blocks\Frequency1LayerSelectBlock.cs" />
     <Compile Include="Blocks\Frequency2LayerSelectBlock.cs" />
     <Compile Include="Blocks\Ngram1LayerSelectiveQuickLookupBlock.cs" />
     <Compile Include="Blocks\NgramMultiLayerSelectiveBlock.cs" />
@@ -191,7 +192,6 @@
     <Compile Include="Blocks\Ngram1LayerPatternBlock.cs" />
     <Compile Include="Blocks\Ngram1LayerPatternIgnoreSentencesBlock.cs" />
     <Compile Include="Blocks\Ngram1LayerSelectiveBlock.cs" />
-    <Compile Include="Blocks\OverTimeBlock.cs" />
     <Compile Include="Blocks\DocumentFrequencyDictionaryBlock.cs" />
     <Compile Include="Blocks\GroupDocuments\Abstract\AbstractGroupDocumentsComparer.cs" />
     <Compile Include="Blocks\Abstract\AbstractCompareSelectionBlock.cs" />
@@ -215,8 +215,6 @@
     <Compile Include="Blocks\GroupDocuments\GroupDocumentsCompareInteger.cs" />
     <Compile Include="Blocks\Interfaces\IUseMemoryOverflowProtection.cs" />
     <Compile Include="Blocks\KeywordBlock.cs" />
-    <Compile Include="Blocks\OverTime\OverTimeAggregationDelegate.cs" />
-    <Compile Include="Blocks\OverTime\OverTimeCalculateDelegate.cs" />
     <Compile Include="Blocks\Partition\Delegates\PartitionBlockAggregatioDelegate.cs" />
     <Compile Include="Blocks\Partition\Delegates\PartitionBlockConfiguration.cs" />
     <Compile Include="Blocks\Partition\MakeAggregatedPartionBlock.cs" />
@@ -375,6 +373,9 @@
     <Compile Include="Utils\CorpusManipulation\CorpusCleaner.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusMergerQueryBasedKwic.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusMergerQueryBased.cs" />
+    <Compile Include="Utils\CorpusManipulation\CorpusMergerTransformation\Abstract\AbstractCorpusMergerTransformation.cs" />
+    <Compile Include="Utils\CorpusManipulation\CorpusMergerTransformation\CorpusMergerTransformationLowercase.cs" />
+    <Compile Include="Utils\CorpusManipulation\CorpusMergerTransformation\CorpusMergerTransformationRemoveLongToken.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusNormalizer.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusRandomizer.cs" />
     <Compile Include="Utils\CorpusManipulation\CorpusRandomizerStrategy\Abstract\AbstractCorpusRandomizerStrategy.cs" />
@@ -399,6 +400,7 @@
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCsv.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterCsvMetadataOnly.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterHtmlPure.cs" />
+    <Compile Include="Utils\DocumentProcessing\Exporter\ExporterJsonPure.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterJsonZip.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterJson.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterPlaintext.cs" />
@@ -529,6 +531,7 @@
     <Compile Include="Utils\Filter\Abstract\AbstractFilterQuerySingleLayerFulltext.cs" />
     <Compile Include="Utils\Filter\Interface\IFilterQueryWithLayerValues.cs" />
     <Compile Include="Utils\Filter\Parser\FilterQueryMultiLayerComplex\Parser4FilterQueryMultiLayerComplex.cs" />
+    <Compile Include="Utils\Filter\Queries\FilterQueryDualLayerAFollowedByBMatch.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMultiLayerComplex.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryDocumentGuid.cs" />
     <Compile Include="Utils\Filter\Queries\FilterQueryMetaEndsWith.cs" />
@@ -613,9 +616,9 @@
     <Compile Include="Utils\WaitBehaviour\WaitBehaviourNone.cs" />
     <Compile Include="Utils\WaitBehaviour\WaitBehaviourWindows.cs" />
     <Compile Include="ViewModel\Abstract\AbstractCompareViewModel.cs" />
-    <Compile Include="ViewModel\Abstract\AbstractOverTimeViewModel.cs" />
     <Compile Include="ViewModel\BestGuessKwicViewModel.cs" />
     <Compile Include="ViewModel\BurrowsDeltaViewModel.cs" />
+    <Compile Include="ViewModel\ClusterEasyGenericViewModel.cs" />
     <Compile Include="ViewModel\ClusterMetadataByBurrowsDeltaViewModel.cs" />
     <Compile Include="ViewModel\ClusterMetadataByCooccurenceSelectiveViewModel.cs" />
     <Compile Include="ViewModel\ClusterMetadataByCooccurenceViewModel.cs" />
@@ -625,11 +628,8 @@
     <Compile Include="ViewModel\CooccurrenceOverlappingViewModel.cs" />
     <Compile Include="ViewModel\CooccurrenceSecondLevelProfileViewModel.cs" />
     <Compile Include="ViewModel\CooccurrenceSelectiveViewModel.cs" />
-    <Compile Include="ViewModel\CooccurrencesOverTimeViewModel.cs" />
     <Compile Include="ViewModel\CorpusFiniteStateMachineViewModel.cs" />
-    <Compile Include="ViewModel\CorpusWeightLimmitedOverTimeViewModel.cs" />
     <Compile Include="ViewModel\CorrespondingLayerValueFilterViewModel.cs" />
-    <Compile Include="ViewModel\FrequencyCrossFrequencyOverTimeViewModel.cs" />
     <Compile Include="ViewModel\CutOffPhraseViewModel.cs" />
     <Compile Include="ViewModel\DispersionViewModel.cs" />
     <Compile Include="ViewModel\DocumentCloneDetectionViewModel.cs" />
@@ -639,6 +639,7 @@
     <Compile Include="ViewModel\DocumentSimilarityViewModel.cs" />
     <Compile Include="ViewModel\DocumentTermFrequencyViewModel.cs" />
     <Compile Include="ViewModel\EditDistantCalculationViewModel.cs" />
+    <Compile Include="ViewModel\Frequency1LayerSelectViewModel.cs" />
     <Compile Include="ViewModel\Interfaces\IProvideCorrespondingLayerValueFilter.cs" />
     <Compile Include="ViewModel\Interfaces\IProvideNormalizedDataTable.cs" />
     <Compile Include="ViewModel\InverseDocumentFrequencyViewModel.cs" />
@@ -724,7 +725,6 @@
     <Compile Include="ViewModel\Frequency3LayerViewModel.cs" />
     <Compile Include="ViewModel\FrequencyCrossViewModel.cs" />
     <Compile Include="ViewModel\FrequencyLeftRightViewModel.cs" />
-    <Compile Include="ViewModel\FrequencyOverTimeViewModel.cs" />
     <Compile Include="ViewModel\FrequencyTimelineAggregatedAnalyticViewModel.cs" />
     <Compile Include="ViewModel\FrequencyCompareViewModel.cs" />
     <Compile Include="ViewModel\CooccurrenceTimelineAnalyticViewModel.cs" />
@@ -819,7 +819,7 @@
       <Version>1.0.8</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces">
-      <Version>9.0.6</Version>
+      <Version>10.0.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Bcl.HashCode">
       <Version>6.0.0</Version>
@@ -837,10 +837,10 @@
       <Version>2.0.3</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.3</Version>
+      <Version>13.0.4</Version>
     </PackageReference>
     <PackageReference Include="PostSharp.Redist">
-      <Version>2025.1.5</Version>
+      <Version>2026.0.5</Version>
     </PackageReference>
     <PackageReference Include="SharpSerializer">
       <Version>4.0.2</Version>
@@ -858,7 +858,7 @@
       <Version>4.3.0</Version>
     </PackageReference>
     <PackageReference Include="System.Diagnostics.DiagnosticSource">
-      <Version>9.0.6</Version>
+      <Version>10.0.3</Version>
     </PackageReference>
     <PackageReference Include="System.Diagnostics.Tools">
       <Version>4.3.0</Version>
@@ -879,7 +879,7 @@
       <Version>4.3.0</Version>
     </PackageReference>
     <PackageReference Include="System.IO.Pipelines">
-      <Version>9.0.6</Version>
+      <Version>10.0.3</Version>
     </PackageReference>
     <PackageReference Include="System.Linq">
       <Version>4.3.0</Version>

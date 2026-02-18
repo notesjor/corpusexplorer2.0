@@ -169,7 +169,7 @@
    &lt;fileDesc&gt;
     &lt;titleStmt&gt;
      &lt;dokumentSigle&gt;{cluster_id}&lt;/dokumentSigle&gt;
-     &lt;d.title&gt;&lt;/d.title&gt;
+     &lt;d.title&gt;{title}&lt;/d.title&gt;
     &lt;/titleStmt&gt;
     &lt;publicationStmt&gt;
      &lt;distributor/&gt;
@@ -200,8 +200,9 @@
      &lt;publicationStmt&gt;
       &lt;distributor&gt;&lt;/distributor&gt;
       &lt;pubAddress&gt;&lt;/pubAddress&gt;
-      &lt;availability region="world" Default="n" status="unknown"&gt;CORPUSEXPLORER-EXPORT-TEMP_PLEASE_CHANGE_LICENCE&lt;/availability&gt;
-      &lt;pubDate&gt;&lt;/pubDate&gt;
+      &lt;availability region="world" Default="n" status="unknown"&gt;{license}&lt;/availability&gt;
+      &lt;pubDate&gt;{doc_date}&lt;/pubDate&gt;
+      &lt;pubPlace&gt;{doc_place}&lt;/pubPlace&gt;
      &lt;/publicationStmt&gt;
      &lt;sourceDesc Default="n"&gt;
       &lt;biblStruct Default="n" status="draft"&gt;
@@ -275,7 +276,7 @@
     <value>&lt;/idsCorpus&gt;</value>
   </data>
   <data name="Template.Ids.I5.Head" xml:space="preserve">
-    <value>&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;
+    <value>&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;!DOCTYPE idsCorpus PUBLIC "-//IDS//DTD IDS-I5 1.0//EN" "http://corpora.ids-mannheim.de/I5/DTD/i5.dtd"&gt;
 &lt;idsCorpus version="1.0" TEIform="teiCorpus.2"&gt;
  &lt;idsHeader type="corpus" pattern="CorpusExplorer" status="new" version="1.0" TEIform="teiHeader"&gt;
@@ -340,6 +341,79 @@
    &lt;/listChange&gt;
   &lt;/revisionDesc&gt;
  &lt;/idsHeader&gt;</value>
+  </data>
+  <data name="Template.Ids.I5Plus" xml:space="preserve">
+    <value>&lt;!DOCTYPE idsText
+  PUBLIC "-//IDS//DTD IDS-I5 1.0//EN" "http://corpora.ids-mannheim.de/I5/DTD/i5.dtd"&gt;
+&lt;idsText&gt;
+   &lt;idsHeader TEIform="teiHeader"
+              pattern="text"
+              status="new"
+              type="text"
+              version="1.0"&gt;
+      &lt;fileDesc&gt;
+         &lt;titleStmt&gt;
+            &lt;textSigle&gt;{sigle}&lt;/textSigle&gt;
+            &lt;t.title assemblage="external"&gt;{sigle} {bibl}&lt;/t.title&gt;
+         &lt;/titleStmt&gt;
+         &lt;publicationStmt&gt;
+            &lt;distributor/&gt;
+            &lt;pubAddress/&gt;
+            &lt;availability region="world"&gt;{license}&lt;/availability&gt;
+            &lt;pubDate type="year"&gt;{export_data_year}&lt;/pubDate&gt;
+         &lt;/publicationStmt&gt;
+         &lt;sourceDesc&gt;
+            &lt;biblStruct&gt;
+               &lt;analytic&gt;
+                  &lt;h.title type="main"&gt;{title}&lt;/h.title&gt;
+                  &lt;h.author/&gt;
+                  &lt;imprint&gt;
+                     &lt;pubPlace /&gt;
+                     &lt;pubDate type="year"&gt;{doc_date_year}&lt;/pubDate&gt;
+                     &lt;pubDate type="month"&gt;{doc_date_month}&lt;/pubDate&gt;
+                     &lt;pubDate type="day"&gt;{doc_date_day}&lt;/pubDate&gt;
+                  &lt;/imprint&gt;
+               &lt;/analytic&gt;
+               &lt;monogr&gt;
+                  &lt;h.title type="main"&gt;{title}&lt;/h.title&gt;
+                  &lt;imprint&gt;
+                     &lt;publisher/&gt;
+                     &lt;pubPlace/&gt;
+                  &lt;/imprint&gt;
+               &lt;/monogr&gt;
+            &lt;/biblStruct&gt;
+            &lt;reference type="complete" assemblage="external"&gt;{sigle} {bibl}&lt;/reference&gt;
+            &lt;reference type="short" assemblage="external"&gt;{sigle} {bibl_short}&lt;/reference&gt;
+         &lt;/sourceDesc&gt;
+      &lt;/fileDesc&gt;
+      &lt;encodingDesc&gt;
+         &lt;editorialDecl&gt;
+            &lt;pagination type="no"/&gt;
+			&lt;transduction n="1"&gt;This document has been generated via CorpusExplorer-Export.&lt;/transduction&gt;
+         &lt;/editorialDecl&gt;
+      &lt;/encodingDesc&gt;
+      &lt;profileDesc&gt;
+	     &lt;langUsage&gt;
+			 &lt;language id="de" usage="100"&gt;Deutsch&lt;/language&gt;
+		 &lt;/langUsage&gt;
+		 &lt;textDesc&gt;
+			 &lt;textType&gt;&lt;/textType&gt;
+			 &lt;textTypeRef/&gt;
+		 &lt;/textDesc&gt;
+         &lt;creation&gt;
+            &lt;creatDate&gt;{doc_date_dot}&lt;/creatDate&gt;
+         &lt;/creation&gt;
+      &lt;/profileDesc&gt;
+      &lt;xenoData&gt;
+         {XENODATA}
+      &lt;/xenoData&gt;
+   &lt;/idsHeader&gt;
+   &lt;text&gt;
+      &lt;body&gt;
+         {ANNODATA}
+      &lt;/body&gt;
+   &lt;/text&gt;
+&lt;/idsText&gt;</value>
   </data>
   <data name="Template.Ids.KorAP.Data" xml:space="preserve">
     <value>&lt;?xml version="1.0" encoding="UTF-8"?&gt;

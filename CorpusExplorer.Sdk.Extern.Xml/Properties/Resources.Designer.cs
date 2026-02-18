@@ -22,7 +22,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CorpusExplorer.Sdk.Extern.Xml.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -72,10 +72,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///        &lt;annotator processor=&quot;CorpusExplorer&quot;/&gt;
         ///      &lt;/sentence-annotation&gt;
         ///      &lt;token-annotation&gt;
-        ///        &lt;annotator processor=&quot;CorpusExplorer&quot;/&gt;
-        ///    [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///        &lt;annotator processor=&quot;CorpusExpl [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
-        internal static string Template_FoLiA_Document {
+        public static string Template_FoLiA_Document {
             get {
                 return ResourceManager.GetString("Template.FoLiA.Document", resourceCulture);
             }
@@ -86,7 +85,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///{{TOKEN}}
         ///      &lt;/s&gt; ähnelt.
         /// </summary>
-        internal static string Template_FoLiA_Sentence {
+        public static string Template_FoLiA_Sentence {
             get {
                 return ResourceManager.GetString("Template.FoLiA.Sentence", resourceCulture);
             }
@@ -98,7 +97,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///          {{LAYERS}}
         ///        &lt;/w&gt; ähnelt.
         /// </summary>
-        internal static string Template_FoLiA_Token {
+        public static string Template_FoLiA_Token {
             get {
                 return ResourceManager.GetString("Template.FoLiA.Token", resourceCulture);
             }
@@ -107,7 +106,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die &lt;/idsDoc&gt; ähnelt.
         /// </summary>
-        internal static string Template_Ids_I5_Doc_Foot {
+        public static string Template_Ids_I5_Doc_Foot {
             get {
                 return ResourceManager.GetString("Template.Ids.I5.Doc.Foot", resourceCulture);
             }
@@ -119,7 +118,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///   &lt;fileDesc&gt;
         ///    &lt;titleStmt&gt;
         ///     &lt;dokumentSigle&gt;{cluster_id}&lt;/dokumentSigle&gt;
-        ///     &lt;d.title&gt;&lt;/d.title&gt;
+        ///     &lt;d.title&gt;{title}&lt;/d.title&gt;
         ///    &lt;/titleStmt&gt;
         ///    &lt;publicationStmt&gt;
         ///     &lt;distributor/&gt;
@@ -129,10 +128,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///    &lt;/publicationStmt&gt;
         ///    &lt;sourceDesc&gt;
         ///     &lt;biblStruct Default=&quot;n&quot;&gt;
-        ///      &lt;monogr&gt;
-        ///   [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///      &lt;mono [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
-        internal static string Template_Ids_I5_Doc_Head {
+        public static string Template_Ids_I5_Doc_Head {
             get {
                 return ResourceManager.GetString("Template.Ids.I5.Doc.Head", resourceCulture);
             }
@@ -150,9 +148,9 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///     &lt;publicationStmt&gt;
         ///      &lt;distributor&gt;&lt;/distributor&gt;
         ///      &lt;pubAddress&gt;&lt;/pubAddress&gt;
-        ///      &lt;availability region=&quot;world&quot; Default=&quot;n&quot; status=&quot;unknown&quot;&gt;CORPUSE [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///      &lt;availability region=&quot;world&quot; Default=&quot;n&quot; status=&quot;unknown&quot;&gt;{licens [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
-        internal static string Template_Ids_I5_Doc_Text {
+        public static string Template_Ids_I5_Doc_Text {
             get {
                 return ResourceManager.GetString("Template.Ids.I5.Doc.Text", resourceCulture);
             }
@@ -161,14 +159,14 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die &lt;/idsCorpus&gt; ähnelt.
         /// </summary>
-        internal static string Template_Ids_I5_Foot {
+        public static string Template_Ids_I5_Foot {
             get {
                 return ResourceManager.GetString("Template.Ids.I5.Foot", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;!DOCTYPE idsCorpus PUBLIC &quot;-//IDS//DTD IDS-I5 1.0//EN&quot; &quot;http://corpora.ids-mannheim.de/I5/DTD/i5.dtd&quot;&gt;
         ///&lt;idsCorpus version=&quot;1.0&quot; TEIform=&quot;teiCorpus.2&quot;&gt;
         /// &lt;idsHeader type=&quot;corpus&quot; pattern=&quot;CorpusExplorer&quot; status=&quot;new&quot; version=&quot;1.0&quot; TEIform=&quot;teiHeader&quot;&gt;
@@ -179,11 +177,35 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///   &lt;/titleStmt&gt;
         ///   &lt;editionStmt version=&quot;1.0&quot;&gt;&lt;/editionStmt&gt;
         ///   &lt;publicationStmt&gt;
-        ///    &lt;distributor&gt;Institut für [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///    &lt;distributor&gt;Instit [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
-        internal static string Template_Ids_I5_Head {
+        public static string Template_Ids_I5_Head {
             get {
                 return ResourceManager.GetString("Template.Ids.I5.Head", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;!DOCTYPE idsText
+        ///  PUBLIC &quot;-//IDS//DTD IDS-I5 1.0//EN&quot; &quot;http://corpora.ids-mannheim.de/I5/DTD/i5.dtd&quot;&gt;
+        ///&lt;idsText&gt;
+        ///   &lt;idsHeader TEIform=&quot;teiHeader&quot;
+        ///              pattern=&quot;text&quot;
+        ///              status=&quot;new&quot;
+        ///              type=&quot;text&quot;
+        ///              version=&quot;1.0&quot;&gt;
+        ///      &lt;fileDesc&gt;
+        ///         &lt;titleStmt&gt;
+        ///            &lt;textSigle&gt;{sigle}&lt;/textSigle&gt;
+        ///            &lt;t.title assemblage=&quot;external&quot;&gt;{sigle} {bibl}&lt;/t.title&gt;
+        ///         &lt;/titleStmt&gt;
+        ///         &lt;publicationStmt&gt;
+        ///            &lt;distributor/&gt;
+        ///            &lt; [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        public static string Template_Ids_I5Plus {
+            get {
+                return ResourceManager.GetString("Template.Ids.I5Plus", resourceCulture);
             }
         }
         
@@ -196,7 +218,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///  &lt;text&gt;{TEXT}&lt;/text&gt;
         ///&lt;/raw_text&gt; ähnelt.
         /// </summary>
-        internal static string Template_Ids_KorAP_Data {
+        public static string Template_Ids_KorAP_Data {
             get {
                 return ResourceManager.GetString("Template.Ids.KorAP.Data", resourceCulture);
             }
@@ -212,7 +234,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         /// &lt;/spanList&gt;
         ///&lt;/layer&gt; ähnelt.
         /// </summary>
-        internal static string Template_Ids_KorAP_Morpho {
+        public static string Template_Ids_KorAP_Morpho {
             get {
                 return ResourceManager.GetString("Template.Ids.KorAP.Morpho", resourceCulture);
             }
@@ -229,7 +251,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///   &lt;/fs&gt;
         ///  &lt;/span&gt; ähnelt.
         /// </summary>
-        internal static string Template_Ids_KorAP_Morpho_Span {
+        public static string Template_Ids_KorAP_Morpho_Span {
             get {
                 return ResourceManager.GetString("Template.Ids.KorAP.Morpho.Span", resourceCulture);
             }
@@ -248,7 +270,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///   &lt;editionStmt version=&quot;1.0&quot;/&gt;
         ///   &lt;publ [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
-        internal static string Template_Ids_KorAP_Root {
+        public static string Template_Ids_KorAP_Root {
             get {
                 return ResourceManager.GetString("Template.Ids.KorAP.Root", resourceCulture);
             }
@@ -268,7 +290,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///    &lt;span id=&quot;s1&quot; from=&quot;0&quot; to=&quot;{To}&quot; l=&quot;2&quot;&gt;
         ///      &lt;fs type=&quot;struct&quot; xmlns=&quot;http://www.tei-c.org/ns/ [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
-        internal static string Template_Ids_KorAP_Structure {
+        public static string Template_Ids_KorAP_Structure {
             get {
                 return ResourceManager.GetString("Template.Ids.KorAP.Structure", resourceCulture);
             }
@@ -281,7 +303,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///      &lt;/fs&gt;
         ///    &lt;/span&gt; ähnelt.
         /// </summary>
-        internal static string Template_Ids_KorAP_Structure_Sentence {
+        public static string Template_Ids_KorAP_Structure_Sentence {
             get {
                 return ResourceManager.GetString("Template.Ids.KorAP.Structure.Sentence", resourceCulture);
             }
@@ -297,7 +319,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///  &lt;/spanList&gt;
         ///&lt;/layer&gt; ähnelt.
         /// </summary>
-        internal static string Template_Ids_KorAP_Tokens {
+        public static string Template_Ids_KorAP_Tokens {
             get {
                 return ResourceManager.GetString("Template.Ids.KorAP.Tokens", resourceCulture);
             }
@@ -316,7 +338,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///    &lt;publicationStmt&gt;
         ///     [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
-        internal static string Template_Ids_KorAP_Year {
+        public static string Template_Ids_KorAP_Year {
             get {
                 return ResourceManager.GetString("Template.Ids.KorAP.Year", resourceCulture);
             }
@@ -334,7 +356,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Properties {
         ///     &lt;/titleStmt&gt;
         ///     &lt; [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
-        internal static string Template_Ids_KorAP_ZDoc {
+        public static string Template_Ids_KorAP_ZDoc {
             get {
                 return ResourceManager.GetString("Template.Ids.KorAP.ZDoc", resourceCulture);
             }

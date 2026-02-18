@@ -224,11 +224,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.WebCrawler
 
           page_3_txt_testquery.Text = "CorpusExplorer";
           page_3_txt_prefix.Text = "";
-          page_3_txt_xpathresult.Text = ".//*[@id='recent-posts']/article/div/div/div/div/h1/a";
+          page_3_txt_xpathresult.Text = "/html/body/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/article/h2/a";
 
-          page_4_grid_xpath.Rows.Add("Text", ".//*[@id='recent-posts']/article/div[1]/div/div/div[2]/p");
-          page_4_grid_xpath.Rows.Add("Datum", ".//*[@id='recent-posts']/article/div[1]/div/div/div[1]/span");
-          page_4_grid_xpath.Rows.Add("Titel", ".//*[@id='recent-posts']/article/div[1]/div/div/div[1]/h1");
+          page_4_grid_xpath.Rows.Add("Text", "//article/div[2]");
+          page_4_grid_xpath.Rows.Add("Datum", "//article/div[1]/p[1]/span[1]");
+          page_4_grid_xpath.Rows.Add("Titel", "//article/div/h1");
         }
 
         if (page_0_chk_mode_2.IsChecked)

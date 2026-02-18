@@ -28,7 +28,7 @@ namespace CorpusExplorer.Terminal.WinForm.Controls.WinForm.SelectLayerValues
           return string.IsNullOrEmpty(radAutoCompleteBox1.Text)
                    ? new string[0]
                    : radAutoCompleteBox1.Text.Split(Sdk.Helper.Splitter.Semicolon, StringSplitOptions.RemoveEmptyEntries)
-                                        .Select(x => x.Trim());
+                                        .Select(x => x.Trim()).ToArray();
         }
         catch
         {

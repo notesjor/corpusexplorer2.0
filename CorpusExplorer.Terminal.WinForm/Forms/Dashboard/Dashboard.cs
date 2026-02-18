@@ -91,6 +91,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
     private readonly RadMenuItem _addonMenuItem = new RadMenuItem { Image = Resources.addin, Text = "Erweiterungen" };
     private readonly DisposingContainer _snapshotEditDisposingContainer = new DisposingContainer();
     private readonly string _snapshotFileExtension = "Universale Schnappschuss-Definition (*.ceusd)|*.ceusd";
+    private RadDesktopAlert alert_survey = new RadDesktopAlert();
 
     /// <summary>
     ///   The _terminal.
@@ -277,11 +278,51 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
         InMemoryErrorConsole.Log(ex);
       }
 
-      #endregion      
+      #endregion
+
+      #region SURVEY
+      var muteSurveyStr = Configuration.GetSetting("Umfrage zurückstellen", "");
+      var muteSurvey = DateTimeHelper.Parse(muteSurveyStr);
+      if (muteSurvey < DateTime.Now)
+        ShowSurvey();
+      #endregion
 
       BridgeStop();
 
       Welcome.SplashClose();
+    }
+
+    private void ShowSurvey()
+    {
+      alert_survey.CaptionText = "Große CorpusExplorer-Community Umfrage!";
+      alert_survey.ContentText = "Der CorpusExplorer ist freie Software - erstellt mit viel Herzblut. Bitte nehmen Sie an der Umfrage teil, um den CorpusExplorer weiter zu verbessern.";
+      alert_survey.AutoClose = true;
+      alert_survey.AutoCloseDelay = 10;
+      alert_survey.FixedSize = new Size(350, 230);
+      alert_survey.ScreenPosition = AlertScreenPosition.BottomRight;
+      alert_survey.Show();
+
+      var surveyOpenBtn = new RadButtonElement();
+      surveyOpenBtn.Text = "Jetzt teilnehmen";
+      surveyOpenBtn.Click += ShowSurveyOpen;
+
+      var surveyRejectBtn = new RadButtonElement();
+      surveyRejectBtn.Text = "Später teilnehmen";
+      surveyRejectBtn.Margin = new Padding(5, 0, 0, 0);
+      surveyRejectBtn.Click += (o, e) =>
+      {
+        Configuration.SetSetting("Umfrage zurückstellen", DateTime.Now.AddDays(6).ToString("yyyy-MM-dd"));
+        alert_survey.Hide();
+      };
+
+      alert_survey.ButtonItems.Add(surveyOpenBtn);
+      alert_survey.ButtonItems.Add(surveyRejectBtn);
+    }
+
+    private void ShowSurveyOpen(object sender, EventArgs e)
+    {
+      Process.Start("https://survey.corpusexplorer.de/index.php/389634");
+      Configuration.SetSetting("Umfrage zurückstellen", DateTime.Now.AddMonths(6).ToString("yyyy-MM-dd"));
     }
 
     private void OpenRssFeedItemClick(object sender, ListViewItemEventArgs e)
@@ -845,6 +886,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                Resources.clipboard_cut1,
                                "CutOff-Phrasen")
                       .AddView(
+                               typeof(NGramOverTime),
+                      Resources.clipboard_cut,
+                        Resources.clipboard_cut1,
+                               Resources.SpcialFunctions_TimeFrequency)
+                      .AddView(
                                typeof(PhrasesGrid),
                                Resources.sheet_calculate_1,
                                Resources.sheet_calculate,
@@ -882,7 +928,7 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                Resources.sheet_calculate,
                                Resources.Cooccurrences_Table)
                       .AddView(
-                               typeof(FrequencyOverTime2),
+                               typeof(CooccurrenceCloud),
                                Resources.cloud1,
                                Resources.cloud2,
                                Resources.Cooccurrences_Cloud)
@@ -906,11 +952,6 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                Resources.charts_color_3d,
                                Resources.charts_color,
                                Resources.SpcialFunctions_TimeFrequency)
-                      .AddView(
-                               typeof(CooccurrenceDiversityOverTime),
-                               Resources.chart_column_2d_stacked_1001,
-                               Resources.chart_column_2d_stacked_100,
-                               "Zeitliche Kontrastierung")
                       .AddView(
                                typeof(CompareCooccurrence),
                                Resources.camera_find,
@@ -1055,11 +1096,11 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                Resources.diagram,
                                Resources.diagram1,
                                "Zustandsanalyse")
-                      .AddView(
-                               typeof(CorpusDistributionOverTime),
-                               Resources.charts_color_3d,
-                               Resources.charts_color,
-                               Resources.SpcialFunctions_TimeFrequency)
+                      //.AddView(
+                      //         typeof(CorpusDistributionOverTime),
+                      //         Resources.charts_color_3d,
+                      //         Resources.charts_color,
+                      //         Resources.SpcialFunctions_TimeFrequency)
                       .AddView(
                                typeof(CompareCorpusDistribution),
                                Resources.camera_find,

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
 namespace CorpusExplorer.Sdk.Extern.Xml.Ids.Helper
 {
@@ -17,16 +17,19 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.Helper
           continue;
 
         var type = GenerateXenoDataType(x.Value);
-        switch (type)
+        switch (type) // Hinweis: Wenn hier case geändert wird - muss auch in type und in GenerateXenoDataType geändert werden.
         {
-          case "number":
-            stb.AppendLine($"        <meta name=\"{x.Key}\" type=\"number\">{x.Value.ToString().Replace(",", ".")}</meta>");
+          case "integer":
+            stb.AppendLine($"        <meta name=\"{x.Key}\" type=\"integer\">{x.Value.ToString().Replace(",", ".")}</meta>");
             break;
           case "date":
             stb.AppendLine($"        <meta name=\"{x.Key}\" type=\"date\">{x.Value:yyyy-MM-dd}</meta>");
             break;
+          case "uri":
+            stb.AppendLine($"        <meta name=\"{x.Key}\" type=\"uri\">{x.Value}</meta>");
+            break;
           case "text":
-            stb.AppendLine($"        <meta name=\"{x.Key}\" type=\"text\">{x.Value}</meta>");
+            stb.AppendLine($"        <meta name=\"{x.Key}\" type=\"text\">{Escape(x.Value?.ToString())}</meta>");
             break;
         }
       }
@@ -37,7 +40,7 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.Helper
 
     private static string GenerateXenoDataType(object value)
     {
-      switch (value)
+      switch (value) // Hinweis: Wenn hier case geändert wird - muss auch in GenerateXenoData geändert werden.
       {
         case int _:
         case long _:
@@ -46,10 +49,12 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.Helper
         case decimal _:
         case byte _:
         case short _:
-          return "number";
+          return "integer";
         case DateTime _:
           return "date";
         default:
+          if (value is string str && !string.IsNullOrWhiteSpace(str) && str.StartsWith("http"))
+            return "uri";
           return "text";
       }
     }
@@ -58,5 +63,15 @@ namespace CorpusExplorer.Sdk.Extern.Xml.Ids.Helper
     {
       return meta.Where(x => x.Key != key).ToDictionary(x => x.Key, x => x.Value);
     }
+
+    private static string Escape(string text)
+      => _escapeL1.Aggregate(text, (current, kvp) => current.Replace(kvp.Key, kvp.Value));
+
+    private static Dictionary<string, string> _escapeL1 = new Dictionary<string, string>
+    {
+      { "&", "&amp;" },
+      { "<", "&lt;" },
+      { ">", "&gt;" }
+    };
   }
 }

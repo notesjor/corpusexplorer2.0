@@ -3689,6 +3689,15 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Frequenz (relativ) ähnelt.
+        /// </summary>
+        public static string Frequency_Relativ {
+            get {
+                return ResourceManager.GetString("Frequency_Relativ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Frequenz: ähnelt.
         /// </summary>
         public static string FrequencyDP {
@@ -5850,7 +5859,7 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die NGram ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die N-Gramm ähnelt.
         /// </summary>
         public static string NGram {
             get {
@@ -7122,6 +7131,15 @@ namespace CorpusExplorer.Terminal.WinForm.Properties {
         public static string SieBenötigenMindestensEinMappingMitDemKeyText {
             get {
                 return ResourceManager.GetString("SieBenötigenMindestensEinMappingMitDemKeyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Signifikanz ähnelt.
+        /// </summary>
+        public static string Significance {
+            get {
+                return ResourceManager.GetString("Significance", resourceCulture);
             }
         }
         

@@ -1,9 +1,11 @@
-using System;
-using System.Linq;
+using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator;
+using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator.Abstract;
 using CorpusExplorer.Sdk.ViewModel;
 using CorpusExplorer.Terminal.WinForm.Helper;
 using CorpusExplorer.Terminal.WinForm.Helper.UiFramework;
 using CorpusExplorer.Terminal.WinForm.Properties;
+using System;
+using System.Linq;
 using Telerik.Charting;
 using Telerik.WinControls.UI;
 
@@ -19,16 +21,21 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
         ChartPanZoomMode.Horizontal
     };
 
-    private FrequencyOverTimeViewModel _vm;
+    private ClusterEasyGenericViewModel _vm;
 
     public FrequencyOverTime()
     {
       InitializeComponent();
+      drop_cluster.Items.Add(new RadListDataItem("Jahr/Monat/Tag", new SelectionClusterGeneratorDateTimeYearMonthDay()));
+      drop_cluster.Items.Add(new RadListDataItem("Jahr/Woche", new SelectionClusterGeneratorDateTimeYearWeek()));
+      drop_cluster.Items.Add(new RadListDataItem("Jahr/Monat", new SelectionClusterGeneratorDateTimeYearMonth()));
+      drop_cluster.Items.Add(new RadListDataItem("Jahr/Quartal", new SelectionClusterGeneratorDateTimeYearQuarter()));
+      drop_cluster.Items.Add(new RadListDataItem("Jahr", new SelectionClusterGeneratorDateTimeYear()));
+      drop_cluster.Items.Add(new RadListDataItem("Jahrzehnt", new SelectionClusterGeneratorDateTimeDecade()));
+      drop_cluster.SelectedIndex = 0;
       chart_view.ShowPanZoom = true;
       ShowView += FrequencyOverTimeView_ShowView;
     }
-
-    public int Clusters { get; set; } = 25;
 
     public double MaximalValue { get; set; }
 
@@ -40,13 +47,9 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
     private void wordBag1_ExecuteButtonClicked(object sender, EventArgs e)
     {
       var meta = commandBarDropDownList1.SelectedItem.Value as string;
-
-      if (!int.TryParse(commandBarTextBox1.Text, out var clusters))
-        clusters = 0;
-      Clusters = clusters;
-
-      _vm.DateTimeProperty = meta;
-      _vm.LayerQueries = wordBag1.ResultQueries;
+      _vm.ClusterGenerator = drop_cluster.SelectedItem.Value as AbstractSelectionClusterGenerator;
+      _vm.MetadataKey = meta;
+      _vm.ChildViewModel = new Frequency1LayerSelectViewModel { LayerQueries = wordBag1.ResultQueries, LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname };
       _vm.Execute();
 
       chart_view.Series.Clear();
@@ -79,17 +82,22 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 
     private LineSeries BuildSeries(string query)
     {
-      var res = new LineSeries {LegendTitle = query};
+      var res = new LineSeries { LegendTitle = query };
 
-      var points = _vm.AggregateDateTimeValues(Clusters);
+      var points = _vm.ClusterNames;
 
-      foreach (var point in points)
+      foreach (var point in points.OrderBy(x => x))
       {
-        var value = point.Value.ContainsKey(query) ? point.Value[query] : 0;
+        var data = _vm.ClusterTables[point];
+        if (data.Rows.Count == 0)
+          continue;
+        var value = (double)data.Rows.Cast<System.Data.DataRow>()?
+          .FirstOrDefault(r => r[wordBag1.ResultSelectedLayerDisplayname]?.ToString() == query)?[Resources.Frequency_Relativ];
+
         if (value > MaximalValue)
           MaximalValue = value;
 
-        res.DataPoints.Add(new CategoricalDataPoint(value, point.Key.ToString("yyyy-MM-dd")));
+        res.DataPoints.Add(new CategoricalDataPoint(value, point));
       }
 
       return res;
@@ -97,11 +105,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Frequency
 
     private void FrequencyOverTimeView_ShowView(object sender, EventArgs e)
     {
-      _vm = GetViewModel<FrequencyOverTimeViewModel>();
+      _vm = GetViewModel<ClusterEasyGenericViewModel>();
       if (!_vm.Execute())
         return;
 
-      commandBarDropDownList1.DataSource = _vm.DocumentMetadata;
+      commandBarDropDownList1.DataSource = _vm.DocumentMetaProperties;
 
       foreach (var item in commandBarDropDownList1.Items)
         if (item.Text == Resources.Datum)

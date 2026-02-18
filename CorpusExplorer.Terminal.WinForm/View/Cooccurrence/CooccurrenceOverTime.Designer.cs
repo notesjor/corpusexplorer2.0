@@ -39,21 +39,20 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.commandBarLabel1 = new Telerik.WinControls.UI.CommandBarLabel();
       this.commandBarDropDownList1 = new Telerik.WinControls.UI.CommandBarDropDownList();
       this.commandBarSeparator1 = new Telerik.WinControls.UI.CommandBarSeparator();
-      this.commandBarLabel2 = new Telerik.WinControls.UI.CommandBarLabel();
-      this.commandBarTextBox1 = new Telerik.WinControls.UI.CommandBarTextBox();
-      this.commandBarSeparator2 = new Telerik.WinControls.UI.CommandBarSeparator();
       this.btn_export = new Telerik.WinControls.UI.CommandBarButton();
       this.radAutoCompleteBox1 = new Telerik.WinControls.UI.RadAutoCompleteBox();
       this.btn_go = new Telerik.WinControls.UI.RadButton();
-      this.chart_view = new Telerik.WinControls.UI.RadChartView();
       this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
       this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
       this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
       this.drop_select = new Telerik.WinControls.UI.RadCheckedDropDownList();
+      this.chart_view = new Telerik.WinControls.UI.RadChartView();
+      this.commandBarLabel2 = new Telerik.WinControls.UI.CommandBarLabel();
+      this.drop_cluster = new Telerik.WinControls.UI.CommandBarDropDownList();
+      this.commandBarSeparator2 = new Telerik.WinControls.UI.CommandBarSeparator();
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radAutoCompleteBox1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.btn_go)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.chart_view)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
       this.radSplitContainer1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -61,6 +60,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
       this.splitPanel2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.drop_select)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.chart_view)).BeginInit();
       this.SuspendLayout();
       // 
       // radCommandBar1
@@ -86,16 +86,16 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
             this.commandBarDropDownList1,
             this.commandBarSeparator1,
             this.commandBarLabel2,
-            this.commandBarTextBox1,
+            this.drop_cluster,
             this.commandBarSeparator2,
             this.btn_export});
       this.commandBarStripElement1.Name = "commandBarStripElement1";
       // 
       // btn_layer
       // 
+      this.btn_layer.AutoToolTip = true;
       resources.ApplyResources(this.btn_layer, "btn_layer");
       this.btn_layer.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.layers;
-      this.btn_layer.AutoToolTip = true;
       this.btn_layer.Name = "btn_layer";
       this.btn_layer.Click += new System.EventHandler(this.btn_layer_Click);
       // 
@@ -109,7 +109,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       // 
       resources.ApplyResources(this.commandBarDropDownList1, "commandBarDropDownList1");
       this.commandBarDropDownList1.DropDownAnimationEnabled = true;
-      this.commandBarDropDownList1.MaxDropDownItems = 0;
       this.commandBarDropDownList1.MinSize = new System.Drawing.Size(200, 22);
       this.commandBarDropDownList1.Name = "commandBarDropDownList1";
       this.commandBarDropDownList1.NullText = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.BitteAuswählen;
@@ -120,27 +119,11 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.commandBarSeparator1.Name = "commandBarSeparator1";
       this.commandBarSeparator1.VisibleInOverflowMenu = false;
       // 
-      // commandBarLabel2
-      // 
-      resources.ApplyResources(this.commandBarLabel2, "commandBarLabel2");
-      this.commandBarLabel2.Name = "commandBarLabel2";
-      // 
-      // commandBarTextBox1
-      // 
-      resources.ApplyResources(this.commandBarTextBox1, "commandBarTextBox1");
-      this.commandBarTextBox1.Name = "commandBarTextBox1";
-      // 
-      // commandBarSeparator2
-      // 
-      resources.ApplyResources(this.commandBarSeparator2, "commandBarSeparator2");
-      this.commandBarSeparator2.Name = "commandBarSeparator2";
-      this.commandBarSeparator2.VisibleInOverflowMenu = false;
-      // 
       // btn_export
       // 
+      this.btn_export.AutoToolTip = true;
       resources.ApplyResources(this.btn_export, "btn_export");
       this.btn_export.Image = global::CorpusExplorer.Terminal.WinForm.Properties.Resources.export_text;
-      this.btn_export.AutoToolTip = true;
       this.btn_export.Name = "btn_export";
       this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
       // 
@@ -156,38 +139,12 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.btn_go.Name = "btn_go";
       this.btn_go.Click += new System.EventHandler(this.btn_go_Click);
       // 
-      // chart_view
-      // 
-      this.chart_view.AreaDesign = cartesianArea1;
-      categoricalAxis1.IsPrimary = true;
-      categoricalAxis1.LabelRotationAngle = 300D;
-      categoricalAxis1.Title = "";
-      linearAxis1.AxisType = Telerik.Charting.AxisType.Second;
-      linearAxis1.IsPrimary = true;
-      linearAxis1.LabelRotationAngle = 300D;
-      linearAxis1.TickOrigin = null;
-      linearAxis1.Title = "";
-      this.chart_view.Axes.AddRange(new Telerik.WinControls.UI.Axis[] {
-            categoricalAxis1,
-            linearAxis1});
-      resources.ApplyResources(this.chart_view, "chart_view");
-      this.chart_view.Name = "chart_view";
-      this.chart_view.ShowGrid = false;
-      this.chart_view.ShowLegend = true;
-      this.chart_view.ShowPanZoom = true;
-      this.chart_view.ShowToolTip = true;
-      this.chart_view.ShowTrackBall = true;
-      // 
       // radSplitContainer1
       // 
       this.radSplitContainer1.Controls.Add(this.splitPanel1);
       this.radSplitContainer1.Controls.Add(this.splitPanel2);
       resources.ApplyResources(this.radSplitContainer1, "radSplitContainer1");
       this.radSplitContainer1.Name = "radSplitContainer1";
-      // 
-      // 
-      // 
-      this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(0, 0);
       this.radSplitContainer1.TabStop = false;
       // 
       // splitPanel1
@@ -196,10 +153,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.splitPanel1.Controls.Add(this.btn_go);
       resources.ApplyResources(this.splitPanel1, "splitPanel1");
       this.splitPanel1.Name = "splitPanel1";
-      // 
-      // 
-      // 
-      this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(0, 0);
       this.splitPanel1.TabStop = false;
       // 
       // splitPanel2
@@ -207,10 +160,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.splitPanel2.Controls.Add(this.drop_select);
       resources.ApplyResources(this.splitPanel2, "splitPanel2");
       this.splitPanel2.Name = "splitPanel2";
-      // 
-      // 
-      // 
-      this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(0, 0);
       this.splitPanel2.TabStop = false;
       // 
       // drop_select
@@ -218,6 +167,38 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       resources.ApplyResources(this.drop_select, "drop_select");
       this.drop_select.Name = "drop_select";
       this.drop_select.ItemCheckedChanged += new Telerik.WinControls.UI.RadCheckedListDataItemEventHandler(this.drop_select_ItemCheckedChanged);
+      // 
+      // chart_view
+      // 
+      this.chart_view.AreaDesign = cartesianArea1;
+      categoricalAxis1.IsPrimary = true;
+      linearAxis1.AxisType = Telerik.Charting.AxisType.Second;
+      linearAxis1.IsPrimary = true;
+      linearAxis1.TickOrigin = null;
+      this.chart_view.Axes.AddRange(new Telerik.WinControls.UI.Axis[] {
+            categoricalAxis1,
+            linearAxis1});
+      resources.ApplyResources(this.chart_view, "chart_view");
+      this.chart_view.Name = "chart_view";
+      this.chart_view.ShowGrid = false;
+      // 
+      // commandBarLabel2
+      // 
+      resources.ApplyResources(this.commandBarLabel2, "commandBarLabel2");
+      this.commandBarLabel2.Name = "commandBarLabel2";
+      // 
+      // drop_cluster
+      // 
+      resources.ApplyResources(this.drop_cluster, "drop_cluster");
+      this.drop_cluster.DropDownAnimationEnabled = true;
+      this.drop_cluster.MinSize = new System.Drawing.Size(200, 22);
+      this.drop_cluster.Name = "drop_cluster";
+      // 
+      // commandBarSeparator2
+      // 
+      resources.ApplyResources(this.commandBarSeparator2, "commandBarSeparator2");
+      this.commandBarSeparator2.Name = "commandBarSeparator2";
+      this.commandBarSeparator2.VisibleInOverflowMenu = false;
       // 
       // CooccurrenceOverTime
       // 
@@ -229,7 +210,6 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       ((System.ComponentModel.ISupportInitialize)(this.radCommandBar1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radAutoCompleteBox1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.btn_go)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.chart_view)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
       this.radSplitContainer1.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
@@ -238,6 +218,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
       this.splitPanel2.ResumeLayout(false);
       this.splitPanel2.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.drop_select)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.chart_view)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -251,17 +232,17 @@ namespace CorpusExplorer.Terminal.WinForm.View.Cooccurrence
     private Telerik.WinControls.UI.CommandBarLabel commandBarLabel1;
     private Telerik.WinControls.UI.CommandBarDropDownList commandBarDropDownList1;
     private Telerik.WinControls.UI.RadButton btn_go;
-    private Telerik.WinControls.UI.RadChartView chart_view;
     private Telerik.WinControls.UI.RadAutoCompleteBox radAutoCompleteBox1;
     private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator1;
-    private Telerik.WinControls.UI.CommandBarLabel commandBarLabel2;
-    private Telerik.WinControls.UI.CommandBarTextBox commandBarTextBox1;
     private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
     private Telerik.WinControls.UI.SplitPanel splitPanel1;
     private Telerik.WinControls.UI.SplitPanel splitPanel2;
     private Telerik.WinControls.UI.RadCheckedDropDownList drop_select;
-    private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator2;
+    private Telerik.WinControls.UI.RadChartView chart_view;
     private Telerik.WinControls.UI.CommandBarButton btn_export;
     private Telerik.WinControls.UI.CommandBarButton btn_layer;
+    private Telerik.WinControls.UI.CommandBarLabel commandBarLabel2;
+    private Telerik.WinControls.UI.CommandBarDropDownList drop_cluster;
+    private Telerik.WinControls.UI.CommandBarSeparator commandBarSeparator2;
   }
 }
