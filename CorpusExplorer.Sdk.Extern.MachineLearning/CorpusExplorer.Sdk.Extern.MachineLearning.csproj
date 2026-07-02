@@ -83,7 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Bcl.Numerics">
-      <Version>10.0.3</Version>
+      <Version>10.0.9</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.ML">
       <Version>5.0.0</Version>
@@ -101,16 +101,16 @@
       <Version>4.6.1</Version>
     </PackageReference>
     <PackageReference Include="System.CodeDom">
-      <Version>10.0.3</Version>
+      <Version>10.0.9</Version>
     </PackageReference>
     <PackageReference Include="System.Collections.Immutable">
-      <Version>10.0.3</Version>
+      <Version>10.0.9</Version>
     </PackageReference>
     <PackageReference Include="System.Memory">
       <Version>4.6.3</Version>
     </PackageReference>
     <PackageReference Include="System.Numerics.Tensors">
-      <Version>10.0.3</Version>
+      <Version>10.0.9</Version>
     </PackageReference>
     <PackageReference Include="System.Numerics.Vectors">
       <Version>4.6.1</Version>
@@ -122,10 +122,10 @@
       <Version>6.1.2</Version>
     </PackageReference>
     <PackageReference Include="System.Threading.Channels">
-      <Version>10.0.3</Version>
+      <Version>10.0.9</Version>
     </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Dataflow">
-      <Version>10.0.3</Version>
+      <Version>10.0.9</Version>
     </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Extensions">
       <Version>4.6.3</Version>

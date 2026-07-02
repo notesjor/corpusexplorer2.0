@@ -41,7 +41,6 @@
     <Compile Include="Adapter\CorpusAdapterHdf5.cs" />
     <Compile Include="Adapter\LayerAdapterHdf5.cs" />
     <Compile Include="Builder\CorpusBuilderHdf5.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="DataTableWriter\Hdf5TableWriter.cs" />
     <Compile Include="Exporter\ExporterHdf5.cs" />
     <Compile Include="Importer\ImporterHdf5.cs" />

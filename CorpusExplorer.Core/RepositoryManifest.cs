@@ -188,6 +188,7 @@ namespace CorpusExplorer.Core
       {
         new ClassicTreeTagger(),
         new SimpleTreeTagger(),
+        new SimpleGenderTreeTagger(),
         new TnTTagger(),
         new RawTextTagger(),
         new OwnTreeTagger(),

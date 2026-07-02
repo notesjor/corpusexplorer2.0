@@ -23,6 +23,7 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     };
 
     private string _last;
+    private string _lastQuery;
     private ClusterEasyGenericViewModel _vm;
 
     public NGramOverTime()
@@ -49,16 +50,20 @@ namespace CorpusExplorer.Terminal.WinForm.View.Ngram
     private void Analyse()
     {
       var meta = commandBarDropDownList1.SelectedItem.Value as string;
+      var current = string.Join(";",wordBag1.ResultQueries);
 
-      if (meta != _last)
+      if (meta != _last || current != _lastQuery)
       {
         _last = meta;
+        _lastQuery = current;
+
         _vm.ClusterGenerator = drop_cluster.SelectedItem.Value as AbstractSelectionClusterGenerator;
         _vm.MetadataKey = meta;
         _vm.ChildViewModel = new Ngram1LayerSelectiveViewModel
         {
           LayerDisplayname = wordBag1.ResultSelectedLayerDisplayname,
-          LayerQueries = wordBag1.ResultQueries
+          LayerQueries = wordBag1.ResultQueries,
+          AutoDetectNGramSize = true
         };
         _vm.Execute();
       }

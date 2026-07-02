@@ -47,11 +47,14 @@ namespace CorpusExplorer.Sdk.ViewModel
       var block = Selection.CreateBlock<Ngram1LayerSelectiveBlock>();
       block.LayerDisplayname = LayerDisplayname;
       block.NGramSize = NGramSize;
+      block.AutoDetectNGramSize = AutoDetectNGramSize;
       block.LayerQueries = LayerQueries;
       block.Calculate();
 
       NGramFrequency = block.NGramFrequency;
     }
+
+    public bool AutoDetectNGramSize { get; set; } = false;
 
     protected override bool Validate()
     {

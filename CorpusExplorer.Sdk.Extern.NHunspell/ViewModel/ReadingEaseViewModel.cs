@@ -96,7 +96,7 @@ namespace CorpusExplorer.Sdk.Extern.NHunspell.ViewModel
           ReadingEaseIndices.Add(index.Displayname, block.ReadingEaseIndices);
         }
       }
-      catch
+      catch (Exception ex)
       {
         // ignore
       }

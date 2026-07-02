@@ -12,7 +12,7 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger
 {
-  public sealed class SimpleTreeTagger : AbstractTreeTagger
+  public class SimpleTreeTagger : AbstractTreeTagger
   {
     public SimpleTreeTagger()
     {
@@ -33,9 +33,10 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tagger.TreeTagger
       set
       {
         base.LanguageSelected = value;
-        Tokenizer = value == "Deutsch"
-                      ? (AbstractTokenizer) new HighSpeedGermanTokenizer()
-                      : new HighSpeedSpaceTokenizer();
+        if (Tokenizer?.GetType() != typeof(HighSpeedGermanGenderTokenizer))
+          Tokenizer = value == "Deutsch"
+                        ? (AbstractTokenizer)new HighSpeedGermanTokenizer()
+                        : new HighSpeedSpaceTokenizer();
       }
     }
 

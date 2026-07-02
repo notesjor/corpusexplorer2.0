@@ -385,6 +385,7 @@
     <Compile Include="Utils\DataTableWriter\BinaryTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\HtmlTableSnippetTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\HtmlTableWriter.cs" />
+    <Compile Include="Utils\DataTableWriter\JsonColumnarTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\JsonRoundedTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\SqlDataOnlyTableWriter.cs" />
     <Compile Include="Utils\DataTableWriter\SqlSchemaOnlyTableWriter.cs" />
@@ -478,6 +479,8 @@
     <Compile Include="Utils\DocumentProcessing\Exporter\ExporterTlv.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\Tlv\Model\TlvEntry.cs" />
     <Compile Include="Utils\DocumentProcessing\Exporter\Tlv\TlvBuilder.cs" />
+    <Compile Include="Utils\DocumentProcessing\Tagger\TreeTagger\SimpleGenderTreeTagger.cs" />
+    <Compile Include="Utils\DocumentProcessing\Tokenizer\HighSpeedGermanGenderTokenizer.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\Abstract\AbstractImporterBase.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\Abstract\AbstractImporter.cs" />
     <Compile Include="Utils\DocumentProcessing\Importer\CorpusExplorerV6\ImporterCec6Drm.cs" />
@@ -819,13 +822,16 @@
       <Version>1.0.8</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces">
-      <Version>10.0.3</Version>
+      <Version>10.0.9</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Bcl.HashCode">
       <Version>6.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.CSharp">
       <Version>4.7.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions">
+      <Version>10.0.9</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.Platforms">
       <Version>7.0.4</Version>
@@ -840,7 +846,7 @@
       <Version>13.0.4</Version>
     </PackageReference>
     <PackageReference Include="PostSharp.Redist">
-      <Version>2026.0.5</Version>
+      <Version>2026.0.12</Version>
     </PackageReference>
     <PackageReference Include="SharpSerializer">
       <Version>4.0.2</Version>
@@ -858,7 +864,7 @@
       <Version>4.3.0</Version>
     </PackageReference>
     <PackageReference Include="System.Diagnostics.DiagnosticSource">
-      <Version>10.0.3</Version>
+      <Version>10.0.9</Version>
     </PackageReference>
     <PackageReference Include="System.Diagnostics.Tools">
       <Version>4.3.0</Version>
@@ -879,7 +885,7 @@
       <Version>4.3.0</Version>
     </PackageReference>
     <PackageReference Include="System.IO.Pipelines">
-      <Version>10.0.3</Version>
+      <Version>10.0.9</Version>
     </PackageReference>
     <PackageReference Include="System.Linq">
       <Version>4.3.0</Version>

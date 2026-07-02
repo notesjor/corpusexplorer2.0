@@ -887,8 +887,8 @@ namespace CorpusExplorer.Terminal.WinForm.Forms.Dashboard
                                "CutOff-Phrasen")
                       .AddView(
                                typeof(NGramOverTime),
-                      Resources.clipboard_cut,
-                        Resources.clipboard_cut1,
+                      Resources.charts_color_3d,
+                        Resources.charts_color,
                                Resources.SpcialFunctions_TimeFrequency)
                       .AddView(
                                typeof(PhrasesGrid),

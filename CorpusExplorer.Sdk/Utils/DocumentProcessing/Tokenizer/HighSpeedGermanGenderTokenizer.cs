@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Diagnostic;
 using CorpusExplorer.Sdk.Ecosystem.Model;
@@ -13,7 +14,7 @@ using CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer.Abstract;
 
 namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer
 {
-  public sealed class HighSpeedGermanTokenizer : AbstractTokenizer
+  public sealed class HighSpeedGermanGenderTokenizer : AbstractTokenizer
   {
     private readonly Dictionary<string, string> _conv1 = new Dictionary<string, string>
     {
@@ -1318,10 +1319,12 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer
       {"https : //", "https://"},
       {"http : //", "http://"}
     };
+    
+    private readonly Regex _regex = new Regex(@"[A-ZÄÖÜ][a-zäöüß]+[:*_\/-]+[\/\\]*[i|I]n(nen)?");
 
     private readonly int _max = 5 * 1024 * 1024;
 
-    public override string DisplayName => "HighSpeed German-Tokenizer";
+    public override string DisplayName => "HighSpeed German-Tokenizer + Gender-Safe";
 
     public override string Language
     {
@@ -1360,6 +1363,22 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer
         InMemoryErrorConsole.Log(ex);
       }
 
+      var localDict = new Dictionary<string, string>();
+      try
+      {
+        // Erkennung von Token mit Genderzeichen
+        // "Student*innen" -> "(G[0])"  (Token mit Genderzeichen wird durch Platzhalter ersetzt)
+        var matches = new HashSet<string>(_regex.Matches(input.ToString()).Cast<Match>().Select(m => m.Value));        
+        foreach (var x in matches)
+          localDict.Add(x, $"(G[{localDict.Count}])");
+        
+        input = localDict.Aggregate(input, (current, pair) => current.Replace(pair.Key, pair.Value)); 
+      }
+      catch (Exception ex)
+      {
+        InMemoryErrorConsole.Log(ex);
+      }
+
       try
       {
         // Abkürzungen -> Platzhalter:
@@ -1391,6 +1410,17 @@ namespace CorpusExplorer.Sdk.Utils.DocumentProcessing.Tokenizer
         // "https : //" -> "https://"    (Leerzeichen in https-URL entfernt)
         // "http : //"  -> "http://"     (Leerzeichen in http-URL entfernt)
         input = _conv4.Aggregate(input, (current, pair) => current.Replace(pair.Key, pair.Value));
+      }
+      catch (Exception ex)
+      {
+        InMemoryErrorConsole.Log(ex);
+      }
+
+      try
+      {
+        // Platzhalter -> Token mit Genderzeichen
+        // "(G[0])" -> "Student*innen" (Platzhalter wird wieder in ursprünglichen Token mit Genderzeichen zurückverwandelt)
+        input = localDict.Aggregate(input, (current, pair) => current.Replace(pair.Value, pair.Key));
       }
       catch (Exception ex)
       {

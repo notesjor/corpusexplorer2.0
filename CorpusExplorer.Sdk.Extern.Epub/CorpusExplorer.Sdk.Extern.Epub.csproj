@@ -74,7 +74,7 @@
       <Version>1.12.4</Version>
     </PackageReference>
     <PackageReference Include="VersOne.Epub">
-      <Version>3.3.5</Version>
+      <Version>3.3.6</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
